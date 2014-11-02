@@ -83,8 +83,14 @@ Task("PrepareVSIX")
         allPackages.Sort((x, y) => x.Item1.CompareTo(y.Item1));
     
         var xm = XElement.Parse(File.ReadAllText(vsixManifestFile));
-        xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity")
-            .First().SetAttributeValue("Version", allPackages.First(x => x.Item1.StartsWith("Serenity.Core")).Item2);
+        var ver = allPackages.First(x => x.Item1.StartsWith("Serenity.Core")).Item2;
+        var identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
+        var old = identity.Attribute("Version").Value;
+        if (old != null && old.StartsWith(ver + ".")) 
+            ver = ver + "." + (Int32.Parse(old.Substring(ver.Length + 1)) + 1);
+        else
+            ver = ver + ".0";
+        identity.SetAttributeValue("Version", ver);
         File.WriteAllText(vsixManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
     
         var xv = XElement.Parse(File.ReadAllText(vsixProjFile));
