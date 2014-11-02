@@ -1,0 +1,4 @@
+[submodule "Serenity"]
+	path = Serenity
+	url = https://github.com/volkanceylan/Serenity.git
+	branch = master
