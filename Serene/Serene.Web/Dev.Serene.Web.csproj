@@ -94,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Modules\Common\Migrations\DefaultDB\NorthwindDBScript.sql" />
-    <Content Include="App_Start\SereneDBScript.sql" />
     <Content Include="Content\aristo\aristo.css" />
     <Content Include="Content\aristo\images\icon_sprite.png" />
     <Content Include="Content\aristo\images\progress_bar.gif" />
