@@ -50,7 +50,7 @@
             catch
             {
                 var cb = new DbConnectionStringBuilder();
-                cb.ConnectionString = SqlConnections.GetConnectionString("Default").Item1;
+                cb.ConnectionString = SqlConnections.GetConnectionString("Default").ConnectionString;
                 var catalog = cb["Initial Catalog"];
                 cb["Initial Catalog"] = null;
                 cb["AttachDBFilename"] = null;
