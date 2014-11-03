@@ -1,5 +1,7 @@
 ﻿namespace Serene
 {
+    using FluentMigrator.Runner.Announcers;
+    using FluentMigrator.Runner.Initialization;
     using Serenity;
     using Serenity.Abstractions;
     using Serenity.Data;
@@ -66,43 +68,35 @@
                 SqlConnection.ClearAllPools();
             }
 
-            EnsureDBScript();
+            RunMigrations();
         }
 
-        private static void EnsureDBScript()
+        private static void RunMigrations()
         {
-            using (var connection = SqlConnections.NewByKey("Default"))
+            var defaultConnection = SqlConnections.GetConnectionString("Default");
+
+            // safety check to ensure that we are not modifying another database
+            if (defaultConnection.ConnectionString.IndexOf(@"(LocalDb)\v11.0") < 0)
+                return;
+
+            using (var sw = new StringWriter())
             {
-                connection.Open();
-
-                var tables = ((DbConnection)(((WrappedConnection)connection).ActualConnection)).GetSchema("Tables");
-                foreach (DataRow row in tables.Rows)
+                var announcer = new TextWriterWithGoAnnouncer(sw)
                 {
-                    if (String.Compare(row["TABLE_NAME"] as string, "Users", StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        return;
-                    }
-                }
+                    ShowSql = true
+                };
 
-                RunScript(connection, File.ReadAllText(HostingEnvironment.MapPath("~/App_Start/SereneDBScript.sql")));
-                RunScript(connection, File.ReadAllText(HostingEnvironment.MapPath("~/App_Start/NorthwindDBScript.sql")));
-            }
-        }
+                var runner = new RunnerContext(announcer)
+                {
+                    Database = "SqlServer",
+                    Connection = defaultConnection.ConnectionString,
+                    Target = typeof(SiteInitialization).Assembly.Location,
+                    Task = "migrate:up",
+                    WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),
+                    Namespace = "Serene.Migrations.DefaultDB"
+                };
 
-        public static void RunScript(IDbConnection connection, string script)
-        {
-            var parts = script.Replace("\r", "").Split(new string[] { "GO\n" }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var part in parts)
-            {
-                try
-                {
-                    SqlHelper.ExecuteNonQuery(connection, part);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(String.Format("Error executing script: {1}\n\n{0}",
-                        part, ex.ToString()), ex);
-                }
+                new TaskExecutor(runner).Execute();
             }
         }
     }
