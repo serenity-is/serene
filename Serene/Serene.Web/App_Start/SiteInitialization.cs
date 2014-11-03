@@ -76,7 +76,7 @@
             var defaultConnection = SqlConnections.GetConnectionString("Default");
 
             // safety check to ensure that we are not modifying another database
-            if (defaultConnection.ConnectionString.IndexOf(@"(LocalDb)\v11.0") < 0)
+            if (defaultConnection.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + @"_Default_v1") < 0)
                 return;
 
             using (var sw = new StringWriter())
