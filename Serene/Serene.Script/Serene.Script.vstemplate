@@ -178,7 +178,11 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.6.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.3.6" />
+      <package id="Serenity.Script" version="1.3.8" />
     </packages>
   </WizardData>
+  <WizardExtension>
+    <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>RootProjectWizard.ChildWizard</FullClassName>
+  </WizardExtension>
 </VSTemplate>

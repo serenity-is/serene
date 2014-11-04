@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
     <Name>SERENE (Serenity Application Template)</Name>
-    <Description>Contains Web and Script project templates for Serenity Application Platform. Template requires Visual Studio 2013 Update 3 to be installed to function properly.</Description>
+    <Description>Contains Web and Script project templates for Serenity Application Platform.</Description>
     <Icon>__TemplateIcon.png</Icon>
     <DefaultName>Serene</DefaultName>
     <ProjectType>CSharp</ProjectType>
@@ -16,5 +16,9 @@
         Serene.Script\Serene.Script.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
-  </TemplateContent>  
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>RootProjectWizard.RootWizard</FullClassName>
+  </WizardExtension>
 </VSTemplate>

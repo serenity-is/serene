@@ -874,7 +874,7 @@
 			},
 			getColumns: function() {
 				var columnItems = this.getPropertyItems();
-				return $Serenity_PropertyItemSlickConverter.toSlickColumns(columnItems);
+				return this.propertyItemsToSlickColumns(columnItems);
 			},
 			propertyItemsToSlickColumns: function(propertyItems) {
 				var columns = $Serenity_PropertyItemSlickConverter.toSlickColumns(propertyItems);
@@ -984,7 +984,9 @@
 					if (attributes.length === 1) {
 						this.isActiveFieldName = attributes[0].get_value();
 					}
-					this.isActiveFieldName = '';
+					else {
+						this.isActiveFieldName = '';
+					}
 				}
 				return this.isActiveFieldName;
 			},

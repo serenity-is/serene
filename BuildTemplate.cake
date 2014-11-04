@@ -51,6 +51,7 @@ Task("PrepareVSIX")
         var list = xv.Descendants(ns + "ItemGroup").Elements().Where(x => (
             x.Name == ns + "Content" ||
             x.Name == ns + "Compile" ||
+            x.Name == ns + "EmbeddedResource" ||
             x.Name == ns + "Folder" ||
             x.Name == ns + "None")).Select(x => x.Attribute("Include").Value)
             .ToList();
