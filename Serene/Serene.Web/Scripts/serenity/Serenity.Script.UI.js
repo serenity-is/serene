@@ -8,6 +8,13 @@
 	global.System.ComponentModel = global.System.ComponentModel || {};
 	ss.initAssembly($asm, 'Serenity.Script.UI');
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.AsyncLookupEditor
+	var $Serenity_AsyncLookupEditor = function(hidden, opt) {
+		ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).call(this, hidden, opt);
+	};
+	$Serenity_AsyncLookupEditor.__typeName = 'Serenity.AsyncLookupEditor';
+	global.Serenity.AsyncLookupEditor = $Serenity_AsyncLookupEditor;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.BooleanEditor
 	var $Serenity_BooleanEditor = function(input) {
 		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, input, new Object());
@@ -5648,6 +5655,17 @@
 			return this.widgetName;
 		}
 	}, Serenity.ScriptContext);
+	ss.initInterface($Serenity_IStringValue, $asm, { get_value: null, set_value: null });
+	ss.initInterface($Serenity_IAsyncInit, $asm, {});
+	ss.initClass($Serenity_AsyncLookupEditor, $asm, {
+		getLookupKey: function() {
+			var $t1 = this.options.lookupKey;
+			if (ss.isNullOrUndefined($t1)) {
+				$t1 = ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).prototype.getLookupKey.call(this);
+			}
+			return $t1;
+		}
+	}, ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]), [$Serenity_IStringValue, $Serenity_IAsyncInit]);
 	ss.initInterface($Serenity_IBooleanValue, $asm, { get_value: null, set_value: null });
 	ss.initClass($Serenity_BooleanEditor, $asm, {
 		get_value: function() {
@@ -5687,7 +5705,6 @@
 	ss.initClass($Serenity_CheckListEditorOptions, $asm, {});
 	ss.initInterface($Serenity_IDataGrid, $asm, {});
 	ss.initClass($Serenity_CustomValidation, $asm, {});
-	ss.initInterface($Serenity_IStringValue, $asm, { get_value: null, set_value: null });
 	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_DateEditor, $asm, {
 		get_value: function() {
@@ -6497,7 +6514,6 @@
 			return config;
 		}
 	}, $Serenity_HtmlContentEditor, [$Serenity_IStringValue]);
-	ss.initInterface($Serenity_IAsyncInit, $asm, {});
 	ss.initInterface($Serenity_IFilterHandler, $asm, { getOperators: null, operatorTitle: null, operatorFormat: null, createEditor: null, toFilterLine: null });
 	ss.initClass($Serenity_ImageUploadEditor, $asm, {
 		getToolButtons: function() {
@@ -7401,6 +7417,7 @@
 			this.$2$DisplayNameField = value;
 		}
 	});
+	ss.setMetadata($Serenity_AsyncLookupEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.OptionsTypeAttribute($Serenity_LookupEditorOptions)] });
 	ss.setMetadata($Serenity_BooleanEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Checkbox'), new Serenity.ElementAttribute('<input type="checkbox"/>')] });
 	ss.setMetadata($Serenity_CheckListEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute("Checkbox'lı Liste"), new Serenity.OptionsTypeAttribute($Serenity_CheckListEditorOptions), new Serenity.ElementAttribute('<ul/>')] });
 	ss.setMetadata($Serenity_CheckListEditorOptions, { members: [{ attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Items', type: 16, returnType: Array, getter: { name: 'get_Items', type: 8, params: [], returnType: Array, fget: 'items' }, setter: { name: 'set_Items', type: 8, params: [Array], returnType: Object, fset: 'items' }, fname: 'items' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Tümünü Seç Metni')], name: 'SelectAllOptionText', type: 16, returnType: String, getter: { name: 'get_SelectAllOptionText', type: 8, params: [], returnType: String, fget: 'selectAllOptionText' }, setter: { name: 'set_SelectAllOptionText', type: 8, params: [String], returnType: Object, fset: 'selectAllOptionText' }, fname: 'selectAllOptionText' }] });
