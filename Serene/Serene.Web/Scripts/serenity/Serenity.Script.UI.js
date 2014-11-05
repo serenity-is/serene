@@ -6621,7 +6621,7 @@
 			}
 			return $t1;
 		}
-	}, ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]), [$Serenity_IStringValue, $Serenity_IAsyncInit]);
+	}, ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_LookupEditorOptions, $asm, {});
 	ss.initClass($Serenity_MaskedEditor, $asm, {
 		get_value: function() {
