@@ -923,6 +923,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
+    <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)..\..\Serenity\Serenity.Web\Style\serenity.less&quot; &gt; &quot;$(ProjectDir)Content\serenity\serenity.css&quot;">
+    </Exec>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;">
     </Exec>
   </Target>

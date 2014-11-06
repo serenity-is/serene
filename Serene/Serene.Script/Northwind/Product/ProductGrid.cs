@@ -9,7 +9,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Product"), IdProperty("ProductID"), NameProperty("ProductName")]
     [DialogType(typeof(ProductDialog)), LocalTextPrefix("Northwind.Product"), Service("Northwind/Product")]
-    public class ProductGrid : EntityGrid<ProductRow>, IAsyncInit
+    public class ProductGrid : EntityGrid<ProductRow>
     {
         private LookupEditor supplier;
         private LookupEditor category;
