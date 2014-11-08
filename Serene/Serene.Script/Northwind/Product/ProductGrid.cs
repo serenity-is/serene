@@ -7,7 +7,7 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-    [ColumnsKey("Northwind.Product"), IdProperty("ProductID"), NameProperty("ProductName")]
+    [ColumnsKey("Northwind.Product"), Filterable, IdProperty("ProductID"), NameProperty("ProductName")]
     [DialogType(typeof(ProductDialog)), LocalTextPrefix("Northwind.Product"), Service("Northwind/Product")]
     public class ProductGrid : EntityGrid<ProductRow>
     {

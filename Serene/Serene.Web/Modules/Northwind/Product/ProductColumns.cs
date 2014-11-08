@@ -14,9 +14,9 @@ namespace Serene.Northwind.Forms
         [EditLink, Width(250)]
         public String ProductName { get; set; }
         public Boolean Discontinued { get; set; }
-        [EditLink(ItemType = "Northwind.Supplier", IdField = "SupplierID")]
+        [EditLink(ItemType = "Northwind.Supplier")]
         public String SupplierCompanyName { get; set; }
-        [EditLink(ItemType = "Northwind.Category", IdField = "CategoryID"), Width(150)]
+        [EditLink(ItemType = "Northwind.Category"), Width(150)]
         public String CategoryName { get; set; }
         [Width(130)]
         public String QuantityPerUnit { get; set; }

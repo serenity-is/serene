@@ -73,7 +73,7 @@ namespace Serene.Northwind.Entities
             set { Fields.PostalCode[this] = value; }
         }
 
-        [DisplayName("Country"), Size(15)]
+        [DisplayName("Country"), Size(15), LookupFiltering("Northwind.SupplierCountry")]
         public String Country
         {
             get { return Fields.Country[this]; }

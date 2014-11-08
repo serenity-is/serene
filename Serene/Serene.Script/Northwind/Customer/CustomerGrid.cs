@@ -5,7 +5,7 @@ namespace Serene.Northwind
     using Serenity;
     using System.Collections.Generic;
 
-    [ColumnsKey("Northwind.Customer"), IdProperty("ID"), NameProperty("CustomerID")]
+    [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("ID"), NameProperty("CustomerID")]
     [DialogType(typeof(CustomerDialog)), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
     public class CustomerGrid : EntityGrid<CustomerRow>, IAsyncInit
     {

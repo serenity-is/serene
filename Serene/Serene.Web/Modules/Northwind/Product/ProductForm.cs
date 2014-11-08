@@ -16,9 +16,7 @@ namespace Serene.Northwind.Forms
         [Category("General")]
         public String ProductName { get; set; }
         public Boolean Discontinued { get; set; }
-        [LookupEditor(typeof(Entities.SupplierRow))]
         public Int32 SupplierID { get; set; }
-        [LookupEditor(typeof(Entities.CategoryRow))]
         public Int32 CategoryID { get; set; }
         [Category("Pricing")]
         public String QuantityPerUnit { get; set; }
