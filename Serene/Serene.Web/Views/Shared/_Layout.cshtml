@@ -4,10 +4,10 @@
    var hideNav = Request["hideNav"] == "1";
    var logged = Serenity.Authorization.Username;
 }
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if IE 8]> <html lang="@UICulture" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="@UICulture" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en-us" class="no-js@(hideNav ? " no-navigation" : "")">
+<html lang="@UICulture" class="no-js@(hideNav ? " no-navigation" : "")">
 <!--<![endif]-->
 <head>
     @{Html.RenderPartial("~/Views/Shared/_LayoutHead.cshtml");}

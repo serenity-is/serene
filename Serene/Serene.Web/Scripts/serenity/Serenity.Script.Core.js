@@ -914,7 +914,19 @@
 		if (!ss.isValue(value)) {
 			return '';
 		}
-		var name = ss.Enum.toString(enumType, value);
+		var name;
+		try {
+			name = ss.Enum.toString(enumType, value);
+		}
+		catch ($t1) {
+			$t1 = ss.Exception.wrap($t1);
+			if (ss.isInstanceOfType($t1, ss.ArgumentException)) {
+				name = value.toString();
+			}
+			else {
+				throw $t1;
+			}
+		}
 		var enumKeyAttr = ss.getAttributes(enumType, $Serenity_EnumKeyAttribute, false);
 		var enumKey = ((enumKeyAttr.length > 0) ? ss.cast(enumKeyAttr[0], $Serenity_EnumKeyAttribute).get_value() : ss.getTypeFullName(enumType));
 		return $Serenity_EnumFormatter.getText$1(enumKey, name);
