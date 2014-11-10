@@ -1,11 +1,11 @@
-﻿if (typeof (global) === "undefined")
+﻿if (typeof(global) === "undefined")
     global = window;
 
 var Q$Externals = {};
 
 // -- FORMATTING ---
 
-Q$Externals.formatDayHourAndMin = function (value) {
+Q$Externals.formatDayHourAndMin = function(value) {
     if (value === 0)
         return '0';
     else if (!value)
@@ -16,26 +16,26 @@ Q$Externals.formatDayHourAndMin = function (value) {
     if (days > 0) {
         txt += days.toString();
     }
-
+        
     var mins = $.pi.zeroPad(Math.floor((value % (24 * 60)) / (60)), 2) + ':' + $.pi.zeroPad(value % 60, 2);
     if (mins != '00:00') {
-        if (days > 0)
+        if (days > 0) 
             txt += ".";
         txt += mins;
     }
     return txt;
 }
 
-Q$Externals.formatISODateTimeUTC = function (date) {
+Q$Externals.formatISODateTimeUTC = function(date) {
     if (date == null)
         return "";
 
     var zeropad = function (num) { return ((num < 10) ? '0' : '') + num; }
 
-    var str = date.getUTCFullYear() + "-" +
-        zeropad(date.getUTCMonth() + 1) + "-" +
-        zeropad(date.getUTCDate()) + "T" +
-        zeropad(date.getUTCHours()) + ":" +
+    var str = date.getUTCFullYear() + "-" + 
+        zeropad(date.getUTCMonth() + 1) + "-" + 
+        zeropad(date.getUTCDate()) + "T" + 
+        zeropad(date.getUTCHours()) + ":" + 
         zeropad(date.getUTCMinutes());
 
     var secs = Number(date.getUTCSeconds() + "." +
@@ -48,7 +48,7 @@ Q$Externals.formatISODateTimeUTC = function (date) {
 }
 
 Q$Externals.formatNumber = function (num, format, dec, group) {
-
+    
     var neg = '-';
 
     if (isNaN(num)) {
@@ -142,7 +142,7 @@ Q$Externals.formatNumber = function (num, format, dec, group) {
     if (returnString.lastIndexOf(dec) == returnString.length - 1) {
         returnString = returnString.substring(0, returnString.length - 1);
     }
-
+    
     return returnString;
 };
 
@@ -168,12 +168,12 @@ Q$Externals.roundNumber = function (num, decimalPlaces) {
     return value;
 };
 
-Q$Externals.isoRegexp = /(\d{4,})(?:-(\d{1,2})(?:-(\d{1,2})(?:[T ](\d{1,2}):(\d{1,2})(?::(\d{1,2})(?:\.(\d+))?)?(?:(Z)|([+-])(\d{1,2})(?::(\d{1,2}))?)?)?)?)?/;
+Q$Externals.isoRegexp =  /(\d{4,})(?:-(\d{1,2})(?:-(\d{1,2})(?:[T ](\d{1,2}):(\d{1,2})(?::(\d{1,2})(?:\.(\d+))?)?(?:(Z)|([+-])(\d{1,2})(?::(\d{1,2}))?)?)?)?)?/;
 
 
 // --- LOG (ISO/UTC) DATE / USER ---
 
-Q$Externals.logDateToString = function (date) {
+Q$Externals.logDateToString = function(date) {
     if (date) {
         return Q.formatDate(Q$Externals.parseISODateTime(date), Q$Culture.dateTimeFormat.replace(':ss', ''));
     }
@@ -181,26 +181,26 @@ Q$Externals.logDateToString = function (date) {
         return "";
 }
 
-Q$Externals.logDateUserToString = function (date, user) {
+Q$Externals.logDateUserToString = function(date, user) {
     var text = "";
     if (date) {
         text = Q.formatDate($.pi.parseISODateTime(date), Q$Culture.dateTimeFormat.replace(':ss', ''));
     }
     if (user && user.length) {
-        if (text.length)
+        if (text.length) 
             text += " ";
         text += '(' + user + ')'
     }
     return text;
 }
-
-Q$Externals.logDateUserToShortString = function (date, user) {
+       
+Q$Externals.logDateUserToShortString = function(date, user) {
     var text = "";
     if (date) {
         text = Q.formatDate(Q$Externals.parseISODateTime(date), Q$Culture.dateFormat.replace('yyyy', 'yy'));
     }
     if (user && user.length) {
-        if (text.length)
+        if (text.length) 
             text += ' ';
         text += user;
     }
@@ -210,7 +210,7 @@ Q$Externals.logDateUserToShortString = function (date, user) {
 
 // -- PARSING ---
 
-Q$Externals.parseInteger = function (value) {
+Q$Externals.parseInteger = function(value) {
     value = Q.trim(value.toString());
 
     var ts = Q$Culture.get_groupSeperator();
@@ -224,7 +224,8 @@ Q$Externals.parseInteger = function (value) {
     return parseInt(value, 10);
 }
 
-Q$Externals.parseDate = function (dateString, dateOrder) {
+Q$Externals.parseDate = function(dateString, dateOrder)
+{
     if (!dateString || !dateString.length)
         return null;
 
@@ -235,59 +236,61 @@ Q$Externals.parseDate = function (dateString, dateOrder) {
     dArray = Q$Externals.splitDateString(dateString);
     if (!dArray)
         return false;
-
-    if (dArray.length == 3) {
+         
+    if (dArray.length == 3)
+    {
         dateOrder = dateOrder || Q$Culture.dateOrder;
         switch (dateOrder) {
-            case "dmy":
+            case "dmy" :
                 d = parseInt(dArray[0], 10);
                 m = parseInt(dArray[1], 10) - 1;
                 y = parseInt(dArray[2], 10);
                 break;
-            case "ymd":
+            case "ymd" :
                 d = parseInt(dArray[2], 10);
                 m = parseInt(dArray[1], 10) - 1;
                 y = parseInt(dArray[0], 10);
                 break;
-            case "mdy":
-            default:
+            case "mdy" :
+            default :
                 d = parseInt(dArray[1], 10);
                 m = parseInt(dArray[0], 10) - 1;
                 y = parseInt(dArray[2], 10);
                 break;
         }
-
+              
         if (isNaN(d) || isNaN(m) || isNaN(y) || d < 1 || d > 31 || m < 0 || m > 11 || y > 9999 || y < 0)
             return false;
-
+                
         if (y < 100) {
             var fullYear = new Date().getFullYear();
             var shortYearCutoff = (fullYear % 100) + 10;
             y += fullYear - fullYear % 100 + (y <= shortYearCutoff ? 0 : -100);
         }
-
+               
         try {
             dateVal = new Date(y, m, d);
             if (isNaN(dateVal.getFullYear()))
                 return false;
-        } catch (e) {
+        } catch(e) {
             return false;
         }
     }
-    else if (dArray.length == 1) {
+    else if (dArray.length == 1)
+    {
         try {
             dateVal = new Date(dArray[0]);
             if (isNaN(dateVal.getFullYear()))
                 return false;
         }
-        catch (e) {
+        catch(e) {
             return false;
         }
     }
     return dateVal;
 }
 
-Q$Externals.parseDecimal = function (value) {
+Q$Externals.parseDecimal = function(value) {
     value = Q.trim(value.toString());
 
     var ts = Q$Culture.get_groupSeperator();
@@ -302,11 +305,11 @@ Q$Externals.parseDecimal = function (value) {
     return parseFloat(value.toString().replace(Q$Culture.decimalSeparator, '.'));
 }
 
-Q$Externals.splitDateString = function (dateString) {
+Q$Externals.splitDateString = function(dateString) {
     dateString = $.trim(dateString);
     if (!dateString.length)
         return;
-
+            
     var dArray;
     if (dateString.indexOf("/") >= 0)
         dArray = dateString.split("/");
@@ -318,11 +321,12 @@ Q$Externals.splitDateString = function (dateString) {
         dArray = dateString.split("\\");
     else
         dArray = [dateString];
-
+            
     return dArray;
 }
 
-Q$Externals.parseISODateTime = function (str) {
+Q$Externals.parseISODateTime = function (str) 
+{
     if (!str || !str.length)
         return null;
 
@@ -331,38 +335,38 @@ Q$Externals.parseISODateTime = function (str) {
         return timestamp;
 
     str = str + "";
-    if (typeof (str) != "string" || str.length === 0) {
+    if (typeof(str) != "string" || str.length === 0) {
         return null;
     }
     var res = str.match(Q$Externals.isoRegexp);
-    if (typeof (res) == "undefined" || res === null) {
+    if (typeof(res) == "undefined" || res === null) {
         return null;
     }
     var year, month, day, hour, min, sec, msec;
     year = parseInt(res[1], 10);
-    if (typeof (res[2]) == "undefined" || res[2] === '') {
+    if (typeof(res[2]) == "undefined" || res[2] === '') {
         return new Date(year);
     }
     month = parseInt(res[2], 10) - 1;
     day = parseInt(res[3], 10);
-    if (typeof (res[4]) == "undefined" || res[4] === '') {
+    if (typeof(res[4]) == "undefined" || res[4] === '') {
         return new Date(year, month, day);
     }
     hour = parseInt(res[4], 10);
     min = parseInt(res[5], 10);
-    sec = (typeof (res[6]) != "undefined" && res[6] !== '') ? parseInt(res[6], 10) : 0;
-    if (typeof (res[7]) != "undefined" && res[7] !== '') {
+    sec = (typeof(res[6]) != "undefined" && res[6] !== '') ? parseInt(res[6], 10) : 0;
+    if (typeof(res[7]) != "undefined" && res[7] !== '') {
         msec = Math.round(1000.0 * parseFloat("0." + res[7]));
     } else {
         msec = 0;
     }
-    if ((typeof (res[8]) == "undefined" || res[8] === '') && (typeof (res[9]) == "undefined" || res[9] === '')) {
+    if ((typeof(res[8]) == "undefined" || res[8] === '') && (typeof(res[9]) == "undefined" || res[9] === '')) {
         return new Date(year, month, day, hour, min, sec, msec);
     }
     var ofs;
-    if (typeof (res[9]) != "undefined" && res[9] !== '') {
+    if (typeof(res[9]) != "undefined" && res[9] !== '') {
         ofs = parseInt(res[10], 10) * 3600000;
-        if (typeof (res[11]) != "undefined" && res[11] !== '') {
+        if (typeof(res[11]) != "undefined" && res[11] !== '') {
             ofs += parseInt(res[11], 10) * 60000;
         }
         if (res[9] == "-") {
@@ -374,7 +378,7 @@ Q$Externals.parseISODateTime = function (str) {
     return new Date(Date.UTC(year, month, day, hour, min, sec, msec) - ofs);
 }
 
-Q$Externals.parseHourAndMin = function (value) {
+Q$Externals.parseHourAndMin = function(value) {
     var v = Q.trim(value);
     if (v.length < 4 || v.length > 5)
         return NaN;
@@ -393,8 +397,8 @@ Q$Externals.parseHourAndMin = function (value) {
         return NaN;
     return h * 60 + m;
 }
-
-Q$Externals.parseDayHourAndMin = function (value) {
+    
+Q$Externals.parseDayHourAndMin = function(value) {
     var days;
     var v = Q.trim(value);
     if (!v)
@@ -417,7 +421,7 @@ Q$Externals.parseDayHourAndMin = function (value) {
     }
 }
 
-Q$Externals.parseQueryString = function (queryString) {
+Q$Externals.parseQueryString = function(queryString) {
     var qs;
     if (arguments.length == 0)
         qs = location.search.substring(1, location.search.length);
@@ -433,7 +437,7 @@ Q$Externals.parseQueryString = function (queryString) {
     return result;
 }
 
-Q$Externals.turkishLocaleCompare = function (a, b) {
+Q$Externals.turkishLocaleCompare = function(a, b) {
     var alphabet = "AaBbCcÇçFfGgĞğHhIıİiJjKkLlMmNnOoÖöPpRrSsŞşTtUuÜüVvYyZz";
 
     a = a || "";
@@ -449,7 +453,7 @@ Q$Externals.turkishLocaleCompare = function (a, b) {
         }
     }
 
-    for (var i = 0, _len = Math.min(a.length, b.length) ; i < _len; i++) {
+    for (var i = 0, _len = Math.min(a.length, b.length); i < _len; i++) {
         var x = a.charAt(i), y = b.charAt(i);
 
         if (x === y)
@@ -479,7 +483,7 @@ Q$Externals.turkishLocaleToUpper = function (a) {
 
 // --- DIALOGS ---
 
-Q$Externals.alertDialog = function (message, options) {
+Q$Externals.alertDialog = function(message, options) {
     var dialog;
 
     options = $.extend({
@@ -495,17 +499,17 @@ Q$Externals.alertDialog = function (message, options) {
         maxWidth: '450',
         minWidth: '180',
         resizable: false,
-        open: function () {
+        open: function() {
             if (options.onOpen)
                 options.onOpen.call(this);
         },
-        close: function () {
+        close: function() {
             dialog.dialog('destroy');
             if (options.onClose)
                 options.onClose();
         }
     }, options);
-
+        
     if (options.htmlEncode)
         message = Q.htmlEncode(message);
 
@@ -513,14 +517,14 @@ Q$Externals.alertDialog = function (message, options) {
         var buttons = [];
         buttons.push({
             text: options.okButton,
-            click: function () {
+            click: function() {
                 dialog.dialog('close');
             }
         });
 
         options.buttons = buttons;
     }
-
+        
     dialog = $('<div><div class="message"><\/div><\/div>')
         .dialog(options)
         .children('.message')
@@ -529,7 +533,7 @@ Q$Externals.alertDialog = function (message, options) {
         .dialog('open');
 }
 
-Q$Externals.confirmDialog = function (message, onYes, options) {
+Q$Externals.confirmDialog = function(message, onYes, options) {
     var dialog;
 
     options = $.extend({
@@ -547,18 +551,18 @@ Q$Externals.confirmDialog = function (message, onYes, options) {
         maxWidth: '450',
         minWidth: '180',
         resizable: false,
-        open: function () {
+        open: function() {
             if (options.onOpen)
                 options.onOpen.call(this);
         },
-        close: function () {
+        close: function() {
             dialog.dialog('destroy');
             if (!clicked && options.onCancel)
                 options.onCancel();
         },
         overlay: {
-            opacity: 0.7,
-            background: "black"
+            opacity: 0.7, 
+            background: "black" 
         }
     }, options);
 
@@ -572,7 +576,7 @@ Q$Externals.confirmDialog = function (message, onYes, options) {
 
         buttons.push({
             text: options.yesButton,
-            click: function () {
+            click: function() {
                 clicked = true;
                 dialog.dialog('close');
                 if (onYes)
@@ -583,7 +587,7 @@ Q$Externals.confirmDialog = function (message, onYes, options) {
         if (options.noButton)
             buttons.push({
                 text: options.noButton,
-                click: function () {
+                click: function() {
                     clicked = true;
                     dialog.dialog('close');
                     if (options.onNo)
@@ -604,7 +608,7 @@ Q$Externals.confirmDialog = function (message, onYes, options) {
             .dialog('open');
 }
 
-Q$Externals.iframeDialog = function (options) {
+Q$Externals.iframeDialog = function(options) {
     var doc;
     var e = $('<div><iframe></iframe></div>');
     var settings = $.extend({
@@ -613,17 +617,16 @@ Q$Externals.iframeDialog = function (options) {
         width: '60%',
         height: '400',
         title: Q.text('Dialogs.AlertTitle'),
-        open: function () {
+        open: function() {
             doc = e.find('iframe').css({
-                border: 'none',
+                border: 'none', 
                 width: '100%',
-                height: '100%'
-            })[0].contentDocument;
+                height: '100%'})[0].contentDocument;
             doc.open();
             doc.write(settings.html);
-            doc.close();
+            doc.close(); 
         },
-        close: function () {
+        close: function() {
             doc.open();
             doc.write('');
             doc.close();
@@ -634,17 +637,17 @@ Q$Externals.iframeDialog = function (options) {
 }
 
 // -- AJAX HELPERS --
-Q$Externals.setupAjaxIndicator = function () {
+Q$Externals.setupAjaxIndicator = function() {
     var loadingIndicator = null;
     var loadingTimer = 0;
-
-    $(document).ajaxStart(function () {
+        
+    $(document).ajaxStart(function() {
         window.clearTimeout(loadingTimer);
-        loadingTimer = window.setTimeout(function () {
+        loadingTimer = window.setTimeout(function() {
             if (!loadingIndicator)
                 loadingIndicator = $('<div/>').addClass('s-AjaxIndicator').appendTo(document.body);
         }, 2000);
-    }).ajaxStop(function () {
+    }).ajaxStop(function() {
         if (loadingIndicator) {
             loadingIndicator.remove();
             loadingIndicator = null;
@@ -653,7 +656,7 @@ Q$Externals.setupAjaxIndicator = function () {
     });
 }
 
-Q$Externals.toId = function (id) {
+Q$Externals.toId = function(id) {
     if (id == null)
         return null;
 
@@ -664,7 +667,7 @@ Q$Externals.toId = function (id) {
     if (id == null || !id.length)
         return null;
 
-    if (id.length >= 15)
+    if (id.length >= 15) 
         return id;
 
     return parseInt(id, 10);
@@ -829,13 +832,13 @@ Q$Externals.jQueryValidationInitialization = function () {
 
 Q$Externals.validatorAbortHandler = function (validator) {
     validator.settings.abortHandler = null;
-    validator.settings.submitHandler = function () {
+    validator.settings.submitHandler = function() {
         return false;
     }
 }
 
-Q$Externals.validateAddTip = function (error) {
-    if ($.fn.qtip) {
+Q$Externals.validateAddTip = function(error) {
+    if ($.fn.qtip) {    
         error.qtip({
             style: {
                 classes: 'ui-tooltip-red',
@@ -844,61 +847,61 @@ Q$Externals.validateAddTip = function (error) {
         });
     }
 }
-
-Q$Externals.validateDelTip = function (error) {
+    
+Q$Externals.validateDelTip = function(error) {
     if ($.fn.qtip && error.data('qtip')) {
         error.qtip('destroy').attr('title', '');
     }
 }
 
-Q$Externals.validateShowLabel = function (element, message) {
-    var label = this.errorsFor(element);
-    if (label.length) {
+Q$Externals.validateShowLabel = function(element, message) {
+    var label = this.errorsFor( element );
+    if ( label.length ) {
         // refresh error/success class
-        label.removeClass().addClass(this.settings.errorClass);
-
+        label.removeClass().addClass( this.settings.errorClass );
+        
         // check if we have a generated label, replace the message then
         if (label.attr("generated"))
             label.attr('title', message);
-
+                
         Q$Externals.validateAddTip(label);
     } else {
         // create label
         label = $("<" + this.settings.errorElement + "/>")
-            .attr({ "for": this.idOrName(element), generated: true })
+            .attr({"for":  this.idOrName(element), generated: true})
             .addClass(this.settings.errorClass)
             .attr('title', message || '');
-
-        if (this.settings.wrapper) {
+                
+        if ( this.settings.wrapper ) {
             // make sure the element is visible, even in IE
             // actually showing the wrapped element is handled elsewhere
             label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
         }
-        if (!this.labelContainer.append(label).length)
+        if ( !this.labelContainer.append(label).length )
             this.settings.errorPlacement
-                ? this.settings.errorPlacement(label, $(element))
+                ? this.settings.errorPlacement(label, $(element) )
                 : label.insertAfter(element);
-
+                    
         Q$Externals.validateAddTip(label);
     }
-    if (!message && this.settings.success) {
+    if ( !message && this.settings.success ) {
         typeof this.settings.success == "string"
-            ? label.addClass(this.settings.success)
-            : this.settings.success(label);
-        label.attr('title', '');
-
+            ? label.addClass( this.settings.success )
+            : this.settings.success( label );
+        label.attr('title', '');                    
+                    
     }
     this.toShow = this.toShow.add(label);
-},
+}, 
 
-Q$Externals.validateOptions = function (options) {
+Q$Externals.validateOptions = function(options) {
     $.validator.prototype.showLabel = Q$Externals.validateShowLabel;
-
+                
     return $.extend({
         ignore: ":hidden",
         meta: 'v',
         errorClass: 'error',
-        errorPlacement: function (error, element) {
+        errorPlacement: function(error, element) {
             var field = null;
             var vx = element.attr('data-vx-id');
             if (vx) {
@@ -919,55 +922,55 @@ Q$Externals.validateOptions = function (options) {
                 else
                     field = element.parent();
             }
-
-            error.appendTo(field);
+                    
+            error.appendTo(field);      
         },
-        submitHandler: function () {
+        submitHandler: function() {
             return false;
         },
-        invalidHandler: function () {
+        invalidHandler: function() {
             Q.notifyError(Q.text("Validation.InvalidFormMessage"), "error");
-        },
-        success: function (label) {
+        },          
+        success: function(label) {
             label.addClass('checked');
-            Q$Externals.validateDelTip(label);
+            Q$Externals.validateDelTip(label);             
         }
     }, options);
-}
+} 
 
 if (window.jQuery && window.jQuery.validator)
     Q$Externals.jQueryValidationInitialization();
-else if (window.jQuery) {
+else if (window.jQuery) { 
     jQuery(function ($) {
         if ($.validator)
             Q$Externals.jQueryValidationInitialization();
     });
 }
 
-Q$Externals.jQueryDatepickerInitialization = function () {
-    var order = Q$Culture.dateOrder;
-    var s = Q$Culture.dateSeparator;
-    var culture = ($('html').attr('lang') || 'en').toLowerCase();
-    if (!$.datepicker.regional[culture]) {
-        culture = culture.split('-')[0];
-        if (!$.datepicker.regional[culture]) {
-            culture = 'en';
-        }
-    }
-    $.datepicker.setDefaults($.datepicker.regional['en']);
-    $.datepicker.setDefaults($.datepicker.regional[culture]);
+Q$Externals.jQueryDatepickerInitialization = function() {
+  var order = Q$Culture.dateOrder;
+  var s = Q$Culture.dateSeparator;
+  var culture = ($('html').attr('lang') || 'en').toLowerCase();
+  if (!$.datepicker.regional[culture]) {
+      culture = culture.split('-')[0];
+      if (!$.datepicker.regional[culture]) {
+          culture = 'en';
+      }
+  }
+  $.datepicker.setDefaults($.datepicker.regional['en']);
+  $.datepicker.setDefaults($.datepicker.regional[culture]);
 
-    $.datepicker.setDefaults({
-        dateFormat: (order == 'mdy' ? 'mm' + s + 'dd' + s + 'yy' :
-          (order == 'ymd' ? 'yy' + s + 'mm' + s + 'dd' :
-                                          'dd' + s + 'mm' + s + 'yy')),
-        buttonImage: Q.resolveUrl('~/content/serenity/images/datepicker.gif'),
-        buttonImageOnly: true,
-        showOn: 'both',
-        showButtonPanel: true,
-        changeMonth: true,
-        changeYear: true
-    });
+  $.datepicker.setDefaults({
+    dateFormat: (order == 'mdy' ? 'mm' + s + 'dd' + s + 'yy' : 
+      (order == 'ymd' ? 'yy' + s + 'mm' + s + 'dd' : 
+                                      'dd' + s + 'mm' + s + 'yy')),
+    buttonImage: Q.resolveUrl('~/content/serenity/images/datepicker.gif'),
+    buttonImageOnly: true,
+    showOn: 'both',
+    showButtonPanel: true,
+    changeMonth: true,
+    changeYear: true
+  });
 };
 
 if (window.jQuery && window.jQuery.datepicker && window.jQuery.datepicker.regional && window.jQuery.datepicker.regional.en)
@@ -979,11 +982,11 @@ else
     });
 
 Q$Externals.jQuerySelect2Initialization = function () {
-    $.ui.dialog.prototype._allowInteraction = function (event) {
-        if ($(event.target).closest(".ui-dialog").length) {
+    $.ui.dialog.prototype._allowInteraction = function( event ) {
+        if ( $( event.target ).closest(".ui-dialog").length ) {
             return true;
         }
-        return !!$(event.target).closest(".ui-datepicker, .select2-drop, .cke, .cke_dialog, #support-modal").length;
+        return !!$( event.target ).closest(".ui-datepicker, .select2-drop, .cke, .cke_dialog, #support-modal").length;
     }
 }
 
@@ -1044,8 +1047,8 @@ Q$Externals.postToUrl = function (options) {
 };
 
 
-Q$Externals.ssExceptionInitialization = function () {
-    window.ss.Exception.prototype.toString = function () {
+Q$Externals.ssExceptionInitialization = function() {
+    window.ss.Exception.prototype.toString = function() {
         return this.get_message();
     };
 };

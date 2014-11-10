@@ -6395,7 +6395,7 @@
 				throw new ss.Exception(ss.formatString("Couldn't find input in filter container for {0}", $t1));
 			}
 			var value;
-			if (!!ss.isValue(input.select2)) {
+			if (ss.isValue(input.data('select2'))) {
 				value = ss.safeCast(input.select2('val'), String);
 			}
 			else {
@@ -6413,7 +6413,7 @@
 				return this.get_container().text().trim();
 			}
 			var value;
-			if (!!ss.isValue(input.select2)) {
+			if (ss.isValue(input.data('select2'))) {
 				var $t1 = input.select2('data');
 				if (ss.isNullOrUndefined($t1)) {
 					$t1 = new Object();
