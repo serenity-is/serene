@@ -61,7 +61,7 @@ namespace Serene.Migrations.DefaultDB
                 .PrimaryColumn("UserId");
 
             Create.ForeignKey("FK_UserRoles_RoleId")
-                .FromTable("Roles")
+                .FromTable("UserRoles")
                 .ForeignColumn("RoleId")
                 .ToTable("Roles")
                 .PrimaryColumn("RoleId");
