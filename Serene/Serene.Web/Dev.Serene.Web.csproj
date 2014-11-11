@@ -756,7 +756,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103140000.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111113000_Permissions.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103140000_Initial.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationUpdateRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationListRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
