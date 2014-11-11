@@ -91,6 +91,18 @@
     <Compile Include="Imports\ServiceContracts\Administration.LanguageService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.RoleRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.RoleService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.TranslationItem.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -101,6 +113,18 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.TranslationUpdateRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserRoleRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserRoleService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserRow.cs">
@@ -225,6 +249,14 @@
     <Compile Include="Administration\Language\LanguageGrid.cs" />
     <Compile Include="Administration\Language\LanguageDialog.cs" />
     <Compile Include="Administration\Translation\TranslationGrid.cs" />
+    <Compile Include="Administration\Role\RoleGrid.cs" />
+    <Compile Include="Administration\Role\RoleDialog.cs" />
+    <Compile Include="Administration\RolePermission\RolePermissionGrid.cs" />
+    <Compile Include="Administration\RolePermission\RolePermissionDialog.cs" />
+    <Compile Include="Administration\UserRole\UserRoleGrid.cs" />
+    <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="Administration\UserPermission\UserPermissionGrid.cs" />
+    <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">

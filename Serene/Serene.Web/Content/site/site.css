@@ -1063,3 +1063,167 @@ a,
   height: 23px;
   padding: 0 3px;
 }
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-RoleDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-RoleDialog .tab-pane {
+  height: auto;
+}
+.s-RoleDialog .caption {
+  width: 150px;
+}
+.s-RoleDialog .editor {
+  width: 400px;
+}
+.s-RoleDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-RoleDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-RoleDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-RoleDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-RoleDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-RoleDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-RoleDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-RoleDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-RolePermissionDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-RolePermissionDialog .tab-pane {
+  height: auto;
+}
+.s-RolePermissionDialog .caption {
+  width: 150px;
+}
+.s-RolePermissionDialog .editor {
+  width: 400px;
+}
+.s-RolePermissionDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-RolePermissionDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-RolePermissionDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-RolePermissionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-RolePermissionDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-RolePermissionDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-RolePermissionDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-RolePermissionDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-UserRoleDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-UserRoleDialog .tab-pane {
+  height: auto;
+}
+.s-UserRoleDialog .caption {
+  width: 150px;
+}
+.s-UserRoleDialog .editor {
+  width: 400px;
+}
+.s-UserRoleDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-UserRoleDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-UserRoleDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-UserRoleDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-UserRoleDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-UserRoleDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-UserRoleDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-UserRoleDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-UserPermissionDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-UserPermissionDialog .tab-pane {
+  height: auto;
+}
+.s-UserPermissionDialog .caption {
+  width: 150px;
+}
+.s-UserPermissionDialog .editor {
+  width: 400px;
+}
+.s-UserPermissionDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-UserPermissionDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-UserPermissionDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-UserPermissionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-UserPermissionDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-UserPermissionDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-UserPermissionDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-UserPermissionDialog .s-PropertyGrid .categories {
+  height: 260px;
+}

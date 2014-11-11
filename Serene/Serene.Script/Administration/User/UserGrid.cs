@@ -28,5 +28,10 @@ namespace Serene.Administration
 
             return columns;
         }
+
+        protected override List<string> GetDefaultSortBy()
+        {
+            return new List<string> { "Username" };
+        }
     }
 }

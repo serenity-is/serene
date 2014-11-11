@@ -225,6 +225,14 @@
     <Compile Include="Administration\Language\LanguageGrid.cs" />
     <Compile Include="Administration\Language\LanguageDialog.cs" />
     <Compile Include="Administration\Translation\TranslationGrid.cs" />
+    <Compile Include="Administration\Role\RoleGrid.cs" />
+    <Compile Include="Administration\Role\RoleDialog.cs" />
+    <Compile Include="Administration\RolePermission\RolePermissionGrid.cs" />
+    <Compile Include="Administration\RolePermission\RolePermissionDialog.cs" />
+    <Compile Include="Administration\UserRole\UserRoleGrid.cs" />
+    <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="Administration\UserPermission\UserPermissionGrid.cs" />
+    <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">

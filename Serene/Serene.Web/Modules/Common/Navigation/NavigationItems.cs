@@ -17,4 +17,5 @@ using Administration = Serene.Administration.Pages;
 [assembly: NavigationMenu(9000, "Administration", icon: "icon-screen-desktop")]
 [assembly: NavigationLink(9100, "Administration/Languages", typeof(Administration.LanguageController), icon: "icon-bubbles")]
 [assembly: NavigationLink(9200, "Administration/Translations", typeof(Administration.TranslationController), icon: "icon-speech")]
-[assembly: NavigationLink(9900, "Administration/User Management", typeof(Administration.UserController), icon: "icon-users")]
+[assembly: NavigationLink(9300, "Administration/Roles", typeof(Serene.Administration.Pages.RoleController), icon: "icon-lock")]
+[assembly: NavigationLink(9400, "Administration/User Management", typeof(Administration.UserController), icon: "icon-users")]

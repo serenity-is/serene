@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = Serenity.LocalText.Get("Db.Administration.RolePermission.EntityPlural");
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.Administration.RolePermissionGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>
