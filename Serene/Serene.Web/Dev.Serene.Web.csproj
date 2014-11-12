@@ -742,7 +742,6 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
-    <Content Include="Modules\Administration\RolePermission\RolePermissionIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -758,6 +757,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
+    <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
+    <Compile Include="Modules\Administration\RolePermission\RolePermissionListResponse.cs" />
+    <Compile Include="Modules\Administration\RolePermission\RolePermissionListRequest.cs" />
+    <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
+    <Compile Include="Modules\Administration\UserPermission\UserPermissionListResponse.cs" />
+    <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103140000_Initial.cs" />
@@ -879,11 +884,8 @@
     <Compile Include="Modules\Administration\Role\RoleEndpoint.cs" />
     <Compile Include="Modules\Administration\Role\RolePage.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionRow.cs" />
-    <Compile Include="Modules\Administration\RolePermission\RolePermissionColumns.cs" />
-    <Compile Include="Modules\Administration\RolePermission\RolePermissionForm.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionRepository.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionEndpoint.cs" />
-    <Compile Include="Modules\Administration\RolePermission\RolePermissionPage.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleRow.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />

@@ -15,7 +15,7 @@ namespace Serene.Administration.Forms
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Int32 RoleId { get; set; }
-        [EditLink]
+        [EditLink, Width(300)]
         public String RoleName { get; set; }
     }
 }

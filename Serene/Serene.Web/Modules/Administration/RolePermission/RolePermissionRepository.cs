@@ -1,46 +1,107 @@
 ﻿
-
 namespace Serene.Administration.Repositories
 {
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using MyRow = Entities.RolePermissionRow;
 
     public class RolePermissionRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            Check.NotNull(request, "request");
+            Check.NotNull(request.RoleID, "roleID");
+            Check.NotNull(request.Permissions, "permissions");
+
+            var roleID = request.RoleID.Value;
+            var oldList = new HashSet<string>(
+                GetExisting(uow.Connection, roleID, request.Module, request.Submodule)
+                .Select(x => x.PermissionKey), StringComparer.OrdinalIgnoreCase);
+
+            var newList = new HashSet<string>(request.Permissions.ToList(), 
+                StringComparer.OrdinalIgnoreCase);
+
+            if (oldList.SetEquals(newList))
+                return new SaveResponse();
+
+            foreach (var k in oldList)
+            {
+                if (newList.Contains(k))
+                    continue;
+
+                new SqlDelete(fld.TableName)
+                    .Where(
+                        new Criteria(fld.RoleId) == roleID &
+                        new Criteria(fld.PermissionKey) == k)
+                    .Execute(uow.Connection);
+            }
+
+            foreach (var k in newList)
+            {
+                if (oldList.Contains(k))
+                    continue;
+
+                uow.Connection.Insert(new MyRow
+                {
+                    RoleId = roleID,
+                    PermissionKey = k
+                });
+            }
+
+            return new SaveResponse();
         }
 
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        private List<MyRow> GetExisting(IDbConnection connection, Int32 roleId, string module, string submodule)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
+            string prefix = "";
+            module = module.TrimToEmpty();
+            submodule = submodule.TrimToEmpty();
+
+            if (module.Length > 0)
+                prefix = module;
+
+            if (submodule.Length > 0)
+                prefix += ":" + submodule;
+
+            return connection.List<MyRow>(q =>
+            {
+                q.Select(fld.RolePermissionId, fld.PermissionKey);
+
+                if (prefix.Length > 0)
+                    q.Where(
+                        new Criteria(fld.PermissionKey) == prefix |
+                        new Criteria(fld.PermissionKey).StartsWith(prefix + ":"));
+            });
         }
 
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request)
         {
-            return new MyDeleteHandler().Process(uow, request);
-        }
+            Check.NotNull(request, "request");
+            Check.NotNull(request.RoleID, "roleID");
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
-        {
-            return new MyRetrieveHandler().Process(connection, request);
-        }
+            string prefix = "";
+            string module = request.Module.TrimToEmpty();
+            string submodule = request.Submodule.TrimToEmpty();
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
-        {
-            return new MyListHandler().Process(connection, request);
-        }
+            if (module.Length > 0)
+                prefix = module;
 
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+            if (submodule.Length > 0)
+                prefix += ":" + submodule;
+
+            var response = new RolePermissionListResponse();
+            
+            response.Entities = GetExisting(connection, request.RoleID.Value, request.Module, request.Submodule)
+                .Select(x => x.PermissionKey).ToList();
+
+            return response;
+        }
     }
 }

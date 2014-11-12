@@ -1,46 +1,151 @@
 ﻿
-
 namespace Serene.Administration.Repositories
 {
     using Serenity;
     using Serenity.Data;
+    using Serenity.Extensibility;
     using Serenity.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
+    using System.Reflection;
     using MyRow = Entities.UserPermissionRow;
 
     public class UserPermissionRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            Check.NotNull(request, "request");
+            Check.NotNull(request.UserID, "userID");
+            Check.NotNull(request.Permissions, "permissions");
+
+            var userID = request.UserID.Value;
+            var oldList = new HashSet<string>(
+                GetExisting(uow.Connection, userID, request.Module, request.Submodule)
+                .Select(x => x.PermissionKey), StringComparer.OrdinalIgnoreCase);
+
+            var newList = new HashSet<string>(request.Permissions.ToList(),
+                StringComparer.OrdinalIgnoreCase);
+
+            if (oldList.SetEquals(newList))
+                return new SaveResponse();
+
+            foreach (var k in oldList)
+            {
+                if (newList.Contains(k))
+                    continue;
+
+                new SqlDelete(fld.TableName)
+                    .Where(
+                        new Criteria(fld.UserId) == userID &
+                        new Criteria(fld.PermissionKey) == k)
+                    .Execute(uow.Connection);
+            }
+
+            foreach (var k in newList)
+            {
+                if (oldList.Contains(k))
+                    continue;
+
+                uow.Connection.Insert(new MyRow
+                {
+                    UserId = userID,
+                    PermissionKey = k
+                });
+            }
+
+            return new SaveResponse();
         }
 
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        private List<MyRow> GetExisting(IDbConnection connection, Int32 userId, string module, string submodule)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
+            string prefix = "";
+            module = module.TrimToEmpty();
+            submodule = submodule.TrimToEmpty();
+
+            if (module.Length > 0)
+                prefix = module;
+
+            if (submodule.Length > 0)
+                prefix += ":" + submodule;
+
+            return connection.List<MyRow>(q =>
+            {
+                q.Select(fld.UserPermissionId, fld.PermissionKey);
+
+                if (prefix.Length > 0)
+                    q.Where(
+                        new Criteria(fld.PermissionKey) == prefix |
+                        new Criteria(fld.PermissionKey).StartsWith(prefix + ":"));
+            });
         }
 
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public UserPermissionListResponse List(IDbConnection connection, UserPermissionListRequest request)
         {
-            return new MyDeleteHandler().Process(uow, request);
+            Check.NotNull(request, "request");
+            Check.NotNull(request.UserID, "userID");
+
+            string prefix = "";
+            string module = request.Module.TrimToEmpty();
+            string submodule = request.Submodule.TrimToEmpty();
+
+            if (module.Length > 0)
+                prefix = module;
+
+            if (submodule.Length > 0)
+                prefix += ":" + submodule;
+
+            var response = new UserPermissionListResponse();
+
+            response.Entities = GetExisting(connection, request.UserID.Value, request.Module, request.Submodule)
+                .Select(x => x.PermissionKey).ToList();
+
+            return response;
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        private void ProcessAttributes<TAttr>(HashSet<string> hash, MemberInfo member, Func<TAttr, string> getPermission)
+            where TAttr: Attribute
         {
-            return new MyRetrieveHandler().Process(connection, request);
+            foreach (var attr in member.GetCustomAttributes<TAttr>())
+            {
+                var permission = getPermission(attr);
+                if (!permission.IsEmptyOrNull())
+                    hash.Add(permission);
+            }
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public UserPermissionListResponse ListPermissionKeys()
         {
-            return new MyListHandler().Process(connection, request);
-        }
+            return LocalCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
+            {
+                var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+                foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
+                {
+                    foreach (var type in assembly.GetTypes())
+                    {
+                        ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
+                        ProcessAttributes<ServiceAuthorizeAttribute>(result, type, x => x.Permission);
+
+                        foreach (var member in type.GetMethods(BindingFlags.Instance | BindingFlags.Public))
+                        {
+                            ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
+                            ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
+                        }
+                    }
+                }
+
+                result.Remove("*");
+                result.Remove("?");
+
+                return new UserPermissionListResponse
+                {
+                    Entities = new List<string>(result)
+                };
+            });
+        }
     }
 }
