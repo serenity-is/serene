@@ -19,12 +19,28 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="LanguageDialog.cs">LanguageDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LanguageGrid.cs">LanguageGrid.cs</ProjectItem>
         </Folder>
+        <Folder Name="Role" TargetFolderName="Role">
+          <ProjectItem ReplaceParameters="true" TargetFileName="RoleDialog.cs">RoleDialog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RoleGrid.cs">RoleGrid.cs</ProjectItem>
+        </Folder>
+        <Folder Name="RolePermission" TargetFolderName="RolePermission">
+          <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionDialog.cs">RolePermissionDialog.cs</ProjectItem>
+        </Folder>
         <Folder Name="Translation" TargetFolderName="Translation">
           <ProjectItem ReplaceParameters="true" TargetFileName="TranslationGrid.cs">TranslationGrid.cs</ProjectItem>
         </Folder>
         <Folder Name="User" TargetFolderName="User">
           <ProjectItem ReplaceParameters="true" TargetFileName="UserDialog.cs">UserDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="UserGrid.cs">UserGrid.cs</ProjectItem>
+        </Folder>
+        <Folder Name="UserPermission" TargetFolderName="UserPermission">
+          <ProjectItem ReplaceParameters="true" TargetFileName="PermissionCheckEditor.cs">PermissionCheckEditor.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="PermissionModuleEditor.cs">PermissionModuleEditor.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionDialog.cs">UserPermissionDialog.cs</ProjectItem>
+        </Folder>
+        <Folder Name="UserRole" TargetFolderName="UserRole">
+          <ProjectItem ReplaceParameters="true" TargetFileName="RoleCheckEditor.cs">RoleCheckEditor.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleDialog.cs">UserRoleDialog.cs</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Common" TargetFolderName="Common">
@@ -63,10 +79,27 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ServiceContracts.tt">ServiceContracts.tt</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageRow.cs">Administration.LanguageRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageService.cs">Administration.LanguageService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListRequest.cs">Administration.RolePermissionListRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListResponse.cs">Administration.RolePermissionListResponse.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionRow.cs">Administration.RolePermissionRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionService.cs">Administration.RolePermissionService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionUpdateRequest.cs">Administration.RolePermissionUpdateRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleRow.cs">Administration.RoleRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleService.cs">Administration.RoleService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationItem.cs">Administration.TranslationItem.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationListRequest.cs">Administration.TranslationListRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationService.cs">Administration.TranslationService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationUpdateRequest.cs">Administration.TranslationUpdateRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionListRequest.cs">Administration.UserPermissionListRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionListResponse.cs">Administration.UserPermissionListResponse.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionRow.cs">Administration.UserPermissionRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionService.cs">Administration.UserPermissionService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionUpdateRequest.cs">Administration.UserPermissionUpdateRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListRequest.cs">Administration.UserRoleListRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListResponse.cs">Administration.UserRoleListResponse.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleRow.cs">Administration.UserRoleRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleService.cs">Administration.UserRoleService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.cs">Administration.UserRoleUpdateRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.cs">Administration.UserRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.cs">Administration.UserService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.cs">Membership.LoginRequest.cs</ProjectItem>
@@ -178,7 +211,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.6.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.4.0" />
+      <package id="Serenity.Script" version="1.4.1" />
     </packages>
   </WizardData>
   <WizardExtension>
