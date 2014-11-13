@@ -10,7 +10,7 @@ namespace Serene.Administration.Endpoints
     using MyRow = Entities.LanguageRow;
 
     [RoutePrefix("Services/Administration/Language"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(Administration.PermissionKeys.Translation)]
     public class LanguageController : ServiceEndpoint
     {
         [HttpPost]

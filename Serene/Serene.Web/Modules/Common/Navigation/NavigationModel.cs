@@ -15,7 +15,8 @@ namespace Serene.Navigation
         public NavigationModel()
         {
             Items = TwoLevelCache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" + (Authorization.UserId ?? "-1"), TimeSpan.Zero,
-                UserRow.Fields.GenerationKey, () => NavigationHelper.GetNavigationItems(System.Web.VirtualPathUtility.ToAbsolute));
+                UserPermissionRow.Fields.GenerationKey, () => 
+                    NavigationHelper.GetNavigationItems(System.Web.VirtualPathUtility.ToAbsolute));
         }
     }
 }

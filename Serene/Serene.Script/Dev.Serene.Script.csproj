@@ -31,7 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Administration\RolePermission\RolePermissionDialog.cs" />
+    <Compile Include="Administration\UserRole\RoleCheckEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
+    <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
+    <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="Common\Helper\CascadedEditorHelper.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
     <Compile Include="Common\Navigation\SidebarSearch.cs" />
@@ -140,10 +144,19 @@
     <Compile Include="Imports\ServiceContracts\Administration.UserPermissionUpdateRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserRoleListRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserRoleListResponse.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserRoleRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserRoleService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Administration.UserRoleUpdateRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserRow.cs">
@@ -270,11 +283,6 @@
     <Compile Include="Administration\Translation\TranslationGrid.cs" />
     <Compile Include="Administration\Role\RoleGrid.cs" />
     <Compile Include="Administration\Role\RoleDialog.cs" />
-    <Compile Include="Administration\RolePermission\RolePermissionGrid.cs" />
-    <Compile Include="Administration\RolePermission\RolePermissionDialog.cs" />
-    <Compile Include="Administration\UserRole\UserRoleGrid.cs" />
-    <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
-    <Compile Include="Administration\UserPermission\UserPermissionGrid.cs" />
     <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
   </ItemGroup>
   <ItemGroup>

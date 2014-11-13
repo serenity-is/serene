@@ -10,8 +10,8 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Order Details"), InstanceName("Order Details")]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class OrderDetailRow : Row, IIdRow
     {

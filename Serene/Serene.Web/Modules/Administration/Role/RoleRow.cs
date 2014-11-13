@@ -11,9 +11,10 @@ namespace Serene.Administration.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Roles"), InstanceName("Role"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission(Administration.PermissionKeys.Security)]
+    [ModifyPermission(Administration.PermissionKeys.Security)]
     [JsonConverter(typeof(JsonRowConverter))]
+    [LookupScript("Administration.Role")]
     public sealed class RoleRow : Row, IIdRow, INameRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]

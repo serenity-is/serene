@@ -11,8 +11,8 @@ namespace Serene.Administration.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("UserPermissions"), InstanceName("UserPermissions"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission(Administration.PermissionKeys.Security)]
+    [ModifyPermission(Administration.PermissionKeys.Security)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class UserPermissionRow : Row, IIdRow, INameRow
     {

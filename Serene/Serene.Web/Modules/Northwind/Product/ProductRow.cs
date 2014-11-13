@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Products"), InstanceName("Product")]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class ProductRow : Row, IIdRow, INameRow
     {

@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.SupplierRow;
 
     [RoutePrefix("Services/Northwind/Supplier"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Northwind")]
+    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class SupplierController : ServiceEndpoint
     {
         [HttpPost]

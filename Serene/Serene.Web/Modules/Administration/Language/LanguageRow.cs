@@ -11,8 +11,8 @@ namespace Serene.Administration.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission("*")]
+    [ModifyPermission(Administration.PermissionKeys.Translation)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class LanguageRow : Row, IIdRow, INameRow
     {

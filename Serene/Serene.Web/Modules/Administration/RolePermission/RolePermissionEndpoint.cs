@@ -10,7 +10,7 @@ namespace Serene.Administration.Endpoints
     using MyRow = Entities.RolePermissionRow;
 
     [RoutePrefix("Services/Administration/RolePermission"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(Administration.PermissionKeys.Security)]
     public class RolePermissionController : ServiceEndpoint
     {
         [HttpPost]

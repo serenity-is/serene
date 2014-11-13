@@ -11,7 +11,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/Shipper"), Route("{action=index}")]
     public class ShipperController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/Shipper/ShipperIndex.cshtml");

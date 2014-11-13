@@ -57,6 +57,8 @@ namespace Serene.Administration.Repositories
                 });
             }
 
+            BatchGenerationUpdater.OnCommit(uow, fld.GenerationKey);
+
             return new SaveResponse();
         }
 
@@ -74,7 +76,8 @@ namespace Serene.Administration.Repositories
 
             return connection.List<MyRow>(q =>
             {
-                q.Select(fld.UserPermissionId, fld.PermissionKey);
+                q.Select(fld.UserPermissionId, fld.PermissionKey)
+                    .Where(new Criteria(fld.UserId) == userId);
 
                 if (prefix.Length > 0)
                     q.Where(

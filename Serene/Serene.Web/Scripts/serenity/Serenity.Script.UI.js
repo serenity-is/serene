@@ -493,6 +493,35 @@
 				opt.forceFitColumns = true;
 				return opt;
 			},
+			sortItems: function() {
+				if (!this.moveSelectedUp()) {
+					return;
+				}
+				var oldIndexes = {};
+				var list = this.view.getItems();
+				var i = 0;
+				for (var $t1 = 0; $t1 < list.length; $t1++) {
+					var x = list[$t1];
+					oldIndexes[x.id] = i++;
+				}
+				list.sort(function(x1, y) {
+					if (x1.isSelected && !y.isSelected) {
+						return -1;
+					}
+					if (y.isSelected && !x1.isSelected) {
+						return 1;
+					}
+					var c = Q$Externals.turkishLocaleCompare(x1.text, y.text);
+					if (c !== 0) {
+						return c;
+					}
+					return ss.compare(oldIndexes[x1.id], oldIndexes[y.id]);
+				});
+				this.view.setItems(list, true);
+			},
+			moveSelectedUp: function() {
+				return false;
+			},
 			get_value: function() {
 				var list = [];
 				var items = this.get_view().getItems();
@@ -523,6 +552,7 @@
 					}
 					this.updateSelectAll();
 					this.updateFlags();
+					this.sortItems();
 				}
 				finally {
 					this.view.endUpdate();
@@ -4011,8 +4041,8 @@
 			},
 			getDialogButtons: function() {
 				var $t1 = [];
-				$t1.push({ text: 'Tamam', click: ss.mkdel(this, this.okClick) });
-				$t1.push({ text: 'İptal', click: ss.mkdel(this, this.cancelClick) });
+				$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, this.okClick) });
+				$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.cancelClick) });
 				return $t1;
 			},
 			destroy: function() {

@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     [RoutePrefix("Administration/User"), Route("{action=index}")]
     public class UserController : Controller
     {
-        [PageAuthorize("Administration")]
+        [PageAuthorize(Administration.PermissionKeys.Security)]
         public ActionResult Index()
         {
             return View("~/Modules/Administration/User/UserIndex.cshtml");

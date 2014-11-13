@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/Territory"), Route("{action=index}")]
     public class TerritoryController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/Territory/TerritoryIndex.cshtml");

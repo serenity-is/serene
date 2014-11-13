@@ -1,0 +1,8 @@
+{
+    "Permission.Administration:Security": "Administration: User, Role Management and Permissions",
+    "Permission.Administration:Translation": "Administration: Languages and Translations",
+    "Permission.Northwind:Customer:View": "Northwind: Customers",
+    "Permission.Northwind:Customer:Delete": "Northwind: Customers - Delete",
+    "Permission.Northwind:Customer:Modify": "Northwind: Customers - Create/Update",
+    "Permission.Northwind:General": "Northwind: General"
+}

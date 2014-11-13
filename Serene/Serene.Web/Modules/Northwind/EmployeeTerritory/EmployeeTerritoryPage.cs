@@ -11,7 +11,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/EmployeeTerritory"), Route("{action=index}")]
     public class EmployeeTerritoryController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/EmployeeTerritory/EmployeeTerritoryIndex.cshtml");

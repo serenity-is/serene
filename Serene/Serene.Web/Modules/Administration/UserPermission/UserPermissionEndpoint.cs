@@ -12,7 +12,7 @@ namespace Serene.Administration.Endpoints
     using MyRow = Entities.UserPermissionRow;
 
     [RoutePrefix("Services/Administration/UserPermission"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(Administration.PermissionKeys.Security)]
     public class UserPermissionController : ServiceEndpoint
     {
         [HttpPost]

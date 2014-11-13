@@ -11,7 +11,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/OrderDetail"), Route("{action=index}")]
     public class OrderDetailController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/OrderDetail/OrderDetailIndex.cshtml");

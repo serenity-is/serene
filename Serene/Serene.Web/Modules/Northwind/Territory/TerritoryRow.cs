@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Territories"), InstanceName("Territory")]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Territory")]
     public sealed class TerritoryRow : Row, IIdRow, INameRow

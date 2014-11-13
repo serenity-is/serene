@@ -507,6 +507,7 @@
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\site\site.administration.less" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -622,6 +623,7 @@
     <Content Include="Scripts\site\texts\site.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="Scripts\site\texts\site.texts.invariant.json" />
     <None Include="Scripts\site\texts\site.texts.tr.json" />
     <Content Include="Modules\Membership\Account\AccountLogin.cshtml" />
     <Content Include="Modules\Web.config" />
@@ -760,9 +762,13 @@
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListResponse.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListRequest.cs" />
+    <Compile Include="Modules\Administration\PermissionKeys.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListResponse.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
+    <Compile Include="Modules\Administration\UserRole\UserRoleUpdateRequest.cs" />
+    <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
+    <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103140000_Initial.cs" />
@@ -776,10 +782,11 @@
     </Compile>
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
-    <Compile Include="Modules\Northwind.DynamicScripts.cs" />
+    <Compile Include="Modules\Northwind\Northwind.DynamicScripts.cs" />
     <Compile Include="Modules\Northwind\Category\CategoryColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCountryLookup.cs" />
+    <Compile Include="Modules\Northwind\PermissionKeys.cs" />
     <Compile Include="Modules\Northwind\Product\ProductColumns.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />
     <Compile Include="Modules\Northwind\Shipper\ShipperColumns.cs" />

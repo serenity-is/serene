@@ -11,7 +11,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/CustomerCustomerDemo"), Route("{action=index}")]
     public class CustomerCustomerDemoController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/CustomerCustomerDemo/CustomerCustomerDemoIndex.cshtml");

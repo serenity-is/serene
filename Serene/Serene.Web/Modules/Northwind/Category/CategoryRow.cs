@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Categories"), InstanceName("Category")]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Category")]
     public sealed class CategoryRow : Row, IIdRow, INameRow

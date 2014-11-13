@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.OrderDetailRow;
 
     [RoutePrefix("Services/Northwind/OrderDetail"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Northwind")]
+    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class OrderDetailController : ServiceEndpoint
     {
         [HttpPost]

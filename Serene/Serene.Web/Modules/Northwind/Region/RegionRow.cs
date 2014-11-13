@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Region"), InstanceName("Region"), TwoLevelCached]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Region")]
     public sealed class RegionRow : Row, IIdRow, INameRow

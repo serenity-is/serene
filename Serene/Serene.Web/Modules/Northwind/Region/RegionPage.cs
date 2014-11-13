@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/Region"), Route("{action=index}")]
     public class RegionController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/Region/RegionIndex.cshtml");

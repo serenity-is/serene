@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Suppliers"), InstanceName("Supplier"), TwoLevelCached]
-    [ReadPermission("Northwind")]
-    [ModifyPermission("Northwind")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Supplier")]
     public sealed class SupplierRow : Row, IIdRow, INameRow

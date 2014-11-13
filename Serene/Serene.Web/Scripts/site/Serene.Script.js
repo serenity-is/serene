@@ -56,6 +56,14 @@
 	};
 	global.Serene.Administration.LanguageService = $Serene_Administration_LanguageService;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Administration.PermissionCheckEditor
+	var $Serene_Administration_PermissionCheckEditor = function(div) {
+		this.$containsText = null;
+		ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]).call(this, div, null);
+	};
+	$Serene_Administration_PermissionCheckEditor.__typeName = 'Serene.Administration.PermissionCheckEditor';
+	global.Serene.Administration.PermissionCheckEditor = $Serene_Administration_PermissionCheckEditor;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.PermissionModuleEditor
 	var $Serene_Administration_PermissionModuleEditor = function(hidden) {
 		ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]).call(this, hidden, null);
@@ -100,6 +108,14 @@
 	$Serene_Administration_PermissionModuleEditor.__typeName = 'Serene.Administration.PermissionModuleEditor';
 	global.Serene.Administration.PermissionModuleEditor = $Serene_Administration_PermissionModuleEditor;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Administration.RoleCheckEditor
+	var $Serene_Administration_RoleCheckEditor = function(div) {
+		this.$containsText = null;
+		ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]).call(this, div, null);
+	};
+	$Serene_Administration_RoleCheckEditor.__typeName = 'Serene.Administration.RoleCheckEditor';
+	global.Serene.Administration.RoleCheckEditor = $Serene_Administration_RoleCheckEditor;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleDialog
 	var $Serene_Administration_RoleDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -115,18 +131,16 @@
 	global.Serene.Administration.RoleGrid = $Serene_Administration_RoleGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RolePermissionDialog
-	var $Serene_Administration_RolePermissionDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+	var $Serene_Administration_RolePermissionDialog = function(opt) {
+		this.$permissions = null;
+		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
+		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
+		$Serene_Administration_RolePermissionService.list({ RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+			this.$permissions.set_value(response.Entities);
+		}), null);
 	};
 	$Serene_Administration_RolePermissionDialog.__typeName = 'Serene.Administration.RolePermissionDialog';
 	global.Serene.Administration.RolePermissionDialog = $Serene_Administration_RolePermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RolePermissionGrid
-	var $Serene_Administration_RolePermissionGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Administration_RolePermissionGrid.__typeName = 'Serene.Administration.RolePermissionGrid';
-	global.Serene.Administration.RolePermissionGrid = $Serene_Administration_RolePermissionGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RolePermissionService
 	var $Serene_Administration_RolePermissionService = function() {
@@ -237,19 +251,15 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserPermissionDialog
 	var $Serene_Administration_UserPermissionDialog = function(opt) {
-		this.$module = null;
+		this.$permissions = null;
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
-		this.$module = new $Serene_Administration_PermissionModuleEditor(this.byId$1('Module'));
+		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
+		$Serene_Administration_UserPermissionService.list({ UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+			this.$permissions.set_value(response.Entities);
+		}), null);
 	};
 	$Serene_Administration_UserPermissionDialog.__typeName = 'Serene.Administration.UserPermissionDialog';
 	global.Serene.Administration.UserPermissionDialog = $Serene_Administration_UserPermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserPermissionGrid
-	var $Serene_Administration_UserPermissionGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Administration_UserPermissionGrid.__typeName = 'Serene.Administration.UserPermissionGrid';
-	global.Serene.Administration.UserPermissionGrid = $Serene_Administration_UserPermissionGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserPermissionService
 	var $Serene_Administration_UserPermissionService = function() {
@@ -267,34 +277,25 @@
 	global.Serene.Administration.UserPermissionService = $Serene_Administration_UserPermissionService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserRoleDialog
-	var $Serene_Administration_UserRoleDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+	var $Serene_Administration_UserRoleDialog = function(opt) {
+		this.$permissions = null;
+		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
+		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId$1('Roles'));
+		$Serene_Administration_UserRoleService.list({ UserID: this.options.userID }, ss.mkdel(this, function(response) {
+			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
+				return x.toString();
+			}).toArray());
+		}), null);
 	};
 	$Serene_Administration_UserRoleDialog.__typeName = 'Serene.Administration.UserRoleDialog';
 	global.Serene.Administration.UserRoleDialog = $Serene_Administration_UserRoleDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserRoleGrid
-	var $Serene_Administration_UserRoleGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Administration_UserRoleGrid.__typeName = 'Serene.Administration.UserRoleGrid';
-	global.Serene.Administration.UserRoleGrid = $Serene_Administration_UserRoleGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserRoleService
 	var $Serene_Administration_UserRoleService = function() {
 	};
 	$Serene_Administration_UserRoleService.__typeName = 'Serene.Administration.UserRoleService';
-	$Serene_Administration_UserRoleService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserRole/Create', request, onSuccess, options);
-	};
 	$Serene_Administration_UserRoleService.update = function(request, onSuccess, options) {
 		return Q.serviceRequest('Administration/UserRole/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_UserRoleService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserRole/Delete', request, onSuccess, options);
-	};
-	$Serene_Administration_UserRoleService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserRole/Retrieve', request, onSuccess, options);
 	};
 	$Serene_Administration_UserRoleService.list = function(request, onSuccess, options) {
 		return Q.serviceRequest('Administration/UserRole/List', request, onSuccess, options);
@@ -1130,8 +1131,96 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageService, $asm, {});
+	ss.initClass($Serene_Administration_PermissionCheckEditor, $asm, {
+		getButtons: function() {
+			return [];
+		},
+		createToolbarExtensions: function() {
+			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
+				this.$containsText = Q.trimToNull(text);
+				this.view.setItems(this.view.getItems(), true);
+			}), null);
+		},
+		onViewFilter: function(item) {
+			if (!ss.makeGenericType(Serenity.CheckTreeEditor$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+				return false;
+			}
+			var contains = Select2.util.stripDiacritics(ss.coalesce(this.$containsText, '')).toUpperCase();
+			if (Q.isEmptyOrNull(contains)) {
+				return true;
+			}
+			if (Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase().indexOf(contains) !== -1) {
+				return true;
+			}
+			return false;
+		},
+		getItems: function() {
+			var list = [];
+			var permissions = Q.getRemoteData('Administration.PermissionKeys').Entities;
+			var permissionTitles = {};
+			for (var i = 0; i < permissions.length; i++) {
+				var p = permissions[i];
+				permissionTitles[p] = ss.coalesce(Q.tryGetText('Permission.' + p), p);
+			}
+			permissions.sort(function(x, y) {
+				return Q$Externals.turkishLocaleCompare(permissionTitles[x], permissionTitles[y]);
+			});
+			for (var $t1 = 0; $t1 < permissions.length; $t1++) {
+				var permission = permissions[$t1];
+				list.push({ id: permission, text: permissionTitles[permission] });
+			}
+			return list;
+		}
+	}, ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]), [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
 	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]), [Serenity.IStringValue]);
-	ss.initClass($Serene_Administration_RoleDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_RoleCheckEditor, $asm, {
+		getButtons: function() {
+			return [];
+		},
+		createToolbarExtensions: function() {
+			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
+				this.$containsText = Q.trimToNull(text);
+				this.view.setItems(this.view.getItems(), true);
+			}), null);
+		},
+		onViewFilter: function(item) {
+			if (!ss.makeGenericType(Serenity.CheckTreeEditor$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+				return false;
+			}
+			var contains = Select2.util.stripDiacritics(ss.coalesce(this.$containsText, '')).toUpperCase();
+			if (Q.isEmptyOrNull(contains)) {
+				return true;
+			}
+			if (Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase().indexOf(contains) !== -1) {
+				return true;
+			}
+			return false;
+		},
+		getItems: function() {
+			var list = [];
+			var roles = Q.getLookup('Administration.Role').get_items();
+			for (var $t1 = 0; $t1 < roles.length; $t1++) {
+				var role = roles[$t1];
+				list.push({ id: role.RoleId.toString(), text: role.RoleName });
+			}
+			return list;
+		}
+	}, ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]), [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
+	ss.initClass($Serene_Administration_RoleDialog, $asm, {
+		getToolbarButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			buttons.push({ title: Q.text('Site.RolePermissionDialog.EditButton'), cssClass: 'lock-button', onClick: ss.mkdel(this, function() {
+				(new $Serene_Administration_RolePermissionDialog({ roleID: ss.unbox(this.get_entity().RoleId), title: this.get_entity().RoleName })).dialogOpen();
+			}) });
+			return buttons;
+		},
+		updateInterface: function() {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RoleGrid, $asm, {
 		getDefaultSortBy: function() {
 			var $t1 = [];
@@ -1139,8 +1228,27 @@
 			return $t1;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_RolePermissionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_RolePermissionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_RolePermissionDialog, $asm, {
+		getDialogOptions: function() {
+			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var $t1 = [];
+			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
+				$Serene_Administration_RolePermissionService.update({ RoleID: this.options.roleID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+					this.dialogClose();
+					window.setTimeout(function() {
+						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'));
+					}, 0);
+				}), null);
+			}) });
+			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
+			opt.buttons = $t1;
+			opt.title = ss.formatString(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
+			return opt;
+		},
+		getTemplate: function() {
+			return "<div id='~_Permissions'></div>";
+		}
+	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_RolePermissionService, $asm, {});
 	ss.initClass($Serene_Administration_RoleService, $asm, {});
 	ss.initClass($Serene_Administration_TranslationForm, $asm, {
@@ -1312,7 +1420,23 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_TranslationService, $asm, {});
-	ss.initClass($Serene_Administration_UserDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_Administration_UserDialog, $asm, {
+		getToolbarButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			buttons.push({ title: Q.text('Site.UserDialog.EditRolesButton'), cssClass: 'users-button', onClick: ss.mkdel(this, function() {
+				(new $Serene_Administration_UserRoleDialog({ userID: ss.unbox(this.get_entity().UserId), username: this.get_entity().Username })).dialogOpen();
+			}) });
+			buttons.push({ title: Q.text('Site.UserDialog.EditPermissionsButton'), cssClass: 'lock-button', onClick: ss.mkdel(this, function() {
+				(new $Serene_Administration_UserPermissionDialog({ userID: ss.unbox(this.get_entity().UserId), username: this.get_entity().Username })).dialogOpen();
+			}) });
+			return buttons;
+		},
+		updateInterface: function() {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			this.toolbar.findButton('users-button').toggleClass('disabled', this.get_isNewOrDeleted());
+			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Administration_UserForm, $asm, {
 		get_username: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Username');
@@ -1350,14 +1474,50 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_UserPermissionDialog, $asm, {
+		getDialogOptions: function() {
+			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var $t1 = [];
+			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
+				$Serene_Administration_UserPermissionService.update({ UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+					this.dialogClose();
+					window.setTimeout(function() {
+						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'));
+					}, 0);
+				}), null);
+			}) });
+			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
+			opt.buttons = $t1;
+			opt.title = ss.formatString(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
+			return opt;
+		},
 		getTemplate: function() {
-			return "<div><input id='~_Module' type='hidden'></div><div>";
+			return "<div id='~_Permissions'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
-	ss.initClass($Serene_Administration_UserPermissionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_UserPermissionService, $asm, {});
-	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_UserRoleGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {
+		getDialogOptions: function() {
+			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var $t1 = [];
+			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
+				$Serene_Administration_UserRoleService.update({ UserID: this.options.userID, Roles: Enumerable.from(this.$permissions.get_value()).select(function(x) {
+					return parseInt(x, 10);
+				}).toArray() }, ss.mkdel(this, function(response) {
+					this.dialogClose();
+					window.setTimeout(function() {
+						Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'));
+					}, 0);
+				}), null);
+			}) });
+			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
+			opt.buttons = $t1;
+			opt.title = ss.formatString(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
+			return opt;
+		},
+		getTemplate: function() {
+			return "<div id='~_Roles'></div>";
+		}
+	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserRoleService, $asm, {});
 	ss.initClass($Serene_Administration_UserService, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {
@@ -1937,17 +2097,14 @@
 	ss.initClass($Serene_Northwind_TerritoryService, $asm, {});
 	ss.setMetadata($Serene_Administration_LanguageDialog, { attr: [new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.FormKeyAttribute('Administration.Language'), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_LanguageGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Language'), new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.DialogTypeAttribute($Serene_Administration_LanguageDialog), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
+	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_Administration_PermissionModuleEditor, { attr: [new Serenity.EditorAttribute()] });
+	ss.setMetadata($Serene_Administration_RoleCheckEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_Administration_RoleDialog, { attr: [new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.FormKeyAttribute('Administration.Role'), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
 	ss.setMetadata($Serene_Administration_RoleGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Role'), new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.DialogTypeAttribute($Serene_Administration_RoleDialog), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
-	ss.setMetadata($Serene_Administration_RolePermissionDialog, { attr: [new Serenity.IdPropertyAttribute('RolePermissionId'), new Serenity.NamePropertyAttribute('PermissionKey'), new Serenity.FormKeyAttribute('Administration.RolePermission'), new Serenity.LocalTextPrefixAttribute('Administration.RolePermission'), new Serenity.ServiceAttribute('Administration/RolePermission')] });
-	ss.setMetadata($Serene_Administration_RolePermissionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.RolePermission'), new Serenity.IdPropertyAttribute('RolePermissionId'), new Serenity.NamePropertyAttribute('PermissionKey'), new Serenity.DialogTypeAttribute($Serene_Administration_RolePermissionDialog), new Serenity.LocalTextPrefixAttribute('Administration.RolePermission'), new Serenity.ServiceAttribute('Administration/RolePermission')] });
 	ss.setMetadata($Serene_Administration_TranslationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Translation'), new Serenity.IdPropertyAttribute('Key'), new Serenity.LocalTextPrefixAttribute('Administration.Translation'), new Serenity.ServiceAttribute('Administration/Translation')] });
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
-	ss.setMetadata($Serene_Administration_UserPermissionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.UserPermission'), new Serenity.IdPropertyAttribute('UserPermissionId'), new Serenity.NamePropertyAttribute('PermissionKey'), new Serenity.DialogTypeAttribute($Serene_Administration_UserPermissionDialog), new Serenity.LocalTextPrefixAttribute('Administration.UserPermission'), new Serenity.ServiceAttribute('Administration/UserPermission')] });
-	ss.setMetadata($Serene_Administration_UserRoleDialog, { attr: [new Serenity.IdPropertyAttribute('UserRoleId'), new Serenity.FormKeyAttribute('Administration.UserRole'), new Serenity.LocalTextPrefixAttribute('Administration.UserRole'), new Serenity.ServiceAttribute('Administration/UserRole')] });
-	ss.setMetadata($Serene_Administration_UserRoleGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.UserRole'), new Serenity.IdPropertyAttribute('UserRoleId'), new Serenity.DialogTypeAttribute($Serene_Administration_UserRoleDialog), new Serenity.LocalTextPrefixAttribute('Administration.UserRole'), new Serenity.ServiceAttribute('Administration/UserRole')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.Login')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });

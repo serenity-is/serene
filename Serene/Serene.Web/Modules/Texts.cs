@@ -50,6 +50,31 @@ namespace Serene
                 public static LocalText WelcomeMessage = "Welcome to SERENE home page. " + 
                     "Use the navigation on left to browse other pages...";
             }
+
+            public static class UserDialog
+            {
+                public static LocalText EditPermissionsButton = "Edit Permissions";
+                public static LocalText EditRolesButton = "Edit Roles";
+            }
+
+            public static class UserRoleDialog
+            {
+                public static LocalText DialogTitle = "Edit User Roles ({0})";
+                public static LocalText SaveSuccess = "Updated user roles.";
+            }
+
+            public static class UserPermissionDialog
+            {
+                public static LocalText DialogTitle = "Edit User Permissions ({0})";
+                public static LocalText SaveSuccess = "Updated user permissions.";
+            }
+
+            public static class RolePermissionDialog
+            {
+                public static LocalText EditButton = "Edit Permissions";
+                public static LocalText DialogTitle = "Edit Role Permissions ({0})";
+                public static LocalText SaveSuccess = "Updated role permissions.";
+            }
         }
 
         public static class Validation

@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.ShipperRow;
 
     [RoutePrefix("Services/Northwind/Shipper"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Northwind")]
+    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class ShipperController : ServiceEndpoint
     {
         [HttpPost]

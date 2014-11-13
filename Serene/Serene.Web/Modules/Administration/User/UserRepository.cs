@@ -73,7 +73,7 @@ namespace Serene.Administration.Repositories
             {
                 base.GetEditableFields(editable);
 
-                if (!Authorization.HasPermission("Administration"))
+                if (!Authorization.HasPermission(Administration.PermissionKeys.Security))
                 {
                     editable.Remove(fld.Source);
                     editable.Remove(fld.IsActive);

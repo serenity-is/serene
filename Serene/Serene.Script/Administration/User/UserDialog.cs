@@ -31,5 +31,48 @@ namespace Serene.Administration
                 return null;
             });
         }
+
+        protected override List<ToolButton> GetToolbarButtons()
+        {
+            var buttons = base.GetToolbarButtons();
+
+            buttons.Add(new ToolButton
+            {
+                Title = Q.Text("Site.UserDialog.EditRolesButton"),
+                CssClass = "users-button",
+                OnClick = delegate
+                {
+                    new UserRoleDialog(new UserRoleDialogOptions
+                    {
+                        UserID = this.Entity.UserId.Value,
+                        Username = this.Entity.Username,
+                    }).DialogOpen();
+                }
+            });
+
+            buttons.Add(new ToolButton
+            {
+                Title = Q.Text("Site.UserDialog.EditPermissionsButton"),
+                CssClass = "lock-button",
+                OnClick = delegate
+                {
+                    new UserPermissionDialog(new UserPermissionDialogOptions
+                    {
+                        UserID = this.Entity.UserId.Value,
+                        Username = this.Entity.Username,
+                    }).DialogOpen();
+                }
+            });
+
+            return buttons;
+        }
+
+        protected override void UpdateInterface()
+        {
+            base.UpdateInterface();
+
+            toolbar.FindButton("users-button").ToggleClass("disabled", this.IsNewOrDeleted);
+            toolbar.FindButton("lock-button").ToggleClass("disabled", this.IsNewOrDeleted);
+        }
     }
 }

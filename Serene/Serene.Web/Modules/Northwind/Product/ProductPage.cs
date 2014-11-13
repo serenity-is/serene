@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     [RoutePrefix("Northwind/Product"), Route("{action=index}")]
     public class ProductController : Controller
     {
-        [PageAuthorize("Northwind")]
+        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Northwind/Product/ProductIndex.cshtml");

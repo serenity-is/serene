@@ -11,9 +11,9 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
-    [ReadPermission("Northwind:Customer")]
-    [ModifyPermission("Northwind:Customer:Modify")]
-    [DeletePermission("Northwind:Customer:Delete")]
+    [ReadPermission(Northwind.PermissionKeys.Customer.View)]
+    [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
+    [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Customer")]
     public sealed class CustomerRow : Row, IIdRow, INameRow

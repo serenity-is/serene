@@ -10,8 +10,8 @@ namespace Serene.Administration.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission(Administration.PermissionKeys.Security)]
+    [ModifyPermission(Administration.PermissionKeys.Security)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow
     {

@@ -1,46 +1,98 @@
 ﻿
-
 namespace Serene.Administration.Repositories
 {
     using Serenity;
     using Serenity.Data;
+    using Serenity.Extensibility;
     using Serenity.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
+    using System.Reflection;
     using MyRow = Entities.UserRoleRow;
 
     public class UserRoleRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, UserRoleUpdateRequest request)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            Check.NotNull(request, "request");
+            Check.NotNull(request.UserID, "userID");
+            Check.NotNull(request.Roles, "permissions");
+
+            var userID = request.UserID.Value;
+            var oldList = new HashSet<Int32>(
+                GetExisting(uow.Connection, userID)
+                .Select(x => x.RoleId.Value));
+
+            var newList = new HashSet<Int32>(request.Roles.ToList());
+
+            if (oldList.SetEquals(newList))
+                return new SaveResponse();
+
+            foreach (var k in oldList)
+            {
+                if (newList.Contains(k))
+                    continue;
+
+                new SqlDelete(fld.TableName)
+                    .Where(
+                        new Criteria(fld.UserId) == userID &
+                        new Criteria(fld.RoleId) == k)
+                    .Execute(uow.Connection);
+            }
+
+            foreach (var k in newList)
+            {
+                if (oldList.Contains(k))
+                    continue;
+
+                uow.Connection.Insert(new MyRow
+                {
+                    UserId = userID,
+                    RoleId = k
+                });
+            }
+
+            BatchGenerationUpdater.OnCommit(uow, fld.GenerationKey);
+            BatchGenerationUpdater.OnCommit(uow, Entities.UserPermissionRow.Fields.GenerationKey);
+
+            return new SaveResponse();
         }
 
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        private List<MyRow> GetExisting(IDbConnection connection, Int32 userId)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
+            return connection.List<MyRow>(q =>
+            {
+                q.Select(fld.UserRoleId, fld.RoleId)
+                    .Where(new Criteria(fld.UserId) == userId);
+            });
         }
 
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public UserRoleListResponse List(IDbConnection connection, UserRoleListRequest request)
         {
-            return new MyDeleteHandler().Process(uow, request);
+            Check.NotNull(request, "request");
+            Check.NotNull(request.UserID, "userID");
+
+            var response = new UserRoleListResponse();
+
+            response.Entities = GetExisting(connection, request.UserID.Value)
+                .Select(x => x.RoleId.Value).ToList();
+
+            return response;
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        private void ProcessAttributes<TAttr>(HashSet<string> hash, MemberInfo member, Func<TAttr, string> getRole)
+            where TAttr : Attribute
         {
-            return new MyRetrieveHandler().Process(connection, request);
+            foreach (var attr in member.GetCustomAttributes<TAttr>())
+            {
+                var permission = getRole(attr);
+                if (!permission.IsEmptyOrNull())
+                    hash.Add(permission);
+            }
         }
-
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
-        {
-            return new MyListHandler().Process(connection, request);
-        }
-
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
     }
 }

@@ -12,7 +12,7 @@ namespace Serene.Administration
         public LanguageLookup()
         {
             IdField = LanguageRow.Fields.LanguageId.PropertyName;
-            Permission = "";
+            Permission = "*";
         }
 
         protected override void PrepareQuery(SqlQuery query)

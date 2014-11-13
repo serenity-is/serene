@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     [RoutePrefix("Administration/Language"), Route("{action=index}")]
     public class LanguageController : Controller
     {
-        [PageAuthorize("Administration")]
+        [PageAuthorize(Administration.PermissionKeys.Translation)]
         public ActionResult Index()
         {
             return View("~/Modules/Administration/Language/LanguageIndex.cshtml");
