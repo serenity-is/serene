@@ -736,6 +736,8 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-2.1.1.min.map">jquery-2.1.1.min.map</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.min-1.11.1.js">jquery-ui.min-1.11.1.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui-1.11.1.js">jquery-ui-1.11.1.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui-i18n.js">jquery-ui-i18n.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui-i18n.min.js">jquery-ui-i18n.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jsrender.js">jsrender.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jsrender.min.js">jsrender.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="pace.js">pace.js</ProjectItem>
