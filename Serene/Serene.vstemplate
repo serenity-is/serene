@@ -3,7 +3,7 @@
   <TemplateData>
     <Name>SERENE (Serenity Application Template)</Name>
     <Description>Contains Web and Script project templates for Serenity Application Platform.</Description>
-    <Icon>__TemplateIcon.png</Icon>
+    <Icon>SerenityLogo.ico</Icon>
     <DefaultName>Serene</DefaultName>
     <ProjectType>CSharp</ProjectType>
   </TemplateData>

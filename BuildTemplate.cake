@@ -212,8 +212,6 @@ Task("PrepareVSIX")
         
         File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
         File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
-        File.Copy(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(vsTemplate), "__TemplateIcon.png"), 
-            System.IO.Path.Combine(copyTargetRoot, "__TemplateIcon.png"));
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
         File.WriteAllText(targetProj, File.ReadAllText(csproj)
             .Replace("http://localhost:55555/", "")
@@ -238,8 +236,8 @@ Task("PrepareVSIX")
     
     replaceTemplateFileList(sampleScriptProj, scriptPackages);
     replaceTemplateFileList(sampleWebProj, webPackages);
-    File.Copy(r + @"Serene\__TemplateIcon.png", 
-        System.IO.Path.Combine(templateFolder, "__TemplateIcon.png")); 
+    File.Copy(r + @"Serene\SerenityLogo.ico", 
+        System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 
     File.Copy(r + @"Serene\Serene.vstemplate", 
         System.IO.Path.Combine(templateFolder, "Serene.vstemplate")); 
         
