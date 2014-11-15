@@ -69,10 +69,8 @@
 		ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]).call(this, hidden, null);
 		var modules = {};
 		var permissions = Q.getRemoteData('Administration.PermissionKeys').Entities;
-		window.console && window.console.log(permissions);
 		for (var i = 0; i < permissions.length; i++) {
 			var k = permissions[i];
-			window.console && window.console.log(k);
 			var idx1 = k.indexOf(String.fromCharCode(58));
 			if (idx1 <= 0) {
 				continue;
@@ -84,7 +82,6 @@
 			var module = k.substr(0, idx1);
 			modules[module] = true;
 		}
-		window.console && window.console.log(modules);
 		var othersModule = false;
 		for (var $t1 = 0; $t1 < permissions.length; $t1++) {
 			var k1 = permissions[$t1];
@@ -103,7 +100,6 @@
 			var k2 = moduleList[$t2];
 			this.addItem(k2, k2, k2, false);
 		}
-		window.console && window.console.log(moduleList);
 	};
 	$Serene_Administration_PermissionModuleEditor.__typeName = 'Serene.Administration.PermissionModuleEditor';
 	global.Serene.Administration.PermissionModuleEditor = $Serene_Administration_PermissionModuleEditor;
@@ -1461,7 +1457,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'UserId', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'Username', width: 150, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'Username', width: 150, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'DisplayName', width: 150 });
 			columns.push({ field: 'Email', width: 250 });
 			columns.push({ field: 'Source', width: 100 });
@@ -1623,7 +1619,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'ID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'CustomerID', width: 200, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'CustomerID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'CustomerTypeID', width: 80 });
 			return columns;
 		}
@@ -1642,7 +1638,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'ID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'CustomerTypeID', width: 200, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'CustomerTypeID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'CustomerDesc', width: 80 });
 			return columns;
 		}
@@ -1766,7 +1762,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'EmployeeID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'LastName', width: 200, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'LastName', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'FirstName', width: 80 });
 			columns.push({ field: 'Title', width: 80 });
 			columns.push({ field: 'TitleOfCourtesy', width: 80 });
@@ -1797,7 +1793,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'EmployeeID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'TerritoryID', width: 200, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'TerritoryID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			return columns;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
@@ -1875,7 +1871,7 @@
 		getColumns: function() {
 			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
 			columns.push({ field: 'OrderID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'CustomerID', width: 200, format: this.itemLink(null, null, null, null) });
+			columns.push({ field: 'CustomerID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'EmployeeID', width: 80 });
 			columns.push({ field: 'OrderDate', width: 80 });
 			columns.push({ field: 'RequiredDate', width: 80 });

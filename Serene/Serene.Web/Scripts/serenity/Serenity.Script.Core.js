@@ -1324,12 +1324,12 @@
 		}
 		return href;
 	};
-	$Serenity_SlickFormatting.itemLinkText = function(itemType, id, text, extraClass) {
-		return '<a' + (ss.isValue(id) ? (' href="#' + ss.replaceAllString(itemType, '.', '-') + '/' + id + '"') : '') + ' data-item-type="' + itemType + '"' + ' data-item-id="' + id + '"' + ' class="s-EditLink s-' + ss.replaceAllString(itemType, '.', '-') + 'Link' + ($Q.isEmptyOrNull(extraClass) ? '' : (' ' + extraClass)) + '">' + $Q.htmlEncode(ss.coalesce(text, '')) + '</a>';
+	$Serenity_SlickFormatting.itemLinkText = function(itemType, id, text, extraClass, encode) {
+		return '<a' + (ss.isValue(id) ? (' href="#' + ss.replaceAllString(itemType, '.', '-') + '/' + id + '"') : '') + ' data-item-type="' + itemType + '"' + ' data-item-id="' + id + '"' + ' class="s-EditLink s-' + ss.replaceAllString(itemType, '.', '-') + 'Link' + ($Q.isEmptyOrNull(extraClass) ? '' : (' ' + extraClass)) + '">' + (encode ? $Q.htmlEncode(ss.coalesce(text, '')) : ss.coalesce(text, '')) + '</a>';
 	};
-	$Serenity_SlickFormatting.itemLink = function(itemType, idField, getText, cssClass) {
+	$Serenity_SlickFormatting.itemLink = function(itemType, idField, getText, cssClass, encode) {
 		return function(ctx) {
-			return ss.cast($Serenity_SlickFormatting.itemLinkText(itemType, ctx.item[idField], (ss.staticEquals(getText, null) ? ctx.value : getText(ctx)), (ss.staticEquals(cssClass, null) ? '' : cssClass(ctx))), String);
+			return ss.cast($Serenity_SlickFormatting.itemLinkText(itemType, ctx.item[idField], (ss.staticEquals(getText, null) ? ctx.value : getText(ctx)), (ss.staticEquals(cssClass, null) ? '' : cssClass(ctx)), encode), String);
 		};
 	};
 	global.Serenity.SlickFormatting = $Serenity_SlickFormatting;

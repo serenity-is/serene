@@ -794,6 +794,7 @@
 					if (ss.isValue(this.slickGrid)) {
 						this.slickGrid.setColumns(columns);
 					}
+					this.setInitialSortOrder();
 					this.initialPopulate();
 				}), null);
 			},
@@ -814,10 +815,21 @@
 				};
 				var grid = new Slick.Grid(this.slickContainer, ss.cast(viewRows, Array), slickColumns, slickOptions);
 				grid.registerPlugin(new Slick.AutoTooltips({ enableForHeaderCells: true }));
-				grid.setSortColumns(this.getDefaultSortBy().map(function(s) {
+				this.slickGrid = grid;
+				if (!this.isAsyncWidget()) {
+					this.setInitialSortOrder();
+				}
+				return grid;
+			},
+			setInitialSortOrder: function() {
+				var sortBy = this.getDefaultSortBy();
+				if (ss.isValue(this.view)) {
+					this.view.sortBy = Array.prototype.slice.call(sortBy);
+				}
+				var mapped = sortBy.map(function(s) {
 					var x = {};
-					if (ss.isValue(s) && ss.endsWithString(s.toLowerCase(), ' DESC')) {
-						x.columnId = s.substr(0, s.length - 5);
+					if (ss.isValue(s) && ss.endsWithString(s.toLowerCase(), ' desc')) {
+						x.columnId = ss.trimEndString(s.substr(0, s.length - 5));
 						x.sortAsc = false;
 					}
 					else {
@@ -825,8 +837,8 @@
 						x.sortAsc = true;
 					}
 					return x;
-				}));
-				return grid;
+				});
+				this.slickGrid.setSortColumns(mapped);
 			},
 			get_items: function() {
 				return this.view.getItems();
@@ -999,6 +1011,22 @@
 				return new Slick.Data.RemoteView(opt);
 			},
 			getDefaultSortBy: function() {
+				if (ss.isValue(this.slickGrid) && this.slickGrid.getColumns().length > 0) {
+					var columns = Enumerable.from(this.slickGrid.getColumns()).where(function(x) {
+						return ss.isValue(x.sortOrder) && x.sortOrder !== 0;
+					}).toArray();
+					if (columns.length > 0) {
+						columns.sort(function(x1, y) {
+							return ss.compare(Math.abs(x1.sortOrder), Math.abs(y.sortOrder));
+						});
+						var list = [];
+						for (var i = 0; i < columns.length; i++) {
+							var col = columns[i];
+							list.push(col.field + ((col.sortOrder < 0) ? ' DESC' : ''));
+						}
+						return list;
+					}
+				}
 				var $t1 = [];
 				$t1.push(this.getIdFieldName());
 				return $t1;
@@ -1070,7 +1098,7 @@
 			getItemType: function() {
 				return 'Item';
 			},
-			itemLink: function(itemType, idField, text, cssClass) {
+			itemLink: function(itemType, idField, text, cssClass, encode) {
 				var $t1 = itemType;
 				if (ss.isNullOrUndefined($t1)) {
 					$t1 = this.getItemType();
@@ -1081,7 +1109,7 @@
 					$t2 = this.getIdFieldName();
 				}
 				idField = $t2;
-				return Serenity.SlickFormatting.itemLink(itemType, idField, text, cssClass);
+				return Serenity.SlickFormatting.itemLink(itemType, idField, text, cssClass, encode);
 			},
 			getPropertyItemsAsync: function() {
 				return RSVP.resolve().then(ss.mkdel(this, function() {
@@ -1121,7 +1149,7 @@
 								return Q.htmlEncode(ctx.value);
 							}), ss.mkdel({ css: css }, function(ctx1) {
 								return ss.coalesce(this.css.$, '');
-							}));
+							}), false);
 						}
 					}
 				}
@@ -4623,6 +4651,7 @@
 		}
 		result.name = $t1;
 		result.cssClass = item.cssClass;
+		result.sortOrder = item.sortOrder;
 		if (ss.isValue(item.alignment) && item.alignment.length > 0) {
 			if (!Q.isEmptyOrNull(result.cssClass)) {
 				result.cssClass += ' align-' + item.alignment;

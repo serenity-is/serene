@@ -17,11 +17,9 @@ namespace Serene.Administration
         {
             var modules = new JsDictionary<string,bool>();
             var permissions = Q.GetRemoteData<ListResponse<string>>("Administration.PermissionKeys").Entities;
-            Q.Log(permissions);
             for (var i = 0; i < permissions.Count; i++)
             {
                 var k = permissions[i];
-                Q.Log(k);
 
                 var idx1 = k.IndexOf(':');
                 if (idx1 <= 0)
@@ -34,8 +32,6 @@ namespace Serene.Administration
                 var module = k.Substr(0, idx1);
                 modules[module] = true;
             }
-
-            Q.Log(modules);
 
             bool othersModule = false;
             foreach (var k in permissions)
@@ -56,8 +52,6 @@ namespace Serene.Administration
 
             foreach (var k in moduleList)
                 AddItem(k, k, k);
-
-            Q.Log(moduleList);
         }
     }
 }
