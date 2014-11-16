@@ -471,6 +471,9 @@ body {
   padding: 15px 0;
 }
 @media (min-width: 768px) {
+  .navbar-top-links.navbar-right {
+    margin-right: 0;
+  }
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 250px;
