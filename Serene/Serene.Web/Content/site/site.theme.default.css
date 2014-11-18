@@ -61,7 +61,7 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .sidebar-nav ul li.selected > a {
-  background-color: rgba(18, 14, 18, 0.44);
+  background-color: rgba(18, 14, 18, 0.24);
   color: #fff;
 }
 .sidebar-nav ul ul li.selected a {
