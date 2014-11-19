@@ -38,11 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentMigrator">
-      <HintPath>..\..\packages\FluentMigrator.1.3.0.0\lib\40\FluentMigrator.dll</HintPath>
+    <Reference Include="FluentMigrator, Version=1.3.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentMigrator.1.3.1.0\lib\40\FluentMigrator.dll</HintPath>
     </Reference>
-    <Reference Include="FluentMigrator.Runner">
-      <HintPath>..\..\packages\FluentMigrator.Runner.1.3.0.0\lib\40\FluentMigrator.Runner.dll</HintPath>
+    <Reference Include="FluentMigrator.Runner, Version=1.3.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentMigrator.Runner.1.3.1.0\lib\40\FluentMigrator.Runner.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -53,25 +55,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Core, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Core.1.4.1\lib\net45\Serenity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Core.1.4.2\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.1.4.1\lib\net45\Serenity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.1.4.2\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data.Entity, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.4.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.4.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Services, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Services.1.4.1\lib\net45\Serenity.Services.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Services.1.4.2\lib\net45\Serenity.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Web, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Web.1.4.1\lib\net45\Serenity.Web.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.1.4.2\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -463,7 +465,10 @@
     <Content Include="Content\site\site.northwind.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\site\site.theme.default.css" />
+    <Content Include="Content\site\site.theme.default.less" />
     <None Include="Content\site\site.less" />
+    <Content Include="Content\site\site.theme.light.css" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -519,15 +524,16 @@
       <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
     </Content>
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="Content\site\site.administration.less" />
+    <Content Include="Content\site\site.theme.light.less" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
-    <Content Include="Content\site\site.administration.less" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -536,10 +542,10 @@
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.1.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
-    <Content Include="Scripts\jquery-ui.min-1.11.1.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
     <Content Include="Scripts\jquery.autoNumeric.min.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
@@ -556,7 +562,6 @@
     <Content Include="Scripts\jquery.event.drag.live.js" />
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
     <Content Include="Scripts\jquery.event.drag.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.jlayout.js" />
     <Content Include="Scripts\jquery.jlayout.min.js" />
     <Content Include="Scripts\jquery.json.js" />
@@ -567,16 +572,18 @@
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\rsvp.js" />
@@ -741,7 +748,6 @@
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
-    <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -954,6 +960,10 @@
   </ProjectExtensions>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;">
+    </Exec>
+    <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.default.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.default.css&quot;">
+    </Exec>
+    <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.light.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.light.css&quot;">
     </Exec>
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

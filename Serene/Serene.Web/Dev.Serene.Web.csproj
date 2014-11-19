@@ -38,11 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentMigrator">
-      <HintPath>..\..\packages\FluentMigrator.1.3.0.0\lib\40\FluentMigrator.dll</HintPath>
+    <Reference Include="FluentMigrator, Version=1.3.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentMigrator.1.3.1.0\lib\40\FluentMigrator.dll</HintPath>
     </Reference>
-    <Reference Include="FluentMigrator.Runner">
-      <HintPath>..\..\packages\FluentMigrator.Runner.1.3.0.0\lib\40\FluentMigrator.Runner.dll</HintPath>
+    <Reference Include="FluentMigrator.Runner, Version=1.3.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\FluentMigrator.Runner.1.3.1.0\lib\40\FluentMigrator.Runner.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -443,8 +445,10 @@
     <Content Include="Content\site\site.northwind.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\site\site.theme.default.css" />
     <Content Include="Content\site\site.theme.default.less" />
     <None Include="Content\site\site.less" />
+    <Content Include="Content\site\site.theme.light.css" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -500,8 +504,6 @@
       <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
     </Content>
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
@@ -510,6 +512,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -724,7 +728,6 @@
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
-    <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -966,7 +969,6 @@
     </Exec>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.light.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.light.css&quot;">
     </Exec>
-
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
