@@ -1014,3 +1014,35 @@ a,
   height: 23px;
   padding: 0 3px;
 }
+.theme-selection {
+  margin-top: 13px;
+  margin-right: 16px;
+}
+.theme-selection span {
+  float: left;
+  margin-right: 4px;
+  line-height: 24px;
+}
+.theme-selection a {
+  display: block;
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 12px;
+  opacity: 0.6;
+}
+.theme-selection a:hover {
+  opacity: 1;
+}
+.theme-selection .theme-default {
+  background-color: #222;
+  border-color: #888;
+}
+.theme-selection .theme-light {
+  background-color: #ccc;
+  border-color: #2f79aa;
+}

@@ -75,6 +75,13 @@ namespace Serene
                 public static LocalText DialogTitle = "Edit Role Permissions ({0})";
                 public static LocalText SaveSuccess = "Updated role permissions.";
             }
+
+            public static class ThemeSelection
+            {
+                public static LocalText Theme = "Theme";
+                public static LocalText Default = "Dark Theme";
+                public static LocalText Light = "Light Theme";
+            }
         }
 
         public static class Validation

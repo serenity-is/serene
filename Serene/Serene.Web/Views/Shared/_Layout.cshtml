@@ -61,6 +61,12 @@ else
                 <input id="LanguageSelect" type="hidden" />
             </div>
 
+            <div class="theme-selection pull-right" id="ThemeSelection">
+                <span>@Texts.Site.ThemeSelection.Theme</span>
+                <a class="theme-default" data-theme="default" title="@Texts.Site.ThemeSelection.Default"></a>
+                <a class="theme-light" data-theme="light" title="@Texts.Site.ThemeSelection.Light"></a>
+            </div>
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-search">
                     <div class="input-group custom-search-form">
@@ -123,6 +129,13 @@ else
 
         $(window).bind("load resize", doLayout);
         doLayout();
+
+        $('#ThemeSelection').children('a').click(function (e) {
+            e.preventDefault();
+            var theme = $(this).data('theme');
+            $('#SiteThemeCss').attr('href', Q.resolveUrl('~/Content/site/site.theme.' + theme + '.css'));
+            $.cookie('ThemePreference', theme, { path: Q$Config.applicationPath });
+        });
     });
     </script>
 }
