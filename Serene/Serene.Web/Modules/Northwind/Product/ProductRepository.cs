@@ -43,7 +43,11 @@ namespace Serene.Northwind.Repositories
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
+        [EmbeddedFileUploadBehaviour("ProductImage", fileNameFormat: "ProductImage/{1:00000}/{0:00000000}_{2}", copyFileToHistory: true)]
+        private class MySaveHandler : SaveRequestHandler<MyRow> 
+        { 
+        }
+
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }

@@ -30,6 +30,13 @@ namespace Serene.Northwind.Entities
             set { Fields.ProductName[this] = value; }
         }
 
+        [DisplayName("Product Image"), Size(100)]
+        public String ProductImage
+        {
+            get { return Fields.ProductImage[this]; }
+            set { Fields.ProductImage[this] = value; }
+        }
+
         [DisplayName("Discontinued"), NotNull]
         public Boolean? Discontinued
         {
@@ -207,6 +214,7 @@ namespace Serene.Northwind.Entities
         {
             public readonly Int32Field ProductID;
             public readonly StringField ProductName;
+            public readonly StringField ProductImage;
             public readonly BooleanField Discontinued;
             public readonly Int32Field SupplierID;
             public readonly Int32Field CategoryID;
@@ -227,7 +235,6 @@ namespace Serene.Northwind.Entities
             public readonly StringField SupplierPhone;
             public readonly StringField SupplierFax;
             public readonly StringField SupplierHomePage;
-
 
             public readonly StringField CategoryName;
             public readonly StringField CategoryDescription;

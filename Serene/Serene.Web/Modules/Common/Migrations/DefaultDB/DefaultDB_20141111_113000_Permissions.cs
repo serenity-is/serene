@@ -1,13 +1,9 @@
 ﻿using FluentMigrator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Serene.Migrations.DefaultDB
 {
     [Migration(20141111113000)]
-    public class DefaultDB_20141111113000_Permissions : Migration
+    public class DefaultDB_20141111_113000_Permissions : Migration
     {
         public override void Up()
         {

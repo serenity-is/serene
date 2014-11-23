@@ -1,13 +1,10 @@
 ﻿using FluentMigrator;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Serene.Migrations.DefaultDB
 {
     [Migration(20141103140000)]
-    public class DefaultDB_20141103140000_Initial : Migration
+    public class DefaultDB_20141103_140000_Initial : Migration
     {
         public override void Up()
         {

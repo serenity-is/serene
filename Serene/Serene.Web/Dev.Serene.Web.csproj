@@ -518,6 +518,10 @@
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.fileupload.min.js" />
+    <Content Include="Scripts\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.iframe-transport.min.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -778,8 +782,10 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111113000_Permissions.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103140000_Initial.cs" />
+    <Compile Include="Modules\Common\File\FileController.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationUpdateRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationListRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />

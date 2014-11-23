@@ -75,6 +75,7 @@
     "Db.Northwind.Product.EntityPlural": "Ürünler",
     "Db.Northwind.Product.EntitySingular": "Ürün",
     "Db.Northwind.Product.ProductID": "Ürün ID",
+    "Db.Northwind.Product.ProductImage": "Ürün Resmi",
     "Db.Northwind.Product.ProductName": "Ürün Adı",
     "Db.Northwind.Product.QuantityPerUnit": "Birim Başına Miktar",
     "Db.Northwind.Product.ReorderLevel": "Azami Sipariş Seviyesi",
