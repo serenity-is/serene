@@ -1027,9 +1027,7 @@
 						return list;
 					}
 				}
-				var $t1 = [];
-				$t1.push(this.getIdFieldName());
-				return $t1;
+				return [];
 			},
 			usePager: function() {
 				return false;
@@ -2186,6 +2184,9 @@
 				}
 				var pgOptions = this.getPropertyGridOptions();
 				this.propertyGrid = (new $Serenity_PropertyGrid(pgDiv, pgOptions)).init(null);
+				if (this.element.closest('.ui-dialog').hasClass('s-Flexify')) {
+					$Serenity_FLX.flexHeightOnly(this.propertyGrid.get_element().children('.categories'), 1);
+				}
 			},
 			$initPropertyGridAsync: function() {
 				return RSVP.resolve().then(ss.mkdel(this, function() {
@@ -2195,6 +2196,9 @@
 					}
 					return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 						this.propertyGrid = new $Serenity_PropertyGrid(pgDiv, pgOptions);
+						if (this.element.closest('.ui-dialog').hasClass('s-Flexify')) {
+							$Serenity_FLX.flexHeightOnly(this.propertyGrid.get_element().children('.categories'), 1);
+						}
 						return this.propertyGrid.initialize();
 					}), null);
 				}), null);
@@ -3704,12 +3708,6 @@
 	};
 	global.Serenity.MaskedEditorOptions = $Serenity_MaskedEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.PanelAttribute
-	var $Serenity_PanelAttribute = function() {
-	};
-	$Serenity_PanelAttribute.__typeName = 'Serenity.PanelAttribute';
-	global.Serenity.PanelAttribute = $Serenity_PanelAttribute;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.PasswordEditor
 	var $Serenity_PasswordEditor = function(input) {
 		$Serenity_StringEditor.call(this, input);
@@ -4116,6 +4114,9 @@
 				}
 				var pgOptions = this.getPropertyGridOptions();
 				this.propertyGrid = (new $Serenity_PropertyGrid(pgDiv, pgOptions)).init(null);
+				if (this.element.closest('.ui-dialog').hasClass('s-Flexify')) {
+					$Serenity_FLX.flexHeightOnly(this.propertyGrid.get_element().children('.categories'), 1);
+				}
 			},
 			$initPropertyGridAsync: function() {
 				return RSVP.resolve().then(ss.mkdel(this, function() {
@@ -4125,6 +4126,9 @@
 					}
 					return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 						this.propertyGrid = new $Serenity_PropertyGrid(pgDiv, pgOptions);
+						if (this.element.closest('.ui-dialog').hasClass('s-Flexify')) {
+							$Serenity_FLX.flexHeightOnly(this.propertyGrid.get_element().children('.categories'), 1);
+						}
 						return this.propertyGrid.initialize();
 					}), null);
 				}), null);
@@ -5340,7 +5344,7 @@
 			this.tabs = null;
 			this.toolbar = null;
 			ss.makeGenericType($Serenity_TemplatedWidget$1, [TOptions]).call(this, div, opt);
-			this.isPanel = ss.getAttributes(ss.getInstanceType(this), $Serenity_PanelAttribute, true).length > 0;
+			this.isPanel = ss.getAttributes(ss.getInstanceType(this), Serenity.PanelAttribute, true).length > 0;
 			if (!this.isPanel) {
 				this.initDialog();
 			}
@@ -5408,6 +5412,13 @@
 			},
 			initDialog: function() {
 				this.element.dialog(this.getDialogOptions());
+				if (ss.getAttributes(ss.getInstanceType(this), Serenity.FlexifyAttribute, true).length > 0) {
+					$Serenity_DialogExtensions.dialogFlexify(this.element);
+					$Serenity_DialogExtensions.dialogResizable(this.element, null, null, null, null);
+				}
+				if (ss.getAttributes(ss.getInstanceType(this), Serenity.MaximizableAttribute, true).length > 0) {
+					$Serenity_DialogExtensions.dialogMaximizable(this.element);
+				}
 				var self = this;
 				this.element.bind('dialogopen.' + this.uniqueName, function() {
 					self.onDialogOpen();
@@ -5476,7 +5487,7 @@
 				}, 0);
 			},
 			addCssClass: function() {
-				if (ss.getAttributes(ss.getInstanceType(this), $Serenity_PanelAttribute, true).length > 0) {
+				if (ss.getAttributes(ss.getInstanceType(this), Serenity.PanelAttribute, true).length > 0) {
 					$Serenity_Widget.prototype.addCssClass.call(this);
 				}
 				// will add css class to ui-dialog container, not content element
@@ -5488,7 +5499,7 @@
 				opt.width = 920;
 				$type.$applyCssSizes(opt, dialogClass);
 				opt.autoOpen = false;
-				opt.resizable = false;
+				opt.resizable = ss.getAttributes(ss.getInstanceType(this), Serenity.ResizableAttribute, true).length > 0;
 				opt.modal = true;
 				opt.position = { my: 'center', at: 'center', of: $(window.window) };
 				return opt;
@@ -7752,7 +7763,6 @@
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_MaskedEditorOptions]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_MaskedEditorOptions, $asm, {});
-	ss.initClass($Serenity_PanelAttribute, $asm, {});
 	ss.initClass($Serenity_StringEditor, $asm, {
 		get_value: function() {
 			return this.element.val();
@@ -8529,6 +8539,9 @@
 		$Serenity_PropertyGrid.$knownEditorTypes = {};
 	})();
 	(function() {
+		$Serenity_DialogExtensions.$enterKeyCode = 13;
+	})();
+	(function() {
 		$Serenity_FilteringTypeRegistry.$knownTypes = null;
 	})();
 	(function() {
@@ -8537,9 +8550,6 @@
 	})();
 	(function() {
 		$Serenity_FormatterTypeRegistry.$knownTypes = null;
-	})();
-	(function() {
-		$Serenity_DialogExtensions.$enterKeyCode = 13;
 	})();
 	(function() {
 		$Serenity_DialogTypeRegistry.$knownTypes = {};

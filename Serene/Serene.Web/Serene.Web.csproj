@@ -55,25 +55,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Core, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Core.1.4.4\lib\net45\Serenity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Core.1.4.6\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.1.4.4\lib\net45\Serenity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.1.4.6\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data.Entity, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.4.4\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.4.6\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Services, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Services.1.4.4\lib\net45\Serenity.Services.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Services.1.4.6\lib\net45\Serenity.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Web, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Web.1.4.4\lib\net45\Serenity.Web.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.1.4.6\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -540,6 +540,10 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.js" />
+    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -554,14 +558,6 @@
     <Content Include="Scripts\jquery.cropzoom.min.js" />
     <Content Include="Scripts\jquery.dialogextendQ.js" />
     <Content Include="Scripts\jquery.dialogextendQ.min.js" />
-    <Content Include="Scripts\jquery.fileupload.js" />
-    <Content Include="Scripts\jquery.fileupload.min.js" />
-    <Content Include="Scripts\jquery.iframe-transport.js" />
-    <Content Include="Scripts\jquery.iframe-transport.min.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.2.js" />
-    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
     <Content Include="Scripts\jquery.event.drag.js" />
     <Content Include="Scripts\jquery.event.drag.live.js" />
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
@@ -573,6 +569,10 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.fileupload.min.js" />
+    <Content Include="Scripts\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.iframe-transport.min.js" />
     <Content Include="Scripts\jquery.jlayout.js" />
     <Content Include="Scripts\jquery.jlayout.min.js" />
     <Content Include="Scripts\jquery.json.js" />
@@ -652,9 +652,9 @@
     <Content Include="Scripts\serenity\Serenity.Script.Core.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\site\texts\site.texts.es.json" />
     <Content Include="Scripts\site\texts\site.texts.invariant.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <None Include="Scripts\site\texts\site.texts.tr.json" />

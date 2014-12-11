@@ -989,6 +989,12 @@
 	};
 	global.Serenity.EnumTypeRegistry = $Serenity_EnumTypeRegistry;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.FlexifyAttribute
+	var $Serenity_FlexifyAttribute = function() {
+	};
+	$Serenity_FlexifyAttribute.__typeName = 'Serenity.FlexifyAttribute';
+	global.Serenity.FlexifyAttribute = $Serenity_FlexifyAttribute;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.FormKeyAttribute
 	var $Serenity_FormKeyAttribute = function(value) {
 		this.$2$ValueField = null;
@@ -1163,6 +1169,12 @@
 	$Serenity_LocalTextPrefixAttribute.__typeName = 'Serenity.LocalTextPrefixAttribute';
 	global.Serenity.LocalTextPrefixAttribute = $Serenity_LocalTextPrefixAttribute;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.MaximizableAttribute
+	var $Serenity_MaximizableAttribute = function() {
+	};
+	$Serenity_MaximizableAttribute.__typeName = 'Serenity.MaximizableAttribute';
+	global.Serenity.MaximizableAttribute = $Serenity_MaximizableAttribute;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.NamePropertyAttribute
 	var $Serenity_NamePropertyAttribute = function(value) {
 		this.$2$ValueField = null;
@@ -1199,6 +1211,18 @@
 	};
 	$Serenity_OptionsTypeAttribute.__typeName = 'Serenity.OptionsTypeAttribute';
 	global.Serenity.OptionsTypeAttribute = $Serenity_OptionsTypeAttribute;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.PanelAttribute
+	var $Serenity_PanelAttribute = function() {
+	};
+	$Serenity_PanelAttribute.__typeName = 'Serenity.PanelAttribute';
+	global.Serenity.PanelAttribute = $Serenity_PanelAttribute;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.ResizableAttribute
+	var $Serenity_ResizableAttribute = function() {
+	};
+	$Serenity_ResizableAttribute.__typeName = 'Serenity.ResizableAttribute';
+	global.Serenity.ResizableAttribute = $Serenity_ResizableAttribute;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ScriptContext
 	var $Serenity_ScriptContext = function() {
@@ -1726,6 +1750,7 @@
 		}
 	});
 	ss.initClass($Serenity_EnumTypeRegistry, $asm, {});
+	ss.initClass($Serenity_FlexifyAttribute, $asm, {});
 	ss.initClass($Serenity_FormKeyAttribute, $asm, {
 		get_value: function() {
 			return this.$2$ValueField;
@@ -1768,6 +1793,7 @@
 			this.$2$ValueField = value;
 		}
 	});
+	ss.initClass($Serenity_MaximizableAttribute, $asm, {});
 	ss.initClass($Serenity_NamePropertyAttribute, $asm, {
 		get_value: function() {
 			return this.$2$ValueField;
@@ -1795,6 +1821,8 @@
 			this.$2$OptionsTypeField = value;
 		}
 	});
+	ss.initClass($Serenity_PanelAttribute, $asm, {});
+	ss.initClass($Serenity_ResizableAttribute, $asm, {});
 	ss.initClass($Serenity_ScriptContext, $asm, {});
 	ss.initClass($Serenity_ServiceAttribute, $asm, {
 		get_value: function() {
