@@ -783,6 +783,8 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Common\File\FileController.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20150102_170000_Organization.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20150401_142800_MeetingPrimary.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141222_090700_MeetingLookups.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141222_085700_File.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />

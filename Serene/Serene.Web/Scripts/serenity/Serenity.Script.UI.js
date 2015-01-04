@@ -1127,7 +1127,7 @@
 			},
 			getColumns: function() {
 				var columnItems = Enumerable.from(this.getPropertyItems()).where(function(x) {
-					return x.filterOnly !== true;
+					return x.filterOnly !== true && x.visible !== false;
 				}).toArray();
 				return this.propertyItemsToSlickColumns(columnItems);
 			},
@@ -1156,7 +1156,7 @@
 			getColumnsAsync: function() {
 				return this.getPropertyItemsAsync().then(ss.mkdel(this, function(propertyItems) {
 					return this.propertyItemsToSlickColumns(Enumerable.from(propertyItems).where(function(x) {
-						return x.filterOnly !== true;
+						return x.filterOnly !== true && x.visible !== false;
 					}).toArray());
 				}), null);
 			},
@@ -1639,6 +1639,11 @@
 				e1.preventDefault();
 			}
 		});
+		if (!this.options.readOnlyDomain) {
+			input.change(ss.mkdel(this, function(e2) {
+				this.set_value(input.val());
+			}));
+		}
 	};
 	$Serenity_EmailEditor.__typeName = 'Serenity.EmailEditor';
 	$Serenity_EmailEditor.registerValidationMethods = function() {
@@ -5987,44 +5992,48 @@
 	$Serenity_WX.__typeName = 'Serenity.WX';
 	$Serenity_WX.getWidget = function(TWidget) {
 		return function(element) {
-			return ss.cast($Serenity_WX.getWidget$1(element, TWidget), TWidget);
+			if (ss.isNullOrUndefined(element)) {
+				throw new ss.ArgumentNullException('element');
+			}
+			if (element.length === 0) {
+				throw new ss.Exception(ss.formatString("Searching for widget of type '{0}' on a non-existent element!", ss.getTypeFullName(TWidget)));
+			}
+			var widget = $Serenity_WX.tryGetWidget(TWidget).call(null, element);
+			if (ss.isNullOrUndefined(widget)) {
+				throw new ss.Exception(ss.formatString("Element has no widget of type '{0}'!", ss.getTypeFullName(TWidget)));
+			}
+			return widget;
 		};
-	};
-	$Serenity_WX.getWidget$1 = function(element, widgetType) {
-		if (ss.isNullOrUndefined(element)) {
-			throw new ss.ArgumentNullException('element');
-		}
-		if (element.length === 0) {
-			throw new ss.Exception(ss.formatString("Searching for widget of type '{0}' on a non-existent element!", $Serenity_WX.getWidgetName(widgetType)));
-		}
-		var widget = $Serenity_WX.tryGetWidget$1(element, widgetType);
-		if (ss.isNullOrUndefined(widget)) {
-			throw new ss.Exception(ss.formatString("Element has no widget of type '{0}'!", $Serenity_WX.getWidgetName(widgetType)));
-		}
-		return widget;
 	};
 	$Serenity_WX.tryGetWidget = function(TWidget) {
 		return function(element) {
 			if (ss.isNullOrUndefined(element)) {
 				throw new ss.Exception("Argument 'element' is null!");
 			}
-			var widgetName = $Serenity_WX.getWidgetName(TWidget);
-			return ss.safeCast(element.data(widgetName), TWidget);
-		};
-	};
-	$Serenity_WX.tryGetWidget$1 = function(element, widgetType) {
-		if (ss.isNullOrUndefined(widgetType)) {
-			throw new ss.Exception("Argument 'widgetType' is null!");
-		}
-		if (ss.isNullOrUndefined(element)) {
-			throw new ss.Exception("Argument 'element' is null!");
-		}
-		var widgetName = $Serenity_WX.getWidgetName(widgetType);
-		var widget = element.data(widgetName);
-		if (ss.isValue(widget) && !ss.isAssignableFrom(widgetType, ss.getInstanceType(widget))) {
+			var widget;
+			if (ss.isAssignableFrom(TWidget, $Serenity_Widget)) {
+				var widgetName = $Serenity_WX.getWidgetName(TWidget);
+				widget = ss.safeCast(element.data(widgetName), TWidget);
+				if (ss.isValue(widget)) {
+					return widget;
+				}
+			}
+			var data = element.data();
+			var $t1 = ss.getEnumerator(Object.keys(data));
+			try {
+				while ($t1.moveNext()) {
+					var key = $t1.current();
+					widget = ss.safeCast(data[key], TWidget);
+					if (ss.isValue(widget)) {
+						return widget;
+					}
+				}
+			}
+			finally {
+				$t1.dispose();
+			}
 			return null;
-		}
-		return widget;
+		};
 	};
 	$Serenity_WX.getWidgetName = function(type) {
 		return ss.replaceAllString(ss.getTypeFullName(type), '.', '_');
@@ -6033,7 +6042,16 @@
 		return !!!(typeof(e.originalEvent) === 'undefined');
 	};
 	$Serenity_WX.change = function(widget, handler) {
-		widget.get_element().bind('change.' + widget.get_uniqueName(), handler);
+		if (ss.isValue(widget.get_element().data('select2'))) {
+			widget.get_element().bind('change.' + widget.get_uniqueName(), function(e, x) {
+				if (!!($Serenity_WX.hasOriginalEvent(e) || !x)) {
+					handler(e);
+				}
+			});
+		}
+		else {
+			widget.get_element().bind('change.' + widget.get_uniqueName(), handler);
+		}
 	};
 	$Serenity_WX.changeSelect2 = function(widget, handler) {
 		widget.get_element().bind('change.' + widget.get_uniqueName(), function(e, x) {
@@ -6906,8 +6924,27 @@
 					this.element.val(parts[0]);
 				}
 			}
+		},
+		get_readOnly: function() {
+			var domain = this.element.nextAll('.emaildomain');
+			return !(ss.isNullOrUndefined(this.element.attr('readonly')) && (!this.options.readOnlyDomain || ss.isNullOrUndefined(domain.attr('readonly'))));
+		},
+		set_readOnly: function(value) {
+			var domain = this.element.nextAll('.emaildomain');
+			if (value) {
+				this.element.attr('readonly', 'readonly').addClass('readonly');
+				if (!this.options.readOnlyDomain) {
+					domain.attr('readonly', 'readonly').addClass('readonly');
+				}
+			}
+			else {
+				this.element.removeAttr('readonly').removeClass('readonly');
+				if (!this.options.readOnlyDomain) {
+					domain.removeAttr('readonly').removeClass('readonly');
+				}
+			}
 		}
-	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_EmailEditorOptions]), [$Serenity_IStringValue]);
+	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_EmailEditorOptions]), [$Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_EmailEditorOptions, $asm, {});
 	ss.initInterface($Serenity_IDialog, $asm, { dialogOpen: null });
 	ss.initInterface($Serenity_IEditDialog, $asm, { load: null }, [$Serenity_IDialog]);
