@@ -1046,3 +1046,577 @@ a,
   background-color: #ccc;
   border-color: #2f79aa;
 }
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingDialog .caption {
+  width: 150px;
+}
+.s-MeetingDialog .editor {
+  width: 400px;
+}
+.s-MeetingDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAgendaDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAgendaDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAgendaDialog .caption {
+  width: 150px;
+}
+.s-MeetingAgendaDialog .editor {
+  width: 400px;
+}
+.s-MeetingAgendaDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAgendaDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAgendaDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAgendaDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAgendaDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAgendaDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAgendaDialog .caption {
+  width: 150px;
+}
+.s-MeetingAgendaDialog .editor {
+  width: 400px;
+}
+.s-MeetingAgendaDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAgendaDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAgendaDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAgendaDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAgendaDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAgendaRelevantDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAgendaRelevantDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAgendaRelevantDialog .caption {
+  width: 150px;
+}
+.s-MeetingAgendaRelevantDialog .editor {
+  width: 400px;
+}
+.s-MeetingAgendaRelevantDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAgendaRelevantDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAgendaRelevantDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAgendaTypeDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAgendaTypeDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAgendaTypeDialog .caption {
+  width: 150px;
+}
+.s-MeetingAgendaTypeDialog .editor {
+  width: 400px;
+}
+.s-MeetingAgendaTypeDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAgendaTypeDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAgendaTypeDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAgendaTypeDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAgendaTypeDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAgendaTypeDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAgendaTypeDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAgendaTypeDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAttendeeDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAttendeeDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAttendeeDialog .caption {
+  width: 150px;
+}
+.s-MeetingAttendeeDialog .editor {
+  width: 400px;
+}
+.s-MeetingAttendeeDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAttendeeDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAttendeeDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAttendeeDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAttendeeDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAttendeeDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAttendeeDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAttendeeDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingAttendeeTypeDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingAttendeeTypeDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingAttendeeTypeDialog .caption {
+  width: 150px;
+}
+.s-MeetingAttendeeTypeDialog .editor {
+  width: 400px;
+}
+.s-MeetingAttendeeTypeDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingAttendeeTypeDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingAttendeeTypeDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingContactDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingContactDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingContactDialog .caption {
+  width: 150px;
+}
+.s-MeetingContactDialog .editor {
+  width: 400px;
+}
+.s-MeetingContactDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingContactDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingContactDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingContactDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingContactDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingContactDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingContactDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingContactDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingDecisionDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingDecisionDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingDecisionDialog .caption {
+  width: 150px;
+}
+.s-MeetingDecisionDialog .editor {
+  width: 400px;
+}
+.s-MeetingDecisionDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingDecisionDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingDecisionDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingDecisionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingDecisionDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingDecisionDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingDecisionDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingDecisionDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingDecisionRelevantDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingDecisionRelevantDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingDecisionRelevantDialog .caption {
+  width: 150px;
+}
+.s-MeetingDecisionRelevantDialog .editor {
+  width: 400px;
+}
+.s-MeetingDecisionRelevantDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingDecisionRelevantDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingDecisionRelevantDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingLocationDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingLocationDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingLocationDialog .caption {
+  width: 150px;
+}
+.s-MeetingLocationDialog .editor {
+  width: 400px;
+}
+.s-MeetingLocationDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingLocationDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingLocationDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingLocationDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingLocationDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingLocationDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingLocationDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingLocationDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingTypeDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingTypeDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingTypeDialog .caption {
+  width: 150px;
+}
+.s-MeetingTypeDialog .editor {
+  width: 400px;
+}
+.s-MeetingTypeDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingTypeDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingTypeDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingTypeDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingTypeDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingTypeDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingTypeDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingTypeDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-MeetingTypePermissionDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-MeetingTypePermissionDialog .tab-pane {
+  height: auto;
+}
+.s-MeetingTypePermissionDialog .caption {
+  width: 150px;
+}
+.s-MeetingTypePermissionDialog .editor {
+  width: 400px;
+}
+.s-MeetingTypePermissionDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-MeetingTypePermissionDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-MeetingTypePermissionDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-MeetingTypePermissionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-MeetingTypePermissionDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-MeetingTypePermissionDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-MeetingTypePermissionDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-MeetingTypePermissionDialog .s-PropertyGrid .categories {
+  height: 260px;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-FileDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-FileDialog .tab-pane {
+  height: auto;
+}
+.s-FileDialog .caption {
+  width: 150px;
+}
+.s-FileDialog .editor {
+  width: 400px;
+}
+.s-FileDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-FileDialog .s-Form .editor.dateQ {
+  width: 383px;
+}
+.s-FileDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-FileDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-FileDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-FileDialog .s-Form .editor.has-inplace-button {
+  width: 378px;
+}
+.s-FileDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-FileDialog .s-PropertyGrid .categories {
+  height: 260px;
+}

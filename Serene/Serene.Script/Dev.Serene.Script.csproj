@@ -284,6 +284,32 @@
     <Compile Include="Administration\Role\RoleGrid.cs" />
     <Compile Include="Administration\Role\RoleDialog.cs" />
     <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
+    <Compile Include="Meeting\Meeting\MeetingGrid.cs" />
+    <Compile Include="Meeting\Meeting\MeetingDialog.cs" />
+    <Compile Include="Meeting\MeetingAgenda\MeetingAgendaGrid.cs" />
+    <Compile Include="Meeting\MeetingAgenda\MeetingAgendaDialog.cs" />
+    <Compile Include="Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantGrid.cs" />
+    <Compile Include="Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantDialog.cs" />
+    <Compile Include="Meeting\MeetingAgendaType\MeetingAgendaTypeGrid.cs" />
+    <Compile Include="Meeting\MeetingAgendaType\MeetingAgendaTypeDialog.cs" />
+    <Compile Include="Meeting\MeetingAttendee\MeetingAttendeeGrid.cs" />
+    <Compile Include="Meeting\MeetingAttendee\MeetingAttendeeDialog.cs" />
+    <Compile Include="Meeting\MeetingAttendeeType\MeetingAttendeeTypeGrid.cs" />
+    <Compile Include="Meeting\MeetingAttendeeType\MeetingAttendeeTypeDialog.cs" />
+    <Compile Include="Meeting\MeetingContact\MeetingContactGrid.cs" />
+    <Compile Include="Meeting\MeetingContact\MeetingContactDialog.cs" />
+    <Compile Include="Meeting\MeetingDecision\MeetingDecisionGrid.cs" />
+    <Compile Include="Meeting\MeetingDecision\MeetingDecisionDialog.cs" />
+    <Compile Include="Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantGrid.cs" />
+    <Compile Include="Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantDialog.cs" />
+    <Compile Include="Meeting\MeetingLocation\MeetingLocationGrid.cs" />
+    <Compile Include="Meeting\MeetingLocation\MeetingLocationDialog.cs" />
+    <Compile Include="Meeting\MeetingType\MeetingTypeGrid.cs" />
+    <Compile Include="Meeting\MeetingType\MeetingTypeDialog.cs" />
+    <Compile Include="Meeting\MeetingTypePermission\MeetingTypePermissionGrid.cs" />
+    <Compile Include="Meeting\MeetingTypePermission\MeetingTypePermissionDialog.cs" />
+    <Compile Include="Common\File\FileGrid.cs" />
+    <Compile Include="Common\File\FileDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">
