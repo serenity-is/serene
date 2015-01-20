@@ -472,6 +472,9 @@
 				}, ss.mkdel(this, function(ctx) {
 					var cls = 'check-box';
 					var item = ss.cast(ctx.item, TItem);
+					if (item.hideCheckBox) {
+						return this.getItemText(ctx);
+					}
 					var threeState = this.isThreeStateHierarchy();
 					if (item.isSelected) {
 						if (threeState && !item.isAllDescendantsSelected) {
@@ -6042,16 +6045,7 @@
 		return !!!(typeof(e.originalEvent) === 'undefined');
 	};
 	$Serenity_WX.change = function(widget, handler) {
-		if (ss.isValue(widget.get_element().data('select2'))) {
-			widget.get_element().bind('change.' + widget.get_uniqueName(), function(e, x) {
-				if (!!($Serenity_WX.hasOriginalEvent(e) || !x)) {
-					handler(e);
-				}
-			});
-		}
-		else {
-			widget.get_element().bind('change.' + widget.get_uniqueName(), handler);
-		}
+		widget.get_element().bind('change.' + widget.get_uniqueName(), handler);
 	};
 	$Serenity_WX.changeSelect2 = function(widget, handler) {
 		widget.get_element().bind('change.' + widget.get_uniqueName(), function(e, x) {
@@ -6834,7 +6828,7 @@
 		getEditorOptions: function() {
 			var opt = ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_Widget]).prototype.getEditorOptions.call(this);
 			if (this.useEditor() && ss.referenceEquals(this.get_editorType(), this.get_field().editorType)) {
-				opt = $.extend(opt, this.get_field().filteringParams);
+				opt = $.extend(opt, this.get_field().editorParams);
 			}
 			return opt;
 		},
@@ -7042,6 +7036,10 @@
 				var item = $t1[$t2];
 				this.$addEmptyRow(false);
 				var row = this.$rowsDiv.children().last();
+				var divl = row.children('div.l');
+				divl.children('.leftparen').toggleClass('active', !!item.leftParen);
+				divl.children('.rightparen').toggleClass('active', !!item.rightParen);
+				divl.children('.andor').toggleClass('or', !!item.isOr).text(Q.text((!!item.isOr ? 'Controls.FilterPanel.Or' : 'Controls.FilterPanel.And')));
 				var fieldSelect = $Serenity_WX.getWidget($Serenity_$FilterPanel$FieldSelect).call(null, row.children('div.f').find('input.field-select'));
 				fieldSelect.set_value(item.field);
 				this.$rowFieldChange(row);
@@ -7057,6 +7055,7 @@
 			if (this.get_showInitialLine() && this.$rowsDiv.children().length === 0) {
 				this.$addEmptyRow(false);
 			}
+			this.$updateParens();
 		},
 		get_showSearchButton: function() {
 			return this.$showSearchButton;
