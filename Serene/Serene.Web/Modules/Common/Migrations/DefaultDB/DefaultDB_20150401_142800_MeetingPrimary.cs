@@ -108,8 +108,9 @@ namespace Serene.Migrations.DefaultDB
             Delete.Table("MeetingAttendee");
             Delete.Table("MeetingAgendaRelevant");
             Delete.Table("MeetingDecision");
+            Delete.Table("MeetingAgenda");
             Delete.Table("Meeting");
-            Delete.Table("MeetingTypePermission");
+            Delete.Table("MeetingContact");
         }
     }
 }
