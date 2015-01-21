@@ -10,27 +10,27 @@ namespace Serene.Meeting.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MeetingAttendeeType"), InstanceName("MeetingAttendeeType"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Attendee Types"), InstanceName("Attendee Type"), TwoLevelCached]
     [ReadPermission("Meeting")]
     [ModifyPermission("Meeting")]
     [JsonConverter(typeof(JsonRowConverter))]
-    public sealed class MeetingAttendeeTypeRow : Row, IIdRow, INameRow
+    public sealed class MeetingAttendeeTypeRow : Row, IIdRow, INameRow, IIsActiveRow
     {
-        [DisplayName("Meeting Attendee Type Id"), Identity]
+        [DisplayName("ID"), Identity]
         public Int32? MeetingAttendeeTypeId
         {
             get { return Fields.MeetingAttendeeTypeId[this]; }
             set { Fields.MeetingAttendeeTypeId[this] = value; }
         }
 
-        [DisplayName("Name"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Attendee Type"), Size(100), NotNull, QuickSearch]
         public String Name
         {
             get { return Fields.Name[this]; }
             set { Fields.Name[this] = value; }
         }
 
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Is Active"), NotNull, DefaultValue(1)]
         public Int16? IsActive
         {
             get { return Fields.IsActive[this]; }
@@ -45,6 +45,11 @@ namespace Serene.Meeting.Entities
         StringField INameRow.NameField
         {
             get { return Fields.Name; }
+        }
+
+        Int16Field IIsActiveRow.IsActiveField
+        {
+            get { return Fields.IsActive; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();

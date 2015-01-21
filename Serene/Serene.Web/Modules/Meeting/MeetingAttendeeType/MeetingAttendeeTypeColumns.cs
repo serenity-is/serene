@@ -17,6 +17,7 @@ namespace Serene.Meeting.Forms
         public Int32 MeetingAttendeeTypeId { get; set; }
         [EditLink]
         public String Name { get; set; }
+        [FilterOnly]
         public Int16 IsActive { get; set; }
     }
 }

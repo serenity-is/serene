@@ -10,27 +10,27 @@ namespace Serene.Meeting.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MeetingAgendaType"), InstanceName("MeetingAgendaType"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Agenda Types"), InstanceName("Agenda Type"), TwoLevelCached]
     [ReadPermission("Meeting")]
     [ModifyPermission("Meeting")]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class MeetingAgendaTypeRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Meeting Agenda Type Id"), Identity]
+        [DisplayName("ID"), Identity]
         public Int32? MeetingAgendaTypeId
         {
             get { return Fields.MeetingAgendaTypeId[this]; }
             set { Fields.MeetingAgendaTypeId[this] = value; }
         }
 
-        [DisplayName("Name"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Agenda Type"), Size(100), NotNull, QuickSearch]
         public String Name
         {
             get { return Fields.Name[this]; }
             set { Fields.Name[this] = value; }
         }
 
-        [DisplayName("Is Active"), NotNull]
+        [DisplayName("Active"), NotNull]
         public Int16? IsActive
         {
             get { return Fields.IsActive[this]; }
