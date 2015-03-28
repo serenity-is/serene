@@ -39,7 +39,6 @@
 
         public static void ApplicationEnd()
         {
-            Log.Dispose();
         }
 
         private static void EnsureDatabase()
@@ -90,7 +89,7 @@
                 {
                     Database = "SqlServer",
                     Connection = defaultConnection.ConnectionString,
-                    Target = typeof(SiteInitialization).Assembly.Location,
+                    Targets = new string[] { typeof(SiteInitialization).Assembly.Location },
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),
                     Namespace = "Serene.Migrations.DefaultDB"

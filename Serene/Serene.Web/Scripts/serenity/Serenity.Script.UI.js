@@ -1347,9 +1347,6 @@
 		}
 		return list;
 	};
-	$Serenity_DateTimeEditor.defaultAutoNumericOptions = function() {
-		return { aDec: Q$Culture.decimalSeparator, altDec: ((Q$Culture.decimalSeparator === '.') ? ',' : '.'), aSep: ((Q$Culture.decimalSeparator === '.') ? ',' : '.'), aPad: true };
-	};
 	global.Serenity.DateTimeEditor = $Serenity_DateTimeEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.DateTimeFiltering
@@ -2782,17 +2779,19 @@
 		this.get_element().find('.cap').text(Q.text('Controls.FilterPanel.EffectiveFilter'));
 		this.get_element().find('.edit').text(Q.text('Controls.FilterPanel.EditFilter'));
 		this.get_element().find('.reset').attr('title', Q.text('Controls.FilterPanel.ResetFilterHint'));
-		this.get_element().find('.edit').add('.txt').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+		var openFilterDialog = ss.mkdel(this, function(e) {
 			e.preventDefault();
 			var dialog = new $Serenity_FilterDialog();
 			dialog.get_filterPanel().set_store(this.get_store());
 			dialog.dialogOpen();
-		})));
-		this.get_element().find('.reset').click(ss.thisFix(ss.mkdel(this, function(s1, e1) {
+		});
+		this.get_element().find('.edit').click(openFilterDialog);
+		this.get_element().find('.txt').click(openFilterDialog);
+		this.get_element().find('.reset').click(ss.mkdel(this, function(e1) {
 			e1.preventDefault();
 			ss.clear(this.get_store().get_items());
 			this.get_store().raiseChanged();
-		})));
+		}));
 	};
 	$Serenity_FilterDisplayBar.__typeName = 'Serenity.FilterDisplayBar';
 	global.Serenity.FilterDisplayBar = $Serenity_FilterDisplayBar;
@@ -3680,6 +3679,7 @@
 	$Serenity_LookupEditorOptions.$ctor = function() {
 		var $this = {};
 		$this.lookupKey = null;
+		$this.minimumResultsForSearch = null;
 		return $this;
 	};
 	global.Serenity.LookupEditorOptions = $Serenity_LookupEditorOptions;
@@ -5033,7 +5033,7 @@
 			},
 			getSelect2Options: function() {
 				var emptyItemText = this.emptyItemText();
-				return { data: this.items, minimumResultsForSearch: 10, placeHolder: (!Q.isEmptyOrNull(emptyItemText) ? emptyItemText : null), allowClear: ss.isValue(emptyItemText), query: ss.mkdel(this, function(query) {
+				return { data: this.items, placeHolder: (!Q.isEmptyOrNull(emptyItemText) ? emptyItemText : null), allowClear: ss.isValue(emptyItemText), query: ss.mkdel(this, function(query) {
 					var term = (Q.isEmptyOrNull(query.term) ? '' : Select2.util.stripDiacritics(ss.coalesce(query.term, '')).toUpperCase());
 					var results = this.items.filter(function(item) {
 						return ss.isNullOrUndefined(term) || ss.startsWithString(Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase(), term);
@@ -5621,6 +5621,25 @@
 		return $this;
 	};
 	global.Serenity.TextAreaEditorOptions = $Serenity_TextAreaEditorOptions;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.TimeEditor
+	var $Serenity_TimeEditor = function(input, opt) {
+		this.$minutes = null;
+		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, input, opt);
+		input.addClass('editor s-TimeEditor hour');
+		if (!this.options.noEmptyOption) {
+			Q.addOption(input, '', '--');
+		}
+		for (var h = ss.coalesce(this.options.startHour, 0); h <= ss.coalesce(this.options.endHour, 23); h++) {
+			Q.addOption(input, h.toString(), ((h < 10) ? ('0' + h) : h.toString()));
+		}
+		this.$minutes = $('<select/>').addClass('editor s-TimeEditor minute').insertAfter(input);
+		for (var m = 0; m <= 59; m += ss.coalesce(this.options.invervalMinutes, 5)) {
+			Q.addOption(this.$minutes, m.toString(), ((m < 10) ? ('0' + m) : m.toString()));
+		}
+	};
+	$Serenity_TimeEditor.__typeName = 'Serenity.TimeEditor';
+	global.Serenity.TimeEditor = $Serenity_TimeEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.Toolbar
 	var $Serenity_Toolbar = function(div, options) {
@@ -7764,6 +7783,13 @@
 				$t1 = ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).prototype.getLookupKey.call(this);
 			}
 			return $t1;
+		},
+		getSelect2Options: function() {
+			var opt = ss.makeGenericType($Serenity_Select2Editor$2, [$Serenity_LookupEditorOptions, Object]).prototype.getSelect2Options.call(this);
+			if (ss.isValue(this.options.minimumResultsForSearch)) {
+				opt.minimumResultsForSearch = ss.unbox(this.options.minimumResultsForSearch);
+			}
+			return opt;
 		}
 	}, ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_LookupEditorOptions, $asm, {});
@@ -8169,6 +8195,32 @@
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_TextAreaEditorOptions]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_TextAreaEditorOptions, $asm, {});
+	ss.initClass($Serenity_TimeEditor, $asm, {
+		get_value: function() {
+			var hour = Serenity.IdExtensions.convertToId(this.element.val());
+			var minute = Serenity.IdExtensions.convertToId(this.$minutes.val());
+			if (ss.isNullOrUndefined(hour) || ss.isNullOrUndefined(minute)) {
+				return null;
+			}
+			return ss.unbox(hour) * 60 + ss.unbox(minute);
+		},
+		set_value: function(value) {
+			if (ss.isNullOrUndefined(value)) {
+				if (this.options.noEmptyOption) {
+					this.element.val(this.options.startHour.toString());
+					this.$minutes.val('0');
+				}
+				else {
+					this.element.val('');
+					this.$minutes.val('0');
+				}
+			}
+			else {
+				this.element.val(Math.floor(ss.unbox(value) / 60).toString());
+				this.$minutes.val((ss.unbox(value) % 60).toString());
+			}
+		}
+	}, ss.makeGenericType($Serenity_Widget$1, [Object]), [$Serenity_IDoubleValue]);
 	ss.initClass($Serenity_Toolbar, $asm, {
 		$createButton: function(container, b) {
 			var cssClass = ss.coalesce(b.cssClass, '');
@@ -8539,6 +8591,7 @@
 	ss.setMetadata($Serenity_StringEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Metin'), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_TextAreaEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Çok Satırlı Metin'), new Serenity.OptionsTypeAttribute($Serenity_TextAreaEditorOptions), new Serenity.ElementAttribute('<textarea />')] });
 	ss.setMetadata($Serenity_TextAreaEditorOptions, { members: [{ attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Cols', type: 16, returnType: ss.Int32, getter: { name: 'get_Cols', type: 8, params: [], returnType: ss.Int32, fget: 'cols' }, setter: { name: 'set_Cols', type: 8, params: [ss.Int32], returnType: Object, fset: 'cols' }, fname: 'cols' }, { attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Rows', type: 16, returnType: ss.Int32, getter: { name: 'get_Rows', type: 8, params: [], returnType: ss.Int32, fget: 'rows' }, setter: { name: 'set_Rows', type: 8, params: [ss.Int32], returnType: Object, fset: 'rows' }, fname: 'rows' }] });
+	ss.setMetadata($Serenity_TimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Zaman'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<select/>')] });
 	ss.setMetadata($Serenity_URLEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('URL')] });
 	ss.setMetadata($Serenity_ComponentModel_EditorOptionAttribute, { attrAllowMultiple: true });
 	(function() {
