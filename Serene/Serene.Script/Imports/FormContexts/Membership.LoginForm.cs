@@ -8,6 +8,7 @@ namespace Serene.Membership
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using Serene.Northwind;
 
     public partial class LoginForm : PrefixedContext
     {

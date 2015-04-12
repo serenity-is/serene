@@ -14,6 +14,7 @@ namespace Serene.Northwind
     {
         public Int32? ProductID { get; set; }
         public String ProductName { get; set; }
+        public String ProductImage { get; set; }
         public Boolean? Discontinued { get; set; }
         public Int32? SupplierID { get; set; }
         public Int32? CategoryID { get; set; }
@@ -42,6 +43,7 @@ namespace Serene.Northwind
         {
             [InlineConstant] public const string ProductID = "ProductID";
             [InlineConstant] public const string ProductName = "ProductName";
+            [InlineConstant] public const string ProductImage = "ProductImage";
             [InlineConstant] public const string Discontinued = "Discontinued";
             [InlineConstant] public const string SupplierID = "SupplierID";
             [InlineConstant] public const string CategoryID = "CategoryID";

@@ -1301,12 +1301,12 @@
 	global.Serenity.DateFiltering = $Serenity_DateFiltering;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.DateTimeEditor
-	var $Serenity_DateTimeEditor = function(input) {
+	var $Serenity_DateTimeEditor = function(input, opt) {
 		this.$time = null;
-		$Serenity_Widget.call(this, input);
+		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, input, opt);
 		input.addClass('dateQ s-DateTimeEditor').datepicker({ showOn: 'button' });
 		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time').insertAfter(input.next('.ui-datepicker-trigger'));
-		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(null, null, 23, 59, 30);
+		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(ss.coalesce(this.options.startHour, 0), 0, ss.coalesce(this.options.endHour, 23), 59, ss.coalesce(this.options.intervalMinutes, 30));
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var t = $t1[$t2];
 			Q.addOption(this.$time, t, t);
@@ -1315,34 +1315,24 @@
 	$Serenity_DateTimeEditor.__typeName = 'Serenity.DateTimeEditor';
 	$Serenity_DateTimeEditor.$getTimeOptions = function(fromHour, fromMin, toHour, toMin, stepMins) {
 		var list = [];
-		fromHour = ss.coalesce(fromHour, 0);
-		if (ss.isNullOrUndefined(toHour)) {
-			toHour = 0;
-		}
-		else if (ss.Nullable$1.ge(toHour, 23)) {
+		if (toHour >= 23) {
 			toHour = 23;
 		}
-		if (ss.isNullOrUndefined(fromMin)) {
-			fromMin = 0;
-		}
-		if (ss.isNullOrUndefined(toMin)) {
-			toMin = 0;
-		}
-		else if (ss.Nullable$1.ge(toMin, 60)) {
+		if (toMin >= 60) {
 			toMin = 59;
 		}
 		var hour = fromHour;
 		var min = fromMin;
 		while (true) {
-			if (ss.Nullable$1.gt(hour, toHour) || ss.referenceEquals(hour, toHour) && ss.Nullable$1.gt(min, toMin)) {
+			if (hour > toHour || hour === toHour && min > toMin) {
 				break;
 			}
-			var t = (ss.Nullable$1.ge(hour, 10) ? '' : '0') + hour + ':' + (ss.Nullable$1.ge(min, 10) ? '' : '0') + min;
+			var t = ((hour >= 10) ? '' : '0') + hour + ':' + ((min >= 10) ? '' : '0') + min;
 			list.push(t);
-			min = ss.Nullable$1.add(min, stepMins);
-			if (ss.Nullable$1.ge(min, 60)) {
-				min = ss.Nullable$1.sub(min, 60);
-				hour = ss.Nullable$1.add(hour, 1);
+			min += stepMins;
+			if (min >= 60) {
+				min -= 60;
+				hour++;
 			}
 		}
 		return list;
@@ -4951,15 +4941,15 @@
 				var emptyItemText = this.emptyItemText();
 				var queryTimeout = 0;
 				return { minimumResultsForSearch: 10, placeHolder: (!Q.isEmptyOrNull(emptyItemText) ? emptyItemText : null), allowClear: ss.isValue(emptyItemText), query: ss.mkdel(this, function(query) {
-					var request = { ContainsText: Q.trimToNull(query.term), Skip: (query.page - 1) * this.pageSize, Take: this.pageSize };
+					var request = { ContainsText: Q.trimToNull(query.term), Skip: (query.page - 1) * this.pageSize, Take: this.pageSize + 1 };
 					if (queryTimeout !== 0) {
 						window.clearTimeout(queryTimeout);
 					}
 					queryTimeout = window.setTimeout(ss.mkdel(this, function() {
 						this.query(request, ss.mkdel(this, function(response) {
-							query.callback({ results: Enumerable.from(response.Entities).select(ss.mkdel(this, function(x) {
+							query.callback({ results: Enumerable.from(response.Entities).take(this.pageSize).select(ss.mkdel(this, function(x) {
 								return { id: this.getItemKey(x), text: this.getItemText(x), source: x };
-							})).toArray(), more: response.TotalCount >= query.page * this.pageSize });
+							})).toArray(), more: response.Entities.length >= this.pageSize });
 						}));
 					}), this.getTypeDelay());
 				}), initSelection: ss.mkdel(this, function(element, callback) {
@@ -5634,7 +5624,7 @@
 			Q.addOption(input, h.toString(), ((h < 10) ? ('0' + h) : h.toString()));
 		}
 		this.$minutes = $('<select/>').addClass('editor s-TimeEditor minute').insertAfter(input);
-		for (var m = 0; m <= 59; m += ss.coalesce(this.options.invervalMinutes, 5)) {
+		for (var m = 0; m <= 59; m += ss.coalesce(this.options.intervalMinutes, 5)) {
 			Q.addOption(this.$minutes, m.toString(), ((m < 10) ? ('0' + m) : m.toString()));
 		}
 	};
@@ -6645,7 +6635,7 @@
 				this.$time.val(Q.formatDate(val, 'HH:mm'));
 			}
 		}
-	}, $Serenity_Widget, [$Serenity_IStringValue]);
+	}, ss.makeGenericType($Serenity_Widget$1, [Object]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_DateTimeFiltering, $asm, {
 		getOperators: function() {
 			return this.appendNullableOperators(this.appendComparisonOperators([]));

@@ -8,12 +8,14 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using Serene.Northwind;
 
     public partial class ProductForm : PrefixedContext
     {
         public ProductForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor ProductName { get { return ById<StringEditor>("ProductName"); } }
+        public ImageUploadEditor ProductImage { get { return ById<ImageUploadEditor>("ProductImage"); } }
         public BooleanEditor Discontinued { get { return ById<BooleanEditor>("Discontinued"); } }
         public LookupEditor SupplierID { get { return ById<LookupEditor>("SupplierID"); } }
         public LookupEditor CategoryID { get { return ById<LookupEditor>("CategoryID"); } }
