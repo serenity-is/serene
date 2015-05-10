@@ -14,6 +14,6 @@ namespace Serene.Meeting.Forms
     public class MeetingAgendaTypeForm
     {
         public String Name { get; set; }
-        public Int16 IsActive { get; set; }
+        public Boolean IsActive { get; set; }
     }
 }

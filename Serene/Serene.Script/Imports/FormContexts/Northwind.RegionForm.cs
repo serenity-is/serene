@@ -8,13 +8,14 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using Serene.Northwind;
 
     public partial class RegionForm : PrefixedContext
     {
         public RegionForm(string idPrefix) : base(idPrefix) {}
     
         public IntegerEditor RegionID { get { return ById<IntegerEditor>("RegionID"); } }
-        public StringEditor RegionDescription { get { return ById<StringEditor>("RegionDescription"); } }
+        public DateTimeEditor RegionDescription { get { return ById<DateTimeEditor>("RegionDescription"); } }
     }
 }
 
