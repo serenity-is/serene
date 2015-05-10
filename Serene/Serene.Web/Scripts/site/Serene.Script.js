@@ -7,6 +7,7 @@
 	global.Serene.Meeting = global.Serene.Meeting || {};
 	global.Serene.Membership = global.Serene.Membership || {};
 	global.Serene.Northwind = global.Serene.Northwind || {};
+	global.Serenity = global.Serenity || {};
 	ss.initAssembly($asm, 'Serene.Script');
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.ScriptInitialization
@@ -1298,6 +1299,23 @@
 		return Q.serviceRequest('Northwind/Territory/List', request, onSuccess, options);
 	};
 	global.Serene.Northwind.TerritoryService = $Serene_Northwind_TerritoryService;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.SlickWidgetEditor
+	var $Serenity_SlickWidgetEditor = function(args) {
+		this.$args = null;
+		this.$editor = null;
+		this.$args = args;
+		if (Q.isEmptyOrNull(args.column.editorType)) {
+			throw new ss.InvalidOperationException(ss.formatString("Column {0} doesn't have editor type specified!", args.column.editorType));
+		}
+		var editorType = Serenity.EditorTypeRegistry.get(args.column.editorType);
+		this.$editor = Serenity.Widget.createOfType(editorType, function(e) {
+			e.appendTo(args.container);
+		}, args.column.editorOptions, null);
+		this.$editor.get_element().focus().select();
+	};
+	$Serenity_SlickWidgetEditor.__typeName = 'Serenity.SlickWidgetEditor';
+	global.Serenity.SlickWidgetEditor = $Serenity_SlickWidgetEditor;
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
@@ -2152,6 +2170,34 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
+		getSlickOptions: function() {
+			var opt = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getSlickOptions.call(this);
+			opt.autoEdit = true;
+			opt.editable = true;
+			opt.enableCellNavigation = true;
+			opt.enableAddRow = true;
+			return opt;
+		},
+		getColumns: function() {
+			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			columns[1].editor = Slick.Editors.Text;
+			columns[3].editor = Slick.Editors.Text;
+			columns[4].editor = $Serenity_SlickWidgetEditor;
+			columns[4].editorType = 'Lookup';
+			var $t1 = Serenity.LookupEditorOptions.$ctor();
+			$t1.lookupKey = 'Northwind.Category';
+			columns[4].editorOptions = $t1;
+			return columns;
+		},
+		createSlickGrid: function() {
+			var grid = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createSlickGrid.call(this);
+			var self = this;
+			grid.onAddNewRow.subscribe(function(e, args) {
+				args.item.id = 100;
+				self.view.addItem(args.item);
+			});
+			return grid;
+		},
 		createToolbarExtensions: function() {
 			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
@@ -2300,6 +2346,44 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_TerritoryService, $asm, {});
+	ss.initClass($Serenity_SlickWidgetEditor, $asm, {
+		destroy: function() {
+			this.$args = null;
+			if (ss.isValue(this.$editor) && ss.isValue(this.$editor.get_element())) {
+				this.$editor.get_element().remove();
+			}
+			this.$editor = null;
+		},
+		focus: function() {
+			this.$editor.get_element().focus();
+		},
+		loadValue: function(item) {
+			var $t2;
+			if (ss.isValue(this.$args.column.sourceItem)) {
+				var $t1 = this.$args.column.sourceItem.filteringIdField;
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = this.$args.column.field;
+				}
+				$t2 = $t1;
+			}
+			else {
+				$t2 = this.$args.column.field;
+			}
+			var field = $t2;
+			Serenity.PropertyGrid.loadEditorValue(this.$editor, { name: field }, item);
+		},
+		serializeValue: function() {
+			return null;
+		},
+		isValueChanged: function() {
+			return false;
+		},
+		applyValue: function(item, state) {
+		},
+		validate: function() {
+			return {};
+		}
+	});
 	ss.setMetadata($Serene_Administration_LanguageDialog, { attr: [new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.FormKeyAttribute('Administration.Language'), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_LanguageGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Language'), new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.DialogTypeAttribute($Serene_Administration_LanguageDialog), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute()] });

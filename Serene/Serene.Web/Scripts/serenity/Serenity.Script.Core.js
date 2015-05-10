@@ -1056,6 +1056,12 @@
 	$Serenity_IdPropertyAttribute.__typeName = 'Serenity.IdPropertyAttribute';
 	global.Serenity.IdPropertyAttribute = $Serenity_IdPropertyAttribute;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.IInitializeColumn
+	var $Serenity_IInitializeColumn = function() {
+	};
+	$Serenity_IInitializeColumn.__typeName = 'Serenity.IInitializeColumn';
+	global.Serenity.IInitializeColumn = $Serenity_IInitializeColumn;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.IsActivePropertyAttribute
 	var $Serenity_IsActivePropertyAttribute = function(value) {
 		this.$2$ValueField = null;
@@ -1174,6 +1180,33 @@
 	};
 	$Serenity_MaximizableAttribute.__typeName = 'Serenity.MaximizableAttribute';
 	global.Serenity.MaximizableAttribute = $Serenity_MaximizableAttribute;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.MinuteFormatter
+	var $Serenity_MinuteFormatter = function() {
+	};
+	$Serenity_MinuteFormatter.__typeName = 'Serenity.MinuteFormatter';
+	$Serenity_MinuteFormatter.format = function(value) {
+		var hour = ss.Int32.trunc(Math.floor(value / 60));
+		var minute = value - hour * 60;
+		var hourStr, minuteStr;
+		if (!ss.isValue(value) || isNaN(value)) {
+			return '';
+		}
+		if (hour < 10) {
+			hourStr = '0' + hour;
+		}
+		else {
+			hourStr = hour.toString();
+		}
+		if (minute < 10) {
+			minuteStr = '0' + minute;
+		}
+		else {
+			minuteStr = minute.toString();
+		}
+		return ss.formatString('{0}:{1}', hourStr, minuteStr);
+	};
+	global.Serenity.MinuteFormatter = $Serenity_MinuteFormatter;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.NamePropertyAttribute
 	var $Serenity_NamePropertyAttribute = function(value) {
@@ -1768,6 +1801,7 @@
 			this.$2$ValueField = value;
 		}
 	});
+	ss.initInterface($Serenity_IInitializeColumn, $asm, { initializeColumn: null });
 	ss.initClass($Serenity_IsActivePropertyAttribute, $asm, {
 		get_value: function() {
 			return this.$2$ValueField;
@@ -1794,6 +1828,11 @@
 		}
 	});
 	ss.initClass($Serenity_MaximizableAttribute, $asm, {});
+	ss.initClass($Serenity_MinuteFormatter, $asm, {
+		format: function(ctx) {
+			return $Serenity_MinuteFormatter.format(ctx.value);
+		}
+	}, null, [$Serenity_ISlickFormatter]);
 	ss.initClass($Serenity_NamePropertyAttribute, $asm, {
 		get_value: function() {
 			return this.$2$ValueField;

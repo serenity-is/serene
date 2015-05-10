@@ -39,7 +39,6 @@
 
         public static void ApplicationEnd()
         {
-            Log.Dispose();
         }
 
         private static void EnsureDatabase()

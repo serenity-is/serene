@@ -314,6 +314,60 @@ P {
 .slick-row.odd .row-drag-cell {
   background-color: #fafaf7;
 }
+.slick-cell input.editor-text {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  outline: 0;
+  padding: 0;
+}
+.slick-cell.active,
+.ui-widget-content .slick-cell.active,
+.s-DataGrid .grid-container .slick-cell.active {
+  border: 1px solid #83AFC7;
+  padding: 1px 3px 2px 3px;
+  background-color: #FDFDD2;
+}
+.slick-cell.active.editable,
+.ui-widget-content .slick-cell.active.editable,
+.s-DataGrid .grid-container .slick-cell.active.editable {
+  padding: 0;
+}
+.slick-cell > input[type=text] {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  outline: 0;
+  padding: 1px 3px 2px 3px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.slick-cell.align-right > input[type=text] {
+  text-align: right;
+}
+.slick-cell.align-center > input[type=text] {
+  text-align: right;
+}
+.slick-cell > .select2-container {
+  width: 100%;
+}
+.slick-cell > .select2-container .select2-choice {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  line-height: 25px;
+  height: 25px;
+  padding: 0 0 0 3px;
+}
+.slick-cell > .select2-container .select2-arrow {
+  border-radius: 0;
+  border: none;
+}
 #toast-container {
   font-size: 12px;
 }
@@ -1233,7 +1287,8 @@ textarea,
 .file-item .file-binary {
   background-image: url(images/thumb-file-72.png);
 }
-.s-ImageUploadEditor ul {
+.s-ImageUploadEditor ul,
+.s-MultipleImageUploadEditor ul {
   border-width: 1px;
   border-style: none solid solid solid;
   border-color: #ccc;
@@ -1242,11 +1297,16 @@ textarea,
   background-color: #fff;
   min-height: 116px;
 }
-.s-ImageUploadEditor .file-item {
+.s-ImageUploadEditor .file-item,
+.s-MultipleImageUploadEditor .file-item {
   box-shadow: 1px 1px 4px rgba(4, 4, 4, 0.2);
 }
-.s-ImageUploadEditor .s-Toolbar {
+.s-ImageUploadEditor .s-Toolbar,
+.s-MultipleImageUploadEditor .s-Toolbar {
   border-radius: 0px;
+}
+.s-MultipleImageUploadEditor li {
+  float: left;
 }
 .s-ImageUploadEditor.hide-original-name ul {
   min-height: 100px;
