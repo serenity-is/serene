@@ -55,25 +55,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Core, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Core.1.4.11\lib\net45\Serenity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Core.1.5.0\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.1.4.11\lib\net45\Serenity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.1.5.0\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Data.Entity, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.4.11\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.5.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Services, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Services.1.4.11\lib\net45\Serenity.Services.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Services.1.5.0\lib\net45\Serenity.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.4.11.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Serenity.Web, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Serenity.Web.1.4.11\lib\net45\Serenity.Web.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.1.5.0\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -527,17 +527,26 @@
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
     <Content Include="Content\site\site.theme.light.less" />
-    <Content Include="Readme.CodeGenerator.txt" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Modules\Common\Imports\ScriptFormatterTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ScriptFormatterTypes.log</LastGenOutput>
+    </Content>
+    <Content Include="Modules\Common\Imports\ScriptFormatterTypes.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
+    </Content>
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jlayout.border.js" />
@@ -778,19 +787,6 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
-    <Content Include="Modules\Meeting\Meeting\MeetingIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingAgenda\MeetingAgendaIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingContact\MeetingContactIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingDecision\MeetingDecisionIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingLocation\MeetingLocationIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingType\MeetingTypeIndex.cshtml" />
-    <Content Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionIndex.cshtml" />
-    <Content Include="Modules\Common\File\FileIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -817,10 +813,12 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20150102_170000_Organization.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20150401_142800_MeetingPrimary.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141222_090700_MeetingLookups.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141222_085700_File.cs" />
+    <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">
+      <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
+      <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
@@ -829,9 +827,6 @@
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPage.cs" />
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
-    <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">
-      <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Compile Include="Modules\Northwind\Northwind.DynamicScripts.cs" />
@@ -950,84 +945,6 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingRow.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingColumns.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingForm.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingRepository.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingEndpoint.cs" />
-    <Compile Include="Modules\Meeting\Meeting\MeetingPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypePage.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeePage.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypeEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendeeType\MeetingAttendeeTypePage.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingContact\MeetingContactPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationPage.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingType\MeetingTypePage.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionRow.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionColumns.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionForm.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionEndpoint.cs" />
-    <Compile Include="Modules\Meeting\MeetingTypePermission\MeetingTypePermissionPage.cs" />
-    <Compile Include="Modules\Common\File\FileRow.cs" />
-    <Compile Include="Modules\Common\File\FileColumns.cs" />
-    <Compile Include="Modules\Common\File\FileForm.cs" />
-    <Compile Include="Modules\Common\File\FileRepository.cs" />
-    <Compile Include="Modules\Common\File\FileEndpoint.cs" />
-    <Compile Include="Modules\Common\File\FilePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

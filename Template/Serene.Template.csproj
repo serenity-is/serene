@@ -100,25 +100,25 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages\bootstrap.3.3.0.nupkg">
+    <Content Include="packages\bootstrap.3.3.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\FluentMigrator.1.3.1.0.nupkg">
+    <Content Include="packages\FluentMigrator.1.5.0.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\FluentMigrator.Runner.1.3.1.0.nupkg">
+    <Content Include="packages\FluentMigrator.Runner.1.5.0.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\FontAwesome.4.2.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\jQuery.2.1.1.nupkg">
+    <Content Include="packages\jQuery.2.1.3.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\jquery.event.drag.2.2.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\jQuery.UI.Combined.1.11.2.nupkg">
+    <Content Include="packages\jQuery.UI.Combined.1.11.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\jQuery.Validation.1.13.1.nupkg">
@@ -136,7 +136,7 @@
     <Content Include="packages\Microsoft.Web.Infrastructure.1.0.0.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Newtonsoft.Json.6.0.6.nupkg">
+    <Content Include="packages\Newtonsoft.Json.6.0.8.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\Saltarelle.Compiler.2.6.2.nupkg">
@@ -160,31 +160,31 @@
     <Content Include="packages\Select2.js.3.5.2.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.CodeGenerator.1.4.6.nupkg">
+    <Content Include="packages\Serenity.CodeGenerator.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Core.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Data.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Script.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Script.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Services.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Web.1.4.6.nupkg">
+    <Content Include="packages\Serenity.Web.1.5.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\SlickGrid.2.2.20140120.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\toastr.2.1.0.nupkg">
+    <Content Include="packages\toastr.2.1.1.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
