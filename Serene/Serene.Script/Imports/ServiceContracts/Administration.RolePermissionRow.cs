@@ -12,6 +12,10 @@ namespace Serene.Administration
     [Imported, Serializable, PreserveMemberCase]
     public partial class RolePermissionRow
     {
+        [InlineConstant] public const string IdProperty = "RolePermissionId";
+        [InlineConstant] public const string NameProperty = "PermissionKey";
+        [InlineConstant] public const string LocalTextPrefix = "Administration.RolePermission";
+    
         public Int64? RolePermissionId { get; set; }
         public Int32? RoleId { get; set; }
         public String PermissionKey { get; set; }

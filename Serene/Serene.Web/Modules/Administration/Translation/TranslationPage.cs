@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     [RoutePrefix("Administration/Translation"), Route("{action=index}")]
     public class TranslationController : Controller
     {
-        [PageAuthorize(Administration.PermissionKeys.Security)]
+        [PageAuthorize(Administration.PermissionKeys.Translation)]
         public ActionResult Index()
         {
             return View("~/Modules/Administration/Translation/TranslationIndex.cshtml");

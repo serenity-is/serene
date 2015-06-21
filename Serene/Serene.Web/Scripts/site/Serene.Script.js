@@ -4,7 +4,6 @@
 	global.Serene = global.Serene || {};
 	global.Serene.Administration = global.Serene.Administration || {};
 	global.Serene.Common = global.Serene.Common || {};
-	global.Serene.Meeting = global.Serene.Meeting || {};
 	global.Serene.Membership = global.Serene.Membership || {};
 	global.Serene.Northwind = global.Serene.Northwind || {};
 	global.Serenity = global.Serenity || {};
@@ -121,6 +120,13 @@
 	$Serene_Administration_RoleDialog.__typeName = 'Serene.Administration.RoleDialog';
 	global.Serene.Administration.RoleDialog = $Serene_Administration_RoleDialog;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Administration.RoleForm
+	var $Serene_Administration_RoleForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Administration_RoleForm.__typeName = 'Serene.Administration.RoleForm';
+	global.Serene.Administration.RoleForm = $Serene_Administration_RoleForm;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleGrid
 	var $Serene_Administration_RoleGrid = function(container) {
 		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
@@ -172,13 +178,6 @@
 		return Q.serviceRequest('Administration/Role/List', request, onSuccess, options);
 	};
 	global.Serene.Administration.RoleService = $Serene_Administration_RoleService;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.TranslationForm
-	var $Serene_Administration_TranslationForm = function(idPrefix) {
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Administration_TranslationForm.__typeName = 'Serene.Administration.TranslationForm';
-	global.Serene.Administration.TranslationForm = $Serene_Administration_TranslationForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.TranslationGrid
 	var $Serene_Administration_TranslationGrid = function(container) {
@@ -388,19 +387,36 @@
 	ss.initGenericClass($Serene_Common_CascadedEditorHelper$2, $asm, 2);
 	global.Serene.Common.CascadedEditorHelper$2 = $Serene_Common_CascadedEditorHelper$2;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.FileDialog
-	var $Serene_Common_FileDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+	// Serene.Common.FileForm
+	var $Serene_Common_FileForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
 	};
-	$Serene_Common_FileDialog.__typeName = 'Serene.Common.FileDialog';
-	global.Serene.Common.FileDialog = $Serene_Common_FileDialog;
+	$Serene_Common_FileForm.__typeName = 'Serene.Common.FileForm';
+	global.Serene.Common.FileForm = $Serene_Common_FileForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.FileGrid
-	var $Serene_Common_FileGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+	// Serene.Common.FileService
+	var $Serene_Common_FileService = function() {
 	};
-	$Serene_Common_FileGrid.__typeName = 'Serene.Common.FileGrid';
-	global.Serene.Common.FileGrid = $Serene_Common_FileGrid;
+	$Serene_Common_FileService.__typeName = 'Serene.Common.FileService';
+	$Serene_Common_FileService.create = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/Create', request, onSuccess, options);
+	};
+	$Serene_Common_FileService.update = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/Update', request, onSuccess, options);
+	};
+	$Serene_Common_FileService.delete$1 = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/Delete', request, onSuccess, options);
+	};
+	$Serene_Common_FileService.undelete = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/Undelete', request, onSuccess, options);
+	};
+	$Serene_Common_FileService.retrieve = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/Retrieve', request, onSuccess, options);
+	};
+	$Serene_Common_FileService.list = function(request, onSuccess, options) {
+		return Q.serviceRequest('File/List', request, onSuccess, options);
+	};
+	global.Serene.Common.FileService = $Serene_Common_FileService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
 	var $Serene_Common_LanguageSelection = function(hidden, currentLanguage) {
@@ -431,174 +447,6 @@
 	};
 	$Serene_Common_SidebarSearch.__typeName = 'Serene.Common.SidebarSearch';
 	global.Serene.Common.SidebarSearch = $Serene_Common_SidebarSearch;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaDialog
-	var $Serene_Meeting_MeetingAgendaDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingAgendaDialog.__typeName = 'Serene.Meeting.MeetingAgendaDialog';
-	global.Serene.Meeting.MeetingAgendaDialog = $Serene_Meeting_MeetingAgendaDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaGrid
-	var $Serene_Meeting_MeetingAgendaGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingAgendaGrid.__typeName = 'Serene.Meeting.MeetingAgendaGrid';
-	global.Serene.Meeting.MeetingAgendaGrid = $Serene_Meeting_MeetingAgendaGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaRelevantDialog
-	var $Serene_Meeting_MeetingAgendaRelevantDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingAgendaRelevantDialog.__typeName = 'Serene.Meeting.MeetingAgendaRelevantDialog';
-	global.Serene.Meeting.MeetingAgendaRelevantDialog = $Serene_Meeting_MeetingAgendaRelevantDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaRelevantGrid
-	var $Serene_Meeting_MeetingAgendaRelevantGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingAgendaRelevantGrid.__typeName = 'Serene.Meeting.MeetingAgendaRelevantGrid';
-	global.Serene.Meeting.MeetingAgendaRelevantGrid = $Serene_Meeting_MeetingAgendaRelevantGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaTypeDialog
-	var $Serene_Meeting_MeetingAgendaTypeDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingAgendaTypeDialog.__typeName = 'Serene.Meeting.MeetingAgendaTypeDialog';
-	global.Serene.Meeting.MeetingAgendaTypeDialog = $Serene_Meeting_MeetingAgendaTypeDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAgendaTypeGrid
-	var $Serene_Meeting_MeetingAgendaTypeGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingAgendaTypeGrid.__typeName = 'Serene.Meeting.MeetingAgendaTypeGrid';
-	global.Serene.Meeting.MeetingAgendaTypeGrid = $Serene_Meeting_MeetingAgendaTypeGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAttendeeDialog
-	var $Serene_Meeting_MeetingAttendeeDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingAttendeeDialog.__typeName = 'Serene.Meeting.MeetingAttendeeDialog';
-	global.Serene.Meeting.MeetingAttendeeDialog = $Serene_Meeting_MeetingAttendeeDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAttendeeGrid
-	var $Serene_Meeting_MeetingAttendeeGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingAttendeeGrid.__typeName = 'Serene.Meeting.MeetingAttendeeGrid';
-	global.Serene.Meeting.MeetingAttendeeGrid = $Serene_Meeting_MeetingAttendeeGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAttendeeTypeDialog
-	var $Serene_Meeting_MeetingAttendeeTypeDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingAttendeeTypeDialog.__typeName = 'Serene.Meeting.MeetingAttendeeTypeDialog';
-	global.Serene.Meeting.MeetingAttendeeTypeDialog = $Serene_Meeting_MeetingAttendeeTypeDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingAttendeeTypeGrid
-	var $Serene_Meeting_MeetingAttendeeTypeGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingAttendeeTypeGrid.__typeName = 'Serene.Meeting.MeetingAttendeeTypeGrid';
-	global.Serene.Meeting.MeetingAttendeeTypeGrid = $Serene_Meeting_MeetingAttendeeTypeGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingContactDialog
-	var $Serene_Meeting_MeetingContactDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingContactDialog.__typeName = 'Serene.Meeting.MeetingContactDialog';
-	global.Serene.Meeting.MeetingContactDialog = $Serene_Meeting_MeetingContactDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingContactGrid
-	var $Serene_Meeting_MeetingContactGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingContactGrid.__typeName = 'Serene.Meeting.MeetingContactGrid';
-	global.Serene.Meeting.MeetingContactGrid = $Serene_Meeting_MeetingContactGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingDecisionDialog
-	var $Serene_Meeting_MeetingDecisionDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingDecisionDialog.__typeName = 'Serene.Meeting.MeetingDecisionDialog';
-	global.Serene.Meeting.MeetingDecisionDialog = $Serene_Meeting_MeetingDecisionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingDecisionGrid
-	var $Serene_Meeting_MeetingDecisionGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingDecisionGrid.__typeName = 'Serene.Meeting.MeetingDecisionGrid';
-	global.Serene.Meeting.MeetingDecisionGrid = $Serene_Meeting_MeetingDecisionGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingDecisionRelevantDialog
-	var $Serene_Meeting_MeetingDecisionRelevantDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingDecisionRelevantDialog.__typeName = 'Serene.Meeting.MeetingDecisionRelevantDialog';
-	global.Serene.Meeting.MeetingDecisionRelevantDialog = $Serene_Meeting_MeetingDecisionRelevantDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingDecisionRelevantGrid
-	var $Serene_Meeting_MeetingDecisionRelevantGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingDecisionRelevantGrid.__typeName = 'Serene.Meeting.MeetingDecisionRelevantGrid';
-	global.Serene.Meeting.MeetingDecisionRelevantGrid = $Serene_Meeting_MeetingDecisionRelevantGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingDialog
-	var $Serene_Meeting_MeetingDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingDialog.__typeName = 'Serene.Meeting.MeetingDialog';
-	global.Serene.Meeting.MeetingDialog = $Serene_Meeting_MeetingDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingGrid
-	var $Serene_Meeting_MeetingGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingGrid.__typeName = 'Serene.Meeting.MeetingGrid';
-	global.Serene.Meeting.MeetingGrid = $Serene_Meeting_MeetingGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingLocationDialog
-	var $Serene_Meeting_MeetingLocationDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingLocationDialog.__typeName = 'Serene.Meeting.MeetingLocationDialog';
-	global.Serene.Meeting.MeetingLocationDialog = $Serene_Meeting_MeetingLocationDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingLocationGrid
-	var $Serene_Meeting_MeetingLocationGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingLocationGrid.__typeName = 'Serene.Meeting.MeetingLocationGrid';
-	global.Serene.Meeting.MeetingLocationGrid = $Serene_Meeting_MeetingLocationGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingTypeDialog
-	var $Serene_Meeting_MeetingTypeDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingTypeDialog.__typeName = 'Serene.Meeting.MeetingTypeDialog';
-	global.Serene.Meeting.MeetingTypeDialog = $Serene_Meeting_MeetingTypeDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingTypeGrid
-	var $Serene_Meeting_MeetingTypeGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingTypeGrid.__typeName = 'Serene.Meeting.MeetingTypeGrid';
-	global.Serene.Meeting.MeetingTypeGrid = $Serene_Meeting_MeetingTypeGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingTypePermissionDialog
-	var $Serene_Meeting_MeetingTypePermissionDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
-	};
-	$Serene_Meeting_MeetingTypePermissionDialog.__typeName = 'Serene.Meeting.MeetingTypePermissionDialog';
-	global.Serene.Meeting.MeetingTypePermissionDialog = $Serene_Meeting_MeetingTypePermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Meeting.MeetingTypePermissionGrid
-	var $Serene_Meeting_MeetingTypePermissionGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Meeting_MeetingTypePermissionGrid.__typeName = 'Serene.Meeting.MeetingTypePermissionGrid';
-	global.Serene.Meeting.MeetingTypePermissionGrid = $Serene_Meeting_MeetingTypePermissionGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.LoginForm
 	var $Serene_Membership_LoginForm = function(idPrefix) {
@@ -1418,6 +1266,11 @@
 			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
 		}
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_RoleForm, $asm, {
+		get_roleName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'RoleName');
+		}
+	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_RoleGrid, $asm, {
 		getDefaultSortBy: function() {
 			var $t1 = [];
@@ -1448,17 +1301,6 @@
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_RolePermissionService, $asm, {});
 	ss.initClass($Serene_Administration_RoleService, $asm, {});
-	ss.initClass($Serene_Administration_TranslationForm, $asm, {
-		get_textKey: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'TextKey');
-		},
-		get_languageId: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'LanguageId');
-		},
-		get_translation: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Translation');
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_TranslationGrid, $asm, {
 		onClick: function(e, row, cell) {
 			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onClick.call(this, e, row, cell);
@@ -1717,8 +1559,39 @@
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserRoleService, $asm, {});
 	ss.initClass($Serene_Administration_UserService, $asm, {});
-	ss.initClass($Serene_Common_FileDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Common_FileGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	ss.initClass($Serene_Common_FileForm, $asm, {
+		get_filename: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Filename');
+		},
+		get_originalName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'OriginalName');
+		},
+		get_size: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'Size');
+		},
+		get_isImage: function() {
+			return this.byId(Serenity.BooleanEditor).call(this, 'IsImage');
+		},
+		get_isActive: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'IsActive');
+		},
+		get_metadata: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Metadata');
+		},
+		get_mimeType: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'MimeType');
+		},
+		get_ownerTable: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'OwnerTable');
+		},
+		get_ownerId: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'OwnerId');
+		},
+		get_title: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Title');
+		}
+	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Common_FileService, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {
 		getLookupAsync: function() {
 			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getLookupAsync.call(this).then(ss.mkdel(this, function(x) {
@@ -1789,30 +1662,6 @@
 			liList.children('ul').removeClass('collapse');
 		}
 	}, Serenity.Widget);
-	ss.initClass($Serene_Meeting_MeetingAgendaDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingAgendaGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingAgendaRelevantDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingAgendaRelevantGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingAgendaTypeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingAgendaTypeGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingAttendeeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingAttendeeGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingAttendeeTypeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingAttendeeTypeGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingContactDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingContactGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingDecisionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingDecisionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingDecisionRelevantDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingDecisionRelevantGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingLocationDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingLocationGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingTypeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingTypeGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Meeting_MeetingTypePermissionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Meeting_MeetingTypePermissionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Membership_LoginForm, $asm, {
 		get_username: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Username');
@@ -2144,6 +1993,9 @@
 		get_productName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
 		},
+		get_productImage: function() {
+			return this.byId(Serenity.ImageUploadEditor).call(this, 'ProductImage');
+		},
 		get_discontinued: function() {
 			return this.byId(Serenity.BooleanEditor).call(this, 'Discontinued');
 		},
@@ -2237,7 +2089,7 @@
 			return this.byId(Serenity.IntegerEditor).call(this, 'RegionID');
 		},
 		get_regionDescription: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'RegionDescription');
+			return this.byId(Serenity.DateTimeEditor).call(this, 'RegionDescription');
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
@@ -2246,6 +2098,9 @@
 	ss.initClass($Serene_Northwind_ShipperForm, $asm, {
 		get_companyName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CompanyName');
+		},
+		get_phone: function() {
+			return this.byId($Serene_Northwind_PhoneEditor).call(this, 'Phone');
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_ShipperGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
@@ -2394,32 +2249,6 @@
 	ss.setMetadata($Serene_Administration_TranslationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Translation'), new Serenity.IdPropertyAttribute('Key'), new Serenity.LocalTextPrefixAttribute('Administration.Translation'), new Serenity.ServiceAttribute('Administration/Translation')] });
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
-	ss.setMetadata($Serene_Common_FileDialog, { attr: [new Serenity.IdPropertyAttribute('FileId'), new Serenity.NamePropertyAttribute('Filename'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Common.File'), new Serenity.LocalTextPrefixAttribute('Common.File'), new Serenity.ServiceAttribute('Common/File')] });
-	ss.setMetadata($Serene_Common_FileGrid, { attr: [new Serenity.ColumnsKeyAttribute('Common.File'), new Serenity.IdPropertyAttribute('FileId'), new Serenity.NamePropertyAttribute('Filename'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Common_FileDialog), new Serenity.LocalTextPrefixAttribute('Common.File'), new Serenity.ServiceAttribute('Common/File')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingAgendaId'), new Serenity.NamePropertyAttribute('Tags'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingAgenda'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgenda'), new Serenity.ServiceAttribute('Meeting/MeetingAgenda')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingAgenda'), new Serenity.IdPropertyAttribute('MeetingAgendaId'), new Serenity.NamePropertyAttribute('Tags'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingAgendaDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgenda'), new Serenity.ServiceAttribute('Meeting/MeetingAgenda')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaRelevantDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingAgendaRelevantId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingAgendaRelevant'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgendaRelevant'), new Serenity.ServiceAttribute('Meeting/MeetingAgendaRelevant')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaRelevantGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingAgendaRelevant'), new Serenity.IdPropertyAttribute('MeetingAgendaRelevantId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingAgendaRelevantDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgendaRelevant'), new Serenity.ServiceAttribute('Meeting/MeetingAgendaRelevant')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaTypeDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingAgendaTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingAgendaType'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgendaType'), new Serenity.ServiceAttribute('Meeting/MeetingAgendaType')] });
-	ss.setMetadata($Serene_Meeting_MeetingAgendaTypeGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingAgendaType'), new Serenity.IdPropertyAttribute('MeetingAgendaTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingAgendaTypeDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAgendaType'), new Serenity.ServiceAttribute('Meeting/MeetingAgendaType')] });
-	ss.setMetadata($Serene_Meeting_MeetingAttendeeDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingAttendeeId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingAttendee'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAttendee'), new Serenity.ServiceAttribute('Meeting/MeetingAttendee')] });
-	ss.setMetadata($Serene_Meeting_MeetingAttendeeGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingAttendee'), new Serenity.IdPropertyAttribute('MeetingAttendeeId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingAttendeeDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAttendee'), new Serenity.ServiceAttribute('Meeting/MeetingAttendee')] });
-	ss.setMetadata($Serene_Meeting_MeetingAttendeeTypeDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingAttendeeTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingAttendeeType'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAttendeeType'), new Serenity.ServiceAttribute('Meeting/MeetingAttendeeType')] });
-	ss.setMetadata($Serene_Meeting_MeetingAttendeeTypeGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingAttendeeType'), new Serenity.IdPropertyAttribute('MeetingAttendeeTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingAttendeeTypeDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingAttendeeType'), new Serenity.ServiceAttribute('Meeting/MeetingAttendeeType')] });
-	ss.setMetadata($Serene_Meeting_MeetingContactDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingContactId'), new Serenity.NamePropertyAttribute('DisplayName'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingContact'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingContact'), new Serenity.ServiceAttribute('Meeting/MeetingContact')] });
-	ss.setMetadata($Serene_Meeting_MeetingContactGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingContact'), new Serenity.IdPropertyAttribute('MeetingContactId'), new Serenity.NamePropertyAttribute('DisplayName'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingContactDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingContact'), new Serenity.ServiceAttribute('Meeting/MeetingContact')] });
-	ss.setMetadata($Serene_Meeting_MeetingDecisionDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingDecisionId'), new Serenity.NamePropertyAttribute('Description'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingDecision'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingDecision'), new Serenity.ServiceAttribute('Meeting/MeetingDecision')] });
-	ss.setMetadata($Serene_Meeting_MeetingDecisionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingDecision'), new Serenity.IdPropertyAttribute('MeetingDecisionId'), new Serenity.NamePropertyAttribute('Description'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingDecisionDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingDecision'), new Serenity.ServiceAttribute('Meeting/MeetingDecision')] });
-	ss.setMetadata($Serene_Meeting_MeetingDecisionRelevantDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingDecisionRelevantId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingDecisionRelevant'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingDecisionRelevant'), new Serenity.ServiceAttribute('Meeting/MeetingDecisionRelevant')] });
-	ss.setMetadata($Serene_Meeting_MeetingDecisionRelevantGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingDecisionRelevant'), new Serenity.IdPropertyAttribute('MeetingDecisionRelevantId'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingDecisionRelevantDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingDecisionRelevant'), new Serenity.ServiceAttribute('Meeting/MeetingDecisionRelevant')] });
-	ss.setMetadata($Serene_Meeting_MeetingDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingId'), new Serenity.NamePropertyAttribute('MeetingGuid'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.Meeting'), new Serenity.LocalTextPrefixAttribute('Meeting.Meeting'), new Serenity.ServiceAttribute('Meeting/Meeting')] });
-	ss.setMetadata($Serene_Meeting_MeetingGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.Meeting'), new Serenity.IdPropertyAttribute('MeetingId'), new Serenity.NamePropertyAttribute('MeetingGuid'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingDialog), new Serenity.LocalTextPrefixAttribute('Meeting.Meeting'), new Serenity.ServiceAttribute('Meeting/Meeting')] });
-	ss.setMetadata($Serene_Meeting_MeetingLocationDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingLocationId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingLocation'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingLocation'), new Serenity.ServiceAttribute('Meeting/MeetingLocation')] });
-	ss.setMetadata($Serene_Meeting_MeetingLocationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingLocation'), new Serenity.IdPropertyAttribute('MeetingLocationId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingLocationDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingLocation'), new Serenity.ServiceAttribute('Meeting/MeetingLocation')] });
-	ss.setMetadata($Serene_Meeting_MeetingTypeDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Meeting.MeetingType'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingType'), new Serenity.ServiceAttribute('Meeting/MeetingType')] });
-	ss.setMetadata($Serene_Meeting_MeetingTypeGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingType'), new Serenity.IdPropertyAttribute('MeetingTypeId'), new Serenity.NamePropertyAttribute('Name'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingTypeDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingType'), new Serenity.ServiceAttribute('Meeting/MeetingType')] });
-	ss.setMetadata($Serene_Meeting_MeetingTypePermissionDialog, { attr: [new Serenity.IdPropertyAttribute('MeetingTypePermissionId'), new Serenity.FormKeyAttribute('Meeting.MeetingTypePermission'), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingTypePermission'), new Serenity.ServiceAttribute('Meeting/MeetingTypePermission')] });
-	ss.setMetadata($Serene_Meeting_MeetingTypePermissionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Meeting.MeetingTypePermission'), new Serenity.IdPropertyAttribute('MeetingTypePermissionId'), new Serenity.DialogTypeAttribute($Serene_Meeting_MeetingTypePermissionDialog), new Serenity.LocalTextPrefixAttribute('Meeting.MeetingTypePermission'), new Serenity.ServiceAttribute('Meeting/MeetingTypePermission')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.Login')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });

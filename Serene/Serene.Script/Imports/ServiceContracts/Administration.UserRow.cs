@@ -12,6 +12,11 @@ namespace Serene.Administration
     [Imported, Serializable, PreserveMemberCase]
     public partial class UserRow
     {
+        [InlineConstant] public const string IdProperty = "UserId";
+        [InlineConstant] public const string IsActiveProperty = "IsActive";
+        [InlineConstant] public const string NameProperty = "Username";
+        [InlineConstant] public const string LocalTextPrefix = "Administration.User";
+    
         public Int32? UserId { get; set; }
         public String Username { get; set; }
         public String Source { get; set; }

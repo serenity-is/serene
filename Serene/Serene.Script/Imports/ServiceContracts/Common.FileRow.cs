@@ -12,6 +12,10 @@ namespace Serene.Common
     [Imported, Serializable, PreserveMemberCase]
     public partial class FileRow
     {
+        [InlineConstant] public const string IdProperty = "FileId";
+        [InlineConstant] public const string NameProperty = "Filename";
+        [InlineConstant] public const string LocalTextPrefix = "Common.File";
+    
         public Int32? FileId { get; set; }
         public String Filename { get; set; }
         public String OriginalName { get; set; }

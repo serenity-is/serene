@@ -12,6 +12,13 @@ namespace Serene.Northwind
     [Imported, Serializable, PreserveMemberCase]
     public partial class TerritoryRow
     {
+        [InlineConstant] public const string IdProperty = "ID";
+        [InlineConstant] public const string NameProperty = "TerritoryID";
+        [InlineConstant] public const string LocalTextPrefix = "Northwind.Territory";
+        [InlineConstant] public const string LookupKey = "Northwind.Territory";
+    
+        public static Lookup<TerritoryRow> Lookup { [InlineCode("Q.getLookup('Northwind.Territory')")] get { return null; } }
+    
         public Int32? ID { get; set; }
         public String TerritoryID { get; set; }
         public String TerritoryDescription { get; set; }

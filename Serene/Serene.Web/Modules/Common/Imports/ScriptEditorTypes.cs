@@ -10,24 +10,30 @@ namespace Serene.Administration
 {
     public partial class PermissionCheckEditorAttribute : CustomEditorAttribute
     {
+        public const string Key = "Serene.Administration.PermissionCheckEditor";
+    
         public PermissionCheckEditorAttribute()
-            : base("Serene.Administration.PermissionCheckEditor")
+            : base(Key)
         {
         }
     }
 
     public partial class PermissionModuleEditorAttribute : CustomEditorAttribute
     {
+        public const string Key = "Serene.Administration.PermissionModuleEditor";
+    
         public PermissionModuleEditorAttribute()
-            : base("Serene.Administration.PermissionModuleEditor")
+            : base(Key)
         {
         }
     }
 
     public partial class RoleCheckEditorAttribute : CustomEditorAttribute
     {
+        public const string Key = "Serene.Administration.RoleCheckEditor";
+    
         public RoleCheckEditorAttribute()
-            : base("Serene.Administration.RoleCheckEditor")
+            : base(Key)
         {
         }
     }
@@ -37,8 +43,10 @@ namespace Serene.Common
 {
     public partial class LanguageSelectionAttribute : CustomEditorAttribute
     {
+        public const string Key = "Serene.Common.LanguageSelection";
+    
         public LanguageSelectionAttribute()
-            : base("Serene.Common.LanguageSelection")
+            : base(Key)
         {
         }
     }
@@ -48,8 +56,10 @@ namespace Serene.Northwind
 {
     public partial class PhoneEditorAttribute : CustomEditorAttribute
     {
+        public const string Key = "Serene.Northwind.PhoneEditor";
+    
         public PhoneEditorAttribute()
-            : base("Serene.Northwind.PhoneEditor")
+            : base(Key)
         {
         }
     

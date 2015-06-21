@@ -12,6 +12,13 @@ namespace Serene.Administration
     [Imported, Serializable, PreserveMemberCase]
     public partial class RoleRow
     {
+        [InlineConstant] public const string IdProperty = "RoleId";
+        [InlineConstant] public const string NameProperty = "RoleName";
+        [InlineConstant] public const string LocalTextPrefix = "Administration.Role";
+        [InlineConstant] public const string LookupKey = "Administration.Role";
+    
+        public static Lookup<RoleRow> Lookup { [InlineCode("Q.getLookup('Administration.Role')")] get { return null; } }
+    
         public Int32? RoleId { get; set; }
         public String RoleName { get; set; }
     

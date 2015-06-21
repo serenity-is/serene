@@ -12,6 +12,9 @@ namespace Serene.Administration
     [Imported, Serializable, PreserveMemberCase]
     public partial class UserRoleRow
     {
+        [InlineConstant] public const string IdProperty = "UserRoleId";
+        [InlineConstant] public const string LocalTextPrefix = "Administration.UserRole";
+    
         public Int64? UserRoleId { get; set; }
         public Int32? UserId { get; set; }
         public Int32? RoleId { get; set; }

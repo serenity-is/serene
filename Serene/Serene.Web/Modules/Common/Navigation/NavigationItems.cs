@@ -20,4 +20,3 @@ using Common = Serene.Common.Pages;
 [assembly: NavigationLink(9200, "Administration/Translations", typeof(Administration.TranslationController), icon: "icon-speech")]
 [assembly: NavigationLink(9300, "Administration/Roles", typeof(Administration.RoleController), icon: "icon-lock")]
 [assembly: NavigationLink(9400, "Administration/User Management", typeof(Administration.UserController), icon: "icon-users")]
-[assembly: NavigationLink(9500, "Administration/Uploaded Files", typeof(Common.FileController), icon: "icon-docs")]

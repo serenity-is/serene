@@ -12,6 +12,10 @@ namespace Serene.Northwind
     [Imported, Serializable, PreserveMemberCase]
     public partial class CustomerCustomerDemoRow
     {
+        [InlineConstant] public const string IdProperty = "ID";
+        [InlineConstant] public const string NameProperty = "CustomerID";
+        [InlineConstant] public const string LocalTextPrefix = "Northwind.CustomerCustomerDemo";
+    
         public Int32? ID { get; set; }
         public String CustomerID { get; set; }
         public String CustomerTypeID { get; set; }
