@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class CategoryForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.Category";
+    
         public CategoryForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor CategoryName { get { return ById<StringEditor>("CategoryName"); } }

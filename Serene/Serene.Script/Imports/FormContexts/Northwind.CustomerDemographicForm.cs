@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class CustomerDemographicForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.CustomerDemographic";
+    
         public CustomerDemographicForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor CustomerTypeID { get { return ById<StringEditor>("CustomerTypeID"); } }

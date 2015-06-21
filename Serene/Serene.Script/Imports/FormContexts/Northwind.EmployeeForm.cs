@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class EmployeeForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.Employee";
+    
         public EmployeeForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor LastName { get { return ById<StringEditor>("LastName"); } }

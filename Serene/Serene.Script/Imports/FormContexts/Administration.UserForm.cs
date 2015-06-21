@@ -12,6 +12,8 @@ namespace Serene.Administration
 
     public partial class UserForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Administration.User";
+    
         public UserForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor Username { get { return ById<StringEditor>("Username"); } }

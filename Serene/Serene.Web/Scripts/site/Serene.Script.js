@@ -386,37 +386,6 @@
 	ss.initGenericClass($Serene_Common_CascadedEditorHelper$2, $asm, 2);
 	global.Serene.Common.CascadedEditorHelper$2 = $Serene_Common_CascadedEditorHelper$2;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.FileForm
-	var $Serene_Common_FileForm = function(idPrefix) {
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Common_FileForm.__typeName = 'Serene.Common.FileForm';
-	global.Serene.Common.FileForm = $Serene_Common_FileForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.FileService
-	var $Serene_Common_FileService = function() {
-	};
-	$Serene_Common_FileService.__typeName = 'Serene.Common.FileService';
-	$Serene_Common_FileService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/Create', request, onSuccess, options);
-	};
-	$Serene_Common_FileService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/Update', request, onSuccess, options);
-	};
-	$Serene_Common_FileService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/Delete', request, onSuccess, options);
-	};
-	$Serene_Common_FileService.undelete = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/Undelete', request, onSuccess, options);
-	};
-	$Serene_Common_FileService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Common_FileService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('File/List', request, onSuccess, options);
-	};
-	global.Serene.Common.FileService = $Serene_Common_FileService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
 	var $Serene_Common_LanguageSelection = function(hidden, currentLanguage) {
 		this.$currentLanguage = null;
@@ -1541,39 +1510,6 @@
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserRoleService, $asm, {});
 	ss.initClass($Serene_Administration_UserService, $asm, {});
-	ss.initClass($Serene_Common_FileForm, $asm, {
-		get_filename: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Filename');
-		},
-		get_originalName: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'OriginalName');
-		},
-		get_size: function() {
-			return this.byId(Serenity.IntegerEditor).call(this, 'Size');
-		},
-		get_isImage: function() {
-			return this.byId(Serenity.BooleanEditor).call(this, 'IsImage');
-		},
-		get_isActive: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'IsActive');
-		},
-		get_metadata: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Metadata');
-		},
-		get_mimeType: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'MimeType');
-		},
-		get_ownerTable: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'OwnerTable');
-		},
-		get_ownerId: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'OwnerId');
-		},
-		get_title: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Title');
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Common_FileService, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {
 		getLookupAsync: function() {
 			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getLookupAsync.call(this).then(ss.mkdel(this, function(x) {

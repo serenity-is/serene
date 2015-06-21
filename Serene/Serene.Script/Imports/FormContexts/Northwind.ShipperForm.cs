@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class ShipperForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.Shipper";
+    
         public ShipperForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor CompanyName { get { return ById<StringEditor>("CompanyName"); } }

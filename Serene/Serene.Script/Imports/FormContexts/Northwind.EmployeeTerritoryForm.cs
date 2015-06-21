@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class EmployeeTerritoryForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.EmployeeTerritory";
+    
         public EmployeeTerritoryForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor TerritoryID { get { return ById<StringEditor>("TerritoryID"); } }

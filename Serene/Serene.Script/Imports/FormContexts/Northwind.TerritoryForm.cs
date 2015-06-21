@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class TerritoryForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.Territory";
+    
         public TerritoryForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor TerritoryID { get { return ById<StringEditor>("TerritoryID"); } }

@@ -12,6 +12,8 @@ namespace Serene.Northwind
 
     public partial class RegionForm : PrefixedContext
     {
+        [InlineConstant] public const string FormKey = "Northwind.Region";
+    
         public RegionForm(string idPrefix) : base(idPrefix) {}
     
         public IntegerEditor RegionID { get { return ById<IntegerEditor>("RegionID"); } }
