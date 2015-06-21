@@ -57,7 +57,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.cs">Administration.LanguageForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.cs">Administration.RoleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.cs">Administration.UserForm.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.FileForm.cs">Common.FileForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="FormContexts.log">FormContexts.log</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginForm.cs">Membership.LoginForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.cs">Northwind.CategoryForm.cs</ProjectItem>
@@ -102,10 +101,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.cs">Administration.UserRoleUpdateRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.cs">Administration.UserRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.cs">Administration.UserService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.FileRow.cs">Common.FileRow.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.FileService.cs">Common.FileService.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.FileController.cs">Common.Pages.FileController.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.cs">Common.Pages.UploadResponse.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.cs">Membership.LoginRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryRow.cs">Northwind.CategoryRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryService.cs">Northwind.CategoryService.cs</ProjectItem>
