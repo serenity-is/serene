@@ -292,7 +292,7 @@
 		toastr.error(message, '', $Q.$getToastrOptions());
 	};
 	$Q.$getToastrOptions = function() {
-		var dialog = $(window.document.body).children('.ui-dialog').last();
+		var dialog = $(window.document.body).children('.ui-dialog:visible').last();
 		var toastrDiv = $('#toast-container');
 		var options = { timeOut: 3000, showDuration: 250, hideDuration: 500, extendedTimeOut: 500 };
 		if (dialog.length > 0) {
@@ -1943,6 +1943,9 @@
 		$Texts$Controls$EntityDialog.UpdateButton = new Q$LT('Update');
 		$Texts$Controls$EntityDialog.ApplyChangesButton = new Q$LT('Apply Changes');
 		$Texts$Controls$EntityDialog.DeleteButton = new Q$LT('Delete');
+		$Texts$Controls$EntityDialog.LocalizationButton = new Q$LT('Localization');
+		$Texts$Controls$EntityDialog.LocalizationBack = new Q$LT('Back to Form');
+		$Texts$Controls$EntityDialog.LocalizationConfirmation = new Q$LT('Save changes to translations?');
 		$Texts$Controls$EntityDialog.NewRecordTitle = new Q$LT('New {0}');
 		$Texts$Controls$EntityDialog.EditRecordTitle = new Q$LT('Edit {0}{1}');
 		$Q$LT.initializeTextClass($Texts$Controls$EntityDialog, 'Controls.EntityDialog.');

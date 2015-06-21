@@ -314,60 +314,6 @@ P {
 .slick-row.odd .row-drag-cell {
   background-color: #fafaf7;
 }
-.slick-cell input.editor-text {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  margin: 0;
-  background: transparent;
-  outline: 0;
-  padding: 0;
-}
-.slick-cell.active,
-.ui-widget-content .slick-cell.active,
-.s-DataGrid .grid-container .slick-cell.active {
-  border: 1px solid #83AFC7;
-  padding: 1px 3px 2px 3px;
-  background-color: #FDFDD2;
-}
-.slick-cell.active.editable,
-.ui-widget-content .slick-cell.active.editable,
-.s-DataGrid .grid-container .slick-cell.active.editable {
-  padding: 0;
-}
-.slick-cell > input[type=text] {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  margin: 0;
-  background: transparent;
-  outline: 0;
-  padding: 1px 3px 2px 3px;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-}
-.slick-cell.align-right > input[type=text] {
-  text-align: right;
-}
-.slick-cell.align-center > input[type=text] {
-  text-align: right;
-}
-.slick-cell > .select2-container {
-  width: 100%;
-}
-.slick-cell > .select2-container .select2-choice {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  line-height: 25px;
-  height: 25px;
-  padding: 0 0 0 3px;
-}
-.slick-cell > .select2-container .select2-arrow {
-  border-radius: 0;
-  border: none;
-}
 #toast-container {
   font-size: 12px;
 }
@@ -598,9 +544,9 @@ button.ui-state-hover .ui-button-text {
 .s-InformationDialog .message {
   background-image: url(images/dialog-confirm.png);
 }
-.s-LocalizationSelect {
-  float: right;
-  margin: 4px 4px 0 0;
+.s-Form .translation > label.caption,
+.translation > label.caption {
+  color: darkviolet;
 }
 .s-Form,
 .s-Form td,
@@ -1146,6 +1092,12 @@ textarea,
 .clone-button span.button-inner {
   background-image: url(images/document-copy.png);
 }
+.localization-button span.button-inner {
+  background-image: url(images/universal.png);
+}
+.localization-button.pressed span.button-inner {
+  background-image: url(images/arrow-curve-left.png);
+}
 .select-all-button span.button-inner {
   background-image: url(images/checkbox-no.png);
 }
@@ -1162,6 +1114,10 @@ textarea,
   height: 15px;
   margin: 2px 3px 0 0;
   cursor: pointer;
+}
+.s-Form .check-box.readonly {
+  background-image: url(images/checkbox-states.png);
+  opacity: 0.8;
 }
 .check-box.disabled {
   background-position: -60px 0px;
@@ -2100,6 +2056,15 @@ div.s-Toolbar .inplace-button {
 }
 div.s-Toolbar .delete-all .button-inner {
   background: url(images/trash.gif) no-repeat center center;
+}
+div.s-Toolbar .tool-button.pressed {
+  background: linear-gradient(#eeeebb 0px, #ffffcc 100%) repeat-x #eeeeee;
+}
+div.s-Toolbar .tool-button.pressed div.button-outer {
+  border-left: 1px solid #d7d7d7;
+  border-top: 1px solid #d7d7d7;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 .s-ToolFilter {
   float: right;

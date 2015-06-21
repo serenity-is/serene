@@ -1362,6 +1362,10 @@
 		if (!!(val.length === 0 || !ss.referenceEquals(input[0].selectionEnd, val.length))) {
 			return;
 		}
+		if (val.indexOf(Q$Culture.dateSeparator + Q$Culture.dateSeparator) !== -1) {
+			input.val(ss.replaceAllString(val, Q$Culture.dateSeparator + Q$Culture.dateSeparator, Q$Culture.dateSeparator));
+			return;
+		}
 		if (e.which === 47 || e.which === 111) {
 			if (val.length >= 2 && ss.referenceEquals(String.fromCharCode(val.charCodeAt(val.length - 1)), Q$Culture.dateSeparator) && ss.referenceEquals(String.fromCharCode(val.charCodeAt(val.length - 2)), Q$Culture.dateSeparator)) {
 				input.val(val.substr(0, val.length - 1));
@@ -1906,7 +1910,9 @@
 			this.$formKey = null;
 			this.$service = null;
 			this.localizationGrid = null;
-			this.localizationSelect = null;
+			this.localizationButton = null;
+			this.localizationLastValue = null;
+			this.localizationPendingValue = null;
 			this.propertyGrid = null;
 			this.saveAndCloseButton = null;
 			this.applyChangesButton = null;
@@ -1918,13 +1924,6 @@
 				this.$initPropertyGrid();
 				this.$initLocalizationGrid();
 			}
-		};
-		$type.$getLanguages = function() {
-			var $t1 = [];
-			$t1.push({ item1: '', item2: 'Türkçe' });
-			$t1.push({ item1: 1033, item2: 'English' });
-			$t1.push({ item1: 3082, item2: 'Espanol' });
-			return $t1;
 		};
 		ss.registerGenericClassInstance($type, $Serenity_EntityDialog$2, [TEntity, TOptions], {
 			initializeAsync: function() {
@@ -2156,7 +2155,7 @@
 						var entityId = entityOrId;
 						this.loadById(entityId, function(response) {
 							window.setTimeout(done, 0);
-						});
+						}, null);
 						return;
 					}
 					var entity = entityOrId || ss.createInstance(TEntity);
@@ -2197,6 +2196,8 @@
 				}
 			},
 			beforeLoadEntity: function(entity) {
+				this.localizationPendingValue = null;
+				this.localizationLastValue = null;
 			},
 			afterLoadEntity: function() {
 				this.updateInterface();
@@ -2210,6 +2211,10 @@
 							self.element.dialog().dialog('open');
 						}
 					}), 0);
+				}), ss.mkdel(this, function() {
+					if (!this.isPanel && !self.get_element().is(':visible')) {
+						self.get_element().remove();
+					}
 				}));
 			},
 			onLoadingData: function(data) {
@@ -2223,9 +2228,9 @@
 				return request;
 			},
 			reloadById: function() {
-				this.loadById(ss.unbox(this.get_entityId()), null);
+				this.loadById(ss.unbox(this.get_entityId()), null, null);
 			},
-			loadById: function(id, callback) {
+			loadById: function(id, callback, fail) {
 				var baseOptions = {};
 				baseOptions.service = this.getService() + '/Retrieve';
 				baseOptions.blockUI = true;
@@ -2244,10 +2249,13 @@
 				};
 				var thisOptions = this.getLoadByIdOptions(id, callback);
 				var finalOptions = $.extend(baseOptions, thisOptions);
-				this.loadByIdHandler(finalOptions, callback);
+				this.loadByIdHandler(finalOptions, callback, fail);
 			},
-			loadByIdHandler: function(options, callback) {
-				Q.serviceCall(options);
+			loadByIdHandler: function(options, callback, fail) {
+				var request = Q.serviceCall(options);
+				if (!ss.staticEquals(fail, null)) {
+					request.fail(fail);
+				}
 			},
 			$initLocalizationGrid: function() {
 				var pgDiv = this.byId$1('PropertyGrid');
@@ -2287,84 +2295,182 @@
 					var item1 = pgOptions.items[$t2];
 					if (item1.localizable) {
 						var copy = $.extend({}, item1);
-						copy.insertable = true;
-						copy.updatable = true;
-						copy.oneWay = false;
+						copy.oneWay = true;
+						copy.readOnly = true;
 						copy.required = false;
-						copy.localizable = false;
 						copy.defaultValue = null;
 						items.push(copy);
+						var $t3 = ss.getEnumerator(this.getLanguages());
+						try {
+							while ($t3.moveNext()) {
+								var lang = $t3.current();
+								copy = $.extend({}, item1);
+								copy.name = lang.item1 + '$' + copy.name;
+								copy.title = lang.item2;
+								copy.cssClass = [copy.cssClass, 'translation'].join(' ');
+								copy.insertable = true;
+								copy.updatable = true;
+								copy.oneWay = false;
+								copy.required = false;
+								copy.localizable = false;
+								copy.defaultValue = null;
+								items.push(copy);
+							}
+						}
+						finally {
+							$t3.dispose();
+						}
 					}
 				}
 				pgOptions.items = items;
 				this.localizationGrid = (new $Serenity_PropertyGrid(localGridDiv, pgOptions)).init(null);
 				localGridDiv.addClass('s-LocalizationGrid');
 				var self = this;
-				this.localizationSelect = $('<select/>').addClass('s-LocalizationSelect').appendTo(this.toolbar.get_element()).change(function(e) {
-					self.$localizationSelectChange(e);
-				});
-				var $t3 = ss.getEnumerator($type.$getLanguages());
-				try {
-					while ($t3.moveNext()) {
-						var k = $t3.current();
-						Q.addOption(this.localizationSelect, k.item1.toString(), k.item2);
-					}
-				}
-				finally {
-					$t3.dispose();
-				}
 			},
-			get_$isLocalizationMode: function() {
-				return this.get_isEditMode() && !this.get_isCloneMode() && ss.isValue(this.localizationSelect) && !Q.isEmptyOrNull(this.localizationSelect.val());
+			get_isLocalizationMode: function() {
+				return ss.isValue(this.localizationButton) && this.localizationButton.hasClass('pressed');
 			},
-			$localizationSelectChange: function(e) {
+			get_$isLocalizationModeAndChanged: function() {
+				if (!this.get_isLocalizationMode()) {
+					return false;
+				}
+				var newValue = this.$getLocalizationGridValue();
+				return !ss.referenceEquals($.toJSON(this.localizationLastValue), $.toJSON(newValue));
+			},
+			$localizationButtonClick: function() {
+				if (this.get_isLocalizationMode() && !this.validateForm()) {
+					return;
+				}
+				if (this.get_$isLocalizationModeAndChanged()) {
+					var newValue = this.$getLocalizationGridValue();
+					this.localizationLastValue = newValue;
+					this.localizationPendingValue = newValue;
+				}
+				this.localizationButton.toggleClass('pressed');
 				this.updateInterface();
-				if (this.get_$isLocalizationMode()) {
+				if (this.get_isLocalizationMode()) {
 					this.$loadLocalization();
 				}
 			},
+			getLanguages: function() {
+				return [];
+			},
 			$loadLocalization: function() {
+				if (ss.isNullOrUndefined(this.localizationLastValue) && this.get_isNew()) {
+					this.localizationGrid.load({});
+					this.$setLocalizationGridCurrentValues();
+					this.localizationLastValue = this.$getLocalizationGridValue();
+					return;
+				}
+				if (ss.isValue(this.localizationLastValue)) {
+					this.localizationGrid.load(this.localizationLastValue);
+					this.$setLocalizationGridCurrentValues();
+					return;
+				}
 				var self = this;
 				var opt = {};
 				opt.service = this.getService() + '/RetrieveLocalization';
 				opt.blockUI = true;
-				opt.request = { EntityId: ss.unbox(this.get_entityId()), CultureId: parseInt(this.localizationSelect.val(), 10) };
-				opt.onSuccess = function(response) {
-					var valueByName = {};
-					self.localizationGrid.load(self.get_entity());
-					self.localizationGrid.enumerateItems(function(item, widget) {
-						if (widget.get_element().is(':input')) {
-							valueByName[item.name] = widget.get_element().val();
-						}
-					});
-					self.localizationGrid.load(response.Entity);
-					self.localizationGrid.enumerateItems(function(item1, widget1) {
-						if (widget1.get_element().is(':input')) {
-							var hint = valueByName[item1.name];
-							if (ss.isValue(hint) && hint.length > 0) {
-								widget1.get_element().attr('title', 'Türkçe Metin: ' + hint).attr('placeholder', hint);
+				opt.request = { EntityId: ss.unbox(this.get_entityId()) };
+				opt.onSuccess = ss.mkdel(this, function(response) {
+					var copy = $.extend(ss.createInstance(TEntity), self.get_entity());
+					var $t1 = ss.getEnumerator(Object.keys(response.Entities));
+					try {
+						while ($t1.moveNext()) {
+							var language = $t1.current();
+							var entity = response.Entities[language];
+							var $t2 = ss.getEnumerator(Object.keys(entity));
+							try {
+								while ($t2.moveNext()) {
+									var key = $t2.current();
+									copy[language + '$' + key] = entity[key];
+								}
+							}
+							finally {
+								$t2.dispose();
 							}
 						}
-					});
-				};
+					}
+					finally {
+						$t1.dispose();
+					}
+					self.localizationGrid.load(copy);
+					this.$setLocalizationGridCurrentValues();
+					this.localizationPendingValue = null;
+					this.localizationLastValue = this.$getLocalizationGridValue();
+				});
 				Q.serviceCall(opt);
 			},
-			$saveLocalization: function() {
-				if (!this.validateForm()) {
-					return;
+			$setLocalizationGridCurrentValues: function() {
+				var valueByName = {};
+				this.localizationGrid.enumerateItems(ss.mkdel(this, function(item, widget) {
+					if (item.name.indexOf('$') < 0 && widget.get_element().is(':input')) {
+						valueByName[item.name] = this.byId$1(item.name).val();
+						widget.get_element().val(valueByName[item.name]);
+					}
+				}));
+				this.localizationGrid.enumerateItems(function(item1, widget1) {
+					var idx = item1.name.indexOf('$');
+					if (idx >= 0 && widget1.get_element().is(':input')) {
+						var hint = valueByName[item1.name.substr(idx + 1)];
+						if (ss.isValue(hint) && hint.length > 0) {
+							widget1.get_element().attr('title', hint).attr('placeholder', hint);
+						}
+					}
+				});
+			},
+			$getLocalizationGridValue: function() {
+				var value = {};
+				this.localizationGrid.save(value);
+				var $t1 = ss.getEnumerator(Object.keys(value));
+				try {
+					while ($t1.moveNext()) {
+						var k = $t1.current();
+						if (k.indexOf(String.fromCharCode(36)) < 0) {
+							delete value[k];
+						}
+					}
 				}
-				var opt = {};
-				opt.service = this.getService() + '/UpdateLocalization';
-				opt.onSuccess = function(response) {
-				};
-				var entity = ss.createInstance(TEntity);
-				this.localizationGrid.save(entity);
+				finally {
+					$t1.dispose();
+				}
+				return value;
+			},
+			$getPendingLocalizations: function() {
+				if (ss.isNullOrUndefined(this.localizationPendingValue)) {
+					return null;
+				}
+				var result = {};
 				var idField = this.getEntityIdField();
-				if (ss.isValue(idField)) {
-					entity[idField] = this.get_entityId();
+				var $t1 = ss.getEnumerator(this.getLanguages());
+				try {
+					while ($t1.moveNext()) {
+						var pair = $t1.current();
+						var language = pair.item1;
+						var entity = {};
+						if (ss.isValue(idField)) {
+							entity[idField] = this.get_entityId();
+						}
+						var prefix = language + '$';
+						var $t2 = ss.getEnumerator(Object.keys(this.localizationPendingValue));
+						try {
+							while ($t2.moveNext()) {
+								var k = $t2.current();
+								if (ss.startsWithString(k, prefix)) {
+									entity[k.substr(prefix.length)] = this.localizationPendingValue[k];
+								}
+							}
+						}
+						finally {
+							$t2.dispose();
+						}
+						result[language] = entity;
+					}
 				}
-				opt.request = { CultureId: parseInt(this.localizationSelect.val(), 10), Entity: entity };
-				Q.serviceCall(opt);
+				finally {
+					$t1.dispose();
+				}
+				return result;
 			},
 			$initPropertyGrid: function() {
 				var pgDiv = this.byId$1('PropertyGrid');
@@ -2477,6 +2583,9 @@
 				var entity = this.getSaveEntity();
 				var req = {};
 				req.Entity = entity;
+				if (ss.isValue(this.localizationPendingValue)) {
+					req.Localizations = this.$getPendingLocalizations();
+				}
 				return req;
 			},
 			onSaveSuccess: function(response) {
@@ -2506,6 +2615,7 @@
 				this.deleteButton = this.toolbar.findButton('delete-button');
 				this.undeleteButton = this.toolbar.findButton('undo-delete-button');
 				this.cloneButton = this.toolbar.findButton('clone-button');
+				this.localizationButton = this.toolbar.findButton('localization-button');
 			},
 			showSaveSuccessMessage: function(response) {
 				Q.notifySuccess(Texts$Controls$EntityDialog.SaveSuccessMessage.get());
@@ -2525,16 +2635,12 @@
 					});
 				}
 				list.push({ title: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Q$LT.empty).get(), hint: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.ApplyChangesButton).get(), cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function() {
-					if (self.get_$isLocalizationMode()) {
-						self.$saveLocalization();
-						return;
-					}
 					self.save(ss.mkdel(this, function(response1) {
 						if (self.get_isEditMode()) {
-							self.loadById(self.get_entityId(), null);
+							self.loadById(self.get_entityId(), null, null);
 						}
 						else {
-							self.loadById(response1.EntityId, null);
+							self.loadById(response1.EntityId, null, null);
 						}
 						this.showSaveSuccessMessage(response1);
 					}));
@@ -2558,12 +2664,15 @@
 							if (self.get_isDeleted()) {
 								Q.confirm(Texts$Controls$EntityDialog.UndeleteConfirmation.get(), function() {
 									self.undelete(function() {
-										self.loadById(self.get_entityId(), null);
+										self.loadById(self.get_entityId(), null, null);
 									});
 								});
 							}
 						}
 					});
+					list.push({ title: Texts$Controls$EntityDialog.LocalizationButton.get(), cssClass: 'localization-button', onClick: ss.mkdel(this, function() {
+						this.$localizationButtonClick();
+					}) });
 					list.push({ title: Texts$Controls$EntityDialog.CloneButton.get(), cssClass: 'clone-button', onClick: ss.mkdel(this, function() {
 						if (!self.get_isEditMode()) {
 							return;
@@ -2591,22 +2700,9 @@
 			},
 			updateInterface: function() {
 				var isDeleted = this.get_isDeleted();
-				var isLocalizationMode = this.get_$isLocalizationMode();
-				if (ss.isValue(this.deleteButton)) {
-					this.deleteButton.toggle(!isLocalizationMode && this.get_isEditMode() && !isDeleted);
-				}
-				if (ss.isValue(this.undeleteButton)) {
-					this.undeleteButton.toggle(!isLocalizationMode && this.get_isEditMode() && isDeleted);
-				}
-				if (ss.isValue(this.saveAndCloseButton)) {
-					this.saveAndCloseButton.toggle(!isLocalizationMode && !isDeleted);
-					this.saveAndCloseButton.find('.button-inner').text((this.get_isNew() ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.UpdateButton).get());
-				}
-				if (ss.isValue(this.applyChangesButton)) {
-					this.applyChangesButton.toggle(isLocalizationMode || !isDeleted);
-				}
-				if (ss.isValue(this.cloneButton)) {
-					this.cloneButton.toggle(false);
+				var isLocalizationMode = this.get_isLocalizationMode();
+				if (ss.isValue(this.tabs)) {
+					Serenity.TabsExtensions.setDisabled(this.tabs, 'Log', this.get_isNewOrDeleted());
 				}
 				if (ss.isValue(this.propertyGrid)) {
 					this.propertyGrid.get_element().toggle(!isLocalizationMode);
@@ -2614,11 +2710,35 @@
 				if (ss.isValue(this.localizationGrid)) {
 					this.localizationGrid.get_element().toggle(isLocalizationMode);
 				}
-				if (ss.isValue(this.localizationSelect)) {
-					this.localizationSelect.toggle(this.get_isEditMode() && !this.get_isCloneMode());
+				if (ss.isValue(this.localizationButton)) {
+					this.localizationButton.toggle(ss.isValue(this.localizationGrid));
+					this.localizationButton.find('.button-inner').text((this.get_isLocalizationMode() ? Texts$Controls$EntityDialog.LocalizationBack : Texts$Controls$EntityDialog.LocalizationButton).get());
 				}
-				if (ss.isValue(this.tabs)) {
-					Serenity.TabsExtensions.setDisabled(this.tabs, 'Log', this.get_isNewOrDeleted());
+				if (isLocalizationMode) {
+					if (ss.isValue(this.toolbar)) {
+						this.toolbar.findButton('tool-button').not('.localization-hidden').addClass('.localization-hidden').hide();
+					}
+					if (ss.isValue(this.localizationButton)) {
+						this.localizationButton.show();
+					}
+					return;
+				}
+				this.toolbar.findButton('localization-hidden').removeClass('localization-hidden').show();
+				if (ss.isValue(this.deleteButton)) {
+					this.deleteButton.toggle(this.get_isEditMode() && !isDeleted);
+				}
+				if (ss.isValue(this.undeleteButton)) {
+					this.undeleteButton.toggle(this.get_isEditMode() && isDeleted);
+				}
+				if (ss.isValue(this.saveAndCloseButton)) {
+					this.saveAndCloseButton.toggle(!isDeleted);
+					this.saveAndCloseButton.find('.button-inner').text((this.get_isNew() ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.UpdateButton).get());
+				}
+				if (ss.isValue(this.applyChangesButton)) {
+					this.applyChangesButton.toggle(!isDeleted);
+				}
+				if (ss.isValue(this.cloneButton)) {
+					this.cloneButton.toggle(false);
 				}
 			},
 			getUndeleteOptions: function(callback) {
@@ -2777,13 +2897,14 @@
 						self.addButtonClick();
 					}
 				});
-				buttons.push(this.newRefreshButton());
+				buttons.push(this.newRefreshButton(false));
 				return buttons;
 			},
-			newRefreshButton: function() {
+			newRefreshButton: function(noText) {
 				var self = this;
 				return {
-					title: Texts$Controls$EntityGrid.RefreshButton.get(),
+					title: (noText ? null : Texts$Controls$EntityGrid.RefreshButton.get()),
+					hint: (noText ? Texts$Controls$EntityGrid.RefreshButton.get() : null),
 					cssClass: 'refresh-button',
 					onClick: function() {
 						self.refresh();
@@ -5049,6 +5170,12 @@
 			this.$field = this.options.fields[0];
 			this.$updateInputPlaceHolder();
 		}
+		this.element.bind('execute-search.' + this.uniqueName, ss.mkdel(this, function(e1) {
+			if (!!this.$timer) {
+				window.clearTimeout(this.$timer);
+			}
+			this.$searchNow(Q.trim(ss.coalesce(this.element.val(), '')));
+		}));
 	};
 	$Serenity_QuickSearchInput.__typeName = 'Serenity.QuickSearchInput';
 	global.Serenity.QuickSearchInput = $Serenity_QuickSearchInput;
@@ -5406,7 +5533,6 @@
 		var $this = {};
 		$this.items = null;
 		$this.emptyOptionText = null;
-		$this.emptyOptionText = '--seçiniz--';
 		$this.items = [];
 		return $this;
 	};
@@ -5786,7 +5912,7 @@
 			},
 			getDialogOptions: function() {
 				var opt = {};
-				var dialogClass = 's-Dialog s-' + ss.getTypeName(ss.getInstanceType(this));
+				var dialogClass = 's-Dialog ' + this.getCssClass();
 				opt.dialogClass = dialogClass;
 				opt.width = 920;
 				$type.$applyCssSizes(opt, dialogClass);
@@ -6297,7 +6423,7 @@
 				throw new ss.ArgumentNullException('element');
 			}
 			if (element.length === 0) {
-				throw new ss.Exception(ss.formatString("Searching for widget of type '{0}' on a non-existent element!", ss.getTypeFullName(TWidget)));
+				throw new ss.Exception(ss.formatString("Searching for widget of type '{0}' on a non-existent element! ({1})", ss.getTypeFullName(TWidget), element.selector));
 			}
 			var widget = $Serenity_WX.tryGetWidget(TWidget).call(null, element);
 			if (ss.isNullOrUndefined(widget)) {
@@ -6320,6 +6446,9 @@
 				}
 			}
 			var data = element.data();
+			if (ss.isNullOrUndefined(data)) {
+				return null;
+			}
 			var $t1 = ss.getEnumerator(Object.keys(data));
 			try {
 				while ($t1.moveNext()) {
@@ -6560,7 +6689,23 @@
 			this.asyncPromise = null;
 		},
 		addCssClass: function() {
-			this.element.addClass('s-' + ss.getTypeName(ss.getInstanceType(this)));
+			this.element.addClass(this.getCssClass());
+		},
+		getCssClass: function() {
+			var klass = 's-' + ss.getTypeName(ss.getInstanceType(this));
+			var fullClass = ss.replaceAllString(ss.getTypeFullName(ss.getInstanceType(this)), '.', '-');
+			for (var $t1 = 0; $t1 < Q$Config.rootNamespaces.length; $t1++) {
+				var k = Q$Config.rootNamespaces[$t1];
+				if (ss.startsWithString(fullClass, k + '-')) {
+					fullClass = fullClass.substr(k.length + 1);
+					break;
+				}
+			}
+			fullClass = 's-' + fullClass;
+			if (ss.referenceEquals(klass, fullClass)) {
+				return klass;
+			}
+			return klass + ' ' + fullClass;
 		},
 		get_element: function() {
 			return this.element;
@@ -7076,7 +7221,10 @@
 			return this.options.items || [];
 		},
 		emptyItemText: function() {
-			return this.options.emptyOptionText;
+			if (!ss.isNullOrEmptyString(this.options.emptyOptionText)) {
+				return this.options.emptyOptionText;
+			}
+			return ss.makeGenericType($Serenity_Select2Editor$2, [$Serenity_SelectEditorOptions, Object]).prototype.emptyItemText.call(this);
 		},
 		updateItems: function() {
 			var items = this.getItems();
@@ -7147,9 +7295,6 @@
 				}
 			}
 			return years;
-		},
-		emptyItemText: function() {
-			return this.options.emptyOptionText;
 		}
 	}, $Serenity_SelectEditor, [$Serenity_IStringValue]);
 	ss.initClass($Serenity_SelectEditorOptions, $asm, {});
@@ -8641,13 +8786,16 @@
 				window.clearTimeout(this.$timer);
 			}
 			var self = this;
-			this.$timer = window.setTimeout(ss.mkdel(this, function() {
-				if (!ss.staticEquals(self.options.onSearch, null)) {
-					self.options.onSearch(((ss.isValue(this.$field) && !Q.isEmptyOrNull(this.$field.name)) ? this.$field.name : null), value);
-				}
-				self.element.removeClass(ss.coalesce(self.options.loadingParentClass, ''));
-			}), this.options.typeDelay);
+			this.$timer = window.setTimeout(function() {
+				self.$searchNow(value);
+			}, this.options.typeDelay);
 			this.$lastValue = value;
+		},
+		$searchNow: function(value) {
+			if (!ss.staticEquals(this.options.onSearch, null)) {
+				this.options.onSearch(((ss.isValue(this.$field) && !Q.isEmptyOrNull(this.$field.name)) ? this.$field.name : null), value);
+			}
+			this.element.removeClass(ss.coalesce(this.options.loadingParentClass, ''));
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_QuickSearchInputOptions]));
 	ss.initClass($Serenity_QuickSearchInputOptions, $asm, {});
