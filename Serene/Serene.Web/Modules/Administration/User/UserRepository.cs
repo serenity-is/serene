@@ -177,7 +177,7 @@ namespace Serene.Administration.Repositories
                         Row.Username = MySaveHandler.ValidateUsername(this.Connection, Row.Username, Old.UserId.Value);
 
                     if (Row.DisplayName != Old.DisplayName)
-                        Row.DisplayName = MySaveHandler.ValidateDisplayName(this.Connection, Row.Username, Old.UserId.Value);
+                        Row.DisplayName = MySaveHandler.ValidateDisplayName(this.Connection, Row.DisplayName, Old.UserId.Value);
                 }
 
                 if (IsCreate)
