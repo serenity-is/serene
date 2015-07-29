@@ -3734,7 +3734,7 @@
 			if (!$Serenity_UploadHelper.checkImageConstraints(response, this.options)) {
 				return;
 			}
-			var newEntity = { originalName: name, filename: response.TemporaryFile };
+			var newEntity = { OriginalName: name, Filename: response.TemporaryFile };
 			self.entity = newEntity;
 			self.populate();
 			self.updateInterface();
@@ -4045,7 +4045,7 @@
 			if (!$Serenity_UploadHelper.checkImageConstraints(response, this.options)) {
 				return;
 			}
-			var newEntity = { originalName: name, filename: response.TemporaryFile };
+			var newEntity = { OriginalName: name, Filename: response.TemporaryFile };
 			self.entities.push(newEntity);
 			self.populate();
 			self.updateInterface();
@@ -5194,7 +5194,7 @@
 		$this.filteredParentClass = null;
 		$this.onSearch = null;
 		$this.fields = null;
-		$this.typeDelay = 250;
+		$this.typeDelay = 500;
 		$this.loadingParentClass = 's-QuickSearchLoading';
 		$this.filteredParentClass = 's-QuickSearchFiltered';
 		return $this;
@@ -5329,6 +5329,7 @@
 			},
 			query: function(request, callback) {
 				var options = {
+					blockUI: false,
 					service: this.getService() + '/List',
 					request: request,
 					onSuccess: function(response) {
@@ -5342,6 +5343,7 @@
 			},
 			queryByKey: function(key, callback) {
 				var options = {
+					blockUI: false,
 					service: this.getService() + '/Retrieve',
 					request: { EntityId: key },
 					onSuccess: function(response) {
@@ -5356,7 +5358,7 @@
 			getItemKey: null,
 			getItemText: null,
 			getTypeDelay: function() {
-				return 250;
+				return 500;
 			},
 			getSelect2Options: function() {
 				var emptyItemText = this.emptyItemText();
@@ -6185,7 +6187,7 @@
 		for (var index = 0; index < items.length; index++) {
 			var item = items[index];
 			var li = $('<li/>').addClass('file-item').data('index', index);
-			var isImage = $Serenity_UploadHelper.hasImageExtension(item.filename);
+			var isImage = $Serenity_UploadHelper.hasImageExtension(item.Filename);
 			if (isImage) {
 				li.addClass('file-image');
 			}
@@ -6194,9 +6196,9 @@
 			}
 			var editLink = '#' + index;
 			var thumb = $('<a/>').addClass('thumb').appendTo(li);
-			var originalName = ss.coalesce(item.originalName, '');
+			var originalName = ss.coalesce(item.OriginalName, '');
 			if (isImage) {
-				var fileName = item.filename;
+				var fileName = item.Filename;
 				if (ss.isValue(urlPrefix) && ss.isValue(fileName) && !ss.startsWithString(fileName, 'temporary/')) {
 					fileName = urlPrefix + fileName;
 				}
@@ -6205,7 +6207,7 @@
 				if (!Q.isEmptyOrNull(originalName)) {
 					thumb.attr('title', originalName);
 				}
-				thumb.css('backgroundImage', 'url(' + $Serenity_UploadHelper.dbFileUrl($Serenity_UploadHelper.thumbFileName(item.filename)) + ')');
+				thumb.css('backgroundImage', 'url(' + $Serenity_UploadHelper.dbFileUrl($Serenity_UploadHelper.thumbFileName(item.Filename)) + ')');
 				$Serenity_UploadHelper.colorBox(thumb, new Object());
 			}
 			if (displayOriginalName) {
@@ -8244,7 +8246,7 @@
 		},
 		set_value: function(value) {
 			if (ss.isValue(value)) {
-				if (ss.isNullOrUndefined(value.filename)) {
+				if (ss.isNullOrUndefined(value.Filename)) {
 					this.entity = null;
 				}
 				else {
@@ -8258,12 +8260,12 @@
 			this.updateInterface();
 		},
 		getEditValue: function(property, target) {
-			target[property.name] = (ss.isNullOrUndefined(this.entity) ? null : Q.trimToNull(this.entity.filename));
+			target[property.name] = (ss.isNullOrUndefined(this.entity) ? null : Q.trimToNull(this.entity.Filename));
 		},
 		setEditValue: function(source, property) {
 			var value = {};
-			value.filename = ss.cast(source[property.name], String);
-			value.originalName = ss.cast(source[this.options.originalNameProperty], String);
+			value.Filename = ss.cast(source[property.name], String);
+			value.OriginalName = ss.cast(source[this.options.originalNameProperty], String);
 			this.set_value(value);
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_ImageUploadEditorOptions]), [$Serenity_IGetEditValue, $Serenity_ISetEditValue, $Serenity_IReadOnly]);
@@ -8367,6 +8369,14 @@
 		},
 		populate: function() {
 			$Serenity_UploadHelper.populateFileSymbols(this.fileSymbols, this.entities, true, this.options.urlPrefix);
+			this.fileSymbols.children().each(ss.mkdel(this, function(i, e) {
+				var x = i;
+				$("<a class='delete'></a>").appendTo($(e).children('.filename')).click(ss.mkdel(this, function(ev) {
+					ev.preventDefault();
+					ss.removeAt(this.entities, x);
+					this.populate();
+				}));
+			}));
 		},
 		updateInterface: function() {
 			var addButton = this.toolbar.findButton('add-file-button');
@@ -8407,12 +8417,20 @@
 			}
 		},
 		setEditValue: function(source, property) {
-			if (this.get_jsonEncodeValue()) {
+			var val = source[property.name];
+			if (ss.isInstanceOfType(val, String)) {
 				var json = ss.coalesce(Q.trimToNull(ss.safeCast(source[property.name], String)), '[]');
-				this.set_value($.parseJSON(json));
+				if (ss.startsWithString(json, '[') && ss.endsWithString(json, ']')) {
+					this.set_value($.parseJSON(json));
+				}
+				else {
+					var $t1 = [];
+					$t1.push({ Filename: json, OriginalName: 'UnknownFile' });
+					this.set_value($t1);
+				}
 			}
 			else {
-				this.set_value(ss.cast(source[property.name], Array));
+				this.set_value(ss.cast(val, Array));
 			}
 		},
 		get_jsonEncodeValue: function() {
@@ -9231,6 +9249,7 @@
 		$Serenity_FilterOperators.toCriteriaOperator = null;
 		$Serenity_FilterOperators.toCriteriaOperator = {};
 		$Serenity_FilterOperators.toCriteriaOperator[$Serenity_FilterOperators.EQ] = '=';
+		$Serenity_FilterOperators.toCriteriaOperator[$Serenity_FilterOperators.NE] = '!=';
 		$Serenity_FilterOperators.toCriteriaOperator[$Serenity_FilterOperators.GT] = '>';
 		$Serenity_FilterOperators.toCriteriaOperator[$Serenity_FilterOperators.GE] = '>=';
 		$Serenity_FilterOperators.toCriteriaOperator[$Serenity_FilterOperators.LT] = '<';

@@ -942,6 +942,14 @@
 			return $Serenity_EnumFormatter.format(TEnum, ss.unbox(value));
 		};
 	};
+	$Serenity_EnumFormatter.getName = function(TEnum) {
+		return function(value) {
+			if (!ss.isValue(value)) {
+				return '';
+			}
+			return ss.Enum.toString(TEnum, ss.unbox(value));
+		};
+	};
 	global.Serenity.EnumFormatter = $Serenity_EnumFormatter;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.EnumKeyAttribute
@@ -1222,11 +1230,14 @@
 	};
 	$Serenity_NumberFormatter.__typeName = 'Serenity.NumberFormatter';
 	$Serenity_NumberFormatter.format = function(value, format) {
-		format = ss.coalesce(format, '');
-		if (!ss.isValue(value) || isNaN(value)) {
+		format = ss.coalesce(format, '0.##');
+		if (!ss.isValue(value)) {
 			return '';
 		}
 		if (typeof(value) === 'number') {
+			if (isNaN(value)) {
+				return '';
+			}
 			return $Q.htmlEncode($Q.formatNumber(value, format));
 		}
 		var dbl = $Q.parseDecimal(value.toString());
