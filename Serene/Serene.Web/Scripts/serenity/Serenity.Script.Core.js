@@ -1018,6 +1018,9 @@
 	$Serenity_IdExtensions.convertToId = function(value) {
 		return Q$Externals.toId(value);
 	};
+	$Serenity_IdExtensions.toInt32 = function(value) {
+		return Q$Externals.toId(value);
+	};
 	$Serenity_IdExtensions.isPositiveId = function(id) {
 		if (!ss.isValue(id)) {
 			return false;

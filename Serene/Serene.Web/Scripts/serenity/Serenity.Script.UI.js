@@ -199,6 +199,9 @@
 		$this.items = [];
 		return $this;
 	};
+	$Serenity_CheckListEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.CheckListEditorOptions = $Serenity_CheckListEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.CheckTreeEditor
@@ -353,7 +356,7 @@
 							this.view.updateItem(item.id, item);
 							this.itemSelectedChanged(item);
 						}
-						anyChanged = this.$setAllSubTreeSelected(item, item.isSelected) | anyChanged;
+						anyChanged = !!(this.$setAllSubTreeSelected(item, item.isSelected) | anyChanged);
 						this.updateSelectAll();
 						this.updateFlags();
 					}
@@ -420,7 +423,7 @@
 						this.itemSelectedChanged(sub);
 					}
 					if (sub.children.length > 0) {
-						result = this.$setAllSubTreeSelected(sub, selected) | result;
+						result = !!(this.$setAllSubTreeSelected(sub, selected) | result);
 					}
 				}
 				return result;
@@ -633,6 +636,7 @@
 			this.titleDiv = null;
 			this.toolbar = null;
 			this.filterBar = null;
+			this.quickFiltersDiv = null;
 			this.view = null;
 			this.slickContainer = null;
 			this.slickGrid = null;
@@ -640,6 +644,7 @@
 			this.isActiveFieldName = null;
 			this.localTextPrefix = null;
 			this.$isDisabled = false;
+			this.$4$submitHandlersField = null;
 			this.$slickGridOnSort = null;
 			this.$slickGridOnClick = null;
 			ss.makeGenericType($Serenity_Widget$1, [TOptions]).call(this, container, opt);
@@ -674,6 +679,12 @@
 			}
 		};
 		ss.registerGenericClassInstance($type, $Serenity_DataGrid$2, [TItem, TOptions], {
+			add_submitHandlers: function(value) {
+				this.$4$submitHandlersField = ss.delegateCombine(this.$4$submitHandlersField, value);
+			},
+			remove_submitHandlers: function(value) {
+				this.$4$submitHandlersField = ss.delegateRemove(this.$4$submitHandlersField, value);
+			},
 			layout: function() {
 				if (!this.element.is(':visible')) {
 					return;
@@ -703,6 +714,7 @@
 				$Serenity_GridUtils.addQuickSearchInput(TItem).call(null, this.toolbar.get_element(), this.view, this.getQuickSearchFields());
 			},
 			destroy: function() {
+				this.$4$submitHandlersField = null;
 				if (ss.isValue(this.toolbar)) {
 					this.toolbar.destroy();
 					this.toolbar = null;
@@ -1006,11 +1018,11 @@
 			},
 			onViewSubmit: function() {
 				if (this.get_isDisabled() || !this.getGridCanLoad()) {
-					//view.SetItems(new List<TItem>(), true);
 					return false;
 				}
 				this.setCriteriaParameter();
 				this.setIncludeColumnsParameter();
+				this.invokeSubmitHandlers();
 				return true;
 			},
 			markupReady: function() {
@@ -1270,6 +1282,62 @@
 				this.slickGrid.resizeCanvas();
 			},
 			subDialogDataChange: function() {
+				this.refresh();
+			},
+			addFilterSeparator: function() {
+				if (ss.isValue(this.quickFiltersDiv)) {
+					this.quickFiltersDiv.append($('<hr/>'));
+				}
+			},
+			addEqualityFilter: function(TWidget) {
+				return function(field, title, options, handler, element, init) {
+					if (ss.isNullOrUndefined(this.quickFiltersDiv)) {
+						$('<div/>').addClass('clear').appendTo(this.toolbar.get_element());
+						this.quickFiltersDiv = $('<div/>').addClass('quick-filters-bar').appendTo(this.toolbar.get_element());
+					}
+					var quickFilter = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).children().text(ss.coalesce(title, '')).parent();
+					var widget = $Serenity_Widget.create(TWidget).call(null, ss.mkdel(this, function(e) {
+						if (!Q.isEmptyOrNull(field)) {
+							e.attr('id', this.get_uniqueName() + '_QuickFilter_' + field);
+						}
+						e.attr('placeholder', ' ');
+						e.appendTo(quickFilter);
+						if (!ss.staticEquals(element, null)) {
+							element(e);
+						}
+					}), options, init);
+					this.add_submitHandlers(ss.mkdel(this, function() {
+						var request = this.view.params;
+						request.EqualityFilter = request.EqualityFilter || {};
+						var obj = {};
+						$Serenity_PropertyGrid.saveEditorValue(widget, { name: '$$value$$' }, obj);
+						var value = obj['$$value$$'];
+						var active = ss.isValue(value) && !ss.isNullOrEmptyString(value.toString());
+						if (!ss.staticEquals(handler, null)) {
+							var args = { field: field, request: request, equalityFilter: request.EqualityFilter, value: value, active: active, handled: true };
+							handler(args);
+							quickFilter.toggleClass('quick-filter-active', args.active);
+							if (!args.handled) {
+								request.EqualityFilter[field] = value;
+							}
+						}
+						else {
+							request.EqualityFilter[field] = value;
+							quickFilter.toggleClass('quick-filter-active', active);
+						}
+					}));
+					$Serenity_WX.change(widget, ss.mkdel(this, function(e1) {
+						this.quickFilterChange(e1);
+					}));
+					return widget;
+				};
+			},
+			invokeSubmitHandlers: function() {
+				if (!ss.staticEquals(this.$4$submitHandlersField, null)) {
+					this.$4$submitHandlersField();
+				}
+			},
+			quickFilterChange: function(e) {
 				this.refresh();
 			},
 			get_view: function() {
@@ -1568,6 +1636,9 @@
 		$this.maxYear = '+0';
 		return $this;
 	};
+	$Serenity_DateYearEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.DateYearEditorOptions = $Serenity_DateYearEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.DecimalEditor
@@ -1605,6 +1676,9 @@
 		$this.minValue = '0.00';
 		$this.maxValue = '999999999999.99';
 		return $this;
+	};
+	$Serenity_DecimalEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.DecimalEditorOptions = $Serenity_DecimalEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -1871,6 +1945,9 @@
 		$this.domain = null;
 		$this.readOnlyDomain = false;
 		return $this;
+	};
+	$Serenity_EmailEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.EmailEditorOptions = $Serenity_EmailEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -3046,6 +3123,9 @@
 		$this.enumKey = null;
 		return $this;
 	};
+	$Serenity_EnumEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.EnumEditorOptions = $Serenity_EnumEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.EnumFiltering
@@ -3509,15 +3589,29 @@
 				}
 				return true;
 			};
-			$Serenity_GridUtils.addQuickSearchInputCustom(toolDiv, function(field, query) {
+			var lastDoneEvent = null;
+			$Serenity_GridUtils.addQuickSearchInputCustom$1(toolDiv, function(field, query, done) {
 				searchText = query;
 				searchField = field;
 				view.seekToPage = 1;
+				lastDoneEvent = done;
 				view.populate();
 			}, fields);
+			view.onDataLoaded.subscribe(function(e, ui) {
+				if (!ss.staticEquals(lastDoneEvent, null)) {
+					lastDoneEvent(view.rows.length > 0);
+					lastDoneEvent = null;
+				}
+			});
 		};
 	};
 	$Serenity_GridUtils.addQuickSearchInputCustom = function(container, onSearch, fields) {
+		$Serenity_GridUtils.addQuickSearchInputCustom$1(container, function(x, y, z) {
+			onSearch(x, y);
+			z(true);
+		}, null);
+	};
+	$Serenity_GridUtils.addQuickSearchInputCustom$1 = function(container, onSearch, fields) {
 		var input = $('<div><input type="text"/></div>').addClass('s-QuickSearchBar').prependTo(container);
 		if (ss.isValue(fields) && fields.length > 0) {
 			input.addClass('has-quick-search-fields');
@@ -3658,6 +3752,9 @@
 		$this.rows = 6;
 		return $this;
 	};
+	$Serenity_HtmlContentEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.HtmlContentEditorOptions = $Serenity_HtmlContentEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.HtmlReportContentEditor
@@ -3765,6 +3862,9 @@
 		$this.allowNonImage = false;
 		return $this;
 	};
+	$Serenity_ImageUploadEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.ImageUploadEditorOptions = $Serenity_ImageUploadEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.IntegerEditor
@@ -3791,6 +3891,9 @@
 		$this.minValue = 0;
 		$this.maxValue = 2147483647;
 		return $this;
+	};
+	$Serenity_IntegerEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.IntegerEditorOptions = $Serenity_IntegerEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -3993,6 +4096,9 @@
 		$this.minimumResultsForSearch = null;
 		return $this;
 	};
+	$Serenity_LookupEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.LookupEditorOptions = $Serenity_LookupEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.LookupFiltering
@@ -4024,6 +4130,9 @@
 		$this.mask = '';
 		$this.placeholder = '_';
 		return $this;
+	};
+	$Serenity_MaskedEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.MaskedEditorOptions = $Serenity_MaskedEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -4364,6 +4473,9 @@
 		$this.allowExtension = false;
 		$this.allowInternational = false;
 		return $this;
+	};
+	$Serenity_PhoneEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.PhoneEditorOptions = $Serenity_PhoneEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -4847,6 +4959,9 @@
 		$this.defaultCategory = Texts$Controls$PropertyGrid.DefaultCategory.get();
 		return $this;
 	};
+	$Serenity_PropertyGridOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.PropertyGridOptions = $Serenity_PropertyGridOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.PropertyItemHelper
@@ -5199,6 +5314,9 @@
 		$this.filteredParentClass = 's-QuickSearchFiltered';
 		return $this;
 	};
+	$Serenity_QuickSearchInputOptions.isInstanceOfType = function() {
+		return true;
+	};
 	global.Serenity.QuickSearchInputOptions = $Serenity_QuickSearchInputOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ReflectionOptionsSetter
@@ -5537,6 +5655,9 @@
 		$this.emptyOptionText = null;
 		$this.items = [];
 		return $this;
+	};
+	$Serenity_SelectEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.SelectEditorOptions = $Serenity_SelectEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -6031,6 +6152,9 @@
 		$this.cols = 80;
 		$this.rows = 6;
 		return $this;
+	};
+	$Serenity_TextAreaEditorOptions.isInstanceOfType = function() {
+		return true;
 	};
 	global.Serenity.TextAreaEditorOptions = $Serenity_TextAreaEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
@@ -6644,8 +6768,9 @@
 		var self = this;
 		var $t2 = $('#QuickSearchInput');
 		var $t1 = $Serenity_QuickSearchInputOptions.$ctor();
-		$t1.onSearch = function(field, text) {
+		$t1.onSearch = function(field, text, done) {
 			self.$updateMatchFlags(text);
+			done(true);
 		};
 		new $Serenity_QuickSearchInput($t2, $t1);
 	};
@@ -8798,8 +8923,6 @@
 				return;
 			}
 			this.$fieldChanged = false;
-			this.element.parent().toggleClass(ss.coalesce(this.options.filteredParentClass, ''), !!(value.length > 0));
-			this.element.addClass(ss.coalesce(this.options.loadingParentClass, ''));
 			if (!!this.$timer) {
 				window.clearTimeout(this.$timer);
 			}
@@ -8810,10 +8933,20 @@
 			this.$lastValue = value;
 		},
 		$searchNow: function(value) {
+			this.element.parent().toggleClass(ss.coalesce(this.options.filteredParentClass, ''), !!(value.length > 0));
+			this.element.parent().addClass(ss.coalesce(this.options.loadingParentClass, '')).addClass(ss.coalesce(this.options.loadingParentClass, ''));
+			var done = ss.mkdel(this, function(results) {
+				this.element.removeClass(ss.coalesce(this.options.loadingParentClass, '')).parent().removeClass(ss.coalesce(this.options.loadingParentClass, ''));
+				if (!results) {
+					this.element.closest('.s-QuickSearchBar').find('.quick-search-icon i').effect('shake', { distance: 2 });
+				}
+			});
 			if (!ss.staticEquals(this.options.onSearch, null)) {
-				this.options.onSearch(((ss.isValue(this.$field) && !Q.isEmptyOrNull(this.$field.name)) ? this.$field.name : null), value);
+				this.options.onSearch(((ss.isValue(this.$field) && !Q.isEmptyOrNull(this.$field.name)) ? this.$field.name : null), value, done);
 			}
-			this.element.removeClass(ss.coalesce(this.options.loadingParentClass, ''));
+			else {
+				done(true);
+			}
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_QuickSearchInputOptions]));
 	ss.initClass($Serenity_QuickSearchInputOptions, $asm, {});

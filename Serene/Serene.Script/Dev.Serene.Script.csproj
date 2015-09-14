@@ -48,9 +48,6 @@
     <Compile Include="Imports\FormContexts\Administration.UserForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\FormContexts\Common.FileForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
     <Compile Include="Imports\FormContexts\Membership.LoginForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
@@ -166,18 +163,6 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.FileRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.FileService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.Pages.FileController.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.Pages.UploadResponse.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.LoginRequest.cs">
@@ -327,7 +312,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib">
-      <HintPath>$(SolutionDir)packages\Saltarelle.Runtime.2.6.2\tools\Assemblies\mscorlib.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Saltarelle.Runtime.2.7.0\tools\Assemblies\mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="Saltarelle.jQuery">
       <HintPath>..\..\packages\Saltarelle.jQuery.1.10.1\lib\Saltarelle.jQuery.dll</HintPath>
@@ -356,8 +341,8 @@
       <Name>Serenity.Script.UI</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="!Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.6.2\tools\Saltarelle.Compiler.targets')" />
-  <Import Project="$(SolutionDir)packages\Saltarelle.Compiler.2.6.2\tools\Saltarelle.Compiler.targets" Condition="Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.6.2\tools\Saltarelle.Compiler.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="!Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets')" />
+  <Import Project="$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets" Condition="Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -407,8 +407,9 @@
 		Serenity.Widget.call(this, input);
 		var self = this;
 		var $t1 = Serenity.QuickSearchInputOptions.$ctor();
-		$t1.onSearch = function(field, text) {
+		$t1.onSearch = function(field, text, success) {
 			self.$updateMatchFlags(text);
+			success(true);
 		};
 		new Serenity.QuickSearchInput(input, $t1);
 		this.$menuUL = menuUL;

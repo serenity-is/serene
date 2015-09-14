@@ -936,6 +936,30 @@ textarea,
   opacity: 1;
   background-color: #fe7;
 }
+.quick-filters-bar {
+  border: 1px solid #C6C8D6;
+  background-color: #D3DBE4;
+  padding: 6px;
+  margin-top: 4px;
+  border-radius: 4px;
+}
+.quick-filters-bar hr {
+  border-top: 1px solid #C6CCDE;
+  margin: 6px 0px;
+}
+.quick-filters-bar .quick-filter-item {
+  display: inline-block;
+}
+.quick-filters-bar .quick-filter-label {
+  display: block;
+  font-size: 11px;
+  color: #000;
+  margin-bottom: 0px;
+}
+.quick-filters-bar .quick-filter-active .quick-filter-label {
+  color: #0661FF;
+  font-weight: 600;
+}
 .s-TreeIndent {
   padding: 1px 0 0 0;
   height: 1px;
@@ -1779,6 +1803,9 @@ a.s-LinkDropDown input {
 }
 .s-QuickSearchBar.has-quick-search-fields {
   border-right: none;
+}
+.s-QuickSearchBar.s-QuickSearchLoading span i {
+  background: #ffffff url(images/quick-search-loading.gif) no-repeat center center;
 }
 .s-QuickTextSearch {
   float: right;

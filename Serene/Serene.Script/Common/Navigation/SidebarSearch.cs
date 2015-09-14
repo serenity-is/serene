@@ -14,9 +14,10 @@
 
             new QuickSearchInput(input, new QuickSearchInputOptions
             {
-                OnSearch = (field, text) =>
+                OnSearch = (field, text, success) =>
                 {
                     self.UpdateMatchFlags(text);
+                    success(true);
                 }
             });
 
