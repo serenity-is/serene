@@ -24,7 +24,7 @@ Task("PrepareVSIX")
     var sampleScriptProj = r + @"Serene\Serene.Script\Serene.Script.csproj";
 
     Func<string, List<Tuple<string, string>>> parsePackages = path => {
-        var xml = XElement.Parse(File.ReadAllText(path));
+        var xml = XElement.Parse(System.IO.File.ReadAllText(path));
         var pkg = new List<Tuple<string, string>>();
         foreach (var x in xml.Descendants("package"))
             pkg.Add(new Tuple<string, string>(x.Attribute("id").Value, x.Attribute("version").Value));
@@ -39,7 +39,7 @@ Task("PrepareVSIX")
             var pkgFile = pkg + ".nupkg";
             var src = System.IO.Path.Combine(System.IO.Path.Combine(samplePackagesFolder, pkg), pkgFile);
             var dst = System.IO.Path.Combine(System.IO.Path.Combine(vsixPackagesFolder, pkgFile));
-            File.Copy(src, dst, overwrite: true);
+            System.IO.File.Copy(src, dst, overwrite: true);
         }
         return list;
     };
@@ -47,7 +47,7 @@ Task("PrepareVSIX")
     Func<string, List<string>> getProjectFileList = (path) =>
     {
         XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
-        var xv = XElement.Parse(File.ReadAllText(path));
+        var xv = XElement.Parse(System.IO.File.ReadAllText(path));
         var list = xv.Descendants(ns + "ItemGroup").Elements().Where(x => (
             x.Name == ns + "Content" ||
             x.Name == ns + "Compile" ||
@@ -83,7 +83,7 @@ Task("PrepareVSIX")
         allPackages.AddRange(hash);
         allPackages.Sort((x, y) => x.Item1.CompareTo(y.Item1));
     
-        var xm = XElement.Parse(File.ReadAllText(vsixManifestFile));
+        var xm = XElement.Parse(System.IO.File.ReadAllText(vsixManifestFile));
         var ver = allPackages.First(x => x.Item1.StartsWith("Serenity.Core")).Item2;
         var identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
         var old = identity.Attribute("Version").Value;
@@ -92,9 +92,9 @@ Task("PrepareVSIX")
         else
             ver = ver + ".0";
         identity.SetAttributeValue("Version", ver);
-        File.WriteAllText(vsixManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
+        System.IO.File.WriteAllText(vsixManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
     
-        var xv = XElement.Parse(File.ReadAllText(vsixProjFile));
+        var xv = XElement.Parse(System.IO.File.ReadAllText(vsixProjFile));
         XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
         var xp = xv.Descendants().Where(x => x.Name == ns + "Content" && x.Attribute("Include") != null &&
             x.Attribute("Include").Value.StartsWith(@"packages\"));
@@ -110,11 +110,11 @@ Task("PrepareVSIX")
             itemGroup.Add(xu);
         }
         
-        File.WriteAllText(vsixProjFile, xv.ToString(SaveOptions.OmitDuplicateNamespaces));  
+        System.IO.File.WriteAllText(vsixProjFile, xv.ToString(SaveOptions.OmitDuplicateNamespaces));  
     };
 
     Action<string> replaceParams = (path) => {
-        var content = File.ReadAllText(path);
+        var content = System.IO.File.ReadAllText(path);
         if (content.IndexOf("Serene") >= 0)
         {
             content = content.Replace(@"\Serene", @"\$ext_projectname$");
@@ -122,7 +122,7 @@ Task("PrepareVSIX")
             content = content.Replace(@"Serene.Web\", @"$ext_projectname$.Web\");
             content = content.Replace(@"Serene\", @"$ext_projectname$\");
             content = content.Replace("Serene", "$ext_safeprojectname$");
-            File.WriteAllText(path, content);
+            System.IO.File.WriteAllText(path, content);
         }   
     };
     
@@ -130,7 +130,7 @@ Task("PrepareVSIX")
         var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
         var fileList = getProjectFileList(csproj);
         
-        var xv = XElement.Parse(File.ReadAllText(vsTemplate));
+        var xv = XElement.Parse(System.IO.File.ReadAllText(vsTemplate));
         XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
         var project = xv.Descendants(ns + "Project").First();
         project.Elements().Remove();
@@ -192,8 +192,8 @@ Task("PrepareVSIX")
             folder.Add(item);
             
             var targetFile = System.IO.Path.Combine(copyTargetRoot, file);
-            Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
-            File.Copy(System.IO.Path.Combine(copySourceRoot, file), targetFile);
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
+            System.IO.File.Copy(System.IO.Path.Combine(copySourceRoot, file), targetFile);
             
             if (replaceParameters) {
                 replaceParams(targetFile);
@@ -210,35 +210,35 @@ Task("PrepareVSIX")
             pkg.Add(pk);
         }
         
-        File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
-        File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
+        System.IO.File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
+        System.IO.File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
-        File.WriteAllText(targetProj, File.ReadAllText(csproj)
+        System.IO.File.WriteAllText(targetProj, System.IO.File.ReadAllText(csproj)
             .Replace("http://localhost:55555/", "")
             .Replace("<DevelopmentServerPort>55556</DevelopmentServerPort>", "<DevelopmentServerPort></DevelopmentServerPort>"));
         replaceParams(targetProj);
     };
 
-    foreach (var file in Directory.GetFiles(vsixPackagesFolder, "*.nupkg"))
-        File.Delete(file);
+    foreach (var file in System.IO.Directory.GetFiles(vsixPackagesFolder, "*.nupkg"))
+        System.IO.File.Delete(file);
     
     var webPackages = parseAndCopyPackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
     var scriptPackages = parseAndCopyPackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleScriptProj), "packages.config"));
     updateVsixProj(webPackages, scriptPackages);
     
-    if (Directory.Exists(templateFolder)) 
-        Directory.Delete(templateFolder, true);
+    if (System.IO.Directory.Exists(templateFolder)) 
+        System.IO.Directory.Delete(templateFolder, true);
         
-    Directory.CreateDirectory(templateFolder);
-    Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Web"));
-    Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));
+    System.IO.Directory.CreateDirectory(templateFolder);
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Web"));
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));
     
     
     replaceTemplateFileList(sampleScriptProj, scriptPackages);
     replaceTemplateFileList(sampleWebProj, webPackages);
-    File.Copy(r + @"Serene\SerenityLogo.ico", 
+    System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 
-    File.Copy(r + @"Serene\Serene.vstemplate", 
+    System.IO.File.Copy(r + @"Serene\Serene.vstemplate", 
         System.IO.Path.Combine(templateFolder, "Serene.vstemplate")); 
         
     Zip(templateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
