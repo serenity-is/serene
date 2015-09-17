@@ -17,3 +17,4 @@ Serene/Serene.Web/App_Data/
 VSIX/packages/
 Serene.Template.zip
 Template/packages/
+.vs/config/applicationhost.config
