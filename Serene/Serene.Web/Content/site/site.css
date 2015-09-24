@@ -19,7 +19,9 @@ select,
 .ui-widget .ui-widget-content,
 input[type=text],
 input[type=email],
-input[type=password] {
+input[type=password],
+textarea,
+.ui-widget textarea {
   font-family: 'Open Sans', 'Segoe UI', Arial, Helvetica, sans-serif;
   font-size: 13px;
 }

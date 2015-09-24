@@ -3272,13 +3272,6 @@
 	$Serenity_FilterPanel.__typeName = 'Serenity.FilterPanel';
 	global.Serenity.FilterPanel = $Serenity_FilterPanel;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.FilterPanelTest
-	var $Serenity_FilterPanelTest = function() {
-		Serenity.ScriptContext.call(this);
-	};
-	$Serenity_FilterPanelTest.__typeName = 'Serenity.FilterPanelTest';
-	global.Serenity.FilterPanelTest = $Serenity_FilterPanelTest;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.FilterStore
 	var $Serenity_FilterStore = function(fields) {
 		this.$changed = null;
@@ -8029,20 +8022,6 @@
 			}
 		}
 	}, ss.makeGenericType($Serenity_FilterWidgetBase$1, [Object]));
-	ss.initClass($Serenity_FilterPanelTest, $asm, {
-		run: function() {
-			var fields = Q.getColumns('Northwind.Product');
-			var dialog = new $Serenity_FilterDialog();
-			var panel = dialog.get_filterPanel();
-			panel.set_showInitialLine(true);
-			var store = new $Serenity_FilterStore(Enumerable.from(fields).where(function(x) {
-				return x.notFilterable !== true;
-			}));
-			panel.set_showSearchButton(true);
-			panel.set_store(store);
-			dialog.dialogOpen();
-		}
-	}, Serenity.ScriptContext);
 	ss.initClass($Serenity_FilterStore, $asm, {
 		get_fields: function() {
 			return this.$1$FieldsField;
