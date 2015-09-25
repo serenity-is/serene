@@ -8,7 +8,6 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using Serene.Northwind;
 
     public partial class TerritoryForm : PrefixedContext
     {
