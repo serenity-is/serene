@@ -1785,7 +1785,7 @@
 	// Serenity.EditorTypeEditor
 	var $Serenity_EditorTypeEditor = function(select) {
 		var $t1 = $Serenity_SelectEditorOptions.$ctor();
-		$t1.emptyOptionText = '--seçiniz--';
+		$t1.emptyOptionText = Texts$Controls$SelectEditor.EmptyItemText.get();
 		$Serenity_SelectEditor.call(this, select, $t1);
 	};
 	$Serenity_EditorTypeEditor.__typeName = 'Serenity.EditorTypeEditor';
@@ -5488,7 +5488,11 @@
 		};
 		ss.registerGenericClassInstance($type, $Serenity_Select2AjaxEditor$2, [TOptions, TItem], {
 			emptyItemText: function() {
-				return ss.coalesce(this.element.attr('placeholder'), '--seçiniz--');
+				var $t1 = this.element.attr('placeholder');
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = Texts$Controls$SelectEditor.EmptyItemText.get();
+				}
+				return $t1;
 			},
 			getService: function() {
 				throw new ss.NotImplementedException();
@@ -5609,7 +5613,11 @@
 		};
 		ss.registerGenericClassInstance($type, $Serenity_Select2Editor$2, [TOptions, TItem], {
 			emptyItemText: function() {
-				return ss.coalesce(this.element.attr('placeholder'), '--seçiniz--');
+				var $t1 = this.element.attr('placeholder');
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = Texts$Controls$SelectEditor.EmptyItemText.get();
+				}
+				return $t1;
 			},
 			getSelect2Options: function() {
 				var emptyItemText = this.emptyItemText();

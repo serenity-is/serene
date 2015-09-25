@@ -178,7 +178,7 @@
 		select.html('');
 	};
 	$Q.addEmptyOption = function(select) {
-		$Q.addOption(select, '', '--seçiniz--');
+		$Q.addOption(select, '', $Texts$Controls$SelectEditor.EmptyItemText.get());
 	};
 	$Q.addOption = function(select, key, text) {
 		$('<option/>').val(key).text(text).appendTo(select);
@@ -1924,6 +1924,14 @@
 		$Q$LT.initializeTextClass($Texts$Dialogs, 'Dialogs.');
 	})();
 	(function() {
+		$Texts$Controls$SelectEditor.EmptyItemText = new Q$LT('--select--');
+		$Texts$Controls$SelectEditor.InplaceAdd = new Q$LT('Define New');
+		$Texts$Controls$SelectEditor.InplaceEdit = new Q$LT('Edit');
+		$Texts$Controls$SelectEditor.ClickToDefine = new Q$LT('*** Click to define a new one ***');
+		$Texts$Controls$SelectEditor.NoResultsClickToDefine = new Q$LT('*** No results. Click to define a new one ***');
+		$Q$LT.initializeTextClass($Texts$Controls$SelectEditor, 'Controls.SelectEditor.');
+	})();
+	(function() {
 		$Serenity_LazyLoadHelper.$autoIncrement = 0;
 	})();
 	(function() {
@@ -1995,13 +2003,6 @@
 		$Texts$Controls$QuickSearch.Hint = new Q$LT('enter the text to search for...');
 		$Texts$Controls$QuickSearch.FieldSelection = new Q$LT('select the field to search on');
 		$Q$LT.initializeTextClass($Texts$Controls$QuickSearch, 'Controls.QuickSearch.');
-	})();
-	(function() {
-		$Texts$Controls$SelectEditor.InplaceAdd = new Q$LT('Define New');
-		$Texts$Controls$SelectEditor.InplaceEdit = new Q$LT('Edit');
-		$Texts$Controls$SelectEditor.ClickToDefine = new Q$LT('*** Click to define a new one ***');
-		$Texts$Controls$SelectEditor.NoResultsClickToDefine = new Q$LT('*** No results. Click to define a new one***');
-		$Q$LT.initializeTextClass($Texts$Controls$SelectEditor, 'Controls.SelectEditor.');
 	})();
 	(function() {
 		$Serenity_EnumTypeRegistry.$knownTypes = null;
