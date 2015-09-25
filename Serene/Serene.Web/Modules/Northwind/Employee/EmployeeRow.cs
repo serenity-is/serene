@@ -9,7 +9,7 @@ namespace Serene.Northwind.Entities
     using System.IO;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Employees"), InstanceName("Employee")]
+    [ConnectionKey("Default"), DisplayName("Employees"), InstanceName("Employee"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]

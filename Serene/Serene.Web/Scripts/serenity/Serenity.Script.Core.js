@@ -780,6 +780,12 @@
 	$Texts$Controls$QuickSearch.__typeName = 'Texts$Controls$QuickSearch';
 	global.Texts$Controls$QuickSearch = $Texts$Controls$QuickSearch;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.Texts.Controls.SelectEditor
+	var $Texts$Controls$SelectEditor = function() {
+	};
+	$Texts$Controls$SelectEditor.__typeName = 'Texts$Controls$SelectEditor';
+	global.Texts$Controls$SelectEditor = $Texts$Controls$SelectEditor;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.Texts.Dialogs
 	var $Texts$Dialogs = function() {
 	};
@@ -1681,6 +1687,7 @@
 	ss.initClass($Texts$Controls$Pager, $asm, {});
 	ss.initClass($Texts$Controls$PropertyGrid, $asm, {});
 	ss.initClass($Texts$Controls$QuickSearch, $asm, {});
+	ss.initClass($Texts$Controls$SelectEditor, $asm, {});
 	ss.initClass($Texts$Dialogs, $asm, {});
 	ss.initInterface($Serenity_ISlickFormatter, $asm, { format: null });
 	ss.initClass($Serenity_BooleanFormatter, $asm, {
@@ -1988,6 +1995,13 @@
 		$Texts$Controls$QuickSearch.Hint = new Q$LT('enter the text to search for...');
 		$Texts$Controls$QuickSearch.FieldSelection = new Q$LT('select the field to search on');
 		$Q$LT.initializeTextClass($Texts$Controls$QuickSearch, 'Controls.QuickSearch.');
+	})();
+	(function() {
+		$Texts$Controls$SelectEditor.InplaceAdd = new Q$LT('Define New');
+		$Texts$Controls$SelectEditor.InplaceEdit = new Q$LT('Edit');
+		$Texts$Controls$SelectEditor.ClickToDefine = new Q$LT('*** Click to define a new one ***');
+		$Texts$Controls$SelectEditor.NoResultsClickToDefine = new Q$LT('*** No results. Click to define a new one***');
+		$Q$LT.initializeTextClass($Texts$Controls$SelectEditor, 'Controls.SelectEditor.');
 	})();
 	(function() {
 		$Serenity_EnumTypeRegistry.$knownTypes = null;

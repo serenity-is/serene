@@ -10,7 +10,7 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using Serenity.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Products"), InstanceName("Product")]
+    [ConnectionKey("Default"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
@@ -45,7 +45,7 @@ namespace Serene.Northwind.Entities
         }
 
         [DisplayName("Supplier Id"), ForeignKey("Suppliers", "SupplierID"), LeftJoin("sup")]
-        [LookupEditor(typeof(SupplierRow))]
+        [LookupEditor(typeof(SupplierRow), InplaceAdd = true)]
         public Int32? SupplierID
         {
             get { return Fields.SupplierID[this]; }
@@ -53,7 +53,7 @@ namespace Serene.Northwind.Entities
         }
 
         [DisplayName("Category Id"), ForeignKey("Categories", "CategoryID"), LeftJoin("cat")]
-        [LookupEditor(typeof(CategoryRow))]
+        [LookupEditor(typeof(CategoryRow), InplaceAdd = true)]
         public Int32? CategoryID
         {
             get { return Fields.CategoryID[this]; }

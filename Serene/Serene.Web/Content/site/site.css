@@ -457,6 +457,22 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 #toast-container {
   font-size: 13px;
 }
+.inplace-button {
+  height: 26px;
+  width: 24px;
+}
+.inplace-button b {
+  width: 22px;
+  height: 22px;
+}
+.inplace-create b {
+  background-image: url(../serenity/images/star-pencil.png);
+  background-position: center 4px;
+}
+.inplace-create.edit b {
+  background-image: url(../serenity/images/pencil.png);
+  background-position: center 4px;
+}
 #wrapper {
   width: 100%;
 }
@@ -633,7 +649,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-CategoryDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-CategoryDialog .s-Form .emaildomain {
   width: 215px;
@@ -671,7 +687,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-CustomerDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-CustomerDialog .s-Form .emaildomain {
   width: 215px;
@@ -709,7 +725,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-ProductDialog .s-Form .editor.has-inplace-button {
-  width: 358px;
+  width: 354px;
 }
 .s-ProductDialog .s-Form .emaildomain {
   width: 195px;
@@ -747,7 +763,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-RegionDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-RegionDialog .s-Form .emaildomain {
   width: 215px;
@@ -785,7 +801,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-ShipperDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-ShipperDialog .s-Form .emaildomain {
   width: 215px;
@@ -823,7 +839,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-SupplierDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-SupplierDialog .s-Form .emaildomain {
   width: 215px;
@@ -861,7 +877,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-left: 4px;
 }
 .s-TerritoryDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-TerritoryDialog .s-Form .emaildomain {
   width: 215px;
@@ -908,7 +924,7 @@ a,
   margin-left: 4px;
 }
 #LoginPanelWrapper .s-LoginPanel .s-Form .editor.has-inplace-button {
-  width: 278px;
+  width: 274px;
 }
 #LoginPanelWrapper .s-LoginPanel .s-Form .emaildomain {
   width: 115px;
@@ -965,7 +981,7 @@ a,
   margin-left: 4px;
 }
 .s-UserDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-UserDialog .s-Form .emaildomain {
   width: 215px;
@@ -1003,7 +1019,7 @@ a,
   margin-left: 4px;
 }
 .s-LanguageDialog .s-Form .editor.has-inplace-button {
-  width: 378px;
+  width: 374px;
 }
 .s-LanguageDialog .s-Form .emaildomain {
   width: 215px;

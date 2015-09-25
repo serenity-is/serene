@@ -3950,6 +3950,9 @@
 	// Serenity.LookupEditor
 	var $Serenity_LookupEditor = function(hidden, opt) {
 		ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).call(this, hidden, opt);
+		if (this.options.inplaceAdd) {
+			this.addInplaceCreate(Texts$Controls$SelectEditor.InplaceAdd.get(), null);
+		}
 	};
 	$Serenity_LookupEditor.__typeName = 'Serenity.LookupEditor';
 	global.Serenity.LookupEditor = $Serenity_LookupEditor;
@@ -3973,6 +3976,7 @@
 	// Serenity.LookupEditorBase
 	var $Serenity_LookupEditorBase$2 = function(TOptions, TItem) {
 		var $type = function(hidden, opt) {
+			this.$5$OnInitNewEntityField = null;
 			ss.makeGenericType($Serenity_Select2Editor$2, [TOptions, TItem]).call(this, hidden, opt);
 			var self = this;
 			if (!this.isAsyncWidget()) {
@@ -4063,6 +4067,55 @@
 						$t1.dispose();
 					}
 				}), null);
+			},
+			getDialogTypeKey: function() {
+				return this.getLookupKey();
+			},
+			createEditDialog: function(callback) {
+				var dialogTypeKey = this.getDialogTypeKey();
+				var dialogType = $Serenity_DialogTypeRegistry.get(dialogTypeKey);
+				$Serenity_Widget.createOfType(dialogType, null, {}, function(dlg) {
+					callback(ss.cast(dlg, $Serenity_IEditDialog));
+				});
+			},
+			initNewEntity: function(entity) {
+				if (!ss.staticEquals(this.get_onInitNewEntity(), null)) {
+					this.get_onInitNewEntity()(entity);
+				}
+			},
+			get_onInitNewEntity: function() {
+				return this.$5$OnInitNewEntityField;
+			},
+			set_onInitNewEntity: function(value) {
+				this.$5$OnInitNewEntityField = value;
+			},
+			inplaceCreateClick: function(e) {
+				var self = this;
+				this.createEditDialog(ss.mkdel(this, function(dialog) {
+					$Serenity_SubDialogHelper.bindToDataChange(ss.safeCast(dialog, $Serenity_Widget), this, ss.mkdel(this, function(x, dci) {
+						Q.reloadLookup(this.getLookupKey());
+						self.updateItems();
+						self.set_value(null);
+						if ((dci.type === 'create' || dci.type === 'update') && ss.isValue(dci.entityId)) {
+							self.set_value(ss.unbox(dci.entityId).toString());
+						}
+					}), true);
+					if (Q.isEmptyOrNull(this.get_value())) {
+						var entity = ss.createInstance(TItem);
+						entity[this.getLookup().get_textField()] = Q.trimToEmpty(this.lastCreateTerm);
+						if (!ss.staticEquals(this.get_onInitNewEntity(), null)) {
+							this.get_onInitNewEntity()(entity);
+						}
+						dialog.load(entity, function() {
+							dialog.dialogOpen();
+						}, null);
+					}
+					else {
+						dialog.load(ss.unbox(Serenity.IdExtensions.convertToId(this.get_value())), function() {
+							dialog.dialogOpen();
+						}, null);
+					}
+				}));
 			}
 		}, function() {
 			return ss.makeGenericType($Serenity_Select2Editor$2, [TOptions, TItem]);
@@ -4087,6 +4140,8 @@
 		var $this = {};
 		$this.lookupKey = null;
 		$this.minimumResultsForSearch = null;
+		$this.inplaceAdd = false;
+		$this.dialogType = null;
 		return $this;
 	};
 	$Serenity_LookupEditorOptions.isInstanceOfType = function() {
@@ -5534,6 +5589,7 @@
 		var $type = function(hidden, opt) {
 			this.items = null;
 			this.pageSize = 100;
+			this.lastCreateTerm = null;
 			ss.makeGenericType($Serenity_Widget$1, [TOptions]).call(this, hidden, opt);
 			this.items = [];
 			var emptyItemText = this.emptyItemText();
@@ -5557,7 +5613,7 @@
 			},
 			getSelect2Options: function() {
 				var emptyItemText = this.emptyItemText();
-				return { data: this.items, placeHolder: (!Q.isEmptyOrNull(emptyItemText) ? emptyItemText : null), allowClear: ss.isValue(emptyItemText), query: ss.mkdel(this, function(query) {
+				return { data: this.items, placeHolder: (!Q.isEmptyOrNull(emptyItemText) ? emptyItemText : null), allowClear: ss.isValue(emptyItemText), createSearchChoicePosition: 'bottom', query: ss.mkdel(this, function(query) {
 					var term = (Q.isEmptyOrNull(query.term) ? '' : Select2.util.stripDiacritics(ss.coalesce(query.term, '')).toUpperCase());
 					var results = this.items.filter(function(item) {
 						return ss.isNullOrUndefined(term) || ss.startsWithString(Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase(), term);
@@ -5585,14 +5641,55 @@
 			addItem: function(key, text, source, disabled) {
 				this.items.push({ id: key, text: text, source: source, disabled: disabled });
 			},
-			addInplaceCreate: function(title) {
+			addInplaceCreate: function(addTitle, editTitle) {
 				var self = this;
-				$('<a><b/></a>').addClass('inplace-button inplace-create').attr('title', title).insertAfter(this.element).click(function(e) {
+				var $t1 = addTitle;
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = Texts$Controls$SelectEditor.InplaceAdd.get();
+				}
+				addTitle = $t1;
+				var $t2 = editTitle;
+				if (ss.isNullOrUndefined($t2)) {
+					$t2 = Texts$Controls$SelectEditor.InplaceEdit.get();
+				}
+				editTitle = $t2;
+				var inplaceButton = $('<a><b/></a>').addClass('inplace-button inplace-create').attr('title', addTitle).insertAfter(this.element).click(function(e) {
 					self.inplaceCreateClick(e);
 				});
 				this.get_select2Container().add(this.element).addClass('has-inplace-button');
+				$Serenity_WX.change(this, ss.mkdel(this, function(e1) {
+					var isNew = Q.isEmptyOrNull(this.get_value());
+					inplaceButton.attr('title', (isNew ? addTitle : editTitle)).toggleClass('edit', !isNew);
+				}));
+				$Serenity_WX.changeSelect2(this, ss.mkdel(this, function(e2) {
+					if (ss.referenceEquals(this.get_value(), (-2147483648).toString())) {
+						this.set_value(null);
+						this.inplaceCreateClick(null);
+					}
+				}));
 			},
 			inplaceCreateClick: function(e) {
+			},
+			getCreateSearchChoice: function(getName) {
+				return ss.mkdel(this, function(s) {
+					s = ss.coalesce(Select2.util.stripDiacritics(s), '').toLowerCase();
+					this.lastCreateTerm = s;
+					if (Q.isTrimmedEmpty(s)) {
+						return null;
+					}
+					if (Enumerable.from(this.get_items()).any(function(x) {
+						var text = (!ss.staticEquals(getName, null) ? getName(x.source) : x.text);
+						return ss.referenceEquals(Select2.util.stripDiacritics(ss.coalesce(text, '')).toLowerCase(), s);
+					})) {
+						return null;
+					}
+					if (!Enumerable.from(this.get_items()).any(function(x1) {
+						return ss.coalesce(Select2.util.stripDiacritics(x1.text), '').toLowerCase().indexOf(s) !== -1;
+					})) {
+						return { id: (-2147483648).toString(), text: Texts$Controls$SelectEditor.NoResultsClickToDefine.get() };
+					}
+					return { id: (-2147483648).toString(), text: Texts$Controls$SelectEditor.ClickToDefine.get() };
+				});
 			},
 			get_select2Container: function() {
 				return this.element.prevAll('.select2-container');
@@ -8415,10 +8512,20 @@
 			}
 			return $t1;
 		},
+		getDialogTypeKey: function() {
+			var $t1 = this.options.dialogType;
+			if (ss.isNullOrUndefined($t1)) {
+				$t1 = ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).prototype.getDialogTypeKey.call(this);
+			}
+			return $t1;
+		},
 		getSelect2Options: function() {
 			var opt = ss.makeGenericType($Serenity_Select2Editor$2, [$Serenity_LookupEditorOptions, Object]).prototype.getSelect2Options.call(this);
 			if (ss.isValue(this.options.minimumResultsForSearch)) {
 				opt.minimumResultsForSearch = ss.unbox(this.options.minimumResultsForSearch);
+			}
+			if (this.options.inplaceAdd) {
+				opt.createSearchChoice = this.getCreateSearchChoice(null);
 			}
 			return opt;
 		}
@@ -9344,6 +9451,9 @@
 		$Serenity_Widget.$nextWidgetNumber = 0;
 	})();
 	(function() {
+		$Serenity_DialogTypeRegistry.$knownTypes = {};
+	})();
+	(function() {
 		$Serenity_FilterOperators.isTrue = 'true';
 		$Serenity_FilterOperators.isFalse = 'false';
 		$Serenity_FilterOperators.contains = 'contains';
@@ -9386,9 +9496,6 @@
 	})();
 	(function() {
 		$Serenity_FormatterTypeRegistry.$knownTypes = null;
-	})();
-	(function() {
-		$Serenity_DialogTypeRegistry.$knownTypes = {};
 	})();
 	(function() {
 		$Serenity_PublicEditorTypes.$registeredTypes = null;
