@@ -35,12 +35,17 @@
             }
 
             EnsureDatabase();
+            RunMigrations();
         }
 
         public static void ApplicationEnd()
         {
         }
 
+        /// <summary>
+        /// Automatically creates a database for the template if it doesn't already exists.
+        /// You might delete this method to disable auto create functionality.
+        /// </summary>
         private static void EnsureDatabase()
         {
             var cs = SqlConnections.GetConnectionString("Default");
@@ -87,17 +92,16 @@
                     command += " FOR ATTACH";
 
                 serverConnection.Execute(command);
+                SqlConnection.ClearAllPools();
             }
-
-            SqlConnection.ClearAllPools();
-            RunMigrations();
         }
 
         private static void RunMigrations()
         {
             var defaultConnection = SqlConnections.GetConnectionString("Default");
 
-            // safety check to ensure that we are not modifying another database
+            // safety check to ensure that we are not modifying an arbitrary database.
+            // remove these two lines if you want Serene migrations to run on your DB.
             if (defaultConnection.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + @"_Default_v1") < 0)
                 return;
 
