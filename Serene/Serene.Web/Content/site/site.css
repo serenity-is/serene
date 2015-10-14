@@ -663,8 +663,16 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   height: 260px;
 }
 .s-Northwind-CustomerDialog > .size {
-  min-width: 650px;
-  width: 650px;
+  min-width: 850px;
+  width: 850px;
+  min-height: 580px;
+  height: 580px;
+}
+.s-Northwind-CustomerDialog .ui-dialog-content {
+  overflow: hidden;
+}
+.s-Northwind-CustomerDialog .tab-pane.s-TabOrders {
+  padding: 4px;
 }
 .s-Northwind-CustomerDialog .tab-pane {
   height: auto;
@@ -673,69 +681,84 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: 150px;
 }
 .s-Northwind-CustomerDialog .editor {
-  width: 400px;
+  width: 600px;
 }
 .s-Northwind-CustomerDialog input.editor[type=checkbox] {
   width: auto;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 583px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.emailuser {
   width: 170px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 523px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 56px;
   margin-left: 4px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.has-inplace-button {
-  width: 374px;
+  width: 574px;
 }
 .s-Northwind-CustomerDialog .s-Form .emaildomain {
-  width: 215px;
+  width: 415px;
 }
 .s-Northwind-CustomerDialog .categories {
   height: 400px;
 }
-.s-Northwind-OrderDialog > .size {
+.s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
+  height: 356px;
+}
+.s-Northwind-OrderDialog > .size,
+.s-CustomerOrderDialog > .size {
   min-width: 850px;
   width: 850px;
 }
-.s-Northwind-OrderDialog .tab-pane {
+.s-Northwind-OrderDialog .tab-pane,
+.s-CustomerOrderDialog .tab-pane {
   height: auto;
 }
-.s-Northwind-OrderDialog .caption {
+.s-Northwind-OrderDialog .caption,
+.s-CustomerOrderDialog .caption {
   width: 130px;
 }
-.s-Northwind-OrderDialog .editor {
+.s-Northwind-OrderDialog .editor,
+.s-CustomerOrderDialog .editor {
   width: 630px;
 }
-.s-Northwind-OrderDialog input.editor[type=checkbox] {
+.s-Northwind-OrderDialog input.editor[type=checkbox],
+.s-CustomerOrderDialog input.editor[type=checkbox] {
   width: auto;
 }
-.s-Northwind-OrderDialog .s-Form .editor.dateQ {
+.s-Northwind-OrderDialog .s-Form .editor.dateQ,
+.s-CustomerOrderDialog .s-Form .editor.dateQ {
   width: 613px;
 }
-.s-Northwind-OrderDialog .s-Form .editor.emailuser {
+.s-Northwind-OrderDialog .s-Form .editor.emailuser,
+.s-CustomerOrderDialog .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-Northwind-OrderDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+.s-Northwind-OrderDialog .s-Form .editor.dateQ.s-DateTimeEditor,
+.s-CustomerOrderDialog .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 553px;
 }
-.s-Northwind-OrderDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Northwind-OrderDialog .s-Form .editor.s-DateTimeEditor.time,
+.s-CustomerOrderDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 56px;
   margin-left: 4px;
 }
-.s-Northwind-OrderDialog .s-Form .editor.has-inplace-button {
+.s-Northwind-OrderDialog .s-Form .editor.has-inplace-button,
+.s-CustomerOrderDialog .s-Form .editor.has-inplace-button {
   width: 604px;
 }
-.s-Northwind-OrderDialog .s-Form .emaildomain {
+.s-Northwind-OrderDialog .s-Form .emaildomain,
+.s-CustomerOrderDialog .s-Form .emaildomain {
   width: 445px;
 }
-.s-Northwind-OrderDialog .categories {
+.s-Northwind-OrderDialog .categories,
+.s-CustomerOrderDialog .categories {
   height: 550px;
 }
 .s-Northwind-OrderDetailDialog > .size {

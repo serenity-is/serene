@@ -812,6 +812,7 @@
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
+    <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Employee\Gender.cs" />

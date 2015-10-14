@@ -7,12 +7,15 @@
 }
 
 .s-Northwind-CustomerDialog {
-    > .size { .widthAndMin(650px); }
-    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    > .size { .widthAndMin(850px); .heightAndMin(580px); }
+    .ui-dialog-content { overflow: hidden; }
+    .tab-pane.s-TabOrders { padding: 4px; }
+    .dialog-styles(@h: auto, @l: 150px, @e: 600px);
     .categories { height: 400px; }
+    .s-CustomerOrdersGrid > .grid-container { height: 356px; }
 }
 
-.s-Northwind-OrderDialog {
+.s-Northwind-OrderDialog, .s-CustomerOrderDialog {
     > .size { .widthAndMin(850px); }
     .dialog-styles(@h: auto, @l: 130px, @e: 630px);
     .categories { height: 550px; }

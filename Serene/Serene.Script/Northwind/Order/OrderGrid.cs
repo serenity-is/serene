@@ -21,7 +21,7 @@ namespace Serene.Northwind
         {
             base.CreateToolbarExtensions();
 
-            AddEqualityFilter<CustomerEditor>(Fields.CustomerID);
+            CustomerFilter = AddEqualityFilter<CustomerEditor>(Fields.CustomerID);
 
             AddEqualityFilter<EnumEditor>(Fields.ShippingState,
                 options: new EnumEditorOptions { EnumKey = "Northwind.OrderShippingState" });
@@ -37,5 +37,7 @@ namespace Serene.Northwind
             AddEqualityFilter<LookupEditor>(Fields.EmployeeID,
                 options: new LookupEditorOptions { LookupKey = EmployeeRow.LookupKey });
         }
+
+        public CustomerEditor CustomerFilter { get; private set; }
     }
 }

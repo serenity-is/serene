@@ -13,6 +13,7 @@ namespace Serene.Northwind.Forms
         public String OrderID { get; set; }
         [EditLink, Width(200)]
         public String CustomerCompanyName { get; set; }
+        [EditLink]
         public DateTime? OrderDate { get; set; }
         [Width(140), EmployeeFormatter(GenderProperty = "EmployeeGender")]
         public String EmployeeFullName { get; set; }

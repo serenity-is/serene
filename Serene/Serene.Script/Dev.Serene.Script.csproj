@@ -262,6 +262,8 @@
     <Compile Include="Membership\LoginPanel.cs" />
     <Compile Include="Northwind\Customer\CustomerCityEditor.cs" />
     <Compile Include="Northwind\Customer\CustomerEditor.cs" />
+    <Compile Include="Northwind\Customer\CustomerOrdersGrid.cs" />
+    <Compile Include="Northwind\Customer\CustomerOrderDialog.cs" />
     <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
     <Compile Include="Common\Helper\GridEditorBase.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
