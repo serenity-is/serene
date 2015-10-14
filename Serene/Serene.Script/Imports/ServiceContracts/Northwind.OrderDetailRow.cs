@@ -12,9 +12,10 @@ namespace Serene.Northwind
     [Imported, Serializable, PreserveMemberCase]
     public partial class OrderDetailRow
     {
-        [InlineConstant] public const string IdProperty = "OrderID";
+        [InlineConstant] public const string IdProperty = "DetailID";
         [InlineConstant] public const string LocalTextPrefix = "Northwind.OrderDetail";
     
+        public Int32? DetailID { get; set; }
         public Int32? OrderID { get; set; }
         public Int32? ProductID { get; set; }
         public Decimal? UnitPrice { get; set; }
@@ -37,6 +38,7 @@ namespace Serene.Northwind
         [Imported, PreserveMemberCase]
         public static class Fields
         {
+            [InlineConstant] public const string DetailID = "DetailID";
             [InlineConstant] public const string OrderID = "OrderID";
             [InlineConstant] public const string ProductID = "ProductID";
             [InlineConstant] public const string UnitPrice = "UnitPrice";

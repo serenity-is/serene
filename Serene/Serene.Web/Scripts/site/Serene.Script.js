@@ -322,63 +322,6 @@
 	};
 	global.Serene.Administration.UserService = $Serene_Administration_UserService;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.CascadedWidgetLink
-	var $Serene_Common_CascadedWidgetLink$1 = function(TParent) {
-		var $type = function(widget, parentChange) {
-			this.$widget = null;
-			this.$parentChange = null;
-			this.$parentID = null;
-			this.$widget = widget;
-			this.$parentChange = parentChange;
-			this.bind();
-			this.$widget.get_element().bind('remove.' + widget.get_uniqueName() + 'cwh', ss.mkdel(this, function(e) {
-				this.unbind();
-				this.$widget = null;
-				this.$parentChange = null;
-			}));
-		};
-		ss.registerGenericClassInstance($type, $Serene_Common_CascadedWidgetLink$1, [TParent], {
-			bind: function() {
-				if (Q.isEmptyOrNull(this.$parentID)) {
-					return;
-				}
-				var parent = Serenity.WX.tryGetWidget(TParent).call(null, Q.findElementWithRelativeId(this.$widget.get_element(), this.$parentID));
-				if (ss.isValue(parent)) {
-					parent.get_element().bind('change.' + this.$widget.get_uniqueName(), ss.mkdel(this, function() {
-						this.$parentChange(parent);
-					}));
-				}
-			},
-			unbind: function() {
-				if (Q.isEmptyOrNull(this.$parentID)) {
-					return;
-				}
-				var parent = Serenity.WX.tryGetWidget(TParent).call(null, Q.findElementWithRelativeId(this.$widget.get_element(), this.$parentID));
-				if (ss.isValue(parent)) {
-					parent.get_element().unbind('.' + this.$widget.get_uniqueName());
-				}
-			},
-			get_parentID: function() {
-				return this.$parentID;
-			},
-			set_parentID: function(value) {
-				if (!ss.referenceEquals(this.$parentID, value)) {
-					this.unbind();
-					this.$parentID = value;
-					this.bind();
-				}
-			}
-		}, function() {
-			return null;
-		}, function() {
-			return [];
-		});
-		return $type;
-	};
-	$Serene_Common_CascadedWidgetLink$1.__typeName = 'Serene.Common.CascadedWidgetLink$1';
-	ss.initGenericClass($Serene_Common_CascadedWidgetLink$1, $asm, 1);
-	global.Serene.Common.CascadedWidgetLink$1 = $Serene_Common_CascadedWidgetLink$1;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorBase
 	var $Serene_Common_GridEditorBase$1 = function(TEntity) {
 		var $type = function(container) {
@@ -658,7 +601,7 @@
 		this.$countryLink = null;
 		this.$country = null;
 		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, container);
-		this.$countryLink = new (ss.makeGenericType($Serene_Common_CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
+		this.$countryLink = new (ss.makeGenericType(Serenity.CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
 			this.set_country(p.get_value());
 		}));
 	};
@@ -960,15 +903,6 @@
 	var $Serene_Northwind_OrderDetailService = function() {
 	};
 	$Serene_Northwind_OrderDetailService.__typeName = 'Serene.Northwind.OrderDetailService';
-	$Serene_Northwind_OrderDetailService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/OrderDetail/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderDetailService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/OrderDetail/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderDetailService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/OrderDetail/Delete', request, onSuccess, options);
-	};
 	$Serene_Northwind_OrderDetailService.retrieve = function(request, onSuccess, options) {
 		return Q.serviceRequest('Northwind/OrderDetail/Retrieve', request, onSuccess, options);
 	};
@@ -1027,7 +961,7 @@
 		this.$countryLink = null;
 		this.$country = null;
 		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, container);
-		this.$countryLink = new (ss.makeGenericType($Serene_Common_CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
+		this.$countryLink = new (ss.makeGenericType(Serenity.CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
 			this.set_country(p.get_value());
 		}));
 	};

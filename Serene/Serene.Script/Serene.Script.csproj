@@ -36,7 +36,7 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
-    <Compile Include="Common\Helper\CascadedEditorHelper.cs" />
+    <Compile Include="Common\Helper\GridEditorDialog.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
     <Compile Include="Common\Navigation\SidebarSearch.cs" />
     <Compile Include="Imports\FormContexts\Administration.LanguageForm.cs">
@@ -165,6 +165,12 @@
     <Compile Include="Imports\ServiceContracts\Administration.UserService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Common.Pages.FileController.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Common.Pages.UploadResponse.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.LoginRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -204,6 +210,9 @@
     <Compile Include="Imports\ServiceContracts\Northwind.EmployeeTerritoryService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.Gender.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.OrderDetailRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -214,6 +223,9 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.OrderService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.OrderShippingState.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductRow.cs">
@@ -247,7 +259,17 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Membership\LoginPanel.cs" />
+    <Compile Include="Northwind\Customer\CustomerCityEditor.cs" />
+    <Compile Include="Northwind\Customer\CustomerEditor.cs" />
+    <Compile Include="Northwind\Customer\CustomerOrdersGrid.cs" />
+    <Compile Include="Northwind\Customer\CustomerOrderDialog.cs" />
+    <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
+    <Compile Include="Common\Helper\GridEditorBase.cs" />
+    <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
+    <Compile Include="Northwind\Order\OrderShipCityEditor.cs" />
+    <Compile Include="Northwind\Order\FreightFormatter.cs" />
     <Compile Include="Northwind\Shared\PhoneEditor.cs" />
+    <Compile Include="Northwind\Shipper\ShipperFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptInitialization.cs" />
     <Compile Include="Administration\User\UserGrid.cs" />
@@ -260,7 +282,6 @@
     <Compile Include="Northwind\Employee\EmployeeDialog.cs" />
     <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryGrid.cs" />
     <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryDialog.cs" />
-    <Compile Include="Northwind\OrderDetail\OrderDetailGrid.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailDialog.cs" />
     <Compile Include="Northwind\Order\OrderGrid.cs" />
     <Compile Include="Northwind\Order\OrderDialog.cs" />
@@ -326,16 +347,16 @@
     <Reference Include="Saltarelle.Web">
       <HintPath>..\..\packages\Saltarelle.Web.3.1.0\lib\Saltarelle.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Script.Core, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.5.5\lib\net2\Serenity.Script.Core.dll</HintPath>
+    <Reference Include="Serenity.Script.Core, Version=1.5.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.5.7\lib\net2\Serenity.Script.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.Imports, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.5.5\lib\net2\Serenity.Script.Imports.dll</HintPath>
+    <Reference Include="Serenity.Script.Imports, Version=1.5.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.5.7\lib\net2\Serenity.Script.Imports.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.UI, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.5.5\lib\net2\Serenity.Script.UI.dll</HintPath>
+    <Reference Include="Serenity.Script.UI, Version=1.5.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.5.7\lib\net2\Serenity.Script.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
