@@ -9,12 +9,12 @@ namespace Serene.Northwind
 
     public class CustomerCityEditor : LookupEditorBase<CustomerRow>
     {
-        private Common.CascadedWidgetLink<LookupEditor> countryLink;
+        private CascadedWidgetLink<LookupEditor> countryLink;
 
         public CustomerCityEditor(jQueryObject container)
             : base(container)
         {
-            countryLink = new Common.CascadedWidgetLink<LookupEditor>(this, p => this.Country = p.Value);
+            countryLink = new CascadedWidgetLink<LookupEditor>(this, p => this.Country = p.Value);
         }
 
         protected override string GetLookupKey()
