@@ -549,6 +549,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
           </Folder>
           <Folder Name="Helpers" TargetFolderName="Helpers">
+            <ProjectItem ReplaceParameters="true" TargetFileName="DetailListSaveHandler.cs">DetailListSaveHandler.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
@@ -565,6 +566,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141103_140000_Initial.cs">DefaultDB_20141103_140000_Initial.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141123_155100_ProductImage.cs">DefaultDB_20141123_155100_ProductImage.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151014_030700_OrderDetailID.cs">DefaultDB_20151014_030700_OrderDetailID.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript.sql">NorthwindDBScript.sql</ProjectItem>
             </Folder>
           </Folder>
@@ -594,11 +596,14 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CategoryRow.cs">CategoryRow.cs</ProjectItem>
           </Folder>
           <Folder Name="Customer" TargetFolderName="Customer">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCity.cs">CustomerCity.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerColumns.cs">CustomerColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCountryLookup.cs">CustomerCountryLookup.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDialog.Template.html">CustomerDialog.Template.html</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEndpoint.cs">CustomerEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerForm.cs">CustomerForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerIndex.cshtml">CustomerIndex.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerLookup.cs">CustomerLookup.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerPage.cs">CustomerPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepository.cs">CustomerRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRow.cs">CustomerRow.cs</ProjectItem>
@@ -626,6 +631,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeePage.cs">EmployeePage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeRepository.cs">EmployeeRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeRow.cs">EmployeeRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Gender.cs">Gender.cs</ProjectItem>
           </Folder>
           <Folder Name="EmployeeTerritory" TargetFolderName="EmployeeTerritory">
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryEndpoint.cs">EmployeeTerritoryEndpoint.cs</ProjectItem>
@@ -637,14 +643,19 @@
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.DynamicScripts.cs">Northwind.DynamicScripts.cs</ProjectItem>
           <Folder Name="Order" TargetFolderName="Order">
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderColumns.cs">OrderColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderEndpoint.cs">OrderEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderForm.cs">OrderForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderIndex.cshtml">OrderIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderPage.cs">OrderPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderRepository.cs">OrderRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderRow.cs">OrderRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShipCity.cs">OrderShipCity.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShipCountry.cs">OrderShipCountry.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShippingState.cs">OrderShippingState.cs</ProjectItem>
           </Folder>
           <Folder Name="OrderDetail" TargetFolderName="OrderDetail">
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailColumns.cs">OrderDetailColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailEndpoint.cs">OrderDetailEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailForm.cs">OrderDetailForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailIndex.cshtml">OrderDetailIndex.cshtml</ProjectItem>
@@ -976,12 +987,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="7.0.1" />
       <package id="Select2.js" version="3.5.2" />
-      <package id="Serenity.CodeGenerator" version="1.5.5" />
-      <package id="Serenity.Core" version="1.5.5" />
-      <package id="Serenity.Data" version="1.5.5" />
-      <package id="Serenity.Data.Entity" version="1.5.5" />
-      <package id="Serenity.Services" version="1.5.5" />
-      <package id="Serenity.Web" version="1.5.5" />
+      <package id="Serenity.CodeGenerator" version="1.5.7" />
+      <package id="Serenity.Core" version="1.5.7" />
+      <package id="Serenity.Data" version="1.5.7" />
+      <package id="Serenity.Data.Entity" version="1.5.7" />
+      <package id="Serenity.Services" version="1.5.7" />
+      <package id="Serenity.Web" version="1.5.7" />
       <package id="SlickGrid" version="2.2.20140120" />
       <package id="toastr" version="2.1.1" />
     </packages>

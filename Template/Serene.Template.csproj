@@ -1,11 +1,11 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <FileUpgradeFlags></FileUpgradeFlags>
     <OldToolsVersion>12.0</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation></UpgradeBackupLocation>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -160,25 +160,25 @@
     <Content Include="packages\Select2.js.3.5.2.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.CodeGenerator.1.5.5.nupkg">
+    <Content Include="packages\Serenity.CodeGenerator.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Core.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Data.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Script.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Script.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Services.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Web.1.5.5.nupkg">
+    <Content Include="packages\Serenity.Web.1.5.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\SlickGrid.2.2.20140120.nupkg">
