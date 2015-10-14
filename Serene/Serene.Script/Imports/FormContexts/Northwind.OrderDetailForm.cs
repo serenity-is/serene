@@ -15,10 +15,10 @@ namespace Serene.Northwind
     
         public OrderDetailForm(string idPrefix) : base(idPrefix) {}
     
-        public IntegerEditor ProductID { get { return ById<IntegerEditor>("ProductID"); } }
+        public LookupEditor ProductID { get { return ById<LookupEditor>("ProductID"); } }
         public DecimalEditor UnitPrice { get { return ById<DecimalEditor>("UnitPrice"); } }
-        public StringEditor Quantity { get { return ById<StringEditor>("Quantity"); } }
-        public StringEditor Discount { get { return ById<StringEditor>("Discount"); } }
+        public IntegerEditor Quantity { get { return ById<IntegerEditor>("Quantity"); } }
+        public DecimalEditor Discount { get { return ById<DecimalEditor>("Discount"); } }
     }
 }
 

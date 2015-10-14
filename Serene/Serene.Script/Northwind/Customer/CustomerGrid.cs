@@ -4,13 +4,12 @@ namespace Serene.Northwind
     using jQueryApi;
     using Serenity;
     using System.Collections.Generic;
+    using Fields = CustomerRow.Fields;
 
     [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("ID"), NameProperty("CustomerID")]
     [DialogType(typeof(CustomerDialog)), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
     public class CustomerGrid : EntityGrid<CustomerRow>, IAsyncInit
     {
-        private LookupEditor country;
-
         public CustomerGrid(jQueryObject container)
             : base(container)
         {
@@ -20,26 +19,10 @@ namespace Serene.Northwind
         {
             base.CreateToolbarExtensions();
 
-            country = Widget.Create<LookupEditor>(
-                element: e => e.AppendTo(toolbar.Element)
-                    .Attribute("placeholder",  "--- " + Q.Text("Db.Northwind.Customer.Country") + " ---"),
-                options: new LookupEditorOptions 
-                { 
-                    LookupKey = "Northwind.CustomerCountry" 
-                });
+            AddEqualityFilter<LookupEditor>(Fields.Country,
+                options: new LookupEditorOptions { LookupKey = "Northwind.CustomerCountry" });
 
-            country.Change(e => Refresh());
-        }
-
-        protected override bool OnViewSubmit()
-        {
-            if (!base.OnViewSubmit())
-                return false;
-
-            var req = (ListRequest)view.Params;
-            req.EqualityFilter = req.EqualityFilter ?? new JsDictionary<string, object>();
-            req.EqualityFilter["Country"] = country.Value;
-            return true;
+            AddEqualityFilter<OrderShipCityEditor>(Fields.City, init: w => w.CountryEditorID = Fields.Country);
         }
     }
 }

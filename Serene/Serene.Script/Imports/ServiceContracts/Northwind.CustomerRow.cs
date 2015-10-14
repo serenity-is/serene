@@ -13,7 +13,7 @@ namespace Serene.Northwind
     public partial class CustomerRow
     {
         [InlineConstant] public const string IdProperty = "ID";
-        [InlineConstant] public const string NameProperty = "CustomerID";
+        [InlineConstant] public const string NameProperty = "CompanyName";
         [InlineConstant] public const string LocalTextPrefix = "Northwind.Customer";
         [InlineConstant] public const string LookupKey = "Northwind.Customer";
     

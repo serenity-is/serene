@@ -2,211 +2,155 @@
 namespace Serene.Northwind.Entities
 {
     using Newtonsoft.Json;
-    using Serenity;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Order Details"), InstanceName("Order Details"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class OrderDetailRow : Row, IIdRow
     {
-        [DisplayName("Order Id"), PrimaryKey, ForeignKey("Orders", "OrderID"), LeftJoin("jOrder")]
+        [DisplayName("ID"), Identity]
+        public Int32? DetailID
+        {
+            get { return Fields.DetailID[this]; }
+            set { Fields.DetailID[this] = value; }
+        }
+
+        [DisplayName("Order Id"), PrimaryKey, ForeignKey("Orders", "OrderID"), LeftJoin("o")]
         public Int32? OrderID
         {
             get { return Fields.OrderID[this]; }
             set { Fields.OrderID[this] = value; }
         }
 
-        [DisplayName("Product Id"), PrimaryKey, ForeignKey("Products", "ProductID"), LeftJoin("jProduct")]
+        [DisplayName("Product Id"), PrimaryKey, ForeignKey("Products", "ProductID"), LeftJoin("p")]
+        [LookupEditor(typeof(ProductRow))]
         public Int32? ProductID
         {
             get { return Fields.ProductID[this]; }
             set { Fields.ProductID[this] = value; }
         }
 
-        [DisplayName("Unit Price"), Scale(4), NotNull]
+        [DisplayName("Unit Price"), Scale(4), NotNull, AlignRight, DisplayFormat("#,##0.00")]
         public Decimal? UnitPrice
         {
             get { return Fields.UnitPrice[this]; }
             set { Fields.UnitPrice[this] = value; }
         }
 
-        [DisplayName("Quantity"), NotNull]
+        [DisplayName("Quantity"), NotNull, DefaultValue(1), AlignRight]
         public Int16? Quantity
         {
             get { return Fields.Quantity[this]; }
             set { Fields.Quantity[this] = value; }
         }
 
-        [DisplayName("Discount"), NotNull]
+        [DisplayName("Discount"), NotNull, DefaultValue(0), AlignRight, DisplayFormat("#,##0.00")]
         public Double? Discount
         {
             get { return Fields.Discount[this]; }
             set { Fields.Discount[this] = value; }
         }
 
-        [DisplayName("Order Customer Id"), Expression("jOrder.CustomerID")]
+        [DisplayName("Line Total"), Expression("(t0.UnitPrice * t0.Quantity - t0.Discount)"), AlignRight, DisplayFormat("#,##0.00")]
+        public Decimal? LineTotal
+        {
+            get { return Fields.LineTotal[this]; }
+            set { Fields.LineTotal[this] = value; }
+        }
+
+        [DisplayName("Order Customer Id"), Expression("o.CustomerID")]
         public String OrderCustomerID
         {
             get { return Fields.OrderCustomerID[this]; }
             set { Fields.OrderCustomerID[this] = value; }
         }
 
-        [DisplayName("Order Employee Id"), Expression("jOrder.EmployeeID")]
+        [DisplayName("Order Employee Id"), Expression("o.EmployeeID")]
         public Int32? OrderEmployeeID
         {
             get { return Fields.OrderEmployeeID[this]; }
             set { Fields.OrderEmployeeID[this] = value; }
         }
 
-        [DisplayName("Order Order Date"), Expression("jOrder.OrderDate")]
-        public DateTime? OrderOrderDate
+        [DisplayName("Order Date"), Expression("o.OrderDate")]
+        public DateTime? OrderDate
         {
-            get { return Fields.OrderOrderDate[this]; }
-            set { Fields.OrderOrderDate[this] = value; }
+            get { return Fields.OrderDate[this]; }
+            set { Fields.OrderDate[this] = value; }
         }
 
-        [DisplayName("Order Required Date"), Expression("jOrder.RequiredDate")]
-        public DateTime? OrderRequiredDate
-        {
-            get { return Fields.OrderRequiredDate[this]; }
-            set { Fields.OrderRequiredDate[this] = value; }
-        }
-
-        [DisplayName("Order Shipped Date"), Expression("jOrder.ShippedDate")]
+        [DisplayName("Order Shipped Date"), Expression("o.ShippedDate")]
         public DateTime? OrderShippedDate
         {
             get { return Fields.OrderShippedDate[this]; }
             set { Fields.OrderShippedDate[this] = value; }
         }
 
-        [DisplayName("Order Ship Via"), Expression("jOrder.ShipVia")]
+        [DisplayName("Order Ship Via"), Expression("o.ShipVia")]
         public Int32? OrderShipVia
         {
             get { return Fields.OrderShipVia[this]; }
             set { Fields.OrderShipVia[this] = value; }
         }
 
-        [DisplayName("Order Freight"), Expression("jOrder.Freight")]
-        public Decimal? OrderFreight
-        {
-            get { return Fields.OrderFreight[this]; }
-            set { Fields.OrderFreight[this] = value; }
-        }
-
-        [DisplayName("Order Ship Name"), Expression("jOrder.ShipName")]
-        public String OrderShipName
-        {
-            get { return Fields.OrderShipName[this]; }
-            set { Fields.OrderShipName[this] = value; }
-        }
-
-        [DisplayName("Order Ship Address"), Expression("jOrder.ShipAddress")]
-        public String OrderShipAddress
-        {
-            get { return Fields.OrderShipAddress[this]; }
-            set { Fields.OrderShipAddress[this] = value; }
-        }
-
-        [DisplayName("Order Ship City"), Expression("jOrder.ShipCity")]
+        [DisplayName("Order Ship City"), Expression("o.ShipCity")]
         public String OrderShipCity
         {
             get { return Fields.OrderShipCity[this]; }
             set { Fields.OrderShipCity[this] = value; }
         }
 
-        [DisplayName("Order Ship Region"), Expression("jOrder.ShipRegion")]
-        public String OrderShipRegion
-        {
-            get { return Fields.OrderShipRegion[this]; }
-            set { Fields.OrderShipRegion[this] = value; }
-        }
-
-        [DisplayName("Order Ship Postal Code"), Expression("jOrder.ShipPostalCode")]
-        public String OrderShipPostalCode
-        {
-            get { return Fields.OrderShipPostalCode[this]; }
-            set { Fields.OrderShipPostalCode[this] = value; }
-        }
-
-        [DisplayName("Order Ship Country"), Expression("jOrder.ShipCountry")]
+        [DisplayName("Order Ship Country"), Expression("o.ShipCountry")]
         public String OrderShipCountry
         {
             get { return Fields.OrderShipCountry[this]; }
             set { Fields.OrderShipCountry[this] = value; }
         }
 
-        [DisplayName("Product Product Name"), Expression("jProduct.ProductName")]
-        public String ProductProductName
+        [DisplayName("Product Name"), Expression("p.ProductName")]
+        public String ProductName
         {
-            get { return Fields.ProductProductName[this]; }
-            set { Fields.ProductProductName[this] = value; }
+            get { return Fields.ProductName[this]; }
+            set { Fields.ProductName[this] = value; }
         }
 
-        [DisplayName("Product Discontinued"), Expression("jProduct.Discontinued")]
+        [DisplayName("Product Discontinued"), Expression("p.Discontinued")]
         public Boolean? ProductDiscontinued
         {
             get { return Fields.ProductDiscontinued[this]; }
             set { Fields.ProductDiscontinued[this] = value; }
         }
 
-        [DisplayName("Product Supplier Id"), Expression("jProduct.SupplierID")]
+        [DisplayName("Product Supplier Id"), Expression("p.SupplierID")]
         public Int32? ProductSupplierID
         {
             get { return Fields.ProductSupplierID[this]; }
             set { Fields.ProductSupplierID[this] = value; }
         }
 
-        [DisplayName("Product Category Id"), Expression("jProduct.CategoryID")]
-        public Int32? ProductCategoryID
-        {
-            get { return Fields.ProductCategoryID[this]; }
-            set { Fields.ProductCategoryID[this] = value; }
-        }
-
-        [DisplayName("Product Quantity Per Unit"), Expression("jProduct.QuantityPerUnit")]
+        [DisplayName("Product Quantity Per Unit"), Expression("p.QuantityPerUnit")]
         public String ProductQuantityPerUnit
         {
             get { return Fields.ProductQuantityPerUnit[this]; }
             set { Fields.ProductQuantityPerUnit[this] = value; }
         }
 
-        [DisplayName("Product Unit Price"), Expression("jProduct.UnitPrice")]
+        [DisplayName("Product Unit Price"), Expression("p.UnitPrice")]
         public Decimal? ProductUnitPrice
         {
             get { return Fields.ProductUnitPrice[this]; }
             set { Fields.ProductUnitPrice[this] = value; }
         }
 
-        [DisplayName("Product Units In Stock"), Expression("jProduct.UnitsInStock")]
-        public Int16? ProductUnitsInStock
-        {
-            get { return Fields.ProductUnitsInStock[this]; }
-            set { Fields.ProductUnitsInStock[this] = value; }
-        }
-
-        [DisplayName("Product Units On Order"), Expression("jProduct.UnitsOnOrder")]
-        public Int16? ProductUnitsOnOrder
-        {
-            get { return Fields.ProductUnitsOnOrder[this]; }
-            set { Fields.ProductUnitsOnOrder[this] = value; }
-        }
-
-        [DisplayName("Product Reorder Level"), Expression("jProduct.ReorderLevel")]
-        public Int16? ProductReorderLevel
-        {
-            get { return Fields.ProductReorderLevel[this]; }
-            set { Fields.ProductReorderLevel[this] = value; }
-        }
-
         IIdField IIdRow.IdField
         {
-            get { return Fields.OrderID; }
+            get { return Fields.DetailID; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -218,6 +162,7 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
+            public readonly Int32Field DetailID;
             public readonly Int32Field OrderID;
             public readonly Int32Field ProductID;
             public readonly DecimalField UnitPrice;
@@ -225,29 +170,21 @@ namespace Serene.Northwind.Entities
             public readonly DoubleField Discount;
 
             public readonly StringField OrderCustomerID;
+
             public readonly Int32Field OrderEmployeeID;
-            public readonly DateTimeField OrderOrderDate;
-            public readonly DateTimeField OrderRequiredDate;
+            public readonly DateTimeField OrderDate;
             public readonly DateTimeField OrderShippedDate;
             public readonly Int32Field OrderShipVia;
-            public readonly DecimalField OrderFreight;
-            public readonly StringField OrderShipName;
-            public readonly StringField OrderShipAddress;
             public readonly StringField OrderShipCity;
-            public readonly StringField OrderShipRegion;
-            public readonly StringField OrderShipPostalCode;
             public readonly StringField OrderShipCountry;
-
-
-            public readonly StringField ProductProductName;
+  
+            public readonly StringField ProductName;
             public readonly BooleanField ProductDiscontinued;
             public readonly Int32Field ProductSupplierID;
-            public readonly Int32Field ProductCategoryID;
             public readonly StringField ProductQuantityPerUnit;
             public readonly DecimalField ProductUnitPrice;
-            public readonly Int16Field ProductUnitsInStock;
-            public readonly Int16Field ProductUnitsOnOrder;
-            public readonly Int16Field ProductReorderLevel;
+
+            public readonly DecimalField LineTotal;
 
             public RowFields()
                 : base("[Order Details]")

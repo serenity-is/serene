@@ -8,13 +8,19 @@ namespace Serene.Northwind.Forms
     using System.Collections.Generic;
     using System.IO;
 
-    [FormScript("Northwind.OrderDetail")]
+    [ColumnsScript("Northwind.OrderDetail")]
     [BasedOnRow(typeof(Entities.OrderDetailRow))]
-    public class OrderDetailForm
+    public class OrderDetailColumns
     {
-        public Int32 ProductID { get; set; }
+        [EditLink, Width(200)]
+        public String ProductName { get; set; }
+        [Width(100)]
         public Decimal UnitPrice { get; set; }
-        public Int32 Quantity { get; set; }
+        [Width(100)]
+        public Int16 Quantity { get; set; }
+        [Width(100)]
         public Double Discount { get; set; }
+        [Width(100)]
+        public Decimal LineTotal { get; set; }
     }
 }

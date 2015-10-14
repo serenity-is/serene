@@ -1,43 +1,80 @@
 @import "site.mixins.less";
 
-.s-CategoryDialog {
+.s-Northwind-CategoryDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .s-PropertyGrid .categories { height: 260px; }
 }
 
-.s-CustomerDialog {
+.s-Northwind-CustomerDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .categories { height: 400px; }
 }
 
-.s-ProductDialog {
+.s-Northwind-OrderDialog {
+    > .size { .widthAndMin(850px); }
+    .dialog-styles(@h: auto, @l: 130px, @e: 630px);
+    .categories { height: 550px; }
+}
+
+.s-Northwind-OrderDetailDialog {
+    > .size { .widthAndMin(550px); }
+    .dialog-styles(@h: auto, @l: 130px, @e: 330px);
+}
+
+.s-Northwind-OrderGrid {
+    .s-CustomerEditor { .widthAndMin(250px); }
+}
+
+.s-Northwind-ProductDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 180px, @e: 380px);
     .categories { height: 500px; }
 }
 
-.s-RegionDialog {
+.s-Northwind-RegionDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .s-PropertyGrid .categories { height: 260px; }
 }
 
-.s-ShipperDialog {
+.s-Northwind-ShipperDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .s-PropertyGrid .categories { height: 260px; }
 }
 
-.s-SupplierDialog {
+.s-Northwind-SupplierDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .s-PropertyGrid .categories { height: 460px; }
 }
 
-.s-TerritoryDialog {
+.s-Northwind-TerritoryDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
     .s-PropertyGrid .categories { height: 260px; }
+}
+
+.employee-symbol {
+    padding: 2px 0px 2px 20px;
+    background: url(../serenity/images/sprites.png) no-repeat -217px 2px;
+}
+
+.employee-symbol.female {
+    background-position: -217px -23px;
+}
+
+.shipper-symbol {
+    padding: 2px 0px 2px 20px;
+    background: url(../serenity/images/wheel.png) no-repeat center left;
+
+    &.shipper-UnitedPackage { background-image: url(../serenity/images/box.png); }
+    &.shipper-SpeedyExpress { background-image: url(../serenity/images/clock.png); }
+}
+
+.freight-symbol {
+    padding: 2px 20px 2px 0px;
+    background: url(../serenity/images/balance.png) no-repeat center right;
 }

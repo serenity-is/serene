@@ -2,69 +2,97 @@
 namespace Serene.Northwind.Entities
 {
     using Newtonsoft.Json;
-    using Serenity;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
+    using System.Collections.Generic;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Orders"), InstanceName("Orders"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Orders"), InstanceName("Order"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     public sealed class OrderRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Order Id"), Identity]
+        [DisplayName("Order ID"), NotNull, Identity, QuickSearch]
         public Int32? OrderID
         {
             get { return Fields.OrderID[this]; }
             set { Fields.OrderID[this] = value; }
         }
 
-        [DisplayName("Customer Id"), Size(5), ForeignKey("Customers", "CustomerID"), LeftJoin("jCustomer"), QuickSearch]
+        [DisplayName("Customer"), Size(5), NotNull, ForeignKey("Customers", "CustomerID"), LeftJoin("c"), CustomerEditor]
         public String CustomerID
         {
             get { return Fields.CustomerID[this]; }
             set { Fields.CustomerID[this] = value; }
         }
 
-        [DisplayName("Employee Id"), ForeignKey("Employees", "EmployeeID"), LeftJoin("jEmployee")]
+        [DisplayName("Customer"), Expression("c.CompanyName"), QuickSearch]
+        public String CustomerCompanyName
+        {
+            get { return Fields.CustomerCompanyName[this]; }
+            set { Fields.CustomerCompanyName[this] = value; }
+        }
+
+        [DisplayName("Employee"), ForeignKey("Employees", "EmployeeID"), LeftJoin("e"), LookupEditor(typeof(EmployeeRow))]
         public Int32? EmployeeID
         {
             get { return Fields.EmployeeID[this]; }
             set { Fields.EmployeeID[this] = value; }
         }
 
-        [DisplayName("Order Date")]
+        [DisplayName("Employee"), Expression("(e.FirstName + ' ' + e.LastName)")]
+        public String EmployeeFullName
+        {
+            get { return Fields.EmployeeFullName[this]; }
+            set { Fields.EmployeeFullName[this] = value; }
+        }
+
+        [DisplayName("Employee Gender"), Expression("(CASE WHEN e.TitleOfCourtesy LIKE '%s%' THEN 2 WHEN e.TitleOfCourtesy LIKE '%Mr%' THEN 1 END)")]
+        public Gender? EmployeeGender
+        {
+            get { return (Gender?)Fields.EmployeeGender[this]; }
+            set { Fields.EmployeeGender[this] = (Int32?)value; }
+        } 
+
+        [DisplayName("Order Date"), NotNull, DisplayFormat("dd/MM/yyyy")]
         public DateTime? OrderDate
         {
             get { return Fields.OrderDate[this]; }
             set { Fields.OrderDate[this] = value; }
         }
 
-        [DisplayName("Required Date")]
+        [DisplayName("Required Date"), DisplayFormat("dd/MM/yyyy")]
         public DateTime? RequiredDate
         {
             get { return Fields.RequiredDate[this]; }
             set { Fields.RequiredDate[this] = value; }
         }
 
-        [DisplayName("Shipped Date")]
+        [DisplayName("Shipped Date"), DisplayFormat("dd/MM/yyyy")]
         public DateTime? ShippedDate
         {
             get { return Fields.ShippedDate[this]; }
             set { Fields.ShippedDate[this] = value; }
         }
 
-        [DisplayName("Ship Via"), ForeignKey("Shippers", "ShipperID"), LeftJoin("jShipVia")]
+        [DisplayName("Shipping State"), Expression("(CASE WHEN ShippedDate IS NULL THEN 0 ELSE 1 END)")]
+        public OrderShippingState? ShippingState
+        {
+            get { return (OrderShippingState?)Fields.ShippingState[this]; }
+            set { Fields.ShippingState[this] = (Int32?)value; }
+        }
+
+        [DisplayName("Ship Via"), ForeignKey("Shippers", "ShipperID"), LeftJoin("via"), LookupEditor(typeof(ShipperRow))]
         public Int32? ShipVia
         {
             get { return Fields.ShipVia[this]; }
             set { Fields.ShipVia[this] = value; }
         }
 
-        [DisplayName("Freight"), Scale(4)]
+        [DisplayName("Freight"), Scale(4), DisplayFormat("#,##0.####"), AlignRight]
         public Decimal? Freight
         {
             get { return Fields.Freight[this]; }
@@ -113,207 +141,74 @@ namespace Serene.Northwind.Entities
             set { Fields.ShipCountry[this] = value; }
         }
 
-        [DisplayName("Customer Company Name"), Expression("jCustomer.CompanyName")]
-        public String CustomerCompanyName
-        {
-            get { return Fields.CustomerCompanyName[this]; }
-            set { Fields.CustomerCompanyName[this] = value; }
-        }
-
-        [DisplayName("Customer Contact Name"), Expression("jCustomer.ContactName")]
+        [DisplayName("Customer Contact Name"), Expression("c.ContactName")]
         public String CustomerContactName
         {
             get { return Fields.CustomerContactName[this]; }
             set { Fields.CustomerContactName[this] = value; }
         }
 
-        [DisplayName("Customer Contact Title"), Expression("jCustomer.ContactTitle")]
+        [DisplayName("Customer Contact Title"), Expression("c.ContactTitle")]
         public String CustomerContactTitle
         {
             get { return Fields.CustomerContactTitle[this]; }
             set { Fields.CustomerContactTitle[this] = value; }
         }
 
-        [DisplayName("Customer Address"), Expression("jCustomer.Address")]
-        public String CustomerAddress
-        {
-            get { return Fields.CustomerAddress[this]; }
-            set { Fields.CustomerAddress[this] = value; }
-        }
-
-        [DisplayName("Customer City"), Expression("jCustomer.City")]
+        [DisplayName("Customer City"), Expression("c.City")]
         public String CustomerCity
         {
             get { return Fields.CustomerCity[this]; }
             set { Fields.CustomerCity[this] = value; }
         }
 
-        [DisplayName("Customer Region"), Expression("jCustomer.Region")]
+        [DisplayName("Customer Region"), Expression("c.Region")]
         public String CustomerRegion
         {
             get { return Fields.CustomerRegion[this]; }
             set { Fields.CustomerRegion[this] = value; }
         }
 
-        [DisplayName("Customer Postal Code"), Expression("jCustomer.PostalCode")]
-        public String CustomerPostalCode
-        {
-            get { return Fields.CustomerPostalCode[this]; }
-            set { Fields.CustomerPostalCode[this] = value; }
-        }
-
-        [DisplayName("Customer Country"), Expression("jCustomer.Country")]
+        [DisplayName("Customer Country"), Expression("c.Country")]
         public String CustomerCountry
         {
             get { return Fields.CustomerCountry[this]; }
             set { Fields.CustomerCountry[this] = value; }
         }
 
-        [DisplayName("Customer Phone"), Expression("jCustomer.Phone")]
+        [DisplayName("Customer Phone"), Expression("c.Phone")]
         public String CustomerPhone
         {
             get { return Fields.CustomerPhone[this]; }
             set { Fields.CustomerPhone[this] = value; }
         }
 
-        [DisplayName("Customer Fax"), Expression("jCustomer.Fax")]
+        [DisplayName("Customer Fax"), Expression("c.Fax")]
         public String CustomerFax
         {
             get { return Fields.CustomerFax[this]; }
             set { Fields.CustomerFax[this] = value; }
         }
 
-        [DisplayName("Employee Last Name"), Expression("jEmployee.LastName")]
-        public String EmployeeLastName
-        {
-            get { return Fields.EmployeeLastName[this]; }
-            set { Fields.EmployeeLastName[this] = value; }
-        }
-
-        [DisplayName("Employee First Name"), Expression("jEmployee.FirstName")]
-        public String EmployeeFirstName
-        {
-            get { return Fields.EmployeeFirstName[this]; }
-            set { Fields.EmployeeFirstName[this] = value; }
-        }
-
-        [DisplayName("Employee Title"), Expression("jEmployee.Title")]
-        public String EmployeeTitle
-        {
-            get { return Fields.EmployeeTitle[this]; }
-            set { Fields.EmployeeTitle[this] = value; }
-        }
-
-        [DisplayName("Employee Title Of Courtesy"), Expression("jEmployee.TitleOfCourtesy")]
-        public String EmployeeTitleOfCourtesy
-        {
-            get { return Fields.EmployeeTitleOfCourtesy[this]; }
-            set { Fields.EmployeeTitleOfCourtesy[this] = value; }
-        }
-
-        [DisplayName("Employee Birth Date"), Expression("jEmployee.BirthDate")]
-        public DateTime? EmployeeBirthDate
-        {
-            get { return Fields.EmployeeBirthDate[this]; }
-            set { Fields.EmployeeBirthDate[this] = value; }
-        }
-
-        [DisplayName("Employee Hire Date"), Expression("jEmployee.HireDate")]
-        public DateTime? EmployeeHireDate
-        {
-            get { return Fields.EmployeeHireDate[this]; }
-            set { Fields.EmployeeHireDate[this] = value; }
-        }
-
-        [DisplayName("Employee Address"), Expression("jEmployee.Address")]
-        public String EmployeeAddress
-        {
-            get { return Fields.EmployeeAddress[this]; }
-            set { Fields.EmployeeAddress[this] = value; }
-        }
-
-        [DisplayName("Employee City"), Expression("jEmployee.City")]
-        public String EmployeeCity
-        {
-            get { return Fields.EmployeeCity[this]; }
-            set { Fields.EmployeeCity[this] = value; }
-        }
-
-        [DisplayName("Employee Region"), Expression("jEmployee.Region")]
-        public String EmployeeRegion
-        {
-            get { return Fields.EmployeeRegion[this]; }
-            set { Fields.EmployeeRegion[this] = value; }
-        }
-
-        [DisplayName("Employee Postal Code"), Expression("jEmployee.PostalCode")]
-        public String EmployeePostalCode
-        {
-            get { return Fields.EmployeePostalCode[this]; }
-            set { Fields.EmployeePostalCode[this] = value; }
-        }
-
-        [DisplayName("Employee Country"), Expression("jEmployee.Country")]
-        public String EmployeeCountry
-        {
-            get { return Fields.EmployeeCountry[this]; }
-            set { Fields.EmployeeCountry[this] = value; }
-        }
-
-        [DisplayName("Employee Home Phone"), Expression("jEmployee.HomePhone")]
-        public String EmployeeHomePhone
-        {
-            get { return Fields.EmployeeHomePhone[this]; }
-            set { Fields.EmployeeHomePhone[this] = value; }
-        }
-
-        [DisplayName("Employee Extension"), Expression("jEmployee.Extension")]
-        public String EmployeeExtension
-        {
-            get { return Fields.EmployeeExtension[this]; }
-            set { Fields.EmployeeExtension[this] = value; }
-        }
-
-        [DisplayName("Employee Photo"), Expression("jEmployee.Photo")]
-        public Stream EmployeePhoto
-        {
-            get { return Fields.EmployeePhoto[this]; }
-            set { Fields.EmployeePhoto[this] = value; }
-        }
-
-        [DisplayName("Employee Notes"), Expression("jEmployee.Notes")]
-        public String EmployeeNotes
-        {
-            get { return Fields.EmployeeNotes[this]; }
-            set { Fields.EmployeeNotes[this] = value; }
-        }
-
-        [DisplayName("Employee Reports To"), Expression("jEmployee.ReportsTo")]
-        public Int32? EmployeeReportsTo
-        {
-            get { return Fields.EmployeeReportsTo[this]; }
-            set { Fields.EmployeeReportsTo[this] = value; }
-        }
-
-        [DisplayName("Employee Photo Path"), Expression("jEmployee.PhotoPath")]
-        public String EmployeePhotoPath
-        {
-            get { return Fields.EmployeePhotoPath[this]; }
-            set { Fields.EmployeePhotoPath[this] = value; }
-        }
-
-        [DisplayName("Ship Via Company Name"), Expression("jShipVia.CompanyName")]
+        [DisplayName("Ship Via"), Expression("via.CompanyName")]
         public String ShipViaCompanyName
         {
             get { return Fields.ShipViaCompanyName[this]; }
             set { Fields.ShipViaCompanyName[this] = value; }
         }
 
-        [DisplayName("Ship Via Phone"), Expression("jShipVia.Phone")]
+        [DisplayName("Ship Via Phone"), Expression("via.Phone")]
         public String ShipViaPhone
         {
             get { return Fields.ShipViaPhone[this]; }
             set { Fields.ShipViaPhone[this] = value; }
+        }
+        
+        [SetFieldFlags(FieldFlags.ClientSide)]
+        public List<OrderDetailRow> DetailList
+        {
+            get { return Fields.DetailList[this]; }
+            set { Fields.DetailList[this] = value; }
         }
 
         IIdField IIdRow.IdField
@@ -353,36 +248,20 @@ namespace Serene.Northwind.Entities
             public readonly StringField CustomerCompanyName;
             public readonly StringField CustomerContactName;
             public readonly StringField CustomerContactTitle;
-            public readonly StringField CustomerAddress;
             public readonly StringField CustomerCity;
             public readonly StringField CustomerRegion;
-            public readonly StringField CustomerPostalCode;
             public readonly StringField CustomerCountry;
             public readonly StringField CustomerPhone;
             public readonly StringField CustomerFax;
 
-
-            public readonly StringField EmployeeLastName;
-            public readonly StringField EmployeeFirstName;
-            public readonly StringField EmployeeTitle;
-            public readonly StringField EmployeeTitleOfCourtesy;
-            public readonly DateTimeField EmployeeBirthDate;
-            public readonly DateTimeField EmployeeHireDate;
-            public readonly StringField EmployeeAddress;
-            public readonly StringField EmployeeCity;
-            public readonly StringField EmployeeRegion;
-            public readonly StringField EmployeePostalCode;
-            public readonly StringField EmployeeCountry;
-            public readonly StringField EmployeeHomePhone;
-            public readonly StringField EmployeeExtension;
-            public readonly StreamField EmployeePhoto;
-            public readonly StringField EmployeeNotes;
-            public readonly Int32Field EmployeeReportsTo;
-            public readonly StringField EmployeePhotoPath;
-
+            public readonly StringField EmployeeFullName;
+            public readonly Int32Field EmployeeGender;
 
             public readonly StringField ShipViaCompanyName;
             public readonly StringField ShipViaPhone;
+
+            public readonly Int32Field ShippingState;
+            public readonly RowListField<OrderDetailRow> DetailList;
 
             public RowFields()
                 : base("Orders")

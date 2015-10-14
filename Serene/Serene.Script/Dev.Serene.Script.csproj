@@ -36,7 +36,8 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
-    <Compile Include="Common\Helper\CascadedEditorHelper.cs" />
+    <Compile Include="Common\Helper\CascadedWidgetLink.cs" />
+    <Compile Include="Common\Helper\GridEditorDialog.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
     <Compile Include="Common\Navigation\SidebarSearch.cs" />
     <Compile Include="Imports\FormContexts\Administration.LanguageForm.cs">
@@ -210,6 +211,9 @@
     <Compile Include="Imports\ServiceContracts\Northwind.EmployeeTerritoryService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.Gender.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.OrderDetailRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -220,6 +224,9 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.OrderService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.OrderShippingState.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductRow.cs">
@@ -253,7 +260,15 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Membership\LoginPanel.cs" />
+    <Compile Include="Northwind\Customer\CustomerCityEditor.cs" />
+    <Compile Include="Northwind\Customer\CustomerEditor.cs" />
+    <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
+    <Compile Include="Common\Helper\GridEditorBase.cs" />
+    <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
+    <Compile Include="Northwind\Order\OrderShipCityEditor.cs" />
+    <Compile Include="Northwind\Order\FreightFormatter.cs" />
     <Compile Include="Northwind\Shared\PhoneEditor.cs" />
+    <Compile Include="Northwind\Shipper\ShipperFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptInitialization.cs" />
     <Compile Include="Administration\User\UserGrid.cs" />
@@ -266,7 +281,6 @@
     <Compile Include="Northwind\Employee\EmployeeDialog.cs" />
     <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryGrid.cs" />
     <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryDialog.cs" />
-    <Compile Include="Northwind\OrderDetail\OrderDetailGrid.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailDialog.cs" />
     <Compile Include="Northwind\Order\OrderGrid.cs" />
     <Compile Include="Northwind\Order\OrderDialog.cs" />

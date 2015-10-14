@@ -14,16 +14,17 @@ namespace Serene.Northwind.Entities
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
+    [LookupScript("Northwind.Product")]
     public sealed class ProductRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Product Id"), Identity]
+        [DisplayName("Product Id"), Identity, LookupInclude]
         public Int32? ProductID
         {
             get { return Fields.ProductID[this]; }
             set { Fields.ProductID[this] = value; }
         }
 
-        [DisplayName("Product Name"), Size(40), NotNull, QuickSearch]
+        [DisplayName("Product Name"), Size(40), NotNull, QuickSearch, LookupInclude]
         public String ProductName
         {
             get { return Fields.ProductName[this]; }
@@ -67,7 +68,7 @@ namespace Serene.Northwind.Entities
             set { Fields.QuantityPerUnit[this] = value; }
         }
 
-        [DisplayName("Unit Price"), Scale(4)]
+        [DisplayName("Unit Price"), Scale(4), LookupInclude]
         public Decimal? UnitPrice
         {
             get { return Fields.UnitPrice[this]; }

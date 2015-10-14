@@ -15,6 +15,9 @@ namespace Serene.Northwind
         [InlineConstant] public const string IdProperty = "ShipperID";
         [InlineConstant] public const string NameProperty = "CompanyName";
         [InlineConstant] public const string LocalTextPrefix = "Northwind.Shipper";
+        [InlineConstant] public const string LookupKey = "Northwind.Shipper";
+    
+        public static Lookup<ShipperRow> Lookup { [InlineCode("Q.getLookup('Northwind.Shipper')")] get { return null; } }
     
         public Int32? ShipperID { get; set; }
         public String CompanyName { get; set; }

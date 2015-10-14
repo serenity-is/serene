@@ -15,12 +15,13 @@ namespace Serene.Northwind
     
         public OrderForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor CustomerID { get { return ById<StringEditor>("CustomerID"); } }
-        public IntegerEditor EmployeeID { get { return ById<IntegerEditor>("EmployeeID"); } }
+        public CustomerEditor CustomerID { get { return ById<CustomerEditor>("CustomerID"); } }
         public DateEditor OrderDate { get { return ById<DateEditor>("OrderDate"); } }
         public DateEditor RequiredDate { get { return ById<DateEditor>("RequiredDate"); } }
+        public LookupEditor EmployeeID { get { return ById<LookupEditor>("EmployeeID"); } }
+        public OrderDetailsEditor DetailList { get { return ById<OrderDetailsEditor>("DetailList"); } }
         public DateEditor ShippedDate { get { return ById<DateEditor>("ShippedDate"); } }
-        public IntegerEditor ShipVia { get { return ById<IntegerEditor>("ShipVia"); } }
+        public LookupEditor ShipVia { get { return ById<LookupEditor>("ShipVia"); } }
         public DecimalEditor Freight { get { return ById<DecimalEditor>("Freight"); } }
         public StringEditor ShipName { get { return ById<StringEditor>("ShipName"); } }
         public StringEditor ShipAddress { get { return ById<StringEditor>("ShipAddress"); } }

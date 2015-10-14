@@ -15,6 +15,9 @@ namespace Serene.Northwind
         [InlineConstant] public const string IdProperty = "OrderID";
         [InlineConstant] public const string NameProperty = "CustomerID";
         [InlineConstant] public const string LocalTextPrefix = "Northwind.Order";
+        [InlineConstant] public const string LookupKey = "Northwind.OrderShipCity";
+    
+        public static Lookup<OrderRow> Lookup { [InlineCode("Q.getLookup('Northwind.OrderShipCity')")] get { return null; } }
     
         public Int32? OrderID { get; set; }
         public String CustomerID { get; set; }
@@ -33,32 +36,17 @@ namespace Serene.Northwind
         public String CustomerCompanyName { get; set; }
         public String CustomerContactName { get; set; }
         public String CustomerContactTitle { get; set; }
-        public String CustomerAddress { get; set; }
         public String CustomerCity { get; set; }
         public String CustomerRegion { get; set; }
-        public String CustomerPostalCode { get; set; }
         public String CustomerCountry { get; set; }
         public String CustomerPhone { get; set; }
         public String CustomerFax { get; set; }
-        public String EmployeeLastName { get; set; }
-        public String EmployeeFirstName { get; set; }
-        public String EmployeeTitle { get; set; }
-        public String EmployeeTitleOfCourtesy { get; set; }
-        public String EmployeeBirthDate { get; set; }
-        public String EmployeeHireDate { get; set; }
-        public String EmployeeAddress { get; set; }
-        public String EmployeeCity { get; set; }
-        public String EmployeeRegion { get; set; }
-        public String EmployeePostalCode { get; set; }
-        public String EmployeeCountry { get; set; }
-        public String EmployeeHomePhone { get; set; }
-        public String EmployeeExtension { get; set; }
-        public byte[] EmployeePhoto { get; set; }
-        public String EmployeeNotes { get; set; }
-        public Int32? EmployeeReportsTo { get; set; }
-        public String EmployeePhotoPath { get; set; }
+        public String EmployeeFullName { get; set; }
+        public Gender? EmployeeGender { get; set; }
         public String ShipViaCompanyName { get; set; }
         public String ShipViaPhone { get; set; }
+        public OrderShippingState? ShippingState { get; set; }
+        public List<OrderDetailRow> DetailList { get; set; }
     
         [Imported, PreserveMemberCase]
         public static class Fields
@@ -80,32 +68,17 @@ namespace Serene.Northwind
             [InlineConstant] public const string CustomerCompanyName = "CustomerCompanyName";
             [InlineConstant] public const string CustomerContactName = "CustomerContactName";
             [InlineConstant] public const string CustomerContactTitle = "CustomerContactTitle";
-            [InlineConstant] public const string CustomerAddress = "CustomerAddress";
             [InlineConstant] public const string CustomerCity = "CustomerCity";
             [InlineConstant] public const string CustomerRegion = "CustomerRegion";
-            [InlineConstant] public const string CustomerPostalCode = "CustomerPostalCode";
             [InlineConstant] public const string CustomerCountry = "CustomerCountry";
             [InlineConstant] public const string CustomerPhone = "CustomerPhone";
             [InlineConstant] public const string CustomerFax = "CustomerFax";
-            [InlineConstant] public const string EmployeeLastName = "EmployeeLastName";
-            [InlineConstant] public const string EmployeeFirstName = "EmployeeFirstName";
-            [InlineConstant] public const string EmployeeTitle = "EmployeeTitle";
-            [InlineConstant] public const string EmployeeTitleOfCourtesy = "EmployeeTitleOfCourtesy";
-            [InlineConstant] public const string EmployeeBirthDate = "EmployeeBirthDate";
-            [InlineConstant] public const string EmployeeHireDate = "EmployeeHireDate";
-            [InlineConstant] public const string EmployeeAddress = "EmployeeAddress";
-            [InlineConstant] public const string EmployeeCity = "EmployeeCity";
-            [InlineConstant] public const string EmployeeRegion = "EmployeeRegion";
-            [InlineConstant] public const string EmployeePostalCode = "EmployeePostalCode";
-            [InlineConstant] public const string EmployeeCountry = "EmployeeCountry";
-            [InlineConstant] public const string EmployeeHomePhone = "EmployeeHomePhone";
-            [InlineConstant] public const string EmployeeExtension = "EmployeeExtension";
-            [InlineConstant] public const string EmployeePhoto = "EmployeePhoto";
-            [InlineConstant] public const string EmployeeNotes = "EmployeeNotes";
-            [InlineConstant] public const string EmployeeReportsTo = "EmployeeReportsTo";
-            [InlineConstant] public const string EmployeePhotoPath = "EmployeePhotoPath";
+            [InlineConstant] public const string EmployeeFullName = "EmployeeFullName";
+            [InlineConstant] public const string EmployeeGender = "EmployeeGender";
             [InlineConstant] public const string ShipViaCompanyName = "ShipViaCompanyName";
             [InlineConstant] public const string ShipViaPhone = "ShipViaPhone";
+            [InlineConstant] public const string ShippingState = "ShippingState";
+            [InlineConstant] public const string DetailList = "DetailList";
         }
     }
     

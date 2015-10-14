@@ -13,8 +13,11 @@ namespace Serene.Northwind
     public partial class EmployeeRow
     {
         [InlineConstant] public const string IdProperty = "EmployeeID";
-        [InlineConstant] public const string NameProperty = "LastName";
+        [InlineConstant] public const string NameProperty = "FullName";
         [InlineConstant] public const string LocalTextPrefix = "Northwind.Employee";
+        [InlineConstant] public const string LookupKey = "Northwind.Employee";
+    
+        public static Lookup<EmployeeRow> Lookup { [InlineCode("Q.getLookup('Northwind.Employee')")] get { return null; } }
     
         public Int32? EmployeeID { get; set; }
         public String LastName { get; set; }
@@ -53,6 +56,7 @@ namespace Serene.Northwind
         public String ReportsToNotes { get; set; }
         public Int32? ReportsToReportsTo { get; set; }
         public String ReportsToPhotoPath { get; set; }
+        public Gender? Gender { get; set; }
     
         [Imported, PreserveMemberCase]
         public static class Fields
@@ -94,6 +98,7 @@ namespace Serene.Northwind
             [InlineConstant] public const string ReportsToNotes = "ReportsToNotes";
             [InlineConstant] public const string ReportsToReportsTo = "ReportsToReportsTo";
             [InlineConstant] public const string ReportsToPhotoPath = "ReportsToPhotoPath";
+            [InlineConstant] public const string Gender = "Gender";
         }
     }
     

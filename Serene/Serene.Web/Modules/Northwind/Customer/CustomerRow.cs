@@ -15,7 +15,6 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
     [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]
     [JsonConverter(typeof(JsonRowConverter))]
-    [LookupScript("Northwind.Customer")]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]
@@ -25,7 +24,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ID[this] = value; }
         }
 
-        [DisplayName("Customer Id"), Size(5), PrimaryKey, NotNull, QuickSearch, Updatable(false)]
+        [DisplayName("Customer Id"), Size(5), PrimaryKey, NotNull, QuickSearch, Updatable(false), LookupInclude]
         public String CustomerID
         {
             get { return Fields.CustomerID[this]; }
@@ -109,7 +108,7 @@ namespace Serene.Northwind.Entities
 
         StringField INameRow.NameField
         {
-            get { return Fields.CustomerID; }
+            get { return Fields.CompanyName; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();

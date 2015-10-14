@@ -8,11 +8,13 @@ namespace Serene.Northwind.Entities
     using System;
     using System.IO;
     using System.ComponentModel;
+    using Serenity.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Employees"), InstanceName("Employee"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
+    [LookupScript("Northwind.Employee")]
     public sealed class EmployeeRow : Row, IIdRow, INameRow
     {
         [DisplayName("Employee Id"), Identity]
@@ -22,7 +24,7 @@ namespace Serene.Northwind.Entities
             set { Fields.EmployeeID[this] = value; }
         }
 
-        [DisplayName("Last Name"), Size(20), NotNull, QuickSearch]
+        [DisplayName("Last Name"), Size(20), NotNull]
         public String LastName
         {
             get { return Fields.LastName[this]; }
@@ -36,12 +38,19 @@ namespace Serene.Northwind.Entities
             set { Fields.FirstName[this] = value; }
         }
 
-        [DisplayName("FullName"), Expression("(T0.FirstName + ' ' + T0.LastName)")]
+        [DisplayName("FullName"), Expression("(T0.FirstName + ' ' + T0.LastName)"), QuickSearch]
         public String FullName
         {
             get { return Fields.FullName[this]; }
             set { Fields.FullName[this] = value; }
         }
+
+        [DisplayName("Gender"), Expression("(CASE WHEN T0.TitleOfCourtesy LIKE '%s%' THEN 2 WHEN T0.TitleOfCourtesy LIKE '%Mr%' THEN 1 END)")]
+        public Gender? Gender
+        {
+            get { return (Gender?)Fields.Gender[this]; }
+            set { Fields.Gender[this] = (Int32?)value; }
+        } 
 
         [DisplayName("Title"), Size(30)]
         public String Title
@@ -281,7 +290,7 @@ namespace Serene.Northwind.Entities
 
         StringField INameRow.NameField
         {
-            get { return Fields.LastName; }
+            get { return Fields.FullName; }
         }
 
         public static readonly RowFields Fields = new RowFields().Init();
@@ -331,6 +340,8 @@ namespace Serene.Northwind.Entities
             public readonly StringField ReportsToNotes;
             public readonly Int32Field ReportsToReportsTo;
             public readonly StringField ReportsToPhotoPath;
+
+            public readonly Int32Field Gender;
 
             public RowFields()
                 : base("Employees")

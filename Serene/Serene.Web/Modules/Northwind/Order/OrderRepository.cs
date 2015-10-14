@@ -6,7 +6,9 @@ namespace Serene.Northwind.Repositories
     using Serenity.Data;
     using Serenity.Services;
     using System;
+    using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using MyRow = Entities.OrderRow;
 
     public class OrderRepository
@@ -43,10 +45,72 @@ namespace Serene.Northwind.Repositories
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
+        private class MySaveHandler : SaveRequestHandler<MyRow>
+        {
+            protected override void AfterSave()
+            {
+                base.AfterSave();
+
+                if (Row.DetailList != null)
+                {
+                    var fdd = Entities.OrderDetailRow.Fields;
+                    var oldList = IsCreate ? new List<Entities.OrderDetailRow>() :
+                        Connection.List<Entities.OrderDetailRow>(fdd.OrderID == this.Row.OrderID.Value);
+
+                    foreach (var r in oldList.Where(x => !Row.DetailList.Any(y => y.DetailID == x.DetailID)))
+                    {
+                        new OrderDetailRepository().Delete(this.UnitOfWork, new DeleteRequest
+                        {
+                            EntityId = r.DetailID.Value
+                        });
+                    }
+
+                    foreach (var r in Row.DetailList.Where(x => x.DetailID == null || !oldList.Any(y => y.DetailID == x.DetailID)))
+                    {
+                        var insert = r.Clone();
+                        insert.OrderID = this.Row.OrderID;
+                        insert.DetailID = null;
+                        new OrderDetailRepository().Create(this.UnitOfWork, new SaveRequest<Entities.OrderDetailRow>
+                        {
+                            Entity = insert
+                        });
+                    }
+
+                    foreach (var r in Row.DetailList.Where(x => x.DetailID != null))
+                    {
+                        var old = oldList.FirstOrDefault(y => y.DetailID == r.DetailID);
+                        if (old == null)
+                            continue;
+
+                        var update = r.Clone();
+                        update.OrderID = this.Row.OrderID;
+                        new OrderDetailRepository().Update(this.UnitOfWork, new SaveRequest<Entities.OrderDetailRow>
+                        {
+                            Entity = update
+                        });
+                    }
+                }
+            }
+        }
+
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
+
+        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow>
+        {
+            protected override void OnReturn()
+            {
+                var od = Entities.OrderDetailRow.Fields;
+                Row.DetailList = Connection.List<Entities.OrderDetailRow>(q => q
+                    .SelectTableFields()
+                    .Select(od.ProductName)
+                    .Select(od.LineTotal)
+                    .Where(od.OrderID == Row.OrderID.Value));
+
+                base.OnReturn();
+            }
+        }
+
         private class MyListHandler : ListRequestHandler<MyRow> { }
     }
 }

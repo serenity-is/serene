@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -799,6 +800,7 @@
     <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151014_030700_OrderDetailID.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
@@ -809,10 +811,18 @@
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
+    <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
+    <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
+    <Compile Include="Modules\Northwind\Employee\Gender.cs" />
     <Compile Include="Modules\Northwind\Northwind.DynamicScripts.cs" />
     <Compile Include="Modules\Northwind\Category\CategoryColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCountryLookup.cs" />
+    <Compile Include="Modules\Northwind\OrderDetail\OrderDetailColumns.cs" />
+    <Compile Include="Modules\Northwind\Order\OrderShippingState.cs" />
+    <Compile Include="Modules\Northwind\Order\OrderShipCity.cs" />
+    <Compile Include="Modules\Northwind\Order\OrderShipCountry.cs" />
+    <Compile Include="Modules\Northwind\Order\OrderColumns.cs" />
     <Compile Include="Modules\Northwind\PermissionKeys.cs" />
     <Compile Include="Modules\Northwind\Product\ProductColumns.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />

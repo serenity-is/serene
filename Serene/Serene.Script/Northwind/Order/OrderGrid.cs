@@ -6,8 +6,9 @@ namespace Serene.Northwind
     using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using Fields = OrderRow.Fields;
 
-    [IdProperty("OrderID"), NameProperty("CustomerID")]
+    [ColumnsKey("Northwind.Order"), IdProperty("OrderID")]
     [DialogType(typeof(OrderDialog)), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
     public class OrderGrid : EntityGrid<OrderRow>
     {
@@ -16,26 +17,25 @@ namespace Serene.Northwind
         {
         }
 
-        protected override List<SlickColumn> GetColumns()
+        protected override void CreateToolbarExtensions()
         {
-            var columns = base.GetColumns();
+            base.CreateToolbarExtensions();
 
-            columns.Add(new SlickColumn { Field = "OrderID", Width = 55, CssClass = "align-right", Title = Q.Text("Db.Shared.RecordId") });
-            columns.Add(new SlickColumn { Field = "CustomerID", Width = 200, Format = ItemLink() });
-            columns.Add(new SlickColumn { Field = "EmployeeID", Width = 80 });
-            columns.Add(new SlickColumn { Field = "OrderDate", Width = 80 });
-            columns.Add(new SlickColumn { Field = "RequiredDate", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShippedDate", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipVia", Width = 80 });
-            columns.Add(new SlickColumn { Field = "Freight", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipName", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipAddress", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipCity", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipRegion", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipPostalCode", Width = 80 });
-            columns.Add(new SlickColumn { Field = "ShipCountry", Width = 80 });
+            AddEqualityFilter<CustomerEditor>(Fields.CustomerID);
 
-            return columns;
+            AddEqualityFilter<EnumEditor>(Fields.ShippingState,
+                options: new EnumEditorOptions { EnumKey = "Northwind.OrderShippingState" });
+                
+            AddEqualityFilter<LookupEditor>(Fields.ShipVia,
+                options: new LookupEditorOptions { LookupKey = ShipperRow.LookupKey });
+
+            AddEqualityFilter<LookupEditor>(Fields.ShipCountry,
+                options: new LookupEditorOptions { LookupKey = "Northwind.OrderShipCountry" });
+
+            AddEqualityFilter<OrderShipCityEditor>(Fields.ShipCity, init: w => w.CountryEditorID = Fields.ShipCountry);
+
+            AddEqualityFilter<LookupEditor>(Fields.EmployeeID,
+                options: new LookupEditorOptions { LookupKey = EmployeeRow.LookupKey });
         }
     }
 }
