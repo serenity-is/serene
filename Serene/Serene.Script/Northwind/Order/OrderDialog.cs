@@ -5,9 +5,9 @@ namespace Serene.Northwind
     using Serenity;
     using System.Collections.Generic;
 
-    [IdProperty("OrderID"), NameProperty("CustomerID")]
+    [IdProperty("OrderID"), NameProperty("CustomerID"), Flexify, Maximizable]
     [FormKey("Northwind.Order"), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
-    public class OrderDialog : EntityDialog<OrderRow>, IAsyncInit
+    public class OrderDialog : EntityDialog<OrderRow>
     {
     }
 }

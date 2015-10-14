@@ -57,38 +57,8 @@ namespace Serene.Northwind.Repositories
                     var oldList = IsCreate ? new List<Entities.OrderDetailRow>() :
                         Connection.List<Entities.OrderDetailRow>(fdd.OrderID == this.Row.OrderID.Value);
 
-                    foreach (var r in oldList.Where(x => !Row.DetailList.Any(y => y.DetailID == x.DetailID)))
-                    {
-                        new OrderDetailRepository().Delete(this.UnitOfWork, new DeleteRequest
-                        {
-                            EntityId = r.DetailID.Value
-                        });
-                    }
-
-                    foreach (var r in Row.DetailList.Where(x => x.DetailID == null || !oldList.Any(y => y.DetailID == x.DetailID)))
-                    {
-                        var insert = r.Clone();
-                        insert.OrderID = this.Row.OrderID;
-                        insert.DetailID = null;
-                        new OrderDetailRepository().Create(this.UnitOfWork, new SaveRequest<Entities.OrderDetailRow>
-                        {
-                            Entity = insert
-                        });
-                    }
-
-                    foreach (var r in Row.DetailList.Where(x => x.DetailID != null))
-                    {
-                        var old = oldList.FirstOrDefault(y => y.DetailID == r.DetailID);
-                        if (old == null)
-                            continue;
-
-                        var update = r.Clone();
-                        update.OrderID = this.Row.OrderID;
-                        new OrderDetailRepository().Update(this.UnitOfWork, new SaveRequest<Entities.OrderDetailRow>
-                        {
-                            Entity = update
-                        });
-                    }
+                    new Common.DetailListSaveHandler<Entities.OrderDetailRow>(oldList, Row.DetailList,
+                        x => x.OrderID = Row.OrderID.Value).Process(this.UnitOfWork);
                 }
             }
         }

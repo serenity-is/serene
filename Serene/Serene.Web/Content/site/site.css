@@ -252,6 +252,11 @@ div.s-Toolbar .tool-button {
   border-bottom: 1px solid #C7E9FA;
   padding: 0.5em 10em 0.4em 1em;
 }
+.ui-dialog-titlebar-buttonpane {
+  right: 34px !important;
+  top: 19px !important;
+  margin-right: 4px;
+}
 .ui-dialog-titlebar-buttonpane .ui-corner-all {
   border-radius: 0;
 }

@@ -794,6 +794,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
+    <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
     <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">
       <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
     </Compile>

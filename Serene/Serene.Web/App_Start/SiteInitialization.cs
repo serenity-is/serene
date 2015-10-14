@@ -6,10 +6,10 @@
     using Serenity.Abstractions;
     using Serenity.Data;
     using System;
-    using System.Data;
     using System.Data.Common;
     using System.Data.SqlClient;
     using System.IO;
+    using System.Linq;
     using System.Web.Hosting;
 
     public static partial class SiteInitialization
@@ -43,30 +43,53 @@
 
         private static void EnsureDatabase()
         {
-            using (var connection = SqlConnections.NewByKey("Default"))
-            try
-            {
-                connection.Open();
-            }
-            catch
-            {
-                var cb = new DbConnectionStringBuilder();
-                cb.ConnectionString = SqlConnections.GetConnectionString("Default").ConnectionString;
-                var catalog = cb["Initial Catalog"];
-                cb["Initial Catalog"] = null;
-                cb["AttachDBFilename"] = null;
+            var cs = SqlConnections.GetConnectionString("Default");
 
-                using (var serverConnection = new SqlConnection(cb.ConnectionString))
+            var cb = new DbConnectionStringBuilder();
+            cb.ConnectionString = cs.ConnectionString;
+            var catalog = cb["Initial Catalog"] as string;
+            cb["Initial Catalog"] = null;
+            cb["AttachDBFilename"] = null;
+
+            using (var serverConnection = new SqlConnection(cb.ConnectionString))
+            {
+                try
                 {
                     serverConnection.Open();
-                    serverConnection.Execute(String.Format(
-                        @"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}\{0}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}\{0}.ldf');",
-                            catalog, HostingEnvironment.MapPath("~/App_Data")));
                 }
-                
-                SqlConnection.ClearAllPools();
+                catch (SqlException ex)
+                {
+                    if (ex.ErrorCode != -2146232060)
+                        throw;
+
+                    const string oldVer = @"\v11.0";
+
+                    if (cb.ConnectionString.IndexOf(oldVer) >= 0)
+                        throw new Exception(
+                            "You don't seem to have SQL Express LocalDB 2012 installed.\r\n\r\n" + 
+                            "If you have Visual Studio 2015 (with SQL LocalDB 2014) " + 
+                            "try changing 'Default' connection string in WEB.CONFIG to:\r\n\r\n" +
+                            cs.ConnectionString.Replace(oldVer, @"\MSSqlLocalDB") + "\r\n\r\nor:\r\n\r\n" +
+                            cs.ConnectionString.Replace(oldVer, @"\v12.0") + "';\r\n\r\n" + 
+                            "You can also try another SQL server type like .\\SQLExpress.");
+
+                    throw;
+                }
+
+                if (serverConnection.Query("SELECT * FROM sys.databases WHERE NAME = @name", new { name = catalog }).Any())
+                    return;
+
+                var filename = Path.Combine(HostingEnvironment.MapPath("~/App_Data"), catalog);
+                var command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
+                    catalog, filename);
+
+                if (File.Exists(filename + ".mdf"))
+                    command += " FOR ATTACH";
+
+                serverConnection.Execute(command);
             }
 
+            SqlConnection.ClearAllPools();
             RunMigrations();
         }
 

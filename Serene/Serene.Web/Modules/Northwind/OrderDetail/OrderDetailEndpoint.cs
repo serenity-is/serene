@@ -12,24 +12,6 @@ namespace Serene.Northwind.Endpoints
     [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class OrderDetailController : ServiceEndpoint
     {
-        [HttpPost]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
-        {
-            return new MyRepository().Create(uow, request);
-        }
-
-        [HttpPost]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
-        {
-            return new MyRepository().Update(uow, request);
-        }
-
-        [HttpPost]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
-        {
-            return new MyRepository().Delete(uow, request);
-        }
-
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
         {
             return new MyRepository().Retrieve(connection, request);

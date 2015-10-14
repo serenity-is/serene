@@ -2105,7 +2105,7 @@
 		}
 	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_Northwind_OrderDetailService, $asm, {});
-	ss.initClass($Serene_Northwind_OrderDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_OrderDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderForm, $asm, {
 		get_customerID: function() {
 			return this.byId($Serene_Northwind_CustomerEditor).call(this, 'CustomerID');
@@ -2443,7 +2443,7 @@
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
-	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
+	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
 	ss.setMetadata($Serene_Northwind_OrderGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Order'), new Serenity.IdPropertyAttribute('OrderID'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
 	ss.setMetadata($Serene_Northwind_OrderShipCityEditor, { members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'Country', type: 16, returnType: String, getter: { name: 'get_Country', type: 8, sname: 'get_country', returnType: String, params: [] }, setter: { name: 'set_Country', type: 8, sname: 'set_country', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'CountryEditorID', type: 16, returnType: String, getter: { name: 'get_CountryEditorID', type: 8, sname: 'get_countryEditorID', returnType: String, params: [] }, setter: { name: 'set_CountryEditorID', type: 8, sname: 'set_countryEditorID', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serene_Northwind_OrderShippingState, { attr: [new Serenity.EnumKeyAttribute('Northwind.OrderShippingState')] });
