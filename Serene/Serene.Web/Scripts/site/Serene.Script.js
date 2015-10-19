@@ -450,6 +450,13 @@
 				this.set_onDelete(null);
 				ss.makeGenericType(Serenity.EntityDialog$2, [TEntity, Object]).prototype.destroy.call(this);
 			},
+			updateInterface: function() {
+				ss.makeGenericType(Serenity.EntityDialog$2, [TEntity, Object]).prototype.updateInterface.call(this);
+				// apply changes button doesn't work properly with in-memory grids yet
+				if (ss.isValue(this.applyChangesButton)) {
+					this.applyChangesButton.hide();
+				}
+			},
 			saveHandler: function(options, callback) {
 				if (!ss.staticEquals(this.get_onSave(), null)) {
 					this.get_onSave()(options, callback);

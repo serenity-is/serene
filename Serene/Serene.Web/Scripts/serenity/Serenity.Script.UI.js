@@ -1218,7 +1218,7 @@
 					for (var i = 0; i < propertyItems.length; i++) {
 						var item = propertyItems[i];
 						var column = columns[i];
-						if (item.editLink) {
+						if (item.editLink === true) {
 							var oldFormat = { $: column.format };
 							var css = { $: (ss.isValue(item.editLinkCssClass) ? item.editLinkCssClass : null) };
 							column.format = this.itemLink((ss.isValue(item.editLinkItemType) ? item.editLinkItemType : null), (ss.isValue(item.editLinkIdField) ? item.editLinkIdField : null), ss.mkdel({ oldFormat: oldFormat }, function(ctx) {
@@ -2436,7 +2436,7 @@
 				var anyLocalizable = false;
 				for (var $t1 = 0; $t1 < pgOptions.items.length; $t1++) {
 					var item = pgOptions.items[$t1];
-					if (item.localizable) {
+					if (item.localizable === true) {
 						anyLocalizable = true;
 					}
 				}
@@ -2448,7 +2448,7 @@
 				var items = [];
 				for (var $t2 = 0; $t2 < pgOptions.items.length; $t2++) {
 					var item1 = pgOptions.items[$t2];
-					if (item1.localizable) {
+					if (item1.localizable === true) {
 						var copy = $.extend({}, item1);
 						copy.oneWay = true;
 						copy.readOnly = true;
@@ -5056,7 +5056,7 @@
 		var gridField = $Serenity_WX.getGridField(widget);
 		var hasSupItem = Enumerable.from(gridField.find('sup').get()).any();
 		if (isRequired && !hasSupItem) {
-			$('<sup>*</sup>').attr('title', 'Bu alan zorunludur').prependTo(gridField.find('.caption')[0]);
+			$('<sup>*</sup>').attr('title', Texts$Controls$PropertyGrid.RequiredHint.get()).prependTo(gridField.find('.caption')[0]);
 		}
 		else if (!isRequired && hasSupItem) {
 			$(gridField.find('sup')[0]).remove();
@@ -5342,7 +5342,7 @@
 		}
 		result.name = $t1;
 		result.cssClass = item.cssClass;
-		result.sortOrder = item.sortOrder;
+		result.sortOrder = ss.coalesce(item.sortOrder, 0);
 		if (ss.isValue(item.alignment) && item.alignment.length > 0) {
 			if (!Q.isEmptyOrNull(result.cssClass)) {
 				result.cssClass += ' align-' + item.alignment;
@@ -5352,9 +5352,9 @@
 			}
 		}
 		result.width = (ss.isValue(item.width) ? item.width : 80);
-		result.minWidth = ((!ss.isValue(item.minWidth) || item.minWidth === 0) ? 30 : item.minWidth);
-		result.maxWidth = ((!ss.isValue(item.maxWidth) || item.maxWidth === 0) ? null : item.maxWidth);
-		result.resizable = !ss.isValue(item.resizable) || item.resizable;
+		result.minWidth = ss.coalesce(item.minWidth, 30);
+		result.maxWidth = ((ss.isNullOrUndefined(item.maxWidth) || item.maxWidth === 0) ? null : item.maxWidth);
+		result.resizable = ss.isNullOrUndefined(item.resizable) || ss.unbox(item.resizable);
 		if (ss.isValue(item.formatterType) && item.formatterType.length > 0) {
 			var formatter = ss.cast(ss.createInstance($Serenity_FormatterTypeRegistry.get(item.formatterType)), Serenity.ISlickFormatter);
 			if (ss.isValue(item.formatterParams)) {
@@ -7129,7 +7129,7 @@
 			return list;
 		},
 		isNullable: function() {
-			return !this.get_field().required;
+			return this.get_field().required !== true;
 		},
 		createEditor: function() {
 			switch (this.get_operator().key) {
@@ -8939,7 +8939,7 @@
 				$t1 = ss.coalesce(title, '');
 			}
 			var label = $t2.attr('title', $t1).html(ss.coalesce(title, '')).appendTo(fieldDiv);
-			if (item.required) {
+			if (item.required === true) {
 				$('<sup>*</sup>').attr('title', Texts$Controls$PropertyGrid.RequiredHint.get()).prependTo(label);
 			}
 			var editorType = $Serenity_EditorTypeRegistry.get(item.editorType);
@@ -9092,7 +9092,7 @@
 		save: function(target) {
 			for (var i = 0; i < this.$editors.length; i++) {
 				var item = this.$items[i];
-				if (!item.oneWay && !(this.get_mode() === 0 && item.insertable === false) && !(this.get_mode() === 1 && item.updatable === false)) {
+				if (item.oneWay !== true && !(this.get_mode() === 0 && item.insertable === false) && !(this.get_mode() === 1 && item.updatable === false)) {
 					var editor = this.$editors[i];
 					$Serenity_PropertyGrid.saveEditorValue(editor, item, target);
 				}
@@ -9102,9 +9102,9 @@
 			for (var i = 0; i < this.$editors.length; i++) {
 				var item = this.$items[i];
 				var editor = this.$editors[i];
-				var readOnly = item.readOnly || this.get_mode() === 0 && item.insertable === false || this.get_mode() === 1 && item.updatable === false;
+				var readOnly = item.readOnly === true || this.get_mode() === 0 && item.insertable === false || this.get_mode() === 1 && item.updatable === false;
 				$Serenity_PropertyGrid.setReadOnly(editor, readOnly);
-				$Serenity_PropertyGrid.setRequired(editor, !readOnly && item.required && item.editorType !== 'Boolean');
+				$Serenity_PropertyGrid.setRequired(editor, !readOnly && !!item.required && item.editorType !== 'Boolean');
 			}
 		},
 		enumerateItems: function(callback) {
