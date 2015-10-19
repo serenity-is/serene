@@ -19,6 +19,15 @@ namespace Serene.Common
             base.Destroy();
         }
 
+        protected override void UpdateInterface()
+        {
+            base.UpdateInterface();
+
+            // apply changes button doesn't work properly with in-memory grids yet
+            if (applyChangesButton != null)
+                applyChangesButton.Hide();
+        }
+
         protected override void SaveHandler(ServiceCallOptions options, Action<ServiceResponse> callback)
         {
             if (OnSave != null)
