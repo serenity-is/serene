@@ -84,12 +84,24 @@
                 if (serverConnection.Query("SELECT * FROM sys.databases WHERE NAME = @name", new { name = catalog }).Any())
                     return;
 
-                var filename = Path.Combine(HostingEnvironment.MapPath("~/App_Data"), catalog);
-                var command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
-                    catalog, filename);
+                var isLocalServer = serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    serverConnection.ConnectionString.IndexOf(@".\") >= 0;
 
-                if (File.Exists(filename + ".mdf"))
-                    command += " FOR ATTACH";
+                string command;
+                if (isLocalServer)
+                {
+                    var filename = Path.Combine(HostingEnvironment.MapPath("~/App_Data"), catalog);
+                    command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
+                        catalog, filename);
+
+                    if (File.Exists(filename + ".mdf"))
+                        command += " FOR ATTACH";
+                }
+                else
+                {
+                    command = String.Format(@"CREATE DATABASE [{0}]",
+                        catalog);
+                }
 
                 serverConnection.Execute(command);
                 SqlConnection.ClearAllPools();
