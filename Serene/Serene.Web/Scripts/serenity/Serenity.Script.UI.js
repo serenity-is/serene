@@ -7710,7 +7710,7 @@
 		},
 		getEditorOptions: function() {
 			var opt = ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_Widget]).prototype.getEditorOptions.call(this);
-			if (this.useEditor() && ss.referenceEquals(this.get_editorType(), this.get_field().editorType)) {
+			if (this.useEditor() && ss.referenceEquals(this.get_editorType(), ss.coalesce(this.get_field().editorType, 'String'))) {
 				opt = $.extend(opt, this.get_field().editorParams);
 			}
 			return opt;
@@ -8942,7 +8942,7 @@
 			if (item.required === true) {
 				$('<sup>*</sup>').attr('title', Texts$Controls$PropertyGrid.RequiredHint.get()).prependTo(label);
 			}
-			var editorType = $Serenity_EditorTypeRegistry.get(item.editorType);
+			var editorType = $Serenity_EditorTypeRegistry.get(ss.coalesce(item.editorType, 'String'));
 			var elementAttr = ss.getAttributes(editorType, Serenity.ElementAttribute, true);
 			var elementHtml = ((elementAttr.length > 0) ? elementAttr[0].get_html() : '<input/>');
 			var element = $Serenity_Widget.elementFor$1(editorType).addClass('editor').addClass('flexify').attr('id', editorId).appendTo(fieldDiv);
