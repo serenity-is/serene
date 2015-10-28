@@ -35,27 +35,6 @@
 	$Serene_Administration_LanguageGrid.__typeName = 'Serene.Administration.LanguageGrid';
 	global.Serene.Administration.LanguageGrid = $Serene_Administration_LanguageGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.LanguageService
-	var $Serene_Administration_LanguageService = function() {
-	};
-	$Serene_Administration_LanguageService.__typeName = 'Serene.Administration.LanguageService';
-	$Serene_Administration_LanguageService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Language/Create', request, onSuccess, options);
-	};
-	$Serene_Administration_LanguageService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Language/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_LanguageService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Language/Delete', request, onSuccess, options);
-	};
-	$Serene_Administration_LanguageService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Language/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Administration_LanguageService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Language/List', request, onSuccess, options);
-	};
-	global.Serene.Administration.LanguageService = $Serene_Administration_LanguageService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.PermissionCheckEditor
 	var $Serene_Administration_PermissionCheckEditor = function(div) {
 		this.$containsText = null;
@@ -138,45 +117,12 @@
 		this.$permissions = null;
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
-		$Serene_Administration_RolePermissionService.list({ RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+		Q.serviceRequest('Administration/RolePermission/List', { RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(response.Entities);
 		}), null);
 	};
 	$Serene_Administration_RolePermissionDialog.__typeName = 'Serene.Administration.RolePermissionDialog';
 	global.Serene.Administration.RolePermissionDialog = $Serene_Administration_RolePermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RolePermissionService
-	var $Serene_Administration_RolePermissionService = function() {
-	};
-	$Serene_Administration_RolePermissionService.__typeName = 'Serene.Administration.RolePermissionService';
-	$Serene_Administration_RolePermissionService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/RolePermission/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_RolePermissionService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/RolePermission/List', request, onSuccess, options);
-	};
-	global.Serene.Administration.RolePermissionService = $Serene_Administration_RolePermissionService;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RoleService
-	var $Serene_Administration_RoleService = function() {
-	};
-	$Serene_Administration_RoleService.__typeName = 'Serene.Administration.RoleService';
-	$Serene_Administration_RoleService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Role/Create', request, onSuccess, options);
-	};
-	$Serene_Administration_RoleService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Role/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_RoleService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Role/Delete', request, onSuccess, options);
-	};
-	$Serene_Administration_RoleService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Role/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Administration_RoleService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Role/List', request, onSuccess, options);
-	};
-	global.Serene.Administration.RoleService = $Serene_Administration_RoleService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.TranslationGrid
 	var $Serene_Administration_TranslationGrid = function(container) {
@@ -197,18 +143,6 @@
 	};
 	$Serene_Administration_TranslationGrid.__typeName = 'Serene.Administration.TranslationGrid';
 	global.Serene.Administration.TranslationGrid = $Serene_Administration_TranslationGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.TranslationService
-	var $Serene_Administration_TranslationService = function() {
-	};
-	$Serene_Administration_TranslationService.__typeName = 'Serene.Administration.TranslationService';
-	$Serene_Administration_TranslationService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Translation/List', request, onSuccess, options);
-	};
-	$Serene_Administration_TranslationService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/Translation/Update', request, onSuccess, options);
-	};
-	global.Serene.Administration.TranslationService = $Serene_Administration_TranslationService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserDialog
 	var $Serene_Administration_UserDialog = function() {
@@ -250,34 +184,19 @@
 		this.$permissions = null;
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
-		$Serene_Administration_UserPermissionService.list({ UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(response.Entities);
 		}), null);
 	};
 	$Serene_Administration_UserPermissionDialog.__typeName = 'Serene.Administration.UserPermissionDialog';
 	global.Serene.Administration.UserPermissionDialog = $Serene_Administration_UserPermissionDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserPermissionService
-	var $Serene_Administration_UserPermissionService = function() {
-	};
-	$Serene_Administration_UserPermissionService.__typeName = 'Serene.Administration.UserPermissionService';
-	$Serene_Administration_UserPermissionService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserPermission/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_UserPermissionService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserPermission/List', request, onSuccess, options);
-	};
-	$Serene_Administration_UserPermissionService.listPermissionKeys = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserPermission/ListPermissionKeys', request, onSuccess, options);
-	};
-	global.Serene.Administration.UserPermissionService = $Serene_Administration_UserPermissionService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserRoleDialog
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
 		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId$1('Roles'));
-		$Serene_Administration_UserRoleService.list({ UserID: this.options.userID }, ss.mkdel(this, function(response) {
+		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
 				return x.toString();
 			}).toArray());
@@ -285,42 +204,6 @@
 	};
 	$Serene_Administration_UserRoleDialog.__typeName = 'Serene.Administration.UserRoleDialog';
 	global.Serene.Administration.UserRoleDialog = $Serene_Administration_UserRoleDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserRoleService
-	var $Serene_Administration_UserRoleService = function() {
-	};
-	$Serene_Administration_UserRoleService.__typeName = 'Serene.Administration.UserRoleService';
-	$Serene_Administration_UserRoleService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserRole/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_UserRoleService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/UserRole/List', request, onSuccess, options);
-	};
-	global.Serene.Administration.UserRoleService = $Serene_Administration_UserRoleService;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserService
-	var $Serene_Administration_UserService = function() {
-	};
-	$Serene_Administration_UserService.__typeName = 'Serene.Administration.UserService';
-	$Serene_Administration_UserService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/Create', request, onSuccess, options);
-	};
-	$Serene_Administration_UserService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/Update', request, onSuccess, options);
-	};
-	$Serene_Administration_UserService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/Delete', request, onSuccess, options);
-	};
-	$Serene_Administration_UserService.undelete = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/Undelete', request, onSuccess, options);
-	};
-	$Serene_Administration_UserService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Administration_UserService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Administration/User/List', request, onSuccess, options);
-	};
-	global.Serene.Administration.UserService = $Serene_Administration_UserService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorBase
 	var $Serene_Common_GridEditorBase$1 = function(TEntity) {
@@ -582,27 +465,6 @@
 	$Serene_Northwind_CategoryGrid.__typeName = 'Serene.Northwind.CategoryGrid';
 	global.Serene.Northwind.CategoryGrid = $Serene_Northwind_CategoryGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CategoryService
-	var $Serene_Northwind_CategoryService = function() {
-	};
-	$Serene_Northwind_CategoryService.__typeName = 'Serene.Northwind.CategoryService';
-	$Serene_Northwind_CategoryService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Category/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_CategoryService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Category/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_CategoryService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Category/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_CategoryService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Category/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_CategoryService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Category/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.CategoryService = $Serene_Northwind_CategoryService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCityEditor
 	var $Serene_Northwind_CustomerCityEditor = function(container) {
 		this.$countryLink = null;
@@ -636,27 +498,6 @@
 	$Serene_Northwind_CustomerCustomerDemoGrid.__typeName = 'Serene.Northwind.CustomerCustomerDemoGrid';
 	global.Serene.Northwind.CustomerCustomerDemoGrid = $Serene_Northwind_CustomerCustomerDemoGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerCustomerDemoService
-	var $Serene_Northwind_CustomerCustomerDemoService = function() {
-	};
-	$Serene_Northwind_CustomerCustomerDemoService.__typeName = 'Serene.Northwind.CustomerCustomerDemoService';
-	$Serene_Northwind_CustomerCustomerDemoService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerCustomerDemo/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerCustomerDemoService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerCustomerDemo/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerCustomerDemoService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerCustomerDemo/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerCustomerDemoService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerCustomerDemo/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerCustomerDemoService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerCustomerDemo/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.CustomerCustomerDemoService = $Serene_Northwind_CustomerCustomerDemoService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDemographicDialog
 	var $Serene_Northwind_CustomerDemographicDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -677,27 +518,6 @@
 	};
 	$Serene_Northwind_CustomerDemographicGrid.__typeName = 'Serene.Northwind.CustomerDemographicGrid';
 	global.Serene.Northwind.CustomerDemographicGrid = $Serene_Northwind_CustomerDemographicGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerDemographicService
-	var $Serene_Northwind_CustomerDemographicService = function() {
-	};
-	$Serene_Northwind_CustomerDemographicService.__typeName = 'Serene.Northwind.CustomerDemographicService';
-	$Serene_Northwind_CustomerDemographicService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerDemographic/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerDemographicService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerDemographic/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerDemographicService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerDemographic/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerDemographicService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerDemographic/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerDemographicService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/CustomerDemographic/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.CustomerDemographicService = $Serene_Northwind_CustomerDemographicService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDialog
 	var $Serene_Northwind_CustomerDialog = function() {
@@ -747,27 +567,6 @@
 	$Serene_Northwind_CustomerOrdersGrid.__typeName = 'Serene.Northwind.CustomerOrdersGrid';
 	global.Serene.Northwind.CustomerOrdersGrid = $Serene_Northwind_CustomerOrdersGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerService
-	var $Serene_Northwind_CustomerService = function() {
-	};
-	$Serene_Northwind_CustomerService.__typeName = 'Serene.Northwind.CustomerService';
-	$Serene_Northwind_CustomerService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Customer/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Customer/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Customer/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Customer/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_CustomerService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Customer/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.CustomerService = $Serene_Northwind_CustomerService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeDialog
 	var $Serene_Northwind_EmployeeDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -796,27 +595,6 @@
 	$Serene_Northwind_EmployeeGrid.__typeName = 'Serene.Northwind.EmployeeGrid';
 	global.Serene.Northwind.EmployeeGrid = $Serene_Northwind_EmployeeGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.EmployeeService
-	var $Serene_Northwind_EmployeeService = function() {
-	};
-	$Serene_Northwind_EmployeeService.__typeName = 'Serene.Northwind.EmployeeService';
-	$Serene_Northwind_EmployeeService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Employee/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Employee/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Employee/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Employee/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Employee/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.EmployeeService = $Serene_Northwind_EmployeeService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeTerritoryDialog
 	var $Serene_Northwind_EmployeeTerritoryDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -837,27 +615,6 @@
 	};
 	$Serene_Northwind_EmployeeTerritoryGrid.__typeName = 'Serene.Northwind.EmployeeTerritoryGrid';
 	global.Serene.Northwind.EmployeeTerritoryGrid = $Serene_Northwind_EmployeeTerritoryGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.EmployeeTerritoryService
-	var $Serene_Northwind_EmployeeTerritoryService = function() {
-	};
-	$Serene_Northwind_EmployeeTerritoryService.__typeName = 'Serene.Northwind.EmployeeTerritoryService';
-	$Serene_Northwind_EmployeeTerritoryService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/EmployeeTerritory/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeTerritoryService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/EmployeeTerritory/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeTerritoryService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/EmployeeTerritory/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeTerritoryService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/EmployeeTerritory/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_EmployeeTerritoryService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/EmployeeTerritory/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.EmployeeTerritoryService = $Serene_Northwind_EmployeeTerritoryService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.FreightFormatter
 	var $Serene_Northwind_FreightFormatter = function() {
@@ -906,18 +663,6 @@
 	$Serene_Northwind_OrderDetailsEditor.__typeName = 'Serene.Northwind.OrderDetailsEditor';
 	global.Serene.Northwind.OrderDetailsEditor = $Serene_Northwind_OrderDetailsEditor;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderDetailService
-	var $Serene_Northwind_OrderDetailService = function() {
-	};
-	$Serene_Northwind_OrderDetailService.__typeName = 'Serene.Northwind.OrderDetailService';
-	$Serene_Northwind_OrderDetailService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/OrderDetail/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderDetailService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/OrderDetail/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.OrderDetailService = $Serene_Northwind_OrderDetailService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDialog
 	var $Serene_Northwind_OrderDialog = function() {
 		this.form = null;
@@ -941,27 +686,6 @@
 	};
 	$Serene_Northwind_OrderGrid.__typeName = 'Serene.Northwind.OrderGrid';
 	global.Serene.Northwind.OrderGrid = $Serene_Northwind_OrderGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderService
-	var $Serene_Northwind_OrderService = function() {
-	};
-	$Serene_Northwind_OrderService.__typeName = 'Serene.Northwind.OrderService';
-	$Serene_Northwind_OrderService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Order/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Order/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Order/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Order/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_OrderService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Order/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.OrderService = $Serene_Northwind_OrderService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderShipCityEditor
 	var $Serene_Northwind_OrderShipCityEditor = function(container) {
@@ -1114,27 +838,6 @@
 	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
 	global.Serene.Northwind.ProductGrid = $Serene_Northwind_ProductGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ProductService
-	var $Serene_Northwind_ProductService = function() {
-	};
-	$Serene_Northwind_ProductService.__typeName = 'Serene.Northwind.ProductService';
-	$Serene_Northwind_ProductService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Product/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_ProductService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Product/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_ProductService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Product/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_ProductService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Product/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_ProductService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Product/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.ProductService = $Serene_Northwind_ProductService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1155,27 +858,6 @@
 	};
 	$Serene_Northwind_RegionGrid.__typeName = 'Serene.Northwind.RegionGrid';
 	global.Serene.Northwind.RegionGrid = $Serene_Northwind_RegionGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.RegionService
-	var $Serene_Northwind_RegionService = function() {
-	};
-	$Serene_Northwind_RegionService.__typeName = 'Serene.Northwind.RegionService';
-	$Serene_Northwind_RegionService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Region/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_RegionService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Region/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_RegionService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Region/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_RegionService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Region/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_RegionService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Region/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.RegionService = $Serene_Northwind_RegionService;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ShipperDialog
 	var $Serene_Northwind_ShipperDialog = function() {
@@ -1204,27 +886,6 @@
 	$Serene_Northwind_ShipperGrid.__typeName = 'Serene.Northwind.ShipperGrid';
 	global.Serene.Northwind.ShipperGrid = $Serene_Northwind_ShipperGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ShipperService
-	var $Serene_Northwind_ShipperService = function() {
-	};
-	$Serene_Northwind_ShipperService.__typeName = 'Serene.Northwind.ShipperService';
-	$Serene_Northwind_ShipperService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Shipper/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_ShipperService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Shipper/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_ShipperService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Shipper/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_ShipperService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Shipper/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_ShipperService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Shipper/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.ShipperService = $Serene_Northwind_ShipperService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.SupplierDialog
 	var $Serene_Northwind_SupplierDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1247,27 +908,6 @@
 	$Serene_Northwind_SupplierGrid.__typeName = 'Serene.Northwind.SupplierGrid';
 	global.Serene.Northwind.SupplierGrid = $Serene_Northwind_SupplierGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.SupplierService
-	var $Serene_Northwind_SupplierService = function() {
-	};
-	$Serene_Northwind_SupplierService.__typeName = 'Serene.Northwind.SupplierService';
-	$Serene_Northwind_SupplierService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Supplier/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_SupplierService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Supplier/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_SupplierService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Supplier/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_SupplierService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Supplier/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_SupplierService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Supplier/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.SupplierService = $Serene_Northwind_SupplierService;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.TerritoryDialog
 	var $Serene_Northwind_TerritoryDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1289,27 +929,6 @@
 	};
 	$Serene_Northwind_TerritoryGrid.__typeName = 'Serene.Northwind.TerritoryGrid';
 	global.Serene.Northwind.TerritoryGrid = $Serene_Northwind_TerritoryGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.TerritoryService
-	var $Serene_Northwind_TerritoryService = function() {
-	};
-	$Serene_Northwind_TerritoryService.__typeName = 'Serene.Northwind.TerritoryService';
-	$Serene_Northwind_TerritoryService.create = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Territory/Create', request, onSuccess, options);
-	};
-	$Serene_Northwind_TerritoryService.update = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Territory/Update', request, onSuccess, options);
-	};
-	$Serene_Northwind_TerritoryService.delete$1 = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Territory/Delete', request, onSuccess, options);
-	};
-	$Serene_Northwind_TerritoryService.retrieve = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Territory/Retrieve', request, onSuccess, options);
-	};
-	$Serene_Northwind_TerritoryService.list = function(request, onSuccess, options) {
-		return Q.serviceRequest('Northwind/Territory/List', request, onSuccess, options);
-	};
-	global.Serene.Northwind.TerritoryService = $Serene_Northwind_TerritoryService;
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
@@ -1321,7 +940,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_LanguageService, $asm, {});
 	ss.initClass($Serene_Administration_PermissionCheckEditor, $asm, {
 		getButtons: function() {
 			return [];
@@ -1429,7 +1047,7 @@
 			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				$Serene_Administration_RolePermissionService.update({ RoleID: this.options.roleID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+				Q.serviceRequest('Administration/RolePermission/Update', { RoleID: this.options.roleID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
 						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'));
@@ -1445,8 +1063,6 @@
 			return "<div id='~_Permissions'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
-	ss.initClass($Serene_Administration_RolePermissionService, $asm, {});
-	ss.initClass($Serene_Administration_RoleService, $asm, {});
 	ss.initClass($Serene_Administration_TranslationGrid, $asm, {
 		onClick: function(e, row, cell) {
 			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onClick.call(this, e, row, cell);
@@ -1549,7 +1165,7 @@
 				var item = $t1[$t2];
 				translations[item.Key] = item.CustomText;
 			}
-			return RSVP.resolve($Serene_Administration_TranslationService.update({ TargetLanguageID: language, Translations: translations }, null, null)).then(ss.mkdel(this, function() {
+			return RSVP.resolve(Q.serviceRequest('Administration/Translation/Update', { TargetLanguageID: language, Translations: translations }, null, null)).then(ss.mkdel(this, function() {
 				this.$hasChanges = false;
 				Q.notifySuccess('User translations in "' + language + '" language are saved to "user.texts.' + language + '.json" ' + 'file under "~/script/site/texts/user/"');
 			}), null);
@@ -1604,7 +1220,6 @@
 			return false;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_TranslationService, $asm, {});
 	ss.initClass($Serene_Administration_UserDialog, $asm, {
 		getToolbarButtons: function() {
 			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
@@ -1663,7 +1278,7 @@
 			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				$Serene_Administration_UserPermissionService.update({ UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
 						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'));
@@ -1679,13 +1294,12 @@
 			return "<div id='~_Permissions'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
-	ss.initClass($Serene_Administration_UserPermissionService, $asm, {});
 	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {
 		getDialogOptions: function() {
 			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				$Serene_Administration_UserRoleService.update({ UserID: this.options.userID, Roles: Enumerable.from(this.$permissions.get_value()).select(function(x) {
+				Q.serviceRequest('Administration/UserRole/Update', { UserID: this.options.userID, Roles: Enumerable.from(this.$permissions.get_value()).select(function(x) {
 					return parseInt(x, 10);
 				}).toArray() }, ss.mkdel(this, function(response) {
 					this.dialogClose();
@@ -1703,8 +1317,6 @@
 			return "<div id='~_Roles'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
-	ss.initClass($Serene_Administration_UserRoleService, $asm, {});
-	ss.initClass($Serene_Administration_UserService, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {
 		getLookupAsync: function() {
 			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getLookupAsync.call(this).then(ss.mkdel(this, function(x) {
@@ -1794,7 +1406,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_CategoryService, $asm, {});
 	ss.initClass($Serene_Northwind_CustomerCityEditor, $asm, {
 		getLookupKey: function() {
 			return 'Northwind.CustomerCity';
@@ -1839,7 +1450,6 @@
 			return columns;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_CustomerCustomerDemoService, $asm, {});
 	ss.initClass($Serene_Northwind_CustomerDemographicDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerDemographicForm, $asm, {
 		get_customerTypeID: function() {
@@ -1858,7 +1468,6 @@
 			return columns;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_CustomerDemographicService, $asm, {});
 	ss.initClass($Serene_Northwind_CustomerDialog, $asm, {
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
@@ -1992,7 +1601,6 @@
 			this.refresh();
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_CustomerService, $asm, {});
 	ss.initClass($Serene_Northwind_EmployeeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_EmployeeForm, $asm, {
 		get_lastName: function() {
@@ -2094,7 +1702,6 @@
 			return columns;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_EmployeeService, $asm, {});
 	ss.initClass($Serene_Northwind_EmployeeTerritoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_EmployeeTerritoryForm, $asm, {
 		get_territoryID: function() {
@@ -2109,7 +1716,6 @@
 			return columns;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_EmployeeTerritoryService, $asm, {});
 	ss.initClass($Serene_Northwind_FreightFormatter, $asm, {
 		format: function(ctx) {
 			return "<span class='freight-symbol'>" + Q.htmlEncode(ctx.value) + '</span>';
@@ -2146,7 +1752,6 @@
 			return true;
 		}
 	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
-	ss.initClass($Serene_Northwind_OrderDetailService, $asm, {});
 	ss.initClass($Serene_Northwind_OrderForm, $asm, {
 		get_customerID: function() {
 			return this.byId($Serene_Northwind_CustomerEditor).call(this, 'CustomerID');
@@ -2191,7 +1796,6 @@
 			return this.byId(Serenity.StringEditor).call(this, 'ShipCountry');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_OrderService, $asm, {});
 	ss.initClass($Serene_Northwind_OrderShipCityEditor, $asm, {
 		getLookupKey: function() {
 			return 'Northwind.OrderShipCity';
@@ -2309,7 +1913,6 @@
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_ProductService, $asm, {});
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_RegionForm, $asm, {
 		get_regionID: function() {
@@ -2320,7 +1923,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_RegionService, $asm, {});
 	ss.initClass($Serene_Northwind_ShipperDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_ShipperForm, $asm, {
 		get_companyName: function() {
@@ -2336,7 +1938,6 @@
 		}
 	}, null, [Serenity.ISlickFormatter]);
 	ss.initClass($Serene_Northwind_ShipperGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_ShipperService, $asm, {});
 	ss.initClass($Serene_Northwind_SupplierDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_SupplierForm, $asm, {
 		get_companyName: function() {
@@ -2396,7 +1997,6 @@
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_SupplierService, $asm, {});
 	ss.initClass($Serene_Northwind_TerritoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_TerritoryForm, $asm, {
 		get_territoryID: function() {
@@ -2432,7 +2032,6 @@
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_TerritoryService, $asm, {});
 	ss.setMetadata($Serene_Administration_LanguageDialog, { attr: [new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.FormKeyAttribute('Administration.Language'), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_LanguageGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Language'), new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.DialogTypeAttribute($Serene_Administration_LanguageDialog), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute()] });

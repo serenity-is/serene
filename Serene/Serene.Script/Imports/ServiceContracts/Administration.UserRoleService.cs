@@ -7,18 +7,21 @@ namespace Serene.Administration
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
+    [Imported, PreserveMemberCase]
     public partial class UserRoleService
     {
         [InlineConstant] public const string BaseUrl = "Administration/UserRole";
     
+        [InlineCode("Q.serviceRequest('Administration/UserRole/Update', {request}, {onSuccess}, {options})")]
         public static jQueryXmlHttpRequest Update(UserRoleUpdateRequest request, Action<SaveResponse> onSuccess, ServiceCallOptions options = null)
         {
-            return Q.ServiceRequest(Methods.Update, request, onSuccess, options);
+            return null;
         }
     
+        [InlineCode("Q.serviceRequest('Administration/UserRole/List', {request}, {onSuccess}, {options})")]
         public static jQueryXmlHttpRequest List(UserRoleListRequest request, Action<UserRoleListResponse> onSuccess, ServiceCallOptions options = null)
         {
-            return Q.ServiceRequest(Methods.List, request, onSuccess, options);
+            return null;
         }
     
         [Imported, PreserveMemberCase]
