@@ -6237,6 +6237,7 @@
 					var element = self.element;
 					self.destroy();
 					element.remove();
+					Q.positionToastContainer(false);
 				}, 0);
 			},
 			addCssClass: function() {

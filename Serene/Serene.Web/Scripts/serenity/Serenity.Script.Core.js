@@ -291,24 +291,31 @@
 	$Q.notifyError = function(message) {
 		toastr.error(message, '', $Q.$getToastrOptions());
 	};
-	$Q.$getToastrOptions = function() {
+	$Q.positionToastContainer = function(create) {
+		if (!!ss.isNullOrUndefined(window.window.toastr)) {
+			return;
+		}
 		var dialog = $(window.document.body).children('.ui-dialog:visible').last();
-		var toastrDiv = $('#toast-container');
-		var options = { timeOut: 3000, showDuration: 250, hideDuration: 500, extendedTimeOut: 500 };
+		var container = toastr.getContainer(null, create);
+		if (container.length === 0) {
+			return;
+		}
 		if (dialog.length > 0) {
-			if (!toastrDiv.hasClass('dialog-toast') && toastrDiv.length > 0) {
-				toastrDiv.remove();
-			}
-			options.target = dialog;
-			options.positionClass = 'toast-top-full-width dialog-toast';
+			var position = dialog.position();
+			container.addClass('positioned-toast toast-top-full-width');
+			container.css({ position: 'absolute', top: position.top + 28 + 'px', left: position.left + 6 + 'px', width: dialog.width() - 12 + 'px' });
 		}
 		else {
-			toastrDiv.removeClass('dialog-toast');
-			if (toastrDiv.hasClass('dialog-toast') && toastrDiv.length > 0) {
-				toastrDiv.remove();
+			container.addClass('toast-top-full-width');
+			if (container.hasClass('positioned-toast')) {
+				container.removeClass('positioned-toast');
+				container.css({ position: '', top: '', left: '', width: '' });
 			}
-			options.positionClass = 'toast-top-full-width';
 		}
+	};
+	$Q.$getToastrOptions = function() {
+		var options = { timeOut: 3000, showDuration: 250, hideDuration: 500, extendedTimeOut: 500, positionClass: 'toast-top-full-width' };
+		$Q.positionToastContainer(true);
 		return options;
 	};
 	$Q.formatNumber = function(number, format) {
