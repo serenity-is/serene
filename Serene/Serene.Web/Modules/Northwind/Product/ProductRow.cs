@@ -45,7 +45,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Discontinued[this] = value; }
         }
 
-        [DisplayName("Supplier Id"), ForeignKey("Suppliers", "SupplierID"), LeftJoin("sup")]
+        [DisplayName("Supplier"), ForeignKey("Suppliers", "SupplierID"), LeftJoin("sup")]
         [LookupEditor(typeof(SupplierRow), InplaceAdd = true)]
         public Int32? SupplierID
         {
@@ -53,7 +53,7 @@ namespace Serene.Northwind.Entities
             set { Fields.SupplierID[this] = value; }
         }
 
-        [DisplayName("Category Id"), ForeignKey("Categories", "CategoryID"), LeftJoin("cat")]
+        [DisplayName("Category"), ForeignKey("Categories", "CategoryID"), LeftJoin("cat")]
         [LookupEditor(typeof(CategoryRow), InplaceAdd = true)]
         public Int32? CategoryID
         {

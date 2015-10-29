@@ -38,7 +38,7 @@ namespace Serene.Northwind.Entities
             set { Fields.TerritoryDescription[this] = value; }
         }
 
-        [DisplayName("Region Id"), NotNull, ForeignKey("Region", "RegionID"), LeftJoin("jRegion")]
+        [DisplayName("Region"), NotNull, ForeignKey("Region", "RegionID"), LeftJoin("jRegion")]
         public Int32? RegionID
         {
             get { return Fields.RegionID[this]; }
