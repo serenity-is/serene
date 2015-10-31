@@ -188,6 +188,8 @@ Task("PrepareVSIX")
             
             item.SetAttributeValue("ReplaceParameters", replaceParameters ? "true" : "false");
             item.SetAttributeValue("TargetFileName", parts[parts.Length - 1].Replace("Serene", "$ext_projectname$"));
+            if (file == "Welcome.htm")
+                item.SetAttributeValue("OpenInWebBrowser", "true");
             item.SetValue(parts[parts.Length - 1]);
             folder.Add(item);
             
