@@ -539,6 +539,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Content>
+    <Content Include="Welcome.htm" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

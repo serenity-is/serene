@@ -719,6 +719,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Readme.CodeGenerator.txt">Readme.CodeGenerator.txt</ProjectItem>
+      <ProjectItem OpenInWebBrowser="true" TargetFileName="Welcome.htm">Welcome.htm</ProjectItem>
       <Folder Name="Scripts" TargetFolderName="Scripts">
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.js">bootstrap.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.js">bootstrap.min.js</ProjectItem>
