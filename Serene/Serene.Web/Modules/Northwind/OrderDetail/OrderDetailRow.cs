@@ -21,7 +21,7 @@ namespace Serene.Northwind.Entities
             set { Fields.DetailID[this] = value; }
         }
 
-        [DisplayName("Order Id"), PrimaryKey, ForeignKey("Orders", "OrderID"), LeftJoin("o")]
+        [DisplayName("Order Id"), PrimaryKey, ForeignKey("Orders", "OrderID"), LeftJoin("o"), Updatable(false)]
         public Int32? OrderID
         {
             get { return Fields.OrderID[this]; }
