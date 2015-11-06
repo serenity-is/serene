@@ -63,25 +63,7 @@ namespace Serene.Northwind.Repositories
             }
         }
 
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow>
-        {
-            protected override void OnBeforeDelete()
-            {
-                base.OnBeforeDelete();
-
-                var fdd = Entities.OrderDetailRow.Fields;
-                foreach (var detailID in Connection.Query<Int32>(
-                    new SqlQuery()
-                        .From(fdd)
-                        .Select(fdd.DetailID)
-                        .Where(fdd.OrderID == Row.OrderID.Value)))
-                {
-                    new DeleteRequestHandler<Entities.OrderDetailRow>().Process(this.UnitOfWork, 
-                        new DeleteRequest { EntityId = detailID });
-                }
-            }
-        }
-
+        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
         private class MyListHandler : ListRequestHandler<MyRow> { }
