@@ -57,7 +57,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Discount[this] = value; }
         }
 
-        [DisplayName("Line Total"), Expression("(t0.UnitPrice * t0.Quantity - t0.Discount)"), AlignRight, DisplayFormat("#,##0.00")]
+        [DisplayName("Line Total"), Expression("(t0.UnitPrice * t0.Quantity - t0.Discount)"), AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
         public Decimal? LineTotal
         {
             get { return Fields.LineTotal[this]; }
@@ -113,7 +113,7 @@ namespace Serene.Northwind.Entities
             set { Fields.OrderShipCountry[this] = value; }
         }
 
-        [DisplayName("Product Name"), Expression("p.ProductName")]
+        [DisplayName("Product Name"), Expression("p.ProductName"), MinSelectLevel(SelectLevel.List)]
         public String ProductName
         {
             get { return Fields.ProductName[this]; }

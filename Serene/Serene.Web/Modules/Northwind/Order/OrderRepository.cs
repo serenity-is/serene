@@ -83,22 +83,7 @@ namespace Serene.Northwind.Repositories
         }
 
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
-
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow>
-        {
-            protected override void OnReturn()
-            {
-                var od = Entities.OrderDetailRow.Fields;
-                Row.DetailList = Connection.List<Entities.OrderDetailRow>(q => q
-                    .SelectTableFields()
-                    .Select(od.ProductName)
-                    .Select(od.LineTotal)
-                    .Where(od.OrderID == Row.OrderID.Value));
-
-                base.OnReturn();
-            }
-        }
-
+        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
         private class MyListHandler : ListRequestHandler<MyRow> { }
     }
 }
