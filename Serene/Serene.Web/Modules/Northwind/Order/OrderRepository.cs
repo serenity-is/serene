@@ -2,14 +2,9 @@
 
 namespace Serene.Northwind.Repositories
 {
-    using Entities;
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
     using MyRow = Entities.OrderRow;
 
     public class OrderRepository
@@ -46,28 +41,7 @@ namespace Serene.Northwind.Repositories
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow>
-        {
-            protected override void AfterSave()
-            {
-                base.AfterSave();
-
-                if (Row.DetailList != null)
-                {
-                    var fdd = Entities.OrderDetailRow.Fields;
-                    var oldList = IsCreate ? new List<Entities.OrderDetailRow>() :
-                        new OrderDetailRepository().List(Connection, new ListRequest
-                        {
-                            ColumnSelection = ColumnSelection.List,
-                            Criteria = new Criteria(OrderDetailRow.Fields.OrderID.PropertyName) == this.Row.OrderID.Value
-                        }).Entities.ToList();
-
-                    new Common.DetailListSaveHandler<Entities.OrderDetailRow>(oldList, Row.DetailList,
-                        x => x.OrderID = Row.OrderID.Value).Process(this.UnitOfWork);
-                }
-            }
-        }
-
+        private class MySaveHandler : SaveRequestHandler<MyRow> { }
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
