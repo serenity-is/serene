@@ -233,7 +233,7 @@
 					var index = Enumerable.from(items).indexOf(ss.mkdel(this, function(x) {
 						return this.id(x) === ss.unbox(id);
 					}));
-					items[index] = row;
+					items[index] = Q$Externals.deepClone(ss.createInstance(TEntity), items[index], row);
 				}
 				this.setEntities(items);
 				callback({});

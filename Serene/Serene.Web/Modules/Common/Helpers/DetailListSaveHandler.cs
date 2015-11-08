@@ -86,6 +86,21 @@ namespace Serene.Common
                 if (!oldById.TryGetValue(id.Value, out old))
                     continue;
 
+                bool anyChanges = false;
+                foreach (var field in row.GetFields())
+                {
+                    if (row.IsAssigned(field) &&
+                        (field.Flags & FieldFlags.Updatable) == FieldFlags.Updatable &
+                        field.IndexCompare(old, row) != 0)
+                    {
+                        anyChanges = true;
+                        break;
+                    }
+                }
+
+                if (!anyChanges)
+                    continue;
+
                 var update = row.Clone();
                 setOwnerID(update);
 

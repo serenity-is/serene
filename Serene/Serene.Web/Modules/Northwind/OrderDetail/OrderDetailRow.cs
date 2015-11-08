@@ -51,7 +51,7 @@ namespace Serene.Northwind.Entities
         }
 
         [DisplayName("Discount"), NotNull, DefaultValue(0), AlignRight, DisplayFormat("#,##0.00")]
-        public Double? Discount
+        public Single? Discount
         {
             get { return Fields.Discount[this]; }
             set { Fields.Discount[this] = value; }
@@ -167,7 +167,7 @@ namespace Serene.Northwind.Entities
             public readonly Int32Field ProductID;
             public readonly DecimalField UnitPrice;
             public readonly Int16Field Quantity;
-            public readonly DoubleField Discount;
+            public readonly SingleField Discount;
 
             public readonly StringField OrderCustomerID;
 

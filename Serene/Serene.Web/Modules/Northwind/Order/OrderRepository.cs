@@ -2,6 +2,7 @@
 
 namespace Serene.Northwind.Repositories
 {
+    using Entities;
     using Serenity;
     using Serenity.Data;
     using Serenity.Services;
@@ -55,7 +56,11 @@ namespace Serene.Northwind.Repositories
                 {
                     var fdd = Entities.OrderDetailRow.Fields;
                     var oldList = IsCreate ? new List<Entities.OrderDetailRow>() :
-                        Connection.List<Entities.OrderDetailRow>(fdd.OrderID == this.Row.OrderID.Value);
+                        new OrderDetailRepository().List(Connection, new ListRequest
+                        {
+                            ColumnSelection = ColumnSelection.List,
+                            Criteria = new Criteria(OrderDetailRow.Fields.OrderID.PropertyName) == this.Row.OrderID.Value
+                        }).Entities.ToList();
 
                     new Common.DetailListSaveHandler<Entities.OrderDetailRow>(oldList, Row.DetailList,
                         x => x.OrderID = Row.OrderID.Value).Process(this.UnitOfWork);

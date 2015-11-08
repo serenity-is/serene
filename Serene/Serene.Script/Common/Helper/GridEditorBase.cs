@@ -41,7 +41,7 @@ namespace Serene.Common
             else
             {
                 var index = items.IndexOf(x => ID(x) == id.Value);
-                items[index] = row;
+                items[index] = Q.DeepExtend<TEntity>(new TEntity(), items[index], row);
             }
 
             SetEntities(items);
