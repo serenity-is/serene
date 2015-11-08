@@ -32,6 +32,8 @@ namespace Serene.Common
             this.save = save ?? Save;
         }
 
+        public bool CheckChangesOnUpdate { get; set; }
+
         protected virtual void Delete(IUnitOfWork uow, DeleteRequest request)
         {
             new DeleteRequestHandler<TRow>().Process(uow, request);
@@ -86,20 +88,23 @@ namespace Serene.Common
                 if (!oldById.TryGetValue(id.Value, out old))
                     continue;
 
-                bool anyChanges = false;
-                foreach (var field in row.GetFields())
+                if (CheckChangesOnUpdate)
                 {
-                    if (row.IsAssigned(field) &&
-                        (field.Flags & FieldFlags.Updatable) == FieldFlags.Updatable &
-                        field.IndexCompare(old, row) != 0)
+                    bool anyChanges = false;
+                    foreach (var field in row.GetFields())
                     {
-                        anyChanges = true;
-                        break;
+                        if (row.IsAssigned(field) &&
+                            (field.Flags & FieldFlags.Updatable) == FieldFlags.Updatable &
+                            field.IndexCompare(old, row) != 0)
+                        {
+                            anyChanges = true;
+                            break;
+                        }
                     }
-                }
 
-                if (!anyChanges)
-                    continue;
+                    if (!anyChanges)
+                        continue;
+                }
 
                 var update = row.Clone();
                 setOwnerID(update);
