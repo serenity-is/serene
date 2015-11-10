@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.Html;
     using System.Runtime.CompilerServices;
+    using System.Linq;
 
     public class RolePermissionDialog : TemplatedDialog<RolePermissionDialogOptions>
     {
@@ -23,7 +24,7 @@
                 Submodule = null
             }, response =>
             {
-                permissions.Value = response.Entities;
+                permissions.Value = response.Entities.Select(x => new UserPermissionRow { PermissionKey = x }).ToList();
             });
         }
 
@@ -39,7 +40,7 @@
                         RolePermissionService.Update(new RolePermissionUpdateRequest
                         {
                             RoleID = options.RoleID,
-                            Permissions = permissions.Value,
+                            Permissions = permissions.Value.Select(x => x.PermissionKey).ToList(),
                             Module = null,
                             Submodule = null
                         }, response => {

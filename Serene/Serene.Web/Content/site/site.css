@@ -1190,3 +1190,23 @@ a,
   background-color: #ccc;
   border-color: #2f79aa;
 }
+.s-PermissionCheckEditor .check-box {
+  background: url(images/tick-empty-16.png);
+  background-position: center center;
+  width: 16px;
+  height: 16px;
+}
+.s-PermissionCheckEditor .check-box.checked {
+  background: url(images/tick-green-16.png) no-repeat center center;
+  background-position: center center;
+}
+.s-PermissionCheckEditor .check-box.checked.revoke {
+  background: url(images/tick-red-16.png) no-repeat center center;
+  background-position: center center;
+}
+.s-PermissionCheckEditor .check-box.partial {
+  opacity: 0.5;
+}
+.s-PermissionCheckEditor .check-box.effective {
+  cursor: default;
+}

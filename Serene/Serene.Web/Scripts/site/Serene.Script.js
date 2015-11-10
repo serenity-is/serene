@@ -38,7 +38,19 @@
 	// Serene.Administration.PermissionCheckEditor
 	var $Serene_Administration_PermissionCheckEditor = function(div) {
 		this.$containsText = null;
-		ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]).call(this, div, null);
+		this.$byParentKey = null;
+		ss.makeGenericType(Serenity.DataGrid$1, [Object]).call(this, div);
+		var titleByKey = {};
+		var permissionKeys = this.$getSortedGroupAndPermissionKeys(titleByKey);
+		var items = [];
+		for (var $t1 = 0; $t1 < permissionKeys.length; $t1++) {
+			var key = permissionKeys[$t1];
+			items.push({ Key: key, ParentKey: this.$getParentKey(key), Title: titleByKey.$[key], GrantRevoke: null });
+		}
+		this.$byParentKey = Enumerable.from(items).toLookup(function(x) {
+			return x.ParentKey;
+		});
+		this.get_view().setItems(items, true);
 	};
 	$Serene_Administration_PermissionCheckEditor.__typeName = 'Serene.Administration.PermissionCheckEditor';
 	global.Serene.Administration.PermissionCheckEditor = $Serene_Administration_PermissionCheckEditor;
@@ -118,7 +130,9 @@
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
 		Q.serviceRequest('Administration/RolePermission/List', { RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-			this.$permissions.set_value(response.Entities);
+			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
+				return { PermissionKey: x };
+			}).toArray());
 		}), null);
 	};
 	$Serene_Administration_RolePermissionDialog.__typeName = 'Serene.Administration.RolePermissionDialog';
@@ -185,7 +199,9 @@
 		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'));
 		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-			this.$permissions.set_value(response.Entities);
+			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
+				return { PermissionKey: x };
+			}).toArray());
 		}), null);
 	};
 	$Serene_Administration_UserPermissionDialog.__typeName = 'Serene.Administration.UserPermissionDialog';
@@ -941,6 +957,243 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_PermissionCheckEditor, $asm, {
+		getColumns: function() {
+			var $t1 = [];
+			$t1.push({ name: 'Permission', field: 'Title', format: Serenity.SlickFormatting.treeToggle(Object).call(null, ss.mkdel(this, function() {
+				return this.get_view();
+			}), function(x) {
+				return x.Key;
+			}, function(ctx) {
+				return Q.htmlEncode(ctx.value);
+			}), width: 435, sortable: false });
+			$t1.push({
+				name: 'Grant',
+				field: 'Grant',
+				format: function(ctx1) {
+					var item = ctx1.item;
+					return '<span class="check-box grant no-float ' + ((item.GrantRevoke === true) ? ' checked' : '') + '"></span>';
+				},
+				width: 65,
+				sortable: false,
+				headerCssClass: 'align-center',
+				cssClass: 'align-center'
+			});
+			var columns = $t1;
+			columns.push({
+				name: 'Revoke',
+				field: 'Revoke',
+				format: function(ctx2) {
+					var item1 = ctx2.item;
+					return '<span class="check-box revoke no-float ' + ((item1.GrantRevoke === false) ? ' checked' : '') + '"></span>';
+				},
+				width: 65,
+				sortable: false,
+				headerCssClass: 'align-center',
+				cssClass: 'align-center'
+			});
+			columns.push({
+				name: 'Effective',
+				field: 'Effective',
+				format: function(ctx3) {
+					var item2 = ctx3.item;
+					return '<span class="check-box no-float ' + ((item2.GrantRevoke === false) ? ' checked' : '') + '"></span>';
+				},
+				width: 65,
+				sortable: false,
+				headerCssClass: 'align-center',
+				cssClass: 'align-center'
+			});
+			return columns;
+		},
+		$setItems: function(items) {
+			Serenity.SlickTreeHelper.setIndents(items, function(x) {
+				return x.Key;
+			}, function(x1) {
+				return x1.ParentKey;
+			}, false);
+			this.get_view().setItems(items, true);
+		},
+		onViewSubmit: function() {
+			return false;
+		},
+		onViewFilter: function(item) {
+			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+				return false;
+			}
+			if (!Serenity.SlickTreeHelper.filterById(item, this.view, function(x) {
+				return x.ParentKey;
+			})) {
+				return false;
+			}
+			return true;
+		},
+		$enumerateDescendants: function(item) {
+			return new ss.IteratorBlockEnumerable(function() {
+				return (function(item) {
+					var $result, $state = 0, $t1, child, $t2, x;
+					var $finally = function() {
+						$t1.dispose();
+					};
+					var $finally1 = function() {
+						$t2.dispose();
+					};
+					return new ss.IteratorBlockEnumerator(function() {
+						$sm1:
+						for (;;) {
+							switch ($state) {
+								case 0: {
+									$state = -1;
+									$t1 = this.$byParentKey.get(item.Key).getEnumerator();
+									$state = 3;
+									continue $sm1;
+								}
+								case 3: {
+									$state = 1;
+									if (!$t1.moveNext()) {
+										$state = 2;
+										continue $sm1;
+									}
+									child = $t1.current();
+									$result = child;
+									$state = 4;
+									return true;
+								}
+								case 2: {
+									$state = -1;
+									$finally.call(this);
+									$state = -1;
+									break $sm1;
+								}
+								case 4: {
+									$state = 1;
+									$t2 = ss.getEnumerator(this.$enumerateDescendants(child));
+									$state = 7;
+									continue $sm1;
+								}
+								case 7: {
+									$state = 5;
+									if (!$t2.moveNext()) {
+										$state = 6;
+										continue $sm1;
+									}
+									x = $t2.current();
+									$result = x;
+									$state = 7;
+									return true;
+								}
+								case 6: {
+									$state = 1;
+									$finally1.call(this);
+									$state = 3;
+									continue $sm1;
+								}
+								default: {
+									break $sm1;
+								}
+							}
+						}
+						return false;
+					}, function() {
+						return $result;
+					}, function() {
+						try {
+							switch ($state) {
+								case 1:
+								case 2:
+								case 3:
+								case 4:
+								case 5:
+								case 6:
+								case 7: {
+									try {
+										switch ($state) {
+											case 5:
+											case 6:
+											case 7: {
+												try {
+													break;
+												}
+												finally {
+													$finally1.call(this);
+												}
+											}
+										}
+										break;
+									}
+									finally {
+										$finally.call(this);
+									}
+								}
+							}
+						}
+						finally {
+							$state = -1;
+						}
+					}, this);
+				}).call(this, item);
+			}, this);
+		},
+		onClick: function(e, row, cell) {
+			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onClick.call(this, e, row, cell);
+			if (!e.isDefaultPrevented()) {
+				Serenity.SlickTreeHelper.toggleClick(Object).call(null, e, row, cell, this.view, function(x) {
+					return x.Key;
+				});
+			}
+			if (e.isDefaultPrevented()) {
+				return;
+			}
+			var target = $(e.target);
+			var grant = target.hasClass('grant');
+			if (ss.unbox(grant) || target.hasClass('revoke')) {
+				e.preventDefault();
+				var item = this.view.rows[row];
+				var checkedOrPartial = target.hasClass('checked') || target.hasClass('partial');
+				if (checkedOrPartial) {
+					grant = null;
+				}
+				else {
+					grant = !!(ss.unbox(grant) ^ checkedOrPartial);
+				}
+				this.view.beginUpdate();
+				try {
+					if (ss.endsWithString(item.Key, ':')) {
+						var $t1 = Enumerable.from(this.$enumerateDescendants(item)).where(function(x1) {
+							return !ss.endsWithString(x1.Key, ':');
+						}).getEnumerator();
+						try {
+							while ($t1.moveNext()) {
+								var d = $t1.current();
+								if (!ss.referenceEquals(d.GrantRevoke, grant)) {
+									d.GrantRevoke = grant;
+									this.view.updateItem(d.Key, d);
+								}
+							}
+						}
+						finally {
+							$t1.dispose();
+						}
+					}
+					else if (!ss.referenceEquals(item.GrantRevoke, grant)) {
+						item.GrantRevoke = grant;
+						this.view.updateItem(item.Key, item);
+					}
+				}
+				finally {
+					this.view.endUpdate();
+				}
+			}
+		},
+		$getParentKey: function(key) {
+			if (ss.endsWithString(key, ':')) {
+				key = key.substr(0, key.length - 1);
+			}
+			var idx = key.lastIndexOf(String.fromCharCode(58));
+			if (idx >= 0) {
+				return key.substr(0, idx + 1);
+			}
+			return null;
+		},
 		getButtons: function() {
 			return [];
 		},
@@ -951,37 +1204,77 @@
 				this.view.setItems(this.view.getItems(), true);
 			}), null);
 		},
-		onViewFilter: function(item) {
-			if (!ss.makeGenericType(Serenity.CheckTreeEditor$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
-				return false;
+		$getSortedGroupAndPermissionKeys: function(titleByKey) {
+			var keys = Q.getRemoteData('Administration.PermissionKeys').Entities;
+			titleByKey.$ = {};
+			var titleWithGroup = {};
+			for (var $t1 = 0; $t1 < keys.length; $t1++) {
+				var k = keys[$t1];
+				var s = k;
+				if (ss.isNullOrEmptyString(s)) {
+					continue;
+				}
+				if (ss.endsWithString(s, ':')) {
+					s = s.substr(0, s.length - 1);
+					if (s.length === 0) {
+						continue;
+					}
+				}
+				if (ss.keyExists(titleByKey.$, s)) {
+					continue;
+				}
+				titleByKey.$[s] = ss.coalesce(Q.tryGetText('Permission.' + s), s);
+				var parts = s.split(String.fromCharCode(58));
+				var group = '';
+				var groupTitle = '';
+				for (var i = 0; i < parts.length - 1; i++) {
+					group = group + parts[i] + ':';
+					var $t3 = titleByKey.$;
+					var $t2 = Q.tryGetText('Permission.' + group);
+					if (ss.isNullOrUndefined($t2)) {
+						$t2 = parts[i];
+					}
+					$t3[group] = $t2;
+					groupTitle = groupTitle + titleByKey.$[group] + ':';
+					titleWithGroup[group] = groupTitle;
+				}
+				titleWithGroup[s] = groupTitle + titleByKey.$[s];
 			}
-			var contains = Select2.util.stripDiacritics(ss.coalesce(this.$containsText, '')).toUpperCase();
-			if (Q.isEmptyOrNull(contains)) {
-				return true;
-			}
-			if (Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase().indexOf(contains) !== -1) {
-				return true;
-			}
-			return false;
-		},
-		getItems: function() {
-			var list = [];
-			var permissions = Q.getRemoteData('Administration.PermissionKeys').Entities;
-			var permissionTitles = {};
-			for (var i = 0; i < permissions.length; i++) {
-				var p = permissions[i];
-				permissionTitles[p] = ss.coalesce(Q.tryGetText('Permission.' + p), p);
-			}
-			permissions.sort(function(x, y) {
-				return Q$Externals.turkishLocaleCompare(permissionTitles[x], permissionTitles[y]);
+			keys = Enumerable.from(Object.keys(titleByKey.$)).toArray();
+			keys.sort(function(x, y) {
+				return Q$Externals.turkishLocaleCompare(titleWithGroup[x], titleWithGroup[y]);
 			});
-			for (var $t1 = 0; $t1 < permissions.length; $t1++) {
-				var permission = permissions[$t1];
-				list.push({ id: permission, text: permissionTitles[permission] });
+			return keys;
+		},
+		get_value: function() {
+			var result = [];
+			var $t1 = this.view.getItems();
+			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+				var item = $t1[$t2];
+				if (ss.isValue(item.GrantRevoke) && !ss.endsWithString(item.Key, ':')) {
+					result.push({ PermissionKey: item.Key });
+				}
 			}
-			return list;
+			return result;
+		},
+		set_value: function(value) {
+			var $t1 = this.view.getItems();
+			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+				var item = $t1[$t2];
+				item.GrantRevoke = null;
+			}
+			if (ss.isValue(value)) {
+				for (var $t3 = 0; $t3 < value.length; $t3++) {
+					var row = value[$t3];
+					var r = this.view.getItemById(row.PermissionKey);
+					if (ss.isValue(r)) {
+						r.GrantRevoke = true;
+					}
+				}
+			}
+			this.$setItems(this.get_items());
 		}
-	}, ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]), [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
+	}, ss.makeGenericType(Serenity.DataGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]), [Serenity.IStringValue]);
 	ss.initClass($Serene_Administration_RoleCheckEditor, $asm, {
 		getButtons: function() {
@@ -1047,7 +1340,9 @@
 			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				Q.serviceRequest('Administration/RolePermission/Update', { RoleID: this.options.roleID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+				Q.serviceRequest('Administration/RolePermission/Update', { RoleID: this.options.roleID, Permissions: Enumerable.from(this.$permissions.get_value()).select(function(x) {
+					return x.PermissionKey;
+				}).toArray(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
 						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'));
@@ -1278,7 +1573,9 @@
 			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
+				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: Enumerable.from(this.$permissions.get_value()).select(function(x) {
+					return x.PermissionKey;
+				}).toArray(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
 						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'));
@@ -2034,7 +2331,7 @@
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.setMetadata($Serene_Administration_LanguageDialog, { attr: [new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.FormKeyAttribute('Administration.Language'), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_LanguageGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Language'), new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.DialogTypeAttribute($Serene_Administration_LanguageDialog), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
-	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute()] });
+	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('Key')] });
 	ss.setMetadata($Serene_Administration_PermissionModuleEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_Administration_RoleCheckEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_Administration_RoleDialog, { attr: [new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.FormKeyAttribute('Administration.Role'), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
