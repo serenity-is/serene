@@ -37,6 +37,13 @@ namespace Serene.Administration.Entities
             set { Fields.PermissionKey[this] = value; }
         }
 
+        [Column("[Grant]")]
+        public Boolean? Grant
+        {
+            get { return Fields.Grant[this]; }
+            set { Fields.Grant[this] = value; }
+        }
+
         [DisplayName("User Username"), Expression("jUser.Username")]
         public String Username
         {
@@ -73,6 +80,7 @@ namespace Serene.Administration.Entities
             public readonly Int64Field UserPermissionId;
             public readonly Int32Field UserId;
             public readonly StringField PermissionKey;
+            public readonly BooleanField Grant;
 
             public readonly StringField Username;
             public readonly StringField User;

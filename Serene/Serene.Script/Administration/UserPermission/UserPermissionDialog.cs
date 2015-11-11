@@ -15,7 +15,8 @@
         public UserPermissionDialog(UserPermissionDialogOptions opt)
             : base(opt)
         {
-            permissions = new PermissionCheckEditor(this.ById("Permissions"));
+            permissions = new PermissionCheckEditor(this.ById("Permissions"), 
+                new PermissionCheckEditorOptions { ShowRevoke = true });
 
             UserPermissionService.List(new UserPermissionListRequest
             {
@@ -24,7 +25,17 @@
                 Submodule = null
             }, response =>
             {
-                permissions.Value = response.Entities.Select(x => new UserPermissionRow { PermissionKey = x }).ToList();
+                permissions.Value = response.Entities;
+            });
+
+            UserPermissionService.ListRolePermissions(new UserPermissionListRequest
+            {
+                UserID = options.UserID,
+                Module = null,
+                Submodule = null
+            }, response =>
+            {
+                permissions.RolePermissions = response.Entities;
             });
         }
 
@@ -40,7 +51,7 @@
                         UserPermissionService.Update(new UserPermissionUpdateRequest
                         {
                             UserID = options.UserID,
-                            Permissions = permissions.Value.Select(x => x.PermissionKey).ToList(),
+                            Permissions = permissions.Value,
                             Module = null,
                             Submodule = null
                         }, response => {

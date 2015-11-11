@@ -15,7 +15,8 @@
         public RolePermissionDialog(RolePermissionDialogOptions opt)
             : base(opt)
         {
-            permissions = new PermissionCheckEditor(this.ById("Permissions"));
+            permissions = new PermissionCheckEditor(this.ById("Permissions"), 
+                new PermissionCheckEditorOptions { ShowRevoke = false });
 
             RolePermissionService.List(new RolePermissionListRequest
             {

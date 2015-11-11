@@ -132,9 +132,6 @@
     <Compile Include="Imports\ServiceContracts\Administration.UserPermissionListRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionListResponse.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
     <Compile Include="Imports\ServiceContracts\Administration.UserPermissionRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>

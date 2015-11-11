@@ -67,6 +67,9 @@ namespace Serene
             {
                 public static LocalText DialogTitle = "Edit User Permissions ({0})";
                 public static LocalText SaveSuccess = "Updated user permissions.";
+                public static LocalText Permission = "Permission";
+                public static LocalText Grant = "Grant";
+                public static LocalText Revoke = "Revoke";
             }
 
             public static class RolePermissionDialog

@@ -624,6 +624,43 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .s-UserRoleDialog .s-DataGrid {
   height: 100%;
 }
+.s-PermissionCheckEditor .check-box {
+  background-image: url(../serenity/images/tick-empty.png);
+  background-position: center center;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+}
+.s-PermissionCheckEditor .check-box.checked {
+  background-image: url(../serenity/images/tick-green.png);
+  background-position: center center;
+}
+.s-PermissionCheckEditor .check-box.checked.revoke {
+  background-image: url(../serenity/images/tick-red.png);
+  background-position: center center;
+}
+.s-PermissionCheckEditor .check-box.partial {
+  opacity: 0.8;
+}
+.s-PermissionCheckEditor .check-box.checked.partial {
+  background-image: url(images/tick-green-partial.png);
+}
+.s-PermissionCheckEditor .check-box.checked.revoke.partial {
+  background-image: url(images/tick-red-partial.png);
+}
+.s-PermissionCheckEditor .effective-permission {
+  cursor: default;
+  padding-left: 22px;
+  background-image: url(../serenity/images/check2.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+.s-PermissionCheckEditor .effective-permission.partial {
+  background-image: url(../serenity/images/checkbox-null.png);
+}
+.s-PermissionCheckEditor .effective-permission.deny {
+  background-image: url(../serenity/images/slash.png);
+}
 .s-Northwind-CategoryDialog > .size {
   min-width: 650px;
   width: 650px;
@@ -1189,24 +1226,4 @@ a,
 .theme-selection .theme-light {
   background-color: #ccc;
   border-color: #2f79aa;
-}
-.s-PermissionCheckEditor .check-box {
-  background: url(images/tick-empty-16.png);
-  background-position: center center;
-  width: 16px;
-  height: 16px;
-}
-.s-PermissionCheckEditor .check-box.checked {
-  background: url(images/tick-green-16.png) no-repeat center center;
-  background-position: center center;
-}
-.s-PermissionCheckEditor .check-box.checked.revoke {
-  background: url(images/tick-red-16.png) no-repeat center center;
-  background-position: center center;
-}
-.s-PermissionCheckEditor .check-box.partial {
-  opacity: 0.5;
-}
-.s-PermissionCheckEditor .check-box.effective {
-  cursor: default;
 }

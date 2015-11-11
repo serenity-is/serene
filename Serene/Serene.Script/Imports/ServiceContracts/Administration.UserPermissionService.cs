@@ -19,13 +19,19 @@ namespace Serene.Administration
         }
     
         [InlineCode("Q.serviceRequest('Administration/UserPermission/List', {request}, {onSuccess}, {options})")]
-        public static jQueryXmlHttpRequest List(UserPermissionListRequest request, Action<UserPermissionListResponse> onSuccess, ServiceCallOptions options = null)
+        public static jQueryXmlHttpRequest List(UserPermissionListRequest request, Action<ListResponse<UserPermissionRow>> onSuccess, ServiceCallOptions options = null)
+        {
+            return null;
+        }
+    
+        [InlineCode("Q.serviceRequest('Administration/UserPermission/ListRolePermissions', {request}, {onSuccess}, {options})")]
+        public static jQueryXmlHttpRequest ListRolePermissions(UserPermissionListRequest request, Action<ListResponse<String>> onSuccess, ServiceCallOptions options = null)
         {
             return null;
         }
     
         [InlineCode("Q.serviceRequest('Administration/UserPermission/ListPermissionKeys', {request}, {onSuccess}, {options})")]
-        public static jQueryXmlHttpRequest ListPermissionKeys(ServiceRequest request, Action<UserPermissionListResponse> onSuccess, ServiceCallOptions options = null)
+        public static jQueryXmlHttpRequest ListPermissionKeys(ServiceRequest request, Action<ListResponse<String>> onSuccess, ServiceCallOptions options = null)
         {
             return null;
         }
@@ -35,6 +41,7 @@ namespace Serene.Administration
         {
             [InlineConstant] public const string Update = "Administration/UserPermission/Update";
             [InlineConstant] public const string List = "Administration/UserPermission/List";
+            [InlineConstant] public const string ListRolePermissions = "Administration/UserPermission/ListRolePermissions";
             [InlineConstant] public const string ListPermissionKeys = "Administration/UserPermission/ListPermissionKeys";
         }
     }

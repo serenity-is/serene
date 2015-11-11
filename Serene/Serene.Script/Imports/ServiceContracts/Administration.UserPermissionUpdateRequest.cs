@@ -15,7 +15,7 @@ namespace Serene.Administration
         public Int32? UserID { get; set; }
         public String Module { get; set; }
         public String Submodule { get; set; }
-        public List<String> Permissions { get; set; }
+        public List<UserPermissionRow> Permissions { get; set; }
     }
     
 }

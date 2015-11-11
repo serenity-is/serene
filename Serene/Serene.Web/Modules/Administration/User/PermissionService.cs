@@ -18,8 +18,9 @@
             if (user == null)
                 return false;
 
-            if (GetUserPermissions(user.UserId).Contains(permission))
-                return true;
+            bool grant;
+            if (GetUserPermissions(user.UserId).TryGetValue(permission, out grant))
+                return grant;
 
             foreach (var roleId in GetUserRoles(user.UserId))
             {
@@ -30,7 +31,7 @@
             return false;
         }
 
-        private HashSet<string> GetUserPermissions(int userId)
+        private Dictionary<string, bool> GetUserPermissions(int userId)
         {
             var fld = UserPermissionRow.Fields;
 
@@ -38,12 +39,13 @@
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                 {
-                    var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                    var result = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
                     connection.List<UserPermissionRow>(q => q
                             .Select(fld.PermissionKey)
+                            .Select(fld.Grant)
                             .Where(new Criteria(fld.UserId) == userId))
-                        .ForEach(x => result.Add(x.PermissionKey));
+                        .ForEach(x => result[x.PermissionKey] = x.Grant ?? true);
 
                     return result;
                 }

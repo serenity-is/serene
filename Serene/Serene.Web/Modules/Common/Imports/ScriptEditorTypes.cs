@@ -16,6 +16,12 @@ namespace Serene.Administration
             : base(Key)
         {
         }
+    
+        public Boolean ShowRevoke
+        {
+            get { return GetOption<Boolean>("showRevoke"); }
+            set { SetOption("showRevoke", value); }
+        }
     }
 
     public partial class PermissionModuleEditorAttribute : CustomEditorAttribute

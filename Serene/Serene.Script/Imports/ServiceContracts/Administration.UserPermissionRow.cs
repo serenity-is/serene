@@ -19,6 +19,7 @@ namespace Serene.Administration
         public Int64? UserPermissionId { get; set; }
         public Int32? UserId { get; set; }
         public String PermissionKey { get; set; }
+        public Boolean? Grant { get; set; }
         public String Username { get; set; }
         public String User { get; set; }
     
@@ -28,6 +29,7 @@ namespace Serene.Administration
             [InlineConstant] public const string UserPermissionId = "UserPermissionId";
             [InlineConstant] public const string UserId = "UserId";
             [InlineConstant] public const string PermissionKey = "PermissionKey";
+            [InlineConstant] public const string Grant = "Grant";
             [InlineConstant] public const string Username = "Username";
             [InlineConstant] public const string User = "User";
         }

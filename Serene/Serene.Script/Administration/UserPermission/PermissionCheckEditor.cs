@@ -8,14 +8,17 @@ using System.Runtime.CompilerServices;
 namespace Serene.Administration
 {
     [Editor, IdProperty("Key")]
-    public class PermissionCheckEditor : DataGrid<PermissionCheckItem>
+    public class PermissionCheckEditor : DataGrid<PermissionCheckItem, PermissionCheckEditorOptions>
     {
         private string containsText;
         private ILookup<string, PermissionCheckItem> byParentKey;
+        private JsDictionary<string, bool> rolePermissions;
 
-        public PermissionCheckEditor(jQueryObject div)
-            : base(div)
+        public PermissionCheckEditor(jQueryObject div, PermissionCheckEditorOptions opt)
+            : base(div, opt)
         {
+            rolePermissions = new JsDictionary<string, bool>();
+
             JsDictionary<string, string> titleByKey;
             var permissionKeys = GetSortedGroupAndPermissionKeys(out titleByKey);
             var items = new List<PermissionCheckItem>();
@@ -25,12 +28,52 @@ namespace Serene.Administration
                     Key = key,
                     ParentKey = GetParentKey(key),
                     Title = titleByKey[key],
-                    GrantRevoke = null
+                    GrantRevoke = null,
+                    IsGroup = key.EndsWith(":")
                 });
 
             byParentKey = items.ToLookup(x => x.ParentKey);
 
-            this.View.SetItems(items, true);
+            SetItems(items);
+        }
+
+        private string GetItemGrantRevokeClass(PermissionCheckItem item, bool grant)
+        {
+            if (!item.IsGroup)
+                return item.GrantRevoke == grant ? " checked" : "";
+
+            var desc = GetDescendants(item);
+            var granted = desc.Where(x => x.GrantRevoke == grant);
+            if (!granted.Any())
+                return "";
+            else if (desc.Count() == granted.Count())
+                return "checked";
+            else
+                return "checked partial";
+        }
+
+        private string GetItemEffectiveClass(PermissionCheckItem item)
+        {
+            if (item.IsGroup)
+            {
+                var desc = GetDescendants(item);
+                var grantCount = desc.Count(x => x.GrantRevoke == true ||
+                    (x.GrantRevoke == null && rolePermissions[x.Key]));
+
+                if (grantCount == desc.Count || desc.Count == 0)
+                    return "allow";
+                else if (grantCount == 0)
+                    return "deny";
+                else
+                    return "partial";
+            }
+            else
+            {
+                bool granted = item.GrantRevoke == true ||
+                    (item.GrantRevoke == null && rolePermissions[item.Key]);
+
+                return granted ? " allow" : " deny";
+            }
         }
 
         protected override List<SlickColumn> GetColumns()
@@ -39,21 +82,29 @@ namespace Serene.Administration
             {
                 new SlickColumn
                 {
-                    Title = "Permission",
+                    Title = Q.Text("Site.UserPermissionDialog.Permission"),
                     Field = "Title",
-                    Format = SlickFormatting.TreeToggle(() => this.View, 
-                        getId: x => x.Key, formatter: ctx => Q.HtmlEncode(ctx.Value)),
-                    Width = 435,
+                    Format = SlickFormatting.TreeToggle(
+                        getView: () => this.View, 
+                        getId: x => x.Key, 
+                        formatter: ctx => {
+                            var item = (PermissionCheckItem)ctx.Item;
+                            var klass = GetItemEffectiveClass(item);
+                            return "<span class='effective-permission " + klass + "'>" +
+                                Q.HtmlEncode(ctx.Value) + "</span>";
+                        }),
+                    Width = 495,
                     Sortable = false
                 },
                 new SlickColumn
                 {
-                    Title = "Grant",
+                    Title = Q.Text("Site.UserPermissionDialog.Grant"),
                     Field = "Grant",
                     Format = ctx =>
                     {
                         var item = (PermissionCheckItem)ctx.Item;
-                        return "<span class=\"check-box grant no-float " + (item.GrantRevoke == true ? " checked" : "") + "\"></span>";
+                        string klass= GetItemGrantRevokeClass(item, true);
+                        return "<span class='check-box grant no-float " +  klass + "'></span>";
                     },
                     Width = 65,
                     Sortable = false,
@@ -62,36 +113,24 @@ namespace Serene.Administration
                 }
             };
 
-            columns.Add(new SlickColumn
+            if (options.ShowRevoke)
             {
-                Title = "Revoke",
-                Field = "Revoke",
-                Format = ctx =>
+                columns.Add(new SlickColumn
                 {
-                    var item = (PermissionCheckItem)ctx.Item;
-                    return "<span class=\"check-box revoke no-float " + (item.GrantRevoke == false ? " checked" : "") + "\"></span>";
-                },
-                Width = 65,
-                Sortable = false,
-                HeaderCssClass = "align-center",
-                CssClass = "align-center"
-            });
-
-            columns.Add(new SlickColumn
-            {
-                Title = "Effective",
-                Field = "Effective",
-                Format = ctx =>
-                {
-                    var item = (PermissionCheckItem)ctx.Item;
-                    return "<span class=\"check-box no-float " + (item.GrantRevoke == false ? " checked" : "") + "\"></span>";
-                },
-                Width = 65,
-                Sortable = false,
-                HeaderCssClass = "align-center",
-                CssClass = "align-center"
-            });
-
+                    Title = Q.Text("Site.UserPermissionDialog.Revoke"),
+                    Field = "Revoke",
+                    Format = ctx =>
+                    {
+                        var item = (PermissionCheckItem)ctx.Item;
+                        string klass = GetItemGrantRevokeClass(item, false);
+                        return "<span class=\"check-box revoke no-float " + klass + "\"></span>";
+                    },
+                    Width = 65,
+                    Sortable = false,
+                    HeaderCssClass = "align-center",
+                    CssClass = "align-center"
+                });
+            }
 
             return columns;
         }
@@ -119,17 +158,42 @@ namespace Serene.Administration
             if (!SlickTreeHelper.FilterById(item, view, getParentId: x => x.ParentKey))
                 return false;
 
+            if (!string.IsNullOrEmpty(containsText))
+            {
+                return (MatchContains(item)) ||
+                        (item.IsGroup && GetDescendants(item, false).Any(MatchContains));
+            }
+
             return true;
         }
 
-        private IEnumerable<PermissionCheckItem> EnumerateDescendants(PermissionCheckItem item)
+        private bool MatchContains(PermissionCheckItem item)
         {
-            foreach (var child in byParentKey[item.Key])
+            return Q.Externals.StripDiacritics(item.Title ?? "").ToLower()
+                .IndexOf(containsText) >= 0;
+        }
+
+        private List<PermissionCheckItem> GetDescendants(PermissionCheckItem item, bool excludeGroups = true)
+        {
+            var result = new List<PermissionCheckItem>();
+            var stack = new Stack<PermissionCheckItem>();
+
+            stack.Push(item);
+
+            while (stack.Count > 0)
             {
-                yield return child;
-                foreach (var x in EnumerateDescendants(child))
-                    yield return x;
+                var i = stack.Pop();
+
+                foreach (var child in byParentKey[i.Key])
+                {
+                    if (!excludeGroups || !child.IsGroup)
+                        result.Add(child);
+
+                    stack.Push(child);
+                }
             }
+
+            return result;
         }
 
         protected override void OnClick(jQueryEvent e, int row, int cell)
@@ -160,9 +224,9 @@ namespace Serene.Administration
                 view.BeginUpdate();
                 try
                 {
-                    if (item.Key.EndsWith(":"))
+                    if (item.IsGroup)
                     {
-                        foreach (var d in EnumerateDescendants(item).Where(x => !x.Key.EndsWith(":")))
+                        foreach (var d in GetDescendants(item))
                             if (d.GrantRevoke != grant)
                             {
                                 d.GrantRevoke = grant;
@@ -205,7 +269,7 @@ namespace Serene.Administration
 
             GridUtils.AddQuickSearchInputCustom(toolbar.Element, (field, text) =>
             {
-                containsText = text.TrimToNull();
+                containsText = Q.Externals.StripDiacritics(text.TrimToNull() ?? "").ToLower();
                 view.SetItems(view.GetItems(), true);
             });
         }
@@ -266,9 +330,8 @@ namespace Serene.Administration
                     if (item.GrantRevoke != null && !item.Key.EndsWith(":"))
                         result.Add(new UserPermissionRow
                         {
-                            PermissionKey = item.Key
-                            // GrantRevoke = 1:0
-
+                            PermissionKey = item.Key,
+                            Grant = item.GrantRevoke.Value
                         });
 
                 return result;
@@ -283,10 +346,23 @@ namespace Serene.Administration
                     {
                         var r = view.GetItemById(row.PermissionKey);
                         if (r != null)
-                            r.GrantRevoke = true;
+                            r.GrantRevoke = row.Grant ?? true;
                     }
 
                 SetItems(Items);
+            }
+        }
+
+        public List<string> RolePermissions
+        {
+            get { return rolePermissions.Keys.ToList(); }
+            set
+            {
+                rolePermissions.Clear();
+                if (value != null)
+                    foreach (var k in value)
+                        rolePermissions[k] = true;
+                SetItems(this.Items);
             }
         }
     }
@@ -297,6 +373,13 @@ namespace Serene.Administration
         public string ParentKey { get; set; }
         public string Key { get; set; }
         public string Title { get; set; }
+        public bool IsGroup { get; set; }
         public bool? GrantRevoke { get; set; }
+    }
+
+    [Imported, Serializable]
+    public class PermissionCheckEditorOptions
+    {
+        public bool ShowRevoke { get; set; }
     }
 }

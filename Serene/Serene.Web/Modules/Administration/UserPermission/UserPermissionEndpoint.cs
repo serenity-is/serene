@@ -21,13 +21,18 @@ namespace Serene.Administration.Endpoints
             return new MyRepository().Update(uow, request);
         }
  
-        public UserPermissionListResponse List(IDbConnection connection, UserPermissionListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, UserPermissionListRequest request)
         {
             return new MyRepository().List(connection, request);
         }
 
+        public ListResponse<string> ListRolePermissions(IDbConnection connection, UserPermissionListRequest request)
+        {
+            return new MyRepository().ListRolePermissions(connection, request);
+        }
+
         [DataScript("Administration.PermissionKeys")]
-        public UserPermissionListResponse ListPermissionKeys()
+        public ListResponse<string> ListPermissionKeys()
         {
             return new MyRepository().ListPermissionKeys();
         }

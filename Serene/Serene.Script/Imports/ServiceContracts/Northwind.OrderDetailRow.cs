@@ -20,7 +20,7 @@ namespace Serene.Northwind
         public Int32? ProductID { get; set; }
         public Decimal? UnitPrice { get; set; }
         public Int16? Quantity { get; set; }
-        public Double? Discount { get; set; }
+        public Single? Discount { get; set; }
         public String OrderCustomerID { get; set; }
         public Int32? OrderEmployeeID { get; set; }
         public String OrderDate { get; set; }
