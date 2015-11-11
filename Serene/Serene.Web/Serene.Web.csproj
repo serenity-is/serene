@@ -461,6 +461,9 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\images\tick-empty.png" />
+    <Content Include="Content\site\images\tick-green-partial.png" />
+    <Content Include="Content\site\images\tick-red-partial.png" />
     <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.overrides.serenity.less" />
@@ -808,7 +811,6 @@
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListRequest.cs" />
     <Compile Include="Modules\Administration\PermissionKeys.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
-    <Compile Include="Modules\Administration\UserPermission\UserPermissionListResponse.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
@@ -822,6 +824,7 @@
     <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151014_030700_OrderDetailID.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
