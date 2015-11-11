@@ -578,6 +578,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerOrdersGrid
 	var $Serene_Northwind_CustomerOrdersGrid = function(container) {
+		this.$customerID = null;
 		$Serene_Northwind_OrderGrid.call(this, container);
 	};
 	$Serene_Northwind_CustomerOrdersGrid.__typeName = 'Serene.Northwind.CustomerOrdersGrid';
@@ -1770,6 +1771,10 @@
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
 			Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.get_isNewOrDeleted());
 			this.$ordersGrid.set_customerID(entity.CustomerID);
+		},
+		onSaveSuccess: function(response) {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.onSaveSuccess.call(this, response);
+			Q.reloadLookup('Northwind.Customer');
 		}
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerEditor, $asm, {
@@ -1888,14 +1893,25 @@
 			this.get_customerFilter().get_element().parent().hide();
 		},
 		getGridCanLoad: function() {
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.get_customerID());
+			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);
+		},
+		onViewSubmit: function() {
+			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+				return false;
+			}
+			var request = this.view.params;
+			request.EqualityFilter = request.EqualityFilter || {};
+			request.EqualityFilter['CustomerID'] = this.get_customerID();
+			return true;
 		},
 		get_customerID: function() {
-			return this.get_customerFilter().get_value();
+			return this.$customerID;
 		},
 		set_customerID: function(value) {
-			this.get_customerFilter().set_value(value);
-			this.refresh();
+			if (!ss.referenceEquals(this.$customerID, value)) {
+				this.$customerID = value;
+				this.refresh();
+			}
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_EmployeeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);

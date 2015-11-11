@@ -27,5 +27,12 @@ namespace Serene.Northwind
 
             ordersGrid.CustomerID = entity.CustomerID;
         }
+
+        protected override void OnSaveSuccess(ServiceResponse response)
+        {
+            base.OnSaveSuccess(response);
+
+            Q.ReloadLookup(CustomerRow.LookupKey);
+        }
     }
 }
