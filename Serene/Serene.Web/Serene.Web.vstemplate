@@ -383,6 +383,11 @@
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="simple-line-icons.css">simple-line-icons.css</ProjectItem>
         <Folder Name="site" TargetFolderName="site">
+          <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="tick-empty.png">tick-empty.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tick-green-partial.png">tick-green-partial.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="tick-red-partial.png">tick-red-partial.png</ProjectItem>
+          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.administration.less">site.administration.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.layout.less">site.layout.less</ProjectItem>
@@ -526,7 +531,6 @@
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionEndpoint.cs">UserPermissionEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionListRequest.cs">UserPermissionListRequest.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionListResponse.cs">UserPermissionListResponse.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionRepository.cs">UserPermissionRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionRow.cs">UserPermissionRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionUpdateRequest.cs">UserPermissionUpdateRequest.cs</ProjectItem>
@@ -553,8 +557,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>
@@ -567,6 +571,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141123_155100_ProductImage.cs">DefaultDB_20141123_155100_ProductImage.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151014_030700_OrderDetailID.cs">DefaultDB_20151014_030700_OrderDetailID.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151111_133500_UserPermissionGrant.cs">DefaultDB_20151111_133500_UserPermissionGrant.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript.sql">NorthwindDBScript.sql</ProjectItem>
             </Folder>
           </Folder>
