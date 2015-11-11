@@ -1888,7 +1888,7 @@
 			this.get_customerFilter().get_element().parent().hide();
 		},
 		getGridCanLoad: function() {
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && ss.isValue(this.get_customerID());
+			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.get_customerID());
 		},
 		get_customerID: function() {
 			return this.get_customerFilter().get_value();

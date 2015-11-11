@@ -47,7 +47,7 @@ namespace Serene.Northwind
 
         protected override bool GetGridCanLoad()
         {
-            return base.GetGridCanLoad() && CustomerID != null;
+            return base.GetGridCanLoad() && !string.IsNullOrEmpty(CustomerID);
         }
 
         public string CustomerID
