@@ -177,6 +177,10 @@ namespace Serene.Administration.Repositories
 
                 foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
                 {
+                    foreach (var attr in assembly.GetCustomAttributes<PermissionAttributeBase>())
+                        if (!attr.Permission.IsEmptyOrNull())
+                            result.Add(attr.Permission);
+
                     foreach (var type in assembly.GetTypes())
                     {
                         ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
