@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.CategoryRow;
 
     [RoutePrefix("Services/Northwind/Category"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class CategoryController : ServiceEndpoint
     {
         [HttpPost]

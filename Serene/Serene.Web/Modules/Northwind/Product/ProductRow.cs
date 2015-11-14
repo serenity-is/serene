@@ -10,7 +10,7 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using Serenity.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
+    [ConnectionKey("Northwind"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]

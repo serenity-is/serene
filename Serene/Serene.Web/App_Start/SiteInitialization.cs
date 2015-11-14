@@ -34,21 +34,26 @@
                 throw;
             }
 
-            EnsureDatabase();
-            RunMigrations();
+            foreach (var databaseKey in new string[] { "Default", "Northwind" })
+            {
+                EnsureDatabase(databaseKey);
+                RunMigrations(databaseKey);
+            }
         }
 
         public static void ApplicationEnd()
         {
         }
 
+        private static string[] databaseKeys = new[] { "Default", "Northwind" };
+
         /// <summary>
         /// Automatically creates a database for the template if it doesn't already exists.
         /// You might delete this method to disable auto create functionality.
         /// </summary>
-        private static void EnsureDatabase()
+        private static void EnsureDatabase(string databaseKey)
         {
-            var cs = SqlConnections.GetConnectionString("Default");
+            var cs = SqlConnections.GetConnectionString(databaseKey);
 
             var cb = new DbConnectionStringBuilder();
             cb.ConnectionString = cs.ConnectionString;
@@ -73,7 +78,7 @@
                         throw new Exception(
                             "You don't seem to have SQL Express LocalDB 2012 installed.\r\n\r\n" + 
                             "If you have Visual Studio 2015 (with SQL LocalDB 2014) " + 
-                            "try changing 'Default' connection string in WEB.CONFIG to:\r\n\r\n" +
+                            "try changing '" + databaseKey + "' connection string in WEB.CONFIG to:\r\n\r\n" +
                             cs.ConnectionString.Replace(oldVer, @"\MSSqlLocalDB") + "\r\n\r\nor:\r\n\r\n" +
                             cs.ConnectionString.Replace(oldVer, @"\v12.0") + "';\r\n\r\n" + 
                             "You can also try another SQL server type like .\\SQLExpress.");
@@ -108,13 +113,14 @@
             }
         }
 
-        private static void RunMigrations()
+        private static void RunMigrations(string databaseKey)
         {
-            var defaultConnection = SqlConnections.GetConnectionString("Default");
+            var connectionString = SqlConnections.GetConnectionString(databaseKey);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these two lines if you want Serene migrations to run on your DB.
-            if (defaultConnection.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + @"_Default_v1") < 0)
+            if (connectionString.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + 
+                    @"_" + databaseKey + "_v1") < 0)
                 return;
 
             using (var sw = new StringWriter())
@@ -127,11 +133,11 @@
                 var runner = new RunnerContext(announcer)
                 {
                     Database = "SqlServer",
-                    Connection = defaultConnection.ConnectionString,
+                    Connection = connectionString.ConnectionString,
                     Targets = new string[] { typeof(SiteInitialization).Assembly.Location },
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),
-                    Namespace = "Serene.Migrations.DefaultDB"
+                    Namespace = "Serene.Migrations." + databaseKey + "DB"
                 };
 
                 new TaskExecutor(runner).Execute();

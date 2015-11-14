@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.RegionRow;
 
     [RoutePrefix("Services/Northwind/Region"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class RegionController : ServiceEndpoint
     {
         [HttpPost]

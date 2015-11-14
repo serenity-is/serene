@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.CustomerDemographicRow;
 
     [RoutePrefix("Services/Northwind/CustomerDemographic"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
     public class CustomerDemographicController : ServiceEndpoint
     {
         [HttpPost]

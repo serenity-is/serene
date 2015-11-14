@@ -10,7 +10,7 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using Serenity.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
+    [ConnectionKey("Northwind"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.Customer.View)]
     [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
     [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]

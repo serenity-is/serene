@@ -8,8 +8,6 @@ namespace Serene.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Execute.EmbeddedScript("Serene.Modules.Common.Migrations.DefaultDB.NorthwindDBScript.sql");
-
             Create.Table("Users")
                 .WithColumn("UserId").AsInt32().Identity().PrimaryKey().NotNullable()
                 .WithColumn("Username").AsString(100).NotNullable()

@@ -96,7 +96,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Modules\Common\Migrations\DefaultDB\NorthwindDBScript.sql" />
+    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript.sql" />
     <Content Include="Content\aristo\aristo.css" />
     <Content Include="Content\aristo\images\icon_sprite.png" />
     <Content Include="Content\aristo\images\progress_bar.gif" />
@@ -805,8 +805,8 @@
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151014_030700_OrderDetailID.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141123_155100_ProductImage.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\DefaultDB_20151014_030700_OrderDetailID.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\DefaultDB_20141123_155100_Initial.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationUpdateRequest.cs" />

@@ -8,7 +8,7 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
+    [ConnectionKey("Northwind"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
