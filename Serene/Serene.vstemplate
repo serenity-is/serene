@@ -9,13 +9,13 @@
   </TemplateData>
   <TemplateContent>
     <ProjectCollection>
-      <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
-        Serene.Web\Serene.Web.vstemplate
-      </ProjectTemplateLink>
       <ProjectTemplateLink ProjectName="$projectname$.Script" CopyParameters="true">
         Serene.Script\Serene.Script.vstemplate
       </ProjectTemplateLink>
-    </ProjectCollection>
+      <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
+        Serene.Web\Serene.Web.vstemplate
+      </ProjectTemplateLink>
+	  </ProjectCollection>
   </TemplateContent>
   <WizardExtension>
     <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
