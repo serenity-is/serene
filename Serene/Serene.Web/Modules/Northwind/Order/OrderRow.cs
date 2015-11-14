@@ -204,7 +204,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ShipViaPhone[this] = value; }
         }
         
-        [MasterDetailRelation(foreignKey: "OrderID"), ClientSide]
+        [DisplayName("Details"), MasterDetailRelation(foreignKey: "OrderID"), ClientSide]
         public List<OrderDetailRow> DetailList
         {
             get { return Fields.DetailList[this]; }
