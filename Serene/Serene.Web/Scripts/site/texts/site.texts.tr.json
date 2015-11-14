@@ -140,6 +140,8 @@
     "Db.Northwind.Territory.TerritoryDescription": "Alt Bölge Adı",
     "Db.Northwind.Territory.TerritoryID": "Alt Bölge No",
     "Db.Shared.RecordId": "Kayıt No",
+    "Enums.Northwind.OrderShippingState.NotShipped": "Teslim Edilmedi",
+    "Enums.Northwind.OrderShippingState.Shipped": "Teslim Edildi",
     "Forms.Membership.Login.FormTitle": "SERENE'ye Hoşgeldiniz (Serenity Uygulama Şablonu)",
     "Forms.Membership.Login.Password_Placeholder": "varsayılan şifre 'serenity'",
     "Forms.Membership.Login.SignInButton": "Giriş",
