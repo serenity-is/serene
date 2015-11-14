@@ -440,7 +440,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-top: 6px;
 }
 .s-Form .ui-datepicker-trigger {
-  margin-top: 5px;
+  margin-top: 1px;
 }
 .s-Form .inplace-calc b {
   margin-top: 2px;
@@ -678,7 +678,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -724,7 +724,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.dateQ {
-  width: 583px;
+  width: 576px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -771,7 +771,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 }
 .s-Northwind-OrderDialog .s-Form .editor.dateQ,
 .s-CustomerOrderDialog .s-Form .editor.dateQ {
-  width: 613px;
+  width: 606px;
 }
 .s-Northwind-OrderDialog .s-Form .editor.emailuser,
 .s-CustomerOrderDialog .s-Form .editor.emailuser {
@@ -815,7 +815,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.dateQ {
-  width: 313px;
+  width: 306px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -854,7 +854,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-ProductDialog .s-Form .editor.dateQ {
-  width: 363px;
+  width: 356px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -892,7 +892,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-RegionDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -930,7 +930,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -968,7 +968,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -1006,7 +1006,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   width: auto;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -1074,7 +1074,7 @@ a,
   width: auto;
 }
 #LoginPanelWrapper .s-LoginPanel .s-Form .editor.dateQ {
-  width: 283px;
+  width: 276px;
 }
 #LoginPanelWrapper .s-LoginPanel .s-Form .editor.emailuser {
   width: 170px;
@@ -1131,7 +1131,7 @@ a,
   width: auto;
 }
 .s-UserDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-UserDialog .s-Form .editor.emailuser {
   width: 170px;
@@ -1169,7 +1169,7 @@ a,
   width: auto;
 }
 .s-LanguageDialog .s-Form .editor.dateQ {
-  width: 383px;
+  width: 376px;
 }
 .s-LanguageDialog .s-Form .editor.emailuser {
   width: 170px;

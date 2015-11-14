@@ -617,7 +617,7 @@ button.ui-state-hover .ui-button-text {
 .s-Form .ui-datepicker-trigger {
   display: block;
   float: left;
-  margin: 3px 0 0 1px;
+  margin: 1px 0 0 1px;
 }
 .s-Form .separator {
   display: block;
@@ -952,7 +952,9 @@ textarea,
 }
 .quick-filters-bar .quick-filter-item input {
   position: relative;
-  top: 2px;
+  top: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   margin-right: 6px;
 }
 .quick-filters-bar .quick-filter-item .s-DateEditor {
@@ -963,11 +965,15 @@ textarea,
 }
 .quick-filters-bar .quick-filter-item .ui-datepicker-trigger {
   margin-right: 6px;
+  position: relative;
+  top: 2px;
 }
 .quick-filters-bar .quick-filter-item .range-separator {
   display: inline-block;
   margin: 0 6px 0 0px;
   font-weight: bold;
+  position: relative;
+  top: 3px;
 }
 .quick-filters-bar .quick-filter-label {
   display: block;
