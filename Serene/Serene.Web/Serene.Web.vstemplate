@@ -570,9 +570,11 @@
             <Folder Name="DefaultDB" TargetFolderName="DefaultDB">
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141103_140000_Initial.cs">DefaultDB_20141103_140000_Initial.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141123_155100_ProductImage.cs">DefaultDB_20141123_155100_ProductImage.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151014_030700_OrderDetailID.cs">DefaultDB_20151014_030700_OrderDetailID.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151111_133500_UserPermissionGrant.cs">DefaultDB_20151111_133500_UserPermissionGrant.cs</ProjectItem>
+            </Folder>
+            <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141123_155100_Initial.cs">DefaultDB_20141123_155100_Initial.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151014_030700_OrderDetailID.cs">DefaultDB_20151014_030700_OrderDetailID.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript.sql">NorthwindDBScript.sql</ProjectItem>
             </Folder>
           </Folder>
