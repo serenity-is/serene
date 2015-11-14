@@ -950,6 +950,25 @@ textarea,
 .quick-filters-bar .quick-filter-item {
   display: inline-block;
 }
+.quick-filters-bar .quick-filter-item input {
+  position: relative;
+  top: 2px;
+  margin-right: 6px;
+}
+.quick-filters-bar .quick-filter-item .s-DateEditor {
+  width: 85px;
+}
+.quick-filters-bar .quick-filter-item input.hasDatepicker {
+  margin-right: 1px;
+}
+.quick-filters-bar .quick-filter-item .ui-datepicker-trigger {
+  margin-right: 6px;
+}
+.quick-filters-bar .quick-filter-item .range-separator {
+  display: inline-block;
+  margin: 0 6px 0 0px;
+  font-weight: bold;
+}
 .quick-filters-bar .quick-filter-label {
   display: block;
   font-size: 11px;

@@ -3,6 +3,7 @@ namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
+    using Serenity.Data;
     using System;
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
@@ -22,6 +23,8 @@ namespace Serene.Northwind
             base.CreateToolbarExtensions();
 
             CustomerFilter = AddEqualityFilter<CustomerEditor>(Fields.CustomerID);
+
+            AddDateRangeFilter(Fields.OrderDate);
 
             AddEqualityFilter<EnumEditor>(Fields.ShippingState,
                 options: new EnumEditorOptions { EnumKey = "Northwind.OrderShippingState" });

@@ -1392,7 +1392,7 @@
 						var value = obj['$$value$$'];
 						var active = ss.isValue(value) && !ss.isNullOrEmptyString(value.toString());
 						if (!ss.staticEquals(handler, null)) {
-							var args = { field: field, request: request, equalityFilter: request.EqualityFilter, value: value, active: active, handled: true };
+							var args = { field: field, request: request, equalityFilter: request.EqualityFilter, value: value, active: active, widget: widget, handled: true };
 							handler(args);
 							quickFilter.toggleClass('quick-filter-active', args.active);
 							if (!args.handled) {
@@ -1409,6 +1409,30 @@
 					}));
 					return widget;
 				};
+			},
+			addDateRangeFilter: function(field, title) {
+				var end = null;
+				var $t1 = function(e1) {
+					end = $Serenity_Widget.create($Serenity_DateEditor).call(null, function(e2) {
+						e2.insertAfter(e1);
+					}, null, null);
+					end.get_element().change(function(x) {
+						e1.triggerHandler('change');
+					});
+					$('<span/>').addClass('range-separator').text('-').insertAfter(e1);
+				};
+				return this.addEqualityFilter($Serenity_DateEditor).call(this, field, null, null, function(args) {
+					args.active = !ss.isNullOrEmptyString(args.widget.get_value()) || !ss.isNullOrEmptyString(end.get_value());
+					if (ss.referenceEquals(null, args.request.Criteria)) {
+						args.request.Criteria = [''];
+					}
+					if (!ss.isNullOrEmptyString(args.widget.get_value())) {
+						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '>=', args.widget.get_value()]);
+					}
+					if (!ss.isNullOrEmptyString(end.get_value())) {
+						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<=', end.get_value()]);
+					}
+				}, $t1, null);
 			},
 			invokeSubmitHandlers: function() {
 				if (!ss.staticEquals(this.$4$submitHandlersField, null)) {

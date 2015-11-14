@@ -1795,6 +1795,7 @@
 		createToolbarExtensions: function() {
 			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
 			this.set_customerFilter(this.addEqualityFilter($Serene_Northwind_CustomerEditor).call(this, 'CustomerID', null, null, null, null, null));
+			this.addDateRangeFilter('OrderDate', null);
 			var $t1 = Serenity.EnumEditorOptions.$ctor();
 			$t1.enumKey = 'Northwind.OrderShippingState';
 			this.addEqualityFilter(Serenity.EnumEditor).call(this, 'ShippingState', null, $t1, null, null, null);
