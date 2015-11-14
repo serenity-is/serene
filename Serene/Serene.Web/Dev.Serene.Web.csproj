@@ -217,6 +217,7 @@
     <Content Include="Content\serenity\images\cv.png" />
     <Content Include="Content\serenity\images\data-sync.png" />
     <Content Include="Content\serenity\images\datepicker.gif" />
+    <Content Include="Content\serenity\images\datepicker.png" />
     <Content Include="Content\serenity\images\delete.png" />
     <Content Include="Content\serenity\images\delete2.png" />
     <Content Include="Content\serenity\images\dialog-alert.png" />
@@ -700,9 +701,6 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\site\texts\site.texts.es.json" />
     <Content Include="Scripts\site\texts\site.texts.invariant.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\site\texts\site.texts.tr.json" />
     <Content Include="Modules\Membership\Account\AccountLogin.cshtml" />
     <Content Include="Modules\Web.config" />
@@ -747,6 +745,9 @@
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
