@@ -1289,8 +1289,10 @@ textarea,
   text-align: center;
   font-size: 9px;
 }
-.file-item .file-binary {
+.file-item.file-binary .thumb {
   background-image: url(images/thumb-file-72.png);
+  background-position: center center;
+  background-color: lavender;
 }
 .s-ImageUploadEditor ul,
 .s-MultipleImageUploadEditor ul {
