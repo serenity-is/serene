@@ -1039,13 +1039,16 @@
 				}
 			},
 			setCriteriaParameter: function() {
-				this.view.params.Criteria = null;
+				delete this.view.params['Criteria'];
 				if (ss.isValue(this.filterBar)) {
 					var criteria = this.filterBar.get_store().get_activeCriteria();
 					if (!Serenity.Criteria.isEmpty(criteria)) {
 						this.view.params.Criteria = criteria;
 					}
 				}
+			},
+			setEquality: function(field, value) {
+				Q.setEquality(this.view.params, field, value);
 			},
 			setIncludeColumnsParameter: function() {
 				var include = {};
@@ -1423,9 +1426,6 @@
 				};
 				return this.addEqualityFilter($Serenity_DateEditor).call(this, field, null, null, function(args) {
 					args.active = !ss.isNullOrEmptyString(args.widget.get_value()) || !ss.isNullOrEmptyString(end.get_value());
-					if (ss.referenceEquals(null, args.request.Criteria)) {
-						args.request.Criteria = [''];
-					}
 					if (!ss.isNullOrEmptyString(args.widget.get_value())) {
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '>=', args.widget.get_value()]);
 					}
@@ -2151,13 +2151,6 @@
 				if (!this.isPanel) {
 					this.element.dialog().dialog('option', 'title', this.getEntityTitle());
 				}
-			},
-			getTemplateName: function() {
-				var templateName = ss.makeGenericType($Serenity_TemplatedWidget$1, [TOptions]).prototype.getTemplateName.call(this);
-				if (!Q.canLoadScriptData('Template.' + templateName) && Q.canLoadScriptData('Template.EntityDialog')) {
-					return 'EntityDialog';
-				}
-				return templateName;
 			},
 			get_isCloneMode: function() {
 				return ss.isValue(this.get_entityId()) && Serenity.IdExtensions.isNegativeId(ss.unbox(this.get_entityId()));
@@ -4807,13 +4800,6 @@
 			onDialogOpen: function() {
 				ss.makeGenericType($Serenity_TemplatedDialog$1, [TOptions]).prototype.onDialogOpen.call(this);
 			},
-			getTemplateName: function() {
-				var templateName = ss.makeGenericType($Serenity_TemplatedWidget$1, [TOptions]).prototype.getTemplateName.call(this);
-				if (!Q.canLoadScriptData('Template.' + templateName) && Q.canLoadScriptData('Template.PropertyDialog')) {
-					return 'PropertyDialog';
-				}
-				return templateName;
-			},
 			$initPropertyGrid: function() {
 				var pgDiv = this.byId$1('PropertyGrid');
 				if (pgDiv.length <= 0) {
@@ -6334,20 +6320,47 @@
 				};
 			},
 			getTemplateName: function() {
-				return ss.getTypeName(ss.getInstanceType(this));
+				if (ss.isValue($type.$templateName)) {
+					return $type.$templateName;
+				}
+				var type = ss.getInstanceType(this);
+				while (ss.isValue(type) && !ss.referenceEquals(type, $Serenity_Widget)) {
+					var fullName = ss.replaceAllString(ss.getTypeFullName(type), '.', '_');
+					var dollar = fullName.indexOf('$');
+					if (dollar >= 0) {
+						fullName = fullName.substr(0, dollar);
+					}
+					for (var $t1 = 0; $t1 < Q$Config.rootNamespaces.length; $t1++) {
+						var k = Q$Config.rootNamespaces[$t1];
+						if (ss.startsWithString(fullName, k + '_')) {
+							fullName = fullName.substr(k.length + 1);
+							break;
+						}
+					}
+					if (Q.canLoadScriptData('Template.' + fullName) || $('script#Template_' + fullName).length > 0) {
+						$type.$templateName = fullName;
+						return $type.$templateName;
+					}
+					var name = ss.getTypeName(type);
+					if (Q.canLoadScriptData('Template.' + name) || $('script#Template_' + name).length > 0) {
+						$type.$templateName = name;
+						return $type.$templateName;
+					}
+					type = ss.getBaseType(type);
+				}
+				$type.$templateName = ss.getTypeName(ss.getInstanceType(this));
+				return $type.$templateName;
 			},
 			getTemplate: function() {
 				var templateName = this.getTemplateName();
 				var template;
 				var script = $('script#Template_' + templateName);
 				if (script.length > 0) {
-					template = script.html();
+					return script.html();
 				}
-				else {
-					template = Q.getTemplate(templateName);
-					if (!ss.isValue(template)) {
-						throw new ss.Exception(ss.formatString("Can't locate template for widget '{0}' with name '{1}'!", ss.getTypeName(ss.getInstanceType(this)), templateName));
-					}
+				template = Q.getTemplate(templateName);
+				if (!ss.isValue(template)) {
+					throw new ss.Exception(ss.formatString("Can't locate template for widget '{0}' with name '{1}'!", ss.getTypeName(ss.getInstanceType(this)), templateName));
 				}
 				return template;
 			}
@@ -6356,6 +6369,7 @@
 		}, function() {
 			return [];
 		});
+		$type.$templateName = null;
 		return $type;
 	};
 	$Serenity_TemplatedWidget$1.__typeName = 'Serenity.TemplatedWidget$1';

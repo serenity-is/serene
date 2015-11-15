@@ -452,6 +452,12 @@
 	$Q.serviceRequest = function(service, request, onSuccess, options) {
 		return $Q.serviceCall($.extend({ service: service, request: request, onSuccess: onSuccess }, options));
 	};
+	$Q.setEquality = function(request, field, value) {
+		if (ss.isNullOrUndefined(request.EqualityFilter)) {
+			request.EqualityFilter = {};
+		}
+		request.EqualityFilter[field] = value;
+	};
 	$Q.trim = function(text) {
 		return ss.coalesce(text, '').replace(new RegExp('^\\s+|\\s+$', 'g'), '');
 	};
@@ -830,16 +836,10 @@
 		return array.length === 0 || array.length === 1 && ss.isInstanceOfType(array[0], String) && ss.cast(array[0], String).length === 0;
 	};
 	$Serenity_Criteria.join = function(criteria1, op, criteria2) {
-		if (ss.referenceEquals(null, criteria1)) {
-			throw new ss.ArgumentNullException('criteria1');
-		}
-		if (ss.referenceEquals(null, criteria2)) {
-			throw new ss.ArgumentNullException('criteria2');
-		}
-		if (Serenity.Criteria.isEmpty(criteria1)) {
+		if (ss.referenceEquals(null, criteria1) || Serenity.Criteria.isEmpty(criteria1)) {
 			return criteria2;
 		}
-		if (Serenity.Criteria.isEmpty(criteria2)) {
+		if (ss.referenceEquals(null, criteria2) || Serenity.Criteria.isEmpty(criteria2)) {
 			return criteria1;
 		}
 		return [criteria1, op, criteria2];

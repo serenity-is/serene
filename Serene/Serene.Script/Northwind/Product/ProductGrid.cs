@@ -41,10 +41,9 @@ namespace Serene.Northwind
             if (!base.OnViewSubmit())
                 return false;
 
-            var req = (ListRequest)view.Params;
-            req.EqualityFilter = req.EqualityFilter ?? new JsDictionary<string, object>();
-            req.EqualityFilter["SupplierID"] = supplier.Value.ConvertToId();
-            req.EqualityFilter["CategoryID"] = category.Value.ConvertToId();
+            SetEquality("SupplierID", supplier.Value.ConvertToId());
+            SetEquality("CategoryID", category.Value.ConvertToId());
+
             return true;
         }
     }

@@ -1842,21 +1842,13 @@
 		getGridCanLoad: function() {
 			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);
 		},
-		onViewSubmit: function() {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
-				return false;
-			}
-			var request = this.view.params;
-			request.EqualityFilter = request.EqualityFilter || {};
-			request.EqualityFilter['CustomerID'] = this.get_customerID();
-			return true;
-		},
 		get_customerID: function() {
 			return this.$customerID;
 		},
 		set_customerID: function(value) {
 			if (!ss.referenceEquals(this.$customerID, value)) {
 				this.$customerID = value;
+				this.setEquality('CustomerID', this.get_customerID());
 				this.refresh();
 			}
 		}
@@ -2166,10 +2158,8 @@
 			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
 				return false;
 			}
-			var req = this.view.params;
-			req.EqualityFilter = req.EqualityFilter || {};
-			req.EqualityFilter['SupplierID'] = Serenity.IdExtensions.convertToId(this.$supplier.get_value());
-			req.EqualityFilter['CategoryID'] = Serenity.IdExtensions.convertToId(this.$category.get_value());
+			this.setEquality('SupplierID', Serenity.IdExtensions.convertToId(this.$supplier.get_value()));
+			this.setEquality('CategoryID', Serenity.IdExtensions.convertToId(this.$category.get_value()));
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
@@ -2251,9 +2241,7 @@
 			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
 				return false;
 			}
-			var req = this.view.params;
-			req.EqualityFilter = req.EqualityFilter || {};
-			req.EqualityFilter['Country'] = this.$country.get_value();
+			this.setEquality('Country', this.$country.get_value());
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
@@ -2286,9 +2274,7 @@
 			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
 				return false;
 			}
-			var req = this.view.params;
-			req.EqualityFilter = req.EqualityFilter || {};
-			req.EqualityFilter['RegionID'] = Serenity.IdExtensions.convertToId(this.$region.get_value());
+			this.setEquality('RegionID', Serenity.IdExtensions.convertToId(this.$region.get_value()));
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);

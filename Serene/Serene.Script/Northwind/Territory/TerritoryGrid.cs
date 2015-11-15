@@ -35,9 +35,7 @@ namespace Serene.Northwind
             if (!base.OnViewSubmit())
                 return false;
 
-            var req = (ListRequest)view.Params;
-            req.EqualityFilter = req.EqualityFilter ?? new JsDictionary<string, object>();
-            req.EqualityFilter["RegionID"] = region.Value.ConvertToId();
+            SetEquality("RegionID", region.Value.ConvertToId());
             return true;
         }
     }

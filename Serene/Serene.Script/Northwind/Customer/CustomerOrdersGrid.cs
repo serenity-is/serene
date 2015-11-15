@@ -50,18 +50,6 @@ namespace Serene.Northwind
             return base.GetGridCanLoad() && !string.IsNullOrEmpty(customerID);
         }
 
-        protected override bool OnViewSubmit()
-        {
-            if (!base.OnViewSubmit())
-                return false;
-
-            var request = (ListRequest)view.Params;
-            request.EqualityFilter = request.EqualityFilter ?? new JsDictionary<string, object>();
-            request.EqualityFilter[OrderRow.Fields.CustomerID] = CustomerID;
-
-            return true;
-        }
-
         private string customerID;
 
         public string CustomerID
@@ -72,6 +60,7 @@ namespace Serene.Northwind
                 if (customerID != value)
                 {
                     customerID = value;
+                    SetEquality(OrderRow.Fields.CustomerID, CustomerID);
                     Refresh();
                 }
             }
