@@ -15,7 +15,6 @@ namespace Serene.Northwind.Forms
     {
         [Category("General")]
         public String ProductName { get; set; }
-        [ImageUploadEditor]
         public String ProductImage { get; set; }
         public Boolean Discontinued { get; set; }
         public Int32 SupplierID { get; set; }
