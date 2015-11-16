@@ -6320,36 +6320,41 @@
 				};
 			},
 			getTemplateName: function() {
-				if (ss.isValue($type.$templateName)) {
-					return $type.$templateName;
+				var noGeneric = function(s) {
+					var dollar = s.indexOf('$');
+					if (dollar >= 0) {
+						return s.substr(0, dollar);
+					}
+					return s;
+				};
+				var fullName = ss.getTypeFullName(ss.getInstanceType(this));
+				var cachedName = $type.$templateNames[fullName];
+				if (ss.isValue(cachedName)) {
+					return cachedName;
 				}
 				var type = ss.getInstanceType(this);
 				while (ss.isValue(type) && !ss.referenceEquals(type, $Serenity_Widget)) {
-					var fullName = ss.replaceAllString(ss.getTypeFullName(type), '.', '_');
-					var dollar = fullName.indexOf('$');
-					if (dollar >= 0) {
-						fullName = fullName.substr(0, dollar);
-					}
+					var name = noGeneric(ss.replaceAllString(ss.getTypeFullName(type), '.', '_'));
 					for (var $t1 = 0; $t1 < Q$Config.rootNamespaces.length; $t1++) {
 						var k = Q$Config.rootNamespaces[$t1];
-						if (ss.startsWithString(fullName, k + '_')) {
-							fullName = fullName.substr(k.length + 1);
+						if (ss.startsWithString(name, k + '_')) {
+							name = name.substr(k.length + 1);
 							break;
 						}
 					}
-					if (Q.canLoadScriptData('Template.' + fullName) || $('script#Template_' + fullName).length > 0) {
-						$type.$templateName = fullName;
-						return $type.$templateName;
-					}
-					var name = ss.getTypeName(type);
 					if (Q.canLoadScriptData('Template.' + name) || $('script#Template_' + name).length > 0) {
-						$type.$templateName = name;
-						return $type.$templateName;
+						$type.$templateNames[fullName] = name;
+						return name;
+					}
+					name = noGeneric(ss.getTypeName(type));
+					if (Q.canLoadScriptData('Template.' + name) || $('script#Template_' + name).length > 0) {
+						$type.$templateNames[fullName] = name;
+						return name;
 					}
 					type = ss.getBaseType(type);
 				}
-				$type.$templateName = ss.getTypeName(ss.getInstanceType(this));
-				return $type.$templateName;
+				$type.$templateNames[fullName] = cachedName = noGeneric(ss.getTypeName(ss.getInstanceType(this)));
+				return cachedName;
 			},
 			getTemplate: function() {
 				var templateName = this.getTemplateName();
@@ -6369,7 +6374,7 @@
 		}, function() {
 			return [];
 		});
-		$type.$templateName = null;
+		$type.$templateNames = {};
 		return $type;
 	};
 	$Serenity_TemplatedWidget$1.__typeName = 'Serenity.TemplatedWidget$1';
