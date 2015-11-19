@@ -637,6 +637,8 @@
     <Content Include="Modules\Membership\Account\AccountChangePassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountSignup.cshtml" />
+    <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
+    <Content Include="Modules\Membership\Account\AccountResetPasswordEmail.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -822,6 +824,10 @@
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
+    <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
+    <Compile Include="Modules\Membership\Account\ResetPasswordEmailModel.cs" />
+    <Compile Include="Modules\Membership\Account\ResetPasswordForm.cs" />
+    <Compile Include="Modules\Membership\Account\ResetPasswordRequest.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPasswordRequest.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPasswordForm.cs" />
     <Compile Include="Modules\Membership\Account\ChangePasswordRequest.cs" />

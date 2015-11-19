@@ -41,7 +41,15 @@ namespace Serene
                     public static LocalText FormInfo = "Please enter the e-mail you used to signup.";
                     public static LocalText FormTitle = "Forgot My Password";
                     public static LocalText SubmitButton = "Reset My Password";
-                    public static LocalText Success = "An e-mail with password reset instructions are sent to your e-mail address.";
+                    public static LocalText Success = "An e-mail with password reset instructions is sent to your e-mail address.";
+                }
+
+                public static class ResetPassword
+                {
+                    public static LocalText EmailSubject = "Reset Your Serene Password";
+                    public static LocalText FormTitle = "Reset Password";
+                    public static LocalText SubmitButton = "Change Password";
+                    public static LocalText Success = "Your password is changed.";
                 }
 
                 public static class Login
@@ -108,6 +116,7 @@ namespace Serene
             public static LocalText AuthenticationError = "Invalid username or password!";
             public static LocalText CurrentPasswordMismatch = "Your current password is not valid!";
             public static LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
+            public static LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
             public static LocalText PasswordConfirmMismatch = "Passwords entered doesn't match!";
             public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +

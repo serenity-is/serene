@@ -6,13 +6,11 @@ namespace Serene.Membership
     using System.Html;
 
     [Panel, FormKey("Membership.ForgotPassword")]
-    public class ForgotPasswordPanel : PropertyPanel<object>
+    public class ForgotPasswordPanel : PropertyPanel<ForgotPasswordRequest>
     {
         public ForgotPasswordPanel(jQueryObject container)
             : base(container)
         {
-
-
             this.ById("SubmitButton").Click((s, e) =>
             {
                 e.PreventDefault();

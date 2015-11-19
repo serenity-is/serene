@@ -468,6 +468,13 @@
 	$Serene_Membership_ChangePasswordPanel.__typeName = 'Serene.Membership.ChangePasswordPanel';
 	global.Serene.Membership.ChangePasswordPanel = $Serene_Membership_ChangePasswordPanel;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.ForgotPasswordForm
+	var $Serene_Membership_ForgotPasswordForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Membership_ForgotPasswordForm.__typeName = 'Serene.Membership.ForgotPasswordForm';
+	global.Serene.Membership.ForgotPasswordForm = $Serene_Membership_ForgotPasswordForm;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ForgotPasswordPanel
 	var $Serene_Membership_ForgotPasswordPanel = function(container) {
 		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
@@ -1710,6 +1717,11 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_ForgotPasswordForm, $asm, {
+		get_email: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Email');
+		}
+	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
 	ss.initClass($Serene_Membership_LoginForm, $asm, {
 		get_username: function() {

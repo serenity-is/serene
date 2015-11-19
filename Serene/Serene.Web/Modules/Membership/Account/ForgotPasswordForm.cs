@@ -10,7 +10,7 @@ namespace Serene.Membership
     [BasedOnRow(typeof(Administration.Entities.UserRow))]
     public class ForgotPasswordForm
     {
-        [Required(true), DisplayName("E-mail Address")]
+        [Required(true), EmailEditor, DisplayName("E-mail Address")]
         public String Email { get; set; }
     }
 }

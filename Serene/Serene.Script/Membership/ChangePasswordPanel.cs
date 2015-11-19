@@ -6,7 +6,7 @@ namespace Serene.Membership
     using System.Html;
 
     [Panel, FormKey("Membership.ChangePassword")]
-    public class ChangePasswordPanel : PropertyPanel<object>
+    public class ChangePasswordPanel : PropertyPanel<ChangePasswordRequest>
     {
         private ChangePasswordForm form;
 
@@ -42,7 +42,7 @@ namespace Serene.Membership
                 Q.ServiceCall(new ServiceCallOptions
                 {
                     Url = Q.ResolveUrl("~/Account/ChangePassword"),
-                    Request = request.As<ServiceRequest>(),
+                    Request = request,
                     OnSuccess = response =>
                     {
                         Q.Information(Q.Text("Forms.Membership.ChangePassword.Success"), () =>
