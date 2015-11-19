@@ -51,6 +51,9 @@
     <Compile Include="Imports\FormContexts\Membership.ChangePasswordForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\FormContexts\Membership.ForgotPasswordForm.cs">
+      <DependentUpon>FormContexts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\FormContexts\Membership.LoginForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
@@ -172,6 +175,9 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.ChangePasswordRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Membership.ForgotPasswordRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.LoginRequest.cs">
