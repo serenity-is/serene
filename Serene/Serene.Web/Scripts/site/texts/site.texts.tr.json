@@ -199,6 +199,7 @@
     "Site.UserPermissionDialog.SaveSuccess": "Kullanıcı hakları güncellendi.",
     "Site.UserRoleDialog.DialogTitle": "Kullanıcı Rollerini Düzenle ({0})",
     "Site.UserRoleDialog.SaveSuccess": "Kullanıcı rolleri güncellendi.",
+    "Valdiation.AuthenticationError": "Geçersiz kullanıcı adı ya da şifre!",
     "Validation.DeleteForeignKeyError": "Kayıt silinemiyor. '{0}' tablosunda bu kayda bağlı veriler var!",
     "Validation.NorthwindPhone": "Telefon numaraları '(503) 555-9831' formatında girilmelidir.",
     "Validation.NorthwindPhoneMultiple": "Telefon numaraları '(503) 555-9831' formatında ve birden fazlaysa virgülle ayrılarak girilmelidir.",

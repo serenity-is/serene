@@ -89,6 +89,7 @@ namespace Serene
 
         public static class Validation
         {
+            public static LocalText AuthenticationError = "Invalid username or password!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
                 "records that depends on this one!";
             public static LocalText NorthwindPhone = "Phone numbers should be entered in format '(503) 555-9831'.";
