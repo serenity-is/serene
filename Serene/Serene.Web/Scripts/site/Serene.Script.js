@@ -424,6 +424,73 @@
 	$Serene_Common_SidebarSearch.__typeName = 'Serene.Common.SidebarSearch';
 	global.Serene.Common.SidebarSearch = $Serene_Common_SidebarSearch;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.ChangePasswordForm
+	var $Serene_Membership_ChangePasswordForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Membership_ChangePasswordForm.__typeName = 'Serene.Membership.ChangePasswordForm';
+	global.Serene.Membership.ChangePasswordForm = $Serene_Membership_ChangePasswordForm;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.ChangePasswordPanel
+	var $Serene_Membership_ChangePasswordPanel = function(container) {
+		this.$form = null;
+		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		this.$form = new $Serene_Membership_ChangePasswordForm(this.get_idPrefix());
+		Serenity.VX.addValidationRule(this.$form.get_newPassword(), this.get_uniqueName(), ss.mkdel(this, function(e) {
+			if (this.$form.get_confirmPassword().get_value().length < 7) {
+				return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
+			}
+			return null;
+		}));
+		Serenity.VX.addValidationRule(this.$form.get_confirmPassword(), this.get_uniqueName(), ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.get_confirmPassword().get_value(), this.$form.get_newPassword().get_value())) {
+				return Q.text('Validation.PasswordConfirmMismatch');
+			}
+			return null;
+		}));
+		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+			e2.preventDefault();
+			if (!this.validateForm()) {
+				return;
+			}
+			var request = this.getSaveEntity();
+			Q.serviceCall({
+				url: Q.resolveUrl('~/Account/ChangePassword'),
+				request: request,
+				onSuccess: function(response) {
+					Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function() {
+						window.location.href = Q.resolveUrl('~/');
+					}, {});
+				}
+			});
+		})));
+	};
+	$Serene_Membership_ChangePasswordPanel.__typeName = 'Serene.Membership.ChangePasswordPanel';
+	global.Serene.Membership.ChangePasswordPanel = $Serene_Membership_ChangePasswordPanel;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.ForgotPasswordPanel
+	var $Serene_Membership_ForgotPasswordPanel = function(container) {
+		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+			e.preventDefault();
+			if (!this.validateForm()) {
+				return;
+			}
+			var request = this.getSaveEntity();
+			Q.serviceCall({
+				url: Q.resolveUrl('~/Account/ForgotPassword'),
+				request: request,
+				onSuccess: function(response) {
+					Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function() {
+						window.location.href = Q.resolveUrl('~/');
+					}, {});
+				}
+			});
+		})));
+	};
+	$Serene_Membership_ForgotPasswordPanel.__typeName = 'Serene.Membership.ForgotPasswordPanel';
+	global.Serene.Membership.ForgotPasswordPanel = $Serene_Membership_ForgotPasswordPanel;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.LoginForm
 	var $Serene_Membership_LoginForm = function(idPrefix) {
 		Serenity.PrefixedContext.call(this, idPrefix);
@@ -1631,6 +1698,19 @@
 			liList.children('ul').removeClass('collapse');
 		}
 	}, Serenity.Widget);
+	ss.initClass($Serene_Membership_ChangePasswordForm, $asm, {
+		get_oldPassword: function() {
+			return this.byId(Serenity.PasswordEditor).call(this, 'OldPassword');
+		},
+		get_newPassword: function() {
+			return this.byId(Serenity.PasswordEditor).call(this, 'NewPassword');
+		},
+		get_confirmPassword: function() {
+			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
+		}
+	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
 	ss.initClass($Serene_Membership_LoginForm, $asm, {
 		get_username: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Username');
@@ -2290,6 +2370,8 @@
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Common_GridEditorBase$1, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog$1, { attr: [new Serenity.IdPropertyAttribute('__id')] });
+	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });
+	ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.Login')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });

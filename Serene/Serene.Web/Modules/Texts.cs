@@ -29,11 +29,27 @@ namespace Serene
         {
             public static class Membership
             {
+                public static class ChangePassword
+                {
+                    public static LocalText FormTitle = "Change Password";
+                    public static LocalText SubmitButton = "Change Password";
+                    public static LocalText Success = "Your password is changed.";
+                }
+
+                public static class ForgotPassword
+                {
+                    public static LocalText FormInfo = "Please enter the e-mail you used to signup.";
+                    public static LocalText FormTitle = "Forgot My Password";
+                    public static LocalText SubmitButton = "Reset My Password";
+                    public static LocalText Success = "An e-mail with password reset instructions are sent to your e-mail address.";
+                }
+
                 public static class Login
                 {
                     public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
                     public static LocalText SignInButton = "Sign In";
                 }
+
             }
         }
 
@@ -90,6 +106,10 @@ namespace Serene
         public static class Validation
         {
             public static LocalText AuthenticationError = "Invalid username or password!";
+            public static LocalText CurrentPasswordMismatch = "Your current password is not valid!";
+            public static LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
+            public static LocalText PasswordConfirmMismatch = "Passwords entered doesn't match!";
+            public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
                 "records that depends on this one!";
             public static LocalText NorthwindPhone = "Phone numbers should be entered in format '(503) 555-9831'.";

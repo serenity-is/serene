@@ -453,6 +453,7 @@
     <Content Include="Content\site\site.theme.default.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\site\site.membership.less" />
     <None Include="Content\site\site.less" />
     <Content Include="Content\site\site.theme.light.css" />
     <Content Include="Content\slick-default-theme.css" />
@@ -633,6 +634,9 @@
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="Modules\Membership\Account\AccountChangePassword.cshtml" />
+    <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
+    <Content Include="Modules\Membership\Account\AccountSignup.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -818,6 +822,10 @@
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
+    <Compile Include="Modules\Membership\Account\ForgotPasswordRequest.cs" />
+    <Compile Include="Modules\Membership\Account\ForgotPasswordForm.cs" />
+    <Compile Include="Modules\Membership\Account\ChangePasswordRequest.cs" />
+    <Compile Include="Modules\Membership\Account\ChangePasswordForm.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Employee\Gender.cs" />

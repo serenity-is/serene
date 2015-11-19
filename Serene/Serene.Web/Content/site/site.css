@@ -611,6 +611,14 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .sidebar-nav-item-icon {
   padding-right: 5px;
 }
+.page-title {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 8px;
+  color: #0090d9;
+  padding: 8px 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
 .s-UserPermissionDialog > .size,
 .s-RolePermissionDialog > .size,
 .s-UserRoleDialog > .size {
@@ -660,6 +668,41 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 }
 .s-PermissionCheckEditor .effective-permission.deny {
   background-image: url(../serenity/images/slash.png);
+}
+.s-ChangePasswordPanel {
+  width: 550px;
+}
+.s-ChangePasswordPanel .caption {
+  width: 150px;
+}
+.s-ChangePasswordPanel .editor {
+  width: 350px;
+}
+.s-ChangePasswordPanel input.editor[type=checkbox] {
+  width: auto;
+}
+.s-ChangePasswordPanel .s-Form .editor.dateQ {
+  width: 326px;
+}
+.s-ChangePasswordPanel .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-ChangePasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 273px;
+}
+.s-ChangePasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-ChangePasswordPanel .s-Form .editor.has-inplace-button {
+  width: 324px;
+}
+.s-ChangePasswordPanel .s-Form .emaildomain {
+  width: 165px;
+}
+.s-ChangePasswordPanel .buttons {
+  text-align: right;
+  padding: 8px 48px;
 }
 .s-Northwind-CategoryDialog > .size {
   min-width: 650px;

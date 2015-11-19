@@ -58,6 +58,29 @@ namespace Serene.Common
     }
 }
 
+namespace Serene.Membership
+{
+    public partial class ChangePasswordPanelAttribute : CustomEditorAttribute
+    {
+        public const string Key = "Serene.Membership.ChangePasswordPanel";
+    
+        public ChangePasswordPanelAttribute()
+            : base(Key)
+        {
+        }
+    }
+
+    public partial class ForgotPasswordPanelAttribute : CustomEditorAttribute
+    {
+        public const string Key = "Serene.Membership.ForgotPasswordPanel";
+    
+        public ForgotPasswordPanelAttribute()
+            : base(Key)
+        {
+        }
+    }
+}
+
 namespace Serene.Northwind
 {
     public partial class CustomerCityEditorAttribute : CustomEditorAttribute

@@ -48,6 +48,9 @@
     <Compile Include="Imports\FormContexts\Administration.UserForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\FormContexts\Membership.ChangePasswordForm.cs">
+      <DependentUpon>FormContexts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\FormContexts\Membership.LoginForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
@@ -168,6 +171,9 @@
     <Compile Include="Imports\ServiceContracts\Common.Pages.UploadResponse.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Membership.ChangePasswordRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.LoginRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -255,6 +261,8 @@
     <Compile Include="Imports\ServiceContracts\Northwind.TerritoryService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Membership\ForgotPasswordPanel.cs" />
+    <Compile Include="Membership\ChangePasswordPanel.cs" />
     <Compile Include="Membership\LoginPanel.cs" />
     <Compile Include="Northwind\Customer\CustomerCityEditor.cs" />
     <Compile Include="Northwind\Customer\CustomerEditor.cs" />

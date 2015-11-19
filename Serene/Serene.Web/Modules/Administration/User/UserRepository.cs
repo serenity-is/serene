@@ -45,6 +45,28 @@ namespace Serene.Administration.Repositories
             return new MyListHandler().Process(connection, request);
         }
 
+        public static string ValidateDisplayName(IDbConnection connection, string displayName, Int32? existingUserId)
+        {
+            displayName = displayName.TrimToNull();
+
+            if (displayName == null)
+                throw DataValidation.RequiredError(fld.DisplayName.Name, fld.DisplayName.Title);
+
+            return displayName;
+        }
+
+        public static string ValidatePassword(string username, string password, bool isNewUser)
+        {
+            password = password.TrimToNull();
+
+            if (password == null ||
+                password.Length < Membership.MinRequiredPasswordLength)
+                throw new ValidationError("PasswordLength", "Password",
+                    String.Format(Texts.Validation.MinRequiredPasswordLength, Membership.MinRequiredPasswordLength));
+
+            return password;
+        }
+
         private class MySaveHandler : SaveRequestHandler<MyRow>
         {
             private string password;
@@ -120,18 +142,6 @@ namespace Serene.Administration.Repositories
                 return true;
             }
 
-            public static string ValidatePassword(string username, string password, bool isNewUser)
-            {
-                password = password.TrimToNull();
-
-                if (password == null ||
-                    password.Length < Membership.MinRequiredPasswordLength)
-                    throw new ValidationError("PasswordLength", "Password", 
-                        String.Format("Entered password doesn't have enough characters (min {0})!", Membership.MinRequiredPasswordLength));
-
-                return password;
-            }
-
             public static string ValidateUsername(IDbConnection connection, string username, Int32? existingUserId)
             {
                 username = username.TrimToNull();
@@ -154,16 +164,6 @@ namespace Serene.Administration.Repositories
                 return username;
             }
 
-            public static string ValidateDisplayName(IDbConnection connection, string displayName, Int32? existingUserId)
-            {
-                displayName = displayName.TrimToNull();
-
-                if (displayName == null)
-                    throw DataValidation.RequiredError(fld.DisplayName.Name, fld.DisplayName.Title);
-
-                return displayName;
-            }
-
             protected override void ValidateRequest()
             {
                 base.ValidateRequest();
@@ -171,13 +171,13 @@ namespace Serene.Administration.Repositories
                 if (IsUpdate)
                 {
                     if (Row.IsAssigned(fld.Password) && !Row.Password.IsEmptyOrNull())
-                        password = Row.Password = MySaveHandler.ValidatePassword(Old.Username, Row.Password, false);
+                        password = Row.Password = ValidatePassword(Old.Username, Row.Password, false);
 
                     if (Row.Username != Old.Username)
                         Row.Username = MySaveHandler.ValidateUsername(this.Connection, Row.Username, Old.UserId.Value);
 
                     if (Row.DisplayName != Old.DisplayName)
-                        Row.DisplayName = MySaveHandler.ValidateDisplayName(this.Connection, Row.DisplayName, Old.UserId.Value);
+                        Row.DisplayName = ValidateDisplayName(this.Connection, Row.DisplayName, Old.UserId.Value);
                 }
 
                 if (IsCreate)
