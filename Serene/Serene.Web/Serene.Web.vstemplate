@@ -393,6 +393,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.layout.less">site.layout.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.less">site.less</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.membership.less">site.membership.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.mixins.less">site.mixins.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.northwind.less">site.northwind.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.overrides.serenity.less">site.overrides.serenity.less</ProjectItem>
@@ -586,11 +587,23 @@
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountChangePassword.cshtml">AccountChangePassword.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountLogin.cshtml">AccountLogin.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.cs">AccountPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPassword.cshtml">AccountResetPassword.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPasswordEmail.cshtml">AccountResetPasswordEmail.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.cs">ChangePasswordForm.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="EnvironmentSettings.cs">EnvironmentSettings.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.cs">ForgotPasswordForm.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.cs">LoginForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.Template.html">LoginPanel.Template.html</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.cs">ResetPasswordForm.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
           </Folder>
         </Folder>
         <Folder Name="Northwind" TargetFolderName="Northwind">
@@ -957,6 +970,9 @@
       </Folder>
       <Folder Name="Views" TargetFolderName="Views">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
+        <Folder Name="Errors" TargetFolderName="Errors">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ValidationError.cshtml">ValidationError.cshtml</ProjectItem>
+        </Folder>
         <Folder Name="Shared" TargetFolderName="Shared">
           <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutHead.cshtml">_LayoutHead.cshtml</ProjectItem>
