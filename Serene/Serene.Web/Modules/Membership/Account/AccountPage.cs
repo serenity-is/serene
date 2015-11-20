@@ -67,7 +67,7 @@ namespace Serene.Membership.Pages
                     throw new ValidationError("CurrentPasswordMismatch", Texts.Validation.CurrentPasswordMismatch);
 
                 if (request.ConfirmPassword != request.NewPassword)
-                    throw new ValidationError("PasswordConfirmMismatch", Texts.Validation.PasswordConfirmMismatch);
+                    throw new ValidationError("PasswordConfirmMismatch", LocalText.Get("Validation.PasswordConfirm"));
 
                 request.NewPassword = UserRepository.ValidatePassword(username, request.NewPassword, false);
 
@@ -226,7 +226,7 @@ namespace Serene.Membership.Pages
                 }
 
                 if (request.ConfirmPassword != request.NewPassword)
-                    throw new ValidationError("PasswordConfirmMismatch", Texts.Validation.PasswordConfirmMismatch);
+                    throw new ValidationError("PasswordConfirmMismatch", LocalText.Get("Validation.PasswordConfirm"));
 
                 request.NewPassword = UserRepository.ValidatePassword(user.Username, request.NewPassword, false);
 

@@ -444,7 +444,7 @@
 		}));
 		Serenity.VX.addValidationRule(this.$form.get_confirmPassword(), this.get_uniqueName(), ss.mkdel(this, function(e1) {
 			if (!ss.referenceEquals(this.$form.get_confirmPassword().get_value(), this.$form.get_newPassword().get_value())) {
-				return Q.text('Validation.PasswordConfirmMismatch');
+				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));
@@ -557,7 +557,7 @@
 		}));
 		Serenity.VX.addValidationRule(this.$form.get_confirmPassword(), this.get_uniqueName(), ss.mkdel(this, function(e1) {
 			if (!ss.referenceEquals(this.$form.get_confirmPassword().get_value(), this.$form.get_newPassword().get_value())) {
-				return Q.text('Validation.PasswordConfirmMismatch');
+				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));

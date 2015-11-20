@@ -26,7 +26,7 @@ namespace Serene.Membership
             form.ConfirmPassword.AddValidationRule(this.UniqueName, e =>
             {
                 if (form.ConfirmPassword.Value != form.NewPassword.Value)
-                    return Q.Text("Validation.PasswordConfirmMismatch");
+                    return Q.Text("Validation.PasswordConfirm");
 
                 return null;
             });

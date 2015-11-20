@@ -123,7 +123,6 @@ namespace Serene
             public static LocalText CurrentPasswordMismatch = "Your current password is not valid!";
             public static LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
             public static LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
-            public static LocalText PasswordConfirmMismatch = "Passwords entered doesn't match!";
             public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
                 "records that depends on this one!";
