@@ -7,10 +7,11 @@ namespace Serene.Membership
     using System.Collections.Generic;
     using System.Html;
 
-    [Panel, FormKey("Membership.Login")]
-    public class LoginPanel : PropertyDialog<object>
+    [FormKey("Membership.Login")]
+    public class LoginPanel : PropertyPanel<LoginRequest>
     {
-        public LoginPanel()
+        public LoginPanel(jQueryObject container)
+            : base(container)
         {
             this.ById("LoginButton").Click((s, e) =>
             {
@@ -23,7 +24,7 @@ namespace Serene.Membership
                 Q.ServiceCall(new ServiceCallOptions
                 {
                     Url = Q.ResolveUrl("~/Account/Login"),
-                    Request = request.As<ServiceRequest>(),
+                    Request = request,
                     OnSuccess = response =>
                     {
                         var q = Q.Externals.ParseQueryString();

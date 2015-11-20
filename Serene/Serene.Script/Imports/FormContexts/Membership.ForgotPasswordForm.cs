@@ -15,7 +15,7 @@ namespace Serene.Membership
     
         public ForgotPasswordForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor Email { get { return ById<StringEditor>("Email"); } }
+        public EmailEditor Email { get { return ById<EmailEditor>("Email"); } }
     }
 }
 

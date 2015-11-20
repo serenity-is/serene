@@ -7,7 +7,7 @@ namespace Serene.Membership
 
     [FormScript("Membership.ResetPassword")]
     [BasedOnRow(typeof(Administration.Entities.UserRow))]
-    public class ResetPassword
+    public class ResetPasswordForm
     {
         [PasswordEditor, Required(true), DisplayName("New Password")]
         public String NewPassword { get; set; }

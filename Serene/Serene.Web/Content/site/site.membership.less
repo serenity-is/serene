@@ -1,7 +1,64 @@
 @import "site.mixins.less";
 
+.s-LoginPanel {
+    border: 2px solid #e7e7e7;
+    padding: 40px;
+    border-radius: 8px;
+    width: 570px;
+    margin: 60px auto auto auto;
+    .form-styles(150px, 300px);
+
+    h3 {
+        font-size: 16px;
+        margin: 16px 0 24px;
+        color: #999;
+    }
+
+    .buttons {
+        padding: 8px 0 0 158px;
+
+        a {
+            float: right;
+            margin: 0 24px;
+        }
+    }
+
+    .s-Form .field {
+        padding: 8px;
+    }
+
+    .s-Form input {
+        padding: 6px 10px;
+    }
+
+    .s-Form .caption {
+        padding: 6px 10px;
+    }
+}
+
 .s-ChangePasswordPanel {
     width: 550px;
     .form-styles(150px, 350px);
     .buttons { text-align: right; padding: 8px 48px; }
+}
+
+.s-ForgotPasswordPanel {
+    border: 2px solid #e7e7e7;
+    padding: 40px;
+    border-radius: 8px;
+    width: 650px;
+    margin: 60px auto auto auto;
+    .form-styles(150px, 350px);
+    .buttons { text-align: right; padding: 8px 62px; }
+    p { padding: 8px; margin: 24px 0; }
+}
+
+.s-ResetPasswordPanel {
+    border: 2px solid #e7e7e7;
+    padding: 40px;
+    border-radius: 8px;
+    width: 650px;
+    margin: 60px auto auto auto;
+    .form-styles(150px, 350px);
+    .buttons { text-align: right; padding: 8px 62px; }
 }

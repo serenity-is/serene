@@ -109,11 +109,11 @@ namespace Serene.Membership.Pages
 
                 byte[] bytes;
                 using (var ms = new MemoryStream())
-                using (var sw = new StreamWriter(ms))
+                using (var bw = new BinaryWriter(ms))
                 {
-                    sw.Write(DateTime.UtcNow.AddHours(3));
-                    sw.Write(user.UserId.Value);
-                    sw.Flush();
+                    bw.Write(DateTime.UtcNow.AddHours(3).ToBinary());
+                    bw.Write(user.UserId.Value);
+                    bw.Flush();
                     bytes = ms.ToArray();
                 }
 
@@ -157,20 +157,42 @@ namespace Serene.Membership.Pages
             });
         }
 
+        private ActionResult Error(string message)
+        {
+            return View("~/Views/Errors/ValidationError.cshtml",
+                new ValidationError(Texts.Validation.InvalidResetToken));
+        }
+
         [HttpGet]
         public ActionResult ResetPassword(string t)
         {
-            if (string.IsNullOrEmpty(t))
-                return new RedirectResult("~/");
+            int userId;
+            try
+            {
+                using (var ms = new MemoryStream(MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword")))
+                using (var br = new BinaryReader(ms))
+                {
+                    var dt = DateTime.FromBinary(br.ReadInt64());
+                    if (dt < DateTime.UtcNow)
+                        return Error(Texts.Validation.InvalidResetToken);
 
-            var token = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
+                    userId = br.ReadInt32();
+                }
+            }
+            catch (Exception)
+            {
+                return Error(Texts.Validation.InvalidResetToken);
+            }
 
-            return View("~/Modules/Membership/Account/AccountResetPassword.cshtml");
-        }
+            using (var connection = SqlConnections.NewFor<UserRow>())
+            {
+                var user = connection.TryById<UserRow>(userId);
+                if (user == null)
+                    return Error(Texts.Validation.InvalidResetToken);
+            }
 
-        private Result<ServiceResponse> InTransaction(string v, Func<IUnitOfWork, ServiceResponse> p)
-        {
-            throw new NotImplementedException();
+            return View("~/Modules/Membership/Account/AccountResetPassword.cshtml", 
+                new ResetPasswordModel { Token = t });
         }
 
         [HttpPost, JsonFilter]
@@ -183,22 +205,37 @@ namespace Serene.Membership.Pages
                 if (string.IsNullOrEmpty(request.Token))
                     throw new ArgumentNullException("token");
 
-                var username = Authorization.Username;
+                int userId;
+                using (var ms = new MemoryStream(MachineKey.Unprotect(
+                    Convert.FromBase64String(request.Token), "ResetPassword")))
+                using (var br = new BinaryReader(ms))
+                {
+                    var dt = DateTime.FromBinary(br.ReadInt64());
+                    if (dt < DateTime.UtcNow)
+                        throw new ValidationError(Texts.Validation.InvalidResetToken);
 
-                //if (!Dependency.Resolve<IAuthenticationService>().Validate(ref username, request.OldPassword))
-                //    throw new ValidationError("CurrentPasswordMismatch", Texts.Validation.CurrentPasswordMismatch);
+                    userId = br.ReadInt32();
+                }
+
+                UserRow user;
+                using (var connection = SqlConnections.NewFor<UserRow>())
+                {
+                    user = connection.TryById<UserRow>(userId);
+                    if (user == null)
+                        throw new ValidationError(Texts.Validation.InvalidResetToken);
+                }
 
                 if (request.ConfirmPassword != request.NewPassword)
                     throw new ValidationError("PasswordConfirmMismatch", Texts.Validation.PasswordConfirmMismatch);
 
-                request.NewPassword = UserRepository.ValidatePassword(username, request.NewPassword, false);
+                request.NewPassword = UserRepository.ValidatePassword(user.Username, request.NewPassword, false);
 
                 var salt = Membership.GeneratePassword(5, 1);
                 var hash = SiteMembershipProvider.ComputeSHA512(request.NewPassword + salt);
 
                 uow.Connection.UpdateById(new UserRow
                 {
-                    UserId = int.Parse(Authorization.UserId),
+                    UserId = user.UserId.Value,
                     PasswordSalt = salt,
                     PasswordHash = hash
                 });
@@ -207,12 +244,6 @@ namespace Serene.Membership.Pages
 
                 return new ServiceResponse();
             });
-        }
-
-        [HttpGet]
-        public ActionResult Signup()
-        {
-            return View("~/Modules/Membership/Account/AccountSignup.cshtml");
         }
 
         public ActionResult Signout()

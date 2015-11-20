@@ -669,6 +669,62 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .s-PermissionCheckEditor .effective-permission.deny {
   background-image: url(../serenity/images/slash.png);
 }
+.s-LoginPanel {
+  border: 2px solid #e7e7e7;
+  padding: 40px;
+  border-radius: 8px;
+  width: 570px;
+  margin: 60px auto auto auto;
+}
+.s-LoginPanel .caption {
+  width: 150px;
+}
+.s-LoginPanel .editor {
+  width: 300px;
+}
+.s-LoginPanel input.editor[type=checkbox] {
+  width: auto;
+}
+.s-LoginPanel .s-Form .editor.dateQ {
+  width: 276px;
+}
+.s-LoginPanel .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-LoginPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 223px;
+}
+.s-LoginPanel .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-LoginPanel .s-Form .editor.has-inplace-button {
+  width: 274px;
+}
+.s-LoginPanel .s-Form .emaildomain {
+  width: 115px;
+}
+.s-LoginPanel h3 {
+  font-size: 16px;
+  margin: 16px 0 24px;
+  color: #999;
+}
+.s-LoginPanel .buttons {
+  padding: 8px 0 0 158px;
+}
+.s-LoginPanel .buttons a {
+  float: right;
+  margin: 0 24px;
+}
+.s-LoginPanel .s-Form .field {
+  padding: 8px;
+}
+.s-LoginPanel .s-Form input {
+  padding: 6px 10px;
+}
+.s-LoginPanel .s-Form .caption {
+  padding: 6px 10px;
+}
 .s-ChangePasswordPanel {
   width: 550px;
 }
@@ -703,6 +759,88 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .s-ChangePasswordPanel .buttons {
   text-align: right;
   padding: 8px 48px;
+}
+.s-ForgotPasswordPanel {
+  border: 2px solid #e7e7e7;
+  padding: 40px;
+  border-radius: 8px;
+  width: 650px;
+  margin: 60px auto auto auto;
+}
+.s-ForgotPasswordPanel .caption {
+  width: 150px;
+}
+.s-ForgotPasswordPanel .editor {
+  width: 350px;
+}
+.s-ForgotPasswordPanel input.editor[type=checkbox] {
+  width: auto;
+}
+.s-ForgotPasswordPanel .s-Form .editor.dateQ {
+  width: 326px;
+}
+.s-ForgotPasswordPanel .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-ForgotPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 273px;
+}
+.s-ForgotPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-ForgotPasswordPanel .s-Form .editor.has-inplace-button {
+  width: 324px;
+}
+.s-ForgotPasswordPanel .s-Form .emaildomain {
+  width: 165px;
+}
+.s-ForgotPasswordPanel .buttons {
+  text-align: right;
+  padding: 8px 62px;
+}
+.s-ForgotPasswordPanel p {
+  padding: 8px;
+  margin: 24px 0;
+}
+.s-ResetPasswordPanel {
+  border: 2px solid #e7e7e7;
+  padding: 40px;
+  border-radius: 8px;
+  width: 650px;
+  margin: 60px auto auto auto;
+}
+.s-ResetPasswordPanel .caption {
+  width: 150px;
+}
+.s-ResetPasswordPanel .editor {
+  width: 350px;
+}
+.s-ResetPasswordPanel input.editor[type=checkbox] {
+  width: auto;
+}
+.s-ResetPasswordPanel .s-Form .editor.dateQ {
+  width: 326px;
+}
+.s-ResetPasswordPanel .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-ResetPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 273px;
+}
+.s-ResetPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-ResetPasswordPanel .s-Form .editor.has-inplace-button {
+  width: 324px;
+}
+.s-ResetPasswordPanel .s-Form .emaildomain {
+  width: 165px;
+}
+.s-ResetPasswordPanel .buttons {
+  text-align: right;
+  padding: 8px 62px;
 }
 .s-Northwind-CategoryDialog > .size {
   min-width: 650px;
@@ -1094,64 +1232,6 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 a,
 .slick-cell > a {
   color: #0000be;
-}
-#LoginPanelWrapper {
-  border: 2px solid #e7e7e7;
-  padding: 40px;
-  border-radius: 8px;
-  width: 570px;
-  margin: 60px auto auto auto;
-}
-#LoginPanelWrapper h3 {
-  font-size: 16px;
-  margin: 16px 0 24px;
-  color: #999;
-}
-#LoginPanelWrapper .s-LoginPanel .caption {
-  width: 150px;
-}
-#LoginPanelWrapper .s-LoginPanel .editor {
-  width: 300px;
-}
-#LoginPanelWrapper .s-LoginPanel input.editor[type=checkbox] {
-  width: auto;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .editor.dateQ {
-  width: 276px;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .editor.emailuser {
-  width: 170px;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 223px;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
-  margin-left: 4px;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .editor.has-inplace-button {
-  width: 274px;
-}
-#LoginPanelWrapper .s-LoginPanel .s-Form .emaildomain {
-  width: 115px;
-}
-#LoginPanelWrapper .s-LoginPanel .caption {
-  width: 150px;
-}
-#LoginPanelWrapper .s-LoginPanel .editor {
-  width: 300px;
-}
-#LoginPanelWrapper .buttons {
-  padding: 8px 0 0 158px;
-}
-#LoginPanelWrapper .s-Form .field {
-  padding: 8px;
-}
-#LoginPanelWrapper .s-Form input {
-  padding: 6px 10px;
-}
-#LoginPanelWrapper .s-Form .caption {
-  padding: 6px 10px;
 }
 #s-DashboardPage h1 {
   margin: 40px;

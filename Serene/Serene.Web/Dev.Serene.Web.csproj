@@ -636,7 +636,6 @@
     <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Modules\Membership\Account\AccountChangePassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
-    <Content Include="Modules\Membership\Account\AccountSignup.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPasswordEmail.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -755,6 +754,7 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="Views\Errors\ValidationError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -825,6 +825,7 @@
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
+    <Compile Include="Modules\Membership\Account\ResetPasswordModel.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordEmailModel.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordForm.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordRequest.cs" />
@@ -859,7 +860,6 @@
     <Compile Include="Modules\Administration\User\UserDefinition.cs" />
     <Compile Include="Modules\Administration\User\AuthenticationService.cs" />
     <Compile Include="Modules\Administration\User\UserRetrieveService.cs" />
-    <Content Include="Modules\Membership\Account\LoginPanel.Template.html" />
     <Compile Include="Modules\Membership\Account\LoginRequest.cs" />
     <Compile Include="Modules\Membership\Account\LoginForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

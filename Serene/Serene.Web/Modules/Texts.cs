@@ -48,14 +48,15 @@ namespace Serene
                 {
                     public static LocalText EmailSubject = "Reset Your Serene Password";
                     public static LocalText FormTitle = "Reset Password";
-                    public static LocalText SubmitButton = "Change Password";
-                    public static LocalText Success = "Your password is changed.";
+                    public static LocalText SubmitButton = "Reset Password";
+                    public static LocalText Success = "Your password is changed. Please login with your new password.";
                 }
 
                 public static class Login
                 {
                     public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
                     public static LocalText SignInButton = "Sign In";
+                    public static LocalText ForgotPassword = "forgot password?";
                 }
 
             }
@@ -108,6 +109,11 @@ namespace Serene
                 public static LocalText Theme = "Theme";
                 public static LocalText Default = "Dark Theme";
                 public static LocalText Light = "Light Theme";
+            }
+
+            public static class ValidationError
+            {
+                public static LocalText Title = "ERROR";
             }
         }
 

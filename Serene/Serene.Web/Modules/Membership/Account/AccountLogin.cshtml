@@ -4,15 +4,34 @@
     Layout = "~/Views/Shared/_LayoutNoNavigation.cshtml";
 }
 
+<script id="Template_Membership_LoginPanel" type="text/template">
+<div>
+    <h3>@Texts.Forms.Membership.Login.FormTitle</h3>
+    <form id="~_Form" action="">
+        <div class="s-Form">
+            <div class="fieldset ui-widget ui-widget-content ui-corner-all">
+                <div id="~_PropertyGrid"></div>
+                <div class="clear"></div>
+            </div>
+            <div class="buttons">
+                <button id="~_LoginButton" type="submit" class="btn btn-primary">
+                    @Texts.Forms.Membership.Login.SignInButton
+                </button>
+                <a href="@Url.Content("~/Account/ForgotPassword")">@Texts.Forms.Membership.Login.ForgotPassword</a>
+            </div>
+        </div>
+    </form>
+</div>
+</script>
+
 <div class="page-content">
-    <div id="LoginPanelWrapper">
+    <div id="LoginPanel">
 
     </div>
 </div>
 
 <script type="text/javascript">
 jQuery(function() {
-    var loginPanel = new Serene.Membership.LoginPanel().init();
-    loginPanel.element.appendTo('#LoginPanelWrapper');
+    new Serene.Membership.LoginPanel($('#LoginPanel')).init();
 });
 </script>
