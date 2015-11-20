@@ -212,7 +212,6 @@
     "Site.UserRoleDialog.DialogTitle": "Kullanıcı Rollerini Düzenle ({0})",
     "Site.UserRoleDialog.SaveSuccess": "Kullanıcı rolleri güncellendi.",
     "Site.ValidationError.Title": "HATA",
-    "Valdiation.AuthenticationError": "Geçersiz kullanıcı adı ya da şifre!",
     "Validation.AuthenticationError": "Geçersiz kullanıcı adı ya da şifre!",
     "Validation.CantFindUserWithEmail": "Bu e-posta adresiyle kayıtlı kullanıcı bulunamadı!",
     "Validation.CurrentPasswordMismatch": "Geçerli şifreniz doğru değil!",
