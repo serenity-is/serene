@@ -97,6 +97,19 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript.sql" />
+    <Content Include="Content\adminlte\img\avatar.png" />
+    <Content Include="Content\adminlte\img\avatar04.png" />
+    <Content Include="Content\adminlte\img\avatar2.png" />
+    <Content Include="Content\adminlte\img\avatar3.png" />
+    <Content Include="Content\adminlte\img\avatar5.png" />
+    <Content Include="Content\adminlte\img\boxed-bg.png" />
+    <Content Include="Content\adminlte\img\credit\american-express.png" />
+    <Content Include="Content\adminlte\img\credit\cirrus.png" />
+    <Content Include="Content\adminlte\img\credit\mastercard.png" />
+    <Content Include="Content\adminlte\img\credit\mestro.png" />
+    <Content Include="Content\adminlte\img\credit\paypal.png" />
+    <Content Include="Content\adminlte\img\credit\paypal2.png" />
+    <Content Include="Content\adminlte\img\credit\visa.png" />
     <Content Include="Content\aristo\aristo.css" />
     <Content Include="Content\aristo\images\icon_sprite.png" />
     <Content Include="Content\aristo\images\progress_bar.gif" />
@@ -445,17 +458,94 @@
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
-    <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
-    <Content Include="Content\site\site.overrides.serenity.less" />
     <Content Include="Content\site\site.northwind.less" />
-    <Content Include="Content\site\site.theme.default.css" />
-    <Content Include="Content\site\site.theme.default.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\site\site.membership.less" />
-    <None Include="Content\site\site.less" />
-    <Content Include="Content\site\site.theme.light.css" />
+    <Content Include="Content\adminlte\.csslintrc" />
+    <Content Include="Content\adminlte\404_500_errors.less" />
+    <Content Include="Content\adminlte\AdminLTE.less" />
+    <Content Include="Content\adminlte\alerts.less" />
+    <Content Include="Content\adminlte\bootstrap-social.less" />
+    <Content Include="Content\adminlte\boxes.less" />
+    <Content Include="Content\adminlte\buttons.less" />
+    <Content Include="Content\adminlte\callout.less" />
+    <Content Include="Content\adminlte\carousel.less" />
+    <Content Include="Content\adminlte\control-sidebar.less" />
+    <Content Include="Content\adminlte\core.less" />
+    <Content Include="Content\adminlte\direct-chat.less" />
+    <Content Include="Content\adminlte\dropdown.less" />
+    <Content Include="Content\adminlte\forms.less" />
+    <Content Include="Content\adminlte\fullcalendar.less" />
+    <Content Include="Content\adminlte\header.less" />
+    <Content Include="Content\adminlte\info-box.less" />
+    <Content Include="Content\adminlte\invoice.less" />
+    <Content Include="Content\adminlte\labels.less" />
+    <Content Include="Content\adminlte\lockscreen.less" />
+    <Content Include="Content\adminlte\login_and_register.less" />
+    <Content Include="Content\adminlte\mailbox.less" />
+    <Content Include="Content\adminlte\miscellaneous.less" />
+    <Content Include="Content\adminlte\mixins.less" />
+    <Content Include="Content\adminlte\modal.less" />
+    <Content Include="Content\adminlte\navs.less" />
+    <Content Include="Content\adminlte\print.less" />
+    <Content Include="Content\adminlte\products.less" />
+    <Content Include="Content\adminlte\profile.less" />
+    <Content Include="Content\adminlte\progress-bars.less" />
+    <Content Include="Content\adminlte\select2.less" />
+    <Content Include="Content\adminlte\sidebar-mini.less" />
+    <Content Include="Content\adminlte\sidebar.less" />
+    <Content Include="Content\adminlte\skins\skin-black-light.less" />
+    <Content Include="Content\adminlte\skins\skin-black.less" />
+    <Content Include="Content\adminlte\skins\skin-blue-light.less" />
+    <Content Include="Content\adminlte\skins\skin-blue.less" />
+    <Content Include="Content\adminlte\skins\skin-green-light.less" />
+    <Content Include="Content\adminlte\skins\skin-green.less" />
+    <Content Include="Content\adminlte\skins\skin-purple-light.less" />
+    <Content Include="Content\adminlte\skins\skin-purple.less" />
+    <Content Include="Content\adminlte\skins\skin-red-light.less" />
+    <Content Include="Content\adminlte\skins\skin-red.less" />
+    <Content Include="Content\adminlte\skins\skin-yellow-light.less" />
+    <Content Include="Content\adminlte\skins\skin-yellow.less" />
+    <Content Include="Content\adminlte\skins\_all-skins.less" />
+    <Content Include="Content\adminlte\small-box.less" />
+    <Content Include="Content\adminlte\social-widgets.less" />
+    <Content Include="Content\adminlte\table.less" />
+    <Content Include="Content\adminlte\timeline.less" />
+    <Content Include="Content\adminlte\users-list.less" />
+    <Content Include="Content\adminlte\variables.less" />
+    <Content Include="Content\bootstrap-less\mixins.less" />
+    <Content Include="Content\bootstrap-less\mixins\alerts.less" />
+    <Content Include="Content\bootstrap-less\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap-less\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap-less\mixins\buttons.less" />
+    <Content Include="Content\bootstrap-less\mixins\center-block.less" />
+    <Content Include="Content\bootstrap-less\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap-less\mixins\forms.less" />
+    <Content Include="Content\bootstrap-less\mixins\gradients.less" />
+    <Content Include="Content\bootstrap-less\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap-less\mixins\grid.less" />
+    <Content Include="Content\bootstrap-less\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap-less\mixins\image.less" />
+    <Content Include="Content\bootstrap-less\mixins\labels.less" />
+    <Content Include="Content\bootstrap-less\mixins\list-group.less" />
+    <Content Include="Content\bootstrap-less\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap-less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap-less\mixins\opacity.less" />
+    <Content Include="Content\bootstrap-less\mixins\pagination.less" />
+    <Content Include="Content\bootstrap-less\mixins\panels.less" />
+    <Content Include="Content\bootstrap-less\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap-less\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap-less\mixins\resize.less" />
+    <Content Include="Content\bootstrap-less\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap-less\mixins\size.less" />
+    <Content Include="Content\bootstrap-less\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap-less\mixins\table-row.less" />
+    <Content Include="Content\bootstrap-less\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap-less\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap-less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap-less\variables.less" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -512,7 +602,6 @@
     </Content>
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
-    <Content Include="Content\site\site.theme.light.less" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Modules\Common\Imports\ScriptFormatterTypes.tt">
@@ -525,6 +614,11 @@
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Content>
     <Content Include="Readme.CodeGenerator.txt" />
+    <Content Include="Scripts\adminlte\app.js" />
+    <Content Include="Scripts\adminlte\app.min.js" />
+    <Content Include="Scripts\adminlte\demo.js" />
+    <Content Include="Scripts\adminlte\pages\dashboard.js" />
+    <Content Include="Scripts\adminlte\pages\dashboard2.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
@@ -638,6 +732,8 @@
     <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPasswordEmail.cshtml" />
+    <Content Include="Content\site\site.less" />
+    <Content Include="Content\site\site.adminlte.less" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1015,10 +1111,10 @@
     </Exec>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;">
     </Exec>
-    <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.default.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.default.css&quot;">
+    <!--<Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.default.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.default.css&quot;">
     </Exec>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.theme.light.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.theme.light.css&quot;">
-    </Exec>
+    </Exec>-->
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

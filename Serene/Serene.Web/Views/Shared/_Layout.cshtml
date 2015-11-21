@@ -1,8 +1,10 @@
 ﻿<!DOCTYPE html>
-@{ 
-   Func<string, IHtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
-   var hideNav = Request["hideNav"] == "1";
-   var logged = Serenity.Authorization.Username;
+@{
+    Func<string, IHtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
+    var hideNav = Request["hideNav"] == "1";
+    var logged = Serenity.Authorization.Username;
+    var themeCookie = Request.Cookies["ThemePreference"];
+    var theme = themeCookie != null && !themeCookie.Value.IsEmptyOrNull() ? themeCookie.Value : "blue";
 }
 <!--[if IE 8]> <html lang="@UICulture" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="@UICulture" class="ie9 no-js"> <![endif]-->
@@ -14,133 +16,133 @@
     @RenderSection("Head", false)
     <title>@ViewBag.Title</title>
 </head>
-<body id="s-@(ViewBag.PageId)Page" class="@(hideNav ? " no-navigation" : "has-layout-event")">
+<body id="s-@(ViewBag.PageId)Page" class="fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")">
+
 @if (hideNav)
 {
-    <script type="text/javascript">
-        $(function () {
-            @RenderSection("PageInitScript", false)
-        });
-    </script>
-    <div id="page-outer-nonav">
+<script type="text/javascript">
+    $(function () {
+        @RenderSection("PageInitScript", false)
+    });
+</script>
+<div id="page-outer-nonav">
     <div id="page-container" class="page-container-common">
         @RenderBody()
     </div>
-    </div>
+</div>
 }
 else
 {
-    <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="~/">@LocalText.Get("Navigation.SiteTitle")</a>
-            </div>
+<div class="wrapper">
+    <header class="main-header">
+        <a href="~/" class="logo">
+            <span class="logo-mini"><b>S</b></span>
+            <span class="logo-lg"><b>@LocalText.Get("Navigation.SiteTitle")</b></span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>
-                        @Serenity.Authorization.Username
-                        <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li>
-                            <a href="~/Account/ChangePassword"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
-                        </li>
-                        <li>
-                            <a href="~/Account/Signout"><i class="fa fa-sign-out fa-fw"></i> @LocalText.Get("Navigation.LogoutLink")</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>
+                            @Serenity.Authorization.Username
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="~/Account/ChangePassword"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
+                            </li>
+                            <li>
+                                <a href="~/Account/Signout"><i class="fa fa-sign-out fa-fw"></i> @LocalText.Get("Navigation.LogoutLink")</a>
+                            </li>
+                        </ul>
+                    </li>
 
-            <div class="pull-right" style="margin-top: 12px;">
-                <input id="LanguageSelect" type="hidden" />
-            </div>
-
-            <div class="theme-selection pull-right" id="ThemeSelection">
-                <span>@Texts.Site.ThemeSelection.Theme</span>
-                <a class="theme-default" data-theme="default" title="@Texts.Site.ThemeSelection.Default"></a>
-                <a class="theme-light" data-theme="light" title="@Texts.Site.ThemeSelection.Light"></a>
-            </div>
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input id="SidebarSearch" type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        @{Html.RenderPartial("~/Views/Shared/LeftNavigation.cshtml", new Serene.Navigation.NavigationModel()); }
-                    </ul>
-                </div>
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
             </div>
         </nav>
+    </header>
 
-        <div id="page-wrapper" class="page-container-common">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="page-content" class="page-content">
-                        @RenderBody()
-                    </div>
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" id="SidebarSearch" name="q" class="form-control" autocomplete="off">
+                    <span class="input-group-btn">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
                 </div>
+            </form>
+            <ul class="sidebar-menu" id="SidebarMenu">
+                @{Html.RenderPartial("~/Views/Shared/LeftNavigation.cshtml", new Serene.Navigation.NavigationModel()); }
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content">
+            @RenderBody()
+        </section>
+    </div>
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            @Texts.Site.Layout.FooterInfo
+        </div>
+        <strong>@Texts.Site.Layout.FooterCopyright</strong> @Texts.Site.Layout.FooterRights
+    </footer>
+
+    <aside class="control-sidebar control-sidebar-dark">
+        <div class="tab-content">
+            <div class="tab-pane active" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">@Texts.Site.Layout.GeneralSettings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">@Texts.Site.Layout.Language</label>
+                        <select id="LanguageSelect" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label class="control-sidebar-subheading">@Texts.Site.Layout.Theme</label>
+                        <select id="ThemeSelect" class="form-control"></select>
+                    </div>
+                </form>
             </div>
         </div>
+    </aside>
+    <div class="control-sidebar-bg"></div>
+</div>
 
-    </div>
-    <script type="text/javascript">
+<script type="text/javascript">
     $().ready(function () {
-        $('#side-menu').metisMenu();
-        new Serene.Common.SidebarSearch($('#SidebarSearch'), $('#side-menu')).init();
+        new Serene.Common.SidebarSearch($('#SidebarSearch'), $('#SidebarMenu')).init();
         new Serene.Common.LanguageSelection($('#LanguageSelect'), '@(System.Globalization.CultureInfo.CurrentUICulture.Name)');
+        new Serene.Common.ThemeSelection($('#ThemeSelect'));
         @RenderSection("PageInitScript", false);
 
         var doLayout = function () {
-            topOffset = 50;
-            width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-            if (width < 768) {
-                $('div.navbar-collapse').addClass('collapse')
-                topOffset = 100; // 2-row-menu
-            } else {
-                $('div.navbar-collapse').removeClass('collapse')
-            }
-
             height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
-            height = height - topOffset;
-            if (height < 1) height = 1;
-            if (height > topOffset) {
-                $("#page-wrapper").css("min-height", (height) + "px");
-            }
-
-            if ($('body').hasClass('full-height-page'))
-                $('#page-content').css("height", height + "px");
+            height -= $('header.main-header').outerHeight();
+            height -= $('section.content-header').outerHeight();
+            height -= $('footer.main-footer').outerHeight();
+            if (height < 200) height = 200;
+            $("section.content").css("min-height", (height) + "px");
 
             $('body').triggerHandler('layout');
         };
 
-        $(window).bind("load resize", doLayout);
+        $(window).bind("load resize layout", doLayout);
         doLayout();
-
-        $('#ThemeSelection').children('a').click(function (e) {
-            e.preventDefault();
-            var theme = $(this).data('theme');
-            $('#SiteThemeCss').attr('href', Q.resolveUrl('~/Content/site/site.theme.' + theme + '.css'));
-            $.cookie('ThemePreference', theme, { path: Q$Config.applicationPath });
-        });
     });
-    </script>
+</script>
 }
 </body>
 </html>

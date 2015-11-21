@@ -37,6 +37,7 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="Common\Helper\GridEditorDialog.cs" />
+    <Compile Include="Common\Navigation\ThemeSelection.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
     <Compile Include="Common\Navigation\SidebarSearch.cs" />
     <Compile Include="Imports\FormContexts\Administration.LanguageForm.cs">

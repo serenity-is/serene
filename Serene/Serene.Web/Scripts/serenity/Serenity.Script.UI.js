@@ -735,6 +735,18 @@
 				this.initialPopulate();
 			}
 		};
+		$type.get_defaultRowHeight = function() {
+			return $type.$4$DefaultRowHeightField;
+		};
+		$type.set_defaultRowHeight = function(value) {
+			$type.$4$DefaultRowHeightField = value;
+		};
+		$type.get_defaultHeaderHeight = function() {
+			return $type.$4$DefaultHeaderHeightField;
+		};
+		$type.set_defaultHeaderHeight = function(value) {
+			$type.$4$DefaultHeaderHeightField = value;
+		};
 		ss.registerGenericClassInstance($type, $Serenity_DataGrid$2, [TItem, TOptions], {
 			add_submitHandlers: function(value) {
 				this.$4$submitHandlersField = ss.delegateCombine(this.$4$submitHandlersField, value);
@@ -750,6 +762,17 @@
 					return;
 				}
 				Q.layoutFillHeight(this.slickContainer);
+				if (this.element.hasClass('responsive-height')) {
+					if (ss.isValue(this.slickGrid) && this.slickGrid.getOptions().autoHeight) {
+						this.slickContainer.children('.slick-viewport').css('height', '');
+						this.slickGrid.setOptions({ autoHeight: false });
+					}
+					if (ss.isValue(this.slickGrid) && (this.slickContainer.height() < 200 || $(window.window).width() < 768)) {
+						this.element.css('height', '');
+						this.slickContainer.css('height', '').children('.slick-viewport').css('height', '');
+						this.slickGrid.setOptions({ autoHeight: true });
+					}
+				}
 				if (ss.isValue(this.slickGrid)) {
 					this.slickGrid.resizeCanvas();
 				}
@@ -1147,6 +1170,9 @@
 				if (!this.usePager()) {
 					opt.rowsPerPage = 0;
 				}
+				else if (this.element.hasClass('responsive-height')) {
+					opt.rowsPerPage = (($(window.window).width() < 768) ? 20 : 100);
+				}
 				else {
 					opt.rowsPerPage = 100;
 				}
@@ -1253,8 +1279,8 @@
 				opt.multiSelect = false;
 				opt.multiColumnSort = true;
 				opt.enableCellNavigation = false;
-				opt.headerRowHeight = 30;
-				opt.rowHeight = 27;
+				opt.headerRowHeight = $type.get_defaultHeaderHeight();
+				opt.rowHeight = $type.get_defaultRowHeight();
 				return opt;
 			},
 			populateLock: function() {
@@ -1465,6 +1491,10 @@
 		}, function() {
 			return [$Serenity_IDataGrid];
 		});
+		$type.$4$DefaultRowHeightField = 0;
+		$type.$4$DefaultHeaderHeightField = 0;
+		$type.set_defaultRowHeight(27);
+		$type.set_defaultHeaderHeight(30);
 		return $type;
 	};
 	$Serenity_DataGrid$2.__typeName = 'Serenity.DataGrid$2';

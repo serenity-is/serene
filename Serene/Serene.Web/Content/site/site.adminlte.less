@@ -1,0 +1,106 @@
+/*!
+ *   AdminLTE v2.3.0
+ *   Author: Almsaeed Studio
+ *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *   License: Open source - MIT
+ *           Please visit http://opensource.org/licenses/MIT for more information
+!*/
+
+//google fonts
+//@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+//Bootstrap Variables & Mixins
+//The core bootstrap code have not been modified. These files
+//are included only for reference.
+@import (reference) "../bootstrap-less/mixins.less";
+@import (reference) "../bootstrap-less/variables.less";
+
+//MISC
+//----
+@import "../adminlte/core.less";
+@import "../adminlte/variables.less";
+@import "../adminlte/mixins.less";
+
+//COMPONENTS
+//-----------
+@import "../adminlte/header.less";
+@import "../adminlte/sidebar.less";
+@import "../adminlte/sidebar-mini.less";
+@import "../adminlte/control-sidebar.less";
+@import "../adminlte/dropdown.less";
+@import "../adminlte/forms.less";
+@import "../adminlte/progress-bars.less";
+@import "../adminlte/small-box.less";
+@import "../adminlte/boxes.less";
+@import "../adminlte/info-box.less";
+@import "../adminlte/timeline.less";
+@import "../adminlte/buttons.less";
+@import "../adminlte/callout.less";
+@import "../adminlte/alerts.less";
+@import "../adminlte/navs.less";
+@import "../adminlte/table.less";
+@import "../adminlte/labels.less";
+@import "../adminlte/modal.less";
+
+@import "../adminlte/skins/_all-skins.less";
+
+body {
+    font-size: 13px;
+    color: #000;
+}
+
+a, .slick-cell > a {
+    color: #0000be;
+}
+
+.content-wrapper {
+    background-color: #fff;
+}
+
+.sidebar-menu > li {
+    font-size: 14px;
+}
+
+.main-footer {
+    padding: 3px 15px;
+    background-color: #ecf0f5;
+}
+
+.sidebar-menu li.expanded > .treeview-menu {
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+textarea {
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.sidebar-form input[type="text"] {
+    padding: 6px 12px;
+    border-color: transparent;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+    opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+    opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+}

@@ -4,22 +4,6 @@
   background-clip: @argument;
 }
 
-.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
-  -webkit-border-top-right-radius: @topright;
-  -webkit-border-bottom-right-radius: @bottomright;
-  -webkit-border-bottom-left-radius: @bottomleft;
-  -webkit-border-top-left-radius: @topleft;
-  -moz-border-radius-topright: @topright;
-  -moz-border-radius-bottomright: @bottomright;
-  -moz-border-radius-bottomleft: @bottomleft;
-  -moz-border-radius-topleft: @topleft;
-  border-top-right-radius: @topright;
-  border-bottom-right-radius: @bottomright;
-  border-bottom-left-radius: @bottomleft;
-  border-top-left-radius: @topleft;
-  .background-clip(padding-box);
-}
-
 .box-shadow(@arguments) {
   -webkit-box-shadow: @arguments;
   -moz-box-shadow: @arguments;

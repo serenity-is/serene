@@ -394,16 +394,38 @@
 	global.Serene.Common.GridEditorDialog$1 = $Serene_Common_GridEditorDialog$1;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
-	var $Serene_Common_LanguageSelection = function(hidden, currentLanguage) {
-		this.$currentLanguage = null;
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, hidden);
-		this.$currentLanguage = ss.coalesce(currentLanguage, 'en');
-		this.set_value('en');
+	var $Serene_Common_LanguageSelection = function(select, currentLanguage) {
+		Serenity.Widget.call(this, select);
+		currentLanguage = ss.coalesce(currentLanguage, 'en');
 		var self = this;
-		Serenity.WX.changeSelect2(this, function(e) {
-			$.cookie('LanguagePreference', self.get_value(), { path: Q$Config.applicationPath });
+		Serenity.WX.change(this, function(e) {
+			$.cookie('LanguagePreference', select.val(), { path: Q$Config.applicationPath });
 			window.location.reload(true);
 		});
+		Q.getLookupAsync('Administration.Language').then(function(x) {
+			if (!Enumerable.from(x.get_items()).any(function(z) {
+				return ss.referenceEquals(z.LanguageId, currentLanguage);
+			})) {
+				var idx = currentLanguage.lastIndexOf('-');
+				if (idx >= 0) {
+					currentLanguage = currentLanguage.substr(0, idx);
+					if (!Enumerable.from(x.get_items()).any(function(z1) {
+						return ss.referenceEquals(z1.LanguageId, currentLanguage);
+					})) {
+						currentLanguage = 'en';
+					}
+				}
+				else {
+					currentLanguage = 'en';
+				}
+			}
+			var $t1 = x.get_items();
+			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+				var l = $t1[$t2];
+				Q.addOption(select, l.LanguageId, l.LanguageName);
+			}
+			select.val(currentLanguage);
+		}, null);
 	};
 	$Serene_Common_LanguageSelection.__typeName = 'Serene.Common.LanguageSelection';
 	global.Serene.Common.LanguageSelection = $Serene_Common_LanguageSelection;
@@ -423,6 +445,32 @@
 	};
 	$Serene_Common_SidebarSearch.__typeName = 'Serene.Common.SidebarSearch';
 	global.Serene.Common.SidebarSearch = $Serene_Common_SidebarSearch;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Common.ThemeSelection
+	var $Serene_Common_ThemeSelection = function(select) {
+		Serenity.Widget.call(this, select);
+		var self = this;
+		Serenity.WX.change(this, ss.mkdel(this, function(e) {
+			$.cookie('ThemePreference', select.val(), { path: Q$Config.applicationPath });
+			$('body').removeClass('skin-' + this.$getCurrentTheme());
+			$('body').addClass('skin-' + select.val());
+		}));
+		Q.addOption(select, 'blue', Q.text('Site.Layout.ThemeBlue'));
+		Q.addOption(select, 'blue-light', Q.text('Site.Layout.ThemeBlueLight'));
+		Q.addOption(select, 'purple', Q.text('Site.Layout.ThemePurple'));
+		Q.addOption(select, 'purple-light', Q.text('Site.Layout.ThemePurpleLight'));
+		Q.addOption(select, 'red', Q.text('Site.Layout.ThemeRed'));
+		Q.addOption(select, 'red-light', Q.text('Site.Layout.ThemeRedLight'));
+		Q.addOption(select, 'green', Q.text('Site.Layout.ThemeGreen'));
+		Q.addOption(select, 'green-light', Q.text('Site.Layout.ThemeGreenLight'));
+		Q.addOption(select, 'yellow', Q.text('Site.Layout.ThemeYellow'));
+		Q.addOption(select, 'yellow-light', Q.text('Site.Layout.ThemeYellowLight'));
+		Q.addOption(select, 'black', Q.text('Site.Layout.ThemeBlack'));
+		Q.addOption(select, 'black-light', Q.text('Site.Layout.ThemeBlackLight'));
+		select.val(this.$getCurrentTheme());
+	};
+	$Serene_Common_ThemeSelection.__typeName = 'Serene.Common.ThemeSelection';
+	global.Serene.Common.ThemeSelection = $Serene_Common_ThemeSelection;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ChangePasswordForm
 	var $Serene_Membership_ChangePasswordForm = function(idPrefix) {
@@ -1680,48 +1728,14 @@
 			return "<div id='~_Roles'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
-	ss.initClass($Serene_Common_LanguageSelection, $asm, {
-		getLookupAsync: function() {
-			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getLookupAsync.call(this).then(ss.mkdel(this, function(x) {
-				if (!Enumerable.from(x.get_items()).any(ss.mkdel(this, function(z) {
-					return ss.referenceEquals(z.LanguageId, this.$currentLanguage);
-				}))) {
-					var idx = this.$currentLanguage.lastIndexOf('-');
-					if (idx >= 0) {
-						this.$currentLanguage = this.$currentLanguage.substr(0, idx);
-						if (!Enumerable.from(x.get_items()).any(ss.mkdel(this, function(z1) {
-							return ss.referenceEquals(z1.LanguageId, this.$currentLanguage);
-						}))) {
-							this.$currentLanguage = 'en';
-						}
-					}
-					else {
-						this.$currentLanguage = 'en';
-					}
-				}
-				return x;
-			}), null);
-		},
-		updateItemsAsync: function() {
-			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.updateItemsAsync.call(this).then(ss.mkdel(this, function() {
-				this.set_value(this.$currentLanguage);
-			}), null);
-		},
-		getLookupKey: function() {
-			return 'Administration.Language';
-		},
-		emptyItemText: function() {
-			return null;
-		}
-	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.IStringValue, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
 			var liList = this.$menuUL.find('li').removeClass('non-match');
 			text = Q.trimToNull(text);
 			if (ss.isNullOrUndefined(text)) {
-				liList.removeClass('active');
 				liList.show();
-				liList.children('ul').addClass('collapse');
+				liList.removeClass('expanded');
 				return;
 			}
 			var parts = ss.netSplit(text, [44, 32].map(function(i) {
@@ -1747,7 +1761,18 @@
 			var nonVisibles = liList.not(visibles);
 			nonVisibles.hide().addClass('non-match');
 			visibles.show();
-			liList.children('ul').removeClass('collapse');
+			liList.addClass('expanded');
+		}
+	}, Serenity.Widget);
+	ss.initClass($Serene_Common_ThemeSelection, $asm, {
+		$getCurrentTheme: function() {
+			var skinClass = Enumerable.from(ss.coalesce($('body').attr('class'), '').split(String.fromCharCode(32))).firstOrDefault(function(x) {
+				return ss.startsWithString(x, 'skin-');
+			}, ss.getDefaultValue(String));
+			if (ss.isValue(skinClass)) {
+				return skinClass.substr(5);
+			}
+			return 'blue';
 		}
 	}, Serenity.Widget);
 	ss.initClass($Serene_Membership_ChangePasswordForm, $asm, {

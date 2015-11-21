@@ -6,27 +6,21 @@
     using System.Html;
     using System.Linq;
 
-    public class LanguageSelection : LookupEditorBase<LanguageRow>, IAsyncInit
+    public class LanguageSelection : Widget
     {
-        private string currentLanguage;
-
-        public LanguageSelection(jQueryObject hidden, string currentLanguage)
-            : base(hidden)
+        public LanguageSelection(jQueryObject select, string currentLanguage)
+            : base(select)
         {
-            this.currentLanguage = currentLanguage ?? "en";
-            this.Value = "en";
+            currentLanguage = currentLanguage ?? "en";
 
             var self = this;
-            this.ChangeSelect2(e =>
+            this.Change(e =>
             {
-                jQuery.Instance.cookie("LanguagePreference", self.Value, new { path = Q.Config.ApplicationPath });
+                jQuery.Instance.cookie("LanguagePreference", select.GetValue(), new { path = Q.Config.ApplicationPath });
                 Window.Location.Reload(true);
             });
-        }
 
-        protected override System.Promise<Lookup<LanguageRow>> GetLookupAsync()
-        {
-            return base.GetLookupAsync().ThenSelect(x =>
+            Q.GetLookupAsync<LanguageRow>("Administration.Language").Then(x =>
             {
                 if (!x.Items.Any(z => z.LanguageId == currentLanguage))
                 {
@@ -43,26 +37,11 @@
                         currentLanguage = "en";
                 }
 
-                return x;
+                foreach (var l in x.Items)
+                    Q.AddOption(select, l.LanguageId, l.LanguageName);
+
+                select.Value(currentLanguage);
             });
-        }
-
-        protected override System.Promise UpdateItemsAsync()
-        {
-            return base.UpdateItemsAsync().Then(() =>
-            {
-                this.Value = currentLanguage;
-            });
-        }
-
-        protected override string GetLookupKey()
-        {
-            return "Administration.Language";
-        }
-
-        protected override string EmptyItemText()
-        {
-            return null;
         }
     }
 }

@@ -232,11 +232,16 @@
 	};
 	$Q.initFullHeightGridPage = function(gridDiv) {
 		$('body').addClass('full-height-page');
+		gridDiv.addClass('responsive-height');
 		var layout = function() {
-			if (gridDiv.parent().hasClass('page-content')) {
+			var inPageContent = gridDiv.parent().hasClass('page-content') || gridDiv.parent().is('section.content');
+			if (inPageContent) {
 				gridDiv.css('height', '1px').css('overflow', 'hidden');
 			}
 			$Q.layoutFillHeight(gridDiv);
+			if (inPageContent) {
+				gridDiv.css('overflow', '');
+			}
 			gridDiv.triggerHandler('layout');
 		};
 		if ($('body').hasClass('has-layout-event')) {

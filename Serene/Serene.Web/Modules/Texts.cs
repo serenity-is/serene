@@ -104,11 +104,24 @@ namespace Serene
                 public static LocalText SaveSuccess = "Updated role permissions.";
             }
 
-            public static class ThemeSelection
+            public static class Layout
             {
+                public static LocalText FooterCopyright = "Copyright (c) 2015.";
+                public static LocalText FooterInfo = "Serenity Platform";
+                public static LocalText FooterRights = "All rights reserved.";
+                public static LocalText GeneralSettings = "General Settings";
+                public static LocalText Language = "Language";
                 public static LocalText Theme = "Theme";
-                public static LocalText Default = "Dark Theme";
-                public static LocalText Light = "Light Theme";
+                public static LocalText ThemeBlue = "Blue";
+                public static LocalText ThemeBlueLight = "Blue Light";
+                public static LocalText ThemeGreen = "Green";
+                public static LocalText ThemeGreenLight = "Green Light";
+                public static LocalText ThemePurple = "Purple";
+                public static LocalText ThemePurpleLight = "Purple Light";
+                public static LocalText ThemeRed = "Red";
+                public static LocalText ThemeRedLight = "Red Light";
+                public static LocalText ThemeYellow = "Yellow";
+                public static LocalText ThemeYellowLight = "Yellow Light";
             }
 
             public static class ValidationError
