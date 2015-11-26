@@ -113,6 +113,8 @@ namespace Serene
                 public static LocalText GeneralSettings = "General Settings";
                 public static LocalText Language = "Language";
                 public static LocalText Theme = "Theme";
+                public static LocalText ThemeBlack = "Black";
+                public static LocalText ThemeBlackLight = "Black Light";
                 public static LocalText ThemeBlue = "Blue";
                 public static LocalText ThemeBlueLight = "Blue Light";
                 public static LocalText ThemeGreen = "Green";

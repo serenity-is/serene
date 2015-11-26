@@ -236,7 +236,7 @@
 			},
 			save: function(opt, callback) {
 				var request = opt.request;
-				var row = Q$Externals.deepClone(request.Entity);
+				var row = Q.deepClone(request.Entity);
 				var id = ss.cast(row.__id, ss.Int32);
 				if (ss.isNullOrUndefined(id)) {
 					row.__id = this.$nextId++;
@@ -252,7 +252,7 @@
 					var index = Enumerable.from(items).indexOf(ss.mkdel(this, function(x) {
 						return this.id(x) === ss.unbox(id);
 					}));
-					items[index] = Q$Externals.deepClone(ss.createInstance(TEntity), items[index], row);
+					items[index] = Q.deepClone(ss.createInstance(TEntity), items[index], row);
 				}
 				this.setEntities(items);
 				callback({});
@@ -304,14 +304,14 @@
 			},
 			get_value: function() {
 				return Enumerable.from(this.view.getItems()).select(function(x) {
-					var y = Q$Externals.deepClone(x);
+					var y = Q.deepClone(x);
 					delete y['__id'];
 					return y;
 				}).toArray();
 			},
 			set_value: function(value) {
 				this.view.setItems(Enumerable.from(value || []).select(ss.mkdel(this, function(x) {
-					var y = Q$Externals.deepClone(x);
+					var y = Q.deepClone(x);
 					y.__id = this.$nextId++;
 					return y;
 				})).toArray(), true);
@@ -566,7 +566,7 @@
 				url: Q.resolveUrl('~/Account/Login'),
 				request: request,
 				onSuccess: function(response) {
-					var q = Q$Externals.parseQueryString();
+					var q = Q.parseQueryString();
 					var $t1 = q['returnUrl'];
 					if (ss.isNullOrUndefined($t1)) {
 						$t1 = q['ReturnUrl'];
@@ -1345,7 +1345,7 @@
 			}
 			keys = Enumerable.from(Object.keys(titleByKey.$)).toArray();
 			keys.sort(function(x, y) {
-				return Q$Externals.turkishLocaleCompare(titleWithGroup[x], titleWithGroup[y]);
+				return Q.turkishLocaleCompare(titleWithGroup[x], titleWithGroup[y]);
 			});
 			return keys;
 		},

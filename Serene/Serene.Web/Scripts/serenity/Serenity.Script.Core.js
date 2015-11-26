@@ -119,24 +119,6 @@
 			}
 		});
 	};
-	$Q.parseDate = function(value) {
-		return Q$Externals.parseDate(value);
-	};
-	$Q.parseISODateTime = function(value) {
-		return Q$Externals.parseISODateTime(value);
-	};
-	$Q.alert = function(message, options) {
-		Q$Externals.alertDialog(message, options);
-	};
-	$Q.warning = function(message, options) {
-		Q$Externals.alertDialog(message, $.extend({ title: $Texts$Dialogs.WarningTitle.get(), dialogClass: 's-MessageDialog s-WarningDialog' }, options));
-	};
-	$Q.confirm = function(message, onYes, options) {
-		Q$Externals.confirmDialog(message, onYes, options);
-	};
-	$Q.information = function(message, onOk, options) {
-		Q$Externals.confirmDialog(message, onOk, $.extend({ title: $Texts$Dialogs.InformationTitle.get(), yesButton: $Texts$Dialogs.OkButton.get(), noButton: null, dialogClass: 's-MessageDialog s-InformationDialog' }, options));
-	};
 	$Q.tryCatch = function(fail, callback) {
 		if (ss.staticEquals(fail, null)) {
 			callback();
@@ -323,18 +305,6 @@
 		$Q.positionToastContainer(true);
 		return options;
 	};
-	$Q.formatNumber = function(number, format) {
-		if (!ss.isValue(number)) {
-			return '';
-		}
-		return Q$Externals.formatNumber(number, format, $Q$Culture.decimalSeparator, $Q$Culture.get_groupSeperator());
-	};
-	$Q.parseDecimal = function(value) {
-		if (ss.isNullOrUndefined(value) || $Q.isTrimmedEmpty(value)) {
-			return null;
-		}
-		return Q$Externals.parseDecimal(value);
-	};
 	$Q.getRemoteData = function(key) {
 		return $Q$ScriptData.ensure('RemoteData.' + key);
 	};
@@ -437,7 +407,7 @@
 						}
 					}
 					var html = xhr.responseText;
-					Q$Externals.iframeDialog({ html: html });
+					Q.iframeDialog({ html: html });
 				}
 				finally {
 					if (options.blockUI) {
@@ -516,7 +486,7 @@
 		}
 	};
 	$Q.autoOpenByQuery = function(key, autoOpen) {
-		var query = Q$Externals.parseQueryString();
+		var query = Q.parseQueryString();
 		var value = query[key];
 		if (ss.isValue(value)) {
 			autoOpen(value);
@@ -567,7 +537,7 @@
 			}
 			$t2 = $t1;
 		}
-		$Q.alert($t2);
+		Q.alert($t2);
 	};
 	global.Q$ErrorHandling = $Q$ErrorHandling;
 	////////////////////////////////////////////////////////////////////////////////
@@ -872,7 +842,7 @@
 			date = value;
 		}
 		else if (typeof(value) === 'string') {
-			date = Q$Externals.parseISODateTime(value);
+			date = Q.parseISODateTime(value);
 			if (ss.staticEquals(date, null)) {
 				return $Q.htmlEncode(value);
 			}
@@ -1034,10 +1004,10 @@
 	};
 	$Serenity_IdExtensions.__typeName = 'Serenity.IdExtensions';
 	$Serenity_IdExtensions.convertToId = function(value) {
-		return Q$Externals.toId(value);
+		return Q.toId(value);
 	};
 	$Serenity_IdExtensions.toInt32 = function(value) {
-		return Q$Externals.toId(value);
+		return Q.toId(value);
 	};
 	$Serenity_IdExtensions.isPositiveId = function(id) {
 		if (!ss.isValue(id)) {
@@ -1259,9 +1229,9 @@
 			if (isNaN(value)) {
 				return '';
 			}
-			return $Q.htmlEncode($Q.formatNumber(value, format));
+			return $Q.htmlEncode(Q.formatNumber(value, format));
 		}
-		var dbl = $Q.parseDecimal(value.toString());
+		var dbl = Q.parseDecimal(value.toString());
 		if (ss.isNullOrUndefined(dbl)) {
 			return '';
 		}
@@ -1925,17 +1895,6 @@
 		$Q$LT.empty = new $Q$LT('');
 	})();
 	(function() {
-		$Texts$Dialogs.OkButton = new Q$LT('OK');
-		$Texts$Dialogs.YesButton = new Q$LT('Yes');
-		$Texts$Dialogs.NoButton = new Q$LT('No');
-		$Texts$Dialogs.CancelButton = new Q$LT('Cancel');
-		$Texts$Dialogs.AlertTitle = new Q$LT('Alert');
-		$Texts$Dialogs.ConfirmationTitle = new Q$LT('Confirm');
-		$Texts$Dialogs.InformationTitle = new Q$LT('Information');
-		$Texts$Dialogs.WarningTitle = new Q$LT('Warning');
-		$Q$LT.initializeTextClass($Texts$Dialogs, 'Dialogs.');
-	})();
-	(function() {
 		$Texts$Controls$SelectEditor.EmptyItemText = new Q$LT('--select--');
 		$Texts$Controls$SelectEditor.InplaceAdd = new Q$LT('Define New');
 		$Texts$Controls$SelectEditor.InplaceEdit = new Q$LT('Edit');
@@ -1960,10 +1919,6 @@
 		$Q$Config.emailAllowOnlyAscii = true;
 	})();
 	(function() {
-		$Q$ScriptData.$registered = {};
-		$Q$ScriptData.$loadedData = {};
-	})();
-	(function() {
 		$Q.$blockUICount = 0;
 		var window1 = window.window;
 		var rsvp = window1.RSVP;
@@ -1973,6 +1928,11 @@
 				window1.console.log((!!ss.isValue(e.get_stack) ? e.get_stack() : e.stack));
 			});
 		}
+		window1['Q$Externals'] = window1.Q;
+	})();
+	(function() {
+		$Q$ScriptData.$registered = {};
+		$Q$ScriptData.$loadedData = {};
 	})();
 	(function() {
 		$Texts$Controls$EntityDialog.DeleteConfirmation = new Q$LT('Delete record?');
@@ -2015,6 +1975,17 @@
 		$Texts$Controls$QuickSearch.Hint = new Q$LT('enter the text to search for...');
 		$Texts$Controls$QuickSearch.FieldSelection = new Q$LT('select the field to search on');
 		$Q$LT.initializeTextClass($Texts$Controls$QuickSearch, 'Controls.QuickSearch.');
+	})();
+	(function() {
+		$Texts$Dialogs.OkButton = new Q$LT('OK');
+		$Texts$Dialogs.YesButton = new Q$LT('Yes');
+		$Texts$Dialogs.NoButton = new Q$LT('No');
+		$Texts$Dialogs.CancelButton = new Q$LT('Cancel');
+		$Texts$Dialogs.AlertTitle = new Q$LT('Alert');
+		$Texts$Dialogs.ConfirmationTitle = new Q$LT('Confirm');
+		$Texts$Dialogs.InformationTitle = new Q$LT('Information');
+		$Texts$Dialogs.WarningTitle = new Q$LT('Warning');
+		$Q$LT.initializeTextClass($Texts$Dialogs, 'Dialogs.');
 	})();
 	(function() {
 		$Serenity_EnumTypeRegistry.$knownTypes = null;

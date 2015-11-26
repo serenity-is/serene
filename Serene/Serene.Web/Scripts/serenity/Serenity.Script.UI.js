@@ -574,7 +574,7 @@
 					if (y.isSelected && !x1.isSelected) {
 						return 1;
 					}
-					var c = Q$Externals.turkishLocaleCompare(x1.text, y.text);
+					var c = Q.turkishLocaleCompare(x1.text, y.text);
 					if (c !== 0) {
 						return c;
 					}
@@ -2446,7 +2446,7 @@
 				};
 				baseOptions.onCleanup = function() {
 					if (ss.isValue(self.validator)) {
-						Q$Externals.validatorAbortHandler(self.validator);
+						Q.validatorAbortHandler(self.validator);
 					}
 				};
 				var thisOptions = this.getLoadByIdOptions(id, callback);
@@ -2762,7 +2762,7 @@
 				});
 				opt.onCleanup = function() {
 					if (ss.isValue(self.validator)) {
-						Q$Externals.validatorAbortHandler(self.validator);
+						Q.validatorAbortHandler(self.validator);
 					}
 				};
 				opt.request = this.getSaveRequest();
@@ -3426,7 +3426,7 @@
 				}
 				$t4 = $t3;
 			}
-			return Q$Externals.turkishLocaleCompare($t2, $t4);
+			return Q.turkishLocaleCompare($t2, $t4);
 		});
 		this.set_fieldByName({});
 		var $t5 = ss.getEnumerator(fields);
@@ -6476,7 +6476,7 @@
 				var form = this.byId$1('Form');
 				if (form.length > 0) {
 					var valOptions = this.getValidatorOptions();
-					this.validator = form.validate(Q$Externals.validateOptions(valOptions));
+					this.validator = form.validate(Q.validateOptions(valOptions));
 				}
 			},
 			resetValidation: function() {
@@ -6616,7 +6616,7 @@
 				var form = this.byId$1('Form');
 				if (form.length > 0) {
 					var valOptions = this.getValidatorOptions();
-					this.validator = form.validate(Q$Externals.validateOptions(valOptions));
+					this.validator = form.validate(Q.validateOptions(valOptions));
 				}
 			},
 			resetValidation: function() {
@@ -7000,7 +7000,7 @@
 		if (!ss.staticEquals(validateBeforeSave, null) && validateBeforeSave() === false) {
 			return false;
 		}
-		valSettings['abortHandler'] = Q$Externals.validatorAbortHandler;
+		valSettings['abortHandler'] = Q.validatorAbortHandler;
 		valSettings['submitHandler'] = function() {
 			if (!ss.staticEquals(submitHandler, null)) {
 				submitHandler();
@@ -7758,7 +7758,7 @@
 			if (ss.isValue(value) && value.length === 0) {
 				return null;
 			}
-			return Q.formatDate(Q$Externals.parseDate(value), 'yyyy-MM-dd');
+			return Q.formatDate(Q.parseDate(value), 'yyyy-MM-dd');
 		},
 		set_value: function(value) {
 			if (ss.isNullOrUndefined(value)) {
@@ -7768,7 +7768,7 @@
 				this.element.val(Q.formatDate(ss.today(), null));
 			}
 			else {
-				this.element.val(Q.formatDate(Q$Externals.parseISODateTime(value), null));
+				this.element.val(Q.formatDate(Q.parseISODateTime(value), null));
 			}
 		},
 		get_valueAsDate: function() {
@@ -7847,7 +7847,7 @@
 			if (ss.isValue(value) && value.length === 0) {
 				return null;
 			}
-			var datePart = Q.formatDate(Q$Externals.parseDate(value), 'yyyy-MM-dd');
+			var datePart = Q.formatDate(Q.parseDate(value), 'yyyy-MM-dd');
 			var timePart = this.$time.val();
 			return datePart + 'T' + timePart + ':00.000';
 		},
@@ -7861,7 +7861,7 @@
 				this.$time.val('00:00');
 			}
 			else {
-				var val = Q$Externals.parseISODateTime(value);
+				var val = Q.parseISODateTime(value);
 				this.element.val(Q.formatDate(val, null));
 				this.$time.val(Q.formatDate(val, 'HH:mm'));
 			}
@@ -8158,7 +8158,7 @@
 				$Serenity_EditorTypeEditor.$editorTypeList.sort(function(x, y) {
 					var xn = x[1];
 					var yn = y[1];
-					return Q$Externals.turkishLocaleCompare(xn, yn);
+					return Q.turkishLocaleCompare(xn, yn);
 				});
 			}
 			return $Serenity_EditorTypeEditor.$editorTypeList;
@@ -9894,7 +9894,7 @@
 			}
 			var parameters = new Object();
 			this.$propertyGrid.save(parameters);
-			Q$Externals.postToService({ service: 'Report/Execute', request: { ReportKey: this.$reportKey, DesignId: 'Default', ExportType: exportType, Parameters: parameters }, target: targetFrame });
+			Q.postToService({ service: 'Report/Execute', request: { ReportKey: this.$reportKey, DesignId: 'Default', ExportType: exportType, Parameters: parameters }, target: targetFrame });
 		},
 		getToolbarButtons: function() {
 			var $t1 = [];
