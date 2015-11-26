@@ -6798,7 +6798,7 @@
 	// Serenity.Toolbar
 	var $Serenity_Toolbar = function(div, options) {
 		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, div, options);
-		this.element.addClass('s-Toolbar').html('<div class="tool-buttons"><div class="buttons-outer"><div class="buttons-inner"></div></div></div>');
+		this.element.addClass('s-Toolbar clearfix').html('<div class="tool-buttons"><div class="buttons-outer"><div class="buttons-inner"></div></div></div>');
 		var container = $('div.buttons-inner', this.element);
 		var buttons = this.options.buttons;
 		for (var i = 0; i < buttons.length; i++) {
@@ -7660,6 +7660,12 @@
 		argumentNull: function() {
 			return new ss.ArgumentNullException('value', Q.text('Controls.FilterPanel.ValueRequired'));
 		},
+		validateEditorValue: function(value) {
+			if (value.length === 0) {
+				throw this.argumentNull();
+			}
+			return value;
+		},
 		getEditorValue: function() {
 			var input = this.get_container().find(':input').not('.select2-focusser').first();
 			if (input.length !== 1) {
@@ -7677,10 +7683,7 @@
 				value = input.val();
 			}
 			value = ss.coalesce(value, '').trim();
-			if (value.length === 0) {
-				throw this.argumentNull();
-			}
-			return value;
+			return this.validateEditorValue(value);
 		},
 		getEditorText: function() {
 			var input = this.get_container().find(':input').not('.select2-focusser').first();
@@ -9610,6 +9613,12 @@
 			$t1.push({ key: $Serenity_FilterOperators.NE });
 			$t1.push({ key: $Serenity_FilterOperators.BW });
 			return this.appendNullableOperators($t1);
+		},
+		validateEditorValue: function(value) {
+			if (value.length === 0) {
+				return value;
+			}
+			return $Serenity_BaseFiltering.prototype.validateEditorValue.call(this, value);
 		}
 	}, $Serenity_BaseFiltering, [$Serenity_IFiltering]);
 	ss.initClass($Serenity_StringInflector, $asm, {});

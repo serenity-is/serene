@@ -72,8 +72,9 @@ namespace Serene
         {
             public static class Dashboard
             {
-                public static LocalText WelcomeMessage = "Welcome to SERENE home page. " + 
-                    "Use the navigation on left to browse other pages...";
+                public static LocalText ContentDescription =
+                    "a sample with random data (from free <em><a href = \"https://almsaeedstudio.com/\" target= \"_blank\">" +
+                    "AdminLTE theme</a></em>)";
             }
 
             public static class UserDialog

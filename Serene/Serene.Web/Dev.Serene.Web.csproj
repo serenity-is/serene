@@ -619,6 +619,13 @@
     <Content Include="Scripts\adminlte\demo.js" />
     <Content Include="Scripts\adminlte\pages\dashboard.js" />
     <Content Include="Scripts\adminlte\pages\dashboard2.js" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.js" />
+    <Content Include="Scripts\bootstrap-slider\slider.css" />
+    <Content Include="Scripts\morris\morris.css" />
+    <Content Include="Scripts\morris\morris.js" />
+    <Content Include="Scripts\morris\morris.min.js" />
+    <Content Include="Scripts\raphael\raphael-min.js" />
+    <Content Include="Scripts\raphael\raphael.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
@@ -1055,6 +1062,25 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\bootstrap-wysihtml5\" />
+    <Folder Include="Scripts\chartjs\" />
+    <Folder Include="Scripts\ckeditor\" />
+    <Folder Include="Scripts\colorpicker\" />
+    <Folder Include="Scripts\datatables\" />
+    <Folder Include="Scripts\datepicker\" />
+    <Folder Include="Scripts\daterangepicker\" />
+    <Folder Include="Scripts\fastclick\" />
+    <Folder Include="Scripts\flot\" />
+    <Folder Include="Scripts\fullcalendar\" />
+    <Folder Include="Scripts\iCheck\" />
+    <Folder Include="Scripts\input-mask\" />
+    <Folder Include="Scripts\ionslider\" />
+    <Folder Include="Scripts\jvectormap\" />
+    <Folder Include="Scripts\knob\" />
+    <Folder Include="Scripts\select2\" />
+    <Folder Include="Scripts\slimScroll\" />
+    <Folder Include="Scripts\sparkline\" />
+    <Folder Include="Scripts\timepicker\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

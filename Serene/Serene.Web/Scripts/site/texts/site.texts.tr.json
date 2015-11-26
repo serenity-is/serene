@@ -201,7 +201,7 @@
     "Permission.Northwind:Customer:Modify": "Oluşturma/Güncelleme",
     "Permission.Northwind:Customer:View": "Görüntüleme",
     "Permission.Northwind:General": "[Genel]",
-    "Site.Dashboard.WelcomeMessage": "SERENE ana sayfasına hoşgeldiniz. Soldaki navigasyondan diğer sayfaları inceleyebilirsiniz...",
+    "Site.Dashboard.ContentDescription": "rastgele veriler içeren bir örnek (ücretsiz <a href='https://almsaeedstudio.com/' target='_blank'>AdminLTE teması<\/a><\/em>)",
     "Site.Layout.GeneralSettings": "Genel Ayarlar",
     "Site.Layout.Language": "Dil",
     "Site.Layout.Theme": "Tema",

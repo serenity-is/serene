@@ -87,6 +87,12 @@ else
     </aside>
 
     <div class="content-wrapper">
+@if (IsSectionDefined("ContentHeader"))
+{
+        <section class="content-header">
+            @RenderSection("ContentHeader")
+        </section>
+}
         <section class="content">
             @RenderBody()
         </section>
