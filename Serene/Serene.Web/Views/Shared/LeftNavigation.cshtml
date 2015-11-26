@@ -1,6 +1,6 @@
 ﻿@model Serene.Navigation.NavigationModel
 
-@helper renderItem(Serenity.Navigation.NavigationItem item, int depth, int[] path) {
+@helper renderItem(Serenity.Navigation.NavigationItem item, int depth, int[] path, string category) {
 
 var isactive = true;
 for (var i = 0; i <= depth; i++)
@@ -14,7 +14,7 @@ for (var i = 0; i <= depth; i++)
 
 var klass = (isactive ? "active" : "") + (item.Children.IsEmptyOrNull() ? "" : " treeview");
 var icon = (item.IconClass ?? (item.Children.Count > 0 ? "icon-layers" : (depth == 0 ? "icon-link" : "fa-circle-o")));
-var title = (LocalText.TryGet("Navigation." + item.Title) ?? item.Title);
+var title = (LocalText.TryGet("Navigation." + category + item.Title) ?? item.Title);
 var sectionUrl = (item.Url ?? "javascript:;");
 var target = item.Target; if (target != null) { target += " target=" + target; }
 
@@ -32,7 +32,7 @@ var target = item.Target; if (target != null) { target += " target=" + target; }
         <ul class="treeview-menu">
         @{path[depth + 1] = 0; }
         @foreach (var child in item.Children) {
-            @renderItem(child, depth + 1, path);
+            @renderItem(child, depth + 1, path, category + item.Title + "/");
         }
         </ul>
     }
@@ -43,7 +43,7 @@ path[depth]++;
 @{var path = new int[10]; }
 @foreach (var item in Model.Items)
 {
-    @renderItem(item, 0, path);
+    @renderItem(item, 0, path, "");
 }
 
 <script type="text/javascript">
