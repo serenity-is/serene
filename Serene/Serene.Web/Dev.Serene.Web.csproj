@@ -1195,7 +1195,7 @@
     <Content Include="Scripts\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Modules\Common\AdminLTE\Views\Widgets.cshtml" />
     <Content Include="Modules\Common\AdminLTE\Views\ChartsMorris.cshtml" />
-    <None Include="Modules\Common\AdminLTE\Views\ChartsChartJS.cshtml" />
+    <Content Include="Modules\Common\AdminLTE\Views\ChartsChartJS.cshtml" />
     <Content Include="Modules\Common\AdminLTE\Views\ChartsFlot.cshtml" />
     <Content Include="Modules\Common\AdminLTE\Views\ChartsInlineCharts.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -1363,7 +1363,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListResponse.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
-    <None Include="Modules\Common\AdminLTE\Views\DashboardV2.cshtml" />
+    <Content Include="Modules\Common\AdminLTE\Views\DashboardV2.cshtml" />
     <Compile Include="Modules\Common\AdminLTE\AdminLTEPage.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
