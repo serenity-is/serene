@@ -1194,6 +1194,10 @@
     <Content Include="Scripts\input-mask\phone-codes\phone-be.json" />
     <Content Include="Scripts\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Modules\Common\AdminLTE\Views\Widgets.cshtml" />
+    <Content Include="Modules\Common\AdminLTE\Views\ChartsMorris.cshtml" />
+    <None Include="Modules\Common\AdminLTE\Views\ChartsChartJS.cshtml" />
+    <Content Include="Modules\Common\AdminLTE\Views\ChartsFlot.cshtml" />
+    <Content Include="Modules\Common\AdminLTE\Views\ChartsInlineCharts.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />

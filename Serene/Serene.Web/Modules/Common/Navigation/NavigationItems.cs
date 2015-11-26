@@ -17,8 +17,13 @@ using Common = Serene.Common.Pages;
 [assembly: NavigationLink(7800, "Northwind/Territories", typeof(Northwind.TerritoryController), icon: "icon-puzzle")]
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
-[assembly: NavigationLink(8010, "Theme Samples/Dashboard v2", url: "~/AdminLTE/DashboardV2", permission: "", icon: "icon-speedometer")]
-[assembly: NavigationLink(8010, "Theme Samples/Widgets", url: "~/AdminLTE/Widgets", permission: "", icon: "fa-th")]
+[assembly: NavigationLink(8100, "Theme Samples/Dashboard v2", url: "~/AdminLTE/DashboardV2", permission: "", icon: "icon-speedometer")]
+[assembly: NavigationLink(8200, "Theme Samples/Widgets", url: "~/AdminLTE/Widgets", permission: "", icon: "fa-th")]
+[assembly: NavigationMenu(8300, "Theme Samples/Charts", icon: "fa-pie-chart")]
+[assembly: NavigationLink(8310, "Theme Samples/Charts/ChartJS", url: "~/AdminLTE/Charts/ChartJS", permission: "")]
+[assembly: NavigationLink(8320, "Theme Samples/Charts/Morris", url: "~/AdminLTE/Charts/Morris", permission: "")]
+[assembly: NavigationLink(8330, "Theme Samples/Charts/Flot", url: "~/AdminLTE/Charts/Flot", permission: "")]
+[assembly: NavigationLink(8340, "Theme Samples/Charts/Inline Charts", url: "~/AdminLTE/Charts/InlineCharts", permission: "")]
 
 [assembly: NavigationMenu(9000, "Administration", icon: "icon-screen-desktop")]
 [assembly: NavigationLink(9100, "Administration/Languages", typeof(Administration.LanguageController), icon: "icon-bubbles")]

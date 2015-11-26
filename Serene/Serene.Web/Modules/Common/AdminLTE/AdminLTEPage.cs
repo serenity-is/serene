@@ -15,5 +15,29 @@ namespace Serene.Common.Pages
         {
             return View("~/Modules/Common/AdminLTE/Views/Widgets.cshtml");
         }
+
+        [Route("Charts/ChartJS")]
+        public ActionResult ChartsChartJS()
+        {
+            return View("~/Modules/Common/AdminLTE/Views/ChartsChartJS.cshtml");
+        }
+
+        [Route("Charts/Flot")]
+        public ActionResult ChartsFlot()
+        {
+            return View("~/Modules/Common/AdminLTE/Views/ChartsFlot.cshtml");
+        }
+
+        [Route("Charts/InlineCharts")]
+        public ActionResult ChartsInlineCharts()
+        {
+            return View("~/Modules/Common/AdminLTE/Views/ChartsInlineCharts.cshtml");
+        }
+
+        [Route("Charts/Morris")]
+        public ActionResult ChartsMorris()
+        {
+            return View("~/Modules/Common/AdminLTE/Views/ChartsMorris.cshtml");
+        }
     }
 }
