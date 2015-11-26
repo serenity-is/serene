@@ -11,69 +11,56 @@ namespace Serene.Navigation
     public partial class NavigationModel
     {
         public List<NavigationItem> Items { get; private set; }
-        public int ActiveSection { get; private set; }
-        public int ActiveLink { get; private set; }
+        public int[] ActivePath { get; set; }
 
         public NavigationModel()
         {
             Items = TwoLevelCache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" + (Authorization.UserId ?? "-1"), TimeSpan.Zero,
-                UserPermissionRow.Fields.GenerationKey, () => 
+                UserPermissionRow.Fields.GenerationKey, () =>
                     NavigationHelper.GetNavigationItems(System.Web.VirtualPathUtility.ToAbsolute));
 
-            SetActiveSectionAndLink();
+            SetActivePath();
         }
 
-        private void SetActiveSectionAndLink()
+        private void SetActivePath()
         {
             string currentUrl = "";
             if (HttpContext.Current != null)
                 currentUrl = HttpContext.Current.Request.Url.ToString();
 
-            int i = 0;
-            int l;
-            int activeSection = -1;
-            int activeLink = -1;
+            int[] currentPath = new int[10];
+            int[] bestMatch = null;
             int bestMatchLength = 0;
-            int bestSection = -1;
-            int bestLink = -1;
 
-            foreach (var section in Items)
+            foreach (var item in Items)
+                SearchActivePath(item, currentUrl, currentPath, 0, ref bestMatch, ref bestMatchLength);
+
+            ActivePath = bestMatch == null ? new int[10] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 } : bestMatch;
+        }
+
+        private void SearchActivePath(NavigationItem link, string currentUrl, int[] currentPath, int depth,
+            ref int[] bestMatch, ref int bestMatchLength)
+        {
+            currentPath[depth + 1] = 0;
+            var url = link.Url ?? "";
+
+            if (url != null && url.StartsWith("~/", StringComparison.Ordinal))
+                url = VirtualPathUtility.ToAbsolute(url);
+
+            if (currentUrl.IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0 &&
+                (bestMatchLength == 0 || url.Length > bestMatchLength))
             {
-                l = 0;
-                foreach (var link in section.Children)
-                {
-                    var url = link.Url;
-
-                    if (url.StartsWith("~/", StringComparison.Ordinal))
-                        url = VirtualPathUtility.ToAbsolute(url);
-
-                    if (currentUrl.IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0 &&
-                        (bestMatchLength == 0 || url.Length > bestMatchLength))
-                    {
-                        bestSection = i;
-                        bestLink = l;
-                        bestMatchLength = url.Length;
-                    }
-
-                    l++;
-                }
-                i++;
+                bestMatch = (int[])currentPath.Clone();
+                bestMatchLength = url.Length;
             }
 
-            if ((activeLink == -1 || activeSection == -1) && bestLink != -1)
+            if (depth <= 9)
             {
-                activeSection = bestSection;
-                activeLink = bestLink;
+                foreach (var child in link.Children)
+                    SearchActivePath(child, currentUrl, currentPath, depth + 1, ref bestMatch, ref bestMatchLength);
             }
 
-            if (activeSection == -1 && activeLink == -1)
-            {
-                activeSection = 0;
-                activeLink = 0;
-            }
-
-            ActiveSection = activeSection;
-            ActiveLink = activeLink;
+            currentPath[depth]++;
         }
     }
 }

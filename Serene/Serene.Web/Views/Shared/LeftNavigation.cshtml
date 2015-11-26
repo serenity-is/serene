@@ -1,53 +1,50 @@
 ﻿@model Serene.Navigation.NavigationModel
 
-@{
-    int sectionIdx, linkIdx;
+@helper renderItem(Serenity.Navigation.NavigationItem item, int depth, int[] path) {
 
-    sectionIdx = 0;
-    foreach (var section in Model.Items)
+var isactive = true;
+for (var i = 0; i <= depth; i++)
+{
+    if (path[i] != Model.ActivePath[i])
     {
-        var sectionClass = (Model.ActiveSection == sectionIdx ? "active" : "") + (section.Children.IsEmptyOrNull() ? "" : " treeview");
-        var sectionIcon = section.IconClass ?? (section.Children.Count > 0 ? "icon-layers" : "icon-link");
-        var sectionTitle = LocalText.TryGet("Navigation." + section.Title) ?? section.Title;
-        var sectionUrl = section.Url ?? "javascript:;";
-        var sectionTarget = section.Target; if (sectionTarget != null) { sectionTarget += " target=" + sectionTarget; }
-
-        <li class="@sectionClass">
-            <a href="@sectionUrl"@sectionTarget>
-                <i class="fa @(sectionIcon)"></i>
-                <span>@sectionTitle</span>
-                @if(!section.Children.IsEmptyOrNull()) {
-                    <i class="fa fa-angle-left pull-right"></i>
-                }
-            </a>
-
-            @if (section.Children.Count > 0)
-            {
-            <ul class="treeview-menu">
-            @{linkIdx = 0;}
-
-            @foreach (var link in section.Children)
-            {
-                var linkClass = Model.ActiveSection == sectionIdx && Model.ActiveLink == linkIdx ? "active" : "";
-                var linkIcon = link.IconClass ?? (link.Children.Count > 0 ? "icon-layers" : "fa icon-circle");
-                var linkUrl = link.Url ?? "javascript:;";
-                var linkTarget = link.Target; if (linkTarget != null) { linkTarget += " target=" + linkTarget; }
-                var title = LocalText.TryGet("Navigation." + section.Title + "/" + link.Title) ?? link.Title;
-
-                <li class="@linkClass">
-                    <a href="@(linkUrl)"@linkTarget>
-                        <i class="fa @linkIcon"></i>
-                        <span>@title</span>
-                    </a>
-                </li>
-
-                linkIdx++;
-            }
-            </ul>
-            }
-            @{sectionIdx++;}
-        </li>
+        isactive = false;
+        break;
     }
+}
+
+var klass = (isactive ? "active" : "") + (item.Children.IsEmptyOrNull() ? "" : " treeview");
+var icon = (item.IconClass ?? (item.Children.Count > 0 ? "icon-layers" : (depth == 0 ? "icon-link" : "fa-circle-o")));
+var title = (LocalText.TryGet("Navigation." + item.Title) ?? item.Title);
+var sectionUrl = (item.Url ?? "javascript:;");
+var target = item.Target; if (target != null) { target += " target=" + target; }
+
+<li class="@klass">
+    <a href="@sectionUrl"@target>
+        <i class="fa @(icon)"></i>
+        <span>@title</span>
+        @if (!item.Children.IsEmptyOrNull()) {
+        <i class="fa fa-angle-left pull-right"></i>
+        }
+    </a>
+
+    @if (item.Children.Count > 0)
+    {
+        <ul class="treeview-menu">
+        @{path[depth + 1] = 0; }
+        @foreach (var child in item.Children) {
+            @renderItem(child, depth + 1, path);
+        }
+        </ul>
+    }
+</li>
+path[depth]++;
+}
+
+@{var path = new int[10]; }
+@foreach (var item in Model.Items)
+{
+    @renderItem(item, 0, path);
+}
 
 <script type="text/javascript">
     function openWindow(url, width, height) {
@@ -59,4 +56,3 @@
             ", scrollbars=1, resizable=yes, left=" + x + ", top=" + y);
     }
 </script>
-}
