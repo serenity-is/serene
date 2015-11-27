@@ -1,5 +1,5 @@
 ﻿
-namespace Serene.Common.Pages
+namespace Serene.Common.AdminLTE
 {
     using System.Web.Mvc;
 
@@ -8,12 +8,12 @@ namespace Serene.Common.Pages
     {
         public ActionResult DashboardV2()
         {
-            return View("~/Modules/Common/AdminLTE/DashboardV2.cshtml");
+            return View("~/Modules/AdminLTE/DashboardV2.cshtml");
         }
 
         public ActionResult Widgets()
         {
-            return View("~/Modules/Common/AdminLTE/Widgets.cshtml");
+            return View("~/Modules/AdminLTE/Widgets.cshtml");
         }
     }
 }
