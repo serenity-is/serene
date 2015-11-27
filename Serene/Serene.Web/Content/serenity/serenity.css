@@ -528,8 +528,7 @@ button.ui-state-hover .ui-button-text {
   background: #F5F7D7;
 }
 .grid-container {
-  min-height: 100px;
-  height: 200px;
+  min-height: 150px;
 }
 .s-SlickPager {
   background: #f0f0f0 none;

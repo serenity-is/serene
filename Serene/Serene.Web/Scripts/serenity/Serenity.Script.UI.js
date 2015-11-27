@@ -764,12 +764,12 @@
 				Q.layoutFillHeight(this.slickContainer);
 				if (this.element.hasClass('responsive-height')) {
 					if (ss.isValue(this.slickGrid) && this.slickGrid.getOptions().autoHeight) {
-						this.slickContainer.children('.slick-viewport').css('height', '');
+						this.slickContainer.children('.slick-viewport').css('height', 'auto');
 						this.slickGrid.setOptions({ autoHeight: false });
 					}
 					if (ss.isValue(this.slickGrid) && (this.slickContainer.height() < 200 || $(window.window).width() < 768)) {
-						this.element.css('height', '');
-						this.slickContainer.css('height', '').children('.slick-viewport').css('height', '');
+						this.element.css('height', 'auto');
+						this.slickContainer.css('height', 'auto').children('.slick-viewport').css('height', 'auto');
 						this.slickGrid.setOptions({ autoHeight: true });
 					}
 				}

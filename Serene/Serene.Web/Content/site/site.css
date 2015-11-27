@@ -6741,6 +6741,11 @@ section.content > .s-DataGrid {
 .s-UserRoleDialog .s-DataGrid {
   height: 100%;
 }
+.s-UserPermissionDialog .ui-dialog-content,
+.s-RolePermissionDialog .ui-dialog-content,
+.s-UserRoleDialog .ui-dialog-content {
+  padding: 8px;
+}
 .s-PermissionCheckEditor .check-box {
   background-image: url(../serenity/images/tick-empty.png);
   background-position: center center;
