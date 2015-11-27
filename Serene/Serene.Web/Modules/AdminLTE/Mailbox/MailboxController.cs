@@ -6,34 +6,19 @@ namespace Serene.AdminLTE
     [Authorize, RoutePrefix("AdminLTE/Mailbox"), Route("{action=index}")]
     public class MailboxController : Controller
     {
-        public ActionResult Buttons()
+        public ActionResult Inbox()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Buttons);
+            return View(MVC.Views.AdminLTE.Mailbox.Inbox);
         }
 
-        public ActionResult General()
+        public ActionResult Compose()
         {
-            return View(MVC.Views.AdminLTE.UIElements.General);
+            return View(MVC.Views.AdminLTE.Mailbox.Compose);
         }
 
-        public ActionResult Icons()
+        public ActionResult Read()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Icons);
-        }
-
-        public ActionResult Modals()
-        {
-            return View(MVC.Views.AdminLTE.UIElements.Modals);
-        }
-
-        public ActionResult Sliders()
-        {
-            return View(MVC.Views.AdminLTE.UIElements.Sliders);
-        }
-
-        public ActionResult Timeline()
-        {
-            return View(MVC.Views.AdminLTE.UIElements.Timeline);
+            return View(MVC.Views.AdminLTE.Mailbox.Read);
         }
     }
 }

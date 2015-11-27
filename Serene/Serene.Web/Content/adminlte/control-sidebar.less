@@ -5,9 +5,10 @@
 //This is a hack to make the background visible while scrolling
 .control-sidebar-bg {
   position: fixed;
-  z-index: 90;
+  z-index: 1000;
   bottom: 0;
 }
+
 //Transitions
 .control-sidebar-bg,
 .control-sidebar {
@@ -16,11 +17,12 @@
   width: @control-sidebar-width;
   .transition(right @transition-speed ease-in-out);
 }
+
 //The sidebar
 .control-sidebar {
   position: absolute;
   padding-top: @navbar-height;
-  z-index: 91;
+  z-index: 1010;
   //Fix position after header collapse
   @media (max-width: @screen-sm) {
     padding-top: @navbar-height + 50;
@@ -37,6 +39,7 @@
     }
   }
 }
+
 //Open without slide over content
 .control-sidebar-open {
   .control-sidebar-bg,
@@ -51,6 +54,7 @@
     }
   }
 }
+
 //Control sidebar tabs
 .nav-tabs.control-sidebar-tabs {
   > li {
@@ -98,6 +102,7 @@
     }
   }
 }
+
 //Headings in the sidebar content
 .control-sidebar-heading {
   font-weight: 400;
@@ -105,12 +110,14 @@
   padding: 10px 0;
   margin-bottom: 10px;
 }
+
 //Subheadings
 .control-sidebar-subheading {
   display: block;
   font-weight: 400;
   font-size: 14px;
 }
+
 //Control Sidebar Menu
 .control-sidebar-menu {
   list-style: none;
@@ -147,6 +154,7 @@
     margin: 0;
   }
 }
+
 //Dark skin
 .control-sidebar-dark {
   color: @sidebar-dark-color;
@@ -213,6 +221,7 @@
     }
   }
 }
+
 //Light skin
 .control-sidebar-light {
   color: lighten(@sidebar-light-color, 10%);

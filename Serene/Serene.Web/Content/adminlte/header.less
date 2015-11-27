@@ -6,7 +6,7 @@
 .main-header {
   position: relative;
   max-height: 100px;
-  z-index: 93;
+  z-index: 1030;
   //Navbar
   > .navbar {
     .transition(margin-left @transition-speed @transition-fn);
@@ -56,6 +56,7 @@
       .navbar-collapse & {
         margin: 7.5px -15px;
       }
+
       > li {
         color: inherit;
         border: 0;
@@ -189,17 +190,20 @@
     }
   }
 }
+
 .navbar-toggle {
   color: #fff;
   border: 0;
   margin: 0;
   padding: @navbar-padding-vertical @navbar-padding-horizontal;
 }
+
 //Control navbar scaffolding on x-small screens
 @media (max-width: @screen-sm-max) {
   .navbar-custom-menu .navbar-nav > li {
     float: left;
   }
+
   //Dont't let links get full width
   .navbar-custom-menu .navbar-nav {
     margin: 0;

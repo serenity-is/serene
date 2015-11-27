@@ -13,7 +13,7 @@
   padding-top: 50px;
   min-height: 100%;
   width: @sidebar-width;
-  z-index: 81;
+  z-index: 810;
   //Using disposable variable to join statements with a comma
   @transition-rule: @transition-speed @transition-fn,
     width @transition-speed @transition-fn;
@@ -39,6 +39,7 @@
 .sidebar {
   padding-bottom: 10px;
 }
+
 // remove border from form
 .sidebar-form {
   input:focus {
@@ -141,11 +142,10 @@
       > a {
         padding: 5px 5px 5px 15px;
         display: block;
-        font-size: 13px;
+        font-size: 14px;
         > .fa,
         > .glyphicon,
-        > .ion,
-        > i {
+        > .ion {
           width: 20px;
         }
         > .fa-angle-left,

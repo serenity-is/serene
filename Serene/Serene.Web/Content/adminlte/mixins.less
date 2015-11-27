@@ -1,7 +1,6 @@
 //AdminLTE mixins
 //===============
 
-
 //Changes the color and the hovering properties of the navbar
 .navbar-variant(@color; @font-color: rgba(255, 255, 255, 0.8); @hover-color: #f6f6f6; @hover-bg: rgba(0, 0, 0, 0.1)) {
   background-color: @color;
@@ -73,12 +72,24 @@
 .border-radius(@radius) {
   border-radius: @radius;
 }
+
 //Different radius each side
-.border-radius(@top-left; @top-right; @bottom-left; @bottom-right) {
-  border-top-left-radius: @top-left;
-  border-top-right-radius: @top-right;
-  border-bottom-right-radius: @bottom-right;
-  border-bottom-left-radius: @bottom-left;
+.border-radius(@top-left;
+@top-right
+;
+@bottom-left
+;
+@bottom-right
+)
+{
+  border-top-left-radius: @top-left
+;
+  border-top-right-radius: @top-right
+;
+  border-bottom-right-radius: @bottom-right
+;
+  border-bottom-left-radius: @bottom-left
+;
 }
 
 //Gradient background

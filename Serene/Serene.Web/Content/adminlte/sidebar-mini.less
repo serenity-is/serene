@@ -14,7 +14,7 @@
       .right-side,
       .main-footer {
         margin-left: 50px!important;
-        z-index: 84;
+        z-index: 840;
       }
 
       //Modify the sidebar to shrink instead of disappearing
@@ -22,7 +22,7 @@
         //Don't go away! Just shrink
         .translate(0, 0);
         width: 50px!important;
-        z-index: 85;
+        z-index: 850;
       }
 
       .sidebar-menu {
@@ -119,20 +119,23 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
 .sidebar-menu:hover {
   overflow: visible;
 }
+
 .sidebar-form,
 .sidebar-menu > li.header {
   overflow: hidden;
   text-overflow: clip;
 }
+
 .sidebar-menu li > a {
   position: relative;
   > .pull-right {
     position: absolute;
-    top: 50%;
     right: 10px;
+    top: 50%;
     margin-top: -7px;
   }
 }

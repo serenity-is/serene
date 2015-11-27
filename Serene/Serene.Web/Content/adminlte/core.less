@@ -13,7 +13,7 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
@@ -23,13 +23,13 @@ body {
 .wrapper {
   .clearfix();
   min-height: 100%;
-  position: static;
+  position: relative;
   overflow: hidden;
   .layout-boxed & {
     max-width: 1250px;
     margin: 0 auto;
     min-height: 100%;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
     position: relative;
   }
 }
@@ -78,6 +78,7 @@ body {
   background-color: @body-bg;
   z-index: 800;
 }
+
 .main-footer {
   background: #fff;
   padding: 15px;
@@ -146,27 +147,18 @@ h6,
 .h6 {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 /* General Links */
 a {
   color: @link-color;
 }
 
-.main-sidebar {
     a:hover,
     a:active,
     a:focus {
       outline: none;
       text-decoration: none;
-    }
-}
-
-.main-header {
-    a:hover,
-    a:active,
-    a:focus {
-      outline: none;
-      text-decoration: none;
-    }
+	  color: @link-hover-color;
 }
 
 /* Page Header */
