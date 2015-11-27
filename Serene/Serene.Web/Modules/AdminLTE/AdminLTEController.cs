@@ -15,5 +15,10 @@ namespace Serene.AdminLTE
         {
             return View(MVC.Views.AdminLTE.Widgets);
         }
+
+        public ActionResult Calendar()
+        {
+            return View(MVC.Views.AdminLTE.Calendar);
+        }
     }
 }

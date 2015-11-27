@@ -1,8 +1,6 @@
-﻿using Serenity;
-using Serenity.Navigation;
+﻿using Serenity.Navigation;
 using Northwind = Serene.Northwind.Pages;
 using Administration = Serene.Administration.Pages;
-using Common = Serene.Common.Pages;
 
 [assembly: NavigationLink(1000, "Dashboard", url: "~/", permission: "", icon: "icon-speedometer")]
 
@@ -33,6 +31,33 @@ using Common = Serene.Common.Pages;
 [assembly: NavigationLink(8440, "Theme Samples/UI Elements/Sliders", url: "~/AdminLTE/UIElements/Sliders", permission: "")]
 [assembly: NavigationLink(8450, "Theme Samples/UI Elements/Timeline", url: "~/AdminLTE/UIElements/Timeline", permission: "")]
 [assembly: NavigationLink(8460, "Theme Samples/UI Elements/Modals", url: "~/AdminLTE/UIElements/Modals", permission: "")]
+
+[assembly: NavigationMenu(8500, "Theme Samples/Forms", icon: "fa-edit")]
+[assembly: NavigationLink(8510, "Theme Samples/Forms/General Elements", url: "~/AdminLTE/Forms/GeneralElements", permission: "")]
+[assembly: NavigationLink(8520, "Theme Samples/Forms/Advanced Elements", url: "~/AdminLTE/Forms/AdvancedElements", permission: "")]
+[assembly: NavigationLink(8530, "Theme Samples/Forms/Text Editors", url: "~/AdminLTE/Forms/TextEditors", permission: "")]
+
+[assembly: NavigationMenu(8600, "Theme Samples/Tables", icon: "fa-table")]
+[assembly: NavigationLink(8610, "Theme Samples/Tables/Simple Tables", url: "~/AdminLTE/Tables/SimpleTables", permission: "")]
+[assembly: NavigationLink(8620, "Theme Samples/Tables/Data Tables", url: "~/AdminLTE/Tables/DataTables", permission: "")]
+
+[assembly: NavigationLink(8700, "Theme Samples/Calendar", url: "~/AdminLTE/Calendar", permission: "", icon: "fa-calendar")]
+
+[assembly: NavigationMenu(8800, "Theme Samples/Mailbox", icon: "fa-envelope")]
+[assembly: NavigationLink(8810, "Theme Samples/Mailbox/Inbox", url: "~/AdminLTE/Mailbox/Inbox", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Mailbox/Compose", url: "~/AdminLTE/Mailbox/Compose", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Mailbox/Read", url: "~/AdminLTE/Mailbox/Read", permission: "")]
+
+[assembly: NavigationMenu(8800, "Theme Samples/Examples", icon: "fa-folder")]
+[assembly: NavigationLink(8810, "Theme Samples/Examples/Invoice", url: "~/AdminLTE/Examples/Invoice", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Profile", url: "~/AdminLTE/Examples/Profile", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Login", url: "~/AdminLTE/Examples/Login", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Register", url: "~/AdminLTE/Examples/Register", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Lockscreen", url: "~/AdminLTE/Examples/Lockscreen", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Error404", url: "~/AdminLTE/Examples/Error404", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/Error500", url: "~/AdminLTE/Examples/Error500", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/BlankPage", url: "~/AdminLTE/Examples/BlankPage", permission: "")]
+[assembly: NavigationLink(8820, "Theme Samples/Examples/PacePage", url: "~/AdminLTE/Examples/PacePage", permission: "")]
 
 [assembly: NavigationMenu(9000, "Administration", icon: "icon-screen-desktop")]
 [assembly: NavigationLink(9100, "Administration/Languages", typeof(Administration.LanguageController), icon: "icon-bubbles")]
