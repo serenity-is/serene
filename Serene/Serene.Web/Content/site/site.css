@@ -6625,6 +6625,11 @@ section.content > .s-DataGrid {
 .s-Dialog .tab-pane > .s-DataGrid {
   padding: 0px 8px 4px 8px;
 }
+.s-Dialog .tab-pane > .s-DialogToolbar {
+  padding-top: 0;
+  background-color: transparent;
+  min-height: initial;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
