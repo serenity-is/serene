@@ -298,6 +298,8 @@ function _init() {
           });
         }
       }
+      
+      window.setTimeout(function() { $(window).triggerHandler('layout'); }, 500);
     }
   };
 
