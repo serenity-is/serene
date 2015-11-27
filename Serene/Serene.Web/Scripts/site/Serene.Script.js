@@ -2340,7 +2340,7 @@
 			return this.byId(Serenity.IntegerEditor).call(this, 'RegionID');
 		},
 		get_regionDescription: function() {
-			return this.byId(Serenity.DateTimeEditor).call(this, 'RegionDescription');
+			return this.byId(Serenity.StringEditor).call(this, 'RegionDescription');
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);

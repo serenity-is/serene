@@ -16,7 +16,7 @@ namespace Serene.Northwind
         public RegionForm(string idPrefix) : base(idPrefix) {}
     
         public IntegerEditor RegionID { get { return ById<IntegerEditor>("RegionID"); } }
-        public DateTimeEditor RegionDescription { get { return ById<DateTimeEditor>("RegionDescription"); } }
+        public StringEditor RegionDescription { get { return ById<StringEditor>("RegionDescription"); } }
     }
 }
 

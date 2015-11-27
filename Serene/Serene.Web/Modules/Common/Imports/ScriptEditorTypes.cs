@@ -45,19 +45,6 @@ namespace Serene.Administration
     }
 }
 
-namespace Serene.Common
-{
-    public partial class LanguageSelectionAttribute : CustomEditorAttribute
-    {
-        public const string Key = "Serene.Common.LanguageSelection";
-    
-        public LanguageSelectionAttribute()
-            : base(Key)
-        {
-        }
-    }
-}
-
 namespace Serene.Membership
 {
     public partial class ChangePasswordPanelAttribute : CustomEditorAttribute
