@@ -70,10 +70,6 @@ a, .slick-cell > a {
     color: #0000be;
 }
 
-.content-wrapper {
-    background-color: #fff;
-}
-
 .sidebar-menu > li {
     font-size: 14px;
 }
@@ -120,4 +116,28 @@ textarea {
 
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #999;
+}
+
+section.content > .s-DataGrid {
+    padding: 10px;
+    border-radius: @box-border-radius;
+    background: #fff;
+    border-top: 3px solid @light-blue;
+    box-shadow: @box-boxshadow;
+}
+
+.s-Dialog .s-DataGrid.editor {
+    border: 1px solid #eee;
+
+
+    .grid-toolbar {
+        background: #f8fafc;
+        padding: 5px 4px 5px 4px;
+        min-height: 43px;
+        margin-bottom: 0;
+    }
+}
+
+.s-Dialog .tab-pane > .s-DataGrid {
+    padding: 0px 8px 4px 8px;
 }

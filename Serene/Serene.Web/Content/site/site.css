@@ -6559,9 +6559,6 @@ a,
 .slick-cell > a {
   color: #0000be;
 }
-.content-wrapper {
-  background-color: #fff;
-}
 .sidebar-menu > li {
   font-size: 14px;
 }
@@ -6604,6 +6601,25 @@ textarea {
 :-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #999;
+}
+section.content > .s-DataGrid {
+  padding: 10px;
+  border-radius: 3px;
+  background: #fff;
+  border-top: 3px solid #3c8dbc;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.s-Dialog .s-DataGrid.editor {
+  border: 1px solid #eee;
+}
+.s-Dialog .s-DataGrid.editor .grid-toolbar {
+  background: #f8fafc;
+  padding: 5px 4px 5px 4px;
+  min-height: 43px;
+  margin-bottom: 0;
+}
+.s-Dialog .tab-pane > .s-DataGrid {
+  padding: 0px 8px 4px 8px;
 }
 .reset-box-sizing,
 .reset-box-sizing *,
@@ -6973,9 +6989,6 @@ textarea {
 .s-Northwind-CustomerDialog .ui-dialog-content {
   overflow: hidden;
 }
-.s-Northwind-CustomerDialog .tab-pane.s-TabOrders {
-  padding: 4px;
-}
 .s-Northwind-CustomerDialog .tab-pane {
   height: auto;
 }
@@ -7011,7 +7024,7 @@ textarea {
   height: 400px;
 }
 .s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
-  height: 310px;
+  height: 296px;
 }
 .s-Northwind-OrderDialog > .size,
 .s-CustomerOrderDialog > .size {

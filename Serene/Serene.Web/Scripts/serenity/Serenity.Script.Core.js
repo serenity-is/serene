@@ -202,7 +202,9 @@
 			}
 		});
 		h = element.parent().height() - h;
-		h = h - (element.outerHeight(true) - element.height());
+		if (element.css('box-sizing') !== 'border-box') {
+			h = h - (element.outerHeight(true) - element.height());
+		}
 		return h;
 	};
 	$Q.layoutFillHeight = function(element) {
