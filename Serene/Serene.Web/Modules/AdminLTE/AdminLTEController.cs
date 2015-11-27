@@ -1,5 +1,5 @@
 ﻿
-namespace Serene.Common.AdminLTE
+namespace Serene.AdminLTE
 {
     using System.Web.Mvc;
 

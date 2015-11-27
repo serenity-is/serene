@@ -1202,6 +1202,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MVC.cs</LastGenOutput>
     </Content>
+    <Content Include="Modules\AdminLTE\UIElements\Buttons.cshtml" />
+    <Content Include="Modules\AdminLTE\UIElements\General.cshtml" />
+    <Content Include="Modules\AdminLTE\UIElements\Icons.cshtml" />
+    <Content Include="Modules\AdminLTE\UIElements\Modals.cshtml" />
+    <Content Include="Modules\AdminLTE\UIElements\Sliders.cshtml" />
+    <Content Include="Modules\AdminLTE\UIElements\Timeline.cshtml" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1212,10 +1223,6 @@
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
     <Content Include="Scripts\jquery.event.drag.min.js" />
     <Content Include="packages.config" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1370,7 +1377,7 @@
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
-    <Compile Include="Modules\AdminLTE\UI\UIController.cs" />
+    <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
     <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">

@@ -38,6 +38,15 @@ namespace MVC
                 public const string Morris = "~/Modules/AdminLTE/Charts/Morris.cshtml";
             }
             public const string DashboardV2 = "~/Modules/AdminLTE/DashboardV2.cshtml";
+            public static class UIElements
+            {
+                public const string Buttons = "~/Modules/AdminLTE/UIElements/Buttons.cshtml";
+                public const string General = "~/Modules/AdminLTE/UIElements/General.cshtml";
+                public const string Icons = "~/Modules/AdminLTE/UIElements/Icons.cshtml";
+                public const string Modals = "~/Modules/AdminLTE/UIElements/Modals.cshtml";
+                public const string Sliders = "~/Modules/AdminLTE/UIElements/Sliders.cshtml";
+                public const string Timeline = "~/Modules/AdminLTE/UIElements/Timeline.cshtml";
+            }
             public const string Widgets = "~/Modules/AdminLTE/Widgets.cshtml";
         }
 
