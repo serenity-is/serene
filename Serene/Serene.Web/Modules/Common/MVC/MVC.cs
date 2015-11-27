@@ -1,0 +1,148 @@
+﻿using System;
+
+namespace MVC
+{
+    public static class Views
+    {
+        public static class Administration
+        {
+            public static class Language
+            {
+                public const string LanguageIndex = "~/Modules/Administration/Language/LanguageIndex.cshtml";
+            }
+
+            public static class Role
+            {
+                public const string RoleIndex = "~/Modules/Administration/Role/RoleIndex.cshtml";
+            }
+
+            public static class Translation
+            {
+                public const string TranslationIndex = "~/Modules/Administration/Translation/TranslationIndex.cshtml";
+            }
+
+            public static class User
+            {
+                public const string UserIndex = "~/Modules/Administration/User/UserIndex.cshtml";
+            }
+
+        }
+
+        public static class AdminLTE
+        {
+            public static class Charts
+            {
+                public const string ChartJS = "~/Modules/AdminLTE/Charts/ChartJS.cshtml";
+                public const string Flot = "~/Modules/AdminLTE/Charts/Flot.cshtml";
+                public const string InlineCharts = "~/Modules/AdminLTE/Charts/InlineCharts.cshtml";
+                public const string Morris = "~/Modules/AdminLTE/Charts/Morris.cshtml";
+            }
+            public const string DashboardV2 = "~/Modules/AdminLTE/DashboardV2.cshtml";
+            public const string Widgets = "~/Modules/AdminLTE/Widgets.cshtml";
+        }
+
+        public static class Common
+        {
+            public static class Dashboard
+            {
+                public const string DashboardIndex = "~/Modules/Common/Dashboard/DashboardIndex.cshtml";
+            }
+        }
+
+        public static class Errors
+        {
+            public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
+        }
+
+        public static class Membership
+        {
+            public static class Account
+            {
+                public const string AccountChangePassword = "~/Modules/Membership/Account/AccountChangePassword.cshtml";
+                public const string AccountForgotPassword = "~/Modules/Membership/Account/AccountForgotPassword.cshtml";
+                public const string AccountLogin = "~/Modules/Membership/Account/AccountLogin.cshtml";
+                public const string AccountResetPassword = "~/Modules/Membership/Account/AccountResetPassword.cshtml";
+                public const string AccountResetPasswordEmail = "~/Modules/Membership/Account/AccountResetPasswordEmail.cshtml";
+            }
+
+        }
+
+        public static class Northwind
+        {
+            public static class Category
+            {
+                public const string CategoryIndex = "~/Modules/Northwind/Category/CategoryIndex.cshtml";
+            }
+
+            public static class Customer
+            {
+                public const string CustomerIndex = "~/Modules/Northwind/Customer/CustomerIndex.cshtml";
+            }
+
+            public static class CustomerCustomerDemo
+            {
+                public const string CustomerCustomerDemoIndex = "~/Modules/Northwind/CustomerCustomerDemo/CustomerCustomerDemoIndex.cshtml";
+            }
+
+            public static class CustomerDemographic
+            {
+                public const string CustomerDemographicIndex = "~/Modules/Northwind/CustomerDemographic/CustomerDemographicIndex.cshtml";
+            }
+
+            public static class Employee
+            {
+                public const string EmployeeIndex = "~/Modules/Northwind/Employee/EmployeeIndex.cshtml";
+            }
+
+            public static class EmployeeTerritory
+            {
+                public const string EmployeeTerritoryIndex = "~/Modules/Northwind/EmployeeTerritory/EmployeeTerritoryIndex.cshtml";
+            }
+
+            public static class Order
+            {
+                public const string OrderIndex = "~/Modules/Northwind/Order/OrderIndex.cshtml";
+            }
+
+            public static class OrderDetail
+            {
+                public const string OrderDetailIndex = "~/Modules/Northwind/OrderDetail/OrderDetailIndex.cshtml";
+            }
+
+            public static class Product
+            {
+                public const string ProductIndex = "~/Modules/Northwind/Product/ProductIndex.cshtml";
+            }
+
+            public static class Region
+            {
+                public const string RegionIndex = "~/Modules/Northwind/Region/RegionIndex.cshtml";
+            }
+
+            public static class Shipper
+            {
+                public const string ShipperIndex = "~/Modules/Northwind/Shipper/ShipperIndex.cshtml";
+            }
+
+            public static class Supplier
+            {
+                public const string SupplierIndex = "~/Modules/Northwind/Supplier/SupplierIndex.cshtml";
+            }
+
+            public static class Territory
+            {
+                public const string TerritoryIndex = "~/Modules/Northwind/Territory/TerritoryIndex.cshtml";
+            }
+        }
+
+        public static class Shared
+        {
+            public const string _Layout = "~/Views/Shared/_Layout.cshtml";
+            public const string _LayoutHead = "~/Views/Shared/_LayoutHead.cshtml";
+            public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
+            public const string Error = "~/Views/Shared/Error.cshtml";
+            public const string LeftNavigation = "~/Views/Shared/LeftNavigation.cshtml";
+        }
+    }
+}
+

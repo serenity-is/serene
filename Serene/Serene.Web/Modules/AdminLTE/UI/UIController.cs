@@ -8,17 +8,17 @@ namespace Serene.Common.AdminLTE
     {
         public ActionResult Buttons()
         {
-            return View("~/Modules/Common/AdminLTE/UI/Buttons.cshtml");
+            return View();
         }
 
         public ActionResult General()
         {
-            return View("~/Modules/Common/AdminLTE/UI/General.cshtml");
+            return View();
         }
 
         public ActionResult Icons()
         {
-            return View("~/Modules/Common/AdminLTE/UI/Icons.cshtml");
+            return View();
         }
 
     }

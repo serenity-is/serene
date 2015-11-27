@@ -13,7 +13,7 @@ namespace Serene.Common.Pages
         [Authorize, HttpGet, Route("~/")]
         public ActionResult Index()
         {
-            return View("~/Modules/Common/Dashboard/DashboardIndex.cshtml");
+            return View(MVC.Views.Common.Dashboard.DashboardIndex);
         }
     }
 }

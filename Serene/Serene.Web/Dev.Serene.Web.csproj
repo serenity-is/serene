@@ -1198,6 +1198,10 @@
     <Content Include="Modules\AdminLTE\Charts\ChartJS.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\Flot.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\InlineCharts.cshtml" />
+    <Content Include="Modules\Common\MVC\MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MVC.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1385,6 +1389,11 @@
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPage.cs" />
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
+    <Compile Include="Modules\Common\MVC\MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />

@@ -8,22 +8,22 @@ namespace Serene.Common.AdminLTE
     {
         public ActionResult ChartJS()
         {
-            return View("~/Modules/AdminLTE/Charts/ChartJS.cshtml");
+            return View(MVC.Views.AdminLTE.Charts.ChartJS);
         }
 
         public ActionResult Flot()
         {
-            return View("~/Modules/AdminLTE/Charts/Flot.cshtml");
+            return View(MVC.Views.AdminLTE.Charts.Flot);
         }
 
         public ActionResult InlineCharts()
         {
-            return View("~/Modules/AdminLTE/Charts/InlineCharts.cshtml");
+            return View(MVC.Views.AdminLTE.Charts.InlineCharts);
         }
 
         public ActionResult Morris()
         {
-            return View("~/Modules/AdminLTE/Charts/Morris.cshtml");
+            return View(MVC.Views.AdminLTE.Charts.Morris);
         }
     }
 }

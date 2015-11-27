@@ -8,12 +8,12 @@ namespace Serene.Common.AdminLTE
     {
         public ActionResult DashboardV2()
         {
-            return View("~/Modules/AdminLTE/DashboardV2.cshtml");
+            return View(MVC.Views.AdminLTE.DashboardV2);
         }
 
         public ActionResult Widgets()
         {
-            return View("~/Modules/AdminLTE/Widgets.cshtml");
+            return View(MVC.Views.AdminLTE.Widgets);
         }
     }
 }

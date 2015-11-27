@@ -14,7 +14,7 @@ namespace Serene.Northwind.Pages
         [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
-            return View("~/Modules/Northwind/Order/OrderIndex.cshtml");
+            return View(MVC.Views.Northwind.Order.OrderIndex);
         }
     }
 }

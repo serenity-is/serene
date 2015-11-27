@@ -12,7 +12,7 @@
 <html lang="@UICulture" class="no-js@(hideNav ? " no-navigation" : "")">
 <!--<![endif]-->
 <head>
-    @{Html.RenderPartial("~/Views/Shared/_LayoutHead.cshtml");}
+    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
     @RenderSection("Head", false)
     <title>@ViewBag.Title</title>
 </head>
@@ -81,7 +81,7 @@ else
                 </div>
             </form>
             <ul class="sidebar-menu" id="SidebarMenu">
-                @{Html.RenderPartial("~/Views/Shared/LeftNavigation.cshtml", new Serene.Navigation.NavigationModel()); }
+                @{Html.RenderPartial(MVC.Views.Shared.LeftNavigation, new Serene.Navigation.NavigationModel()); }
             </ul>
         </section>
     </aside>

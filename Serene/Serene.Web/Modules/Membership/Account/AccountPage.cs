@@ -23,7 +23,7 @@ namespace Serene.Membership.Pages
         public ActionResult Login()
         {
             ViewBag.HideLeftNavigation = true;
-            return View("~/Modules/Membership/Account/AccountLogin.cshtml");
+            return View(MVC.Views.Membership.Account.AccountLogin);
         }
 
         [HttpPost, JsonFilter]
@@ -48,7 +48,7 @@ namespace Serene.Membership.Pages
         [HttpGet, Authorize]
         public ActionResult ChangePassword()
         {
-            return View("~/Modules/Membership/Account/AccountChangePassword.cshtml");
+            return View(MVC.Views.Membership.Account.AccountChangePassword);
         }
 
         [HttpPost, JsonFilter, ServiceAuthorize]
@@ -90,7 +90,7 @@ namespace Serene.Membership.Pages
         [HttpGet]
         public ActionResult ForgotPassword()
         {
-            return View("~/Modules/Membership/Account/AccountForgotPassword.cshtml");
+            return View(MVC.Views.Membership.Account.AccountForgotPassword);
         }
 
         [HttpPost, JsonFilter]
@@ -132,7 +132,7 @@ namespace Serene.Membership.Pages
 
                 var emailSubject = Texts.Forms.Membership.ResetPassword.EmailSubject.ToString();
                 var emailBody = TemplateHelper.RenderTemplate(
-                    "~/Modules/Membership/Account/AccountResetPasswordEmail.cshtml", emailModel);
+                    MVC.Views.Membership.Account.AccountResetPasswordEmail, emailModel);
 
                 var message = new MailMessage();
                 message.To.Add(user.Email);
@@ -159,7 +159,7 @@ namespace Serene.Membership.Pages
 
         private ActionResult Error(string message)
         {
-            return View("~/Views/Errors/ValidationError.cshtml",
+            return View(MVC.Views.Errors.ValidationError,
                 new ValidationError(Texts.Validation.InvalidResetToken));
         }
 
@@ -191,7 +191,7 @@ namespace Serene.Membership.Pages
                     return Error(Texts.Validation.InvalidResetToken);
             }
 
-            return View("~/Modules/Membership/Account/AccountResetPassword.cshtml", 
+            return View(MVC.Views.Membership.Account.AccountResetPassword, 
                 new ResetPasswordModel { Token = t });
         }
 

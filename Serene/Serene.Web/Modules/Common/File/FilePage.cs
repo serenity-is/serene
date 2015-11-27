@@ -10,14 +10,6 @@
 
     public class FileController : Controller
     {
-        [Route("File/Index")]
-        [Route("File/")]
-        [PageAuthorize("Administration")]
-        public ActionResult Index()
-        {
-            return View("~/Modules/Common/File/FileIndex.cshtml");
-        }
-
         [Route("upload/{*pathInfo}")]
         public ActionResult Read(string pathInfo)
         {

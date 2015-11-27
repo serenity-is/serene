@@ -11,7 +11,7 @@ namespace Serene.Administration.Pages
         [PageAuthorize(Administration.PermissionKeys.Translation)]
         public ActionResult Index()
         {
-            return View("~/Modules/Administration/Language/LanguageIndex.cshtml");
+            return View(MVC.Views.Administration.Language.LanguageIndex);
         }
     }
 }

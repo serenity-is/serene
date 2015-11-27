@@ -11,7 +11,7 @@ namespace Serene.Northwind.Pages
         [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
-            return View("~/Modules/Northwind/Territory/TerritoryIndex.cshtml");
+            return View(MVC.Views.Northwind.Territory.TerritoryIndex);
         }
     }
 }

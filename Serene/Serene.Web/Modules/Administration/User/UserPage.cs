@@ -11,7 +11,7 @@ namespace Serene.Administration.Pages
         [PageAuthorize(Administration.PermissionKeys.Security)]
         public ActionResult Index()
         {
-            return View("~/Modules/Administration/User/UserIndex.cshtml");
+            return View(MVC.Views.Administration.User.UserIndex);
         }
     }
 }

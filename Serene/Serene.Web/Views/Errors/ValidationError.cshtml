@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Texts.Site.ValidationError.Title;
     ViewBag.PageId = "ValidationError";
-    Layout = Serenity.Authorization.IsLoggedIn ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_LayoutNoNavigation.cshtml";
+    Layout = Serenity.Authorization.IsLoggedIn ? MVC.Views.Shared._Layout : MVC.Views.Shared._LayoutNoNavigation;
 }
 
 <style type="text/css">
