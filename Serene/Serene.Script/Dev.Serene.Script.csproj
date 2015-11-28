@@ -36,6 +36,10 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="Imports\ServiceContracts\ScriptUserDefinition.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\Authorization.cs" />
     <Compile Include="Common\Helper\GridEditorDialog.cs" />
     <Compile Include="Common\Navigation\ThemeSelection.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />

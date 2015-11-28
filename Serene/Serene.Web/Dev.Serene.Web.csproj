@@ -1394,6 +1394,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
+    <Compile Include="Modules\Administration\User\ScriptUserDefinition.cs" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
     <Compile Include="Modules\AdminLTE\Examples\ExamplesController.cs" />

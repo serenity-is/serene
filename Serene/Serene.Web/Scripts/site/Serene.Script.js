@@ -8,6 +8,18 @@
 	global.Serene.Northwind = global.Serene.Northwind || {};
 	ss.initAssembly($asm, 'Serene.Script');
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Authorization
+	var $Serene_Authorization = function() {
+	};
+	$Serene_Authorization.__typeName = 'Serene.Authorization';
+	$Serene_Authorization.get_userDefinition = function() {
+		return Q.getRemoteData('UserData');
+	};
+	$Serene_Authorization.hasPermission = function(permissionKey) {
+		return $Serene_Authorization.get_userDefinition().Permissions[permissionKey];
+	};
+	global.Serene.Authorization = $Serene_Authorization;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.ScriptInitialization
 	var $Serene_ScriptInitialization = function() {
 	};
@@ -1092,6 +1104,7 @@
 	};
 	$Serene_Northwind_TerritoryGrid.__typeName = 'Serene.Northwind.TerritoryGrid';
 	global.Serene.Northwind.TerritoryGrid = $Serene_Northwind_TerritoryGrid;
+	ss.initClass($Serene_Authorization, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
