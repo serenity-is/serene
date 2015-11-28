@@ -1178,7 +1178,7 @@
     <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPasswordEmail.cshtml" />
     <Content Include="Content\site\site.less" />
-    <Content Include="Content\site\site.adminlte.less" />
+    <Content Include="Content\site\site.theme.less" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\README.md" />
@@ -1305,7 +1305,6 @@
     <Content Include="Modules\Common\Dashboard\DashboardIndex.cshtml" />
     <Content Include="Modules\Membership\_ViewStart.cshtml" />
     <Content Include="Modules\_ViewStart.cshtml" />
-    <Content Include="Content\site\site.layout.less" />
     <Content Include="Scripts\site\Serene.Script.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />

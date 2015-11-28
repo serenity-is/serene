@@ -6814,6 +6814,14 @@ section.content > .s-DataGrid {
   background-color: transparent;
   min-height: initial;
 }
+.page-title {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 8px;
+  color: #0090d9;
+  padding: 8px 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
@@ -6822,14 +6830,6 @@ section.content > .s-DataGrid {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-}
-.page-title {
-  border-bottom: 1px solid #eee;
-  margin-bottom: 8px;
-  color: #0090d9;
-  padding: 8px 8px;
-  font-size: 15px;
-  font-weight: 600;
 }
 .s-LanguageDialog > .size {
   min-width: 650px;
