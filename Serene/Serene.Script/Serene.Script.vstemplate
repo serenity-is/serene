@@ -50,6 +50,7 @@
         <Folder Name="Navigation" TargetFolderName="Navigation">
           <ProjectItem ReplaceParameters="true" TargetFileName="LanguageSelection.cs">LanguageSelection.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="SidebarSearch.cs">SidebarSearch.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ThemeSelection.cs">ThemeSelection.cs</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Imports" TargetFolderName="Imports">
@@ -231,7 +232,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.7.0" />
+      <package id="Serenity.Script" version="1.8.1" />
     </packages>
   </WizardData>
   <WizardExtension>

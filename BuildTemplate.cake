@@ -53,7 +53,7 @@ Task("PrepareVSIX")
             x.Name == ns + "Compile" ||
             x.Name == ns + "EmbeddedResource" ||
             x.Name == ns + "Folder" ||
-            x.Name == ns + "None")).Select(x => x.Attribute("Include").Value)
+            x.Name == ns + "None")).Select(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"))
             .ToList();
             
         list.Sort(delegate(string x, string y) {

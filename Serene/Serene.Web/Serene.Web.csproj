@@ -56,24 +56,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.1.7.0\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.1.8.1\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.1.7.0\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.1.8.1\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.7.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.1.7.0\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.1.8.1\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.1.7.0\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.1.8.1\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Entity" />
@@ -168,6 +168,7 @@
     <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\jquery.metisMenu.css" />
     <Content Include="Content\pace.css" />
+    <Content Include="Content\pace.min.css" />
     <Content Include="Content\serenity\images\32px.png" />
     <Content Include="Content\serenity\images\accessright.png" />
     <Content Include="Content\serenity\images\accordion-down.png" />
@@ -1069,15 +1070,6 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
-    <Content Include="Scripts\knob\jquery.knob.js" />
-    <Content Include="Scripts\morris\morris.css" />
-    <Content Include="Scripts\morris\morris.js" />
-    <Content Include="Scripts\morris\morris.min.js" />
-    <Content Include="Scripts\raphael\raphael-min.js" />
-    <Content Include="Scripts\raphael\raphael.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
@@ -1106,10 +1098,19 @@
     <Content Include="Scripts\jquery.metisMenu.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
-    <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Scripts\knob\jquery.knob.js" />
+    <Content Include="Scripts\morris\morris.css" />
+    <Content Include="Scripts\morris\morris.js" />
+    <Content Include="Scripts\morris\morris.min.js" />
+    <Content Include="Scripts\raphael\raphael-min.js" />
+    <Content Include="Scripts\raphael\raphael.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\rsvp.js" />
@@ -1250,6 +1251,8 @@
     <Content Include="Modules\AdminLTE\Examples\BlankPage.cshtml" />
     <Content Include="Modules\AdminLTE\Examples\PacePage.cshtml" />
     <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
+    <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
+    <Content Include="fonts\Simple-Line-Icons.woff2" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1357,11 +1360,11 @@
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
+    <Content Include="Views\Errors\ValidationError.cshtml" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="tools\Node\lessc.cmd" />
-    <Content Include="Views\Errors\ValidationError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
