@@ -1,4 +1,4 @@
-
+﻿
 using Serenity;
 using Serenity.ComponentModel;
 using System;
@@ -90,29 +90,7 @@ namespace Serene.Membership
 
 namespace Serene.Northwind
 {
-    public partial class CustomerCityEditorAttribute : CustomEditorAttribute
-    {
-        public const string Key = "Serene.Northwind.CustomerCityEditor";
-    
-        public CustomerCityEditorAttribute()
-            : base(Key)
-        {
-        }
-    
-        public String Country
-        {
-            get { return GetOption<String>("country"); }
-            set { SetOption("country", value); }
-        }
-    
-        public String CountryEditorID
-        {
-            get { return GetOption<String>("countryEditorID"); }
-            set { SetOption("countryEditorID", value); }
-        }
-    }
-
-    public partial class CustomerEditorAttribute : CustomEditorAttribute
+    public partial class CustomerEditorAttribute : LookupEditorBaseAttribute
     {
         public const string Key = "Serene.Northwind.CustomerEditor";
     
@@ -129,28 +107,6 @@ namespace Serene.Northwind
         public OrderDetailsEditorAttribute()
             : base(Key)
         {
-        }
-    }
-
-    public partial class OrderShipCityEditorAttribute : CustomEditorAttribute
-    {
-        public const string Key = "Serene.Northwind.OrderShipCityEditor";
-    
-        public OrderShipCityEditorAttribute()
-            : base(Key)
-        {
-        }
-    
-        public String Country
-        {
-            get { return GetOption<String>("country"); }
-            set { SetOption("country", value); }
-        }
-    
-        public String CountryEditorID
-        {
-            get { return GetOption<String>("countryEditorID"); }
-            set { SetOption("countryEditorID", value); }
         }
     }
 

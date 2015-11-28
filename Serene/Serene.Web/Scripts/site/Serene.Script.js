@@ -651,18 +651,6 @@
 	$Serene_Northwind_CategoryGrid.__typeName = 'Serene.Northwind.CategoryGrid';
 	global.Serene.Northwind.CategoryGrid = $Serene_Northwind_CategoryGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerCityEditor
-	var $Serene_Northwind_CustomerCityEditor = function(container) {
-		this.$countryLink = null;
-		this.$country = null;
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, container);
-		this.$countryLink = new (ss.makeGenericType(Serenity.CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
-			this.set_country(p.get_value());
-		}));
-	};
-	$Serene_Northwind_CustomerCityEditor.__typeName = 'Serene.Northwind.CustomerCityEditor';
-	global.Serene.Northwind.CustomerCityEditor = $Serene_Northwind_CustomerCityEditor;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoDialog
 	var $Serene_Northwind_CustomerCustomerDemoDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -719,8 +707,8 @@
 	global.Serene.Northwind.CustomerDialog = $Serene_Northwind_CustomerDialog;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerEditor
-	var $Serene_Northwind_CustomerEditor = function(container) {
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, container);
+	var $Serene_Northwind_CustomerEditor = function(container, options) {
+		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).$ctor1.call(this, container, options);
 	};
 	$Serene_Northwind_CustomerEditor.__typeName = 'Serene.Northwind.CustomerEditor';
 	global.Serene.Northwind.CustomerEditor = $Serene_Northwind_CustomerEditor;
@@ -873,18 +861,6 @@
 	};
 	$Serene_Northwind_OrderGrid.__typeName = 'Serene.Northwind.OrderGrid';
 	global.Serene.Northwind.OrderGrid = $Serene_Northwind_OrderGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderShipCityEditor
-	var $Serene_Northwind_OrderShipCityEditor = function(container) {
-		this.$countryLink = null;
-		this.$country = null;
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).call(this, container);
-		this.$countryLink = new (ss.makeGenericType(Serenity.CascadedWidgetLink$1, [Serenity.LookupEditor]))(this, ss.mkdel(this, function(p) {
-			this.set_country(p.get_value());
-		}));
-	};
-	$Serene_Northwind_OrderShipCityEditor.__typeName = 'Serene.Northwind.OrderShipCityEditor';
-	global.Serene.Northwind.OrderShipCityEditor = $Serene_Northwind_OrderShipCityEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderShippingState
 	var $Serene_Northwind_OrderShippingState = function() {
@@ -1821,32 +1797,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_CustomerCityEditor, $asm, {
-		getLookupKey: function() {
-			return 'Northwind.CustomerCity';
-		},
-		getItems: function(lookup) {
-			return Enumerable.from(ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getItems.call(this, lookup)).where(ss.mkdel(this, function(x) {
-				return ss.referenceEquals(x.Country, this.get_country());
-			}));
-		},
-		get_countryEditorID: function() {
-			return this.$countryLink.get_parentID();
-		},
-		set_countryEditorID: function(value) {
-			this.$countryLink.set_parentID(value);
-		},
-		get_country: function() {
-			return this.$country;
-		},
-		set_country: function(value) {
-			if (!ss.referenceEquals(this.$country, value)) {
-				this.$country = value;
-				this.set_value(null);
-				this.updateItems();
-			}
-		}
-	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.IStringValue]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoForm, $asm, {
 		get_customerID: function() {
@@ -1899,7 +1849,7 @@
 			return 'Northwind.Customer';
 		},
 		getItemText: function(item, lookup) {
-			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
+			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Serenity.LookupEditorOptions, Object]).prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
 		}
 	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.IStringValue]);
 	ss.initClass($Serene_Northwind_CustomerForm, $asm, {
@@ -1943,9 +1893,10 @@
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.CustomerCountry';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'Country', null, $t1, null, null, null);
-			this.addEqualityFilter($Serene_Northwind_OrderShipCityEditor).call(this, 'City', null, null, null, null, function(w) {
-				w.set_countryEditorID('Country');
-			});
+			var $t2 = Serenity.LookupEditorOptions.$ctor();
+			$t2.lookupKey = 'Northwind.CustomerCity';
+			$t2.cascadeFrom = 'Country';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'City', null, $t2, null, null, null);
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
@@ -1959,7 +1910,7 @@
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
 		updateInterface: function() {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
-			Serenity.PropertyGrid.setReadOnly(this.form.get_customerID(), true);
+			Serenity.EditorUtils.setReadOnly(this.form.get_customerID(), true);
 		}
 	}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderGrid, $asm, {
@@ -1976,12 +1927,13 @@
 			var $t3 = Serenity.LookupEditorOptions.$ctor();
 			$t3.lookupKey = 'Northwind.OrderShipCountry';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'ShipCountry', null, $t3, null, null, null);
-			this.addEqualityFilter($Serene_Northwind_OrderShipCityEditor).call(this, 'ShipCity', null, null, null, null, function(w) {
-				w.set_countryEditorID('ShipCountry');
-			});
 			var $t4 = Serenity.LookupEditorOptions.$ctor();
-			$t4.lookupKey = 'Northwind.Employee';
-			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'EmployeeID', null, $t4, null, null, null);
+			$t4.lookupKey = 'Northwind.OrderShipCity';
+			$t4.cascadeFrom = 'ShipCountry';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'ShipCity', null, $t4, null, null, null);
+			var $t5 = Serenity.LookupEditorOptions.$ctor();
+			$t5.lookupKey = 'Northwind.Employee';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'EmployeeID', null, $t5, null, null, null);
 		},
 		get_customerFilter: function() {
 			return this.$7$CustomerFilterField;
@@ -2219,32 +2171,6 @@
 			return this.byId(Serenity.StringEditor).call(this, 'ShipCountry');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_OrderShipCityEditor, $asm, {
-		getLookupKey: function() {
-			return 'Northwind.OrderShipCity';
-		},
-		getItems: function(lookup) {
-			return Enumerable.from(ss.makeGenericType(Serenity.LookupEditorBase$2, [Object, Object]).prototype.getItems.call(this, lookup)).where(ss.mkdel(this, function(x) {
-				return ss.referenceEquals(x.ShipCountry, this.get_country());
-			}));
-		},
-		get_countryEditorID: function() {
-			return this.$countryLink.get_parentID();
-		},
-		set_countryEditorID: function(value) {
-			this.$countryLink.set_parentID(value);
-		},
-		get_country: function() {
-			return this.$country;
-		},
-		set_country: function(value) {
-			if (!ss.referenceEquals(this.$country, value)) {
-				this.$country = value;
-				this.set_value(null);
-				this.updateItems();
-			}
-		}
-	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.IStringValue]);
 	ss.initEnum($Serene_Northwind_OrderShippingState, $asm, { NotShipped: 0, Shipped: 1 });
 	ss.initClass($Serene_Northwind_PhoneEditor, $asm, {
 		formatValue: function() {
@@ -2467,7 +2393,6 @@
 	ss.setMetadata($Serene_Membership_ResetPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ResetPassword')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
-	ss.setMetadata($Serene_Northwind_CustomerCityEditor, { members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'Country', type: 16, returnType: String, getter: { name: 'get_Country', type: 8, sname: 'get_country', returnType: String, params: [] }, setter: { name: 'set_Country', type: 8, sname: 'set_country', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'CountryEditorID', type: 16, returnType: String, getter: { name: 'get_CountryEditorID', type: 8, sname: 'get_countryEditorID', returnType: String, params: [] }, setter: { name: 'set_CountryEditorID', type: 8, sname: 'set_countryEditorID', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serene_Northwind_CustomerCustomerDemoDialog, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.FormKeyAttribute('Northwind.CustomerCustomerDemo'), new Serenity.LocalTextPrefixAttribute('Northwind.CustomerCustomerDemo'), new Serenity.ServiceAttribute('Northwind/CustomerCustomerDemo')] });
 	ss.setMetadata($Serene_Northwind_CustomerCustomerDemoGrid, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.DialogTypeAttribute($Serene_Northwind_CustomerCustomerDemoDialog), new Serenity.LocalTextPrefixAttribute('Northwind.CustomerCustomerDemo'), new Serenity.ServiceAttribute('Northwind/CustomerCustomerDemo')] });
 	ss.setMetadata($Serene_Northwind_CustomerDemographicDialog, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('CustomerTypeID'), new Serenity.FormKeyAttribute('Northwind.CustomerDemographic'), new Serenity.LocalTextPrefixAttribute('Northwind.CustomerDemographic'), new Serenity.ServiceAttribute('Northwind/CustomerDemographic')] });
@@ -2485,7 +2410,6 @@
 	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
 	ss.setMetadata($Serene_Northwind_OrderGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Order'), new Serenity.IdPropertyAttribute('OrderID'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
-	ss.setMetadata($Serene_Northwind_OrderShipCityEditor, { members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'Country', type: 16, returnType: String, getter: { name: 'get_Country', type: 8, sname: 'get_country', returnType: String, params: [] }, setter: { name: 'set_Country', type: 8, sname: 'set_country', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'CountryEditorID', type: 16, returnType: String, getter: { name: 'get_CountryEditorID', type: 8, sname: 'get_countryEditorID', returnType: String, params: [] }, setter: { name: 'set_CountryEditorID', type: 8, sname: 'set_countryEditorID', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serene_Northwind_OrderShippingState, { attr: [new Serenity.EnumKeyAttribute('Northwind.OrderShippingState')] });
 	ss.setMetadata($Serene_Northwind_PhoneEditor, { attr: [new Serenity.EditorAttribute()], members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, sname: 'get_multiple', returnType: Boolean, params: [] }, setter: { name: 'set_Multiple', type: 8, sname: 'set_multiple', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serene_Northwind_ProductDialog, { attr: [new Serenity.IdPropertyAttribute('ProductID'), new Serenity.NamePropertyAttribute('ProductName'), new Serenity.FormKeyAttribute('Northwind.Product'), new Serenity.LocalTextPrefixAttribute('Northwind.Product'), new Serenity.ServiceAttribute('Northwind/Product')] });

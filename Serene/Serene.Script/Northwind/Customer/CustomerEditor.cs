@@ -3,12 +3,11 @@ namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
-    using System.Collections.Generic;
 
     public class CustomerEditor : LookupEditorBase<CustomerRow>
     {
-        public CustomerEditor(jQueryObject container)
-            : base(container)
+        public CustomerEditor(jQueryObject container, LookupEditorOptions options)
+            : base(container, options)
         {
         }
 

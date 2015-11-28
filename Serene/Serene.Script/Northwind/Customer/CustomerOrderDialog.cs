@@ -9,7 +9,7 @@ namespace Serene.Northwind
         {
             base.UpdateInterface();
 
-            PropertyGrid.SetReadOnly(form.CustomerID, true);
+            EditorUtils.SetReadOnly(form.CustomerID, true);
         }
     }
 }

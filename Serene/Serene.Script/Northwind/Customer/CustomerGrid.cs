@@ -22,7 +22,8 @@ namespace Serene.Northwind
             AddEqualityFilter<LookupEditor>(Fields.Country,
                 options: new LookupEditorOptions { LookupKey = "Northwind.CustomerCountry" });
 
-            AddEqualityFilter<OrderShipCityEditor>(Fields.City, init: w => w.CountryEditorID = Fields.Country);
+            AddEqualityFilter<LookupEditor>(Fields.City, options: new LookupEditorOptions {
+                LookupKey = "Northwind.CustomerCity", CascadeFrom = Fields.Country });
         }
     }
 }

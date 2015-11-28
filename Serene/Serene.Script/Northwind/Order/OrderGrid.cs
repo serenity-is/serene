@@ -35,7 +35,8 @@ namespace Serene.Northwind
             AddEqualityFilter<LookupEditor>(Fields.ShipCountry,
                 options: new LookupEditorOptions { LookupKey = "Northwind.OrderShipCountry" });
 
-            AddEqualityFilter<OrderShipCityEditor>(Fields.ShipCity, init: w => w.CountryEditorID = Fields.ShipCountry);
+            AddEqualityFilter<LookupEditor>(Fields.ShipCity, options: new LookupEditorOptions {
+                LookupKey = "Northwind.OrderShipCity", CascadeFrom = Fields.ShipCountry });
 
             AddEqualityFilter<LookupEditor>(Fields.EmployeeID,
                 options: new LookupEditorOptions { LookupKey = EmployeeRow.LookupKey });
