@@ -6,7 +6,7 @@
     @RenderSection("Head", false)
     <title>@ViewBag.Title</title>
 </head>
-<body id="s-@(ViewBag.PageId)Page" class="no-navigation">
+<body id="s-@(ViewBag.PageId)Page" class="@(ViewBag.BodyClass) no-navigation">
     @RenderBody()
 </body>
 </html>

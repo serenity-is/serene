@@ -6,34 +6,54 @@ namespace Serene.AdminLTE
     [Authorize, RoutePrefix("AdminLTE/Examples"), Route("{action=index}")]
     public class ExamplesController : Controller
     {
-        public ActionResult Buttons()
+        public ActionResult BlankPage()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Buttons);
+            return View(MVC.Views.AdminLTE.Examples.BlankPage);
         }
 
-        public ActionResult General()
+        public ActionResult Error404()
         {
-            return View(MVC.Views.AdminLTE.UIElements.General);
+            return View(MVC.Views.AdminLTE.Examples.Error404);
         }
 
-        public ActionResult Icons()
+        public ActionResult Error500()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Icons);
+            return View(MVC.Views.AdminLTE.Examples.Error500);
         }
 
-        public ActionResult Modals()
+        public ActionResult Invoice()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Modals);
+            return View(MVC.Views.AdminLTE.Examples.Invoice);
         }
 
-        public ActionResult Sliders()
+        public ActionResult InvoicePrint()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Sliders);
+            return View(MVC.Views.AdminLTE.Examples.InvoicePrint);
         }
 
-        public ActionResult Timeline()
+        public ActionResult Lockscreen()
         {
-            return View(MVC.Views.AdminLTE.UIElements.Timeline);
+            return View(MVC.Views.AdminLTE.Examples.Lockscreen);
+        }
+
+        public ActionResult Login()
+        {
+            return View(MVC.Views.AdminLTE.Examples.Login);
+        }
+
+        public ActionResult PacePage()
+        {
+            return View(MVC.Views.AdminLTE.Examples.PacePage);
+        }
+
+        public new ActionResult Profile()
+        {
+            return View(MVC.Views.AdminLTE.Examples.Profile);
+        }
+
+        public ActionResult Register()
+        {
+            return View(MVC.Views.AdminLTE.Examples.Register);
         }
     }
 }

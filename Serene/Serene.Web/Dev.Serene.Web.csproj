@@ -1229,6 +1229,7 @@
     <Content Include="Modules\AdminLTE\Examples\Error500.cshtml" />
     <Content Include="Modules\AdminLTE\Examples\BlankPage.cshtml" />
     <Content Include="Modules\AdminLTE\Examples\PacePage.cshtml" />
+    <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />

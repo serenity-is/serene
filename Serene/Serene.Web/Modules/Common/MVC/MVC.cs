@@ -44,6 +44,7 @@ namespace MVC
                 public const string Error404 = "~/Modules/AdminLTE/Examples/Error404.cshtml";
                 public const string Error500 = "~/Modules/AdminLTE/Examples/Error500.cshtml";
                 public const string Invoice = "~/Modules/AdminLTE/Examples/Invoice.cshtml";
+                public const string InvoicePrint = "~/Modules/AdminLTE/Examples/InvoicePrint.cshtml";
                 public const string Lockscreen = "~/Modules/AdminLTE/Examples/Lockscreen.cshtml";
                 public const string Login = "~/Modules/AdminLTE/Examples/Login.cshtml";
                 public const string PacePage = "~/Modules/AdminLTE/Examples/PacePage.cshtml";
