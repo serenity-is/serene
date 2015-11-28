@@ -56,24 +56,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.1.8.1\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.1.8.2\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.1.8.1\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.1.8.2\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.1.8.1\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.1.8.2\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.1.8.1\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.1.8.2\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Entity" />
@@ -1098,6 +1098,8 @@
     <Content Include="Scripts\jquery.metisMenu.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
@@ -1107,12 +1109,10 @@
     <Content Include="Scripts\morris\morris.css" />
     <Content Include="Scripts\morris\morris.js" />
     <Content Include="Scripts\morris\morris.min.js" />
-    <Content Include="Scripts\raphael\raphael-min.js" />
-    <Content Include="Scripts\raphael\raphael.js" />
-    <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\raphael\raphael-min.js" />
+    <Content Include="Scripts\raphael\raphael.js" />
     <Content Include="Scripts\rsvp.js" />
     <Content Include="Scripts\rsvp.min.js" />
     <Content Include="Scripts\saltarelle\linq.js" />
@@ -1191,9 +1191,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Modules\Membership\Account\AccountChangePassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
@@ -1253,6 +1250,9 @@
     <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
     <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1414,6 +1414,7 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
+    <Compile Include="Modules\Administration\User\ScriptUserDefinition.cs" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
     <Compile Include="Modules\AdminLTE\Examples\ExamplesController.cs" />

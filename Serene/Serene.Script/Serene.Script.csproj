@@ -36,6 +36,10 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="Imports\ServiceContracts\ScriptUserDefinition.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\Authorization.cs" />
     <Compile Include="Common\Helper\GridEditorDialog.cs" />
     <Compile Include="Common\Navigation\ThemeSelection.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
@@ -278,14 +282,12 @@
     <Compile Include="Membership\ForgotPasswordPanel.cs" />
     <Compile Include="Membership\ChangePasswordPanel.cs" />
     <Compile Include="Membership\LoginPanel.cs" />
-    <Compile Include="Northwind\Customer\CustomerCityEditor.cs" />
     <Compile Include="Northwind\Customer\CustomerEditor.cs" />
     <Compile Include="Northwind\Customer\CustomerOrdersGrid.cs" />
     <Compile Include="Northwind\Customer\CustomerOrderDialog.cs" />
     <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
     <Compile Include="Common\Helper\GridEditorBase.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
-    <Compile Include="Northwind\Order\OrderShipCityEditor.cs" />
     <Compile Include="Northwind\Order\FreightFormatter.cs" />
     <Compile Include="Northwind\Shared\PhoneEditor.cs" />
     <Compile Include="Northwind\Shipper\ShipperFormatter.cs" />
@@ -366,16 +368,16 @@
     <Reference Include="Saltarelle.Web">
       <HintPath>..\..\packages\Saltarelle.Web.3.1.0\lib\Saltarelle.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Script.Core, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.1\lib\net2\Serenity.Script.Core.dll</HintPath>
+    <Reference Include="Serenity.Script.Core, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.2\lib\net2\Serenity.Script.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.Imports, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.1\lib\net2\Serenity.Script.Imports.dll</HintPath>
+    <Reference Include="Serenity.Script.Imports, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.2\lib\net2\Serenity.Script.Imports.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.UI, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.1\lib\net2\Serenity.Script.UI.dll</HintPath>
+    <Reference Include="Serenity.Script.UI, Version=1.8.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.2\lib\net2\Serenity.Script.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

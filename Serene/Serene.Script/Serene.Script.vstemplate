@@ -139,10 +139,12 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierService.cs">Northwind.SupplierService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryRow.cs">Northwind.TerritoryRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryService.cs">Northwind.TerritoryService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="ServiceContracts.log">ServiceContracts.log</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Membership" TargetFolderName="Membership">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Authorization.cs">Authorization.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPanel.cs">ChangePasswordPanel.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.cs">ForgotPasswordPanel.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.cs">LoginPanel.cs</ProjectItem>
@@ -154,7 +156,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="CategoryGrid.cs">CategoryGrid.cs</ProjectItem>
         </Folder>
         <Folder Name="Customer" TargetFolderName="Customer">
-          <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCityEditor.cs">CustomerCityEditor.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDialog.cs">CustomerDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEditor.cs">CustomerEditor.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrid.cs">CustomerGrid.cs</ProjectItem>
@@ -182,7 +183,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="FreightFormatter.cs">FreightFormatter.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderDialog.cs">OrderDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderGrid.cs">OrderGrid.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="OrderShipCityEditor.cs">OrderShipCityEditor.cs</ProjectItem>
         </Folder>
         <Folder Name="OrderDetail" TargetFolderName="OrderDetail">
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailDialog.cs">OrderDetailDialog.cs</ProjectItem>
@@ -232,7 +232,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.8.1" />
+      <package id="Serenity.Script" version="1.8.2" />
     </packages>
   </WizardData>
   <WizardExtension>
