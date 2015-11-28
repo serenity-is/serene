@@ -1,10 +1,3 @@
-/*!
- *   AdminLTE v2.3.0
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
-!*/
 /*
  * Core: General Layout Style
  * -------------------------
@@ -6726,6 +6719,9 @@ body {
 }
 .sidebar-menu > li {
   font-size: 14px;
+}
+.sidebar-menu .treeview-menu > li > a {
+  font-size: 13px;
 }
 .main-footer {
   padding: 3px 15px;

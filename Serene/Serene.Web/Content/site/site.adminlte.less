@@ -1,28 +1,10 @@
-﻿/*!
- *   AdminLTE v2.3.0
- *   Author: Almsaeed Studio
- *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
- *   License: Open source - MIT
- *           Please visit http://opensource.org/licenses/MIT for more information
-!*/
-
-//google fonts
-//@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
-
-//Bootstrap Variables & Mixins
-//The core bootstrap code have not been modified. These files
-//are included only for reference.
-@import (reference) "../bootstrap-less/mixins.less";
+﻿@import (reference) "../bootstrap-less/mixins.less";
 @import (reference) "../bootstrap-less/variables.less";
 
-//MISC
-//----
 @import "../adminlte/core.less";
 @import "../adminlte/variables.less";
 @import "../adminlte/mixins.less";
 
-//COMPONENTS
-//-----------
 @import "../adminlte/header.less";
 @import "../adminlte/sidebar.less";
 @import "../adminlte/sidebar-mini.less";
@@ -82,6 +64,10 @@ body {
 
 .sidebar-menu > li {
     font-size: 14px;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+    font-size: 13px;
 }
 
 .main-footer {
