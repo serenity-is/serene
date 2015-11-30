@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentMigrator, Version=1.6.0.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentMigrator.1.6.0\lib\40\FluentMigrator.dll</HintPath>
       <Private>True</Private>
@@ -1428,6 +1432,9 @@
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
+    <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
+    <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <Compile Include="Modules\Common\Reporting\ReportRepository.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordModel.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordEmailModel.cs" />

@@ -42,6 +42,14 @@ namespace Serene.Northwind
                 options: new LookupEditorOptions { LookupKey = EmployeeRow.LookupKey });
         }
 
+        protected override List<ToolButton> GetButtons()
+        {
+            var buttons = base.GetButtons();
+            buttons.Add(Common.ExcelExportHelper.CreateToolButton(this,
+                OrderService.BaseUrl + "/ListExcel", this.OnViewSubmit));
+            return buttons;
+        }
+
         public CustomerEditor CustomerFilter { get; private set; }
     }
 }

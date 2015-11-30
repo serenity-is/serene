@@ -1,5 +1,5 @@
 ﻿
-namespace Serene.Northwind.Forms
+namespace Serene.Northwind.Columns
 {
     using Serenity.ComponentModel;
     using System;

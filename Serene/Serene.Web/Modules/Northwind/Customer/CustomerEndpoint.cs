@@ -2,7 +2,10 @@
 namespace Serene.Northwind.Endpoints
 {
     using Serenity.Data;
+    using Serenity.Reporting;
     using Serenity.Services;
+    using Serenity.Web;
+    using System;
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.CustomerRepository;
@@ -38,6 +41,15 @@ namespace Serene.Northwind.Endpoints
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyRepository().List(connection, request);
+        }
+
+        public FileContentResult ListExcel(IDbConnection connection, ListRequest request)
+        {
+            var data = List(connection, request).Entities;
+            var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.CustomerColumns));
+            var bytes = new ReportRepository().Render(report);
+            return ExcelContentResult.Create(bytes, "CustomerList_" + 
+                DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
         }
     }
 }

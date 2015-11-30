@@ -236,6 +236,42 @@
 	$Serene_Administration_UserRoleDialog.__typeName = 'Serene.Administration.UserRoleDialog';
 	global.Serene.Administration.UserRoleDialog = $Serene_Administration_UserRoleDialog;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Common.ExcelExportHelper
+	var $Serene_Common_ExcelExportHelper = function() {
+	};
+	$Serene_Common_ExcelExportHelper.__typeName = 'Serene.Common.ExcelExportHelper';
+	$Serene_Common_ExcelExportHelper.createToolButton = function(grid, service, onViewSubmit, title) {
+		return {
+			title: title,
+			cssClass: 'export-xlsx-button',
+			onClick: function() {
+				if (!onViewSubmit()) {
+					return;
+				}
+				var request = Q.deepClone(grid.getView().params);
+				request.Take = 0;
+				request.Skip = 0;
+				var sortBy = grid.getView().sortBy;
+				if (ss.isValue(sortBy)) {
+					request.Sort = sortBy;
+				}
+				request.IncludeColumns = [];
+				var $t1 = grid.getGrid().getColumns();
+				for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+					var column = $t1[$t2];
+					var $t4 = request.IncludeColumns;
+					var $t3 = column.id;
+					if (ss.isNullOrUndefined($t3)) {
+						$t3 = column.field;
+					}
+					$t4.push($t3);
+				}
+				Q.postToService({ service: service, request: request, target: '_blank' });
+			}
+		};
+	};
+	global.Serene.Common.ExcelExportHelper = $Serene_Common_ExcelExportHelper;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorBase
 	var $Serene_Common_GridEditorBase$1 = function(TEntity) {
 		var $type = function(container) {
@@ -1717,6 +1753,7 @@
 			return "<div id='~_Roles'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
@@ -1910,6 +1947,11 @@
 			$t2.lookupKey = 'Northwind.CustomerCity';
 			$t2.cascadeFrom = 'Country';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'City', null, $t2, null, null, null);
+		},
+		getButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Customer/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			return buttons;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
@@ -1947,6 +1989,11 @@
 			var $t5 = Serenity.LookupEditorOptions.$ctor();
 			$t5.lookupKey = 'Northwind.Employee';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'EmployeeID', null, $t5, null, null, null);
+		},
+		getButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Order/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			return buttons;
 		},
 		get_customerFilter: function() {
 			return this.$7$CustomerFilterField;
@@ -2271,6 +2318,11 @@
 			this.setEquality('SupplierID', Serenity.IdExtensions.convertToId(this.$supplier.get_value()));
 			this.setEquality('CategoryID', Serenity.IdExtensions.convertToId(this.$category.get_value()));
 			return true;
+		},
+		getButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			return buttons;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
