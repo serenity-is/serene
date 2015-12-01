@@ -44,6 +44,7 @@
       </Folder>
       <Folder Name="Common" TargetFolderName="Common">
         <Folder Name="Helper" TargetFolderName="Helper">
+          <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.cs">ExcelExportHelper.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.cs">GridEditorBase.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.cs">GridEditorDialog.cs</ProjectItem>
         </Folder>
@@ -232,7 +233,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.8.3" />
+      <package id="Serenity.Script" version="1.8.4" />
     </packages>
   </WizardData>
   <WizardExtension>

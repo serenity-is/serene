@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentMigrator, Version=1.6.0.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentMigrator.1.6.0\lib\40\FluentMigrator.dll</HintPath>
       <Private>True</Private>
@@ -56,24 +60,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.1.8.3\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.1.8.4\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.1.8.3\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.1.8.4\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.3\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.4\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.1.8.3\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.1.8.4\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.1.8.3\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.1.8.4\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Entity" />
@@ -1448,6 +1452,9 @@
     <Compile Include="Modules\Common\Navigation\NavigationItems.cs" />
     <Compile Include="Modules\Common\Navigation\NavigationModel.cs" />
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
+    <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
+    <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <Compile Include="Modules\Common\Reporting\ReportRepository.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordModel.cs" />
     <Compile Include="Modules\Membership\Account\ResetPasswordEmailModel.cs" />

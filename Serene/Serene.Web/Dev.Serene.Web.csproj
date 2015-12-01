@@ -1082,6 +1082,8 @@
     <Content Include="Scripts\jquery.metisMenu.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
@@ -1091,12 +1093,10 @@
     <Content Include="Scripts\morris\morris.css" />
     <Content Include="Scripts\morris\morris.js" />
     <Content Include="Scripts\morris\morris.min.js" />
-    <Content Include="Scripts\raphael\raphael-min.js" />
-    <Content Include="Scripts\raphael\raphael.js" />
-    <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\raphael\raphael-min.js" />
+    <Content Include="Scripts\raphael\raphael.js" />
     <Content Include="Scripts\rsvp.js" />
     <Content Include="Scripts\rsvp.min.js" />
     <Content Include="Scripts\saltarelle\linq.js" />
@@ -1175,9 +1175,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Modules\Membership\Account\AccountChangePassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountForgotPassword.cshtml" />
     <Content Include="Modules\Membership\Account\AccountResetPassword.cshtml" />
@@ -1237,6 +1234,9 @@
     <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
     <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />

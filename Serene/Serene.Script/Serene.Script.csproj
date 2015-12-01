@@ -36,6 +36,7 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="Common\Helper\ExcelExportHelper.cs" />
     <Compile Include="Imports\ServiceContracts\ScriptUserDefinition.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -368,16 +369,16 @@
     <Reference Include="Saltarelle.Web">
       <HintPath>..\..\packages\Saltarelle.Web.3.1.0\lib\Saltarelle.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Script.Core, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.3\lib\net2\Serenity.Script.Core.dll</HintPath>
+    <Reference Include="Serenity.Script.Core, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.4\lib\net2\Serenity.Script.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.Imports, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.3\lib\net2\Serenity.Script.Imports.dll</HintPath>
+    <Reference Include="Serenity.Script.Imports, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.4\lib\net2\Serenity.Script.Imports.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.UI, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.8.3\lib\net2\Serenity.Script.UI.dll</HintPath>
+    <Reference Include="Serenity.Script.UI, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.1.8.4\lib\net2\Serenity.Script.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
