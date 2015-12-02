@@ -1415,6 +1415,7 @@
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\DefaultDB_20151202_193700_ProductLog.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\DefaultDB_20151014_030700_OrderDetailID.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\DefaultDB_20141123_155100_Initial.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
@@ -1458,6 +1459,7 @@
     <Compile Include="Modules\Northwind\Order\OrderColumns.cs" />
     <Compile Include="Modules\Northwind\PermissionKeys.cs" />
     <Compile Include="Modules\Northwind\Product\ProductColumns.cs" />
+    <Compile Include="Modules\Northwind\Product\ProductLogRow.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />
     <Compile Include="Modules\Northwind\Shipper\ShipperColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />

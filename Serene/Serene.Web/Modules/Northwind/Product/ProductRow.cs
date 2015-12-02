@@ -15,6 +15,7 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Product")]
+    [CaptureLog(typeof(ProductLogRow))]
     public sealed class ProductRow : Row, IIdRow, INameRow
     {
         [DisplayName("Product Id"), Identity, LookupInclude]
