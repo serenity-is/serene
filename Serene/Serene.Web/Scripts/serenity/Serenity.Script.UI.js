@@ -5908,6 +5908,37 @@
 	};
 	global.Serenity.QuickSearchInputOptions = $Serenity_QuickSearchInputOptions;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.Recaptcha
+	var $Serenity_Recaptcha = function(div, opt) {
+		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, div, opt);
+		this.element.addClass('g-recaptcha').attr('data-sitekey', this.options.siteKey);
+		if (!!(ss.isNullOrUndefined(window.window.grecaptcha) && $('script#RecaptchaInclude').length === 0)) {
+			var src = 'https://www.google.com/recaptcha/api.js';
+			var $t1 = this.options.language;
+			if (ss.isNullOrUndefined($t1)) {
+				$t1 = ss.coalesce($('html').attr('lang'), '');
+			}
+			src += '?hl=' + $t1;
+			$('<script/>').attr('id', 'RecaptchaInclude').attr('src', src).appendTo(document.body);
+		}
+		var $t3 = $('<input />').insertBefore(this.element).attr('id', this.get_uniqueName() + '_validate').val('x');
+		var $t2 = {};
+		$t2['visibility'] = 'hidden';
+		$t2['width'] = '0px';
+		$t2['height'] = '0px';
+		$t2['padding'] = '0px';
+		var input = $t3.css($t2);
+		var self = this;
+		$Serenity_VX.addValidationRule$1(input, this.uniqueName, ss.mkdel(this, function(e) {
+			if (ss.isNullOrEmptyString(this.get_value())) {
+				return Q.text('Validation.Required');
+			}
+			return null;
+		}));
+	};
+	$Serenity_Recaptcha.__typeName = 'Serenity.Recaptcha';
+	global.Serenity.Recaptcha = $Serenity_Recaptcha;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ReflectionOptionsSetter
 	var $Serenity_ReflectionOptionsSetter = function() {
 	};
@@ -9727,6 +9758,14 @@
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_QuickSearchInputOptions]));
 	ss.initClass($Serenity_QuickSearchInputOptions, $asm, {});
+	ss.initClass($Serenity_Recaptcha, $asm, {
+		get_value: function() {
+			return this.element.find('.g-recaptcha-response').val();
+		},
+		set_value: function(value) {
+			// ignore
+		}
+	}, ss.makeGenericType($Serenity_Widget$1, [Object]), [$Serenity_IStringValue]);
 	ss.initClass($Serenity_ReflectionOptionsSetter, $asm, {});
 	ss.initClass($Serenity_ReflectionUtils, $asm, {});
 	ss.initClass($Serenity_StringFiltering, $asm, {
@@ -10136,6 +10175,7 @@
 	ss.setMetadata($Serenity_PersonNameEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Kişi İsim'), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_PhoneEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Telefon'), new Serenity.OptionsTypeAttribute($Serenity_PhoneEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_PhoneEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Dahili Girişine İzin Ver')], name: 'AllowExtension', type: 16, returnType: Boolean, getter: { name: 'get_AllowExtension', type: 8, params: [], returnType: Boolean, fget: 'allowExtension' }, setter: { name: 'set_AllowExtension', type: 8, params: [Boolean], returnType: Object, fset: 'allowExtension' }, fname: 'allowExtension' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Uluslararası Telefon Girişine İzin Ver')], name: 'AllowInternational', type: 16, returnType: Boolean, getter: { name: 'get_AllowInternational', type: 8, params: [], returnType: Boolean, fget: 'allowInternational' }, setter: { name: 'set_AllowInternational', type: 8, params: [Boolean], returnType: Object, fset: 'allowInternational' }, fname: 'allowInternational' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Dahili Telefon')], name: 'Internal', type: 16, returnType: Boolean, getter: { name: 'get_Internal', type: 8, params: [], returnType: Boolean, fget: 'internal' }, setter: { name: 'set_Internal', type: 8, params: [Boolean], returnType: Object, fset: 'internal' }, fname: 'internal' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Cep Telefonu')], name: 'Mobile', type: 16, returnType: Boolean, getter: { name: 'get_Mobile', type: 8, params: [], returnType: Boolean, fget: 'mobile' }, setter: { name: 'set_Mobile', type: 8, params: [Boolean], returnType: Object, fset: 'mobile' }, fname: 'mobile' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Birden Çok Girişe İzin Ver')], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, params: [], returnType: Boolean, fget: 'multiple' }, setter: { name: 'set_Multiple', type: 8, params: [Boolean], returnType: Object, fset: 'multiple' }, fname: 'multiple' }] });
+	ss.setMetadata($Serenity_Recaptcha, { attr: [new Serenity.EditorAttribute(), new Serenity.ElementAttribute('<div />')] });
 	ss.setMetadata($Serenity_Select2AjaxEditor$2, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')] });
 	ss.setMetadata($Serenity_Select2Editor$2, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')] });
 	ss.setMetadata($Serenity_SelectEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Açılır Liste'), new Serenity.OptionsTypeAttribute($Serenity_SelectEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });

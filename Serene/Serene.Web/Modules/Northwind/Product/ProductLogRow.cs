@@ -2,6 +2,7 @@
 namespace Serene.Northwind.Entities
 {
     using Newtonsoft.Json;
+    using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using Serenity.Services;
