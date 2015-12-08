@@ -37,7 +37,7 @@ namespace Serene.Administration.Entities
             set { Fields.PermissionKey[this] = value; }
         }
 
-        [DisplayName("Role Role Name"), Expression("jRole.RoleName")]
+        [DisplayName("Role Role Name"), Expression("jRole.[RoleName]")]
         public String RoleRoleName
         {
             get { return Fields.RoleRoleName[this]; }

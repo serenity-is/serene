@@ -3,7 +3,7 @@
 namespace Serene.Migrations.DefaultDB
 {
     [Migration(20141111113000)]
-    public class DefaultDB_20141111_113000_Permissions : Migration
+    public class DefaultDB_20141111_113000_Permissions : AutoReversingMigration
     {
         public override void Up()
         {
@@ -72,14 +72,6 @@ namespace Serene.Migrations.DefaultDB
                 .OnTable("UserRoles")
                 .OnColumn("RoleId").Ascending()
                 .OnColumn("UserId").Ascending();
-        }
-
-        public override void Down()
-        {
-            Delete.Table("UserRoles");
-            Delete.Table("UserPermissions");
-            Delete.Table("RolePermissions");
-            Delete.Table("Roles");
         }
     }
 }

@@ -2020,7 +2020,7 @@
 		},
 		createToolbarExtensions: function() {
 			$Serene_Northwind_OrderGrid.prototype.createToolbarExtensions.call(this);
-			this.get_customerFilter().get_element().parent().hide();
+			this.get_customerFilter().get_element().closest('.quick-filter-item').remove();
 		},
 		getGridCanLoad: function() {
 			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);

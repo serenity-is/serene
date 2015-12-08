@@ -45,7 +45,7 @@ namespace Serene.Northwind.Entities
             set { Fields.RegionID[this] = value; }
         }
 
-        [DisplayName("Region"), Expression("jRegion.RegionDescription"), QuickSearch, LookupInclude]
+        [DisplayName("Region"), Expression("jRegion.[RegionDescription]"), QuickSearch, LookupInclude]
         public String RegionDescription
         {
             get { return Fields.RegionDescription[this]; }

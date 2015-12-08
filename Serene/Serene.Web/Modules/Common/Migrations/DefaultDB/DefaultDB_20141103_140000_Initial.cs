@@ -4,7 +4,7 @@ using System;
 namespace Serene.Migrations.DefaultDB
 {
     [Migration(20141103140000)]
-    public class DefaultDB_20141103_140000_Initial : Migration
+    public class DefaultDB_20141103_140000_Initial : AutoReversingMigration
     {
         public override void Up()
         {
@@ -62,12 +62,6 @@ namespace Serene.Migrations.DefaultDB
                 LanguageId = "tr",
                 LanguageName = "Turkish"
             });
-        }
-
-        public override void Down()
-        {
-            Delete.Table("Users");
-            Delete.Table("Languages");
         }
     }
 }

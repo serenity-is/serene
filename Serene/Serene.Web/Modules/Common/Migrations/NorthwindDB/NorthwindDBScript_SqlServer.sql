@@ -121,7 +121,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Customers](
-    [ID] [int] IDENTITY(1,1) NOT NULL,
 	[CustomerID] [nvarchar](5) NOT NULL,
 	[CompanyName] [nvarchar](40) NOT NULL,
 	[ContactName] [nvarchar](30) NULL,
@@ -3631,7 +3630,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Territories](
-    [ID] [int] IDENTITY NOT NULL,
 	[TerritoryID] [nvarchar](20) NOT NULL,
 	[TerritoryDescription] [nvarchar](50) NOT NULL,
 	[RegionID] [int] NOT NULL,

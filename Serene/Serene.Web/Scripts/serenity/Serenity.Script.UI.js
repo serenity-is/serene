@@ -1415,7 +1415,10 @@
 							element(e);
 						}
 					}), options, init);
-					this.add_submitHandlers(ss.mkdel(this, function() {
+					var submitHandler = ss.mkdel(this, function() {
+						if (quickFilter.hasClass('ignore')) {
+							return;
+						}
 						var request = this.view.params;
 						request.EqualityFilter = request.EqualityFilter || {};
 						var value = $Serenity_EditorUtils.getValue(widget);
@@ -1432,9 +1435,13 @@
 							request.EqualityFilter[field] = value;
 							quickFilter.toggleClass('quick-filter-active', active);
 						}
-					}));
+					});
 					$Serenity_WX.change(widget, ss.mkdel(this, function(e1) {
 						this.quickFilterChange(e1);
+					}));
+					this.add_submitHandlers(submitHandler);
+					widget.get_element().bind('remove.' + this.uniqueName, ss.mkdel(this, function(x) {
+						this.remove_submitHandlers(submitHandler);
 					}));
 					return widget;
 				};

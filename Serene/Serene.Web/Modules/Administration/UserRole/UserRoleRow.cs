@@ -37,14 +37,14 @@ namespace Serene.Administration.Entities
             set { Fields.RoleId[this] = value; }
         }
 
-        [DisplayName("User Username"), Expression("jUser.Username")]
+        [DisplayName("User Username"), Expression("jUser.[Username]")]
         public String Username
         {
             get { return Fields.Username[this]; }
             set { Fields.Username[this] = value; }
         }
 
-        [DisplayName("User Display Name"), Expression("jUser.DisplayName")]
+        [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
         public String User
         {
             get { return Fields.User[this]; }

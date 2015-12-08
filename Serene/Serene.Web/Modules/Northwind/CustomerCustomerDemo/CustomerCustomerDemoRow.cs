@@ -36,77 +36,77 @@ namespace Serene.Northwind.Entities
             set { Fields.CustomerTypeID[this] = value; }
         }
 
-        [DisplayName("Customer Company Name"), Expression("jCustomer.CompanyName")]
+        [DisplayName("Customer Company Name"), Expression("jCustomer.[CompanyName")]
         public String CustomerCompanyName
         {
             get { return Fields.CustomerCompanyName[this]; }
             set { Fields.CustomerCompanyName[this] = value; }
         }
 
-        [DisplayName("Customer Contact Name"), Expression("jCustomer.ContactName")]
+        [DisplayName("Customer Contact Name"), Expression("jCustomer.[ContactName]")]
         public String CustomerContactName
         {
             get { return Fields.CustomerContactName[this]; }
             set { Fields.CustomerContactName[this] = value; }
         }
 
-        [DisplayName("Customer Contact Title"), Expression("jCustomer.ContactTitle")]
+        [DisplayName("Customer Contact Title"), Expression("jCustomer.[ContactTitle]")]
         public String CustomerContactTitle
         {
             get { return Fields.CustomerContactTitle[this]; }
             set { Fields.CustomerContactTitle[this] = value; }
         }
 
-        [DisplayName("Customer Address"), Expression("jCustomer.Address")]
+        [DisplayName("Customer Address"), Expression("jCustomer.[Address]")]
         public String CustomerAddress
         {
             get { return Fields.CustomerAddress[this]; }
             set { Fields.CustomerAddress[this] = value; }
         }
 
-        [DisplayName("Customer City"), Expression("jCustomer.City")]
+        [DisplayName("Customer City"), Expression("jCustomer.[City]")]
         public String CustomerCity
         {
             get { return Fields.CustomerCity[this]; }
             set { Fields.CustomerCity[this] = value; }
         }
 
-        [DisplayName("Customer Region"), Expression("jCustomer.Region")]
+        [DisplayName("Customer Region"), Expression("jCustomer.[Region]")]
         public String CustomerRegion
         {
             get { return Fields.CustomerRegion[this]; }
             set { Fields.CustomerRegion[this] = value; }
         }
 
-        [DisplayName("Customer Postal Code"), Expression("jCustomer.PostalCode")]
+        [DisplayName("Customer Postal Code"), Expression("jCustomer.[PostalCode]")]
         public String CustomerPostalCode
         {
             get { return Fields.CustomerPostalCode[this]; }
             set { Fields.CustomerPostalCode[this] = value; }
         }
 
-        [DisplayName("Customer Country"), Expression("jCustomer.Country")]
+        [DisplayName("Customer Country"), Expression("jCustomer.[Country]")]
         public String CustomerCountry
         {
             get { return Fields.CustomerCountry[this]; }
             set { Fields.CustomerCountry[this] = value; }
         }
 
-        [DisplayName("Customer Phone"), Expression("jCustomer.Phone")]
+        [DisplayName("Customer Phone"), Expression("jCustomer.[Phone]")]
         public String CustomerPhone
         {
             get { return Fields.CustomerPhone[this]; }
             set { Fields.CustomerPhone[this] = value; }
         }
 
-        [DisplayName("Customer Fax"), Expression("jCustomer.Fax")]
+        [DisplayName("Customer Fax"), Expression("jCustomer.[Fax]")]
         public String CustomerFax
         {
             get { return Fields.CustomerFax[this]; }
             set { Fields.CustomerFax[this] = value; }
         }
 
-        [DisplayName("Customer Type Customer Desc"), Expression("jCustomerType.CustomerDesc")]
+        [DisplayName("Customer Type Customer Desc"), Expression("jCustomerType.[CustomerDesc]")]
         public String CustomerTypeCustomerDesc
         {
             get { return Fields.CustomerTypeCustomerDesc[this]; }

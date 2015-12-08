@@ -57,77 +57,77 @@ namespace Serene.Northwind.Entities
             set { Fields.Discount[this] = value; }
         }
 
-        [DisplayName("Line Total"), Expression("(t0.UnitPrice * t0.Quantity - t0.Discount)"), AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
+        [DisplayName("Line Total"), Expression("(t0.[UnitPrice] * t0.[Quantity] - t0.[Discount])"), AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
         public Decimal? LineTotal
         {
             get { return Fields.LineTotal[this]; }
             set { Fields.LineTotal[this] = value; }
         }
 
-        [DisplayName("Order Customer Id"), Expression("o.CustomerID")]
+        [DisplayName("Order Customer Id"), Expression("o.[CustomerID]")]
         public String OrderCustomerID
         {
             get { return Fields.OrderCustomerID[this]; }
             set { Fields.OrderCustomerID[this] = value; }
         }
 
-        [DisplayName("Order Employee Id"), Expression("o.EmployeeID")]
+        [DisplayName("Order Employee Id"), Expression("o.[EmployeeID]")]
         public Int32? OrderEmployeeID
         {
             get { return Fields.OrderEmployeeID[this]; }
             set { Fields.OrderEmployeeID[this] = value; }
         }
 
-        [DisplayName("Order Date"), Expression("o.OrderDate")]
+        [DisplayName("Order Date"), Expression("o.[OrderDate]")]
         public DateTime? OrderDate
         {
             get { return Fields.OrderDate[this]; }
             set { Fields.OrderDate[this] = value; }
         }
 
-        [DisplayName("Order Shipped Date"), Expression("o.ShippedDate")]
+        [DisplayName("Order Shipped Date"), Expression("o.[ShippedDate]")]
         public DateTime? OrderShippedDate
         {
             get { return Fields.OrderShippedDate[this]; }
             set { Fields.OrderShippedDate[this] = value; }
         }
 
-        [DisplayName("Order Ship Via"), Expression("o.ShipVia")]
+        [DisplayName("Order Ship Via"), Expression("o.[ShipVia]")]
         public Int32? OrderShipVia
         {
             get { return Fields.OrderShipVia[this]; }
             set { Fields.OrderShipVia[this] = value; }
         }
 
-        [DisplayName("Order Ship City"), Expression("o.ShipCity")]
+        [DisplayName("Order Ship City"), Expression("o.[ShipCity]")]
         public String OrderShipCity
         {
             get { return Fields.OrderShipCity[this]; }
             set { Fields.OrderShipCity[this] = value; }
         }
 
-        [DisplayName("Order Ship Country"), Expression("o.ShipCountry")]
+        [DisplayName("Order Ship Country"), Expression("o.[ShipCountry]")]
         public String OrderShipCountry
         {
             get { return Fields.OrderShipCountry[this]; }
             set { Fields.OrderShipCountry[this] = value; }
         }
 
-        [DisplayName("Product Name"), Expression("p.ProductName"), MinSelectLevel(SelectLevel.List)]
+        [DisplayName("Product Name"), Expression("p.[ProductName]"), MinSelectLevel(SelectLevel.List)]
         public String ProductName
         {
             get { return Fields.ProductName[this]; }
             set { Fields.ProductName[this] = value; }
         }
 
-        [DisplayName("Product Discontinued"), Expression("p.Discontinued")]
+        [DisplayName("Product Discontinued"), Expression("p.[Discontinued]")]
         public Boolean? ProductDiscontinued
         {
             get { return Fields.ProductDiscontinued[this]; }
             set { Fields.ProductDiscontinued[this] = value; }
         }
 
-        [DisplayName("Product Supplier Id"), Expression("p.SupplierID")]
+        [DisplayName("Product Supplier Id"), Expression("p.[SupplierID]")]
         public Int32? ProductSupplierID
         {
             get { return Fields.ProductSupplierID[this]; }

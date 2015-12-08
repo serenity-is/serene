@@ -2,10 +2,12 @@
 {
     using FluentMigrator.Runner.Announcers;
     using FluentMigrator.Runner.Initialization;
+    using FluentMigrator.Runner.Initialization.AssemblyLoader;
     using Serenity;
     using Serenity.Abstractions;
     using Serenity.Data;
     using System;
+    using System.Data;
     using System.Data.Common;
     using System.Data.SqlClient;
     using System.IO;
@@ -18,8 +20,7 @@
         {
             try
             {
-                SqlSettings.CurrentDialect = SqlDialect.MsSql2012;
-
+                SqlSettings.AutoBracket = true;
                 Serenity.Web.CommonInitialization.Run();
 
                 var registrar = Dependency.Resolve<IDependencyRegistrar>();
@@ -55,13 +56,21 @@
         {
             var cs = SqlConnections.GetConnectionString(databaseKey);
 
-            var cb = new DbConnectionStringBuilder();
+            var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
             cb.ConnectionString = cs.ConnectionString;
-            var catalog = cb["Initial Catalog"] as string;
-            cb["Initial Catalog"] = null;
-            cb["AttachDBFilename"] = null;
 
-            using (var serverConnection = new SqlConnection(cb.ConnectionString))
+            string catalogKey = "?";
+            foreach (var ck in new[] { "Initial Catalog", "Database", "AttachDBFilename" })
+                if (cb.ContainsKey(ck))
+                {
+                    catalogKey = ck;
+                    break;
+                }
+
+            var catalog = cb[catalogKey] as string;
+            cb[catalogKey] = null;
+
+            using (var serverConnection = SqlConnections.New(cb.ConnectionString, cs.ProviderName))
             {
                 try
                 {
@@ -76,17 +85,26 @@
 
                     if (cb.ConnectionString.IndexOf(oldVer) >= 0)
                         throw new Exception(
-                            "You don't seem to have SQL Express LocalDB 2012 installed.\r\n\r\n" + 
-                            "If you have Visual Studio 2015 (with SQL LocalDB 2014) " + 
+                            "You don't seem to have SQL Express LocalDB 2012 installed.\r\n\r\n" +
+                            "If you have Visual Studio 2015 (with SQL LocalDB 2014) " +
                             "try changing '" + databaseKey + "' connection string in WEB.CONFIG to:\r\n\r\n" +
                             cs.ConnectionString.Replace(oldVer, @"\MSSqlLocalDB") + "\r\n\r\nor:\r\n\r\n" +
-                            cs.ConnectionString.Replace(oldVer, @"\v12.0") + "';\r\n\r\n" + 
+                            cs.ConnectionString.Replace(oldVer, @"\v12.0") + "';\r\n\r\n" +
                             "You can also try another SQL server type like .\\SQLExpress.");
 
                     throw;
                 }
 
-                if (serverConnection.Query("SELECT * FROM sys.databases WHERE NAME = @name", new { name = catalog }).Any())
+                string databasesQuery = "SELECT * FROM sys.databases WHERE NAME = @name";
+                string createDatabaseQuery = @"CREATE DATABASE [{0}]";
+
+                if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
+                {
+                    databasesQuery = "select * from postgres.pg_catalog.pg_database where datname = @name";
+                    createDatabaseQuery = "CREATE DATABASE \"{0}\"";
+                }
+
+                if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
                     return;
 
                 var isLocalServer = serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
@@ -104,8 +122,7 @@
                 }
                 else
                 {
-                    command = String.Format(@"CREATE DATABASE [{0}]",
-                        catalog);
+                    command = String.Format(createDatabaseQuery, catalog);
                 }
 
                 serverConnection.Execute(command);
@@ -115,25 +132,29 @@
 
         private static void RunMigrations(string databaseKey)
         {
-            var connectionString = SqlConnections.GetConnectionString(databaseKey);
+            var cs = SqlConnections.GetConnectionString(databaseKey);
+            var connection = cs.ConnectionString;
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these two lines if you want Serene migrations to run on your DB.
-            if (connectionString.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + 
-                    @"_" + databaseKey + "_v1") < 0)
+            if (cs.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + 
+                    @"_" + databaseKey + "_v1", StringComparison.OrdinalIgnoreCase) < 0)
                 return;
+
+            string databaseType = "SqlServer";
+            if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
+                databaseType = "Postgres";
 
             using (var sw = new StringWriter())
             {
                 var announcer = new TextWriterWithGoAnnouncer(sw)
                 {
-                    ShowSql = true
                 };
 
                 var runner = new RunnerContext(announcer)
                 {
-                    Database = "SqlServer",
-                    Connection = connectionString.ConnectionString,
+                    Database = databaseType,
+                    Connection = cs.ConnectionString,
                     Targets = new string[] { typeof(SiteInitialization).Assembly.Location },
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),

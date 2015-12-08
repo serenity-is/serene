@@ -29,7 +29,7 @@ namespace Serene.Northwind.Entities
             set { Fields.CustomerID[this] = value; }
         }
 
-        [DisplayName("Customer"), Expression("c.CompanyName"), QuickSearch]
+        [DisplayName("Customer"), Expression("c.[CompanyName]"), QuickSearch]
         public String CustomerCompanyName
         {
             get { return Fields.CustomerCompanyName[this]; }
@@ -43,14 +43,14 @@ namespace Serene.Northwind.Entities
             set { Fields.EmployeeID[this] = value; }
         }
 
-        [DisplayName("Employee"), Expression("(e.FirstName + ' ' + e.LastName)")]
+        [DisplayName("Employee"), Expression("CONCAT(e.[FirstName], CONCAT(' ', e.[LastName]))")]
         public String EmployeeFullName
         {
             get { return Fields.EmployeeFullName[this]; }
             set { Fields.EmployeeFullName[this] = value; }
         }
 
-        [DisplayName("Employee Gender"), Expression("(CASE WHEN e.TitleOfCourtesy LIKE '%s%' THEN 2 WHEN e.TitleOfCourtesy LIKE '%Mr%' THEN 1 END)")]
+        [DisplayName("Employee Gender"), Expression("(CASE WHEN e.[TitleOfCourtesy] LIKE '%s%' THEN 2 WHEN e.[TitleOfCourtesy] LIKE '%Mr%' THEN 1 END)")]
         public Gender? EmployeeGender
         {
             get { return (Gender?)Fields.EmployeeGender[this]; }
@@ -78,7 +78,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ShippedDate[this] = value; }
         }
 
-        [DisplayName("Shipping State"), Expression("(CASE WHEN ShippedDate IS NULL THEN 0 ELSE 1 END)")]
+        [DisplayName("Shipping State"), Expression("(CASE WHEN T0.[ShippedDate] IS NULL THEN 0 ELSE 1 END)")]
         public OrderShippingState? ShippingState
         {
             get { return (OrderShippingState?)Fields.ShippingState[this]; }
@@ -141,63 +141,63 @@ namespace Serene.Northwind.Entities
             set { Fields.ShipCountry[this] = value; }
         }
 
-        [DisplayName("Customer Contact Name"), Expression("c.ContactName")]
+        [DisplayName("Customer Contact Name"), Expression("c.[ContactName]")]
         public String CustomerContactName
         {
             get { return Fields.CustomerContactName[this]; }
             set { Fields.CustomerContactName[this] = value; }
         }
 
-        [DisplayName("Customer Contact Title"), Expression("c.ContactTitle")]
+        [DisplayName("Customer Contact Title"), Expression("c.[ContactTitle]")]
         public String CustomerContactTitle
         {
             get { return Fields.CustomerContactTitle[this]; }
             set { Fields.CustomerContactTitle[this] = value; }
         }
 
-        [DisplayName("Customer City"), Expression("c.City")]
+        [DisplayName("Customer City"), Expression("c.[City]")]
         public String CustomerCity
         {
             get { return Fields.CustomerCity[this]; }
             set { Fields.CustomerCity[this] = value; }
         }
 
-        [DisplayName("Customer Region"), Expression("c.Region")]
+        [DisplayName("Customer Region"), Expression("c.[Region]")]
         public String CustomerRegion
         {
             get { return Fields.CustomerRegion[this]; }
             set { Fields.CustomerRegion[this] = value; }
         }
 
-        [DisplayName("Customer Country"), Expression("c.Country")]
+        [DisplayName("Customer Country"), Expression("c.[Country]")]
         public String CustomerCountry
         {
             get { return Fields.CustomerCountry[this]; }
             set { Fields.CustomerCountry[this] = value; }
         }
 
-        [DisplayName("Customer Phone"), Expression("c.Phone")]
+        [DisplayName("Customer Phone"), Expression("c.[Phone]")]
         public String CustomerPhone
         {
             get { return Fields.CustomerPhone[this]; }
             set { Fields.CustomerPhone[this] = value; }
         }
 
-        [DisplayName("Customer Fax"), Expression("c.Fax")]
+        [DisplayName("Customer Fax"), Expression("c.[Fax]")]
         public String CustomerFax
         {
             get { return Fields.CustomerFax[this]; }
             set { Fields.CustomerFax[this] = value; }
         }
 
-        [DisplayName("Ship Via"), Expression("via.CompanyName")]
+        [DisplayName("Ship Via"), Expression("via.[CompanyName]")]
         public String ShipViaCompanyName
         {
             get { return Fields.ShipViaCompanyName[this]; }
             set { Fields.ShipViaCompanyName[this] = value; }
         }
 
-        [DisplayName("Ship Via Phone"), Expression("via.Phone")]
+        [DisplayName("Ship Via Phone"), Expression("via.[Phone]")]
         public String ShipViaPhone
         {
             get { return Fields.ShipViaPhone[this]; }

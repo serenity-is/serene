@@ -97,98 +97,98 @@ namespace Serene.Northwind.Entities
             set { Fields.ReorderLevel[this] = value; }
         }
 
-        [DisplayName("Supplier"), Expression("sup.CompanyName")]
+        [DisplayName("Supplier"), Expression("sup.[CompanyName]")]
         public String SupplierCompanyName
         {
             get { return Fields.SupplierCompanyName[this]; }
             set { Fields.SupplierCompanyName[this] = value; }
         }
 
-        [DisplayName("Supplier Contact Name"), Expression("sup.ContactName")]
+        [DisplayName("Supplier Contact Name"), Expression("sup.[ContactName]")]
         public String SupplierContactName
         {
             get { return Fields.SupplierContactName[this]; }
             set { Fields.SupplierContactName[this] = value; }
         }
 
-        [DisplayName("Supplier Contact Title"), Expression("sup.ContactTitle")]
+        [DisplayName("Supplier Contact Title"), Expression("sup.[ContactTitle]")]
         public String SupplierContactTitle
         {
             get { return Fields.SupplierContactTitle[this]; }
             set { Fields.SupplierContactTitle[this] = value; }
         }
 
-        [DisplayName("Supplier Address"), Expression("sup.Address")]
+        [DisplayName("Supplier Address"), Expression("sup.[Address]")]
         public String SupplierAddress
         {
             get { return Fields.SupplierAddress[this]; }
             set { Fields.SupplierAddress[this] = value; }
         }
 
-        [DisplayName("Supplier City"), Expression("sup.City")]
+        [DisplayName("Supplier City"), Expression("sup.[City]")]
         public String SupplierCity
         {
             get { return Fields.SupplierCity[this]; }
             set { Fields.SupplierCity[this] = value; }
         }
 
-        [DisplayName("Supplier Region"), Expression("sup.Region")]
+        [DisplayName("Supplier Region"), Expression("sup.[Region]")]
         public String SupplierRegion
         {
             get { return Fields.SupplierRegion[this]; }
             set { Fields.SupplierRegion[this] = value; }
         }
 
-        [DisplayName("Supplier Postal Code"), Expression("sup.PostalCode")]
+        [DisplayName("Supplier Postal Code"), Expression("sup.[PostalCode]")]
         public String SupplierPostalCode
         {
             get { return Fields.SupplierPostalCode[this]; }
             set { Fields.SupplierPostalCode[this] = value; }
         }
 
-        [DisplayName("Supplier Country"), Expression("sup.Country")]
+        [DisplayName("Supplier Country"), Expression("sup.[Country]")]
         public String SupplierCountry
         {
             get { return Fields.SupplierCountry[this]; }
             set { Fields.SupplierCountry[this] = value; }
         }
 
-        [DisplayName("Supplier Phone"), Expression("sup.Phone")]
+        [DisplayName("Supplier Phone"), Expression("sup.[Phone]")]
         public String SupplierPhone
         {
             get { return Fields.SupplierPhone[this]; }
             set { Fields.SupplierPhone[this] = value; }
         }
 
-        [DisplayName("Supplier Fax"), Expression("sup.Fax")]
+        [DisplayName("Supplier Fax"), Expression("sup.[Fax]")]
         public String SupplierFax
         {
             get { return Fields.SupplierFax[this]; }
             set { Fields.SupplierFax[this] = value; }
         }
 
-        [DisplayName("Supplier Home Page"), Expression("sup.HomePage")]
+        [DisplayName("Supplier Home Page"), Expression("sup.[HomePage]")]
         public String SupplierHomePage
         {
             get { return Fields.SupplierHomePage[this]; }
             set { Fields.SupplierHomePage[this] = value; }
         }
 
-        [DisplayName("Category"), Expression("cat.CategoryName")]
+        [DisplayName("Category"), Expression("cat.[CategoryName]")]
         public String CategoryName
         {
             get { return Fields.CategoryName[this]; }
             set { Fields.CategoryName[this] = value; }
         }
 
-        [DisplayName("Category Description"), Expression("cat.Description")]
+        [DisplayName("Category Description"), Expression("cat.[Description]")]
         public String CategoryDescription
         {
             get { return Fields.CategoryDescription[this]; }
             set { Fields.CategoryDescription[this] = value; }
         }
 
-        [DisplayName("Category Picture"), Expression("cat.Picture")]
+        [DisplayName("Category Picture"), Expression("cat.[Picture]")]
         public Stream CategoryPicture
         {
             get { return Fields.CategoryPicture[this]; }

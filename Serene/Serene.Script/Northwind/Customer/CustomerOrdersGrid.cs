@@ -42,7 +42,7 @@ namespace Serene.Northwind
         {
             base.CreateToolbarExtensions();
 
-            CustomerFilter.Element.Parent().Hide();
+            CustomerFilter.Element.Closest(".quick-filter-item").Remove();
         }
 
         protected override bool GetGridCanLoad()
