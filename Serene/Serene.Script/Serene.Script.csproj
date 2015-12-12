@@ -37,6 +37,9 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
+    <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\ScriptUserDefinition.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
