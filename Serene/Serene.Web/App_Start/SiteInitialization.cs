@@ -20,7 +20,7 @@
         {
             try
             {
-                SqlSettings.AutoBracket = true;
+                SqlSettings.AutoQuotedIdentifiers = true;
                 Serenity.Web.CommonInitialization.Run();
 
                 var registrar = Dependency.Resolve<IDependencyRegistrar>();
