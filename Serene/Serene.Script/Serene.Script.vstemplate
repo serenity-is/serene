@@ -130,6 +130,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.cs">Northwind.OrderRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.cs">Northwind.OrderService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.cs">Northwind.OrderShippingState.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLogRow.cs">Northwind.ProductLogRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductRow.cs">Northwind.ProductRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductService.cs">Northwind.ProductService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionRow.cs">Northwind.RegionRow.cs</ProjectItem>
@@ -233,7 +234,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.8.4" />
+      <package id="Serenity.Script" version="1.8.7" />
     </packages>
   </WizardData>
   <WizardExtension>

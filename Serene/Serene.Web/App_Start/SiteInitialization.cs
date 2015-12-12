@@ -2,13 +2,10 @@
 {
     using FluentMigrator.Runner.Announcers;
     using FluentMigrator.Runner.Initialization;
-    using FluentMigrator.Runner.Initialization.AssemblyLoader;
     using Serenity;
     using Serenity.Abstractions;
     using Serenity.Data;
     using System;
-    using System.Data;
-    using System.Data.Common;
     using System.Data.SqlClient;
     using System.IO;
     using System.Linq;
