@@ -468,6 +468,7 @@
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
+    <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.northwind.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
