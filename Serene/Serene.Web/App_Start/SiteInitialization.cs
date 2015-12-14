@@ -127,6 +127,8 @@
             }
         }
 
+        public static bool SkippedMigrations { get; private set; }
+
         private static void RunMigrations(string databaseKey)
         {
             var cs = SqlConnections.GetConnectionString(databaseKey);
@@ -134,9 +136,12 @@
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these two lines if you want Serene migrations to run on your DB.
-            if (cs.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace + 
+            if (cs.ConnectionString.IndexOf(typeof(SiteInitialization).Namespace +
                     @"_" + databaseKey + "_v1", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                SkippedMigrations = true;
                 return;
+            }
 
             string databaseType = "SqlServer";
             if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
