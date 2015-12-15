@@ -500,15 +500,15 @@ button.ui-state-hover .ui-button-text {
   display: inline-block;
 }
 .slick-sort-indicator-asc {
-  border-top: 5px dashed;
-  border-top: 5px solid\9;
-  border-top-color: #5bc0de;
-}
-.slick-sort-indicator-desc {
   content: "";
   border-bottom: 5px dashed;
   border-bottom: 5px solid\9;
   border-bottom-color: #5bc0de;
+}
+.slick-sort-indicator-desc {
+  border-top: 5px dashed;
+  border-top: 5px solid\9;
+  border-top-color: #5bc0de;
 }
 .slick-no-cell-border .grid-container .slick-cell,
 .slick-no-cell-border .grid-container .slick-header-column {

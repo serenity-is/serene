@@ -32,7 +32,7 @@
                 throw;
             }
 
-            foreach (var databaseKey in new string[] { "Default", "Northwind" })
+            foreach (var databaseKey in databaseKeys)
             {
                 EnsureDatabase(databaseKey);
                 RunMigrations(databaseKey);
