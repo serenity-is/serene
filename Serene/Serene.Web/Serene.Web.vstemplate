@@ -505,6 +505,7 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-red-partial.png">tick-red-partial.png</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.administration.less">site.administration.less</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.less">site.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.membership.less">site.membership.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.mixins.less">site.mixins.less</ProjectItem>
@@ -714,6 +715,7 @@
           <Folder Name="Dashboard" TargetFolderName="Dashboard">
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardIndex.cshtml">DashboardIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPage.cs">DashboardPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPageModel.cs">DashboardPageModel.cs</ProjectItem>
           </Folder>
           <Folder Name="File" TargetFolderName="File">
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
@@ -723,8 +725,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>

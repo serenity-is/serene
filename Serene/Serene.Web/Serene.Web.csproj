@@ -488,6 +488,7 @@
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
+    <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.northwind.less" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -1428,6 +1429,7 @@
     <Compile Include="Modules\AdminLTE\Tables\TablesController.cs" />
     <Compile Include="Modules\AdminLTE\Forms\FormsController.cs" />
     <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
+    <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
     <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">
