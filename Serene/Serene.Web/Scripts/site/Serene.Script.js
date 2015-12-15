@@ -904,6 +904,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderGrid
 	var $Serene_Northwind_OrderGrid = function(container) {
+		this.$shippingState = null;
 		this.$7$CustomerFilterField = null;
 		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
 	};
@@ -1975,7 +1976,7 @@
 			this.addDateRangeFilter('OrderDate', null);
 			var $t1 = Serenity.EnumEditorOptions.$ctor();
 			$t1.enumKey = 'Northwind.OrderShippingState';
-			this.addEqualityFilter(Serenity.EnumEditor).call(this, 'ShippingState', null, $t1, null, null, null);
+			this.$shippingState = this.addEqualityFilter(Serenity.EnumEditor).call(this, 'ShippingState', null, $t1, null, null, null);
 			var $t2 = Serenity.LookupEditorOptions.$ctor();
 			$t2.lookupKey = 'Northwind.Shipper';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'ShipVia', null, $t2, null, null, null);
@@ -1989,6 +1990,12 @@
 			var $t5 = Serenity.LookupEditorOptions.$ctor();
 			$t5.lookupKey = 'Northwind.Employee';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'EmployeeID', null, $t5, null, null, null);
+		},
+		get_shippingState: function() {
+			return Serenity.IdExtensions.toInt32(this.$shippingState.get_value());
+		},
+		set_shippingState: function(value) {
+			this.$shippingState.set_value((ss.isNullOrUndefined(value) ? '' : ss.unbox(value).toString()));
 		},
 		getButtons: function() {
 			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);

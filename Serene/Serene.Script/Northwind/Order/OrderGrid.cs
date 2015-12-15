@@ -13,6 +13,8 @@ namespace Serene.Northwind
     [DialogType(typeof(OrderDialog)), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
     public class OrderGrid : EntityGrid<OrderRow>
     {
+        private EnumEditor shippingState;
+
         public OrderGrid(jQueryObject container)
             : base(container)
         {
@@ -26,7 +28,7 @@ namespace Serene.Northwind
 
             AddDateRangeFilter(Fields.OrderDate);
 
-            AddEqualityFilter<EnumEditor>(Fields.ShippingState,
+            shippingState = AddEqualityFilter<EnumEditor>(Fields.ShippingState,
                 options: new EnumEditorOptions { EnumKey = "Northwind.OrderShippingState" });
                 
             AddEqualityFilter<LookupEditor>(Fields.ShipVia,
@@ -40,6 +42,12 @@ namespace Serene.Northwind
 
             AddEqualityFilter<LookupEditor>(Fields.EmployeeID,
                 options: new LookupEditorOptions { LookupKey = EmployeeRow.LookupKey });
+        }
+
+        public OrderShippingState? ShippingState
+        {
+            get { return (OrderShippingState?)shippingState.Value.ToInt32(); }
+            set { shippingState.Value = value == null ? "" : ((int)value).ToString(); }
         }
 
         protected override List<ToolButton> GetButtons()
