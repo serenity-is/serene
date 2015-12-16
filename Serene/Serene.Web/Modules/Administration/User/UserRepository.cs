@@ -200,8 +200,9 @@ namespace Serene.Administration.Repositories
 
                 if (IsCreate || !Row.Password.IsEmptyOrNull())
                 {
-                    Row.PasswordSalt = Membership.GeneratePassword(5, 1);
-                    Row.PasswordHash = SiteMembershipProvider.ComputeSHA512(password + Row.PasswordSalt);
+                    string salt = null;
+                    Row.PasswordHash = GenerateHash(password, ref salt);
+                    Row.PasswordSalt = salt;
                 }
             }
 
@@ -211,6 +212,17 @@ namespace Serene.Administration.Repositories
 
                 BatchGenerationUpdater.OnCommit(this.UnitOfWork, fld.GenerationKey);
             }
+        }
+
+        public static string CalculateHash(string password, string salt)
+        {
+            return SiteMembershipProvider.ComputeSHA512(password + salt);
+        }
+
+        public static string GenerateHash(string password, ref string salt)
+        {
+            salt = salt ?? Membership.GeneratePassword(5, 1);
+            return CalculateHash(password, salt);
         }
 
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }

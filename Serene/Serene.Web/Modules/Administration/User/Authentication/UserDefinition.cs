@@ -16,5 +16,6 @@
         public string PasswordSalt { get; set; }
         public string Source { get; set; }
         public DateTime? UpdateDate { get; set; }
+        public DateTime? LastDirectoryUpdate { get; set; }
     }
 }

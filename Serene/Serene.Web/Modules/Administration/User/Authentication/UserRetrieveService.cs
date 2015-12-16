@@ -25,7 +25,8 @@
                     Source = user.Source,
                     PasswordHash = user.PasswordHash,
                     PasswordSalt = user.PasswordSalt,
-                    UpdateDate = user.UpdateDate
+                    UpdateDate = user.UpdateDate,
+                    LastDirectoryUpdate = user.LastDirectoryUpdate
                 };
 
             return null;
@@ -50,6 +51,15 @@
                 using (var connection = SqlConnections.NewByKey("Default"))
                     return GetFirst(connection, new Criteria(fld.Username) == username);
             });
+        }
+
+        public static void RemoveCachedUser(int? userId, string username)
+        {
+            if (userId != null)
+                TwoLevelCache.Remove("UserByID_" + userId);
+
+            if (username != null)
+                TwoLevelCache.Remove("UserByName_" + username);
         }
     }
 }

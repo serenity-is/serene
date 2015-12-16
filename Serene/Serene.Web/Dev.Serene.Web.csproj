@@ -1401,7 +1401,9 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
-    <Compile Include="Modules\Administration\User\ScriptUserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\IDirectoryService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\ScriptUserDefinition.cs" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
     <Compile Include="Modules\AdminLTE\Examples\ExamplesController.cs" />
@@ -1418,6 +1420,7 @@
     <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151014_030700_OrderDetailID.cs" />
@@ -1471,12 +1474,12 @@
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
-    <Compile Include="Modules\Administration\User\AuthorizationService.cs" />
-    <Compile Include="Modules\Administration\User\PermissionService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\PermissionService.cs" />
     <Compile Include="Modules\Administration\User\LoggingRow.cs" />
-    <Compile Include="Modules\Administration\User\UserDefinition.cs" />
-    <Compile Include="Modules\Administration\User\AuthenticationService.cs" />
-    <Compile Include="Modules\Administration\User\UserRetrieveService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\UserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\AuthenticationService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\UserRetrieveService.cs" />
     <Compile Include="Modules\Membership\Account\LoginRequest.cs" />
     <Compile Include="Modules\Membership\Account\LoginForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

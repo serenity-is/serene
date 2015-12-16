@@ -78,6 +78,12 @@ namespace Serene.Administration.Entities
             set { Fields.PasswordConfirm[this] = value; }
         }
 
+        [DisplayName("Last Directory Update"), Insertable(false), Updatable(false)]
+        public DateTime? LastDirectoryUpdate
+        {
+            get { return Fields.LastDirectoryUpdate[this]; }
+            set { Fields.LastDirectoryUpdate[this] = value; }
+        }
 
         IIdField IIdRow.IdField
         {
@@ -105,6 +111,7 @@ namespace Serene.Administration.Entities
             public readonly StringField PasswordSalt;
             public readonly StringField DisplayName;
             public readonly StringField Email;
+            public readonly DateTimeField LastDirectoryUpdate;
 
             public readonly StringField Password;
             public readonly StringField PasswordConfirm;
