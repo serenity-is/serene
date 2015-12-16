@@ -25,7 +25,7 @@ namespace Serene.Administration.Repositories
     {
         private static string GetUserTextsFilePath(string languageID)
         {
-            return HostingEnvironment.MapPath("~/scripts/site/texts/") + "user.texts." + (languageID.TrimToNull() ?? "invariant") + ".json";
+            return HostingEnvironment.MapPath("~/App_Data/texts/") + "user.texts." + (languageID.TrimToNull() ?? "invariant") + ".json";
         }
 
         public ListResponse<TranslationItem> List(TranslationListRequest request)
@@ -141,6 +141,7 @@ namespace Serene.Administration.Repositories
             string json = JSON.StringifyIndented(result);
 
             var textsFilePath = GetUserTextsFilePath(request.TargetLanguageID);
+            Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));
             File.WriteAllText(textsFilePath, json);
 
             Dependency.Resolve<IDependencyRegistrar>().RegisterInstance<ILocalTextRegistry>(new LocalTextRegistry());

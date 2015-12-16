@@ -1604,7 +1604,8 @@
 			}
 			return RSVP.resolve(Q.serviceRequest('Administration/Translation/Update', { TargetLanguageID: language, Translations: translations }, null, null)).then(ss.mkdel(this, function() {
 				this.$hasChanges = false;
-				Q.notifySuccess('User translations in "' + language + '" language are saved to "user.texts.' + language + '.json" ' + 'file under "~/script/site/texts/user/"');
+				language = ss.coalesce(Q.trimToNull(language), 'invariant');
+				Q.notifySuccess('User translations in "' + language + '" language are saved to "user.texts.' + language + '.json" ' + 'file under "~/App_Data/texts/"');
 			}), null);
 		},
 		onViewSubmit: function() {

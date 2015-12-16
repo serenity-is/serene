@@ -185,8 +185,9 @@ namespace Serene.Administration
             }, null)).Then(delegate()
             {
                 hasChanges = false;
+                language = language.TrimToNull() ?? "invariant";
                 Q.NotifySuccess("User translations in \"" + language + "\" language are saved to \"user.texts." + language + ".json\" " + 
-                    "file under \"~/script/site/texts/user/\"");
+                    "file under \"~/App_Data/texts/\"");
             });
         }
 
