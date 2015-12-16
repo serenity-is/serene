@@ -113,6 +113,8 @@ Task("PrepareVSIX")
         System.IO.File.WriteAllText(vsixProjFile, xv.ToString(SaveOptions.OmitDuplicateNamespaces));  
     };
 
+    var utf8Bom = new System.Text.UTF8Encoding(true);
+
     Action<string> replaceParams = (path) => {
         var content = System.IO.File.ReadAllText(path);
         if (content.IndexOf("Serene") >= 0)
@@ -122,7 +124,7 @@ Task("PrepareVSIX")
             content = content.Replace(@"Serene.Web\", @"$ext_projectname$.Web\");
             content = content.Replace(@"Serene\", @"$ext_projectname$\");
             content = content.Replace("Serene", "$ext_safeprojectname$");
-            System.IO.File.WriteAllText(path, content);
+            System.IO.File.WriteAllText(path, content, utf8Bom);
         }   
     };
     
