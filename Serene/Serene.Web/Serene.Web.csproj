@@ -60,26 +60,29 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.8.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.1.8.11\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=1.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.1.8.12\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.8.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.1.8.11\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=1.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.1.8.12\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.8.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.11\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=1.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.8.12\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.8.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.1.8.11\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=1.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.1.8.12\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.8.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.1.8.11\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=1.8.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.1.8.12\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -1368,10 +1371,10 @@
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="Views\Errors\ValidationError.cshtml" />
-    <Content Include="tools\Node\lessc.cmd" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1405,6 +1408,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SiteInitialization.Migrations.cs" />
     <Compile Include="App_Start\SiteInitialization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1421,7 +1425,11 @@
     <Compile Include="Modules\Administration\UserRole\UserRoleListRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleEndpoint.cs" />
     <Content Include="Modules\AdminLTE\DashboardV2.cshtml" />
-    <Compile Include="Modules\Administration\User\ScriptUserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\DirectoryEntry.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\ActiveDirectoryService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\LdapDirectoryService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\IDirectoryService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\ScriptUserDefinition.cs" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
     <Compile Include="Modules\AdminLTE\Examples\ExamplesController.cs" />
@@ -1438,6 +1446,7 @@
     <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151014_030700_OrderDetailID.cs" />
@@ -1491,12 +1500,12 @@
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
-    <Compile Include="Modules\Administration\User\AuthorizationService.cs" />
-    <Compile Include="Modules\Administration\User\PermissionService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\PermissionService.cs" />
     <Compile Include="Modules\Administration\User\LoggingRow.cs" />
-    <Compile Include="Modules\Administration\User\UserDefinition.cs" />
-    <Compile Include="Modules\Administration\User\AuthenticationService.cs" />
-    <Compile Include="Modules\Administration\User\UserRetrieveService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\UserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\AuthenticationService.cs" />
+    <Compile Include="Modules\Administration\User\Authentication\UserRetrieveService.cs" />
     <Compile Include="Modules\Membership\Account\LoginRequest.cs" />
     <Compile Include="Modules\Membership\Account\LoginForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ namespace Serene.Migrations.DefaultDB
         public override void Up()
         {
             Alter.Table("Users")
-                .AddColumn("LastDirectoryUpdate").AsDateTime();
+                .AddColumn("LastDirectoryUpdate").AsDateTime().Nullable();
         }
     }
 }
