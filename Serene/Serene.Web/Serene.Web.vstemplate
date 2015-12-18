@@ -751,6 +751,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20141123_155100_Initial.cs">NorthwindDB_20141123_155100_Initial.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151014_030700_OrderDetailID.cs">NorthwindDB_20151014_030700_OrderDetailID.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151202_193700_ProductLog.cs">NorthwindDB_20151202_193700_ProductLog.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
@@ -1863,12 +1864,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="7.0.1" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="1.8.12" />
-      <package id="Serenity.Core" version="1.8.12" />
-      <package id="Serenity.Data" version="1.8.12" />
-      <package id="Serenity.Data.Entity" version="1.8.12" />
-      <package id="Serenity.Services" version="1.8.12" />
-      <package id="Serenity.Web" version="1.8.12" />
+      <package id="Serenity.CodeGenerator" version="1.8.13" />
+      <package id="Serenity.Core" version="1.8.13" />
+      <package id="Serenity.Data" version="1.8.13" />
+      <package id="Serenity.Data.Entity" version="1.8.13" />
+      <package id="Serenity.Services" version="1.8.13" />
+      <package id="Serenity.Web" version="1.8.13" />
       <package id="SlickGrid" version="2.2.20140120" />
       <package id="toastr" version="2.1.1" />
     </packages>
