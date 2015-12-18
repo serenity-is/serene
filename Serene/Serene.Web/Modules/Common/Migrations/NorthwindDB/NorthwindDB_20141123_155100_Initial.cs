@@ -16,11 +16,16 @@ namespace Serene.Migrations.NorthwindDB
             IfDatabase("postgres")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql");
 
-            Alter.Table("Customers")
-                .AddColumn("ID").AsInt32().Identity().NotNullable();
+            IfDatabase("mysql")
+                .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql");
 
-            Alter.Table("Territories")
-                .AddColumn("ID").AsInt32().Identity().NotNullable();
+            IfDatabase("sqlserver", "postgres")
+                .Alter.Table("Customers")
+                    .AddColumn("ID").AsInt32().Identity().NotNullable();
+
+            IfDatabase("sqlserver", "postgres")
+                .Alter.Table("Territories")
+                    .AddColumn("ID").AsInt32().Identity().NotNullable();
                 
             Alter.Table("Products")
                 .AddColumn("ProductImage").AsString(100).Nullable();

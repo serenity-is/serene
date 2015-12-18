@@ -7,8 +7,9 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            Alter.Table("Order Details")
-                .AddColumn("DetailID").AsInt32().Identity().NotNullable();
+            IfDatabase("sqlserver", "postgres")
+                .Alter.Table("Order Details")
+                    .AddColumn("DetailID").AsInt32().Identity().NotNullable();
         }
     }
 }

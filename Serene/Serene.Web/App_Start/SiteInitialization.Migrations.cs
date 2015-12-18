@@ -69,6 +69,12 @@
                     createDatabaseQuery = "CREATE DATABASE \"{0}\"";
                 }
 
+                if (String.Equals(cs.ProviderName, "MySql.Data.MySqlClient", StringComparison.OrdinalIgnoreCase))
+                {
+                    databasesQuery = "SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = @name";
+                    createDatabaseQuery = "CREATE DATABASE `{0}`";
+                }
+
                 if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
                     return;
 
@@ -114,6 +120,8 @@
             string databaseType = "SqlServer";
             if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
                 databaseType = "Postgres";
+            else if (String.Equals(cs.ProviderName, "MySql.Data.MySqlClient", StringComparison.OrdinalIgnoreCase))
+                databaseType = "MySql";
 
             using (var sw = new StringWriter())
             {
