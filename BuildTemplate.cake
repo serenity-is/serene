@@ -44,34 +44,6 @@ Task("PrepareVSIX")
         return list;
     };
     
-    Func<string, List<string>> getProjectFileList = (path) =>
-    {
-        XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
-        var xv = XElement.Parse(System.IO.File.ReadAllText(path));
-        var list = xv.Descendants(ns + "ItemGroup").Elements().Where(x => (
-            x.Name == ns + "Content" ||
-            x.Name == ns + "Compile" ||
-            x.Name == ns + "EmbeddedResource" ||
-            x.Name == ns + "Folder" ||
-            x.Name == ns + "None")).Select(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"))
-            .ToList();
-            
-        list.Sort(delegate(string x, string y) {
-            var px = System.IO.Path.GetDirectoryName(x);
-            var py = System.IO.Path.GetDirectoryName(y);
-            if (string.Equals(px, py, StringComparison.OrdinalIgnoreCase))
-            {
-                if ((System.IO.Path.GetExtension(x) ?? "").ToLowerInvariant() == ".tt")
-                    return -1;
-                    
-                if ((System.IO.Path.GetExtension(y) ?? "").ToLowerInvariant() == ".tt")
-                    return 1;               
-            }
-            return x.CompareTo(y);
-        });
-        
-        return list;
-    };
     
     Action<List<Tuple<string, string>>, List<Tuple<string, string>>> updateVsixProj = (wp, sp) => {
         var hash = new HashSet<Tuple<string, string>>();
@@ -128,9 +100,56 @@ Task("PrepareVSIX")
         }   
     };
     
-    Action<string, List<Tuple<string, string>>> replaceTemplateFileList = (csproj, packages) => {
+    var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
+        { @"packages.config", true },
+        { @"Scripts\jquery-2.1.4.intellisense.js", true }
+    };
+
+    var scriptSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
+        { @"packages.config", true }
+    };
+
+    Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
+    
+        foreach (var package in packages) {
+            var contentFolder = System.IO.Path.Combine(samplePackagesFolder, 
+               package.Item1 + "." + package.Item2 + @"\content");
+            if (System.IO.Directory.Exists(contentFolder)) {
+                foreach (var f in System.IO.Directory.GetFiles(contentFolder, 
+                    "*.*", System.IO.SearchOption.AllDirectories)) {
+                    skipFiles[f.Substring(contentFolder.Length + 1)] = true;
+                }
+            }
+        }
+    
         var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
-        var fileList = getProjectFileList(csproj);
+        
+        XNamespace ns1 = "http://schemas.microsoft.com/developer/msbuild/2003";
+        var csprojElement = XElement.Parse(System.IO.File.ReadAllText(csproj));
+        var itemList = csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
+            x.Name == ns1 + "Content" ||
+            x.Name == ns1 + "Compile" ||
+            x.Name == ns1 + "EmbeddedResource" ||
+            x.Name == ns1 + "Folder" ||
+            x.Name == ns1 + "None"));
+        
+        var byName = itemList.ToDictionary(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"));
+        var fileList = itemList.Select(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"))
+            .ToList();
+                       
+        fileList.Sort(delegate(string x, string y) {
+            var px = System.IO.Path.GetDirectoryName(x);
+            var py = System.IO.Path.GetDirectoryName(y);
+            if (string.Equals(px, py, StringComparison.OrdinalIgnoreCase))
+            {
+                if ((System.IO.Path.GetExtension(x) ?? "").ToLowerInvariant() == ".tt")
+                    return -1;
+                    
+                if ((System.IO.Path.GetExtension(y) ?? "").ToLowerInvariant() == ".tt")
+                    return 1;               
+            }
+            return x.CompareTo(y);
+        });
         
         var xv = XElement.Parse(System.IO.File.ReadAllText(vsTemplate));
         XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
@@ -143,6 +162,17 @@ Task("PrepareVSIX")
         
         foreach (var file in fileList)
         {
+            if (skipFiles.ContainsKey(file))
+            {
+                XElement xe;
+                if (byName.TryGetValue(file, out xe))
+                {
+                    byName.Remove(file);
+                    xe.Remove();
+                }
+                continue;
+            }
+        
             var parts = file.Split(new char[] { '\\' });
             XElement folder = project;
             string f = "";
@@ -164,7 +194,7 @@ Task("PrepareVSIX")
                 else 
                     folder = byFolder[f];
             }
-            
+                      
             if (file.EndsWith(@"\"))
             {
                 continue;
@@ -217,9 +247,11 @@ Task("PrepareVSIX")
         System.IO.File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
         System.IO.File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
-        System.IO.File.WriteAllText(targetProj, System.IO.File.ReadAllText(csproj)
-            .Replace("http://localhost:55555/", "")
-            .Replace("<DevelopmentServerPort>55556</DevelopmentServerPort>", "<DevelopmentServerPort></DevelopmentServerPort>"));
+        System.IO.File.WriteAllText(targetProj, 
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+            csprojElement.ToString(SaveOptions.OmitDuplicateNamespaces)
+                .Replace("http://localhost:55555/", "")
+                .Replace("<DevelopmentServerPort>55556</DevelopmentServerPort>", "<DevelopmentServerPort></DevelopmentServerPort>"));
         replaceParams(targetProj);
     };
 
@@ -238,8 +270,8 @@ Task("PrepareVSIX")
     System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));
     
     
-    replaceTemplateFileList(sampleScriptProj, scriptPackages);
-    replaceTemplateFileList(sampleWebProj, webPackages);
+    replaceTemplateFileList(sampleScriptProj, scriptPackages, scriptSkipFiles);
+    replaceTemplateFileList(sampleWebProj, webPackages, webSkipFiles);
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 
     System.IO.File.Copy(r + @"Serene\Serene.vstemplate", 
