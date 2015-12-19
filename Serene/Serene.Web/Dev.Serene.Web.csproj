@@ -1100,6 +1100,8 @@
     <Content Include="Scripts\morris\morris.css" />
     <Content Include="Scripts\morris\morris.js" />
     <Content Include="Scripts\morris\morris.min.js" />
+    <Content Include="Scripts\mousetrap.js" />
+    <Content Include="Scripts\mousetrap.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
     <Content Include="Scripts\raphael\raphael-min.js" />

@@ -1182,7 +1182,7 @@
 			},
 			createToolbar: function(buttons) {
 				var toolbarDiv = $('<div class="grid-toolbar"></div>').appendTo(this.get_element());
-				this.toolbar = new $Serenity_Toolbar(toolbarDiv, { buttons: buttons });
+				this.toolbar = new $Serenity_Toolbar(toolbarDiv, { buttons: buttons, hotkeyContext: this.element[0] });
 			},
 			get_title: function() {
 				if (ss.isNullOrUndefined(this.titleDiv)) {
@@ -2980,6 +2980,7 @@
 					list.push({
 						title: Texts$Controls$EntityDialog.SaveButton.get(),
 						cssClass: 'save-and-close-button',
+						hotkey: 'alt+s',
 						onClick: function() {
 							self.save(function(response) {
 								self.element.dialog().dialog('close');
@@ -2987,7 +2988,7 @@
 						}
 					});
 				}
-				list.push({ title: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Q$LT.empty).get(), hint: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.ApplyChangesButton).get(), cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function() {
+				list.push({ title: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Q$LT.empty).get(), hint: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.ApplyChangesButton).get(), cssClass: 'apply-changes-button', hotkey: 'alt+a', onClick: ss.mkdel(this, function() {
 					self.save(ss.mkdel(this, function(response1) {
 						if (self.get_isEditMode()) {
 							self.loadById(self.get_entityId(), null, null);
@@ -3002,6 +3003,7 @@
 					list.push({
 						title: Texts$Controls$EntityDialog.DeleteButton.get(),
 						cssClass: 'delete-button',
+						hotkey: 'alt+x',
 						onClick: function() {
 							Q.confirm(Texts$Controls$EntityDialog.DeleteConfirmation.get(), function() {
 								self.doDelete(function() {
@@ -3246,6 +3248,7 @@
 				buttons.push({
 					title: this.getAddButtonCaption(),
 					cssClass: 'add-button',
+					hotkey: 'alt+n',
 					onClick: function() {
 						self.addButtonClick();
 					}
@@ -6650,7 +6653,11 @@
 				if (toolbarDiv.length === 0) {
 					return;
 				}
-				var opt = { buttons: this.getToolbarButtons() };
+				var hotkeyContext = this.get_element().closest('.ui-dialog');
+				if (hotkeyContext.length === 0) {
+					hotkeyContext = this.element;
+				}
+				var opt = { buttons: this.getToolbarButtons(), hotkeyContext: hotkeyContext[0] };
 				this.toolbar = new $Serenity_Toolbar(toolbarDiv, opt);
 			},
 			getToolbarButtons: function() {
@@ -9854,6 +9861,14 @@
 			}
 			else {
 				btn.find('span').html(text);
+			}
+			if (!!(!ss.isNullOrEmptyString(b.hotkey) && ss.isValue(window.window.Mousetrap))) {
+				Mousetrap(this.options.hotkeyContext || window.document.documentElement).bind(b.hotkey, function(e1, action) {
+					if (btn.is(':visible')) {
+						btn.triggerHandler('click');
+					}
+					return b.hotkeyAllowDefault;
+				});
 			}
 		},
 		destroy: function() {
