@@ -106,7 +106,6 @@ Task("PrepareVSIX")
     };
 
     var scriptSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
-        { @"packages.config", true }
     };
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
