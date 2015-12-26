@@ -865,20 +865,6 @@
 	$Serene_Northwind_NoteDialog.__typeName = 'Serene.Northwind.NoteDialog';
 	global.Serene.Northwind.NoteDialog = $Serene_Northwind_NoteDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.NoteForm
-	var $Serene_Northwind_NoteForm = function(idPrefix) {
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_NoteForm.__typeName = 'Serene.Northwind.NoteForm';
-	global.Serene.Northwind.NoteForm = $Serene_Northwind_NoteForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.NoteGrid
-	var $Serene_Northwind_NoteGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
-	};
-	$Serene_Northwind_NoteGrid.__typeName = 'Serene.Northwind.NoteGrid';
-	global.Serene.Northwind.NoteGrid = $Serene_Northwind_NoteGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.NotesEditor
 	var $Serene_Northwind_NotesEditor = function(container) {
 		this.$items = null;
@@ -2246,24 +2232,6 @@
 			this.byId$1('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
-	ss.initClass($Serene_Northwind_NoteForm, $asm, {
-		get_entityType: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'EntityType');
-		},
-		get_entityId: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'EntityId');
-		},
-		get_text: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Text');
-		},
-		get_insertUserId: function() {
-			return this.byId(Serenity.IntegerEditor).call(this, 'InsertUserId');
-		},
-		get_insertDate: function() {
-			return this.byId(Serenity.DateEditor).call(this, 'InsertDate');
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_NoteGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_NotesEditor, $asm, {
 		getTemplate: function() {
 			return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
@@ -2686,7 +2654,6 @@
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryDialog, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.FormKeyAttribute('Northwind.EmployeeTerritory'), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryGrid, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_EmployeeTerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
-	ss.setMetadata($Serene_Northwind_NoteGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Note'), new Serenity.IdPropertyAttribute('NoteId'), new Serenity.NamePropertyAttribute('EntityType'), new Serenity.DialogTypeAttribute($Serene_Northwind_NoteDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Note'), new Serenity.ServiceAttribute('Northwind/Note')] });
 	ss.setMetadata($Serene_Northwind_NotesEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.ElementAttribute('<div/>')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });

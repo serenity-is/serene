@@ -125,6 +125,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryRow.cs">Northwind.EmployeeTerritoryRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryService.cs">Northwind.EmployeeTerritoryService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.Gender.cs">Northwind.Gender.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.NoteRow.cs">Northwind.NoteRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailRow.cs">Northwind.OrderDetailRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailService.cs">Northwind.OrderDetailService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.cs">Northwind.OrderRow.cs</ProjectItem>
@@ -181,6 +182,12 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryDialog.cs">EmployeeTerritoryDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryGrid.cs">EmployeeTerritoryGrid.cs</ProjectItem>
         </Folder>
+        <Folder Name="Note" TargetFolderName="Note">
+          <ProjectItem ReplaceParameters="true" TargetFileName="HtmlBasicContentEditor.cs">HtmlBasicContentEditor.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NoteDialog.cs">NoteDialog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NotesEditor.cs">NotesEditor.cs</ProjectItem>
+        </Folder>
+        <Folder Name="Notes" TargetFolderName="Notes" />
         <Folder Name="Order" TargetFolderName="Order">
           <ProjectItem ReplaceParameters="true" TargetFileName="FreightFormatter.cs">FreightFormatter.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderDialog.cs">OrderDialog.cs</ProjectItem>
@@ -234,7 +241,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.8.14" />
+      <package id="Serenity.Script" version="1.8.15" />
     </packages>
   </WizardData>
   <WizardExtension>
