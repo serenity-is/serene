@@ -100,6 +100,16 @@ namespace Serene.Northwind
         }
     }
 
+    public partial class NotesEditorAttribute : CustomEditorAttribute
+    {
+        public const string Key = "Serene.Northwind.NotesEditor";
+    
+        public NotesEditorAttribute()
+            : base(Key)
+        {
+        }
+    }
+
     public partial class OrderDetailsEditorAttribute : CustomEditorAttribute
     {
         public const string Key = "Serene.Northwind.OrderDetailsEditor";
@@ -123,6 +133,31 @@ namespace Serene.Northwind
         {
             get { return GetOption<Boolean>("multiple"); }
             set { SetOption("multiple", value); }
+        }
+    }
+}
+
+namespace Serenity.ComponentModel
+{
+    public partial class HtmlBasicContentEditorAttribute : CustomEditorAttribute
+    {
+        public const string Key = "Serenity.HtmlBasicContentEditor";
+    
+        public HtmlBasicContentEditorAttribute()
+            : base(Key)
+        {
+        }
+    
+        public Int32 Cols
+        {
+            get { return GetOption<Int32>("cols"); }
+            set { SetOption("cols", value); }
+        }
+    
+        public Int32 Rows
+        {
+            get { return GetOption<Int32>("rows"); }
+            set { SetOption("rows", value); }
         }
     }
 }

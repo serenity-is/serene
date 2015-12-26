@@ -291,6 +291,8 @@
     <Compile Include="Northwind\Customer\CustomerOrderDialog.cs" />
     <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
     <Compile Include="Common\Helper\GridEditorBase.cs" />
+    <Compile Include="Northwind\Note\HtmlBasicContentEditor.cs" />
+    <Compile Include="Northwind\Note\NotesEditor.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
     <Compile Include="Northwind\Order\FreightFormatter.cs" />
     <Compile Include="Northwind\Shared\PhoneEditor.cs" />
@@ -330,6 +332,7 @@
     <Compile Include="Administration\Role\RoleGrid.cs" />
     <Compile Include="Administration\Role\RoleDialog.cs" />
     <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
+    <Compile Include="Northwind\Note\NoteDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">
@@ -352,6 +355,9 @@
       <LastGenOutput>ServiceContracts.log</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <Compile Include="Imports\ServiceContracts\Northwind.NoteRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -384,6 +390,8 @@
       <HintPath>..\..\packages\Serenity.Script.1.8.14\lib\net2\Serenity.Script.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  <ItemGroup>
+    <Folder Include="Northwind\Notes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" Condition="!Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets')" />
   <Import Project="$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets" Condition="Exists('$(SolutionDir)packages\Saltarelle.Compiler.2.7.0\tools\Saltarelle.Compiler.targets')" />

@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Northwind
 {
     using Serenity;
@@ -22,9 +22,9 @@ namespace Serene.Northwind
         public LookupEditor CategoryID { get { return ById<LookupEditor>("CategoryID"); } }
         public StringEditor QuantityPerUnit { get { return ById<StringEditor>("QuantityPerUnit"); } }
         public DecimalEditor UnitPrice { get { return ById<DecimalEditor>("UnitPrice"); } }
-        public StringEditor UnitsInStock { get { return ById<StringEditor>("UnitsInStock"); } }
-        public StringEditor UnitsOnOrder { get { return ById<StringEditor>("UnitsOnOrder"); } }
-        public StringEditor ReorderLevel { get { return ById<StringEditor>("ReorderLevel"); } }
+        public IntegerEditor UnitsInStock { get { return ById<IntegerEditor>("UnitsInStock"); } }
+        public IntegerEditor UnitsOnOrder { get { return ById<IntegerEditor>("UnitsOnOrder"); } }
+        public IntegerEditor ReorderLevel { get { return ById<IntegerEditor>("ReorderLevel"); } }
     }
 }
 

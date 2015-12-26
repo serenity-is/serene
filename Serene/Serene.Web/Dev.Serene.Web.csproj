@@ -471,6 +471,7 @@
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
+    <Content Include="Content\site\site.htmlcontent.css" />
     <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.northwind.less" />
@@ -1431,6 +1432,7 @@
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151226_184500_Notes.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151014_030700_OrderDetailID.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20141123_155100_Initial.cs" />
@@ -1468,6 +1470,7 @@
     <Compile Include="Modules\Northwind\Category\CategoryColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerColumns.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCountryLookup.cs" />
+    <Compile Include="Modules\Northwind\Note\NotesBehavior.cs" />
     <Compile Include="Modules\Northwind\OrderDetail\OrderDetailColumns.cs" />
     <Compile Include="Modules\Northwind\Order\OrderShippingState.cs" />
     <Compile Include="Modules\Northwind\Order\OrderShipCity.cs" />
@@ -1585,9 +1588,12 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
+    <Compile Include="Modules\Northwind\Note\NoteRow.cs" />
+    <Compile Include="Modules\Northwind\Note\NoteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Modules\Northwind\Notes\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

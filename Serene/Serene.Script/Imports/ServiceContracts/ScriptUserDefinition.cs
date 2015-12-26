@@ -13,6 +13,7 @@ namespace Serene
     public partial class ScriptUserDefinition
     {
         public String Username { get; set; }
+        public String DisplayName { get; set; }
         public JsDictionary<String,Boolean> Permissions { get; set; }
     }
     

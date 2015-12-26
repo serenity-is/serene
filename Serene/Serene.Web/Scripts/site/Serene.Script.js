@@ -6,6 +6,7 @@
 	global.Serene.Common = global.Serene.Common || {};
 	global.Serene.Membership = global.Serene.Membership || {};
 	global.Serene.Northwind = global.Serene.Northwind || {};
+	global.Serenity = global.Serenity || {};
 	ss.initAssembly($asm, 'Serene.Script');
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Authorization
@@ -747,6 +748,7 @@
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
 		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.byId$1('OrdersGrid'));
 		Serenity.FLX.flexHeightOnly(this.$ordersGrid.get_element(), 1);
+		this.byId$1('NoteList').closest('.field').hide().end().appendTo(this.byId$1('TabNotes'));
 		this.tabs.bind('tabsactivate', ss.mkdel(this, function(e, i) {
 			this.arrange();
 		}));
@@ -850,6 +852,49 @@
 	};
 	$Serene_Northwind_Gender.__typeName = 'Serene.Northwind.Gender';
 	global.Serene.Northwind.Gender = $Serene_Northwind_Gender;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.NoteDialog
+	var $Serene_Northwind_NoteDialog = function() {
+		this.okClick = null;
+		Serenity.TemplatedDialog.call(this);
+		var $t2 = this.byId$1('Text');
+		var $t1 = Serenity.HtmlContentEditorOptions.$ctor();
+		$t1.rows = 12;
+		new $Serenity_HtmlBasicContentEditor($t2, $t1);
+	};
+	$Serene_Northwind_NoteDialog.__typeName = 'Serene.Northwind.NoteDialog';
+	global.Serene.Northwind.NoteDialog = $Serene_Northwind_NoteDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.NoteForm
+	var $Serene_Northwind_NoteForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Northwind_NoteForm.__typeName = 'Serene.Northwind.NoteForm';
+	global.Serene.Northwind.NoteForm = $Serene_Northwind_NoteForm;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.NoteGrid
+	var $Serene_Northwind_NoteGrid = function(container) {
+		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+	};
+	$Serene_Northwind_NoteGrid.__typeName = 'Serene.Northwind.NoteGrid';
+	global.Serene.Northwind.NoteGrid = $Serene_Northwind_NoteGrid;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.NotesEditor
+	var $Serene_Northwind_NotesEditor = function(container) {
+		this.$items = null;
+		this.$6$IsDirtyField = false;
+		this.$6$OnChangeField = null;
+		Serenity.TemplatedWidget.call(this, container);
+		var $t2 = this.byId$1('Toolbar');
+		var $t1 = [];
+		$t1.push({ title: 'Add Note', cssClass: 'add-button', onClick: ss.mkdel(this, function(e) {
+			e.preventDefault();
+			this.$addClick();
+		}) });
+		new Serenity.Toolbar($t2, { buttons: $t1 });
+	};
+	$Serene_Northwind_NotesEditor.__typeName = 'Serene.Northwind.NotesEditor';
+	global.Serene.Northwind.NotesEditor = $Serene_Northwind_NotesEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDetailDialog
 	var $Serene_Northwind_OrderDetailDialog = function() {
@@ -1141,6 +1186,13 @@
 	};
 	$Serene_Northwind_TerritoryGrid.__typeName = 'Serene.Northwind.TerritoryGrid';
 	global.Serene.Northwind.TerritoryGrid = $Serene_Northwind_TerritoryGrid;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.HtmlBasicContentEditor
+	var $Serenity_HtmlBasicContentEditor = function(textArea, opt) {
+		Serenity.HtmlContentEditor.call(this, textArea, opt);
+	};
+	$Serenity_HtmlBasicContentEditor.__typeName = 'Serenity.HtmlBasicContentEditor';
+	global.Serenity.HtmlBasicContentEditor = $Serenity_HtmlBasicContentEditor;
 	ss.initClass($Serene_Authorization, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
@@ -1895,7 +1947,7 @@
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.onSaveSuccess.call(this, response);
 			Q.reloadLookup('Northwind.Customer');
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerEditor, $asm, {
 		getLookupKey: function() {
 			return 'Northwind.Customer';
@@ -1937,6 +1989,9 @@
 		},
 		get_fax: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Fax');
+		},
+		get_noteList: function() {
+			return this.byId($Serene_Northwind_NotesEditor).call(this, 'NoteList');
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerGrid, $asm, {
@@ -2165,6 +2220,150 @@
 		}
 	}, null, [Serenity.ISlickFormatter]);
 	ss.initEnum($Serene_Northwind_Gender, $asm, { Male: 1, Female: 2 });
+	ss.initClass($Serene_Northwind_NoteDialog, $asm, {
+		getTemplate: function() {
+			return "<form id='~_Form' class='s-Form'><textarea id='~_Text' class='required'></textarea></form>";
+		},
+		getDialogOptions: function() {
+			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var $t1 = [];
+			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
+				if (!this.validateForm()) {
+					return;
+				}
+				if (!ss.staticEquals(this.okClick, null)) {
+					this.okClick();
+				}
+			}) });
+			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
+			opt.buttons = $t1;
+			return opt;
+		},
+		get_text: function() {
+			return this.byId$1('Text').val();
+		},
+		set_text: function(value) {
+			this.byId$1('Text').val(value);
+		}
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
+	ss.initClass($Serene_Northwind_NoteForm, $asm, {
+		get_entityType: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'EntityType');
+		},
+		get_entityId: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'EntityId');
+		},
+		get_text: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Text');
+		},
+		get_insertUserId: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'InsertUserId');
+		},
+		get_insertDate: function() {
+			return this.byId(Serenity.DateEditor).call(this, 'InsertDate');
+		}
+	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Northwind_NoteGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_NotesEditor, $asm, {
+		getTemplate: function() {
+			return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
+		},
+		$updateContent: function() {
+			var noteList = this.byId$1('NoteList');
+			noteList.children().remove();
+			if (ss.isValue(this.$items)) {
+				var index = 0;
+				for (var $t1 = 0; $t1 < this.$items.length; $t1++) {
+					var item = this.$items[$t1];
+					var li = $('<li/>');
+					$('<div/>').addClass('note-text').html(ss.coalesce(item.Text, '')).appendTo(li);
+					$('<a/>').attr('href', '#').addClass('note-date').text(item.InsertUserDisplayName + ' - ' + Q.formatDate(Q.parseISODateTime(item.InsertDate), 'dd/MM/yyyy HH:mm')).data('index', index).appendTo(li).click(ss.mkdel(this, this.$editClick));
+					$('<a/>').attr('href', '#').addClass('note-delete').attr('title', 'delete note').data('index', index).appendTo(li).click(ss.mkdel(this, this.$deleteClick));
+					li.appendTo(noteList);
+					index++;
+				}
+			}
+		},
+		$addClick: function() {
+			var dlg = new $Serene_Northwind_NoteDialog();
+			dlg.set_dialogTitle('Add Note');
+			dlg.okClick = ss.mkdel(this, function() {
+				var text = Q.trimToNull(dlg.get_text());
+				if (ss.isNullOrUndefined(text)) {
+					return;
+				}
+				this.$items = this.$items || [];
+				ss.insert(this.$items, 0, { Text: text, InsertUserDisplayName: $Serene_Authorization.get_userDefinition().DisplayName, InsertDate: Q.formatISODateTimeUTC(new Date()) });
+				this.$updateContent();
+				dlg.dialogClose();
+				this.set_isDirty(true);
+				if (!ss.staticEquals(this.get_onChange(), null)) {
+					this.get_onChange()();
+				}
+			});
+			dlg.dialogOpen();
+		},
+		$editClick: function(e) {
+			e.preventDefault();
+			var index = $(e.target).data('index');
+			var old = this.$items[index];
+			var dlg = new $Serene_Northwind_NoteDialog();
+			dlg.set_dialogTitle('Edit Note');
+			dlg.set_text(old.Text);
+			dlg.okClick = ss.mkdel(this, function() {
+				var text = Q.trimToNull(dlg.get_text());
+				if (ss.isNullOrUndefined(text)) {
+					return;
+				}
+				this.$items[index].Text = text;
+				this.$updateContent();
+				dlg.dialogClose();
+				this.set_isDirty(true);
+				if (!ss.staticEquals(this.get_onChange(), null)) {
+					this.get_onChange()();
+				}
+			});
+			dlg.dialogOpen();
+		},
+		$deleteClick: function(e) {
+			e.preventDefault();
+			var index = $(e.target).data('index');
+			Q.confirm('Delete this note?', ss.mkdel(this, function() {
+				ss.removeAt(this.$items, index);
+				this.$updateContent();
+				this.set_isDirty(true);
+				if (!ss.staticEquals(this.get_onChange(), null)) {
+					this.get_onChange()();
+				}
+			}));
+		},
+		get_value: function() {
+			return this.$items;
+		},
+		set_value: function(value) {
+			this.$items = value || [];
+			this.set_isDirty(false);
+			this.$updateContent();
+		},
+		getEditValue: function(property, target) {
+			target[property.name] = this.get_value();
+		},
+		setEditValue: function(source, property) {
+			this.set_value(ss.cast(source[property.name], Array));
+		},
+		get_isDirty: function() {
+			return this.$6$IsDirtyField;
+		},
+		set_isDirty: function(value) {
+			this.$6$IsDirtyField = value;
+		},
+		get_onChange: function() {
+			return this.$6$OnChangeField;
+		},
+		set_onChange: function(value) {
+			this.$6$OnChangeField = value;
+		}
+	}, Serenity.TemplatedWidget, [Serenity.IGetEditValue, Serenity.ISetEditValue]);
 	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderDetailForm, $asm, {
 		get_productID: function() {
@@ -2288,13 +2487,13 @@
 			return this.byId(Serenity.DecimalEditor).call(this, 'UnitPrice');
 		},
 		get_unitsInStock: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'UnitsInStock');
+			return this.byId(Serenity.IntegerEditor).call(this, 'UnitsInStock');
 		},
 		get_unitsOnOrder: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'UnitsOnOrder');
+			return this.byId(Serenity.IntegerEditor).call(this, 'UnitsOnOrder');
 		},
 		get_reorderLevel: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'ReorderLevel');
+			return this.byId(Serenity.IntegerEditor).call(this, 'ReorderLevel');
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
@@ -2448,6 +2647,14 @@
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serenity_HtmlBasicContentEditor, $asm, {
+		getConfig: function() {
+			var config = Serenity.HtmlContentEditor.prototype.getConfig.call(this);
+			config.removeButtons += ',Cut,Copy,Paste,BulletedList,NumberedList,Indent,Outdent,SpecialChar,Subscript,Superscript,Styles,PasteText,PasteFromWord,Strike,Link,Unlink,CreatePlaceholder,Image,Table,HorizontalRule,Source,Maximize,Format,Font,FontSize,Anchor,Blockquote,CreatePlaceholder,BGColor,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Superscript,RemoveFormat';
+			config.removePlugins += ',elementspath';
+			return config;
+		}
+	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
 	ss.setMetadata($Serene_Administration_LanguageDialog, { attr: [new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.FormKeyAttribute('Administration.Language'), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_LanguageGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Language'), new Serenity.IdPropertyAttribute('Id'), new Serenity.NamePropertyAttribute('LanguageName'), new Serenity.DialogTypeAttribute($Serene_Administration_LanguageDialog), new Serenity.LocalTextPrefixAttribute('Administration.Language'), new Serenity.ServiceAttribute('Administration/Language')] });
 	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('Key')] });
@@ -2479,6 +2686,8 @@
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryDialog, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.FormKeyAttribute('Northwind.EmployeeTerritory'), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryGrid, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_EmployeeTerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
+	ss.setMetadata($Serene_Northwind_NoteGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Note'), new Serenity.IdPropertyAttribute('NoteId'), new Serenity.NamePropertyAttribute('EntityType'), new Serenity.DialogTypeAttribute($Serene_Northwind_NoteDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Note'), new Serenity.ServiceAttribute('Northwind/Note')] });
+	ss.setMetadata($Serene_Northwind_NotesEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.ElementAttribute('<div/>')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
@@ -2495,6 +2704,7 @@
 	ss.setMetadata($Serene_Northwind_SupplierGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Supplier'), new Serenity.FilterableAttribute(), new Serenity.IdPropertyAttribute('SupplierID'), new Serenity.NamePropertyAttribute('CompanyName'), new Serenity.DialogTypeAttribute($Serene_Northwind_SupplierDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Supplier'), new Serenity.ServiceAttribute('Northwind/Supplier')] });
 	ss.setMetadata($Serene_Northwind_TerritoryDialog, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.FormKeyAttribute('Northwind.Territory'), new Serenity.LocalTextPrefixAttribute('Northwind.Territory'), new Serenity.ServiceAttribute('Northwind/Territory')] });
 	ss.setMetadata($Serene_Northwind_TerritoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Territory'), new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_TerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Territory'), new Serenity.ServiceAttribute('Northwind/Territory')] });
+	ss.setMetadata($Serenity_HtmlBasicContentEditor, { attr: [new Serenity.EditorAttribute(), new System.ComponentModel.DisplayNameAttribute('Html Content (Basic Set)'), new Serenity.OptionsTypeAttribute(Serenity.HtmlContentEditorOptions), new Serenity.ElementAttribute('<textarea />')] });
 	(function() {
 		Q$Config.rootNamespaces.push('Serene');
 	})();

@@ -12,6 +12,7 @@
     public class ScriptUserDefinition
     {
         public String Username { get; set; }
+        public String DisplayName { get; set; }
         public Dictionary<string, bool> Permissions { get; set; }
     }
 }

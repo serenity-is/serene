@@ -7,7 +7,7 @@ namespace Serene.Northwind
 
     [IdProperty("ID"), NameProperty("CustomerID"), Flexify, Maximizable]
     [FormKey("Northwind.Customer"), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
-    public class CustomerDialog : EntityDialog<CustomerRow>, IAsyncInit
+    public class CustomerDialog : EntityDialog<CustomerRow>
     {
         private CustomerOrdersGrid ordersGrid;
 
@@ -15,6 +15,8 @@ namespace Serene.Northwind
         {
             ordersGrid = new CustomerOrdersGrid(this.ById("OrdersGrid"));
             ordersGrid.Element.FlexHeightOnly();
+
+            this.ById("NoteList").Closest(".field").Hide().End().AppendTo(this.ById("TabNotes"));
 
             tabs.OnActivate += (e, i) => this.Arrange();
         }

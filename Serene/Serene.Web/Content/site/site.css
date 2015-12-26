@@ -7206,6 +7206,11 @@ section.content > .s-DataGrid {
 .s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
   height: 296px;
 }
+.s-Northwind-CustomerDialog .s-NotesEditor {
+  height: 490px;
+  margin: 6px;
+  width: initial !important;
+}
 .s-Northwind-OrderDialog > .size,
 .s-CustomerOrderDialog > .size {
   min-width: 850px;
@@ -7505,4 +7510,100 @@ section.content > .s-DataGrid {
 .freight-symbol {
   padding: 2px 20px 2px 0px;
   background: url(../serenity/images/balance.png) no-repeat center right;
+}
+.s-NotesEditor {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.s-NotesEditor ul {
+  padding: 0;
+  min-height: 110px;
+  overflow-y: auto;
+  list-style: none;
+}
+.s-NotesEditor li {
+  margin: 10px;
+  border-radius: 4px;
+  border: 1px solid #C3C2C2;
+  background-color: #F5E7DC;
+  padding: 8px;
+  position: relative;
+}
+.s-NotesEditor .note-text {
+  padding-right: 24px;
+  display: block;
+}
+.s-NotesEditor .note-delete {
+  background-image: url('../serenity/images/delete2.png');
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 6px;
+  top: 6px;
+  opacity: 0.4;
+}
+.s-NotesEditor .note-delete:hover {
+  opacity: 1;
+}
+.s-NotesEditor .note-date {
+  margin-top: 6px;
+  display: block;
+  text-align: right;
+  color: #2a4084;
+  font-style: italic;
+}
+.s-NotesEditor .s-Toolbar {
+  background-color: #eee;
+  padding: 4px;
+}
+.s-NoteDialog > .size {
+  min-width: 465px;
+  width: 465px;
+  min-height: 415px;
+  height: 415px;
+}
+.s-NoteDialog .ui-dialog-content {
+  overflow-y: hidden;
+}
+/* ------------------------------------------------------------------------- */
+/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
+/* ------------------------------------------------------------------------- */
+.s-NoteDialog > .size {
+  min-width: 650px;
+  width: 650px;
+}
+.s-NoteDialog .tab-pane {
+  height: auto;
+}
+.s-NoteDialog .caption {
+  width: 150px;
+}
+.s-NoteDialog .editor {
+  width: 400px;
+}
+.s-NoteDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-NoteDialog .s-Form .editor.dateQ {
+  width: 376px;
+}
+.s-NoteDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-NoteDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 323px;
+}
+.s-NoteDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-NoteDialog .s-Form .editor.has-inplace-button {
+  width: 374px;
+}
+.s-NoteDialog .s-Form .emaildomain {
+  width: 215px;
+}
+.s-NoteDialog .s-PropertyGrid .categories {
+  height: 260px;
 }

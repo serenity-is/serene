@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Administration
 {
     using Serenity;
@@ -24,6 +24,7 @@ namespace Serene.Administration
         public String PasswordSalt { get; set; }
         public String DisplayName { get; set; }
         public String Email { get; set; }
+        public String LastDirectoryUpdate { get; set; }
         public String Password { get; set; }
         public String PasswordConfirm { get; set; }
         public Int32? InsertUserId { get; set; }
@@ -42,6 +43,7 @@ namespace Serene.Administration
             [InlineConstant] public const string PasswordSalt = "PasswordSalt";
             [InlineConstant] public const string DisplayName = "DisplayName";
             [InlineConstant] public const string Email = "Email";
+            [InlineConstant] public const string LastDirectoryUpdate = "LastDirectoryUpdate";
             [InlineConstant] public const string Password = "Password";
             [InlineConstant] public const string PasswordConfirm = "PasswordConfirm";
             [InlineConstant] public const string InsertUserId = "InsertUserId";

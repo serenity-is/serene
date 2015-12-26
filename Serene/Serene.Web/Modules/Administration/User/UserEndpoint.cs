@@ -74,6 +74,7 @@ namespace Serene.Administration.Endpoints
             }
 
             result.Username = user.Username;
+            result.DisplayName = user.DisplayName;
 
             result.Permissions = TwoLevelCache.GetLocalStoreOnly("UserPermissions:" + user.Id, TimeSpan.Zero,
                 UserPermissionRow.Fields.GenerationKey, () =>

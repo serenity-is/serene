@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Northwind
 {
     using Serenity;
@@ -26,6 +26,7 @@ namespace Serene.Northwind
         public StringEditor Country { get { return ById<StringEditor>("Country"); } }
         public StringEditor Phone { get { return ById<StringEditor>("Phone"); } }
         public StringEditor Fax { get { return ById<StringEditor>("Fax"); } }
+        public NotesEditor NoteList { get { return ById<NotesEditor>("NoteList"); } }
     }
 }
 

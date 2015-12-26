@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Northwind
 {
     using Serenity;
@@ -31,6 +31,7 @@ namespace Serene.Northwind
         public String Country { get; set; }
         public String Phone { get; set; }
         public String Fax { get; set; }
+        public List<NoteRow> NoteList { get; set; }
     
         [Imported, PreserveMemberCase]
         public static class Fields
@@ -47,6 +48,7 @@ namespace Serene.Northwind
             [InlineConstant] public const string Country = "Country";
             [InlineConstant] public const string Phone = "Phone";
             [InlineConstant] public const string Fax = "Fax";
+            [InlineConstant] public const string NoteList = "NoteList";
         }
     }
     

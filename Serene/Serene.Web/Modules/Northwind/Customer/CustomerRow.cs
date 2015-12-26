@@ -9,6 +9,7 @@ namespace Serene.Northwind.Entities
     using System.IO;
     using System.ComponentModel;
     using Serenity.ComponentModel;
+    using System.Collections.Generic;
 
     [ConnectionKey("Northwind"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.Customer.View)]
@@ -101,6 +102,13 @@ namespace Serene.Northwind.Entities
             set { Fields.Fax[this] = value; }
         }
 
+        [NotesEditor, ClientSide]
+        public List<NoteRow> NoteList
+        {
+            get { return Fields.NoteList[this]; }
+            set { Fields.NoteList[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.ID; }
@@ -132,6 +140,7 @@ namespace Serene.Northwind.Entities
             public readonly StringField Country;
             public readonly StringField Phone;
             public readonly StringField Fax;
+            public readonly RowListField<NoteRow> NoteList;
 
             public RowFields()
                 : base("Customers")

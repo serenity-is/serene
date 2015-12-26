@@ -1,13 +1,10 @@
 ﻿
 namespace Serene.Northwind.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.IO;
 
     [FormScript("Northwind.Customer")]
     [BasedOnRow(typeof(Entities.CustomerRow))]
@@ -27,5 +24,7 @@ namespace Serene.Northwind.Forms
         public String Country { get; set; }
         public String Phone { get; set; }
         public String Fax { get; set; }
+        [NotesEditor]
+        public List<object> NoteList { get; set; }
     }
 }

@@ -12,6 +12,7 @@
     .dialog-styles(@h: auto, @l: 150px, @e: 600px);
     .categories { height: 400px; }
     .s-CustomerOrdersGrid > .grid-container { height: 296px; }
+    .s-NotesEditor { height: 490px; margin: 6px; width: initial !important; }
 }
 
 .s-Northwind-OrderDialog, .s-CustomerOrderDialog {
@@ -79,4 +80,63 @@
 .freight-symbol {
     padding: 2px 20px 2px 0px;
     background: url(../serenity/images/balance.png) no-repeat center right;
+}
+
+.s-NotesEditor {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    ul {
+        padding: 0;
+        min-height: 110px;
+        overflow-y: auto;
+        list-style: none;
+    }
+
+    li {
+        margin: 10px;
+        border-radius: 4px;
+        border: 1px solid #C3C2C2;
+        background-color: #F5E7DC;
+        padding: 8px;
+        position: relative;
+    }
+
+    .note-text {
+        padding-right: 24px;
+        display: block;
+    }
+
+    .note-delete {
+        background-image: url('../serenity/images/delete2.png'); 
+        display: block;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 6px;
+        top: 6px;
+        opacity: 0.4;
+    }
+
+    .note-delete:hover {
+        opacity: 1;
+    }
+
+    .note-date {
+        margin-top: 6px;
+        display: block;
+        text-align: right;
+        color: rgb(42, 64, 132);
+        font-style: italic;
+    }
+
+    .s-Toolbar {
+        background-color: #eee;
+        padding: 4px;
+    }
+}
+
+.s-NoteDialog {
+    > .size { .widthAndMin(465px); .heightAndMin(415px); }
+    .ui-dialog-content { overflow-y: hidden; }
 }

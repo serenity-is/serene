@@ -6682,6 +6682,9 @@
 				return ss.isNullOrUndefined(this.validator) || !!this.validator.form();
 			},
 			dialogOpen: function() {
+				if (this.isPanel) {
+					return;
+				}
 				this.element.dialog().dialog('open');
 			},
 			onDialogOpen: function() {
@@ -6731,7 +6734,22 @@
 				return opt;
 			},
 			dialogClose: function() {
+				if (this.isPanel) {
+					return;
+				}
 				this.element.dialog().dialog('close');
+			},
+			get_dialogTitle: function() {
+				if (this.isPanel) {
+					return null;
+				}
+				return ss.safeCast(this.element.dialog().dialog('option', 'title'), String);
+			},
+			set_dialogTitle: function(value) {
+				if (this.isPanel) {
+					return;
+				}
+				this.element.dialog().dialog('option', 'title', value);
 			},
 			initTabs: function() {
 				var tabsDiv = this.byId$1('Tabs');
