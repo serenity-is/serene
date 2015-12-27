@@ -12,7 +12,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("CustomerDemographics"), InstanceName("CustomerDemographics"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class CustomerDemographicRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

@@ -13,7 +13,6 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
     [ReadPermission(Administration.PermissionKeys.Translation)]
     [ModifyPermission(Administration.PermissionKeys.Translation)]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class LanguageRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

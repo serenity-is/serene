@@ -12,7 +12,6 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
     [ReadPermission(Administration.PermissionKeys.Security)]
     [ModifyPermission(Administration.PermissionKeys.Security)]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow
     {
         [DisplayName("User Id"), Identity]

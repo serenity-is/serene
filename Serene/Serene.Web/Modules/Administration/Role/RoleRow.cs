@@ -13,7 +13,6 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Roles"), InstanceName("Role"), TwoLevelCached]
     [ReadPermission(Administration.PermissionKeys.Security)]
     [ModifyPermission(Administration.PermissionKeys.Security)]
-    [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Administration.Role")]
     public sealed class RoleRow : Row, IIdRow, INameRow
     {

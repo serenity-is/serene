@@ -13,7 +13,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("Territories"), InstanceName("Territory"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Territory")]
     public sealed class TerritoryRow : Row, IIdRow, INameRow
     {

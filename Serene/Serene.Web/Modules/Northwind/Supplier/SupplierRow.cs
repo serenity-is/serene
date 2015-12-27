@@ -13,7 +13,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("Suppliers"), InstanceName("Supplier"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Supplier")]
     public sealed class SupplierRow : Row, IIdRow, INameRow
     {

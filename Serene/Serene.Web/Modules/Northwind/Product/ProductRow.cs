@@ -13,7 +13,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    [JsonConverter(typeof(JsonRowConverter))]
     [LookupScript("Northwind.Product")]
     [CaptureLog(typeof(ProductLogRow))]
     public sealed class ProductRow : Row, IIdRow, INameRow

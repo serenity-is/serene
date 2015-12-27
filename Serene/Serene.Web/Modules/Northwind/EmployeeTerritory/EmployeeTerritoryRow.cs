@@ -12,7 +12,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories"), TwoLevelCached]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class EmployeeTerritoryRow : Row, IIdRow, INameRow
     {
         [DisplayName("Employee Id"), PrimaryKey, ForeignKey("Employees", "EmployeeID"), LeftJoin("jEmployee")]

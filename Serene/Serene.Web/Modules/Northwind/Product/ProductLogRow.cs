@@ -9,7 +9,6 @@ namespace Serene.Northwind.Entities
     using System;
 
     [ConnectionKey("Northwind")]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class ProductLogRow : Row, ICaptureLogRow
     {
         [Identity]

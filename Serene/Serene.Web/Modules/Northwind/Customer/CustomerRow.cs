@@ -15,7 +15,6 @@ namespace Serene.Northwind.Entities
     [ReadPermission(Northwind.PermissionKeys.Customer.View)]
     [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
     [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]

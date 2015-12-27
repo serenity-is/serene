@@ -13,7 +13,6 @@ namespace Serene.Northwind.Entities
     [ConnectionKey("Northwind"), DisplayName("Notes"), InstanceName("Note"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
-    [JsonConverter(typeof(JsonRowConverter))]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
     {
         [DisplayName("Note Id"), Column("NoteID"), Identity]
