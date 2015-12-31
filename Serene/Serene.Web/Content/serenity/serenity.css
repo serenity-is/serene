@@ -984,7 +984,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .s-MultipleImageUploadEditor ul {
   border-width: 1px;
   border-style: none solid solid solid;
-  border-color: #e7e7e7;
+  border-color: #eee;
   padding: 6px 6px 8px 6px;
   overflow-y: auto;
   background-color: #fff;
@@ -998,7 +998,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .s-MultipleImageUploadEditor .s-Toolbar {
   border-radius: 0px;
   padding: 4px;
-  background-color: #e7e7e7;
+  background-color: #eee;
 }
 .s-MultipleImageUploadEditor li {
   float: left;

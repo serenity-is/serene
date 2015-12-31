@@ -11,8 +11,8 @@ namespace Serene.Northwind.Entities
     using System.IO;
 
     [ConnectionKey("Northwind"), DisplayName("Notes"), InstanceName("Note"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission(Northwind.PermissionKeys.General)]
+    [ModifyPermission(Northwind.PermissionKeys.General)]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
     {
         [DisplayName("Note Id"), Column("NoteID"), Identity]
