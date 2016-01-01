@@ -306,8 +306,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>
@@ -349,23 +349,40 @@
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountChangePassword.cshtml">AccountChangePassword.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountLogin.cshtml">AccountLogin.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.cs">AccountPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPassword.cshtml">AccountResetPassword.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPasswordEmail.cshtml">AccountResetPasswordEmail.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.cs">ChangePasswordForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
+            <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountChangePassword.cshtml">AccountChangePassword.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ChangePassword.cs">AccountPage.ChangePassword.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.cs">ChangePasswordForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="EnvironmentSettings.cs">EnvironmentSettings.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.cs">ForgotPasswordForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
+            <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ForgotPassword.cs">AccountPage.ForgotPassword.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.cs">ForgotPasswordForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.cs">LoginForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.cs">ResetPasswordForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
+            <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ResetPassword.cs">AccountPage.ResetPassword.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPassword.cshtml">AccountResetPassword.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPasswordEmail.cshtml">AccountResetPasswordEmail.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.cs">ResetPasswordForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
+            </Folder>
+            <Folder Name="SignUp" TargetFolderName="SignUp">
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountActivateEmail.cshtml">AccountActivateEmail.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.SignUp.cs">AccountPage.SignUp.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountSignUp.cshtml">AccountSignUp.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmailModel.cs">ActivateEmailModel.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.cs">SignUpForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.cs">SignUpRequest.cs</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <Folder Name="Northwind" TargetFolderName="Northwind">
@@ -430,7 +447,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteRow.cs">NoteRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NotesBehavior.cs">NotesBehavior.cs</ProjectItem>
           </Folder>
-          <Folder Name="Notes" TargetFolderName="Notes" />
           <Folder Name="Order" TargetFolderName="Order">
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderColumns.cs">OrderColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderEndpoint.cs">OrderEndpoint.cs</ProjectItem>

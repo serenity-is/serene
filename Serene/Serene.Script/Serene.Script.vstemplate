@@ -65,6 +65,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.cs">Membership.ForgotPasswordForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginForm.cs">Membership.LoginForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordForm.cs">Membership.ResetPasswordForm.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.cs">Membership.SignUpForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.cs">Northwind.CategoryForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoForm.cs">Northwind.CustomerCustomerDemoForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicForm.cs">Northwind.CustomerDemographicForm.cs</ProjectItem>
@@ -112,6 +113,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordRequest.cs">Membership.ForgotPasswordRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.cs">Membership.LoginRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordRequest.cs">Membership.ResetPasswordRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpRequest.cs">Membership.SignUpRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryRow.cs">Northwind.CategoryRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryService.cs">Northwind.CategoryService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoRow.cs">Northwind.CustomerCustomerDemoRow.cs</ProjectItem>
@@ -152,6 +154,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.cs">ForgotPasswordPanel.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.cs">LoginPanel.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPanel.cs">ResetPasswordPanel.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPanel.cs">SignUpPanel.cs</ProjectItem>
       </Folder>
       <Folder Name="Northwind" TargetFolderName="Northwind">
         <Folder Name="Category" TargetFolderName="Category">
