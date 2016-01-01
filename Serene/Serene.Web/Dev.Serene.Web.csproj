@@ -1248,6 +1248,7 @@
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
+    <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -1467,6 +1468,8 @@
     <Compile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordForm.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\ChangePasswordRequest.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\ChangePasswordForm.cs" />
+    <Compile Include="Modules\Membership\Account\SignUp\AccountPage.SignUp.cs" />
+    <Compile Include="Modules\Membership\Account\SignUp\ActivateEmailModel.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpForm.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpRequest.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />

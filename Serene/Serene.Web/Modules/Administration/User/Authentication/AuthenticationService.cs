@@ -57,7 +57,7 @@
                 return false;
             }
 
-            if (user.Source != "directory")
+            if (user.Source != "ldap")
                 throw new ArgumentOutOfRangeException("userSource");
 
             if (!string.IsNullOrEmpty(user.PasswordHash) &&
@@ -114,7 +114,7 @@
                     var fld = UserRow.Fields;
                     new SqlUpdate(fld.TableName)
                         .Set(fld.DisplayName, displayName)
-                        .Set(fld.Password, hash)
+                        .Set(fld.PasswordHash, hash)
                         .Set(fld.PasswordSalt, salt)
                         .Set(fld.Email, email)
                         .Set(fld.LastDirectoryUpdate, DateTime.Now)
@@ -174,12 +174,14 @@
                     var fld = UserRow.Fields;
                     var userId = (int?)new SqlInsert(fld.TableName)
                         .Set(fld.Username, username)
-                        .Set(fld.Source, "directory")
+                        .Set(fld.Source, "ldap")
                         .Set(fld.DisplayName, displayName)
                         .Set(fld.Email, email)
-                        .Set(fld.Password, hash)
+                        .Set(fld.PasswordHash, hash)
                         .Set(fld.PasswordSalt, salt)
                         .Set(fld.IsActive, 1)
+                        .Set(fld.InsertDate, DateTime.Now)
+                        .Set(fld.InsertUserId, 1)
                         .Set(fld.LastDirectoryUpdate, DateTime.Now)
                         .ExecuteAndGetID(connection);
 

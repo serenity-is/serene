@@ -57,14 +57,19 @@ namespace Serene
                     public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
                     public static LocalText SignInButton = "Sign In";
                     public static LocalText ForgotPassword = "forgot password?";
+                    public static LocalText SignUpButton = "register a new account";
                 }
 
                 public static class SignUp
                 {
+                    public static LocalText ActivateEmailSubject = "Activate Your Serene Account";
+                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " + 
+                        "Use the e-mail and password you used while signing up to login.";
                     public static LocalText FormInfo = "Enter your details to create a free account.";
-                    public static LocalText FormTitle = "Sign up for Serene.";
+                    public static LocalText FormTitle = "Sign up for Serene";
                     public static LocalText SubmitButton = "Sign Up";
-                    public static LocalText Success = "An e-mail with instructons to active your account is sent to your e-mail address.";
+                    public static LocalText Success = "An e-mail with instructions to active your account is " + 
+                        "sent to your e-mail address. Please check your e-mails.";
                 }
             }
         }
@@ -146,7 +151,10 @@ namespace Serene
             public static LocalText CurrentPasswordMismatch = "Your current password is not valid!";
             public static LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
             public static LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
+            public static LocalText InvalidActivateToken = "Your token to activate your account is invalid or has expired!";
             public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";
+            public static LocalText EmailInUse = "Another user with this e-mail exists!";
+            public static LocalText EmailConfirm = "Emails entered doesn't match!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
                 "records that depends on this one!";
             public static LocalText NorthwindPhone = "Phone numbers should be entered in format '(503) 555-9831'.";

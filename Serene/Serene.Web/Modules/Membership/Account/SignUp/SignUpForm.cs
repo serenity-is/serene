@@ -5,15 +5,11 @@ namespace Serene.Membership
     using System;
     using System.ComponentModel;
 
-    [FormScript("Membership.Signup")]
-    public class SignupForm
+    [FormScript("Membership.SignUp")]
+    public class SignUpForm
     {
-        [DisplayName("Username"), Required(true)]
-        public String Username { get; set; }
-        [DisplayName("Firstname"), Required(true)]
-        public String Firstname { get; set; }
-        [DisplayName("Surname"), Required(true)]
-        public String Surname { get; set; }
+        [DisplayName("Full Name"), Required(true)]
+        public String DisplayName { get; set; }
         [DisplayName("E-mail"), EmailEditor, Required(true)]
         public String Email { get; set; }
         [DisplayName("Confirm Email"), EmailEditor, Required(true)]

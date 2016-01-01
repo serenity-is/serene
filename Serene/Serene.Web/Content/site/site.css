@@ -7122,6 +7122,49 @@ section.content > .s-DataGrid {
   text-align: right;
   padding: 8px 62px;
 }
+.s-SignUpPanel {
+  border: 2px solid #e7e7e7;
+  padding: 40px;
+  border-radius: 8px;
+  width: 650px;
+  margin: 60px auto auto auto;
+}
+.s-SignUpPanel .caption {
+  width: 150px;
+}
+.s-SignUpPanel .editor {
+  width: 350px;
+}
+.s-SignUpPanel input.editor[type=checkbox] {
+  width: auto;
+}
+.s-SignUpPanel .s-Form .editor.dateQ {
+  width: 326px;
+}
+.s-SignUpPanel .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-SignUpPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 273px;
+}
+.s-SignUpPanel .s-Form .editor.s-DateTimeEditor.time {
+  width: 56px;
+  margin-left: 4px;
+}
+.s-SignUpPanel .s-Form .editor.has-inplace-button {
+  width: 324px;
+}
+.s-SignUpPanel .s-Form .emaildomain {
+  width: 165px;
+}
+.s-SignUpPanel .buttons {
+  text-align: right;
+  padding: 8px 62px;
+}
+.s-SignUpPanel p {
+  padding: 8px;
+  margin: 24px 0;
+}
 .s-Northwind-CategoryDialog > .size {
   min-width: 650px;
   width: 650px;

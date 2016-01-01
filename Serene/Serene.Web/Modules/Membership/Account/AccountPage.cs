@@ -11,8 +11,9 @@ namespace Serene.Membership.Pages
     public partial class AccountController : Controller
     {
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string activated)
         {
+            ViewBag.Activated = activated;
             ViewBag.HideLeftNavigation = true;
             return View(MVC.Views.Membership.Account.AccountLogin);
         }

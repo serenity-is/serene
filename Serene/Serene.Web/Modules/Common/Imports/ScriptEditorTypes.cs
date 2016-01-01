@@ -86,6 +86,16 @@ namespace Serene.Membership
         {
         }
     }
+
+    public partial class SignUpPanelAttribute : CustomEditorAttribute
+    {
+        public const string Key = "Serene.Membership.SignUpPanel";
+    
+        public SignUpPanelAttribute()
+            : base(Key)
+        {
+        }
+    }
 }
 
 namespace Serene.Northwind

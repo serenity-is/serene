@@ -22,7 +22,7 @@ namespace Serene.Membership
                 Q.ServiceCall(new ServiceCallOptions
                 {
                     Url = Q.ResolveUrl("~/Account/ForgotPassword"),
-                    Request = request.As<ServiceRequest>(),
+                    Request = request,
                     OnSuccess = response =>
                     {
                         Q.Information(Q.Text("Forms.Membership.ForgotPassword.Success"), () =>

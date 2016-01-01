@@ -120,7 +120,8 @@ namespace MVC
 
                 public static class SignUp
                 {
-                    public const string AccountSignup = "~/Modules/Membership/Account/SignUp/AccountSignup.cshtml";
+                    public const string AccountActivateEmail = "~/Modules/Membership/Account/SignUp/AccountActivateEmail.cshtml";
+                    public const string AccountSignUp = "~/Modules/Membership/Account/SignUp/AccountSignUp.cshtml";
                 }
             }
 

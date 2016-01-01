@@ -9,15 +9,13 @@ namespace Serene.Membership
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    public partial class SignupForm : PrefixedContext
+    public partial class SignUpForm : PrefixedContext
     {
-        [InlineConstant] public const string FormKey = "Membership.Signup";
+        [InlineConstant] public const string FormKey = "Membership.SignUp";
     
-        public SignupForm(string idPrefix) : base(idPrefix) {}
+        public SignUpForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor Username { get { return ById<StringEditor>("Username"); } }
-        public StringEditor Firstname { get { return ById<StringEditor>("Firstname"); } }
-        public StringEditor Surname { get { return ById<StringEditor>("Surname"); } }
+        public StringEditor DisplayName { get { return ById<StringEditor>("DisplayName"); } }
         public EmailEditor Email { get { return ById<EmailEditor>("Email"); } }
         public EmailEditor ConfirmEmail { get { return ById<EmailEditor>("ConfirmEmail"); } }
         public PasswordEditor Password { get { return ById<PasswordEditor>("Password"); } }

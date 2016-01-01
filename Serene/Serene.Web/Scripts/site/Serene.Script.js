@@ -679,12 +679,48 @@
 	$Serene_Membership_ResetPasswordPanel.__typeName = 'Serene.Membership.ResetPasswordPanel';
 	global.Serene.Membership.ResetPasswordPanel = $Serene_Membership_ResetPasswordPanel;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.SignupForm
-	var $Serene_Membership_SignupForm = function(idPrefix) {
+	// Serene.Membership.SignUpForm
+	var $Serene_Membership_SignUpForm = function(idPrefix) {
 		Serenity.PrefixedContext.call(this, idPrefix);
 	};
-	$Serene_Membership_SignupForm.__typeName = 'Serene.Membership.SignupForm';
-	global.Serene.Membership.SignupForm = $Serene_Membership_SignupForm;
+	$Serene_Membership_SignUpForm.__typeName = 'Serene.Membership.SignUpForm';
+	global.Serene.Membership.SignUpForm = $Serene_Membership_SignUpForm;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.SignUpPanel
+	var $Serene_Membership_SignUpPanel = function(container) {
+		this.$form = null;
+		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		this.$form = new $Serene_Membership_SignUpForm(this.get_idPrefix());
+		Serenity.VX.addValidationRule(this.$form.get_confirmPassword(), this.uniqueName, ss.mkdel(this, function(e) {
+			if (!ss.referenceEquals(this.$form.get_confirmPassword().get_value(), this.$form.get_password().get_value())) {
+				return Q.text('Validation.PasswordConfirm');
+			}
+			return null;
+		}));
+		Serenity.VX.addValidationRule(this.$form.get_confirmEmail(), this.uniqueName, ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.get_confirmEmail().get_value(), this.$form.get_email().get_value())) {
+				return Q.text('Validation.EmailConfirm');
+			}
+			return null;
+		}));
+		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+			e2.preventDefault();
+			if (!this.validateForm()) {
+				return;
+			}
+			Q.serviceCall({
+				url: Q.resolveUrl('~/Account/SignUp'),
+				request: { DisplayName: this.$form.get_displayName().get_value(), Email: this.$form.get_email().get_value(), Password: this.$form.get_password().get_value() },
+				onSuccess: function(response) {
+					Q.information(Q.text('Forms.Membership.SignUp.Success'), function() {
+						window.location.href = Q.resolveUrl('~/');
+					}, {});
+				}
+			});
+		})));
+	};
+	$Serene_Membership_SignUpPanel.__typeName = 'Serene.Membership.SignUpPanel';
+	global.Serene.Membership.SignUpPanel = $Serene_Membership_SignUpPanel;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CategoryDialog
 	var $Serene_Northwind_CategoryDialog = function() {
@@ -1884,15 +1920,9 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
-	ss.initClass($Serene_Membership_SignupForm, $asm, {
-		get_username: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Username');
-		},
-		get_firstname: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Firstname');
-		},
-		get_surname: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Surname');
+	ss.initClass($Serene_Membership_SignUpForm, $asm, {
+		get_displayName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'DisplayName');
 		},
 		get_email: function() {
 			return this.byId(Serenity.EmailEditor).call(this, 'Email');
@@ -1907,6 +1937,7 @@
 			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
 		}
 	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
 	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CategoryForm, $asm, {
 		get_categoryName: function() {
@@ -2669,6 +2700,7 @@
 	ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.FormKeyAttribute('Membership.Login')] });
 	ss.setMetadata($Serene_Membership_ResetPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ResetPassword')] });
+	ss.setMetadata($Serene_Membership_SignUpPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.SignUp')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CustomerCustomerDemoDialog, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.FormKeyAttribute('Northwind.CustomerCustomerDemo'), new Serenity.LocalTextPrefixAttribute('Northwind.CustomerCustomerDemo'), new Serenity.ServiceAttribute('Northwind/CustomerCustomerDemo')] });

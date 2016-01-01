@@ -37,10 +37,10 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
-    <Compile Include="Imports\FormContexts\Membership.SignupForm.cs">
+    <Compile Include="Imports\FormContexts\Membership.SignUpForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.SignupRequest.cs">
+    <Compile Include="Imports\ServiceContracts\Membership.SignUpRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
@@ -288,6 +288,7 @@
     <Compile Include="Imports\ServiceContracts\Northwind.TerritoryService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Membership\SignUpPanel.cs" />
     <Compile Include="Membership\ResetPasswordPanel.cs" />
     <Compile Include="Membership\ForgotPasswordPanel.cs" />
     <Compile Include="Membership\ChangePasswordPanel.cs" />

@@ -18,6 +18,7 @@
                     @Texts.Forms.Membership.Login.SignInButton
                 </button>
                 <a href="@Url.Content("~/Account/ForgotPassword")">@Texts.Forms.Membership.Login.ForgotPassword</a>
+                <a class="clear" href="@Url.Content("~/Account/SignUp")">@Texts.Forms.Membership.Login.SignUpButton</a>
             </div>
         </div>
     </form>
@@ -35,6 +36,15 @@
 </div>
 }
 
+@if (ViewBag.Activated != null)
+{
+<div class="alert alert-info alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
+    @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
+</div>
+}
+
 <div class="page-content">
     <div id="LoginPanel">
 
@@ -44,5 +54,14 @@
 <script type="text/javascript">
 jQuery(function() {
     new Serene.Membership.LoginPanel($('#LoginPanel')).init();
+@if (ViewBag.Activated != null)
+{
+    <text>
+    $(function() { 
+        $('#Serene_Membership_LoginPanel0_Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewBag.Activated)));
+        $('#Serene_Membership_LoginPanel0_Password').focus();
+    });
+    </text>
+}
 });
 </script>
