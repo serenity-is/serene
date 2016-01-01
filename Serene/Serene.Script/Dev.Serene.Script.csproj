@@ -37,6 +37,12 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
+    <Compile Include="Imports\FormContexts\Membership.SignupForm.cs">
+      <DependentUpon>FormContexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Membership.SignupRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>

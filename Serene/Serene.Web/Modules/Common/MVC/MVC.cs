@@ -101,11 +101,27 @@ namespace MVC
         {
             public static class Account
             {
-                public const string AccountChangePassword = "~/Modules/Membership/Account/AccountChangePassword.cshtml";
-                public const string AccountForgotPassword = "~/Modules/Membership/Account/AccountForgotPassword.cshtml";
                 public const string AccountLogin = "~/Modules/Membership/Account/AccountLogin.cshtml";
-                public const string AccountResetPassword = "~/Modules/Membership/Account/AccountResetPassword.cshtml";
-                public const string AccountResetPasswordEmail = "~/Modules/Membership/Account/AccountResetPasswordEmail.cshtml";
+                public static class ChangePassword
+                {
+                    public const string AccountChangePassword = "~/Modules/Membership/Account/ChangePassword/AccountChangePassword.cshtml";
+                }
+
+                public static class ForgotPassword
+                {
+                    public const string AccountForgotPassword = "~/Modules/Membership/Account/ForgotPassword/AccountForgotPassword.cshtml";
+                }
+
+                public static class ResetPassword
+                {
+                    public const string AccountResetPassword = "~/Modules/Membership/Account/ResetPassword/AccountResetPassword.cshtml";
+                    public const string AccountResetPasswordEmail = "~/Modules/Membership/Account/ResetPassword/AccountResetPasswordEmail.cshtml";
+                }
+
+                public static class SignUp
+                {
+                    public const string AccountSignup = "~/Modules/Membership/Account/SignUp/AccountSignup.cshtml";
+                }
             }
 
         }

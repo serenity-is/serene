@@ -7,7 +7,6 @@ namespace Serene.Membership
     using System.ComponentModel;
 
     [FormScript("Membership.ForgotPassword")]
-    [BasedOnRow(typeof(Administration.Entities.UserRow))]
     public class ForgotPasswordForm
     {
         [Required(true), EmailEditor, DisplayName("E-mail Address")]

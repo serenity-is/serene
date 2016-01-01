@@ -59,6 +59,13 @@ namespace Serene
                     public static LocalText ForgotPassword = "forgot password?";
                 }
 
+                public static class SignUp
+                {
+                    public static LocalText FormInfo = "Enter your details to create a free account.";
+                    public static LocalText FormTitle = "Sign up for Serene.";
+                    public static LocalText SubmitButton = "Sign Up";
+                    public static LocalText Success = "An e-mail with instructons to active your account is sent to your e-mail address.";
+                }
             }
         }
 

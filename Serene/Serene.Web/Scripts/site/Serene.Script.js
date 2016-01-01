@@ -679,6 +679,13 @@
 	$Serene_Membership_ResetPasswordPanel.__typeName = 'Serene.Membership.ResetPasswordPanel';
 	global.Serene.Membership.ResetPasswordPanel = $Serene_Membership_ResetPasswordPanel;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Membership.SignupForm
+	var $Serene_Membership_SignupForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Membership_SignupForm.__typeName = 'Serene.Membership.SignupForm';
+	global.Serene.Membership.SignupForm = $Serene_Membership_SignupForm;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CategoryDialog
 	var $Serene_Northwind_CategoryDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1877,6 +1884,29 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_SignupForm, $asm, {
+		get_username: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Username');
+		},
+		get_firstname: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Firstname');
+		},
+		get_surname: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Surname');
+		},
+		get_email: function() {
+			return this.byId(Serenity.EmailEditor).call(this, 'Email');
+		},
+		get_confirmEmail: function() {
+			return this.byId(Serenity.EmailEditor).call(this, 'ConfirmEmail');
+		},
+		get_password: function() {
+			return this.byId(Serenity.PasswordEditor).call(this, 'Password');
+		},
+		get_confirmPassword: function() {
+			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
+		}
+	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CategoryForm, $asm, {
 		get_categoryName: function() {
