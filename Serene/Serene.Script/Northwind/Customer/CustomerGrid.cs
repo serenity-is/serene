@@ -6,7 +6,7 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using Fields = CustomerRow.Fields;
 
-    [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("ID"), NameProperty("CustomerID")]
+    [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("CustomerID"), NameProperty("CustomerID")]
     [DialogType(typeof(CustomerDialog)), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
     public class CustomerGrid : EntityGrid<CustomerRow>, IAsyncInit
     {

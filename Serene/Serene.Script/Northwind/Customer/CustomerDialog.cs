@@ -5,7 +5,7 @@ namespace Serene.Northwind
     using Serenity;
     using System.Collections.Generic;
 
-    [IdProperty("ID"), NameProperty("CustomerID"), Flexify, Maximizable]
+    [IdProperty("CustomerID"), NameProperty("CustomerID"), Flexify, Maximizable]
     [FormKey("Northwind.Customer"), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
     public class CustomerDialog : EntityDialog<CustomerRow>
     {

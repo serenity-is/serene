@@ -24,7 +24,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ID[this] = value; }
         }
 
-        [DisplayName("Customer Id"), Size(5), PrimaryKey, NotNull, QuickSearch, Updatable(false), LookupInclude]
+        [DisplayName("Customer Id"), Size(5), PrimaryKey, NotNull, QuickSearch, Updatable(true), LookupInclude]
         public String CustomerID
         {
             get { return Fields.CustomerID[this]; }
@@ -101,7 +101,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Fax[this] = value; }
         }
 
-        [NotesEditor, ClientSide]
+        [ClientSide]
         public List<NoteRow> NoteList
         {
             get { return Fields.NoteList[this]; }
@@ -110,7 +110,7 @@ namespace Serene.Northwind.Entities
 
         IIdField IIdRow.IdField
         {
-            get { return Fields.ID; }
+            get { return Fields.CustomerID; }
         }
 
         StringField INameRow.NameField
