@@ -56,21 +56,21 @@ namespace Serene.Northwind.Entities
             set { Fields.EmployeeGender[this] = (Int32?)value; }
         } 
 
-        [DisplayName("Order Date"), NotNull, DisplayFormat("dd/MM/yyyy")]
+        [DisplayName("Order Date"), NotNull]
         public DateTime? OrderDate
         {
             get { return Fields.OrderDate[this]; }
             set { Fields.OrderDate[this] = value; }
         }
 
-        [DisplayName("Required Date"), DisplayFormat("dd/MM/yyyy")]
+        [DisplayName("Required Date")]
         public DateTime? RequiredDate
         {
             get { return Fields.RequiredDate[this]; }
             set { Fields.RequiredDate[this] = value; }
         }
 
-        [DisplayName("Shipped Date"), DisplayFormat("dd/MM/yyyy")]
+        [DisplayName("Shipped Date")]
         public DateTime? ShippedDate
         {
             get { return Fields.ShippedDate[this]; }

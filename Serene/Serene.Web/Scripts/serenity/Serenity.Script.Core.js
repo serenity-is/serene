@@ -1886,13 +1886,6 @@
 	ss.setMetadata($Serenity_EnumFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, sname: 'get_enumKey', returnType: String, params: [] }, setter: { name: 'set_EnumKey', type: 8, sname: 'set_enumKey', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_NumberFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
 	(function() {
-		$Q$Culture.decimalSeparator = '.';
-		$Q$Culture.dateSeparator = '/';
-		$Q$Culture.dateOrder = 'dmy';
-		$Q$Culture.dateFormat = 'dd/MM/yyyy';
-		$Q$Culture.dateTimeFormat = 'dd/MM/yyyy HH:mm:ss';
-	})();
-	(function() {
 		$Q$LT.$table = {};
 		$Q$LT.empty = new $Q$LT('');
 	})();
@@ -1931,6 +1924,42 @@
 			});
 		}
 		window1['Q$Externals'] = window1.Q;
+	})();
+	(function() {
+		$Q$Culture.decimalSeparator = '.';
+		$Q$Culture.dateSeparator = '/';
+		$Q$Culture.dateOrder = 'dmy';
+		$Q$Culture.dateFormat = 'dd/MM/yyyy';
+		$Q$Culture.dateTimeFormat = 'dd/MM/yyyy HH:mm:ss';
+		var s = $Q.trimToNull($('script#ScriptCulture').html());
+		if (ss.isValue(s)) {
+			var sc = $.parseJSON(s);
+			var $t1 = sc.DecimalSeparator;
+			if (ss.isNullOrUndefined($t1)) {
+				$t1 = $Q$Culture.decimalSeparator;
+			}
+			$Q$Culture.decimalSeparator = $t1;
+			var $t2 = sc.DateSeparator;
+			if (ss.isNullOrUndefined($t2)) {
+				$t2 = $Q$Culture.dateSeparator;
+			}
+			$Q$Culture.dateSeparator = $t2;
+			var $t3 = sc.DateOrder;
+			if (ss.isNullOrUndefined($t3)) {
+				$t3 = $Q$Culture.dateOrder;
+			}
+			$Q$Culture.dateOrder = $t3;
+			var $t4 = sc.DateFormat;
+			if (ss.isNullOrUndefined($t4)) {
+				$t4 = $Q$Culture.dateFormat;
+			}
+			$Q$Culture.dateFormat = $t4;
+			var $t5 = sc.DateTimeFormat;
+			if (ss.isNullOrUndefined($t5)) {
+				$t5 = $Q$Culture.dateTimeFormat;
+			}
+			$Q$Culture.dateTimeFormat = $t5;
+		}
 	})();
 	(function() {
 		$Q$ScriptData.$registered = {};
