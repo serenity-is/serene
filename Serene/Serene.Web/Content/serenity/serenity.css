@@ -717,6 +717,7 @@ button.ui-state-hover .ui-button-text {
 }
 .s-CheckTreeEditor.s-DataGrid .grid-container {
   height: 130px;
+  min-height: 130px;
 }
 .s-CheckTreeEditor.s-DataGrid .s-TreeIndent {
   float: left;

@@ -2926,7 +2926,7 @@
 				}
 				if (this.get_isEditMode()) {
 					var idField = this.getEntityIdField();
-					if (ss.isValue(idField)) {
+					if (ss.isValue(idField) && !ss.isValue(entity[idField])) {
 						entity[idField] = this.get_entityId();
 					}
 				}
@@ -2936,6 +2936,12 @@
 				var entity = this.getSaveEntity();
 				var req = {};
 				req.Entity = entity;
+				if (this.get_isEditMode()) {
+					var idField = this.getEntityIdField();
+					if (ss.isValue(idField)) {
+						req.EntityId = this.get_entityId();
+					}
+				}
 				if (ss.isValue(this.localizationPendingValue)) {
 					req.Localizations = this.$getPendingLocalizations();
 				}
@@ -2991,10 +2997,14 @@
 				list.push({ title: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Q$LT.empty).get(), hint: (this.isPanel ? Texts$Controls$EntityDialog.SaveButton : Texts$Controls$EntityDialog.ApplyChangesButton).get(), cssClass: 'apply-changes-button', hotkey: 'alt+a', onClick: ss.mkdel(this, function() {
 					self.save(ss.mkdel(this, function(response1) {
 						if (self.get_isEditMode()) {
-							self.loadById(self.get_entityId(), null, null);
+							var $t1 = response1.EntityId;
+							if (ss.isNullOrUndefined($t1)) {
+								$t1 = self.get_entityId();
+							}
+							self.loadById($t1, null, null);
 						}
 						else {
-							self.loadById(response1.EntityId, null, null);
+							self.loadById(ss.unbox(response1.EntityId), null, null);
 						}
 						this.showSaveSuccessMessage(response1);
 					}));
