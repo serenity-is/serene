@@ -441,7 +441,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryRepository.cs">EmployeeTerritoryRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryRow.cs">EmployeeTerritoryRow.cs</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.DynamicScripts.cs">Northwind.DynamicScripts.cs</ProjectItem>
           <Folder Name="Note" TargetFolderName="Note">
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteRepository.cs">NoteRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteRow.cs">NoteRow.cs</ProjectItem>
