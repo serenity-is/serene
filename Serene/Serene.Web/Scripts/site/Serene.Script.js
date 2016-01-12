@@ -1117,9 +1117,9 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ProductGrid
 	var $Serene_Northwind_ProductGrid = function(container) {
-		this.$supplier = null;
-		this.$category = null;
+		this.$pendingChanges = {};
 		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		this.slickContainer.on('change', 'input.edit', ss.mkdel(this, this.$inputsChange));
 	};
 	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
 	global.Serene.Northwind.ProductGrid = $Serene_Northwind_ProductGrid;
@@ -2528,37 +2528,123 @@
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
 		createToolbarExtensions: function() {
 			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
-			var $t2 = ss.mkdel(this, function(e) {
-				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Product.SupplierCompanyName') + ' ---');
-			});
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.Supplier';
-			this.$supplier = Serenity.Widget.create(Serenity.LookupEditor).call(null, $t2, $t1, null);
-			Serenity.WX.change(this.$supplier, ss.mkdel(this, function(e1) {
-				this.refresh();
-			}));
-			var $t4 = ss.mkdel(this, function(e2) {
-				e2.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Product.CategoryName') + ' ---');
-			});
-			var $t3 = Serenity.LookupEditorOptions.$ctor();
-			$t3.lookupKey = 'Northwind.Category';
-			this.$category = Serenity.Widget.create(Serenity.LookupEditor).call(null, $t4, $t3, null);
-			Serenity.WX.change(this.$category, ss.mkdel(this, function(e3) {
-				this.refresh();
-			}));
-		},
-		onViewSubmit: function() {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
-				return false;
-			}
-			this.setEquality('SupplierID', Serenity.IdExtensions.convertToId(this.$supplier.get_value()));
-			this.setEquality('CategoryID', Serenity.IdExtensions.convertToId(this.$category.get_value()));
-			return true;
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'SupplierID', null, $t1, null, null, null);
+			var $t2 = Serenity.LookupEditorOptions.$ctor();
+			$t2.lookupKey = 'Northwind.Category';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'CategoryID', null, $t2, null, null, null);
 		},
 		getButtons: function() {
 			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
+				this.$saveClick();
+			}) });
 			return buttons;
+		},
+		onViewProcessData: function(response) {
+			ss.clearKeys(this.$pendingChanges);
+			this.$setSaveButtonState();
+			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
+		},
+		$inputFormatter: function(ctx) {
+			var klass = 'edit';
+			var item = ctx.item;
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			if (!!(ss.isValue(pending) && ss.isValue(pending[ctx.column.field]))) {
+				klass += ' dirty';
+			}
+			var value = this.$getEffectiveValue(item, ctx.column.field);
+			return "<input type='text' class='" + klass + "'" + " value='" + Q.formatNumber(value, '0.##') + "'" + '/>';
+		},
+		$getEffectiveValue: function(item, field) {
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			if (ss.isValue(pending)) {
+				var $t1 = pending[field];
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = item[field];
+				}
+				return ss.cast($t1, Number);
+			}
+			return ss.cast(item[field], Number);
+		},
+		getColumns: function() {
+			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			Enumerable.from(columns).single(function(x) {
+				return x.field === 'UnitPrice';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x1) {
+				return x1.field === 'UnitsInStock';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x2) {
+				return x2.field === 'UnitsOnOrder';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x3) {
+				return x3.field === 'ReorderLevel';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			return columns;
+		},
+		$inputsChange: function(e) {
+			var cell = this.slickGrid.getCellFromEvent(e);
+			var item = this.get_items()[cell.row];
+			var field = this.getColumns()[cell.cell].field;
+			var input = $(e.target);
+			var text = ss.coalesce(Q.trimToNull(input.val()), '0');
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			var oldText = Q.formatNumber(this.$getEffectiveValue(item, field), '0.##');
+			var value;
+			if (field === 'UnitPrice') {
+				value = Q.parseDecimal(text);
+				if (ss.isNullOrUndefined(value) || isNaN(ss.unbox(value))) {
+					Q.notifyError(Q.text('Validation.Decimal'));
+					input.val(oldText);
+					input.focus();
+					return;
+				}
+			}
+			else {
+				var i = {};
+				if (!ss.Int32.tryParse(text, i) || i.$ > 32767 || i.$ < 0) {
+					Q.notifyError(Q.text('Validation.Integer'));
+					input.val(oldText);
+					input.focus();
+					return;
+				}
+				value = i.$;
+			}
+			if (ss.isNullOrUndefined(pending)) {
+				this.$pendingChanges[ss.unbox(item.ProductID)] = pending = {};
+			}
+			pending[field] = value;
+			input.val(Q.formatNumber(value, '0.##')).addClass('dirty');
+			this.$setSaveButtonState();
+		},
+		$setSaveButtonState: function() {
+			this.toolbar.findButton('apply-changes-button').toggleClass('disabled', ss.getKeyCount(this.$pendingChanges) === 0);
+		},
+		$saveClick: function() {
+			if (ss.getKeyCount(this.$pendingChanges) === 0) {
+				return;
+			}
+			// this calls save service for all modified rows, one by one
+			// you could write a batch update service
+			var enumerator = new ss.ObjectEnumerator(Q.deepClone(this.$pendingChanges));
+			var saveNext = null;
+			saveNext = ss.mkdel(this, function() {
+				if (!enumerator.moveNext()) {
+					this.refresh();
+					return;
+				}
+				var pair = enumerator.current();
+				var entity = Q.deepClone(pair.value);
+				entity.ProductID = pair.key;
+				Q.serviceRequest('Northwind/Product/Update', { EntityId: pair.key, Entity: entity }, ss.mkdel(this, function(response) {
+					delete this.$pendingChanges[pair.key];
+					saveNext();
+				}), null);
+			});
+			saveNext();
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);

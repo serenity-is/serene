@@ -7161,16 +7161,16 @@
 			var editLink = '#' + index;
 			var thumb = $('<a/>').addClass('thumb').appendTo(li);
 			var originalName = ss.coalesce(item.OriginalName, '');
+			var fileName = item.Filename;
+			if (ss.isValue(urlPrefix) && ss.isValue(fileName) && !ss.startsWithString(fileName, 'temporary/')) {
+				fileName = urlPrefix + fileName;
+			}
+			thumb.attr('href', $Serenity_UploadHelper.dbFileUrl(fileName));
+			thumb.attr('target', '_blank');
+			if (!Q.isEmptyOrNull(originalName)) {
+				thumb.attr('title', originalName);
+			}
 			if (isImage) {
-				var fileName = item.Filename;
-				if (ss.isValue(urlPrefix) && ss.isValue(fileName) && !ss.startsWithString(fileName, 'temporary/')) {
-					fileName = urlPrefix + fileName;
-				}
-				thumb.attr('href', $Serenity_UploadHelper.dbFileUrl(fileName));
-				thumb.attr('target', '_blank');
-				if (!Q.isEmptyOrNull(originalName)) {
-					thumb.attr('title', originalName);
-				}
 				thumb.css('backgroundImage', 'url(' + $Serenity_UploadHelper.dbFileUrl($Serenity_UploadHelper.thumbFileName(item.Filename)) + ')');
 				$Serenity_UploadHelper.colorBox(thumb, new Object());
 			}

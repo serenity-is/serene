@@ -7381,6 +7381,16 @@ section.content > .s-DataGrid {
 .s-Northwind-ProductDialog .categories {
   height: 500px;
 }
+.s-Northwind-ProductGrid .slick-cell input[type=text] {
+  text-align: right;
+  border-radius: 0;
+  width: 100%;
+  padding: 0 2px;
+  border: 1px solid #e7e7e7;
+}
+.s-Northwind-ProductGrid .slick-cell input.dirty {
+  background-color: #ffe0e0;
+}
 .s-Northwind-RegionDialog > .size {
   min-width: 650px;
   width: 650px;
