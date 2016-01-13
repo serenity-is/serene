@@ -16,7 +16,7 @@ namespace Serene.Northwind
         public ProductForm(string idPrefix) : base(idPrefix) {}
     
         public StringEditor ProductName { get { return ById<StringEditor>("ProductName"); } }
-        public ImageUploadEditor ProductImage { get { return ById<ImageUploadEditor>("ProductImage"); } }
+        public MultipleImageUploadEditor ProductImage { get { return ById<MultipleImageUploadEditor>("ProductImage"); } }
         public BooleanEditor Discontinued { get { return ById<BooleanEditor>("Discontinued"); } }
         public LookupEditor SupplierID { get { return ById<LookupEditor>("SupplierID"); } }
         public LookupEditor CategoryID { get { return ById<LookupEditor>("CategoryID"); } }

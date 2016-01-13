@@ -479,6 +479,21 @@
 	$Serene_Common_LanguageSelection.__typeName = 'Serene.Common.LanguageSelection';
 	global.Serene.Common.LanguageSelection = $Serene_Common_LanguageSelection;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Common.ReportHelper
+	var $Serene_Common_ReportHelper = function() {
+	};
+	$Serene_Common_ReportHelper.__typeName = 'Serene.Common.ReportHelper';
+	$Serene_Common_ReportHelper.createToolButton = function(reportKey, title, exportType) {
+		return {
+			title: title,
+			cssClass: 'print-button',
+			onClick: function() {
+				Q.postToService({ url: '~/Report/Execute', request: { ReportKey: reportKey, ExportType: 'pdf' }, target: '_blank' });
+			}
+		};
+	};
+	global.Serene.Common.ReportHelper = $Serene_Common_ReportHelper;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.SidebarSearch
 	var $Serene_Common_SidebarSearch = function(input, menuUL) {
 		this.$menuUL = null;
@@ -1838,6 +1853,7 @@
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
+	ss.initClass($Serene_Common_ReportHelper, $asm, {});
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
 			var liList = this.$menuUL.find('li').removeClass('non-match');
@@ -2064,6 +2080,11 @@
 			if (this.get_isNew() && ss.isNullOrUndefined(entity.OrderDate)) {
 				this.form.get_orderDate().set_valueAsDate(ss.today());
 			}
+		},
+		getToolbarButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			buttons.push($Serene_Common_ReportHelper.createToolButton('Northwind.Order.OrderDetail', 'Report', 'pdf'));
+			return buttons;
 		}
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
@@ -2498,7 +2519,7 @@
 			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
 		},
 		get_productImage: function() {
-			return this.byId(Serenity.ImageUploadEditor).call(this, 'ProductImage');
+			return this.byId(Serenity.MultipleImageUploadEditor).call(this, 'ProductImage');
 		},
 		get_discontinued: function() {
 			return this.byId(Serenity.BooleanEditor).call(this, 'Discontinued');

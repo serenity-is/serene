@@ -1,0 +1,11 @@
+﻿@model List<Serene.Northwind.Entities.OrderRow>
+<html>
+<body>
+<ul>
+@foreach (var x in Model)
+{
+    <li>@x.OrderID - @x.OrderDate</li>
+}
+</ul>
+</body>
+</html>

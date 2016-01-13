@@ -25,7 +25,7 @@ namespace Serenity.Reporting
             this.ColumnsType = columnsType;
         }
 
-        public IEnumerable GetData()
+        public object GetData()
         {
             return Data;
         }

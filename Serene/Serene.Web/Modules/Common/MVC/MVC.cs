@@ -161,6 +161,7 @@ namespace MVC
 
             public static class Order
             {
+                public const string OrderDetail_Report = "~/Modules/Northwind/Order/OrderDetail.Report.cshtml";
                 public const string OrderIndex = "~/Modules/Northwind/Order/OrderIndex.cshtml";
             }
 
