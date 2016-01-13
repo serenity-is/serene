@@ -1537,6 +1537,7 @@
     <Content Include="Modules\Northwind\Customer\CustomerDialog.Template.html" />
     <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
     <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <Compile Include="Modules\Common\Reporting\ReportController.cs" />
     <Compile Include="Modules\Common\Reporting\ReportRepository.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
@@ -1566,6 +1567,8 @@
     <Compile Include="Modules\Northwind\Customer\CustomerCountryLookup.cs" />
     <Compile Include="Modules\Northwind\Note\NotesBehavior.cs" />
     <Compile Include="Modules\Northwind\OrderDetail\OrderDetailColumns.cs" />
+    <None Include="Modules\Northwind\Order\OrderDetailReport.cshtml" />
+    <Compile Include="Modules\Northwind\Order\OrderDetailReport.cs" />
     <Compile Include="Modules\Northwind\Order\OrderShippingState.cs" />
     <Compile Include="Modules\Northwind\Order\OrderShipCity.cs" />
     <Compile Include="Modules\Northwind\Order\OrderShipCountry.cs" />

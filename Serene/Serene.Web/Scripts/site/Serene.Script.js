@@ -533,6 +533,21 @@
 	$Serene_Common_LanguageSelection.__typeName = 'Serene.Common.LanguageSelection';
 	global.Serene.Common.LanguageSelection = $Serene_Common_LanguageSelection;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Common.ReportHelper
+	var $Serene_Common_ReportHelper = function() {
+	};
+	$Serene_Common_ReportHelper.__typeName = 'Serene.Common.ReportHelper';
+	$Serene_Common_ReportHelper.createRenderButton = function(reportKey, title, cssClass, extension, options) {
+		return {
+			title: title,
+			cssClass: cssClass,
+			onClick: function() {
+				Q.postToUrl({ url: '~/Report/Render', params: { key: reportKey, ext: extension, opt: (ss.staticEquals(options, null) ? '' : $.toJSON(options())) }, target: '_blank' });
+			}
+		};
+	};
+	global.Serene.Common.ReportHelper = $Serene_Common_ReportHelper;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.SidebarSearch
 	var $Serene_Common_SidebarSearch = function(input, menuUL) {
 		this.$menuUL = null;
@@ -1938,6 +1953,7 @@
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
+	ss.initClass($Serene_Common_ReportHelper, $asm, {});
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
 			var liList = this.$menuUL.find('li').removeClass('non-match');
@@ -2194,6 +2210,13 @@
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
+		},
+		getToolbarButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			buttons.push($Serene_Common_ReportHelper.createRenderButton('Northwind.OrderDetail', 'Invoice', 'export-pdf-button', 'pdf', ss.mkdel(this, function() {
+				return { OrderID: this.get_entityId() };
+			})));
+			return buttons;
 		}
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
@@ -2629,7 +2652,7 @@
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductForm, $asm, {
 		get_productName: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
+			return this.byId(Serenity.HtmlContentEditor).call(this, 'ProductName');
 		},
 		get_productImage: function() {
 			return this.byId(Serenity.ImageUploadEditor).call(this, 'ProductImage');
