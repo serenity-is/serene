@@ -39,16 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentMigrator, Version=1.6.0.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentMigrator.1.6.0\lib\40\FluentMigrator.dll</HintPath>
+    <Reference Include="FluentMigrator, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentMigrator.1.6.1\lib\40\FluentMigrator.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentMigrator.Runner, Version=1.6.0.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentMigrator.Runner.1.6.0\lib\40\FluentMigrator.Runner.dll</HintPath>
+    <Reference Include="FluentMigrator.Runner, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentMigrator.Runner.1.6.1\lib\40\FluentMigrator.Runner.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -56,8 +56,8 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -475,8 +475,6 @@
     <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.northwind.less" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\site\site.membership.less" />
     <Content Include="Content\adminlte\.csslintrc" />
     <Content Include="Content\adminlte\404_500_errors.less" />
@@ -643,6 +641,8 @@
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\chartjs\Chart.js" />
     <Content Include="Scripts\chartjs\Chart.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -1064,6 +1064,17 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1179,12 +1190,6 @@
     <Content Include="tools\Node\less\lib\less\visitor.js" />
     <Content Include="tools\Node\node.exe" />
     <Content Include="Welcome.htm" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Modules\Membership\Account\ChangePassword\AccountChangePassword.cshtml" />
     <Content Include="Modules\Membership\Account\ForgotPassword\AccountForgotPassword.cshtml" />
     <Content Include="Modules\Membership\Account\ResetPassword\AccountResetPassword.cshtml" />
@@ -1244,14 +1249,11 @@
     <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
     <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
+    <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
-    <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
-    <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.event.drag.js" />
@@ -1259,7 +1261,7 @@
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
     <Content Include="Scripts\jquery.event.drag.min.js" />
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
