@@ -102,7 +102,7 @@ Task("PrepareVSIX")
     
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
-        { @"Scripts\jquery-2.1.4.intellisense.js", true }
+        { @"Scripts\jquery-2.2.0.intellisense.js", true }
     };
 
     var scriptSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
