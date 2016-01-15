@@ -1062,8 +1062,6 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="Scripts\jlayout.border.js" />
-    <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -1072,7 +1070,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jlayout.border.js" />
+    <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
@@ -1251,9 +1254,6 @@
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
     <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.event.drag.js" />
@@ -1359,10 +1359,10 @@
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="Views\Errors\ValidationError.cshtml" />
+    <Content Include="tools\Node\lessc.cmd" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
