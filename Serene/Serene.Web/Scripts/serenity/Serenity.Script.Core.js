@@ -1600,6 +1600,12 @@
 	};
 	global.Serenity.TabsExtensions = $Serenity_TabsExtensions;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.UrlFormatter
+	var $Serenity_UrlFormatter = function() {
+	};
+	$Serenity_UrlFormatter.__typeName = 'Serenity.UrlFormatter';
+	global.Serenity.UrlFormatter = $Serenity_UrlFormatter;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ComponentModel.OptionAttribute
 	var $Serenity_ComponentModel_OptionAttribute = function() {
 	};
@@ -1880,6 +1886,11 @@
 	ss.initClass($Serenity_SlickHelper, $asm, {});
 	ss.initClass($Serenity_SlickTreeHelper, $asm, {});
 	ss.initClass($Serenity_TabsExtensions, $asm, {});
+	ss.initClass($Serenity_UrlFormatter, $asm, {
+		format: function(ctx) {
+			return "<a href='" + $Q.htmlEncode(ctx.value) + "'>" + $Q.htmlEncode(ctx.value) + '</a>';
+		}
+	}, null, [$Serenity_ISlickFormatter]);
 	ss.initClass($Serenity_ComponentModel_OptionAttribute, $asm, {});
 	ss.setMetadata($Serenity_BooleanFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'FalseText', type: 16, returnType: String, getter: { name: 'get_FalseText', type: 8, sname: 'get_falseText', returnType: String, params: [] }, setter: { name: 'set_FalseText', type: 8, sname: 'set_falseText', returnType: Object, params: [String] } }, { attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'TrueText', type: 16, returnType: String, getter: { name: 'get_TrueText', type: 8, sname: 'get_trueText', returnType: String, params: [] }, setter: { name: 'set_TrueText', type: 8, sname: 'set_trueText', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_DateFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
