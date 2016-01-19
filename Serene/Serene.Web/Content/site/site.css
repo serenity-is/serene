@@ -6836,10 +6836,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-LanguageDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-LanguageDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-LanguageDialog .s-Form .editor.has-inplace-button {
@@ -6879,10 +6879,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-UserDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-UserDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-UserDialog .s-Form .editor.has-inplace-button {
@@ -6972,10 +6972,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-LoginPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 223px;
+  width: 207px;
 }
 .s-LoginPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-LoginPanel .s-Form .editor.has-inplace-button {
@@ -7024,10 +7024,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ChangePasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 273px;
+  width: 257px;
 }
 .s-ChangePasswordPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-ChangePasswordPanel .s-Form .editor.has-inplace-button {
@@ -7063,10 +7063,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ForgotPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 273px;
+  width: 257px;
 }
 .s-ForgotPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-ForgotPasswordPanel .s-Form .editor.has-inplace-button {
@@ -7106,10 +7106,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ResetPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 273px;
+  width: 257px;
 }
 .s-ResetPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-ResetPasswordPanel .s-Form .editor.has-inplace-button {
@@ -7145,10 +7145,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-SignUpPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 273px;
+  width: 257px;
 }
 .s-SignUpPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-SignUpPanel .s-Form .editor.has-inplace-button {
@@ -7188,10 +7188,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.has-inplace-button {
@@ -7231,10 +7231,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 523px;
+  width: 507px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.has-inplace-button {
@@ -7285,11 +7285,11 @@ section.content > .s-DataGrid {
 }
 .s-Northwind-OrderDialog .s-Form .editor.dateQ.s-DateTimeEditor,
 .s-CustomerOrderDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 553px;
+  width: 537px;
 }
 .s-Northwind-OrderDialog .s-Form .editor.s-DateTimeEditor.time,
 .s-CustomerOrderDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-OrderDialog .s-Form .editor.has-inplace-button,
@@ -7327,10 +7327,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 253px;
+  width: 237px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.has-inplace-button {
@@ -7366,10 +7366,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 303px;
+  width: 287px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.has-inplace-button {
@@ -7414,10 +7414,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.has-inplace-button {
@@ -7452,10 +7452,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.has-inplace-button {
@@ -7490,10 +7490,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.has-inplace-button {
@@ -7528,10 +7528,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.has-inplace-button {
@@ -7645,10 +7645,10 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-NoteDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 323px;
+  width: 307px;
 }
 .s-NoteDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 56px;
+  width: 64px;
   margin-left: 4px;
 }
 .s-NoteDialog .s-Form .editor.has-inplace-button {

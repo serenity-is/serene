@@ -1694,7 +1694,12 @@
 		this.$4$MinValueField = null;
 		this.$4$MaxValueField = null;
 		ss.makeGenericType($Serenity_Widget$1, [Object]).call(this, input, opt);
-		input.addClass('dateQ s-DateTimeEditor').datepicker({ showOn: 'button' });
+		input.addClass('dateQ s-DateTimeEditor').datepicker({
+			showOn: 'button',
+			beforeShow: function() {
+				return !input.hasClass('readonly');
+			}
+		});
 		input.bind('keyup.' + this.uniqueName, $Serenity_DateEditor.dateInputKeyup);
 		input.bind('change.' + this.uniqueName, $Serenity_DateEditor.dateInputChange);
 		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time').insertAfter(input.next('.ui-datepicker-trigger'));
@@ -8136,8 +8141,24 @@
 				this.set_minValue(null);
 				this.set_maxValue(null);
 			}
+		},
+		get_readOnly: function() {
+			return this.element.hasClass('readonly');
+		},
+		set_readOnly: function(value) {
+			if (value !== this.get_readOnly()) {
+				if (value) {
+					this.element.addClass('readonly').attr('readonly', 'readonly');
+					this.element.nextAll('.ui-datepicker-trigger').css('opacity', '0.1');
+				}
+				else {
+					this.element.removeClass('readonly').removeAttr('readonly');
+					this.element.nextAll('.ui-datepicker-trigger').css('opacity', '1');
+				}
+				$Serenity_EditorUtils.setReadOnly$1(this.$time, value);
+			}
 		}
-	}, ss.makeGenericType($Serenity_Widget$1, [Object]), [$Serenity_IStringValue]);
+	}, ss.makeGenericType($Serenity_Widget$1, [Object]), [$Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_DateTimeFiltering, $asm, {
 		getOperators: function() {
 			return this.appendNullableOperators(this.appendComparisonOperators([]));
