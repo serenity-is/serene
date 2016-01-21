@@ -16,6 +16,7 @@ namespace Serene.Northwind.Forms
         [Category("Contact")]
         public String ContactName { get; set; }
         public String ContactTitle { get; set; }
+        public List<Int32> Representatives { get; set; }
         [Category("Address")]
         public String Address { get; set; }
         public String City { get; set; }
@@ -24,7 +25,6 @@ namespace Serene.Northwind.Forms
         public String Country { get; set; }
         public String Phone { get; set; }
         public String Fax { get; set; }
-        [NotesEditor]
         public List<object> NoteList { get; set; }
     }
 }

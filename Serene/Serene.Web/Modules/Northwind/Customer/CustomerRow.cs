@@ -108,6 +108,14 @@ namespace Serene.Northwind.Entities
             set { Fields.NoteList[this] = value; }
         }
 
+        [LookupEditor(typeof(EmployeeRow), Multiple = true), ClientSide]
+        [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
+        public List<Int32> Representatives
+        {
+            get { return Fields.Representatives[this]; }
+            set { Fields.Representatives[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.ID; }
@@ -140,6 +148,7 @@ namespace Serene.Northwind.Entities
             public readonly StringField Phone;
             public readonly StringField Fax;
             public readonly RowListField<NoteRow> NoteList;
+            public readonly CustomClassField<List<Int32>> Representatives;
 
             public RowFields()
                 : base("Customers")
