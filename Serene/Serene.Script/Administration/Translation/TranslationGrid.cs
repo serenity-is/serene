@@ -208,7 +208,7 @@ namespace Serene.Administration
             {
                 new ToolButton 
                 {
-                    Title = "Save Changes",
+                    Title = Q.Text("Db.Administration.Translation.SaveChangesButton"),
                     OnClick = e => SaveChanges(targetLanguageKey).Then(Refresh),
                     CssClass = "apply-changes-button"
                 }
