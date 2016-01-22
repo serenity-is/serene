@@ -6321,11 +6321,11 @@
 			},
 			setEditValue: function(source, property) {
 				var val = source[property.name];
-				if (!!ss.isArray(val)) {
-					this.set_values(ss.cast(val, Array));
+				if (ss.isArray(val)) {
+					this.set_values(val);
 				}
 				else {
-					this.set_value(ss.cast(val, String));
+					this.set_value((ss.isNullOrUndefined(val) ? null : val.toString()));
 				}
 			},
 			getEditValue: function(property, target) {
