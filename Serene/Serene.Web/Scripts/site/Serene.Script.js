@@ -1699,7 +1699,7 @@
 		},
 		getButtons: function() {
 			var $t1 = [];
-			$t1.push({ title: 'Save Changes', onClick: ss.mkdel(this, function(e) {
+			$t1.push({ title: Q.text('Db.Administration.Translation.SaveChangesButton'), onClick: ss.mkdel(this, function(e) {
 				this.saveChanges(this.$targetLanguageKey).then(ss.mkdel(this, this.refresh), null);
 			}), cssClass: 'apply-changes-button' });
 			return $t1;

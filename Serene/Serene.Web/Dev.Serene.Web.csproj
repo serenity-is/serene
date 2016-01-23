@@ -1363,6 +1363,8 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <Content Include="Scripts\site\texts\site.texts.de.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

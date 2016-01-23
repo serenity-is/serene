@@ -62,6 +62,12 @@ namespace Serene.Migrations.DefaultDB
                 LanguageId = "tr",
                 LanguageName = "Turkish"
             });
+
+            Insert.IntoTable("Languages").Row(new
+            {
+                LanguageId = "de",
+                LanguageName = "German"
+            });
         }
     }
 }
