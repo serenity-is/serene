@@ -1384,6 +1384,7 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="tools\Node\less\lib\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
