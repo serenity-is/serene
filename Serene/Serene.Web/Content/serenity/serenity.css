@@ -1541,6 +1541,10 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   border: none;
   filter: initial;
 }
+.inplace-now b {
+  background-image: url(../serenity/images/alarm-clock.png);
+  background-position: center 4px;
+}
 .s-ClickDown {
   background: url(images/dropdown.png) #ffffff right top no-repeat;
   padding: 1px 16px 1px 1px;

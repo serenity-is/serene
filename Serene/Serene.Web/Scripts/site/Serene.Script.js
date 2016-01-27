@@ -2016,6 +2016,9 @@
 		get_contactTitle: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'ContactTitle');
 		},
+		get_representatives: function() {
+			return this.byId(Serenity.LookupEditor).call(this, 'Representatives');
+		},
 		get_address: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Address');
 		},
@@ -2061,9 +2064,6 @@
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
-			if (this.get_isNew() && ss.isNullOrUndefined(entity.OrderDate)) {
-				this.form.get_orderDate().set_valueAsDate(ss.today());
-			}
 		}
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {

@@ -32,6 +32,7 @@ namespace Serene.Northwind
         public String Phone { get; set; }
         public String Fax { get; set; }
         public List<NoteRow> NoteList { get; set; }
+        public List<Int32> Representatives { get; set; }
     
         [Imported, PreserveMemberCase]
         public static class Fields
@@ -49,6 +50,7 @@ namespace Serene.Northwind
             [InlineConstant] public const string Phone = "Phone";
             [InlineConstant] public const string Fax = "Fax";
             [InlineConstant] public const string NoteList = "NoteList";
+            [InlineConstant] public const string Representatives = "Representatives";
         }
     }
     

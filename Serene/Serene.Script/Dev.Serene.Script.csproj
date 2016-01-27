@@ -43,6 +43,9 @@
     <Compile Include="Imports\ServiceContracts\Membership.SignUpRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.CustomerRepresentativesRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>

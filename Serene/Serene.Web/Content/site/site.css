@@ -6836,7 +6836,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-LanguageDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-LanguageDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -6879,7 +6879,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-UserDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-UserDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -6972,7 +6972,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-LoginPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 207px;
+  width: 181px;
 }
 .s-LoginPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7024,7 +7024,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ChangePasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 257px;
+  width: 231px;
 }
 .s-ChangePasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7063,7 +7063,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ForgotPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 257px;
+  width: 231px;
 }
 .s-ForgotPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7106,7 +7106,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-ResetPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 257px;
+  width: 231px;
 }
 .s-ResetPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7145,7 +7145,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-SignUpPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 257px;
+  width: 231px;
 }
 .s-SignUpPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7188,7 +7188,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-Northwind-CategoryDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7231,7 +7231,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 507px;
+  width: 481px;
 }
 .s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7285,7 +7285,7 @@ section.content > .s-DataGrid {
 }
 .s-Northwind-OrderDialog .s-Form .editor.dateQ.s-DateTimeEditor,
 .s-CustomerOrderDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 537px;
+  width: 511px;
 }
 .s-Northwind-OrderDialog .s-Form .editor.s-DateTimeEditor.time,
 .s-CustomerOrderDialog .s-Form .editor.s-DateTimeEditor.time {
@@ -7327,7 +7327,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 237px;
+  width: 211px;
 }
 .s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7366,7 +7366,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 287px;
+  width: 261px;
 }
 .s-Northwind-ProductDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7414,7 +7414,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-Northwind-RegionDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7452,7 +7452,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-Northwind-ShipperDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7490,7 +7490,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-Northwind-SupplierDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7528,7 +7528,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-Northwind-TerritoryDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
@@ -7645,7 +7645,7 @@ section.content > .s-DataGrid {
   width: 170px;
 }
 .s-NoteDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 307px;
+  width: 281px;
 }
 .s-NoteDialog .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;

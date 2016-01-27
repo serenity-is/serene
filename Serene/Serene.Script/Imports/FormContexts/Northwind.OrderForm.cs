@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Northwind
 {
     using Serenity;

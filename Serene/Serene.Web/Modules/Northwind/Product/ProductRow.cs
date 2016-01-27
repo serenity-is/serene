@@ -31,7 +31,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ProductName[this] = value; }
         }
 
-        [DisplayName("Product Image"), Size(100), MultipleFileUploadEditor(FilenameFormat = "ProductImage/~", CopyToHistory = true, JsonEncodeValue = true)]
+        [DisplayName("Product Image"), Size(100), ImageUploadEditor(FilenameFormat = "ProductImage/~", CopyToHistory = true, JsonEncodeValue = true)]
         public String ProductImage
         {
             get { return Fields.ProductImage[this]; }

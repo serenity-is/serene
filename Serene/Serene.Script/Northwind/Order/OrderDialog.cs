@@ -18,9 +18,6 @@ namespace Serene.Northwind
         protected override void LoadEntity(OrderRow entity)
         {
             base.LoadEntity(entity);
-
-            if (IsNew && entity.OrderDate == null)
-                form.OrderDate.ValueAsDate = JsDate.Today;
         }
     }
 }

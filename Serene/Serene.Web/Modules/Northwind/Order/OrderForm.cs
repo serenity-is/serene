@@ -15,6 +15,7 @@ namespace Serene.Northwind.Forms
     {
         [Category("Order")]
         public String CustomerID { get; set; }
+        [DefaultValue("now")]
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
         public Int32? EmployeeID { get; set; }

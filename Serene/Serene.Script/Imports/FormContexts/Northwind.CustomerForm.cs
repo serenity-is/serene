@@ -19,6 +19,7 @@ namespace Serene.Northwind
         public StringEditor CompanyName { get { return ById<StringEditor>("CompanyName"); } }
         public StringEditor ContactName { get { return ById<StringEditor>("ContactName"); } }
         public StringEditor ContactTitle { get { return ById<StringEditor>("ContactTitle"); } }
+        public LookupEditor Representatives { get { return ById<LookupEditor>("Representatives"); } }
         public StringEditor Address { get { return ById<StringEditor>("Address"); } }
         public StringEditor City { get { return ById<StringEditor>("City"); } }
         public StringEditor Region { get { return ById<StringEditor>("Region"); } }

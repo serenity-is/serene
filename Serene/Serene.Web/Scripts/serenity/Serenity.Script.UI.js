@@ -1520,9 +1520,16 @@
 				return !input.hasClass('readonly');
 			}
 		});
-		input.bind('keyup.' + this.uniqueName, $Serenity_DateEditor.dateInputKeyup);
+		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
+			if (e.which === 32 && !this.get_readOnly()) {
+				this.set_valueAsDate(new Date());
+			}
+			else {
+				$Serenity_DateEditor.dateInputKeyup(e);
+			}
+		}));
 		input.bind('change.' + this.uniqueName, $Serenity_DateEditor.dateInputChange);
-		$Serenity_VX.addValidationRule$1(input, this.uniqueName, ss.mkdel(this, function(e) {
+		$Serenity_VX.addValidationRule$1(input, this.uniqueName, ss.mkdel(this, function(e1) {
 			var value = this.get_value();
 			if (ss.isNullOrEmptyString(value)) {
 				return null;
@@ -1563,6 +1570,9 @@
 		}
 		var input = $(e.target);
 		if (!input.is(':input')) {
+			return;
+		}
+		if (input.is(':readonly') || input.is(':disabled')) {
 			return;
 		}
 		var val = ss.coalesce(input.val(), '');
@@ -1700,15 +1710,22 @@
 				return !input.hasClass('readonly');
 			}
 		});
-		input.bind('keyup.' + this.uniqueName, $Serenity_DateEditor.dateInputKeyup);
+		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
+			if (e.which === 32 && !this.get_readOnly()) {
+				this.set_valueAsDate(new Date());
+			}
+			else {
+				$Serenity_DateEditor.dateInputKeyup(e);
+			}
+		}));
 		input.bind('change.' + this.uniqueName, $Serenity_DateEditor.dateInputChange);
 		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time').insertAfter(input.next('.ui-datepicker-trigger'));
-		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(ss.coalesce(this.options.startHour, 0), 0, ss.coalesce(this.options.endHour, 23), 59, ss.coalesce(this.options.intervalMinutes, 30));
+		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(ss.coalesce(this.options.startHour, 0), 0, ss.coalesce(this.options.endHour, 23), 59, ss.coalesce(this.options.intervalMinutes, 5));
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var t = $t1[$t2];
 			Q.addOption(this.$time, t, t);
 		}
-		$Serenity_VX.addValidationRule$1(input, this.uniqueName, ss.mkdel(this, function(e) {
+		$Serenity_VX.addValidationRule$1(input, this.uniqueName, ss.mkdel(this, function(e1) {
 			var value = this.get_value();
 			if (ss.isNullOrEmptyString(value)) {
 				return null;
@@ -1720,6 +1737,12 @@
 				return ss.formatString(Q.text('Validation.MaxDate'), Q.formatDate(Q.parseISODateTime(this.get_maxValue()), null));
 			}
 			return null;
+		}));
+		$("<div class='inplace-button inplace-now'><b></b></div>").attr('title', 'set to now').insertAfter(this.$time).click(ss.mkdel(this, function(e2) {
+			if (this.get_element().hasClass('readonly')) {
+				return;
+			}
+			this.set_valueAsDate(new Date());
 		}));
 	};
 	$Serenity_DateTimeEditor.__typeName = 'Serenity.DateTimeEditor';
@@ -1746,6 +1769,14 @@
 			}
 		}
 		return list;
+	};
+	$Serenity_DateTimeEditor.roundToMinutes = function(date, minutesStep) {
+		date = new Date(date.getTime());
+		var m = ss.Int32.trunc(ss.round(date.getMinutes() / minutesStep) * minutesStep);
+		date.setMinutes(m);
+		date.setSeconds(0);
+		date.setMilliseconds(0);
+		return date;
 	};
 	global.Serenity.DateTimeEditor = $Serenity_DateTimeEditor;
 	////////////////////////////////////////////////////////////////////////////////
@@ -8067,7 +8098,7 @@
 			if (ss.isNullOrUndefined(value)) {
 				this.element.val('');
 			}
-			else if (value === 'Today') {
+			else if (value.toLowerCase() === 'today' || value.toLowerCase() === 'now') {
 				this.element.val(Q.formatDate(ss.today(), null));
 			}
 			else {
@@ -8159,12 +8190,13 @@
 				this.element.val('');
 				this.$time.val('00:00');
 			}
-			else if (value === 'Today') {
+			else if (value.toLowerCase() === 'today') {
 				this.element.val(Q.formatDate(ss.today(), null));
 				this.$time.val('00:00');
 			}
 			else {
-				var val = Q.parseISODateTime(value);
+				var val = ((value.toLowerCase() === 'now') ? new Date() : Q.parseISODateTime(value));
+				val = $Serenity_DateTimeEditor.roundToMinutes(val, ss.coalesce(this.options.intervalMinutes, 5));
 				this.element.val(Q.formatDate(val, null));
 				this.$time.val(Q.formatDate(val, 'HH:mm'));
 			}
@@ -10306,7 +10338,7 @@
 	ss.setMetadata($Serenity_CheckListEditorOptions, { members: [{ attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Items', type: 16, returnType: Array, getter: { name: 'get_Items', type: 8, params: [], returnType: Array, fget: 'items' }, setter: { name: 'set_Items', type: 8, params: [Array], returnType: Object, fset: 'items' }, fname: 'items' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Tümünü Seç Metni')], name: 'SelectAllOptionText', type: 16, returnType: String, getter: { name: 'get_SelectAllOptionText', type: 8, params: [], returnType: String, fget: 'selectAllOptionText' }, setter: { name: 'set_SelectAllOptionText', type: 8, params: [String], returnType: Object, fset: 'selectAllOptionText' }, fname: 'selectAllOptionText' }] });
 	ss.setMetadata($Serenity_CheckTreeEditor$2, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.IdPropertyAttribute('id')] });
 	ss.setMetadata($Serenity_DateEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Tarih'), new Serenity.ElementAttribute('<input type="text"/>')], members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, sname: 'get_maxValue', returnType: String, params: [] }, setter: { name: 'set_MaxValue', type: 8, sname: 'set_maxValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, sname: 'get_minValue', returnType: String, params: [] }, setter: { name: 'set_MinValue', type: 8, sname: 'set_minValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'SqlMinMax', type: 16, returnType: Boolean, getter: { name: 'get_SqlMinMax', type: 8, sname: 'get_sqlMinMax', returnType: Boolean, params: [] }, setter: { name: 'set_SqlMinMax', type: 8, sname: 'set_sqlMinMax', returnType: Object, params: [Boolean] } }] });
-	ss.setMetadata($Serenity_DateTimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Tarih/Zaman'), new Serenity.ElementAttribute('<input type="text"/>')], members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, sname: 'get_maxValue', returnType: String, params: [] }, setter: { name: 'set_MaxValue', type: 8, sname: 'set_maxValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, sname: 'get_minValue', returnType: String, params: [] }, setter: { name: 'set_MinValue', type: 8, sname: 'set_minValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'SqlMinMax', type: 16, returnType: Boolean, getter: { name: 'get_SqlMinMax', type: 8, sname: 'get_sqlMinMax', returnType: Boolean, params: [] }, setter: { name: 'set_SqlMinMax', type: 8, sname: 'set_sqlMinMax', returnType: Object, params: [Boolean] } }] });
+	ss.setMetadata($Serenity_DateTimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Date/Time'), new Serenity.ElementAttribute('<input type="text"/>')], members: [{ attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, sname: 'get_maxValue', returnType: String, params: [] }, setter: { name: 'set_MaxValue', type: 8, sname: 'set_maxValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, sname: 'get_minValue', returnType: String, params: [] }, setter: { name: 'set_MinValue', type: 8, sname: 'set_minValue', returnType: Object, params: [String] } }, { attr: [new Serenity.ComponentModel.OptionAttribute()], name: 'SqlMinMax', type: 16, returnType: Boolean, getter: { name: 'get_SqlMinMax', type: 8, sname: 'get_sqlMinMax', returnType: Boolean, params: [] }, setter: { name: 'set_SqlMinMax', type: 8, sname: 'set_sqlMinMax', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serenity_DateYearEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Yıl'), new Serenity.OptionsTypeAttribute($Serenity_DateYearEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });
 	ss.setMetadata($Serenity_DecimalEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Ondalıklı Sayı'), new Serenity.OptionsTypeAttribute($Serenity_DecimalEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_DecimalEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalık'), new $Serenity_ComponentModel_EditorTypeAttribute('Integer')], name: 'Decimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), getter: { name: 'get_Decimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), fget: 'decimals' }, setter: { name: 'set_Decimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [ss.Int32])], returnType: Object, fset: 'decimals' }, fname: 'decimals' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Değer')], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, params: [], returnType: String, fget: 'maxValue' }, setter: { name: 'set_MaxValue', type: 8, params: [String], returnType: Object, fset: 'maxValue' }, fname: 'maxValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Değer')], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, params: [], returnType: String, fget: 'minValue' }, setter: { name: 'set_MinValue', type: 8, params: [String], returnType: Object, fset: 'minValue' }, fname: 'minValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalıkları Sıfırla Doldur'), new $Serenity_ComponentModel_EditorTypeAttribute('Boolean')], name: 'PadDecimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), getter: { name: 'get_PadDecimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), fget: 'padDecimals' }, setter: { name: 'set_PadDecimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [Boolean])], returnType: Object, fset: 'padDecimals' }, fname: 'padDecimals' }] });
