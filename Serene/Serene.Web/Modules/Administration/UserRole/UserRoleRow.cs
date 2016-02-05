@@ -64,12 +64,12 @@ namespace Serene.Administration.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int64Field UserRoleId;
-            public readonly Int32Field UserId;
-            public readonly Int32Field RoleId;
+            public Int64Field UserRoleId;
+            public Int32Field UserId;
+            public Int32Field RoleId;
 
-            public readonly StringField Username;
-            public readonly StringField User;
+            public StringField Username;
+            public StringField User;
 
             public RowFields()
                 : base("UserRoles")

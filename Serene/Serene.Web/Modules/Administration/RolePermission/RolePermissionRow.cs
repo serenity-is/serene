@@ -62,11 +62,11 @@ namespace Serene.Administration.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int64Field RolePermissionId;
-            public readonly Int32Field RoleId;
-            public readonly StringField PermissionKey;
+            public Int64Field RolePermissionId;
+            public Int32Field RoleId;
+            public StringField PermissionKey;
 
-            public readonly StringField RoleRoleName;
+            public StringField RoleRoleName;
 
 
             public RowFields()

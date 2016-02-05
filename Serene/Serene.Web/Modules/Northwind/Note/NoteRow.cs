@@ -99,13 +99,13 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int64Field NoteId;
-            public readonly StringField EntityType;
-            public readonly Int64Field EntityId;
-            public readonly StringField Text;
-            public readonly Int32Field InsertUserId;
-            public readonly DateTimeField InsertDate;
-            public readonly StringField InsertUserDisplayName;
+            public Int64Field NoteId;
+            public StringField EntityType;
+            public Int64Field EntityId;
+            public StringField Text;
+            public Int32Field InsertUserId;
+            public DateTimeField InsertDate;
+            public StringField InsertUserDisplayName;
 
             public RowFields()
                 : base("[dbo].[Notes]")

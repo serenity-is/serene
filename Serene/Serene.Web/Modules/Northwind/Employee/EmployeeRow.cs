@@ -301,46 +301,46 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field EmployeeID;
-            public readonly StringField LastName;
-            public readonly StringField FirstName;
-            public readonly StringField FullName;
-            public readonly StringField Title;
-            public readonly StringField TitleOfCourtesy;
-            public readonly DateTimeField BirthDate;
-            public readonly DateTimeField HireDate;
-            public readonly StringField Address;
-            public readonly StringField City;
-            public readonly StringField Region;
-            public readonly StringField PostalCode;
-            public readonly StringField Country;
-            public readonly StringField HomePhone;
-            public readonly StringField Extension;
-            public readonly StreamField Photo;
-            public readonly StringField Notes;
-            public readonly Int32Field ReportsTo;
-            public readonly StringField PhotoPath;
+            public Int32Field EmployeeID;
+            public StringField LastName;
+            public StringField FirstName;
+            public StringField FullName;
+            public StringField Title;
+            public StringField TitleOfCourtesy;
+            public DateTimeField BirthDate;
+            public DateTimeField HireDate;
+            public StringField Address;
+            public StringField City;
+            public StringField Region;
+            public StringField PostalCode;
+            public StringField Country;
+            public StringField HomePhone;
+            public StringField Extension;
+            public StreamField Photo;
+            public StringField Notes;
+            public Int32Field ReportsTo;
+            public StringField PhotoPath;
 
-            public readonly StringField ReportsToFullName;
-            public readonly StringField ReportsToLastName;
-            public readonly StringField ReportsToFirstName;
-            public readonly StringField ReportsToTitle;
-            public readonly StringField ReportsToTitleOfCourtesy;
-            public readonly DateTimeField ReportsToBirthDate;
-            public readonly DateTimeField ReportsToHireDate;
-            public readonly StringField ReportsToAddress;
-            public readonly StringField ReportsToCity;
-            public readonly StringField ReportsToRegion;
-            public readonly StringField ReportsToPostalCode;
-            public readonly StringField ReportsToCountry;
-            public readonly StringField ReportsToHomePhone;
-            public readonly StringField ReportsToExtension;
-            public readonly StreamField ReportsToPhoto;
-            public readonly StringField ReportsToNotes;
-            public readonly Int32Field ReportsToReportsTo;
-            public readonly StringField ReportsToPhotoPath;
+            public StringField ReportsToFullName;
+            public StringField ReportsToLastName;
+            public StringField ReportsToFirstName;
+            public StringField ReportsToTitle;
+            public StringField ReportsToTitleOfCourtesy;
+            public DateTimeField ReportsToBirthDate;
+            public DateTimeField ReportsToHireDate;
+            public StringField ReportsToAddress;
+            public StringField ReportsToCity;
+            public StringField ReportsToRegion;
+            public StringField ReportsToPostalCode;
+            public StringField ReportsToCountry;
+            public StringField ReportsToHomePhone;
+            public StringField ReportsToExtension;
+            public StreamField ReportsToPhoto;
+            public StringField ReportsToNotes;
+            public Int32Field ReportsToReportsTo;
+            public StringField ReportsToPhotoPath;
 
-            public readonly Int32Field Gender;
+            public Int32Field Gender;
 
             public RowFields()
                 : base("Employees")

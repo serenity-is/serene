@@ -49,8 +49,8 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field RegionID;
-            public readonly StringField RegionDescription;
+            public Int32Field RegionID;
+            public StringField RegionDescription;
             public RowFields()
                 : base("Region")
             {

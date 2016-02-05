@@ -70,12 +70,12 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field ID;
-            public readonly StringField TerritoryID;
-            public readonly StringField TerritoryDescription;
-            public readonly Int32Field RegionID;
+            public Int32Field ID;
+            public StringField TerritoryID;
+            public StringField TerritoryDescription;
+            public Int32Field RegionID;
 
-            public readonly StringField RegionDescription;
+            public StringField RegionDescription;
 
             public RowFields()
                 : base("Territories")

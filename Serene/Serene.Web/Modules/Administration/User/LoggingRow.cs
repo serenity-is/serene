@@ -77,11 +77,11 @@
 
         public class LoggingRowFields : RowFieldsBase
         {
-            public readonly Int32Field InsertUserId;
-            public readonly DateTimeField InsertDate;
-            public readonly Int32Field UpdateUserId;
-            public readonly DateTimeField UpdateDate;
-            public readonly Int16Field IsActive;
+            public Int32Field InsertUserId;
+            public DateTimeField InsertDate;
+            public Int32Field UpdateUserId;
+            public DateTimeField UpdateDate;
+            public Int16Field IsActive;
 
             public LoggingRowFields(string tableName)
                 : base(tableName)

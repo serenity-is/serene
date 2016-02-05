@@ -161,29 +161,29 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field DetailID;
-            public readonly Int32Field OrderID;
-            public readonly Int32Field ProductID;
-            public readonly DecimalField UnitPrice;
-            public readonly Int16Field Quantity;
-            public readonly SingleField Discount;
+            public Int32Field DetailID;
+            public Int32Field OrderID;
+            public Int32Field ProductID;
+            public DecimalField UnitPrice;
+            public Int16Field Quantity;
+            public SingleField Discount;
 
-            public readonly StringField OrderCustomerID;
+            public StringField OrderCustomerID;
 
-            public readonly Int32Field OrderEmployeeID;
-            public readonly DateTimeField OrderDate;
-            public readonly DateTimeField OrderShippedDate;
-            public readonly Int32Field OrderShipVia;
-            public readonly StringField OrderShipCity;
-            public readonly StringField OrderShipCountry;
+            public Int32Field OrderEmployeeID;
+            public DateTimeField OrderDate;
+            public DateTimeField OrderShippedDate;
+            public Int32Field OrderShipVia;
+            public StringField OrderShipCity;
+            public StringField OrderShipCountry;
   
-            public readonly StringField ProductName;
-            public readonly BooleanField ProductDiscontinued;
-            public readonly Int32Field ProductSupplierID;
-            public readonly StringField ProductQuantityPerUnit;
-            public readonly DecimalField ProductUnitPrice;
+            public StringField ProductName;
+            public BooleanField ProductDiscontinued;
+            public Int32Field ProductSupplierID;
+            public StringField ProductQuantityPerUnit;
+            public DecimalField ProductUnitPrice;
 
-            public readonly DecimalField LineTotal;
+            public DecimalField LineTotal;
 
             public RowFields()
                 : base("[Order Details]")

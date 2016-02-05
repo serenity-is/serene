@@ -46,9 +46,9 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field RepresentativeId;
-            public readonly Int32Field CustomerId;
-            public readonly Int32Field EmployeeId;
+            public Int32Field RepresentativeId;
+            public Int32Field CustomerId;
+            public Int32Field EmployeeId;
 
             public RowFields()
                 : base("[dbo].[CustomerRepresentatives]")

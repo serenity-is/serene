@@ -76,13 +76,13 @@ namespace Serene.Administration.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int64Field UserPermissionId;
-            public readonly Int32Field UserId;
-            public readonly StringField PermissionKey;
-            public readonly BooleanField Grant;
+            public Int64Field UserPermissionId;
+            public Int32Field UserId;
+            public StringField PermissionKey;
+            public BooleanField Grant;
 
-            public readonly StringField Username;
-            public readonly StringField User;
+            public StringField Username;
+            public StringField User;
 
             public RowFields()
                 : base("UserPermissions")

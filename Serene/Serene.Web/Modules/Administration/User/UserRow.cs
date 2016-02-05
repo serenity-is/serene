@@ -103,17 +103,17 @@ namespace Serene.Administration.Entities
 
         public class RowFields : LoggingRowFields
         {
-            public readonly Int32Field UserId;
-            public readonly StringField Username;
-            public readonly StringField Source;
-            public readonly StringField PasswordHash;
-            public readonly StringField PasswordSalt;
-            public readonly StringField DisplayName;
-            public readonly StringField Email;
-            public readonly DateTimeField LastDirectoryUpdate;
+            public Int32Field UserId;
+            public StringField Username;
+            public StringField Source;
+            public StringField PasswordHash;
+            public StringField PasswordSalt;
+            public StringField DisplayName;
+            public StringField Email;
+            public DateTimeField LastDirectoryUpdate;
 
-            public readonly StringField Password;
-            public readonly StringField PasswordConfirm;
+            public StringField Password;
+            public StringField PasswordConfirm;
 
             public RowFields()
                 : base("Users")

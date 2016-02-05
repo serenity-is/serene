@@ -215,33 +215,33 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field ProductID;
-            public readonly StringField ProductName;
-            public readonly StringField ProductImage;
-            public readonly BooleanField Discontinued;
-            public readonly Int32Field SupplierID;
-            public readonly Int32Field CategoryID;
-            public readonly StringField QuantityPerUnit;
-            public readonly DecimalField UnitPrice;
-            public readonly Int16Field UnitsInStock;
-            public readonly Int16Field UnitsOnOrder;
-            public readonly Int16Field ReorderLevel;
+            public Int32Field ProductID;
+            public StringField ProductName;
+            public StringField ProductImage;
+            public BooleanField Discontinued;
+            public Int32Field SupplierID;
+            public Int32Field CategoryID;
+            public StringField QuantityPerUnit;
+            public DecimalField UnitPrice;
+            public Int16Field UnitsInStock;
+            public Int16Field UnitsOnOrder;
+            public Int16Field ReorderLevel;
 
-            public readonly StringField SupplierCompanyName;
-            public readonly StringField SupplierContactName;
-            public readonly StringField SupplierContactTitle;
-            public readonly StringField SupplierAddress;
-            public readonly StringField SupplierCity;
-            public readonly StringField SupplierRegion;
-            public readonly StringField SupplierPostalCode;
-            public readonly StringField SupplierCountry;
-            public readonly StringField SupplierPhone;
-            public readonly StringField SupplierFax;
-            public readonly StringField SupplierHomePage;
+            public StringField SupplierCompanyName;
+            public StringField SupplierContactName;
+            public StringField SupplierContactTitle;
+            public StringField SupplierAddress;
+            public StringField SupplierCity;
+            public StringField SupplierRegion;
+            public StringField SupplierPostalCode;
+            public StringField SupplierCountry;
+            public StringField SupplierPhone;
+            public StringField SupplierFax;
+            public StringField SupplierHomePage;
 
-            public readonly StringField CategoryName;
-            public readonly StringField CategoryDescription;
-            public readonly StreamField CategoryPicture;
+            public StringField CategoryName;
+            public StringField CategoryDescription;
+            public StreamField CategoryPicture;
 
             public RowFields()
                 : base("Products")

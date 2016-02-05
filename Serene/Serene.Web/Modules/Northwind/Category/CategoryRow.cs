@@ -63,10 +63,10 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field CategoryID;
-            public readonly StringField CategoryName;
-            public readonly StringField Description;
-            public readonly StreamField Picture;
+            public Int32Field CategoryID;
+            public StringField CategoryName;
+            public StringField Description;
+            public StreamField Picture;
             public RowFields()
                 : base("Categories")
             {

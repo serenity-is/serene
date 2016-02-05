@@ -229,38 +229,38 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field OrderID;
-            public readonly StringField CustomerID;
-            public readonly Int32Field EmployeeID;
-            public readonly DateTimeField OrderDate;
-            public readonly DateTimeField RequiredDate;
-            public readonly DateTimeField ShippedDate;
-            public readonly Int32Field ShipVia;
-            public readonly DecimalField Freight;
-            public readonly StringField ShipName;
-            public readonly StringField ShipAddress;
-            public readonly StringField ShipCity;
-            public readonly StringField ShipRegion;
-            public readonly StringField ShipPostalCode;
-            public readonly StringField ShipCountry;
+            public Int32Field OrderID;
+            public StringField CustomerID;
+            public Int32Field EmployeeID;
+            public DateTimeField OrderDate;
+            public DateTimeField RequiredDate;
+            public DateTimeField ShippedDate;
+            public Int32Field ShipVia;
+            public DecimalField Freight;
+            public StringField ShipName;
+            public StringField ShipAddress;
+            public StringField ShipCity;
+            public StringField ShipRegion;
+            public StringField ShipPostalCode;
+            public StringField ShipCountry;
 
-            public readonly StringField CustomerCompanyName;
-            public readonly StringField CustomerContactName;
-            public readonly StringField CustomerContactTitle;
-            public readonly StringField CustomerCity;
-            public readonly StringField CustomerRegion;
-            public readonly StringField CustomerCountry;
-            public readonly StringField CustomerPhone;
-            public readonly StringField CustomerFax;
+            public StringField CustomerCompanyName;
+            public StringField CustomerContactName;
+            public StringField CustomerContactTitle;
+            public StringField CustomerCity;
+            public StringField CustomerRegion;
+            public StringField CustomerCountry;
+            public StringField CustomerPhone;
+            public StringField CustomerFax;
 
-            public readonly StringField EmployeeFullName;
-            public readonly Int32Field EmployeeGender;
+            public StringField EmployeeFullName;
+            public Int32Field EmployeeGender;
 
-            public readonly StringField ShipViaCompanyName;
-            public readonly StringField ShipViaPhone;
+            public StringField ShipViaCompanyName;
+            public StringField ShipViaPhone;
 
-            public readonly Int32Field ShippingState;
-            public readonly RowListField<OrderDetailRow> DetailList;
+            public Int32Field ShippingState;
+            public RowListField<OrderDetailRow> DetailList;
 
             public RowFields()
                 : base("Orders")

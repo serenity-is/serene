@@ -146,23 +146,23 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int64Field ProductLogID;
-            public readonly Int16Field OperationType;
-            public readonly Int32Field ChangingUserId;
-            public readonly DateTimeField ValidFrom;
-            public readonly DateTimeField ValidUntil;
+            public Int64Field ProductLogID;
+            public Int16Field OperationType;
+            public Int32Field ChangingUserId;
+            public DateTimeField ValidFrom;
+            public DateTimeField ValidUntil;
 
-            public readonly Int32Field ProductID;
-            public readonly StringField ProductName;
-            public readonly StringField ProductImage;
-            public readonly BooleanField Discontinued;
-            public readonly Int32Field SupplierID;
-            public readonly Int32Field CategoryID;
-            public readonly StringField QuantityPerUnit;
-            public readonly DecimalField UnitPrice;
-            public readonly Int16Field UnitsInStock;
-            public readonly Int16Field UnitsOnOrder;
-            public readonly Int16Field ReorderLevel;
+            public Int32Field ProductID;
+            public StringField ProductName;
+            public StringField ProductImage;
+            public BooleanField Discontinued;
+            public Int32Field SupplierID;
+            public Int32Field CategoryID;
+            public StringField QuantityPerUnit;
+            public DecimalField UnitPrice;
+            public Int16Field UnitsInStock;
+            public Int16Field UnitsOnOrder;
+            public Int16Field ReorderLevel;
 
             public RowFields()
                 : base("ProductLog")

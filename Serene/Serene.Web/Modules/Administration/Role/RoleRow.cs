@@ -50,8 +50,8 @@ namespace Serene.Administration.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field RoleId;
-            public readonly StringField RoleName;
+            public Int32Field RoleId;
+            public StringField RoleName;
 
             public RowFields()
                 : base("Roles")

@@ -55,9 +55,9 @@ namespace Serene.Administration.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field Id;
-            public readonly StringField LanguageId;
-            public readonly StringField LanguageName;
+            public Int32Field Id;
+            public StringField LanguageId;
+            public StringField LanguageName;
 
             public RowFields()
                 : base("Languages")

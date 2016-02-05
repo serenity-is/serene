@@ -180,30 +180,30 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field EmployeeID;
-            public readonly StringField TerritoryID;
+            public Int32Field EmployeeID;
+            public StringField TerritoryID;
 
-            public readonly StringField EmployeeLastName;
-            public readonly StringField EmployeeFirstName;
-            public readonly StringField EmployeeTitle;
-            public readonly StringField EmployeeTitleOfCourtesy;
-            public readonly DateTimeField EmployeeBirthDate;
-            public readonly DateTimeField EmployeeHireDate;
-            public readonly StringField EmployeeAddress;
-            public readonly StringField EmployeeCity;
-            public readonly StringField EmployeeRegion;
-            public readonly StringField EmployeePostalCode;
-            public readonly StringField EmployeeCountry;
-            public readonly StringField EmployeeHomePhone;
-            public readonly StringField EmployeeExtension;
-            public readonly StreamField EmployeePhoto;
-            public readonly StringField EmployeeNotes;
-            public readonly Int32Field EmployeeReportsTo;
-            public readonly StringField EmployeePhotoPath;
+            public StringField EmployeeLastName;
+            public StringField EmployeeFirstName;
+            public StringField EmployeeTitle;
+            public StringField EmployeeTitleOfCourtesy;
+            public DateTimeField EmployeeBirthDate;
+            public DateTimeField EmployeeHireDate;
+            public StringField EmployeeAddress;
+            public StringField EmployeeCity;
+            public StringField EmployeeRegion;
+            public StringField EmployeePostalCode;
+            public StringField EmployeeCountry;
+            public StringField EmployeeHomePhone;
+            public StringField EmployeeExtension;
+            public StreamField EmployeePhoto;
+            public StringField EmployeeNotes;
+            public Int32Field EmployeeReportsTo;
+            public StringField EmployeePhotoPath;
 
 
-            public readonly StringField TerritoryTerritoryDescription;
-            public readonly Int32Field TerritoryRegionID;
+            public StringField TerritoryTerritoryDescription;
+            public Int32Field TerritoryRegionID;
 
             public RowFields()
                 : base("EmployeeTerritories")

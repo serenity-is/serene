@@ -56,9 +56,9 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field ShipperID;
-            public readonly StringField CompanyName;
-            public readonly StringField Phone;
+            public Int32Field ShipperID;
+            public StringField CompanyName;
+            public StringField Phone;
             public RowFields()
                 : base("Shippers")
             {

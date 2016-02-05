@@ -135,20 +135,20 @@ namespace Serene.Northwind.Entities
 
         public class RowFields : RowFieldsBase
         {
-            public readonly Int32Field ID;
-            public readonly StringField CustomerID;
-            public readonly StringField CompanyName;
-            public readonly StringField ContactName;
-            public readonly StringField ContactTitle;
-            public readonly StringField Address;
-            public readonly StringField City;
-            public readonly StringField Region;
-            public readonly StringField PostalCode;
-            public readonly StringField Country;
-            public readonly StringField Phone;
-            public readonly StringField Fax;
-            public readonly RowListField<NoteRow> NoteList;
-            public readonly CustomClassField<List<Int32>> Representatives;
+            public Int32Field ID;
+            public StringField CustomerID;
+            public StringField CompanyName;
+            public StringField ContactName;
+            public StringField ContactTitle;
+            public StringField Address;
+            public StringField City;
+            public StringField Region;
+            public StringField PostalCode;
+            public StringField Country;
+            public StringField Phone;
+            public StringField Fax;
+            public RowListField<NoteRow> NoteList;
+            public CustomClassField<List<Int32>> Representatives;
 
             public RowFields()
                 : base("Customers")
