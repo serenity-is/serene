@@ -5374,7 +5374,7 @@
 			var editor = this.$createField(fieldContainer, item);
 			this.$editors[i] = editor;
 		}
-		this.$updateReadOnly();
+		this.$updateInterface();
 	};
 	$Serenity_PropertyGrid.__typeName = 'Serenity.PropertyGrid';
 	$Serenity_PropertyGrid.$categoryLinkClick = function(e) {
@@ -5410,6 +5410,7 @@
 		}
 	};
 	$Serenity_PropertyGrid.setRequired = function(widget, isRequired) {
+		$Serenity_EditorUtils.setRequired(widget, isRequired);
 	};
 	$Serenity_PropertyGrid.setReadOnly = function(widget, isReadOnly) {
 		$Serenity_EditorUtils.setReadOnly(widget, isReadOnly);
@@ -9043,10 +9044,10 @@
 				if (inParens && (line.rightParen || line.leftParen)) {
 					if (!Serenity.Criteria.isEmpty(currentBlock)) {
 						if (isBlockOr) {
-							activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', currentBlock);
+							activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', Serenity.Criteria.paren(currentBlock));
 						}
 						else {
-							activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', currentBlock);
+							activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', Serenity.Criteria.paren(currentBlock));
 						}
 						currentBlock = [''];
 					}
@@ -9065,10 +9066,10 @@
 			}
 			if (!Serenity.Criteria.isEmpty(currentBlock)) {
 				if (isBlockOr) {
-					activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', currentBlock);
+					activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', Serenity.Criteria.paren(currentBlock));
 				}
 				else {
-					activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', currentBlock);
+					activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', Serenity.Criteria.paren(currentBlock));
 				}
 			}
 			return activeCriteria;
@@ -9842,7 +9843,7 @@
 		set_mode: function(value) {
 			if (this.options.mode !== value) {
 				this.options.mode = value;
-				this.$updateReadOnly();
+				this.$updateInterface();
 			}
 		},
 		load: function(source) {
@@ -9864,13 +9865,17 @@
 				}
 			}
 		},
-		$updateReadOnly: function() {
+		$updateInterface: function() {
 			for (var i = 0; i < this.$editors.length; i++) {
 				var item = this.$items[i];
 				var editor = this.$editors[i];
 				var readOnly = item.readOnly === true || this.get_mode() === 0 && item.insertable === false || this.get_mode() === 1 && item.updatable === false;
 				$Serenity_EditorUtils.setReadOnly(editor, readOnly);
 				$Serenity_EditorUtils.setRequired(editor, !readOnly && !!item.required && item.editorType !== 'Boolean');
+				if (item.visible === false || item.hideOnInsert === true || item.hideOnUpdate === true) {
+					var hidden = item.visible === false || this.get_mode() === 0 && item.hideOnInsert === true || this.get_mode() === 1 && item.hideOnUpdate === true;
+					$Serenity_WX.getGridField(editor).toggle(!hidden);
+				}
 			}
 		},
 		enumerateItems: function(callback) {

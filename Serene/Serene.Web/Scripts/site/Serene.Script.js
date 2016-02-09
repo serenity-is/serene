@@ -17,7 +17,7 @@
 		return Q.getRemoteData('UserData');
 	};
 	$Serene_Authorization.hasPermission = function(permissionKey) {
-		return $Serene_Authorization.get_userDefinition().Permissions[permissionKey];
+		return $Serene_Authorization.get_userDefinition().Username === 'admin' || $Serene_Authorization.get_userDefinition().Permissions[permissionKey];
 	};
 	global.Serene.Authorization = $Serene_Authorization;
 	////////////////////////////////////////////////////////////////////////////////

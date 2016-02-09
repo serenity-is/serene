@@ -9,7 +9,9 @@ namespace Serene
 
         public static bool HasPermission(string permissionKey)
         {
-            return UserDefinition.Permissions[permissionKey];
+            return 
+                UserDefinition.Username == "admin" ||
+                UserDefinition.Permissions[permissionKey];
         }
     }
 }
