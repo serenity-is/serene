@@ -9284,11 +9284,9 @@
 		},
 		set_value: function(value) {
 			var instance = this.$getEditorInstance();
+			this.element.val(value);
 			if (this.$instanceReady && ss.isValue(instance)) {
 				instance.setData(value);
-			}
-			else {
-				this.element.val(value);
 			}
 		}
 	}, ss.makeGenericType($Serenity_Widget$1, [$Serenity_HtmlContentEditorOptions]), [$Serenity_IStringValue]);
@@ -9735,7 +9733,7 @@
 				editor = ss.cast(new editorType(element, editorParams), $Serenity_Widget);
 			}
 			editor.initialize();
-			if (ss.isInstanceOfType(editor, $Serenity_BooleanEditor)) {
+			if (ss.isInstanceOfType(editor, $Serenity_BooleanEditor) && (ss.isNullOrUndefined(item.editorParams) || !!!item.editorParams['labelFor'])) {
 				label.removeAttr('for');
 			}
 			if (ss.isValue(item.maxLength)) {
