@@ -152,8 +152,9 @@
     <Content Include="Content\images\header-columns-over-bg.gif" />
     <Content Include="Content\images\sort-asc.gif" />
     <Content Include="Content\images\sort-desc.gif" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery.fileupload.css" />
-    <Content Include="Content\jquery.metisMenu.css" />
     <Content Include="Content\pace.css" />
     <Content Include="Content\pace.min.css" />
     <Content Include="Content\serenity\images\32px.png" />
@@ -602,6 +603,7 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\Simple-Line-Icons.dev.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\Common\Imports\ScriptEditorTypes.tt">
@@ -1073,6 +1075,9 @@
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
     <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.eot" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
@@ -1357,14 +1362,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
-    <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="Views\Errors\ValidationError.cshtml" />
+    <Content Include="Scripts\site\texts\site.texts.de.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="tools\Node\lessc.cmd" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <Content Include="Scripts\site\texts\site.texts.de.json" />
+    <Content Include="tools\Node\less\lib\lessc" />
+    <Content Include="tools\Node\less\bin\lessc" />
+    <Content Include="tools\Node\lessc.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -154,6 +154,8 @@
         </Folder>
       </Folder>
       <Folder Name="fonts" TargetFolderName="fonts">
+        <ProjectItem ReplaceParameters="false" TargetFileName="FontAwesome.otf">FontAwesome.otf</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="fontawesome-webfont.woff2">fontawesome-webfont.woff2</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="OpenSans.woff">OpenSans.woff</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="OpenSansBold.woff">OpenSansBold.woff</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="OpenSansItalic.woff">OpenSansItalic.woff</ProjectItem>
@@ -306,8 +308,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>
@@ -1234,7 +1236,6 @@
       <package id="EPPlus" version="4.0.5" />
       <package id="FluentMigrator" version="1.6.1" />
       <package id="FluentMigrator.Runner" version="1.6.1" />
-      <package id="FontAwesome" version="4.4.0" />
       <package id="jQuery" version="2.2.0" />
       <package id="jquery.event.drag" version="2.2.0" />
       <package id="jQuery.UI.Combined" version="1.11.4" />
@@ -1245,12 +1246,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="8.0.2" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="1.9.8" />
-      <package id="Serenity.Core" version="1.9.8" />
-      <package id="Serenity.Data" version="1.9.8" />
-      <package id="Serenity.Data.Entity" version="1.9.8" />
-      <package id="Serenity.Services" version="1.9.8" />
-      <package id="Serenity.Web" version="1.9.8" />
+      <package id="Serenity.CodeGenerator" version="1.9.9" />
+      <package id="Serenity.Core" version="1.9.9" />
+      <package id="Serenity.Data" version="1.9.9" />
+      <package id="Serenity.Data.Entity" version="1.9.9" />
+      <package id="Serenity.Services" version="1.9.9" />
+      <package id="Serenity.Web" version="1.9.9" />
       <package id="SlickGrid" version="2.2.20140120" />
       <package id="toastr" version="2.1.1" />
     </packages>
