@@ -139,6 +139,9 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="pace.min.css">pace.min.css</ProjectItem>
         <Folder Name="site" TargetFolderName="site">
           <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-g-40.png">serenity-logo-g-40.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-w-40.png">serenity-logo-w-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-empty.png">tick-empty.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-green-partial.png">tick-green-partial.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-red-partial.png">tick-red-partial.png</ProjectItem>
