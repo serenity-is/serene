@@ -6804,6 +6804,21 @@ section.content > .s-DataGrid {
   font-size: 15px;
   font-weight: 600;
 }
+.main-header .logo i {
+  width: 50px;
+  height: 50px;
+  float: left;
+  background: url(images/serenity-logo-w-40.png) no-repeat center center;
+  animation: fa-spin 5s infinite linear reverse;
+}
+.main-header .logo b {
+  float: left;
+  margin-left: 4px;
+}
+.skin-black .main-header .logo i,
+.skin-black-light .main-header .logo i {
+  background: url(images/serenity-logo-g-40.png) no-repeat center center;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
