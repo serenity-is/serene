@@ -489,6 +489,9 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\images\serenity-logo-40.png" />
+    <Content Include="Content\site\images\serenity-logo-g-40.png" />
+    <Content Include="Content\site\images\serenity-logo-w-40.png" />
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
