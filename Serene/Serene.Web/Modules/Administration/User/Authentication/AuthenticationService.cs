@@ -46,7 +46,7 @@
             Func<bool> validatePassword = () => UserRepository.CalculateHash(password, user.PasswordSalt)
                 .Equals(user.PasswordHash, StringComparison.OrdinalIgnoreCase);
 
-            if (user.Source == "site" || directoryService == null)
+            if (user.Source == "site" || user.Source == "sign" || directoryService == null)
             {
                 if (validatePassword())
                 {
