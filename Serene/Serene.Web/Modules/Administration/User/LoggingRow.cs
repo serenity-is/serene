@@ -5,7 +5,7 @@
     using Serenity.Data.Mapping;
     using System;
 
-    public abstract class LoggingRow : Row, IIsActiveRow, ILoggingRow
+    public abstract class LoggingRow : Row, ILoggingRow
     {
         protected LoggingRow(RowFieldsBase fields)
             : base(fields)
@@ -41,18 +41,6 @@
             set { loggingFields.UpdateDate[this] = value; }
         }
 
-        [NotNull, Insertable(false), Updatable(true)]
-        public Int16? IsActive
-        {
-            get { return loggingFields.IsActive[this]; }
-            set { loggingFields.IsActive[this] = value; }
-        }
-
-        Int16Field IIsActiveRow.IsActiveField
-        {
-            get { return loggingFields.IsActive; }
-        }
-
         IIdField IInsertLogRow.InsertUserIdField
         {
             get { return loggingFields.InsertUserId; }
@@ -81,7 +69,6 @@
             public DateTimeField InsertDate;
             public Int32Field UpdateUserId;
             public DateTimeField UpdateDate;
-            public Int16Field IsActive;
 
             public LoggingRowFields(string tableName)
                 : base(tableName)

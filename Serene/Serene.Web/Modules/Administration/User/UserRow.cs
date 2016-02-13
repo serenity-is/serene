@@ -12,7 +12,7 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
     [ReadPermission(Administration.PermissionKeys.Security)]
     [ModifyPermission(Administration.PermissionKeys.Security)]
-    public sealed class UserRow : LoggingRow, IIdRow, INameRow
+    public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity]
         public Int32? UserId
@@ -70,6 +70,13 @@ namespace Serene.Administration.Entities
             set { Fields.Password[this] = value; }
         }
 
+        [NotNull, Insertable(false), Updatable(true)]
+        public Int16? IsActive
+        {
+            get { return Fields.IsActive[this]; }
+            set { Fields.IsActive[this] = value; }
+        }
+
         [DisplayName("Confirm Password"), Size(50), SetFieldFlags(FieldFlags.ClientSide)]
         public String PasswordConfirm
         {
@@ -94,6 +101,11 @@ namespace Serene.Administration.Entities
             get { return Fields.Username; }
         }
 
+        Int16Field IIsActiveRow.IsActiveField
+        {
+            get { return Fields.IsActive; }
+        }
+
         public static readonly RowFields Fields = new RowFields().Init();
 
         public UserRow()
@@ -111,6 +123,7 @@ namespace Serene.Administration.Entities
             public StringField DisplayName;
             public StringField Email;
             public DateTimeField LastDirectoryUpdate;
+            public Int16Field IsActive;
 
             public StringField Password;
             public StringField PasswordConfirm;
