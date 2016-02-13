@@ -987,6 +987,18 @@
 	};
 	global.Serenity.EnumTypeRegistry = $Serenity_EnumTypeRegistry;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.FileDownloadFormatter
+	var $Serenity_FileDownloadFormatter = function() {
+		this.$1$DisplayFormatField = null;
+		this.$1$OriginalNamePropertyField = null;
+	};
+	$Serenity_FileDownloadFormatter.__typeName = 'Serenity.FileDownloadFormatter';
+	$Serenity_FileDownloadFormatter.dbFileUrl = function(filename) {
+		filename = ss.replaceAllString(ss.coalesce(filename, ''), '\\', '/');
+		return $Q.resolveUrl('~/upload/') + filename;
+	};
+	global.Serenity.FileDownloadFormatter = $Serenity_FileDownloadFormatter;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.FlexifyAttribute
 	var $Serenity_FlexifyAttribute = function() {
 	};
@@ -1794,6 +1806,39 @@
 		}
 	});
 	ss.initClass($Serenity_EnumTypeRegistry, $asm, {});
+	ss.initInterface($Serenity_IInitializeColumn, $asm, { initializeColumn: null });
+	ss.initClass($Serenity_FileDownloadFormatter, $asm, {
+		format: function(ctx) {
+			var dbFile = ss.safeCast(ctx.value, String);
+			if (ss.isNullOrEmptyString(dbFile)) {
+				return '';
+			}
+			var downloadUrl = $Serenity_FileDownloadFormatter.dbFileUrl(dbFile);
+			var originalName = (!ss.isNullOrEmptyString(this.get_originalNameProperty()) ? ss.safeCast(ctx.item[this.get_originalNameProperty()], String) : null);
+			originalName = ss.coalesce(originalName, '');
+			var text = ss.formatString(ss.coalesce(this.get_displayFormat(), '{0}'), originalName, dbFile, downloadUrl);
+			return "<a class='file-download-link' target='_blank' href='" + $Q.htmlEncode(downloadUrl) + "'>" + $Q.htmlEncode(text) + '</a>';
+		},
+		get_displayFormat: function() {
+			return this.$1$DisplayFormatField;
+		},
+		set_displayFormat: function(value) {
+			this.$1$DisplayFormatField = value;
+		},
+		get_originalNameProperty: function() {
+			return this.$1$OriginalNamePropertyField;
+		},
+		set_originalNameProperty: function(value) {
+			this.$1$OriginalNamePropertyField = value;
+		},
+		initializeColumn: function(column) {
+			column.referencedFields = column.referencedFields || [];
+			if (!ss.isNullOrEmptyString(this.get_originalNameProperty())) {
+				column.referencedFields.push(this.get_originalNameProperty());
+				return;
+			}
+		}
+	}, null, [$Serenity_ISlickFormatter, $Serenity_IInitializeColumn]);
 	ss.initClass($Serenity_FlexifyAttribute, $asm, {});
 	ss.initClass($Serenity_FormKeyAttribute, $asm, {
 		get_value: function() {
@@ -1812,7 +1857,6 @@
 			this.$2$ValueField = value;
 		}
 	});
-	ss.initInterface($Serenity_IInitializeColumn, $asm, { initializeColumn: null });
 	ss.initClass($Serenity_IsActivePropertyAttribute, $asm, {
 		get_value: function() {
 			return this.$2$ValueField;
@@ -1895,6 +1939,7 @@
 	ss.setMetadata($Serenity_BooleanFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'FalseText', type: 16, returnType: String, getter: { name: 'get_FalseText', type: 8, sname: 'get_falseText', returnType: String, params: [] }, setter: { name: 'set_FalseText', type: 8, sname: 'set_falseText', returnType: Object, params: [String] } }, { attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'TrueText', type: 16, returnType: String, getter: { name: 'get_TrueText', type: 8, sname: 'get_trueText', returnType: String, params: [] }, setter: { name: 'set_TrueText', type: 8, sname: 'set_trueText', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_DateFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_EnumFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, sname: 'get_enumKey', returnType: String, params: [] }, setter: { name: 'set_EnumKey', type: 8, sname: 'set_enumKey', returnType: Object, params: [String] } }] });
+	ss.setMetadata($Serenity_FileDownloadFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }, { attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'OriginalNameProperty', type: 16, returnType: String, getter: { name: 'get_OriginalNameProperty', type: 8, sname: 'get_originalNameProperty', returnType: String, params: [] }, setter: { name: 'set_OriginalNameProperty', type: 8, sname: 'set_originalNameProperty', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_NumberFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
 	(function() {
 		$Q$LT.$table = {};
