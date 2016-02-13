@@ -5,6 +5,13 @@
     using Serenity.Data.Mapping;
     using System;
 
+    /// <summary>
+    /// This is a sample base class for rows that does insert/update date and user audit logging automatically.
+    /// It is recommended to create your own base class, if your auditing field names are different than these.
+    /// You should implement IInsertLogRow and/or IUpdateLogRow interfaces. ILoggingRow is a combination of these
+    /// two. There is also an optional IDeleteLogRow interface that supports auditing on delete but for it to work
+    /// you need to also implement IIsActiveDeletedRow so that your rows aren't actually deleted.
+    /// </summary>
     public abstract class LoggingRow : Row, ILoggingRow
     {
         protected LoggingRow(RowFieldsBase fields)
