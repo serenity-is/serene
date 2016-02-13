@@ -9250,9 +9250,22 @@
 			// validasyonun çalışması için
 			x.editor.setData(this.element.val());
 		},
+		getLanguage: function() {
+			var lang = ss.coalesce(Q.trimToNull($('html').attr('lang')), 'en');
+			if (!!CKEDITOR.lang.languages[lang]) {
+				return lang;
+			}
+			if (lang.indexOf(String.fromCharCode(45)) >= 0) {
+				lang = lang.split(String.fromCharCode(45))[0];
+			}
+			if (!!CKEDITOR.lang.languages[lang]) {
+				return lang;
+			}
+			return 'en';
+		},
 		getConfig: function() {
 			var self = this;
-			return { customConfig: '', language: 'tr', bodyClass: 's-HtmlContentBody', on: {
+			return { customConfig: '', language: this.getLanguage(), bodyClass: 's-HtmlContentBody', on: {
 				instanceReady: function(x) {
 					self.instanceReady(x);
 				},
