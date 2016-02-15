@@ -563,11 +563,73 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="config.js">config.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="contents.css">contents.css</ProjectItem>
           <Folder Name="lang" TargetFolderName="lang">
+            <ProjectItem ReplaceParameters="true" TargetFileName="af.js">af.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ar.js">ar.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="bg.js">bg.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="bn.js">bn.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="bs.js">bs.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ca.js">ca.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="cs.js">cs.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="cy.js">cy.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="da.js">da.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="de.js">de.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="de-ch.js">de-ch.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="el.js">el.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="en.js">en.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="en-au.js">en-au.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="en-ca.js">en-ca.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="en-gb.js">en-gb.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="eo.js">eo.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="es.js">es.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="et.js">et.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="eu.js">eu.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="fa.js">fa.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="fi.js">fi.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="fo.js">fo.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="fr.js">fr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="fr-ca.js">fr-ca.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="gl.js">gl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="gu.js">gu.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="he.js">he.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="hi.js">hi.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="hr.js">hr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="hu.js">hu.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="id.js">id.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="is.js">is.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="it.js">it.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ja.js">ja.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ka.js">ka.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="km.js">km.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ko.js">ko.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ku.js">ku.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="lt.js">lt.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="lv.js">lv.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="mk.js">mk.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="mn.js">mn.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ms.js">ms.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="nb.js">nb.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="nl.js">nl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="no.js">no.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pl.js">pl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pt.js">pt.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pt-br.js">pt-br.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ro.js">ro.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ru.js">ru.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="si.js">si.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sk.js">sk.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sl.js">sl.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sq.js">sq.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sr.js">sr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sr-latn.js">sr-latn.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sv.js">sv.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="th.js">th.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="tr.js">tr.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="tt.js">tt.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ug.js">ug.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="uk.js">uk.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="vi.js">vi.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="zh.js">zh.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="zh-cn.js">zh-cn.js</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE.md">LICENSE.md</ProjectItem>
           <Folder Name="plugins" TargetFolderName="plugins">
@@ -1185,9 +1247,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
         </Folder>
-        <Folder Name="saltarelle" TargetFolderName="saltarelle">
-          <ProjectItem ReplaceParameters="true" TargetFileName="mscorlib.js">mscorlib.js</ProjectItem>
-        </Folder>
         <Folder Name="site" TargetFolderName="site">
           <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Script.js">Serene.Script.js</ProjectItem>
           <Folder Name="texts" TargetFolderName="texts">
@@ -1252,12 +1311,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="8.0.2" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="1.9.10" />
-      <package id="Serenity.Core" version="1.9.10" />
-      <package id="Serenity.Data" version="1.9.10" />
-      <package id="Serenity.Data.Entity" version="1.9.10" />
-      <package id="Serenity.Services" version="1.9.10" />
-      <package id="Serenity.Web" version="1.9.10" />
+      <package id="Serenity.CodeGenerator" version="1.9.11" />
+      <package id="Serenity.Core" version="1.9.11" />
+      <package id="Serenity.Data" version="1.9.11" />
+      <package id="Serenity.Data.Entity" version="1.9.11" />
+      <package id="Serenity.Services" version="1.9.11" />
+      <package id="Serenity.Web" version="1.9.11" />
       <package id="SlickGrid" version="2.2.20140120" />
       <package id="toastr" version="2.1.1" />
     </packages>
