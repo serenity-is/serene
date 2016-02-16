@@ -332,6 +332,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151202_193700_ProductLog.cs">NorthwindDB_20151202_193700_ProductLog.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151226_184500_Notes.cs">NorthwindDB_20151226_184500_Notes.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160121_141200_CustomerRepresentatives.cs">NorthwindDB_20160121_141200_CustomerRepresentatives.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160216_154900_DataLocalization.cs">NorthwindDB_20160216_154900_DataLocalization.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
@@ -400,6 +401,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CategoryPage.cs">CategoryPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CategoryRepository.cs">CategoryRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CategoryRow.cs">CategoryRow.cs</ProjectItem>
+          </Folder>
+          <Folder Name="CategoryLang" TargetFolderName="CategoryLang">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangEndpoint.cs">CategoryLangEndpoint.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangRepository.cs">CategoryLangRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangRow.cs">CategoryLangRow.cs</ProjectItem>
           </Folder>
           <Folder Name="Customer" TargetFolderName="Customer">
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCity.cs">CustomerCity.cs</ProjectItem>
@@ -484,6 +490,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ProductPage.cs">ProductPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ProductRepository.cs">ProductRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ProductRow.cs">ProductRow.cs</ProjectItem>
+          </Folder>
+          <Folder Name="ProductLang" TargetFolderName="ProductLang">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangEndpoint.cs">ProductLangEndpoint.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangRepository.cs">ProductLangRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangRow.cs">ProductLangRow.cs</ProjectItem>
           </Folder>
           <Folder Name="Region" TargetFolderName="Region">
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionColumns.cs">RegionColumns.cs</ProjectItem>

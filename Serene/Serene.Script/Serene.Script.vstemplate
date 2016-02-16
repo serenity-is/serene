@@ -67,6 +67,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordForm.cs">Membership.ResetPasswordForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.cs">Membership.SignUpForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.cs">Northwind.CategoryForm.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangForm.cs">Northwind.CategoryLangForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoForm.cs">Northwind.CustomerCustomerDemoForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicForm.cs">Northwind.CustomerDemographicForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerForm.cs">Northwind.CustomerForm.cs</ProjectItem>
@@ -75,6 +76,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailForm.cs">Northwind.OrderDetailForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderForm.cs">Northwind.OrderForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductForm.cs">Northwind.ProductForm.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangForm.cs">Northwind.ProductLangForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionForm.cs">Northwind.RegionForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperForm.cs">Northwind.ShipperForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierForm.cs">Northwind.SupplierForm.cs</ProjectItem>
@@ -114,12 +116,15 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.cs">Membership.LoginRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordRequest.cs">Membership.ResetPasswordRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpRequest.cs">Membership.SignUpRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangRow.cs">Northwind.CategoryLangRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangService.cs">Northwind.CategoryLangService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryRow.cs">Northwind.CategoryRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryService.cs">Northwind.CategoryService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoRow.cs">Northwind.CustomerCustomerDemoRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoService.cs">Northwind.CustomerCustomerDemoService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicRow.cs">Northwind.CustomerDemographicRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicService.cs">Northwind.CustomerDemographicService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRepresentativesRow.cs">Northwind.CustomerRepresentativesRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRow.cs">Northwind.CustomerRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerService.cs">Northwind.CustomerService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeRow.cs">Northwind.EmployeeRow.cs</ProjectItem>
@@ -133,6 +138,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.cs">Northwind.OrderRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.cs">Northwind.OrderService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.cs">Northwind.OrderShippingState.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangRow.cs">Northwind.ProductLangRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangService.cs">Northwind.ProductLangService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLogRow.cs">Northwind.ProductLogRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductRow.cs">Northwind.ProductRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductService.cs">Northwind.ProductService.cs</ProjectItem>
@@ -201,6 +208,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailsEditor.cs">OrderDetailsEditor.cs</ProjectItem>
         </Folder>
         <Folder Name="Product" TargetFolderName="Product">
+          <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.cs">LanguageList.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ProductDialog.cs">ProductDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ProductGrid.cs">ProductGrid.cs</ProjectItem>
         </Folder>
