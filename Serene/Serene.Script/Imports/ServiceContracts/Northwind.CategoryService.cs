@@ -1,4 +1,4 @@
-namespace Serene.Northwind
+﻿namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
@@ -13,19 +13,25 @@ namespace Serene.Northwind
         [InlineConstant] public const string BaseUrl = "Northwind/Category";
     
         [InlineCode("Q.serviceRequest('Northwind/Category/Create', {request}, {onSuccess}, {options})")]
-        public static jQueryXmlHttpRequest Create(SaveRequest<CategoryRow> request, Action<SaveResponse> onSuccess, ServiceCallOptions options = null)
+        public static jQueryXmlHttpRequest Create(SaveWithLocalizationRequest<CategoryRow> request, Action<SaveResponse> onSuccess, ServiceCallOptions options = null)
         {
             return null;
         }
     
         [InlineCode("Q.serviceRequest('Northwind/Category/Update', {request}, {onSuccess}, {options})")]
-        public static jQueryXmlHttpRequest Update(SaveRequest<CategoryRow> request, Action<SaveResponse> onSuccess, ServiceCallOptions options = null)
+        public static jQueryXmlHttpRequest Update(SaveWithLocalizationRequest<CategoryRow> request, Action<SaveResponse> onSuccess, ServiceCallOptions options = null)
         {
             return null;
         }
     
         [InlineCode("Q.serviceRequest('Northwind/Category/Delete', {request}, {onSuccess}, {options})")]
         public static jQueryXmlHttpRequest Delete(DeleteRequest request, Action<DeleteResponse> onSuccess, ServiceCallOptions options = null)
+        {
+            return null;
+        }
+    
+        [InlineCode("Q.serviceRequest('Northwind/Category/RetrieveLocalization', {request}, {onSuccess}, {options})")]
+        public static jQueryXmlHttpRequest RetrieveLocalization(RetrieveLocalizationRequest request, Action<RetrieveLocalizationResponse<CategoryRow>> onSuccess, ServiceCallOptions options = null)
         {
             return null;
         }
@@ -48,6 +54,7 @@ namespace Serene.Northwind
             [InlineConstant] public const string Create = "Northwind/Category/Create";
             [InlineConstant] public const string Update = "Northwind/Category/Update";
             [InlineConstant] public const string Delete = "Northwind/Category/Delete";
+            [InlineConstant] public const string RetrieveLocalization = "Northwind/Category/RetrieveLocalization";
             [InlineConstant] public const string Retrieve = "Northwind/Category/Retrieve";
             [InlineConstant] public const string List = "Northwind/Category/List";
         }

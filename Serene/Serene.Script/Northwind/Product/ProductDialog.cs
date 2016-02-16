@@ -7,7 +7,11 @@ namespace Serene.Northwind
 
     [IdProperty("ProductID"), NameProperty("ProductName")]
     [FormKey("Northwind.Product"), LocalTextPrefix("Northwind.Product"), Service("Northwind/Product")]
-    public class ProductDialog : EntityDialog<ProductRow>, IAsyncInit
+    public class ProductDialog : EntityDialog<ProductRow>
     {
+        protected override IEnumerable<System.Tuple<string, string>> GetLanguages()
+        {
+            return LanguageList.Value;
+        }
     }
 }

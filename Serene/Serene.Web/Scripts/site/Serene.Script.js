@@ -21,6 +21,23 @@
 	};
 	global.Serene.Authorization = $Serene_Authorization;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.LanguageList
+	var $Serene_LanguageList = function() {
+	};
+	$Serene_LanguageList.__typeName = 'Serene.LanguageList';
+	$Serene_LanguageList.get_value = function() {
+		var result = [];
+		var $t1 = Q.getLookup('Administration.Language').get_items();
+		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+			var k = $t1[$t2];
+			if (k.LanguageId !== 'en') {
+				result.push({ item1: k.Id.toString(), item2: k.LanguageName });
+			}
+		}
+		return result;
+	};
+	global.Serene.LanguageList = $Serene_LanguageList;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.ScriptInitialization
 	var $Serene_ScriptInitialization = function() {
 	};
@@ -743,6 +760,13 @@
 	$Serene_Northwind_CategoryGrid.__typeName = 'Serene.Northwind.CategoryGrid';
 	global.Serene.Northwind.CategoryGrid = $Serene_Northwind_CategoryGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.CategoryLangForm
+	var $Serene_Northwind_CategoryLangForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Northwind_CategoryLangForm.__typeName = 'Serene.Northwind.CategoryLangForm';
+	global.Serene.Northwind.CategoryLangForm = $Serene_Northwind_CategoryLangForm;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoDialog
 	var $Serene_Northwind_CustomerCustomerDemoDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1124,6 +1148,13 @@
 	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
 	global.Serene.Northwind.ProductGrid = $Serene_Northwind_ProductGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.Northwind.ProductLangForm
+	var $Serene_Northwind_ProductLangForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_Northwind_ProductLangForm.__typeName = 'Serene.Northwind.ProductLangForm';
+	global.Serene.Northwind.ProductLangForm = $Serene_Northwind_ProductLangForm;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1223,6 +1254,7 @@
 	$Serenity_HtmlBasicContentEditor.__typeName = 'Serenity.HtmlBasicContentEditor';
 	global.Serenity.HtmlBasicContentEditor = $Serenity_HtmlBasicContentEditor;
 	ss.initClass($Serene_Authorization, $asm, {});
+	ss.initClass($Serene_LanguageList, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
@@ -1938,7 +1970,11 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
-	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {
+		getLanguages: function() {
+			return $Serene_LanguageList.get_value();
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CategoryForm, $asm, {
 		get_categoryName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CategoryName');
@@ -1948,6 +1984,20 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_CategoryLangForm, $asm, {
+		get_categoryId: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'CategoryId');
+		},
+		get_languageId: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'LanguageId');
+		},
+		get_categoryName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'CategoryName');
+		},
+		get_description: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'Description');
+		}
+	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoForm, $asm, {
 		get_customerID: function() {
@@ -2492,7 +2542,11 @@
 			this.element.val(value);
 		}
 	}, Serenity.StringEditor, [Serenity.IStringValue]);
-	ss.initClass($Serene_Northwind_ProductDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_ProductDialog, $asm, {
+		getLanguages: function() {
+			return $Serene_LanguageList.get_value();
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductForm, $asm, {
 		get_productName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
@@ -2647,6 +2701,14 @@
 			saveNext();
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_ProductLangForm, $asm, {
+		get_productId: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'ProductId');
+		},
+		get_productName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
+		}
+	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_RegionForm, $asm, {
 		get_regionID: function() {

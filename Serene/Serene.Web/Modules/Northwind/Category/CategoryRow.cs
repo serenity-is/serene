@@ -14,6 +14,7 @@ namespace Serene.Northwind.Entities
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [LookupScript("Northwind.Category")]
+    [LocalizationRow(typeof(CategoryLangRow))]
     public sealed class CategoryRow : Row, IIdRow, INameRow
     {
         [DisplayName("Category Id"), Identity]

@@ -165,7 +165,7 @@ namespace Serene.Northwind
                 var pair = enumerator.Current;
                 var entity = Q.DeepClone(pair.Value);
                 entity.ProductID = pair.Key;
-                ProductService.Update(new SaveRequest<ProductRow>
+                ProductService.Update(new SaveWithLocalizationRequest<ProductRow>
                 {
                     EntityId = pair.Key,
                     Entity = entity

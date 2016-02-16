@@ -43,6 +43,9 @@
     <Compile Include="Imports\ServiceContracts\Membership.SignUpRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.CustomerRepresentativesRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
@@ -302,6 +305,7 @@
     <Compile Include="Northwind\Note\NotesEditor.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
     <Compile Include="Northwind\Order\FreightFormatter.cs" />
+    <Compile Include="Northwind\Product\LanguageList.cs" />
     <Compile Include="Northwind\Shared\PhoneEditor.cs" />
     <Compile Include="Northwind\Shipper\ShipperFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -340,6 +344,8 @@
     <Compile Include="Administration\Role\RoleDialog.cs" />
     <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
     <Compile Include="Northwind\Note\NoteDialog.cs" />
+    <Compile Include="Imports\FormContexts\Northwind.CategoryLangForm.cs" />
+    <Compile Include="Imports\FormContexts\Northwind.ProductLangForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">
@@ -363,6 +369,18 @@
     </None>
     <None Include="packages.config" />
     <Compile Include="Imports\ServiceContracts\Northwind.NoteRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.CategoryLangRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.CategoryLangService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.ProductLangRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.ProductLangService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
   </ItemGroup>

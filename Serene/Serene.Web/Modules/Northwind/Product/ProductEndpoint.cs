@@ -16,13 +16,13 @@ namespace Serene.Northwind.Endpoints
     public class ProductController : ServiceEndpoint
     {
         [HttpPost]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
         [HttpPost]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
         }
@@ -36,6 +36,11 @@ namespace Serene.Northwind.Endpoints
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
         {
             return new MyRepository().Retrieve(connection, request);
+        }
+
+        public RetrieveLocalizationResponse<MyRow> RetrieveLocalization(IDbConnection connection, RetrieveLocalizationRequest request)
+        {
+            return new MyRepository().RetrieveLocalization(connection, request);
         }
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)

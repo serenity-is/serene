@@ -1529,6 +1529,7 @@
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160216_154900_DataLocalization.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160121_141200_CustomerRepresentatives.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151226_184500_Notes.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
@@ -1568,6 +1569,9 @@
     <Compile Include="Modules\Membership\Account\SignUp\ActivateEmailModel.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpForm.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpRequest.cs" />
+    <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
+    <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
+    <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerRepresentativesRow.cs" />
@@ -1695,6 +1699,9 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
     <Compile Include="Modules\Northwind\Note\NoteRow.cs" />
     <Compile Include="Modules\Northwind\Note\NoteRepository.cs" />
+    <Compile Include="Modules\Northwind\ProductLang\ProductLangRow.cs" />
+    <Compile Include="Modules\Northwind\ProductLang\ProductLangRepository.cs" />
+    <Compile Include="Modules\Northwind\ProductLang\ProductLangEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

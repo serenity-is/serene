@@ -15,6 +15,7 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(Northwind.PermissionKeys.General)]
     [LookupScript("Northwind.Product")]
     [CaptureLog(typeof(ProductLogRow))]
+    [LocalizationRow(typeof(ProductLangRow))]
     public sealed class ProductRow : Row, IIdRow, INameRow
     {
         [DisplayName("Product Id"), Identity, LookupInclude]

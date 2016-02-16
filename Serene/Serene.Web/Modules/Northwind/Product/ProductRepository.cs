@@ -13,12 +13,12 @@ namespace Serene.Northwind.Repositories
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
 
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
@@ -38,12 +38,31 @@ namespace Serene.Northwind.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
+        public RetrieveLocalizationResponse<MyRow> RetrieveLocalization(IDbConnection connection, RetrieveLocalizationRequest request)
+        {
+            return new LocalizationRowHandler<MyRow>().Retrieve(connection, request);
+        }
+
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow> { }
+        private class MySaveHandler : SaveRequestHandler<MyRow, SaveWithLocalizationRequest<MyRow>, SaveResponse>
+        {
+            protected override void AfterSave()
+            {
+                base.AfterSave();
+
+                if (Request.Localizations != null)
+                    foreach (var pair in Request.Localizations)
+                    {
+                        pair.Value.ProductID = Row.ProductID.Value;
+                        new LocalizationRowHandler<MyRow>().Update<Entities.ProductLangRow>(this.UnitOfWork, pair.Value, Convert.ToInt32(pair.Key));
+                    }
+            }
+        }
+
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
