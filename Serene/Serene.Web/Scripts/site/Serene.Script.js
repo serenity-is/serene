@@ -21,6 +21,27 @@
 	};
 	global.Serene.Authorization = $Serene_Authorization;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.DialogUtils
+	var $Serene_DialogUtils = function() {
+	};
+	$Serene_DialogUtils.__typeName = 'Serene.DialogUtils';
+	$Serene_DialogUtils.pendingChangesConfirmation = function(element, hasPendingChanges) {
+		element.bind('dialogbeforeclose', function(e) {
+			if (!Serenity.WX.hasOriginalEvent(e) || !hasPendingChanges()) {
+				return;
+			}
+			e.preventDefault();
+			Q.confirm('You have pending changes. Save them?', function() {
+				element.find('div.save-and-close-button').click();
+			}, {
+				onNo: function() {
+					element.dialog().dialog('close');
+				}
+			});
+		});
+	};
+	global.Serene.DialogUtils = $Serene_DialogUtils;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.LanguageList
 	var $Serene_LanguageList = function() {
 	};
@@ -811,11 +832,15 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDialog
 	var $Serene_Northwind_CustomerDialog = function() {
+		this.$loadedState = null;
 		this.$ordersGrid = null;
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
 		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.byId$1('OrdersGrid'));
 		Serenity.FLX.flexHeightOnly(this.$ordersGrid.get_element(), 1);
 		this.byId$1('NoteList').closest('.field').hide().end().appendTo(this.byId$1('TabNotes'));
+		$Serene_DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
+			return !ss.referenceEquals(this.$getSaveState(), this.$loadedState);
+		}));
 		this.tabs.bind('tabsactivate', ss.mkdel(this, function(e, i) {
 			this.arrange();
 		}));
@@ -1254,6 +1279,7 @@
 	$Serenity_HtmlBasicContentEditor.__typeName = 'Serenity.HtmlBasicContentEditor';
 	global.Serenity.HtmlBasicContentEditor = $Serenity_HtmlBasicContentEditor;
 	ss.initClass($Serene_Authorization, $asm, {});
+	ss.initClass($Serene_DialogUtils, $asm, {});
 	ss.initClass($Serene_LanguageList, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
@@ -2035,6 +2061,18 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_CustomerDialog, $asm, {
+		$getSaveState: function() {
+			try {
+				return $.toJSON(this.getSaveEntity());
+			}
+			catch ($t1) {
+				return null;
+			}
+		},
+		loadResponse: function(data) {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadResponse.call(this, data);
+			this.$loadedState = this.$getSaveState();
+		},
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
 			Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.get_isNewOrDeleted());
