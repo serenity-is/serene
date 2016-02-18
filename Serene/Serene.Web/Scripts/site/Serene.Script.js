@@ -3,6 +3,7 @@
 	var $asm = {};
 	global.Serene = global.Serene || {};
 	global.Serene.Administration = global.Serene.Administration || {};
+	global.Serene.BasicSamples = global.Serene.BasicSamples || {};
 	global.Serene.Common = global.Serene.Common || {};
 	global.Serene.Membership = global.Serene.Membership || {};
 	global.Serene.Northwind = global.Serene.Northwind || {};
@@ -274,6 +275,21 @@
 	};
 	$Serene_Administration_UserRoleDialog.__typeName = 'Serene.Administration.UserRoleDialog';
 	global.Serene.Administration.UserRoleDialog = $Serene_Administration_UserRoleDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.ChartInDialog
+	var $Serene_BasicSamples_ChartInDialog = function() {
+		this.$areaChart = null;
+		Serenity.TemplatedDialog.call(this);
+	};
+	$Serene_BasicSamples_ChartInDialog.__typeName = 'Serene.BasicSamples.ChartInDialog';
+	$Serene_BasicSamples_ChartInDialog.initializePage = function() {
+		$(function() {
+			$('#LaunchDialogButton').click(function(e) {
+				(new $Serene_BasicSamples_ChartInDialog()).dialogOpen();
+			});
+		});
+	};
+	global.Serene.BasicSamples.ChartInDialog = $Serene_BasicSamples_ChartInDialog;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.ExcelExportHelper
 	var $Serene_Common_ExcelExportHelper = function() {
@@ -1894,6 +1910,32 @@
 			return "<div id='~_Roles'></div>";
 		}
 	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	ss.initClass($Serene_BasicSamples_ChartInDialog, $asm, {
+		onDialogOpen: function() {
+			ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.onDialogOpen.call(this);
+			Q.serviceRequest('BasicSamples/BasicSamples/OrdersByShipper', {}, ss.mkdel(this, function(response) {
+				this.$areaChart = new Morris.Area({ element: this.get_idPrefix() + 'Chart', resize: true, parseTime: false, data: response.Values, xkey: 'Month', ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto' });
+			}), null);
+			this.element.closest('.ui-dialog').bind('resize', ss.mkdel(this, function() {
+				this.arrange();
+			}));
+		},
+		arrange: function() {
+			ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.arrange.call(this);
+			if (ss.isValue(this.$areaChart)) {
+				this.$areaChart.redraw();
+			}
+		},
+		getTemplate: function() {
+			// you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
+			return "<div id='~_Chart'></div>";
+		},
+		getDialogOptions: function() {
+			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			opt.title = 'Orders by Shipper';
+			return opt;
+		}
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
@@ -2880,6 +2922,7 @@
 	ss.setMetadata($Serene_Administration_TranslationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Translation'), new Serenity.IdPropertyAttribute('Key'), new Serenity.LocalTextPrefixAttribute('Administration.Translation'), new Serenity.ServiceAttribute('Administration/Translation')] });
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
+	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_Common_GridEditorBase$1, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog$1, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });

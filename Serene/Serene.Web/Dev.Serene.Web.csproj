@@ -1146,6 +1146,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Modules\BasicSamples\ChartInDialog.cshtml" />
+    <Content Include="Content\site\site.basicsamples.less" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
@@ -1498,6 +1500,9 @@
     <Compile Include="Modules\AdminLTE\Tables\TablesController.cs" />
     <Compile Include="Modules\AdminLTE\Forms\FormsController.cs" />
     <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
+    <Compile Include="Modules\BasicSamples\BasicSamplesEndpoint.cs" />
+    <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
+    <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />

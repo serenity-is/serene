@@ -84,6 +84,11 @@ namespace MVC
             public const string Widgets = "~/Modules/AdminLTE/Widgets.cshtml";
         }
 
+        public static class BasicSamples
+        {
+            public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
+        }
+
         public static class Common
         {
             public static class Dashboard

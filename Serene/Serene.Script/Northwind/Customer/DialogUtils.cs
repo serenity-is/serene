@@ -31,6 +31,5 @@ namespace Serene
                 });
             });
         }
-
     }
 }

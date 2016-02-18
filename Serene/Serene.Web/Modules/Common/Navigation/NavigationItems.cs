@@ -1,6 +1,7 @@
 ﻿using Serenity.Navigation;
 using Northwind = Serene.Northwind.Pages;
 using Administration = Serene.Administration.Pages;
+using Basic = Serene.BasicSamples.Pages;
 
 [assembly: NavigationLink(1000, "Dashboard", url: "~/", permission: "", icon: "icon-speedometer")]
 
@@ -13,6 +14,9 @@ using Administration = Serene.Administration.Pages;
 [assembly: NavigationLink(7600, "Northwind/Categories", typeof(Northwind.CategoryController), icon: "icon-folder-alt")]
 [assembly: NavigationLink(7700, "Northwind/Regions", typeof(Northwind.RegionController), icon: "icon-map")]
 [assembly: NavigationLink(7800, "Northwind/Territories", typeof(Northwind.TerritoryController), icon: "icon-puzzle")]
+
+[assembly: NavigationMenu(8000, "Basic Samples", icon: "icon-magic-wand")]
+[assembly: NavigationLink(8000, "Basic Samples/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
 

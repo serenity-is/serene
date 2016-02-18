@@ -6964,6 +6964,19 @@ section.content > .s-DataGrid {
 .s-PermissionCheckEditor .effective-permission.deny {
   background-image: url(../serenity/images/slash.png);
 }
+.s-BasicSamples-ChartInDialog svg {
+  width: 100%;
+  height: 90%;
+}
+.s-BasicSamples-ChartInDialog .ui-dialog-content {
+  overflow: hidden;
+}
+.s-BasicSamples-ChartInDialog > .size {
+  min-width: 700px;
+  width: 700px;
+  min-height: 400px;
+  height: 400px;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
@@ -7633,45 +7646,4 @@ section.content > .s-DataGrid {
 }
 .s-NoteDialog .ui-dialog-content {
   overflow-y: hidden;
-}
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-.s-NoteDialog > .size {
-  min-width: 650px;
-  width: 650px;
-}
-.s-NoteDialog .tab-pane {
-  height: auto;
-}
-.s-NoteDialog .caption {
-  width: 150px;
-}
-.s-NoteDialog .editor {
-  width: 400px;
-}
-.s-NoteDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-NoteDialog .s-Form .editor.dateQ {
-  width: 376px;
-}
-.s-NoteDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-NoteDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 281px;
-}
-.s-NoteDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-NoteDialog .s-Form .editor.has-inplace-button {
-  width: 374px;
-}
-.s-NoteDialog .s-Form .emaildomain {
-  width: 215px;
-}
-.s-NoteDialog .s-PropertyGrid .categories {
-  height: 260px;
 }

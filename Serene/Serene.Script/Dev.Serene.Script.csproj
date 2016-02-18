@@ -36,9 +36,19 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="BasicSamples\ChartInDialog.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
     <Compile Include="Imports\FormContexts\Membership.SignUpForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\BasicSamples.BasicSamplesService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\BasicSamples.OrdersByShipperRequest.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\BasicSamples.OrdersByShipperResponse.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Membership.SignUpRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
