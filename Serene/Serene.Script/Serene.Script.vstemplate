@@ -50,6 +50,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.cs">ExcelExportHelper.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.cs">GridEditorBase.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.cs">GridEditorDialog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ReportHelper.cs">ReportHelper.cs</ProjectItem>
         </Folder>
         <Folder Name="Navigation" TargetFolderName="Navigation">
           <ProjectItem ReplaceParameters="true" TargetFileName="LanguageSelection.cs">LanguageSelection.cs</ProjectItem>
