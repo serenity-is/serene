@@ -37,6 +37,7 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="BasicSamples\ChartInDialog.cs" />
+    <Compile Include="Common\Helper\ReportHelper.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
     <Compile Include="Imports\FormContexts\Membership.SignUpForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>

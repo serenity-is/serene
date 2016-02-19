@@ -10,7 +10,7 @@
     using System.Text;
     using System.Web;
     using System.Web.Mvc;
-
+    using System.Web.Security;
     [RoutePrefix("Report"), Route("{action=index}")]
     public class ReportController : Controller
     {
@@ -114,6 +114,9 @@
 
                     var converter = new HtmlToPdfConverter();
                     converter.Url = renderUrl;
+                    var formsCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                    if (formsCookie != null)
+                        converter.Cookies[FormsAuthentication.FormsCookieName] = formsCookie.Value;
 
                     var icustomize = report as ICustomizeHtmlToPdf;
                     if (icustomize != null)

@@ -2,6 +2,7 @@
 namespace Serene.Northwind
 {
     using Entities;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Reporting;
     using System;
@@ -9,6 +10,7 @@ namespace Serene.Northwind
 
     [Report("Northwind.OrderDetail")]
     [ReportDesign(MVC.Views.Northwind.Order.OrderDetailReport)]
+    [RequiredPermission(PermissionKeys.General)]
     public class OrderDetailReport : IReport, ICustomizeHtmlToPdf
     {
         public Int32 OrderID { get; set; }
