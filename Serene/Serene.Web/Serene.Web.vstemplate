@@ -147,6 +147,7 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-red-partial.png">tick-red-partial.png</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.administration.less">site.administration.less</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.basicsamples.less">site.basicsamples.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.htmlcontent.css">site.htmlcontent.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.less">site.less</ProjectItem>
@@ -297,6 +298,12 @@
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="Widgets.cshtml">Widgets.cshtml</ProjectItem>
         </Folder>
+        <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesEndpoint.cs">BasicSamplesEndpoint.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesModels.cs">BasicSamplesModels.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
+        </Folder>
         <Folder Name="Common" TargetFolderName="Common">
           <Folder Name="Dashboard" TargetFolderName="Dashboard">
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardIndex.cshtml">DashboardIndex.cshtml</ProjectItem>
@@ -311,8 +318,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>

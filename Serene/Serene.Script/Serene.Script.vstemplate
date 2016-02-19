@@ -42,6 +42,9 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleDialog.cs">UserRoleDialog.cs</ProjectItem>
         </Folder>
       </Folder>
+      <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
+        <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
+      </Folder>
       <Folder Name="Common" TargetFolderName="Common">
         <Folder Name="Helper" TargetFolderName="Helper">
           <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.cs">ExcelExportHelper.cs</ProjectItem>
@@ -109,6 +112,9 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.cs">Administration.UserRoleUpdateRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.cs">Administration.UserRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.cs">Administration.UserService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.cs">BasicSamples.BasicSamplesService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.cs">BasicSamples.OrdersByShipperRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.cs">BasicSamples.OrdersByShipperResponse.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.FileController.cs">Common.Pages.FileController.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.cs">Common.Pages.UploadResponse.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.cs">Membership.ChangePasswordRequest.cs</ProjectItem>
