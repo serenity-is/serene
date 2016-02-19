@@ -1738,6 +1738,7 @@
 			}
 			return null;
 		}));
+		this.set_sqlMinMax(true);
 		$("<div class='inplace-button inplace-now'><b></b></div>").attr('title', 'set to now').insertAfter(this.$time).click(ss.mkdel(this, function(e2) {
 			if (this.get_element().hasClass('readonly')) {
 				return;
