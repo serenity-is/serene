@@ -22,7 +22,7 @@ namespace Serene
 
         public ActionResult Download(string key, string opt, string ext)
         {
-            return Execute(key, opt, ext, download: true, printing: false);
+            return Execute(key, opt, ext, download: true, printing: true);
         }
 
         private ActionResult Execute(string key, string opt, string ext, bool download, bool printing)
