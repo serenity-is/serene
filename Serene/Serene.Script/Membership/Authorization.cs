@@ -11,7 +11,7 @@ namespace Serene
         {
             return 
                 UserDefinition.Username == "admin" ||
-                UserDefinition.Permissions[permissionKey];
+                Q.IsTrue(UserDefinition.Permissions[permissionKey]);
         }
     }
 }
