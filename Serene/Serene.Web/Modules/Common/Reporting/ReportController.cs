@@ -1,38 +1,20 @@
-﻿namespace Serene
+﻿using Newtonsoft.Json;
+using Serenity;
+using Serenity.Reporting;
+using Serenity.Web;
+using System;
+using System.Collections.Generic;
+using System.Net.Mime;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+
+namespace Serene
 {
-    using Newtonsoft.Json;
-    using Serenity;
-    using Serenity.Reporting;
-    using Serenity.Web;
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Mime;
-    using System.Text;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Security;
     [RoutePrefix("Report"), Route("{action=index}")]
     public class ReportController : Controller
     {
-        private static Dictionary<ReportExportType, string> ExportExtensions = new Dictionary<ReportExportType, string>
-        {
-            { ReportExportType.Doc, "docx" },
-            { ReportExportType.Docx, "docx" },
-            { ReportExportType.Pdf, "pdf" },
-            { ReportExportType.Xls, "xls" },
-            { ReportExportType.Xlsx, "xlsx" }
-        };
-
-        public ActionResult CachedHtml(string g)
-        {
-            var content = LocalCache.TryGet<string>(g);
-
-            if (content == null)
-                return new HttpNotFoundResult();
-
-            return new ContentResult { Content = content, ContentType = "text/html" };
-        }
-
         public ActionResult Render(string key, string opt, string ext, int? print = 0)
         {
             return Execute(key, opt, ext, download: false, printing: print != 0);
@@ -76,58 +58,24 @@
 
                 if (ext == "htm" || ext == "html")
                 {
-                    var designAttr = report.GetType().GetAttribute<ReportDesignAttribute>();
-
-                    if (designAttr == null)
-                        throw new Exception(String.Format("Report design attribute for type '{0}' is not found!",
-                            report.GetType().FullName));
-
-                    var data = report.GetData();
-
-                    var iadditional = report as IReportWithAdditionalData;
-                    if (iadditional == null)
-                        ViewData["AdditionalData"] = new Dictionary<string, object>();
-                    else
-                        ViewData["AdditionalData"] = iadditional.GetAdditionalData();
-
-                    ViewData["Printing"] = printing;
-
+                    var result = RenderAsHtml(report, download, printing, ref renderedBytes);
                     if (!download)
-                        return View(viewName: designAttr.Design, model: data);
-
-                    var viewData = new ViewDataDictionary(data);
-                    var html = TemplateHelper.RenderViewToString(designAttr.Design, viewData);
-                    renderedBytes = Encoding.UTF8.GetBytes(html);
+                        return result;
                 }
                 else if (ext == "pdf")
                 {
-                    var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
-                        Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
-
-                    var renderUrl = UriHelper.Combine(externalUrl, "Report/Render?" +
-                        "key=" + Uri.EscapeDataString(key));
-                    
-                    if (!string.IsNullOrEmpty(opt))
-                        renderUrl += "&opt=" + Uri.EscapeDataString(opt);
-
-                    renderUrl += "&print=1";
-
-                    var converter = new HtmlToPdfConverter();
-                    converter.Url = renderUrl;
-                    var formsCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-                    if (formsCookie != null)
-                        converter.Cookies[FormsAuthentication.FormsCookieName] = formsCookie.Value;
-
-                    var icustomize = report as ICustomizeHtmlToPdf;
-                    if (icustomize != null)
-                        icustomize.Customize(converter);
-
-                    renderedBytes = converter.Execute();
+                    renderedBytes = RenderAsPdf(report, key, opt);
                 }
                 else
                     throw new ArgumentOutOfRangeException("ext");
             }
 
+            return PrepareFileResult(report, ext, download, renderedBytes, reportInfo);
+        }
+
+        private ActionResult PrepareFileResult(IReport report, string ext, bool download,
+            byte[] renderedBytes, ReportRegistry.Report reportInfo)
+        {
             string fileDownloadName;
             var customFileName = report as ICustomFileName;
             if (customFileName != null)
@@ -154,6 +102,60 @@
 
             Response.AddHeader("Content-Disposition", cd.ToString());
             return File(renderedBytes, UploadHelper.GetMimeType(fileDownloadName));
+        }
+
+        private byte[] RenderAsPdf(IReport report, string key, string opt)
+        {
+            var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
+                Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+
+            var renderUrl = UriHelper.Combine(externalUrl, "Report/Render?" +
+                "key=" + Uri.EscapeDataString(key));
+
+            if (!string.IsNullOrEmpty(opt))
+                renderUrl += "&opt=" + Uri.EscapeDataString(opt);
+
+            renderUrl += "&print=1";
+
+            var converter = new HtmlToPdfConverter();
+            converter.Url = renderUrl;
+            var formsCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (formsCookie != null)
+                converter.Cookies[FormsAuthentication.FormsCookieName] = formsCookie.Value;
+
+            var icustomize = report as ICustomizeHtmlToPdf;
+            if (icustomize != null)
+                icustomize.Customize(converter);
+
+            return converter.Execute();
+        }
+
+        private ActionResult RenderAsHtml(IReport report, bool download, bool printing,
+            ref byte[] renderedBytes)
+        {
+            var designAttr = report.GetType().GetAttribute<ReportDesignAttribute>();
+
+            if (designAttr == null)
+                throw new Exception(String.Format("Report design attribute for type '{0}' is not found!",
+                    report.GetType().FullName));
+
+            var data = report.GetData();
+            var viewData = download ? new ViewDataDictionary(data) : ViewData;
+
+            var iadditional = report as IReportWithAdditionalData;
+            if (iadditional == null)
+                viewData["AdditionalData"] = new Dictionary<string, object>();
+            else
+                viewData["AdditionalData"] = iadditional.GetAdditionalData();
+
+            viewData["Printing"] = printing;
+
+            if (!download)
+                return View(viewName: designAttr.Design, model: data);
+
+            var html = TemplateHelper.RenderViewToString(designAttr.Design, viewData);
+            renderedBytes = Encoding.UTF8.GetBytes(html);
+            return null;
         }
     }
 }
