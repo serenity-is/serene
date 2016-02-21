@@ -363,8 +363,7 @@
     <Compile Include="Administration\Role\RoleDialog.cs" />
     <Compile Include="Administration\UserPermission\UserPermissionDialog.cs" />
     <Compile Include="Northwind\Note\NoteDialog.cs" />
-    <Compile Include="Imports\FormContexts\Northwind.CategoryLangForm.cs" />
-    <Compile Include="Imports\FormContexts\Northwind.ProductLangForm.cs" />
+    <Compile Include="BasicSamples\ViewWithoutIDGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Imports\FormContexts\FormContexts.log">
@@ -400,6 +399,12 @@
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\Northwind.ProductLangService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.SalesByCategoryRow.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\Northwind.SalesByCategoryService.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
   </ItemGroup>

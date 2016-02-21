@@ -1149,6 +1149,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Modules\BasicSamples\CancellableBulkAction.cshtml" />
+    <Content Include="Modules\BasicSamples\ViewWithoutID.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
@@ -1691,6 +1692,10 @@
     <Compile Include="Modules\Northwind\ProductLang\ProductLangRow.cs" />
     <Compile Include="Modules\Northwind\ProductLang\ProductLangRepository.cs" />
     <Compile Include="Modules\Northwind\ProductLang\ProductLangEndpoint.cs" />
+    <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryRow.cs" />
+    <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryColumns.cs" />
+    <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryRepository.cs" />
+    <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryEndpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
