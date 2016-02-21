@@ -25,7 +25,7 @@ namespace Serene.Northwind.Entities
             set { Fields.CategoryName[this] = value; }
         }
 
-        [DisplayName("Product Name"), Size(40), NotNull]
+        [DisplayName("Product Name"), Size(40), NotNull, QuickSearch]
         public String ProductName
         {
             get { return Fields.ProductName[this]; }

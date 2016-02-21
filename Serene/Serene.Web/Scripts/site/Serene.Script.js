@@ -2307,6 +2307,9 @@
 				x.__id = this.$nextId++;
 			}
 			return response;
+		},
+		getButtons: function() {
+			return [];
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});

@@ -4,6 +4,7 @@ namespace Serene.BasicSamples
     using jQueryApi;
     using Serenity;
     using Northwind;
+    using System.Collections.Generic;
 
     [IdProperty("__id")]
     [ColumnsKey("Northwind.SalesByCategory"), NameProperty(SalesByCategoryRow.NameProperty)]
@@ -27,6 +28,11 @@ namespace Serene.BasicSamples
                 x.As<dynamic>().__id = nextId++;
 
             return response;
+        }
+
+        protected override List<ToolButton> GetButtons()
+        {
+            return new List<ToolButton>();
         }
     }
 }
