@@ -46,6 +46,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.cs">OrderBulkAction.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.cs">ViewWithoutIDGrid.cs</ProjectItem>
       </Folder>
       <Folder Name="Common" TargetFolderName="Common">
         <Folder Name="Helper" TargetFolderName="Helper">
@@ -75,7 +76,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordForm.cs">Membership.ResetPasswordForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.cs">Membership.SignUpForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.cs">Northwind.CategoryForm.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangForm.cs">Northwind.CategoryLangForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoForm.cs">Northwind.CustomerCustomerDemoForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicForm.cs">Northwind.CustomerDemographicForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerForm.cs">Northwind.CustomerForm.cs</ProjectItem>
@@ -84,7 +84,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailForm.cs">Northwind.OrderDetailForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderForm.cs">Northwind.OrderForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductForm.cs">Northwind.ProductForm.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangForm.cs">Northwind.ProductLangForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionForm.cs">Northwind.RegionForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperForm.cs">Northwind.ShipperForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierForm.cs">Northwind.SupplierForm.cs</ProjectItem>
@@ -157,6 +156,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductService.cs">Northwind.ProductService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionRow.cs">Northwind.RegionRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionService.cs">Northwind.RegionService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryRow.cs">Northwind.SalesByCategoryRow.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryService.cs">Northwind.SalesByCategoryService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperRow.cs">Northwind.ShipperRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperService.cs">Northwind.ShipperService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierRow.cs">Northwind.SupplierRow.cs</ProjectItem>
@@ -210,7 +211,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="NoteDialog.cs">NoteDialog.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="NotesEditor.cs">NotesEditor.cs</ProjectItem>
         </Folder>
-        <Folder Name="Notes" TargetFolderName="Notes" />
         <Folder Name="Order" TargetFolderName="Order">
           <ProjectItem ReplaceParameters="true" TargetFileName="FreightFormatter.cs">FreightFormatter.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="OrderDialog.cs">OrderDialog.cs</ProjectItem>

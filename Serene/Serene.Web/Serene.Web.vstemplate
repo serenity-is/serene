@@ -304,6 +304,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkAction.cshtml">CancellableBulkAction.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutID.cshtml">ViewWithoutID.cshtml</ProjectItem>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
           <Folder Name="Dashboard" TargetFolderName="Dashboard">
@@ -515,6 +516,12 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionPage.cs">RegionPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRepository.cs">RegionRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRow.cs">RegionRow.cs</ProjectItem>
+          </Folder>
+          <Folder Name="SalesByCategory" TargetFolderName="SalesByCategory">
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryColumns.cs">SalesByCategoryColumns.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryEndpoint.cs">SalesByCategoryEndpoint.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryRepository.cs">SalesByCategoryRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryRow.cs">SalesByCategoryRow.cs</ProjectItem>
           </Folder>
           <Folder Name="Shipper" TargetFolderName="Shipper">
             <ProjectItem ReplaceParameters="true" TargetFileName="ShipperColumns.cs">ShipperColumns.cs</ProjectItem>
