@@ -339,6 +339,14 @@
 	$Serene_BasicSamples_OrderBulkAction.__typeName = 'Serene.BasicSamples.OrderBulkAction';
 	global.Serene.BasicSamples.OrderBulkAction = $Serene_BasicSamples_OrderBulkAction;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.ViewWithoutIDGrid
+	var $Serene_BasicSamples_ViewWithoutIDGrid = function(container) {
+		this.$nextId = 1;
+		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+	};
+	$Serene_BasicSamples_ViewWithoutIDGrid.__typeName = 'Serene.BasicSamples.ViewWithoutIDGrid';
+	global.Serene.BasicSamples.ViewWithoutIDGrid = $Serene_BasicSamples_ViewWithoutIDGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.ExcelExportHelper
 	var $Serene_Common_ExcelExportHelper = function() {
 	};
@@ -860,13 +868,6 @@
 	$Serene_Northwind_CategoryGrid.__typeName = 'Serene.Northwind.CategoryGrid';
 	global.Serene.Northwind.CategoryGrid = $Serene_Northwind_CategoryGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CategoryLangForm
-	var $Serene_Northwind_CategoryLangForm = function(idPrefix) {
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_CategoryLangForm.__typeName = 'Serene.Northwind.CategoryLangForm';
-	global.Serene.Northwind.CategoryLangForm = $Serene_Northwind_CategoryLangForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoDialog
 	var $Serene_Northwind_CustomerCustomerDemoDialog = function() {
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
@@ -1251,13 +1252,6 @@
 	};
 	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
 	global.Serene.Northwind.ProductGrid = $Serene_Northwind_ProductGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ProductLangForm
-	var $Serene_Northwind_ProductLangForm = function(idPrefix) {
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_ProductLangForm.__typeName = 'Serene.Northwind.ProductLangForm';
-	global.Serene.Northwind.ProductLangForm = $Serene_Northwind_ProductLangForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
@@ -2304,6 +2298,17 @@
 			}), onCleanup: ss.mkdel(this, this.serviceCallCleanup) });
 		}
 	}, $Serene_BulkServiceAction);
+	ss.initClass($Serene_BasicSamples_ViewWithoutIDGrid, $asm, {
+		onViewProcessData: function(response) {
+			response = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
+			// there is no __id property in SalesByCategoryRow but this is javascript and we can set any property of an object
+			for (var $t1 = 0; $t1 < response.Entities.length; $t1++) {
+				var x = response.Entities[$t1];
+				x.__id = this.$nextId++;
+			}
+			return response;
+		}
+	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_ReportHelper, $asm, {});
@@ -2421,20 +2426,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_CategoryLangForm, $asm, {
-		get_categoryId: function() {
-			return this.byId(Serenity.IntegerEditor).call(this, 'CategoryId');
-		},
-		get_languageId: function() {
-			return this.byId(Serenity.IntegerEditor).call(this, 'LanguageId');
-		},
-		get_categoryName: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'CategoryName');
-		},
-		get_description: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'Description');
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoForm, $asm, {
 		get_customerID: function() {
@@ -3117,14 +3108,6 @@
 			saveNext();
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_ProductLangForm, $asm, {
-		get_productId: function() {
-			return this.byId(Serenity.IntegerEditor).call(this, 'ProductId');
-		},
-		get_productName: function() {
-			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_RegionForm, $asm, {
 		get_regionID: function() {
@@ -3259,6 +3242,7 @@
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
 	ss.setMetadata($Serene_Common_GridEditorBase$1, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog$1, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });

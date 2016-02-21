@@ -15,5 +15,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MVC.Views.BasicSamples.CancellableBulkAction);
         }
+
+        public ActionResult ViewWithoutID()
+        {
+            return View(MVC.Views.BasicSamples.ViewWithoutID);
+        }
     }
 }
