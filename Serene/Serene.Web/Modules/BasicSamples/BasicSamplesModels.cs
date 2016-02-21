@@ -20,4 +20,9 @@ namespace Serene.BasicSamples
         public string label;
         public int value;
     }
+
+    public class OrderBulkActionRequest : ServiceRequest
+    {
+        public List<int> OrderIDs { get; set; }
+    }
 }

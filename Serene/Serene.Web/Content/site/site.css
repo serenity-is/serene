@@ -6819,6 +6819,29 @@ section.content > .s-DataGrid {
 .skin-black-light .main-header .logo i {
   background: url(images/serenity-logo-g-40.png) no-repeat center center;
 }
+.s-BasicProgressDialogContent .status-text {
+  height: 1em;
+  text-align: center;
+  margin-top: 4px;
+}
+.s-BasicProgressDialogContent .ui-progressbar {
+  margin: 12px 2%;
+  position: relative;
+  height: 26px;
+  background-image: none;
+  background-color: aliceblue;
+  width: 96%;
+  margin: 0 2%;
+}
+.s-BasicProgressDialogContent .progress-label {
+  position: absolute;
+  left: 45%;
+  top: 4px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #cef;
+  color: #245;
+  font-size: 14px;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,

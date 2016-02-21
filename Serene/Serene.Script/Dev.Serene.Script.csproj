@@ -36,13 +36,20 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="BasicSamples\OrderBulkAction.cs" />
     <Compile Include="BasicSamples\ChartInDialog.cs" />
+    <Compile Include="BasicSamples\CancellableBulkActionGrid.cs" />
+    <Compile Include="Common\Helper\BasicProgressDialog.cs" />
+    <Compile Include="Common\Helper\BulkServiceAction.cs" />
     <Compile Include="Common\Helper\ReportHelper.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
     <Compile Include="Imports\FormContexts\Membership.SignUpForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\BasicSamples.BasicSamplesService.cs">
+      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServiceContracts\BasicSamples.OrderBulkActionRequest.cs">
       <DependentUpon>ServiceContracts.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ServiceContracts\BasicSamples.OrdersByShipperRequest.cs">

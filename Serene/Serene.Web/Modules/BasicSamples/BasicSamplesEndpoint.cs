@@ -8,6 +8,7 @@ namespace Serene.BasicSamples.Endpoints
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
+    using System.Threading;
     using System.Web.Mvc;
 
     [ServiceAuthorize, RoutePrefix("Services/BasicSamples/BasicSamples"), Route("{action}")]
@@ -62,6 +63,22 @@ namespace Serene.BasicSamples.Endpoints
             }
 
             return response;
+        }
+
+        public ServiceResponse OrderBulkAction(IUnitOfWork uow, OrderBulkActionRequest request)
+        {
+            request.CheckNotNull();
+
+            var random = new Random();
+
+            // fail randomly with 3 percent chance
+            if (random.Next(100) < 3)
+                throw new ValidationError("Failed randomly!");
+
+            foreach (var x in request.OrderIDs)
+                Thread.Sleep(random.Next(400) + 100);
+
+            return new ServiceResponse();
         }
     }
 }

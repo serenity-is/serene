@@ -10,5 +10,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MVC.Views.BasicSamples.ChartInDialog);
         }
+
+        public ActionResult CancellableBulkAction()
+        {
+            return View(MVC.Views.BasicSamples.CancellableBulkAction);
+        }
     }
 }

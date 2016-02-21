@@ -86,6 +86,7 @@ namespace MVC
 
         public static class BasicSamples
         {
+            public const string CancellableBulkAction = "~/Modules/BasicSamples/CancellableBulkAction.cshtml";
             public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
         }
 
