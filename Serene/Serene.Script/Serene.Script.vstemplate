@@ -43,10 +43,14 @@
         </Folder>
       </Folder>
       <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
+        <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.cs">OrderBulkAction.cs</ProjectItem>
       </Folder>
       <Folder Name="Common" TargetFolderName="Common">
         <Folder Name="Helper" TargetFolderName="Helper">
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicProgressDialog.cs">BasicProgressDialog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BulkServiceAction.cs">BulkServiceAction.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.cs">ExcelExportHelper.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.cs">GridEditorBase.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.cs">GridEditorDialog.cs</ProjectItem>
@@ -114,6 +118,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.cs">Administration.UserRow.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.cs">Administration.UserService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.cs">BasicSamples.BasicSamplesService.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrderBulkActionRequest.cs">BasicSamples.OrderBulkActionRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.cs">BasicSamples.OrdersByShipperRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.cs">BasicSamples.OrdersByShipperResponse.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.FileController.cs">Common.Pages.FileController.cs</ProjectItem>

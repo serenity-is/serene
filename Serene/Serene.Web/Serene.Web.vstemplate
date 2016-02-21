@@ -302,6 +302,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesEndpoint.cs">BasicSamplesEndpoint.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesModels.cs">BasicSamplesModels.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkAction.cshtml">CancellableBulkAction.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
