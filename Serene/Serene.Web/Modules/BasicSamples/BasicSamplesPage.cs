@@ -20,5 +20,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MVC.Views.BasicSamples.ViewWithoutID);
         }
+
+        public ActionResult MultiColumnDialog()
+        {
+            return View(MVC.Views.BasicSamples.MultiColumnDialog);
+        }
     }
 }

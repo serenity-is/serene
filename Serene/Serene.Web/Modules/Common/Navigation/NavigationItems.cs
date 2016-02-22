@@ -16,9 +16,10 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7800, "Northwind/Territories", typeof(Northwind.TerritoryController), icon: "icon-puzzle")]
 
 [assembly: NavigationMenu(7900, "Basic Samples", icon: "icon-magic-wand")]
-[assembly: NavigationLink(7901, "Basic Samples/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
-[assembly: NavigationLink(7902, "Basic Samples/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
-[assembly: NavigationLink(7903, "Basic Samples/View Without ID", typeof(Basic.BasicSamplesController), action: "ViewWithoutID")]
+[assembly: NavigationLink(7900, "Basic Samples/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
+[assembly: NavigationLink(7900, "Basic Samples/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/View Without ID", typeof(Basic.BasicSamplesController), action: "ViewWithoutID")]
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
 

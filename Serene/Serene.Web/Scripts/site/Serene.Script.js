@@ -332,6 +332,37 @@
 	};
 	global.Serene.BasicSamples.ChartInDialog = $Serene_BasicSamples_ChartInDialog;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.MultiColumnDialog
+	var $Serene_BasicSamples_MultiColumnDialog = function() {
+		$Serene_Northwind_OrderDialog.call(this);
+		// as these editors are in a three column line, 
+		// all should grow 0.5px when dialog grows 1px
+		Serenity.FLX.flexXFactor(this.form.get_orderDate().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_requiredDate().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipName().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipCity().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipPostalCode().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipAddress().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipRegion().get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.get_shipCountry().get_element(), 0.5);
+		// as these editors are in a three column line, 
+		// all should grow 0.33px when dialog grows 1px
+		Serenity.FLX.flexXFactor(this.form.get_shippedDate().get_element(), 0.33);
+		Serenity.FLX.flexXFactor(this.form.get_shipVia().get_element().siblings('.select2-container'), 0.33);
+		Serenity.FLX.flexXFactor(this.form.get_freight().get_element(), 0.33);
+		// grid should grow in height and width when dialog grows
+		Serenity.FLX.flexWidthHeight(this.form.get_detailList().get_element(), 1, 1);
+	};
+	$Serene_BasicSamples_MultiColumnDialog.__typeName = 'Serene.BasicSamples.MultiColumnDialog';
+	global.Serene.BasicSamples.MultiColumnDialog = $Serene_BasicSamples_MultiColumnDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.MultiColumnGrid
+	var $Serene_BasicSamples_MultiColumnGrid = function(container) {
+		$Serene_Northwind_OrderGrid.call(this, container);
+	};
+	$Serene_BasicSamples_MultiColumnGrid.__typeName = 'Serene.BasicSamples.MultiColumnGrid';
+	global.Serene.BasicSamples.MultiColumnGrid = $Serene_BasicSamples_MultiColumnGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.OrderBulkAction
 	var $Serene_BasicSamples_OrderBulkAction = function() {
 		$Serene_BulkServiceAction.call(this);
@@ -2281,6 +2312,20 @@
 			return opt;
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
+	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
+		loadEntity: function(entity) {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
+		},
+		getToolbarButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			buttons.push($Serene_Common_ReportHelper.createRenderButton('Northwind.OrderDetail', 'Invoice', 'export-pdf-button', 'pdf', ss.mkdel(this, function() {
+				return { OrderID: this.get_entityId() };
+			})));
+			return buttons;
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_MultiColumnDialog, $asm, {}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_MultiColumnGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_OrderBulkAction, $asm, {
 		getParallelRequests: function() {
 			return 10;
@@ -2554,18 +2599,6 @@
 			return buttons;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
-		loadEntity: function(entity) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
-		},
-		getToolbarButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
-			buttons.push($Serene_Common_ReportHelper.createRenderButton('Northwind.OrderDetail', 'Invoice', 'export-pdf-button', 'pdf', ss.mkdel(this, function() {
-				return { OrderID: this.get_entityId() };
-			})));
-			return buttons;
-		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
 		updateInterface: function() {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
@@ -3245,6 +3278,7 @@
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_MultiColumnGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnDialog)] });
 	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
 	ss.setMetadata($Serene_Common_GridEditorBase$1, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog$1, { attr: [new Serenity.IdPropertyAttribute('__id')] });

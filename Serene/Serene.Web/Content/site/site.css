@@ -7000,6 +7000,104 @@ section.content > .s-DataGrid {
   min-height: 400px;
   height: 400px;
 }
+.s-BasicSamples-MultiColumnDialog > .size {
+  min-width: 850px;
+  width: 850px;
+}
+.s-BasicSamples-MultiColumnDialog .tab-pane {
+  height: auto;
+}
+.s-BasicSamples-MultiColumnDialog .caption {
+  width: 130px;
+}
+.s-BasicSamples-MultiColumnDialog .editor {
+  width: 650px;
+}
+.s-BasicSamples-MultiColumnDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .editor.dateQ {
+  width: 626px;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 531px;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .editor.has-inplace-button {
+  width: 624px;
+}
+.s-BasicSamples-MultiColumnDialog .s-Form .emaildomain {
+  width: 465px;
+}
+.s-BasicSamples-MultiColumnDialog .categories {
+  height: 570px;
+}
+.s-BasicSamples-MultiColumnDialog .ui-dialog-content {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.s-BasicSamples-MultiColumnDialog .field.OrderDate,
+.s-BasicSamples-MultiColumnDialog .field.RequiredDate {
+  float: left;
+  width: 50%;
+}
+.s-BasicSamples-MultiColumnDialog .field.OrderDate .editor,
+.s-BasicSamples-MultiColumnDialog .field.RequiredDate .editor {
+  width: 213px;
+}
+.s-BasicSamples-MultiColumnDialog .field.EmployeeID {
+  clear: both;
+}
+.s-BasicSamples-MultiColumnDialog .field.DetailList .editor {
+  width: 780px;
+}
+.s-BasicSamples-MultiColumnDialog .field.DetailList .grid-container {
+  min-height: 90px;
+}
+.s-BasicSamples-MultiColumnDialog .field.DetailList label.caption {
+  display: none;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShippedDate,
+.s-BasicSamples-MultiColumnDialog .field.ShipVia,
+.s-BasicSamples-MultiColumnDialog .field.Freight {
+  float: left;
+  width: 33%;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShippedDate label.caption,
+.s-BasicSamples-MultiColumnDialog .field.ShipVia label.caption,
+.s-BasicSamples-MultiColumnDialog .field.Freight label.caption {
+  width: 90px;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShippedDate .editor {
+  width: 120px;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShipVia .editor,
+.s-BasicSamples-MultiColumnDialog .field.Freight .editor {
+  width: 145px;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShipName,
+.s-BasicSamples-MultiColumnDialog .field.ShipAddress,
+.s-BasicSamples-MultiColumnDialog .field.ShipCity,
+.s-BasicSamples-MultiColumnDialog .field.ShipRegion,
+.s-BasicSamples-MultiColumnDialog .field.ShipPostalCode,
+.s-BasicSamples-MultiColumnDialog .field.ShipCountry {
+  float: left;
+  width: 50%;
+}
+.s-BasicSamples-MultiColumnDialog .field.ShipName .editor,
+.s-BasicSamples-MultiColumnDialog .field.ShipAddress .editor,
+.s-BasicSamples-MultiColumnDialog .field.ShipCity .editor,
+.s-BasicSamples-MultiColumnDialog .field.ShipRegion .editor,
+.s-BasicSamples-MultiColumnDialog .field.ShipPostalCode .editor,
+.s-BasicSamples-MultiColumnDialog .field.ShipCountry .editor {
+  width: 237px;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;

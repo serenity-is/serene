@@ -11,3 +11,70 @@
     }
     > .size { .widthAndMin(700px); .heightAndMin(400px); }
 }
+
+.s-BasicSamples-MultiColumnDialog {
+    > .size { .widthAndMin(850px); }
+    .dialog-styles(@h: auto, @l: 130px, @e: 650px);
+    .categories { height: 570px; }
+
+    .ui-dialog-content {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    // column css starts here
+
+    // each field has a .field div with its property name as CSS class 
+    .field.OrderDate, .field.RequiredDate {
+        float: left; // we are using floats to divide into two columns
+        width: 50%;
+
+        .editor {
+            width: 213px; // should be 237px but need 24px for trigger image
+        }
+    }
+
+    .field.EmployeeID {
+        clear: both; // to clear floats after Order and Required fields
+    }
+
+    // just hiding grid label and making it a bit less height
+    .field.DetailList { 
+        .editor {
+            width: 780px;
+        }
+
+        .grid-container {
+            min-height: 90px;
+        }
+
+        label.caption {
+            display: none;
+        }
+    }
+
+    // three column sample
+    .field.ShippedDate, .field.ShipVia, .field.Freight {
+        float: left; 
+        width: 33%;
+
+        label.caption {
+            width: 90px;
+        }
+    }
+
+    .field.ShippedDate .editor {  width: 120px; }
+    .field.ShipVia, .field.Freight { .editor { width: 145px; } }
+
+    .field.ShipName, .field.ShipAddress, 
+    .field.ShipCity, .field.ShipRegion, 
+    .field.ShipPostalCode, .field.ShipCountry {
+        float: left; 
+        width: 50%;
+
+        .editor {
+            width: 237px;
+        }
+    }
+
+}

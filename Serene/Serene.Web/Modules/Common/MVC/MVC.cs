@@ -88,6 +88,7 @@ namespace MVC
         {
             public const string CancellableBulkAction = "~/Modules/BasicSamples/CancellableBulkAction.cshtml";
             public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
+            public const string MultiColumnDialog = "~/Modules/BasicSamples/MultiColumnDialog.cshtml";
             public const string ViewWithoutID = "~/Modules/BasicSamples/ViewWithoutID.cshtml";
         }
 
