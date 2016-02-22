@@ -36,6 +36,7 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="BasicSamples\MultiColumnDialog.cs" />
     <Compile Include="BasicSamples\OrderBulkAction.cs" />
     <Compile Include="BasicSamples\ChartInDialog.cs" />
     <Compile Include="BasicSamples\CancellableBulkActionGrid.cs" />

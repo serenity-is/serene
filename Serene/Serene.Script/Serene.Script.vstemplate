@@ -45,6 +45,7 @@
       <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
         <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cs">MultiColumnDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.cs">OrderBulkAction.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.cs">ViewWithoutIDGrid.cs</ProjectItem>
       </Folder>

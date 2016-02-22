@@ -304,6 +304,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkAction.cshtml">CancellableBulkAction.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cshtml">MultiColumnDialog.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutID.cshtml">ViewWithoutID.cshtml</ProjectItem>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
@@ -320,8 +321,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>
