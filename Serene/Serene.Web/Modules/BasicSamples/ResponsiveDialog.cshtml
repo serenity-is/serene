@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Responsive Dialog";
+}
+
+@section ContentHeader {
+    <h1>@ViewBag.Title<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>This sample demonstrates how to design forms with multiple columns.</p>
+    <p>A subclass of order dialog is styled with CSS to make it more compact.</p>
+    <p>Open dialog then try resizing / maximizing it.</p>
+    <p>
+        Please note that, even though this saves some vertical space,
+        it might not be so useful with mobile devices.
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.ResponsiveGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

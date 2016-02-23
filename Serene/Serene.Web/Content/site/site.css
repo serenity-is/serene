@@ -7098,6 +7098,15 @@ section.content > .s-DataGrid {
 .s-BasicSamples-MultiColumnDialog .field.ShipCountry .editor {
   width: 237px;
 }
+.s-BasicSamples-ResponsiveDialog .desktop-device > .size {
+  min-width: 750px;
+  width: 750px;
+  min-height: 650px;
+  height: 650px;
+}
+.s-BasicSamples-ResponsiveDialog .mobile-device .categories {
+  height: auto;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;

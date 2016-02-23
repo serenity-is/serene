@@ -268,6 +268,9 @@
 		element.css('height', '100%');
 		$Q.triggerLayoutOnShow(element);
 	};
+	$Q.isMobileDevice = function() {
+		return window.matchMedia('only screen and (max-width: 760px)').matches || navigator.userAgent.indexOf('Mobi') >= 0;
+	};
 	$Q.notifyWarning = function(message) {
 		toastr.warning(message, '', $Q.$getToastrOptions());
 	};
@@ -1980,6 +1983,9 @@
 			});
 		}
 		window1['Q$Externals'] = window1.Q;
+		$(function() {
+			$(document.body).addClass(($Q.isMobileDevice() ? 'mobile-device' : 'desktop-device'));
+		});
 	})();
 	(function() {
 		$Q$Culture.decimalSeparator = '.';
