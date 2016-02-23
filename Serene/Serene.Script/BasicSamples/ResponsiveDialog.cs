@@ -9,7 +9,9 @@ using System.Html;
 
 namespace Serene.BasicSamples
 {
-    public class ResponsiveDialog : OrderDialog
+    [IdProperty(OrderRow.IdProperty), NameProperty(OrderRow.Fields.OrderID), Maximizable]
+    [FormKey("Northwind.Order"), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
+    public class ResponsiveDialog : EntityDialog<OrderRow>
     {
         public ResponsiveDialog()
         {
@@ -20,15 +22,7 @@ namespace Serene.BasicSamples
         protected override void OnDialogOpen()
         {
             base.OnDialogOpen();
-
             HandleResponsivity();
-        }
-
-        protected override List<PropertyItem> GetPropertyItems()
-        {
-            var items = base.GetPropertyItems();
-            //items.First(x => x.Name == CustomerRow.Fields.NoteList).Category = "Notes";
-            return items;
         }
     }
 

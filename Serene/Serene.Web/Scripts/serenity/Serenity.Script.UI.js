@@ -6925,9 +6925,10 @@
 						dlg.dialog('option', 'draggable', false);
 						dlg.dialog('option', 'resizable', false);
 					}
+					uiDialog.addClass('mobile-layout');
 					uiDialog.css({ left: '0px', top: '0px', width: $(window).width() + 'px', height: $(window).height() + 'px' });
-					Q.layoutFillHeight(this.get_element());
 					$(document.body).scrollTop(0);
+					Q.layoutFillHeight(this.get_element());
 				}
 				else {
 					var data1 = ss.safeCast(this.get_element().data('responsiveData'), ss.makeGenericType($Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions]));
@@ -6935,6 +6936,7 @@
 						dlg.dialog('option', 'draggable', data1.$draggable);
 						dlg.dialog('option', 'resizable', data1.$resizable);
 						this.get_element().closest('.ui-dialog').css({ left: '0px', top: '0px', width: data1.$width + 'px', height: data1.$height + 'px' });
+						uiDialog.removeClass('mobile-layout');
 						this.element.removeData('responsiveData');
 					}
 				}
