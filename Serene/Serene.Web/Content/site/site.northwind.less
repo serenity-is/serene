@@ -22,8 +22,13 @@
 }
 
 .s-Northwind-OrderDetailDialog {
-    > .size { .widthAndMin(550px); }
-    .dialog-styles(@h: auto, @l: 130px, @e: 330px);
+    > .size { .widthAndMin(450px); }
+    .dialog-styles(@h: auto, @l: 80px, @e: 310px);
+
+    @media(max-width: 445px) {
+        > .size { .widthAndMin(320px); }
+        .dialog-styles(@h: auto, @l: 80px, @e: 180px);
+    }
 }
 
 .s-Northwind-OrderGrid {

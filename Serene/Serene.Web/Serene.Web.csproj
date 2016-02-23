@@ -1171,6 +1171,7 @@
     <Content Include="Modules\BasicSamples\CancellableBulkAction.cshtml" />
     <Content Include="Modules\BasicSamples\ViewWithoutID.cshtml" />
     <Content Include="Modules\BasicSamples\MultiColumnDialog.cshtml" />
+    <Content Include="Modules\BasicSamples\ResponsiveDialog.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />

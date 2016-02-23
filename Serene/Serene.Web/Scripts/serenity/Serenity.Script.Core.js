@@ -268,6 +268,9 @@
 		element.css('height', '100%');
 		$Q.triggerLayoutOnShow(element);
 	};
+	$Q.isMobileDevice = function() {
+		return window.matchMedia('only screen and (max-width: 760px)').matches || navigator.userAgent.indexOf('Mobi') >= 0;
+	};
 	$Q.notifyWarning = function(message) {
 		toastr.warning(message, '', $Q.$getToastrOptions());
 	};
@@ -1273,6 +1276,12 @@
 	$Serenity_ResizableAttribute.__typeName = 'Serenity.ResizableAttribute';
 	global.Serenity.ResizableAttribute = $Serenity_ResizableAttribute;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.ResponsiveAttribute
+	var $Serenity_ResponsiveAttribute = function() {
+	};
+	$Serenity_ResponsiveAttribute.__typeName = 'Serenity.ResponsiveAttribute';
+	global.Serenity.ResponsiveAttribute = $Serenity_ResponsiveAttribute;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ScriptContext
 	var $Serenity_ScriptContext = function() {
 	};
@@ -1917,6 +1926,7 @@
 	});
 	ss.initClass($Serenity_PanelAttribute, $asm, {});
 	ss.initClass($Serenity_ResizableAttribute, $asm, {});
+	ss.initClass($Serenity_ResponsiveAttribute, $asm, {});
 	ss.initClass($Serenity_ScriptContext, $asm, {});
 	ss.initClass($Serenity_ServiceAttribute, $asm, {
 		get_value: function() {
@@ -1980,6 +1990,9 @@
 			});
 		}
 		window1['Q$Externals'] = window1.Q;
+		$(function() {
+			$(document.body).addClass(($Q.isMobileDevice() ? 'mobile-device' : 'desktop-device'));
+		});
 	})();
 	(function() {
 		$Q$Culture.decimalSeparator = '.';

@@ -16,14 +16,19 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.CancellableBulkAction);
         }
 
+        public ActionResult MultiColumnDialog()
+        {
+            return View(MVC.Views.BasicSamples.MultiColumnDialog);
+        }
+        public ActionResult ResponsiveDialog()
+        {
+            return View(MVC.Views.BasicSamples.ResponsiveDialog);
+        }
+
         public ActionResult ViewWithoutID()
         {
             return View(MVC.Views.BasicSamples.ViewWithoutID);
         }
 
-        public ActionResult MultiColumnDialog()
-        {
-            return View(MVC.Views.BasicSamples.MultiColumnDialog);
-        }
     }
 }

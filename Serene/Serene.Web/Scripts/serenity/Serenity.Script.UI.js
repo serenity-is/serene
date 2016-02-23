@@ -62,6 +62,26 @@
 	};
 	$Serenity_$FilterPanel$OperatorSelect.__typeName = 'Serenity.$FilterPanel$OperatorSelect';
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.TemplatedDialog.ResponsiveData
+	var $Serenity_$TemplatedDialog$1$ResponsiveData = function(TOptions) {
+		var $type = function() {
+			this.$draggable = false;
+			this.$resizable = false;
+			this.$width = 0;
+			this.$height = 0;
+			this.$left = 0;
+			this.$top = 0;
+		};
+		ss.registerGenericClassInstance($type, $Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions], {}, function() {
+			return null;
+		}, function() {
+			return [];
+		});
+		return $type;
+	};
+	$Serenity_$TemplatedDialog$1$ResponsiveData.__typeName = 'Serenity.$TemplatedDialog$1$ResponsiveData';
+	ss.initGenericClass($Serenity_$TemplatedDialog$1$ResponsiveData, $asm, 1);
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.AsyncLookupEditor
 	var $Serenity_AsyncLookupEditor = function(hidden, opt) {
 		ss.makeGenericType($Serenity_LookupEditorBase$2, [$Serenity_LookupEditorOptions, Object]).call(this, hidden, opt);
@@ -6685,6 +6705,7 @@
 		};
 		$type.$ctor2 = function(div, opt) {
 			this.isPanel = false;
+			this.responsive = false;
 			this.validator = null;
 			this.tabs = null;
 			this.toolbar = null;
@@ -6757,7 +6778,17 @@
 			},
 			initDialog: function() {
 				this.element.dialog(this.getDialogOptions());
-				if (ss.getAttributes(ss.getInstanceType(this), Serenity.FlexifyAttribute, true).length > 0) {
+				this.responsive = ss.getAttributes(ss.getInstanceType(this), Serenity.ResponsiveAttribute, true).length > 0;
+				if (this.responsive) {
+					$Serenity_DialogExtensions.dialogResizable(this.element, null, null, null, null);
+					$(window).resize(ss.mkdel(this, function(e) {
+						if (this.get_element().is(':visible')) {
+							this.handleResponsive();
+						}
+					}));
+					this.get_element().closest('.ui-dialog').addClass('flex-layout');
+				}
+				else if (ss.getAttributes(ss.getInstanceType(this), Serenity.FlexifyAttribute, true).length > 0) {
 					$Serenity_DialogExtensions.dialogFlexify(this.element);
 					$Serenity_DialogExtensions.dialogResizable(this.element, null, null, null, null);
 				}
@@ -6765,10 +6796,15 @@
 					$Serenity_DialogExtensions.dialogMaximizable(this.element);
 				}
 				var self = this;
-				this.element.bind('dialogopen.' + this.uniqueName, function() {
+				this.element.bind('dialogopen.' + this.uniqueName, ss.mkdel(this, function() {
+					$(document.body).addClass('modal-dialog-open');
+					if (this.responsive) {
+						this.handleResponsive();
+					}
 					self.onDialogOpen();
-				});
+				}));
 				this.element.bind('dialogclose.' + this.uniqueName, function() {
+					$(document.body).toggleClass('modal-dialog-open', $('.ui-dialog:visible').length > 0);
 					self.onDialogClose();
 				});
 			},
@@ -6884,6 +6920,40 @@
 			},
 			get_idPrefix: function() {
 				return this.idPrefix;
+			},
+			handleResponsive: function() {
+				var dlg = this.get_element().dialog();
+				var uiDialog = this.get_element().closest('.ui-dialog');
+				if ($(document.body).hasClass('mobile-device')) {
+					var data = ss.safeCast(this.get_element().data('responsiveData'), ss.makeGenericType($Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions]));
+					if (ss.isNullOrUndefined(data)) {
+						data = new (ss.makeGenericType($Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions]))();
+						data.$draggable = dlg.dialog('option', 'draggable');
+						data.$resizable = dlg.dialog('option', 'resizable');
+						var pos = uiDialog.position();
+						data.$left = pos.left;
+						data.$top = pos.top;
+						data.$width = uiDialog.width();
+						data.$height = uiDialog.height();
+						this.get_element().data('responsiveData', data);
+						dlg.dialog('option', 'draggable', false);
+						dlg.dialog('option', 'resizable', false);
+					}
+					uiDialog.addClass('mobile-layout');
+					uiDialog.css({ left: '0px', top: '0px', width: $(window).width() + 'px', height: $(window).height() + 'px' });
+					$(document.body).scrollTop(0);
+					Q.layoutFillHeight(this.get_element());
+				}
+				else {
+					var data1 = ss.safeCast(this.get_element().data('responsiveData'), ss.makeGenericType($Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions]));
+					if (ss.isValue(data1)) {
+						dlg.dialog('option', 'draggable', data1.$draggable);
+						dlg.dialog('option', 'resizable', data1.$resizable);
+						this.get_element().closest('.ui-dialog').css({ left: '0px', top: '0px', width: data1.$width + 'px', height: data1.$height + 'px' });
+						uiDialog.removeClass('mobile-layout');
+						this.element.removeData('responsiveData');
+					}
+				}
 			}
 		}, function() {
 			return ss.makeGenericType($Serenity_TemplatedWidget$1, [TOptions]);

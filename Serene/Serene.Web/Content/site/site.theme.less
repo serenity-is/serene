@@ -210,3 +210,38 @@ section.content > .s-DataGrid {
     color: #245;
     font-size: 14px;
 }
+
+.ui-dialog.mobile-layout .ui-dialog-titlebar {
+    color: white;
+    background: @blue;
+
+    .ui-dialog-titlebar-close, .ui-dialog-titlebar-close:hover {
+        background-color: transparent;
+        background-image: url(../serenity/images/back-arrow-white.png);
+    }
+}
+
+.skin-green .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @green;
+}
+
+.skin-red .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @red;
+}
+
+.skin-orange .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @orange;
+}
+
+.skin-black, .skin-black-light {
+    .ui-dialog.mobile-layout .ui-dialog-titlebar {
+        color: black;
+        background: white;
+    }
+
+    .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close,
+    .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+        background-color: transparent;
+        background-image: url(../serenity/images/back-arrow-black.png);
+    }
+}
