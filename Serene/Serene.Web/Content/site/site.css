@@ -7132,10 +7132,8 @@ section.content > .s-DataGrid {
   width: 120px;
 }
 .s-BasicSamples-ResponsiveDialog > .size {
-  min-width: 750px;
   width: 750px;
-  min-height: 650px;
-  height: 650px;
+  height: 550px;
 }
 .s-LoginPanel {
   border: 2px solid #e7e7e7;

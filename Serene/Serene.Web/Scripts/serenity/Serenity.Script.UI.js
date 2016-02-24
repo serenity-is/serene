@@ -71,6 +71,7 @@
 			this.$height = 0;
 			this.$left = 0;
 			this.$top = 0;
+			this.$contentHeight = 0;
 		};
 		ss.registerGenericClassInstance($type, $Serenity_$TemplatedDialog$1$ResponsiveData, [TOptions], {}, function() {
 			return null;
@@ -6774,6 +6775,7 @@
 				if (!this.isPanel) {
 					this.element.dialog().dialog('destroy');
 				}
+				$(window).unbind('.' + this.uniqueName);
 				$Serenity_Widget.prototype.destroy.call(this);
 			},
 			initDialog: function() {
@@ -6781,8 +6783,8 @@
 				this.responsive = ss.getAttributes(ss.getInstanceType(this), Serenity.ResponsiveAttribute, true).length > 0;
 				if (this.responsive) {
 					$Serenity_DialogExtensions.dialogResizable(this.element, null, null, null, null);
-					$(window).resize(ss.mkdel(this, function(e) {
-						if (this.get_element().is(':visible')) {
+					$(window).bind('resize.' + this.uniqueName, ss.mkdel(this, function(e) {
+						if (ss.isValue(this.get_element()) && this.get_element().is(':visible')) {
 							this.handleResponsive();
 						}
 					}));
@@ -6935,6 +6937,7 @@
 						data.$top = pos.top;
 						data.$width = uiDialog.width();
 						data.$height = uiDialog.height();
+						data.$contentHeight = this.get_element().height();
 						this.get_element().data('responsiveData', data);
 						dlg.dialog('option', 'draggable', false);
 						dlg.dialog('option', 'resizable', false);
@@ -6950,6 +6953,7 @@
 						dlg.dialog('option', 'draggable', data1.$draggable);
 						dlg.dialog('option', 'resizable', data1.$resizable);
 						this.get_element().closest('.ui-dialog').css({ left: '0px', top: '0px', width: data1.$width + 'px', height: data1.$height + 'px' });
+						this.element.height(data1.$contentHeight);
 						uiDialog.removeClass('mobile-layout');
 						this.element.removeData('responsiveData');
 					}

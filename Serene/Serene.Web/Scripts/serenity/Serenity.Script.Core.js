@@ -268,8 +268,17 @@
 		element.css('height', '100%');
 		$Q.triggerLayoutOnShow(element);
 	};
-	$Q.isMobileDevice = function() {
-		return window.matchMedia('only screen and (max-width: 760px)').matches || navigator.userAgent.indexOf('Mobi') >= 0;
+	$Q.setMobileDeviceMode = function() {
+		var isMobile = navigator.userAgent.indexOf('Mobi') >= 0 || window.matchMedia('(max-width: 767px)').matches;
+		var body = $(document.body);
+		if (body.hasClass('mobile-device')) {
+			if (!isMobile) {
+				body.removeClass('mobile-device');
+			}
+		}
+		else if (isMobile) {
+			body.addClass('mobile-device');
+		}
 	};
 	$Q.notifyWarning = function(message) {
 		toastr.warning(message, '', $Q.$getToastrOptions());
@@ -1981,17 +1990,20 @@
 	})();
 	(function() {
 		$Q.$blockUICount = 0;
-		var window1 = window.window;
-		var rsvp = window1.RSVP;
+		var window3 = window.window;
+		var rsvp = window3.RSVP;
 		if (!!(ss.isValue(rsvp) && ss.isValue(rsvp.on))) {
 			rsvp.on('error', function(e) {
-				window1.console.log(e);
-				window1.console.log((!!ss.isValue(e.get_stack) ? e.get_stack() : e.stack));
+				window3.console.log(e);
+				window3.console.log((!!ss.isValue(e.get_stack) ? e.get_stack() : e.stack));
 			});
 		}
-		window1['Q$Externals'] = window1.Q;
+		window3['Q$Externals'] = window3.Q;
 		$(function() {
-			$(document.body).addClass(($Q.isMobileDevice() ? 'mobile-device' : 'desktop-device'));
+			$Q.setMobileDeviceMode();
+			window.onresize = ss.delegateCombine(window.onresize, function(e1) {
+				$Q.setMobileDeviceMode();
+			});
 		});
 	})();
 	(function() {
