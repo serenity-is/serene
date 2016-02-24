@@ -46,6 +46,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cs">MultiColumnDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.cs">MultiColumnResponsiveDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.cs">OrderBulkAction.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveDialog.cs">ResponsiveDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.cs">ViewWithoutIDGrid.cs</ProjectItem>
@@ -267,7 +268,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.9.15" />
+      <package id="Serenity.Script" version="1.9.16" />
     </packages>
   </WizardData>
   <WizardExtension>
