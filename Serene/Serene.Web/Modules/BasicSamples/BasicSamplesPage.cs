@@ -20,6 +20,12 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MVC.Views.BasicSamples.MultiColumnDialog);
         }
+
+        public ActionResult MultiColumnResponsiveDialog()
+        {
+            return View(MVC.Views.BasicSamples.MultiColumnResponsiveDialog);
+        }
+
         public ActionResult ResponsiveDialog()
         {
             return View(MVC.Views.BasicSamples.ResponsiveDialog);

@@ -79,6 +79,23 @@
 }
 
 .s-BasicSamples-ResponsiveDialog {
-    .caption { width: 120px; }
     > .size { width: 750px; height: 550px; }
+    .caption { width: 120px; }
+}
+
+.s-BasicSamples-MultiColumnResponsiveDialog {
+    > .size { width: 850px; height: 650px; }
+    .caption { width: 130px; }
+
+    @media (min-width: 768px) {
+        .field.OrderDate, .field.RequiredDate, .field.ShipName, .field.ShipAddress, 
+        .field.ShipCity, .field.ShipRegion, .field.ShipPostalCode, .field.ShipCountry {
+            .flex-basis(50%);
+        }
+        
+        .field.ShippedDate, .field.ShipVia, .field.Freight { 
+            .flex-basis(33%); 
+            .caption { width: 90px; } 
+        }
+    }
 }

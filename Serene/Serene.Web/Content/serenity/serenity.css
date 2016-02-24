@@ -925,6 +925,29 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .translation > label.caption {
   color: darkviolet;
 }
+.flex-layout .category {
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: mulitple;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  min-width: 0;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
 .flex-layout .field {
   display: -moz-box;
   display: -webkit-box;
@@ -945,17 +968,27 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -moz-align-items: flex-start;
   -ms-align-items: flex-start;
   align-items: flex-start;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 100%;
+  -moz-flex: 0 1 100%;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 100%;
+  min-width: 0;
 }
 .flex-layout .editor {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
-  -webkit-flex: 1 100 auto;
-  -moz-flex: 1 100 auto;
-  -ms-flex: 1 100 auto;
-  flex: 1 100 auto;
+  -webkit-flex: 1 1 80%;
+  -moz-flex: 1 1 80%;
+  -ms-flex: 1 1 80%;
+  flex: 1 1 80%;
   -ms-flex-positive: 1;
-  -ms-flex-negative: 100;
-  -ms-flex-preferred-size: auto;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 80%;
   min-width: 0;
 }
 .flex-layout input.editor[type=checkbox] {
@@ -989,6 +1022,37 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 }
 .flex-layout .s-Form .vx {
   float: initial;
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+}
+.flex-layout .category-links {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+}
+.flex-layout .category-title {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 100%;
+  -moz-flex: 0 1 100%;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 100%;
 }
 @media (max-width: 760px) {
   .flex-layout .field {
@@ -1013,12 +1077,12 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   .flex-layout .s-Form .caption {
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
-    -webkit-flex: 0 1 100%;
-    -moz-flex: 0 1 100%;
-    -ms-flex: 0 1 100%;
-    flex: 0 1 100%;
+    -webkit-flex: 0 0 100%;
+    -moz-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
     -ms-flex-positive: 0;
-    -ms-flex-negative: 1;
+    -ms-flex-negative: 0;
     -ms-flex-preferred-size: 100%;
     width: auto;
     text-align: left;
@@ -1060,12 +1124,6 @@ body.mobile-device.modal-dialog-open {
   -moz-flex-grow: 1;
   -ms-flex-grow: 1;
   flex-grow: 1;
-}
-.ui-dialog.flex-layout .category-links {
-  -webkit-flex-shrink: 0;
-  -moz-flex-shrink: 0;
-  -ms-flex-shrink: 0;
-  flex-shrink: 0;
 }
 .ui-dialog.flex-layout .s-PropertyGrid .categories {
   -webkit-flex-grow: 1;

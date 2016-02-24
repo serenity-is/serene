@@ -363,6 +363,20 @@
 	$Serene_BasicSamples_MultiColumnGrid.__typeName = 'Serene.BasicSamples.MultiColumnGrid';
 	global.Serene.BasicSamples.MultiColumnGrid = $Serene_BasicSamples_MultiColumnGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.MultiColumnResponsiveDialog
+	var $Serene_BasicSamples_MultiColumnResponsiveDialog = function() {
+		$Serene_Northwind_OrderDialog.call(this);
+	};
+	$Serene_BasicSamples_MultiColumnResponsiveDialog.__typeName = 'Serene.BasicSamples.MultiColumnResponsiveDialog';
+	global.Serene.BasicSamples.MultiColumnResponsiveDialog = $Serene_BasicSamples_MultiColumnResponsiveDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.MultiColumnResponsiveGrid
+	var $Serene_BasicSamples_MultiColumnResponsiveGrid = function(container) {
+		$Serene_Northwind_OrderGrid.call(this, container);
+	};
+	$Serene_BasicSamples_MultiColumnResponsiveGrid.__typeName = 'Serene.BasicSamples.MultiColumnResponsiveGrid';
+	global.Serene.BasicSamples.MultiColumnResponsiveGrid = $Serene_BasicSamples_MultiColumnResponsiveGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.OrderBulkAction
 	var $Serene_BasicSamples_OrderBulkAction = function() {
 		$Serene_BulkServiceAction.call(this);
@@ -2340,6 +2354,8 @@
 	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_MultiColumnDialog, $asm, {}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_MultiColumnGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_MultiColumnResponsiveDialog, $asm, {}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_MultiColumnResponsiveGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_OrderBulkAction, $asm, {
 		getParallelRequests: function() {
 			return 10;
@@ -3295,6 +3311,8 @@
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnDialog)] });
+	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveDialog, { attr: [new Serenity.ResponsiveAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnResponsiveDialog)] });
 	ss.setMetadata($Serene_BasicSamples_ResponsiveDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order'), new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_ResponsiveGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_ResponsiveDialog)] });
 	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
