@@ -18,6 +18,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationMenu(7900, "Basic Samples", icon: "icon-magic-wand")]
 [assembly: NavigationLink(7900, "Basic Samples/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
 [assembly: NavigationLink(7900, "Basic Samples/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Cloneable Entity Dialog", typeof(Basic.BasicSamplesController), action: "CloneableEntityDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Multi Col. Responsive Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnResponsiveDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Responsive Dialog", typeof(Basic.BasicSamplesController), action: "ResponsiveDialog")]

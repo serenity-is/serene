@@ -7170,6 +7170,13 @@ section.content > .s-DataGrid {
     width: 90px;
   }
 }
+.s-BasicSamples-CloneableEntityDialog > .size {
+  width: 850px;
+  height: 500px;
+}
+.s-BasicSamples-CloneableEntityDialog .caption {
+  width: 150px;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;

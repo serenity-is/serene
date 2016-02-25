@@ -332,6 +332,20 @@
 	};
 	global.Serene.BasicSamples.ChartInDialog = $Serene_BasicSamples_ChartInDialog;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.CloneableEntityDialog
+	var $Serene_BasicSamples_CloneableEntityDialog = function() {
+		$Serene_Northwind_ProductDialog.call(this);
+	};
+	$Serene_BasicSamples_CloneableEntityDialog.__typeName = 'Serene.BasicSamples.CloneableEntityDialog';
+	global.Serene.BasicSamples.CloneableEntityDialog = $Serene_BasicSamples_CloneableEntityDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.CloneableEntityGrid
+	var $Serene_BasicSamples_CloneableEntityGrid = function(container) {
+		$Serene_Northwind_ProductGrid.call(this, container);
+	};
+	$Serene_BasicSamples_CloneableEntityGrid.__typeName = 'Serene.BasicSamples.CloneableEntityGrid';
+	global.Serene.BasicSamples.CloneableEntityGrid = $Serene_BasicSamples_CloneableEntityGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.MultiColumnDialog
 	var $Serene_BasicSamples_MultiColumnDialog = function() {
 		$Serene_Northwind_OrderDialog.call(this);
@@ -2340,6 +2354,158 @@
 			return opt;
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
+	ss.initClass($Serene_Northwind_ProductDialog, $asm, {
+		getLanguages: function() {
+			return $Serene_LanguageList.get_value();
+		}
+	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_CloneableEntityDialog, $asm, {
+		updateInterface: function() {
+			// by default cloneButton is hidden in base UpdateInterface method
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			// here we show it if it is edit mode (not new)
+			this.cloneButton.toggle(this.get_isEditMode());
+		},
+		getCloningEntity: function() {
+			var clone = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getCloningEntity.call(this);
+			// add (Clone) suffix if it's not already added
+			var suffix = ' (Clone)';
+			if (!ss.endsWithString(ss.coalesce(clone.ProductName, ''), suffix)) {
+				clone.ProductName = ss.coalesce(clone.ProductName, '') + suffix;
+			}
+			// it's better to clear image for this sample
+			// otherwise we would have to create a temporary copy of it
+			// and upload
+			clone.ProductImage = null;
+			// let's clear fields not logical to be cloned
+			clone.UnitsInStock = 0;
+			clone.UnitsOnOrder = 0;
+			return clone;
+		}
+	}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
+		createToolbarExtensions: function() {
+			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			var $t1 = Serenity.LookupEditorOptions.$ctor();
+			$t1.lookupKey = 'Northwind.Supplier';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'SupplierID', null, $t1, null, null, null);
+			var $t2 = Serenity.LookupEditorOptions.$ctor();
+			$t2.lookupKey = 'Northwind.Category';
+			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'CategoryID', null, $t2, null, null, null);
+		},
+		getButtons: function() {
+			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
+				this.$saveClick();
+			}) });
+			return buttons;
+		},
+		onViewProcessData: function(response) {
+			ss.clearKeys(this.$pendingChanges);
+			this.$setSaveButtonState();
+			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
+		},
+		$inputFormatter: function(ctx) {
+			var klass = 'edit';
+			var item = ctx.item;
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			if (!!(ss.isValue(pending) && ss.isValue(pending[ctx.column.field]))) {
+				klass += ' dirty';
+			}
+			var value = this.$getEffectiveValue(item, ctx.column.field);
+			return "<input type='text' class='" + klass + "'" + " value='" + Q.formatNumber(value, '0.##') + "'" + '/>';
+		},
+		$getEffectiveValue: function(item, field) {
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			if (ss.isValue(pending)) {
+				var $t1 = pending[field];
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = item[field];
+				}
+				return ss.cast($t1, Number);
+			}
+			return ss.cast(item[field], Number);
+		},
+		getColumns: function() {
+			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			Enumerable.from(columns).single(function(x) {
+				return x.field === 'UnitPrice';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x1) {
+				return x1.field === 'UnitsInStock';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x2) {
+				return x2.field === 'UnitsOnOrder';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x3) {
+				return x3.field === 'ReorderLevel';
+			}).format = ss.mkdel(this, this.$inputFormatter);
+			return columns;
+		},
+		$inputsChange: function(e) {
+			var cell = this.slickGrid.getCellFromEvent(e);
+			var item = this.get_items()[cell.row];
+			var field = this.getColumns()[cell.cell].field;
+			var input = $(e.target);
+			var text = ss.coalesce(Q.trimToNull(input.val()), '0');
+			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
+			var oldText = Q.formatNumber(this.$getEffectiveValue(item, field), '0.##');
+			var value;
+			if (field === 'UnitPrice') {
+				value = Q.parseDecimal(text);
+				if (ss.isNullOrUndefined(value) || isNaN(ss.unbox(value))) {
+					Q.notifyError(Q.text('Validation.Decimal'));
+					input.val(oldText);
+					input.focus();
+					return;
+				}
+			}
+			else {
+				var i = {};
+				if (!ss.Int32.tryParse(text, i) || i.$ > 32767 || i.$ < 0) {
+					Q.notifyError(Q.text('Validation.Integer'));
+					input.val(oldText);
+					input.focus();
+					return;
+				}
+				value = i.$;
+			}
+			if (ss.isNullOrUndefined(pending)) {
+				this.$pendingChanges[ss.unbox(item.ProductID)] = pending = {};
+			}
+			pending[field] = value;
+			input.val(Q.formatNumber(value, '0.##')).addClass('dirty');
+			this.$setSaveButtonState();
+		},
+		$setSaveButtonState: function() {
+			this.toolbar.findButton('apply-changes-button').toggleClass('disabled', ss.getKeyCount(this.$pendingChanges) === 0);
+		},
+		$saveClick: function() {
+			if (ss.getKeyCount(this.$pendingChanges) === 0) {
+				return;
+			}
+			// this calls save service for all modified rows, one by one
+			// you could write a batch update service
+			var enumerator = new ss.ObjectEnumerator(Q.deepClone(this.$pendingChanges));
+			var saveNext = null;
+			saveNext = ss.mkdel(this, function() {
+				if (!enumerator.moveNext()) {
+					this.refresh();
+					return;
+				}
+				var pair = enumerator.current();
+				var entity = Q.deepClone(pair.value);
+				entity.ProductID = pair.key;
+				Q.serviceRequest('Northwind/Product/Update', { EntityId: pair.key, Entity: entity }, ss.mkdel(this, function(response) {
+					delete this.$pendingChanges[pair.key];
+					saveNext();
+				}), null);
+			});
+			saveNext();
+		}
+	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
@@ -3017,11 +3183,6 @@
 			this.element.val(value);
 		}
 	}, Serenity.StringEditor, [Serenity.IStringValue]);
-	ss.initClass($Serene_Northwind_ProductDialog, $asm, {
-		getLanguages: function() {
-			return $Serene_LanguageList.get_value();
-		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductForm, $asm, {
 		get_productName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
@@ -3054,128 +3215,6 @@
 			return this.byId(Serenity.IntegerEditor).call(this, 'ReorderLevel');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
-		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
-			var $t1 = Serenity.LookupEditorOptions.$ctor();
-			$t1.lookupKey = 'Northwind.Supplier';
-			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'SupplierID', null, $t1, null, null, null);
-			var $t2 = Serenity.LookupEditorOptions.$ctor();
-			$t2.lookupKey = 'Northwind.Category';
-			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'CategoryID', null, $t2, null, null, null);
-		},
-		getButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
-			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
-			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
-				this.$saveClick();
-			}) });
-			return buttons;
-		},
-		onViewProcessData: function(response) {
-			ss.clearKeys(this.$pendingChanges);
-			this.$setSaveButtonState();
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
-		},
-		$inputFormatter: function(ctx) {
-			var klass = 'edit';
-			var item = ctx.item;
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			if (!!(ss.isValue(pending) && ss.isValue(pending[ctx.column.field]))) {
-				klass += ' dirty';
-			}
-			var value = this.$getEffectiveValue(item, ctx.column.field);
-			return "<input type='text' class='" + klass + "'" + " value='" + Q.formatNumber(value, '0.##') + "'" + '/>';
-		},
-		$getEffectiveValue: function(item, field) {
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			if (ss.isValue(pending)) {
-				var $t1 = pending[field];
-				if (ss.isNullOrUndefined($t1)) {
-					$t1 = item[field];
-				}
-				return ss.cast($t1, Number);
-			}
-			return ss.cast(item[field], Number);
-		},
-		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
-			Enumerable.from(columns).single(function(x) {
-				return x.field === 'UnitPrice';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x1) {
-				return x1.field === 'UnitsInStock';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x2) {
-				return x2.field === 'UnitsOnOrder';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x3) {
-				return x3.field === 'ReorderLevel';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			return columns;
-		},
-		$inputsChange: function(e) {
-			var cell = this.slickGrid.getCellFromEvent(e);
-			var item = this.get_items()[cell.row];
-			var field = this.getColumns()[cell.cell].field;
-			var input = $(e.target);
-			var text = ss.coalesce(Q.trimToNull(input.val()), '0');
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			var oldText = Q.formatNumber(this.$getEffectiveValue(item, field), '0.##');
-			var value;
-			if (field === 'UnitPrice') {
-				value = Q.parseDecimal(text);
-				if (ss.isNullOrUndefined(value) || isNaN(ss.unbox(value))) {
-					Q.notifyError(Q.text('Validation.Decimal'));
-					input.val(oldText);
-					input.focus();
-					return;
-				}
-			}
-			else {
-				var i = {};
-				if (!ss.Int32.tryParse(text, i) || i.$ > 32767 || i.$ < 0) {
-					Q.notifyError(Q.text('Validation.Integer'));
-					input.val(oldText);
-					input.focus();
-					return;
-				}
-				value = i.$;
-			}
-			if (ss.isNullOrUndefined(pending)) {
-				this.$pendingChanges[ss.unbox(item.ProductID)] = pending = {};
-			}
-			pending[field] = value;
-			input.val(Q.formatNumber(value, '0.##')).addClass('dirty');
-			this.$setSaveButtonState();
-		},
-		$setSaveButtonState: function() {
-			this.toolbar.findButton('apply-changes-button').toggleClass('disabled', ss.getKeyCount(this.$pendingChanges) === 0);
-		},
-		$saveClick: function() {
-			if (ss.getKeyCount(this.$pendingChanges) === 0) {
-				return;
-			}
-			// this calls save service for all modified rows, one by one
-			// you could write a batch update service
-			var enumerator = new ss.ObjectEnumerator(Q.deepClone(this.$pendingChanges));
-			var saveNext = null;
-			saveNext = ss.mkdel(this, function() {
-				if (!enumerator.moveNext()) {
-					this.refresh();
-					return;
-				}
-				var pair = enumerator.current();
-				var entity = Q.deepClone(pair.value);
-				entity.ProductID = pair.key;
-				Q.serviceRequest('Northwind/Product/Update', { EntityId: pair.key, Entity: entity }, ss.mkdel(this, function(response) {
-					delete this.$pendingChanges[pair.key];
-					saveNext();
-				}), null);
-			});
-			saveNext();
-		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_RegionForm, $asm, {
 		get_regionID: function() {
@@ -3310,6 +3349,8 @@
 	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnDialog)] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveDialog, { attr: [new Serenity.ResponsiveAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnResponsiveDialog)] });

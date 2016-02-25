@@ -16,6 +16,11 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.CancellableBulkAction);
         }
 
+        public ActionResult CloneableEntityDialog()
+        {
+            return View(MVC.Views.BasicSamples.CloneableEntityDialog);
+        }
+
         public ActionResult MultiColumnDialog()
         {
             return View(MVC.Views.BasicSamples.MultiColumnDialog);
