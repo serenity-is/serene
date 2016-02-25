@@ -16,7 +16,10 @@
             var self = this;
             this.Change(e =>
             {
-                jQuery.Instance.cookie("LanguagePreference", select.GetValue(), new { path = Q.Config.ApplicationPath });
+                jQuery.Instance.cookie("LanguagePreference", select.GetValue(), new {
+                    path = Q.Config.ApplicationPath,
+                    expires = 365
+                });
                 Window.Location.Reload(true);
             });
 

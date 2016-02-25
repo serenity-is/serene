@@ -617,7 +617,7 @@
 		currentLanguage = ss.coalesce(currentLanguage, 'en');
 		var self = this;
 		Serenity.WX.change(this, function(e) {
-			$.cookie('LanguagePreference', select.val(), { path: Q$Config.applicationPath });
+			$.cookie('LanguagePreference', select.val(), { path: Q$Config.applicationPath, expires: 365 });
 			window.location.reload(true);
 		});
 		Q.getLookupAsync('Administration.Language').then(function(x) {
@@ -684,7 +684,7 @@
 		Serenity.Widget.call(this, select);
 		var self = this;
 		Serenity.WX.change(this, ss.mkdel(this, function(e) {
-			$.cookie('ThemePreference', select.val(), { path: Q$Config.applicationPath });
+			$.cookie('ThemePreference', select.val(), { path: Q$Config.applicationPath, expires: 365 });
 			$('body').removeClass('skin-' + this.$getCurrentTheme());
 			$('body').addClass('skin-' + select.val());
 		}));

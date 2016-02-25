@@ -13,7 +13,10 @@
 
             this.Change(e =>
             {
-                jQuery.Instance.cookie("ThemePreference", select.GetValue(), new { path = Q.Config.ApplicationPath });
+                jQuery.Instance.cookie("ThemePreference", select.GetValue(), new {
+                    path = Q.Config.ApplicationPath,
+                    expires = 365
+                });
                 J("body").RemoveClass("skin-" + GetCurrentTheme());
                 J("body").AddClass("skin-" + select.GetValue());
             });
