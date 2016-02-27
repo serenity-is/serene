@@ -925,28 +925,14 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .translation > label.caption {
   color: darkviolet;
 }
-.flex-layout .category {
-  display: -moz-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-box-lines: multiple;
-  -moz-box-lines: mulitple;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
-  min-width: 0;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+.flex-layout .s-Form .editor {
+  float: initial;
+}
+.flex-layout .s-Form .caption {
+  float: initial;
+}
+.flex-layout .s-Form .vx {
+  float: initial;
 }
 .flex-layout .field {
   display: -moz-box;
@@ -979,7 +965,19 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-preferred-size: 100%;
   min-width: 0;
 }
+.flex-layout .caption {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+}
 .flex-layout .editor {
+  float: initial;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -webkit-flex: 1 1 80%;
@@ -1002,14 +1000,30 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-negative: 0;
   -ms-flex-preferred-size: auto;
 }
-.flex-layout .s-Form .editor {
-  float: initial;
+.flex-layout .s-DateTimeEditor.dateQ {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+  -moz-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  -ms-flex-positive: 1;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 50%;
 }
-.flex-layout .editor {
-  float: initial;
+.flex-layout .s-DateTimeEditor.time {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+  margin-left: 4px;
 }
-.flex-layout .s-Form .caption {
-  float: initial;
+.flex-layout .vx {
   -webkit-box-flex: 0;
   -moz-box-flex: 0;
   -webkit-flex: 0 0 auto;
@@ -1020,17 +1034,28 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-negative: 0;
   -ms-flex-preferred-size: auto;
 }
-.flex-layout .s-Form .vx {
-  float: initial;
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
+.flex-layout .category {
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: mulitple;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  min-width: 0;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 .flex-layout .category-links {
   -webkit-box-flex: 0;
@@ -1054,6 +1079,57 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-negative: 1;
   -ms-flex-preferred-size: 100%;
 }
+.flex-layout .ui-dialog-content,
+.flex-layout .s-DialogContent,
+.flex-layout .s-Form,
+.flex-layout form,
+.flex-layout .fieldset,
+.flex-layout .tab-pane,
+.flex-layout .tab-pane > .s-DataGrid,
+.flex-layout .s-PropertyGrid {
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  min-height: 0;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+  -moz-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  -ms-flex-positive: 1;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 50%;
+}
+.flex-layout .grid-container {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+  -moz-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  -ms-flex-positive: 1;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 50%;
+}
+.flex-layout .s-PropertyGrid .categories {
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
 @media (max-width: 760px) {
   .flex-layout .field {
     -webkit-box-lines: multiple;
@@ -1074,7 +1150,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     -ms-flex-negative: 1;
     -ms-flex-preferred-size: 0.01%;
   }
-  .flex-layout .s-Form .caption {
+  .flex-layout .caption {
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
     -webkit-flex: 0 0 100%;
@@ -1085,52 +1161,19 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     -ms-flex-negative: 0;
     -ms-flex-preferred-size: 100%;
     width: auto;
+  }
+  .flex-layout .s-Form .caption {
     text-align: left;
     padding-top: 0px;
     padding-bottom: 2px;
   }
-  .flex-layout .category-title {
-    margin: 12px 10px 8px 0;
-  }
   .flex-layout .s-PropertyGrid .category-title {
     padding: 3px 0;
+    margin: 12px 10px 8px 0;
   }
 }
 body.mobile-device.modal-dialog-open {
   overflow-y: hidden;
-}
-.ui-dialog.flex-layout .ui-dialog-content,
-.ui-dialog.flex-layout .s-DialogContent,
-.ui-dialog.flex-layout .s-Form,
-.ui-dialog.flex-layout form,
-.ui-dialog.flex-layout .fieldset,
-.ui-dialog.flex-layout .s-PropertyGrid {
-  display: -moz-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -moz-box-direction: normal;
-  min-height: 0;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
-  -ms-flex-grow: 1;
-  flex-grow: 1;
-}
-.ui-dialog.flex-layout .s-PropertyGrid .categories {
-  -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
-  -ms-flex-grow: 1;
-  flex-grow: 1;
-  overflow-y: scroll;
 }
 .ui-dialog.mobile-layout {
   box-shadow: none;

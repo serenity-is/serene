@@ -89,6 +89,7 @@ namespace MVC
             public const string CancellableBulkAction = "~/Modules/BasicSamples/CancellableBulkAction.cshtml";
             public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
             public const string CloneableEntityDialog = "~/Modules/BasicSamples/CloneableEntityDialog.cshtml";
+            public const string LookupFilterByMultipleValues = "~/Modules/BasicSamples/LookupFilterByMultipleValues.cshtml";
             public const string MultiColumnDialog = "~/Modules/BasicSamples/MultiColumnDialog.cshtml";
             public const string MultiColumnResponsiveDialog = "~/Modules/BasicSamples/MultiColumnResponsiveDialog.cshtml";
             public const string ResponsiveDialog = "~/Modules/BasicSamples/ResponsiveDialog.cshtml";

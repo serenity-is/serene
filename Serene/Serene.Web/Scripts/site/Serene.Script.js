@@ -346,6 +346,27 @@
 	$Serene_BasicSamples_CloneableEntityGrid.__typeName = 'Serene.BasicSamples.CloneableEntityGrid';
 	global.Serene.BasicSamples.CloneableEntityGrid = $Serene_BasicSamples_CloneableEntityGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.LookupFilterByMultipleDialog
+	var $Serene_BasicSamples_LookupFilterByMultipleDialog = function() {
+		$Serene_Northwind_ProductDialog.call(this);
+	};
+	$Serene_BasicSamples_LookupFilterByMultipleDialog.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleDialog';
+	global.Serene.BasicSamples.LookupFilterByMultipleDialog = $Serene_BasicSamples_LookupFilterByMultipleDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.LookupFilterByMultipleForm
+	var $Serene_BasicSamples_LookupFilterByMultipleForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
+	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.LookupFilterByMultipleGrid
+	var $Serene_BasicSamples_LookupFilterByMultipleGrid = function(container) {
+		$Serene_Northwind_ProductGrid.call(this, container);
+	};
+	$Serene_BasicSamples_LookupFilterByMultipleGrid.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleGrid';
+	global.Serene.BasicSamples.LookupFilterByMultipleGrid = $Serene_BasicSamples_LookupFilterByMultipleGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.MultiColumnDialog
 	var $Serene_BasicSamples_MultiColumnDialog = function() {
 		$Serene_Northwind_OrderDialog.call(this);
@@ -397,6 +418,13 @@
 	};
 	$Serene_BasicSamples_OrderBulkAction.__typeName = 'Serene.BasicSamples.OrderBulkAction';
 	global.Serene.BasicSamples.OrderBulkAction = $Serene_BasicSamples_OrderBulkAction;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.ProduceSeafoodCategoryEditor
+	var $Serene_BasicSamples_ProduceSeafoodCategoryEditor = function(hidden, opt) {
+		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).$ctor1.call(this, hidden, opt);
+	};
+	$Serene_BasicSamples_ProduceSeafoodCategoryEditor.__typeName = 'Serene.BasicSamples.ProduceSeafoodCategoryEditor';
+	global.Serene.BasicSamples.ProduceSeafoodCategoryEditor = $Serene_BasicSamples_ProduceSeafoodCategoryEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ResponsiveDialog
 	var $Serene_BasicSamples_ResponsiveDialog = function() {
@@ -1504,7 +1532,7 @@
 		},
 		nothingToProcess: function() {
 			this.delayed(ss.mkdel(this, function() {
-				Q.notifyError(this.getNothingToProcessMessage());
+				Q.notifyError(this.getNothingToProcessMessage(), '', null);
 			}));
 		},
 		getParallelRequests: function() {
@@ -1580,7 +1608,7 @@
 		},
 		showAllHadErrors: function() {
 			this.delayed(ss.mkdel(this, function() {
-				Q.notifyError(ss.formatString(this.getAllHadErrorsFormat(), this.$errorCount));
+				Q.notifyError(ss.formatString(this.getAllHadErrorsFormat(), this.$errorCount), '', null);
 			}));
 		},
 		getSomeHadErrorsFormat: function() {
@@ -1588,7 +1616,7 @@
 		},
 		showSomeHadErrors: function() {
 			this.delayed(ss.mkdel(this, function() {
-				Q.notifyWarning(ss.formatString(this.getSomeHadErrorsFormat(), this.$successCount, this.$errorCount));
+				Q.notifyWarning(ss.formatString(this.getSomeHadErrorsFormat(), this.$successCount, this.$errorCount), '', null);
 			}));
 		},
 		getAllSuccessFormat: function() {
@@ -1596,7 +1624,7 @@
 		},
 		showAllSuccess: function() {
 			this.delayed(ss.mkdel(this, function() {
-				Q.notifySuccess(ss.formatString(this.getAllSuccessFormat(), this.$successCount));
+				Q.notifySuccess(ss.formatString(this.getAllSuccessFormat(), this.$successCount), '', null);
 			}));
 		},
 		showResults: function() {
@@ -1990,7 +2018,7 @@
 				}).toArray(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'));
+						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'), '', null);
 					}, 0);
 				}), null);
 			}) });
@@ -2108,7 +2136,7 @@
 			return RSVP.resolve(Q.serviceRequest('Administration/Translation/Update', { TargetLanguageID: language, Translations: translations }, null, null)).then(ss.mkdel(this, function() {
 				this.$hasChanges = false;
 				language = ss.coalesce(Q.trimToNull(language), 'invariant');
-				Q.notifySuccess('User translations in "' + language + '" language are saved to "user.texts.' + language + '.json" ' + 'file under "~/App_Data/texts/"');
+				Q.notifySuccess('User translations in "' + language + '" language are saved to "user.texts.' + language + '.json" ' + 'file under "~/App_Data/texts/"', '', null);
 			}), null);
 		},
 		onViewSubmit: function() {
@@ -2222,7 +2250,7 @@
 				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'));
+						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'), '', null);
 					}, 0);
 				}), null);
 			}) });
@@ -2245,7 +2273,7 @@
 				}).toArray() }, ss.mkdel(this, function(response) {
 					this.dialogClose();
 					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'));
+						Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'), '', null);
 					}, 0);
 				}), null);
 			}) });
@@ -2455,7 +2483,7 @@
 			if (field === 'UnitPrice') {
 				value = Q.parseDecimal(text);
 				if (ss.isNullOrUndefined(value) || isNaN(ss.unbox(value))) {
-					Q.notifyError(Q.text('Validation.Decimal'));
+					Q.notifyError(Q.text('Validation.Decimal'), '', null);
 					input.val(oldText);
 					input.focus();
 					return;
@@ -2464,7 +2492,7 @@
 			else {
 				var i = {};
 				if (!ss.Int32.tryParse(text, i) || i.$ > 32767 || i.$ < 0) {
-					Q.notifyError(Q.text('Validation.Integer'));
+					Q.notifyError(Q.text('Validation.Integer'), '', null);
 					input.val(oldText);
 					input.focus();
 					return;
@@ -2506,6 +2534,52 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleDialog, $asm, {}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
+		get_productName: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'ProductName');
+		},
+		get_productImage: function() {
+			return this.byId(Serenity.ImageUploadEditor).call(this, 'ProductImage');
+		},
+		get_discontinued: function() {
+			return this.byId(Serenity.BooleanEditor).call(this, 'Discontinued');
+		},
+		get_supplierID: function() {
+			return this.byId(Serenity.LookupEditor).call(this, 'SupplierID');
+		},
+		get_categoryID: function() {
+			return this.byId($Serene_BasicSamples_ProduceSeafoodCategoryEditor).call(this, 'CategoryID');
+		},
+		get_quantityPerUnit: function() {
+			return this.byId(Serenity.StringEditor).call(this, 'QuantityPerUnit');
+		},
+		get_unitPrice: function() {
+			return this.byId(Serenity.DecimalEditor).call(this, 'UnitPrice');
+		},
+		get_unitsInStock: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'UnitsInStock');
+		},
+		get_unitsOnOrder: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'UnitsOnOrder');
+		},
+		get_reorderLevel: function() {
+			return this.byId(Serenity.IntegerEditor).call(this, 'ReorderLevel');
+		}
+	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleGrid, $asm, {
+		onViewSubmit: function() {
+			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+				return false;
+			}
+			// this has no relation to our lookup editor but as we'll allow picking only 
+			// categories of Produce and Seafood in product dialog, it's better to show
+			// only products from these categories in grid too
+			var $t1 = this.get_view().params;
+			$t1.Criteria = Serenity.Criteria.join($t1.Criteria, 'and', [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
+			return true;
+		}
+	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
 		loadEntity: function(entity) {
 			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
@@ -2539,6 +2613,16 @@
 			}), onCleanup: ss.mkdel(this, this.serviceCallCleanup) });
 		}
 	}, $Serene_BulkServiceAction);
+	ss.initClass($Serene_BasicSamples_ProduceSeafoodCategoryEditor, $asm, {
+		getLookupKey: function() {
+			return 'Northwind.Category';
+		},
+		getItems: function(lookup) {
+			return Enumerable.from(ss.makeGenericType(Serenity.LookupEditorBase$2, [Serenity.LookupEditorOptions, Object]).prototype.getItems.call(this, lookup)).where(function(x) {
+				return x.CategoryName === 'Produce' || x.CategoryName === 'Seafood';
+			});
+		}
+	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
 	ss.initClass($Serene_BasicSamples_ResponsiveDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_ResponsiveGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_ViewWithoutIDGrid, $asm, {
@@ -3351,6 +3435,8 @@
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });
+	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('BasicSamples.LookupFilterByMultiple')] });
+	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_LookupFilterByMultipleDialog)] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnDialog)] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveDialog, { attr: [new Serenity.ResponsiveAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnResponsiveGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnResponsiveDialog)] });

@@ -1156,6 +1156,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Modules\BasicSamples\CloneableEntityDialog.cshtml" />
+    <Content Include="Modules\BasicSamples\LookupFilterByMultipleValues.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
@@ -1511,6 +1512,7 @@
     <Compile Include="Modules\BasicSamples\BasicSamplesEndpoint.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
+    <Compile Include="Modules\BasicSamples\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />

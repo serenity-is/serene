@@ -21,6 +21,11 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.CloneableEntityDialog);
         }
 
+        public ActionResult LookupFilterByMultipleValues()
+        {
+            return View(MVC.Views.BasicSamples.LookupFilterByMultipleValues);
+        }
+
         public ActionResult MultiColumnDialog()
         {
             return View(MVC.Views.BasicSamples.MultiColumnDialog);

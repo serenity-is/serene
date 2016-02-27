@@ -218,7 +218,7 @@
 					return parent;
 				}
 				else {
-					Q.notifyError("Can't find cascaded parent element with ID: " + this.$parentID + '!');
+					Q.notifyError("Can't find cascaded parent element with ID: " + this.$parentID + '!', '', null);
 					return null;
 				}
 			},
@@ -1484,7 +1484,9 @@
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '>=', args.widget.get_value()]);
 					}
 					if (!ss.isNullOrEmptyString(end.get_value())) {
-						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<=', end.get_value()]);
+						var next = new Date(end.get_valueAsDate().valueOf());
+						next.setDate(next.getDate() + 1);
+						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<', Q.formatDate(next, 'yyyy-MM-dd')]);
 					}
 				}, $t1, null);
 			},
@@ -3035,7 +3037,7 @@
 				this.localizationButton = this.toolbar.findButton('localization-button');
 			},
 			showSaveSuccessMessage: function(response) {
-				Q.notifySuccess(Texts$Controls$EntityDialog.SaveSuccessMessage.get());
+				Q.notifySuccess(Texts$Controls$EntityDialog.SaveSuccessMessage.get(), '', null);
 			},
 			getToolbarButtons: function() {
 				var list = [];
@@ -8702,7 +8704,7 @@
 			opt.buttons = [{ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
 				this.$filterPanel.search();
 				if (this.$filterPanel.get_hasErrors()) {
-					Q.notifyError(Q.text('Controls.FilterPanel.FixErrorsMessage'));
+					Q.notifyError(Q.text('Controls.FilterPanel.FixErrorsMessage'), '', null);
 					return;
 				}
 				this.dialogClose();

@@ -46,6 +46,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.cs">CloneableEntityDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleValues.cs">LookupFilterByMultipleValues.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cs">MultiColumnDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.cs">MultiColumnResponsiveDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.cs">OrderBulkAction.cs</ProjectItem>
@@ -73,6 +74,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.cs">Administration.LanguageForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.cs">Administration.RoleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.cs">Administration.UserForm.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.cs">BasicSamples.LookupFilterByMultipleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="FormContexts.log">FormContexts.log</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.cs">Membership.ChangePasswordForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.cs">Membership.ForgotPasswordForm.cs</ProjectItem>
@@ -269,7 +271,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.9.16" />
+      <package id="Serenity.Script" version="1.9.17" />
     </packages>
   </WizardData>
   <WizardExtension>

@@ -280,17 +280,17 @@
 			body.addClass('mobile-device');
 		}
 	};
-	$Q.notifyWarning = function(message) {
-		toastr.warning(message, '', $Q.$getToastrOptions());
+	$Q.notifyWarning = function(message, title, options) {
+		toastr.warning(message, title, $Q.$getToastrOptions(options));
 	};
-	$Q.notifySuccess = function(message) {
-		toastr.success(message, '', $Q.$getToastrOptions());
+	$Q.notifySuccess = function(message, title, options) {
+		toastr.success(message, title, $Q.$getToastrOptions(options));
 	};
-	$Q.notifyInfo = function(message) {
-		toastr.info(message, '', $Q.$getToastrOptions());
+	$Q.notifyInfo = function(message, title, options) {
+		toastr.info(message, title, $Q.$getToastrOptions(options));
 	};
-	$Q.notifyError = function(message) {
-		toastr.error(message, '', $Q.$getToastrOptions());
+	$Q.notifyError = function(message, title, options) {
+		toastr.error(message, title, $Q.$getToastrOptions(options));
 	};
 	$Q.positionToastContainer = function(create) {
 		if (!!ss.isNullOrUndefined(window.window.toastr)) {
@@ -314,8 +314,8 @@
 			}
 		}
 	};
-	$Q.$getToastrOptions = function() {
-		var options = { timeOut: 3000, showDuration: 250, hideDuration: 500, extendedTimeOut: 500, positionClass: 'toast-top-full-width' };
+	$Q.$getToastrOptions = function(options) {
+		options = $.extend({}, $Q.defaultNotifyOptions, options);
 		$Q.positionToastContainer(true);
 		return options;
 	};
@@ -1990,6 +1990,7 @@
 	})();
 	(function() {
 		$Q.$blockUICount = 0;
+		$Q.defaultNotifyOptions = null;
 		var window3 = window.window;
 		var rsvp = window3.RSVP;
 		if (!!(ss.isValue(rsvp) && ss.isValue(rsvp.on))) {
@@ -2005,6 +2006,7 @@
 				$Q.setMobileDeviceMode();
 			});
 		});
+		$Q.defaultNotifyOptions = { timeOut: 3000, showDuration: 250, hideDuration: 500, extendedTimeOut: 500, positionClass: 'toast-top-full-width' };
 	})();
 	(function() {
 		$Q$Culture.decimalSeparator = '.';

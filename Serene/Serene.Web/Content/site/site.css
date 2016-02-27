@@ -6872,6 +6872,9 @@ section.content > .s-DataGrid {
   background-color: transparent;
   background-image: url(../serenity/images/back-arrow-black.png);
 }
+.s-MessageDialog {
+  min-width: 310px;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
@@ -7175,6 +7178,13 @@ section.content > .s-DataGrid {
   height: 500px;
 }
 .s-BasicSamples-CloneableEntityDialog .caption {
+  width: 150px;
+}
+.s-BasicSamples-LookupFilterByMultipleDialog > .size {
+  width: 850px;
+  height: 650px;
+}
+.s-BasicSamples-LookupFilterByMultipleDialog .caption {
   width: 150px;
 }
 .s-LoginPanel {
