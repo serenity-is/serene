@@ -6,6 +6,7 @@ namespace Serene.Administration.Repositories
     using Serenity.Data;
     using Serenity.Extensibility;
     using Serenity.Services;
+    using Serenity.Web;
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -183,11 +184,13 @@ namespace Serene.Administration.Repositories
 
                     foreach (var type in assembly.GetTypes())
                     {
+                        ProcessAttributes<PageAuthorizeAttribute>(result, type, x => x.Permission);
                         ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
                         ProcessAttributes<ServiceAuthorizeAttribute>(result, type, x => x.Permission);
 
                         foreach (var member in type.GetMethods(BindingFlags.Instance | BindingFlags.Public))
                         {
+                            ProcessAttributes<PageAuthorizeAttribute>(result, member, x => x.Permission);
                             ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                             ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
                         }
