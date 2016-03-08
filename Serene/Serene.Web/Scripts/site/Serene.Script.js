@@ -346,6 +346,13 @@
 	$Serene_BasicSamples_CloneableEntityGrid.__typeName = 'Serene.BasicSamples.CloneableEntityGrid';
 	global.Serene.BasicSamples.CloneableEntityGrid = $Serene_BasicSamples_CloneableEntityGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.GridFilteredByCriteria
+	var $Serene_BasicSamples_GridFilteredByCriteria = function(container) {
+		$Serene_Northwind_ProductGrid.call(this, container);
+	};
+	$Serene_BasicSamples_GridFilteredByCriteria.__typeName = 'Serene.BasicSamples.GridFilteredByCriteria';
+	global.Serene.BasicSamples.GridFilteredByCriteria = $Serene_BasicSamples_GridFilteredByCriteria;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.LookupFilterByMultipleDialog
 	var $Serene_BasicSamples_LookupFilterByMultipleDialog = function() {
 		$Serene_Northwind_ProductDialog.call(this);
@@ -2534,6 +2541,22 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_GridFilteredByCriteria, $asm, {
+		onViewSubmit: function() {
+			// only continue if base class returns true (didn't cancel request)
+			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+				return false;
+			}
+			// view object is the data source for grid (SlickRemoteView)
+			// this is an EntityGrid so its Params object is a ListRequest
+			var request = this.view.params;
+			// list request has a Criteria parameter
+			// we use " &= " here because otherwise we might clear 
+			// filter set by an edit filter dialog if any.
+			request.Criteria = Serenity.Criteria.join(request.Criteria, 'and', Serenity.Criteria.join(Serenity.Criteria.join([['UnitsInStock'], '>', 10], 'and', [['CategoryName'], '!=', 'Condiments']), 'and', [['Discontinued'], '=', 0]));
+			return true;
+		}
+	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleDialog, $asm, {}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
 		get_productName: function() {

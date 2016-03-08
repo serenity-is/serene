@@ -1595,7 +1595,7 @@
 		if (!input.is(':input')) {
 			return;
 		}
-		if (input.is(':readonly') || input.is(':disabled')) {
+		if (input.is('[readonly]') || input.is(':disabled')) {
 			return;
 		}
 		var val = ss.coalesce(input.val(), '');

@@ -21,6 +21,11 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.CloneableEntityDialog);
         }
 
+        public ActionResult GridFilteredByCriteria()
+        {
+            return View(MVC.Views.BasicSamples.GridFilteredByCriteria);
+        }
+
         public ActionResult LookupFilterByMultipleValues()
         {
             return View(MVC.Views.BasicSamples.LookupFilterByMultipleValues);
