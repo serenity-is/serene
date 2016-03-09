@@ -38,6 +38,7 @@
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="BasicSamples\GridFilteredByCriteria.cs" />
     <Compile Include="BasicSamples\LookupFilterByMultipleValues.cs" />
+    <Compile Include="BasicSamples\DefaultValuesInNewDialog.cs" />
     <Compile Include="BasicSamples\MultiColumnResponsiveDialog.cs" />
     <Compile Include="BasicSamples\CloneableEntityDialog.cs" />
     <Compile Include="BasicSamples\ResponsiveDialog.cs" />

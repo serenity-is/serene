@@ -19,6 +19,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
 [assembly: NavigationLink(7900, "Basic Samples/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Cloneable Entity Dialog", typeof(Basic.BasicSamplesController), action: "CloneableEntityDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Default Values In New Dialog", typeof(Basic.BasicSamplesController), action: "DefaultValuesInNewDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Grid Filtered by Criteria", typeof(Basic.BasicSamplesController), action: "GridFilteredByCriteria")]
 [assembly: NavigationLink(7900, "Basic Samples/Lookup Filter by Multi Values", typeof(Basic.BasicSamplesController), action: "LookupFilterByMultipleValues")]
 [assembly: NavigationLink(7900, "Basic Samples/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnDialog")]

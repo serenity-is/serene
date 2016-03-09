@@ -346,6 +346,13 @@
 	$Serene_BasicSamples_CloneableEntityGrid.__typeName = 'Serene.BasicSamples.CloneableEntityGrid';
 	global.Serene.BasicSamples.CloneableEntityGrid = $Serene_BasicSamples_CloneableEntityGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.DefaultValuesInNewGrid
+	var $Serene_BasicSamples_DefaultValuesInNewGrid = function(container) {
+		$Serene_Northwind_OrderGrid.call(this, container);
+	};
+	$Serene_BasicSamples_DefaultValuesInNewGrid.__typeName = 'Serene.BasicSamples.DefaultValuesInNewGrid';
+	global.Serene.BasicSamples.DefaultValuesInNewGrid = $Serene_BasicSamples_DefaultValuesInNewGrid;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.GridFilteredByCriteria
 	var $Serene_BasicSamples_GridFilteredByCriteria = function(container) {
 		$Serene_Northwind_ProductGrid.call(this, container);
@@ -2541,6 +2548,50 @@
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_DefaultValuesInNewGrid, $asm, {
+		addButtonClick: function() {
+			this.editItem({ CustomerID: 'ANTON', RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'), EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x) {
+				return x.FullName === 'Robert King';
+			}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').get_items()).first(function(x1) {
+				return x1.CompanyName === 'Speedy Express';
+			}).ShipperID });
+		},
+		getButtons: function() {
+			// preserving default New Item button
+			var buttons = $Serene_Northwind_OrderGrid.prototype.getButtons.call(this);
+			buttons.push({ title: 'Add Order from the Queen', cssClass: 'add-button', onClick: ss.mkdel(this, function() {
+				// using EditItem method as a shortcut to create a new Order dialog,
+				// bind to its events, load our order row, and open dialog
+				this.editItem({ CustomerID: 'QUEEN', EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x) {
+					return x.FullName === 'Nancy Davolio';
+				}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').get_items()).first(function(x1) {
+					return x1.CompanyName === 'United Package';
+				}).ShipperID });
+			}) });
+			buttons.push({ title: 'Add Order with 5 Chai by Laura', cssClass: 'add-note-button', onClick: ss.mkdel(this, function() {
+				// we could use EditItem here too, but demonstration
+				// purposes we are manually creating dialog this time
+				// first create a new instance of OrderDialog
+				var dlg = new $Serene_Northwind_OrderDialog();
+				// let grid watch for changes to manually created dialog, 
+				// so when a new item is saved, grid can refresh itself
+				this.initEntityDialog(dlg);
+				// get a reference to product Chai
+				var chai = Enumerable.from(Q.getLookup('Northwind.Product').get_items()).first(function(x2) {
+					return x2.ProductName === 'Chai';
+				});
+				// load entity and open dialog, loads an OrderRow 
+				// to dialog and opens it
+				var $t2 = Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x3) {
+					return x3.FullName === 'Laura Callahan';
+				}).EmployeeID;
+				var $t1 = [];
+				$t1.push({ ProductID: chai.ProductID, ProductName: chai.ProductName, UnitPrice: chai.UnitPrice, Quantity: 5, LineTotal: ss.Nullable$1.mul(chai.UnitPrice, 5) });
+				dlg.loadEntityAndOpenDialog({ CustomerID: 'GOURL', EmployeeID: $t2, DetailList: $t1 });
+			}) });
+			return buttons;
+		}
+	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_GridFilteredByCriteria, $asm, {
 		onViewSubmit: function() {
 			// only continue if base class returns true (didn't cancel request)
