@@ -306,6 +306,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.cshtml">CloneableEntityDialog.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewDialog.cshtml">DefaultValuesInNewDialog.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.cshtml">FilteredLookupInDetailDialog.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailForm.cs">FilteredLookupInDetailForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.cshtml">GridFilteredByCriteria.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleForm.cs">LookupFilterByMultipleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleValues.cshtml">LookupFilterByMultipleValues.cshtml</ProjectItem>

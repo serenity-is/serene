@@ -47,6 +47,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.cs">CloneableEntityDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewDialog.cs">DefaultValuesInNewDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.cs">FilteredLookupInDetailDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.cs">GridFilteredByCriteria.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleValues.cs">LookupFilterByMultipleValues.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cs">MultiColumnDialog.cs</ProjectItem>
@@ -76,6 +77,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.cs">Administration.LanguageForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.cs">Administration.RoleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.cs">Administration.UserForm.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.cs">BasicSamples.FilteredLookupInDetailForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.cs">BasicSamples.LookupFilterByMultipleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="false" TargetFileName="FormContexts.log">FormContexts.log</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.cs">Membership.ChangePasswordForm.cs</ProjectItem>
