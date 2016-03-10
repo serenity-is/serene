@@ -2569,9 +2569,8 @@
 				}).ShipperID });
 			}) });
 			buttons.push({ title: 'Add Order with 5 Chai by Laura', cssClass: 'add-note-button', onClick: ss.mkdel(this, function() {
-				// we could use EditItem here too, but demonstration
+				// we could use EditItem here too, but for demonstration
 				// purposes we are manually creating dialog this time
-				// first create a new instance of OrderDialog
 				var dlg = new $Serene_Northwind_OrderDialog();
 				// let grid watch for changes to manually created dialog, 
 				// so when a new item is saved, grid can refresh itself
@@ -2580,7 +2579,7 @@
 				var chai = Enumerable.from(Q.getLookup('Northwind.Product').get_items()).first(function(x2) {
 					return x2.ProductName === 'Chai';
 				});
-				// load entity and open dialog, loads an OrderRow 
+				// LoadEntityAndOpenDialog, loads an OrderRow 
 				// to dialog and opens it
 				var $t2 = Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x3) {
 					return x3.FullName === 'Laura Callahan';

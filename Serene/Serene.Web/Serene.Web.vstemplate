@@ -305,6 +305,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkAction.cshtml">CancellableBulkAction.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cshtml">ChartInDialog.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.cshtml">CloneableEntityDialog.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewDialog.cshtml">DefaultValuesInNewDialog.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.cshtml">GridFilteredByCriteria.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleForm.cs">LookupFilterByMultipleForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleValues.cshtml">LookupFilterByMultipleValues.cshtml</ProjectItem>
@@ -327,8 +328,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>

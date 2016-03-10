@@ -46,6 +46,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.cs">CancellableBulkActionGrid.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.cs">ChartInDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.cs">CloneableEntityDialog.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewDialog.cs">DefaultValuesInNewDialog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.cs">GridFilteredByCriteria.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleValues.cs">LookupFilterByMultipleValues.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.cs">MultiColumnDialog.cs</ProjectItem>
