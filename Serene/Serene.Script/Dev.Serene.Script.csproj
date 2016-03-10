@@ -37,6 +37,7 @@
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="BasicSamples\GridFilteredByCriteria.cs" />
+    <Compile Include="BasicSamples\FilteredLookupInDetailDialog.cs" />
     <Compile Include="BasicSamples\LookupFilterByMultipleValues.cs" />
     <Compile Include="BasicSamples\DefaultValuesInNewDialog.cs" />
     <Compile Include="BasicSamples\MultiColumnResponsiveDialog.cs" />
@@ -50,6 +51,9 @@
     <Compile Include="Common\Helper\BulkServiceAction.cs" />
     <Compile Include="Common\Helper\ReportHelper.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
+    <Compile Include="Imports\FormContexts\BasicSamples.FilteredLookupInDetailForm.cs">
+      <DependentUpon>FormContexts.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\FormContexts\BasicSamples.LookupFilterByMultipleForm.cs">
       <DependentUpon>FormContexts.tt</DependentUpon>
     </Compile>

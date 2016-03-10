@@ -55,7 +55,7 @@ namespace Serene.Northwind.Entities
             set { Fields.SupplierID[this] = value; }
         }
 
-        [DisplayName("Category"), ForeignKey("Categories", "CategoryID"), LeftJoin("cat")]
+        [DisplayName("Category"), ForeignKey("Categories", "CategoryID"), LeftJoin("cat"), LookupInclude]
         [LookupEditor(typeof(CategoryRow), InplaceAdd = true)]
         public Int32? CategoryID
         {

@@ -353,6 +353,54 @@
 	$Serene_BasicSamples_DefaultValuesInNewGrid.__typeName = 'Serene.BasicSamples.DefaultValuesInNewGrid';
 	global.Serene.BasicSamples.DefaultValuesInNewGrid = $Serene_BasicSamples_DefaultValuesInNewGrid;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.FilteredLookupDetailEditor
+	var $Serene_BasicSamples_FilteredLookupDetailEditor = function(container) {
+		this.$9$CategoryIDField = null;
+		$Serene_Northwind_OrderDetailsEditor.call(this, container);
+	};
+	$Serene_BasicSamples_FilteredLookupDetailEditor.__typeName = 'Serene.BasicSamples.FilteredLookupDetailEditor';
+	global.Serene.BasicSamples.FilteredLookupDetailEditor = $Serene_BasicSamples_FilteredLookupDetailEditor;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.FilteredLookupInDetailDialog
+	var $Serene_BasicSamples_FilteredLookupInDetailDialog = function() {
+		this.$form = null;
+		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.get_idPrefix());
+		Serenity.WX.change(this.$form.get_categoryID(), ss.mkdel(this, function(e) {
+			this.$form.get_detailList().set_categoryID(Serenity.IdExtensions.toInt32(this.$form.get_categoryID().get_value()));
+		}));
+	};
+	$Serene_BasicSamples_FilteredLookupInDetailDialog.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailDialog';
+	global.Serene.BasicSamples.FilteredLookupInDetailDialog = $Serene_BasicSamples_FilteredLookupInDetailDialog;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.FilteredLookupInDetailForm
+	var $Serene_BasicSamples_FilteredLookupInDetailForm = function(idPrefix) {
+		Serenity.PrefixedContext.call(this, idPrefix);
+	};
+	$Serene_BasicSamples_FilteredLookupInDetailForm.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailForm';
+	global.Serene.BasicSamples.FilteredLookupInDetailForm = $Serene_BasicSamples_FilteredLookupInDetailForm;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.FilteredLookupInDetailGrid
+	var $Serene_BasicSamples_FilteredLookupInDetailGrid = function(container) {
+		$Serene_Northwind_OrderGrid.call(this, container);
+	};
+	$Serene_BasicSamples_FilteredLookupInDetailGrid.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailGrid';
+	global.Serene.BasicSamples.FilteredLookupInDetailGrid = $Serene_BasicSamples_FilteredLookupInDetailGrid;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serene.BasicSamples.FilteredLookupOrderDetailDialog
+	var $Serene_BasicSamples_FilteredLookupOrderDetailDialog = function() {
+		this.$10$CategoryIDField = null;
+		$Serene_Northwind_OrderDetailDialog.call(this);
+		// we can set cascade field in constructor
+		// we could also use FilterField but in this case, when CategoryID is null
+		// lookup editor would show all products in any category
+		this.form.get_productID().set_cascadeField('CategoryID');
+		// but CategoryID value is not yet available here as detail editor will set it 
+		// after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
+	};
+	$Serene_BasicSamples_FilteredLookupOrderDetailDialog.__typeName = 'Serene.BasicSamples.FilteredLookupOrderDetailDialog';
+	global.Serene.BasicSamples.FilteredLookupOrderDetailDialog = $Serene_BasicSamples_FilteredLookupOrderDetailDialog;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.GridFilteredByCriteria
 	var $Serene_BasicSamples_GridFilteredByCriteria = function(container) {
 		$Serene_Northwind_ProductGrid.call(this, container);
@@ -1171,17 +1219,17 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDetailDialog
 	var $Serene_Northwind_OrderDetailDialog = function() {
-		this.$form = null;
+		this.form = null;
 		ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]).call(this);
-		this.$form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
-		Serenity.WX.changeSelect2(this.$form.get_productID(), ss.mkdel(this, function(e) {
-			var productID = Serenity.IdExtensions.toInt32(this.$form.get_productID().get_value());
+		this.form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
+		Serenity.WX.changeSelect2(this.form.get_productID(), ss.mkdel(this, function(e) {
+			var productID = Serenity.IdExtensions.toInt32(this.form.get_productID().get_value());
 			if (ss.isValue(productID)) {
-				this.$form.get_unitPrice().set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
+				this.form.get_unitPrice().set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
 			}
 		}));
-		Serenity.VX.addValidationRule(this.$form.get_discount(), this.uniqueName, ss.mkdel(this, function(e1) {
-			if (ss.isValue(this.$form.get_unitPrice().get_value()) && ss.isValue(this.$form.get_quantity().get_value$1()) && ss.isValue(this.$form.get_discount().get_value()) && ss.unbox(this.$form.get_discount().get_value()) > 0 && ss.unbox(this.$form.get_discount().get_value()) > ss.unbox(this.$form.get_unitPrice().get_value()) * ss.unbox(this.$form.get_quantity().get_value$1())) {
+		Serenity.VX.addValidationRule(this.form.get_discount(), this.uniqueName, ss.mkdel(this, function(e1) {
+			if (ss.isValue(this.form.get_unitPrice().get_value()) && ss.isValue(this.form.get_quantity().get_value$1()) && ss.isValue(this.form.get_discount().get_value()) && ss.unbox(this.form.get_discount().get_value()) > 0 && ss.unbox(this.form.get_discount().get_value()) > ss.unbox(this.form.get_unitPrice().get_value()) * ss.unbox(this.form.get_quantity().get_value$1())) {
 				return "Discount can't be higher than total price!";
 			}
 			return null;
@@ -2591,6 +2639,67 @@
 			return buttons;
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_OrderDetailsEditor, $asm, {
+		validateEntity: function(row, id) {
+			row.ProductID = Serenity.IdExtensions.toInt32(row.ProductID);
+			var sameProduct = Enumerable.from(this.view.getItems()).firstOrDefault(function(x) {
+				return ss.referenceEquals(x.ProductID, row.ProductID);
+			}, ss.getDefaultValue(Object));
+			if (ss.isValue(sameProduct) && !ss.referenceEquals(this.id(sameProduct), id)) {
+				Q.alert('This product is already in order details!');
+				return false;
+			}
+			row.ProductName = Q.getLookup('Northwind.Product').get_itemById()[row.ProductID].ProductName;
+			row.LineTotal = ss.coalesce(row.Quantity, 0) * ss.coalesce(row.UnitPrice, 0) - ss.coalesce(row.Discount, 0);
+			return true;
+		}
+	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
+	ss.initClass($Serene_BasicSamples_FilteredLookupDetailEditor, $asm, {
+		initEntityDialog$1: function(itemType, dialog) {
+			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.initEntityDialog$1.call(this, itemType, dialog);
+			// passing category ID from grid editor to detail dialog
+			ss.cast(dialog, $Serene_BasicSamples_FilteredLookupOrderDetailDialog).set_categoryID(this.get_categoryID());
+		},
+		get_categoryID: function() {
+			return this.$9$CategoryIDField;
+		},
+		set_categoryID: function(value) {
+			this.$9$CategoryIDField = value;
+		}
+	}, $Serene_Northwind_OrderDetailsEditor, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
+	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailForm, $asm, {
+		get_customerID: function() {
+			return this.byId($Serene_Northwind_CustomerEditor).call(this, 'CustomerID');
+		},
+		get_orderDate: function() {
+			return this.byId(Serenity.DateEditor).call(this, 'OrderDate');
+		},
+		get_categoryID: function() {
+			return this.byId(Serenity.LookupEditor).call(this, 'CategoryID');
+		},
+		get_detailList: function() {
+			return this.byId($Serene_BasicSamples_FilteredLookupDetailEditor).call(this, 'DetailList');
+		}
+	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_FilteredLookupOrderDetailDialog, $asm, {
+		beforeLoadEntity: function(entity) {
+			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.beforeLoadEntity.call(this, entity);
+			// setting cascade value here
+			// make sure you have [LookupInclude] on CategoryID property of ProductRow
+			// otherwise this field won't be available in lookup script (will always be null),
+			// so can't be filtered and you'll end up with an empty product list.
+			this.form.get_productID().set_cascadeValue(this.get_categoryID());
+		},
+		get_categoryID: function() {
+			return this.$10$CategoryIDField;
+		},
+		set_categoryID: function(value) {
+			this.$10$CategoryIDField = value;
+		}
+	}, $Serene_Northwind_OrderDetailDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_GridFilteredByCriteria, $asm, {
 		onViewSubmit: function() {
 			// only continue if base class returns true (didn't cancel request)
@@ -3241,7 +3350,6 @@
 			this.$6$OnChangeField = value;
 		}
 	}, Serenity.TemplatedWidget, [Serenity.IGetEditValue, Serenity.ISetEditValue]);
-	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderDetailForm, $asm, {
 		get_productID: function() {
 			return this.byId(Serenity.LookupEditor).call(this, 'ProductID');
@@ -3256,21 +3364,6 @@
 			return this.byId(Serenity.DecimalEditor).call(this, 'Discount');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_OrderDetailsEditor, $asm, {
-		validateEntity: function(row, id) {
-			row.ProductID = Serenity.IdExtensions.toInt32(row.ProductID);
-			var sameProduct = Enumerable.from(this.view.getItems()).firstOrDefault(function(x) {
-				return ss.referenceEquals(x.ProductID, row.ProductID);
-			}, ss.getDefaultValue(Object));
-			if (ss.isValue(sameProduct) && !ss.referenceEquals(this.id(sameProduct), id)) {
-				Q.alert('This product is already in order details!');
-				return false;
-			}
-			row.ProductName = Q.getLookup('Northwind.Product').get_itemById()[row.ProductID].ProductName;
-			row.LineTotal = ss.coalesce(row.Quantity, 0) * ss.coalesce(row.UnitPrice, 0) - ss.coalesce(row.Discount, 0);
-			return true;
-		}
-	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_Northwind_OrderForm, $asm, {
 		get_customerID: function() {
 			return this.byId($Serene_Northwind_CustomerEditor).call(this, 'CustomerID');
@@ -3508,6 +3601,9 @@
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });
+	ss.setMetadata($Serene_BasicSamples_FilteredLookupDetailEditor, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_FilteredLookupOrderDetailDialog)] });
+	ss.setMetadata($Serene_BasicSamples_FilteredLookupInDetailDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order'), new Serenity.FormKeyAttribute('BasicSamples.FilteredLookupInDetail'), new Serenity.ResponsiveAttribute()] });
+	ss.setMetadata($Serene_BasicSamples_FilteredLookupInDetailGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_FilteredLookupInDetailDialog)] });
 	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('BasicSamples.LookupFilterByMultiple')] });
 	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_LookupFilterByMultipleDialog)] });
 	ss.setMetadata($Serene_BasicSamples_MultiColumnGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_MultiColumnDialog)] });

@@ -26,6 +26,11 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.DefaultValuesInNewDialog);
         }
 
+        public ActionResult FilteredLookupInDetailDialog()
+        {
+            return View(MVC.Views.BasicSamples.FilteredLookupInDetailDialog);
+        }
+
         public ActionResult GridFilteredByCriteria()
         {
             return View(MVC.Views.BasicSamples.GridFilteredByCriteria);
@@ -55,6 +60,5 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MVC.Views.BasicSamples.ViewWithoutID);
         }
-
     }
 }

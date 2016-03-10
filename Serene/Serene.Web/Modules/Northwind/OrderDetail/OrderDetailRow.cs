@@ -27,7 +27,7 @@ namespace Serene.Northwind.Entities
             set { Fields.OrderID[this] = value; }
         }
 
-        [DisplayName("Product Id"), PrimaryKey, ForeignKey("Products", "ProductID"), LeftJoin("p")]
+        [DisplayName("Product"), PrimaryKey, ForeignKey("Products", "ProductID"), LeftJoin("p")]
         [LookupEditor(typeof(ProductRow))]
         public Int32? ProductID
         {

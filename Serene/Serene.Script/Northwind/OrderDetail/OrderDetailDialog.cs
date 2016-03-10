@@ -7,7 +7,7 @@ namespace Serene.Northwind
     [FormKey("Northwind.OrderDetail"), LocalTextPrefix("Northwind.OrderDetail")]
     public class OrderDetailDialog : GridEditorDialog<OrderDetailRow>
     {
-        private OrderDetailForm form;
+        protected OrderDetailForm form;
 
         public OrderDetailDialog()
         {

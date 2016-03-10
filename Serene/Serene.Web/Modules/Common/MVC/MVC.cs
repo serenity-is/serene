@@ -90,6 +90,7 @@ namespace MVC
             public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
             public const string CloneableEntityDialog = "~/Modules/BasicSamples/CloneableEntityDialog.cshtml";
             public const string DefaultValuesInNewDialog = "~/Modules/BasicSamples/DefaultValuesInNewDialog.cshtml";
+            public const string FilteredLookupInDetailDialog = "~/Modules/BasicSamples/FilteredLookupInDetailDialog.cshtml";
             public const string GridFilteredByCriteria = "~/Modules/BasicSamples/GridFilteredByCriteria.cshtml";
             public const string LookupFilterByMultipleValues = "~/Modules/BasicSamples/LookupFilterByMultipleValues.cshtml";
             public const string MultiColumnDialog = "~/Modules/BasicSamples/MultiColumnDialog.cshtml";

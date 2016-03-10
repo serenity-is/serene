@@ -7187,6 +7187,51 @@ section.content > .s-DataGrid {
 .s-BasicSamples-LookupFilterByMultipleDialog .caption {
   width: 150px;
 }
+.s-BasicSamples-FilteredLookupInDetailDialog > .size {
+  width: 850px;
+  height: 550px;
+}
+.s-BasicSamples-FilteredLookupInDetailDialog .caption {
+  width: 150px;
+}
+.s-BasicSamples-FilteredLookupInDetailDialog .s-PropertyGrid .categories {
+  overflow-y: auto;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog > .size {
+  min-width: 450px;
+  width: 450px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .tab-pane {
+  height: auto;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .caption {
+  width: 80px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .editor {
+  width: 310px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog input.editor[type=checkbox] {
+  width: auto;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ {
+  width: 286px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.emailuser {
+  width: 170px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.dateQ.s-DateTimeEditor {
+  width: 191px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+  width: 64px;
+  margin-left: 4px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .editor.has-inplace-button {
+  width: 284px;
+}
+.s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .emaildomain {
+  width: 125px;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
