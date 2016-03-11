@@ -21,10 +21,10 @@ namespace Serene.Common
             Action<IUnitOfWork, SaveRequest<TRow>> save = null, Action<IUnitOfWork, DeleteRequest> delete = null)
         {
             this.oldList = oldList ?? new List<TRow>();
-            this.oldById = oldList.ToDictionary(x => GetID(x).Value);
+            this.oldById = this.oldList.ToDictionary(x => GetID(x).Value);
 
             this.newList = newList ?? new List<TRow>();
-            this.newById = newList.ToLookup(x => GetID(x));
+            this.newById = this.newList.ToLookup(x => GetID(x));
 
             this.setOwnerID = setOwnerID;
 
