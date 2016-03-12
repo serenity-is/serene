@@ -26,13 +26,25 @@ namespace Serene.Northwind
             {
                 new SlickGroupInfo<ProductRow>
                 {
-                    Getter = "CategoryName"
+                    Getter = "CategoryName",
+                    Aggregators = new List<SlickAggregator>
+                    {
+                        new SlickMin("QuantityPerUnit"),
+                        new SlickSum("UnitsInStock")
+                    }
                 }
             });
 
             var grid = base.CreateSlickGrid();
             grid.RegisterPlugin(new SlickGroupItemMetadataProvider());
             return grid;
+        }
+
+        protected override SlickGridOptions GetSlickOptions()
+        {
+            var opt = base.GetSlickOptions();
+            opt.ShowFooterRow = true;
+            return opt;
         }
 
         protected override void CreateToolbarExtensions()
@@ -104,7 +116,11 @@ namespace Serene.Northwind
             columns.Single(x => x.Field == Fields.UnitsInStock).Format = InputFormatter;
             columns.Single(x => x.Field == Fields.UnitsOnOrder).Format = InputFormatter;
             columns.Single(x => x.Field == Fields.ReorderLevel).Format = InputFormatter;
-
+            columns.Single(x => x.Field == Fields.UnitsInStock).GroupTotalsFormatter = (t, c) =>
+            {
+                return t.Sum != null && t.Sum[c.Field] != null ?
+                    "Sum: " + t.Sum[c.Field] : "";
+            };
             return columns;
         }
 

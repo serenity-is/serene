@@ -2475,13 +2475,21 @@
 	}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
 		createSlickGrid: function() {
-			var $t2 = this.view;
+			var $t3 = this.view;
 			var $t1 = [];
-			$t1.push({ getter: 'CategoryName' });
-			$t2.setGrouping($t1);
+			var $t2 = [];
+			$t2.push(new Slick.Data.Aggregators.Min('QuantityPerUnit'));
+			$t2.push(new Slick.Data.Aggregators.Sum('UnitsInStock'));
+			$t1.push({ getter: 'CategoryName', aggregators: $t2 });
+			$t3.setGrouping($t1);
 			var grid = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createSlickGrid.call(this);
 			grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
 			return grid;
+		},
+		getSlickOptions: function() {
+			var opt = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getSlickOptions.call(this);
+			opt.showFooterRow = true;
+			return opt;
 		},
 		createToolbarExtensions: function() {
 			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
@@ -2540,6 +2548,11 @@
 			Enumerable.from(columns).single(function(x3) {
 				return x3.field === 'ReorderLevel';
 			}).format = ss.mkdel(this, this.$inputFormatter);
+			Enumerable.from(columns).single(function(x4) {
+				return x4.field === 'UnitsInStock';
+			}).groupTotalsFormatter = function(t, c) {
+				return ((ss.isValue(t.sum) && ss.isValue(t.sum[c.field])) ? ('Sum: ' + t.sum[c.field]) : '');
+			};
 			return columns;
 		},
 		$inputsChange: function(e) {

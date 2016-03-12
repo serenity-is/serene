@@ -49,12 +49,12 @@
       var indentation = item.level * 15 + "px";
 
       return "<span class='" + options.toggleCssClass + " " +
-          (item.collapsed ? options.toggleCollapsedCssClass : options.toggleExpandedCssClass) +
-          "' style='margin-left:" + indentation +"'>" +
-          "</span>" +
-          "<span class='" + options.groupTitleCssClass + "' level='" + item.level + "'>" +
-            item.title +
-          "</span>";
+        (item.collapsed ? options.toggleCollapsedCssClass : options.toggleExpandedCssClass) +
+        "' style='margin-left:" + indentation + "'>" +
+        "</span>" +
+        "<span class='" + options.groupTitleCssClass + "' level='" + item.level + "'>" +
+        item.title +
+        "</span>";
     }
 
     function defaultTotalsCellFormatter(row, cell, value, columnDef, item) {
@@ -122,6 +122,14 @@
       }
     }
 
+    function getRowMetadata(item) {
+      if (options.getRowMetadata) {
+        return options.getRowMetadata(item);
+      }
+
+      return null;
+    }
+
     function getGroupRowMetadata(item) {
       return {
         selectable: false,
@@ -151,6 +159,7 @@
     return {
       "init": init,
       "destroy": destroy,
+      "getRowMetadata": getRowMetadata,
       "getGroupRowMetadata": getGroupRowMetadata,
       "getTotalsRowMetadata": getTotalsRowMetadata
     };
