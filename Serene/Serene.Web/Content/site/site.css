@@ -7939,3 +7939,27 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   overflow-y: hidden;
 }
+.slick-group .slick-cell,
+.slick-group.ui-widget-content .slick-cell {
+  background-color: #eee;
+  border-bottom: 1px solid silver;
+}
+.slick-group .slick-cell {
+  text-align: left !important;
+}
+.slick-group-toggle {
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.slick-group-toggle.expanded {
+  background: url(../images/collapse.gif) no-repeat center center;
+}
+.slick-group-toggle.collapsed {
+  background: url(../images/expand.gif) no-repeat center center;
+}
+.slick-group-totals {
+  color: gray;
+  background: white;
+}

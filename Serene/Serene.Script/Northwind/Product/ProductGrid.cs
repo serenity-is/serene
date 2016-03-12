@@ -20,6 +20,21 @@ namespace Serene.Northwind
             this.slickContainer.On("change", "input.edit", InputsChange);
         }
 
+        protected override SlickGrid CreateSlickGrid()
+        {
+            view.SetGrouping(new List<SlickGroupInfo<ProductRow>>
+            {
+                new SlickGroupInfo<ProductRow>
+                {
+                    Getter = "CategoryName"
+                }
+            });
+
+            var grid = base.CreateSlickGrid();
+            grid.RegisterPlugin(new SlickGroupItemMetadataProvider());
+            return grid;
+        }
+
         protected override void CreateToolbarExtensions()
         {
             base.CreateToolbarExtensions();

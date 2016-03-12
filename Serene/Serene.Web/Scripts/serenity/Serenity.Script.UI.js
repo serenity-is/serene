@@ -839,10 +839,6 @@
 					this.view.onRowCountChanged.clear();
 					this.view.onSubmit = null;
 					this.view.setFilter(null);
-					var viewRows = this.view.rows;
-					if (!!ss.isValue(viewRows)) {
-						viewRows.getItemMetadata = null;
-					}
 					this.view = null;
 				}
 				this.titleDiv = null;
@@ -925,13 +921,7 @@
 					slickColumns = this.postProcessColumns(this.getColumns());
 				}
 				var slickOptions = this.getSlickOptions();
-				var self = this;
-				var viewRows = this.view.rows;
-				viewRows.getItemMetadata = function(index) {
-					var item = self.view.rows[index];
-					return self.getItemMetadata(item, index);
-				};
-				var grid = new Slick.Grid(this.slickContainer, ss.cast(viewRows, Array), slickColumns, slickOptions);
+				var grid = new Slick.Grid(this.slickContainer, this.view, slickColumns, slickOptions);
 				grid.registerPlugin(new Slick.AutoTooltips({ enableForHeaderCells: true }));
 				this.slickGrid = grid;
 				if (!this.isAsyncWidget()) {
@@ -1199,6 +1189,9 @@
 				else {
 					opt.rowsPerPage = 100;
 				}
+				opt.getItemMetadata = ss.mkdel(this, function(item, index) {
+					return this.getItemMetadata(item, index);
+				});
 				return opt;
 			},
 			createToolbar: function(buttons) {
@@ -2600,7 +2593,7 @@
 			loadEntity: function(entity) {
 				var idField = this.getEntityIdField();
 				if (ss.isValue(idField)) {
-					this.set_entityId(Serenity.IdExtensions.convertToId(entity[idField]));
+					this.set_entityId(entity[idField]);
 				}
 				this.set_entity(entity);
 				if (ss.isValue(this.propertyGrid)) {
@@ -2641,7 +2634,7 @@
 				return request;
 			},
 			reloadById: function() {
-				this.loadById(ss.unbox(this.get_entityId()), null, null);
+				this.loadById(this.get_entityId(), null, null);
 			},
 			loadById: function(id, callback, fail) {
 				var baseOptions = {};
@@ -2784,7 +2777,7 @@
 				var opt = {};
 				opt.service = this.getService() + '/RetrieveLocalization';
 				opt.blockUI = true;
-				opt.request = { EntityId: ss.unbox(this.get_entityId()) };
+				opt.request = { EntityId: this.get_entityId() };
 				opt.onSuccess = ss.mkdel(this, function(response) {
 					var copy = $.extend(ss.createInstance(TEntity), self.get_entity());
 					var $t1 = ss.getEnumerator(Object.keys(response.Entities));
@@ -3064,7 +3057,7 @@
 							self.loadById($t1, null, null);
 						}
 						else {
-							self.loadById(ss.unbox(response1.EntityId), null, null);
+							self.loadById(response1.EntityId, null, null);
 						}
 						this.showSaveSuccessMessage(response1);
 					}));
@@ -4568,7 +4561,7 @@
 						self.updateItems();
 						self.set_value(null);
 						if ((dci.type === 'create' || dci.type === 'update') && ss.isValue(dci.entityId)) {
-							self.set_value(ss.unbox(dci.entityId).toString());
+							self.set_value(dci.entityId.toString());
 						}
 					}), true);
 					if (Q.isEmptyOrNull(this.get_value())) {
@@ -4582,7 +4575,7 @@
 						}, null);
 					}
 					else {
-						dialog.load(ss.unbox(Serenity.IdExtensions.convertToId(this.get_value())), function() {
+						dialog.load(this.get_value(), function() {
 							dialog.dialogOpen();
 						}, null);
 					}
@@ -10075,8 +10068,8 @@
 	ss.initClass($Serenity_TextAreaEditorOptions, $asm, {});
 	ss.initClass($Serenity_TimeEditor, $asm, {
 		get_value: function() {
-			var hour = Serenity.IdExtensions.convertToId(this.element.val());
-			var minute = Serenity.IdExtensions.convertToId(this.$minutes.val());
+			var hour = Q.toId(this.element.val());
+			var minute = Q.toId(this.$minutes.val());
 			if (ss.isNullOrUndefined(hour) || ss.isNullOrUndefined(minute)) {
 				return null;
 			}

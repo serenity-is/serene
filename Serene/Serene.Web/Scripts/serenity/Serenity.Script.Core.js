@@ -508,7 +508,7 @@
 	};
 	$Q.autoOpenByQueryID = function(key, autoOpen) {
 		$Q.autoOpenByQuery(key, function(value) {
-			var id = $Serenity_IdExtensions.convertToId(value);
+			var id = Q.toId(value);
 			if (ss.isNullOrUndefined(id) || isNaN(id)) {
 				return;
 			}
@@ -1029,12 +1029,6 @@
 	var $Serenity_IdExtensions = function() {
 	};
 	$Serenity_IdExtensions.__typeName = 'Serenity.IdExtensions';
-	$Serenity_IdExtensions.convertToId = function(value) {
-		return Q.toId(value);
-	};
-	$Serenity_IdExtensions.toInt32 = function(value) {
-		return Q.toId(value);
-	};
 	$Serenity_IdExtensions.isPositiveId = function(id) {
 		if (!ss.isValue(id)) {
 			return false;

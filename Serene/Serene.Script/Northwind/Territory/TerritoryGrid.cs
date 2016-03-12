@@ -35,7 +35,7 @@ namespace Serene.Northwind
             if (!base.OnViewSubmit())
                 return false;
 
-            SetEquality("RegionID", region.Value.ConvertToId());
+            SetEquality("RegionID", region.Value.ToInt32());
             return true;
         }
     }

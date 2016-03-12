@@ -367,7 +367,7 @@
 		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
 		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.get_idPrefix());
 		Serenity.WX.change(this.$form.get_categoryID(), ss.mkdel(this, function(e) {
-			this.$form.get_detailList().set_categoryID(Serenity.IdExtensions.toInt32(this.$form.get_categoryID().get_value()));
+			this.$form.get_detailList().set_categoryID(Q.toId(this.$form.get_categoryID().get_value()));
 		}));
 	};
 	$Serene_BasicSamples_FilteredLookupInDetailDialog.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailDialog';
@@ -604,7 +604,7 @@
 				return $t1;
 			},
 			editItem: function(entityOrId) {
-				var id = ss.unbox(Serenity.IdExtensions.toInt32(entityOrId));
+				var id = ss.unbox(Q.toId(entityOrId));
 				var item = this.view.getItemById(id);
 				this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
 					var dialog = ss.cast(dlg, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [TEntity]));
@@ -1223,7 +1223,7 @@
 		ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]).call(this);
 		this.form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
 		Serenity.WX.changeSelect2(this.form.get_productID(), ss.mkdel(this, function(e) {
-			var productID = Serenity.IdExtensions.toInt32(this.form.get_productID().get_value());
+			var productID = Q.toId(this.form.get_productID().get_value());
 			if (ss.isValue(productID)) {
 				this.form.get_unitPrice().set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
 			}
@@ -2371,7 +2371,7 @@
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'EmployeeID', null, $t5, null, null, null);
 		},
 		get_shippingState: function() {
-			return Serenity.IdExtensions.toInt32(this.$shippingState.get_value());
+			return Q.toId(this.$shippingState.get_value());
 		},
 		set_shippingState: function(value) {
 			this.$shippingState.set_value((ss.isNullOrUndefined(value) ? '' : ss.unbox(value).toString()));
@@ -2474,6 +2474,15 @@
 		}
 	}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
+		createSlickGrid: function() {
+			var $t2 = this.view;
+			var $t1 = [];
+			$t1.push({ getter: 'CategoryName' });
+			$t2.setGrouping($t1);
+			var grid = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createSlickGrid.call(this);
+			grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+			return grid;
+		},
 		createToolbarExtensions: function() {
 			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
@@ -2641,7 +2650,7 @@
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_OrderDetailsEditor, $asm, {
 		validateEntity: function(row, id) {
-			row.ProductID = Serenity.IdExtensions.toInt32(row.ProductID);
+			row.ProductID = Q.toId(row.ProductID);
 			var sameProduct = Enumerable.from(this.view.getItems()).firstOrDefault(function(x) {
 				return ss.referenceEquals(x.ProductID, row.ProductID);
 			}, ss.getDefaultValue(Object));
@@ -3576,7 +3585,7 @@
 			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
 				return false;
 			}
-			this.setEquality('RegionID', Serenity.IdExtensions.convertToId(this.$region.get_value()));
+			this.setEquality('RegionID', Q.toId(this.$region.get_value()));
 			return true;
 		}
 	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
