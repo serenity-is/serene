@@ -146,6 +146,10 @@
 
       return returnValue;
     };
+
+    this.clear = function(fn) {
+        this.handlers = [];
+    };
   }
 
   function EventHandler() {

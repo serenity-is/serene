@@ -36,6 +36,7 @@
     <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
+    <Compile Include="BasicSamples\GroupingAndSummariesInGrid.cs" />
     <Compile Include="BasicSamples\GridFilteredByCriteria.cs" />
     <Compile Include="BasicSamples\FilteredLookupInDetailDialog.cs" />
     <Compile Include="BasicSamples\LookupFilterByMultipleValues.cs" />

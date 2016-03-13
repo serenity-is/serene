@@ -5,6 +5,7 @@ namespace Serene.Northwind
     using Serenity;
     using System;
     using System.Collections.Generic;
+    using System.Html;
     using System.Linq;
     using Fields = ProductRow.Fields;
 
@@ -20,38 +21,11 @@ namespace Serene.Northwind
             this.slickContainer.On("change", "input.edit", InputsChange);
         }
 
-        protected override SlickGrid CreateSlickGrid()
-        {
-            view.SetGrouping(new List<SlickGroupInfo<ProductRow>>
-            {
-                new SlickGroupInfo<ProductRow>
-                {
-                    Getter = "CategoryName",
-                    Aggregators = new List<SlickAggregator>
-                    {
-                        new SlickMin("QuantityPerUnit"),
-                        new SlickSum("UnitsInStock")
-                    }
-                }
-            });
-
-            var grid = base.CreateSlickGrid();
-            grid.RegisterPlugin(new SlickGroupItemMetadataProvider());
-            return grid;
-        }
-
-        protected override SlickGridOptions GetSlickOptions()
-        {
-            var opt = base.GetSlickOptions();
-            opt.ShowFooterRow = true;
-            return opt;
-        }
-
         protected override void CreateToolbarExtensions()
         {
             base.CreateToolbarExtensions();
 
-            AddEqualityFilter<LookupEditor>(Fields.SupplierID, 
+            AddEqualityFilter<LookupEditor>(Fields.SupplierID,
                 options: new LookupEditorOptions { LookupKey = "Northwind.Supplier" });
 
             AddEqualityFilter<LookupEditor>(Fields.CategoryID,
@@ -92,10 +66,10 @@ namespace Serene.Northwind
 
             double? value = GetEffectiveValue(item, ctx.Column.Field);
 
-            return 
-                "<input type='text'" + 
-                    " class='" + klass + "'" + 
-                    " value='" + Q.FormatNumber(value, "0.##") + "'" + 
+            return
+                "<input type='text'" +
+                    " class='" + klass + "'" +
+                    " value='" + Q.FormatNumber(value, "0.##") + "'" +
                 "/>";
         }
 
@@ -116,18 +90,20 @@ namespace Serene.Northwind
             columns.Single(x => x.Field == Fields.UnitsInStock).Format = InputFormatter;
             columns.Single(x => x.Field == Fields.UnitsOnOrder).Format = InputFormatter;
             columns.Single(x => x.Field == Fields.ReorderLevel).Format = InputFormatter;
-            columns.Single(x => x.Field == Fields.UnitsInStock).GroupTotalsFormatter = (t, c) =>
-            {
-                return t.Sum != null && t.Sum[c.Field] != null ?
-                    "Sum: " + t.Sum[c.Field] : "";
-            };
+
+            //columns.Single(x => x.Field == Fields.UnitsInStock).GroupTotalsFormatter = (t, c) =>
+            //{
+            //    return t.Sum != null && t.Sum[c.Field] != null ?
+            //        "Sum: " + t.Sum[c.Field] : "";
+            //};
+
             return columns;
         }
 
         private void InputsChange(jQueryEvent e)
         {
             var cell = slickGrid.GetCellFromEvent(e);
-            var item = Items[cell.Row];
+            var item = Rows[cell.Row];
             var field = GetColumns()[cell.Cell].Field;
             var input = J(e.Target);
             var text = input.GetValue().TrimToNull() ?? "0";
@@ -164,6 +140,9 @@ namespace Serene.Northwind
                 pendingChanges[item.ProductID.Value] = pending = new ProductRow();
 
             pending.As<dynamic>()[field] = value;
+            item.As<dynamic>()[field] = value;
+            view.Refresh();
+
             input.Value(Q.FormatNumber(value, "0.##")).AddClass("dirty");
             SetSaveButtonState();
         }
@@ -200,7 +179,8 @@ namespace Serene.Northwind
                 {
                     EntityId = pair.Key,
                     Entity = entity
-                }, response => {
+                }, response =>
+                {
                     pendingChanges.Remove(pair.Key);
                     saveNext();
                 });

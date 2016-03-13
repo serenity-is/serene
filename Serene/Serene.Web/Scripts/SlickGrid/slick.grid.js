@@ -101,6 +101,7 @@ if (typeof Slick === "undefined") {
             minWidth: 30,
             rerenderOnResize: false,
             headerCssClass: null,
+            footerCssClass: null,
             defaultSortAsc: true,
             focusable: true,
             selectable: true
@@ -443,6 +444,8 @@ if (typeof Slick === "undefined") {
             if (!options.explicitInitialization) {
                 finishInitialization();
             }
+
+            bindToData();
         }
 
         function finishInitialization() {
@@ -968,14 +971,50 @@ if (typeof Slick === "undefined") {
 
                 var footerRowCell = $("<div class='ui-state-default slick-footerrow-column l" + i + " r" + i + "'></div>")
                   .data("column", m)
+                  .addClass(m.footerCssClass || m.cssClass || '')
                   .addClass(hasFrozenColumns() && i <= options.frozenColumn ? 'frozen' : '')
                   .appendTo(hasFrozenColumns() && (i > options.frozenColumn) ? $footerRowR : $footerRowL);
 
                 trigger(self.onFooterRowCellRendered, {
                     "node": footerRowCell[0],
-                    "column": m
+                    "column": m,
+                    "grid": self
                 });
             }
+        }
+
+        function groupTotalText(totals, columnDef, key) {
+            var ltKey = (key.substr(0, 1).toUpperCase() + key.substr(1));
+            text = (window.Q && Q.tryGetText && Q.tryGetText(ltKey)) || ltKey;
+
+            var total = totals[key][columnDef.field];
+            if (typeof total == "number" && Q && Q.formatNumber) {
+                if (columnDef.sourceItem && columnDef.sourceItem.displayFormat) {
+                    total = Q.formatNumber(total, columnDef.sourceItem.displayFormat);
+                }
+                else
+                    total = Q.formatNumber(total, "#,##0.##");
+            }
+
+            return "<span class='aggregate agg-" + key + "'  title='" + text + "'>" + 
+                total + 
+                "</span>";
+        }
+
+        function groupTotalsFormatter(totals, columnDef) {
+            if (!totals || !columnDef)
+                return "";
+
+            var text = null;
+
+            ["sum", "avg", "min", "max", "cnt"].forEach(function(key) {
+                if (text == null && totals[key] && totals[key][columnDef.field] != null) {
+                    text = groupTotalText(totals, columnDef, key);
+                    return false;
+                }
+            });
+
+            return text || "";
         }
 
         function createColumnGroupHeaders() {
@@ -2153,8 +2192,42 @@ if (typeof Slick === "undefined") {
             }
         }
 
+        function viewOnRowCountChanged(e, args) {
+            updateRowCount();
+            render();
+        }
+
+        function viewOnRowsChanged(e, args) {
+            invalidateRows(args.rows);
+            render();
+            updateFooterTotals();
+        }
+
+        function viewOnDataChanged(e, args) {
+            invalidate();
+            render();
+        }
+
+        function bindToData() {
+            if (data) {
+                data.onRowCountChanged && data.onRowCountChanged.subscribe(viewOnRowCountChanged);
+                data.onRowsChanged && data.onRowsChanged.subscribe(viewOnRowsChanged);
+                data.onDataChanged && data.onDataChanged.subscribe(viewOnDataChanged);
+            }
+        }
+
+        function unbindFromData() {
+            if (data) {
+                data.onRowCountChanged && data.onRowCountChanged.unsubscribe(viewOnRowCountChanged);
+                data.onRowsChanged && data.onRowsChanged.unsubscribe(viewOnRowsChanged);
+                data.onDataChanged && data.onDataChanged.unsubscribe(viewonDataChanged);
+            }
+        }
+
         function setData(newData, scrollToTop) {
+            unbindFromData();
             data = newData;
+            bindToData();
             invalidateAllRows();
             updateRowCount();
             if (scrollToTop) {
@@ -2273,7 +2346,7 @@ if (typeof Slick === "undefined") {
             }
         }
 
-        function defaultFormatter(row, cell, value, columnDef, dataContext) {
+        function defaultFormatter(row, cell, value, columnDef, dataContext, grid) {
             if (value == null) {
                 return "";
             } else {
@@ -2306,10 +2379,10 @@ if (typeof Slick === "undefined") {
 
             if (metadata) {
                 var columnData = metadata[m.id] || metadata[cell];
-                result = getFormatter(row, m)(row, cell, value, m, item, columnData);
+                result = getFormatter(row, m)(row, cell, value, m, item, columnData, self);
             }
             else {
-                result = getFormatter(row, m)(row, cell, value, m, item);
+                result = getFormatter(row, m)(row, cell, value, m, item, null, self);
             }
 
             return result;
@@ -2466,6 +2539,7 @@ if (typeof Slick === "undefined") {
             updateRowCount();
             invalidateAllRows();
             render();
+            updateFooterTotals();
         }
 
         function invalidateAllRows() {
@@ -3133,6 +3207,28 @@ if (typeof Slick === "undefined") {
         function updateRowPositions() {
             for (var row in rowsCache) {
                 rowsCache[row].rowNode.css('top', getRowTop(row) + "px");
+            }
+        }
+
+        function updateFooterTotals() {
+            if (!options.showFooterRow || !initialized)
+                return;
+
+            var totals = null;
+            if (data.getGrandTotals) {
+                totals = data.getGrandTotals();
+            }
+
+            for (var i = 0; i < columns.length; i++) {
+                var m = columns[i];
+
+                var content;
+                if (m.field && totals) {
+                    content = (m.groupTotalsFormatter && m.groupTotalsFormatter(totals, m, self)) || 
+                        (self.groupTotalsFormatter && self.groupTotalsFormatter(totals, m, self)) || "";
+                }
+
+                $(getFooterRowColumn(m.id)).html(content);
             }
         }
 
@@ -4806,6 +4902,9 @@ if (typeof Slick === "undefined") {
             "removeCellCssStyles": removeCellCssStyles,
             "getCellCssStyles": getCellCssStyles,
             "getFrozenRowOffset": getFrozenRowOffset,
+            
+            "groupTotalsFormatter": groupTotalsFormatter,
+            "updateFooterTotals": updateFooterTotals,
 
             "init": finishInitialization,
             "destroy": destroy,

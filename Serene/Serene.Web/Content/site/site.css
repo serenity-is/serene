@@ -7232,6 +7232,16 @@ section.content > .s-DataGrid {
 .s-BasicSamples-FilteredLookupOrderDetailDialog .s-Form .emaildomain {
   width: 125px;
 }
+.s-BasicSamples-GroupingAndSummariesInGrid .slick-cell input[type=text] {
+  text-align: right;
+  border-radius: 0;
+  width: 100%;
+  padding: 0 2px;
+  border: 1px solid #e7e7e7;
+}
+.s-BasicSamples-GroupingAndSummariesInGrid .slick-cell input.dirty {
+  background-color: #ffe0e0;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
@@ -7938,34 +7948,4 @@ section.content > .s-DataGrid {
 }
 .s-NoteDialog .ui-dialog-content {
   overflow-y: hidden;
-}
-.slick-group .slick-cell,
-.slick-group.ui-widget-content .slick-cell {
-  background-color: #eee;
-  border-bottom: 1px solid silver;
-}
-.slick-group .slick-cell {
-  text-align: left !important;
-}
-.slick-group-toggle {
-  width: 9px;
-  height: 9px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-.slick-group-toggle.expanded {
-  background: url(../images/collapse.gif) no-repeat center center;
-}
-.slick-group-toggle.collapsed {
-  background: url(../images/expand.gif) no-repeat center center;
-}
-.slick-headerrow-column,
-.slick-footerrow-column {
-  background: #fafafa;
-  border-bottom: 0;
-  height: 100%;
-}
-.slick-group-totals {
-  color: gray;
-  background: white;
 }

@@ -141,28 +141,6 @@
         }
     });
 })(jQuery);
-// EVENT HELPER -----
-function EventHelper() {
-    this.handlers = [];
-    this.subscribe = function (fn) {
-        this.handlers.push(fn);
-    };
-    this.unsubscribe = function (fn) {
-        for (var i = this.handlers.length - 1; i >= 0; i--) {
-            if (this.handlers[i] === fn) {
-                this.handlers.splice(i, 1);
-            }
-        }
-    };
-    this.clear = function (fn) {
-        this.handlers = [];
-    };
-    this.notify = function (args) {
-        for (var i = 0; i < this.handlers.length; i++) {
-            this.handlers[i].call(this, args);
-        }
-    };
-}
 var Slick;
 (function (Slick) {
     var Data;
@@ -201,7 +179,6 @@ var Slick;
                             (a.value > b.value ? 1 : -1));
                     },
                     predefinedValues: [],
-                    aggregators: [],
                     aggregateEmpty: false,
                     aggregateCollapsed: false,
                     aggregateChildGroups: false,
@@ -209,15 +186,16 @@ var Slick;
                     displayTotalsRow: true,
                     lazyTotalsCalculation: false
                 };
+                var summaryOptions = {};
                 var groupingInfos = [];
                 var groups = [];
                 var toggledGroupsByLevel = [];
                 var groupingDelimiter = ':|:';
                 var page = 1;
                 var totalRows = 0;
-                var onRowCountChanged = new EventHelper();
-                var onRowsChanged = new EventHelper();
-                var onPagingInfoChanged = new EventHelper();
+                var onRowCountChanged = new Slick.Event();
+                var onRowsChanged = new Slick.Event();
+                var onPagingInfoChanged = new Slick.Event();
                 var loading = false;
                 var errorMessage = null;
                 var populateLocks = 0;
@@ -225,9 +203,10 @@ var Slick;
                 var contentType;
                 var dataType;
                 var totalCount = null;
-                var onDataLoading = new EventHelper();
-                var onDataLoaded = new EventHelper();
-                var onClearData = new EventHelper();
+                var onDataChanged = new Slick.Event();
+                var onDataLoading = new Slick.Event();
+                var onDataLoaded = new Slick.Event();
+                var onClearData = new Slick.Event();
                 var intf;
                 function beginUpdate() {
                     suspend++;
@@ -277,15 +256,15 @@ var Slick;
                 function getItems() {
                     return items;
                 }
-                function setItems(data, fullReset) {
+                function setItems(data) {
                     items = filteredItems = data;
                     idxById = {};
                     rowsById = null;
+                    summaryOptions.totals = {};
                     updateIdxById();
                     ensureIdUniqueness();
                     refresh();
-                    if (fullReset)
-                        onRowsChanged.notify();
+                    onDataChanged.notify({ dataView: self }, null, self);
                 }
                 function setPagingOptions(args) {
                     var anyChange = false;
@@ -347,7 +326,7 @@ var Slick;
                     fastSortField = field;
                     sortComparer = null;
                     var oldToString = Object.prototype.toString;
-                    Object.prototype.toString = (typeof field == "function") ? field : function () {
+                    Object.prototype.toString = (typeof field === "function") ? field : function () {
                         return this[field];
                     };
                     // an extra reversal for descending sort keeps the sort stable
@@ -383,6 +362,33 @@ var Slick;
                 function getGrouping() {
                     return groupingInfos;
                 }
+                function setSummaryOptions(summary) {
+                    summary = summary || {};
+                    summaryOptions.aggregators = summary.aggregators || [];
+                    summaryOptions.compiledAccumulators = [];
+                    summaryOptions.totals = {};
+                    var idx = summaryOptions.aggregators.length;
+                    while (idx--) {
+                        summaryOptions.compiledAccumulators[idx] = compileAccumulatorLoop(summaryOptions.aggregators[idx]);
+                    }
+                    setGrouping(groupingInfos || []);
+                }
+                function getGrandTotals() {
+                    summaryOptions.totals = summaryOptions.totals || {};
+                    if (!summaryOptions.totals.initialized) {
+                        summaryOptions.aggregators = summaryOptions.aggregators || [];
+                        summaryOptions.compiledAccumulators = summaryOptions.compiledAccumulators || [];
+                        var agg, idx = summaryOptions.aggregators.length;
+                        while (idx--) {
+                            agg = summaryOptions.aggregators[idx];
+                            agg.init();
+                            summaryOptions.compiledAccumulators[idx].call(agg, items);
+                            agg.storeResult(summaryOptions.totals);
+                        }
+                        summaryOptions.totals.initialized = true;
+                    }
+                    return summaryOptions.totals;
+                }
                 function setGrouping(groupingInfo) {
                     if (!options.groupItemMetadataProvider) {
                         options.groupItemMetadataProvider = new Slick.Data.GroupItemMetadataProvider();
@@ -393,6 +399,7 @@ var Slick;
                     groupingInfos = (groupingInfo instanceof Array) ? groupingInfo : [groupingInfo];
                     for (var i = 0; i < groupingInfos.length; i++) {
                         var gi = groupingInfos[i] = $.extend(true, {}, groupingInfoDefaults, groupingInfos[i]);
+                        gi.aggregators = gi.aggregators || summaryOptions.aggregators || [];
                         gi.getterIsAFn = typeof gi.getter === "function";
                         // pre-compile accumulator loops
                         gi.compiledAccumulators = [];
@@ -534,8 +541,18 @@ var Slick;
                 function expandAllGroups(level) {
                     expandCollapseAllGroups(level, false);
                 }
-                function expandCollapseGroup(level, groupingKey, collapse) {
-                    toggledGroupsByLevel[level][groupingKey] = groupingInfos[level].collapsed ^ collapse;
+                function resolveLevelAndGroupingKey(args) {
+                    var arg0 = args[0];
+                    if (args.length === 1 && arg0.indexOf(groupingDelimiter) !== -1) {
+                        return { level: arg0.split(groupingDelimiter).length - 1, groupingKey: arg0 };
+                    }
+                    else {
+                        return { level: args.length - 1, groupingKey: args.join(groupingDelimiter) };
+                    }
+                }
+                function expandCollapseGroup(args, collapse) {
+                    var opts = resolveLevelAndGroupingKey(args);
+                    toggledGroupsByLevel[opts.level][opts.groupingKey] = groupingInfos[opts.level].collapsed ^ collapse;
                     refresh();
                 }
                 /**
@@ -546,13 +563,7 @@ var Slick;
                  */
                 function collapseGroup(varArgs) {
                     var args = Array.prototype.slice.call(arguments);
-                    var arg0 = args[0];
-                    if (args.length == 1 && arg0.indexOf(groupingDelimiter) != -1) {
-                        expandCollapseGroup(arg0.split(groupingDelimiter).length - 1, arg0, true);
-                    }
-                    else {
-                        expandCollapseGroup(args.length - 1, args.join(groupingDelimiter), true);
-                    }
+                    expandCollapseGroup(args, true);
                 }
                 /**
                  * @param varArgs Either a Slick.Group's "groupingKey" property, or a
@@ -562,16 +573,22 @@ var Slick;
                  */
                 function expandGroup(varArgs) {
                     var args = Array.prototype.slice.call(arguments);
-                    var arg0 = args[0];
-                    if (args.length == 1 && arg0.indexOf(groupingDelimiter) != -1) {
-                        expandCollapseGroup(arg0.split(groupingDelimiter).length - 1, arg0, false);
-                    }
-                    else {
-                        expandCollapseGroup(args.length - 1, args.join(groupingDelimiter), false);
-                    }
+                    expandCollapseGroup(args, false);
                 }
                 function getGroups() {
                     return groups;
+                }
+                function getOrCreateGroup(groupsByVal, val, level, parentGroup, groups) {
+                    var group = groupsByVal[val];
+                    if (!group) {
+                        group = new Slick.Group();
+                        group.value = val;
+                        group.level = level;
+                        group.groupingKey = (parentGroup ? parentGroup.groupingKey + groupingDelimiter : '') + val;
+                        groups[groups.length] = group;
+                        groupsByVal[val] = group;
+                    }
+                    return group;
                 }
                 function extractGroups(rows, parentGroup) {
                     var group;
@@ -583,28 +600,12 @@ var Slick;
                     var gi = groupingInfos[level];
                     for (var i = 0, l = gi.predefinedValues.length; i < l; i++) {
                         val = gi.predefinedValues[i];
-                        group = groupsByVal[val];
-                        if (!group) {
-                            group = new Slick.Group();
-                            group.value = val;
-                            group.level = level;
-                            group.groupingKey = (parentGroup ? parentGroup.groupingKey + groupingDelimiter : '') + val;
-                            groups[groups.length] = group;
-                            groupsByVal[val] = group;
-                        }
+                        group = getOrCreateGroup(groupsByVal, val, level, parentGroup, groups);
                     }
                     for (var i = 0, l = rows.length; i < l; i++) {
                         r = rows[i];
                         val = gi.getterIsAFn ? gi.getter(r) : r[gi.getter];
-                        group = groupsByVal[val];
-                        if (!group) {
-                            group = new Slick.Group();
-                            group.value = val;
-                            group.level = level;
-                            group.groupingKey = (parentGroup ? parentGroup.groupingKey + groupingDelimiter : '') + val;
-                            groups[groups.length] = group;
-                            groupsByVal[val] = group;
-                        }
+                        group = getOrCreateGroup(groupsByVal, val, level, parentGroup, groups);
                         group.rows[group.count++] = r;
                     }
                     if (level < groupingInfos.length - 1) {
@@ -712,14 +713,9 @@ var Slick;
                 }
                 function compileFilter() {
                     var filterInfo = getFunctionInfo(filter);
-                    var filterPath1 = "{ continue _coreloop; }$1";
-                    var filterPath2 = "{ _retval[_idx++] = $item$; continue _coreloop; }$1";
-                    // make some allowances for minification - there's only so far we can go with RegEx
                     var filterBody = filterInfo.body
-                        .replace(/return false\s*([;}]|\}|$)/gi, filterPath1)
-                        .replace(/return!1([;}]|\}|$)/gi, filterPath1)
-                        .replace(/return true\s*([;}]|\}|$)/gi, filterPath2)
-                        .replace(/return!0([;}]|\}|$)/gi, filterPath2)
+                        .replace(/return false\s*([;}]|$)/gi, "{ continue _coreloop; }$1")
+                        .replace(/return true\s*([;}]|$)/gi, "{ _retval[_idx++] = $item$; continue _coreloop; }$1")
                         .replace(/return ([^;}]+?)\s*([;}]|$)/gi, "{ if ($1) { _retval[_idx++] = $item$; }; continue _coreloop; }$2");
                     // This preserves the function template code after JS compression,
                     // so that replace() commands still work as expected.
@@ -743,14 +739,9 @@ var Slick;
                 }
                 function compileFilterWithCaching() {
                     var filterInfo = getFunctionInfo(filter);
-                    var filterPath1 = "{ continue _coreloop; }$1";
-                    var filterPath2 = "{ _cache[_i] = true;_retval[_idx++] = $item$; continue _coreloop; }$1";
-                    // make some allowances for minification - there's only so far we can go with RegEx
                     var filterBody = filterInfo.body
-                        .replace(/return false\s*([;}]|\}|$)/gi, filterPath1)
-                        .replace(/return!1([;}]|\}|$)/gi, filterPath1)
-                        .replace(/return true\s*([;}]|\}|$)/gi, filterPath2)
-                        .replace(/return!0([;}]|\}|$)/gi, filterPath2)
+                        .replace(/return false\s*([;}]|$)/gi, "{ continue _coreloop; }$1")
+                        .replace(/return true\s*([;}]|$)/gi, "{ _cache[_i] = true;_retval[_idx++] = $item$; continue _coreloop; }$1")
                         .replace(/return ([^;}]+?)\s*([;}]|$)/gi, "{ if ((_cache[_i] = $1)) { _retval[_idx++] = $item$; }; continue _coreloop; }$2");
                     // This preserves the function template code after JS compression,
                     // so that replace() commands still work as expected.
@@ -863,6 +854,7 @@ var Slick;
                     var filteredItems = getFilteredAndPagedItems(_items);
                     totalRows = filteredItems.totalRows;
                     var newRows = filteredItems.rows;
+                    summaryOptions.totals = {};
                     groups = [];
                     if (groupingInfos.length) {
                         groups = extractGroups(newRows);
@@ -1022,7 +1014,7 @@ var Slick;
                         data.Page = Math.ceil(data.Skip / (data.Take || intf.rowsPerPage)) + 1;
                     page = data.Page;
                     totalCount = data.TotalCount;
-                    setItems(data.Entities, true);
+                    setItems(data.Entities);
                     onPagingInfoChanged.notify(getPagingInfo());
                 }
                 function populate() {
@@ -1133,6 +1125,8 @@ var Slick;
                     "sort": sort,
                     "fastSort": fastSort,
                     "reSort": reSort,
+                    "setSummaryOptions": setSummaryOptions,
+                    "getGrandTotals": getGrandTotals,
                     "setGrouping": setGrouping,
                     "getGrouping": getGrouping,
                     "collapseAllGroups": collapseAllGroups,
@@ -1165,6 +1159,7 @@ var Slick;
                     "populate": populate,
                     "populateLock": populateLock,
                     "populateUnlock": populateUnlock,
+                    "onDataChanged": onDataChanged,
                     "onDataLoaded": onDataLoaded,
                     "onDataLoading": onDataLoading
                 };
@@ -1224,6 +1219,34 @@ var Slick;
                 };
             }
             Aggregators.Avg = Avg;
+            function WeightedAvg(field, weightedField) {
+                this.field_ = field;
+                this.weightedField_ = weightedField;
+                this.init = function () {
+                    this.sum_ = 0;
+                    this.weightedSum_ = 0;
+                };
+                this.accumulate = function (item) {
+                    var val = item[this.field_];
+                    var valWeighted = item[this.weightedField_];
+                    if (this.isValid(val) && this.isValid(valWeighted)) {
+                        this.weightedSum_ += parseFloat(valWeighted);
+                        this.sum_ += parseFloat(val) * parseFloat(valWeighted);
+                    }
+                };
+                this.storeResult = function (groupTotals) {
+                    if (!groupTotals.avg) {
+                        groupTotals.avg = {};
+                    }
+                    if (this.sum_ && this.weightedSum_) {
+                        groupTotals.avg[this.field_] = this.sum_ / this.weightedSum_;
+                    }
+                };
+                this.isValid = function (val) {
+                    return val !== null && val !== "" && !isNaN(val);
+                };
+            }
+            Aggregators.WeightedAvg = WeightedAvg;
             function Min(field) {
                 this.field_ = field;
                 this.init = function () {

@@ -725,6 +725,7 @@
 			this.localTextPrefix = null;
 			this.$isDisabled = false;
 			this.$4$submitHandlersField = null;
+			this.rows = null;
 			this.$slickGridOnSort = null;
 			this.$slickGridOnClick = null;
 			ss.makeGenericType($Serenity_Widget$1, [TOptions]).call(this, container, opt);
@@ -835,8 +836,7 @@
 					this.slickGrid = null;
 				}
 				if (ss.isValue(this.view)) {
-					this.view.onRowsChanged.clear();
-					this.view.onRowCountChanged.clear();
+					this.view.onDataChanged.clear();
 					this.view.onSubmit = null;
 					this.view.setFilter(null);
 					this.view = null;
@@ -924,6 +924,7 @@
 				var grid = new Slick.Grid(this.slickContainer, this.view, slickColumns, slickOptions);
 				grid.registerPlugin(new Slick.AutoTooltips({ enableForHeaderCells: true }));
 				this.slickGrid = grid;
+				this.rows = this.slickGrid;
 				if (!this.isAsyncWidget()) {
 					this.setInitialSortOrder();
 				}
@@ -1021,27 +1022,13 @@
 					this.editItem$1(Serenity.SlickFormatting.getItemType$1(target), Serenity.SlickFormatting.getItemId$1(target));
 				}
 			},
-			$viewRowCountChanged: function(e, d) {
-				this.slickGrid.updateRowCount();
-				this.slickGrid.render();
-			},
-			$viewRowsChanged: function(e, rows) {
-				if (!!ss.isNullOrUndefined(rows)) {
-					this.slickGrid.invalidate();
-					this.markupReady();
-				}
-				else {
-					this.slickGrid.invalidate();
-					this.slickGrid.render();
-				}
+			$viewDataChanged: function(e, rows) {
+				this.markupReady();
 			},
 			bindToViewEvents: function() {
 				var self = this;
-				this.view.onRowCountChanged.subscribe(function(e, d) {
-					self.$viewRowCountChanged(e, d);
-				});
-				this.view.onRowsChanged.subscribe(function(e1, d1) {
-					self.$viewRowsChanged(e1, d1);
+				this.view.onDataChanged.subscribe(function(e, d) {
+					return self.$viewDataChanged(e, d);
 				});
 				this.view.onSubmit = function(view) {
 					return self.onViewSubmit();
@@ -3845,6 +3832,21 @@
 	$Serenity_GoogleMap.__typeName = 'Serenity.GoogleMap';
 	global.Serenity.GoogleMap = $Serenity_GoogleMap;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.GridRows
+	var $Serenity_GridRows$1 = function(TItem) {
+		var $type = function() {
+		};
+		ss.registerGenericClassInstance($type, $Serenity_GridRows$1, [TItem], {}, function() {
+			return null;
+		}, function() {
+			return [];
+		});
+		return $type;
+	};
+	$Serenity_GridRows$1.__typeName = 'Serenity.GridRows$1';
+	ss.initGenericClass($Serenity_GridRows$1, $asm, 1);
+	global.Serenity.GridRows$1 = $Serenity_GridRows$1;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.GridRowSelectionMixin
 	var $Serenity_GridRowSelectionMixin = function(grid) {
 		this.$idField = null;
@@ -3893,7 +3895,7 @@
 			}
 		}));
 		grid.getView().onRowsChanged.subscribe(ss.mkdel(this, function(e2, u1) {
-			this.$updateSelectAll();
+			return this.$updateSelectAll();
 		}));
 	};
 	$Serenity_GridRowSelectionMixin.__typeName = 'Serenity.GridRowSelectionMixin';
