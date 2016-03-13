@@ -509,13 +509,13 @@
 				return result;
 			},
 			$allItemsSelected: function() {
-				for (var $t1 = 0; $t1 < this.view.rows.length; $t1++) {
-					var row = this.view.rows[$t1];
+				for (var i = 0; i < this.rows.getDataLength(); i++) {
+					var row = this.rows.getDataItem(i);
 					if (!row.isSelected) {
 						return false;
 					}
 				}
-				return this.view.rows.length > 0;
+				return this.rows.getDataLength() > 0;
 			},
 			allDescendantsSelected: function(item) {
 				if (item.children.length > 0) {
@@ -3858,7 +3858,7 @@
 		grid.getGrid().onClick.subscribe(ss.mkdel(this, function(e, p) {
 			if ($(e.target).hasClass('select-item')) {
 				e.preventDefault();
-				var item = grid.getView().rows[ss.unbox(ss.cast(p.row, ss.Int32))];
+				var item = grid.getView().getItem(ss.unbox(ss.cast(p.row, ss.Int32)));
 				var id = item[this.$idField].toString();
 				if (!!ss.keyExists(this.$include, ss.cast(id, String))) {
 					delete this.$include[ss.cast(id, String)];
@@ -3866,7 +3866,7 @@
 				else {
 					this.$include[ss.cast(id, String)] = true;
 				}
-				for (var i = 0; i < grid.getView().rows.length; i++) {
+				for (var i = 0; i < grid.getView().getLength(); i++) {
 					grid.getGrid().updateRow(i);
 				}
 				this.$updateSelectAll();
@@ -4046,7 +4046,7 @@
 			}, fields);
 			view.onDataLoaded.subscribe(function(e, ui) {
 				if (!ss.staticEquals(lastDoneEvent, null)) {
-					lastDoneEvent(view.rows.length > 0);
+					lastDoneEvent(view.getLength() > 0);
 					lastDoneEvent = null;
 				}
 			});
@@ -4103,8 +4103,8 @@
 				if (index < 0) {
 					order = 1;
 				}
-				else if (insertBefore >= grid.get_view().rows.length) {
-					order = ss.coalesce(getDisplayOrder(grid.get_view().rows[grid.get_view().rows.length - 1]), 0);
+				else if (insertBefore >= grid.rows.getDataLength()) {
+					order = ss.coalesce(getDisplayOrder(grid.rows.getDataItem(grid.rows.getDataLength() - 1)), 0);
 					if (order === 0) {
 						order = insertBefore + 1;
 					}
@@ -4113,7 +4113,7 @@
 					}
 				}
 				else {
-					order = ss.coalesce(getDisplayOrder(grid.get_view().rows[insertBefore]), 0);
+					order = ss.coalesce(getDisplayOrder(grid.rows.getDataItem(insertBefore)), 0);
 					if (order === 0) {
 						order = insertBefore + 1;
 					}
@@ -4123,7 +4123,7 @@
 				next = function() {
 					Q.serviceCall({
 						service: service,
-						request: getUpdateRequest(getId(grid.get_view().rows[rows[i]]), order++),
+						request: getUpdateRequest(getId(grid.rows.getDataItem(rows[i])), order++),
 						onSuccess: function(response) {
 							i++;
 							if (i < rows.length) {

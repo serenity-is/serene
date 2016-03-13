@@ -40,7 +40,7 @@ namespace Serene.Administration
             if (J(e.Target).HasClass("source-text"))
             {
                 e.PreventDefault();
-                var item = view.Rows[row];
+                var item = Rows[row];
 
                 Action done = delegate
                 {
@@ -61,7 +61,7 @@ namespace Serene.Administration
             if (J(e.Target).HasClass("target-text"))
             {
                 e.PreventDefault();
-                var item = view.Rows[row];
+                var item = Rows[row];
 
                 Action done = delegate
                 {

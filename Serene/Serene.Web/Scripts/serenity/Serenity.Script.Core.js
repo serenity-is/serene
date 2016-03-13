@@ -1545,7 +1545,7 @@
 				return;
 			}
 			if (target.hasClass('s-TreeCollapse') || target.hasClass('s-TreeExpand')) {
-				var item = view.rows[row];
+				var item = view.getItem(row);
 				if (!!ss.isValue(item)) {
 					if (!!!item._collapsed) {
 						item._collapsed = true;

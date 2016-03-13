@@ -1883,7 +1883,7 @@
 			var grant = target.hasClass('grant');
 			if (ss.unbox(grant) || target.hasClass('revoke')) {
 				e.preventDefault();
-				var item = this.view.rows[row];
+				var item = this.rows.getDataItem(row);
 				var checkedOrPartial = target.hasClass('checked') || target.hasClass('partial');
 				if (checkedOrPartial) {
 					grant = null;
@@ -2108,7 +2108,7 @@
 			}
 			if ($(e.target).hasClass('source-text')) {
 				e.preventDefault();
-				var item = this.view.rows[row];
+				var item = this.rows.getDataItem(row);
 				var done = ss.mkdel(this, function() {
 					item.CustomText = item.SourceText;
 					this.view.updateItem(item.Key, item);
@@ -2122,7 +2122,7 @@
 			}
 			if ($(e.target).hasClass('target-text')) {
 				e.preventDefault();
-				var item1 = this.view.rows[row];
+				var item1 = this.rows.getDataItem(row);
 				var done1 = ss.mkdel(this, function() {
 					item1.CustomText = item1.TargetText;
 					this.view.updateItem(item1.Key, item1);

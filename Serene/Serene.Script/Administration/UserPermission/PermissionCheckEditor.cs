@@ -213,7 +213,7 @@ namespace Serene.Administration
             if (grant.Value || target.HasClass("revoke"))
             {
                 e.PreventDefault();
-                var item = this.view.Rows[row];
+                var item = Rows[row];
                 bool checkedOrPartial = target.HasClass("checked") || target.HasClass("partial");
 
                 if (checkedOrPartial)
