@@ -91,12 +91,6 @@ namespace Serene.Northwind
             columns.Single(x => x.Field == Fields.UnitsOnOrder).Format = InputFormatter;
             columns.Single(x => x.Field == Fields.ReorderLevel).Format = InputFormatter;
 
-            //columns.Single(x => x.Field == Fields.UnitsInStock).GroupTotalsFormatter = (t, c) =>
-            //{
-            //    return t.Sum != null && t.Sum[c.Field] != null ?
-            //        "Sum: " + t.Sum[c.Field] : "";
-            //};
-
             return columns;
         }
 

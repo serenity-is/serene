@@ -2538,11 +2538,6 @@
 			Enumerable.from(columns).single(function(x3) {
 				return x3.field === 'ReorderLevel';
 			}).format = ss.mkdel(this, this.$inputFormatter);
-			//columns.Single(x => x.Field == Fields.UnitsInStock).GroupTotalsFormatter = (t, c) =>
-			//{
-			//    return t.Sum != null && t.Sum[c.Field] != null ?
-			//        "Sum: " + t.Sum[c.Field] : "";
-			//};
 			return columns;
 		},
 		$inputsChange: function(e) {
