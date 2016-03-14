@@ -60,24 +60,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=1.9.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.1.9.22\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=1.9.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.1.9.24\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=1.9.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.1.9.22\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=1.9.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.1.9.24\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=1.9.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.1.9.22\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=1.9.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.1.9.24\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=1.9.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.1.9.22\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=1.9.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.1.9.24\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=1.9.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.1.9.22\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=1.9.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.1.9.24\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -1243,8 +1243,30 @@
     <Content Include="Scripts\serenity\Serenity.Script.Core.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
+    <Content Include="Scripts\SlickGrid\slick.editors.js" />
+    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\sparkline\jquery.sparkline.js" />
     <Content Include="Scripts\sparkline\jquery.sparkline.min.js" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.css" />
@@ -1434,25 +1456,6 @@
     <Content Include="Modules\Membership\_ViewStart.cshtml" />
     <Content Include="Modules\_ViewStart.cshtml" />
     <Content Include="Scripts\site\Serene.Script.js" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.js" />
-    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
-    <Content Include="Scripts\SlickGrid\slick.editors.js" />
-    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Templates\EntityDialog.Template.html" />
