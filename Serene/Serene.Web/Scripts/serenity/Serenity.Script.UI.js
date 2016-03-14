@@ -427,7 +427,7 @@
 				var target = $(e.target);
 				if (target.hasClass('check-box')) {
 					var checkedOrPartial = target.hasClass('checked') || target.hasClass('partial');
-					var item = this.view.rows[row];
+					var item = this.rows.getDataItem(row);
 					var anyChanged = item.isSelected !== !checkedOrPartial;
 					this.view.beginUpdate();
 					try {
