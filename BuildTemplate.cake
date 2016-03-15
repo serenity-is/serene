@@ -128,6 +128,7 @@ Task("PrepareVSIX")
         var itemList = csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
             x.Name == ns1 + "Content" ||
             x.Name == ns1 + "Compile" ||
+            x.Name == ns1 + "TypeScriptCompile" ||
             x.Name == ns1 + "EmbeddedResource" ||
             x.Name == ns1 + "Folder" ||
             x.Name == ns1 + "None"));
@@ -202,6 +203,8 @@ Task("PrepareVSIX")
             var item = new XElement(ns + "ProjectItem");
             var extension = (System.IO.Path.GetExtension(file) ?? "").ToLowerInvariant();
             bool replaceParameters = extension == ".cs" ||
+                extension == ".ts" ||
+                extension == ".d.ts" ||
                 extension == ".config" ||
                 extension == ".tt" ||
                 extension == ".css" ||
