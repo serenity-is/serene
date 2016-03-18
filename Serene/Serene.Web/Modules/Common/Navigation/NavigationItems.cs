@@ -21,6 +21,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Cloneable Entity Dialog", typeof(Basic.BasicSamplesController), action: "CloneableEntityDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Default Values in New Dialog", typeof(Basic.BasicSamplesController), action: "DefaultValuesInNewDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Filtered Lookup in Detail Dlg.", typeof(Basic.BasicSamplesController), action: "FilteredLookupInDetailDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Grouping and Sum. In Grid", typeof(Basic.BasicSamplesController), action: "GroupingAndSummariesInGrid")]
 [assembly: NavigationLink(7900, "Basic Samples/Grid Filtered by Criteria", typeof(Basic.BasicSamplesController), action: "GridFilteredByCriteria")]
 [assembly: NavigationLink(7900, "Basic Samples/Lookup Filter by Multi Values", typeof(Basic.BasicSamplesController), action: "LookupFilterByMultipleValues")]
 [assembly: NavigationLink(7900, "Basic Samples/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnDialog")]
