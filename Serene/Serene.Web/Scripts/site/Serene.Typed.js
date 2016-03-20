@@ -41,4 +41,3 @@ var Serene;
         Northwind.MyBoldFormatter = MyBoldFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
-//# sourceMappingURL=Serene.Typed.js.map
