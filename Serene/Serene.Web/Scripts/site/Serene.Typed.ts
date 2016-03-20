@@ -16,4 +16,7 @@ namespace Serene.Northwind {
             return "<b>" + Q.htmlEncode(ctx.value) + "</b>";
         }
     }
+
+    namespace XYZ {
+    }
 }
