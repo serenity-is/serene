@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev.Serene.Web", "Serene\Serene.Web\Dev.Serene.Web.csproj", "{E298DC33-D240-4585-AC47-775575246780}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A0098374-9055-40BA-9F81-1C73AE7F3670} = {A0098374-9055-40BA-9F81-1C73AE7F3670}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dev.Serene.Script", "Serene\Serene.Script\Dev.Serene.Script.csproj", "{A0098374-9055-40BA-9F81-1C73AE7F3670}"
 EndProject

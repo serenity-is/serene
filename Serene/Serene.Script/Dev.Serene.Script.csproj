@@ -470,11 +470,14 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(TargetDir)$(AssemblyName).js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\site\$(AssemblyName).js">
     </Copy>
-    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.Core\Resources\mscorlib.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Saltarelle\mscorlib.js" />
-    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.Core\Resources\linq.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Saltarelle\linq.js" />
-    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.Core\bin\$(ConfigurationName)\Serenity.Script.Core.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Script.Core.js" />
-    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.Core\Resources\Serenity.Externals.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.js" />
-    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.Core\Resources\Serenity.Externals.Slick.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.Slick.js" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Includes\Scripts\Saltarelle\mscorlib.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Saltarelle\mscorlib.js" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Includes\Scripts\Saltarelle\linq.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Saltarelle\linq.js" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.CoreLib.d.ts" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.CoreLib.d.ts" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.CoreLib.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.CoreLib.js" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.Externals.d.ts" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.d.ts" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.Externals.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.js" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.Externals.Slick.d.ts" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.Slick.d.ts" />
+    <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Web\Scripts\Serenity\Serenity.Externals.Slick.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Externals.Slick.js" />
     <Copy SourceFiles="$(SolutionDir)Serenity\Serenity.Script.UI\bin\$(ConfigurationName)\Serenity.Script.UI.js" DestinationFiles="$(SolutionDir)Serene\Serene.Web\Scripts\Serenity\Serenity.Script.UI.js" />
   </Target>
 </Project>
