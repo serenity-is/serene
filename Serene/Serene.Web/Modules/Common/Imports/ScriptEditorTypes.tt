@@ -116,7 +116,7 @@ public class ScriptWidgetTypeLister
             if (!isOptions &&
                 (property.CustomAttributes.FirstOrDefault(x => 
                     x.AttributeType.FullName == "System.ComponentModel.DisplayNameAttribute" ||
-                    x.AttributeType.FullName == "Serenity.ComponentModel.OptionAttribute") == null))
+                    x.AttributeType.FullName == "Serenity.OptionAttribute") == null))
                 continue;
                      
             if (result.ContainsKey(property.Name))

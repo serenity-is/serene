@@ -1,4 +1,4 @@
-
+﻿
 using Serenity;
 using Serenity.ComponentModel;
 using System;
@@ -29,6 +29,16 @@ namespace Serene.Northwind
         public const string Key = "Serene.Northwind.FreightFormatter";
     
         public FreightFormatterAttribute()
+            : base(Key)
+        {
+        }
+    }
+
+    public partial class MyBoldFormatterAttribute : CustomFormatterAttribute
+    {
+        public const string Key = "Serene.Northwind.MyBoldFormatter";
+    
+        public MyBoldFormatterAttribute()
             : base(Key)
         {
         }

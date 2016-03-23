@@ -1262,6 +1262,8 @@
     <Content Include="Scripts\timepicker\bootstrap-timepicker.js" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
+    <Content Include="tools\JsEngine\typescriptServices.js" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
@@ -1466,6 +1468,7 @@
     <Content Include="tools\Node\less\lib\lessc" />
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="tools\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

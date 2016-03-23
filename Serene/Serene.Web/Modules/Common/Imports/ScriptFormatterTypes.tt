@@ -1,9 +1,10 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serenity.Core.dll" #>
-<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serenity.Web.dll" #>
-<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serene.Web.dll" #>
-<#@ assembly name="$(SolutionDir)Serene\Serene.Web\tools\Mono.Cecil\Mono.Cecil.dll" #>
+<#@ assembly name="$(ProjectDir)bin\Serenity.Core.dll" #>
+<#@ assembly name="$(ProjectDir)\bin\Serenity.Web.dll" #>
+<#@ assembly name="$(ProjectDir)\bin\Serene.Web.dll" #>
+<#@ assembly name="$(ProjectDir)\tools\Mono.Cecil\Mono.Cecil.dll" #>
+<#@ assembly name="$(ProjectDir)\tools\JsEngine\MsieJavaScriptEngine.dll" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -11,11 +12,13 @@
 <#@ import namespace="Serenity.Reflection" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="MsieJavaScriptEngine" #>
 <#@ include file="MultipleOutputHelper.ttinclude" #>
 <#@ output extension=".log" #>
 <# 
-    var solutionDir = Host.ResolvePath(@"..\..\..\..");
-    var scriptAssembly = (solutionDir + @"\Serene.Script\bin\debug\Serene.Script.dll");
+    var solutionDir = Host.ResolvePath(@"..\..\..\..\..");
+    var projectDir = Host.ResolvePath(@"..\..\..");
+    var scriptAssembly = (solutionDir + @"\Serene\Serene.Script\bin\debug\Serene.Script.dll");
 
     var lister = new ScriptTypeLister(scriptAssembly);
     var generator = new FormatterTypeGenerator();
@@ -25,10 +28,14 @@
         {
             generator.FormatterTypes[type.FullName] = new FormatterTypeInfo {
                 Options = lister.GetOptions(type)
-            };                
+            };
         }
     }
-    
+
+	foreach (var type in ScriptTypeLister.GetTsFormatterTypes(projectDir)) {
+		generator.FormatterTypes[type.Key] = type.Value;
+	}
+
     var code = generator.GenerateCode();
     var manager = Manager.Create(Host, GenerationEnvironment);
     manager.StartNewFile("ScriptFormatterTypes.cs");
@@ -106,7 +113,7 @@ public class ScriptTypeLister
             if (!isOptions &&
                 (property.CustomAttributes.FirstOrDefault(x => 
                     x.AttributeType.FullName == "System.ComponentModel.DisplayNameAttribute" ||
-                    x.AttributeType.FullName == "Serenity.ComponentModel.OptionAttribute") == null))
+                    x.AttributeType.FullName == "Serenity.OptionAttribute") == null))
                 continue;
                      
             if (result.ContainsKey(property.Name))
@@ -182,5 +189,45 @@ public class ScriptTypeLister
     }
        
     public Mono.Cecil.AssemblyDefinition ScriptAssembly { get; private set; }
+
+    public static MsieJsEngine SetupJsEngine(string projectDir)
+    {
+        var jsEngine = new MsieJsEngine();
+        try
+        {
+            var tsServices = File.ReadAllText(projectDir + @"\tools\JsEngine\typeScriptServices.js");
+            jsEngine.Evaluate(tsServices);
+            using (var sr = new StreamReader(
+                typeof(Serenity.CodeGeneration.DtoGenerator).Assembly.GetManifestResourceStream(
+                    "Serenity.Web.Scripts.tsservices.Serenity.CodeGeneration.js")))
+            {
+                jsEngine.Evaluate(sr.ReadToEnd());
+            }
+
+            return jsEngine;
+        }
+        catch
+        {
+            jsEngine.Dispose();
+            throw;
+        }
+    }
+
+    public static Dictionary<string, FormatterTypeInfo> GetTsFormatterTypes(string projectDir) 
+	{
+        var files = Directory.GetFiles(projectDir + @"\Modules", "*.ts", SearchOption.AllDirectories)
+			.Concat(Directory.GetFiles(projectDir + @"\Scripts", "*.ts", SearchOption.AllDirectories))
+			.Where(x => !x.ToLower().EndsWith(".d.ts"))
+			.Select(x => File.ReadAllText(x));
+
+        using (var jsEngine = SetupJsEngine(projectDir))
+        {
+            jsEngine.SetVariableValue("sourceText", string.Join("\r\n;\r\n", files));
+			var json = jsEngine.Evaluate<string>(
+				"JSON.stringify(Serenity.CodeGeneration.parseFormatterTypes(sourceText))");
+            return JSON.Parse<Dictionary<string, FormatterTypeInfo>>(json);
+		}
+	}
+
 }
 #>
