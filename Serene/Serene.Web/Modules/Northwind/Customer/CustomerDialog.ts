@@ -1,14 +1,12 @@
-﻿interface CustomerRow {
-    ID: number;
-    CustomerID: string;
-}
-
-namespace Serene.Northwind {
+﻿namespace Serene.NorthwindTS {
     import D = Serenity.Decorators;
 
-    @D.formKey("Northwind.Customer") @D.idProperty("ID") @D.nameProperty("CustomerID") 
+    @D.formKey("Northwind.Customer") @D.idProperty("ID") @D.nameProperty("CustomerID")
     @D.service("Northwind/Customer") @D.flexify() @D.maximizable()
-    export class MyCustomerDialog extends Serenity.EntityDialog<CustomerRow> {
+    export class CustomerDialog extends Serenity.EntityDialog<Northwind.CustomerRow> {
+        test() {
+            var s = Northwind.CustomerRow.Fields.Region;
+        }
     }
 
     export class MyBoldFormatter implements Slick.Formatter {

@@ -26,8 +26,9 @@
   <PropertyGroup>
     <TypeScriptCharset>utf-8</TypeScriptCharset>
     <TypeScriptEmitBOM>True</TypeScriptEmitBOM>
-    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+    <TypeScriptOutFile>Scripts\site\Serene.Web.js</TypeScriptOutFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -619,24 +620,24 @@
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\Simple-Line-Icons.dev.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
-    <Content Include="Modules\Common\Imports\ScriptEditorTypes.tt">
+    <Content Include="Modules\Imports\ScriptEditorTypes\ScriptEditorTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ScriptEditorTypes.log</LastGenOutput>
     </Content>
-    <Content Include="Modules\Common\Imports\ScriptEditorTypes.log">
+    <Content Include="Modules\Imports\ScriptEditorTypes\ScriptEditorTypes.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
     </Content>
-    <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
+    <Content Include="Modules\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Modules\Common\Imports\ScriptFormatterTypes.tt">
+    <Content Include="Modules\Imports\ScriptFormatterTypes\ScriptFormatterTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ScriptFormatterTypes.log</LastGenOutput>
     </Content>
-    <Content Include="Modules\Common\Imports\ScriptFormatterTypes.log">
+    <Content Include="Modules\Imports\ScriptFormatterTypes\ScriptFormatterTypes.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
@@ -1169,6 +1170,12 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Modules\Imports\ServiceTypings\ServiceTypings.log">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </None>
+    <None Include="tsconfig.json" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
@@ -1232,6 +1239,7 @@
     <Content Include="Scripts\serenity\Serenity.Script.Core.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
+    <Content Include="Scripts\site\Serene.Web.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -1262,6 +1270,10 @@
     <Content Include="Scripts\timepicker\bootstrap-timepicker.js" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Modules\Imports\ServiceTypings\ServiceTypings.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ServiceTypings.log</LastGenOutput>
+    </Content>
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
@@ -1339,7 +1351,7 @@
     <Content Include="Modules\AdminLTE\Charts\ChartJS.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\Flot.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\InlineCharts.cshtml" />
-    <Content Include="Modules\Common\MVC\MVC.tt">
+    <Content Include="Modules\Imports\MVC\MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MVC.cs</LastGenOutput>
     </Content>
@@ -1539,10 +1551,10 @@
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
-    <Compile Include="Modules\Common\Imports\ScriptEditorTypes.cs">
+    <Compile Include="Modules\Imports\ScriptEditorTypes\ScriptEditorTypes.cs">
       <DependentUpon>ScriptEditorTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ScriptFormatterTypes.cs">
+    <Compile Include="Modules\Imports\ScriptFormatterTypes\ScriptFormatterTypes.cs">
       <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
@@ -1560,7 +1572,7 @@
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPage.cs" />
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
-    <Compile Include="Modules\Common\MVC\MVC.cs">
+    <Compile Include="Modules\Imports\MVC\MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MVC.tt</DependentUpon>
@@ -1730,6 +1742,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\typings\site\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -1758,6 +1771,150 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.LanguageRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.RolePermissionListRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.RolePermissionListResponse.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.RolePermissionRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.RolePermissionUpdateRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.RoleRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.TranslationItem.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.TranslationListRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.TranslationUpdateRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserPermissionListRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserPermissionRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserPermissionUpdateRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserRoleListRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserRoleListResponse.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserRoleRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserRoleUpdateRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Administration.UserRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\BasicSamples.OrderBulkActionRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\BasicSamples.OrdersByShipperRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\BasicSamples.OrdersByShipperResponse.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Common.Pages.UploadResponse.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Membership.ChangePasswordRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Membership.ForgotPasswordRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Membership.LoginRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Membership.ResetPasswordRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Membership.SignUpRequest.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CategoryLangRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CategoryRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CustomerCustomerDemoRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CustomerDemographicRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CustomerRepresentativesRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.CustomerRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.EmployeeRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.EmployeeTerritoryRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.Gender.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.NoteRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.OrderDetailRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.OrderRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.OrderShippingState.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.ProductLangRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.ProductLogRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.ProductRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.RegionRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.SalesByCategoryRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.ShipperRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.SupplierRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\Northwind.TerritoryRow.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Imports\ServiceTypings\ScriptUserDefinition.ts">
+      <DependentUpon>ServiceTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
@@ -1766,7 +1923,7 @@
     <TypeScriptCompile Include="Scripts\Serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\Serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
-    <TypeScriptCompile Include="Scripts\site\Serene.Typed.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerDialog.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

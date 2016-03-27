@@ -26,7 +26,7 @@
 	var $Serene_BasicProgressDialog = function() {
 		this.$6$CancelledField = false;
 		this.$6$CancelTitleField = null;
-		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).call(this);
+		Serenity.TemplatedDialog.call(this, null);
 		var self = this;
 		this.byId$1('ProgressBar').progressbar({
 			max: 100,
@@ -100,7 +100,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.LanguageDialog
 	var $Serene_Administration_LanguageDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Administration_LanguageDialog.__typeName = 'Serene.Administration.LanguageDialog';
 	global.Serene.Administration.LanguageDialog = $Serene_Administration_LanguageDialog;
@@ -114,7 +114,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.LanguageGrid
 	var $Serene_Administration_LanguageGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Administration_LanguageGrid.__typeName = 'Serene.Administration.LanguageGrid';
 	global.Serene.Administration.LanguageGrid = $Serene_Administration_LanguageGrid;
@@ -124,7 +124,7 @@
 		this.$containsText = null;
 		this.$byParentKey = null;
 		this.$rolePermissions = null;
-		ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).call(this, div, opt);
+		Serenity.DataGrid.call(this, div, opt);
 		this.$rolePermissions = {};
 		var titleByKey = {};
 		var permissionKeys = this.$getSortedGroupAndPermissionKeys(titleByKey);
@@ -143,7 +143,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.PermissionModuleEditor
 	var $Serene_Administration_PermissionModuleEditor = function(hidden) {
-		ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]).call(this, hidden, null);
+		Serenity.Select2Editor.call(this, hidden, null);
 		var modules = {};
 		var permissions = Q.getRemoteData('Administration.PermissionKeys').Entities;
 		for (var i = 0; i < permissions.length; i++) {
@@ -184,14 +184,14 @@
 	// Serene.Administration.RoleCheckEditor
 	var $Serene_Administration_RoleCheckEditor = function(div) {
 		this.$containsText = null;
-		ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]).call(this, div, null);
+		Serenity.CheckTreeEditor.call(this, div, null);
 	};
 	$Serene_Administration_RoleCheckEditor.__typeName = 'Serene.Administration.RoleCheckEditor';
 	global.Serene.Administration.RoleCheckEditor = $Serene_Administration_RoleCheckEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleDialog
 	var $Serene_Administration_RoleDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Administration_RoleDialog.__typeName = 'Serene.Administration.RoleDialog';
 	global.Serene.Administration.RoleDialog = $Serene_Administration_RoleDialog;
@@ -205,7 +205,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleGrid
 	var $Serene_Administration_RoleGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Administration_RoleGrid.__typeName = 'Serene.Administration.RoleGrid';
 	global.Serene.Administration.RoleGrid = $Serene_Administration_RoleGrid;
@@ -213,7 +213,7 @@
 	// Serene.Administration.RolePermissionDialog
 	var $Serene_Administration_RolePermissionDialog = function(opt) {
 		this.$permissions = null;
-		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
+		Serenity.TemplatedDialog.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'), { showRevoke: false });
 		Q.serviceRequest('Administration/RolePermission/List', { RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
@@ -231,7 +231,7 @@
 		this.$targetLanguage = null;
 		this.$targetLanguageKey = null;
 		this.$hasChanges = false;
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 		this.element.on('keyup.' + this.uniqueName + ' change.' + this.uniqueName, 'input.custom-text', ss.mkdel(this, function(e) {
 			var value = Q.trimToNull($(e.target).val());
 			if (value === '') {
@@ -247,7 +247,7 @@
 	// Serene.Administration.UserDialog
 	var $Serene_Administration_UserDialog = function() {
 		this.$form = null;
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 		this.$form = new $Serene_Administration_UserForm(this.get_idPrefix());
 		Serenity.VX.addValidationRule(this.$form.get_password(), this.uniqueName, ss.mkdel(this, function(e) {
 			if (this.$form.get_password().get_value().length < 7) {
@@ -274,7 +274,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserGrid
 	var $Serene_Administration_UserGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Administration_UserGrid.__typeName = 'Serene.Administration.UserGrid';
 	global.Serene.Administration.UserGrid = $Serene_Administration_UserGrid;
@@ -282,7 +282,7 @@
 	// Serene.Administration.UserPermissionDialog
 	var $Serene_Administration_UserPermissionDialog = function(opt) {
 		this.$permissions = null;
-		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
+		Serenity.TemplatedDialog.call(this, opt);
 		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'), { showRevoke: true });
 		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(response.Entities);
@@ -297,7 +297,7 @@
 	// Serene.Administration.UserRoleDialog
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
-		ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).$ctor1.call(this, opt);
+		Serenity.TemplatedDialog.call(this, opt);
 		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId$1('Roles'));
 		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
@@ -363,7 +363,7 @@
 	// Serene.BasicSamples.FilteredLookupInDetailDialog
 	var $Serene_BasicSamples_FilteredLookupInDetailDialog = function() {
 		this.$form = null;
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.get_idPrefix());
 		Serenity.WX.change(this.$form.get_categoryID(), ss.mkdel(this, function(e) {
 			this.$form.get_detailList().set_categoryID(Q.toId(this.$form.get_categoryID().get_value()));
@@ -489,14 +489,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ProduceSeafoodCategoryEditor
 	var $Serene_BasicSamples_ProduceSeafoodCategoryEditor = function(hidden, opt) {
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).$ctor1.call(this, hidden, opt);
+		Serenity.LookupEditorBase.call(this, hidden, opt);
 	};
 	$Serene_BasicSamples_ProduceSeafoodCategoryEditor.__typeName = 'Serene.BasicSamples.ProduceSeafoodCategoryEditor';
 	global.Serene.BasicSamples.ProduceSeafoodCategoryEditor = $Serene_BasicSamples_ProduceSeafoodCategoryEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ResponsiveDialog
 	var $Serene_BasicSamples_ResponsiveDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_BasicSamples_ResponsiveDialog.__typeName = 'Serene.BasicSamples.ResponsiveDialog';
 	global.Serene.BasicSamples.ResponsiveDialog = $Serene_BasicSamples_ResponsiveDialog;
@@ -511,7 +511,7 @@
 	// Serene.BasicSamples.ViewWithoutIDGrid
 	var $Serene_BasicSamples_ViewWithoutIDGrid = function(container) {
 		this.$nextId = 1;
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_BasicSamples_ViewWithoutIDGrid.__typeName = 'Serene.BasicSamples.ViewWithoutIDGrid';
 	global.Serene.BasicSamples.ViewWithoutIDGrid = $Serene_BasicSamples_ViewWithoutIDGrid;
@@ -556,7 +556,7 @@
 	var $Serene_Common_GridEditorBase$1 = function(TEntity) {
 		var $type = function(container) {
 			this.$nextId = 1;
-			ss.makeGenericType(Serenity.EntityGrid$1, [TEntity]).call(this, container);
+			Serenity.EntityGrid.call(this, container);
 		};
 		ss.registerGenericClassInstance($type, $Serene_Common_GridEditorBase$1, [TEntity], {
 			id: function(entity) {
@@ -656,7 +656,7 @@
 			createQuickSearchInput: function() {
 			}
 		}, function() {
-			return ss.makeGenericType(Serenity.EntityGrid$1, [TEntity]);
+			return Serenity.EntityGrid;
 		}, function() {
 			return [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue];
 		});
@@ -672,16 +672,16 @@
 		var $type = function() {
 			this.$8$OnSaveField = null;
 			this.$8$OnDeleteField = null;
-			ss.makeGenericType(Serenity.EntityDialog$1, [TEntity]).call(this);
+			Serenity.EntityDialog.call(this);
 		};
 		ss.registerGenericClassInstance($type, $Serene_Common_GridEditorDialog$1, [TEntity], {
 			destroy: function() {
 				this.set_onSave(null);
 				this.set_onDelete(null);
-				ss.makeGenericType(Serenity.EntityDialog$2, [TEntity, Object]).prototype.destroy.call(this);
+				Serenity.EntityDialog.prototype.destroy.call(this);
 			},
 			updateInterface: function() {
-				ss.makeGenericType(Serenity.EntityDialog$2, [TEntity, Object]).prototype.updateInterface.call(this);
+				Serenity.EntityDialog.prototype.updateInterface.call(this);
 				// apply changes button doesn't work properly with in-memory grids yet
 				if (ss.isValue(this.applyChangesButton)) {
 					this.applyChangesButton.hide();
@@ -710,7 +710,7 @@
 				this.$8$OnDeleteField = value;
 			}
 		}, function() {
-			return ss.makeGenericType(Serenity.EntityDialog$1, [TEntity]);
+			return Serenity.EntityDialog;
 		}, function() {
 			return [Serenity.IDialog, Serenity.IEditDialog];
 		});
@@ -723,7 +723,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
 	var $Serene_Common_LanguageSelection = function(select, currentLanguage) {
-		Serenity.Widget.call(this, select);
+		Serenity.Widget.call(this, select, null);
 		currentLanguage = ss.coalesce(currentLanguage, 'en');
 		var self = this;
 		Serenity.WX.change(this, function(e) {
@@ -776,7 +776,7 @@
 	// Serene.Common.SidebarSearch
 	var $Serene_Common_SidebarSearch = function(input, menuUL) {
 		this.$menuUL = null;
-		Serenity.Widget.call(this, input);
+		Serenity.Widget.call(this, input, null);
 		var self = this;
 		var $t1 = Serenity.QuickSearchInputOptions.$ctor();
 		$t1.onSearch = function(field, text, success) {
@@ -791,7 +791,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.ThemeSelection
 	var $Serene_Common_ThemeSelection = function(select) {
-		Serenity.Widget.call(this, select);
+		Serenity.Widget.call(this, select, null);
 		var self = this;
 		Serenity.WX.change(this, ss.mkdel(this, function(e) {
 			$.cookie('ThemePreference', select.val(), { path: Q.Config.applicationPath, expires: 365 });
@@ -825,7 +825,7 @@
 	// Serene.Membership.ChangePasswordPanel
 	var $Serene_Membership_ChangePasswordPanel = function(container) {
 		this.$form = null;
-		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_ChangePasswordForm(this.get_idPrefix());
 		Serenity.VX.addValidationRule(this.$form.get_newPassword(), this.get_uniqueName(), ss.mkdel(this, function(e) {
 			if (this.$form.get_confirmPassword().get_value().length < 7) {
@@ -868,7 +868,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ForgotPasswordPanel
 	var $Serene_Membership_ForgotPasswordPanel = function(container) {
-		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		Serenity.PropertyPanel.call(this, container);
 		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
@@ -898,7 +898,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.LoginPanel
 	var $Serene_Membership_LoginPanel = function(container) {
-		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		Serenity.PropertyPanel.call(this, container);
 		this.byId$1('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
@@ -938,7 +938,7 @@
 	// Serene.Membership.ResetPasswordPanel
 	var $Serene_Membership_ResetPasswordPanel = function(container) {
 		this.$form = null;
-		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_ResetPasswordForm(this.get_idPrefix());
 		Serenity.VX.addValidationRule(this.$form.get_newPassword(), this.get_uniqueName(), ss.mkdel(this, function(e) {
 			if (this.$form.get_confirmPassword().get_value().length < 7) {
@@ -983,7 +983,7 @@
 	// Serene.Membership.SignUpPanel
 	var $Serene_Membership_SignUpPanel = function(container) {
 		this.$form = null;
-		ss.makeGenericType(Serenity.PropertyPanel$1, [Object]).call(this, container);
+		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_SignUpForm(this.get_idPrefix());
 		Serenity.VX.addValidationRule(this.$form.get_confirmPassword(), this.uniqueName, ss.mkdel(this, function(e) {
 			if (!ss.referenceEquals(this.$form.get_confirmPassword().get_value(), this.$form.get_password().get_value())) {
@@ -1018,7 +1018,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CategoryDialog
 	var $Serene_Northwind_CategoryDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_CategoryDialog.__typeName = 'Serene.Northwind.CategoryDialog';
 	global.Serene.Northwind.CategoryDialog = $Serene_Northwind_CategoryDialog;
@@ -1032,14 +1032,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CategoryGrid
 	var $Serene_Northwind_CategoryGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_CategoryGrid.__typeName = 'Serene.Northwind.CategoryGrid';
 	global.Serene.Northwind.CategoryGrid = $Serene_Northwind_CategoryGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoDialog
 	var $Serene_Northwind_CustomerCustomerDemoDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_CustomerCustomerDemoDialog.__typeName = 'Serene.Northwind.CustomerCustomerDemoDialog';
 	global.Serene.Northwind.CustomerCustomerDemoDialog = $Serene_Northwind_CustomerCustomerDemoDialog;
@@ -1053,14 +1053,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoGrid
 	var $Serene_Northwind_CustomerCustomerDemoGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_CustomerCustomerDemoGrid.__typeName = 'Serene.Northwind.CustomerCustomerDemoGrid';
 	global.Serene.Northwind.CustomerCustomerDemoGrid = $Serene_Northwind_CustomerCustomerDemoGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDemographicDialog
 	var $Serene_Northwind_CustomerDemographicDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_CustomerDemographicDialog.__typeName = 'Serene.Northwind.CustomerDemographicDialog';
 	global.Serene.Northwind.CustomerDemographicDialog = $Serene_Northwind_CustomerDemographicDialog;
@@ -1074,7 +1074,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDemographicGrid
 	var $Serene_Northwind_CustomerDemographicGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_CustomerDemographicGrid.__typeName = 'Serene.Northwind.CustomerDemographicGrid';
 	global.Serene.Northwind.CustomerDemographicGrid = $Serene_Northwind_CustomerDemographicGrid;
@@ -1083,7 +1083,7 @@
 	var $Serene_Northwind_CustomerDialog = function() {
 		this.$loadedState = null;
 		this.$ordersGrid = null;
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.byId$1('OrdersGrid'));
 		Serenity.FLX.flexHeightOnly(this.$ordersGrid.get_element(), 1);
 		this.byId$1('NoteList').closest('.field').hide().end().appendTo(this.byId$1('TabNotes'));
@@ -1099,7 +1099,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerEditor
 	var $Serene_Northwind_CustomerEditor = function(container, options) {
-		ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]).$ctor1.call(this, container, options);
+		Serenity.LookupEditorBase.call(this, container, options);
 	};
 	$Serene_Northwind_CustomerEditor.__typeName = 'Serene.Northwind.CustomerEditor';
 	global.Serene.Northwind.CustomerEditor = $Serene_Northwind_CustomerEditor;
@@ -1113,7 +1113,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerGrid
 	var $Serene_Northwind_CustomerGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_CustomerGrid.__typeName = 'Serene.Northwind.CustomerGrid';
 	global.Serene.Northwind.CustomerGrid = $Serene_Northwind_CustomerGrid;
@@ -1135,7 +1135,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeDialog
 	var $Serene_Northwind_EmployeeDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_EmployeeDialog.__typeName = 'Serene.Northwind.EmployeeDialog';
 	global.Serene.Northwind.EmployeeDialog = $Serene_Northwind_EmployeeDialog;
@@ -1156,14 +1156,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeGrid
 	var $Serene_Northwind_EmployeeGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_EmployeeGrid.__typeName = 'Serene.Northwind.EmployeeGrid';
 	global.Serene.Northwind.EmployeeGrid = $Serene_Northwind_EmployeeGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeTerritoryDialog
 	var $Serene_Northwind_EmployeeTerritoryDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_EmployeeTerritoryDialog.__typeName = 'Serene.Northwind.EmployeeTerritoryDialog';
 	global.Serene.Northwind.EmployeeTerritoryDialog = $Serene_Northwind_EmployeeTerritoryDialog;
@@ -1177,7 +1177,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeTerritoryGrid
 	var $Serene_Northwind_EmployeeTerritoryGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_EmployeeTerritoryGrid.__typeName = 'Serene.Northwind.EmployeeTerritoryGrid';
 	global.Serene.Northwind.EmployeeTerritoryGrid = $Serene_Northwind_EmployeeTerritoryGrid;
@@ -1261,7 +1261,7 @@
 	// Serene.Northwind.OrderDialog
 	var $Serene_Northwind_OrderDialog = function() {
 		this.form = null;
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 		this.form = new $Serene_Northwind_OrderForm(this.get_idPrefix());
 	};
 	$Serene_Northwind_OrderDialog.__typeName = 'Serene.Northwind.OrderDialog';
@@ -1278,7 +1278,7 @@
 	var $Serene_Northwind_OrderGrid = function(container) {
 		this.$shippingState = null;
 		this.$7$CustomerFilterField = null;
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_OrderGrid.__typeName = 'Serene.Northwind.OrderGrid';
 	global.Serene.Northwind.OrderGrid = $Serene_Northwind_OrderGrid;
@@ -1401,7 +1401,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ProductDialog
 	var $Serene_Northwind_ProductDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_ProductDialog.__typeName = 'Serene.Northwind.ProductDialog';
 	global.Serene.Northwind.ProductDialog = $Serene_Northwind_ProductDialog;
@@ -1416,7 +1416,7 @@
 	// Serene.Northwind.ProductGrid
 	var $Serene_Northwind_ProductGrid = function(container) {
 		this.$pendingChanges = {};
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 		this.slickContainer.on('change', 'input.edit', ss.mkdel(this, this.$inputsChange));
 	};
 	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
@@ -1424,7 +1424,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_RegionDialog.__typeName = 'Serene.Northwind.RegionDialog';
 	global.Serene.Northwind.RegionDialog = $Serene_Northwind_RegionDialog;
@@ -1438,14 +1438,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionGrid
 	var $Serene_Northwind_RegionGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_RegionGrid.__typeName = 'Serene.Northwind.RegionGrid';
 	global.Serene.Northwind.RegionGrid = $Serene_Northwind_RegionGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ShipperDialog
 	var $Serene_Northwind_ShipperDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_ShipperDialog.__typeName = 'Serene.Northwind.ShipperDialog';
 	global.Serene.Northwind.ShipperDialog = $Serene_Northwind_ShipperDialog;
@@ -1465,14 +1465,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ShipperGrid
 	var $Serene_Northwind_ShipperGrid = function(container) {
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_ShipperGrid.__typeName = 'Serene.Northwind.ShipperGrid';
 	global.Serene.Northwind.ShipperGrid = $Serene_Northwind_ShipperGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.SupplierDialog
 	var $Serene_Northwind_SupplierDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_SupplierDialog.__typeName = 'Serene.Northwind.SupplierDialog';
 	global.Serene.Northwind.SupplierDialog = $Serene_Northwind_SupplierDialog;
@@ -1487,14 +1487,14 @@
 	// Serene.Northwind.SupplierGrid
 	var $Serene_Northwind_SupplierGrid = function(container) {
 		this.$country = null;
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_SupplierGrid.__typeName = 'Serene.Northwind.SupplierGrid';
 	global.Serene.Northwind.SupplierGrid = $Serene_Northwind_SupplierGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.TerritoryDialog
 	var $Serene_Northwind_TerritoryDialog = function() {
-		ss.makeGenericType(Serenity.EntityDialog$1, [Object]).call(this);
+		Serenity.EntityDialog.call(this);
 	};
 	$Serene_Northwind_TerritoryDialog.__typeName = 'Serene.Northwind.TerritoryDialog';
 	global.Serene.Northwind.TerritoryDialog = $Serene_Northwind_TerritoryDialog;
@@ -1509,7 +1509,7 @@
 	// Serene.Northwind.TerritoryGrid
 	var $Serene_Northwind_TerritoryGrid = function(container) {
 		this.$region = null;
-		ss.makeGenericType(Serenity.EntityGrid$1, [Object]).call(this, container);
+		Serenity.EntityGrid.call(this, container);
 	};
 	$Serene_Northwind_TerritoryGrid.__typeName = 'Serene.Northwind.TerritoryGrid';
 	global.Serene.Northwind.TerritoryGrid = $Serene_Northwind_TerritoryGrid;
@@ -1554,7 +1554,7 @@
 		},
 		getDialogOptions: function() {
 			var self = this;
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			opt.title = Q.text('Site.BasicProgressDialog.PleaseWait');
 			opt.width = 600;
 			var $t1 = [];
@@ -1572,13 +1572,13 @@
 			return opt;
 		},
 		initDialog: function() {
-			ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.initDialog.call(this);
+			Serenity.TemplatedDialog.prototype.initDialog.call(this);
 			this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
 		},
 		getTemplate: function() {
 			return "<div class='s-DialogContent s-BasicProgressDialogContent'><div id='~_StatusText' class='status-text'></div><div id='~_ProgressBar' class='progress-bar'><div id='~_ProgressLabel' class='progress-label'></div></div></div>";
 		}
-	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_BulkServiceAction, $asm, {
 		createProgressDialog: function() {
 			this.progressDialog = new $Serene_BasicProgressDialog();
@@ -1742,7 +1742,7 @@
 	ss.initClass($Serene_DialogUtils, $asm, {});
 	ss.initClass($Serene_LanguageList, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
-	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_LanguageDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
 		get_languageId: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'LanguageId');
@@ -1751,7 +1751,7 @@
 			return this.byId(Serenity.StringEditor).call(this, 'LanguageName');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_PermissionCheckEditor, $asm, {
 		$getItemGrantRevokeClass: function(item, grant) {
 			if (!item.IsGroup) {
@@ -1794,7 +1794,7 @@
 		},
 		getColumns: function() {
 			var $t1 = [];
-			$t1.push({ name: Q.text('Site.UserPermissionDialog.Permission'), field: 'Title', format: Serenity.SlickFormatting.treeToggle(Object).call(null, ss.mkdel(this, function() {
+			$t1.push({ name: Q.text('Site.UserPermissionDialog.Permission'), field: 'Title', format: Serenity.SlickFormatting.treeToggle(ss.mkdel(this, function() {
 				return this.get_view();
 			}), function(x) {
 				return x.Key;
@@ -1830,7 +1830,7 @@
 			return false;
 		},
 		onViewFilter: function(item) {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+			if (!Serenity.DataGrid.prototype.onViewFilter.call(this, item)) {
 				return false;
 			}
 			if (!Serenity.SlickTreeHelper.filterById(item, this.view, function(x) {
@@ -1869,9 +1869,9 @@
 			return result;
 		},
 		onClick: function(e, row, cell) {
-			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onClick.call(this, e, row, cell);
+			Serenity.DataGrid.prototype.onClick.call(this, e, row, cell);
 			if (!e.isDefaultPrevented()) {
-				Serenity.SlickTreeHelper.toggleClick(Object).call(null, e, row, cell, this.view, function(x) {
+				Serenity.SlickTreeHelper.toggleClick(e, row, cell, this.view, function(x) {
 					return x.Key;
 				});
 			}
@@ -1926,7 +1926,7 @@
 			return [];
 		},
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.DataGrid.prototype.createToolbarExtensions.call(this);
 			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
 				this.$containsText = Select2.util.stripDiacritics(ss.coalesce(Q.trimToNull(text), '')).toLowerCase();
 				this.view.setItems(this.view.getItems(), true);
@@ -2015,21 +2015,21 @@
 			}
 			this.$setItems(this.get_items());
 		}
-	}, ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, ss.makeGenericType(Serenity.Select2Editor$2, [Object, String]), [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
+	}, Serenity.DataGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, Serenity.Select2Editor, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
 	ss.initClass($Serene_Administration_RoleCheckEditor, $asm, {
 		getButtons: function() {
 			return [];
 		},
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.DataGrid.prototype.createToolbarExtensions.call(this);
 			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
 				this.$containsText = Q.trimToNull(text);
 				this.view.setItems(this.view.getItems(), true);
 			}), null);
 		},
 		onViewFilter: function(item) {
-			if (!ss.makeGenericType(Serenity.CheckTreeEditor$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+			if (!Serenity.CheckTreeEditor.prototype.onViewFilter.call(this, item)) {
 				return false;
 			}
 			var contains = Select2.util.stripDiacritics(ss.coalesce(this.$containsText, '')).toUpperCase();
@@ -2050,20 +2050,20 @@
 			}
 			return list;
 		}
-	}, ss.makeGenericType(Serenity.CheckTreeEditor$1, [Object]), [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
+	}, Serenity.CheckTreeEditor, [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
 	ss.initClass($Serene_Administration_RoleDialog, $asm, {
 		getToolbarButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
 			buttons.push({ title: Q.text('Site.RolePermissionDialog.EditButton'), cssClass: 'lock-button', onClick: ss.mkdel(this, function() {
 				(new $Serene_Administration_RolePermissionDialog({ roleID: ss.unbox(this.get_entity().RoleId), title: this.get_entity().RoleName })).dialogOpen();
 			}) });
 			return buttons;
 		},
 		updateInterface: function() {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			Serenity.EntityDialog.prototype.updateInterface.call(this);
 			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RoleForm, $asm, {
 		get_roleName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'RoleName');
@@ -2075,10 +2075,10 @@
 			$t1.push('RoleName');
 			return $t1;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RolePermissionDialog, $asm, {
 		getDialogOptions: function() {
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
 				Q.serviceRequest('Administration/RolePermission/Update', { RoleID: this.options.roleID, Permissions: Enumerable.from(this.$permissions.get_value()).select(function(x) {
@@ -2098,10 +2098,10 @@
 		getTemplate: function() {
 			return "<div id='~_Permissions'></div>";
 		}
-	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_TranslationGrid, $asm, {
 		onClick: function(e, row, cell) {
-			ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onClick.call(this, e, row, cell);
+			Serenity.DataGrid.prototype.onClick.call(this, e, row, cell);
 			if (e.isDefaultPrevented()) {
 				return;
 			}
@@ -2164,7 +2164,7 @@
 			return RSVP.resolve(columns);
 		},
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
 				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Administration.Translation.SourceLanguage') + ' ---');
 			});
@@ -2213,7 +2213,7 @@
 			this.$targetLanguageKey = ss.coalesce(this.$targetLanguage.get_value(), '');
 			request.TargetLanguageID = this.$targetLanguageKey;
 			this.$hasChanges = false;
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this);
+			return Serenity.DataGrid.prototype.onViewSubmit.call(this);
 		},
 		getButtons: function() {
 			var $t1 = [];
@@ -2229,7 +2229,7 @@
 			}), null);
 		},
 		onViewFilter: function(item) {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewFilter.call(this, item)) {
+			if (!Serenity.DataGrid.prototype.onViewFilter.call(this, item)) {
 				return false;
 			}
 			if (Q.isEmptyOrNull(this.$searchText)) {
@@ -2256,10 +2256,10 @@
 		usePager: function() {
 			return false;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_UserDialog, $asm, {
 		getToolbarButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
 			buttons.push({ title: Q.text('Site.UserDialog.EditRolesButton'), cssClass: 'users-button', onClick: ss.mkdel(this, function() {
 				(new $Serene_Administration_UserRoleDialog({ userID: ss.unbox(this.get_entity().UserId), username: this.get_entity().Username })).dialogOpen();
 			}) });
@@ -2269,11 +2269,11 @@
 			return buttons;
 		},
 		updateInterface: function() {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			Serenity.EntityDialog.prototype.updateInterface.call(this);
 			this.toolbar.findButton('users-button').toggleClass('disabled', this.get_isNewOrDeleted());
 			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Administration_UserForm, $asm, {
 		get_username: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Username');
@@ -2296,7 +2296,7 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Administration_UserGrid, $asm, {
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			columns.push({ field: 'UserId', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
 			columns.push({ field: 'Username', width: 150, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'DisplayName', width: 150 });
@@ -2309,10 +2309,10 @@
 			$t1.push('Username');
 			return $t1;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_UserPermissionDialog, $asm, {
 		getDialogOptions: function() {
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
 				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
@@ -2330,10 +2330,10 @@
 		getTemplate: function() {
 			return "<div id='~_Permissions'></div>";
 		}
-	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {
 		getDialogOptions: function() {
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
 				Q.serviceRequest('Administration/UserRole/Update', { UserID: this.options.userID, Roles: Enumerable.from(this.$permissions.get_value()).select(function(x) {
@@ -2353,10 +2353,10 @@
 		getTemplate: function() {
 			return "<div id='~_Roles'></div>";
 		}
-	}, ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]), [Serenity.IDialog]);
+	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Northwind_OrderGrid, $asm, {
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			this.set_customerFilter(this.addEqualityFilter($Serene_Northwind_CustomerEditor).call(this, 'CustomerID', null, null, null, null, null));
 			this.addDateRangeFilter('OrderDate', null);
 			var $t1 = Serenity.EnumEditorOptions.$ctor();
@@ -2383,7 +2383,7 @@
 			this.$shippingState.set_value((ss.isNullOrUndefined(value) ? '' : ss.unbox(value).toString()));
 		},
 		getButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Order/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
 			return buttons;
 		},
@@ -2393,7 +2393,7 @@
 		set_customerFilter: function(value) {
 			this.$7$CustomerFilterField = value;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_CancellableBulkActionGrid, $asm, {
 		createToolbarExtensions: function() {
 			$Serene_Northwind_OrderGrid.prototype.createToolbarExtensions.call(this);
@@ -2412,21 +2412,21 @@
 			return $t1;
 		},
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			ss.insert(columns, 0, Serenity.GridRowSelectionMixin.createSelectColumn(ss.mkdel(this, function() {
 				return this.$rowSelection;
 			})));
 			return columns;
 		},
 		getViewOptions: function() {
-			var opt = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getViewOptions.call(this);
+			var opt = Serenity.EntityGrid.prototype.getViewOptions.call(this);
 			opt.rowsPerPage = 2500;
 			return opt;
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_ChartInDialog, $asm, {
 		onDialogOpen: function() {
-			ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.onDialogOpen.call(this);
+			Serenity.TemplatedDialog.prototype.onDialogOpen.call(this);
 			Q.serviceRequest('BasicSamples/BasicSamples/OrdersByShipper', {}, ss.mkdel(this, function(response) {
 				this.$areaChart = new Morris.Area({ element: this.get_idPrefix() + 'Chart', resize: true, parseTime: false, data: response.Values, xkey: 'Month', ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto' });
 			}), null);
@@ -2435,7 +2435,7 @@
 			}));
 		},
 		arrange: function() {
-			ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.arrange.call(this);
+			Serenity.TemplatedDialog.prototype.arrange.call(this);
 			if (ss.isValue(this.$areaChart)) {
 				this.$areaChart.redraw();
 			}
@@ -2445,7 +2445,7 @@
 			return "<div id='~_Chart'></div>";
 		},
 		getDialogOptions: function() {
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			opt.title = 'Orders by Shipper';
 			return opt;
 		}
@@ -2454,16 +2454,16 @@
 		getLanguages: function() {
 			return $Serene_LanguageList.get_value();
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_CloneableEntityDialog, $asm, {
 		updateInterface: function() {
 			// by default cloneButton is hidden in base UpdateInterface method
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			Serenity.EntityDialog.prototype.updateInterface.call(this);
 			// here we show it if it is edit mode (not new)
 			this.cloneButton.toggle(this.get_isEditMode());
 		},
 		getCloningEntity: function() {
-			var clone = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getCloningEntity.call(this);
+			var clone = Serenity.EntityDialog.prototype.getCloningEntity.call(this);
 			// add (Clone) suffix if it's not already added
 			var suffix = ' (Clone)';
 			if (!ss.endsWithString(ss.coalesce(clone.ProductName, ''), suffix)) {
@@ -2481,7 +2481,7 @@
 	}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.Supplier';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'SupplierID', null, $t1, null, null, null);
@@ -2490,7 +2490,7 @@
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'CategoryID', null, $t2, null, null, null);
 		},
 		getButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
 			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
 				this.$saveClick();
@@ -2500,7 +2500,7 @@
 		onViewProcessData: function(response) {
 			ss.clearKeys(this.$pendingChanges);
 			this.$setSaveButtonState();
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
+			return Serenity.DataGrid.prototype.onViewProcessData.call(this, response);
 		},
 		$inputFormatter: function(ctx) {
 			var klass = 'edit';
@@ -2524,7 +2524,7 @@
 			return ss.cast(item[field], Number);
 		},
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			Enumerable.from(columns).single(function(x) {
 				return x.field === 'UnitPrice';
 			}).format = ss.mkdel(this, this.$inputFormatter);
@@ -2602,7 +2602,7 @@
 			});
 			saveNext();
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_DefaultValuesInNewGrid, $asm, {
 		addButtonClick: function() {
@@ -2664,7 +2664,7 @@
 	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupDetailEditor, $asm, {
 		initEntityDialog$1: function(itemType, dialog) {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.initEntityDialog$1.call(this, itemType, dialog);
+			Serenity.EntityGrid.prototype.initEntityDialog$1.call(this, itemType, dialog);
 			// passing category ID from grid editor to detail dialog
 			ss.cast(dialog, $Serene_BasicSamples_FilteredLookupOrderDetailDialog).set_categoryID(this.get_categoryID());
 		},
@@ -2675,7 +2675,7 @@
 			this.$9$CategoryIDField = value;
 		}
 	}, $Serene_Northwind_OrderDetailsEditor, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
-	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailForm, $asm, {
 		get_customerID: function() {
 			return this.byId($Serene_Northwind_CustomerEditor).call(this, 'CustomerID');
@@ -2694,7 +2694,7 @@
 	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupOrderDetailDialog, $asm, {
 		beforeLoadEntity: function(entity) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.beforeLoadEntity.call(this, entity);
+			Serenity.EntityDialog.prototype.beforeLoadEntity.call(this, entity);
 			// setting cascade value here
 			// make sure you have [LookupInclude] on CategoryID property of ProductRow
 			// otherwise this field won't be available in lookup script (will always be null),
@@ -2711,7 +2711,7 @@
 	ss.initClass($Serene_BasicSamples_GridFilteredByCriteria, $asm, {
 		onViewSubmit: function() {
 			// only continue if base class returns true (didn't cancel request)
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
 				return false;
 			}
 			// view object is the data source for grid (SlickRemoteView)
@@ -2726,7 +2726,7 @@
 	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_GroupingAndSummariesInGrid, $asm, {
 		createSlickGrid: function() {
-			var grid = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.createSlickGrid.call(this);
+			var grid = Serenity.DataGrid.prototype.createSlickGrid.call(this);
 			// need to register this plugin for grouping or you'll have errors
 			grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
 			var $t2 = this.view;
@@ -2753,7 +2753,7 @@
 			return columns;
 		},
 		getSlickOptions: function() {
-			var opt = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getSlickOptions.call(this);
+			var opt = Serenity.DataGrid.prototype.getSlickOptions.call(this);
 			opt.showFooterRow = true;
 			return opt;
 		},
@@ -2826,7 +2826,7 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleGrid, $asm, {
 		onViewSubmit: function() {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
 				return false;
 			}
 			// this has no relation to our lookup editor but as we'll allow picking only 
@@ -2839,16 +2839,16 @@
 	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_OrderDialog, $asm, {
 		loadEntity: function(entity) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
+			Serenity.EntityDialog.prototype.loadEntity.call(this, entity);
 		},
 		getToolbarButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.getToolbarButtons.call(this);
+			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
 			buttons.push($Serene_Common_ReportHelper.createRenderButton('Northwind.OrderDetail', 'Invoice', 'export-pdf-button', 'pdf', ss.mkdel(this, function() {
 				return { OrderID: this.get_entityId() };
 			})));
 			return buttons;
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_MultiColumnDialog, $asm, {}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_MultiColumnGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_MultiColumnResponsiveDialog, $asm, {}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
@@ -2875,16 +2875,16 @@
 			return 'Northwind.Category';
 		},
 		getItems: function(lookup) {
-			return Enumerable.from(ss.makeGenericType(Serenity.LookupEditorBase$2, [Serenity.LookupEditorOptions, Object]).prototype.getItems.call(this, lookup)).where(function(x) {
+			return Enumerable.from(Serenity.LookupEditorBase.prototype.getItems.call(this, lookup)).where(function(x) {
 				return x.CategoryName === 'Produce' || x.CategoryName === 'Seafood';
 			});
 		}
-	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
-	ss.initClass($Serene_BasicSamples_ResponsiveDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.LookupEditorBase, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
+	ss.initClass($Serene_BasicSamples_ResponsiveDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_ResponsiveGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_ViewWithoutIDGrid, $asm, {
 		onViewProcessData: function(response) {
-			response = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewProcessData.call(this, response);
+			response = Serenity.DataGrid.prototype.onViewProcessData.call(this, response);
 			// there is no __id property in SalesByCategoryRow but this is javascript and we can set any property of an object
 			for (var $t1 = 0; $t1 < response.Entities.length; $t1++) {
 				var x = response.Entities[$t1];
@@ -2895,7 +2895,7 @@
 		getButtons: function() {
 			return [];
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_ReportHelper, $asm, {});
@@ -2956,13 +2956,13 @@
 			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Membership_ForgotPasswordForm, $asm, {
 		get_email: function() {
 			return this.byId(Serenity.EmailEditor).call(this, 'Email');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Membership_LoginForm, $asm, {
 		get_username: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'Username');
@@ -2971,7 +2971,7 @@
 			return this.byId(Serenity.PasswordEditor).call(this, 'Password');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_LoginPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_LoginPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Membership_ResetPasswordForm, $asm, {
 		get_newPassword: function() {
 			return this.byId(Serenity.PasswordEditor).call(this, 'NewPassword');
@@ -2980,7 +2980,7 @@
 			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Membership_SignUpForm, $asm, {
 		get_displayName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'DisplayName');
@@ -2998,12 +2998,12 @@
 			return this.byId(Serenity.PasswordEditor).call(this, 'ConfirmPassword');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, ss.makeGenericType(Serenity.PropertyPanel$1, [Object]));
+	ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {
 		getLanguages: function() {
 			return $Serene_LanguageList.get_value();
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CategoryForm, $asm, {
 		get_categoryName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CategoryName');
@@ -3012,8 +3012,8 @@
 			return this.byId(Serenity.StringEditor).call(this, 'Description');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoForm, $asm, {
 		get_customerID: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CustomerID');
@@ -3024,14 +3024,14 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoGrid, $asm, {
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			columns.push({ field: 'ID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
 			columns.push({ field: 'CustomerID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'CustomerTypeID', width: 80 });
 			return columns;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_CustomerDemographicDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_CustomerDemographicDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerDemographicForm, $asm, {
 		get_customerTypeID: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CustomerTypeID');
@@ -3042,13 +3042,13 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerDemographicGrid, $asm, {
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			columns.push({ field: 'ID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
 			columns.push({ field: 'CustomerTypeID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'CustomerDesc', width: 80 });
 			return columns;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_CustomerDialog, $asm, {
 		$getSaveState: function() {
 			try {
@@ -3059,27 +3059,27 @@
 			}
 		},
 		loadResponse: function(data) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadResponse.call(this, data);
+			Serenity.EntityDialog.prototype.loadResponse.call(this, data);
 			this.$loadedState = this.$getSaveState();
 		},
 		loadEntity: function(entity) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.loadEntity.call(this, entity);
+			Serenity.EntityDialog.prototype.loadEntity.call(this, entity);
 			Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.get_isNewOrDeleted());
 			this.$ordersGrid.set_customerID(entity.CustomerID);
 		},
 		onSaveSuccess: function(response) {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.onSaveSuccess.call(this, response);
+			Serenity.EntityDialog.prototype.onSaveSuccess.call(this, response);
 			Q.reloadLookup('Northwind.Customer');
 		}
-	}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerEditor, $asm, {
 		getLookupKey: function() {
 			return 'Northwind.Customer';
 		},
 		getItemText: function(item, lookup) {
-			return ss.makeGenericType(Serenity.LookupEditorBase$2, [Serenity.LookupEditorOptions, Object]).prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
+			return Serenity.LookupEditorBase.prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
 		}
-	}, ss.makeGenericType(Serenity.LookupEditorBase$1, [Object]), [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
+	}, Serenity.LookupEditorBase, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
 	ss.initClass($Serene_Northwind_CustomerForm, $asm, {
 		get_customerID: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CustomerID');
@@ -3123,7 +3123,7 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerGrid, $asm, {
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.CustomerCountry';
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'Country', null, $t1, null, null, null);
@@ -3133,25 +3133,25 @@
 			this.addEqualityFilter(Serenity.LookupEditor).call(this, 'City', null, $t2, null, null, null);
 		},
 		getButtons: function() {
-			var buttons = ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.getButtons.call(this);
+			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Customer/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
 			return buttons;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
 		updateInterface: function() {
-			ss.makeGenericType(Serenity.EntityDialog$2, [Object, Object]).prototype.updateInterface.call(this);
+			Serenity.EntityDialog.prototype.updateInterface.call(this);
 			Serenity.EditorUtils.setReadOnly(this.form.get_customerID(), true);
 		}
 	}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrdersGrid, $asm, {
 		getColumns: function() {
-			return Enumerable.from(ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this)).where(function(x) {
+			return Enumerable.from(Serenity.DataGrid.prototype.getColumns.call(this)).where(function(x) {
 				return x.field !== 'CustomerCompanyName';
 			}).toArray();
 		},
 		initEntityDialog$1: function(itemType, dialog) {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.initEntityDialog$1.call(this, itemType, dialog);
+			Serenity.EntityGrid.prototype.initEntityDialog$1.call(this, itemType, dialog);
 			Serenity.SubDialogHelper.cascade(ss.cast(dialog, $Serene_Northwind_OrderDialog), this.get_element().closest('.ui-dialog'));
 		},
 		addButtonClick: function() {
@@ -3165,7 +3165,7 @@
 			this.get_customerFilter().get_element().closest('.quick-filter-item').remove();
 		},
 		getGridCanLoad: function() {
-			return ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);
+			return Serenity.DataGrid.prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);
 		},
 		get_customerID: function() {
 			return this.$customerID;
@@ -3178,7 +3178,7 @@
 			}
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_EmployeeDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_EmployeeDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_EmployeeForm, $asm, {
 		get_lastName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'LastName');
@@ -3257,7 +3257,7 @@
 	}, null, [Serenity.ISlickFormatter, Serenity.IInitializeColumn]);
 	ss.initClass($Serene_Northwind_EmployeeGrid, $asm, {
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			columns.push({ field: 'EmployeeID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
 			columns.push({ field: 'LastName', width: 200, format: this.itemLink(null, null, null, null, true) });
 			columns.push({ field: 'FirstName', width: 80 });
@@ -3278,8 +3278,8 @@
 			columns.push({ field: 'PhotoPath', width: 80 });
 			return columns;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_EmployeeTerritoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Northwind_EmployeeTerritoryDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_EmployeeTerritoryForm, $asm, {
 		get_territoryID: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'TerritoryID');
@@ -3287,12 +3287,12 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_EmployeeTerritoryGrid, $asm, {
 		getColumns: function() {
-			var columns = ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			columns.push({ field: 'EmployeeID', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
 			columns.push({ field: 'TerritoryID', width: 200, format: this.itemLink(null, null, null, null, true) });
 			return columns;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_FreightFormatter, $asm, {
 		format: function(ctx) {
 			return "<span class='freight-symbol'>" + Q.htmlEncode(ctx.value) + '</span>';
@@ -3304,7 +3304,7 @@
 			return "<form id='~_Form' class='s-Form'><textarea id='~_Text' class='required'></textarea></form>";
 		},
 		getDialogOptions: function() {
-			var opt = ss.makeGenericType(Serenity.TemplatedDialog$1, [Object]).prototype.getDialogOptions.call(this);
+			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
 				if (!this.validateForm()) {
@@ -3540,7 +3540,7 @@
 			return this.byId(Serenity.IntegerEditor).call(this, 'ReorderLevel');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_RegionForm, $asm, {
 		get_regionID: function() {
 			return this.byId(Serenity.IntegerEditor).call(this, 'RegionID');
@@ -3549,8 +3549,8 @@
 			return this.byId(Serenity.StringEditor).call(this, 'RegionDescription');
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_ShipperDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_ShipperDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_ShipperForm, $asm, {
 		get_companyName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CompanyName');
@@ -3564,8 +3564,8 @@
 			return "<span class='shipper-symbol shipper-" + ss.replaceAllString(ss.coalesce(ss.safeCast(ctx.value, String), ''), ' ', '') + "'>" + Q.htmlEncode(ctx.value) + '</span>';
 		}
 	}, null, [Serenity.ISlickFormatter]);
-	ss.initClass($Serene_Northwind_ShipperGrid, $asm, {}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_SupplierDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_ShipperGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_SupplierDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_SupplierForm, $asm, {
 		get_companyName: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'CompanyName');
@@ -3603,7 +3603,7 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_SupplierGrid, $asm, {
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
 				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Supplier.Country') + ' ---');
 			});
@@ -3615,14 +3615,14 @@
 			}));
 		},
 		onViewSubmit: function() {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
 				return false;
 			}
 			this.setEquality('Country', this.$country.get_value());
 			return true;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Northwind_TerritoryDialog, $asm, {}, ss.makeGenericType(Serenity.EntityDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	ss.initClass($Serene_Northwind_TerritoryDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Northwind_TerritoryForm, $asm, {
 		get_territoryID: function() {
 			return this.byId(Serenity.StringEditor).call(this, 'TerritoryID');
@@ -3636,7 +3636,7 @@
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_TerritoryGrid, $asm, {
 		createToolbarExtensions: function() {
-			ss.makeGenericType(Serenity.EntityGrid$2, [Object, Object]).prototype.createToolbarExtensions.call(this);
+			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
 				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Territory.RegionDescription') + ' ---');
 			});
@@ -3648,13 +3648,13 @@
 			}));
 		},
 		onViewSubmit: function() {
-			if (!ss.makeGenericType(Serenity.DataGrid$2, [Object, Object]).prototype.onViewSubmit.call(this)) {
+			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
 				return false;
 			}
 			this.setEquality('RegionID', Q.toId(this.$region.get_value()));
 			return true;
 		}
-	}, ss.makeGenericType(Serenity.EntityGrid$1, [Object]), [Serenity.IDataGrid, Serenity.IAsyncInit]);
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serenity_HtmlBasicContentEditor, $asm, {
 		getConfig: function() {
 			var config = Serenity.HtmlContentEditor.prototype.getConfig.call(this);

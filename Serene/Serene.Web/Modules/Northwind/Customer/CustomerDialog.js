@@ -11,25 +11,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var Serene;
 (function (Serene) {
-    var Northwind;
-    (function (Northwind) {
+    var NorthwindTS;
+    (function (NorthwindTS) {
         var D = Serenity.Decorators;
-        var MyCustomerDialog = (function (_super) {
-            __extends(MyCustomerDialog, _super);
-            function MyCustomerDialog() {
+        var CustomerDialog = (function (_super) {
+            __extends(CustomerDialog, _super);
+            function CustomerDialog() {
                 _super.apply(this, arguments);
             }
-            MyCustomerDialog = __decorate([
+            CustomerDialog.prototype.test = function () {
+                var s = Serene.Northwind.CustomerRow.Fields.Region;
+            };
+            CustomerDialog = __decorate([
                 D.formKey("Northwind.Customer"),
                 D.idProperty("ID"),
                 D.nameProperty("CustomerID"),
                 D.service("Northwind/Customer"),
                 D.flexify(),
                 D.maximizable()
-            ], MyCustomerDialog);
-            return MyCustomerDialog;
+            ], CustomerDialog);
+            return CustomerDialog;
         }(Serenity.EntityDialog));
-        Northwind.MyCustomerDialog = MyCustomerDialog;
+        NorthwindTS.CustomerDialog = CustomerDialog;
         var MyBoldFormatter = (function () {
             function MyBoldFormatter() {
             }
@@ -38,7 +41,7 @@ var Serene;
             };
             return MyBoldFormatter;
         }());
-        Northwind.MyBoldFormatter = MyBoldFormatter;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+        NorthwindTS.MyBoldFormatter = MyBoldFormatter;
+    })(NorthwindTS = Serene.NorthwindTS || (Serene.NorthwindTS = {}));
 })(Serene || (Serene = {}));
-//# sourceMappingURL=Serene.Typed.js.map
+//# sourceMappingURL=CustomerDialog.js.map
