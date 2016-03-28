@@ -13,7 +13,7 @@
 		"Views/" 
 	}; 
 
-	var webDir = Host.ResolvePath(@"..\..\..\");
+	var webDir = Host.ResolvePath(@"..\..\..\..\");
 	// search these paths for views
 	string[] searchViewPaths = new string[] {
 		webDir + @"Modules\",

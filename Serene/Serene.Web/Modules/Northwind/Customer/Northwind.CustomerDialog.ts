@@ -1,11 +1,14 @@
-﻿namespace Serene.NorthwindTS {
+﻿namespace Serene.Northwind {
     import D = Serenity.Decorators;
 
     @D.formKey("Northwind.Customer") @D.idProperty("ID") @D.nameProperty("CustomerID")
     @D.service("Northwind/Customer") @D.flexify() @D.maximizable()
-    export class CustomerDialog extends Serenity.EntityDialog<Northwind.CustomerRow> {
+    export class MyCustomerDialog extends Serenity.EntityDialog<Northwind.CustomerRow> {
         test() {
-            var s = Northwind.CustomerRow.Fields.Region;
+            var s = CustomerRow.Fields.Region;
+            var t = CustomerRow.Fields.ContactName;
+            var u = CustomerRow.Fields.ContactTitle;
+            console.log(s, t, u);
         }
     }
 

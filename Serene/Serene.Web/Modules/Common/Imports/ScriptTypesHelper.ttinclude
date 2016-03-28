@@ -1,0 +1,67 @@
+﻿<#@ assembly name="System.Core"
+#><#@ assembly name="$(ProjectDir)tools\Mono.Cecil\Mono.Cecil.dll" 
+#><#@ import namespace="System.Linq" 
+#><#+
+public class ScriptTypesHelper
+{
+    public ScriptTypesHelper(string[] assemblyLocations)
+    {
+        if (assemblyLocations == null)
+            throw new ArgumentNullException("assemblyLocations");
+
+        var resolver = new Mono.Cecil.DefaultAssemblyResolver();
+		
+        this.ScriptAssemblies = new Mono.Cecil.AssemblyDefinition[assemblyLocations.Length];
+
+		for (var i = 0; i < assemblyLocations.Length; i++) 
+		{
+			var assemblyLocation = assemblyLocations[i];
+			resolver.AddSearchDirectory(Path.GetDirectoryName(assemblyLocation));
+		}
+       
+		for (var i = 0; i < assemblyLocations.Length; i++)
+		{
+			var assemblyLocation = assemblyLocations[i];
+			this.ScriptAssemblies[i] = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyLocation, 
+				new Mono.Cecil.ReaderParameters { AssemblyResolver = resolver });
+		}
+    }
+    
+    public bool HasBaseType(Mono.Cecil.TypeDefinition type, string baseTypeFullName)
+    {
+        if (type.BaseType == null)
+            return false;
+            
+        if (type.BaseType.Namespace.StartsWith("System"))
+            return false;
+            
+        if (type.BaseType.FullName == baseTypeFullName) 
+            return true;
+            
+		return HasBaseType(type.BaseType.Resolve(), baseTypeFullName);
+    }
+    
+	public bool IsWidget(Mono.Cecil.TypeDefinition type) 
+	{
+		return !type.IsAbstract && 
+		   !type.HasGenericParameters && 
+		   HasBaseType(type, "Serenity.Widget");
+	}
+
+    public Dictionary<string, Mono.Cecil.TypeDefinition> GetTypeDictionary()
+    {
+        var result = new Dictionary<string, Mono.Cecil.TypeDefinition>();
+        
+		foreach (var assembly in this.ScriptAssemblies)
+        foreach (var module in assembly.Modules)
+        {
+            foreach (var type in module.Types)
+                result[type.FullName] = type;
+        }
+        
+        return result;
+    }
+    
+    public Mono.Cecil.AssemblyDefinition[] ScriptAssemblies { get; private set; }
+}
+#>

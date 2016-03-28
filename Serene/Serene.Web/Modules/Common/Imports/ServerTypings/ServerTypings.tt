@@ -6,8 +6,10 @@
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
+<#@ include file="..\ScriptTypesHelper.ttinclude" #>
 <#@ output extension=".log" #>
-<# 
+<#
+	var solutionDir = Host.ResolvePath(@"..\..\..\..\..");
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
     var codeByFilename = generator.GenerateCode();
