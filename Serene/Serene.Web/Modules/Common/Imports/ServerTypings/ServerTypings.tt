@@ -3,17 +3,22 @@
 <#@ assembly name="$(ProjectDir)bin\Serenity.Core.dll" #>
 <#@ assembly name="$(ProjectDir)bin\Serenity.Web.dll" #>
 <#@ assembly name="$(ProjectDir)bin\Serene.Web.dll" #>
+<#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
 <#@ include file="..\ScriptTypesHelper.ttinclude" #>
 <#@ output extension=".log" #>
 <#
-	var solutionDir = Host.ResolvePath(@"..\..\..\..\..");
+	var allProjects = VS.Projects;
+	var scriptProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Script"));
+	var webProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Web"));
+
+	throw new Exception(String.Join("\r\n", VS.GetWidgetTypeNames(scriptProjects)));
+
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
-    generator.RootNamespaces.Add("Serene");
-    var codeByFilename = generator.GenerateCode();
-    
+    generator.RootNamespaces.Add("Serene");   
+	var codeByFilename = generator.GenerateCode();   
     var manager = Manager.Create(Host, GenerationEnvironment);
     foreach (var pair in codeByFilename) 
     {
