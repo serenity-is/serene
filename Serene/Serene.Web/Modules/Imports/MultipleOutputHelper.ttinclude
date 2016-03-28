@@ -176,23 +176,10 @@ class Manager {
                 if (!keepFileNames.Contains(pair.Key) && !(Path.GetFileNameWithoutExtension(pair.Key) + ".").StartsWith(originalFilePrefix))
                     pair.Value.Delete();
 
-            EnvDTE.ProjectItem firstItem = null;
             // Add missing files to the project
             foreach(String fileName in keepFileNameSet)
-                if (!projectFiles.ContainsKey(fileName)) {
-                    var i = templateProjectItem.ProjectItems.AddFromFile(fileName);
-                    firstItem = firstItem ?? i;
-                }
-
-            if (firstItem != null) {
-                bool wasOpen = firstItem.IsOpen;
-                EnvDTE.Window window = null; 
-                if (!wasOpen)
-                    window = firstItem.Open(EnvDTE.Constants.vsViewKindCode);
-                firstItem.Save();
-                if (wasOpen && window != null)
-                    window.Close();
-            }
+                if (!projectFiles.ContainsKey(fileName))
+                    templateProjectItem.ProjectItems.AddFromFile(fileName);
         }
 
         //private void CheckoutFileIfRequired(String fileName) {
