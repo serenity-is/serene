@@ -1,0 +1,25 @@
+﻿namespace Serene.Administration {
+    export namespace RoleService {
+        export const baseUrl = 'Administration/Role';
+
+        export declare function Create(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Update(request: Serenity.SaveRequest<RoleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RoleRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RoleRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+
+        export namespace Methods {
+            export declare const Create: 'Administration/Role/Create';
+            export declare const Update: 'Administration/Role/Update';
+            export declare const Delete: 'Administration/Role/Delete';
+            export declare const Retrieve: 'Administration/Role/Retrieve';
+            export declare const List: 'Administration/Role/List';
+        }
+
+        ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(x => {
+            (<any>RoleService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+            (<any>Methods)[x] = baseUrl + '/' + x;
+        });
+    }
+}
+

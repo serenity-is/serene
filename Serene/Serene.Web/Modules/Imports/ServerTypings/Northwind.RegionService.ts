@@ -1,0 +1,25 @@
+﻿namespace Serene.Northwind {
+    export namespace RegionService {
+        export const baseUrl = 'Northwind/Region';
+
+        export declare function Create(request: Serenity.SaveRequest<RegionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Update(request: Serenity.SaveRequest<RegionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RegionRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RegionRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+
+        export namespace Methods {
+            export declare const Create: 'Northwind/Region/Create';
+            export declare const Update: 'Northwind/Region/Update';
+            export declare const Delete: 'Northwind/Region/Delete';
+            export declare const Retrieve: 'Northwind/Region/Retrieve';
+            export declare const List: 'Northwind/Region/List';
+        }
+
+        ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(x => {
+            (<any>RegionService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+            (<any>Methods)[x] = baseUrl + '/' + x;
+        });
+    }
+}
+
