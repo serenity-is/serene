@@ -1,43 +1,43 @@
-﻿namespace Serene.Northwind
-{
-    export interface ProductRow
-    {
-        ProductID: number;
-        ProductName: string;
-        ProductImage: string;
-        Discontinued: boolean;
-        SupplierID: number;
-        CategoryID: number;
-        QuantityPerUnit: string;
-        UnitPrice: number;
-        UnitsInStock: number;
-        UnitsOnOrder: number;
-        ReorderLevel: number;
-        SupplierCompanyName: string;
-        SupplierContactName: string;
-        SupplierContactTitle: string;
-        SupplierAddress: string;
-        SupplierCity: string;
-        SupplierRegion: string;
-        SupplierPostalCode: string;
-        SupplierCountry: string;
-        SupplierPhone: string;
-        SupplierFax: string;
-        SupplierHomePage: string;
-        CategoryName: string;
-        CategoryDescription: string;
-        CategoryPicture: number[];
+﻿namespace Serene.Northwind {
+    export interface ProductRow {
+        ProductID?: number;
+        ProductName?: string;
+        ProductImage?: string;
+        Discontinued?: boolean;
+        SupplierID?: number;
+        CategoryID?: number;
+        QuantityPerUnit?: string;
+        UnitPrice?: number;
+        UnitsInStock?: number;
+        UnitsOnOrder?: number;
+        ReorderLevel?: number;
+        SupplierCompanyName?: string;
+        SupplierContactName?: string;
+        SupplierContactTitle?: string;
+        SupplierAddress?: string;
+        SupplierCity?: string;
+        SupplierRegion?: string;
+        SupplierPostalCode?: string;
+        SupplierCountry?: string;
+        SupplierPhone?: string;
+        SupplierFax?: string;
+        SupplierHomePage?: string;
+        CategoryName?: string;
+        CategoryDescription?: string;
+        CategoryPicture?: number[];
     }
 
-    export namespace ProductRow
-    {
-        export const IdProperty = "ProductID";
-        export const NameProperty = "ProductName";
-        export const LocalTextPrefix = "Northwind.Product";
-        export const LookupKey = "Northwind.Product";
+    export namespace ProductRow {
+        export const idProperty = "ProductID";
+        export const nameProperty = "ProductName";
+        export const localTextPrefix = "Northwind.Product";
+        export const lookupKey = "Northwind.Product";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.Product");
+        }
+
+        export namespace Fields {
             export declare const ProductID: "ProductID";
             export declare const ProductName: "ProductName";
             export declare const ProductImage: "ProductImage";

@@ -1,46 +1,46 @@
-﻿namespace Serene.Northwind
-{
-    export interface OrderRow
-    {
-        OrderID: number;
-        CustomerID: string;
-        EmployeeID: number;
-        OrderDate: string;
-        RequiredDate: string;
-        ShippedDate: string;
-        ShipVia: number;
-        Freight: number;
-        ShipName: string;
-        ShipAddress: string;
-        ShipCity: string;
-        ShipRegion: string;
-        ShipPostalCode: string;
-        ShipCountry: string;
-        CustomerCompanyName: string;
-        CustomerContactName: string;
-        CustomerContactTitle: string;
-        CustomerCity: string;
-        CustomerRegion: string;
-        CustomerCountry: string;
-        CustomerPhone: string;
-        CustomerFax: string;
-        EmployeeFullName: string;
-        EmployeeGender: Gender;
-        ShipViaCompanyName: string;
-        ShipViaPhone: string;
-        ShippingState: OrderShippingState;
-        DetailList: OrderDetailRow[];
+﻿namespace Serene.Northwind {
+    export interface OrderRow {
+        OrderID?: number;
+        CustomerID?: string;
+        EmployeeID?: number;
+        OrderDate?: string;
+        RequiredDate?: string;
+        ShippedDate?: string;
+        ShipVia?: number;
+        Freight?: number;
+        ShipName?: string;
+        ShipAddress?: string;
+        ShipCity?: string;
+        ShipRegion?: string;
+        ShipPostalCode?: string;
+        ShipCountry?: string;
+        CustomerCompanyName?: string;
+        CustomerContactName?: string;
+        CustomerContactTitle?: string;
+        CustomerCity?: string;
+        CustomerRegion?: string;
+        CustomerCountry?: string;
+        CustomerPhone?: string;
+        CustomerFax?: string;
+        EmployeeFullName?: string;
+        EmployeeGender?: Gender;
+        ShipViaCompanyName?: string;
+        ShipViaPhone?: string;
+        ShippingState?: OrderShippingState;
+        DetailList?: OrderDetailRow[];
     }
 
-    export namespace OrderRow
-    {
-        export const IdProperty = "OrderID";
-        export const NameProperty = "CustomerID";
-        export const LocalTextPrefix = "Northwind.Order";
-        export const LookupKey = "Northwind.OrderShipCity";
+    export namespace OrderRow {
+        export const idProperty = "OrderID";
+        export const nameProperty = "CustomerID";
+        export const localTextPrefix = "Northwind.Order";
+        export const lookupKey = "Northwind.OrderShipCity";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.OrderShipCity");
+        }
+
+        export namespace Fields {
             export declare const OrderID: "OrderID";
             export declare const CustomerID: "CustomerID";
             export declare const EmployeeID: "EmployeeID";

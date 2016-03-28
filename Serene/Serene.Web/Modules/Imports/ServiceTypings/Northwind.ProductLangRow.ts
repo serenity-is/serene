@@ -1,21 +1,17 @@
-﻿namespace Serene.Northwind
-{
-    export interface ProductLangRow
-    {
-        Id: number;
-        ProductId: number;
-        LanguageId: number;
-        ProductName: string;
+﻿namespace Serene.Northwind {
+    export interface ProductLangRow {
+        Id?: number;
+        ProductId?: number;
+        LanguageId?: number;
+        ProductName?: string;
     }
 
-    export namespace ProductLangRow
-    {
-        export const IdProperty = "Id";
-        export const NameProperty = "ProductName";
-        export const LocalTextPrefix = "Northwind.ProductLang";
+    export namespace ProductLangRow {
+        export const idProperty = "Id";
+        export const nameProperty = "ProductName";
+        export const localTextPrefix = "Northwind.ProductLang";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const Id: "Id";
             export declare const ProductId: "ProductId";
             export declare const LanguageId: "LanguageId";

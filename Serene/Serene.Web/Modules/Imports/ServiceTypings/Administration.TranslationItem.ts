@@ -1,7 +1,5 @@
-﻿namespace Serene.Administration
-{
-    export interface TranslationItem
-    {
+﻿namespace Serene.Administration {
+    export interface TranslationItem {
         Key?: string
         SourceText?: string
         TargetText?: string

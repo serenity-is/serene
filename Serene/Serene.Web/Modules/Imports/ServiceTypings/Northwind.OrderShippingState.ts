@@ -1,7 +1,5 @@
-﻿namespace Serene.Northwind
-{
-    export enum OrderShippingState
-    {
+﻿namespace Serene.Northwind {
+    export enum OrderShippingState {
         NotShipped = 0,
         Shipped = 1
     }

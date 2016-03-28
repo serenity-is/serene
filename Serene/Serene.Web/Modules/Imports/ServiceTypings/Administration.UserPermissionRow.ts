@@ -1,23 +1,19 @@
-﻿namespace Serene.Administration
-{
-    export interface UserPermissionRow
-    {
-        UserPermissionId: number;
-        UserId: number;
-        PermissionKey: string;
-        Grant: boolean;
-        Username: string;
-        User: string;
+﻿namespace Serene.Administration {
+    export interface UserPermissionRow {
+        UserPermissionId?: number;
+        UserId?: number;
+        PermissionKey?: string;
+        Grant?: boolean;
+        Username?: string;
+        User?: string;
     }
 
-    export namespace UserPermissionRow
-    {
-        export const IdProperty = "UserPermissionId";
-        export const NameProperty = "PermissionKey";
-        export const LocalTextPrefix = "Administration.UserPermission";
+    export namespace UserPermissionRow {
+        export const idProperty = "UserPermissionId";
+        export const nameProperty = "PermissionKey";
+        export const localTextPrefix = "Administration.UserPermission";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const UserPermissionId: "UserPermissionId";
             export declare const UserId: "UserId";
             export declare const PermissionKey: "PermissionKey";

@@ -1,24 +1,20 @@
-﻿namespace Serene.Northwind
-{
-    export interface NoteRow
-    {
-        NoteId: number;
-        EntityType: string;
-        EntityId: number;
-        Text: string;
-        InsertUserId: number;
-        InsertDate: string;
-        InsertUserDisplayName: string;
+﻿namespace Serene.Northwind {
+    export interface NoteRow {
+        NoteId?: number;
+        EntityType?: string;
+        EntityId?: number;
+        Text?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        InsertUserDisplayName?: string;
     }
 
-    export namespace NoteRow
-    {
-        export const IdProperty = "NoteId";
-        export const NameProperty = "EntityType";
-        export const LocalTextPrefix = "Northwind.Note";
+    export namespace NoteRow {
+        export const idProperty = "NoteId";
+        export const nameProperty = "EntityType";
+        export const localTextPrefix = "Northwind.Note";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const NoteId: "NoteId";
             export declare const EntityType: "EntityType";
             export declare const EntityId: "EntityId";

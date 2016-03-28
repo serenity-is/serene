@@ -1,31 +1,27 @@
-﻿namespace Serene.Northwind
-{
-    export interface CustomerCustomerDemoRow
-    {
-        ID: number;
-        CustomerID: string;
-        CustomerTypeID: string;
-        CustomerCompanyName: string;
-        CustomerContactName: string;
-        CustomerContactTitle: string;
-        CustomerAddress: string;
-        CustomerCity: string;
-        CustomerRegion: string;
-        CustomerPostalCode: string;
-        CustomerCountry: string;
-        CustomerPhone: string;
-        CustomerFax: string;
-        CustomerTypeCustomerDesc: string;
+﻿namespace Serene.Northwind {
+    export interface CustomerCustomerDemoRow {
+        ID?: number;
+        CustomerID?: string;
+        CustomerTypeID?: string;
+        CustomerCompanyName?: string;
+        CustomerContactName?: string;
+        CustomerContactTitle?: string;
+        CustomerAddress?: string;
+        CustomerCity?: string;
+        CustomerRegion?: string;
+        CustomerPostalCode?: string;
+        CustomerCountry?: string;
+        CustomerPhone?: string;
+        CustomerFax?: string;
+        CustomerTypeCustomerDesc?: string;
     }
 
-    export namespace CustomerCustomerDemoRow
-    {
-        export const IdProperty = "ID";
-        export const NameProperty = "CustomerID";
-        export const LocalTextPrefix = "Northwind.CustomerCustomerDemo";
+    export namespace CustomerCustomerDemoRow {
+        export const idProperty = "ID";
+        export const nameProperty = "CustomerID";
+        export const localTextPrefix = "Northwind.CustomerCustomerDemo";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const ID: "ID";
             export declare const CustomerID: "CustomerID";
             export declare const CustomerTypeID: "CustomerTypeID";

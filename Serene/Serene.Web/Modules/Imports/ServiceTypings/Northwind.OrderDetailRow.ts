@@ -1,35 +1,31 @@
-﻿namespace Serene.Northwind
-{
-    export interface OrderDetailRow
-    {
-        DetailID: number;
-        OrderID: number;
-        ProductID: number;
-        UnitPrice: number;
-        Quantity: number;
-        Discount: number;
-        OrderCustomerID: string;
-        OrderEmployeeID: number;
-        OrderDate: string;
-        OrderShippedDate: string;
-        OrderShipVia: number;
-        OrderShipCity: string;
-        OrderShipCountry: string;
-        ProductName: string;
-        ProductDiscontinued: boolean;
-        ProductSupplierID: number;
-        ProductQuantityPerUnit: string;
-        ProductUnitPrice: number;
-        LineTotal: number;
+﻿namespace Serene.Northwind {
+    export interface OrderDetailRow {
+        DetailID?: number;
+        OrderID?: number;
+        ProductID?: number;
+        UnitPrice?: number;
+        Quantity?: number;
+        Discount?: number;
+        OrderCustomerID?: string;
+        OrderEmployeeID?: number;
+        OrderDate?: string;
+        OrderShippedDate?: string;
+        OrderShipVia?: number;
+        OrderShipCity?: string;
+        OrderShipCountry?: string;
+        ProductName?: string;
+        ProductDiscontinued?: boolean;
+        ProductSupplierID?: number;
+        ProductQuantityPerUnit?: string;
+        ProductUnitPrice?: number;
+        LineTotal?: number;
     }
 
-    export namespace OrderDetailRow
-    {
-        export const IdProperty = "DetailID";
-        export const LocalTextPrefix = "Northwind.OrderDetail";
+    export namespace OrderDetailRow {
+        export const idProperty = "DetailID";
+        export const localTextPrefix = "Northwind.OrderDetail";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const DetailID: "DetailID";
             export declare const OrderID: "OrderID";
             export declare const ProductID: "ProductID";

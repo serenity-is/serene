@@ -1,21 +1,17 @@
-﻿namespace Serene.Administration
-{
-    export interface UserRoleRow
-    {
-        UserRoleId: number;
-        UserId: number;
-        RoleId: number;
-        Username: string;
-        User: string;
+﻿namespace Serene.Administration {
+    export interface UserRoleRow {
+        UserRoleId?: number;
+        UserId?: number;
+        RoleId?: number;
+        Username?: string;
+        User?: string;
     }
 
-    export namespace UserRoleRow
-    {
-        export const IdProperty = "UserRoleId";
-        export const LocalTextPrefix = "Administration.UserRole";
+    export namespace UserRoleRow {
+        export const idProperty = "UserRoleId";
+        export const localTextPrefix = "Administration.UserRole";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const UserRoleId: "UserRoleId";
             export declare const UserId: "UserId";
             export declare const RoleId: "RoleId";

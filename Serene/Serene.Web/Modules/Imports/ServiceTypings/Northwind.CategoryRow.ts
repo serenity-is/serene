@@ -1,22 +1,22 @@
-﻿namespace Serene.Northwind
-{
-    export interface CategoryRow
-    {
-        CategoryID: number;
-        CategoryName: string;
-        Description: string;
-        Picture: number[];
+﻿namespace Serene.Northwind {
+    export interface CategoryRow {
+        CategoryID?: number;
+        CategoryName?: string;
+        Description?: string;
+        Picture?: number[];
     }
 
-    export namespace CategoryRow
-    {
-        export const IdProperty = "CategoryID";
-        export const NameProperty = "CategoryName";
-        export const LocalTextPrefix = "Northwind.Category";
-        export const LookupKey = "Northwind.Category";
+    export namespace CategoryRow {
+        export const idProperty = "CategoryID";
+        export const nameProperty = "CategoryName";
+        export const localTextPrefix = "Northwind.Category";
+        export const lookupKey = "Northwind.Category";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.Category");
+        }
+
+        export namespace Fields {
             export declare const CategoryID: "CategoryID";
             export declare const CategoryName: "CategoryName";
             export declare const Description: "Description";

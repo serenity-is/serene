@@ -1,7 +1,5 @@
-﻿namespace Serene.Administration
-{
-    export interface RolePermissionListResponse extends Serenity.ListResponse<string>
-    {
+﻿namespace Serene.Administration {
+    export interface RolePermissionListResponse extends Serenity.ListResponse<string> {
     }
 }
 

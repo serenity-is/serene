@@ -1,30 +1,30 @@
-﻿namespace Serene.Northwind
-{
-    export interface SupplierRow
-    {
-        SupplierID: number;
-        CompanyName: string;
-        ContactName: string;
-        ContactTitle: string;
-        Address: string;
-        City: string;
-        Region: string;
-        PostalCode: string;
-        Country: string;
-        Phone: string;
-        Fax: string;
-        HomePage: string;
+﻿namespace Serene.Northwind {
+    export interface SupplierRow {
+        SupplierID?: number;
+        CompanyName?: string;
+        ContactName?: string;
+        ContactTitle?: string;
+        Address?: string;
+        City?: string;
+        Region?: string;
+        PostalCode?: string;
+        Country?: string;
+        Phone?: string;
+        Fax?: string;
+        HomePage?: string;
     }
 
-    export namespace SupplierRow
-    {
-        export const IdProperty = "SupplierID";
-        export const NameProperty = "CompanyName";
-        export const LocalTextPrefix = "Northwind.Supplier";
-        export const LookupKey = "Northwind.Supplier";
+    export namespace SupplierRow {
+        export const idProperty = "SupplierID";
+        export const nameProperty = "CompanyName";
+        export const localTextPrefix = "Northwind.Supplier";
+        export const lookupKey = "Northwind.Supplier";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.Supplier");
+        }
+
+        export namespace Fields {
             export declare const SupplierID: "SupplierID";
             export declare const CompanyName: "CompanyName";
             export declare const ContactName: "ContactName";

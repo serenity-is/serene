@@ -1,38 +1,34 @@
-﻿namespace Serene.Northwind
-{
-    export interface EmployeeTerritoryRow
-    {
-        EmployeeID: number;
-        TerritoryID: string;
-        EmployeeLastName: string;
-        EmployeeFirstName: string;
-        EmployeeTitle: string;
-        EmployeeTitleOfCourtesy: string;
-        EmployeeBirthDate: string;
-        EmployeeHireDate: string;
-        EmployeeAddress: string;
-        EmployeeCity: string;
-        EmployeeRegion: string;
-        EmployeePostalCode: string;
-        EmployeeCountry: string;
-        EmployeeHomePhone: string;
-        EmployeeExtension: string;
-        EmployeePhoto: number[];
-        EmployeeNotes: string;
-        EmployeeReportsTo: number;
-        EmployeePhotoPath: string;
-        TerritoryTerritoryDescription: string;
-        TerritoryRegionID: number;
+﻿namespace Serene.Northwind {
+    export interface EmployeeTerritoryRow {
+        EmployeeID?: number;
+        TerritoryID?: string;
+        EmployeeLastName?: string;
+        EmployeeFirstName?: string;
+        EmployeeTitle?: string;
+        EmployeeTitleOfCourtesy?: string;
+        EmployeeBirthDate?: string;
+        EmployeeHireDate?: string;
+        EmployeeAddress?: string;
+        EmployeeCity?: string;
+        EmployeeRegion?: string;
+        EmployeePostalCode?: string;
+        EmployeeCountry?: string;
+        EmployeeHomePhone?: string;
+        EmployeeExtension?: string;
+        EmployeePhoto?: number[];
+        EmployeeNotes?: string;
+        EmployeeReportsTo?: number;
+        EmployeePhotoPath?: string;
+        TerritoryTerritoryDescription?: string;
+        TerritoryRegionID?: number;
     }
 
-    export namespace EmployeeTerritoryRow
-    {
-        export const IdProperty = "EmployeeID";
-        export const NameProperty = "TerritoryID";
-        export const LocalTextPrefix = "Northwind.EmployeeTerritory";
+    export namespace EmployeeTerritoryRow {
+        export const idProperty = "EmployeeID";
+        export const nameProperty = "TerritoryID";
+        export const localTextPrefix = "Northwind.EmployeeTerritory";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const EmployeeID: "EmployeeID";
             export declare const TerritoryID: "TerritoryID";
             export declare const EmployeeLastName: "EmployeeLastName";

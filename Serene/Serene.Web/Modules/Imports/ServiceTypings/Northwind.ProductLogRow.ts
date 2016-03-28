@@ -1,32 +1,28 @@
-﻿namespace Serene.Northwind
-{
-    export interface ProductLogRow
-    {
-        ProductLogID: number;
-        OperationType: Serenity.CaptureOperationType;
-        ChangingUserId: number;
-        ValidFrom: string;
-        ValidUntil: string;
-        ProductID: number;
-        ProductName: string;
-        ProductImage: string;
-        Discontinued: boolean;
-        SupplierID: number;
-        CategoryID: number;
-        QuantityPerUnit: string;
-        UnitPrice: number;
-        UnitsInStock: number;
-        UnitsOnOrder: number;
-        ReorderLevel: number;
+﻿namespace Serene.Northwind {
+    export interface ProductLogRow {
+        ProductLogID?: number;
+        OperationType?: Serenity.CaptureOperationType;
+        ChangingUserId?: number;
+        ValidFrom?: string;
+        ValidUntil?: string;
+        ProductID?: number;
+        ProductName?: string;
+        ProductImage?: string;
+        Discontinued?: boolean;
+        SupplierID?: number;
+        CategoryID?: number;
+        QuantityPerUnit?: string;
+        UnitPrice?: number;
+        UnitsInStock?: number;
+        UnitsOnOrder?: number;
+        ReorderLevel?: number;
     }
 
-    export namespace ProductLogRow
-    {
-        export const IdProperty = "ProductLogID";
-        export const LocalTextPrefix = "Northwind.ProductLog";
+    export namespace ProductLogRow {
+        export const idProperty = "ProductLogID";
+        export const localTextPrefix = "Northwind.ProductLog";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const ProductLogID: "ProductLogID";
             export declare const OperationType: "OperationType";
             export declare const ChangingUserId: "ChangingUserId";

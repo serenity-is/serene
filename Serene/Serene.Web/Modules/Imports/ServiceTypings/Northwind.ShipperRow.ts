@@ -1,21 +1,21 @@
-﻿namespace Serene.Northwind
-{
-    export interface ShipperRow
-    {
-        ShipperID: number;
-        CompanyName: string;
-        Phone: string;
+﻿namespace Serene.Northwind {
+    export interface ShipperRow {
+        ShipperID?: number;
+        CompanyName?: string;
+        Phone?: string;
     }
 
-    export namespace ShipperRow
-    {
-        export const IdProperty = "ShipperID";
-        export const NameProperty = "CompanyName";
-        export const LocalTextPrefix = "Northwind.Shipper";
-        export const LookupKey = "Northwind.Shipper";
+    export namespace ShipperRow {
+        export const idProperty = "ShipperID";
+        export const nameProperty = "CompanyName";
+        export const localTextPrefix = "Northwind.Shipper";
+        export const lookupKey = "Northwind.Shipper";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.Shipper");
+        }
+
+        export namespace Fields {
             export declare const ShipperID: "ShipperID";
             export declare const CompanyName: "CompanyName";
             export declare const Phone: "Phone";

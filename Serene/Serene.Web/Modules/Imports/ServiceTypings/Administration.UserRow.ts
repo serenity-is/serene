@@ -1,33 +1,29 @@
-﻿namespace Serene.Administration
-{
-    export interface UserRow
-    {
-        UserId: number;
-        Username: string;
-        Source: string;
-        PasswordHash: string;
-        PasswordSalt: string;
-        DisplayName: string;
-        Email: string;
-        LastDirectoryUpdate: string;
-        IsActive: number;
-        Password: string;
-        PasswordConfirm: string;
-        InsertUserId: number;
-        InsertDate: string;
-        UpdateUserId: number;
-        UpdateDate: string;
+﻿namespace Serene.Administration {
+    export interface UserRow {
+        UserId?: number;
+        Username?: string;
+        Source?: string;
+        PasswordHash?: string;
+        PasswordSalt?: string;
+        DisplayName?: string;
+        Email?: string;
+        LastDirectoryUpdate?: string;
+        IsActive?: number;
+        Password?: string;
+        PasswordConfirm?: string;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
 
-    export namespace UserRow
-    {
-        export const IdProperty = "UserId";
-        export const IsActiveProperty = "IsActive";
-        export const NameProperty = "Username";
-        export const LocalTextPrefix = "Administration.User";
+    export namespace UserRow {
+        export const idProperty = "UserId";
+        export const isActiveProperty = "IsActive";
+        export const nameProperty = "Username";
+        export const localTextPrefix = "Administration.User";
 
-        export namespace Fields
-        {
+        export namespace Fields {
             export declare const UserId: "UserId";
             export declare const Username: "Username";
             export declare const Source: "Source";

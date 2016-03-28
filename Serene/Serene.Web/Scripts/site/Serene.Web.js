@@ -15,10 +15,14 @@ var Serene;
     (function (Administration) {
         var LanguageRow;
         (function (LanguageRow) {
-            LanguageRow.IdProperty = "Id";
-            LanguageRow.NameProperty = "LanguageName";
-            LanguageRow.LocalTextPrefix = "Administration.Language";
-            LanguageRow.LookupKey = "Administration.Language";
+            LanguageRow.idProperty = "Id";
+            LanguageRow.nameProperty = "LanguageName";
+            LanguageRow.localTextPrefix = "Administration.Language";
+            LanguageRow.lookupKey = "Administration.Language";
+            function lookup() {
+                return Q.getLookup("Administration.Language");
+            }
+            LanguageRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
@@ -32,9 +36,9 @@ var Serene;
     (function (Administration) {
         var RolePermissionRow;
         (function (RolePermissionRow) {
-            RolePermissionRow.IdProperty = "RolePermissionId";
-            RolePermissionRow.NameProperty = "PermissionKey";
-            RolePermissionRow.LocalTextPrefix = "Administration.RolePermission";
+            RolePermissionRow.idProperty = "RolePermissionId";
+            RolePermissionRow.nameProperty = "PermissionKey";
+            RolePermissionRow.localTextPrefix = "Administration.RolePermission";
             var Fields;
             (function (Fields) {
             })(Fields = RolePermissionRow.Fields || (RolePermissionRow.Fields = {}));
@@ -48,10 +52,14 @@ var Serene;
     (function (Administration) {
         var RoleRow;
         (function (RoleRow) {
-            RoleRow.IdProperty = "RoleId";
-            RoleRow.NameProperty = "RoleName";
-            RoleRow.LocalTextPrefix = "Administration.Role";
-            RoleRow.LookupKey = "Administration.Role";
+            RoleRow.idProperty = "RoleId";
+            RoleRow.nameProperty = "RoleName";
+            RoleRow.localTextPrefix = "Administration.Role";
+            RoleRow.lookupKey = "Administration.Role";
+            function lookup() {
+                return Q.getLookup("Administration.Role");
+            }
+            RoleRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
@@ -65,9 +73,9 @@ var Serene;
     (function (Administration) {
         var UserPermissionRow;
         (function (UserPermissionRow) {
-            UserPermissionRow.IdProperty = "UserPermissionId";
-            UserPermissionRow.NameProperty = "PermissionKey";
-            UserPermissionRow.LocalTextPrefix = "Administration.UserPermission";
+            UserPermissionRow.idProperty = "UserPermissionId";
+            UserPermissionRow.nameProperty = "PermissionKey";
+            UserPermissionRow.localTextPrefix = "Administration.UserPermission";
             var Fields;
             (function (Fields) {
             })(Fields = UserPermissionRow.Fields || (UserPermissionRow.Fields = {}));
@@ -81,8 +89,8 @@ var Serene;
     (function (Administration) {
         var UserRoleRow;
         (function (UserRoleRow) {
-            UserRoleRow.IdProperty = "UserRoleId";
-            UserRoleRow.LocalTextPrefix = "Administration.UserRole";
+            UserRoleRow.idProperty = "UserRoleId";
+            UserRoleRow.localTextPrefix = "Administration.UserRole";
             var Fields;
             (function (Fields) {
             })(Fields = UserRoleRow.Fields || (UserRoleRow.Fields = {}));
@@ -96,10 +104,10 @@ var Serene;
     (function (Administration) {
         var UserRow;
         (function (UserRow) {
-            UserRow.IdProperty = "UserId";
-            UserRow.IsActiveProperty = "IsActive";
-            UserRow.NameProperty = "Username";
-            UserRow.LocalTextPrefix = "Administration.User";
+            UserRow.idProperty = "UserId";
+            UserRow.isActiveProperty = "IsActive";
+            UserRow.nameProperty = "Username";
+            UserRow.localTextPrefix = "Administration.User";
             var Fields;
             (function (Fields) {
             })(Fields = UserRow.Fields || (UserRow.Fields = {}));
@@ -113,9 +121,9 @@ var Serene;
     (function (Northwind) {
         var CategoryLangRow;
         (function (CategoryLangRow) {
-            CategoryLangRow.IdProperty = "Id";
-            CategoryLangRow.NameProperty = "CategoryName";
-            CategoryLangRow.LocalTextPrefix = "Northwind.CategoryLang";
+            CategoryLangRow.idProperty = "Id";
+            CategoryLangRow.nameProperty = "CategoryName";
+            CategoryLangRow.localTextPrefix = "Northwind.CategoryLang";
             var Fields;
             (function (Fields) {
             })(Fields = CategoryLangRow.Fields || (CategoryLangRow.Fields = {}));
@@ -129,10 +137,14 @@ var Serene;
     (function (Northwind) {
         var CategoryRow;
         (function (CategoryRow) {
-            CategoryRow.IdProperty = "CategoryID";
-            CategoryRow.NameProperty = "CategoryName";
-            CategoryRow.LocalTextPrefix = "Northwind.Category";
-            CategoryRow.LookupKey = "Northwind.Category";
+            CategoryRow.idProperty = "CategoryID";
+            CategoryRow.nameProperty = "CategoryName";
+            CategoryRow.localTextPrefix = "Northwind.Category";
+            CategoryRow.lookupKey = "Northwind.Category";
+            function lookup() {
+                return Q.getLookup("Northwind.Category");
+            }
+            CategoryRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = CategoryRow.Fields || (CategoryRow.Fields = {}));
@@ -146,9 +158,9 @@ var Serene;
     (function (Northwind) {
         var CustomerCustomerDemoRow;
         (function (CustomerCustomerDemoRow) {
-            CustomerCustomerDemoRow.IdProperty = "ID";
-            CustomerCustomerDemoRow.NameProperty = "CustomerID";
-            CustomerCustomerDemoRow.LocalTextPrefix = "Northwind.CustomerCustomerDemo";
+            CustomerCustomerDemoRow.idProperty = "ID";
+            CustomerCustomerDemoRow.nameProperty = "CustomerID";
+            CustomerCustomerDemoRow.localTextPrefix = "Northwind.CustomerCustomerDemo";
             var Fields;
             (function (Fields) {
             })(Fields = CustomerCustomerDemoRow.Fields || (CustomerCustomerDemoRow.Fields = {}));
@@ -162,9 +174,9 @@ var Serene;
     (function (Northwind) {
         var CustomerDemographicRow;
         (function (CustomerDemographicRow) {
-            CustomerDemographicRow.IdProperty = "ID";
-            CustomerDemographicRow.NameProperty = "CustomerTypeID";
-            CustomerDemographicRow.LocalTextPrefix = "Northwind.CustomerDemographic";
+            CustomerDemographicRow.idProperty = "ID";
+            CustomerDemographicRow.nameProperty = "CustomerTypeID";
+            CustomerDemographicRow.localTextPrefix = "Northwind.CustomerDemographic";
             var Fields;
             (function (Fields) {
             })(Fields = CustomerDemographicRow.Fields || (CustomerDemographicRow.Fields = {}));
@@ -178,8 +190,8 @@ var Serene;
     (function (Northwind) {
         var CustomerRepresentativesRow;
         (function (CustomerRepresentativesRow) {
-            CustomerRepresentativesRow.IdProperty = "RepresentativeId";
-            CustomerRepresentativesRow.LocalTextPrefix = "CustomerRepresentatives";
+            CustomerRepresentativesRow.idProperty = "RepresentativeId";
+            CustomerRepresentativesRow.localTextPrefix = "CustomerRepresentatives";
             var Fields;
             (function (Fields) {
             })(Fields = CustomerRepresentativesRow.Fields || (CustomerRepresentativesRow.Fields = {}));
@@ -193,10 +205,14 @@ var Serene;
     (function (Northwind) {
         var CustomerRow;
         (function (CustomerRow) {
-            CustomerRow.IdProperty = "ID";
-            CustomerRow.NameProperty = "CompanyName";
-            CustomerRow.LocalTextPrefix = "Northwind.Customer";
-            CustomerRow.LookupKey = "Northwind.Customer";
+            CustomerRow.idProperty = "ID";
+            CustomerRow.nameProperty = "CompanyName";
+            CustomerRow.localTextPrefix = "Northwind.Customer";
+            CustomerRow.lookupKey = "Northwind.Customer";
+            function lookup() {
+                return Q.getLookup("Northwind.Customer");
+            }
+            CustomerRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerRow.Fields || (CustomerRow.Fields = {}));
@@ -210,10 +226,14 @@ var Serene;
     (function (Northwind) {
         var EmployeeRow;
         (function (EmployeeRow) {
-            EmployeeRow.IdProperty = "EmployeeID";
-            EmployeeRow.NameProperty = "FullName";
-            EmployeeRow.LocalTextPrefix = "Northwind.Employee";
-            EmployeeRow.LookupKey = "Northwind.Employee";
+            EmployeeRow.idProperty = "EmployeeID";
+            EmployeeRow.nameProperty = "FullName";
+            EmployeeRow.localTextPrefix = "Northwind.Employee";
+            EmployeeRow.lookupKey = "Northwind.Employee";
+            function lookup() {
+                return Q.getLookup("Northwind.Employee");
+            }
+            EmployeeRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = EmployeeRow.Fields || (EmployeeRow.Fields = {}));
@@ -227,9 +247,9 @@ var Serene;
     (function (Northwind) {
         var EmployeeTerritoryRow;
         (function (EmployeeTerritoryRow) {
-            EmployeeTerritoryRow.IdProperty = "EmployeeID";
-            EmployeeTerritoryRow.NameProperty = "TerritoryID";
-            EmployeeTerritoryRow.LocalTextPrefix = "Northwind.EmployeeTerritory";
+            EmployeeTerritoryRow.idProperty = "EmployeeID";
+            EmployeeTerritoryRow.nameProperty = "TerritoryID";
+            EmployeeTerritoryRow.localTextPrefix = "Northwind.EmployeeTerritory";
             var Fields;
             (function (Fields) {
             })(Fields = EmployeeTerritoryRow.Fields || (EmployeeTerritoryRow.Fields = {}));
@@ -255,9 +275,9 @@ var Serene;
     (function (Northwind) {
         var NoteRow;
         (function (NoteRow) {
-            NoteRow.IdProperty = "NoteId";
-            NoteRow.NameProperty = "EntityType";
-            NoteRow.LocalTextPrefix = "Northwind.Note";
+            NoteRow.idProperty = "NoteId";
+            NoteRow.nameProperty = "EntityType";
+            NoteRow.localTextPrefix = "Northwind.Note";
             var Fields;
             (function (Fields) {
             })(Fields = NoteRow.Fields || (NoteRow.Fields = {}));
@@ -271,8 +291,8 @@ var Serene;
     (function (Northwind) {
         var OrderDetailRow;
         (function (OrderDetailRow) {
-            OrderDetailRow.IdProperty = "DetailID";
-            OrderDetailRow.LocalTextPrefix = "Northwind.OrderDetail";
+            OrderDetailRow.idProperty = "DetailID";
+            OrderDetailRow.localTextPrefix = "Northwind.OrderDetail";
             var Fields;
             (function (Fields) {
             })(Fields = OrderDetailRow.Fields || (OrderDetailRow.Fields = {}));
@@ -286,10 +306,14 @@ var Serene;
     (function (Northwind) {
         var OrderRow;
         (function (OrderRow) {
-            OrderRow.IdProperty = "OrderID";
-            OrderRow.NameProperty = "CustomerID";
-            OrderRow.LocalTextPrefix = "Northwind.Order";
-            OrderRow.LookupKey = "Northwind.OrderShipCity";
+            OrderRow.idProperty = "OrderID";
+            OrderRow.nameProperty = "CustomerID";
+            OrderRow.localTextPrefix = "Northwind.Order";
+            OrderRow.lookupKey = "Northwind.OrderShipCity";
+            function lookup() {
+                return Q.getLookup("Northwind.OrderShipCity");
+            }
+            OrderRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
@@ -315,9 +339,9 @@ var Serene;
     (function (Northwind) {
         var ProductLangRow;
         (function (ProductLangRow) {
-            ProductLangRow.IdProperty = "Id";
-            ProductLangRow.NameProperty = "ProductName";
-            ProductLangRow.LocalTextPrefix = "Northwind.ProductLang";
+            ProductLangRow.idProperty = "Id";
+            ProductLangRow.nameProperty = "ProductName";
+            ProductLangRow.localTextPrefix = "Northwind.ProductLang";
             var Fields;
             (function (Fields) {
             })(Fields = ProductLangRow.Fields || (ProductLangRow.Fields = {}));
@@ -331,8 +355,8 @@ var Serene;
     (function (Northwind) {
         var ProductLogRow;
         (function (ProductLogRow) {
-            ProductLogRow.IdProperty = "ProductLogID";
-            ProductLogRow.LocalTextPrefix = "Northwind.ProductLog";
+            ProductLogRow.idProperty = "ProductLogID";
+            ProductLogRow.localTextPrefix = "Northwind.ProductLog";
             var Fields;
             (function (Fields) {
             })(Fields = ProductLogRow.Fields || (ProductLogRow.Fields = {}));
@@ -346,10 +370,14 @@ var Serene;
     (function (Northwind) {
         var ProductRow;
         (function (ProductRow) {
-            ProductRow.IdProperty = "ProductID";
-            ProductRow.NameProperty = "ProductName";
-            ProductRow.LocalTextPrefix = "Northwind.Product";
-            ProductRow.LookupKey = "Northwind.Product";
+            ProductRow.idProperty = "ProductID";
+            ProductRow.nameProperty = "ProductName";
+            ProductRow.localTextPrefix = "Northwind.Product";
+            ProductRow.lookupKey = "Northwind.Product";
+            function lookup() {
+                return Q.getLookup("Northwind.Product");
+            }
+            ProductRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = ProductRow.Fields || (ProductRow.Fields = {}));
@@ -363,10 +391,14 @@ var Serene;
     (function (Northwind) {
         var RegionRow;
         (function (RegionRow) {
-            RegionRow.IdProperty = "RegionID";
-            RegionRow.NameProperty = "RegionDescription";
-            RegionRow.LocalTextPrefix = "Northwind.Region";
-            RegionRow.LookupKey = "Northwind.Region";
+            RegionRow.idProperty = "RegionID";
+            RegionRow.nameProperty = "RegionDescription";
+            RegionRow.localTextPrefix = "Northwind.Region";
+            RegionRow.lookupKey = "Northwind.Region";
+            function lookup() {
+                return Q.getLookup("Northwind.Region");
+            }
+            RegionRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = RegionRow.Fields || (RegionRow.Fields = {}));
@@ -380,8 +412,8 @@ var Serene;
     (function (Northwind) {
         var SalesByCategoryRow;
         (function (SalesByCategoryRow) {
-            SalesByCategoryRow.NameProperty = "CategoryName";
-            SalesByCategoryRow.LocalTextPrefix = "Northwind.SalesByCategory";
+            SalesByCategoryRow.nameProperty = "CategoryName";
+            SalesByCategoryRow.localTextPrefix = "Northwind.SalesByCategory";
             var Fields;
             (function (Fields) {
             })(Fields = SalesByCategoryRow.Fields || (SalesByCategoryRow.Fields = {}));
@@ -395,10 +427,14 @@ var Serene;
     (function (Northwind) {
         var ShipperRow;
         (function (ShipperRow) {
-            ShipperRow.IdProperty = "ShipperID";
-            ShipperRow.NameProperty = "CompanyName";
-            ShipperRow.LocalTextPrefix = "Northwind.Shipper";
-            ShipperRow.LookupKey = "Northwind.Shipper";
+            ShipperRow.idProperty = "ShipperID";
+            ShipperRow.nameProperty = "CompanyName";
+            ShipperRow.localTextPrefix = "Northwind.Shipper";
+            ShipperRow.lookupKey = "Northwind.Shipper";
+            function lookup() {
+                return Q.getLookup("Northwind.Shipper");
+            }
+            ShipperRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = ShipperRow.Fields || (ShipperRow.Fields = {}));
@@ -412,10 +448,14 @@ var Serene;
     (function (Northwind) {
         var SupplierRow;
         (function (SupplierRow) {
-            SupplierRow.IdProperty = "SupplierID";
-            SupplierRow.NameProperty = "CompanyName";
-            SupplierRow.LocalTextPrefix = "Northwind.Supplier";
-            SupplierRow.LookupKey = "Northwind.Supplier";
+            SupplierRow.idProperty = "SupplierID";
+            SupplierRow.nameProperty = "CompanyName";
+            SupplierRow.localTextPrefix = "Northwind.Supplier";
+            SupplierRow.lookupKey = "Northwind.Supplier";
+            function lookup() {
+                return Q.getLookup("Northwind.Supplier");
+            }
+            SupplierRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = SupplierRow.Fields || (SupplierRow.Fields = {}));
@@ -429,10 +469,14 @@ var Serene;
     (function (Northwind) {
         var TerritoryRow;
         (function (TerritoryRow) {
-            TerritoryRow.IdProperty = "ID";
-            TerritoryRow.NameProperty = "TerritoryID";
-            TerritoryRow.LocalTextPrefix = "Northwind.Territory";
-            TerritoryRow.LookupKey = "Northwind.Territory";
+            TerritoryRow.idProperty = "ID";
+            TerritoryRow.nameProperty = "TerritoryID";
+            TerritoryRow.localTextPrefix = "Northwind.Territory";
+            TerritoryRow.lookupKey = "Northwind.Territory";
+            function lookup() {
+                return Q.getLookup("Northwind.Territory");
+            }
+            TerritoryRow.lookup = lookup;
             var Fields;
             (function (Fields) {
             })(Fields = TerritoryRow.Fields || (TerritoryRow.Fields = {}));
@@ -475,4 +519,3 @@ var Serene;
         NorthwindTS.MyBoldFormatter = MyBoldFormatter;
     })(NorthwindTS = Serene.NorthwindTS || (Serene.NorthwindTS = {}));
 })(Serene || (Serene = {}));
-//# sourceMappingURL=Serene.Web.js.map

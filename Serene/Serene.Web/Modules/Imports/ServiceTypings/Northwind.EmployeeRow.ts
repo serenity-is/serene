@@ -1,56 +1,56 @@
-﻿namespace Serene.Northwind
-{
-    export interface EmployeeRow
-    {
-        EmployeeID: number;
-        LastName: string;
-        FirstName: string;
-        FullName: string;
-        Title: string;
-        TitleOfCourtesy: string;
-        BirthDate: string;
-        HireDate: string;
-        Address: string;
-        City: string;
-        Region: string;
-        PostalCode: string;
-        Country: string;
-        HomePhone: string;
-        Extension: string;
-        Photo: number[];
-        Notes: string;
-        ReportsTo: number;
-        PhotoPath: string;
-        ReportsToFullName: string;
-        ReportsToLastName: string;
-        ReportsToFirstName: string;
-        ReportsToTitle: string;
-        ReportsToTitleOfCourtesy: string;
-        ReportsToBirthDate: string;
-        ReportsToHireDate: string;
-        ReportsToAddress: string;
-        ReportsToCity: string;
-        ReportsToRegion: string;
-        ReportsToPostalCode: string;
-        ReportsToCountry: string;
-        ReportsToHomePhone: string;
-        ReportsToExtension: string;
-        ReportsToPhoto: number[];
-        ReportsToNotes: string;
-        ReportsToReportsTo: number;
-        ReportsToPhotoPath: string;
-        Gender: Gender;
+﻿namespace Serene.Northwind {
+    export interface EmployeeRow {
+        EmployeeID?: number;
+        LastName?: string;
+        FirstName?: string;
+        FullName?: string;
+        Title?: string;
+        TitleOfCourtesy?: string;
+        BirthDate?: string;
+        HireDate?: string;
+        Address?: string;
+        City?: string;
+        Region?: string;
+        PostalCode?: string;
+        Country?: string;
+        HomePhone?: string;
+        Extension?: string;
+        Photo?: number[];
+        Notes?: string;
+        ReportsTo?: number;
+        PhotoPath?: string;
+        ReportsToFullName?: string;
+        ReportsToLastName?: string;
+        ReportsToFirstName?: string;
+        ReportsToTitle?: string;
+        ReportsToTitleOfCourtesy?: string;
+        ReportsToBirthDate?: string;
+        ReportsToHireDate?: string;
+        ReportsToAddress?: string;
+        ReportsToCity?: string;
+        ReportsToRegion?: string;
+        ReportsToPostalCode?: string;
+        ReportsToCountry?: string;
+        ReportsToHomePhone?: string;
+        ReportsToExtension?: string;
+        ReportsToPhoto?: number[];
+        ReportsToNotes?: string;
+        ReportsToReportsTo?: number;
+        ReportsToPhotoPath?: string;
+        Gender?: Gender;
     }
 
-    export namespace EmployeeRow
-    {
-        export const IdProperty = "EmployeeID";
-        export const NameProperty = "FullName";
-        export const LocalTextPrefix = "Northwind.Employee";
-        export const LookupKey = "Northwind.Employee";
+    export namespace EmployeeRow {
+        export const idProperty = "EmployeeID";
+        export const nameProperty = "FullName";
+        export const localTextPrefix = "Northwind.Employee";
+        export const lookupKey = "Northwind.Employee";
 
-        export namespace Fields
-        {
+        export function lookup() {
+            return Q.getLookup("Northwind.Employee");
+        }
+
+        export namespace Fields {
             export declare const EmployeeID: "EmployeeID";
             export declare const LastName: "LastName";
             export declare const FirstName: "FirstName";
