@@ -1,24 +1,25 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)bin\Serenity.Core.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Serenity.Web.dll" #>
+<#@ assembly name="$(ProjectDir)tools\Serenity\Newtonsoft.Json.dll" #>
+<#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Core.dll" #>
+<#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Web.dll" #>
 <#@ assembly name="$(ProjectDir)bin\Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
-<#@ include file="..\ScriptTypesHelper.ttinclude" #>
+<#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
 <#
-	var allProjects = VS.Projects;
-	var scriptProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Script"));
-	var webProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Web"));
+    var allProjects = VS.Projects;
+    var scriptProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Script"));
+    var webProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Web"));
 
-	throw new Exception(String.Join("\r\n", VS.GetWidgetTypeNames(scriptProjects)));
+    throw new Exception(Serenity.JSON.StringifyIndented(VS.GetScriptCSTypes(scriptProjects)));
 
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
-    generator.RootNamespaces.Add("Serene");   
-	var codeByFilename = generator.GenerateCode();   
+    generator.RootNamespaces.Add("Serene");
+    var codeByFilename = generator.GenerateCode();
     var manager = Manager.Create(Host, GenerationEnvironment);
     foreach (var pair in codeByFilename) 
     {

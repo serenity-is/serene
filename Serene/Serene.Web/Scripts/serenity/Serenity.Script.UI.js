@@ -4243,6 +4243,8 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.UrlFormatter
 	var $Serenity_UrlFormatter = function() {
+		this.$1$DisplayPropertyField = null;
+		this.$1$UrlPropertyField = null;
 	};
 	$Serenity_UrlFormatter.__typeName = 'Serenity.UrlFormatter';
 	global.Serenity.UrlFormatter = $Serenity_UrlFormatter;
@@ -10236,7 +10238,21 @@
 	ss.initClass($Serenity_URLEditor, $asm, {}, $Serenity_StringEditor, [$Serenity_IStringValue]);
 	ss.initClass($Serenity_UrlFormatter, $asm, {
 		format: function(ctx) {
-			return "<a href='" + Q.htmlEncode(ctx.value) + "'>" + Q.htmlEncode(ctx.value) + '</a>';
+			var display = (!ss.isNullOrEmptyString(this.get_displayProperty()) ? ss.safeCast(ctx.item[this.get_displayProperty()], String) : ctx.value);
+			var url = (!ss.isNullOrEmptyString(this.get_urlProperty()) ? ss.safeCast(ctx.item[this.get_urlProperty()], String) : ctx.value);
+			return "<a href='" + Q.htmlEncode(url) + "'>" + Q.htmlEncode(display) + '</a>';
+		},
+		get_displayProperty: function() {
+			return this.$1$DisplayPropertyField;
+		},
+		set_displayProperty: function(value) {
+			this.$1$DisplayPropertyField = value;
+		},
+		get_urlProperty: function() {
+			return this.$1$UrlPropertyField;
+		},
+		set_urlProperty: function(value) {
+			this.$1$UrlPropertyField = value;
 		}
 	}, null, [$Serenity_ISlickFormatter]);
 	ss.initClass($Serenity_ValidationHelper, $asm, {});
@@ -10513,6 +10529,7 @@
 	ss.setMetadata($Serenity_TextAreaEditorOptions, { members: [{ attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Cols', type: 16, returnType: ss.Int32, getter: { name: 'get_Cols', type: 8, params: [], returnType: ss.Int32, fget: 'cols' }, setter: { name: 'set_Cols', type: 8, params: [ss.Int32], returnType: Object, fset: 'cols' }, fname: 'cols' }, { attr: [new $Serenity_ComponentModel_HiddenAttribute()], name: 'Rows', type: 16, returnType: ss.Int32, getter: { name: 'get_Rows', type: 8, params: [], returnType: ss.Int32, fget: 'rows' }, setter: { name: 'set_Rows', type: 8, params: [ss.Int32], returnType: Object, fset: 'rows' }, fname: 'rows' }] });
 	ss.setMetadata($Serenity_TimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Zaman'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<select/>')] });
 	ss.setMetadata($Serenity_URLEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('URL')] });
+	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_ComponentModel_EditorOptionAttribute, { attrAllowMultiple: true });
 	(function() {
 		$Serenity_Widget.$nextWidgetNumber = 0;

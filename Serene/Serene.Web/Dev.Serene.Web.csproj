@@ -1170,7 +1170,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\Common\Imports\ScriptTypesHelper.ttinclude" />
+    <Content Include="Modules\Common\Imports\CodeGenerationHelpers.ttinclude" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
