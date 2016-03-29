@@ -276,7 +276,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="1.9.25" />
+      <package id="Serenity.Script" version="1.9.26" />
     </packages>
   </WizardData>
   <WizardExtension>

@@ -1626,6 +1626,8 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.UrlFormatter
 	var $Serenity_UrlFormatter = function() {
+		this.$1$DisplayPropertyField = null;
+		this.$1$UrlPropertyField = null;
 	};
 	$Serenity_UrlFormatter.__typeName = 'Serenity.UrlFormatter';
 	global.Serenity.UrlFormatter = $Serenity_UrlFormatter;
@@ -1945,7 +1947,21 @@
 	ss.initClass($Serenity_TabsExtensions, $asm, {});
 	ss.initClass($Serenity_UrlFormatter, $asm, {
 		format: function(ctx) {
-			return "<a href='" + $Q.htmlEncode(ctx.value) + "'>" + $Q.htmlEncode(ctx.value) + '</a>';
+			var display = (!ss.isNullOrEmptyString(this.get_displayProperty()) ? ss.safeCast(ctx.item[this.get_displayProperty()], String) : ctx.value);
+			var url = (!ss.isNullOrEmptyString(this.get_urlProperty()) ? ss.safeCast(ctx.item[this.get_urlProperty()], String) : ctx.value);
+			return "<a href='" + $Q.htmlEncode(url) + "'>" + $Q.htmlEncode(display) + '</a>';
+		},
+		get_displayProperty: function() {
+			return this.$1$DisplayPropertyField;
+		},
+		set_displayProperty: function(value) {
+			this.$1$DisplayPropertyField = value;
+		},
+		get_urlProperty: function() {
+			return this.$1$UrlPropertyField;
+		},
+		set_urlProperty: function(value) {
+			this.$1$UrlPropertyField = value;
 		}
 	}, null, [$Serenity_ISlickFormatter]);
 	ss.initClass($Serenity_ComponentModel_OptionAttribute, $asm, {});
@@ -1954,6 +1970,7 @@
 	ss.setMetadata($Serenity_EnumFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, sname: 'get_enumKey', returnType: String, params: [] }, setter: { name: 'set_EnumKey', type: 8, sname: 'set_enumKey', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_FileDownloadFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }, { attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'OriginalNameProperty', type: 16, returnType: String, getter: { name: 'get_OriginalNameProperty', type: 8, sname: 'get_originalNameProperty', returnType: String, params: [] }, setter: { name: 'set_OriginalNameProperty', type: 8, sname: 'set_originalNameProperty', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_NumberFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
+	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new $Serenity_ComponentModel_OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });
 	(function() {
 		$Q$LT.$table = {};
 		$Q$LT.empty = new $Q$LT('');
