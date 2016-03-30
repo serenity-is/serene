@@ -1,9 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(ProjectDir)tools\Serenity\Newtonsoft.Json.dll" #>
-<#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Core.dll" #>
-<#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Web.dll" #>
-<#@ assembly name="$(ProjectDir)bin\Serene.Web.dll" #>
+<#@ assembly name="$(TargetDir)Serenity.Core.dll" #>
+<#@ assembly name="$(TargetDir)Serenity.Web.dll" #>
+<#@ assembly name="$(TargetDir)Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
@@ -11,14 +10,20 @@
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
 <#
-    var allProjects = VS.Projects;
-    var scriptProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Script"));
-    var webProjects = allProjects.Where(x => x.Name.EndsWith("Serene.Web"));
+    var solutionDir = Host.ResolvePath(@"..\..\..\..\..\");
+    var ssDir = solutionDir + @"Serene.Script\bin\debug\";
+    var ssTypeLister = new SSTypeLister(
+        ssDir + "Serenity.Script.UI.dll",
+        ssDir + "Serene.Script.dll");
 
-    throw new Exception(Serenity.JSON.StringifyIndented(VS.GetScriptCSTypes(scriptProjects)));
-
+    var ssTypes = ssTypeLister.List();
+    
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
+    
+    foreach (var type in ssTypes)
+        generator.AddSSType(type);
+
     var codeByFilename = generator.GenerateCode();
     var manager = Manager.Create(Host, GenerationEnvironment);
     foreach (var pair in codeByFilename) 

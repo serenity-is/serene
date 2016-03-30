@@ -13,6 +13,22 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var LanguageForm = (function (_super) {
+            __extends(LanguageForm, _super);
+            function LanguageForm() {
+                _super.apply(this, arguments);
+            }
+            LanguageForm.formKey = 'Administration.Language';
+            return LanguageForm;
+        }(Serenity.PrefixedContext));
+        Administration.LanguageForm = LanguageForm;
+        [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(function (x) { return LanguageForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageRow;
         (function (LanguageRow) {
             LanguageRow.idProperty = 'Id';
@@ -45,6 +61,22 @@ var Serene;
                 Methods[x] = LanguageService.baseUrl + '/' + x;
             });
         })(LanguageService = Administration.LanguageService || (Administration.LanguageService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RoleForm = (function (_super) {
+            __extends(RoleForm, _super);
+            function RoleForm() {
+                _super.apply(this, arguments);
+            }
+            RoleForm.formKey = 'Administration.Role';
+            return RoleForm;
+        }(Serenity.PrefixedContext));
+        Administration.RoleForm = RoleForm;
+        [['RoleName', Serenity.StringEditor]].forEach(function (x) { return RoleForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -133,6 +165,22 @@ var Serene;
                 Methods[x] = TranslationService.baseUrl + '/' + x;
             });
         })(TranslationService = Administration.TranslationService || (Administration.TranslationService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserForm = (function (_super) {
+            __extends(UserForm, _super);
+            function UserForm() {
+                _super.apply(this, arguments);
+            }
+            UserForm.formKey = 'Administration.User';
+            return UserForm;
+        }(Serenity.PrefixedContext));
+        Administration.UserForm = UserForm;
+        [['Username', Serenity.StringEditor], ['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['PasswordConfirm', Serenity.PasswordEditor], ['Source', Serenity.StringEditor]].forEach(function (x) { return UserForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -253,6 +301,134 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var FilteredLookupInDetailForm = (function (_super) {
+            __extends(FilteredLookupInDetailForm, _super);
+            function FilteredLookupInDetailForm() {
+                _super.apply(this, arguments);
+            }
+            FilteredLookupInDetailForm.formKey = 'BasicSamples.FilteredLookupInDetail';
+            return FilteredLookupInDetailForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
+        [['CustomerID', Serene.Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['CategoryID', Serenity.LookupEditor], ['DetailList', BasicSamples.FilteredLookupDetailEditor]].forEach(function (x) { return FilteredLookupInDetailForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var LookupFilterByMultipleForm = (function (_super) {
+            __extends(LookupFilterByMultipleForm, _super);
+            function LookupFilterByMultipleForm() {
+                _super.apply(this, arguments);
+            }
+            LookupFilterByMultipleForm.formKey = 'BasicSamples.LookupFilterByMultiple';
+            return LookupFilterByMultipleForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
+        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', BasicSamples.ProduceSeafoodCategoryEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return LookupFilterByMultipleForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ChangePasswordForm = (function (_super) {
+            __extends(ChangePasswordForm, _super);
+            function ChangePasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ChangePasswordForm.formKey = 'Membership.ChangePassword';
+            return ChangePasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ChangePasswordForm = ChangePasswordForm;
+        [['OldPassword', Serenity.PasswordEditor], ['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return ChangePasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordForm = (function (_super) {
+            __extends(ForgotPasswordForm, _super);
+            function ForgotPasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
+            return ForgotPasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ForgotPasswordForm = ForgotPasswordForm;
+        [['Email', Serenity.EmailEditor]].forEach(function (x) { return ForgotPasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var LoginForm = (function (_super) {
+            __extends(LoginForm, _super);
+            function LoginForm() {
+                _super.apply(this, arguments);
+            }
+            LoginForm.formKey = 'Membership.Login';
+            return LoginForm;
+        }(Serenity.PrefixedContext));
+        Membership.LoginForm = LoginForm;
+        [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(function (x) { return LoginForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ResetPasswordForm = (function (_super) {
+            __extends(ResetPasswordForm, _super);
+            function ResetPasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ResetPasswordForm.formKey = 'Membership.ResetPassword';
+            return ResetPasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ResetPasswordForm = ResetPasswordForm;
+        [['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return ResetPasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var SignUpForm = (function (_super) {
+            __extends(SignUpForm, _super);
+            function SignUpForm() {
+                _super.apply(this, arguments);
+            }
+            SignUpForm.formKey = 'Membership.SignUp';
+            return SignUpForm;
+        }(Serenity.PrefixedContext));
+        Membership.SignUpForm = SignUpForm;
+        [['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['ConfirmEmail', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return SignUpForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryForm = (function (_super) {
+            __extends(CategoryForm, _super);
+            function CategoryForm() {
+                _super.apply(this, arguments);
+            }
+            CategoryForm.formKey = 'Northwind.Category';
+            return CategoryForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CategoryForm = CategoryForm;
+        [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(function (x) { return CategoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Northwind;
     (function (Northwind) {
         var CategoryLangRow;
@@ -326,6 +502,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var CustomerCustomerDemoForm = (function (_super) {
+            __extends(CustomerCustomerDemoForm, _super);
+            function CustomerCustomerDemoForm() {
+                _super.apply(this, arguments);
+            }
+            CustomerCustomerDemoForm.formKey = 'Northwind.CustomerCustomerDemo';
+            return CustomerCustomerDemoForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CustomerCustomerDemoForm = CustomerCustomerDemoForm;
+        [['CustomerID', Serenity.StringEditor], ['CustomerTypeID', Serenity.StringEditor]].forEach(function (x) { return CustomerCustomerDemoForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var CustomerCustomerDemoRow;
         (function (CustomerCustomerDemoRow) {
             CustomerCustomerDemoRow.idProperty = 'ID';
@@ -359,6 +551,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var CustomerDemographicForm = (function (_super) {
+            __extends(CustomerDemographicForm, _super);
+            function CustomerDemographicForm() {
+                _super.apply(this, arguments);
+            }
+            CustomerDemographicForm.formKey = 'Northwind.CustomerDemographic';
+            return CustomerDemographicForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CustomerDemographicForm = CustomerDemographicForm;
+        [['CustomerTypeID', Serenity.StringEditor], ['CustomerDesc', Serenity.StringEditor]].forEach(function (x) { return CustomerDemographicForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var CustomerDemographicRow;
         (function (CustomerDemographicRow) {
             CustomerDemographicRow.idProperty = 'ID';
@@ -386,6 +594,22 @@ var Serene;
                 Methods[x] = CustomerDemographicService.baseUrl + '/' + x;
             });
         })(CustomerDemographicService = Northwind.CustomerDemographicService || (Northwind.CustomerDemographicService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerForm = (function (_super) {
+            __extends(CustomerForm, _super);
+            function CustomerForm() {
+                _super.apply(this, arguments);
+            }
+            CustomerForm.formKey = 'Northwind.Customer';
+            return CustomerForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CustomerForm = CustomerForm;
+        [['CustomerID', Serenity.StringEditor], ['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Representatives', Serenity.LookupEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['NoteList', Northwind.NotesEditor]].forEach(function (x) { return CustomerForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -445,6 +669,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var EmployeeForm = (function (_super) {
+            __extends(EmployeeForm, _super);
+            function EmployeeForm() {
+                _super.apply(this, arguments);
+            }
+            EmployeeForm.formKey = 'Northwind.Employee';
+            return EmployeeForm;
+        }(Serenity.PrefixedContext));
+        Northwind.EmployeeForm = EmployeeForm;
+        [['LastName', Serenity.StringEditor], ['FirstName', Serenity.StringEditor], ['Title', Serenity.StringEditor], ['TitleOfCourtesy', Serenity.StringEditor], ['BirthDate', Serenity.DateEditor], ['HireDate', Serenity.DateEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['HomePhone', Serenity.StringEditor], ['Extension', Serenity.StringEditor], ['Photo', Serenity.StringEditor], ['Notes', Serenity.StringEditor], ['ReportsTo', Serenity.IntegerEditor], ['PhotoPath', Serenity.StringEditor]].forEach(function (x) { return EmployeeForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var EmployeeRow;
         (function (EmployeeRow) {
             EmployeeRow.idProperty = 'EmployeeID';
@@ -477,6 +717,22 @@ var Serene;
                 Methods[x] = EmployeeService.baseUrl + '/' + x;
             });
         })(EmployeeService = Northwind.EmployeeService || (Northwind.EmployeeService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var EmployeeTerritoryForm = (function (_super) {
+            __extends(EmployeeTerritoryForm, _super);
+            function EmployeeTerritoryForm() {
+                _super.apply(this, arguments);
+            }
+            EmployeeTerritoryForm.formKey = 'Northwind.EmployeeTerritory';
+            return EmployeeTerritoryForm;
+        }(Serenity.PrefixedContext));
+        Northwind.EmployeeTerritoryForm = EmployeeTerritoryForm;
+        [['TerritoryID', Serenity.StringEditor]].forEach(function (x) { return EmployeeTerritoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -544,6 +800,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var OrderDetailForm = (function (_super) {
+            __extends(OrderDetailForm, _super);
+            function OrderDetailForm() {
+                _super.apply(this, arguments);
+            }
+            OrderDetailForm.formKey = 'Northwind.OrderDetail';
+            return OrderDetailForm;
+        }(Serenity.PrefixedContext));
+        Northwind.OrderDetailForm = OrderDetailForm;
+        [['ProductID', Serenity.LookupEditor], ['UnitPrice', Serenity.DecimalEditor], ['Quantity', Serenity.IntegerEditor], ['Discount', Serenity.DecimalEditor]].forEach(function (x) { return OrderDetailForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var OrderDetailRow;
         (function (OrderDetailRow) {
             OrderDetailRow.idProperty = 'DetailID';
@@ -570,6 +842,22 @@ var Serene;
                 Methods[x] = OrderDetailService.baseUrl + '/' + x;
             });
         })(OrderDetailService = Northwind.OrderDetailService || (Northwind.OrderDetailService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderForm = (function (_super) {
+            __extends(OrderForm, _super);
+            function OrderForm() {
+                _super.apply(this, arguments);
+            }
+            OrderForm.formKey = 'Northwind.Order';
+            return OrderForm;
+        }(Serenity.PrefixedContext));
+        Northwind.OrderForm = OrderForm;
+        [['CustomerID', Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['RequiredDate', Serenity.DateEditor], ['EmployeeID', Serenity.LookupEditor], ['DetailList', Northwind.OrderDetailsEditor], ['ShippedDate', Serenity.DateEditor], ['ShipVia', Serenity.LookupEditor], ['Freight', Serenity.DecimalEditor], ['ShipName', Serenity.StringEditor], ['ShipAddress', Serenity.StringEditor], ['ShipCity', Serenity.StringEditor], ['ShipRegion', Serenity.StringEditor], ['ShipPostalCode', Serenity.StringEditor], ['ShipCountry', Serenity.StringEditor]].forEach(function (x) { return OrderForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -620,6 +908,22 @@ var Serene;
         })(Northwind.OrderShippingState || (Northwind.OrderShippingState = {}));
         var OrderShippingState = Northwind.OrderShippingState;
         Serenity.Decorators.addAttribute(OrderShippingState, new Serenity.EnumKeyAttribute('Northwind.OrderShippingState'));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductForm = (function (_super) {
+            __extends(ProductForm, _super);
+            function ProductForm() {
+                _super.apply(this, arguments);
+            }
+            ProductForm.formKey = 'Northwind.Product';
+            return ProductForm;
+        }(Serenity.PrefixedContext));
+        Northwind.ProductForm = ProductForm;
+        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', Serenity.LookupEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return ProductForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -712,6 +1016,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var RegionForm = (function (_super) {
+            __extends(RegionForm, _super);
+            function RegionForm() {
+                _super.apply(this, arguments);
+            }
+            RegionForm.formKey = 'Northwind.Region';
+            return RegionForm;
+        }(Serenity.PrefixedContext));
+        Northwind.RegionForm = RegionForm;
+        [['RegionID', Serenity.IntegerEditor], ['RegionDescription', Serenity.StringEditor]].forEach(function (x) { return RegionForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var RegionRow;
         (function (RegionRow) {
             RegionRow.idProperty = 'RegionID';
@@ -782,6 +1102,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var ShipperForm = (function (_super) {
+            __extends(ShipperForm, _super);
+            function ShipperForm() {
+                _super.apply(this, arguments);
+            }
+            ShipperForm.formKey = 'Northwind.Shipper';
+            return ShipperForm;
+        }(Serenity.PrefixedContext));
+        Northwind.ShipperForm = ShipperForm;
+        [['CompanyName', Serenity.StringEditor], ['Phone', Northwind.PhoneEditor]].forEach(function (x) { return ShipperForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var ShipperRow;
         (function (ShipperRow) {
             ShipperRow.idProperty = 'ShipperID';
@@ -820,6 +1156,22 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var SupplierForm = (function (_super) {
+            __extends(SupplierForm, _super);
+            function SupplierForm() {
+                _super.apply(this, arguments);
+            }
+            SupplierForm.formKey = 'Northwind.Supplier';
+            return SupplierForm;
+        }(Serenity.PrefixedContext));
+        Northwind.SupplierForm = SupplierForm;
+        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return SupplierForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var SupplierRow;
         (function (SupplierRow) {
             SupplierRow.idProperty = 'SupplierID';
@@ -852,6 +1204,22 @@ var Serene;
                 Methods[x] = SupplierService.baseUrl + '/' + x;
             });
         })(SupplierService = Northwind.SupplierService || (Northwind.SupplierService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryForm = (function (_super) {
+            __extends(TerritoryForm, _super);
+            function TerritoryForm() {
+                _super.apply(this, arguments);
+            }
+            TerritoryForm.formKey = 'Northwind.Territory';
+            return TerritoryForm;
+        }(Serenity.PrefixedContext));
+        Northwind.TerritoryForm = TerritoryForm;
+        [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(function (x) { return TerritoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;

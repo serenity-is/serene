@@ -1,12 +1,9 @@
-
+﻿
 namespace Serene.Membership
 {
     using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public partial class LoginForm : PrefixedContext
@@ -15,8 +12,8 @@ namespace Serene.Membership
     
         public LoginForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor Username { get { return ById<StringEditor>("Username"); } }
-        public PasswordEditor Password { get { return ById<PasswordEditor>("Password"); } }
+        public StringEditor Username { [InlineCode("{this}.w('Username', Serenity.StringEditor)")] get; private set; }
+        public PasswordEditor Password { [InlineCode("{this}.w('Password', Serenity.PasswordEditor)")] get; private set; }
     }
 }
 

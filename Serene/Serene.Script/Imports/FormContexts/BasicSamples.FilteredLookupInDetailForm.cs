@@ -4,9 +4,6 @@ namespace Serene.BasicSamples
     using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public partial class FilteredLookupInDetailForm : PrefixedContext
@@ -15,10 +12,10 @@ namespace Serene.BasicSamples
     
         public FilteredLookupInDetailForm(string idPrefix) : base(idPrefix) {}
     
-        public Northwind.CustomerEditor CustomerID { get { return ById<Northwind.CustomerEditor>("CustomerID"); } }
-        public DateEditor OrderDate { get { return ById<DateEditor>("OrderDate"); } }
-        public LookupEditor CategoryID { get { return ById<LookupEditor>("CategoryID"); } }
-        public FilteredLookupDetailEditor DetailList { get { return ById<FilteredLookupDetailEditor>("DetailList"); } }
+        public Northwind.CustomerEditor CustomerID { [InlineCode("{this}.w('CustomerID', Serene.Northwind.CustomerEditor)")] get; private set; }
+        public DateEditor OrderDate { [InlineCode("{this}.w('OrderDate', Serenity.DateEditor)")] get; private set; }
+        public LookupEditor CategoryID { [InlineCode("{this}.w('CategoryID', Serenity.LookupEditor)")] get; private set; }
+        public FilteredLookupDetailEditor DetailList { [InlineCode("{this}.w('DetailList', Serene.BasicSamples.FilteredLookupDetailEditor)")] get; private set; }
     }
 }
 

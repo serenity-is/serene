@@ -2,186 +2,81 @@
 #><#@ assembly name="EnvDTE"
 #><#@ assembly name="EnvDTE80" 
 #><#@ assembly name="VSLangProj" 
-#><#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Core.dll"
-#><#@ assembly name="$(ProjectDir)tools\Serenity\Serenity.Web.dll" 
+#><#@ assembly name="$(TargetDir)Serenity.Core.dll"
+#><#@ assembly name="$(TargetDir)Serenity.Web.dll" 
+#><#@ assembly name="$(ProjectDir)tools\Mono.Cecil\Mono.Cecil.dll" 
 #><#@ import namespace="System.Linq" 
 #><#@ import namespace="System.Collections.Generic" 
 #><#@ import namespace="Microsoft.VisualStudio.TextTemplating" 
 #><#@ import namespace="Serenity.CodeGeneration" 
-#><# 
-    this.VS = new VSCodeGenerationHelper(this.Host as ITextTemplatingEngineHost);
+#><#
 #><#+
 
-public VSCodeGenerationHelper VS;
-
-public class VSCodeGenerationHelper
+public class SSTypeLister
 {
-    public VSCodeGenerationHelper(ITextTemplatingEngineHost host)
+    private List<Mono.Cecil.AssemblyDefinition> assemblyDefinitions;
+
+    public SSTypeLister(params string[] assemblies)
     {
-        this.Host = host;
-        this.DTE = (host as IServiceProvider).GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+        if (assemblies == null)
+            throw new ArgumentNullException("assemblies");
+
+        var resolver = new Mono.Cecil.DefaultAssemblyResolver();
+
+        foreach (var assembly in assemblies)
+            resolver.AddSearchDirectory(Path.GetDirectoryName(assembly));
+
+        assemblyDefinitions = new List<Mono.Cecil.AssemblyDefinition>();
+        foreach (var assembly in assemblies)
+            assemblyDefinitions.Add(Mono.Cecil.AssemblyDefinition.ReadAssembly(
+                assembly, new Mono.Cecil.ReaderParameters { AssemblyResolver = resolver }));
     }
-
-    public ITextTemplatingEngineHost Host { get; private set; }
-    public EnvDTE.DTE DTE { get; private set; }
-
-    public List<EnvDTE.Project> Projects
+    
+    private List<Mono.Cecil.TypeDefinition> GetAllBaseTypes(Mono.Cecil.TypeDefinition type)
     {
-        get 
+        var result = new List<Mono.Cecil.TypeDefinition>();
+
+        while (type.BaseType != null &&
+            !type.BaseType.Namespace.StartsWith("System"))
         {
-            var result = new List<EnvDTE.Project>();
-
-            foreach (EnvDTE.Project project in this.DTE.Solution.Projects)
-            {
-                if (project.Kind == ProjectTypeGuids.SolutionFolder)
-                    result.AddRange(FindProjectsIn(project.ProjectItems));
-                else
-                    result.Add(project);
-            }
-
-            return result;
-        }
-    }
-
-    private List<EnvDTE.Project> FindProjectsIn(EnvDTE.ProjectItems items)
-    {
-        var result = new List<EnvDTE.Project>();
-
-        foreach (EnvDTE.ProjectItem item in items)
-        {
-            if (item.SubProject == null)
-                continue;
-
-            if (item.SubProject.Kind == ProjectTypeGuids.SolutionFolder)
-                result.AddRange(FindProjectsIn(item.SubProject.ProjectItems));
-            else if (item.SubProject.Kind == ProjectTypeGuids.VisualCSharp ||
-                item.SubProject.Kind == ProjectTypeGuids.WebProject)
-                result.Add(item.SubProject);
+            type = type.BaseType.Resolve();
+            result.Add(type);
         }
 
         return result;
     }
-
-    public List<EnvDTE.CodeElement> GetAllCodeElementsOfType(EnvDTE.CodeElements elements, 
-        EnvDTE.vsCMElement elementType, bool includeExternalTypes)
+    
+    public List<ExternalType> List()
     {
-        var result = new List<EnvDTE.CodeElement>();
-
-        foreach (EnvDTE.CodeElement elem in elements)
+        var result = new List<ExternalType>();
+        
+        foreach (var assembly in this.assemblyDefinitions)
         {
-            if (elem.Kind == EnvDTE.vsCMElement.vsCMElementNamespace)
+            var assemblyName = assembly.Name.Name;
+            foreach (var module in assembly.Modules)
             {
-                result.AddRange(GetAllCodeElementsOfType(((EnvDTE.CodeNamespace)elem).Members, 
-                    elementType, includeExternalTypes));
-            }
-            else if (elem.InfoLocation == EnvDTE.vsCMInfoLocation.vsCMInfoLocationExternal
-                && !includeExternalTypes)
-            {
-                continue;
-            }
-            else if (elem.IsCodeType)
-            {
-                result.AddRange(GetAllCodeElementsOfType(((EnvDTE.CodeType)elem).Members, 
-                    elementType, includeExternalTypes));
-            }
+                foreach (var type in module.Types)
+                {
+                    if (!type.IsPublic)
+                        continue;
+                    
+                    var typeInfo = new ExternalType
+                    {
+                        AssemblyName = assemblyName,
+                        Namespace = type.Namespace,
+                        Name = type.Name,
+                        IsAbstract = type.IsAbstract,
+                        HasGenericParameters = type.HasGenericParameters,
+                        BaseType = type.BaseType != null ? type.BaseType.FullName : ""
+                    };
 
-            if (elem.Kind == elementType)
-                result.Add(elem);
+                    result.Add(typeInfo);
+                }
+            }
         }
-
+        
         return result;
     }
-
-    public EnvDTE.CodeClass GetBaseClass(EnvDTE.CodeClass codeClass)
-    {
-        return codeClass.Bases.OfType<EnvDTE.CodeClass>().FirstOrDefault();
-    }
-
-    public IEnumerable<EnvDTE.CodeClass> GetAllBaseClasses(EnvDTE.CodeClass codeClass)
-    {
-        var result = new List<EnvDTE.CodeClass>();
-
-        foreach (EnvDTE.CodeClass partialClass in GetPartialClasses(codeClass))
-        {
-            // climb up the inheritance tree
-            var cc = partialClass;
-            while(cc != null)
-            {
-                cc = GetBaseClass(cc);
-                if (cc != null) 
-                    result.Add(cc);
-            }
-        }
-
-        return result;
-    }
-
-    public IEnumerable<EnvDTE.CodeClass> GetPartialClasses(EnvDTE.CodeClass codeClass)
-    {
-        var classParts = new List<EnvDTE.CodeClass>();
-
-        // partial classes are a new feature and only available in the CodeClass2 interface
-        // check if the given class is a CodeClass2
-        if (codeClass is EnvDTE80.CodeClass2)
-        {
-            // yes, it is
-            EnvDTE80.CodeClass2 cc2 = (EnvDTE80.CodeClass2)codeClass;
-            // check if it consists of multiple partial classes
-            if (cc2.ClassKind != EnvDTE80.vsCMClassKind.vsCMClassKindPartialClass)
-                // no > only return the class itself
-                classParts.Add(cc2);
-            else
-                // yes > add all partial classes
-                classParts.AddRange(cc2.PartialClasses.OfType<EnvDTE.CodeClass>());
-        }
-        else
-            // this is no CodeClass2 > return itself
-            classParts.Add(codeClass);
-
-        return classParts;
-    }
-
-    private string GetFullName(EnvDTE.CodeClass c)
-    {
-        var klass = (EnvDTE.CodeClass)c;
-        var name = klass.Name;
-        var parent = klass.Parent as EnvDTE.CodeClass;
-        if (parent != null)
-            name = parent.Name + "." + name;
-        var ns = klass.Namespace as EnvDTE.CodeNamespace;
-        if (ns != null && !string.IsNullOrEmpty(ns.Name))
-            name = ns.Name + "." + name;
-        return name;
-    }
-
-    public Dictionary<string, ScriptTypeInfo> GetScriptCSTypes(IEnumerable<EnvDTE.Project> projects)
-    {
-        var types = new Dictionary<string, ScriptTypeInfo>();
-
-        foreach (EnvDTE.CodeClass c in projects.SelectMany(p => 
-            GetAllCodeElementsOfType(p.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false)))
-        {
-            var typeInfo = new ScriptTypeInfo 
-            {
-                FullName = c.FullName,
-                BaseClasses = new List<string>(GetAllBaseClasses(c).Select(x => x.FullName)),
-            };
-
-            types[c.FullName] = typeInfo;
-        }
-
-        return types;
-    }
-
 }
 
-public class ProjectTypeGuids
-{
-    public const string SolutionFolder = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
-    public const string VisualBasic = "{F184B08F-C81C-45F6-A57F-5ABD9991F28F}";
-    public const string VisualCSharp = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}";
-    public const string VisualCPlusPlus = "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}";
-    public const string VisualJSharp = "{E6FDF86B-F3D1-11D4-8576-0002A516ECE8}";
-    public const string WebProject = "{E24C65DC-7377-472b-9ABA-BC803B73C61A}";
-}
 #>

@@ -4,9 +4,6 @@ namespace Serene.BasicSamples
     using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public partial class LookupFilterByMultipleForm : PrefixedContext
@@ -15,16 +12,16 @@ namespace Serene.BasicSamples
     
         public LookupFilterByMultipleForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor ProductName { get { return ById<StringEditor>("ProductName"); } }
-        public ImageUploadEditor ProductImage { get { return ById<ImageUploadEditor>("ProductImage"); } }
-        public BooleanEditor Discontinued { get { return ById<BooleanEditor>("Discontinued"); } }
-        public LookupEditor SupplierID { get { return ById<LookupEditor>("SupplierID"); } }
-        public ProduceSeafoodCategoryEditor CategoryID { get { return ById<ProduceSeafoodCategoryEditor>("CategoryID"); } }
-        public StringEditor QuantityPerUnit { get { return ById<StringEditor>("QuantityPerUnit"); } }
-        public DecimalEditor UnitPrice { get { return ById<DecimalEditor>("UnitPrice"); } }
-        public IntegerEditor UnitsInStock { get { return ById<IntegerEditor>("UnitsInStock"); } }
-        public IntegerEditor UnitsOnOrder { get { return ById<IntegerEditor>("UnitsOnOrder"); } }
-        public IntegerEditor ReorderLevel { get { return ById<IntegerEditor>("ReorderLevel"); } }
+        public StringEditor ProductName { [InlineCode("{this}.w('ProductName', Serenity.StringEditor)")] get; private set; }
+        public ImageUploadEditor ProductImage { [InlineCode("{this}.w('ProductImage', Serenity.ImageUploadEditor)")] get; private set; }
+        public BooleanEditor Discontinued { [InlineCode("{this}.w('Discontinued', Serenity.BooleanEditor)")] get; private set; }
+        public LookupEditor SupplierID { [InlineCode("{this}.w('SupplierID', Serenity.LookupEditor)")] get; private set; }
+        public ProduceSeafoodCategoryEditor CategoryID { [InlineCode("{this}.w('CategoryID', Serene.BasicSamples.ProduceSeafoodCategoryEditor)")] get; private set; }
+        public StringEditor QuantityPerUnit { [InlineCode("{this}.w('QuantityPerUnit', Serenity.StringEditor)")] get; private set; }
+        public DecimalEditor UnitPrice { [InlineCode("{this}.w('UnitPrice', Serenity.DecimalEditor)")] get; private set; }
+        public IntegerEditor UnitsInStock { [InlineCode("{this}.w('UnitsInStock', Serenity.IntegerEditor)")] get; private set; }
+        public IntegerEditor UnitsOnOrder { [InlineCode("{this}.w('UnitsOnOrder', Serenity.IntegerEditor)")] get; private set; }
+        public IntegerEditor ReorderLevel { [InlineCode("{this}.w('ReorderLevel', Serenity.IntegerEditor)")] get; private set; }
     }
 }
 

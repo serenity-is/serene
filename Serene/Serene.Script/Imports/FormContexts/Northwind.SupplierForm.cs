@@ -1,12 +1,9 @@
-
+﻿
 namespace Serene.Northwind
 {
     using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public partial class SupplierForm : PrefixedContext
@@ -15,17 +12,17 @@ namespace Serene.Northwind
     
         public SupplierForm(string idPrefix) : base(idPrefix) {}
     
-        public StringEditor CompanyName { get { return ById<StringEditor>("CompanyName"); } }
-        public StringEditor ContactName { get { return ById<StringEditor>("ContactName"); } }
-        public StringEditor ContactTitle { get { return ById<StringEditor>("ContactTitle"); } }
-        public StringEditor Address { get { return ById<StringEditor>("Address"); } }
-        public StringEditor City { get { return ById<StringEditor>("City"); } }
-        public StringEditor Region { get { return ById<StringEditor>("Region"); } }
-        public StringEditor PostalCode { get { return ById<StringEditor>("PostalCode"); } }
-        public StringEditor Country { get { return ById<StringEditor>("Country"); } }
-        public StringEditor Phone { get { return ById<StringEditor>("Phone"); } }
-        public StringEditor Fax { get { return ById<StringEditor>("Fax"); } }
-        public StringEditor HomePage { get { return ById<StringEditor>("HomePage"); } }
+        public StringEditor CompanyName { [InlineCode("{this}.w('CompanyName', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ContactName { [InlineCode("{this}.w('ContactName', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ContactTitle { [InlineCode("{this}.w('ContactTitle', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Address { [InlineCode("{this}.w('Address', Serenity.StringEditor)")] get; private set; }
+        public StringEditor City { [InlineCode("{this}.w('City', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Region { [InlineCode("{this}.w('Region', Serenity.StringEditor)")] get; private set; }
+        public StringEditor PostalCode { [InlineCode("{this}.w('PostalCode', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Country { [InlineCode("{this}.w('Country', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Phone { [InlineCode("{this}.w('Phone', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Fax { [InlineCode("{this}.w('Fax', Serenity.StringEditor)")] get; private set; }
+        public StringEditor HomePage { [InlineCode("{this}.w('HomePage', Serenity.StringEditor)")] get; private set; }
     }
 }
 

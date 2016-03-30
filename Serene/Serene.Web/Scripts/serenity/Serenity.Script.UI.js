@@ -7051,14 +7051,19 @@
 			}
 			var type = ss.getInstanceType(this);
 			while (ss.isValue(type) && !ss.referenceEquals(type, $Serenity_Widget)) {
-				var name = noGeneric(ss.replaceAllString(ss.getTypeFullName(type), '.', '_'));
+				var name = noGeneric(ss.getTypeFullName(type));
 				for (var $t1 = 0; $t1 < Q.Config.rootNamespaces.length; $t1++) {
 					var k = Q.Config.rootNamespaces[$t1];
-					if (ss.startsWithString(name, k + '_')) {
+					if (ss.startsWithString(name, k + '.')) {
 						name = name.substr(k.length + 1);
 						break;
 					}
 				}
+				if (Q.canLoadScriptData('Template.' + name)) {
+					$Serenity_TemplatedWidget.$templateNames[name] = name;
+					return name;
+				}
+				name = ss.replaceAllString(name, '.', '_');
 				if (Q.canLoadScriptData('Template.' + name) || $('script#Template_' + name).length > 0) {
 					$Serenity_TemplatedWidget.$templateNames[fullName] = name;
 					return name;
@@ -9488,6 +9493,9 @@
 			return function(id) {
 				return $Serenity_WX.getWidget(TWidget).call(null, this.byId$1(id));
 			};
+		},
+		w: function(id, t) {
+			return Serenity.WX.getWidget(t)($('#' + this.$idPrefix + id));
 		},
 		get_idPrefix: function() {
 			return this.$idPrefix;

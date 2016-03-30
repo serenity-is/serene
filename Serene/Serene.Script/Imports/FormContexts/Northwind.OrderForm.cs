@@ -4,9 +4,6 @@ namespace Serene.Northwind
     using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
     public partial class OrderForm : PrefixedContext
@@ -15,20 +12,20 @@ namespace Serene.Northwind
     
         public OrderForm(string idPrefix) : base(idPrefix) {}
     
-        public CustomerEditor CustomerID { get { return ById<CustomerEditor>("CustomerID"); } }
-        public DateEditor OrderDate { get { return ById<DateEditor>("OrderDate"); } }
-        public DateEditor RequiredDate { get { return ById<DateEditor>("RequiredDate"); } }
-        public LookupEditor EmployeeID { get { return ById<LookupEditor>("EmployeeID"); } }
-        public OrderDetailsEditor DetailList { get { return ById<OrderDetailsEditor>("DetailList"); } }
-        public DateEditor ShippedDate { get { return ById<DateEditor>("ShippedDate"); } }
-        public LookupEditor ShipVia { get { return ById<LookupEditor>("ShipVia"); } }
-        public DecimalEditor Freight { get { return ById<DecimalEditor>("Freight"); } }
-        public StringEditor ShipName { get { return ById<StringEditor>("ShipName"); } }
-        public StringEditor ShipAddress { get { return ById<StringEditor>("ShipAddress"); } }
-        public StringEditor ShipCity { get { return ById<StringEditor>("ShipCity"); } }
-        public StringEditor ShipRegion { get { return ById<StringEditor>("ShipRegion"); } }
-        public StringEditor ShipPostalCode { get { return ById<StringEditor>("ShipPostalCode"); } }
-        public StringEditor ShipCountry { get { return ById<StringEditor>("ShipCountry"); } }
+        public CustomerEditor CustomerID { [InlineCode("{this}.w('CustomerID', Serene.Northwind.CustomerEditor)")] get; private set; }
+        public DateEditor OrderDate { [InlineCode("{this}.w('OrderDate', Serenity.DateEditor)")] get; private set; }
+        public DateEditor RequiredDate { [InlineCode("{this}.w('RequiredDate', Serenity.DateEditor)")] get; private set; }
+        public LookupEditor EmployeeID { [InlineCode("{this}.w('EmployeeID', Serenity.LookupEditor)")] get; private set; }
+        public OrderDetailsEditor DetailList { [InlineCode("{this}.w('DetailList', Serene.Northwind.OrderDetailsEditor)")] get; private set; }
+        public DateEditor ShippedDate { [InlineCode("{this}.w('ShippedDate', Serenity.DateEditor)")] get; private set; }
+        public LookupEditor ShipVia { [InlineCode("{this}.w('ShipVia', Serenity.LookupEditor)")] get; private set; }
+        public DecimalEditor Freight { [InlineCode("{this}.w('Freight', Serenity.DecimalEditor)")] get; private set; }
+        public StringEditor ShipName { [InlineCode("{this}.w('ShipName', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ShipAddress { [InlineCode("{this}.w('ShipAddress', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ShipCity { [InlineCode("{this}.w('ShipCity', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ShipRegion { [InlineCode("{this}.w('ShipRegion', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ShipPostalCode { [InlineCode("{this}.w('ShipPostalCode', Serenity.StringEditor)")] get; private set; }
+        public StringEditor ShipCountry { [InlineCode("{this}.w('ShipCountry', Serenity.StringEditor)")] get; private set; }
     }
 }
 
