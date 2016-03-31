@@ -45,6 +45,99 @@ public class SSTypeLister
 
         return result;
     }
+
+    private object GetArgumentValue(object value)
+    {
+        if (value == null)
+            return null;
+
+        var reference = value as Mono.Cecil.TypeReference;
+        if (reference != null)
+            return reference.FullName;
+
+        return value;
+    }
+
+    private ExternalAttribute ToExternalAttribute(Mono.Cecil.CustomAttribute attr)
+    {
+        var externalAttr = new ExternalAttribute();
+        externalAttr.Type = attr.AttributeType.FullName;
+        foreach (var arg in attr.ConstructorArguments)
+        {
+            externalAttr.Arguments.Add(new ExternalArgument
+            {
+                Type = arg.Type.FullName,
+                Value = GetArgumentValue(arg.Value)
+            });
+        }
+
+        foreach (var arg in attr.Properties)
+        {
+            externalAttr.Arguments.Add(new ExternalArgument
+            {
+                Type = arg.Argument.Type.FullName,
+                Value = GetArgumentValue(arg.Argument.Value),
+                Name = arg.Name
+            });
+        }
+        
+        return externalAttr;
+    }
+
+    private ExternalArgument ToExternalArgument(Mono.Cecil.ParameterDefinition prm)
+    {
+        var resolved = prm.Resolve();
+        
+        return new ExternalArgument
+        {
+            Name = prm.Name,
+            Type = prm.ParameterType.FullName,
+            IsOptional = resolved.IsOptional,
+            HasDefault = resolved.HasDefault
+        };
+    }
+
+    private ExternalMethod ToExternalMethod(Mono.Cecil.MethodDefinition method)
+    {
+        var result = new ExternalMethod();
+        result.Name = method.Name;
+        result.IsProtected = !method.IsPublic;
+        result.IsStatic = method.IsStatic;
+        result.IsConstructor = method.IsConstructor;
+
+        foreach (var attr in method.CustomAttributes)
+            result.Attributes.Add(ToExternalAttribute(attr));
+        
+        foreach (var arg in method.Parameters)
+            result.Arguments.Add(ToExternalArgument(arg));
+
+        return result;
+    }
+
+    private ExternalType ToExternalType(Mono.Cecil.TypeDefinition type)
+    {
+        var externalType = new ExternalType
+        {
+            Namespace = type.Namespace,
+            Name = type.Name,
+            IsAbstract = type.IsAbstract,
+            IsInterface = type.IsInterface,
+            HasGenericParameters = type.HasGenericParameters,
+            BaseType = type.BaseType != null ? type.BaseType.FullName : ""
+        };
+
+        foreach (var attr in type.CustomAttributes)
+            externalType.Attributes.Add(ToExternalAttribute(attr));
+
+        foreach (var intf in type.Interfaces)
+            externalType.Interfaces.Add(intf.FullName);
+
+        foreach (var method in type.Methods)
+            if (!method.IsPrivate && !method.IsGetter && !method.IsSetter)
+                externalType.Methods.Add(ToExternalMethod(method));
+
+        return externalType;
+    }
     
     public List<ExternalType> List()
     {
@@ -60,17 +153,9 @@ public class SSTypeLister
                     if (!type.IsPublic)
                         continue;
                     
-                    var typeInfo = new ExternalType
-                    {
-                        AssemblyName = assemblyName,
-                        Namespace = type.Namespace,
-                        Name = type.Name,
-                        IsAbstract = type.IsAbstract,
-                        HasGenericParameters = type.HasGenericParameters,
-                        BaseType = type.BaseType != null ? type.BaseType.FullName : ""
-                    };
-
-                    result.Add(typeInfo);
+                    var externalType = ToExternalType(type);
+                    externalType.AssemblyName = assemblyName;
+                    result.Add(externalType);
                 }
             }
         }
