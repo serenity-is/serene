@@ -1,50 +1,71 @@
 ﻿declare namespace Serene {
     class Authorization {
-        constructor();
+        static hasPermission(permissionKey: string): boolean;
     }
 
     class BasicProgressDialog {
-        constructor();
+        getDialogOptions(): any;
+        initDialog(): void;
+        getTemplate(): string;
     }
 
     class BulkServiceAction {
-        constructor();
+        createProgressDialog(): void;
+        getConfirmationFormat(): string;
+        getConfirmationMessage(targetCount: number): string;
+        confirm(targetCount: number, action: any): void;
+        getNothingToProcessMessage(): string;
+        nothingToProcess(): void;
+        getParallelRequests(): number;
+        getBatchSize(): number;
+        startParallelExecution(): void;
+        serviceCallCleanup(): void;
+        executeForBatch(batch: any): void;
+        executeNextBatch(): void;
+        delayed(action: any): void;
+        getAllHadErrorsFormat(): string;
+        showAllHadErrors(): void;
+        getSomeHadErrorsFormat(): string;
+        showSomeHadErrors(): void;
+        getAllSuccessFormat(): string;
+        showAllSuccess(): void;
+        showResults(): void;
+        execute(keys: any): void;
     }
 
-    class DialogUtils {
+    namespace DialogUtils {
+        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: any): void;
     }
 
     class LanguageList {
-        constructor();
     }
 
-    class ScriptInitialization {
+    namespace ScriptInitialization {
     }
 }
 
 declare namespace Serene.Administration {
     class LanguageDialog {
-        constructor();
     }
 
     class LanguageGrid {
         constructor(container: JQuery);
     }
 
-    class LanguageService {
-        constructor();
-    }
-
     class PermissionCheckEditor {
         constructor(div: JQuery, opt: PermissionCheckEditorOptions);
+        getColumns(): any;
+        onViewSubmit(): boolean;
+        onViewFilter(item: PermissionCheckItem): boolean;
+        onClick(e: any, row: number, cell: number): void;
+        getButtons(): any;
+        createToolbarExtensions(): void;
     }
 
     class PermissionCheckEditorOptions {
-        constructor();
     }
 
     class PermissionCheckItem {
-        constructor();
     }
 
     class PermissionModuleEditor {
@@ -53,92 +74,94 @@ declare namespace Serene.Administration {
 
     class RoleCheckEditor {
         constructor(div: JQuery);
+        getButtons(): any;
+        createToolbarExtensions(): void;
+        onViewFilter(item: Serenity.CheckTreeItem): boolean;
+        getItems(): any;
     }
 
     class RoleDialog {
-        constructor();
+        getToolbarButtons(): any;
+        updateInterface(): void;
     }
 
     class RoleGrid {
         constructor(container: JQuery);
+        getDefaultSortBy(): any;
     }
 
     class RolePermissionDialog {
         constructor(opt: RolePermissionDialogOptions);
+        getDialogOptions(): any;
+        getTemplate(): string;
     }
 
     class RolePermissionDialogOptions {
-        constructor();
-    }
-
-    class RolePermissionService {
-        constructor();
-    }
-
-    class RoleService {
-        constructor();
     }
 
     class TranslationGrid {
         constructor(container: JQuery);
-    }
-
-    class TranslationService {
-        constructor();
+        onClick(e: any, row: number, cell: number): void;
+        getColumnsAsync(): any;
+        createToolbarExtensions(): void;
+        saveChanges(language: string): any;
+        onViewSubmit(): boolean;
+        getButtons(): any;
+        createQuickSearchInput(): void;
+        onViewFilter(item: TranslationItem): boolean;
+        usePager(): boolean;
     }
 
     class UserDialog {
-        constructor();
+        getToolbarButtons(): any;
+        updateInterface(): void;
     }
 
     class UserGrid {
         constructor(container: JQuery);
+        getColumns(): any;
+        getDefaultSortBy(): any;
     }
 
     class UserPermissionDialog {
         constructor(opt: UserPermissionDialogOptions);
+        getDialogOptions(): any;
+        getTemplate(): string;
     }
 
     class UserPermissionDialogOptions {
-        constructor();
-    }
-
-    class UserPermissionService {
-        constructor();
     }
 
     class UserRoleDialog {
         constructor(opt: UserRoleDialogOptions);
+        getDialogOptions(): any;
+        getTemplate(): string;
     }
 
     class UserRoleDialogOptions {
-        constructor();
-    }
-
-    class UserRoleService {
-        constructor();
-    }
-
-    class UserService {
-        constructor();
     }
 }
 
 declare namespace Serene.BasicSamples {
-    class BasicSamplesService {
-        constructor();
-    }
-
     class CancellableBulkActionGrid {
         constructor(container: JQuery);
+        createToolbarExtensions(): void;
+        getButtons(): any;
+        getColumns(): any;
+        getViewOptions(): any;
     }
 
     class ChartInDialog {
-        constructor();
+        onDialogOpen(): void;
+        arrange(): void;
+        getTemplate(): string;
+        getDialogOptions(): any;
+        static initializePage(): void;
     }
 
     class CloneableEntityDialog {
-        constructor();
+        updateInterface(): void;
+        getCloningEntity(): Northwind.ProductRow;
     }
 
     class CloneableEntityGrid {
@@ -147,14 +170,16 @@ declare namespace Serene.BasicSamples {
 
     class DefaultValuesInNewGrid {
         constructor(container: JQuery);
+        addButtonClick(): void;
+        getButtons(): any;
     }
 
     class FilteredLookupDetailEditor {
         constructor(container: JQuery);
+        initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
     }
 
     class FilteredLookupInDetailDialog {
-        constructor();
     }
 
     class FilteredLookupInDetailGrid {
@@ -162,27 +187,32 @@ declare namespace Serene.BasicSamples {
     }
 
     class FilteredLookupOrderDetailDialog {
-        constructor();
+        beforeLoadEntity(entity: Northwind.OrderDetailRow): void;
     }
 
     class GridFilteredByCriteria {
         constructor(container: JQuery);
+        onViewSubmit(): boolean;
     }
 
     class GroupingAndSummariesInGrid {
         constructor(container: JQuery);
+        createSlickGrid(): any;
+        getColumns(): any;
+        getSlickOptions(): any;
+        usePager(): boolean;
+        getButtons(): any;
     }
 
     class LookupFilterByMultipleDialog {
-        constructor();
     }
 
     class LookupFilterByMultipleGrid {
         constructor(container: JQuery);
+        onViewSubmit(): boolean;
     }
 
     class MultiColumnDialog {
-        constructor();
     }
 
     class MultiColumnGrid {
@@ -190,7 +220,6 @@ declare namespace Serene.BasicSamples {
     }
 
     class MultiColumnResponsiveDialog {
-        constructor();
     }
 
     class MultiColumnResponsiveGrid {
@@ -198,15 +227,18 @@ declare namespace Serene.BasicSamples {
     }
 
     class OrderBulkAction {
-        constructor();
+        getParallelRequests(): number;
+        getBatchSize(): number;
+        executeForBatch(batch: any): void;
     }
 
     class ProduceSeafoodCategoryEditor {
         constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
+        getLookupKey(): string;
+        getItems(lookup: any): any;
     }
 
     class ResponsiveDialog {
-        constructor();
     }
 
     class ResponsiveGrid {
@@ -215,12 +247,14 @@ declare namespace Serene.BasicSamples {
 
     class ViewWithoutIDGrid {
         constructor(container: JQuery);
+        onViewProcessData(response: any): any;
+        getButtons(): any;
     }
 }
 
 declare namespace Serene.Common {
     class ExcelExportHelper {
-        constructor();
+        static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: any, title?: string): Serenity.ToolButton;
     }
 
     class LanguageSelection {
@@ -228,7 +262,7 @@ declare namespace Serene.Common {
     }
 
     class ReportHelper {
-        constructor();
+        static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: any): Serenity.ToolButton;
     }
 
     class SidebarSearch {
@@ -264,213 +298,176 @@ declare namespace Serene.Membership {
 
 declare namespace Serene.Northwind {
     class CategoryDialog {
-        constructor();
+        getLanguages(): any;
     }
 
     class CategoryGrid {
         constructor(container: JQuery);
     }
 
-    class CategoryLangService {
-        constructor();
-    }
-
-    class CategoryService {
-        constructor();
-    }
-
     class CustomerCustomerDemoDialog {
-        constructor();
     }
 
     class CustomerCustomerDemoGrid {
         constructor(container: JQuery);
-    }
-
-    class CustomerCustomerDemoService {
-        constructor();
+        getColumns(): any;
     }
 
     class CustomerDemographicDialog {
-        constructor();
     }
 
     class CustomerDemographicGrid {
         constructor(container: JQuery);
-    }
-
-    class CustomerDemographicService {
-        constructor();
+        getColumns(): any;
     }
 
     class CustomerDialog {
-        constructor();
+        loadResponse(data: any): void;
+        loadEntity(entity: CustomerRow): void;
+        onSaveSuccess(response: any): void;
     }
 
     class CustomerEditor {
         constructor(container: JQuery, options: Serenity.LookupEditorOptions);
+        getLookupKey(): string;
+        getItemText(item: CustomerRow, lookup: any): string;
     }
 
     class CustomerGrid {
         constructor(container: JQuery);
+        createToolbarExtensions(): void;
+        getButtons(): any;
     }
 
     class CustomerOrderDialog {
-        constructor();
+        updateInterface(): void;
     }
 
     class CustomerOrdersGrid {
         constructor(container: JQuery);
-    }
-
-    class CustomerService {
-        constructor();
+        getColumns(): any;
+        initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
+        addButtonClick(): void;
+        getInitialTitle(): string;
+        createToolbarExtensions(): void;
+        getGridCanLoad(): boolean;
     }
 
     class EmployeeDialog {
-        constructor();
     }
 
     class EmployeeFormatter {
-        constructor();
+        format(ctx: any): string;
+        initializeColumn(column: any): void;
     }
 
     class EmployeeGrid {
         constructor(container: JQuery);
-    }
-
-    class EmployeeService {
-        constructor();
+        getColumns(): any;
     }
 
     class EmployeeTerritoryDialog {
-        constructor();
     }
 
     class EmployeeTerritoryGrid {
         constructor(container: JQuery);
-    }
-
-    class EmployeeTerritoryService {
-        constructor();
+        getColumns(): any;
     }
 
     class FreightFormatter {
-        constructor();
+        format(ctx: any): string;
     }
 
     class NoteDialog {
-        constructor();
+        getTemplate(): string;
+        getDialogOptions(): any;
     }
 
     class NotesEditor {
         constructor(container: JQuery);
+        getTemplate(): string;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
     }
 
     class OrderDetailDialog {
-        constructor();
     }
 
     class OrderDetailsEditor {
         constructor(container: JQuery);
-    }
-
-    class OrderDetailService {
-        constructor();
+        validateEntity(row: OrderDetailRow, id: any): boolean;
     }
 
     class OrderDialog {
-        constructor();
+        loadEntity(entity: OrderRow): void;
+        getToolbarButtons(): any;
     }
 
     class OrderGrid {
         constructor(container: JQuery);
-    }
-
-    class OrderService {
-        constructor();
+        createToolbarExtensions(): void;
+        getButtons(): any;
     }
 
     class PhoneEditor {
         constructor(input: JQuery);
+        formatValue(): void;
+        getFormattedValue(): string;
     }
 
     class ProductDialog {
-        constructor();
+        getLanguages(): any;
     }
 
     class ProductGrid {
         constructor(container: JQuery);
-    }
-
-    class ProductLangService {
-        constructor();
-    }
-
-    class ProductService {
-        constructor();
+        createToolbarExtensions(): void;
+        getButtons(): any;
+        onViewProcessData(response: any): any;
+        getColumns(): any;
     }
 
     class RegionDialog {
-        constructor();
     }
 
     class RegionGrid {
         constructor(container: JQuery);
     }
 
-    class RegionService {
-        constructor();
-    }
-
-    class SalesByCategoryService {
-        constructor();
-    }
-
     class ShipperDialog {
-        constructor();
     }
 
     class ShipperFormatter {
-        constructor();
+        format(ctx: any): string;
     }
 
     class ShipperGrid {
         constructor(container: JQuery);
     }
 
-    class ShipperService {
-        constructor();
-    }
-
     class SupplierDialog {
-        constructor();
     }
 
     class SupplierGrid {
         constructor(container: JQuery);
-    }
-
-    class SupplierService {
-        constructor();
+        createToolbarExtensions(): void;
+        onViewSubmit(): boolean;
     }
 
     class TerritoryDialog {
-        constructor();
     }
 
     class TerritoryGrid {
         constructor(container: JQuery);
-    }
-
-    class TerritoryService {
-        constructor();
+        createToolbarExtensions(): void;
+        onViewSubmit(): boolean;
     }
 }
 
 declare namespace Serenity {
     class HtmlBasicContentEditor {
         constructor(textArea: JQuery, opt: HtmlContentEditorOptions);
+        getConfig(): any;
     }
 }
 

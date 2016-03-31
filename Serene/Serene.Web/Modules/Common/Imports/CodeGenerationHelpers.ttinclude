@@ -104,6 +104,7 @@ public class SSTypeLister
         result.IsProtected = !method.IsPublic;
         result.IsStatic = method.IsStatic;
         result.IsConstructor = method.IsConstructor;
+        result.Type = method.ReturnType.FullName;
 
         foreach (var attr in method.CustomAttributes)
             result.Attributes.Add(ToExternalAttribute(attr));
@@ -122,6 +123,7 @@ public class SSTypeLister
             Name = type.Name,
             IsAbstract = type.IsAbstract,
             IsInterface = type.IsInterface,
+            IsSealed = type.IsSealed,
             HasGenericParameters = type.HasGenericParameters,
             BaseType = type.BaseType != null ? type.BaseType.FullName : ""
         };
