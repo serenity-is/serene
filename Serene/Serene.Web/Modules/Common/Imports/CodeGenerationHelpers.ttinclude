@@ -106,12 +106,29 @@ public class SSTypeLister
         result.IsConstructor = method.IsConstructor;
         result.Type = method.ReturnType.FullName;
         result.IsOverride = method.IsVirtual && method.IsReuseSlot;
+        result.IsGetter = method.IsGetter;
+        result.IsSetter = method.IsSetter;
 
         foreach (var attr in method.CustomAttributes)
             result.Attributes.Add(ToExternalAttribute(attr));
         
         foreach (var arg in method.Parameters)
             result.Arguments.Add(ToExternalArgument(arg));
+
+        return result;
+    }
+
+    private ExternalProperty ToExternalProperty(Mono.Cecil.PropertyDefinition prop)
+    {
+        var result = new ExternalProperty();
+        result.Name = prop.Name;
+        result.Type = prop.PropertyType.FullName;
+        result.IsStatic = !prop.HasThis;
+        if (prop.GetMethod != null && !prop.GetMethod.IsPrivate)
+            result.GetMethod = prop.GetMethod.Name;
+
+        if (prop.SetMethod != null && !prop.SetMethod.IsPrivate)
+            result.SetMethod = prop.SetMethod.Name;
 
         return result;
     }
@@ -125,7 +142,8 @@ public class SSTypeLister
             IsAbstract = type.IsAbstract,
             IsInterface = type.IsInterface,
             IsSealed = type.IsSealed,
-            BaseType = type.BaseType != null ? type.BaseType.FullName : ""
+            BaseType = type.BaseType != null ? type.BaseType.FullName : "",
+            IsSerializable = type.IsSerializable
         };
 
         foreach (var attr in type.CustomAttributes)
@@ -135,8 +153,11 @@ public class SSTypeLister
             externalType.Interfaces.Add(intf.FullName);
 
         foreach (var method in type.Methods)
-            if (!method.IsPrivate && !method.IsGetter && !method.IsSetter)
+            if (!method.IsPrivate)
                 externalType.Methods.Add(ToExternalMethod(method));
+
+        foreach (var prop in type.Properties)
+            externalType.Properties.Add(ToExternalProperty(prop));
 
         foreach (var prm in type.GenericParameters)
             externalType.GenericParameters.Add(new ExternalGenericParameter {

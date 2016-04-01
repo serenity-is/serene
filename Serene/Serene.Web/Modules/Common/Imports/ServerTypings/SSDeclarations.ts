@@ -1,9 +1,20 @@
 ﻿declare namespace Serene {
     class Authorization {
         static hasPermission(permissionKey: string): boolean;
+        static get_userDefinition(): ScriptUserDefinition;
     }
 
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
+        get_cancelled(): boolean;
+        set_cancelled(value: boolean): void;
+        get_max(): number;
+        set_max(value: number): void;
+        get_value(): number;
+        set_value(value: number): void;
+        get_title(): string;
+        set_title(value: string): void;
+        get_cancelTitle(): string;
+        set_cancelTitle(value: string): void;
     }
 
     class BulkServiceAction extends Serenity.ScriptContext {
@@ -28,6 +39,12 @@
         showAllSuccess(): void;
         showResults(): void;
         execute(keys: string[]): void;
+        get_successCount(): number;
+        set_successCount(value: number): void;
+        get_errorCount(): number;
+        set_errorCount(value: number): void;
+        get_done(): () => void;
+        set_done(value: () => void): void;
     }
 
     namespace DialogUtils {
@@ -35,6 +52,7 @@
     }
 
     class LanguageList {
+        static get_value(): any[];
     }
 
     namespace ScriptInitialization {
@@ -51,12 +69,22 @@ declare namespace Serene.Administration {
 
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         constructor(div: JQuery, opt: PermissionCheckEditorOptions);
+        get_value(): UserPermissionRow[];
+        set_value(value: UserPermissionRow[]): void;
+        get_rolePermissions(): string[];
+        set_rolePermissions(value: string[]): void;
     }
 
     class PermissionCheckEditorOptions {
+        showRevoke: boolean;
     }
 
     class PermissionCheckItem {
+        ParentKey: string;
+        Key: string;
+        Title: string;
+        IsGroup: boolean;
+        GrantRevoke: any;
     }
 
     class PermissionModuleEditor extends Serenity.Select2Editor<any, string> {
@@ -79,6 +107,8 @@ declare namespace Serene.Administration {
     }
 
     class RolePermissionDialogOptions {
+        roleID: number;
+        title: string;
     }
 
     class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
@@ -98,6 +128,8 @@ declare namespace Serene.Administration {
     }
 
     class UserPermissionDialogOptions {
+        userID: number;
+        username: string;
     }
 
     class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
@@ -105,6 +137,8 @@ declare namespace Serene.Administration {
     }
 
     class UserRoleDialogOptions {
+        userID: number;
+        username: string;
     }
 }
 
@@ -130,6 +164,8 @@ declare namespace Serene.BasicSamples {
 
     class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
         constructor(container: JQuery);
+        get_categoryID(): any;
+        set_categoryID(value: any): void;
     }
 
     class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
@@ -140,6 +176,8 @@ declare namespace Serene.BasicSamples {
     }
 
     class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
+        get_categoryID(): any;
+        set_categoryID(value: any): void;
     }
 
     class GridFilteredByCriteria extends Northwind.ProductGrid {
@@ -197,7 +235,7 @@ declare namespace Serene.Common {
 
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
         constructor(container: JQuery);
-        iD(entity: any): any;
+        id(entity: any): any;
         save(opt: Serenity.ServiceOptions<any>, callback: (p1: Serenity.ServiceResponse) => void): void;
         deleteEntity(id: number): boolean;
         validateEntity(row: any, id: any): boolean;
@@ -205,9 +243,15 @@ declare namespace Serene.Common {
         getNewEntity(): any;
         getEditValue(property: Serenity.PropertyItem, target: any): void;
         setEditValue(source: any, property: Serenity.PropertyItem): void;
+        get_value(): any[];
+        set_value(value: any[]): void;
     }
 
     class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        get_onSave(): (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void;
+        set_onSave(value: (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void): void;
+        get_onDelete(): (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void;
+        set_onDelete(value: (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void): void;
     }
 
     class LanguageSelection extends Serenity.Widget<any> {
@@ -287,6 +331,8 @@ declare namespace Serene.Northwind {
 
     class CustomerOrdersGrid extends OrderGrid {
         constructor(container: JQuery);
+        get_customerID(): string;
+        set_customerID(value: string): void;
     }
 
     class EmployeeDialog extends Serenity.EntityDialog<EmployeeRow, any> {
@@ -295,6 +341,8 @@ declare namespace Serene.Northwind {
     class EmployeeFormatter {
         format(ctx: Slick.FormatterContext): string;
         initializeColumn(column: Slick.Column): void;
+        get_genderProperty(): string;
+        set_genderProperty(value: string): void;
     }
 
     class EmployeeGrid extends Serenity.EntityGrid<EmployeeRow, any> {
@@ -313,12 +361,20 @@ declare namespace Serene.Northwind {
     }
 
     class NoteDialog extends Serenity.TemplatedDialog<any> {
+        get_text(): string;
+        set_text(value: string): void;
     }
 
     class NotesEditor extends Serenity.TemplatedWidget<any> {
         constructor(container: JQuery);
         getEditValue(property: Serenity.PropertyItem, target: any): void;
         setEditValue(source: any, property: Serenity.PropertyItem): void;
+        get_value(): NoteRow[];
+        set_value(value: NoteRow[]): void;
+        get_isDirty(): boolean;
+        set_isDirty(value: boolean): void;
+        get_onChange(): () => void;
+        set_onChange(value: () => void): void;
     }
 
     class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
@@ -333,12 +389,19 @@ declare namespace Serene.Northwind {
 
     class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         constructor(container: JQuery);
+        get_shippingState(): any;
+        set_shippingState(value: any): void;
+        get_customerFilter(): CustomerEditor;
     }
 
     class PhoneEditor extends Serenity.StringEditor {
         constructor(input: JQuery);
         formatValue(): void;
         getFormattedValue(): string;
+        get_multiple(): boolean;
+        set_multiple(value: boolean): void;
+        get_value(): string;
+        set_value(value: string): void;
     }
 
     class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
