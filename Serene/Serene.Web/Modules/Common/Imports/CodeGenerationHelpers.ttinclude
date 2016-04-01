@@ -133,6 +133,16 @@ public class SSTypeLister
         return result;
     }
 
+    private ExternalMember ToExternalField(Mono.Cecil.FieldDefinition field)
+    {
+        var result = new ExternalMember();
+        result.Name = field.Name;
+        result.Type = field.FieldType.FullName;
+        result.IsStatic = field.IsStatic;
+
+        return result;
+    }
+
     private ExternalType ToExternalType(Mono.Cecil.TypeDefinition type)
     {
         var externalType = new ExternalType
@@ -158,6 +168,10 @@ public class SSTypeLister
 
         foreach (var prop in type.Properties)
             externalType.Properties.Add(ToExternalProperty(prop));
+
+        foreach (var field in type.Fields)
+            if (!field.IsPrivate && !field.IsAssembly && !field.IsCompilerControlled)
+                externalType.Fields.Add(ToExternalField(field));
 
         foreach (var prm in type.GenericParameters)
             externalType.GenericParameters.Add(new ExternalGenericParameter {

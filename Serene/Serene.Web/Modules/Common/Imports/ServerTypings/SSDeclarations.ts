@@ -18,6 +18,12 @@
     }
 
     class BulkServiceAction extends Serenity.ScriptContext {
+        keys: string[];
+        queue: any;
+        progressDialog: BasicProgressDialog;
+        pendingRequests: number;
+        completedRequests: number;
+        errorByKey: any;
         createProgressDialog(): void;
         getConfirmationFormat(): string;
         getConfirmationMessage(targetCount: number): string;
@@ -361,6 +367,7 @@ declare namespace Serene.Northwind {
     }
 
     class NoteDialog extends Serenity.TemplatedDialog<any> {
+        okClick: () => void;
         get_text(): string;
         set_text(value: string): void;
     }
@@ -378,6 +385,7 @@ declare namespace Serene.Northwind {
     }
 
     class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        form: OrderDetailForm;
     }
 
     class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
@@ -385,6 +393,7 @@ declare namespace Serene.Northwind {
     }
 
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        form: OrderForm;
     }
 
     class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
