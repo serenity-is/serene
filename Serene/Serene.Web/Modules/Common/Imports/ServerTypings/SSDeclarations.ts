@@ -3,13 +3,10 @@
         static hasPermission(permissionKey: string): boolean;
     }
 
-    class BasicProgressDialog {
-        getDialogOptions(): any;
-        initDialog(): void;
-        getTemplate(): string;
+    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
     }
 
-    class BulkServiceAction {
+    class BulkServiceAction extends Serenity.ScriptContext {
         createProgressDialog(): void;
         getConfirmationFormat(): string;
         getConfirmationMessage(targetCount: number): string;
@@ -45,21 +42,15 @@
 }
 
 declare namespace Serene.Administration {
-    class LanguageDialog {
+    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
     }
 
-    class LanguageGrid {
+    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
         constructor(container: JQuery);
     }
 
-    class PermissionCheckEditor {
+    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         constructor(div: JQuery, opt: PermissionCheckEditorOptions);
-        getColumns(): any;
-        onViewSubmit(): boolean;
-        onViewFilter(item: PermissionCheckItem): boolean;
-        onClick(e: any, row: number, cell: number): void;
-        getButtons(): any;
-        createToolbarExtensions(): void;
     }
 
     class PermissionCheckEditorOptions {
@@ -68,74 +59,49 @@ declare namespace Serene.Administration {
     class PermissionCheckItem {
     }
 
-    class PermissionModuleEditor {
+    class PermissionModuleEditor extends Serenity.Select2Editor<any, string> {
         constructor(hidden: JQuery);
     }
 
-    class RoleCheckEditor {
+    class RoleCheckEditor extends Serenity.CheckTreeEditor<any, any> {
         constructor(div: JQuery);
-        getButtons(): any;
-        createToolbarExtensions(): void;
-        onViewFilter(item: Serenity.CheckTreeItem): boolean;
-        getItems(): any;
     }
 
-    class RoleDialog {
-        getToolbarButtons(): any;
-        updateInterface(): void;
+    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
     }
 
-    class RoleGrid {
+    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
         constructor(container: JQuery);
-        getDefaultSortBy(): any;
     }
 
-    class RolePermissionDialog {
+    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
         constructor(opt: RolePermissionDialogOptions);
-        getDialogOptions(): any;
-        getTemplate(): string;
     }
 
     class RolePermissionDialogOptions {
     }
 
-    class TranslationGrid {
+    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
         constructor(container: JQuery);
-        onClick(e: any, row: number, cell: number): void;
-        getColumnsAsync(): any;
-        createToolbarExtensions(): void;
-        saveChanges(language: string): any;
-        onViewSubmit(): boolean;
-        getButtons(): any;
-        createQuickSearchInput(): void;
-        onViewFilter(item: TranslationItem): boolean;
-        usePager(): boolean;
+        saveChanges(language: string): RSVP<any>;
     }
 
-    class UserDialog {
-        getToolbarButtons(): any;
-        updateInterface(): void;
+    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
     }
 
-    class UserGrid {
+    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
         constructor(container: JQuery);
-        getColumns(): any;
-        getDefaultSortBy(): any;
     }
 
-    class UserPermissionDialog {
+    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
         constructor(opt: UserPermissionDialogOptions);
-        getDialogOptions(): any;
-        getTemplate(): string;
     }
 
     class UserPermissionDialogOptions {
     }
 
-    class UserRoleDialog {
+    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
         constructor(opt: UserRoleDialogOptions);
-        getDialogOptions(): any;
-        getTemplate(): string;
     }
 
     class UserRoleDialogOptions {
@@ -143,112 +109,84 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.BasicSamples {
-    class CancellableBulkActionGrid {
+    class CancellableBulkActionGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        getButtons(): any;
-        getColumns(): any;
-        getViewOptions(): any;
     }
 
-    class ChartInDialog {
-        onDialogOpen(): void;
-        arrange(): void;
-        getTemplate(): string;
-        getDialogOptions(): any;
+    class ChartInDialog extends Serenity.TemplatedDialog<any> {
         static initializePage(): void;
     }
 
-    class CloneableEntityDialog {
-        updateInterface(): void;
-        getCloningEntity(): Northwind.ProductRow;
+    class CloneableEntityDialog extends Northwind.ProductDialog {
     }
 
-    class CloneableEntityGrid {
+    class CloneableEntityGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
 
-    class DefaultValuesInNewGrid {
-        constructor(container: JQuery);
-        addButtonClick(): void;
-        getButtons(): any;
-    }
-
-    class FilteredLookupDetailEditor {
-        constructor(container: JQuery);
-        initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
-    }
-
-    class FilteredLookupInDetailDialog {
-    }
-
-    class FilteredLookupInDetailGrid {
+    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
     }
 
-    class FilteredLookupOrderDetailDialog {
-        beforeLoadEntity(entity: Northwind.OrderDetailRow): void;
-    }
-
-    class GridFilteredByCriteria {
-        constructor(container: JQuery);
-        onViewSubmit(): boolean;
-    }
-
-    class GroupingAndSummariesInGrid {
-        constructor(container: JQuery);
-        createSlickGrid(): any;
-        getColumns(): any;
-        getSlickOptions(): any;
-        usePager(): boolean;
-        getButtons(): any;
-    }
-
-    class LookupFilterByMultipleDialog {
-    }
-
-    class LookupFilterByMultipleGrid {
-        constructor(container: JQuery);
-        onViewSubmit(): boolean;
-    }
-
-    class MultiColumnDialog {
-    }
-
-    class MultiColumnGrid {
+    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
         constructor(container: JQuery);
     }
 
-    class MultiColumnResponsiveDialog {
+    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
     }
 
-    class MultiColumnResponsiveGrid {
+    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
     }
 
-    class OrderBulkAction {
-        getParallelRequests(): number;
-        getBatchSize(): number;
-        executeForBatch(batch: any): void;
+    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
     }
 
-    class ProduceSeafoodCategoryEditor {
+    class GridFilteredByCriteria extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+    }
+
+    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+    }
+
+    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
+    }
+
+    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+    }
+
+    class MultiColumnDialog extends Northwind.OrderDialog {
+    }
+
+    class MultiColumnGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+    }
+
+    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
+    }
+
+    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+    }
+
+    class OrderBulkAction extends BulkServiceAction {
+    }
+
+    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
         constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
-        getLookupKey(): string;
-        getItems(lookup: any): any;
     }
 
-    class ResponsiveDialog {
+    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
     }
 
-    class ResponsiveGrid {
+    class ResponsiveGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
     }
 
-    class ViewWithoutIDGrid {
+    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         constructor(container: JQuery);
-        onViewProcessData(response: any): any;
-        getButtons(): any;
     }
 }
 
@@ -257,7 +195,22 @@ declare namespace Serene.Common {
         static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: any, title?: string): Serenity.ToolButton;
     }
 
-    class LanguageSelection {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
+        constructor(container: JQuery);
+        iD(entity: any): any;
+        save(opt: Serenity.ServiceOptions<any>, callback: any): void;
+        deleteEntity(id: number): boolean;
+        validateEntity(row: any, id: any): boolean;
+        setEntities(items: any): void;
+        getNewEntity(): any;
+        getEditValue(property: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+    }
+
+    class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string);
     }
 
@@ -265,209 +218,172 @@ declare namespace Serene.Common {
         static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: any): Serenity.ToolButton;
     }
 
-    class SidebarSearch {
+    class SidebarSearch extends Serenity.Widget<any> {
         constructor(input: JQuery, menuUL: JQuery);
     }
 
-    class ThemeSelection {
+    class ThemeSelection extends Serenity.Widget<any> {
         constructor(select: JQuery);
     }
 }
 
 declare namespace Serene.Membership {
-    class ChangePasswordPanel {
+    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         constructor(container: JQuery);
     }
 
-    class ForgotPasswordPanel {
+    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
         constructor(container: JQuery);
     }
 
-    class LoginPanel {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
         constructor(container: JQuery);
     }
 
-    class ResetPasswordPanel {
+    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
         constructor(container: JQuery);
     }
 
-    class SignUpPanel {
+    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         constructor(container: JQuery);
     }
 }
 
 declare namespace Serene.Northwind {
-    class CategoryDialog {
-        getLanguages(): any;
+    class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
     }
 
-    class CategoryGrid {
+    class CategoryGrid extends Serenity.EntityGrid<CategoryRow, any> {
         constructor(container: JQuery);
     }
 
-    class CustomerCustomerDemoDialog {
+    class CustomerCustomerDemoDialog extends Serenity.EntityDialog<CustomerCustomerDemoRow, any> {
     }
 
-    class CustomerCustomerDemoGrid {
+    class CustomerCustomerDemoGrid extends Serenity.EntityGrid<CustomerCustomerDemoRow, any> {
         constructor(container: JQuery);
-        getColumns(): any;
     }
 
-    class CustomerDemographicDialog {
+    class CustomerDemographicDialog extends Serenity.EntityDialog<CustomerDemographicRow, any> {
     }
 
-    class CustomerDemographicGrid {
+    class CustomerDemographicGrid extends Serenity.EntityGrid<CustomerDemographicRow, any> {
         constructor(container: JQuery);
-        getColumns(): any;
     }
 
-    class CustomerDialog {
-        loadResponse(data: any): void;
-        loadEntity(entity: CustomerRow): void;
-        onSaveSuccess(response: any): void;
+    class CustomerDialog extends Serenity.EntityDialog<CustomerRow, any> {
     }
 
-    class CustomerEditor {
+    class CustomerEditor extends Serenity.LookupEditorBase<any, any> {
         constructor(container: JQuery, options: Serenity.LookupEditorOptions);
-        getLookupKey(): string;
-        getItemText(item: CustomerRow, lookup: any): string;
     }
 
-    class CustomerGrid {
+    class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
         constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        getButtons(): any;
     }
 
-    class CustomerOrderDialog {
-        updateInterface(): void;
+    class CustomerOrderDialog extends OrderDialog {
     }
 
-    class CustomerOrdersGrid {
+    class CustomerOrdersGrid extends OrderGrid {
         constructor(container: JQuery);
-        getColumns(): any;
-        initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
-        addButtonClick(): void;
-        getInitialTitle(): string;
-        createToolbarExtensions(): void;
-        getGridCanLoad(): boolean;
     }
 
-    class EmployeeDialog {
+    class EmployeeDialog extends Serenity.EntityDialog<EmployeeRow, any> {
     }
 
     class EmployeeFormatter {
-        format(ctx: any): string;
-        initializeColumn(column: any): void;
+        format(ctx: Slick.FormatterContext): string;
+        initializeColumn(column: Slick.Column): void;
     }
 
-    class EmployeeGrid {
+    class EmployeeGrid extends Serenity.EntityGrid<EmployeeRow, any> {
         constructor(container: JQuery);
-        getColumns(): any;
     }
 
-    class EmployeeTerritoryDialog {
+    class EmployeeTerritoryDialog extends Serenity.EntityDialog<EmployeeTerritoryRow, any> {
     }
 
-    class EmployeeTerritoryGrid {
+    class EmployeeTerritoryGrid extends Serenity.EntityGrid<EmployeeTerritoryRow, any> {
         constructor(container: JQuery);
-        getColumns(): any;
     }
 
     class FreightFormatter {
-        format(ctx: any): string;
+        format(ctx: Slick.FormatterContext): string;
     }
 
-    class NoteDialog {
-        getTemplate(): string;
-        getDialogOptions(): any;
+    class NoteDialog extends Serenity.TemplatedDialog<any> {
     }
 
-    class NotesEditor {
+    class NotesEditor extends Serenity.TemplatedWidget<any> {
         constructor(container: JQuery);
-        getTemplate(): string;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
+        getEditValue(property: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
     }
 
-    class OrderDetailDialog {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
     }
 
-    class OrderDetailsEditor {
+    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
         constructor(container: JQuery);
-        validateEntity(row: OrderDetailRow, id: any): boolean;
     }
 
-    class OrderDialog {
-        loadEntity(entity: OrderRow): void;
-        getToolbarButtons(): any;
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
     }
 
-    class OrderGrid {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        getButtons(): any;
     }
 
-    class PhoneEditor {
+    class PhoneEditor extends Serenity.StringEditor {
         constructor(input: JQuery);
         formatValue(): void;
         getFormattedValue(): string;
     }
 
-    class ProductDialog {
-        getLanguages(): any;
+    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
     }
 
-    class ProductGrid {
-        constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        getButtons(): any;
-        onViewProcessData(response: any): any;
-        getColumns(): any;
-    }
-
-    class RegionDialog {
-    }
-
-    class RegionGrid {
+    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
         constructor(container: JQuery);
     }
 
-    class ShipperDialog {
+    class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
+    }
+
+    class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
+        constructor(container: JQuery);
+    }
+
+    class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
     }
 
     class ShipperFormatter {
-        format(ctx: any): string;
+        format(ctx: Slick.FormatterContext): string;
     }
 
-    class ShipperGrid {
+    class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {
         constructor(container: JQuery);
     }
 
-    class SupplierDialog {
+    class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
     }
 
-    class SupplierGrid {
+    class SupplierGrid extends Serenity.EntityGrid<SupplierRow, any> {
         constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        onViewSubmit(): boolean;
     }
 
-    class TerritoryDialog {
+    class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
     }
 
-    class TerritoryGrid {
+    class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
         constructor(container: JQuery);
-        createToolbarExtensions(): void;
-        onViewSubmit(): boolean;
     }
 }
 
 declare namespace Serenity {
-    class HtmlBasicContentEditor {
+    class HtmlBasicContentEditor extends HtmlContentEditor {
         constructor(textArea: JQuery, opt: HtmlContentEditorOptions);
-        getConfig(): any;
     }
 }
 

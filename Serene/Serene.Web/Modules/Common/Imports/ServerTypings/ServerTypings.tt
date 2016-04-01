@@ -13,11 +13,11 @@
     var solutionDir = Host.ResolvePath(@"..\..\..\..\..\");
     var ssDir = solutionDir + @"Serene.Script\bin\debug\";
     var ssTypeLister = new SSTypeLister(
+        ssDir + "Serenity.Script.Imports.dll",
         ssDir + "Serenity.Script.UI.dll",
         ssDir + "Serene.Script.dll");
 
     var ssTypes = ssTypeLister.List();
-    
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
     

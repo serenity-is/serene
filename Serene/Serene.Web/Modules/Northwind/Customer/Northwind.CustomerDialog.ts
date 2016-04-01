@@ -3,7 +3,7 @@
 
     @D.formKey("Northwind.Customer") @D.idProperty("ID") @D.nameProperty("CustomerID")
     @D.service("Northwind/Customer") @D.flexify() @D.maximizable()
-    export class MyCustomerDialog extends Serenity.EntityDialog<Northwind.CustomerRow> {
+    export class MyCustomerDialog extends Serenity.EntityDialog<Northwind.CustomerRow, any> {
         test() {
             var s = CustomerRow.Fields.Region;
             var t = CustomerRow.Fields.ContactName;

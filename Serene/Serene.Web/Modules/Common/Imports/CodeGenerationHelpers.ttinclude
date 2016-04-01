@@ -105,6 +105,7 @@ public class SSTypeLister
         result.IsStatic = method.IsStatic;
         result.IsConstructor = method.IsConstructor;
         result.Type = method.ReturnType.FullName;
+        result.IsOverride = method.IsVirtual && method.IsReuseSlot;
 
         foreach (var attr in method.CustomAttributes)
             result.Attributes.Add(ToExternalAttribute(attr));
@@ -124,7 +125,6 @@ public class SSTypeLister
             IsAbstract = type.IsAbstract,
             IsInterface = type.IsInterface,
             IsSealed = type.IsSealed,
-            HasGenericParameters = type.HasGenericParameters,
             BaseType = type.BaseType != null ? type.BaseType.FullName : ""
         };
 
@@ -137,6 +137,11 @@ public class SSTypeLister
         foreach (var method in type.Methods)
             if (!method.IsPrivate && !method.IsGetter && !method.IsSetter)
                 externalType.Methods.Add(ToExternalMethod(method));
+
+        foreach (var prm in type.GenericParameters)
+            externalType.GenericParameters.Add(new ExternalGenericParameter {
+                Name = prm.Name
+            });
 
         return externalType;
     }
