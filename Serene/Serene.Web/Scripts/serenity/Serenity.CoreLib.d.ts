@@ -1,4 +1,4 @@
-﻿declare class RSVP<TResult> {
+﻿interface RSVP<TResult> {
 }
 declare namespace Serenity {
     interface PostToServiceOptions {

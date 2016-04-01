@@ -10,16 +10,16 @@
         createProgressDialog(): void;
         getConfirmationFormat(): string;
         getConfirmationMessage(targetCount: number): string;
-        confirm(targetCount: number, action: any): void;
+        confirm(targetCount: number, action: () => void): void;
         getNothingToProcessMessage(): string;
         nothingToProcess(): void;
         getParallelRequests(): number;
         getBatchSize(): number;
         startParallelExecution(): void;
         serviceCallCleanup(): void;
-        executeForBatch(batch: any): void;
+        executeForBatch(batch: string[]): void;
         executeNextBatch(): void;
-        delayed(action: any): void;
+        delayed(action: () => void): void;
         getAllHadErrorsFormat(): string;
         showAllHadErrors(): void;
         getSomeHadErrorsFormat(): string;
@@ -27,11 +27,11 @@
         getAllSuccessFormat(): string;
         showAllSuccess(): void;
         showResults(): void;
-        execute(keys: any): void;
+        execute(keys: string[]): void;
     }
 
     namespace DialogUtils {
-        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: any): void;
+        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
     }
 
     class LanguageList {
@@ -192,16 +192,16 @@ declare namespace Serene.BasicSamples {
 
 declare namespace Serene.Common {
     class ExcelExportHelper {
-        static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: any, title?: string): Serenity.ToolButton;
+        static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: () => boolean, title?: string): Serenity.ToolButton;
     }
 
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
         constructor(container: JQuery);
         iD(entity: any): any;
-        save(opt: Serenity.ServiceOptions<any>, callback: any): void;
+        save(opt: Serenity.ServiceOptions<any>, callback: (p1: Serenity.ServiceResponse) => void): void;
         deleteEntity(id: number): boolean;
         validateEntity(row: any, id: any): boolean;
-        setEntities(items: any): void;
+        setEntities(items: any[]): void;
         getNewEntity(): any;
         getEditValue(property: Serenity.PropertyItem, target: any): void;
         setEditValue(source: any, property: Serenity.PropertyItem): void;
@@ -215,7 +215,7 @@ declare namespace Serene.Common {
     }
 
     class ReportHelper {
-        static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: any): Serenity.ToolButton;
+        static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: () => any): Serenity.ToolButton;
     }
 
     class SidebarSearch extends Serenity.Widget<any> {

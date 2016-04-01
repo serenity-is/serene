@@ -8,7 +8,7 @@ namespace Serene.Common
     using System.Runtime.CompilerServices;
     using System.Linq;
 
-    [IdProperty("__id")]
+    [IdProperty("__id"), IncludeGenericArguments(false)]
     public abstract class GridEditorDialog<TEntity> : EntityDialog<TEntity>
         where TEntity: class, new()
     {

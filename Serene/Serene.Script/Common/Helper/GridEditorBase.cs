@@ -6,8 +6,9 @@ namespace Serene.Common
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
-    [Element("<div/>"), Editor, IdProperty("__id")]
+    [Element("<div/>"), Editor, IdProperty("__id"), IncludeGenericArguments(false)]
     public abstract class GridEditorBase<TEntity> : EntityGrid<TEntity>, ISetEditValue, IGetEditValue
         where TEntity : class, new()
     {
@@ -41,7 +42,7 @@ namespace Serene.Common
             else
             {
                 var index = items.IndexOf(x => ID(x) == id.Value);
-                items[index] = Q.DeepExtend<TEntity>(new TEntity(), items[index], row);
+                items[index] = Q.DeepExtend<TEntity>(new object().As<TEntity>(), items[index], row);
             }
 
             SetEntities(items);
@@ -66,7 +67,7 @@ namespace Serene.Common
 
         protected virtual TEntity GetNewEntity()
         {
-            return new TEntity();
+            return new object().As<TEntity>();
         }
 
         protected override List<ToolButton> GetButtons()

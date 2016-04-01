@@ -576,173 +576,21 @@
 	global.Serene.Common.ExcelExportHelper = $Serene_Common_ExcelExportHelper;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorBase
-	var $Serene_Common_GridEditorBase$1 = function(TEntity) {
-		var $type = function(container) {
-			this.$nextId = 1;
-			Serenity.EntityGrid.call(this, container);
-		};
-		ss.registerGenericClassInstance($type, $Serene_Common_GridEditorBase$1, [TEntity], {
-			id: function(entity) {
-				return ss.cast(entity.__id, ss.Int32);
-			},
-			save: function(opt, callback) {
-				var request = opt.request;
-				var row = Q.deepClone(request.Entity);
-				var id = ss.cast(row.__id, ss.Int32);
-				if (ss.isNullOrUndefined(id)) {
-					row.__id = this.$nextId++;
-				}
-				if (!this.validateEntity(row, id)) {
-					return;
-				}
-				var items = ss.arrayClone(this.view.getItems());
-				if (ss.isNullOrUndefined(id)) {
-					items.push(row);
-				}
-				else {
-					var index = Enumerable.from(items).indexOf(ss.mkdel(this, function(x) {
-						return this.id(x) === ss.unbox(id);
-					}));
-					items[index] = Q.deepClone(ss.createInstance(TEntity), items[index], row);
-				}
-				this.setEntities(items);
-				callback({});
-			},
-			deleteEntity: function(id) {
-				this.view.deleteItem(id);
-				return true;
-			},
-			validateEntity: function(row, id) {
-				return true;
-			},
-			setEntities: function(items) {
-				this.view.setItems(items, true);
-			},
-			getNewEntity: function() {
-				return ss.createInstance(TEntity);
-			},
-			getButtons: function() {
-				var $t1 = [];
-				$t1.push({ title: this.getAddButtonCaption(), cssClass: 'add-button', onClick: ss.mkdel(this, function() {
-					this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
-						var dialog = ss.cast(dlg, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [TEntity]));
-						dialog.set_onSave(ss.mkdel(this, this.save));
-						dialog.loadEntityAndOpenDialog(this.getNewEntity());
-					}));
-				}) });
-				return $t1;
-			},
-			editItem: function(entityOrId) {
-				var id = ss.unbox(Q.toId(entityOrId));
-				var item = this.view.getItemById(id);
-				this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
-					var dialog = ss.cast(dlg, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [TEntity]));
-					dialog.set_onDelete(ss.mkdel(this, function(opt, callback) {
-						if (!this.deleteEntity(id)) {
-							return;
-						}
-						callback({});
-					}));
-					dialog.set_onSave(ss.mkdel(this, this.save));
-					dialog.loadEntityAndOpenDialog(item);
-				}));
-			},
-			getEditValue: function(property, target) {
-				target[property.name] = this.get_value();
-			},
-			setEditValue: function(source, property) {
-				this.set_value(ss.cast(source[property.name], Array));
-			},
-			get_value: function() {
-				return Enumerable.from(this.view.getItems()).select(function(x) {
-					var y = Q.deepClone(x);
-					delete y['__id'];
-					return y;
-				}).toArray();
-			},
-			set_value: function(value) {
-				this.view.setItems(Enumerable.from(value || []).select(ss.mkdel(this, function(x) {
-					var y = Q.deepClone(x);
-					y.__id = this.$nextId++;
-					return y;
-				})).toArray(), true);
-			},
-			getGridCanLoad: function() {
-				return false;
-			},
-			usePager: function() {
-				return false;
-			},
-			getInitialTitle: function() {
-				return null;
-			},
-			createQuickSearchInput: function() {
-			}
-		}, function() {
-			return Serenity.EntityGrid;
-		}, function() {
-			return [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue];
-		});
-		ss.setMetadata($type, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
-		return $type;
+	var $Serene_Common_GridEditorBase = function(container) {
+		this.$nextId = 1;
+		Serenity.EntityGrid.call(this, container);
 	};
-	$Serene_Common_GridEditorBase$1.__typeName = 'Serene.Common.GridEditorBase$1';
-	ss.initGenericClass($Serene_Common_GridEditorBase$1, $asm, 1);
-	global.Serene.Common.GridEditorBase$1 = $Serene_Common_GridEditorBase$1;
+	$Serene_Common_GridEditorBase.__typeName = 'Serene.Common.GridEditorBase';
+	global.Serene.Common.GridEditorBase = $Serene_Common_GridEditorBase;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorDialog
-	var $Serene_Common_GridEditorDialog$1 = function(TEntity) {
-		var $type = function() {
-			this.$8$OnSaveField = null;
-			this.$8$OnDeleteField = null;
-			Serenity.EntityDialog.call(this);
-		};
-		ss.registerGenericClassInstance($type, $Serene_Common_GridEditorDialog$1, [TEntity], {
-			destroy: function() {
-				this.set_onSave(null);
-				this.set_onDelete(null);
-				Serenity.EntityDialog.prototype.destroy.call(this);
-			},
-			updateInterface: function() {
-				Serenity.EntityDialog.prototype.updateInterface.call(this);
-				// apply changes button doesn't work properly with in-memory grids yet
-				if (ss.isValue(this.applyChangesButton)) {
-					this.applyChangesButton.hide();
-				}
-			},
-			saveHandler: function(options, callback) {
-				if (!ss.staticEquals(this.get_onSave(), null)) {
-					this.get_onSave()(options, callback);
-				}
-			},
-			deleteHandler: function(options, callback) {
-				if (!ss.staticEquals(this.get_onDelete(), null)) {
-					this.get_onDelete()(options, callback);
-				}
-			},
-			get_onSave: function() {
-				return this.$8$OnSaveField;
-			},
-			set_onSave: function(value) {
-				this.$8$OnSaveField = value;
-			},
-			get_onDelete: function() {
-				return this.$8$OnDeleteField;
-			},
-			set_onDelete: function(value) {
-				this.$8$OnDeleteField = value;
-			}
-		}, function() {
-			return Serenity.EntityDialog;
-		}, function() {
-			return [Serenity.IDialog, Serenity.IEditDialog];
-		});
-		ss.setMetadata($type, { attr: [new Serenity.IdPropertyAttribute('__id')] });
-		return $type;
+	var $Serene_Common_GridEditorDialog = function() {
+		this.$8$OnSaveField = null;
+		this.$8$OnDeleteField = null;
+		Serenity.EntityDialog.call(this);
 	};
-	$Serene_Common_GridEditorDialog$1.__typeName = 'Serene.Common.GridEditorDialog$1';
-	ss.initGenericClass($Serene_Common_GridEditorDialog$1, $asm, 1);
-	global.Serene.Common.GridEditorDialog$1 = $Serene_Common_GridEditorDialog$1;
+	$Serene_Common_GridEditorDialog.__typeName = 'Serene.Common.GridEditorDialog';
+	global.Serene.Common.GridEditorDialog = $Serene_Common_GridEditorDialog;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
 	var $Serene_Common_LanguageSelection = function(select, currentLanguage) {
@@ -1299,7 +1147,7 @@
 	// Serene.Northwind.OrderDetailDialog
 	var $Serene_Northwind_OrderDetailDialog = function() {
 		this.form = null;
-		ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]).call(this);
+		$Serene_Common_GridEditorDialog.call(this);
 		this.form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
 		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
 			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
@@ -1330,7 +1178,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDetailsEditor
 	var $Serene_Northwind_OrderDetailsEditor = function(container) {
-		ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]).call(this, container);
+		$Serene_Common_GridEditorBase.call(this, container);
 	};
 	$Serene_Northwind_OrderDetailsEditor.__typeName = 'Serene.Northwind.OrderDetailsEditor';
 	global.Serene.Northwind.OrderDetailsEditor = $Serene_Northwind_OrderDetailsEditor;
@@ -2766,6 +2614,104 @@
 			return buttons;
 		}
 	}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_Common_GridEditorBase, $asm, {
+		id: function(entity) {
+			return ss.cast(entity.__id, ss.Int32);
+		},
+		save: function(opt, callback) {
+			var request = opt.request;
+			var row = Q.deepClone(request.Entity);
+			var id = ss.cast(row.__id, ss.Int32);
+			if (ss.isNullOrUndefined(id)) {
+				row.__id = this.$nextId++;
+			}
+			if (!this.validateEntity(row, id)) {
+				return;
+			}
+			var items = ss.arrayClone(this.view.getItems());
+			if (ss.isNullOrUndefined(id)) {
+				items.push(row);
+			}
+			else {
+				var index = Enumerable.from(items).indexOf(ss.mkdel(this, function(x) {
+					return this.id(x) === ss.unbox(id);
+				}));
+				items[index] = Q.deepClone(new Object(), items[index], row);
+			}
+			this.setEntities(items);
+			callback({});
+		},
+		deleteEntity: function(id) {
+			this.view.deleteItem(id);
+			return true;
+		},
+		validateEntity: function(row, id) {
+			return true;
+		},
+		setEntities: function(items) {
+			this.view.setItems(items, true);
+		},
+		getNewEntity: function() {
+			return new Object();
+		},
+		getButtons: function() {
+			var $t1 = [];
+			$t1.push({ title: this.getAddButtonCaption(), cssClass: 'add-button', onClick: ss.mkdel(this, function() {
+				this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
+					var dialog = ss.cast(dlg, $Serene_Common_GridEditorDialog);
+					dialog.set_onSave(ss.mkdel(this, this.save));
+					dialog.loadEntityAndOpenDialog(this.getNewEntity());
+				}));
+			}) });
+			return $t1;
+		},
+		editItem: function(entityOrId) {
+			var id = ss.unbox(Q.toId(entityOrId));
+			var item = this.view.getItemById(id);
+			this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
+				var dialog = ss.cast(dlg, $Serene_Common_GridEditorDialog);
+				dialog.set_onDelete(ss.mkdel(this, function(opt, callback) {
+					if (!this.deleteEntity(id)) {
+						return;
+					}
+					callback({});
+				}));
+				dialog.set_onSave(ss.mkdel(this, this.save));
+				dialog.loadEntityAndOpenDialog(item);
+			}));
+		},
+		getEditValue: function(property, target) {
+			target[property.name] = this.get_value();
+		},
+		setEditValue: function(source, property) {
+			this.set_value(ss.cast(source[property.name], Array));
+		},
+		get_value: function() {
+			return Enumerable.from(this.view.getItems()).select(function(x) {
+				var y = Q.deepClone(x);
+				delete y['__id'];
+				return y;
+			}).toArray();
+		},
+		set_value: function(value) {
+			this.view.setItems(Enumerable.from(value || []).select(ss.mkdel(this, function(x) {
+				var y = Q.deepClone(x);
+				y.__id = this.$nextId++;
+				return y;
+			})).toArray(), true);
+		},
+		getGridCanLoad: function() {
+			return false;
+		},
+		usePager: function() {
+			return false;
+		},
+		getInitialTitle: function() {
+			return null;
+		},
+		createQuickSearchInput: function() {
+		}
+	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_Northwind_OrderDetailsEditor, $asm, {
 		validateEntity: function(row, id) {
 			row.ProductID = Q.toId(row.ProductID);
@@ -2780,7 +2726,7 @@
 			row.LineTotal = ss.coalesce(row.Quantity, 0) * ss.coalesce(row.UnitPrice, 0) - ss.coalesce(row.Discount, 0);
 			return true;
 		}
-	}, ss.makeGenericType($Serene_Common_GridEditorBase$1, [Object]), [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
+	}, $Serene_Common_GridEditorBase, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupDetailEditor, $asm, {
 		initEntityDialog$1: function(itemType, dialog) {
 			Serenity.EntityGrid.prototype.initEntityDialog$1.call(this, itemType, dialog);
@@ -2810,7 +2756,43 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailGrid, $asm, {}, $Serene_Northwind_OrderGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, ss.makeGenericType($Serene_Common_GridEditorDialog$1, [Object]), [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_Common_GridEditorDialog, $asm, {
+		destroy: function() {
+			this.set_onSave(null);
+			this.set_onDelete(null);
+			Serenity.EntityDialog.prototype.destroy.call(this);
+		},
+		updateInterface: function() {
+			Serenity.EntityDialog.prototype.updateInterface.call(this);
+			// apply changes button doesn't work properly with in-memory grids yet
+			if (ss.isValue(this.applyChangesButton)) {
+				this.applyChangesButton.hide();
+			}
+		},
+		saveHandler: function(options, callback) {
+			if (!ss.staticEquals(this.get_onSave(), null)) {
+				this.get_onSave()(options, callback);
+			}
+		},
+		deleteHandler: function(options, callback) {
+			if (!ss.staticEquals(this.get_onDelete(), null)) {
+				this.get_onDelete()(options, callback);
+			}
+		},
+		get_onSave: function() {
+			return this.$8$OnSaveField;
+		},
+		set_onSave: function(value) {
+			this.$8$OnSaveField = value;
+		},
+		get_onDelete: function() {
+			return this.$8$OnDeleteField;
+		},
+		set_onDelete: function(value) {
+			this.$8$OnDeleteField = value;
+		}
+	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, $Serene_Common_GridEditorDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupOrderDetailDialog, $asm, {
 		beforeLoadEntity: function(entity) {
 			Serenity.EntityDialog.prototype.beforeLoadEntity.call(this, entity);
@@ -3806,8 +3788,8 @@
 	ss.setMetadata($Serene_BasicSamples_ResponsiveDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order'), new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_ResponsiveGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_ResponsiveDialog)] });
 	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
-	ss.setMetadata($Serene_Common_GridEditorBase$1, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
-	ss.setMetadata($Serene_Common_GridEditorDialog$1, { attr: [new Serenity.IdPropertyAttribute('__id')] });
+	ss.setMetadata($Serene_Common_GridEditorBase, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
+	ss.setMetadata($Serene_Common_GridEditorDialog, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });
 	ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.FormKeyAttribute('Membership.Login')] });
