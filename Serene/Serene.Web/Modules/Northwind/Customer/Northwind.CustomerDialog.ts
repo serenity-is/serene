@@ -19,6 +19,10 @@
     }
 
     export class MyDummyEditor extends Serenity.StringEditor {
+        constructor(element: JQuery, opt: MyDummyEditorOptions) {
+            super(element, opt);
+        }
+
         @D.option()
         set_option1(o: string) {
         }
@@ -32,6 +36,10 @@
 
         @D.option()
         option3: string;
+    }
+
+    export interface MyDummyEditorOptions {
+        option0: number;
     }
 
     namespace XYZ {

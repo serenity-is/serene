@@ -1298,8 +1298,8 @@ var Serene;
         Northwind.MyBoldFormatter = MyBoldFormatter;
         var MyDummyEditor = (function (_super) {
             __extends(MyDummyEditor, _super);
-            function MyDummyEditor() {
-                _super.apply(this, arguments);
+            function MyDummyEditor(element, opt) {
+                _super.call(this, element, opt);
             }
             MyDummyEditor.prototype.set_option1 = function (o) {
             };
