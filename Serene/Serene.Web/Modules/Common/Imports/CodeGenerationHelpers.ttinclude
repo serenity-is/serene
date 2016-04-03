@@ -5,11 +5,12 @@
 #><#@ assembly name="$(TargetDir)Serenity.Core.dll"
 #><#@ assembly name="$(TargetDir)Serenity.Web.dll" 
 #><#@ assembly name="$(ProjectDir)tools\Mono.Cecil\Mono.Cecil.dll" 
+#><#@ assembly name="$(ProjectDir)\tools\JsEngine\MsieJavaScriptEngine.dll"
 #><#@ import namespace="System.Linq" 
 #><#@ import namespace="System.Collections.Generic" 
 #><#@ import namespace="Microsoft.VisualStudio.TextTemplating" 
-#><#@ import namespace="Serenity.CodeGeneration" 
-#><#
+#><#@ import namespace="Serenity.CodeGeneration"
+#><#@ import namespace="MsieJavaScriptEngine"
 #><#+
 
 public class SSTypeLister
@@ -130,6 +131,9 @@ public class SSTypeLister
         if (prop.SetMethod != null && !prop.SetMethod.IsPrivate)
             result.SetMethod = prop.SetMethod.Name;
 
+        foreach (var attr in prop.CustomAttributes)
+            result.Attributes.Add(ToExternalAttribute(attr));
+
         return result;
     }
 
@@ -203,6 +207,57 @@ public class SSTypeLister
         }
         
         return result;
+    }
+}
+
+public class TSTypeLister
+{
+    private string projectDir;
+
+    public TSTypeLister(string projectDir)
+    {
+        this.projectDir = projectDir;
+    }
+
+    private MsieJsEngine SetupJsEngine()
+    {
+        var jsEngine = new MsieJsEngine();
+        try
+        {
+            var tsServices = File.ReadAllText(projectDir + @"tools\JsEngine\typeScriptServices.js");
+            jsEngine.Evaluate(tsServices);
+            using (var sr = new StreamReader(
+                typeof(Serenity.CodeGeneration.DtoGenerator).Assembly.GetManifestResourceStream(
+                    "Serenity.Web.Scripts.tsservices.Serenity.CodeGeneration.js")))
+            {
+                jsEngine.Evaluate(sr.ReadToEnd());
+            }
+
+            return jsEngine;
+        }
+        catch
+        {
+            jsEngine.Dispose();
+            throw;
+        }
+    }
+
+    public List<ExternalType> List()
+    {
+        var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
+            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
+            .Where(x => 
+                !x.ToLower().EndsWith(".d.ts") &&
+                !x.ToLower().Contains(@"Imports\ServerTypings\"))
+            .Select(x => File.ReadAllText(x));
+
+        using (var jsEngine = SetupJsEngine())
+        {
+            jsEngine.SetVariableValue("sourceText", string.Join("\r\n;\r\n", files));
+            var json = jsEngine.Evaluate<string>(
+                "JSON.stringify(Serenity.CodeGeneration.parseTypes(sourceText))");
+            return JSON.Parse<List<ExternalType>>(json);
+        }
     }
 }
 

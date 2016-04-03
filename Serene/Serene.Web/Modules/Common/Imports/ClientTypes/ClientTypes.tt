@@ -2,14 +2,13 @@
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(TargetDir)Serenity.Core.dll" #>
 <#@ assembly name="$(TargetDir)Serenity.Web.dll" #>
-<#@ assembly name="$(TargetDir)Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
-<#
+<# 
     var solutionDir = Host.ResolvePath(@"..\..\..\..\..\");
     var ssDir = solutionDir + @"Serene.Script\bin\debug\";
     var ssTypeLister = new SSTypeLister(
@@ -18,7 +17,7 @@
         ssDir + "Serene.Script.dll");
 
     var ssTypes = ssTypeLister.List();
-    var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
+    var generator = new ClientTypesGenerator();
     generator.RootNamespaces.Add("Serene");
     
     foreach (var type in ssTypes)

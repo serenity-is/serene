@@ -452,3 +452,10 @@ declare namespace Serene.Northwind {
         constructor(container: JQuery);
     }
 }
+
+declare namespace Serenity {
+    class HtmlBasicContentEditor extends HtmlContentEditor {
+        constructor(textArea: JQuery, opt: HtmlContentEditorOptions);
+    }
+}
+
