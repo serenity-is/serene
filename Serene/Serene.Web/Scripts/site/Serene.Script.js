@@ -2832,10 +2832,10 @@
 			grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
 			var $t2 = this.view;
 			var $t1 = [];
-			$t1.push(new Slick.Data.Aggregators.Avg('UnitPrice'));
-			$t1.push(new Slick.Data.Aggregators.Sum('UnitsInStock'));
-			$t1.push(new Slick.Data.Aggregators.Max('UnitsOnOrder'));
-			$t1.push(new Slick.Data.Aggregators.Avg('ReorderLevel'));
+			$t1.push(new Slick.Aggregators.Avg('UnitPrice'));
+			$t1.push(new Slick.Aggregators.Sum('UnitsInStock'));
+			$t1.push(new Slick.Aggregators.Max('UnitsOnOrder'));
+			$t1.push(new Slick.Aggregators.Avg('ReorderLevel'));
 			$t2.setSummaryOptions({ aggregators: $t1 });
 			return grid;
 		},
