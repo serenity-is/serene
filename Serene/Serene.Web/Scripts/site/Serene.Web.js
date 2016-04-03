@@ -1301,6 +1301,22 @@ var Serene;
             function MyDummyEditor() {
                 _super.apply(this, arguments);
             }
+            MyDummyEditor.prototype.set_option1 = function (o) {
+            };
+            MyDummyEditor.prototype.option2 = function (o) {
+                if (o == undefined) {
+                    return o;
+                }
+            };
+            __decorate([
+                D.option()
+            ], MyDummyEditor.prototype, "set_option1");
+            __decorate([
+                D.option()
+            ], MyDummyEditor.prototype, "option2");
+            __decorate([
+                D.option()
+            ], MyDummyEditor.prototype, "option3");
             return MyDummyEditor;
         }(Serenity.StringEditor));
         Northwind.MyDummyEditor = MyDummyEditor;

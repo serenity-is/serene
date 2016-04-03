@@ -19,6 +19,19 @@
     }
 
     export class MyDummyEditor extends Serenity.StringEditor {
+        @D.option()
+        set_option1(o: string) {
+        }
+
+        @D.option()
+        option2(o?: string): string {
+            if (o == undefined) {
+                return o;
+            }
+        }
+
+        @D.option()
+        option3: string;
     }
 
     namespace XYZ {
