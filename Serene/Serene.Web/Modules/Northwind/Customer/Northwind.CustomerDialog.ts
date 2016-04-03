@@ -18,6 +18,9 @@
         }
     }
 
+    export class MyDummyEditor extends Serenity.StringEditor {
+    }
+
     namespace XYZ {
     }
 }

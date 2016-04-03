@@ -5,8 +5,8 @@
     }
 
     export interface ShipperForm extends Serenity.PrefixedContext {
-        CompanyName();
-        Phone();
+        CompanyName(): Serenity.StringEditor;
+        Phone(): PhoneEditor;
     }
 
     [['CompanyName', Serenity.StringEditor], ['Phone', PhoneEditor]].forEach(x => ShipperForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

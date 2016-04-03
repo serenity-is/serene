@@ -5,8 +5,8 @@
     }
 
     export interface CustomerDemographicForm extends Serenity.PrefixedContext {
-        CustomerTypeID();
-        CustomerDesc();
+        CustomerTypeID(): Serenity.StringEditor;
+        CustomerDesc(): Serenity.StringEditor;
     }
 
     [['CustomerTypeID', Serenity.StringEditor], ['CustomerDesc', Serenity.StringEditor]].forEach(x => CustomerDemographicForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

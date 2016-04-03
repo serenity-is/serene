@@ -5,8 +5,8 @@
     }
 
     export interface LoginForm extends Serenity.PrefixedContext {
-        Username();
-        Password();
+        Username(): Serenity.StringEditor;
+        Password(): Serenity.PasswordEditor;
     }
 
     [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(x => LoginForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

@@ -5,7 +5,7 @@
     }
 
     export interface ForgotPasswordForm extends Serenity.PrefixedContext {
-        Email();
+        Email(): Serenity.EmailEditor;
     }
 
     [['Email', Serenity.EmailEditor]].forEach(x => ForgotPasswordForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

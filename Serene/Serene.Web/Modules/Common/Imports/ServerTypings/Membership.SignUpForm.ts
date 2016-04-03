@@ -5,11 +5,11 @@
     }
 
     export interface SignUpForm extends Serenity.PrefixedContext {
-        DisplayName();
-        Email();
-        ConfirmEmail();
-        Password();
-        ConfirmPassword();
+        DisplayName(): Serenity.StringEditor;
+        Email(): Serenity.EmailEditor;
+        ConfirmEmail(): Serenity.EmailEditor;
+        Password(): Serenity.PasswordEditor;
+        ConfirmPassword(): Serenity.PasswordEditor;
     }
 
     [['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['ConfirmEmail', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(x => SignUpForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

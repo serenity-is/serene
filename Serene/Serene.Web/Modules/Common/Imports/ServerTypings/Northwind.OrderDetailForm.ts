@@ -5,10 +5,10 @@
     }
 
     export interface OrderDetailForm extends Serenity.PrefixedContext {
-        ProductID();
-        UnitPrice();
-        Quantity();
-        Discount();
+        ProductID(): Serenity.LookupEditor;
+        UnitPrice(): Serenity.DecimalEditor;
+        Quantity(): Serenity.IntegerEditor;
+        Discount(): Serenity.DecimalEditor;
     }
 
     [['ProductID', Serenity.LookupEditor], ['UnitPrice', Serenity.DecimalEditor], ['Quantity', Serenity.IntegerEditor], ['Discount', Serenity.DecimalEditor]].forEach(x => OrderDetailForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

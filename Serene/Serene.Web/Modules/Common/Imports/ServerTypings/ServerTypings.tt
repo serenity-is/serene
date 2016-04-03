@@ -11,18 +11,24 @@
 <#@ output extension=".log" #>
 <#
     var solutionDir = Host.ResolvePath(@"..\..\..\..\..\");
+    var webDir = Host.ResolvePath(@"..\..\..\..\");
+
+    var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
+    generator.RootNamespaces.Add("Serene");
+
     var ssDir = solutionDir + @"Serene.Script\bin\debug\";
     var ssTypeLister = new SSTypeLister(
         ssDir + "Serenity.Script.Imports.dll",
         ssDir + "Serenity.Script.UI.dll",
         ssDir + "Serene.Script.dll");
-
     var ssTypes = ssTypeLister.List();
-    var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
-    generator.RootNamespaces.Add("Serene");
-    
     foreach (var type in ssTypes)
         generator.AddSSType(type);
+
+    var tsTypeLister = new TSTypeLister(webDir);
+    var tsTypes = tsTypeLister.List();
+    foreach (var type in tsTypes)
+        generator.AddTSType(type);
 
     var codeByFilename = generator.Run();
     var manager = Manager.Create(Host, GenerationEnvironment);

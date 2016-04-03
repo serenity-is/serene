@@ -5,9 +5,9 @@
     }
 
     export interface ChangePasswordForm extends Serenity.PrefixedContext {
-        OldPassword();
-        NewPassword();
-        ConfirmPassword();
+        OldPassword(): Serenity.PasswordEditor;
+        NewPassword(): Serenity.PasswordEditor;
+        ConfirmPassword(): Serenity.PasswordEditor;
     }
 
     [['OldPassword', Serenity.PasswordEditor], ['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(x => ChangePasswordForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });

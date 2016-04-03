@@ -1296,6 +1296,14 @@ var Serene;
             return MyBoldFormatter;
         }());
         Northwind.MyBoldFormatter = MyBoldFormatter;
+        var MyDummyEditor = (function (_super) {
+            __extends(MyDummyEditor, _super);
+            function MyDummyEditor() {
+                _super.apply(this, arguments);
+            }
+            return MyDummyEditor;
+        }(Serenity.StringEditor));
+        Northwind.MyDummyEditor = MyDummyEditor;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

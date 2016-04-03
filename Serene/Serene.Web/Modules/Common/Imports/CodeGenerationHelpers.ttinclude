@@ -247,8 +247,8 @@ public class TSTypeLister
         var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
             .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
             .Where(x => 
-                !x.ToLower().EndsWith(".d.ts") &&
-                !x.ToLower().Contains(@"Imports\ServerTypings\"))
+                !x.ToLowerInvariant().EndsWith(".d.ts") &&
+                !x.ToLowerInvariant().Contains(@"imports\servertypings\"))
             .Select(x => File.ReadAllText(x));
 
         using (var jsEngine = SetupJsEngine())
