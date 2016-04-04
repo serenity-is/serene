@@ -28,7 +28,7 @@
     var tsTypes = tsTypeLister.List();
     foreach (var type in tsTypes)
         generator.AddTSType(type);
-    throw new Exception(JSON.StringifyIndented(tsTypes));
+    //throw new Exception(JSON.StringifyIndented(tsTypes));
 
     var codeByFilename = generator.Run();
     var manager = Manager.Create(Host, GenerationEnvironment);

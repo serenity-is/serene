@@ -245,17 +245,26 @@ public class TSTypeLister
     public List<ExternalType> List()
     {
         var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
-            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
-            .Where(x => 
-                !x.ToLowerInvariant().EndsWith(".d.ts") &&
-                !x.ToLowerInvariant().Contains(@"imports\servertypings\"))
-            .Select(x => File.ReadAllText(x));
+            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories));
 
         using (var jsEngine = SetupJsEngine())
         {
-            jsEngine.SetVariableValue("sourceText", string.Join("\r\n;\r\n", files));
+            jsEngine.SetVariableValue("fileName", "/lib.d.ts");
+            jsEngine.SetVariableValue("sourceText", File.ReadAllText(projectDir + @"tools\JsEngine\lib.d.ts_"));
+            jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
+
+            foreach (var file in files)
+            {
+                var name = file.Substring(projectDir.Length - 1).Replace("\\", "/");
+                jsEngine.SetVariableValue("fileName", name);
+                jsEngine.SetVariableValue("sourceText", File.ReadAllText(file));
+                jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
+            }
+
+                
             var json = jsEngine.Evaluate<string>(
                 "JSON.stringify(Serenity.CodeGeneration.parseTypes(sourceText))");
+
             return JSON.Parse<List<ExternalType>>(json);
         }
     }

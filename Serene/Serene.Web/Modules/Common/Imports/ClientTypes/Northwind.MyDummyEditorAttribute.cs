@@ -14,7 +14,13 @@ namespace Serene.Northwind
         public MyDummyEditorAttribute()
             : base(Key)
         {
-        } 
+        }
+
+        public double option0
+        {
+            get { return GetOption<double>("option0"); }
+            set { SetOption("option0", value); }
+        }
     }
 }
 
