@@ -626,15 +626,6 @@
     <Content Include="Content\site\site.administration.less" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Modules\Common\Imports\ScriptFormatterTypes\ScriptFormatterTypes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ScriptFormatterTypes.log</LastGenOutput>
-    </Content>
-    <Content Include="Modules\Common\Imports\ScriptFormatterTypes\ScriptFormatterTypes.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
-    </Content>
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
@@ -1590,6 +1581,15 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.MyBoldFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.MyDummyEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
@@ -1602,8 +1602,8 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.PhoneEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ScriptFormatterTypes\ScriptFormatterTypes.cs">
-      <DependentUpon>ScriptFormatterTypes.tt</DependentUpon>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
