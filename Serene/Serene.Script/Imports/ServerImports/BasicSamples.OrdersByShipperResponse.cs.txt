@@ -1,4 +1,5 @@
-﻿using Serenity;
+﻿using jQueryApi;
+using Serenity;
 using Serenity.ComponentModel;
 using System;
 using System.Collections;
@@ -9,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace Serene.BasicSamples
 {
     [Imported, Serializable, PreserveMemberCase]
-    public partial class OrdersByShipperResponse : Serenity.ServiceResponse
+    public partial class OrdersByShipperResponse : ServiceResponse
     {
         public List<JsDictionary<String,Object>> Values { get; set; }
         public List<String> ShipperKeys { get; set; }
