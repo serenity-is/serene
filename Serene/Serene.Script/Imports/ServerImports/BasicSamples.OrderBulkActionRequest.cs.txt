@@ -1,0 +1,17 @@
+﻿using Serenity;
+using Serenity.ComponentModel;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace Serene.BasicSamples
+{
+    [Imported, Serializable, PreserveMemberCase]
+    public partial class OrderBulkActionRequest : Serenity.ServiceRequest
+    {
+        public List<Int32> OrderIDs { get; set; }
+    }
+}
+

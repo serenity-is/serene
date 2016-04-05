@@ -1,8 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="$(TargetDir)Serenity.Core.dll" #>
-<#@ assembly name="$(TargetDir)Serenity.Web.dll" #>
-<#@ assembly name="$(TargetDir)Serene.Web.dll" #>
+<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serenity.Core.dll" #>
+<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serenity.Web.dll" #>
+<#@ assembly name="$(SolutionDir)Serene\Serene.Web\bin\Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
@@ -10,10 +10,10 @@
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
 <#
-    var solutionDir = Host.ResolvePath(@"..\..\..\..\..\..\");
-    var webDir = Host.ResolvePath(@"..\..\..\..\");
+    var solutionDir = Host.ResolvePath(@"..\..\..\..\");
+    var webDir = solutionDir + @"Serene\Serene.Web\";
 
-    var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
+    var generator = new ServerImportsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
 
     var ssDir = solutionDir + @"Serene\Serene.Script\bin\debug\";
