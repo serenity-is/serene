@@ -4,7 +4,7 @@
 
     }
 
-    export interface EmployeeTerritoryForm extends Serenity.PrefixedContext {
+    export interface EmployeeTerritoryForm {
         TerritoryID(): Serenity.StringEditor;
     }
 

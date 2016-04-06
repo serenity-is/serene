@@ -15,8 +15,8 @@ namespace Serene.Membership
 
         public LoginForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor Username { [InlineCode("{this}.w('Username', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public PasswordEditor Password { [InlineCode("{this}.w('Password', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor Username { [InlineCode("{this}.w('Username', Serenity.StringEditor)")] get; private set; }
+        public PasswordEditor Password { [InlineCode("{this}.w('Password', Serenity.PasswordEditor)")] get; private set; }
     }
 }
 

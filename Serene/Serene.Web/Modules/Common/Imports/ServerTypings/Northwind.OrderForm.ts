@@ -4,7 +4,7 @@
 
     }
 
-    export interface OrderForm extends Serenity.PrefixedContext {
+    export interface OrderForm {
         CustomerID(): CustomerEditor;
         OrderDate(): Serenity.DateEditor;
         RequiredDate(): Serenity.DateEditor;

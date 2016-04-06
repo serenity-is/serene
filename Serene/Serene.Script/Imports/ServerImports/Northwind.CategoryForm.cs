@@ -15,8 +15,8 @@ namespace Serene.Northwind
 
         public CategoryForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor CategoryName { [InlineCode("{this}.w('CategoryName', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public StringEditor Description { [InlineCode("{this}.w('Description', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor CategoryName { [InlineCode("{this}.w('CategoryName', Serenity.StringEditor)")] get; private set; }
+        public StringEditor Description { [InlineCode("{this}.w('Description', Serenity.StringEditor)")] get; private set; }
     }
 }
 

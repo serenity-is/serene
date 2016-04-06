@@ -4,7 +4,7 @@
 
     }
 
-    export interface LookupFilterByMultipleForm extends Serenity.PrefixedContext {
+    export interface LookupFilterByMultipleForm {
         ProductName(): Serenity.StringEditor;
         ProductImage(): Serenity.ImageUploadEditor;
         Discontinued(): Serenity.BooleanEditor;

@@ -4,7 +4,7 @@
 
     }
 
-    export interface TerritoryForm extends Serenity.PrefixedContext {
+    export interface TerritoryForm {
         TerritoryID(): Serenity.StringEditor;
         TerritoryDescription(): Serenity.StringEditor;
         RegionID(): Serenity.LookupEditor;

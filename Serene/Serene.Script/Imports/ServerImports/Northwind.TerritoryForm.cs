@@ -15,9 +15,9 @@ namespace Serene.Northwind
 
         public TerritoryForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor TerritoryID { [InlineCode("{this}.w('TerritoryID', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public StringEditor TerritoryDescription { [InlineCode("{this}.w('TerritoryDescription', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public LookupEditor RegionID { [InlineCode("{this}.w('RegionID', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor TerritoryID { [InlineCode("{this}.w('TerritoryID', Serenity.StringEditor)")] get; private set; }
+        public StringEditor TerritoryDescription { [InlineCode("{this}.w('TerritoryDescription', Serenity.StringEditor)")] get; private set; }
+        public LookupEditor RegionID { [InlineCode("{this}.w('RegionID', Serenity.LookupEditor)")] get; private set; }
     }
 }
 

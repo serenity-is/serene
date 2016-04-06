@@ -4,7 +4,7 @@
 
     }
 
-    export interface CustomerForm extends Serenity.PrefixedContext {
+    export interface CustomerForm {
         CustomerID(): Serenity.StringEditor;
         CompanyName(): Serenity.StringEditor;
         ContactName(): Serenity.StringEditor;

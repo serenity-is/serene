@@ -15,7 +15,7 @@ namespace Serene.Administration
 
         public RoleForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor RoleName { [InlineCode("{this}.w('RoleName', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor RoleName { [InlineCode("{this}.w('RoleName', Serenity.StringEditor)")] get; private set; }
     }
 }
 

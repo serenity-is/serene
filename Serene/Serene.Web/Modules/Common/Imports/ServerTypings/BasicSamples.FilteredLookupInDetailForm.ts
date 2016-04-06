@@ -4,7 +4,7 @@
 
     }
 
-    export interface FilteredLookupInDetailForm extends Serenity.PrefixedContext {
+    export interface FilteredLookupInDetailForm {
         CustomerID(): Northwind.CustomerEditor;
         OrderDate(): Serenity.DateEditor;
         CategoryID(): Serenity.LookupEditor;

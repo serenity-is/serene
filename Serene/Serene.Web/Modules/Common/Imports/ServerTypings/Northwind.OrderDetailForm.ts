@@ -4,7 +4,7 @@
 
     }
 
-    export interface OrderDetailForm extends Serenity.PrefixedContext {
+    export interface OrderDetailForm {
         ProductID(): Serenity.LookupEditor;
         UnitPrice(): Serenity.DecimalEditor;
         Quantity(): Serenity.IntegerEditor;

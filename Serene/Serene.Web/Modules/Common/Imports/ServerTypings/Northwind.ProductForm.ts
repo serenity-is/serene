@@ -4,7 +4,7 @@
 
     }
 
-    export interface ProductForm extends Serenity.PrefixedContext {
+    export interface ProductForm {
         ProductName(): Serenity.StringEditor;
         ProductImage(): Serenity.ImageUploadEditor;
         Discontinued(): Serenity.BooleanEditor;

@@ -15,8 +15,8 @@ namespace Serene.Northwind
 
         public CustomerCustomerDemoForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor CustomerID { [InlineCode("{this}.w('CustomerID', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public StringEditor CustomerTypeID { [InlineCode("{this}.w('CustomerTypeID', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor CustomerID { [InlineCode("{this}.w('CustomerID', Serenity.StringEditor)")] get; private set; }
+        public StringEditor CustomerTypeID { [InlineCode("{this}.w('CustomerTypeID', Serenity.StringEditor)")] get; private set; }
     }
 }
 

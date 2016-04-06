@@ -169,7 +169,7 @@ class Manager {
             var projectFiles = new Dictionary<String, EnvDTE.ProjectItem>();
             var originalFilePrefix = Path.GetFileNameWithoutExtension(templateProjectItem.get_FileNames(0)) + ".";
             foreach(EnvDTE.ProjectItem projectItem in templateProjectItem.ProjectItems)
-                projectFiles.Add(projectItem.get_FileNames(0), projectItem);
+                projectFiles[projectItem.get_FileNames(0)] = projectItem;
 
             // Remove unused items from the project
             foreach(var pair in projectFiles)

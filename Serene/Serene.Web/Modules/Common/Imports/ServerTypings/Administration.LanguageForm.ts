@@ -4,7 +4,7 @@
 
     }
 
-    export interface LanguageForm extends Serenity.PrefixedContext {
+    export interface LanguageForm {
         LanguageId(): Serenity.StringEditor;
         LanguageName(): Serenity.StringEditor;
     }

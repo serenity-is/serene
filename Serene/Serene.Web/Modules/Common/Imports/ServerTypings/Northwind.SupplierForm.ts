@@ -4,7 +4,7 @@
 
     }
 
-    export interface SupplierForm extends Serenity.PrefixedContext {
+    export interface SupplierForm {
         CompanyName(): Serenity.StringEditor;
         ContactName(): Serenity.StringEditor;
         ContactTitle(): Serenity.StringEditor;

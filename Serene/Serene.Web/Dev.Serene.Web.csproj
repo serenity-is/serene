@@ -30,7 +30,6 @@
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
     <TypeScriptOutFile>Scripts\site\Serene.Web.js</TypeScriptOutFile>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1587,12 +1586,6 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.MyBoldFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.MyDummyEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.NotesEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
@@ -2151,7 +2144,6 @@
     <TypeScriptCompile Include="Scripts\Serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\Serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
-    <TypeScriptCompile Include="Modules\Northwind\Customer\Northwind.CustomerDialog.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,8 +15,8 @@ namespace Serene.Administration
 
         public LanguageForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor LanguageId { [InlineCode("{this}.w('LanguageId', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public StringEditor LanguageName { [InlineCode("{this}.w('LanguageName', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor LanguageId { [InlineCode("{this}.w('LanguageId', Serenity.StringEditor)")] get; private set; }
+        public StringEditor LanguageName { [InlineCode("{this}.w('LanguageName', Serenity.StringEditor)")] get; private set; }
     }
 }
 

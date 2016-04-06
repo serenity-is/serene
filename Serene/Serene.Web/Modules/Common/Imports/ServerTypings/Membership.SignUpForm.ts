@@ -4,7 +4,7 @@
 
     }
 
-    export interface SignUpForm extends Serenity.PrefixedContext {
+    export interface SignUpForm {
         DisplayName(): Serenity.StringEditor;
         Email(): Serenity.EmailEditor;
         ConfirmEmail(): Serenity.EmailEditor;

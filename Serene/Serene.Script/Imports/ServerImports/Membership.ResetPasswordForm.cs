@@ -15,8 +15,8 @@ namespace Serene.Membership
 
         public ResetPasswordForm(string idPrefix) : base(idPrefix) {}
 
-        public PasswordEditor NewPassword { [InlineCode("{this}.w('NewPassword', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public PasswordEditor ConfirmPassword { [InlineCode("{this}.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public PasswordEditor NewPassword { [InlineCode("{this}.w('NewPassword', Serenity.PasswordEditor)")] get; private set; }
+        public PasswordEditor ConfirmPassword { [InlineCode("{this}.w('ConfirmPassword', Serenity.PasswordEditor)")] get; private set; }
     }
 }
 

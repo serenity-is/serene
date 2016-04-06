@@ -4,7 +4,7 @@
 
     }
 
-    export interface ForgotPasswordForm extends Serenity.PrefixedContext {
+    export interface ForgotPasswordForm {
         Email(): Serenity.EmailEditor;
     }
 

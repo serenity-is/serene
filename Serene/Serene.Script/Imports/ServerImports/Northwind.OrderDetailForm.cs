@@ -15,10 +15,10 @@ namespace Serene.Northwind
 
         public OrderDetailForm(string idPrefix) : base(idPrefix) {}
 
-        public LookupEditor ProductID { [InlineCode("{this}.w('ProductID', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public DecimalEditor UnitPrice { [InlineCode("{this}.w('UnitPrice', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public IntegerEditor Quantity { [InlineCode("{this}.w('Quantity', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public DecimalEditor Discount { [InlineCode("{this}.w('Discount', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public LookupEditor ProductID { [InlineCode("{this}.w('ProductID', Serenity.LookupEditor)")] get; private set; }
+        public DecimalEditor UnitPrice { [InlineCode("{this}.w('UnitPrice', Serenity.DecimalEditor)")] get; private set; }
+        public IntegerEditor Quantity { [InlineCode("{this}.w('Quantity', Serenity.IntegerEditor)")] get; private set; }
+        public DecimalEditor Discount { [InlineCode("{this}.w('Discount', Serenity.DecimalEditor)")] get; private set; }
     }
 }
 

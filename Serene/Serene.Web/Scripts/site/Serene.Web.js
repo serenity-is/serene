@@ -3,12 +3,6 @@
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var Serene;
 (function (Serene) {
     var Administration;
@@ -1258,68 +1252,6 @@ var Serene;
                 Methods[x] = TerritoryService.baseUrl + '/' + x;
             });
         })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var D = Serenity.Decorators;
-        var MyCustomerDialog = (function (_super) {
-            __extends(MyCustomerDialog, _super);
-            function MyCustomerDialog() {
-                _super.apply(this, arguments);
-            }
-            MyCustomerDialog.prototype.test = function () {
-                var s = Northwind.CustomerRow.Fields.Region;
-                var t = Northwind.CustomerRow.Fields.ContactName;
-                var u = Northwind.CustomerRow.Fields.ContactTitle;
-                console.log(s, t, u);
-            };
-            MyCustomerDialog = __decorate([
-                D.formKey("Northwind.Customer"),
-                D.idProperty("ID"),
-                D.nameProperty("CustomerID"),
-                D.service("Northwind/Customer"),
-                D.flexify(),
-                D.maximizable()
-            ], MyCustomerDialog);
-            return MyCustomerDialog;
-        }(Serenity.EntityDialog));
-        Northwind.MyCustomerDialog = MyCustomerDialog;
-        var MyBoldFormatter = (function () {
-            function MyBoldFormatter() {
-            }
-            MyBoldFormatter.prototype.format = function (ctx) {
-                return "<b>" + Q.htmlEncode(ctx.value) + "</b>";
-            };
-            return MyBoldFormatter;
-        }());
-        Northwind.MyBoldFormatter = MyBoldFormatter;
-        var MyDummyEditor = (function (_super) {
-            __extends(MyDummyEditor, _super);
-            function MyDummyEditor(element, opt) {
-                _super.call(this, element, opt);
-            }
-            MyDummyEditor.prototype.set_option1 = function (o) {
-            };
-            MyDummyEditor.prototype.option2 = function (o) {
-                if (o == undefined) {
-                    return o;
-                }
-            };
-            __decorate([
-                D.option()
-            ], MyDummyEditor.prototype, "set_option1");
-            __decorate([
-                D.option()
-            ], MyDummyEditor.prototype, "option2");
-            __decorate([
-                D.option()
-            ], MyDummyEditor.prototype, "option3");
-            return MyDummyEditor;
-        }(Serenity.StringEditor));
-        Northwind.MyDummyEditor = MyDummyEditor;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

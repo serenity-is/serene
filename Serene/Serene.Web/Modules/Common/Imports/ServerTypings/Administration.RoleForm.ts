@@ -4,7 +4,7 @@
 
     }
 
-    export interface RoleForm extends Serenity.PrefixedContext {
+    export interface RoleForm {
         RoleName(): Serenity.StringEditor;
     }
 

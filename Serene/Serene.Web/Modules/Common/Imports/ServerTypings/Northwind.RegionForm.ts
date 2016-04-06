@@ -4,7 +4,7 @@
 
     }
 
-    export interface RegionForm extends Serenity.PrefixedContext {
+    export interface RegionForm {
         RegionID(): Serenity.IntegerEditor;
         RegionDescription(): Serenity.StringEditor;
     }

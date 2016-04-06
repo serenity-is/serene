@@ -4,7 +4,7 @@
 
     }
 
-    export interface UserForm extends Serenity.PrefixedContext {
+    export interface UserForm {
         Username(): Serenity.StringEditor;
         DisplayName(): Serenity.StringEditor;
         Email(): Serenity.EmailEditor;

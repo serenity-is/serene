@@ -4,7 +4,7 @@
 
     }
 
-    export interface CategoryForm extends Serenity.PrefixedContext {
+    export interface CategoryForm {
         CategoryName(): Serenity.StringEditor;
         Description(): Serenity.StringEditor;
     }

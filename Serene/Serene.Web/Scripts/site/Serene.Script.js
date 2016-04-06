@@ -252,14 +252,14 @@
 		this.$form = null;
 		Serenity.EntityDialog.call(this);
 		this.$form = new $Serene_Administration_UserForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('Password', Serenity.CodeGeneration.ExternalType), this.uniqueName, ss.mkdel(this, function(e) {
-			if (this.$form.w('Password', Serenity.CodeGeneration.ExternalType).get_value().length < 7) {
+		Serenity.VX.addValidationRule(this.$form.w('Password', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e) {
+			if (this.$form.w('Password', Serenity.PasswordEditor).get_value().length < 7) {
 				return 'Password must be at least 7 characters!';
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('PasswordConfirm', Serenity.CodeGeneration.ExternalType), this.uniqueName, ss.mkdel(this, function(e1) {
-			if (!ss.referenceEquals(this.$form.w('Password', Serenity.CodeGeneration.ExternalType).get_value(), this.$form.w('PasswordConfirm', Serenity.CodeGeneration.ExternalType).get_value())) {
+		Serenity.VX.addValidationRule(this.$form.w('PasswordConfirm', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.w('Password', Serenity.PasswordEditor).get_value(), this.$form.w('PasswordConfirm', Serenity.PasswordEditor).get_value())) {
 				return "The passwords entered doesn't match!";
 			}
 			return null;
@@ -374,8 +374,8 @@
 		this.$form = null;
 		Serenity.EntityDialog.call(this);
 		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.get_idPrefix());
-		Serenity.WX.change(this.$form.w('CategoryID', Serenity.CodeGeneration.ExternalType), ss.mkdel(this, function(e) {
-			this.$form.w('DetailList', Serenity.CodeGeneration.ExternalType).set_categoryID(Q.toId(this.$form.w('CategoryID', Serenity.CodeGeneration.ExternalType).get_value()));
+		Serenity.WX.change(this.$form.w('CategoryID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
+			this.$form.w('DetailList', Serene.BasicSamples.FilteredLookupDetailEditor).set_categoryID(Q.toId(this.$form.w('CategoryID', Serenity.LookupEditor).get_value()));
 		}));
 	};
 	$Serene_BasicSamples_FilteredLookupInDetailDialog.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailDialog';
@@ -406,7 +406,7 @@
 		// we can set cascade field in constructor
 		// we could also use FilterField but in this case, when CategoryID is null
 		// lookup editor would show all products in any category
-		this.form.w('ProductID', Serenity.CodeGeneration.ExternalType).set_cascadeField('CategoryID');
+		this.form.w('ProductID', Serenity.LookupEditor).set_cascadeField('CategoryID');
 		// but CategoryID value is not yet available here as detail editor will set it 
 		// after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
 	};
@@ -463,21 +463,21 @@
 		$Serene_Northwind_OrderDialog.call(this);
 		// as these editors are in a three column line, 
 		// all should grow 0.5px when dialog grows 1px
-		Serenity.FLX.flexXFactor(this.form.w('OrderDate', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('RequiredDate', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipName', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipCity', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipPostalCode', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipAddress', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipRegion', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipCountry', Serenity.CodeGeneration.ExternalType).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('OrderDate', Serenity.DateEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('RequiredDate', Serenity.DateEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipName', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipCity', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipPostalCode', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipAddress', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipRegion', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipCountry', Serenity.StringEditor).get_element(), 0.5);
 		// as these editors are in a three column line, 
 		// all should grow 0.33px when dialog grows 1px
-		Serenity.FLX.flexXFactor(this.form.w('ShippedDate', Serenity.CodeGeneration.ExternalType).get_element(), 0.33);
-		Serenity.FLX.flexXFactor(this.form.w('ShipVia', Serenity.CodeGeneration.ExternalType).get_element().siblings('.select2-container'), 0.33);
-		Serenity.FLX.flexXFactor(this.form.w('Freight', Serenity.CodeGeneration.ExternalType).get_element(), 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('ShippedDate', Serenity.DateEditor).get_element(), 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('ShipVia', Serenity.LookupEditor).get_element().siblings('.select2-container'), 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('Freight', Serenity.DecimalEditor).get_element(), 0.33);
 		// grid should grow in height and width when dialog grows
-		Serenity.FLX.flexWidthHeight(this.form.w('DetailList', Serenity.CodeGeneration.ExternalType).get_element(), 1, 1);
+		Serenity.FLX.flexWidthHeight(this.form.w('DetailList', Serene.Northwind.OrderDetailsEditor).get_element(), 1, 1);
 	};
 	$Serene_BasicSamples_MultiColumnDialog.__typeName = 'Serene.BasicSamples.MultiColumnDialog';
 	global.Serene.BasicSamples.MultiColumnDialog = $Serene_BasicSamples_MultiColumnDialog;
@@ -701,14 +701,14 @@
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_ChangePasswordForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.CodeGeneration.ExternalType), this.get_uniqueName(), ss.mkdel(this, function(e) {
-			if (this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType).get_value().length < 7) {
+		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e) {
+			if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
 				return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType), this.get_uniqueName(), ss.mkdel(this, function(e1) {
-			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType).get_value(), this.$form.w('NewPassword', Serenity.CodeGeneration.ExternalType).get_value())) {
+		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
@@ -819,14 +819,14 @@
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_ResetPasswordForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.CodeGeneration.ExternalType), this.get_uniqueName(), ss.mkdel(this, function(e) {
-			if (this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType).get_value().length < 7) {
+		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e) {
+			if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
 				return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType), this.get_uniqueName(), ss.mkdel(this, function(e1) {
-			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType).get_value(), this.$form.w('NewPassword', Serenity.CodeGeneration.ExternalType).get_value())) {
+		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
@@ -869,14 +869,14 @@
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
 		this.$form = new $Serene_Membership_SignUpForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType), this.uniqueName, ss.mkdel(this, function(e) {
-			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.CodeGeneration.ExternalType).get_value(), this.$form.w('Password', Serenity.CodeGeneration.ExternalType).get_value())) {
+		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e) {
+			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('Password', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmEmail', Serenity.CodeGeneration.ExternalType), this.uniqueName, ss.mkdel(this, function(e1) {
-			if (!ss.referenceEquals(this.$form.w('ConfirmEmail', Serenity.CodeGeneration.ExternalType).get_value(), this.$form.w('Email', Serenity.CodeGeneration.ExternalType).get_value())) {
+		Serenity.VX.addValidationRule(this.$form.w('ConfirmEmail', Serenity.EmailEditor), this.uniqueName, ss.mkdel(this, function(e1) {
+			if (!ss.referenceEquals(this.$form.w('ConfirmEmail', Serenity.EmailEditor).get_value(), this.$form.w('Email', Serenity.EmailEditor).get_value())) {
 				return Q.text('Validation.EmailConfirm');
 			}
 			return null;
@@ -888,7 +888,7 @@
 			}
 			Q.serviceCall({
 				url: Q.resolveUrl('~/Account/SignUp'),
-				request: { DisplayName: this.$form.w('DisplayName', Serenity.CodeGeneration.ExternalType).get_value(), Email: this.$form.w('Email', Serenity.CodeGeneration.ExternalType).get_value(), Password: this.$form.w('Password', Serenity.CodeGeneration.ExternalType).get_value() },
+				request: { DisplayName: this.$form.w('DisplayName', Serenity.StringEditor).get_value(), Email: this.$form.w('Email', Serenity.EmailEditor).get_value(), Password: this.$form.w('Password', Serenity.PasswordEditor).get_value() },
 				onSuccess: function(response) {
 					Q.information(Q.text('Forms.Membership.SignUp.Success'), function() {
 						window.location.href = Q.resolveUrl('~/');
@@ -1149,14 +1149,14 @@
 		this.form = null;
 		$Serene_Common_GridEditorDialog.call(this);
 		this.form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
-		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.CodeGeneration.ExternalType), ss.mkdel(this, function(e) {
-			var productID = Q.toId(this.form.w('ProductID', Serenity.CodeGeneration.ExternalType).get_value());
+		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
+			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
 			if (ss.isValue(productID)) {
-				this.form.w('UnitPrice', Serenity.CodeGeneration.ExternalType).set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
+				this.form.w('UnitPrice', Serenity.DecimalEditor).set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
 			}
 		}));
-		Serenity.VX.addValidationRule(this.form.w('Discount', Serenity.CodeGeneration.ExternalType), this.uniqueName, ss.mkdel(this, function(e1) {
-			if (ss.isValue(this.form.w('UnitPrice', Serenity.CodeGeneration.ExternalType).get_value()) && ss.isValue(this.form.w('Quantity', Serenity.CodeGeneration.ExternalType).get_value$1()) && ss.isValue(this.form.w('Discount', Serenity.CodeGeneration.ExternalType).get_value()) && ss.unbox(this.form.w('Discount', Serenity.CodeGeneration.ExternalType).get_value()) > 0 && ss.unbox(this.form.w('Discount', Serenity.CodeGeneration.ExternalType).get_value()) > ss.unbox(this.form.w('UnitPrice', Serenity.CodeGeneration.ExternalType).get_value()) * ss.unbox(this.form.w('Quantity', Serenity.CodeGeneration.ExternalType).get_value$1())) {
+		Serenity.VX.addValidationRule(this.form.w('Discount', Serenity.DecimalEditor), this.uniqueName, ss.mkdel(this, function(e1) {
+			if (ss.isValue(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) && ss.isValue(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1()) && ss.isValue(this.form.w('Discount', Serenity.DecimalEditor).get_value()) && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > 0 && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > ss.unbox(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) * ss.unbox(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1())) {
 				return "Discount can't be higher than total price!";
 			}
 			return null;
@@ -2800,7 +2800,7 @@
 			// make sure you have [LookupInclude] on CategoryID property of ProductRow
 			// otherwise this field won't be available in lookup script (will always be null),
 			// so can't be filtered and you'll end up with an empty product list.
-			this.form.w('ProductID', Serenity.CodeGeneration.ExternalType).set_cascadeValue(this.get_categoryID());
+			this.form.w('ProductID', Serenity.LookupEditor).set_cascadeValue(this.get_categoryID());
 		},
 		get_categoryID: function() {
 			return this.$10$CategoryIDField;
@@ -3242,7 +3242,7 @@
 	ss.initClass($Serene_Northwind_CustomerOrderDialog, $asm, {
 		updateInterface: function() {
 			Serenity.EntityDialog.prototype.updateInterface.call(this);
-			Serenity.EditorUtils.setReadOnly(this.form.w('CustomerID', Serenity.CodeGeneration.ExternalType), true);
+			Serenity.EditorUtils.setReadOnly(this.form.w('CustomerID', Serene.Northwind.CustomerEditor), true);
 		}
 	}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_CustomerOrdersGrid, $asm, {

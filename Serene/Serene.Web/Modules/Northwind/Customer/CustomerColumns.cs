@@ -11,7 +11,7 @@ namespace Serene.Northwind.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Width(100)]
         public String CustomerID { get; set; }
-        [EditLink, Width(250), FormatterType("Northwind.MyBoldFormatter")]
+        [EditLink, Width(250)]
         public String CompanyName { get; set; }
         [Width(150)]
         public String ContactName { get; set; }

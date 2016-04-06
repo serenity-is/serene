@@ -15,8 +15,8 @@ namespace Serene.Northwind
 
         public ShipperForm(string idPrefix) : base(idPrefix) {}
 
-        public StringEditor CompanyName { [InlineCode("{this}.w('CompanyName', Serenity.CodeGeneration.ExternalType)")] get; private set; }
-        public PhoneEditor Phone { [InlineCode("{this}.w('Phone', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public StringEditor CompanyName { [InlineCode("{this}.w('CompanyName', Serenity.StringEditor)")] get; private set; }
+        public PhoneEditor Phone { [InlineCode("{this}.w('Phone', Serene.Northwind.PhoneEditor)")] get; private set; }
     }
 }
 

@@ -4,7 +4,7 @@
 
     }
 
-    export interface ChangePasswordForm extends Serenity.PrefixedContext {
+    export interface ChangePasswordForm {
         OldPassword(): Serenity.PasswordEditor;
         NewPassword(): Serenity.PasswordEditor;
         ConfirmPassword(): Serenity.PasswordEditor;

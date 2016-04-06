@@ -4,7 +4,7 @@
 
     }
 
-    export interface EmployeeForm extends Serenity.PrefixedContext {
+    export interface EmployeeForm {
         LastName(): Serenity.StringEditor;
         FirstName(): Serenity.StringEditor;
         Title(): Serenity.StringEditor;

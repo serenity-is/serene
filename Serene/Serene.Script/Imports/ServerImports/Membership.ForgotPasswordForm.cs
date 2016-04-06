@@ -15,7 +15,7 @@ namespace Serene.Membership
 
         public ForgotPasswordForm(string idPrefix) : base(idPrefix) {}
 
-        public EmailEditor Email { [InlineCode("{this}.w('Email', Serenity.CodeGeneration.ExternalType)")] get; private set; }
+        public EmailEditor Email { [InlineCode("{this}.w('Email', Serenity.EmailEditor)")] get; private set; }
     }
 }
 

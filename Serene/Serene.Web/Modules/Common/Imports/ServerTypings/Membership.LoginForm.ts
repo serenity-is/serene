@@ -4,7 +4,7 @@
 
     }
 
-    export interface LoginForm extends Serenity.PrefixedContext {
+    export interface LoginForm {
         Username(): Serenity.StringEditor;
         Password(): Serenity.PasswordEditor;
     }
