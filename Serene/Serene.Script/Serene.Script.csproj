@@ -52,278 +52,332 @@
     <Compile Include="Common\Helper\BulkServiceAction.cs" />
     <Compile Include="Common\Helper\ReportHelper.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
-    <Compile Include="Imports\FormContexts\BasicSamples.FilteredLookupInDetailForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.LanguageColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\FormContexts\BasicSamples.LookupFilterByMultipleForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.LanguageForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\FormContexts\Membership.SignUpForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.LanguageRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\BasicSamples.BasicSamplesService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.LanguageService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\BasicSamples.OrderBulkActionRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RoleColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\BasicSamples.OrdersByShipperRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RoleForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\BasicSamples.OrdersByShipperResponse.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RolePermissionListRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.SignUpRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RolePermissionListResponse.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerRepresentativesRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RolePermissionRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ProductLogRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RolePermissionService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ServiceContracts\ScriptUserDefinition.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
+    <Compile Include="Imports\ServerImports\Administration.RolePermissionUpdateRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.RoleRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.RoleService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.TranslationItem.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.TranslationListRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.TranslationService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.TranslationUpdateRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserPermissionListRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserPermissionRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserPermissionService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserPermissionUpdateRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRoleListRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRoleListResponse.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRoleRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRoleService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRoleUpdateRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.BasicSamplesService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.FilteredLookupInDetailForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.LookupFilterByMultipleForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.OrderBulkActionRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.OrdersByShipperRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\BasicSamples.OrdersByShipperResponse.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Common.Pages.UploadResponse.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ChangePasswordForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ChangePasswordRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ForgotPasswordForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ForgotPasswordRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.LoginForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.LoginRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ResetPasswordForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.ResetPasswordRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.SignUpForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Membership.SignUpRequest.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryLangRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryLangService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CategoryService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerCustomerDemoForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerCustomerDemoRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerCustomerDemoService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerDemographicForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerDemographicRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerDemographicService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerRepresentativesRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.CustomerService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeTerritoryForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeTerritoryRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.EmployeeTerritoryService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.Gender.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.NoteRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderDetailColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderDetailForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderDetailRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderDetailService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.OrderShippingState.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductLangRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductLangService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductLogRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ProductService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.RegionColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.RegionForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.RegionRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.RegionService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SalesByCategoryColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SalesByCategoryRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SalesByCategoryService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ShipperColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ShipperForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ShipperRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.ShipperService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SupplierColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SupplierForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SupplierRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.SupplierService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.TerritoryColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.TerritoryForm.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.TerritoryRow.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\Northwind.TerritoryService.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ServerImports\ScriptUserDefinition.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
     <Compile Include="Membership\Authorization.cs" />
     <Compile Include="Common\Helper\GridEditorDialog.cs" />
     <Compile Include="Common\Navigation\ThemeSelection.cs" />
     <Compile Include="Common\Navigation\LanguageSelection.cs" />
     <Compile Include="Common\Navigation\SidebarSearch.cs" />
-    <Compile Include="Imports\FormContexts\Administration.LanguageForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Administration.RoleForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Administration.UserForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Membership.ChangePasswordForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Membership.ForgotPasswordForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Membership.LoginForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Membership.ResetPasswordForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.CategoryForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.CustomerCustomerDemoForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.CustomerDemographicForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.CustomerForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.EmployeeForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.EmployeeTerritoryForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.OrderDetailForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.OrderForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.ProductForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.RegionForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.ShipperForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.SupplierForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\FormContexts\Northwind.TerritoryForm.cs">
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.LanguageRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.LanguageService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionListRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionListResponse.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RolePermissionUpdateRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RoleRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.RoleService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.TranslationItem.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.TranslationListRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.TranslationService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.TranslationUpdateRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionListRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserPermissionUpdateRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRoleListRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRoleListResponse.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRoleRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRoleService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRoleUpdateRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Administration.UserService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.Pages.FileController.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Common.Pages.UploadResponse.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.ChangePasswordRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.ForgotPasswordRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.LoginRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Membership.ResetPasswordRequest.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CategoryRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CategoryService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerCustomerDemoRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerCustomerDemoService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerDemographicRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerDemographicService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CustomerService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.EmployeeRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.EmployeeService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.EmployeeTerritoryRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.EmployeeTerritoryService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.Gender.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.OrderDetailRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.OrderDetailService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.OrderRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.OrderService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.OrderShippingState.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ProductRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ProductService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.RegionRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.RegionService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ShipperRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ShipperService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.SupplierRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.SupplierService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.TerritoryRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.TerritoryService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
     <Compile Include="Membership\SignUpPanel.cs" />
     <Compile Include="Membership\ResetPasswordPanel.cs" />
     <Compile Include="Membership\ForgotPasswordPanel.cs" />
@@ -381,47 +435,18 @@
     <Compile Include="BasicSamples\ViewWithoutIDGrid.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Imports\FormContexts\FormContexts.log">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FormContexts.tt</DependentUpon>
-    </None>
-    <None Include="Imports\FormContexts\FormContexts.tt">
+    <Content Include="Imports\CodeGenerationHelpers.ttinclude" />
+    <Content Include="Imports\ServerImports\ServerImports.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FormContexts.log</LastGenOutput>
-    </None>
+      <LastGenOutput>ServerImports.log</LastGenOutput>
+    </Content>
     <None Include="Imports\MultipleOutputHelper.ttinclude" />
-    <None Include="Imports\ServiceContracts\ServiceContracts.log">
+    <None Include="Imports\ServerImports\ServerImports.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </None>
-    <None Include="Imports\ServiceContracts\ServiceContracts.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ServiceContracts.log</LastGenOutput>
+      <DependentUpon>ServerImports.tt</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <Compile Include="Imports\ServiceContracts\Northwind.NoteRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CategoryLangRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.CategoryLangService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ProductLangRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.ProductLangService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.SalesByCategoryRow.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ServiceContracts\Northwind.SalesByCategoryService.cs">
-      <DependentUpon>ServiceContracts.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -442,16 +467,16 @@
     <Reference Include="Saltarelle.Web">
       <HintPath>..\..\packages\Saltarelle.Web.3.1.0\lib\Saltarelle.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Script.Core, Version=1.9.26.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.9.26\lib\net2\Serenity.Script.Core.dll</HintPath>
+    <Reference Include="Serenity.Script.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.2.0.0\lib\net2\Serenity.Script.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.Imports, Version=1.9.26.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.9.26\lib\net2\Serenity.Script.Imports.dll</HintPath>
+    <Reference Include="Serenity.Script.Imports, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.2.0.0\lib\net2\Serenity.Script.Imports.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Script.UI, Version=1.9.26.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Script.1.9.26\lib\net2\Serenity.Script.UI.dll</HintPath>
+    <Reference Include="Serenity.Script.UI, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Script.2.0.0\lib\net2\Serenity.Script.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
