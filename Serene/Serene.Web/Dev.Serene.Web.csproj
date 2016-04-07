@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
   </PropertyGroup>
   <PropertyGroup>
     <TypeScriptCharset>utf-8</TypeScriptCharset>
@@ -29,7 +30,7 @@
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
     <TypeScriptOutFile>Scripts\site\Serene.Web.js</TypeScriptOutFile>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1127,7 +1128,6 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -1145,35 +1145,35 @@
     <Content Include="Modules\BasicSamples\DefaultValuesInNewDialog.cshtml" />
     <Content Include="Modules\BasicSamples\FilteredLookupInDetailDialog.cshtml" />
     <Content Include="Modules\BasicSamples\GroupingAndSummariesInGrid.cshtml" />
-    <Content Include="fonts\Simple-Line-Icons.woff" />
-    <Content Include="fonts\Simple-Line-Icons.ttf" />
-    <Content Include="fonts\Simple-Line-Icons.eot" />
-    <Content Include="fonts\ionicons.woff" />
-    <Content Include="fonts\ionicons.ttf" />
-    <Content Include="fonts\ionicons.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Modules\Common\Imports\CodeGenerationHelpers.ttinclude" />
     <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
-    <None Include="tsconfig.json" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1204,35 +1204,21 @@
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
-    <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
-    <Content Include="Scripts\knob\jquery.knob.js" />
-    <Content Include="Scripts\morris\morris.css" />
-    <Content Include="Scripts\morris\morris.js" />
-    <Content Include="Scripts\morris\morris.min.js" />
-    <Content Include="Scripts\mousetrap.js" />
-    <Content Include="Scripts\mousetrap.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\raphael\raphael-min.js" />
-    <Content Include="Scripts\raphael\raphael.js" />
     <Content Include="Scripts\rsvp.js" />
     <Content Include="Scripts\rsvp.min.js" />
     <Content Include="Scripts\saltarelle\linq.js" />
     <Content Include="Scripts\saltarelle\linq.min.js" />
     <Content Include="Scripts\saltarelle\mscorlib.js" />
     <Content Include="Scripts\saltarelle\mscorlib.min.js" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.min.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.Core.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.Core.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
-    <Content Include="Scripts\site\Serene.Web.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -1246,6 +1232,36 @@
     <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
     <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
     <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
+    <Content Include="tools\Node\less\lib\lessc" />
+    <Content Include="tools\Node\less\bin\lessc" />
+    <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="Modules\Northwind\VersionInfo\VersionInfoIndex.cshtml" />
+    <None Include="tsconfig.json" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Scripts\knob\jquery.knob.js" />
+    <Content Include="Scripts\morris\morris.css" />
+    <Content Include="Scripts\morris\morris.js" />
+    <Content Include="Scripts\morris\morris.min.js" />
+    <Content Include="Scripts\mousetrap.js" />
+    <Content Include="Scripts\mousetrap.min.js" />
+    <Content Include="Scripts\raphael\raphael-min.js" />
+    <Content Include="Scripts\raphael\raphael.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
+    <Content Include="Scripts\site\Serene.Web.js" />
     <Content Include="Scripts\SlickGrid\slick.core.js" />
     <Content Include="Scripts\SlickGrid\slick.core.min.js" />
     <Content Include="Scripts\SlickGrid\slick.dataview.js" />
@@ -1269,10 +1285,6 @@
     </Content>
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
     <Content Include="tools\Node\less\lib\less\colors.js" />
     <Content Include="tools\Node\less\lib\less\encoder.js" />
     <Content Include="tools\Node\less\lib\less\env.js" />
@@ -1354,8 +1366,6 @@
     <Content Include="Modules\AdminLTE\UIElements\Modals.cshtml" />
     <Content Include="Modules\AdminLTE\UIElements\Sliders.cshtml" />
     <Content Include="Modules\AdminLTE\UIElements\Timeline.cshtml" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="Modules\AdminLTE\Forms\AdvancedElements.cshtml" />
     <Content Include="Modules\AdminLTE\Forms\GeneralElements.cshtml" />
     <Content Include="Modules\AdminLTE\Forms\TextEditors.cshtml" />
@@ -1376,7 +1386,6 @@
     <Content Include="Modules\AdminLTE\Examples\PacePage.cshtml" />
     <Content Include="Modules\AdminLTE\Examples\InvoicePrint.cshtml" />
     <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
-    <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
     <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1385,7 +1394,9 @@
     <Content Include="Scripts\jquery.event.drag.live.js" />
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
     <Content Include="Scripts\jquery.event.drag.min.js" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1465,14 +1476,6 @@
     <Content Include="Views\Shared\_LayoutNoNavigation.cshtml" />
     <Content Include="Views\Errors\ValidationError.cshtml" />
     <Content Include="Scripts\site\texts\site.texts.de.json" />
-    <Content Include="Scripts\SlickGrid\README.md" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <Content Include="tools\Node\less\lib\lessc" />
-    <Content Include="tools\Node\less\bin\lessc" />
-    <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1497,6 +1500,18 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <Content Include="Modules\Northwind\SomeTable\SomeTableIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SomeTableRow.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SomeTableService.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SomeTableForm.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Northwind\SomeTable\SomeTableGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\SomeTable\SomeTableDialog.ts" />
+    <Content Include="Modules\Serene\VersionInfo\VersionInfoIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\VersionInfoRow.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\VersionInfoService.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\VersionInfoForm.ts">  <DependentUpon>ServerTypings.tt</DependentUpon></TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Serene\VersionInfo\VersionInfoGrid.ts" />
+    <TypeScriptCompile Include="Modules\Serene\VersionInfo\VersionInfoDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1667,6 +1682,12 @@
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoColumns.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoEndpoint.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoForm.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoPage.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoRepository.cs" />
+    <Compile Include="Modules\Northwind\VersionInfo\VersionInfoRow.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
     <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
@@ -1780,6 +1801,18 @@
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryColumns.cs" />
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryRepository.cs" />
     <Compile Include="Modules\Northwind\SalesByCategory\SalesByCategoryEndpoint.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTableRow.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTableColumns.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTableForm.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTableRepository.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTableEndpoint.cs" />
+    <Compile Include="Modules\Northwind\SomeTable\SomeTablePage.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoRow.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoColumns.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoForm.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoRepository.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoEndpoint.cs" />
+    <Compile Include="Modules\Serene\VersionInfo\VersionInfoPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2136,6 +2169,8 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\SSDeclarations.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Northwind\VersionInfo\VersionInfoGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\VersionInfo\VersionInfoDialog.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
