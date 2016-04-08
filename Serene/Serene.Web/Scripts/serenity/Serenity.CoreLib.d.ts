@@ -30,11 +30,9 @@ declare namespace Serenity {
         function cascadedDialogOffset(element: JQuery): any;
     }
     class TextAreaEditor extends Widget<TextAreaEditorOptions> {
-        constructor(input: JQuery, opt: TextAreaEditorOptions);
+        constructor(input: JQuery, opt?: TextAreaEditorOptions);
         get_value(): string;
         set_value(value: string): void;
-    }
-    class TextAreaEditorOptions {
     }
     interface TextAreaEditorOptions {
         cols?: number;
@@ -103,8 +101,14 @@ declare namespace Serenity {
         format(ctx: Slick.FormatterContext): string;
         get_displayProperty(): string;
         set_displayProperty(value: string): void;
+        get_displayFormat(): string;
+        set_displayFormat(value: string): void;
         get_urlProperty(): string;
         set_urlProperty(value: string): void;
+        get_urlFormat(): string;
+        set_urlFormat(value: string): void;
+        get_target(): string;
+        set_target(value: string): void;
     }
     namespace ValidationHelper {
         function asyncSubmit(form: JQuery, validateBeforeSave: () => boolean, submitHandler: () => void): boolean;
