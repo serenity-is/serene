@@ -766,6 +766,28 @@
 	};
 	global.Serenity.DecimalEditor = $Serenity_DecimalEditor;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.DecimalEditorOptions
+	var $Serenity_DecimalEditorOptions = function() {
+	};
+	$Serenity_DecimalEditorOptions.__typeName = 'Serenity.DecimalEditorOptions';
+	$Serenity_DecimalEditorOptions.createInstance = function() {
+		return $Serenity_DecimalEditorOptions.$ctor();
+	};
+	$Serenity_DecimalEditorOptions.$ctor = function() {
+		var $this = {};
+		$this.minValue = null;
+		$this.maxValue = null;
+		$this.decimals = null;
+		$this.padDecimals = null;
+		$this.minValue = '0.00';
+		$this.maxValue = '999999999999.99';
+		return $this;
+	};
+	$Serenity_DecimalEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
+	global.Serenity.DecimalEditorOptions = $Serenity_DecimalEditorOptions;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.DecimalFiltering
 	var $Serenity_DecimalFiltering = function() {
 		ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_DecimalEditor]).call(this);
@@ -4318,7 +4340,10 @@
 	// Serenity.UrlFormatter
 	var $Serenity_UrlFormatter = function() {
 		this.$1$DisplayPropertyField = null;
+		this.$1$DisplayFormatField = null;
 		this.$1$UrlPropertyField = null;
+		this.$1$UrlFormatField = null;
+		this.$1$TargetField = null;
 	};
 	$Serenity_UrlFormatter.__typeName = 'Serenity.UrlFormatter';
 	global.Serenity.UrlFormatter = $Serenity_UrlFormatter;
@@ -6823,6 +6848,7 @@
 			return !isNaN(this.get_value());
 		}
 	}, Serenity.Widget, [$Serenity_IDoubleValue]);
+	ss.initClass($Serenity_DecimalEditorOptions, $asm, {});
 	ss.initClass($Serenity_DecimalFiltering, $asm, {
 		getOperators: function() {
 			return this.appendNullableOperators(this.appendComparisonOperators([]));
@@ -10212,9 +10238,23 @@
 	ss.initClass($Serenity_URLEditor, $asm, {}, $Serenity_StringEditor, [$Serenity_IStringValue]);
 	ss.initClass($Serenity_UrlFormatter, $asm, {
 		format: function(ctx) {
-			var display = (!ss.isNullOrEmptyString(this.get_displayProperty()) ? ss.safeCast(ctx.item[this.get_displayProperty()], String) : ctx.value);
-			var url = (!ss.isNullOrEmptyString(this.get_urlProperty()) ? ss.safeCast(ctx.item[this.get_urlProperty()], String) : ctx.value);
-			return "<a href='" + Q.htmlEncode(url) + "'>" + Q.htmlEncode(display) + '</a>';
+			var display = (!ss.isNullOrEmptyString(this.get_displayProperty()) ? ss.coalesce(ctx.item[this.get_displayProperty()], '').toString() : ss.coalesce(ctx.value, '').toString());
+			if (!ss.isNullOrEmptyString(this.get_displayFormat())) {
+				display = ss.formatString(this.get_displayFormat(), display);
+			}
+			var url = (!ss.isNullOrEmptyString(this.get_urlProperty()) ? ss.coalesce(ctx.item[this.get_urlProperty()], '').toString() : ss.coalesce(ctx.value, '').toString());
+			if (ss.isValue(url) && ss.startsWithString(url, '~/')) {
+				url = Q.resolveUrl(url);
+			}
+			if (!ss.isNullOrEmptyString(this.get_urlFormat())) {
+				url = ss.formatString(this.get_urlFormat(), url);
+			}
+			var s = "<a href='" + Q.htmlEncode(url) + "'";
+			if (!ss.isNullOrEmptyString(this.get_target())) {
+				s += " target='_blank'";
+			}
+			s += '>' + Q.htmlEncode(display) + '</a>';
+			return s;
 		},
 		get_displayProperty: function() {
 			return this.$1$DisplayPropertyField;
@@ -10222,11 +10262,29 @@
 		set_displayProperty: function(value) {
 			this.$1$DisplayPropertyField = value;
 		},
+		get_displayFormat: function() {
+			return this.$1$DisplayFormatField;
+		},
+		set_displayFormat: function(value) {
+			this.$1$DisplayFormatField = value;
+		},
 		get_urlProperty: function() {
 			return this.$1$UrlPropertyField;
 		},
 		set_urlProperty: function(value) {
 			this.$1$UrlPropertyField = value;
+		},
+		get_urlFormat: function() {
+			return this.$1$UrlFormatField;
+		},
+		set_urlFormat: function(value) {
+			this.$1$UrlFormatField = value;
+		},
+		get_target: function() {
+			return this.$1$TargetField;
+		},
+		set_target: function(value) {
+			this.$1$TargetField = value;
 		}
 	}, null, [$Serenity_ISlickFormatter]);
 	ss.initClass($Serenity_ValidationHelper, $asm, {});
@@ -10357,7 +10415,8 @@
 	ss.setMetadata($Serenity_DateFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_DateTimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Date/Time'), new Serenity.ElementAttribute('<input type="text"/>')], members: [{ attr: [new Serenity.OptionAttribute()], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, sname: 'get_maxValue', returnType: String, params: [] }, setter: { name: 'set_MaxValue', type: 8, sname: 'set_maxValue', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, sname: 'get_minValue', returnType: String, params: [] }, setter: { name: 'set_MinValue', type: 8, sname: 'set_minValue', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'SqlMinMax', type: 16, returnType: Boolean, getter: { name: 'get_SqlMinMax', type: 8, sname: 'get_sqlMinMax', returnType: Boolean, params: [] }, setter: { name: 'set_SqlMinMax', type: 8, sname: 'set_sqlMinMax', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serenity_DateYearEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Yıl'), new Serenity.OptionsTypeAttribute($Serenity_DateYearEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });
-	ss.setMetadata($Serenity_DecimalEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Ondalıklı Sayı'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<input type="text"/>')] });
+	ss.setMetadata($Serenity_DecimalEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Ondalıklı Sayı'), new Serenity.OptionsTypeAttribute($Serenity_DecimalEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
+	ss.setMetadata($Serenity_DecimalEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalık'), new $Serenity_EditorTypeAttribute('Integer')], name: 'Decimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), getter: { name: 'get_Decimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), fget: 'decimals' }, setter: { name: 'set_Decimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [ss.Int32])], returnType: Object, fset: 'decimals' }, fname: 'decimals' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Değer')], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, params: [], returnType: String, fget: 'maxValue' }, setter: { name: 'set_MaxValue', type: 8, params: [String], returnType: Object, fset: 'maxValue' }, fname: 'maxValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Değer')], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, params: [], returnType: String, fget: 'minValue' }, setter: { name: 'set_MinValue', type: 8, params: [String], returnType: Object, fset: 'minValue' }, fname: 'minValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalıkları Sıfırla Doldur'), new $Serenity_EditorTypeAttribute('Boolean')], name: 'PadDecimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), getter: { name: 'get_PadDecimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), fget: 'padDecimals' }, setter: { name: 'set_PadDecimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [Boolean])], returnType: Object, fset: 'padDecimals' }, fname: 'padDecimals' }] });
 	ss.setMetadata($Serenity_EditorFiltering, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'EditorType', type: 16, returnType: String, getter: { name: 'get_EditorType', type: 8, sname: 'get_editorType', returnType: String, params: [] }, setter: { name: 'set_EditorType', type: 8, sname: 'set_editorType', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UseLike', type: 16, returnType: Boolean, getter: { name: 'get_UseLike', type: 8, sname: 'get_useLike', returnType: Boolean, params: [] }, setter: { name: 'set_UseLike', type: 8, sname: 'set_useLike', returnType: Object, params: [Boolean] } }, { attr: [new Serenity.OptionAttribute()], name: 'UseRelative', type: 16, returnType: Boolean, getter: { name: 'get_UseRelative', type: 8, sname: 'get_useRelative', returnType: Boolean, params: [] }, setter: { name: 'set_UseRelative', type: 8, sname: 'set_useRelative', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serenity_EditorOptionAttribute, { attrAllowMultiple: true });
 	ss.setMetadata($Serenity_EditorTypeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Editör Tipi'), new Serenity.ElementAttribute('<input type="hidden" />')] });
@@ -10394,7 +10453,7 @@
 	ss.setMetadata($Serenity_TextAreaEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Çok Satırlı Metin'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<textarea />')] });
 	ss.setMetadata($Serenity_TimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Zaman'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<select/>')] });
 	ss.setMetadata($Serenity_URLEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('URL')] });
-	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });
+	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlFormat', type: 16, returnType: String, getter: { name: 'get_UrlFormat', type: 8, sname: 'get_urlFormat', returnType: String, params: [] }, setter: { name: 'set_UrlFormat', type: 8, sname: 'set_urlFormat', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });
 	(function() {
 		$Serenity_Widget.$nextWidgetNumber = 0;
 	})();

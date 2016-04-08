@@ -2140,16 +2140,14 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\SSDeclarations.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Northwind\VersionInfo\VersionInfoGrid.ts" />
-    <TypeScriptCompile Include="Modules\Northwind\VersionInfo\VersionInfoDialog.ts" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
-    <TypeScriptCompile Include="Scripts\Serenity\Serenity.CoreLib.d.ts" />
-    <TypeScriptCompile Include="Scripts\Serenity\Serenity.Externals.d.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
