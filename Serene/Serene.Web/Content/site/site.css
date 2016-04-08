@@ -6705,6 +6705,7 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 13px;
   color: #000;
+  -ms-overflow-style: scrollbar;
 }
 .ui-front {
   z-index: 1100;
