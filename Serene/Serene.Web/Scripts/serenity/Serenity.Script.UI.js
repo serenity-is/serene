@@ -766,28 +766,6 @@
 	};
 	global.Serenity.DecimalEditor = $Serenity_DecimalEditor;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.DecimalEditorOptions
-	var $Serenity_DecimalEditorOptions = function() {
-	};
-	$Serenity_DecimalEditorOptions.__typeName = 'Serenity.DecimalEditorOptions';
-	$Serenity_DecimalEditorOptions.createInstance = function() {
-		return $Serenity_DecimalEditorOptions.$ctor();
-	};
-	$Serenity_DecimalEditorOptions.$ctor = function() {
-		var $this = {};
-		$this.minValue = null;
-		$this.maxValue = null;
-		$this.decimals = null;
-		$this.padDecimals = null;
-		$this.minValue = '0.00';
-		$this.maxValue = '999999999999.99';
-		return $this;
-	};
-	$Serenity_DecimalEditorOptions.isInstanceOfType = function() {
-		return true;
-	};
-	global.Serenity.DecimalEditorOptions = $Serenity_DecimalEditorOptions;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.DecimalFiltering
 	var $Serenity_DecimalFiltering = function() {
 		ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_DecimalEditor]).call(this);
@@ -4109,34 +4087,14 @@
 	var $Serenity_TextAreaEditor = function(input, opt) {
 		Serenity.Widget.call(this, input, opt);
 		if (this.options.cols !== 0) {
-			input.attr('cols', this.options.cols.toString());
+			input.attr('cols', ss.coalesce(this.options.cols, 80).toString());
 		}
 		if (this.options.rows !== 0) {
-			input.attr('rows', this.options.rows.toString());
+			input.attr('rows', ss.coalesce(this.options.rows, 6).toString());
 		}
 	};
 	$Serenity_TextAreaEditor.__typeName = 'Serenity.TextAreaEditor';
 	global.Serenity.TextAreaEditor = $Serenity_TextAreaEditor;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.TextAreaEditorOptions
-	var $Serenity_TextAreaEditorOptions = function() {
-	};
-	$Serenity_TextAreaEditorOptions.__typeName = 'Serenity.TextAreaEditorOptions';
-	$Serenity_TextAreaEditorOptions.createInstance = function() {
-		return $Serenity_TextAreaEditorOptions.$ctor();
-	};
-	$Serenity_TextAreaEditorOptions.$ctor = function() {
-		var $this = {};
-		$this.cols = 0;
-		$this.rows = 0;
-		$this.cols = 80;
-		$this.rows = 6;
-		return $this;
-	};
-	$Serenity_TextAreaEditorOptions.isInstanceOfType = function() {
-		return true;
-	};
-	global.Serenity.TextAreaEditorOptions = $Serenity_TextAreaEditorOptions;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.TimeEditor
 	var $Serenity_TimeEditor = function(input, opt) {
@@ -6865,7 +6823,6 @@
 			return !isNaN(this.get_value());
 		}
 	}, Serenity.Widget, [$Serenity_IDoubleValue]);
-	ss.initClass($Serenity_DecimalEditorOptions, $asm, {});
 	ss.initClass($Serenity_DecimalFiltering, $asm, {
 		getOperators: function() {
 			return this.appendNullableOperators(this.appendComparisonOperators([]));
@@ -10180,7 +10137,6 @@
 			this.element.val(value);
 		}
 	}, Serenity.Widget, [$Serenity_IStringValue]);
-	ss.initClass($Serenity_TextAreaEditorOptions, $asm, {});
 	ss.initClass($Serenity_TimeEditor, $asm, {
 		get_value: function() {
 			var hour = Q.toId(this.element.val());
@@ -10401,8 +10357,7 @@
 	ss.setMetadata($Serenity_DateFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_DateTimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Date/Time'), new Serenity.ElementAttribute('<input type="text"/>')], members: [{ attr: [new Serenity.OptionAttribute()], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, sname: 'get_maxValue', returnType: String, params: [] }, setter: { name: 'set_MaxValue', type: 8, sname: 'set_maxValue', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, sname: 'get_minValue', returnType: String, params: [] }, setter: { name: 'set_MinValue', type: 8, sname: 'set_minValue', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'SqlMinMax', type: 16, returnType: Boolean, getter: { name: 'get_SqlMinMax', type: 8, sname: 'get_sqlMinMax', returnType: Boolean, params: [] }, setter: { name: 'set_SqlMinMax', type: 8, sname: 'set_sqlMinMax', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serenity_DateYearEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Yıl'), new Serenity.OptionsTypeAttribute($Serenity_DateYearEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });
-	ss.setMetadata($Serenity_DecimalEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Ondalıklı Sayı'), new Serenity.OptionsTypeAttribute($Serenity_DecimalEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
-	ss.setMetadata($Serenity_DecimalEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalık'), new $Serenity_EditorTypeAttribute('Integer')], name: 'Decimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), getter: { name: 'get_Decimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [ss.Int32]), fget: 'decimals' }, setter: { name: 'set_Decimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [ss.Int32])], returnType: Object, fset: 'decimals' }, fname: 'decimals' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Değer')], name: 'MaxValue', type: 16, returnType: String, getter: { name: 'get_MaxValue', type: 8, params: [], returnType: String, fget: 'maxValue' }, setter: { name: 'set_MaxValue', type: 8, params: [String], returnType: Object, fset: 'maxValue' }, fname: 'maxValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Değer')], name: 'MinValue', type: 16, returnType: String, getter: { name: 'get_MinValue', type: 8, params: [], returnType: String, fget: 'minValue' }, setter: { name: 'set_MinValue', type: 8, params: [String], returnType: Object, fset: 'minValue' }, fname: 'minValue' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Ondalıkları Sıfırla Doldur'), new $Serenity_EditorTypeAttribute('Boolean')], name: 'PadDecimals', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), getter: { name: 'get_PadDecimals', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), fget: 'padDecimals' }, setter: { name: 'set_PadDecimals', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [Boolean])], returnType: Object, fset: 'padDecimals' }, fname: 'padDecimals' }] });
+	ss.setMetadata($Serenity_DecimalEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Ondalıklı Sayı'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_EditorFiltering, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'EditorType', type: 16, returnType: String, getter: { name: 'get_EditorType', type: 8, sname: 'get_editorType', returnType: String, params: [] }, setter: { name: 'set_EditorType', type: 8, sname: 'set_editorType', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UseLike', type: 16, returnType: Boolean, getter: { name: 'get_UseLike', type: 8, sname: 'get_useLike', returnType: Boolean, params: [] }, setter: { name: 'set_UseLike', type: 8, sname: 'set_useLike', returnType: Object, params: [Boolean] } }, { attr: [new Serenity.OptionAttribute()], name: 'UseRelative', type: 16, returnType: Boolean, getter: { name: 'get_UseRelative', type: 8, sname: 'get_useRelative', returnType: Boolean, params: [] }, setter: { name: 'set_UseRelative', type: 8, sname: 'set_useRelative', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serenity_EditorOptionAttribute, { attrAllowMultiple: true });
 	ss.setMetadata($Serenity_EditorTypeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Editör Tipi'), new Serenity.ElementAttribute('<input type="hidden" />')] });
@@ -10436,8 +10391,7 @@
 	ss.setMetadata($Serenity_SelectEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Boş Eleman Metni')], name: 'EmptyOptionText', type: 16, returnType: String, getter: { name: 'get_EmptyOptionText', type: 8, params: [], returnType: String, fget: 'emptyOptionText' }, setter: { name: 'set_EmptyOptionText', type: 8, params: [String], returnType: Object, fset: 'emptyOptionText' }, fname: 'emptyOptionText' }, { attr: [new $Serenity_HiddenAttribute()], name: 'Items', type: 16, returnType: Array, getter: { name: 'get_Items', type: 8, params: [], returnType: Array, fget: 'items' }, setter: { name: 'set_Items', type: 8, params: [Array], returnType: Object, fset: 'items' }, fname: 'items' }] });
 	ss.setMetadata($Serenity_StringEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Metin'), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_TemplatedPanel, { attr: [new Serenity.ElementAttribute('<div/>')] });
-	ss.setMetadata($Serenity_TextAreaEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Çok Satırlı Metin'), new Serenity.OptionsTypeAttribute($Serenity_TextAreaEditorOptions), new Serenity.ElementAttribute('<textarea />')] });
-	ss.setMetadata($Serenity_TextAreaEditorOptions, { members: [{ attr: [new $Serenity_HiddenAttribute()], name: 'Cols', type: 16, returnType: ss.Int32, getter: { name: 'get_Cols', type: 8, params: [], returnType: ss.Int32, fget: 'cols' }, setter: { name: 'set_Cols', type: 8, params: [ss.Int32], returnType: Object, fset: 'cols' }, fname: 'cols' }, { attr: [new $Serenity_HiddenAttribute()], name: 'Rows', type: 16, returnType: ss.Int32, getter: { name: 'get_Rows', type: 8, params: [], returnType: ss.Int32, fget: 'rows' }, setter: { name: 'set_Rows', type: 8, params: [ss.Int32], returnType: Object, fset: 'rows' }, fname: 'rows' }] });
+	ss.setMetadata($Serenity_TextAreaEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Çok Satırlı Metin'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<textarea />')] });
 	ss.setMetadata($Serenity_TimeEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Zaman'), new Serenity.OptionsTypeAttribute(Object), new Serenity.ElementAttribute('<select/>')] });
 	ss.setMetadata($Serenity_URLEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('URL')] });
 	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });

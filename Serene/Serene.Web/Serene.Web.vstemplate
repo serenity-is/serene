@@ -328,13 +328,146 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.tt">ScriptEditorTypes.tt</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.tt">ScriptFormatterTypes.tt</ProjectItem>
+            <Folder Name="ClientTypes" TargetFolderName="ClientTypes">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ClientTypes.tt">ClientTypes.tt</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionCheckEditorAttribute.cs">Administration.PermissionCheckEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionModuleEditorAttribute.cs">Administration.PermissionModuleEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleCheckEditorAttribute.cs">Administration.RoleCheckEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupDetailEditorAttribute.cs">BasicSamples.FilteredLookupDetailEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="ClientTypes.log">ClientTypes.log</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ComponentModel.HtmlBasicContentEditorAttribute.cs">ComponentModel.HtmlBasicContentEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordPanelAttribute.cs">Membership.ChangePasswordPanelAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordPanelAttribute.cs">Membership.ForgotPasswordPanelAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginPanelAttribute.cs">Membership.LoginPanelAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordPanelAttribute.cs">Membership.ResetPasswordPanelAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpPanelAttribute.cs">Membership.SignUpPanelAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerEditorAttribute.cs">Northwind.CustomerEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeFormatterAttribute.cs">Northwind.EmployeeFormatterAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.FreightFormatterAttribute.cs">Northwind.FreightFormatterAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.NotesEditorAttribute.cs">Northwind.NotesEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailsEditorAttribute.cs">Northwind.OrderDetailsEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PhoneEditorAttribute.cs">Northwind.PhoneEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperFormatterAttribute.cs">Northwind.ShipperFormatterAttribute.cs</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CodeGenerationHelpers.ttinclude">CodeGenerationHelpers.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptEditorTypes.cs">ScriptEditorTypes.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="ScriptEditorTypes.log">ScriptEditorTypes.log</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptFormatterTypes.cs">ScriptFormatterTypes.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="ScriptFormatterTypes.log">ScriptFormatterTypes.log</ProjectItem>
+            <Folder Name="MVC" TargetFolderName="MVC">
+              <ProjectItem ReplaceParameters="true" TargetFileName="MVC.tt">MVC.tt</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="MVC.cs">MVC.cs</ProjectItem>
+            </Folder>
+            <Folder Name="ServerTypings" TargetFolderName="ServerTypings">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ServerTypings.tt">ServerTypings.tt</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageColumns.ts">Administration.LanguageColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.ts">Administration.LanguageForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageRow.ts">Administration.LanguageRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageService.ts">Administration.LanguageService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleColumns.ts">Administration.RoleColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.ts">Administration.RoleForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListRequest.ts">Administration.RolePermissionListRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListResponse.ts">Administration.RolePermissionListResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionRow.ts">Administration.RolePermissionRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionService.ts">Administration.RolePermissionService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionUpdateRequest.ts">Administration.RolePermissionUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleRow.ts">Administration.RoleRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleService.ts">Administration.RoleService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationItem.ts">Administration.TranslationItem.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationListRequest.ts">Administration.TranslationListRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationService.ts">Administration.TranslationService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationUpdateRequest.ts">Administration.TranslationUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.ts">Administration.UserForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionListRequest.ts">Administration.UserPermissionListRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionRow.ts">Administration.UserPermissionRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionService.ts">Administration.UserPermissionService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionUpdateRequest.ts">Administration.UserPermissionUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListRequest.ts">Administration.UserRoleListRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListResponse.ts">Administration.UserRoleListResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleRow.ts">Administration.UserRoleRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleService.ts">Administration.UserRoleService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.ts">Administration.UserRoleUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.ts">Administration.UserRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.ts">Administration.UserService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.ts">BasicSamples.BasicSamplesService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.ts">BasicSamples.FilteredLookupInDetailForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.ts">BasicSamples.LookupFilterByMultipleForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrderBulkActionRequest.ts">BasicSamples.OrderBulkActionRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.ts">BasicSamples.OrdersByShipperRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.ts">BasicSamples.OrdersByShipperResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordRequest.ts">Membership.ForgotPasswordRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginForm.ts">Membership.LoginForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.ts">Membership.LoginRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordForm.ts">Membership.ResetPasswordForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordRequest.ts">Membership.ResetPasswordRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.ts">Membership.SignUpForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpRequest.ts">Membership.SignUpRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryColumns.ts">Northwind.CategoryColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.ts">Northwind.CategoryForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangRow.ts">Northwind.CategoryLangRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangService.ts">Northwind.CategoryLangService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryRow.ts">Northwind.CategoryRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryService.ts">Northwind.CategoryService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerColumns.ts">Northwind.CustomerColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoForm.ts">Northwind.CustomerCustomerDemoForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoRow.ts">Northwind.CustomerCustomerDemoRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoService.ts">Northwind.CustomerCustomerDemoService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicForm.ts">Northwind.CustomerDemographicForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicRow.ts">Northwind.CustomerDemographicRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicService.ts">Northwind.CustomerDemographicService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerForm.ts">Northwind.CustomerForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRepresentativesRow.ts">Northwind.CustomerRepresentativesRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRow.ts">Northwind.CustomerRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerService.ts">Northwind.CustomerService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeForm.ts">Northwind.EmployeeForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeRow.ts">Northwind.EmployeeRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeService.ts">Northwind.EmployeeService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryForm.ts">Northwind.EmployeeTerritoryForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryRow.ts">Northwind.EmployeeTerritoryRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryService.ts">Northwind.EmployeeTerritoryService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.Gender.ts">Northwind.Gender.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.NoteRow.ts">Northwind.NoteRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderColumns.ts">Northwind.OrderColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailColumns.ts">Northwind.OrderDetailColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailForm.ts">Northwind.OrderDetailForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailRow.ts">Northwind.OrderDetailRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailService.ts">Northwind.OrderDetailService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderForm.ts">Northwind.OrderForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.ts">Northwind.OrderRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.ts">Northwind.OrderService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.ts">Northwind.OrderShippingState.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductColumns.ts">Northwind.ProductColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductForm.ts">Northwind.ProductForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangRow.ts">Northwind.ProductLangRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangService.ts">Northwind.ProductLangService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLogRow.ts">Northwind.ProductLogRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductRow.ts">Northwind.ProductRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductService.ts">Northwind.ProductService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionColumns.ts">Northwind.RegionColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionForm.ts">Northwind.RegionForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionRow.ts">Northwind.RegionRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionService.ts">Northwind.RegionService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryColumns.ts">Northwind.SalesByCategoryColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryRow.ts">Northwind.SalesByCategoryRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryService.ts">Northwind.SalesByCategoryService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperColumns.ts">Northwind.ShipperColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperForm.ts">Northwind.ShipperForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperRow.ts">Northwind.ShipperRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperService.ts">Northwind.ShipperService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierColumns.ts">Northwind.SupplierColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierForm.ts">Northwind.SupplierForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierRow.ts">Northwind.SupplierRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierService.ts">Northwind.SupplierService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryColumns.ts">Northwind.TerritoryColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryForm.ts">Northwind.TerritoryForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryRow.ts">Northwind.TerritoryRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryService.ts">Northwind.TerritoryService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="ServerTypings.log">ServerTypings.log</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SSDeclarations.ts">SSDeclarations.ts</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="Migrations" TargetFolderName="Migrations">
             <Folder Name="DefaultDB" TargetFolderName="DefaultDB">
@@ -355,10 +488,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
             </Folder>
-          </Folder>
-          <Folder Name="MVC" TargetFolderName="MVC">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MVC.tt">MVC.tt</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MVC.cs">MVC.cs</ProjectItem>
           </Folder>
           <Folder Name="Navigation" TargetFolderName="Navigation">
             <ProjectItem ReplaceParameters="true" TargetFileName="NavigationItems.cs">NavigationItems.cs</ProjectItem>
@@ -429,7 +558,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCity.cs">CustomerCity.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerColumns.cs">CustomerColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCountryLookup.cs">CustomerCountryLookup.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDialog.Template.html">CustomerDialog.Template.html</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEndpoint.cs">CustomerEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerForm.cs">CustomerForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerIndex.cshtml">CustomerIndex.cshtml</ProjectItem>
@@ -438,6 +566,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepository.cs">CustomerRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepresentativesRow.cs">CustomerRepresentativesRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRow.cs">CustomerRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDialog.Template.html">Northwind.CustomerDialog.Template.html</ProjectItem>
           </Folder>
           <Folder Name="CustomerCustomerDemo" TargetFolderName="CustomerCustomerDemo">
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCustomerDemoEndpoint.cs">CustomerCustomerDemoEndpoint.cs</ProjectItem>
@@ -1286,6 +1415,7 @@
         </Folder>
         <Folder Name="site" TargetFolderName="site">
           <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Script.js">Serene.Script.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
           <Folder Name="texts" TargetFolderName="texts">
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
@@ -1303,7 +1433,14 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.css">bootstrap-timepicker.min.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.js">bootstrap-timepicker.min.js</ProjectItem>
         </Folder>
+        <Folder Name="typings" TargetFolderName="typings">
+          <Folder Name="site" TargetFolderName="site" />
+        </Folder>
       </Folder>
+      <Folder Name="tools" TargetFolderName="tools">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <Folder Name="Views" TargetFolderName="Views">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Errors" TargetFolderName="Errors">
@@ -1340,21 +1477,25 @@
       <package id="FluentMigrator.Runner" version="1.6.1" />
       <package id="jQuery" version="2.2.0" />
       <package id="jquery.event.drag" version="2.2.0" />
+      <package id="jquery.TypeScript.DefinitelyTyped" version="2.8.8" />
       <package id="jQuery.UI.Combined" version="1.11.4" />
       <package id="jQuery.Validation" version="1.14.0" />
+      <package id="jquery.validation.TypeScript.DefinitelyTyped" version="0.2.8" />
+      <package id="jqueryui.TypeScript.DefinitelyTyped" version="1.2.9" />
       <package id="Microsoft.AspNet.Mvc" version="5.2.3" />
       <package id="Microsoft.AspNet.Razor" version="3.2.3" />
       <package id="Microsoft.AspNet.WebPages" version="3.2.3" />
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="8.0.2" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="1.9.26" />
-      <package id="Serenity.Core" version="1.9.26" />
-      <package id="Serenity.Data" version="1.9.26" />
-      <package id="Serenity.Data.Entity" version="1.9.26" />
-      <package id="Serenity.Services" version="1.9.26" />
-      <package id="Serenity.Web" version="1.9.26" />
+      <package id="Serenity.CodeGenerator" version="2.0.2" />
+      <package id="Serenity.Core" version="2.0.2" />
+      <package id="Serenity.Data" version="2.0.2" />
+      <package id="Serenity.Data.Entity" version="2.0.2" />
+      <package id="Serenity.Services" version="2.0.2" />
+      <package id="Serenity.Web" version="2.0.2" />
       <package id="toastr" version="2.1.1" />
+      <package id="toastr.TypeScript.DefinitelyTyped" version="0.2.9" />
     </packages>
   </WizardData>
   <WizardExtension>
