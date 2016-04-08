@@ -29,27 +29,27 @@
         export const localTextPrefix = 'Northwind.EmployeeTerritory';
 
         export namespace Fields {
-            export declare const EmployeeID: 'EmployeeID';
-            export declare const TerritoryID: 'TerritoryID';
-            export declare const EmployeeLastName: 'EmployeeLastName';
-            export declare const EmployeeFirstName: 'EmployeeFirstName';
-            export declare const EmployeeTitle: 'EmployeeTitle';
-            export declare const EmployeeTitleOfCourtesy: 'EmployeeTitleOfCourtesy';
-            export declare const EmployeeBirthDate: 'EmployeeBirthDate';
-            export declare const EmployeeHireDate: 'EmployeeHireDate';
-            export declare const EmployeeAddress: 'EmployeeAddress';
-            export declare const EmployeeCity: 'EmployeeCity';
-            export declare const EmployeeRegion: 'EmployeeRegion';
-            export declare const EmployeePostalCode: 'EmployeePostalCode';
-            export declare const EmployeeCountry: 'EmployeeCountry';
-            export declare const EmployeeHomePhone: 'EmployeeHomePhone';
-            export declare const EmployeeExtension: 'EmployeeExtension';
-            export declare const EmployeePhoto: 'EmployeePhoto';
-            export declare const EmployeeNotes: 'EmployeeNotes';
-            export declare const EmployeeReportsTo: 'EmployeeReportsTo';
-            export declare const EmployeePhotoPath: 'EmployeePhotoPath';
-            export declare const TerritoryTerritoryDescription: 'TerritoryTerritoryDescription';
-            export declare const TerritoryRegionID: 'TerritoryRegionID';
+            export declare const EmployeeID: string;
+            export declare const TerritoryID: string;
+            export declare const EmployeeLastName: string;
+            export declare const EmployeeFirstName: string;
+            export declare const EmployeeTitle: string;
+            export declare const EmployeeTitleOfCourtesy: string;
+            export declare const EmployeeBirthDate: string;
+            export declare const EmployeeHireDate: string;
+            export declare const EmployeeAddress: string;
+            export declare const EmployeeCity: string;
+            export declare const EmployeeRegion: string;
+            export declare const EmployeePostalCode: string;
+            export declare const EmployeeCountry: string;
+            export declare const EmployeeHomePhone: string;
+            export declare const EmployeeExtension: string;
+            export declare const EmployeePhoto: string;
+            export declare const EmployeeNotes: string;
+            export declare const EmployeeReportsTo: string;
+            export declare const EmployeePhotoPath: string;
+            export declare const TerritoryTerritoryDescription: string;
+            export declare const TerritoryRegionID: string;
         }
 
         ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(x => (<any>Fields)[x] = x);

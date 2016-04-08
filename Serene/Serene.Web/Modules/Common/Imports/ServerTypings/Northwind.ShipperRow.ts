@@ -16,9 +16,9 @@
         }
 
         export namespace Fields {
-            export declare const ShipperID: 'ShipperID';
-            export declare const CompanyName: 'CompanyName';
-            export declare const Phone: 'Phone';
+            export declare const ShipperID: string;
+            export declare const CompanyName: string;
+            export declare const Phone: string;
         }
 
         ['ShipperID', 'CompanyName', 'Phone'].forEach(x => (<any>Fields)[x] = x);

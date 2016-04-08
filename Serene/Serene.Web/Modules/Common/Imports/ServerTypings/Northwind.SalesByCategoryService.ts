@@ -5,7 +5,7 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SalesByCategoryRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const List: 'Northwind/SalesByCategory/List';
+            export declare const List: string;
         }
 
         ['List'].forEach(x => {

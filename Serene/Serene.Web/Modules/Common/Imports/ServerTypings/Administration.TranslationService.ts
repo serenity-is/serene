@@ -6,8 +6,8 @@
         export declare function Update(request: TranslationUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const List: 'Administration/Translation/List';
-            export declare const Update: 'Administration/Translation/Update';
+            export declare const List: string;
+            export declare const Update: string;
         }
 
         ['List', 'Update'].forEach(x => {

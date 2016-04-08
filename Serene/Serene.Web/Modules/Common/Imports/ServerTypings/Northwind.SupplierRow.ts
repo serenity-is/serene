@@ -25,18 +25,18 @@
         }
 
         export namespace Fields {
-            export declare const SupplierID: 'SupplierID';
-            export declare const CompanyName: 'CompanyName';
-            export declare const ContactName: 'ContactName';
-            export declare const ContactTitle: 'ContactTitle';
-            export declare const Address: 'Address';
-            export declare const City: 'City';
-            export declare const Region: 'Region';
-            export declare const PostalCode: 'PostalCode';
-            export declare const Country: 'Country';
-            export declare const Phone: 'Phone';
-            export declare const Fax: 'Fax';
-            export declare const HomePage: 'HomePage';
+            export declare const SupplierID: string;
+            export declare const CompanyName: string;
+            export declare const ContactName: string;
+            export declare const ContactTitle: string;
+            export declare const Address: string;
+            export declare const City: string;
+            export declare const Region: string;
+            export declare const PostalCode: string;
+            export declare const Country: string;
+            export declare const Phone: string;
+            export declare const Fax: string;
+            export declare const HomePage: string;
         }
 
         ['SupplierID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'HomePage'].forEach(x => (<any>Fields)[x] = x);

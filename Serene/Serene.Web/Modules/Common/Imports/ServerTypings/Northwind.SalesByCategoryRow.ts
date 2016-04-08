@@ -11,10 +11,10 @@
         export const localTextPrefix = 'Northwind.SalesByCategory';
 
         export namespace Fields {
-            export declare const CategoryId: 'CategoryId';
-            export declare const CategoryName: 'CategoryName';
-            export declare const ProductName: 'ProductName';
-            export declare const ProductSales: 'ProductSales';
+            export declare const CategoryId: string;
+            export declare const CategoryName: string;
+            export declare const ProductName: string;
+            export declare const ProductSales: string;
         }
 
         ['CategoryId', 'CategoryName', 'ProductName', 'ProductSales'].forEach(x => (<any>Fields)[x] = x);

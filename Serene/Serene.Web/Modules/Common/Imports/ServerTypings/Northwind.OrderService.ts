@@ -9,11 +9,11 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<OrderRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Create: 'Northwind/Order/Create';
-            export declare const Update: 'Northwind/Order/Update';
-            export declare const Delete: 'Northwind/Order/Delete';
-            export declare const Retrieve: 'Northwind/Order/Retrieve';
-            export declare const List: 'Northwind/Order/List';
+            export declare const Create: string;
+            export declare const Update: string;
+            export declare const Delete: string;
+            export declare const Retrieve: string;
+            export declare const List: string;
         }
 
         ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(x => {

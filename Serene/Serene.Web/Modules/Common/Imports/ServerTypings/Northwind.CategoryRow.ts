@@ -17,10 +17,10 @@
         }
 
         export namespace Fields {
-            export declare const CategoryID: 'CategoryID';
-            export declare const CategoryName: 'CategoryName';
-            export declare const Description: 'Description';
-            export declare const Picture: 'Picture';
+            export declare const CategoryID: string;
+            export declare const CategoryName: string;
+            export declare const Description: string;
+            export declare const Picture: string;
         }
 
         ['CategoryID', 'CategoryName', 'Description', 'Picture'].forEach(x => (<any>Fields)[x] = x);

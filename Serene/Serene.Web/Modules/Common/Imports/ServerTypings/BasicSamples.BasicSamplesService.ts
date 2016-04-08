@@ -6,8 +6,8 @@
         export declare function OrderBulkAction(request: OrderBulkActionRequest, onSuccess?: (response: Serenity.ServiceResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const OrdersByShipper: 'BasicSamples/BasicSamples/OrdersByShipper';
-            export declare const OrderBulkAction: 'BasicSamples/BasicSamples/OrderBulkAction';
+            export declare const OrdersByShipper: string;
+            export declare const OrderBulkAction: string;
         }
 
         ['OrdersByShipper', 'OrderBulkAction'].forEach(x => {

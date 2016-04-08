@@ -6,8 +6,8 @@
         export declare function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Update: 'Administration/UserRole/Update';
-            export declare const List: 'Administration/UserRole/List';
+            export declare const Update: string;
+            export declare const List: string;
         }
 
         ['Update', 'List'].forEach(x => {

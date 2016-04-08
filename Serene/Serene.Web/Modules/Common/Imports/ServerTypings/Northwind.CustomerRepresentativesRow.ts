@@ -10,9 +10,9 @@
         export const localTextPrefix = 'CustomerRepresentatives';
 
         export namespace Fields {
-            export declare const RepresentativeId: 'RepresentativeId';
-            export declare const CustomerId: 'CustomerId';
-            export declare const EmployeeId: 'EmployeeId';
+            export declare const RepresentativeId: string;
+            export declare const CustomerId: string;
+            export declare const EmployeeId: string;
         }
 
         ['RepresentativeId', 'CustomerId', 'EmployeeId'].forEach(x => (<any>Fields)[x] = x);

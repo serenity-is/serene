@@ -16,9 +16,9 @@
         }
 
         export namespace Fields {
-            export declare const Id: 'Id';
-            export declare const LanguageId: 'LanguageId';
-            export declare const LanguageName: 'LanguageName';
+            export declare const Id: string;
+            export declare const LanguageId: string;
+            export declare const LanguageName: string;
         }
 
         ['Id', 'LanguageId', 'LanguageName'].forEach(x => (<any>Fields)[x] = x);

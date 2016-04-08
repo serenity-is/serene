@@ -13,11 +13,11 @@
         export const localTextPrefix = 'Northwind.CategoryLang';
 
         export namespace Fields {
-            export declare const Id: 'Id';
-            export declare const CategoryId: 'CategoryId';
-            export declare const LanguageId: 'LanguageId';
-            export declare const CategoryName: 'CategoryName';
-            export declare const Description: 'Description';
+            export declare const Id: string;
+            export declare const CategoryId: string;
+            export declare const LanguageId: string;
+            export declare const CategoryName: string;
+            export declare const Description: string;
         }
 
         ['Id', 'CategoryId', 'LanguageId', 'CategoryName', 'Description'].forEach(x => (<any>Fields)[x] = x);

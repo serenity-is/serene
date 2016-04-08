@@ -15,13 +15,13 @@
         export const localTextPrefix = 'Northwind.Note';
 
         export namespace Fields {
-            export declare const NoteId: 'NoteId';
-            export declare const EntityType: 'EntityType';
-            export declare const EntityId: 'EntityId';
-            export declare const Text: 'Text';
-            export declare const InsertUserId: 'InsertUserId';
-            export declare const InsertDate: 'InsertDate';
-            export declare const InsertUserDisplayName: 'InsertUserDisplayName';
+            export declare const NoteId: string;
+            export declare const EntityType: string;
+            export declare const EntityId: string;
+            export declare const Text: string;
+            export declare const InsertUserId: string;
+            export declare const InsertDate: string;
+            export declare const InsertUserDisplayName: string;
         }
 
         ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(x => (<any>Fields)[x] = x);

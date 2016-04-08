@@ -24,21 +24,21 @@
         export const localTextPrefix = 'Administration.User';
 
         export namespace Fields {
-            export declare const UserId: 'UserId';
-            export declare const Username: 'Username';
-            export declare const Source: 'Source';
-            export declare const PasswordHash: 'PasswordHash';
-            export declare const PasswordSalt: 'PasswordSalt';
-            export declare const DisplayName: 'DisplayName';
-            export declare const Email: 'Email';
-            export declare const LastDirectoryUpdate: 'LastDirectoryUpdate';
-            export declare const IsActive: 'IsActive';
-            export declare const Password: 'Password';
-            export declare const PasswordConfirm: 'PasswordConfirm';
-            export declare const InsertUserId: 'InsertUserId';
-            export declare const InsertDate: 'InsertDate';
-            export declare const UpdateUserId: 'UpdateUserId';
-            export declare const UpdateDate: 'UpdateDate';
+            export declare const UserId: string;
+            export declare const Username: string;
+            export declare const Source: string;
+            export declare const PasswordHash: string;
+            export declare const PasswordSalt: string;
+            export declare const DisplayName: string;
+            export declare const Email: string;
+            export declare const LastDirectoryUpdate: string;
+            export declare const IsActive: string;
+            export declare const Password: string;
+            export declare const PasswordConfirm: string;
+            export declare const InsertUserId: string;
+            export declare const InsertDate: string;
+            export declare const UpdateUserId: string;
+            export declare const UpdateDate: string;
         }
 
         ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);

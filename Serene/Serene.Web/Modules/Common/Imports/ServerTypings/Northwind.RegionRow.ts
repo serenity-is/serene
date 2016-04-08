@@ -15,8 +15,8 @@
         }
 
         export namespace Fields {
-            export declare const RegionID: 'RegionID';
-            export declare const RegionDescription: 'RegionDescription';
+            export declare const RegionID: string;
+            export declare const RegionDescription: string;
         }
 
         ['RegionID', 'RegionDescription'].forEach(x => (<any>Fields)[x] = x);

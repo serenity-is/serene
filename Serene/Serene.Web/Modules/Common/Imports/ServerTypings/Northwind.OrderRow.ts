@@ -41,34 +41,34 @@
         }
 
         export namespace Fields {
-            export declare const OrderID: 'OrderID';
-            export declare const CustomerID: 'CustomerID';
-            export declare const EmployeeID: 'EmployeeID';
-            export declare const OrderDate: 'OrderDate';
-            export declare const RequiredDate: 'RequiredDate';
-            export declare const ShippedDate: 'ShippedDate';
-            export declare const ShipVia: 'ShipVia';
-            export declare const Freight: 'Freight';
-            export declare const ShipName: 'ShipName';
-            export declare const ShipAddress: 'ShipAddress';
-            export declare const ShipCity: 'ShipCity';
-            export declare const ShipRegion: 'ShipRegion';
-            export declare const ShipPostalCode: 'ShipPostalCode';
-            export declare const ShipCountry: 'ShipCountry';
-            export declare const CustomerCompanyName: 'CustomerCompanyName';
-            export declare const CustomerContactName: 'CustomerContactName';
-            export declare const CustomerContactTitle: 'CustomerContactTitle';
-            export declare const CustomerCity: 'CustomerCity';
-            export declare const CustomerRegion: 'CustomerRegion';
-            export declare const CustomerCountry: 'CustomerCountry';
-            export declare const CustomerPhone: 'CustomerPhone';
-            export declare const CustomerFax: 'CustomerFax';
-            export declare const EmployeeFullName: 'EmployeeFullName';
-            export declare const EmployeeGender: 'EmployeeGender';
-            export declare const ShipViaCompanyName: 'ShipViaCompanyName';
-            export declare const ShipViaPhone: 'ShipViaPhone';
-            export declare const ShippingState: 'ShippingState';
-            export declare const DetailList: 'DetailList';
+            export declare const OrderID: string;
+            export declare const CustomerID: string;
+            export declare const EmployeeID: string;
+            export declare const OrderDate: string;
+            export declare const RequiredDate: string;
+            export declare const ShippedDate: string;
+            export declare const ShipVia: string;
+            export declare const Freight: string;
+            export declare const ShipName: string;
+            export declare const ShipAddress: string;
+            export declare const ShipCity: string;
+            export declare const ShipRegion: string;
+            export declare const ShipPostalCode: string;
+            export declare const ShipCountry: string;
+            export declare const CustomerCompanyName: string;
+            export declare const CustomerContactName: string;
+            export declare const CustomerContactTitle: string;
+            export declare const CustomerCity: string;
+            export declare const CustomerRegion: string;
+            export declare const CustomerCountry: string;
+            export declare const CustomerPhone: string;
+            export declare const CustomerFax: string;
+            export declare const EmployeeFullName: string;
+            export declare const EmployeeGender: string;
+            export declare const ShipViaCompanyName: string;
+            export declare const ShipViaPhone: string;
+            export declare const ShippingState: string;
+            export declare const DetailList: string;
         }
 
         ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(x => (<any>Fields)[x] = x);

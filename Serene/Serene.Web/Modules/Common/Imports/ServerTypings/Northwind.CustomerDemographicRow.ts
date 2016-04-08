@@ -11,9 +11,9 @@
         export const localTextPrefix = 'Northwind.CustomerDemographic';
 
         export namespace Fields {
-            export declare const ID: 'ID';
-            export declare const CustomerTypeID: 'CustomerTypeID';
-            export declare const CustomerDesc: 'CustomerDesc';
+            export declare const ID: string;
+            export declare const CustomerTypeID: string;
+            export declare const CustomerDesc: string;
         }
 
         ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(x => (<any>Fields)[x] = x);

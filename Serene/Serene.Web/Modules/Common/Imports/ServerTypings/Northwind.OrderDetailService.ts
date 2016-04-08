@@ -6,8 +6,8 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<OrderDetailRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Retrieve: 'Northwind/OrderDetail/Retrieve';
-            export declare const List: 'Northwind/OrderDetail/List';
+            export declare const Retrieve: string;
+            export declare const List: string;
         }
 
         ['Retrieve', 'List'].forEach(x => {

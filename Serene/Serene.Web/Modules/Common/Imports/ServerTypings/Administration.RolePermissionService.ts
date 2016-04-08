@@ -6,8 +6,8 @@
         export declare function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Update: 'Administration/RolePermission/Update';
-            export declare const List: 'Administration/RolePermission/List';
+            export declare const Update: string;
+            export declare const List: string;
         }
 
         ['Update', 'List'].forEach(x => {

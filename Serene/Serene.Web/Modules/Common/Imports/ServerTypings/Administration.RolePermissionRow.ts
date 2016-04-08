@@ -12,10 +12,10 @@
         export const localTextPrefix = 'Administration.RolePermission';
 
         export namespace Fields {
-            export declare const RolePermissionId: 'RolePermissionId';
-            export declare const RoleId: 'RoleId';
-            export declare const PermissionKey: 'PermissionKey';
-            export declare const RoleRoleName: 'RoleRoleName';
+            export declare const RolePermissionId: string;
+            export declare const RoleId: string;
+            export declare const PermissionKey: string;
+            export declare const RoleRoleName: string;
         }
 
         ['RolePermissionId', 'RoleId', 'PermissionKey', 'RoleRoleName'].forEach(x => (<any>Fields)[x] = x);

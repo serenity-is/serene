@@ -10,12 +10,12 @@
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<UserRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Create: 'Administration/User/Create';
-            export declare const Update: 'Administration/User/Update';
-            export declare const Delete: 'Administration/User/Delete';
-            export declare const Undelete: 'Administration/User/Undelete';
-            export declare const Retrieve: 'Administration/User/Retrieve';
-            export declare const List: 'Administration/User/List';
+            export declare const Create: string;
+            export declare const Update: string;
+            export declare const Delete: string;
+            export declare const Undelete: string;
+            export declare const Retrieve: string;
+            export declare const List: string;
         }
 
         ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(x => {

@@ -8,10 +8,10 @@
         export declare function ListPermissionKeys(request: Serenity.ServiceRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
-            export declare const Update: 'Administration/UserPermission/Update';
-            export declare const List: 'Administration/UserPermission/List';
-            export declare const ListRolePermissions: 'Administration/UserPermission/ListRolePermissions';
-            export declare const ListPermissionKeys: 'Administration/UserPermission/ListPermissionKeys';
+            export declare const Update: string;
+            export declare const List: string;
+            export declare const ListRolePermissions: string;
+            export declare const ListPermissionKeys: string;
         }
 
         ['Update', 'List', 'ListRolePermissions', 'ListPermissionKeys'].forEach(x => {

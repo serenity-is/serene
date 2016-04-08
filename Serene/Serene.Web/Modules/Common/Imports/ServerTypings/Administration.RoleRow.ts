@@ -15,8 +15,8 @@
         }
 
         export namespace Fields {
-            export declare const RoleId: 'RoleId';
-            export declare const RoleName: 'RoleName';
+            export declare const RoleId: string;
+            export declare const RoleName: string;
         }
 
         ['RoleId', 'RoleName'].forEach(x => (<any>Fields)[x] = x);
