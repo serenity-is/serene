@@ -221,28 +221,20 @@ namespace Serene.Administration
                 else
                     grant = grant.Value ^ checkedOrPartial;
 
-                view.BeginUpdate();
-                try
+                if (item.IsGroup)
                 {
-                    if (item.IsGroup)
-                    {
-                        foreach (var d in GetDescendants(item))
-                            if (d.GrantRevoke != grant)
-                            {
-                                d.GrantRevoke = grant;
-                                view.UpdateItem(d.Key, d);
-                            }
-                    }
-                    else if (item.GrantRevoke != grant)
-                    {
-                        item.GrantRevoke = grant;
-                        view.UpdateItem(item.Key, item);
-                    }
+                    foreach (var d in GetDescendants(item))
+                        if (d.GrantRevoke != grant)
+                        {
+                            d.GrantRevoke = grant;
+                        }
                 }
-                finally
+                else if (item.GrantRevoke != grant)
                 {
-                    view.EndUpdate();
+                    item.GrantRevoke = grant;
                 }
+
+                slickGrid.Invalidate();
             }
         }
 
