@@ -1,11 +1,11 @@
-﻿{
+{
     "compileOnSave": true,
     "compilerOptions": {
         "preserveConstEnums": true,
         "experimentalDecorators": true,
-        "declaration": true,
+        "declaration": false,
         "emitBOM": true,
         "sourceMap": true,
-        "outFile": "Scripts/site/Serene.Web.js"
+        "outFile": "ScriptTests/Serene.Test.js"
     }
 }

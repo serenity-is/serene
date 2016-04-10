@@ -103,6 +103,9 @@
     <Compile Include="Imports\ServerImports\Administration.TranslationUpdateRequest.cs">
       <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ServerImports\Administration.UserColumns.cs">
+      <DependentUpon>ServerImports.tt</DependentUpon>
+    </Compile>
     <Compile Include="Imports\ServerImports\Administration.UserForm.cs">
       <DependentUpon>ServerImports.tt</DependentUpon>
     </Compile>
