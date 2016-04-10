@@ -3,6 +3,101 @@
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserDialog = (function (_super) {
+            __extends(UserDialog, _super);
+            function UserDialog() {
+                var _this = this;
+                _super.call(this);
+                this.form = new Administration.UserForm(this.idPrefix);
+                this.form.Password().addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.Password().get_value().length < 7)
+                        return "Password must be at least 7 characters!";
+                });
+                this.form.PasswordConfirm().addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.Password().get_value() != _this.form.PasswordConfirm().get_value())
+                        return "The passwords entered doesn't match!";
+                });
+            }
+            UserDialog.prototype.getFormKey = function () { return Administration.UserForm.formKey; };
+            UserDialog.prototype.getIdProperty = function () { return Administration.UserRow.idProperty; };
+            UserDialog.prototype.getIsActiveProperty = function () { return Administration.UserRow.isActiveProperty; };
+            UserDialog.prototype.getLocalTextPrefix = function () { return Administration.UserRow.localTextPrefix; };
+            UserDialog.prototype.getNameProperty = function () { return Administration.UserRow.nameProperty; };
+            UserDialog.prototype.getService = function () { return Administration.UserService.baseUrl; };
+            UserDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                buttons.push({
+                    title: Q.text('Site.UserDialog.EditRolesButton'),
+                    cssClass: 'users-button',
+                    onClick: function () {
+                        new Administration.UserRoleDialog({
+                            userID: _this.entity.UserId,
+                            username: _this.entity.Username
+                        }).dialogOpen();
+                    }
+                });
+                buttons.push({
+                    title: Q.text('Site.UserDialog.EditPermissionsButton'),
+                    cssClass: 'lock-button',
+                    onClick: function () {
+                        new Administration.UserPermissionDialog({
+                            userID: _this.entity.UserId,
+                            username: _this.entity.Username
+                        }).dialogOpen();
+                    }
+                });
+                return buttons;
+            };
+            UserDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.toolbar.findButton('users-button').toggleClass('disabled', this.isNewOrDeleted());
+                this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+            };
+            UserDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserDialog);
+            return UserDialog;
+        }(Serenity.EntityDialog));
+        Administration.UserDialog = UserDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserGrid = (function (_super) {
+            __extends(UserGrid, _super);
+            function UserGrid(container) {
+                _super.call(this, container);
+            }
+            UserGrid.prototype.getColumnsKey = function () { return "Administration.User"; };
+            UserGrid.prototype.getDialogType = function () { return Administration.UserDialog; };
+            UserGrid.prototype.getIdProperty = function () { return Administration.UserRow.idProperty; };
+            UserGrid.prototype.getIsActiveProperty = function () { return Administration.UserRow.isActiveProperty; };
+            UserGrid.prototype.getLocalTextPrefix = function () { return Administration.UserRow.localTextPrefix; };
+            UserGrid.prototype.getService = function () { return Administration.UserService.baseUrl; };
+            UserGrid.prototype.getDefaultSortBy = function () {
+                return [Administration.UserRow.Fields.Username];
+            };
+            UserGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserGrid);
+            return UserGrid;
+        }(Serenity.EntityGrid));
+        Administration.UserGrid = UserGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var Administration;

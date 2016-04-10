@@ -122,13 +122,6 @@ declare namespace Serene.Administration {
         saveChanges(language: string): RSVP<any>;
     }
 
-    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
-    }
-
-    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
-        constructor(container: JQuery);
-    }
-
     class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
         constructor(opt: UserPermissionDialogOptions);
     }

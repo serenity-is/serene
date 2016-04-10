@@ -1,9 +1,16 @@
-﻿
+﻿using Serenity;
+using System.Runtime.CompilerServices;
+
 namespace Serene.Administration
 {
-    using jQueryApi;
-    using Serenity;
-    using System.Collections.Generic;
+    [Imported]
+    public class UserDialog : EntityDialog<UserRow>
+    {
+    }
+
+    /* 
+    This class has been ported to TypeScript. See UserDialog.ts
+    Code below is only for reference purposes who wants to use Saltaralle 
 
     [IdProperty("UserId"), NameProperty("Username"), IsActiveProperty("IsActive")]
     [FormKey("Administration.User"), LocalTextPrefix("Administration.User"), Service("Administration/User")]
@@ -75,4 +82,5 @@ namespace Serene.Administration
             toolbar.FindButton("lock-button").ToggleClass("disabled", this.IsNewOrDeleted);
         }
     }
+    */
 }

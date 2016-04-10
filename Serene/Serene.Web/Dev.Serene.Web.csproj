@@ -1167,6 +1167,8 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1534,6 +1536,7 @@
     <Compile Include="Modules\Administration\User\Authentication\LdapDirectoryService.cs" />
     <Compile Include="Modules\Administration\User\Authentication\IDirectoryService.cs" />
     <Compile Include="Modules\Administration\User\Authentication\ScriptUserDefinition.cs" />
+    <Compile Include="Modules\Administration\User\UserColumns.cs" />
     <Compile Include="Modules\AdminLTE\AdminLTEController.cs" />
     <Compile Include="Modules\AdminLTE\Charts\ChartsController.cs" />
     <Compile Include="Modules\AdminLTE\Examples\ExamplesController.cs" />

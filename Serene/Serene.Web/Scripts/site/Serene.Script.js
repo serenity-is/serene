@@ -28,11 +28,11 @@
 		this.$6$CancelTitleField = null;
 		Serenity.TemplatedDialog.call(this, null);
 		var self = this;
-		this.byId$1('ProgressBar').progressbar({
+		this.ById('ProgressBar').progressbar({
 			max: 100,
 			value: 0,
 			change: function(e, v) {
-				self.byId$1('ProgressLabel').text(self.get_value() + ' / ' + self.get_max());
+				self.ById('ProgressLabel').text(self.get_value() + ' / ' + self.get_max());
 			}
 		});
 	};
@@ -217,7 +217,7 @@
 	var $Serene_Administration_RolePermissionDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'), { showRevoke: false });
+		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.ById('Permissions'), { showRevoke: false });
 		Q.serviceRequest('Administration/RolePermission/List', { RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
 				return { PermissionKey: x };
@@ -247,27 +247,6 @@
 	$Serene_Administration_TranslationGrid.__typeName = 'Serene.Administration.TranslationGrid';
 	global.Serene.Administration.TranslationGrid = $Serene_Administration_TranslationGrid;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserDialog
-	var $Serene_Administration_UserDialog = function() {
-		this.$form = null;
-		Serenity.EntityDialog.call(this);
-		this.$form = new $Serene_Administration_UserForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('Password', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e) {
-			if (this.$form.w('Password', Serenity.PasswordEditor).get_value().length < 7) {
-				return 'Password must be at least 7 characters!';
-			}
-			return null;
-		}));
-		Serenity.VX.addValidationRule(this.$form.w('PasswordConfirm', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e1) {
-			if (!ss.referenceEquals(this.$form.w('Password', Serenity.PasswordEditor).get_value(), this.$form.w('PasswordConfirm', Serenity.PasswordEditor).get_value())) {
-				return "The passwords entered doesn't match!";
-			}
-			return null;
-		}));
-	};
-	$Serene_Administration_UserDialog.__typeName = 'Serene.Administration.UserDialog';
-	global.Serene.Administration.UserDialog = $Serene_Administration_UserDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserForm
 	var $Serene_Administration_UserForm = function(idPrefix) {
 		this.$3$UsernameField = null;
@@ -281,18 +260,11 @@
 	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
 	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserGrid
-	var $Serene_Administration_UserGrid = function(container) {
-		Serenity.EntityGrid.call(this, container);
-	};
-	$Serene_Administration_UserGrid.__typeName = 'Serene.Administration.UserGrid';
-	global.Serene.Administration.UserGrid = $Serene_Administration_UserGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserPermissionDialog
 	var $Serene_Administration_UserPermissionDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.byId$1('Permissions'), { showRevoke: true });
+		this.$permissions = new $Serene_Administration_PermissionCheckEditor(this.ById('Permissions'), { showRevoke: true });
 		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(response.Entities);
 		}), null);
@@ -307,7 +279,7 @@
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId$1('Roles'));
+		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.ById('Roles'));
 		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
 				return x.toString();
@@ -373,7 +345,7 @@
 	var $Serene_BasicSamples_FilteredLookupInDetailDialog = function() {
 		this.$form = null;
 		Serenity.EntityDialog.call(this);
-		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.get_idPrefix());
+		this.$form = new $Serene_BasicSamples_FilteredLookupInDetailForm(this.idPrefix);
 		Serenity.WX.change(this.$form.w('CategoryID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
 			this.$form.w('DetailList', Serene.BasicSamples.FilteredLookupDetailEditor).set_categoryID(Q.toId(this.$form.w('CategoryID', Serenity.LookupEditor).get_value()));
 		}));
@@ -700,20 +672,20 @@
 	var $Serene_Membership_ChangePasswordPanel = function(container) {
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
-		this.$form = new $Serene_Membership_ChangePasswordForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e) {
+		this.$form = new $Serene_Membership_ChangePasswordForm(this.idPrefix);
+		this.$form.w('NewPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
 			if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
 				return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e1) {
+		this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
 			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));
-		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -744,7 +716,7 @@
 	// Serene.Membership.ForgotPasswordPanel
 	var $Serene_Membership_ForgotPasswordPanel = function(container) {
 		Serenity.PropertyPanel.call(this, container);
-		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -776,7 +748,7 @@
 	// Serene.Membership.LoginPanel
 	var $Serene_Membership_LoginPanel = function(container) {
 		Serenity.PropertyPanel.call(this, container);
-		this.byId$1('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+		this.ById('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -818,26 +790,26 @@
 	var $Serene_Membership_ResetPasswordPanel = function(container) {
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
-		this.$form = new $Serene_Membership_ResetPasswordForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('NewPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e) {
+		this.$form = new $Serene_Membership_ResetPasswordForm(this.idPrefix);
+		this.$form.w('NewPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
 			if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
 				return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.get_uniqueName(), ss.mkdel(this, function(e1) {
+		this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
 			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));
-		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
 			}
 			var request = this.getSaveEntity();
-			request.Token = this.byId$1('Token').val();
+			request.Token = this.ById('Token').val();
 			Q.serviceCall({
 				url: Q.resolveUrl('~/Account/ResetPassword'),
 				request: request,
@@ -868,20 +840,20 @@
 	var $Serene_Membership_SignUpPanel = function(container) {
 		this.$form = null;
 		Serenity.PropertyPanel.call(this, container);
-		this.$form = new $Serene_Membership_SignUpForm(this.get_idPrefix());
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmPassword', Serenity.PasswordEditor), this.uniqueName, ss.mkdel(this, function(e) {
+		this.$form = new $Serene_Membership_SignUpForm(this.idPrefix);
+		this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
 			if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('Password', Serenity.PasswordEditor).get_value())) {
 				return Q.text('Validation.PasswordConfirm');
 			}
 			return null;
 		}));
-		Serenity.VX.addValidationRule(this.$form.w('ConfirmEmail', Serenity.EmailEditor), this.uniqueName, ss.mkdel(this, function(e1) {
+		this.$form.w('ConfirmEmail', Serenity.EmailEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
 			if (!ss.referenceEquals(this.$form.w('ConfirmEmail', Serenity.EmailEditor).get_value(), this.$form.w('Email', Serenity.EmailEditor).get_value())) {
 				return Q.text('Validation.EmailConfirm');
 			}
 			return null;
 		}));
-		this.byId$1('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -974,9 +946,9 @@
 		this.$loadedState = null;
 		this.$ordersGrid = null;
 		Serenity.EntityDialog.call(this);
-		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.byId$1('OrdersGrid'));
+		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.ById('OrdersGrid'));
 		Serenity.FLX.flexHeightOnly(this.$ordersGrid.get_element(), 1);
-		this.byId$1('NoteList').closest('.field').hide().end().appendTo(this.byId$1('TabNotes'));
+		this.ById('NoteList').closest('.field').hide().end().appendTo(this.ById('TabNotes'));
 		$Serene_DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
 			return !ss.referenceEquals(this.$getSaveState(), this.$loadedState);
 		}));
@@ -1119,7 +1091,7 @@
 	var $Serene_Northwind_NoteDialog = function() {
 		this.okClick = null;
 		Serenity.TemplatedDialog.call(this);
-		var $t2 = this.byId$1('Text');
+		var $t2 = this.ById('Text');
 		var $t1 = Serenity.HtmlContentEditorOptions.$ctor();
 		$t1.rows = 12;
 		new $Serenity_HtmlBasicContentEditor($t2, $t1);
@@ -1133,7 +1105,7 @@
 		this.$6$IsDirtyField = false;
 		this.$6$OnChangeField = null;
 		Serenity.TemplatedWidget.call(this, container);
-		var $t2 = this.byId$1('Toolbar');
+		var $t2 = this.ById('Toolbar');
 		var $t1 = [];
 		$t1.push({ title: 'Add Note', cssClass: 'add-button', onClick: ss.mkdel(this, function(e) {
 			e.preventDefault();
@@ -1148,14 +1120,14 @@
 	var $Serene_Northwind_OrderDetailDialog = function() {
 		this.form = null;
 		$Serene_Common_GridEditorDialog.call(this);
-		this.form = new $Serene_Northwind_OrderDetailForm(this.get_idPrefix());
+		this.form = new $Serene_Northwind_OrderDetailForm(this.idPrefix);
 		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
 			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
 			if (ss.isValue(productID)) {
 				this.form.w('UnitPrice', Serenity.DecimalEditor).set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
 			}
 		}));
-		Serenity.VX.addValidationRule(this.form.w('Discount', Serenity.DecimalEditor), this.uniqueName, ss.mkdel(this, function(e1) {
+		this.form.w('Discount', Serenity.DecimalEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
 			if (ss.isValue(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) && ss.isValue(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1()) && ss.isValue(this.form.w('Discount', Serenity.DecimalEditor).get_value()) && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > 0 && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > ss.unbox(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) * ss.unbox(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1())) {
 				return "Discount can't be higher than total price!";
 			}
@@ -1187,7 +1159,7 @@
 	var $Serene_Northwind_OrderDialog = function() {
 		this.form = null;
 		Serenity.EntityDialog.call(this);
-		this.form = new $Serene_Northwind_OrderForm(this.get_idPrefix());
+		this.form = new $Serene_Northwind_OrderForm(this.idPrefix);
 	};
 	$Serene_Northwind_OrderDialog.__typeName = 'Serene.Northwind.OrderDialog';
 	global.Serene.Northwind.OrderDialog = $Serene_Northwind_OrderDialog;
@@ -1232,7 +1204,7 @@
 	var $Serene_Northwind_PhoneEditor = function(input) {
 		this.$5$MultipleField = false;
 		Serenity.StringEditor.call(this, input);
-		Serenity.VX.addValidationRule(this, this.uniqueName, ss.mkdel(this, function(e) {
+		this.addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
 			var value = Q.trimToNull(this.get_value());
 			if (ss.isNullOrUndefined(value)) {
 				return null;
@@ -1496,16 +1468,16 @@
 			this.$6$CancelledField = value;
 		},
 		get_max: function() {
-			return this.byId$1('ProgressBar').progressbar().progressbar('option', 'max');
+			return this.ById('ProgressBar').progressbar().progressbar('option', 'max');
 		},
 		set_max: function(value) {
-			this.byId$1('ProgressBar').progressbar().progressbar('option', 'max', value);
+			this.ById('ProgressBar').progressbar().progressbar('option', 'max', value);
 		},
 		get_value: function() {
-			return ss.unbox(ss.cast(this.byId$1('ProgressBar').progressbar('value'), ss.Int32));
+			return ss.unbox(ss.cast(this.ById('ProgressBar').progressbar('value'), ss.Int32));
 		},
 		set_value: function(value) {
-			this.byId$1('ProgressBar').progressbar().progressbar('value', value);
+			this.ById('ProgressBar').progressbar().progressbar('value', value);
 		},
 		get_title: function() {
 			return this.get_element().dialog().dialog('option', 'title');
@@ -1857,26 +1829,19 @@
 				else {
 					grant = !!(ss.unbox(grant) ^ checkedOrPartial);
 				}
-				this.view.beginUpdate();
-				try {
-					if (item.IsGroup) {
-						var $t1 = this.$getDescendants(item, true);
-						for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-							var d = $t1[$t2];
-							if (!ss.referenceEquals(d.GrantRevoke, grant)) {
-								d.GrantRevoke = grant;
-								this.view.updateItem(d.Key, d);
-							}
+				if (item.IsGroup) {
+					var $t1 = this.$getDescendants(item, true);
+					for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+						var d = $t1[$t2];
+						if (!ss.referenceEquals(d.GrantRevoke, grant)) {
+							d.GrantRevoke = grant;
 						}
 					}
-					else if (!ss.referenceEquals(item.GrantRevoke, grant)) {
-						item.GrantRevoke = grant;
-						this.view.updateItem(item.Key, item);
-					}
 				}
-				finally {
-					this.view.endUpdate();
+				else if (!ss.referenceEquals(item.GrantRevoke, grant)) {
+					item.GrantRevoke = grant;
 				}
+				this.slickGrid.invalidate();
 			}
 		},
 		$getParentKey: function(key) {
@@ -2028,7 +1993,7 @@
 		},
 		updateInterface: function() {
 			Serenity.EntityDialog.prototype.updateInterface.call(this);
-			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
+			this.toolbar.findButton('lock-button').toggleClass('disabled', this.isNewOrDeleted());
 		}
 	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RoleForm, $asm, {
@@ -2224,23 +2189,6 @@
 			return false;
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
-	ss.initClass($Serene_Administration_UserDialog, $asm, {
-		getToolbarButtons: function() {
-			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
-			buttons.push({ title: Q.text('Site.UserDialog.EditRolesButton'), cssClass: 'users-button', onClick: ss.mkdel(this, function() {
-				(new $Serene_Administration_UserRoleDialog({ userID: ss.unbox(this.get_entity().UserId), username: this.get_entity().Username })).dialogOpen();
-			}) });
-			buttons.push({ title: Q.text('Site.UserDialog.EditPermissionsButton'), cssClass: 'lock-button', onClick: ss.mkdel(this, function() {
-				(new $Serene_Administration_UserPermissionDialog({ userID: ss.unbox(this.get_entity().UserId), username: this.get_entity().Username })).dialogOpen();
-			}) });
-			return buttons;
-		},
-		updateInterface: function() {
-			Serenity.EntityDialog.prototype.updateInterface.call(this);
-			this.toolbar.findButton('users-button').toggleClass('disabled', this.get_isNewOrDeleted());
-			this.toolbar.findButton('lock-button').toggleClass('disabled', this.get_isNewOrDeleted());
-		}
-	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Administration_UserForm, $asm, {
 		set_username: function(value) {
 			this.$3$UsernameField = value;
@@ -2261,22 +2209,6 @@
 			this.$3$SourceField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_UserGrid, $asm, {
-		getColumns: function() {
-			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
-			columns.push({ field: 'UserId', width: 55, cssClass: 'align-right', name: Q.text('Db.Shared.RecordId') });
-			columns.push({ field: 'Username', width: 150, format: this.itemLink(null, null, null, null, true) });
-			columns.push({ field: 'DisplayName', width: 150 });
-			columns.push({ field: 'Email', width: 250 });
-			columns.push({ field: 'Source', width: 100 });
-			return columns;
-		},
-		getDefaultSortBy: function() {
-			var $t1 = [];
-			$t1.push('Username');
-			return $t1;
-		}
-	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_UserPermissionDialog, $asm, {
 		getDialogOptions: function() {
 			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
@@ -2395,7 +2327,7 @@
 		onDialogOpen: function() {
 			Serenity.TemplatedDialog.prototype.onDialogOpen.call(this);
 			Q.serviceRequest('BasicSamples/BasicSamples/OrdersByShipper', {}, ss.mkdel(this, function(response) {
-				this.$areaChart = new Morris.Area({ element: this.get_idPrefix() + 'Chart', resize: true, parseTime: false, data: response.Values, xkey: 'Month', ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto' });
+				this.$areaChart = new Morris.Area({ element: this.idPrefix + 'Chart', resize: true, parseTime: false, data: response.Values, xkey: 'Month', ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto' });
 			}), null);
 			this.element.closest('.ui-dialog').bind('resize', ss.mkdel(this, function() {
 				this.arrange();
@@ -2427,7 +2359,7 @@
 			// by default cloneButton is hidden in base UpdateInterface method
 			Serenity.EntityDialog.prototype.updateInterface.call(this);
 			// here we show it if it is edit mode (not new)
-			this.cloneButton.toggle(this.get_isEditMode());
+			this.cloneButton.toggle(this.isEditMode());
 		},
 		getCloningEntity: function() {
 			var clone = Serenity.EntityDialog.prototype.getCloningEntity.call(this);
@@ -2597,7 +2529,7 @@
 				var dlg = new $Serene_Northwind_OrderDialog();
 				// let grid watch for changes to manually created dialog, 
 				// so when a new item is saved, grid can refresh itself
-				this.initEntityDialog(dlg);
+				this.initDialog(dlg);
 				// get a reference to product Chai
 				var chai = Enumerable.from(Q.getLookup('Northwind.Product').get_items()).first(function(x2) {
 					return x2.ProductName === 'Chai';
@@ -2728,8 +2660,8 @@
 		}
 	}, $Serene_Common_GridEditorBase, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupDetailEditor, $asm, {
-		initEntityDialog$1: function(itemType, dialog) {
-			Serenity.EntityGrid.prototype.initEntityDialog$1.call(this, itemType, dialog);
+		initEntityDialog: function(itemType, dialog) {
+			Serenity.EntityGrid.prototype.initEntityDialog.call(this, itemType, dialog);
 			// passing category ID from grid editor to detail dialog
 			ss.cast(dialog, $Serene_BasicSamples_FilteredLookupOrderDetailDialog).set_categoryID(this.get_categoryID());
 		},
@@ -3165,7 +3097,7 @@
 		},
 		loadEntity: function(entity) {
 			Serenity.EntityDialog.prototype.loadEntity.call(this, entity);
-			Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.get_isNewOrDeleted());
+			Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.isNewOrDeleted());
 			this.$ordersGrid.set_customerID(entity.CustomerID);
 		},
 		onSaveSuccess: function(response) {
@@ -3251,8 +3183,8 @@
 				return x.field !== 'CustomerCompanyName';
 			}).toArray();
 		},
-		initEntityDialog$1: function(itemType, dialog) {
-			Serenity.EntityGrid.prototype.initEntityDialog$1.call(this, itemType, dialog);
+		initEntityDialog: function(itemType, dialog) {
+			Serenity.EntityGrid.prototype.initEntityDialog.call(this, itemType, dialog);
 			Serenity.SubDialogHelper.cascade(ss.cast(dialog, $Serene_Northwind_OrderDialog), this.get_element().closest('.ui-dialog'));
 		},
 		addButtonClick: function() {
@@ -3420,10 +3352,10 @@
 			return opt;
 		},
 		get_text: function() {
-			return this.byId$1('Text').val();
+			return this.ById('Text').val();
 		},
 		set_text: function(value) {
-			this.byId$1('Text').val(value);
+			this.ById('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Northwind_NotesEditor, $asm, {
@@ -3431,7 +3363,7 @@
 			return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
 		},
 		$updateContent: function() {
-			var noteList = this.byId$1('NoteList');
+			var noteList = this.ById('NoteList');
 			noteList.children().remove();
 			if (ss.isValue(this.$items)) {
 				var index = 0;
@@ -3772,8 +3704,6 @@
 	ss.setMetadata($Serene_Administration_RoleDialog, { attr: [new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.FormKeyAttribute('Administration.Role'), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
 	ss.setMetadata($Serene_Administration_RoleGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Role'), new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.DialogTypeAttribute($Serene_Administration_RoleDialog), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
 	ss.setMetadata($Serene_Administration_TranslationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Translation'), new Serenity.IdPropertyAttribute('Key'), new Serenity.LocalTextPrefixAttribute('Administration.Translation'), new Serenity.ServiceAttribute('Administration/Translation')] });
-	ss.setMetadata($Serene_Administration_UserDialog, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.FormKeyAttribute('Administration.User'), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
-	ss.setMetadata($Serene_Administration_UserGrid, { attr: [new Serenity.IdPropertyAttribute('UserId'), new Serenity.NamePropertyAttribute('Username'), new Serenity.IsActivePropertyAttribute('IsActive'), new Serenity.DialogTypeAttribute($Serene_Administration_UserDialog), new Serenity.LocalTextPrefixAttribute('Administration.User'), new Serenity.ServiceAttribute('Administration/User')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });

@@ -1,14 +1,24 @@
-﻿
+﻿using jQueryApi;
+using Serenity;
+using System.Runtime.CompilerServices;
+
 namespace Serene.Administration
 {
-    using jQueryApi;
-    using Serenity;
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
+    [Imported]
+    public class UserGrid : EntityGrid<UserRow, object>
+    {
+        public UserGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+
+    /*
+    This class has been ported to TypeScript. See UserDialog.ts
+    Code below is only for reference purposes who wants to use Saltaralle 
 
     [IdProperty("UserId"), NameProperty("Username"), IsActiveProperty("IsActive")]
-    [DialogType(typeof(UserDialog)), LocalTextPrefix("Administration.User"), Service("Administration/User")]
+    [LocalTextPrefix("Administration.User"), Service("Administration/User")]
     public class UserGrid : EntityGrid<UserRow>
     {
         public UserGrid(jQueryObject container)
@@ -16,22 +26,15 @@ namespace Serene.Administration
         {
         }
 
-        protected override List<SlickColumn> GetColumns()
-        {
-            var columns = base.GetColumns();
-
-            columns.Add(new SlickColumn { Field = "UserId", Width = 55, CssClass = "align-right", Title = Q.Text("Db.Shared.RecordId") });
-            columns.Add(new SlickColumn { Field = "Username", Width = 150, Format = ItemLink() });
-            columns.Add(new SlickColumn { Field = "DisplayName", Width = 150 });
-            columns.Add(new SlickColumn { Field = "Email", Width = 250 });
-            columns.Add(new SlickColumn { Field = "Source", Width = 100 });
-
-            return columns;
-        }
-
         protected override List<string> GetDefaultSortBy()
         {
             return new List<string> { "Username" };
         }
+
+        protected override Type GetDialogType()
+        {
+            return typeof(UserDialog);
+        }
     }
+    */
 }

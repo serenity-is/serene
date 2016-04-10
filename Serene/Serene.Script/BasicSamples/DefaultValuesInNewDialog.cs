@@ -68,7 +68,7 @@ namespace Serene.BasicSamples
 
                     // let grid watch for changes to manually created dialog, 
                     // so when a new item is saved, grid can refresh itself
-                    InitEntityDialog(dlg);
+                    InitDialog(dlg);
 
                     // get a reference to product Chai
                     var chai = ProductRow.Lookup.Items.First(x =>
