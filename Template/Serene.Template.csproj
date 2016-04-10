@@ -176,22 +176,22 @@
     <Content Include="packages\Serenity.CodeGenerator.2.0.3.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Core.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Data.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Script.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Script.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Services.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Web.2.0.3.nupkg">
+    <Content Include="packages\Serenity.Web.2.0.4.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\toastr.2.1.1.nupkg">
