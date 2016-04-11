@@ -28,6 +28,8 @@
                     uiDialog = dialog.element.closest('.ui-dialog');
                     dialog.loadNewAndOpenDialog();
                     assert.ok(uiDialog.is(':visible'), 'open in new entity mode');
+                    dialog.dialogClose();
+                    assert.ok(!uiDialog.is(":visible"), 'close new entity dialog');
                     var idPrefix = dialog.idPrefix;
                 }
                 finally {

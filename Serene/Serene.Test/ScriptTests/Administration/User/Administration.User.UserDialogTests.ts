@@ -46,6 +46,10 @@ namespace Serene.Administration.Test {
             assert.ok(uiDialog.is(':visible'),
                 'open in new entity mode');
 
+            dialog.dialogClose();
+            assert.ok(!uiDialog.is(":visible"),
+                'close new entity dialog');
+
             var idPrefix = (dialog as any).idPrefix;
         }
         finally {
