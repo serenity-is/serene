@@ -94,6 +94,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationListRequest.cs">Administration.TranslationListRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationService.cs">Administration.TranslationService.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationUpdateRequest.cs">Administration.TranslationUpdateRequest.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserColumns.cs">Administration.UserColumns.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.cs">Administration.UserForm.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionListRequest.cs">Administration.UserPermissionListRequest.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionRow.cs">Administration.UserPermissionRow.cs</ProjectItem>
@@ -284,7 +285,7 @@
       <package id="Saltarelle.Linq" version="2.4.0" />
       <package id="Saltarelle.Runtime" version="2.7.0" />
       <package id="Saltarelle.Web" version="3.1.0" />
-      <package id="Serenity.Script" version="2.0.4" />
+      <package id="Serenity.Script" version="2.0.5" />
     </packages>
   </WizardData>
   <WizardExtension>
