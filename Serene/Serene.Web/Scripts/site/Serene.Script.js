@@ -435,21 +435,21 @@
 		$Serene_Northwind_OrderDialog.call(this);
 		// as these editors are in a three column line, 
 		// all should grow 0.5px when dialog grows 1px
-		Serenity.FLX.flexXFactor(this.form.w('OrderDate', Serenity.DateEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('RequiredDate', Serenity.DateEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipName', Serenity.StringEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipCity', Serenity.StringEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipPostalCode', Serenity.StringEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipAddress', Serenity.StringEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipRegion', Serenity.StringEditor).get_element(), 0.5);
-		Serenity.FLX.flexXFactor(this.form.w('ShipCountry', Serenity.StringEditor).get_element(), 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('OrderDate', Serenity.DateEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('RequiredDate', Serenity.DateEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipName', Serenity.StringEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipCity', Serenity.StringEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipPostalCode', Serenity.StringEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipAddress', Serenity.StringEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipRegion', Serenity.StringEditor).element, 0.5);
+		Serenity.FLX.flexXFactor(this.form.w('ShipCountry', Serenity.StringEditor).element, 0.5);
 		// as these editors are in a three column line, 
 		// all should grow 0.33px when dialog grows 1px
-		Serenity.FLX.flexXFactor(this.form.w('ShippedDate', Serenity.DateEditor).get_element(), 0.33);
-		Serenity.FLX.flexXFactor(this.form.w('ShipVia', Serenity.LookupEditor).get_element().siblings('.select2-container'), 0.33);
-		Serenity.FLX.flexXFactor(this.form.w('Freight', Serenity.DecimalEditor).get_element(), 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('ShippedDate', Serenity.DateEditor).element, 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('ShipVia', Serenity.LookupEditor).element.siblings('.select2-container'), 0.33);
+		Serenity.FLX.flexXFactor(this.form.w('Freight', Serenity.DecimalEditor).element, 0.33);
 		// grid should grow in height and width when dialog grows
-		Serenity.FLX.flexWidthHeight(this.form.w('DetailList', Serene.Northwind.OrderDetailsEditor).get_element(), 1, 1);
+		Serenity.FLX.flexWidthHeight(this.form.w('DetailList', Serene.Northwind.OrderDetailsEditor).element, 1, 1);
 	};
 	$Serene_BasicSamples_MultiColumnDialog.__typeName = 'Serene.BasicSamples.MultiColumnDialog';
 	global.Serene.BasicSamples.MultiColumnDialog = $Serene_BasicSamples_MultiColumnDialog;
@@ -947,7 +947,7 @@
 		this.$ordersGrid = null;
 		Serenity.EntityDialog.call(this);
 		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.ById('OrdersGrid'));
-		Serenity.FLX.flexHeightOnly(this.$ordersGrid.get_element(), 1);
+		Serenity.FLX.flexHeightOnly(this.$ordersGrid.element, 1);
 		this.ById('NoteList').closest('.field').hide().end().appendTo(this.ById('TabNotes'));
 		$Serene_DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
 			return !ss.referenceEquals(this.$getSaveState(), this.$loadedState);
@@ -1480,10 +1480,10 @@
 			this.ById('ProgressBar').progressbar().progressbar('value', value);
 		},
 		get_title: function() {
-			return this.get_element().dialog().dialog('option', 'title');
+			return this.element.dialog().dialog('option', 'title');
 		},
 		set_title: function(value) {
-			this.get_element().dialog().dialog('option', 'title', value);
+			this.element.dialog().dialog('option', 'title', value);
 		},
 		get_cancelTitle: function() {
 			return this.$6$CancelTitleField;
@@ -1499,8 +1499,8 @@
 			var $t1 = [];
 			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, function() {
 				self.set_cancelled(true);
-				self.get_element().closest('.ui-dialog').find('.ui-dialog-buttonpane .ui-button').attr('disabled', 'disabled').css('opacity', '0.5');
-				var $t3 = self.get_element().dialog();
+				self.element.closest('.ui-dialog').find('.ui-dialog-buttonpane .ui-button').attr('disabled', 'disabled').css('opacity', '0.5');
+				var $t3 = self.element.dialog();
 				var $t2 = Q.trimToNull(this.get_cancelTitle());
 				if (ss.isNullOrUndefined($t2)) {
 					$t2 = Q.text('Site.BasicProgressDialog.CancelTitle');
@@ -1859,7 +1859,7 @@
 		},
 		createToolbarExtensions: function() {
 			Serenity.DataGrid.prototype.createToolbarExtensions.call(this);
-			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
+			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, ss.mkdel(this, function(field, text) {
 				this.$containsText = Select2.util.stripDiacritics(ss.coalesce(Q.trimToNull(text), '')).toLowerCase();
 				this.view.setItems(this.view.getItems(), true);
 			}), null);
@@ -1955,7 +1955,7 @@
 		},
 		createToolbarExtensions: function() {
 			Serenity.DataGrid.prototype.createToolbarExtensions.call(this);
-			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, text) {
+			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, ss.mkdel(this, function(field, text) {
 				this.$containsText = Q.trimToNull(text);
 				this.view.setItems(this.view.getItems(), true);
 			}), null);
@@ -2098,7 +2098,7 @@
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
-				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Administration.Translation.SourceLanguage') + ' ---');
+				e.appendTo(this.toolbar.element).attr('placeholder', '--- ' + Q.text('Db.Administration.Translation.SourceLanguage') + ' ---');
 			});
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Administration.Language';
@@ -2112,7 +2112,7 @@
 				}
 			}));
 			var $t4 = ss.mkdel(this, function(e2) {
-				e2.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Administration.Translation.TargetLanguage') + ' ---');
+				e2.appendTo(this.toolbar.element).attr('placeholder', '--- ' + Q.text('Db.Administration.Translation.TargetLanguage') + ' ---');
 			});
 			var $t3 = Serenity.LookupEditorOptions.$ctor();
 			$t3.lookupKey = 'Administration.Language';
@@ -2155,7 +2155,7 @@
 			return $t1;
 		},
 		createQuickSearchInput: function() {
-			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.get_element(), ss.mkdel(this, function(field, searchText) {
+			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, ss.mkdel(this, function(field, searchText) {
 				this.$searchText = searchText;
 				this.view.setItems(this.view.getItems(), true);
 			}), null);
@@ -3185,7 +3185,7 @@
 		},
 		initEntityDialog: function(itemType, dialog) {
 			Serenity.EntityGrid.prototype.initEntityDialog.call(this, itemType, dialog);
-			Serenity.SubDialogHelper.cascade(ss.cast(dialog, $Serene_Northwind_OrderDialog), this.get_element().closest('.ui-dialog'));
+			Serenity.SubDialogHelper.cascade(ss.cast(dialog, $Serene_Northwind_OrderDialog), this.element.closest('.ui-dialog'));
 		},
 		addButtonClick: function() {
 			this.editItem({ CustomerID: this.get_customerID() });
@@ -3195,7 +3195,7 @@
 		},
 		createToolbarExtensions: function() {
 			$Serene_Northwind_OrderGrid.prototype.createToolbarExtensions.call(this);
-			this.get_customerFilter().get_element().closest('.quick-filter-item').remove();
+			this.get_customerFilter().element.closest('.quick-filter-item').remove();
 		},
 		getGridCanLoad: function() {
 			return Serenity.DataGrid.prototype.getGridCanLoad.call(this) && !ss.isNullOrEmptyString(this.$customerID);
@@ -3638,7 +3638,7 @@
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
-				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Supplier.Country') + ' ---');
+				e.appendTo(this.toolbar.element).attr('placeholder', '--- ' + Q.text('Db.Northwind.Supplier.Country') + ' ---');
 			});
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.SupplierCountry';
@@ -3671,7 +3671,7 @@
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
 			var $t2 = ss.mkdel(this, function(e) {
-				e.appendTo(this.toolbar.get_element()).attr('placeholder', '--- ' + Q.text('Db.Northwind.Territory.RegionDescription') + ' ---');
+				e.appendTo(this.toolbar.element).attr('placeholder', '--- ' + Q.text('Db.Northwind.Territory.RegionDescription') + ' ---');
 			});
 			var $t1 = Serenity.LookupEditorOptions.$ctor();
 			$t1.lookupKey = 'Northwind.Region';
