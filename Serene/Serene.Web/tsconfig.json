@@ -7,5 +7,8 @@
         "emitBOM": true,
         "sourceMap": true,
         "outFile": "Scripts/site/Serene.Web.js"
-    }
+    },
+    "exclude": [
+        "Scripts/site/Serene.Web.d.ts"
+    ]
 }
