@@ -1151,6 +1151,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
@@ -1167,8 +1169,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
-    <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1247,6 +1247,12 @@
     <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <None Include="Scripts\site\Serene.Web.js.map" />
+    <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
@@ -1257,12 +1263,6 @@
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <None Include="Scripts\site\Serene.Web.js.map" />
-    <Content Include="Scripts\SlickGrid\README.md" />
     <None Include="tsconfig.json" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
