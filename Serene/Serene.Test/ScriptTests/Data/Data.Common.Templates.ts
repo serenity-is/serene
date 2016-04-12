@@ -1,3 +1,0 @@
-namespace Serene.Test {
-    export let dataEntityDialogTemplate = '<div class="s-DialogContent">\r\n    <div id="~_Toolbar" class="s-DialogToolbar">\r\n    <\/div>\r\n    <div class="s-Form">\r\n        <form id="~_Form" action="">\r\n            <div class="fieldset ui-widget ui-widget-content ui-corner-all">\r\n                <div id="~_PropertyGrid"><\/div>\r\n                <div class="clear"><\/div>\r\n            <\/div>\r\n        <\/form> \r\n    <\/div>\r\n<\/div>';
-}

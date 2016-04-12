@@ -1,17 +1,6 @@
 namespace Serene.Administration.Test {
     let assert: QUnitAssert = QUnit.assert;
-    QUnit.module('Serene.Administration', {
-        beforeEach: function() {
-            Q.LT.add(Serene.Test.dataLocalText);
-            Q.ScriptData.set("Template.EntityDialog", Serene.Test.dataEntityDialogTemplate);
-            Q.ScriptData.set("Form.Administration.User", dataUserForm);
-        },
-        afterEach: function () {
-            Q.ScriptData.set("Form.Administration.User", null);
-            Q.ScriptData.set("Template.EntityDialog", null);
-            Q.LT.$table = {};
-        }
-    });
+    QUnit.module('Serene.Administration');
 
     QUnit.test('UserDialog General', function () {
         assert.notEqual(null, new UserDialog(),
