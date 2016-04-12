@@ -49,6 +49,10 @@
                 assert.strictEqual(Serene.DialogUtils.getFieldTitle(username), 'Username', 'username at 0');
                 assert.ok(Serene.DialogUtils.isRequired(username), 'username is required');
                 assert.ok(Serene.DialogUtils.isEditable(username), 'username is editable');
+                var displayName = fields.eq(1);
+                assert.strictEqual(Serene.DialogUtils.getFieldTitle(displayName), 'Display Name', 'display name at 1');
+                assert.ok(Serene.DialogUtils.isRequired(displayName), 'display name is required');
+                assert.ok(Serene.DialogUtils.isEditable(displayName), 'display name is editable');
                 dialog.dialogClose();
             });
         })(Test = Administration.Test || (Administration.Test = {}));

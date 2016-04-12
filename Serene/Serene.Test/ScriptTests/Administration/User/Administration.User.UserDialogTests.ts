@@ -95,6 +95,15 @@ namespace Serene.Administration.Test {
         assert.ok(DialogUtils.isEditable(username),
             'username is editable');
 
+        var displayName = fields.eq(1);
+        assert.strictEqual(DialogUtils.getFieldTitle(displayName), 'Display Name',
+            'display name at 1');
+
+        assert.ok(DialogUtils.isRequired(displayName),
+            'display name is required');
+
+        assert.ok(DialogUtils.isEditable(displayName),
+            'display name is editable');
 
         dialog.dialogClose();
 
