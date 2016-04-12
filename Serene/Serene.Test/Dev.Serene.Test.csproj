@@ -178,6 +178,12 @@
     <Content Include="ScriptTests\Data\FormBundle.js">
       <DependentUpon>Data.tt</DependentUpon>
     </Content>
+    <Content Include="ScriptTests\Data\LocalText.Site.en.Public.js">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Content>
+    <Content Include="ScriptTests\Data\LocalText.Site.tr.Public.js">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Content>
     <Content Include="ScriptTests\Data\TemplateBundle.js">
       <DependentUpon>Data.tt</DependentUpon>
     </Content>
@@ -207,9 +213,6 @@
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Web.d.ts" />
     <TypeScriptCompile Include="ScriptTests\Util\DialogUtils.ts" />
-    <TypeScriptCompile Include="ScriptTests\Data\Data.Common.LocalText.ts" />
-    <TypeScriptCompile Include="ScriptTests\Data\Data.Common.Templates.ts" />
-    <TypeScriptCompile Include="ScriptTests\Data\Data.Administration.Forms.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\User\Administration.User.UserDialogTests.ts" />
   </ItemGroup>
   <ItemGroup>
