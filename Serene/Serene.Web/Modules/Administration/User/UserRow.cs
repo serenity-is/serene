@@ -49,7 +49,7 @@ namespace Serene.Administration.Entities
             set { Fields.PasswordSalt[this] = value; }
         }
 
-        [DisplayName("Display Name"), Size(100)]
+        [DisplayName("Display Name"), Size(100), NotNull]
         public String DisplayName
         {
             get { return Fields.DisplayName[this]; }

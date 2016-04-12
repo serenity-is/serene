@@ -64,6 +64,14 @@ var Serene;
                 this.toolbar.findButton('users-button').toggleClass('disabled', this.isNewOrDeleted());
                 this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
             };
+            UserDialog.prototype.afterLoadEntity = function () {
+                _super.prototype.afterLoadEntity.call(this);
+                // these fields are only required in new record mode
+                this.form.Password().element.toggleClass('required', this.isNew())
+                    .closest('.field').find('sup').toggle(this.isNew());
+                this.form.PasswordConfirm().element.toggleClass('required', this.isNew())
+                    .closest('.field').find('sup').toggle(this.isNew());
+            };
             UserDialog = __decorate([
                 Serenity.Decorators.registerClass()
             ], UserDialog);

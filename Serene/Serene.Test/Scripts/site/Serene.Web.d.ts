@@ -10,6 +10,7 @@
         constructor();
         protected getToolbarButtons(): Serenity.ToolButton[];
         protected updateInterface(): void;
+        protected afterLoadEntity(): void;
     }
 }
 declare namespace Serene.Administration {

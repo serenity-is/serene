@@ -1,4 +1,4 @@
-namespace Serene.Test {
+ï»¿namespace Serene.Test {
     export let dataLocalText = {
         "Controls": {
             "EntityDialog": {
@@ -480,12 +480,12 @@ namespace Serene.Test {
         },
         "Enums": {
             "CustomFieldType": {
-                "Boolean": "Mantýksal (Boolean)",
+                "Boolean": "MantÄ±ksal (Boolean)",
                 "Date": "Tarih (Date)",
                 "DateTime": "Tarih / Zaman (DateTime)",
-                "Decimal": "Ondalýklý Sayý (Decimal)",
-                "Int32": "Tamsayý (Int32)",
-                "Int64": "Tamsayý (Int64)",
+                "Decimal": "OndalÄ±klÄ± SayÄ± (Decimal)",
+                "Int32": "TamsayÄ± (Int32)",
+                "Int64": "TamsayÄ± (Int64)",
                 "String": "Metin (String)"
             },
             "Northwind": {

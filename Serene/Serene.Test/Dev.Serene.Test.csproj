@@ -183,6 +183,7 @@
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Web.d.ts" />
+    <TypeScriptCompile Include="ScriptTests\Util\DialogUtils.ts" />
     <TypeScriptCompile Include="ScriptTests\Data\Data.Common.LocalText.ts" />
     <TypeScriptCompile Include="ScriptTests\Data\Data.Common.Templates.ts" />
     <TypeScriptCompile Include="ScriptTests\Data\Data.Administration.Forms.ts" />
