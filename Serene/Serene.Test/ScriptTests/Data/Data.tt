@@ -32,12 +32,12 @@
     var webDir = Host.ResolvePath(@"..\..\..\Serene.Web\");
     var codeByFilename = new SortedDictionary<string, string>();
     
+	LocalTextGenerator.Initialize(webDir);
 	codeByFilename["TemplateBundle.js"] = new TemplateBundleGenerator().Run(
         webDir + @"Modules\",
 		webDir + @"Views\Templates\");
 	codeByFilename["FormBundle.js"] = new FormBundleGenerator().Run();
 	codeByFilename["ColumnsBundle.js"] = new ColumnsBundleGenerator().Run();
-	LocalTextGenerator.Initialize(webDir);
 	codeByFilename["LocalText.Site.en.Public.js"] = new LocalTextGenerator().Run("en");
 	codeByFilename["LocalText.Site.tr.Public.js"] = new LocalTextGenerator().Run("tr");
     var manager = Manager.Create(Host, GenerationEnvironment);
