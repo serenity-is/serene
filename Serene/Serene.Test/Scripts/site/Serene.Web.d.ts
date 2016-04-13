@@ -1,4 +1,27 @@
 ﻿declare namespace Serene.Administration {
+    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RoleForm;
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.Administration {
+    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof RoleDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
     class UserDialog extends Serenity.EntityDialog<UserRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -1762,11 +1785,6 @@ declare namespace Serene.Administration {
     }
     class RoleCheckEditor extends Serenity.CheckTreeEditor<any, any> {
         constructor(div: JQuery);
-    }
-    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
-    }
-    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
-        constructor(container: JQuery);
     }
     class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
         constructor(opt: RolePermissionDialogOptions);

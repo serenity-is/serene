@@ -191,13 +191,6 @@
 	$Serene_Administration_RoleCheckEditor.__typeName = 'Serene.Administration.RoleCheckEditor';
 	global.Serene.Administration.RoleCheckEditor = $Serene_Administration_RoleCheckEditor;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RoleDialog
-	var $Serene_Administration_RoleDialog = function() {
-		Serenity.EntityDialog.call(this);
-	};
-	$Serene_Administration_RoleDialog.__typeName = 'Serene.Administration.RoleDialog';
-	global.Serene.Administration.RoleDialog = $Serene_Administration_RoleDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleForm
 	var $Serene_Administration_RoleForm = function(idPrefix) {
 		this.$3$RoleNameField = null;
@@ -205,13 +198,6 @@
 	};
 	$Serene_Administration_RoleForm.__typeName = 'Serene.Administration.RoleForm';
 	global.Serene.Administration.RoleForm = $Serene_Administration_RoleForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RoleGrid
-	var $Serene_Administration_RoleGrid = function(container) {
-		Serenity.EntityGrid.call(this, container);
-	};
-	$Serene_Administration_RoleGrid.__typeName = 'Serene.Administration.RoleGrid';
-	global.Serene.Administration.RoleGrid = $Serene_Administration_RoleGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RolePermissionDialog
 	var $Serene_Administration_RolePermissionDialog = function(opt) {
@@ -1983,31 +1969,11 @@
 			return list;
 		}
 	}, Serenity.CheckTreeEditor, [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
-	ss.initClass($Serene_Administration_RoleDialog, $asm, {
-		getToolbarButtons: function() {
-			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
-			buttons.push({ title: Q.text('Site.RolePermissionDialog.EditButton'), cssClass: 'lock-button', onClick: ss.mkdel(this, function() {
-				(new $Serene_Administration_RolePermissionDialog({ roleID: ss.unbox(this.get_entity().RoleId), title: this.get_entity().RoleName })).dialogOpen();
-			}) });
-			return buttons;
-		},
-		updateInterface: function() {
-			Serenity.EntityDialog.prototype.updateInterface.call(this);
-			this.toolbar.findButton('lock-button').toggleClass('disabled', this.isNewOrDeleted());
-		}
-	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RoleForm, $asm, {
 		set_roleName: function(value) {
 			this.$3$RoleNameField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_RoleGrid, $asm, {
-		getDefaultSortBy: function() {
-			var $t1 = [];
-			$t1.push('RoleName');
-			return $t1;
-		}
-	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
 	ss.initClass($Serene_Administration_RolePermissionDialog, $asm, {
 		getDialogOptions: function() {
 			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
@@ -3701,8 +3667,6 @@
 	ss.setMetadata($Serene_Administration_PermissionCheckEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('Key')] });
 	ss.setMetadata($Serene_Administration_PermissionModuleEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_Administration_RoleCheckEditor, { attr: [new Serenity.EditorAttribute()] });
-	ss.setMetadata($Serene_Administration_RoleDialog, { attr: [new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.FormKeyAttribute('Administration.Role'), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
-	ss.setMetadata($Serene_Administration_RoleGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Role'), new Serenity.IdPropertyAttribute('RoleId'), new Serenity.NamePropertyAttribute('RoleName'), new Serenity.DialogTypeAttribute($Serene_Administration_RoleDialog), new Serenity.LocalTextPrefixAttribute('Administration.Role'), new Serenity.ServiceAttribute('Administration/Role')] });
 	ss.setMetadata($Serene_Administration_TranslationGrid, { attr: [new Serenity.ColumnsKeyAttribute('Administration.Translation'), new Serenity.IdPropertyAttribute('Key'), new Serenity.LocalTextPrefixAttribute('Administration.Translation'), new Serenity.ServiceAttribute('Administration/Translation')] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });

@@ -101,13 +101,6 @@ declare namespace Serene.Administration {
         constructor(div: JQuery);
     }
 
-    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
-    }
-
-    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
-        constructor(container: JQuery);
-    }
-
     class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
         constructor(opt: RolePermissionDialogOptions);
     }

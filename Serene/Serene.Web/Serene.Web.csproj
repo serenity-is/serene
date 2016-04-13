@@ -1171,6 +1171,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Modules\Administration\Role\RoleDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />

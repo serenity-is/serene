@@ -13,6 +13,73 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var RoleDialog = (function (_super) {
+            __extends(RoleDialog, _super);
+            function RoleDialog() {
+                _super.apply(this, arguments);
+                this.form = new Administration.RoleForm(this.idPrefix);
+            }
+            RoleDialog.prototype.getFormKey = function () { return Administration.RoleForm.formKey; };
+            RoleDialog.prototype.getIdProperty = function () { return Administration.RoleRow.idProperty; };
+            RoleDialog.prototype.getLocalTextPrefix = function () { return Administration.RoleRow.localTextPrefix; };
+            RoleDialog.prototype.getNameProperty = function () { return Administration.RoleRow.nameProperty; };
+            RoleDialog.prototype.getService = function () { return Administration.RoleService.baseUrl; };
+            RoleDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                buttons.push({
+                    title: Q.text('Site.RolePermissionDialog.EditButton'),
+                    cssClass: 'lock-button',
+                    onClick: function () {
+                        new Administration.RolePermissionDialog({
+                            roleID: _this.entity.RoleId,
+                            title: _this.entity.RoleName
+                        }).dialogOpen();
+                    }
+                });
+                return buttons;
+            };
+            RoleDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+            };
+            RoleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RoleDialog);
+            return RoleDialog;
+        }(Serenity.EntityDialog));
+        Administration.RoleDialog = RoleDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RoleGrid = (function (_super) {
+            __extends(RoleGrid, _super);
+            function RoleGrid(container) {
+                _super.call(this, container);
+            }
+            RoleGrid.prototype.getColumnsKey = function () { return "Administration.Role"; };
+            RoleGrid.prototype.getDialogType = function () { return Administration.RoleDialog; };
+            RoleGrid.prototype.getIdProperty = function () { return Administration.RoleRow.idProperty; };
+            RoleGrid.prototype.getLocalTextPrefix = function () { return Administration.RoleRow.localTextPrefix; };
+            RoleGrid.prototype.getService = function () { return Administration.RoleService.baseUrl; };
+            RoleGrid.prototype.getDefaultSortBy = function () {
+                return [Administration.RoleRow.Fields.RoleName];
+            };
+            RoleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RoleGrid);
+            return RoleGrid;
+        }(Serenity.EntityGrid));
+        Administration.RoleGrid = RoleGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var UserDialog = (function (_super) {
             __extends(UserDialog, _super);
             function UserDialog() {

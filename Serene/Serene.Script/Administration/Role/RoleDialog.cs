@@ -1,9 +1,18 @@
 ﻿
+using Serenity;
+using System.Runtime.CompilerServices;
+
 namespace Serene.Administration
 {
-    using jQueryApi;
-    using Serenity;
-    using System.Collections.Generic;
+    [Imported]
+    public class RoleDialog : EntityDialog<RoleRow>
+    {
+    }
+
+    /*
+    This class has been ported to TypeScript. See RoleDialog.ts
+    Code below is only for reference purposes who wants to use Saltaralle 
+
 
     [IdProperty("RoleId"), NameProperty("RoleName")]
     [FormKey("Administration.Role"), LocalTextPrefix("Administration.Role"), Service("Administration/Role")]
@@ -37,4 +46,5 @@ namespace Serene.Administration
             toolbar.FindButton("lock-button").ToggleClass("disabled", this.IsNewOrDeleted);
         }
     }
+    */
 }
