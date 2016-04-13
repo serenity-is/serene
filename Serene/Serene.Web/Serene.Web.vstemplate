@@ -182,8 +182,10 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeys.cs">PermissionKeys.cs</ProjectItem>
           <Folder Name="Role" TargetFolderName="Role">
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleColumns.cs">RoleColumns.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleDialog.ts">RoleDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleEndpoint.cs">RoleEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleForm.cs">RoleForm.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleGrid.ts">RoleGrid.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleIndex.cshtml">RoleIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.cs">RolePage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleRepository.cs">RoleRepository.cs</ProjectItem>
