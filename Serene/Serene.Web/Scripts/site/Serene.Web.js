@@ -175,6 +175,96 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var GridToPdf = (function (_super) {
+            __extends(GridToPdf, _super);
+            function GridToPdf(container) {
+                _super.call(this, container);
+            }
+            GridToPdf.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push({
+                    title: 'PDF',
+                    cssClass: 'export-pdf-button',
+                    onClick: function () {
+                        var doc = new jsPDF('l', 'pt');
+                        var srcColumns = _this.getColumns();
+                        var columnStyles = {};
+                        var columns = srcColumns.map(function (src) {
+                            var col = {
+                                dataKey: src.identifier || src.field,
+                                title: src.name || ''
+                            };
+                            var style = {};
+                            if ((src.cssClass || '').indexOf("align-right") >= 0)
+                                style.halign = 'right';
+                            else if ((src.cssClass || '').indexOf("align-center") >= 0)
+                                style.halign = 'center';
+                            columnStyles[col.dataKey] = style;
+                            return col;
+                        });
+                        var keys = columns.map(function (x) { return x.dataKey; });
+                        var el = document.createElement('span');
+                        var row = 0;
+                        var data = _this.get_view().getItems().map(function (item) {
+                            var dst = {};
+                            for (var cell = 0; cell < srcColumns.length; cell++) {
+                                var src = srcColumns[cell];
+                                var fld = src.field || '';
+                                var key = keys[cell];
+                                var txt = void 0;
+                                var html = void 0;
+                                if (src.formatter) {
+                                    html = src.formatter(row, cell, item[fld], src, item);
+                                }
+                                else if (src.format) {
+                                    html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
+                                }
+                                else {
+                                    dst[key] = item[fld];
+                                    continue;
+                                }
+                                if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
+                                    dst[key] = html;
+                                else {
+                                    el.innerHTML = html;
+                                    dst[key] = el.textContent || '';
+                                }
+                            }
+                            row++;
+                            return dst;
+                        });
+                        doc.setFontSize(10);
+                        doc.setFontStyle('bold');
+                        doc.autoTableText('Some long title for our grid', doc.internal.pageSize.width / 2, 25, { halign: 'center' });
+                        doc.autoTable(columns, data, {
+                            margin: 25,
+                            startY: 60,
+                            styles: {
+                                fontSize: 8,
+                                overflow: 'linebreak',
+                                cellPadding: 2,
+                                valign: 'middle'
+                            },
+                            columnStyles: columnStyles
+                        });
+                        doc.save("test.pdf");
+                    }
+                });
+                return buttons;
+            };
+            GridToPdf = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridToPdf);
+            return GridToPdf;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.GridToPdf = GridToPdf;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Administration;
     (function (Administration) {
         var LanguageForm = (function (_super) {

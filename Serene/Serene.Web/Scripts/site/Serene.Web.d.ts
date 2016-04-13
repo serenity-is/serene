@@ -48,6 +48,12 @@ declare namespace Serene.Administration {
         protected getDefaultSortBy(): string[];
     }
 }
+declare namespace Serene.BasicSamples {
+    class GridToPdf extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {

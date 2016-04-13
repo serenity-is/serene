@@ -1,7 +1,7 @@
 declare interface jsPDF {
     autoTableEndPosY?: number;
     autoTableHtmlToJson(table: HTMLElement);
-    autoTable(columns: jsPDF.AutoTableColumn[], rows: any[], options: jsPDF.AutoTableOptions);
+    autoTable(columns: string[] | jsPDF.AutoTableColumn[], data: any[], options: jsPDF.AutoTableOptions);
 }
 
 declare namespace jsPDF {
@@ -22,7 +22,7 @@ declare namespace jsPDF {
             [dataKey: string]: AutoTableStyles;
         };
         margin?: AutoTableMargin;
-        beforePageContent: (data: any[]) => void;
+        beforePageContent?: (data: any[]) => void;
         afterPageContent?: (data: any[]) => void;
     }
 

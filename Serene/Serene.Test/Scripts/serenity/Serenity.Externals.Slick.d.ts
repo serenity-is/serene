@@ -55,7 +55,7 @@ declare namespace Slick {
         identifier?: string;
         maxWidth?: any;
         minWidth?: number;
-        title?: string;
+        name?: string;
         rerenderOnResize?: boolean;
         resizable?: boolean;
         selectable?: boolean;

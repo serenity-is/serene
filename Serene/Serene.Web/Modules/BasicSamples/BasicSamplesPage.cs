@@ -36,6 +36,11 @@ namespace Serene.BasicSamples.Pages
             return View(MVC.Views.BasicSamples.GridFilteredByCriteria);
         }
 
+        public ActionResult GridToPdf()
+        {
+            return View(MVC.Views.BasicSamples.GridToPdf);
+        }
+
         public ActionResult GroupingAndSummariesInGrid()
         {
             return View(MVC.Views.BasicSamples.GroupingAndSummariesInGrid);
