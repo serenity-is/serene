@@ -1,43 +1,26 @@
-﻿namespace Serene.BasicSamples {
-
-    @Serenity.Decorators.registerClass()
-    export class GridToPdf extends Northwind.OrderGrid {
-
-        constructor(container: JQuery) {
-            super(container);
-        }
-
-        protected getButtons()
-        {
-            let buttons = super.getButtons();
-
-            buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, () => this.onViewSubmit(), {
-            }));
-
-            return buttons;
-        }
-    }
-}
-
-namespace Serene.Common {
+﻿namespace Serene.Common {
     export interface PdfExportOptions {
-        buttonTitle?: string;
         title?: string;
         titleTop?: number;
         titleFontSize?: number;
         fileName?: string;
         pageNumbers?: boolean;
-        autoTableOptions?: jsPDF.AutoTableOptions
+        columnTitles?: { [key: string]: string };
+        tableOptions?: jsPDF.AutoTableOptions
     }
 
     export namespace PdfExportHelper {
 
-        function toAutoTableColumns(srcColumns: Slick.Column[], columnStyles: { [dataKey: string]: jsPDF.AutoTableStyles; }) {
+        function toAutoTableColumns(srcColumns: Slick.Column[], columnStyles: { [dataKey: string]: jsPDF.AutoTableStyles; },
+                columnTitles: { [key: string]: string }) {
             return srcColumns.map(src => {
                 let col: jsPDF.AutoTableColumn = {
                     dataKey: src.identifier || src.field,
                     title: src.name || ''
                 };
+
+                if (columnTitles && columnTitles[col.dataKey] != null)
+                    col.title = columnTitles[col.dataKey];
 
                 let style: jsPDF.AutoTableStyles = {};
                 if ((src.cssClass || '').indexOf("align-right") >= 0)
@@ -51,7 +34,7 @@ namespace Serene.Common {
             });
         }
 
-        function toAutoTableData(entities: any[], keys: string[], srcColumns: Slick.Column[]) {
+        function toAutoTableData(entities: any[], keys: string[], srcColumns: Slick.Column[] ) {
             let el = document.createElement('span');
             let row = 0;
             return entities.map(item => {
@@ -77,7 +60,16 @@ namespace Serene.Common {
                         dst[key] = html;
                     else {
                         el.innerHTML = html;
-                        dst[key] = el.textContent || '';
+                        if (el.children.length == 1 &&
+                            $(el.children[0]).is(":input")) {
+                            dst[key] = $(el.children[0]).val();
+                        }
+                        else if (el.children.length == 1 &&
+                            $(el.children).is('.check-box')) {
+                            dst[key] = $(el.children).hasClass("checked") ? "X" : ""
+                        }
+                        else
+                            dst[key] = el.textContent || '';
                     }
                 }
                 row++;
@@ -85,40 +77,42 @@ namespace Serene.Common {
             });
         }
 
-        function exportToPdf<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions) {
+        export function exportToPdf<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions) {
 
             if (!onSubmit())
                 return;
 
-            var request = Q.deepClone(grid.getView().params) as Serenity.ListRequest;
+            includeAutoTable();
+
+            var request = Q.deepClone(grid.view.params) as Serenity.ListRequest;
             request.Take = 0;
             request.Skip = 0;
 
-            var sortBy = grid.getView().sortBy;
+            var sortBy = grid.view.sortBy;
             if (sortBy != null)
                 request.Sort = sortBy;
 
             request.IncludeColumns = [];
-            for (var column of grid.getGrid().getColumns())
+            for (var column of grid.slickGrid.getColumns())
                 request.IncludeColumns.push(column.identifier || column.field);
 
             options = options || {};
 
             Q.serviceCall({
-                url: grid.getView().url,
+                url: grid.view.url,
                 request: request,
                 onSuccess: response => {
                     let doc = new jsPDF('l', 'pt');
-                    let srcColumns = grid.getGrid().getColumns();
+                    let srcColumns = grid.slickGrid.getColumns();
                     let columnStyles: { [dataKey: string]: jsPDF.AutoTableStyles; } = {};
-                    let columns = toAutoTableColumns(srcColumns, columnStyles);
+                    let columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                     var keys = columns.map(x => x.dataKey);
                     let entities = (<Serenity.ListResponse<any>>response).Entities || [];
                     let data = toAutoTableData(entities, keys, srcColumns);
 
                     doc.setFontSize(options.titleFontSize || 10);
                     doc.setFontStyle('bold');
-                    let reportTitle = options.title || grid.get_title() || "Report";
+                    let reportTitle = options.title || grid.getTitle() || "Report";
 
                     doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2,
                         options.titleTop || 25, { halign: 'center' });
@@ -136,7 +130,7 @@ namespace Serene.Common {
                             valign: 'middle'
                         },
                         columnStyles: columnStyles
-                    }, options.autoTableOptions);
+                    }, options.tableOptions);
 
                     if (pageNumbers) {
                         var footer = function (data) {
@@ -146,7 +140,7 @@ namespace Serene.Common {
                                 str = str + " / " + totalPagesExp;
                             }
                             doc.autoTableText(str, doc.internal.pageSize.width / 2,
-                                doc.internal.pageSize.height - autoOptions.margin.bottom - 5, {
+                                doc.internal.pageSize.height - autoOptions.margin.bottom, {
                                     halign: 'center'
                                 });
                         };
@@ -161,26 +155,58 @@ namespace Serene.Common {
 
                     var fileName = options.title || "{0}_{1}.pdf";
                     fileName = ss.formatString(fileName,
-                        grid.get_title() || "report",
+                        grid.getTitle() || "report",
                         Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
 
                     doc.save(fileName);
-
                 }
             }); 
         }
 
-
         export function createToolButton<TItem>(grid: Serenity.DataGrid<TItem, any>,
-            onSubmit: () => boolean, options: PdfExportOptions) {
+            onSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions) {
 
             options = options || {};
 
             return <Serenity.ToolButton>{
-                title: options.buttonTitle || 'PDF',
+                title: buttonTitle || 'PDF',
                 cssClass: 'export-pdf-button',
                 onClick: () => exportToPdf(grid, onSubmit, options)
             };
+        }
+
+        function includeJsPDF() {
+            if (typeof jsPDF !== "undefined")
+                return;
+
+            var script = $("jsPDFScript");
+            if (script.length > 0)
+                return;
+
+            $("<script/>")
+                .attr("type", "text/javascript")
+                .attr("id", "jsPDFScript")
+                .attr("src", Q.resolveUrl("~/Scripts/jspdf.min.js"))
+                .appendTo(document.head);
+        }
+
+        function includeAutoTable() {
+            includeJsPDF();
+
+            if (typeof jsPDF === "undefined" ||
+                typeof (jsPDF as any).API == "undefined" ||
+                typeof (jsPDF as any).API.autoTable !== "undefined")
+                return;
+
+            var script = $("jsPDFAutoTableScript");
+            if (script.length > 0)
+                return;
+
+            $("<script/>")
+                .attr("type", "text/javascript")
+                .attr("id", "jsPDFAutoTableScript")
+                .attr("src", Q.resolveUrl("~/Scripts/jspdf.plugin.autotable.min.js"))
+                .appendTo(document.head);
         }
     }
 }

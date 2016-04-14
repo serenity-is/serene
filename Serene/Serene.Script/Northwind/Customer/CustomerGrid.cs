@@ -29,8 +29,12 @@ namespace Serene.Northwind
         protected override List<ToolButton> GetButtons()
         {
             var buttons = base.GetButtons();
+
             buttons.Add(Common.ExcelExportHelper.CreateToolButton(this, 
                 CustomerService.BaseUrl + "/ListExcel", this.OnViewSubmit));
+
+            buttons.Add(Common.PdfExportHelper.CreateToolButton(this, this.OnViewSubmit));
+
             return buttons;
         }
     }

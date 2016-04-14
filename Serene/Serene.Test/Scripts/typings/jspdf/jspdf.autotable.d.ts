@@ -2,6 +2,7 @@ declare interface jsPDF {
     autoTableEndPosY?: number;
     autoTableHtmlToJson(table: HTMLElement);
     autoTable(columns: string[] | jsPDF.AutoTableColumn[], data: any[], options: jsPDF.AutoTableOptions);
+    autoTableText(text: string, x: number, y: number, styles: jsPDF.AutoTableStyles);
 }
 
 declare namespace jsPDF {
@@ -29,6 +30,9 @@ declare namespace jsPDF {
     interface AutoTableMargin {
         horizontal?: number;
         top?: number;
+        left?: number;
+        right?: number;
+        bottom?: number;
     }
 
     interface AutoTableStyles {
@@ -37,6 +41,7 @@ declare namespace jsPDF {
         font?: string;
         lineColor?: number | number[];
         lineWidth?: number;
+        lineHeight?: number;
         fontStyle?: string;
         fillColor?: number | number[];
         textColor?: number | number[];

@@ -3,10 +3,7 @@ namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
-    using Serenity.Data;
-    using System;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
     using Fields = OrderRow.Fields;
 
     [ColumnsKey("Northwind.Order"), IdProperty("OrderID")]
@@ -53,8 +50,12 @@ namespace Serene.Northwind
         protected override List<ToolButton> GetButtons()
         {
             var buttons = base.GetButtons();
+
             buttons.Add(Common.ExcelExportHelper.CreateToolButton(this,
                 OrderService.BaseUrl + "/ListExcel", this.OnViewSubmit));
+
+            buttons.Add(Common.PdfExportHelper.CreateToolButton(this, this.OnViewSubmit));
+
             return buttons;
         }
 

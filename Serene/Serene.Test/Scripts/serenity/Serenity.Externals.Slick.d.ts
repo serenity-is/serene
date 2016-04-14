@@ -62,7 +62,7 @@ declare namespace Slick {
         sortable?: boolean;
         toolTip?: string;
         width?: number;
-        format?: Slick.Formatter;
+        format?: (ctx: Slick.FormatterContext) => string;
         referencedFields?: string[];
         sourceItem?: Serenity.PropertyItem;
         sortOrder?: number;
@@ -185,6 +185,9 @@ declare namespace Slick {
         setSummaryOptions(options: Slick.SummaryOptions): void;
         refresh(): void;
         getItem(row: number): any;
+        params: any;
+        sortBy: string[];
+        url: string;
     }
     interface RemoteViewOptions {
         autoLoad?: boolean;

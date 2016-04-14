@@ -250,6 +250,11 @@ declare namespace Serene.Common {
         constructor(select: JQuery, currentLanguage: string);
     }
 
+    class PdfExportHelper {
+        static createToolButton(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
+        static exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options?: PdfExportOptions): Serenity.ToolButton;
+    }
+
     class ReportHelper {
         static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: () => any): Serenity.ToolButton;
     }

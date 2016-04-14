@@ -39,6 +39,22 @@ namespace Serene.Northwind
             buttons.Add(Common.ExcelExportHelper.CreateToolButton(this,
                 ProductService.BaseUrl + "/ListExcel", this.OnViewSubmit));
 
+            buttons.Add(Common.PdfExportHelper.CreateToolButton(this, this.OnViewSubmit, options: new Common.PdfExportOptions {
+                Title = "Product List",
+                ColumnTitles = new JsDictionary<string, string>
+                {
+                    { Fields.Discontinued, "Dis." }
+                },
+                TableOptions = new AutoTableOptions
+                {
+                    ColumnStyles = new JsDictionary<string, AutoTableStyles>
+                    {
+                        { Fields.ProductID, new AutoTableStyles { ColumnWidth = 25, Halign = "right" } },
+                        { Fields.Discontinued, new AutoTableStyles { ColumnWidth = 25 } }
+                    }
+                }
+            }));
+
             buttons.Add(new ToolButton
             {
                 Title = "Save Changes",

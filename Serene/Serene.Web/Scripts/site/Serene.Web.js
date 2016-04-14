@@ -185,7 +185,7 @@ var Serene;
             GridToPdf.prototype.getButtons = function () {
                 var _this = this;
                 var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }, {}));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
                 return buttons;
             };
             GridToPdf = __decorate([
@@ -195,137 +195,6 @@ var Serene;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.GridToPdf = GridToPdf;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var PdfExportHelper;
-        (function (PdfExportHelper) {
-            function toAutoTableColumns(srcColumns, columnStyles) {
-                return srcColumns.map(function (src) {
-                    var col = {
-                        dataKey: src.identifier || src.field,
-                        title: src.name || ''
-                    };
-                    var style = {};
-                    if ((src.cssClass || '').indexOf("align-right") >= 0)
-                        style.halign = 'right';
-                    else if ((src.cssClass || '').indexOf("align-center") >= 0)
-                        style.halign = 'center';
-                    columnStyles[col.dataKey] = style;
-                    return col;
-                });
-            }
-            function toAutoTableData(entities, keys, srcColumns) {
-                var el = document.createElement('span');
-                var row = 0;
-                return entities.map(function (item) {
-                    var dst = {};
-                    for (var cell = 0; cell < srcColumns.length; cell++) {
-                        var src = srcColumns[cell];
-                        var fld = src.field || '';
-                        var key = keys[cell];
-                        var txt = void 0;
-                        var html = void 0;
-                        if (src.formatter) {
-                            html = src.formatter(row, cell, item[fld], src, item);
-                        }
-                        else if (src.format) {
-                            html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
-                        }
-                        else {
-                            dst[key] = item[fld];
-                            continue;
-                        }
-                        if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
-                            dst[key] = html;
-                        else {
-                            el.innerHTML = html;
-                            dst[key] = el.textContent || '';
-                        }
-                    }
-                    row++;
-                    return dst;
-                });
-            }
-            function exportToPdf(grid, onSubmit, options) {
-                if (!onSubmit())
-                    return;
-                var request = Q.deepClone(grid.getView().params);
-                request.Take = 0;
-                request.Skip = 0;
-                var sortBy = grid.getView().sortBy;
-                if (sortBy != null)
-                    request.Sort = sortBy;
-                request.IncludeColumns = [];
-                for (var _i = 0, _a = grid.getGrid().getColumns(); _i < _a.length; _i++) {
-                    var column = _a[_i];
-                    request.IncludeColumns.push(column.identifier || column.field);
-                }
-                options = options || {};
-                Q.serviceCall({
-                    url: grid.getView().url,
-                    request: request,
-                    onSuccess: function (response) {
-                        var doc = new jsPDF('l', 'pt');
-                        var srcColumns = grid.getGrid().getColumns();
-                        var columnStyles = {};
-                        var columns = toAutoTableColumns(srcColumns, columnStyles);
-                        var keys = columns.map(function (x) { return x.dataKey; });
-                        var entities = response.Entities || [];
-                        var data = toAutoTableData(entities, keys, srcColumns);
-                        doc.setFontSize(options.titleFontSize || 10);
-                        doc.setFontStyle('bold');
-                        var reportTitle = options.title || grid.get_title() || "Report";
-                        doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
-                        var totalPagesExp = "{{T}}";
-                        var pageNumbers = options.pageNumbers == null || options.pageNumbers;
-                        var autoOptions = $.extend({
-                            margin: { top: 25, left: 25, right: 25, bottom: pageNumbers ? 25 : 30 },
-                            startY: 60,
-                            styles: {
-                                fontSize: 8,
-                                overflow: 'linebreak',
-                                cellPadding: 2,
-                                valign: 'middle'
-                            },
-                            columnStyles: columnStyles
-                        }, options.autoTableOptions);
-                        if (pageNumbers) {
-                            var footer = function (data) {
-                                var str = data.pageCount;
-                                // Total page number plugin only available in jspdf v1.0+
-                                if (typeof doc.putTotalPages === 'function') {
-                                    str = str + " / " + totalPagesExp;
-                                }
-                                doc.autoTableText(str, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - autoOptions.margin.bottom - 5, {
-                                    halign: 'center'
-                                });
-                            };
-                            autoOptions.afterPageContent = footer;
-                        }
-                        doc.autoTable(columns, data, autoOptions);
-                        if (typeof doc.putTotalPages === 'function') {
-                            doc.putTotalPages(totalPagesExp);
-                        }
-                        var fileName = options.title || "{0}_{1}.pdf";
-                        fileName = ss.formatString(fileName, grid.get_title() || "report", Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
-                        doc.save(fileName);
-                    }
-                });
-            }
-            function createToolButton(grid, onSubmit, options) {
-                options = options || {};
-                return {
-                    title: options.buttonTitle || 'PDF',
-                    cssClass: 'export-pdf-button',
-                    onClick: function () { return exportToPdf(grid, onSubmit, options); }
-                };
-            }
-            PdfExportHelper.createToolButton = createToolButton;
-        })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -1577,5 +1446,176 @@ var Serene;
             });
         })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var PdfExportHelper;
+        (function (PdfExportHelper) {
+            function toAutoTableColumns(srcColumns, columnStyles, columnTitles) {
+                return srcColumns.map(function (src) {
+                    var col = {
+                        dataKey: src.identifier || src.field,
+                        title: src.name || ''
+                    };
+                    if (columnTitles && columnTitles[col.dataKey] != null)
+                        col.title = columnTitles[col.dataKey];
+                    var style = {};
+                    if ((src.cssClass || '').indexOf("align-right") >= 0)
+                        style.halign = 'right';
+                    else if ((src.cssClass || '').indexOf("align-center") >= 0)
+                        style.halign = 'center';
+                    columnStyles[col.dataKey] = style;
+                    return col;
+                });
+            }
+            function toAutoTableData(entities, keys, srcColumns) {
+                var el = document.createElement('span');
+                var row = 0;
+                return entities.map(function (item) {
+                    var dst = {};
+                    for (var cell = 0; cell < srcColumns.length; cell++) {
+                        var src = srcColumns[cell];
+                        var fld = src.field || '';
+                        var key = keys[cell];
+                        var txt = void 0;
+                        var html = void 0;
+                        if (src.formatter) {
+                            html = src.formatter(row, cell, item[fld], src, item);
+                        }
+                        else if (src.format) {
+                            html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
+                        }
+                        else {
+                            dst[key] = item[fld];
+                            continue;
+                        }
+                        if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
+                            dst[key] = html;
+                        else {
+                            el.innerHTML = html;
+                            if (el.children.length == 1 &&
+                                $(el.children[0]).is(":input")) {
+                                dst[key] = $(el.children[0]).val();
+                            }
+                            else if (el.children.length == 1 &&
+                                $(el.children).is('.check-box')) {
+                                dst[key] = $(el.children).hasClass("checked") ? "X" : "";
+                            }
+                            else
+                                dst[key] = el.textContent || '';
+                        }
+                    }
+                    row++;
+                    return dst;
+                });
+            }
+            function exportToPdf(grid, onSubmit, options) {
+                if (!onSubmit())
+                    return;
+                includeAutoTable();
+                var request = Q.deepClone(grid.view.params);
+                request.Take = 0;
+                request.Skip = 0;
+                var sortBy = grid.view.sortBy;
+                if (sortBy != null)
+                    request.Sort = sortBy;
+                request.IncludeColumns = [];
+                for (var _i = 0, _a = grid.slickGrid.getColumns(); _i < _a.length; _i++) {
+                    var column = _a[_i];
+                    request.IncludeColumns.push(column.identifier || column.field);
+                }
+                options = options || {};
+                Q.serviceCall({
+                    url: grid.view.url,
+                    request: request,
+                    onSuccess: function (response) {
+                        var doc = new jsPDF('l', 'pt');
+                        var srcColumns = grid.slickGrid.getColumns();
+                        var columnStyles = {};
+                        var columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
+                        var keys = columns.map(function (x) { return x.dataKey; });
+                        var entities = response.Entities || [];
+                        var data = toAutoTableData(entities, keys, srcColumns);
+                        doc.setFontSize(options.titleFontSize || 10);
+                        doc.setFontStyle('bold');
+                        var reportTitle = options.title || grid.getTitle() || "Report";
+                        doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
+                        var totalPagesExp = "{{T}}";
+                        var pageNumbers = options.pageNumbers == null || options.pageNumbers;
+                        var autoOptions = $.extend({
+                            margin: { top: 25, left: 25, right: 25, bottom: pageNumbers ? 25 : 30 },
+                            startY: 60,
+                            styles: {
+                                fontSize: 8,
+                                overflow: 'linebreak',
+                                cellPadding: 2,
+                                valign: 'middle'
+                            },
+                            columnStyles: columnStyles
+                        }, options.tableOptions);
+                        if (pageNumbers) {
+                            var footer = function (data) {
+                                var str = data.pageCount;
+                                // Total page number plugin only available in jspdf v1.0+
+                                if (typeof doc.putTotalPages === 'function') {
+                                    str = str + " / " + totalPagesExp;
+                                }
+                                doc.autoTableText(str, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - autoOptions.margin.bottom, {
+                                    halign: 'center'
+                                });
+                            };
+                            autoOptions.afterPageContent = footer;
+                        }
+                        doc.autoTable(columns, data, autoOptions);
+                        if (typeof doc.putTotalPages === 'function') {
+                            doc.putTotalPages(totalPagesExp);
+                        }
+                        var fileName = options.title || "{0}_{1}.pdf";
+                        fileName = ss.formatString(fileName, grid.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
+                        doc.save(fileName);
+                    }
+                });
+            }
+            PdfExportHelper.exportToPdf = exportToPdf;
+            function createToolButton(grid, onSubmit, buttonTitle, options) {
+                options = options || {};
+                return {
+                    title: buttonTitle || 'PDF',
+                    cssClass: 'export-pdf-button',
+                    onClick: function () { return exportToPdf(grid, onSubmit, options); }
+                };
+            }
+            PdfExportHelper.createToolButton = createToolButton;
+            function includeJsPDF() {
+                if (typeof jsPDF !== "undefined")
+                    return;
+                var script = $("jsPDFScript");
+                if (script.length > 0)
+                    return;
+                $("<script/>")
+                    .attr("type", "text/javascript")
+                    .attr("id", "jsPDFScript")
+                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.min.js"))
+                    .appendTo(document.head);
+            }
+            function includeAutoTable() {
+                includeJsPDF();
+                if (typeof jsPDF === "undefined" ||
+                    typeof jsPDF.API == "undefined" ||
+                    typeof jsPDF.API.autoTable !== "undefined")
+                    return;
+                var script = $("jsPDFAutoTableScript");
+                if (script.length > 0)
+                    return;
+                $("<script/>")
+                    .attr("type", "text/javascript")
+                    .attr("id", "jsPDFAutoTableScript")
+                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.plugin.autotable.min.js"))
+                    .appendTo(document.head);
+            }
+        })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

@@ -92,7 +92,6 @@ namespace MVC
             public const string DefaultValuesInNewDialog = "~/Modules/BasicSamples/DefaultValuesInNewDialog.cshtml";
             public const string FilteredLookupInDetailDialog = "~/Modules/BasicSamples/FilteredLookupInDetailDialog.cshtml";
             public const string GridFilteredByCriteria = "~/Modules/BasicSamples/GridFilteredByCriteria.cshtml";
-            public const string GridToPdf = "~/Modules/BasicSamples/GridToPdf.cshtml";
             public const string GroupingAndSummariesInGrid = "~/Modules/BasicSamples/GroupingAndSummariesInGrid.cshtml";
             public const string LookupFilterByMultipleValues = "~/Modules/BasicSamples/LookupFilterByMultipleValues.cshtml";
             public const string MultiColumnDialog = "~/Modules/BasicSamples/MultiColumnDialog.cshtml";

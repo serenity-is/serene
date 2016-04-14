@@ -2059,3 +2059,20 @@ declare namespace Serenity {
         constructor(textArea: JQuery, opt: HtmlContentEditorOptions);
     }
 }
+declare namespace Serene.Common {
+    interface PdfExportOptions {
+        title?: string;
+        titleTop?: number;
+        titleFontSize?: number;
+        fileName?: string;
+        pageNumbers?: boolean;
+        columnTitles?: {
+            [key: string]: string;
+        };
+        tableOptions?: jsPDF.AutoTableOptions;
+    }
+    namespace PdfExportHelper {
+        function exportToPdf<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions): void;
+        function createToolButton<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
+    }
+}

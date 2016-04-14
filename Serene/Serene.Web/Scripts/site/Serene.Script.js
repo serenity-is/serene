@@ -1720,7 +1720,7 @@
 		getColumns: function() {
 			var $t1 = [];
 			$t1.push({ name: Q.text('Site.UserPermissionDialog.Permission'), field: 'Title', format: Serenity.SlickFormatting.treeToggle(ss.mkdel(this, function() {
-				return this.get_view();
+				return this.view;
 			}), function(x) {
 				return x.Key;
 			}, ss.mkdel(this, function(ctx) {
@@ -1749,7 +1749,7 @@
 			}, function(x1) {
 				return x1.ParentKey;
 			}, false);
-			this.get_view().setItems(items, true);
+			this.view.setItems(items, true);
 		},
 		onViewSubmit: function() {
 			return false;
@@ -1918,7 +1918,7 @@
 					}
 				}
 			}
-			this.$setItems(this.get_items());
+			this.$setItems(this.getItems());
 		},
 		get_rolePermissions: function() {
 			return Enumerable.from(Object.keys(this.$rolePermissions)).toArray();
@@ -1931,7 +1931,7 @@
 					this.$rolePermissions[k] = true;
 				}
 			}
-			this.$setItems(this.get_items());
+			this.$setItems(this.getItems());
 		}
 	}, Serenity.DataGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, Serenity.Select2Editor, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
@@ -1959,7 +1959,7 @@
 			}
 			return false;
 		},
-		getItems: function() {
+		getItems$1: function() {
 			var list = [];
 			var roles = Q.getLookup('Administration.Role').get_items();
 			for (var $t1 = 0; $t1 < roles.length; $t1++) {
@@ -2250,6 +2250,7 @@
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Order/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, ss.mkdel(this, this.onViewSubmit), null, null));
 			return buttons;
 		},
 		get_customerFilter: function() {
@@ -2357,6 +2358,13 @@
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			var $t3 = ss.mkdel(this, this.onViewSubmit);
+			var $t1 = {};
+			$t1['Discontinued'] = 'Dis.';
+			var $t2 = {};
+			$t2['ProductID'] = { columnWidth: 25, halign: 'right' };
+			$t2['Discontinued'] = { columnWidth: 25 };
+			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, $t3, null, { title: 'Product List', columnTitles: $t1, tableOptions: { columnStyles: $t2 } }));
 			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
 				this.$saveClick();
 			}) });
@@ -2831,8 +2839,7 @@
 			// this has no relation to our lookup editor but as we'll allow picking only 
 			// categories of Produce and Seafood in product dialog, it's better to show
 			// only products from these categories in grid too
-			var $t1 = this.get_view().params;
-			$t1.Criteria = Serenity.Criteria.join($t1.Criteria, 'and', [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
+			this.view.params.Criteria = Serenity.Criteria.join(this.view.params.Criteria, 'and', [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
 			return true;
 		}
 	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
@@ -3134,6 +3141,7 @@
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Customer/ListExcel', ss.mkdel(this, this.onViewSubmit), 'Excel'));
+			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, ss.mkdel(this, this.onViewSubmit), null, null));
 			return buttons;
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.IAsyncInit]);
