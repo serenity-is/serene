@@ -30,6 +30,9 @@ declare namespace jsPDF {
     interface AutoTableMargin {
         horizontal?: number;
         top?: number;
+        left?: number;
+        right?: number;
+        bottom?: number;
     }
 
     interface AutoTableStyles {

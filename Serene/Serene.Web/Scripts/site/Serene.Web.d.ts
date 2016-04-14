@@ -54,6 +54,20 @@ declare namespace Serene.BasicSamples {
         protected getButtons(): Serenity.ToolButton[];
     }
 }
+declare namespace Serene.Common {
+    interface PdfExportOptions {
+        buttonTitle?: string;
+        title?: string;
+        titleTop?: number;
+        titleFontSize?: number;
+        fileName?: string;
+        pageNumbers?: boolean;
+        autoTableOptions?: jsPDF.AutoTableOptions;
+    }
+    namespace PdfExportHelper {
+        function createToolButton<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
