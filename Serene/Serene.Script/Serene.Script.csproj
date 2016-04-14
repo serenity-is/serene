@@ -50,6 +50,7 @@
     <Compile Include="BasicSamples\CancellableBulkActionGrid.cs" />
     <Compile Include="Common\Helper\BasicProgressDialog.cs" />
     <Compile Include="Common\Helper\BulkServiceAction.cs" />
+    <Compile Include="Common\Helper\PdfExportHelper.cs" />
     <Compile Include="Common\Helper\ReportHelper.cs" />
     <Compile Include="Common\Helper\ExcelExportHelper.cs" />
     <Compile Include="Imports\ServerImports\Administration.LanguageColumns.cs">
