@@ -64,31 +64,31 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.0.6\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.0.9\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.0.6\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.0.9\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.6\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.9\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.0.6\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.0.9\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.0.6\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.0.9\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -644,8 +644,6 @@
     <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
@@ -1147,10 +1145,6 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Modules\BasicSamples\ChartInDialog.cshtml" />
     <Content Include="Content\site\site.basicsamples.less" />
     <Content Include="Modules\BasicSamples\CancellableBulkAction.cshtml" />
@@ -1174,6 +1168,12 @@
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
@@ -1195,8 +1195,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1211,6 +1216,11 @@
     <Content Include="Scripts\jquery.cropzoom.min.js" />
     <Content Include="Scripts\jquery.dialogextendQ.js" />
     <Content Include="Scripts\jquery.dialogextendQ.min.js" />
+    <Content Include="Scripts\jquery.event.drag.js" />
+    <Content Include="Scripts\jquery.event.drag.live.js" />
+    <Content Include="Scripts\jquery.event.drag.live.min.js" />
+    <Content Include="Scripts\jquery.event.drag.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.fileupload.js" />
     <Content Include="Scripts\jquery.fileupload.min.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
@@ -1225,10 +1235,13 @@
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jspdf.js" />
     <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\pace.js" />
@@ -1252,6 +1265,54 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Scripts\site\Serene.Web.js.map" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_az.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ca.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_cs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_da.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_de.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_el.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_es.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_et.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_eu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fa.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_gl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_he.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_id.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_is.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_it.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ja.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ka.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ko.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lt.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_mk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ms.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_nl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_no.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-BR.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-PT.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ro.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_rs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ru.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_th.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_tr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ua.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ug-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_uk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_vi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -1277,6 +1338,8 @@
     <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
@@ -1289,9 +1352,6 @@
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
@@ -1417,67 +1477,9 @@
     <Content Include="Content\bootstrap-less\mixins\reset-text.less" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.cshtml" />
     <Content Include="Modules\Membership\Account\SignUp\AccountActivateEmail.cshtml" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery.event.drag.js" />
-    <Content Include="Scripts\jquery.event.drag.live.js" />
-    <Content Include="Scripts\jquery.event.drag.live.min.js" />
-    <Content Include="Scripts\jquery.event.drag.min.js" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_az.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ca.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_cs.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_da.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_de.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_el.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_es.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_et.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_eu.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_fa.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_fi.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_fr.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_gl.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_he.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_hr.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_hu.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_id.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_is.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_it.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ja.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ka.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ko.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_lt.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_lv.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_mk.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ms.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_nl.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_no.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_pl.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_pt-BR.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_pt-PT.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ro.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_rs.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ru.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_sk.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_sv.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_th.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_tr.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ua.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_ug-CN.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_uk.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_vi.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_zh-CN.js" />
-    <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
-    <Content Include="Scripts\select2.js" />
-    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\site\texts\site.texts.es.json" />
     <Content Include="Scripts\site\texts\site.texts.invariant.json" />
     <Content Include="Scripts\site\texts\site.texts.tr.json" />
@@ -1492,8 +1494,6 @@
     <Content Include="Modules\Membership\_ViewStart.cshtml" />
     <Content Include="Modules\_ViewStart.cshtml" />
     <Content Include="Scripts\site\Serene.Script.js" />
-    <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Views\Templates\EntityDialog.Template.html" />
     <Content Include="Views\Templates\PropertyDialog.Template.html" />
     <Content Include="Views\Web.config" />
@@ -1529,6 +1529,11 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
+    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -2151,16 +2156,11 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Reporting\PdfExportHelper.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.autotable.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

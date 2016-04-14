@@ -502,6 +502,7 @@
           <Folder Name="Reporting" TargetFolderName="Reporting">
             <ProjectItem ReplaceParameters="true" TargetFileName="DynamicDataReport.cs">DynamicDataReport.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelReportGenerator.cs">ExcelReportGenerator.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="PdfExportHelper.ts">PdfExportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportController.cs">ReportController.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
           </Folder>
@@ -1203,7 +1204,6 @@
         </Folder>
         <Folder Name="fastclick" TargetFolderName="fastclick">
           <ProjectItem ReplaceParameters="true" TargetFileName="fastclick.js">fastclick.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="fastclick.min.js">fastclick.min.js</ProjectItem>
         </Folder>
         <Folder Name="flot" TargetFolderName="flot">
           <ProjectItem ReplaceParameters="true" TargetFileName="excanvas.js">excanvas.js</ProjectItem>
@@ -1400,6 +1400,10 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinFlat.css">ion.rangeSlider.skinFlat.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinNice.css">ion.rangeSlider.skinNice.css</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.js">jspdf.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.min.js">jspdf.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.plugin.autotable.js">jspdf.plugin.autotable.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.plugin.autotable.min.js">jspdf.plugin.autotable.min.js</ProjectItem>
         <Folder Name="jvectormap" TargetFolderName="jvectormap">
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -1499,12 +1503,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="8.0.2" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="2.0.6" />
-      <package id="Serenity.Core" version="2.0.6" />
-      <package id="Serenity.Data" version="2.0.6" />
-      <package id="Serenity.Data.Entity" version="2.0.6" />
-      <package id="Serenity.Services" version="2.0.6" />
-      <package id="Serenity.Web" version="2.0.6" />
+      <package id="Serenity.CodeGenerator" version="2.0.7" />
+      <package id="Serenity.Core" version="2.0.7" />
+      <package id="Serenity.Data" version="2.0.7" />
+      <package id="Serenity.Data.Entity" version="2.0.7" />
+      <package id="Serenity.Services" version="2.0.7" />
+      <package id="Serenity.Web" version="2.0.7" />
       <package id="toastr" version="2.1.1" />
       <package id="toastr.TypeScript.DefinitelyTyped" version="0.2.9" />
     </packages>

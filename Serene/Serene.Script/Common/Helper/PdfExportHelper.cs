@@ -7,7 +7,7 @@ namespace Serene.Common
     using System.Runtime.CompilerServices;
 
     [Imported]
-    public class PdfExportHelper
+    public static class PdfExportHelper
     {
         public static ToolButton CreateToolButton(IDataGrid grid, Func<bool> onViewSubmit, 
             string buttonTitle = null, PdfExportOptions options = null)
@@ -15,10 +15,9 @@ namespace Serene.Common
             return null;
         }
 
-        public static ToolButton ExportToPdf(IDataGrid grid, Func<bool> onViewSubmit, 
+        public static void ExportToPdf(IDataGrid grid, Func<bool> onViewSubmit, 
             PdfExportOptions options = null)
         {
-            return null;
         }
     }
 

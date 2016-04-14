@@ -175,29 +175,6 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var GridToPdf = (function (_super) {
-            __extends(GridToPdf, _super);
-            function GridToPdf(container) {
-                _super.call(this, container);
-            }
-            GridToPdf.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
-                return buttons;
-            };
-            GridToPdf = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridToPdf);
-            return GridToPdf;
-        }(Serene.Northwind.OrderGrid));
-        BasicSamples.GridToPdf = GridToPdf;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
     var Administration;
     (function (Administration) {
         var LanguageForm = (function (_super) {
@@ -1511,28 +1488,29 @@ var Serene;
                     return dst;
                 });
             }
-            function exportToPdf(grid, onSubmit, options) {
-                if (!onSubmit())
+            function exportToPdf(grid, onViewSubmit, options) {
+                var g = grid;
+                if (!onViewSubmit())
                     return;
                 includeAutoTable();
-                var request = Q.deepClone(grid.view.params);
+                var request = Q.deepClone(g.view.params);
                 request.Take = 0;
                 request.Skip = 0;
-                var sortBy = grid.view.sortBy;
+                var sortBy = g.view.sortBy;
                 if (sortBy != null)
                     request.Sort = sortBy;
                 request.IncludeColumns = [];
-                for (var _i = 0, _a = grid.slickGrid.getColumns(); _i < _a.length; _i++) {
+                for (var _i = 0, _a = g.slickGrid.getColumns(); _i < _a.length; _i++) {
                     var column = _a[_i];
                     request.IncludeColumns.push(column.identifier || column.field);
                 }
                 options = options || {};
                 Q.serviceCall({
-                    url: grid.view.url,
+                    url: g.view.url,
                     request: request,
                     onSuccess: function (response) {
                         var doc = new jsPDF('l', 'pt');
-                        var srcColumns = grid.slickGrid.getColumns();
+                        var srcColumns = g.slickGrid.getColumns();
                         var columnStyles = {};
                         var columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                         var keys = columns.map(function (x) { return x.dataKey; });
@@ -1540,7 +1518,7 @@ var Serene;
                         var data = toAutoTableData(entities, keys, srcColumns);
                         doc.setFontSize(options.titleFontSize || 10);
                         doc.setFontStyle('bold');
-                        var reportTitle = options.title || grid.getTitle() || "Report";
+                        var reportTitle = options.title || g.getTitle() || "Report";
                         doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
                         var totalPagesExp = "{{T}}";
                         var pageNumbers = options.pageNumbers == null || options.pageNumbers;
@@ -1573,18 +1551,18 @@ var Serene;
                             doc.putTotalPages(totalPagesExp);
                         }
                         var fileName = options.title || "{0}_{1}.pdf";
-                        fileName = ss.formatString(fileName, grid.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
+                        fileName = ss.formatString(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
                         doc.save(fileName);
                     }
                 });
             }
             PdfExportHelper.exportToPdf = exportToPdf;
-            function createToolButton(grid, onSubmit, buttonTitle, options) {
+            function createToolButton(grid, onViewSubmit, buttonTitle, options) {
                 options = options || {};
                 return {
                     title: buttonTitle || 'PDF',
                     cssClass: 'export-pdf-button',
-                    onClick: function () { return exportToPdf(grid, onSubmit, options); }
+                    onClick: function () { return exportToPdf(grid, onViewSubmit, options); }
                 };
             }
             PdfExportHelper.createToolButton = createToolButton;

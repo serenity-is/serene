@@ -48,12 +48,6 @@ declare namespace Serene.Administration {
         protected getDefaultSortBy(): string[];
     }
 }
-declare namespace Serene.BasicSamples {
-    class GridToPdf extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-        protected getButtons(): Serenity.ToolButton[];
-    }
-}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -2072,7 +2066,7 @@ declare namespace Serene.Common {
         tableOptions?: jsPDF.AutoTableOptions;
     }
     namespace PdfExportHelper {
-        function exportToPdf<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions): void;
-        function createToolButton<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
+        function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void;
+        function createToolButton<TItem>(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
     }
 }

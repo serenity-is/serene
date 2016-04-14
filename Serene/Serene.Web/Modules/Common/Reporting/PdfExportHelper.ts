@@ -77,33 +77,35 @@
             });
         }
 
-        export function exportToPdf<TItem>(grid: Serenity.DataGrid<TItem, any>, onSubmit: () => boolean, options: PdfExportOptions) {
+        export function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void {
 
-            if (!onSubmit())
+            var g = grid as Serenity.DataGrid<any, any>;
+
+            if (!onViewSubmit())
                 return;
 
             includeAutoTable();
 
-            var request = Q.deepClone(grid.view.params) as Serenity.ListRequest;
+            var request = Q.deepClone(g.view.params) as Serenity.ListRequest;
             request.Take = 0;
             request.Skip = 0;
 
-            var sortBy = grid.view.sortBy;
+            var sortBy = g.view.sortBy;
             if (sortBy != null)
                 request.Sort = sortBy;
 
             request.IncludeColumns = [];
-            for (var column of grid.slickGrid.getColumns())
+            for (var column of g.slickGrid.getColumns())
                 request.IncludeColumns.push(column.identifier || column.field);
 
             options = options || {};
 
             Q.serviceCall({
-                url: grid.view.url,
+                url: g.view.url,
                 request: request,
                 onSuccess: response => {
                     let doc = new jsPDF('l', 'pt');
-                    let srcColumns = grid.slickGrid.getColumns();
+                    let srcColumns = g.slickGrid.getColumns();
                     let columnStyles: { [dataKey: string]: jsPDF.AutoTableStyles; } = {};
                     let columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                     var keys = columns.map(x => x.dataKey);
@@ -112,7 +114,7 @@
 
                     doc.setFontSize(options.titleFontSize || 10);
                     doc.setFontStyle('bold');
-                    let reportTitle = options.title || grid.getTitle() || "Report";
+                    let reportTitle = options.title || g.getTitle() || "Report";
 
                     doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2,
                         options.titleTop || 25, { halign: 'center' });
@@ -155,7 +157,7 @@
 
                     var fileName = options.title || "{0}_{1}.pdf";
                     fileName = ss.formatString(fileName,
-                        grid.getTitle() || "report",
+                        g.getTitle() || "report",
                         Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
 
                     doc.save(fileName);
@@ -163,15 +165,15 @@
             }); 
         }
 
-        export function createToolButton<TItem>(grid: Serenity.DataGrid<TItem, any>,
-            onSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions) {
+        export function createToolButton<TItem>(grid: Serenity.IDataGrid,
+            onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions) {
 
             options = options || {};
 
             return <Serenity.ToolButton>{
                 title: buttonTitle || 'PDF',
                 cssClass: 'export-pdf-button',
-                onClick: () => exportToPdf(grid, onSubmit, options)
+                onClick: () => exportToPdf(grid, onViewSubmit, options)
             };
         }
 
