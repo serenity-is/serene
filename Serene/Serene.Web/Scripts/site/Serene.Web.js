@@ -1551,7 +1551,7 @@ var Serene;
                             doc.putTotalPages(totalPagesExp);
                         }
                         var fileName = options.title || "{0}_{1}.pdf";
-                        fileName = ss.formatString(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_hhmm"));
+                        fileName = ss.formatString(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
                         doc.save(fileName);
                     }
                 });
