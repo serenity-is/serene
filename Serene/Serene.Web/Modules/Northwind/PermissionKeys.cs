@@ -5,9 +5,9 @@ namespace Serene.Northwind
     /// This class contains some permission key constants solely for
     /// easy access and intellisense purposes.
     /// 
-    /// Please note that you don't have to add permissions here to
-    /// list them in user permissions dialog. Serenity doesn't
-    /// check this class at all.
+    /// Please note that adding a permission here won't show it
+    /// in user permissions dialog. In fact, Serenity doesn't
+    /// care about this class at all.
     /// 
     /// To show a new permission in user/role permission dialog, just use
     /// its string key with ReadPermission / ModifyPermission / 
