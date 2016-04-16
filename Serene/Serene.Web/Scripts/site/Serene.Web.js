@@ -13,6 +13,54 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var LanguageDialog = (function (_super) {
+            __extends(LanguageDialog, _super);
+            function LanguageDialog() {
+                _super.apply(this, arguments);
+                this.form = new Administration.LanguageForm(this.idPrefix);
+            }
+            LanguageDialog.prototype.getFormKey = function () { return Administration.LanguageForm.formKey; };
+            LanguageDialog.prototype.getIdProperty = function () { return Administration.LanguageRow.idProperty; };
+            LanguageDialog.prototype.getLocalTextPrefix = function () { return Administration.LanguageRow.localTextPrefix; };
+            LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
+            LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
+            LanguageDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LanguageDialog);
+            return LanguageDialog;
+        }(Serenity.EntityDialog));
+        Administration.LanguageDialog = LanguageDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var LanguageGrid = (function (_super) {
+            __extends(LanguageGrid, _super);
+            function LanguageGrid(container) {
+                _super.call(this, container);
+            }
+            LanguageGrid.prototype.getColumnsKey = function () { return "Administration.Language"; };
+            LanguageGrid.prototype.getDialogType = function () { return Administration.LanguageDialog; };
+            LanguageGrid.prototype.getIdProperty = function () { return Administration.LanguageRow.idProperty; };
+            LanguageGrid.prototype.getLocalTextPrefix = function () { return Administration.LanguageRow.localTextPrefix; };
+            LanguageGrid.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
+            LanguageGrid.prototype.getDefaultSortBy = function () {
+                return [Administration.LanguageRow.Fields.LanguageName];
+            };
+            LanguageGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LanguageGrid);
+            return LanguageGrid;
+        }(Serenity.EntityGrid));
+        Administration.LanguageGrid = LanguageGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
@@ -74,6 +122,200 @@ var Serene;
             return RoleGrid;
         }(Serenity.EntityGrid));
         Administration.RoleGrid = RoleGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var TranslationGrid = (function (_super) {
+            __extends(TranslationGrid, _super);
+            function TranslationGrid(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.element.on('keyup.' + this.uniqueName + ' change.' + this.uniqueName, 'input.custom-text', function (e) {
+                    var value = Q.trimToNull($(e.target).val());
+                    if (value === '') {
+                        value = null;
+                    }
+                    _this.view.getItemById($(e.target).data('key')).CustomText = value;
+                    _this.hasChanges = true;
+                });
+            }
+            TranslationGrid.prototype.getColumnsKey = function () { return "Administration.Translation"; };
+            TranslationGrid.prototype.getIdProperty = function () { return "Key"; };
+            TranslationGrid.prototype.getLocalTextPrefix = function () { return "Administration.Translation"; };
+            TranslationGrid.prototype.getService = function () { return Administration.TranslationService.baseUrl; };
+            TranslationGrid.prototype.onClick = function (e, row, cell) {
+                var _this = this;
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented()) {
+                    return;
+                }
+                var item = this.itemAt(row);
+                var done;
+                if ($(e.target).hasClass('source-text')) {
+                    e.preventDefault();
+                    done = function () {
+                        item.CustomText = item.SourceText;
+                        _this.view.updateItem(item.Key, item);
+                        _this.hasChanges = true;
+                    };
+                    if (Q.isTrimmedEmpty(item.CustomText) ||
+                        (Q.trimToEmpty(item.CustomText) === Q.trimToEmpty(item.SourceText))) {
+                        done();
+                        return;
+                    }
+                    Q.confirm(Q.text('Db.Administration.Translation.OverrideConfirmation'), done);
+                    return;
+                }
+                if ($(e.target).hasClass('target-text')) {
+                    e.preventDefault();
+                    done = function () {
+                        item.CustomText = item.TargetText;
+                        _this.view.updateItem(item.Key, item);
+                        _this.hasChanges = true;
+                    };
+                    if (Q.isTrimmedEmpty(item.CustomText) ||
+                        (Q.trimToEmpty(item.CustomText) === Q.trimToEmpty(item.TargetText))) {
+                        done();
+                        return;
+                    }
+                    Q.confirm(Q.text('Db.Administration.Translation.OverrideConfirmation'), done);
+                    return;
+                }
+            };
+            TranslationGrid.prototype.getColumns = function () {
+                var columns = [];
+                columns.push({ field: 'Key', width: 300, sortable: false });
+                columns.push({
+                    field: 'SourceText',
+                    width: 300,
+                    sortable: false,
+                    format: function (ctx) {
+                        return Q.outerHtml($('<a/>')
+                            .addClass('source-text')
+                            .text(ctx.value || ''));
+                    }
+                });
+                columns.push({
+                    field: 'CustomText',
+                    width: 300,
+                    sortable: false,
+                    format: function (ctx) { return Q.outerHtml($('<input/>')
+                        .addClass('custom-text')
+                        .attr('value', ctx.value)
+                        .attr('type', 'text')
+                        .attr('data-key', ctx.item.Key)); }
+                });
+                columns.push({
+                    field: 'TargetText',
+                    width: 300,
+                    sortable: false,
+                    format: function (ctx) { return Q.outerHtml($('<a/>')
+                        .addClass('target-text')
+                        .text(ctx.value || '')); }
+                });
+                return columns;
+            };
+            TranslationGrid.prototype.createToolbarExtensions = function () {
+                var _this = this;
+                _super.prototype.createToolbarExtensions.call(this);
+                var opt = {
+                    lookupKey: 'Administration.Language'
+                };
+                this.sourceLanguage = Serenity.Widget.create(Serenity.LookupEditor)(function (el) {
+                    return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
+                        Q.text('Db.Administration.Translation.SourceLanguage') + ' ---');
+                }, opt);
+                this.sourceLanguage.changeSelect2(function (e) {
+                    if (_this.hasChanges) {
+                        _this.saveChanges(_this.targetLanguageKey).then(function () { return _this.refresh(); });
+                    }
+                    else {
+                        _this.refresh();
+                    }
+                });
+                this.targetLanguage = Serenity.Widget.create(Serenity.LookupEditor)(function (el) {
+                    return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
+                        Q.text('Db.Administration.Translation.TargetLanguage') + ' ---');
+                }, opt);
+                this.targetLanguage.changeSelect2(function (e) {
+                    if (_this.hasChanges) {
+                        _this.saveChanges(_this.targetLanguageKey).then(function () { return _this.refresh(); });
+                    }
+                    else {
+                        _this.refresh();
+                    }
+                });
+            };
+            TranslationGrid.prototype.saveChanges = function (language) {
+                var _this = this;
+                var translations = {};
+                for (var _i = 0, _a = this.getItems(); _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    translations[item.Key] = item.CustomText;
+                }
+                return RSVP.resolve(Administration.TranslationService.Update({
+                    TargetLanguageID: language,
+                    Translations: translations
+                })).then(function () {
+                    _this.hasChanges = false;
+                    language = Q.trimToNull(language) || 'invariant';
+                    Q.notifySuccess('User translations in "' + language +
+                        '" language are saved to "user.texts.' +
+                        language + '.json" ' + 'file under "~/App_Data/texts/"', '');
+                });
+            };
+            TranslationGrid.prototype.onViewSubmit = function () {
+                var request = this.view.params;
+                request.SourceLanguageID = this.sourceLanguage.get_value();
+                this.targetLanguageKey = this.targetLanguage.get_value() || '';
+                request.TargetLanguageID = this.targetLanguageKey;
+                this.hasChanges = false;
+                return _super.prototype.onViewSubmit.call(this);
+            };
+            TranslationGrid.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: Q.text('Db.Administration.Translation.SaveChangesButton'),
+                        onClick: function (e) { return _this.saveChanges(_this.targetLanguageKey).then(function () { return _this.refresh(); }); },
+                        cssClass: 'apply-changes-button'
+                    }];
+            };
+            TranslationGrid.prototype.createQuickSearchInput = function () {
+                var _this = this;
+                Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, function (field, searchText) {
+                    _this.searchText = searchText;
+                    _this.view.setItems(_this.view.getItems(), true);
+                });
+            };
+            TranslationGrid.prototype.onViewFilter = function (item) {
+                if (!_super.prototype.onViewFilter.call(this, item)) {
+                    return false;
+                }
+                if (!this.searchText) {
+                    return true;
+                }
+                var sd = Select2.util.stripDiacritics;
+                var searching = sd(this.searchText).toLowerCase();
+                function match(str) {
+                    if (!str)
+                        return false;
+                    return str.toLowerCase().indexOf(searching) >= 0;
+                }
+                return Q.isEmptyOrNull(searching) || match(item.Key) || match(item.SourceText) ||
+                    match(item.TargetText) || match(item.CustomText);
+            };
+            TranslationGrid.prototype.usePager = function () {
+                return false;
+            };
+            TranslationGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TranslationGrid);
+            return TranslationGrid;
+        }(Serenity.EntityGrid));
+        Administration.TranslationGrid = TranslationGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;

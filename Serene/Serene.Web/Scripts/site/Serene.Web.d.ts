@@ -1,4 +1,25 @@
 ﻿declare namespace Serene.Administration {
+    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: LanguageForm;
+    }
+}
+declare namespace Serene.Administration {
+    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof LanguageDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
     class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -19,6 +40,29 @@ declare namespace Serene.Administration {
         protected getService(): string;
         constructor(container: JQuery);
         protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
+    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private hasChanges;
+        private searchText;
+        private sourceLanguage;
+        private targetLanguage;
+        private targetLanguageKey;
+        constructor(container: JQuery);
+        protected onClick(e: JQueryEventObject, row: number, cell: number): any;
+        protected getColumns(): Slick.Column[];
+        protected createToolbarExtensions(): void;
+        protected saveChanges(language: string): RSVP.Promise<any>;
+        protected onViewSubmit(): boolean;
+        protected getButtons(): Serenity.ToolButton[];
+        protected createQuickSearchInput(): void;
+        protected onViewFilter(item: TranslationItem): boolean;
+        protected usePager(): boolean;
     }
 }
 declare namespace Serene.Administration {
@@ -1758,11 +1802,6 @@ declare namespace Serene {
     }
 }
 declare namespace Serene.Administration {
-    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
-    }
-    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
-        constructor(container: JQuery);
-    }
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         constructor(div: JQuery, opt: PermissionCheckEditorOptions);
         get_value(): UserPermissionRow[];
@@ -1792,10 +1831,6 @@ declare namespace Serene.Administration {
     class RolePermissionDialogOptions {
         roleID: number;
         title: string;
-    }
-    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        constructor(container: JQuery);
-        saveChanges(language: string): RSVP<any>;
     }
     class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
         constructor(opt: UserPermissionDialogOptions);

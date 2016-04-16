@@ -3,9 +3,20 @@ namespace Serene.Administration
 {
     using jQueryApi;
     using Serenity;
-    using System;
-    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class TranslationGrid : EntityGrid<TranslationItem>
+    {
+        public TranslationGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See LanguageGrid.ts
+    Code below is only a reference for those who want to use Saltaralle
 
     [ColumnsKey("Administration.Translation"), IdProperty("Key")]
     [LocalTextPrefix("Administration.Translation"), Service("Administration/Translation")]
@@ -257,4 +268,5 @@ namespace Serene.Administration
             return false;
         }
     }
+    */
 }

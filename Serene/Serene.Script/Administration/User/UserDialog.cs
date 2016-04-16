@@ -10,7 +10,7 @@ namespace Serene.Administration
 
     /* 
     This class has been ported to TypeScript. See UserDialog.ts
-    Code below is only for reference purposes who wants to use Saltaralle 
+    Code below is only a reference for those who want to use Saltaralle
 
     [IdProperty("UserId"), NameProperty("Username"), IsActiveProperty("IsActive")]
     [FormKey("Administration.User"), LocalTextPrefix("Administration.User"), Service("Administration/User")]

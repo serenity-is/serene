@@ -66,13 +66,6 @@
 }
 
 declare namespace Serene.Administration {
-    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
-    }
-
-    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
-        constructor(container: JQuery);
-    }
-
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         constructor(div: JQuery, opt: PermissionCheckEditorOptions);
         get_value(): UserPermissionRow[];
@@ -108,11 +101,6 @@ declare namespace Serene.Administration {
     class RolePermissionDialogOptions {
         roleID: number;
         title: string;
-    }
-
-    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        constructor(container: JQuery);
-        saveChanges(language: string): RSVP<any>;
     }
 
     class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {

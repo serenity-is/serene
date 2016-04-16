@@ -3,9 +3,18 @@ namespace Serene.Administration
 {
     using jQueryApi;
     using Serenity;
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
+
+    public class LanguageGrid : EntityGrid<LanguageRow>
+    {
+        public LanguageGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See LanguageGrid.ts
+    Code below is only a reference for those who want to use Saltaralle
 
     [ColumnsKey("Administration.Language"), IdProperty("Id"), NameProperty("LanguageName")]
     [DialogType(typeof(LanguageDialog)), LocalTextPrefix("Administration.Language"), Service("Administration/Language")]
@@ -16,4 +25,5 @@ namespace Serene.Administration
         {
         }
     }
+    */
 }

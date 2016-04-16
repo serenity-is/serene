@@ -1144,8 +1144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
