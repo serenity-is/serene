@@ -1334,6 +1334,7 @@
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
