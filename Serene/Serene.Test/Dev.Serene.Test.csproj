@@ -61,8 +61,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -168,6 +167,9 @@
       <Link>phantomjs.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="ScriptTests\Data\ColumnsBundle.js">
       <DependentUpon>Data.tt</DependentUpon>
     </Content>
@@ -189,6 +191,7 @@
     </Content>
     <Content Include="ScriptTests\Serene.Test.js" />
     <Content Include="ScriptTests\MultipleOutputHelper.ttinclude" />
+    <None Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="ScriptTests\Data\Data.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
