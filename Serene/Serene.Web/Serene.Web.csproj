@@ -71,24 +71,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.0.9\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.0.10\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.0.9\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.0.10\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.9\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.10\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.0.9\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.0.10\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.0.9\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.0.10\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -1164,8 +1164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -1260,8 +1263,8 @@
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Scripts\site\Serene.Web.js.map" />
@@ -1340,6 +1343,7 @@
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
