@@ -74,6 +74,18 @@ namespace Serene.Migrations.DefaultDB
                 LanguageId = "zh-CN",
                 LanguageName = "Chinese (Simplified)"
             });
+
+            Insert.IntoTable("Languages").Row(new
+            {
+                LanguageId = "it",
+                LanguageName = "Italian"
+            });
+
+            Insert.IntoTable("Languages").Row(new
+            {
+                LanguageId = "pt",
+                LanguageName = "Portuguese"
+            });
         }
     }
 }
