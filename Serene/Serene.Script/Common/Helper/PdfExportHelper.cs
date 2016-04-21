@@ -27,7 +27,7 @@ namespace Serene.Common
         public string Title { get; set; }
         public double? TitleTop { get; set; }
         public double? TitleFontSize { get; set; }
-        public double? FileName { get; set; }
+        public string FileName { get; set; }
         public bool? PageNumbers { get; set; }
         public JsDictionary<string, string> ColumnTitles { get; set; }
         public AutoTableOptions TableOptions { get; set; }
