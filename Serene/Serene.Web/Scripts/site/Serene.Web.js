@@ -419,6 +419,278 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var PermissionCheckEditor = (function (_super) {
+            __extends(PermissionCheckEditor, _super);
+            function PermissionCheckEditor(container, opt) {
+                var _this = this;
+                _super.call(this, container, opt);
+                this.rolePermissions = {};
+                var titleByKey = {};
+                var permissionKeys = this.getSortedGroupAndPermissionKeys(titleByKey);
+                var items = permissionKeys.map(function (key) { return {
+                    Key: key,
+                    ParentKey: _this.getParentKey(key),
+                    Title: titleByKey[key],
+                    GrantRevoke: null,
+                    IsGroup: key.charAt(key.length - 1) === ':'
+                }; });
+                this.byParentKey = Q.toGrouping(items, function (x) { return x.ParentKey; });
+                this.setItems(items);
+            }
+            PermissionCheckEditor.prototype.getIdProperty = function () { return "Key"; };
+            PermissionCheckEditor.prototype.getItemGrantRevokeClass = function (item, grant) {
+                if (!item.IsGroup) {
+                    return ((item.GrantRevoke === grant) ? ' checked' : '');
+                }
+                var desc = this.getDescendants(item, true);
+                var granted = desc.filter(function (x) { return x.GrantRevoke === grant; });
+                if (!granted.length) {
+                    return '';
+                }
+                if (desc.length === granted.length) {
+                    return 'checked';
+                }
+                return 'checked partial';
+            };
+            PermissionCheckEditor.prototype.getItemEffectiveClass = function (item) {
+                var _this = this;
+                if (item.IsGroup) {
+                    var desc = this.getDescendants(item, true);
+                    var grantCount = Q.count(desc, function (x) { return x.GrantRevoke === true ||
+                        (x.GrantRevoke == null && _this.rolePermissions[x.Key]); });
+                    if (grantCount === desc.length || desc.length === 0) {
+                        return 'allow';
+                    }
+                    if (grantCount === 0) {
+                        return 'deny';
+                    }
+                    return 'partial';
+                }
+                var granted = item.GrantRevoke === true ||
+                    (item.GrantRevoke == null && this.rolePermissions[item.Key]);
+                return (granted ? ' allow' : ' deny');
+            };
+            PermissionCheckEditor.prototype.getColumns = function () {
+                var _this = this;
+                var columns = [{
+                        name: Q.text('Site.UserPermissionDialog.Permission'),
+                        field: 'Title',
+                        format: Serenity.SlickFormatting.treeToggle(function () { return _this.view; }, function (x) { return x.Key; }, function (ctx) {
+                            var item = ctx.item;
+                            var klass = _this.getItemEffectiveClass(item);
+                            return '<span class="effective-permission "' + klass + '">' + Q.htmlEncode(ctx.value) + '</span>';
+                        }),
+                        width: 495,
+                        sortable: false
+                    }, {
+                        name: Q.text('Site.UserPermissionDialog.Grant'), field: 'Grant',
+                        format: function (ctx) {
+                            var item1 = ctx.item;
+                            var klass1 = _this.getItemGrantRevokeClass(item1, true);
+                            return "<span class='check-box grant no-float " + klass1 + "'></span>";
+                        },
+                        width: 65,
+                        sortable: false,
+                        headerCssClass: 'align-center',
+                        cssClass: 'align-center'
+                    }];
+                if (this.options.showRevoke) {
+                    columns.push({
+                        name: Q.text('Site.UserPermissionDialog.Revoke'), field: 'Revoke',
+                        format: function (ctx) {
+                            var item2 = ctx.item;
+                            var klass2 = _this.getItemGrantRevokeClass(item2, false);
+                            return '<span class="check-box revoke no-float ' + klass2 + '"></span>';
+                        },
+                        width: 65,
+                        sortable: false,
+                        headerCssClass: 'align-center',
+                        cssClass: 'align-center'
+                    });
+                }
+                return columns;
+            };
+            PermissionCheckEditor.prototype.setItems = function (items) {
+                Serenity.SlickTreeHelper.setIndents(items, function (x) { return x.Key; }, function (x) { return x.ParentKey; }, false);
+                this.view.setItems(items, true);
+            };
+            PermissionCheckEditor.prototype.onViewSubmit = function () {
+                return false;
+            };
+            PermissionCheckEditor.prototype.onViewFilter = function (item) {
+                var _this = this;
+                if (!_super.prototype.onViewFilter.call(this, item)) {
+                    return false;
+                }
+                if (!Serenity.SlickTreeHelper.filterById(item, this.view, function (x) { return x.ParentKey; }))
+                    return false;
+                if (this.searchText) {
+                    return this.matchContains(item) || item.IsGroup && Q.any(this.getDescendants(item, false), function (x) { return _this.matchContains(x); });
+                }
+                return true;
+            };
+            PermissionCheckEditor.prototype.matchContains = function (item) {
+                return Select2.util.stripDiacritics(item.Title || '').toLowerCase().indexOf(this.searchText) >= 0;
+            };
+            PermissionCheckEditor.prototype.getDescendants = function (item, excludeGroups) {
+                var result = [];
+                var stack = [item];
+                while (stack.length > 0) {
+                    var i = stack.pop();
+                    var children = this.byParentKey[i.Key];
+                    if (!children)
+                        continue;
+                    for (var _i = 0, children_1 = children; _i < children_1.length; _i++) {
+                        var child = children_1[_i];
+                        if (!excludeGroups || !child.IsGroup) {
+                            result.push(child);
+                        }
+                        stack.push(child);
+                    }
+                }
+                return result;
+            };
+            PermissionCheckEditor.prototype.onClick = function (e, row, cell) {
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (!e.isDefaultPrevented()) {
+                    Serenity.SlickTreeHelper.toggleClick(e, row, cell, this.view, function (x) { return x.Key; });
+                }
+                if (e.isDefaultPrevented()) {
+                    return;
+                }
+                var target = $(e.target);
+                var grant = target.hasClass('grant');
+                if (grant || target.hasClass('revoke')) {
+                    e.preventDefault();
+                    var item = this.itemAt(row);
+                    var checkedOrPartial = target.hasClass('checked') || target.hasClass('partial');
+                    if (checkedOrPartial) {
+                        grant = null;
+                    }
+                    else {
+                        grant = grant !== checkedOrPartial;
+                    }
+                    if (item.IsGroup) {
+                        for (var _i = 0, _a = this.getDescendants(item, true); _i < _a.length; _i++) {
+                            var d = _a[_i];
+                            d.GrantRevoke = grant;
+                        }
+                    }
+                    else
+                        item.GrantRevoke = grant;
+                    this.slickGrid.invalidate();
+                }
+            };
+            PermissionCheckEditor.prototype.getParentKey = function (key) {
+                if (key.charAt(key.length - 1) === ':') {
+                    key = key.substr(0, key.length - 1);
+                }
+                var idx = key.lastIndexOf(':');
+                if (idx >= 0) {
+                    return key.substr(0, idx + 1);
+                }
+                return null;
+            };
+            PermissionCheckEditor.prototype.getButtons = function () {
+                return [];
+            };
+            PermissionCheckEditor.prototype.createToolbarExtensions = function () {
+                var _this = this;
+                _super.prototype.createToolbarExtensions.call(this);
+                Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, function (field, text) {
+                    _this.searchText = Select2.util.stripDiacritics(Q.trimToNull(text) || '').toLowerCase();
+                    _this.view.setItems(_this.view.getItems(), true);
+                });
+            };
+            PermissionCheckEditor.prototype.getSortedGroupAndPermissionKeys = function (titleByKey) {
+                var keys = Q.getRemoteData('Administration.PermissionKeys').Entities;
+                var titleWithGroup = {};
+                for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+                    var k = keys_1[_i];
+                    var s = k;
+                    if (!s) {
+                        continue;
+                    }
+                    if (s.charAt(s.length - 1) == ':') {
+                        s = s.substr(0, s.length - 1);
+                        if (s.length === 0) {
+                            continue;
+                        }
+                    }
+                    if (titleByKey[s]) {
+                        continue;
+                    }
+                    titleByKey[s] = ss.coalesce(Q.tryGetText('Permission.' + s), s);
+                    var parts = s.split(':');
+                    var group = '';
+                    var groupTitle = '';
+                    for (var i = 0; i < parts.length - 1; i++) {
+                        group = group + parts[i] + ':';
+                        var txt = Q.tryGetText('Permission.' + group);
+                        if (txt == null) {
+                            txt = parts[i];
+                        }
+                        titleByKey[group] = txt;
+                        groupTitle = groupTitle + titleByKey[group] + ':';
+                        titleWithGroup[group] = groupTitle;
+                    }
+                    titleWithGroup[s] = groupTitle + titleByKey[s];
+                }
+                keys = Object.keys(titleByKey);
+                keys = keys.sort(function (x, y) { return Q.turkishLocaleCompare(titleWithGroup[x], titleWithGroup[y]); });
+                return keys;
+            };
+            PermissionCheckEditor.prototype.get_value = function () {
+                var result = [];
+                for (var _i = 0, _a = this.view.getItems(); _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    if (item.GrantRevoke != null && item.Key.charAt(item.Key.length - 1) != ':') {
+                        result.push({ PermissionKey: item.Key, Grant: item.GrantRevoke });
+                    }
+                }
+                return result;
+            };
+            PermissionCheckEditor.prototype.set_value = function (value) {
+                for (var _i = 0, _a = this.view.getItems(); _i < _a.length; _i++) {
+                    var item = _a[_i];
+                    item.GrantRevoke = null;
+                }
+                if (value != null) {
+                    for (var _b = 0, value_1 = value; _b < value_1.length; _b++) {
+                        var row = value_1[_b];
+                        var r = this.view.getItemById(row.PermissionKey);
+                        if (r) {
+                            r.GrantRevoke = ss.coalesce(row.Grant, true);
+                        }
+                    }
+                }
+                this.setItems(this.getItems());
+            };
+            PermissionCheckEditor.prototype.get_rolePermissions = function () {
+                return Object.keys(this.rolePermissions);
+            };
+            PermissionCheckEditor.prototype.set_rolePermissions = function (value) {
+                this.rolePermissions = {};
+                if (value) {
+                    for (var _i = 0, value_2 = value; _i < value_2.length; _i++) {
+                        var k = value_2[_i];
+                        this.rolePermissions[k] = true;
+                    }
+                }
+                this.setItems(this.getItems());
+            };
+            PermissionCheckEditor = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
+            ], PermissionCheckEditor);
+            return PermissionCheckEditor;
+        }(Serenity.DataGrid));
+        Administration.PermissionCheckEditor = PermissionCheckEditor;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {

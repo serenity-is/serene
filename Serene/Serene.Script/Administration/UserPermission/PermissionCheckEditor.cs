@@ -7,6 +7,45 @@ using System.Runtime.CompilerServices;
 
 namespace Serene.Administration
 {
+    [Editor, Imported]
+    public class PermissionCheckEditor : DataGrid<PermissionCheckItem, PermissionCheckEditorOptions>
+    {
+        public PermissionCheckEditor(jQueryObject div, PermissionCheckEditorOptions opt)
+            : base(div, opt)
+        {
+        }
+
+        public List<UserPermissionRow> Value
+        {
+            get; set;
+        }
+
+        public List<string> RolePermissions
+        {
+            get; set;
+        }
+    }
+
+    [Imported, Serializable, PreserveMemberCase]
+    public class PermissionCheckItem
+    {
+        public string ParentKey { get; set; }
+        public string Key { get; set; }
+        public string Title { get; set; }
+        public bool IsGroup { get; set; }
+        public bool? GrantRevoke { get; set; }
+    }
+
+    [Imported, Serializable]
+    public class PermissionCheckEditorOptions
+    {
+        public bool ShowRevoke { get; set; }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See UserDialog.ts
+    Code below is only a reference for those who want to use Saltaralle
+
     [Editor, IdProperty("Key")]
     public class PermissionCheckEditor : DataGrid<PermissionCheckItem, PermissionCheckEditorOptions>
     {
@@ -359,19 +398,5 @@ namespace Serene.Administration
         }
     }
 
-    [Imported, Serializable, PreserveMemberCase]
-    public class PermissionCheckItem
-    {
-        public string ParentKey { get; set; }
-        public string Key { get; set; }
-        public string Title { get; set; }
-        public bool IsGroup { get; set; }
-        public bool? GrantRevoke { get; set; }
-    }
-
-    [Imported, Serializable]
-    public class PermissionCheckEditorOptions
-    {
-        public bool ShowRevoke { get; set; }
-    }
+    */
 }

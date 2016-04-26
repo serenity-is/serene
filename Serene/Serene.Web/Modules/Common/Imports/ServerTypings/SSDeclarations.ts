@@ -66,14 +66,6 @@
 }
 
 declare namespace Serene.Administration {
-    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
-        constructor(div: JQuery, opt: PermissionCheckEditorOptions);
-        get_value(): UserPermissionRow[];
-        set_value(value: UserPermissionRow[]): void;
-        get_rolePermissions(): string[];
-        set_rolePermissions(value: string[]): void;
-    }
-
     class PermissionCheckEditorOptions {
         showRevoke: boolean;
     }
