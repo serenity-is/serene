@@ -125,9 +125,21 @@ declare namespace Serene.Administration {
         protected createToolbarExtensions(): void;
         private getSortedGroupAndPermissionKeys(titleByKey);
         get_value(): UserPermissionRow[];
-        set_value(value: any): void;
+        set_value(value: UserPermissionRow[]): void;
         get_rolePermissions(): string[];
         set_rolePermissions(value: string[]): void;
+    }
+}
+declare namespace Serene.Administration {
+    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
+        private permissions;
+        constructor(opt: UserPermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserPermissionDialogOptions {
+        userID?: number;
+        username?: string;
     }
 }
 declare namespace Serene.Administration {
@@ -1855,20 +1867,6 @@ declare namespace Serene.Administration {
     }
     class RoleCheckEditor extends Serenity.CheckTreeEditor<any, any> {
         constructor(div: JQuery);
-    }
-    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
-        constructor(opt: RolePermissionDialogOptions);
-    }
-    class RolePermissionDialogOptions {
-        roleID: number;
-        title: string;
-    }
-    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
-        constructor(opt: UserPermissionDialogOptions);
-    }
-    class UserPermissionDialogOptions {
-        userID: number;
-        username: string;
     }
     class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
         constructor(opt: UserRoleDialogOptions);

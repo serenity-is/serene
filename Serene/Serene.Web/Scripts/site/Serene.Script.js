@@ -176,21 +176,6 @@
 	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
 	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserPermissionDialog
-	var $Serene_Administration_UserPermissionDialog = function(opt) {
-		this.$permissions = null;
-		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new Serene.Administration.PermissionCheckEditor(this.byId('Permissions'), { showRevoke: true });
-		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-			this.$permissions.set_value(response.Entities);
-		}), null);
-		Q.serviceRequest('Administration/UserPermission/ListRolePermissions', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response1) {
-			this.$permissions.set_rolePermissions(response1.Entities);
-		}), null);
-	};
-	$Serene_Administration_UserPermissionDialog.__typeName = 'Serene.Administration.UserPermissionDialog';
-	global.Serene.Administration.UserPermissionDialog = $Serene_Administration_UserPermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserRoleDialog
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
@@ -1665,27 +1650,6 @@
 			this.$3$SourceField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_UserPermissionDialog, $asm, {
-		getDialogOptions: function() {
-			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
-			var $t1 = [];
-			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				Q.serviceRequest('Administration/UserPermission/Update', { UserID: this.options.userID, Permissions: this.$permissions.get_value(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-					this.dialogClose();
-					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess'), '', null);
-					}, 0);
-				}), null);
-			}) });
-			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
-			opt.buttons = $t1;
-			opt.title = ss.formatString(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
-			return opt;
-		},
-		getTemplate: function() {
-			return "<div id='~_Permissions'></div>";
-		}
-	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {
 		getDialogOptions: function() {
 			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);

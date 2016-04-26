@@ -281,7 +281,7 @@
             return result;
         }
 
-        set_value(value) {
+        set_value(value: UserPermissionRow[]) {
 
             for (let item of this.view.getItems()) {
                 item.GrantRevoke = null;

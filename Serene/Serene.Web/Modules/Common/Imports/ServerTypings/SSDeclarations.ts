@@ -86,15 +86,6 @@ declare namespace Serene.Administration {
         constructor(div: JQuery);
     }
 
-    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
-        constructor(opt: UserPermissionDialogOptions);
-    }
-
-    class UserPermissionDialogOptions {
-        userID: number;
-        username: string;
-    }
-
     class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
         constructor(opt: UserRoleDialogOptions);
     }

@@ -746,6 +746,68 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var UserPermissionDialog = (function (_super) {
+            __extends(UserPermissionDialog, _super);
+            function UserPermissionDialog(opt) {
+                var _this = this;
+                _super.call(this, opt);
+                this.permissions = new Administration.PermissionCheckEditor(this.byId('Permissions'), {
+                    showRevoke: true
+                });
+                Administration.UserPermissionService.List({
+                    UserID: this.options.userID,
+                    Module: null,
+                    Submodule: null
+                }, function (response) {
+                    _this.permissions.set_value(response.Entities);
+                });
+                Administration.UserPermissionService.ListRolePermissions({
+                    UserID: this.options.userID,
+                    Module: null,
+                    Submodule: null
+                }, function (response) {
+                    _this.permissions.set_rolePermissions(response.Entities);
+                });
+            }
+            UserPermissionDialog.prototype.getDialogOptions = function () {
+                var _this = this;
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.buttons = [
+                    {
+                        text: Q.text('Dialogs.OkButton'),
+                        click: function (e) {
+                            Administration.UserPermissionService.Update({
+                                UserID: _this.options.userID,
+                                Permissions: _this.permissions.get_value(),
+                                Module: null,
+                                Submodule: null
+                            }, function (response) {
+                                _this.dialogClose();
+                                window.setTimeout(function () { return Q.notifySuccess(Q.text('Site.UserPermissionDialog.SaveSuccess')); }, 0);
+                            });
+                        }
+                    }, {
+                        text: Q.text('Dialogs.CancelButton'),
+                        click: function () { return _this.dialogClose(); }
+                    }];
+                opt.title = ss.formatString(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
+                return opt;
+            };
+            UserPermissionDialog.prototype.getTemplate = function () {
+                return '<div id="~_Permissions"></div>';
+            };
+            UserPermissionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserPermissionDialog);
+            return UserPermissionDialog;
+        }(Serenity.TemplatedDialog));
+        Administration.UserPermissionDialog = UserPermissionDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {

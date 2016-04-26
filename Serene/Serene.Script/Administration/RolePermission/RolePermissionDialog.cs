@@ -11,6 +11,10 @@
     [Imported]
     public class RolePermissionDialog : TemplatedDialog<RolePermissionDialogOptions>
     {
+        public RolePermissionDialog(RolePermissionDialogOptions opt)
+            : base(opt)
+        {
+        }
     }
 
     [Imported, Serializable]
@@ -21,7 +25,7 @@
     }
 
     /*
-    This class has been ported to TypeScript. See RoleDialog.ts
+    This class has been ported to TypeScript. See RolePermissionDialog.ts
     Code below is only for reference purposes who wants to use Saltaralle 
 
     public class RolePermissionDialog : TemplatedDialog<RolePermissionDialogOptions>

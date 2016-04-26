@@ -1151,6 +1151,7 @@
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\UserPermission\PermissionCheckEditor.ts" />
+    <TypeScriptCompile Include="Modules\Administration\UserPermission\UserPermissionDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
