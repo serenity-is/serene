@@ -1146,6 +1146,7 @@
     </Content>
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\RolePermission\RolePermissionDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />

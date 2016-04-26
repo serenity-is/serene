@@ -128,6 +128,61 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var RolePermissionDialog = (function (_super) {
+            __extends(RolePermissionDialog, _super);
+            function RolePermissionDialog(opt) {
+                var _this = this;
+                _super.call(this, opt);
+                this.permissions = new Administration.PermissionCheckEditor(this.byId('Permissions'), {
+                    showRevoke: false
+                });
+                Administration.RolePermissionService.List({
+                    RoleID: this.options.roleID,
+                    Module: null,
+                    Submodule: null
+                }, function (response) {
+                    _this.permissions.set_value(response.Entities.map(function (x) { return ({ PermissionKey: x }); }));
+                });
+            }
+            RolePermissionDialog.prototype.getDialogOptions = function () {
+                var _this = this;
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.buttons = [
+                    {
+                        text: Q.text('Dialogs.OkButton'),
+                        click: function (e) {
+                            Administration.RolePermissionService.Update({
+                                RoleID: _this.options.roleID,
+                                Permissions: _this.permissions.get_value().map(function (x) { return x.PermissionKey; }),
+                                Module: null,
+                                Submodule: null
+                            }, function (response) {
+                                _this.dialogClose();
+                                window.setTimeout(function () { return Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess')); }, 0);
+                            });
+                        }
+                    }, {
+                        text: Q.text('Dialogs.CancelButton'),
+                        click: function () { return _this.dialogClose(); }
+                    }];
+                opt.title = ss.formatString(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
+                return opt;
+            };
+            RolePermissionDialog.prototype.getTemplate = function () {
+                return '<div id="~_Permissions"></div>';
+            };
+            RolePermissionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RolePermissionDialog);
+            return RolePermissionDialog;
+        }(Serenity.TemplatedDialog));
+        Administration.RolePermissionDialog = RolePermissionDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {

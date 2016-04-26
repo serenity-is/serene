@@ -8,6 +8,22 @@
     using System.Runtime.CompilerServices;
     using System.Linq;
 
+    [Imported]
+    public class RolePermissionDialog : TemplatedDialog<RolePermissionDialogOptions>
+    {
+    }
+
+    [Imported, Serializable]
+    public class RolePermissionDialogOptions
+    {
+        public int RoleID { get; set; }
+        public string Title { get; set; }
+    }
+
+    /*
+    This class has been ported to TypeScript. See RoleDialog.ts
+    Code below is only for reference purposes who wants to use Saltaralle 
+
     public class RolePermissionDialog : TemplatedDialog<RolePermissionDialogOptions>
     {
         private PermissionCheckEditor permissions;
@@ -67,11 +83,6 @@
             return "<div id='~_Permissions'></div>";
         }
     }
-
-    [Imported, Serializable]
-    public class RolePermissionDialogOptions
-    {
-        public int RoleID { get; set; }
-        public string Title { get; set; }
-    }
+    */
 }
+ 

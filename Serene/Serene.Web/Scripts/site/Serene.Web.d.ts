@@ -43,6 +43,18 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
+        private permissions;
+        constructor(opt: RolePermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface RolePermissionDialogOptions {
+        roleID?: number;
+        title?: string;
+    }
+}
+declare namespace Serene.Administration {
     class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
         protected getColumnsKey(): string;
         protected getIdProperty(): string;

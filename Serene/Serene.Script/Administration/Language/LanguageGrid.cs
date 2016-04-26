@@ -3,7 +3,9 @@ namespace Serene.Administration
 {
     using jQueryApi;
     using Serenity;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class LanguageGrid : EntityGrid<LanguageRow>
     {
         public LanguageGrid(jQueryObject container)

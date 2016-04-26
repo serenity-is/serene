@@ -28,11 +28,11 @@
 		this.$6$CancelTitleField = null;
 		Serenity.TemplatedDialog.call(this, null);
 		var self = this;
-		this.ById('ProgressBar').progressbar({
+		this.byId('ProgressBar').progressbar({
 			max: 100,
 			value: 0,
 			change: function(e, v) {
-				self.ById('ProgressLabel').text(self.get_value() + ' / ' + self.get_max());
+				self.byId('ProgressLabel').text(self.get_value() + ' / ' + self.get_max());
 			}
 		});
 	};
@@ -107,13 +107,6 @@
 	$Serene_Administration_LanguageForm.__typeName = 'Serene.Administration.LanguageForm';
 	global.Serene.Administration.LanguageForm = $Serene_Administration_LanguageForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.LanguageGrid
-	var $Serene_Administration_LanguageGrid = function(container) {
-		Serenity.EntityGrid.call(this, container);
-	};
-	$Serene_Administration_LanguageGrid.__typeName = 'Serene.Administration.LanguageGrid';
-	global.Serene.Administration.LanguageGrid = $Serene_Administration_LanguageGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.PermissionModuleEditor
 	var $Serene_Administration_PermissionModuleEditor = function(hidden) {
 		Serenity.Select2Editor.call(this, hidden, null);
@@ -170,20 +163,6 @@
 	$Serene_Administration_RoleForm.__typeName = 'Serene.Administration.RoleForm';
 	global.Serene.Administration.RoleForm = $Serene_Administration_RoleForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RolePermissionDialog
-	var $Serene_Administration_RolePermissionDialog = function(opt) {
-		this.$permissions = null;
-		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new Serene.Administration.PermissionCheckEditor(this.ById('Permissions'), { showRevoke: false });
-		Q.serviceRequest('Administration/RolePermission/List', { RoleID: this.options.roleID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
-				return { PermissionKey: x };
-			}).toArray());
-		}), null);
-	};
-	$Serene_Administration_RolePermissionDialog.__typeName = 'Serene.Administration.RolePermissionDialog';
-	global.Serene.Administration.RolePermissionDialog = $Serene_Administration_RolePermissionDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.UserForm
 	var $Serene_Administration_UserForm = function(idPrefix) {
 		this.$3$UsernameField = null;
@@ -201,7 +180,7 @@
 	var $Serene_Administration_UserPermissionDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new Serene.Administration.PermissionCheckEditor(this.ById('Permissions'), { showRevoke: true });
+		this.$permissions = new Serene.Administration.PermissionCheckEditor(this.byId('Permissions'), { showRevoke: true });
 		Q.serviceRequest('Administration/UserPermission/List', { UserID: this.options.userID, Module: null, Submodule: null }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(response.Entities);
 		}), null);
@@ -216,7 +195,7 @@
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.ById('Roles'));
+		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId('Roles'));
 		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
 				return x.toString();
@@ -622,7 +601,7 @@
 			}
 			return null;
 		}));
-		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -653,7 +632,7 @@
 	// Serene.Membership.ForgotPasswordPanel
 	var $Serene_Membership_ForgotPasswordPanel = function(container) {
 		Serenity.PropertyPanel.call(this, container);
-		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+		this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -685,7 +664,7 @@
 	// Serene.Membership.LoginPanel
 	var $Serene_Membership_LoginPanel = function(container) {
 		Serenity.PropertyPanel.call(this, container);
-		this.ById('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
+		this.byId('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
 			e.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -740,13 +719,13 @@
 			}
 			return null;
 		}));
-		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
 			}
 			var request = this.getSaveEntity();
-			request.Token = this.ById('Token').val();
+			request.Token = this.byId('Token').val();
 			Q.serviceCall({
 				url: Q.resolveUrl('~/Account/ResetPassword'),
 				request: request,
@@ -790,7 +769,7 @@
 			}
 			return null;
 		}));
-		this.ById('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
+		this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
 			e2.preventDefault();
 			if (!this.validateForm()) {
 				return;
@@ -883,9 +862,9 @@
 		this.$loadedState = null;
 		this.$ordersGrid = null;
 		Serenity.EntityDialog.call(this);
-		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.ById('OrdersGrid'));
+		this.$ordersGrid = new $Serene_Northwind_CustomerOrdersGrid(this.byId('OrdersGrid'));
 		Serenity.FLX.flexHeightOnly(this.$ordersGrid.element, 1);
-		this.ById('NoteList').closest('.field').hide().end().appendTo(this.ById('TabNotes'));
+		this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
 		$Serene_DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
 			return !ss.referenceEquals(this.$getSaveState(), this.$loadedState);
 		}));
@@ -1028,7 +1007,7 @@
 	var $Serene_Northwind_NoteDialog = function() {
 		this.okClick = null;
 		Serenity.TemplatedDialog.call(this);
-		var $t2 = this.ById('Text');
+		var $t2 = this.byId('Text');
 		var $t1 = Serenity.HtmlContentEditorOptions.$ctor();
 		$t1.rows = 12;
 		new $Serenity_HtmlBasicContentEditor($t2, $t1);
@@ -1042,7 +1021,7 @@
 		this.$6$IsDirtyField = false;
 		this.$6$OnChangeField = null;
 		Serenity.TemplatedWidget.call(this, container);
-		var $t2 = this.ById('Toolbar');
+		var $t2 = this.byId('Toolbar');
 		var $t1 = [];
 		$t1.push({ title: 'Add Note', cssClass: 'add-button', onClick: ss.mkdel(this, function(e) {
 			e.preventDefault();
@@ -1405,16 +1384,16 @@
 			this.$6$CancelledField = value;
 		},
 		get_max: function() {
-			return this.ById('ProgressBar').progressbar().progressbar('option', 'max');
+			return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
 		},
 		set_max: function(value) {
-			this.ById('ProgressBar').progressbar().progressbar('option', 'max', value);
+			this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
 		},
 		get_value: function() {
-			return ss.unbox(ss.cast(this.ById('ProgressBar').progressbar('value'), ss.Int32));
+			return ss.unbox(ss.cast(this.byId('ProgressBar').progressbar('value'), ss.Int32));
 		},
 		set_value: function(value) {
-			this.ById('ProgressBar').progressbar().progressbar('value', value);
+			this.byId('ProgressBar').progressbar().progressbar('value', value);
 		},
 		get_title: function() {
 			return this.element.dialog().dialog('option', 'title');
@@ -1626,7 +1605,6 @@
 			this.$3$LanguageNameField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_LanguageGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, Serenity.Select2Editor, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
 	ss.initClass($Serene_Administration_RoleCheckEditor, $asm, {
 		getButtons: function() {
@@ -1667,29 +1645,6 @@
 			this.$3$RoleNameField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_RolePermissionDialog, $asm, {
-		getDialogOptions: function() {
-			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
-			var $t1 = [];
-			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				Q.serviceRequest('Administration/RolePermission/Update', { RoleID: this.options.roleID, Permissions: Enumerable.from(this.$permissions.get_value()).select(function(x) {
-					return x.PermissionKey;
-				}).toArray(), Module: null, Submodule: null }, ss.mkdel(this, function(response) {
-					this.dialogClose();
-					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.RolePermissionDialog.SaveSuccess'), '', null);
-					}, 0);
-				}), null);
-			}) });
-			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
-			opt.buttons = $t1;
-			opt.title = ss.formatString(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
-			return opt;
-		},
-		getTemplate: function() {
-			return "<div id='~_Permissions'></div>";
-		}
-	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Administration_UserForm, $asm, {
 		set_username: function(value) {
 			this.$3$UsernameField = value;
@@ -2861,10 +2816,10 @@
 			return opt;
 		},
 		get_text: function() {
-			return this.ById('Text').val();
+			return this.byId('Text').val();
 		},
 		set_text: function(value) {
-			this.ById('Text').val(value);
+			this.byId('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Northwind_NotesEditor, $asm, {
@@ -2872,7 +2827,7 @@
 			return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
 		},
 		$updateContent: function() {
-			var noteList = this.ById('NoteList');
+			var noteList = this.byId('NoteList');
 			noteList.children().remove();
 			if (ss.isValue(this.$items)) {
 				var index = 0;

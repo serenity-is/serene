@@ -13,7 +13,6 @@ namespace Serene.Administration
     This class has been ported to TypeScript. See RoleDialog.ts
     Code below is only for reference purposes who wants to use Saltaralle 
 
-
     [IdProperty("RoleId"), NameProperty("RoleName")]
     [FormKey("Administration.Role"), LocalTextPrefix("Administration.Role"), Service("Administration/Role")]
     public class RoleDialog : EntityDialog<RoleRow>, IAsyncInit
