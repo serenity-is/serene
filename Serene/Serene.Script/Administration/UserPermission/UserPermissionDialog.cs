@@ -26,7 +26,7 @@
     }
 
     /*
-    This class has been ported to TypeScript. See RolePermissionDialog.ts
+    This class has been ported to TypeScript. See UserPermissionDialog.ts
     Code below is only for reference purposes who wants to use Saltaralle 
 
     public class UserPermissionDialog : TemplatedDialog<UserPermissionDialogOptions>
