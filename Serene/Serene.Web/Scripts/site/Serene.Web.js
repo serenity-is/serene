@@ -439,7 +439,8 @@ var Serene;
                     .closest('.field').find('sup').toggle(this.isNew());
             };
             UserDialog = __decorate([
-                Serenity.Decorators.registerClass()
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
             ], UserDialog);
             return UserDialog;
         }(Serenity.EntityDialog));

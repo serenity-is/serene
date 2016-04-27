@@ -1,5 +1,10 @@
 @import "site.mixins.less";
 
+.s-Administration-UserDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
 .s-LanguageDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
@@ -12,12 +17,6 @@
         height: 23px;
         padding: 0 3px;
     }
-}
-
-.s-UserDialog {
-    > .size { .widthAndMin(650px); }
-    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
-    .categories { height: 260px; }
 }
 
 .s-UserPermissionDialog, .s-RolePermissionDialog, .s-UserRoleDialog {

@@ -6885,6 +6885,12 @@ section.content > .s-DataGrid {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
+.s-Administration-UserDialog > .size {
+  width: 650px;
+}
+.s-Administration-UserDialog .caption {
+  width: 150px;
+}
 .s-LanguageDialog > .size {
   min-width: 650px;
   width: 650px;
@@ -6927,44 +6933,6 @@ section.content > .s-DataGrid {
   width: 100%;
   height: 23px;
   padding: 0 3px;
-}
-.s-UserDialog > .size {
-  min-width: 650px;
-  width: 650px;
-}
-.s-UserDialog .tab-pane {
-  height: auto;
-}
-.s-UserDialog .caption {
-  width: 150px;
-}
-.s-UserDialog .editor {
-  width: 400px;
-}
-.s-UserDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-UserDialog .s-Form .editor.dateQ {
-  width: 376px;
-}
-.s-UserDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-UserDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 281px;
-}
-.s-UserDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-UserDialog .s-Form .editor.has-inplace-button {
-  width: 374px;
-}
-.s-UserDialog .s-Form .emaildomain {
-  width: 215px;
-}
-.s-UserDialog .categories {
-  height: 260px;
 }
 .s-UserPermissionDialog > .size,
 .s-RolePermissionDialog > .size,

@@ -912,7 +912,7 @@ button.ui-state-hover .ui-button-text {
   border: none;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #d0d0d0;
-  padding: 5px 4px 5px 4px;
+  padding: 5px 4px 0 4px;
   min-height: 44px;
 }
 div.s-Toolbar .tool-button.no-text span.button-inner {
@@ -1084,6 +1084,29 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-preferred-size: auto;
   margin-left: 4px;
 }
+.flex-layout .s-EmailEditor.emailuser {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 50%;
+  -moz-flex: 1 1 50%;
+  -ms-flex: 1 1 50%;
+  flex: 1 1 50%;
+  -ms-flex-positive: 1;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: 50%;
+}
+.flex-layout .s-DateTimeEditor.emaildomain {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+  margin-left: 4px;
+}
 .flex-layout .vx {
   -webkit-box-flex: 0;
   -moz-box-flex: 0;
@@ -1189,7 +1212,6 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -moz-flex-grow: 1;
   -ms-flex-grow: 1;
   flex-grow: 1;
-  overflow-y: scroll;
 }
 @media (max-width: 760px) {
   .flex-layout .field {
@@ -2047,7 +2069,7 @@ a.s-LinkDropDown input {
   font-weight: 600;
 }
 .s-QuickSearchBar {
-  margin: 2px 2px 0 0;
+  margin: 2px 5px 5px 0;
   float: left;
   border-right: 1px solid #aaa;
   border-radius: 0 4px 4px 0;
@@ -2112,7 +2134,7 @@ a.quick-search-field {
 .s-Toolbar {
   border-style: none;
   min-height: 40px;
-  padding-bottom: 8px;
+  padding-bottom: 3px;
   margin-bottom: 8px;
 }
 .s-Toolbar .sep-button {
@@ -2124,7 +2146,7 @@ a.quick-search-field {
 }
 .s-Toolbar .buttons-inner {
   float: left;
-  padding: 2px 3px;
+  padding: 2px 3px 2px 0;
 }
 .s-Toolbar .button-inner {
   float: left;
@@ -2152,6 +2174,7 @@ a.quick-search-field {
   cursor: pointer;
   border: 1px solid #aaa;
   margin-right: 3px;
+  margin-bottom: 5px;
   border-radius: 3px;
   background: linear-gradient(#ffffff 0px, #eeeeee 100%) repeat-x #f7f7f7;
 }
