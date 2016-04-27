@@ -31,7 +31,8 @@
 
             buttons.push({
                 title: Q.text('Site.UserDialog.EditRolesButton'),
-                cssClass: 'users-button',
+                cssClass: 'edit-roles-button',
+                icon: 'icon-people text-blue',
                 onClick: () =>
                 {
                     new UserRoleDialog({
@@ -43,7 +44,8 @@
 
             buttons.push({
                 title: Q.text('Site.UserDialog.EditPermissionsButton'),
-                cssClass: 'lock-button',
+                cssClass: 'edit-permissions-button',
+                icon: 'icon-lock-open text-green',
                 onClick: () =>
                 {
                     new UserPermissionDialog({
@@ -59,8 +61,8 @@
         protected updateInterface() {
             super.updateInterface();
 
-            this.toolbar.findButton('users-button').toggleClass('disabled', this.isNewOrDeleted());
-            this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+            this.toolbar.findButton('edit-roles-button').toggleClass('disabled', this.isNewOrDeleted());
+            this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
         }
 
         protected afterLoadEntity() {

@@ -403,7 +403,8 @@ var Serene;
                 var buttons = _super.prototype.getToolbarButtons.call(this);
                 buttons.push({
                     title: Q.text('Site.UserDialog.EditRolesButton'),
-                    cssClass: 'users-button',
+                    cssClass: 'edit-roles-button',
+                    icon: 'icon-people text-blue',
                     onClick: function () {
                         new Administration.UserRoleDialog({
                             userID: _this.entity.UserId,
@@ -413,7 +414,8 @@ var Serene;
                 });
                 buttons.push({
                     title: Q.text('Site.UserDialog.EditPermissionsButton'),
-                    cssClass: 'lock-button',
+                    cssClass: 'edit-permissions-button',
+                    icon: 'icon-lock-open text-green',
                     onClick: function () {
                         new Administration.UserPermissionDialog({
                             userID: _this.entity.UserId,
@@ -425,8 +427,8 @@ var Serene;
             };
             UserDialog.prototype.updateInterface = function () {
                 _super.prototype.updateInterface.call(this);
-                this.toolbar.findButton('users-button').toggleClass('disabled', this.isNewOrDeleted());
-                this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+                this.toolbar.findButton('edit-roles-button').toggleClass('disabled', this.isNewOrDeleted());
+                this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
             UserDialog.prototype.afterLoadEntity = function () {
                 _super.prototype.afterLoadEntity.call(this);

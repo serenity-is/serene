@@ -215,7 +215,10 @@
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Web.d.ts" />
-    <TypeScriptCompile Include="ScriptTests\Util\DialogUtils.ts" />
+    <TypeScriptCompile Include="ScriptTests\Util\ButtonTesting.ts" />
+    <TypeScriptCompile Include="ScriptTests\Util\EditorTesting.ts" />
+    <TypeScriptCompile Include="ScriptTests\Util\FormTesting.ts" />
+    <TypeScriptCompile Include="ScriptTests\Util\DialogTesting.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\User\Administration.User.UserDialogTests.ts" />
   </ItemGroup>
   <ItemGroup>
