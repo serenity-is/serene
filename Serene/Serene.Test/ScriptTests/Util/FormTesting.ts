@@ -14,6 +14,13 @@ namespace Serene.FormTesting {
             '[Field has title ' + title + ']');
     }
 
+    export function assertValue(field: JQuery, expected: any) {
+        let edit = field.find('.editor').first();
+        let value = EditorTesting.getValue(edit);
+        QUnit.assert.strictEqual(value, expected,
+            getTitle(field) + ' has value ' + JSON.stringify(expected));
+    }
+
     export function isEditable(field: JQuery) {
         let edit = field.find('.editor').first();
         return EditorTesting.isEditable(edit);
