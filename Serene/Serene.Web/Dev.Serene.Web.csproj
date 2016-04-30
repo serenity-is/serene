@@ -1327,6 +1327,7 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="tools\JsEngine\json2.min.js" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
