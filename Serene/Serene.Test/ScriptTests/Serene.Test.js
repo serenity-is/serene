@@ -5,6 +5,526 @@
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadEntityAndOpenDialog({
+                    RoleId: 789,
+                    RoleName: 'some.thing'
+                });
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    var ajax_1 = new Serene.ServiceTesting.FakeAjax();
+                    var rolePermissionListCalls = 0;
+                    ajax_1.addServiceHandler("~/services/Administration/RolePermission/List", function (s) {
+                        rolePermissionListCalls++;
+                        assert.deepEqual(s.request, { RoleID: 789, Module: null, Submodule: null }, 'role permission list request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
+                    window.setTimeout(function () {
+                        try {
+                            var permissionDialog = $('.ui-dialog:visible').last();
+                            assert.ok(permissionDialog.hasClass('s-Administration-RolePermissionDialog'), 'role permissions dialog is shown on edit permissions button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit Role Permissions (some.thing)', 'dialog title');
+                            assert.equal(1, rolePermissionListCalls, 'RolePermission/List should be called once');
+                            permissionDialog.find('.ui-dialog-content').dialog('close');
+                        }
+                        finally {
+                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
+                            ajax_1.dispose();
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit LoadById, Apply Changes Button', function (assert) {
+                var asyncDone = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                var ajax = new Serene.ServiceTesting.FakeAjax();
+                var firstRetrieveCalls = 0;
+                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                    firstRetrieveCalls++;
+                    assert.deepEqual(s.request, { EntityId: 789 });
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
+                            assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                            assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), 'Edit Role (some.thing)', 'has correct title');
+                            var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                            assert.strictEqual(4, buttons.length, 'has 4 visible buttons');
+                            var buttonTesting = new Serene.ButtonTesting(assert);
+                            buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                            buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                            buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
+                            buttonTesting.assertEnabled(buttons.eq(3), 'edit-permissions-button');
+                            var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                            assert.strictEqual(1, fields.length, 'has 1 field');
+                            var formTesting = new Serene.FormTesting(assert);
+                            var rolename = fields.eq(0);
+                            formTesting.assertTitle(rolename, 'Role Name');
+                            formTesting.assertRequired(rolename);
+                            formTesting.assertEditable(rolename);
+                            formTesting.assertHasClass(rolename, 's-StringEditor');
+                            formTesting.assertMaxLength(rolename, 100);
+                            formTesting.assertValue(rolename, 'some.thing');
+                            formTesting.setValue(rolename, 'ABC  ');
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var updateCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/Role/Update", function (s) {
+                                updateCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789,
+                                    Entity: {
+                                        RoleId: 789,
+                                        RoleName: 'ABC  '
+                                    }
+                                }, 'save request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                                    retrieveCalls++;
+                                    assert.deepEqual(s.request, { EntityId: 789 }, 'retrieve request');
+                                    setTimeout(function () {
+                                        try {
+                                            assert.strictEqual(updateCalls, 1, 'update should be called once');
+                                            assert.strictEqual(retrieveCalls, 1, "retrieve should be called once");
+                                            assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                            assert.ok(uiDialog.is(":visible"), 'dialog should stay open');
+                                            formTesting.assertValue(rolename, 'ABC');
+                                        }
+                                        finally {
+                                            toastr.remove();
+                                            ajax.dispose();
+                                            dialog.dialogClose();
+                                            asyncDone();
+                                        }
+                                    }, 0);
+                                    return {
+                                        Entity: {
+                                            RoleId: 789,
+                                            RoleName: 'ABC'
+                                        }
+                                    };
+                                });
+                                return {
+                                    EntityId: 789
+                                };
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".apply-changes-button");
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            RoleId: 789,
+                            RoleName: 'some.thing'
+                        }
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit LoadById, Delete Button', function (assert) {
+                var asyncDone = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                var ajax = new Serene.ServiceTesting.FakeAjax();
+                var retrieveCalls = 0;
+                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                    retrieveCalls++;
+                    assert.deepEqual(s.request, { EntityId: 789 });
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var deleteCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/Role/Delete", function (s) {
+                                deleteCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789
+                                }, 'delete request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                                    throw new Error("retrieve shouldn't be called!");
+                                });
+                                setTimeout(function () {
+                                    try {
+                                        assert.strictEqual(deleteCalls, 1, 'update should be called once');
+                                        assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                        assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                        assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                                    }
+                                    finally {
+                                        toastr.remove();
+                                        ajax.dispose();
+                                        dialog.dialogClose();
+                                        asyncDone();
+                                    }
+                                }, 0);
+                                return {};
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".delete-button");
+                            var confirmDialog = $('.s-ConfirmDialog');
+                            assert.equal(confirmDialog.length, 1, 'confirm dialog should be shown');
+                            confirmDialog.find('.ui-dialog-buttonpane .ui-button').first().click();
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            RoleId: 789,
+                            RoleName: 'some.thing'
+                        }
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit LoadById, Save and Close Button', function (assert) {
+                var asyncDone = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                var ajax = new Serene.ServiceTesting.FakeAjax();
+                var firstRetrieveCalls = 0;
+                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                    firstRetrieveCalls++;
+                    assert.deepEqual(s.request, { EntityId: 789 });
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
+                            assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var updateCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/Role/Update", function (s) {
+                                updateCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789,
+                                    Entity: {
+                                        RoleId: 789,
+                                        RoleName: 'some.thing'
+                                    }
+                                }, 'save request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                                    throw new Error("retrieve shouldn't be called!");
+                                });
+                                setTimeout(function () {
+                                    try {
+                                        assert.strictEqual(updateCalls, 1, 'update should be called once');
+                                        assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                        assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                        assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                                    }
+                                    finally {
+                                        toastr.remove();
+                                        ajax.dispose();
+                                        dialog.dialogClose();
+                                        asyncDone();
+                                    }
+                                }, 0);
+                                return {
+                                    EntityId: 789
+                                };
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            RoleId: 789,
+                            RoleName: 'some.thing'
+                        }
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit With LoadEntity', function (assert) {
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadEntityAndOpenDialog({
+                    RoleId: 789,
+                    RoleName: 'some.thing'
+                });
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), 'Edit Role (some.thing)', 'has correct title');
+                    var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                    assert.strictEqual(4, buttons.length, 'has 4 visible buttons');
+                    var buttonTesting = new Serene.ButtonTesting(assert);
+                    buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                    buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                    buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
+                    buttonTesting.assertEnabled(buttons.eq(3), 'edit-permissions-button');
+                    var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                    assert.strictEqual(1, fields.length, 'has 1 fields');
+                    var formTesting = new Serene.FormTesting(assert);
+                    var rolename = fields.eq(0);
+                    formTesting.assertTitle(rolename, 'Role Name');
+                    formTesting.assertRequired(rolename);
+                    formTesting.assertEditable(rolename);
+                    formTesting.assertHasClass(rolename, 's-StringEditor');
+                    formTesting.assertMaxLength(rolename, 100);
+                    formTesting.assertValue(rolename, 'some.thing');
+                }
+                finally {
+                    dialog.dialogClose();
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog General', function (assert) {
+                assert.notEqual(null, new Administration.RoleDialog(), 'create a new instance');
+                var dialog = new Administration.RoleDialog();
+                assert.notEqual(null, dialog.element, 'has element');
+                var uiDialog = dialog.element.closest('.ui-dialog');
+                assert.equal(1, uiDialog.length, 'element under .ui-dialog');
+                assert.ok(uiDialog.hasClass("s-Dialog"), 'has dialog css class');
+                assert.ok(uiDialog.hasClass("s-RoleDialog"), 'has classname css class');
+                assert.ok(uiDialog.hasClass("s-Administration-RoleDialog"), 'has module prefixed css class');
+                assert.ok(!uiDialog.is(':visible'), 'initially invisible');
+                dialog.dialogOpen();
+                assert.ok(uiDialog.is(':visible'), 'visible after dialogOpen');
+                dialog.dialogClose();
+                assert.ok(!uiDialog.is(':visible'), 'hidden after dialogClose');
+                dialog = new Administration.RoleDialog();
+                uiDialog = dialog.element.closest('.ui-dialog');
+                dialog.loadNewAndOpenDialog();
+                assert.ok(uiDialog.is(':visible'), 'open in new entity mode');
+                dialog.dialogClose();
+                assert.ok(!uiDialog.is(":visible"), 'close new entity dialog');
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog New Entity, Apply Changes Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadNewAndOpenDialog();
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open a new entity dialog');
+                    assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), "New Role", 'has correct title');
+                    var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                    assert.strictEqual(3, buttons.length, 'has 3 visible buttons');
+                    var buttonTesting = new Serene.ButtonTesting(assert);
+                    buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                    buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                    buttonTesting.assertDisabled(buttons.eq(2), 'edit-permissions-button');
+                    var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                    assert.strictEqual(1, fields.length, 'has 1 field');
+                    var formTesting = new Serene.FormTesting(assert);
+                    var rolename = fields.eq(0);
+                    formTesting.assertTitle(rolename, 'Role Name');
+                    formTesting.assertRequired(rolename);
+                    formTesting.assertEditable(rolename);
+                    formTesting.assertHasClass(rolename, 's-StringEditor');
+                    formTesting.assertMaxLength(rolename, 100);
+                    formTesting.assertValue(rolename, '');
+                    formTesting.setValue(rolename, 'ABC  ');
+                    var datachangeTriggers = 0;
+                    dialog.element.on('ondatachange', function () {
+                        datachangeTriggers++;
+                    });
+                    var ajax_2 = new Serene.ServiceTesting.FakeAjax();
+                    var createCalls = 0;
+                    ajax_2.addServiceHandler("~/services/Administration/Role/Create", function (s) {
+                        createCalls++;
+                        assert.deepEqual(s.request, {
+                            Entity: {
+                                RoleName: 'ABC  '
+                            }
+                        }, 'save request');
+                        var retrieveCalls = 0;
+                        ajax_2.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                            retrieveCalls++;
+                            assert.deepEqual(s.request, { EntityId: 9876 }, 'retrieve request');
+                            setTimeout(function () {
+                                try {
+                                    assert.strictEqual(createCalls, 1, 'create should be called once');
+                                    assert.strictEqual(retrieveCalls, 1, "retrieve should be called once");
+                                    assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                    assert.ok(uiDialog.is(":visible"), 'dialog should stay open');
+                                    formTesting.assertValue(rolename, 'ABC');
+                                }
+                                finally {
+                                    toastr.remove();
+                                    ajax_2.dispose();
+                                    dialog.dialogClose();
+                                    done();
+                                }
+                            }, 0);
+                            return {
+                                Entity: {
+                                    RoleId: 9876,
+                                    RoleName: 'ABC'
+                                }
+                            };
+                        });
+                        return { EntityId: 9876 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, ".apply-changes-button");
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog New Entity, Save and Close Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadNewAndOpenDialog();
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open a new entity dialog');
+                    assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), "New Role", 'has correct title');
+                    var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                    assert.strictEqual(1, fields.length, 'has 1 field');
+                    var formTesting = new Serene.FormTesting(assert);
+                    var rolename = fields.eq(0);
+                    formTesting.setValue(rolename, 'ABC  ');
+                    var datachangeTriggers = 0;
+                    dialog.element.on('ondatachange', function () {
+                        datachangeTriggers++;
+                    });
+                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
+                    var createCalls = 0;
+                    ajax_3.addServiceHandler("~/services/Administration/Role/Create", function (s) {
+                        createCalls++;
+                        assert.deepEqual(s.request, {
+                            Entity: {
+                                RoleName: 'ABC  '
+                            }
+                        }, 'save request');
+                        var retrieveCalls = 0;
+                        ajax_3.addServiceHandler("~/services/Administration/Role/Retrieve", function (s) {
+                            throw new Error("retrieve shouldn't be called!");
+                        });
+                        setTimeout(function () {
+                            try {
+                                assert.strictEqual(createCalls, 1, 'create should be called once');
+                                assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                            }
+                            finally {
+                                toastr.remove();
+                                ajax_3.dispose();
+                                dialog.dialogClose();
+                                done();
+                            }
+                        }, 0);
+                        return { EntityId: 9876 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
             QUnit.test('UserDialog Edit Permissions Button', function (assert) {
                 var done = assert.async();
                 var dialog = new Administration.UserDialog();
@@ -18,15 +538,15 @@
                 });
                 try {
                     assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    var ajax_1 = new Serene.ServiceTesting.FakeAjax();
+                    var ajax_4 = new Serene.ServiceTesting.FakeAjax();
                     var userPermissionListCalls = 0;
-                    ajax_1.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
+                    ajax_4.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
                         userPermissionListCalls++;
                         assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
                         return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
                     });
                     var listRolePermissionsCalls = 0;
-                    ajax_1.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
+                    ajax_4.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
                         listRolePermissionsCalls++;
                         assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
                         return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
@@ -44,7 +564,7 @@
                         }
                         finally {
                             Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
-                            ajax_1.dispose();
+                            ajax_4.dispose();
                             dialog.dialogClose();
                             done();
                         }
@@ -88,9 +608,9 @@ var Serene;
                             RoleId: 24680,
                             RoleName: 'OtherRole'
                         }]));
-                    var ajax_2 = new Serene.ServiceTesting.FakeAjax();
+                    var ajax_5 = new Serene.ServiceTesting.FakeAjax();
                     var userRoleListCalls = 0;
-                    ajax_2.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
+                    ajax_5.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
                         userRoleListCalls++;
                         assert.deepEqual(s.request, { UserID: 789 });
                         return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
@@ -105,7 +625,7 @@ var Serene;
                             assert.equal(1, userRoleListCalls, 'user role list should be called once');
                         }
                         finally {
-                            ajax_2.dispose();
+                            ajax_5.dispose();
                             Q.ScriptData.set('Lookup.Administration.Role', null);
                             dialog.dialogClose();
                             done();
@@ -132,9 +652,9 @@ var Serene;
                 var dialog = new Administration.UserDialog();
                 var uiDialog = dialog.element.closest(".ui-dialog");
                 var ajax = new Serene.ServiceTesting.FakeAjax();
-                var userRetrieveCalled = 0;
+                var firstRetrieveCalls = 0;
                 ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
-                    userRetrieveCalled++;
+                    firstRetrieveCalls++;
                     assert.deepEqual(s.request, { EntityId: 789 });
                     dialog.element.on('dialogopen', function () {
                         window.setTimeout(function () {
@@ -144,8 +664,8 @@ var Serene;
                             assert.strictEqual(5, buttons.length, 'has 5 visible buttons');
                             var buttonTesting = new Serene.ButtonTesting(assert);
                             buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
-                            buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
                             buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                            buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
                             buttonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
                             buttonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
                             var fields = Serene.DialogTesting.getVisibleFields(dialog);
@@ -634,9 +1154,9 @@ var Serene;
                     dialog.element.on('ondatachange', function () {
                         datachangeTriggers++;
                     });
-                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
+                    var ajax_6 = new Serene.ServiceTesting.FakeAjax();
                     var createCalls = 0;
-                    ajax_3.addServiceHandler("~/services/Administration/User/Create", function (s) {
+                    ajax_6.addServiceHandler("~/services/Administration/User/Create", function (s) {
                         createCalls++;
                         assert.deepEqual(s.request, {
                             Entity: {
@@ -647,7 +1167,7 @@ var Serene;
                             }
                         }, 'save request');
                         var retrieveCalls = 0;
-                        ajax_3.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                        ajax_6.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
                             retrieveCalls++;
                             assert.deepEqual(s.request, { EntityId: 9876 }, 'retrieve request');
                             setTimeout(function () {
@@ -665,7 +1185,7 @@ var Serene;
                                 }
                                 finally {
                                     toastr.remove();
-                                    ajax_3.dispose();
+                                    ajax_6.dispose();
                                     dialog.dialogClose();
                                     done();
                                 }
@@ -725,9 +1245,9 @@ var Serene;
                     dialog.element.on('ondatachange', function () {
                         datachangeTriggers++;
                     });
-                    var ajax_4 = new Serene.ServiceTesting.FakeAjax();
+                    var ajax_7 = new Serene.ServiceTesting.FakeAjax();
                     var createCalls = 0;
-                    ajax_4.addServiceHandler("~/services/Administration/User/Create", function (s) {
+                    ajax_7.addServiceHandler("~/services/Administration/User/Create", function (s) {
                         createCalls++;
                         assert.deepEqual(s.request, {
                             Entity: {
@@ -738,7 +1258,7 @@ var Serene;
                             }
                         }, 'save request');
                         var retrieveCalls = 0;
-                        ajax_4.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                        ajax_7.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
                             throw new Error("retrieve shouldn't be called!");
                         });
                         setTimeout(function () {
@@ -750,7 +1270,7 @@ var Serene;
                             }
                             finally {
                                 toastr.remove();
-                                ajax_4.dispose();
+                                ajax_7.dispose();
                                 dialog.dialogClose();
                                 done();
                             }

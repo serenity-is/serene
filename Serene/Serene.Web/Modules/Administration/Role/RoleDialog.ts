@@ -16,7 +16,8 @@
 
             buttons.push({
                 title: Q.text('Site.RolePermissionDialog.EditButton'),
-                cssClass: 'lock-button',
+                cssClass: 'edit-permissions-button',
+                icon: 'icon-lock-open text-green',
                 onClick: () =>
                 {
                     new RolePermissionDialog({
@@ -32,7 +33,7 @@
         protected updateInterface() {
             super.updateInterface();
 
-            this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+            this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
         }
     }
 }

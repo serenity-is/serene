@@ -77,7 +77,8 @@ var Serene;
                 var buttons = _super.prototype.getToolbarButtons.call(this);
                 buttons.push({
                     title: Q.text('Site.RolePermissionDialog.EditButton'),
-                    cssClass: 'lock-button',
+                    cssClass: 'edit-permissions-button',
+                    icon: 'icon-lock-open text-green',
                     onClick: function () {
                         new Administration.RolePermissionDialog({
                             roleID: _this.entity.RoleId,
@@ -89,7 +90,7 @@ var Serene;
             };
             RoleDialog.prototype.updateInterface = function () {
                 _super.prototype.updateInterface.call(this);
-                this.toolbar.findButton("lock-button").toggleClass("disabled", this.isNewOrDeleted());
+                this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
             RoleDialog = __decorate([
                 Serenity.Decorators.registerClass()

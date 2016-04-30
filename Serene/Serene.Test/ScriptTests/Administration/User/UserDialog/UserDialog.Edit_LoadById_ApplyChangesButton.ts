@@ -7,9 +7,9 @@ namespace Serene.Administration.Test {
         let uiDialog = dialog.element.closest(".ui-dialog");
 
         let ajax = new ServiceTesting.FakeAjax();
-        var userRetrieveCalled = 0;
+        var firstRetrieveCalls = 0;
         ajax.addServiceHandler("~/services/Administration/User/Retrieve", s => {
-            userRetrieveCalled++;
+            firstRetrieveCalls++;
             assert.deepEqual(s.request, { EntityId: 789 });
 
             dialog.element.on('dialogopen', function () {
@@ -26,8 +26,8 @@ namespace Serene.Administration.Test {
 
                     var buttonTesting = new ButtonTesting(assert);
                     buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
-                    buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
                     buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                    buttonTesting.assertEnabled(buttons.eq(2), 'delete-button');
                     buttonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
                     buttonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
 
