@@ -176,25 +176,25 @@
     <Content Include="packages\Select2.js.3.5.1.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.CodeGenerator.2.0.12.nupkg">
+    <Content Include="packages\Serenity.CodeGenerator.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Core.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Data.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Script.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Script.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Services.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Web.2.0.12.nupkg">
+    <Content Include="packages\Serenity.Web.2.0.13.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\toastr.2.1.1.nupkg">
