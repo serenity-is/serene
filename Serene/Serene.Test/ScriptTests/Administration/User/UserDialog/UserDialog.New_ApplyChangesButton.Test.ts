@@ -18,74 +18,77 @@ namespace Serene.Administration.Test {
             assert.strictEqual(4, buttons.length,
                 'has 4 visible buttons');
 
-            ButtonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
-            ButtonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
-            ButtonTesting.assertDisabled(buttons.eq(2), 'edit-roles-button');
-            ButtonTesting.assertDisabled(buttons.eq(3), 'edit-permissions-button');
+            let buttonTesting = new ButtonTesting(assert);
+            buttonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+            buttonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+            buttonTesting.assertDisabled(buttons.eq(2), 'edit-roles-button');
+            buttonTesting.assertDisabled(buttons.eq(3), 'edit-permissions-button');
 
             let fields = DialogTesting.getVisibleFields(dialog);
             assert.strictEqual(6, fields.length,
                 'has 6 fields');
 
+            var formTesting = new FormTesting(assert);
+
             var username = fields.eq(0);
-            FormTesting.assertTitle(username, 'Username');
-            FormTesting.assertRequired(username);
-            FormTesting.assertEditable(username);
-            FormTesting.assertHasClass(username, 's-StringEditor');
-            FormTesting.assertMaxLength(username, 100);
-            FormTesting.assertValue(username, '');
+            formTesting.assertTitle(username, 'Username');
+            formTesting.assertRequired(username);
+            formTesting.assertEditable(username);
+            formTesting.assertHasClass(username, 's-StringEditor');
+            formTesting.assertMaxLength(username, 100);
+            formTesting.assertValue(username, '');
 
             var displayName = fields.eq(1);
-            FormTesting.assertTitle(displayName, 'Display Name');
-            FormTesting.assertRequired(displayName);
-            FormTesting.assertEditable(displayName);
-            FormTesting.assertHasClass(displayName, 's-StringEditor');
-            FormTesting.assertMaxLength(displayName, 100);
-            FormTesting.assertValue(displayName, '');
+            formTesting.assertTitle(displayName, 'Display Name');
+            formTesting.assertRequired(displayName);
+            formTesting.assertEditable(displayName);
+            formTesting.assertHasClass(displayName, 's-StringEditor');
+            formTesting.assertMaxLength(displayName, 100);
+            formTesting.assertValue(displayName, '');
 
             var email = fields.eq(2);
-            FormTesting.assertTitle(email, 'Email');
-            FormTesting.assertNotRequired(email);
-            FormTesting.assertEditable(email);
-            FormTesting.assertHasClass(email, 'emailuser');
-            FormTesting.assertMaxLength(email, 100);
-            FormTesting.assertValue(email, '');
+            formTesting.assertTitle(email, 'Email');
+            formTesting.assertNotRequired(email);
+            formTesting.assertEditable(email);
+            formTesting.assertHasClass(email, 'emailuser');
+            formTesting.assertMaxLength(email, 100);
+            formTesting.assertValue(email, '');
 
             var emaildomain = email.find('.emaildomain');
             assert.ok(EditorTesting.isEditable(emaildomain),
                 'email domain is editable');
 
             var password = fields.eq(3);
-            FormTesting.assertTitle(password, 'Password');
-            FormTesting.assertRequired(password);
-            FormTesting.assertEditable(password);
-            FormTesting.assertHasClass(password, 's-PasswordEditor');
-            FormTesting.assertEditorIs(password, 'input[type=password]');
-            FormTesting.assertMaxLength(password, 50);
-            FormTesting.assertValue(password, '');
+            formTesting.assertTitle(password, 'Password');
+            formTesting.assertRequired(password);
+            formTesting.assertEditable(password);
+            formTesting.assertHasClass(password, 's-PasswordEditor');
+            formTesting.assertEditorIs(password, 'input[type=password]');
+            formTesting.assertMaxLength(password, 50);
+            formTesting.assertValue(password, '');
 
             var confirm = fields.eq(4);
-            FormTesting.assertTitle(confirm, 'Confirm Password');
-            FormTesting.assertRequired(confirm);
-            FormTesting.assertEditable(confirm);
-            FormTesting.assertHasClass(confirm, 's-PasswordEditor');
-            FormTesting.assertEditorIs(confirm, 'input[type=password]');
-            FormTesting.assertMaxLength(confirm, 50);
-            FormTesting.assertValue(confirm, '');
+            formTesting.assertTitle(confirm, 'Confirm Password');
+            formTesting.assertRequired(confirm);
+            formTesting.assertEditable(confirm);
+            formTesting.assertHasClass(confirm, 's-PasswordEditor');
+            formTesting.assertEditorIs(confirm, 'input[type=password]');
+            formTesting.assertMaxLength(confirm, 50);
+            formTesting.assertValue(confirm, '');
 
             var source = fields.eq(5);
-            FormTesting.assertTitle(source, 'Source');
-            FormTesting.assertNotRequired(source);
-            FormTesting.assertNotEditable(source);
-            FormTesting.assertHasClass(source, 's-StringEditor');
-            FormTesting.assertMaxLength(source, 4);
-            FormTesting.assertValue(source, 'site');
+            formTesting.assertTitle(source, 'Source');
+            formTesting.assertNotRequired(source);
+            formTesting.assertNotEditable(source);
+            formTesting.assertHasClass(source, 's-StringEditor');
+            formTesting.assertMaxLength(source, 4);
+            formTesting.assertValue(source, 'site');
 
-            FormTesting.setValue(username, 'ABC  ');
-            FormTesting.setValue(displayName, 'DEF');
-            FormTesting.setValue(email, 'ghi@jkl.com');
-            FormTesting.setValue(password, '1234567');
-            FormTesting.setValue(confirm, '1234567');
+            formTesting.setValue(username, 'ABC  ');
+            formTesting.setValue(displayName, 'DEF');
+            formTesting.setValue(email, 'ghi@jkl.com');
+            formTesting.setValue(password, '1234567');
+            formTesting.setValue(confirm, '1234567');
 
             var datachangeTriggers = 0;
             dialog.element.on('ondatachange', function () {
@@ -127,12 +130,12 @@ namespace Serene.Administration.Test {
                             assert.ok(uiDialog.is(":visible"),
                                 'dialog should stay open');
 
-                            FormTesting.assertValue(username, 'ABC');
-                            FormTesting.assertValue(displayName, 'DEF');
-                            FormTesting.assertValue(email, 'ghi@jkl.com');
-                            FormTesting.assertValue(password, '');
-                            FormTesting.assertValue(confirm, '');
-                            FormTesting.assertValue(source, 'some');
+                            formTesting.assertValue(username, 'ABC');
+                            formTesting.assertValue(displayName, 'DEF');
+                            formTesting.assertValue(email, 'ghi@jkl.com');
+                            formTesting.assertValue(password, '');
+                            formTesting.assertValue(confirm, '');
+                            formTesting.assertValue(source, 'some');
                         }
                         finally {
                             (<any>toastr).remove();
