@@ -194,6 +194,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleRow.cs">RoleRow.cs</ProjectItem>
           </Folder>
           <Folder Name="RolePermission" TargetFolderName="RolePermission">
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionDialog.ts">RolePermissionDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionEndpoint.cs">RolePermissionEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionListRequest.cs">RolePermissionListRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionListResponse.cs">RolePermissionListResponse.cs</ProjectItem>
@@ -236,6 +237,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRow.cs">UserRow.cs</ProjectItem>
           </Folder>
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
+            <ProjectItem ReplaceParameters="true" TargetFileName="PermissionCheckEditor.ts">PermissionCheckEditor.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionDialog.ts">UserPermissionDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionEndpoint.cs">UserPermissionEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionListRequest.cs">UserPermissionListRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionRepository.cs">UserPermissionRepository.cs</ProjectItem>
@@ -1509,12 +1512,12 @@
       <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <package id="Newtonsoft.Json" version="8.0.3" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="2.0.11" />
-      <package id="Serenity.Core" version="2.0.11" />
-      <package id="Serenity.Data" version="2.0.11" />
-      <package id="Serenity.Data.Entity" version="2.0.11" />
-      <package id="Serenity.Services" version="2.0.11" />
-      <package id="Serenity.Web" version="2.0.11" />
+      <package id="Serenity.CodeGenerator" version="2.0.12" />
+      <package id="Serenity.Core" version="2.0.12" />
+      <package id="Serenity.Data" version="2.0.12" />
+      <package id="Serenity.Data.Entity" version="2.0.12" />
+      <package id="Serenity.Services" version="2.0.12" />
+      <package id="Serenity.Web" version="2.0.12" />
       <package id="toastr" version="2.1.1" />
       <package id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />
     </packages>

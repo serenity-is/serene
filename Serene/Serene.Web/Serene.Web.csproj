@@ -71,24 +71,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.0.11\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.0.12\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.0.11\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.0.12\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.11\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.12\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.0.11\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.0.12\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.0.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.0.11\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.0.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.0.12\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -1166,9 +1166,12 @@
     </Content>
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\RolePermission\RolePermissionDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Role\RoleGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />
+    <TypeScriptCompile Include="Modules\Administration\UserPermission\PermissionCheckEditor.ts" />
+    <TypeScriptCompile Include="Modules\Administration\UserPermission\UserPermissionDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -1346,6 +1349,7 @@
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
     <Content Include="Scripts\site\texts\site.texts.pt.json" />
+    <Content Include="tools\JsEngine\json2.min.js" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />

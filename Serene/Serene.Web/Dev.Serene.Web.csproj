@@ -1181,9 +1181,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1326,6 +1326,9 @@
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
+    <Content Include="Scripts\site\texts\site.texts.it.json" />
+    <Content Include="Scripts\site\texts\site.texts.pt.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\JsEngine\json2.min.js" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
@@ -1338,9 +1341,6 @@
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
-    <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
-    <Content Include="Scripts\site\texts\site.texts.it.json" />
-    <Content Include="Scripts\site\texts\site.texts.pt.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
