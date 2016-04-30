@@ -1,8 +1,8 @@
 namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
 
-    QUnit.test('UserDialog Edit With LoadById', function (assert) {
-        let done = assert.async();
+    QUnit.test('UserDialog Edit LoadById, Save and Close Button', function (assert) {
+        let asyncDone = assert.async();
         let dialog = new UserDialog();
         let uiDialog = dialog.element.closest(".ui-dialog");
 
@@ -11,21 +11,9 @@ namespace Serene.Administration.Test {
         ajax.addServiceHandler("~/services/Administration/User/Retrieve", s => {
             userRetrieveCalled++;
             assert.deepEqual(s.request, { EntityId: 789 });
-            return {
-                "Entity": <UserRow>{
-                    UserId: 789,
-                    Username: 'some.thing',
-                    DisplayName: 'Some Thing',
-                    Email: 'some_thing@somedomain.com',
-                    Source: 'some'
-                }, "TotalCount": 0, "Skip": 0, "Take": 0
-            };
-        });
 
-        dialog.loadByIdAndOpenDialog(789);
-        try {
-            window.setTimeout(function () {
-                try {
+            dialog.element.on('dialogopen', function () {
+                window.setTimeout(function () {
                     assert.ok(uiDialog.is(":visible"),
                         'open edit entity dialog');
 
@@ -99,13 +87,81 @@ namespace Serene.Administration.Test {
                     FormTesting.assertHasClass(source, 's-StringEditor');
                     FormTesting.assertMaxLength(source, 4);
                     FormTesting.assertValue(source, 'some');
+
+                    FormTesting.setValue(username, 'ABC  ');
+                    FormTesting.setValue(displayName, 'DEF');
+                    FormTesting.setValue(email, 'ghi@jkl.com');
+                    FormTesting.setValue(password, '1234567');
+                    FormTesting.setValue(confirm, '1234567');
+
+                    var datachangeTriggers = 0;
+                    dialog.element.on('ondatachange', function () {
+                        datachangeTriggers++;
+                    });
+
+                    var updateCalls = 0;
+                    ajax.addServiceHandler("~/services/Administration/User/Update", s => {
+                        updateCalls++;
+                        assert.deepEqual(s.request, {
+                            EntityId: 789,
+                            Entity: <UserRow>{
+                                UserId: 789,
+                                Username: 'ABC  ',
+                                DisplayName: 'DEF',
+                                Email: 'ghi@jkl.com',
+                                Password: '1234567'
+                            }
+                        }, 'save request');
+
+                        var retrieveCalls = 0;
+                        ajax.addServiceHandler("~/services/Administration/User/Retrieve", s => {
+                            throw new Error("retrieve shouldn't be called!");
+                        });
+
+                        setTimeout(function () {
+                            try {
+                                assert.strictEqual(updateCalls, 1,
+                                    'update should be called once');
+
+                                assert.strictEqual(retrieveCalls, 0,
+                                    "retrieve shouldn't be called");
+
+                                assert.strictEqual(datachangeTriggers, 1,
+                                    "data change trigger should be called once");
+
+                                assert.ok(!uiDialog.is(":visible"),
+                                    'dialog should be closed');
+                            }
+                            finally {
+                                (<any>toastr).remove();
+                                ajax.dispose();
+                                dialog.dialogClose();
+                                asyncDone();
+                            }
+                        }, 0);
+
+                        return {
+                            EntityId: 789
+                        };
+                    });
+
+                    DialogTesting.clickButton(dialog, ".save-and-close-button");
+                }, 0);
+            });
+
+            return {
+                "Entity": <UserRow>{
+                    UserId: 789,
+                    Username: 'some.thing',
+                    DisplayName: 'Some Thing',
+                    Email: 'some_thing@somedomain.com',
+                    Source: 'some'
                 }
-                finally {
-                    ajax.dispose();
-                    dialog.dialogClose();
-                    done();
-                }
-            }, 0);
+            };
+        });
+
+        try {
+            dialog.loadByIdAndOpenDialog(789);
         }
         catch (e) {
             dialog.dialogClose();

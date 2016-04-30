@@ -21,17 +21,17 @@ namespace Serene.Administration.Test {
                 'open edit entity dialog');
 
             let ajax = new ServiceTesting.FakeAjax();
-            var userPermissionListCalled = 0;
+            var userPermissionListCalls = 0;
             ajax.addServiceHandler("~/services/Administration/UserPermission/List", s => {
-                userPermissionListCalled++;
+                userPermissionListCalls++;
                 assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null },
                     'user permission list request');
                 return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
             });
 
-            var listRolePermissionsCalled = 0;
+            var listRolePermissionsCalls = 0;
             ajax.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", s => {
-                listRolePermissionsCalled++;
+                listRolePermissionsCalls++;
                 assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null },
                     'list role permissions request');
                 return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
@@ -51,10 +51,10 @@ namespace Serene.Administration.Test {
                         'Edit User Permissions (some.thing)',
                         'dialog title');
 
-                    assert.equal(1, userPermissionListCalled,
+                    assert.equal(1, userPermissionListCalls,
                         'UserPermission/List should be called once');
 
-                    assert.equal(1, listRolePermissionsCalled,
+                    assert.equal(1, listRolePermissionsCalls,
                         'UserPermission/ListRolePermissions should be called once');
 
                     permissionDialog.find('.ui-dialog-content').dialog('close');

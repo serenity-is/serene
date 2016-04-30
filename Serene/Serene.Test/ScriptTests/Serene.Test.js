@@ -19,15 +19,15 @@
                 try {
                     assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
                     var ajax_1 = new Serene.ServiceTesting.FakeAjax();
-                    var userPermissionListCalled = 0;
+                    var userPermissionListCalls = 0;
                     ajax_1.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
-                        userPermissionListCalled++;
+                        userPermissionListCalls++;
                         assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
                         return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
                     });
-                    var listRolePermissionsCalled = 0;
+                    var listRolePermissionsCalls = 0;
                     ajax_1.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
-                        listRolePermissionsCalled++;
+                        listRolePermissionsCalls++;
                         assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
                         return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
                     });
@@ -38,8 +38,8 @@
                             var permissionDialog = $('.ui-dialog:visible').last();
                             assert.ok(permissionDialog.hasClass('s-Administration-UserPermissionDialog'), 'user permissions dialog is shown on edit permissions button click');
                             assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit User Permissions (some.thing)', 'dialog title');
-                            assert.equal(1, userPermissionListCalled, 'UserPermission/List should be called once');
-                            assert.equal(1, listRolePermissionsCalled, 'UserPermission/ListRolePermissions should be called once');
+                            assert.equal(1, userPermissionListCalls, 'UserPermission/List should be called once');
+                            assert.equal(1, listRolePermissionsCalls, 'UserPermission/ListRolePermissions should be called once');
                             permissionDialog.find('.ui-dialog-content').dialog('close');
                         }
                         finally {
@@ -89,9 +89,9 @@ var Serene;
                             RoleName: 'OtherRole'
                         }]));
                     var ajax_2 = new Serene.ServiceTesting.FakeAjax();
-                    var userRoleListCalled = 0;
+                    var userRoleListCalls = 0;
                     ajax_2.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
-                        userRoleListCalled++;
+                        userRoleListCalls++;
                         assert.deepEqual(s.request, { UserID: 789 });
                         return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
                     });
@@ -102,7 +102,7 @@ var Serene;
                             assert.ok(roleDialog.hasClass('s-Administration-UserRoleDialog'), 'user roles dialog is shown on edit roles button click');
                             assert.equal(Serene.DialogTesting.getDialogTitle(roleDialog), 'Edit User Roles (some.thing)');
                             roleDialog.find('.ui-dialog-content').dialog('close');
-                            assert.equal(1, userRoleListCalled, 'user role list should be called once');
+                            assert.equal(1, userRoleListCalls, 'user role list should be called once');
                         }
                         finally {
                             ajax_2.dispose();
@@ -127,8 +127,8 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog Edit With LoadById', function (assert) {
-                var done = assert.async();
+            QUnit.test('UserDialog Edit LoadById, Apply Changes Button', function (assert) {
+                var asyncDone = assert.async();
                 var dialog = new Administration.UserDialog();
                 var uiDialog = dialog.element.closest(".ui-dialog");
                 var ajax = new Serene.ServiceTesting.FakeAjax();
@@ -136,20 +136,8 @@ var Serene;
                 ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
                     userRetrieveCalled++;
                     assert.deepEqual(s.request, { EntityId: 789 });
-                    return {
-                        "Entity": {
-                            UserId: 789,
-                            Username: 'some.thing',
-                            DisplayName: 'Some Thing',
-                            Email: 'some_thing@somedomain.com',
-                            Source: 'some'
-                        }, "TotalCount": 0, "Skip": 0, "Take": 0
-                    };
-                });
-                dialog.loadByIdAndOpenDialog(789);
-                try {
-                    window.setTimeout(function () {
-                        try {
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
                             assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
                             assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), 'Edit User (some.thing)', 'has correct title');
                             var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
@@ -207,13 +195,361 @@ var Serene;
                             Serene.FormTesting.assertHasClass(source, 's-StringEditor');
                             Serene.FormTesting.assertMaxLength(source, 4);
                             Serene.FormTesting.assertValue(source, 'some');
+                            Serene.FormTesting.setValue(username, 'ABC  ');
+                            Serene.FormTesting.setValue(displayName, 'DEF');
+                            Serene.FormTesting.setValue(email, 'ghi@jkl.com');
+                            Serene.FormTesting.setValue(password, '1234567');
+                            Serene.FormTesting.setValue(confirm, '1234567');
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var updateCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/User/Update", function (s) {
+                                updateCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789,
+                                    Entity: {
+                                        UserId: 789,
+                                        Username: 'ABC  ',
+                                        DisplayName: 'DEF',
+                                        Email: 'ghi@jkl.com',
+                                        Password: '1234567'
+                                    }
+                                }, 'save request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                                    retrieveCalls++;
+                                    assert.deepEqual(s.request, { EntityId: 789 }, 'retrieve request');
+                                    setTimeout(function () {
+                                        try {
+                                            assert.strictEqual(updateCalls, 1, 'update should be called once');
+                                            assert.strictEqual(retrieveCalls, 1, "retrieve should be called once");
+                                            assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                            assert.ok(uiDialog.is(":visible"), 'dialog should stay open');
+                                            Serene.FormTesting.assertValue(username, 'ABC');
+                                            Serene.FormTesting.assertValue(displayName, 'DEF');
+                                            Serene.FormTesting.assertValue(email, 'ghi@jkl.com');
+                                            Serene.FormTesting.assertValue(password, '');
+                                            Serene.FormTesting.assertValue(confirm, '');
+                                            Serene.FormTesting.assertValue(source, 'some');
+                                        }
+                                        finally {
+                                            toastr.remove();
+                                            ajax.dispose();
+                                            dialog.dialogClose();
+                                            asyncDone();
+                                        }
+                                    }, 0);
+                                    return {
+                                        Entity: {
+                                            UserId: 789,
+                                            Username: 'ABC',
+                                            DisplayName: 'DEF',
+                                            Email: 'ghi@jkl.com',
+                                            Source: 'some'
+                                        }
+                                    };
+                                });
+                                return {
+                                    EntityId: 789
+                                };
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".apply-changes-button");
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            UserId: 789,
+                            Username: 'some.thing',
+                            DisplayName: 'Some Thing',
+                            Email: 'some_thing@somedomain.com',
+                            Source: 'some'
                         }
-                        finally {
-                            ajax.dispose();
-                            dialog.dialogClose();
-                            done();
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit LoadById, Delete Button', function (assert) {
+                var asyncDone = assert.async();
+                var dialog = new Administration.UserDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                var ajax = new Serene.ServiceTesting.FakeAjax();
+                var userRetrieveCalled = 0;
+                ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                    userRetrieveCalled++;
+                    assert.deepEqual(s.request, { EntityId: 789 });
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
+                            assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                            assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), 'Edit User (some.thing)', 'has correct title');
+                            var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                            assert.strictEqual(5, buttons.length, 'has 5 visible buttons');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(2), 'delete-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
+                            var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                            assert.strictEqual(6, fields.length, 'has 6 fields');
+                            var username = fields.eq(0);
+                            Serene.FormTesting.assertTitle(username, 'Username');
+                            Serene.FormTesting.assertRequired(username);
+                            Serene.FormTesting.assertEditable(username);
+                            Serene.FormTesting.assertHasClass(username, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(username, 100);
+                            Serene.FormTesting.assertValue(username, 'some.thing');
+                            var displayName = fields.eq(1);
+                            Serene.FormTesting.assertTitle(displayName, 'Display Name');
+                            Serene.FormTesting.assertRequired(displayName);
+                            Serene.FormTesting.assertEditable(displayName);
+                            Serene.FormTesting.assertHasClass(displayName, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(displayName, 100);
+                            Serene.FormTesting.assertValue(displayName, 'Some Thing');
+                            var email = fields.eq(2);
+                            Serene.FormTesting.assertTitle(email, 'Email');
+                            Serene.FormTesting.assertNotRequired(email);
+                            Serene.FormTesting.assertEditable(email);
+                            Serene.FormTesting.assertHasClass(email, 'emailuser');
+                            Serene.FormTesting.assertMaxLength(email, 100);
+                            Serene.FormTesting.assertValue(email, 'some_thing@somedomain.com');
+                            var emaildomain = email.find('.emaildomain');
+                            assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
+                            var password = fields.eq(3);
+                            Serene.FormTesting.assertTitle(password, 'Password');
+                            Serene.FormTesting.assertNotRequired(password);
+                            Serene.FormTesting.assertEditable(password);
+                            Serene.FormTesting.assertHasClass(password, 's-PasswordEditor');
+                            Serene.FormTesting.assertEditorIs(password, 'input[type=password]');
+                            Serene.FormTesting.assertMaxLength(password, 50);
+                            Serene.FormTesting.assertValue(password, '');
+                            var confirm = fields.eq(4);
+                            Serene.FormTesting.assertTitle(confirm, 'Confirm Password');
+                            Serene.FormTesting.assertNotRequired(confirm);
+                            Serene.FormTesting.assertEditable(confirm);
+                            Serene.FormTesting.assertHasClass(confirm, 's-PasswordEditor');
+                            Serene.FormTesting.assertEditorIs(confirm, 'input[type=password]');
+                            Serene.FormTesting.assertMaxLength(confirm, 50);
+                            Serene.FormTesting.assertValue(confirm, '');
+                            var source = fields.eq(5);
+                            Serene.FormTesting.assertTitle(source, 'Source');
+                            Serene.FormTesting.assertNotRequired(source);
+                            Serene.FormTesting.assertNotEditable(source);
+                            Serene.FormTesting.assertHasClass(source, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(source, 4);
+                            Serene.FormTesting.assertValue(source, 'some');
+                            Serene.FormTesting.setValue(username, 'ABC  ');
+                            Serene.FormTesting.setValue(displayName, 'DEF');
+                            Serene.FormTesting.setValue(email, 'ghi@jkl.com');
+                            Serene.FormTesting.setValue(password, '1234567');
+                            Serene.FormTesting.setValue(confirm, '1234567');
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var deleteCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/User/Delete", function (s) {
+                                deleteCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789
+                                }, 'delete request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                                    throw new Error("retrieve shouldn't be called!");
+                                });
+                                setTimeout(function () {
+                                    try {
+                                        assert.strictEqual(deleteCalls, 1, 'update should be called once');
+                                        assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                        assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                        assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                                    }
+                                    finally {
+                                        toastr.remove();
+                                        ajax.dispose();
+                                        dialog.dialogClose();
+                                        asyncDone();
+                                    }
+                                }, 0);
+                                return {};
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".delete-button");
+                            var confirmDialog = $('.s-ConfirmDialog');
+                            assert.equal(confirmDialog.length, 1, 'confirm dialog should be shown');
+                            confirmDialog.find('.ui-dialog-buttonpane .ui-button').first().click();
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            UserId: 789,
+                            Username: 'some.thing',
+                            DisplayName: 'Some Thing',
+                            Email: 'some_thing@somedomain.com',
+                            Source: 'some'
                         }
-                    }, 0);
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit LoadById, Save and Close Button', function (assert) {
+                var asyncDone = assert.async();
+                var dialog = new Administration.UserDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                var ajax = new Serene.ServiceTesting.FakeAjax();
+                var userRetrieveCalled = 0;
+                ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                    userRetrieveCalled++;
+                    assert.deepEqual(s.request, { EntityId: 789 });
+                    dialog.element.on('dialogopen', function () {
+                        window.setTimeout(function () {
+                            assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                            assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), 'Edit User (some.thing)', 'has correct title');
+                            var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                            assert.strictEqual(5, buttons.length, 'has 5 visible buttons');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(2), 'delete-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
+                            Serene.ButtonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
+                            var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                            assert.strictEqual(6, fields.length, 'has 6 fields');
+                            var username = fields.eq(0);
+                            Serene.FormTesting.assertTitle(username, 'Username');
+                            Serene.FormTesting.assertRequired(username);
+                            Serene.FormTesting.assertEditable(username);
+                            Serene.FormTesting.assertHasClass(username, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(username, 100);
+                            Serene.FormTesting.assertValue(username, 'some.thing');
+                            var displayName = fields.eq(1);
+                            Serene.FormTesting.assertTitle(displayName, 'Display Name');
+                            Serene.FormTesting.assertRequired(displayName);
+                            Serene.FormTesting.assertEditable(displayName);
+                            Serene.FormTesting.assertHasClass(displayName, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(displayName, 100);
+                            Serene.FormTesting.assertValue(displayName, 'Some Thing');
+                            var email = fields.eq(2);
+                            Serene.FormTesting.assertTitle(email, 'Email');
+                            Serene.FormTesting.assertNotRequired(email);
+                            Serene.FormTesting.assertEditable(email);
+                            Serene.FormTesting.assertHasClass(email, 'emailuser');
+                            Serene.FormTesting.assertMaxLength(email, 100);
+                            Serene.FormTesting.assertValue(email, 'some_thing@somedomain.com');
+                            var emaildomain = email.find('.emaildomain');
+                            assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
+                            var password = fields.eq(3);
+                            Serene.FormTesting.assertTitle(password, 'Password');
+                            Serene.FormTesting.assertNotRequired(password);
+                            Serene.FormTesting.assertEditable(password);
+                            Serene.FormTesting.assertHasClass(password, 's-PasswordEditor');
+                            Serene.FormTesting.assertEditorIs(password, 'input[type=password]');
+                            Serene.FormTesting.assertMaxLength(password, 50);
+                            Serene.FormTesting.assertValue(password, '');
+                            var confirm = fields.eq(4);
+                            Serene.FormTesting.assertTitle(confirm, 'Confirm Password');
+                            Serene.FormTesting.assertNotRequired(confirm);
+                            Serene.FormTesting.assertEditable(confirm);
+                            Serene.FormTesting.assertHasClass(confirm, 's-PasswordEditor');
+                            Serene.FormTesting.assertEditorIs(confirm, 'input[type=password]');
+                            Serene.FormTesting.assertMaxLength(confirm, 50);
+                            Serene.FormTesting.assertValue(confirm, '');
+                            var source = fields.eq(5);
+                            Serene.FormTesting.assertTitle(source, 'Source');
+                            Serene.FormTesting.assertNotRequired(source);
+                            Serene.FormTesting.assertNotEditable(source);
+                            Serene.FormTesting.assertHasClass(source, 's-StringEditor');
+                            Serene.FormTesting.assertMaxLength(source, 4);
+                            Serene.FormTesting.assertValue(source, 'some');
+                            Serene.FormTesting.setValue(username, 'ABC  ');
+                            Serene.FormTesting.setValue(displayName, 'DEF');
+                            Serene.FormTesting.setValue(email, 'ghi@jkl.com');
+                            Serene.FormTesting.setValue(password, '1234567');
+                            Serene.FormTesting.setValue(confirm, '1234567');
+                            var datachangeTriggers = 0;
+                            dialog.element.on('ondatachange', function () {
+                                datachangeTriggers++;
+                            });
+                            var updateCalls = 0;
+                            ajax.addServiceHandler("~/services/Administration/User/Update", function (s) {
+                                updateCalls++;
+                                assert.deepEqual(s.request, {
+                                    EntityId: 789,
+                                    Entity: {
+                                        UserId: 789,
+                                        Username: 'ABC  ',
+                                        DisplayName: 'DEF',
+                                        Email: 'ghi@jkl.com',
+                                        Password: '1234567'
+                                    }
+                                }, 'save request');
+                                var retrieveCalls = 0;
+                                ajax.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                                    throw new Error("retrieve shouldn't be called!");
+                                });
+                                setTimeout(function () {
+                                    try {
+                                        assert.strictEqual(updateCalls, 1, 'update should be called once');
+                                        assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                        assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                        assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                                    }
+                                    finally {
+                                        toastr.remove();
+                                        ajax.dispose();
+                                        dialog.dialogClose();
+                                        asyncDone();
+                                    }
+                                }, 0);
+                                return {
+                                    EntityId: 789
+                                };
+                            });
+                            Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
+                        }, 0);
+                    });
+                    return {
+                        "Entity": {
+                            UserId: 789,
+                            Username: 'some.thing',
+                            DisplayName: 'Some Thing',
+                            Email: 'some_thing@somedomain.com',
+                            Source: 'some'
+                        }
+                    };
+                });
+                try {
+                    dialog.loadByIdAndOpenDialog(789);
                 }
                 catch (e) {
                     dialog.dialogClose();
@@ -344,9 +680,9 @@ var Serene;
     (function (Administration) {
         var Test;
         (function (Test) {
-            var assert = QUnit.assert;
             QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog New Entity', function () {
+            QUnit.test('UserDialog New Entity, Apply Changes Button', function (assert) {
+                var done = assert.async();
                 var dialog = new Administration.UserDialog();
                 var uiDialog = dialog.element.closest(".ui-dialog");
                 dialog.loadNewAndOpenDialog();
@@ -407,9 +743,188 @@ var Serene;
                     Serene.FormTesting.assertHasClass(source, 's-StringEditor');
                     Serene.FormTesting.assertMaxLength(source, 4);
                     Serene.FormTesting.assertValue(source, 'site');
+                    Serene.FormTesting.setValue(username, 'ABC  ');
+                    Serene.FormTesting.setValue(displayName, 'DEF');
+                    Serene.FormTesting.setValue(email, 'ghi@jkl.com');
+                    Serene.FormTesting.setValue(password, '1234567');
+                    Serene.FormTesting.setValue(confirm, '1234567');
+                    var datachangeTriggers = 0;
+                    dialog.element.on('ondatachange', function () {
+                        datachangeTriggers++;
+                    });
+                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
+                    var createCalls = 0;
+                    ajax_3.addServiceHandler("~/services/Administration/User/Create", function (s) {
+                        createCalls++;
+                        assert.deepEqual(s.request, {
+                            Entity: {
+                                Username: 'ABC  ',
+                                DisplayName: 'DEF',
+                                Email: 'ghi@jkl.com',
+                                Password: '1234567'
+                            }
+                        }, 'save request');
+                        var retrieveCalls = 0;
+                        ajax_3.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                            retrieveCalls++;
+                            assert.deepEqual(s.request, { EntityId: 9876 }, 'retrieve request');
+                            setTimeout(function () {
+                                try {
+                                    assert.strictEqual(createCalls, 1, 'create should be called once');
+                                    assert.strictEqual(retrieveCalls, 1, "retrieve should be called once");
+                                    assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                    assert.ok(uiDialog.is(":visible"), 'dialog should stay open');
+                                    Serene.FormTesting.assertValue(username, 'ABC');
+                                    Serene.FormTesting.assertValue(displayName, 'DEF');
+                                    Serene.FormTesting.assertValue(email, 'ghi@jkl.com');
+                                    Serene.FormTesting.assertValue(password, '');
+                                    Serene.FormTesting.assertValue(confirm, '');
+                                    Serene.FormTesting.assertValue(source, 'some');
+                                }
+                                finally {
+                                    toastr.remove();
+                                    ajax_3.dispose();
+                                    dialog.dialogClose();
+                                    done();
+                                }
+                            }, 0);
+                            return {
+                                Entity: {
+                                    UserId: 9876,
+                                    Username: 'ABC',
+                                    DisplayName: 'DEF',
+                                    Email: 'ghi@jkl.com',
+                                    Source: 'some'
+                                }
+                            };
+                        });
+                        return { EntityId: 9876 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, ".apply-changes-button");
                 }
-                finally {
+                catch (e) {
                     dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog New Entity, Save and Close Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.UserDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadNewAndOpenDialog();
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open a new entity dialog');
+                    assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), "New User", 'has correct title');
+                    var buttons = Serene.DialogTesting.getVisibleButtons(dialog);
+                    assert.strictEqual(4, buttons.length, 'has 4 visible buttons');
+                    Serene.ButtonTesting.assertEnabled(buttons.eq(0), 'save-and-close-button');
+                    Serene.ButtonTesting.assertEnabled(buttons.eq(1), 'apply-changes-button');
+                    Serene.ButtonTesting.assertDisabled(buttons.eq(2), 'edit-roles-button');
+                    Serene.ButtonTesting.assertDisabled(buttons.eq(3), 'edit-permissions-button');
+                    var fields = Serene.DialogTesting.getVisibleFields(dialog);
+                    assert.strictEqual(6, fields.length, 'has 6 fields');
+                    var username = fields.eq(0);
+                    Serene.FormTesting.assertTitle(username, 'Username');
+                    Serene.FormTesting.assertRequired(username);
+                    Serene.FormTesting.assertEditable(username);
+                    Serene.FormTesting.assertHasClass(username, 's-StringEditor');
+                    Serene.FormTesting.assertMaxLength(username, 100);
+                    Serene.FormTesting.assertValue(username, '');
+                    var displayName = fields.eq(1);
+                    Serene.FormTesting.assertTitle(displayName, 'Display Name');
+                    Serene.FormTesting.assertRequired(displayName);
+                    Serene.FormTesting.assertEditable(displayName);
+                    Serene.FormTesting.assertHasClass(displayName, 's-StringEditor');
+                    Serene.FormTesting.assertMaxLength(displayName, 100);
+                    Serene.FormTesting.assertValue(displayName, '');
+                    var email = fields.eq(2);
+                    Serene.FormTesting.assertTitle(email, 'Email');
+                    Serene.FormTesting.assertNotRequired(email);
+                    Serene.FormTesting.assertEditable(email);
+                    Serene.FormTesting.assertHasClass(email, 'emailuser');
+                    Serene.FormTesting.assertMaxLength(email, 100);
+                    Serene.FormTesting.assertValue(email, '');
+                    var emaildomain = email.find('.emaildomain');
+                    assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
+                    var password = fields.eq(3);
+                    Serene.FormTesting.assertTitle(password, 'Password');
+                    Serene.FormTesting.assertRequired(password);
+                    Serene.FormTesting.assertEditable(password);
+                    Serene.FormTesting.assertHasClass(password, 's-PasswordEditor');
+                    Serene.FormTesting.assertEditorIs(password, 'input[type=password]');
+                    Serene.FormTesting.assertMaxLength(password, 50);
+                    Serene.FormTesting.assertValue(password, '');
+                    var confirm = fields.eq(4);
+                    Serene.FormTesting.assertTitle(confirm, 'Confirm Password');
+                    Serene.FormTesting.assertRequired(confirm);
+                    Serene.FormTesting.assertEditable(confirm);
+                    Serene.FormTesting.assertHasClass(confirm, 's-PasswordEditor');
+                    Serene.FormTesting.assertEditorIs(confirm, 'input[type=password]');
+                    Serene.FormTesting.assertMaxLength(confirm, 50);
+                    Serene.FormTesting.assertValue(confirm, '');
+                    var source = fields.eq(5);
+                    Serene.FormTesting.assertTitle(source, 'Source');
+                    Serene.FormTesting.assertNotRequired(source);
+                    Serene.FormTesting.assertNotEditable(source);
+                    Serene.FormTesting.assertHasClass(source, 's-StringEditor');
+                    Serene.FormTesting.assertMaxLength(source, 4);
+                    Serene.FormTesting.assertValue(source, 'site');
+                    Serene.FormTesting.setValue(username, 'ABC  ');
+                    Serene.FormTesting.setValue(displayName, 'DEF');
+                    Serene.FormTesting.setValue(email, 'ghi@jkl.com');
+                    Serene.FormTesting.setValue(password, '1234567');
+                    Serene.FormTesting.setValue(confirm, '1234567');
+                    var datachangeTriggers = 0;
+                    dialog.element.on('ondatachange', function () {
+                        datachangeTriggers++;
+                    });
+                    var ajax_4 = new Serene.ServiceTesting.FakeAjax();
+                    var createCalls = 0;
+                    ajax_4.addServiceHandler("~/services/Administration/User/Create", function (s) {
+                        createCalls++;
+                        assert.deepEqual(s.request, {
+                            Entity: {
+                                Username: 'ABC  ',
+                                DisplayName: 'DEF',
+                                Email: 'ghi@jkl.com',
+                                Password: '1234567'
+                            }
+                        }, 'save request');
+                        var retrieveCalls = 0;
+                        ajax_4.addServiceHandler("~/services/Administration/User/Retrieve", function (s) {
+                            throw new Error("retrieve shouldn't be called!");
+                        });
+                        setTimeout(function () {
+                            try {
+                                assert.strictEqual(createCalls, 1, 'create should be called once');
+                                assert.strictEqual(retrieveCalls, 0, "retrieve shouldn't be called");
+                                assert.strictEqual(datachangeTriggers, 1, "data change trigger should be called once");
+                                assert.ok(!uiDialog.is(":visible"), 'dialog should be closed');
+                            }
+                            finally {
+                                toastr.remove();
+                                ajax_4.dispose();
+                                dialog.dialogClose();
+                                done();
+                            }
+                        }, 0);
+                        return { EntityId: 9876 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
                 }
             });
         })(Test = Administration.Test || (Administration.Test = {}));
@@ -446,8 +961,9 @@ var Serene;
         }
         DialogTesting.getVisibleButtons = getVisibleButtons;
         function clickButton(dialog, klass) {
-            $('#' + dialog.idPrefix + 'Toolbar').find(klass + '.tool-button:visible')
-                .click();
+            var button = $('#' + dialog.idPrefix + 'Toolbar').find(klass + '.tool-button:visible');
+            QUnit.assert.ok(button.length == 1, 'clicking "' + klass + '" button');
+            button.click();
         }
         DialogTesting.clickButton = clickButton;
         function getVisibleFields(dialog) {
@@ -474,6 +990,15 @@ var Serene;
             return editor.val();
         }
         EditorTesting.getValue = getValue;
+        function setValue(editor, value) {
+            var widget = editor.tryGetWidget(Serenity.Widget);
+            if (widget != null) {
+                Serenity.EditorUtils.setValue(widget, value);
+                return;
+            }
+            editor.val(value);
+        }
+        EditorTesting.setValue = setValue;
     })(EditorTesting = Serene.EditorTesting || (Serene.EditorTesting = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -493,6 +1018,11 @@ var Serene;
             QUnit.assert.strictEqual(getTitle(field), title, '[Field has title ' + title + ']');
         }
         FormTesting.assertTitle = assertTitle;
+        function setValue(field, value) {
+            var edit = field.find('.editor').first();
+            Serene.EditorTesting.setValue(edit, value);
+        }
+        FormTesting.setValue = setValue;
         function assertValue(field, expected) {
             var edit = field.find('.editor').first();
             var value = Serene.EditorTesting.getValue(edit);

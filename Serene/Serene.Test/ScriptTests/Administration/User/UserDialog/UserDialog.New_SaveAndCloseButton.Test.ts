@@ -1,8 +1,8 @@
 namespace Serene.Administration.Test {
-    let assert: QUnitAssert = QUnit.assert;
     QUnit.module('Serene.Administration');
-
-    QUnit.test('UserDialog New Entity', function () {
+    
+    QUnit.test('UserDialog New Entity, Save and Close Button', function (assert) {
+        let done = assert.async();
         let dialog = new UserDialog();
         let uiDialog = dialog.element.closest(".ui-dialog");
 
@@ -80,9 +80,67 @@ namespace Serene.Administration.Test {
             FormTesting.assertHasClass(source, 's-StringEditor');
             FormTesting.assertMaxLength(source, 4);
             FormTesting.assertValue(source, 'site');
+
+            FormTesting.setValue(username, 'ABC  ');
+            FormTesting.setValue(displayName, 'DEF');
+            FormTesting.setValue(email, 'ghi@jkl.com');
+            FormTesting.setValue(password, '1234567');
+            FormTesting.setValue(confirm, '1234567');
+
+            var datachangeTriggers = 0;
+            dialog.element.on('ondatachange', function () {
+                datachangeTriggers++;
+            });
+
+            let ajax = new ServiceTesting.FakeAjax();
+            var createCalls = 0;
+            ajax.addServiceHandler("~/services/Administration/User/Create", s => {
+                createCalls++;
+                assert.deepEqual(s.request, {
+                        Entity: <UserRow>{
+                            Username: 'ABC  ',
+                            DisplayName: 'DEF',
+                            Email: 'ghi@jkl.com',
+                            Password: '1234567'
+                        }
+                    },
+                    'save request');
+
+                var retrieveCalls = 0;
+                ajax.addServiceHandler("~/services/Administration/User/Retrieve", s => {
+                    throw new Error("retrieve shouldn't be called!");
+                });
+
+                setTimeout(function () {
+                    try {
+                        assert.strictEqual(createCalls, 1,
+                            'create should be called once');
+
+                        assert.strictEqual(retrieveCalls, 0,
+                            "retrieve shouldn't be called");
+
+                        assert.strictEqual(datachangeTriggers, 1,
+                            "data change trigger should be called once");
+
+                        assert.ok(!uiDialog.is(":visible"),
+                            'dialog should be closed');
+                    }
+                    finally {
+                        (<any>toastr).remove();
+                        ajax.dispose();
+                        dialog.dialogClose();
+                        done();
+                    }
+                }, 0);
+
+                return { EntityId: 9876 };
+            });
+
+            DialogTesting.clickButton(dialog, ".save-and-close-button");
         }
-        finally {
+        catch (e) {
             dialog.dialogClose();
+            throw e;
         }
 
     });

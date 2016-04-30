@@ -219,7 +219,7 @@
     <TypeScriptCompile Include="ScriptTests\Administration\User\UserDialog\UserDialog.EditRolesButton.Test.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\User\UserDialog\UserDialog.EditWithLoadById.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\User\UserDialog\UserDialog.General.Test.ts" />
-    <TypeScriptCompile Include="ScriptTests\Administration\User\UserDialog\UserDialog.NewEntity.Test.ts" />
+    <TypeScriptCompile Include="ScriptTests\Administration\User\UserDialog\UserDialog.NewEntitySaveButton.Test.ts" />
     <TypeScriptCompile Include="ScriptTests\Util\ButtonTesting.ts" />
     <TypeScriptCompile Include="ScriptTests\Util\ServiceTesting.ts" />
     <TypeScriptCompile Include="ScriptTests\Util\EditorTesting.ts" />

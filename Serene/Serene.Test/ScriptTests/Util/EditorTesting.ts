@@ -13,4 +13,14 @@ namespace Serene.EditorTesting {
 
         return editor.val();
     }
+
+    export function setValue(editor: JQuery, value: any) {
+        let widget = editor.tryGetWidget(Serenity.Widget);
+        if (widget != null) {
+            Serenity.EditorUtils.setValue(widget, value);
+            return;
+        }
+
+        editor.val(value);
+    }
 }

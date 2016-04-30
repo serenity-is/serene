@@ -31,9 +31,9 @@ namespace Serene.Administration.Test {
                 }]));
 
             let ajax = new ServiceTesting.FakeAjax();
-            var userRoleListCalled = 0;
+            var userRoleListCalls = 0;
             ajax.addServiceHandler("~/services/Administration/UserRole/List", s => {
-                userRoleListCalled++;
+                userRoleListCalls++;
                 assert.deepEqual(s.request, { UserID: 789 });
                 return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
             });
@@ -49,7 +49,7 @@ namespace Serene.Administration.Test {
                         'Edit User Roles (some.thing)');
                     roleDialog.find('.ui-dialog-content').dialog('close');
 
-                    assert.equal(1, userRoleListCalled,
+                    assert.equal(1, userRoleListCalls,
                         'user role list should be called once');
                 }
                 finally {

@@ -14,6 +14,11 @@ namespace Serene.FormTesting {
             '[Field has title ' + title + ']');
     }
 
+    export function setValue(field: JQuery, value: any) {
+        let edit = field.find('.editor').first();
+        EditorTesting.setValue(edit, value);
+    }
+
     export function assertValue(field: JQuery, expected: any) {
         let edit = field.find('.editor').first();
         let value = EditorTesting.getValue(edit);

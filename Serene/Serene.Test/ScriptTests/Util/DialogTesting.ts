@@ -11,8 +11,9 @@ namespace Serene.DialogTesting {
     }
 
     export function clickButton(dialog: Serenity.TemplatedDialog<any>, klass: string) {
-        $('#' + (dialog as any).idPrefix + 'Toolbar').find(klass + '.tool-button:visible')
-            .click();
+        var button = $('#' + (dialog as any).idPrefix + 'Toolbar').find(klass + '.tool-button:visible');
+        QUnit.assert.ok(button.length == 1, 'clicking "' + klass + '" button');
+        button.click();
     }
 
     export function getVisibleFields(dialog: Serenity.TemplatedDialog<any>) {
