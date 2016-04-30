@@ -1,8 +1,7 @@
 namespace Serene.Administration.Test {
-    let assert: QUnitAssert = QUnit.assert;
     QUnit.module('Serene.Administration');
 
-    QUnit.test('UserDialog General', function () {
+    QUnit.test('UserDialog General', function (assert) {
         assert.notEqual(null, new UserDialog(),
             'create a new instance');
 

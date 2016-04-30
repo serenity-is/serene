@@ -648,9 +648,8 @@ var Serene;
     (function (Administration) {
         var Test;
         (function (Test) {
-            var assert = QUnit.assert;
             QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog General', function () {
+            QUnit.test('UserDialog General', function (assert) {
                 assert.notEqual(null, new Administration.UserDialog(), 'create a new instance');
                 var dialog = new Administration.UserDialog();
                 assert.notEqual(null, dialog.element, 'has element');
