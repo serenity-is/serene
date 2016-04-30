@@ -224,6 +224,8 @@ public class TSTypeLister
         var jsEngine = new MsieJsEngine();
         try
         {
+            var json2 = File.ReadAllText(projectDir + @"tools\JsEngine\json2.min.js");
+            jsEngine.Evaluate(json2);
             var tsServices = File.ReadAllText(projectDir + @"tools\JsEngine\typeScriptServices.js");
             jsEngine.Evaluate(tsServices);
             using (var sr = new StreamReader(
