@@ -6885,49 +6885,23 @@ section.content > .s-DataGrid {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
+.s-Administration-LanguageDialog > .size {
+  width: 450px;
+}
+.s-Administration-LanguageDialog .caption {
+  width: 120px;
+}
+.s-Administration-RoleDialog > .size {
+  width: 450px;
+}
+.s-Administration-RoleDialog .caption {
+  width: 120px;
+}
 .s-Administration-UserDialog > .size {
   width: 650px;
 }
 .s-Administration-UserDialog .caption {
   width: 150px;
-}
-.s-LanguageDialog > .size {
-  min-width: 650px;
-  width: 650px;
-}
-.s-LanguageDialog .tab-pane {
-  height: auto;
-}
-.s-LanguageDialog .caption {
-  width: 150px;
-}
-.s-LanguageDialog .editor {
-  width: 400px;
-}
-.s-LanguageDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-LanguageDialog .s-Form .editor.dateQ {
-  width: 376px;
-}
-.s-LanguageDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-LanguageDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 281px;
-}
-.s-LanguageDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-LanguageDialog .s-Form .editor.has-inplace-button {
-  width: 374px;
-}
-.s-LanguageDialog .s-Form .emaildomain {
-  width: 215px;
-}
-.s-LanguageDialog .s-PropertyGrid .categories {
-  height: 260px;
 }
 .s-TranslationGrid input.custom-text {
   width: 100%;

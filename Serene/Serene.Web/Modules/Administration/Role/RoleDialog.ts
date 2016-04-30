@@ -1,6 +1,7 @@
 ﻿namespace Serene.Administration {
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.responsive()
     export class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
         protected getFormKey() { return RoleForm.formKey; }
         protected getIdProperty() { return RoleRow.idProperty; }

@@ -25,7 +25,8 @@ var Serene;
             LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
             LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
             LanguageDialog = __decorate([
-                Serenity.Decorators.registerClass()
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
             ], LanguageDialog);
             return LanguageDialog;
         }(Serenity.EntityDialog));
@@ -93,7 +94,8 @@ var Serene;
                 this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
             RoleDialog = __decorate([
-                Serenity.Decorators.registerClass()
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
             ], RoleDialog);
             return RoleDialog;
         }(Serenity.EntityDialog));

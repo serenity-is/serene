@@ -1,14 +1,18 @@
 @import "site.mixins.less";
 
+.s-Administration-LanguageDialog {
+    > .size { width: 450px; }
+    .caption { width: 120px; }
+}
+
+.s-Administration-RoleDialog {
+    > .size { width: 450px; }
+    .caption { width: 120px; }
+}
+
 .s-Administration-UserDialog {
     > .size { width: 650px; }
     .caption { width: 150px; }
-}
-
-.s-LanguageDialog {
-    > .size { .widthAndMin(650px); }
-    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
-    .s-PropertyGrid .categories { height: 260px; }
 }
 
 .s-TranslationGrid {
