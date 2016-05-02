@@ -539,7 +539,7 @@ var Serene;
                         format: Serenity.SlickFormatting.treeToggle(function () { return _this.view; }, function (x) { return x.Key; }, function (ctx) {
                             var item = ctx.item;
                             var klass = _this.getItemEffectiveClass(item);
-                            return '<span class="effective-permission "' + klass + '">' + Q.htmlEncode(ctx.value) + '</span>';
+                            return '<span class="effective-permission ' + klass + '">' + Q.htmlEncode(ctx.value) + '</span>';
                         }),
                         width: 495,
                         sortable: false

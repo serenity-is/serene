@@ -76,7 +76,7 @@ namespace Serene.Administration.Endpoints
             result.Username = user.Username;
             result.DisplayName = user.DisplayName;
 
-            result.Permissions = TwoLevelCache.GetLocalStoreOnly("UserPermissions:" + user.Id, TimeSpan.Zero,
+            result.Permissions = TwoLevelCache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
                 UserPermissionRow.Fields.GenerationKey, () =>
                 {
                     var permissions = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);

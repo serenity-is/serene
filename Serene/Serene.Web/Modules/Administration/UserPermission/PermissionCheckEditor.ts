@@ -76,7 +76,7 @@
                 format: Serenity.SlickFormatting.treeToggle(() => this.view, x => x.Key, ctx => {
                     let item = ctx.item;
                     let klass = this.getItemEffectiveClass(item);
-                    return '<span class="effective-permission "' + klass + '">' + Q.htmlEncode(ctx.value) + '</span>';
+                    return '<span class="effective-permission ' + klass + '">' + Q.htmlEncode(ctx.value) + '</span>';
                 }),
                 width: 495,
                 sortable: false
