@@ -855,6 +855,54 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var UserRoleDialog = (function (_super) {
+            __extends(UserRoleDialog, _super);
+            function UserRoleDialog(opt) {
+                var _this = this;
+                _super.call(this, opt);
+                this.permissions = new Administration.RoleCheckEditor(this.byId('Roles'));
+                Administration.UserRoleService.List({
+                    UserID: this.options.userID
+                }, function (response) {
+                    _this.permissions.set_value(response.Entities.map(function (x) { return x.toString(); }));
+                });
+            }
+            UserRoleDialog.prototype.getDialogOptions = function () {
+                var _this = this;
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.buttons = [{
+                        text: Q.text('Dialogs.OkButton'),
+                        click: function () {
+                            Q.serviceRequest('Administration/UserRole/Update', {
+                                UserID: _this.options.userID,
+                                Roles: _this.permissions.get_value().map(function (x) { return parseInt(x, 10); })
+                            }, function (response) {
+                                _this.dialogClose();
+                                Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'));
+                            });
+                        }
+                    }, {
+                        text: Q.text('Dialogs.CancelButton'),
+                        click: function () { return _this.dialogClose(); }
+                    }];
+                opt.title = ss.formatString(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
+                return opt;
+            };
+            UserRoleDialog.prototype.getTemplate = function () {
+                return "<div id='~_Roles'></div>";
+            };
+            UserRoleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserRoleDialog);
+            return UserRoleDialog;
+        }(Serenity.TemplatedDialog));
+        Administration.UserRoleDialog = UserRoleDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {

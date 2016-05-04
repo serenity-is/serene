@@ -153,6 +153,18 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
+        private permissions;
+        constructor(opt: UserRoleDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserRoleDialogOptions {
+        userID: number;
+        username: string;
+    }
+}
+declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
     class LanguageForm extends Serenity.PrefixedContext {
@@ -1871,13 +1883,6 @@ declare namespace Serene.Administration {
         Title: string;
         IsGroup: boolean;
         GrantRevoke: any;
-    }
-    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
-        constructor(opt: UserRoleDialogOptions);
-    }
-    class UserRoleDialogOptions {
-        userID: number;
-        username: string;
     }
 }
 declare namespace Serene.BasicSamples {

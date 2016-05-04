@@ -1,12 +1,29 @@
 ﻿namespace Serene.Administration
 {
-    using jQueryApi.UI.Widgets;
     using Serenity;
     using System;
-    using System.Collections.Generic;
-    using System.Html;
     using System.Runtime.CompilerServices;
-    using System.Linq;
+
+    [Imported]
+    public class UserRoleDialog : TemplatedDialog<UserRoleDialogOptions>
+    {
+        public UserRoleDialog(UserRoleDialogOptions opt)
+            : base(opt)
+        {
+
+        }
+    }
+
+    [Imported, Serializable]
+    public class UserRoleDialogOptions
+    {
+        public int UserID { get; set; }
+        public string Username { get; set; }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See UserRoleDialog.ts
+    Code below is only a reference for those who want to use Saltaralle
 
     public class UserRoleDialog : TemplatedDialog<UserRoleDialogOptions>
     {
@@ -62,11 +79,6 @@
             return "<div id='~_Roles'></div>";
         }
     }
-
-    [Imported, Serializable]
-    public class UserRoleDialogOptions
-    {
-        public int UserID { get; set; }
-        public string Username { get; set; }
-    }
+    */
 }
+ 

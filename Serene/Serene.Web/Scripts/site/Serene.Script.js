@@ -128,20 +128,6 @@
 	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
 	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserRoleDialog
-	var $Serene_Administration_UserRoleDialog = function(opt) {
-		this.$permissions = null;
-		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new Serene.Administration.RoleCheckEditor(this.byId('Roles'));
-		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
-			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
-				return x.toString();
-			}).toArray());
-		}), null);
-	};
-	$Serene_Administration_UserRoleDialog.__typeName = 'Serene.Administration.UserRoleDialog';
-	global.Serene.Administration.UserRoleDialog = $Serene_Administration_UserRoleDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.CancellableBulkActionGrid
 	var $Serene_BasicSamples_CancellableBulkActionGrid = function(container) {
 		this.$rowSelection = null;
@@ -1549,29 +1535,6 @@
 			this.$3$SourceField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_UserRoleDialog, $asm, {
-		getDialogOptions: function() {
-			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
-			var $t1 = [];
-			$t1.push({ text: Q.text('Dialogs.OkButton'), click: ss.mkdel(this, function() {
-				Q.serviceRequest('Administration/UserRole/Update', { UserID: this.options.userID, Roles: Enumerable.from(this.$permissions.get_value()).select(function(x) {
-					return parseInt(x, 10);
-				}).toArray() }, ss.mkdel(this, function(response) {
-					this.dialogClose();
-					window.setTimeout(function() {
-						Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'), '', null);
-					}, 0);
-				}), null);
-			}) });
-			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, this.dialogClose) });
-			opt.buttons = $t1;
-			opt.title = ss.formatString(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
-			return opt;
-		},
-		getTemplate: function() {
-			return "<div id='~_Roles'></div>";
-		}
-	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_BasicSamples_CancellableBulkActionGrid, $asm, {
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);

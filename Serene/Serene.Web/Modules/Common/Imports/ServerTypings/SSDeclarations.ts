@@ -77,15 +77,6 @@ declare namespace Serene.Administration {
         IsGroup: boolean;
         GrantRevoke: any;
     }
-
-    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
-        constructor(opt: UserRoleDialogOptions);
-    }
-
-    class UserRoleDialogOptions {
-        userID: number;
-        username: string;
-    }
 }
 
 declare namespace Serene.BasicSamples {
