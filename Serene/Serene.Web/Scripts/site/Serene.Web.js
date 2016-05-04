@@ -814,6 +814,47 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var RoleCheckEditor = (function (_super) {
+            __extends(RoleCheckEditor, _super);
+            function RoleCheckEditor(div) {
+                _super.call(this, div);
+            }
+            RoleCheckEditor.prototype.createToolbarExtensions = function () {
+                var _this = this;
+                _super.prototype.createToolbarExtensions.call(this);
+                Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, function (field, text) {
+                    _this.searchText = Select2.util.stripDiacritics(text || '').toUpperCase();
+                    _this.view.setItems(_this.view.getItems(), true);
+                });
+            };
+            RoleCheckEditor.prototype.getButtons = function () {
+                return [];
+            };
+            RoleCheckEditor.prototype.getTreeItems = function () {
+                return Administration.RoleRow.lookup().items.map(function (role) { return {
+                    id: role.RoleId.toString(),
+                    text: role.RoleName
+                }; });
+            };
+            RoleCheckEditor.prototype.onViewFilter = function (item) {
+                return _super.prototype.onViewFilter.call(this, item) &&
+                    (Q.isEmptyOrNull(this.searchText) ||
+                        Select2.util.stripDiacritics(item.text || '')
+                            .toUpperCase().indexOf(this.searchText) >= 0);
+            };
+            RoleCheckEditor = __decorate([
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.registerClass()
+            ], RoleCheckEditor);
+            return RoleCheckEditor;
+        }(Serenity.CheckTreeEditor));
+        Administration.RoleCheckEditor = RoleCheckEditor;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {

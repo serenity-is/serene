@@ -1,9 +1,22 @@
 ﻿using jQueryApi;
 using Serenity;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Serene.Administration
 {
+    [Imported]
+    public class RoleCheckEditor : CheckTreeEditor<object>
+    {
+        public RoleCheckEditor(jQueryObject div)
+            : base(div, null)
+        {
+        }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See RoleCheckEditor.ts
+    Code below is only a reference for those who want to use Saltaralle
+
     [Editor]
     public class RoleCheckEditor : CheckTreeEditor<object>
     {
@@ -64,4 +77,6 @@ namespace Serene.Administration
             return list;
         }
     }
+    */
 }
+ 

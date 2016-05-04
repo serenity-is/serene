@@ -11,8 +11,8 @@
         export const localTextPrefix = 'Northwind.Shipper';
         export const lookupKey = 'Northwind.Shipper';
 
-        export function lookup() {
-            return Q.getLookup('Northwind.Shipper');
+        export function lookup(): Q.Lookup<ShipperRow> {
+            return Q.getLookup<ShipperRow>('Northwind.Shipper');
         }
 
         export namespace Fields {

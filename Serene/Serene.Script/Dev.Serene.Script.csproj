@@ -33,7 +33,6 @@
   <ItemGroup>
     <Compile Include="Administration\RolePermission\RolePermissionDialog.cs" />
     <Compile Include="Administration\UserRole\RoleCheckEditor.cs" />
-    <Compile Include="Administration\UserPermission\PermissionModuleEditor.cs" />
     <Compile Include="Administration\UserPermission\PermissionCheckEditor.cs" />
     <Compile Include="Administration\UserRole\UserRoleDialog.cs" />
     <Compile Include="BasicSamples\GroupingAndSummariesInGrid.cs" />

@@ -143,6 +143,16 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
+        private searchText;
+        constructor(div: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): any[];
+        protected getTreeItems(): Serenity.CheckTreeItem<any>[];
+        protected onViewFilter(item: any): boolean;
+    }
+}
+declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
     class LanguageForm extends Serenity.PrefixedContext {
@@ -164,7 +174,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<LanguageRow>;
         namespace Fields {
             const Id: string;
             const LanguageId: string;
@@ -258,7 +268,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<RoleRow>;
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
@@ -697,7 +707,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<CategoryRow>;
         namespace Fields {
             const CategoryID: string;
             const CategoryName: string;
@@ -893,7 +903,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<CustomerRow>;
         namespace Fields {
             const ID: string;
             const CustomerID: string;
@@ -999,7 +1009,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<EmployeeRow>;
         namespace Fields {
             const EmployeeID: string;
             const LastName: string;
@@ -1299,7 +1309,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<OrderRow>;
         namespace Fields {
             const OrderID: string;
             const CustomerID: string;
@@ -1485,7 +1495,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<ProductRow>;
         namespace Fields {
             const ProductID: string;
             const ProductName: string;
@@ -1555,7 +1565,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<RegionRow>;
         namespace Fields {
             const RegionID: string;
             const RegionDescription: string;
@@ -1630,7 +1640,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<ShipperRow>;
         namespace Fields {
             const ShipperID: string;
             const CompanyName: string;
@@ -1695,7 +1705,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<SupplierRow>;
         namespace Fields {
             const SupplierID: string;
             const CompanyName: string;
@@ -1754,7 +1764,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): any;
+        function lookup(): Q.Lookup<TerritoryRow>;
         namespace Fields {
             const ID: string;
             const TerritoryID: string;
@@ -1861,12 +1871,6 @@ declare namespace Serene.Administration {
         Title: string;
         IsGroup: boolean;
         GrantRevoke: any;
-    }
-    class PermissionModuleEditor extends Serenity.Select2Editor<any, string> {
-        constructor(hidden: JQuery);
-    }
-    class RoleCheckEditor extends Serenity.CheckTreeEditor<any, any> {
-        constructor(div: JQuery);
     }
     class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
         constructor(opt: UserRoleDialogOptions);

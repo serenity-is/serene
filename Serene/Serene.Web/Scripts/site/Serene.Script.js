@@ -81,7 +81,7 @@
 	$Serene_LanguageList.__typeName = 'Serene.LanguageList';
 	$Serene_LanguageList.get_value = function() {
 		var result = [];
-		var $t1 = Q.getLookup('Administration.Language').get_items();
+		var $t1 = Q.getLookup('Administration.Language').items;
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var k = $t1[$t2];
 			if (k.LanguageId !== 'en') {
@@ -106,54 +106,6 @@
 	};
 	$Serene_Administration_LanguageForm.__typeName = 'Serene.Administration.LanguageForm';
 	global.Serene.Administration.LanguageForm = $Serene_Administration_LanguageForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.PermissionModuleEditor
-	var $Serene_Administration_PermissionModuleEditor = function(hidden) {
-		Serenity.Select2Editor.call(this, hidden, null);
-		var modules = {};
-		var permissions = Q.getRemoteData('Administration.PermissionKeys').Entities;
-		for (var i = 0; i < permissions.length; i++) {
-			var k = permissions[i];
-			var idx1 = k.indexOf(String.fromCharCode(58));
-			if (idx1 <= 0) {
-				continue;
-			}
-			var idx2 = k.indexOf(String.fromCharCode(58), idx1 + 1);
-			if (idx2 <= 0) {
-				continue;
-			}
-			var module = k.substr(0, idx1);
-			modules[module] = true;
-		}
-		var othersModule = false;
-		for (var $t1 = 0; $t1 < permissions.length; $t1++) {
-			var k1 = permissions[$t1];
-			var idx11 = k1.indexOf(String.fromCharCode(58));
-			if (idx11 < 0 && !ss.isValue(modules[k1])) {
-				othersModule = true;
-				break;
-			}
-		}
-		var moduleList = [];
-		ss.arrayAddRange(moduleList, Object.keys(modules));
-		if (othersModule) {
-			moduleList.push('Common');
-		}
-		for (var $t2 = 0; $t2 < moduleList.length; $t2++) {
-			var k2 = moduleList[$t2];
-			this.addItem$1(k2, k2, k2, false);
-		}
-	};
-	$Serene_Administration_PermissionModuleEditor.__typeName = 'Serene.Administration.PermissionModuleEditor';
-	global.Serene.Administration.PermissionModuleEditor = $Serene_Administration_PermissionModuleEditor;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RoleCheckEditor
-	var $Serene_Administration_RoleCheckEditor = function(div) {
-		this.$containsText = null;
-		Serenity.CheckTreeEditor.call(this, div, null);
-	};
-	$Serene_Administration_RoleCheckEditor.__typeName = 'Serene.Administration.RoleCheckEditor';
-	global.Serene.Administration.RoleCheckEditor = $Serene_Administration_RoleCheckEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Administration.RoleForm
 	var $Serene_Administration_RoleForm = function(idPrefix) {
@@ -180,7 +132,7 @@
 	var $Serene_Administration_UserRoleDialog = function(opt) {
 		this.$permissions = null;
 		Serenity.TemplatedDialog.call(this, opt);
-		this.$permissions = new $Serene_Administration_RoleCheckEditor(this.byId('Roles'));
+		this.$permissions = new Serene.Administration.RoleCheckEditor(this.byId('Roles'));
 		Q.serviceRequest('Administration/UserRole/List', { UserID: this.options.userID }, ss.mkdel(this, function(response) {
 			this.$permissions.set_value(Enumerable.from(response.Entities).select(function(x) {
 				return x.toString();
@@ -475,13 +427,13 @@
 			window.location.reload(true);
 		});
 		Q.getLookupAsync('Administration.Language').then(function(x) {
-			if (!Enumerable.from(x.get_items()).any(function(z) {
+			if (!Enumerable.from(x.items).any(function(z) {
 				return ss.referenceEquals(z.LanguageId, currentLanguage);
 			})) {
 				var idx = currentLanguage.lastIndexOf('-');
 				if (idx >= 0) {
 					currentLanguage = currentLanguage.substr(0, idx);
-					if (!Enumerable.from(x.get_items()).any(function(z1) {
+					if (!Enumerable.from(x.items).any(function(z1) {
 						return ss.referenceEquals(z1.LanguageId, currentLanguage);
 					})) {
 						currentLanguage = 'en';
@@ -491,9 +443,8 @@
 					currentLanguage = 'en';
 				}
 			}
-			var $t1 = x.get_items();
-			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-				var l = $t1[$t2];
+			for (var $t1 = 0; $t1 < x.items.length; $t1++) {
+				var l = x.items[$t1];
 				Q.addOption(select, l.LanguageId, l.LanguageName);
 			}
 			select.val(currentLanguage);
@@ -1017,7 +968,7 @@
 		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
 			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
 			if (ss.isValue(productID)) {
-				this.form.w('UnitPrice', Serenity.DecimalEditor).set_value(Q.getLookup('Northwind.Product').get_itemById()[ss.unbox(productID)].UnitPrice);
+				this.form.w('UnitPrice', Serenity.DecimalEditor).set_value(Q.getLookup('Northwind.Product').itemById[ss.unbox(productID)].UnitPrice);
 			}
 		}));
 		this.form.w('Discount', Serenity.DecimalEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
@@ -1573,41 +1524,6 @@
 			this.$3$LanguageNameField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_PermissionModuleEditor, $asm, {}, Serenity.Select2Editor, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
-	ss.initClass($Serene_Administration_RoleCheckEditor, $asm, {
-		getButtons: function() {
-			return [];
-		},
-		createToolbarExtensions: function() {
-			Serenity.DataGrid.prototype.createToolbarExtensions.call(this);
-			Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, ss.mkdel(this, function(field, text) {
-				this.$containsText = Q.trimToNull(text);
-				this.view.setItems(this.view.getItems(), true);
-			}), null);
-		},
-		onViewFilter: function(item) {
-			if (!Serenity.CheckTreeEditor.prototype.onViewFilter.call(this, item)) {
-				return false;
-			}
-			var contains = Select2.util.stripDiacritics(ss.coalesce(this.$containsText, '')).toUpperCase();
-			if (Q.isEmptyOrNull(contains)) {
-				return true;
-			}
-			if (Select2.util.stripDiacritics(ss.coalesce(item.text, '')).toUpperCase().indexOf(contains) !== -1) {
-				return true;
-			}
-			return false;
-		},
-		getItems$1: function() {
-			var list = [];
-			var roles = Q.getLookup('Administration.Role').get_items();
-			for (var $t1 = 0; $t1 < roles.length; $t1++) {
-				var role = roles[$t1];
-				list.push({ id: role.RoleId.toString(), text: role.RoleName });
-			}
-			return list;
-		}
-	}, Serenity.CheckTreeEditor, [Serenity.IDataGrid, Serenity.IGetEditValue, Serenity.ISetEditValue]);
 	ss.initClass($Serene_Administration_RoleForm, $asm, {
 		set_roleName: function(value) {
 			this.$3$RoleNameField = value;
@@ -1875,9 +1791,9 @@
 	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_DefaultValuesInNewGrid, $asm, {
 		addButtonClick: function() {
-			this.editItem({ CustomerID: 'ANTON', RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'), EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x) {
+			this.editItem({ CustomerID: 'ANTON', RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'), EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').items).first(function(x) {
 				return x.FullName === 'Robert King';
-			}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').get_items()).first(function(x1) {
+			}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').items).first(function(x1) {
 				return x1.CompanyName === 'Speedy Express';
 			}).ShipperID });
 		},
@@ -1887,9 +1803,9 @@
 			buttons.push({ title: 'Add Order from the Queen', cssClass: 'add-button', onClick: ss.mkdel(this, function() {
 				// using EditItem method as a shortcut to create a new Order dialog,
 				// bind to its events, load our order row, and open dialog
-				this.editItem({ CustomerID: 'QUEEN', EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x) {
+				this.editItem({ CustomerID: 'QUEEN', EmployeeID: Enumerable.from(Q.getLookup('Northwind.Employee').items).first(function(x) {
 					return x.FullName === 'Nancy Davolio';
-				}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').get_items()).first(function(x1) {
+				}).EmployeeID, ShipVia: Enumerable.from(Q.getLookup('Northwind.Shipper').items).first(function(x1) {
 					return x1.CompanyName === 'United Package';
 				}).ShipperID });
 			}) });
@@ -1901,12 +1817,12 @@
 				// so when a new item is saved, grid can refresh itself
 				this.initDialog(dlg);
 				// get a reference to product Chai
-				var chai = Enumerable.from(Q.getLookup('Northwind.Product').get_items()).first(function(x2) {
+				var chai = Enumerable.from(Q.getLookup('Northwind.Product').items).first(function(x2) {
 					return x2.ProductName === 'Chai';
 				});
 				// LoadEntityAndOpenDialog, loads an OrderRow 
 				// to dialog and opens it
-				var $t2 = Enumerable.from(Q.getLookup('Northwind.Employee').get_items()).first(function(x3) {
+				var $t2 = Enumerable.from(Q.getLookup('Northwind.Employee').items).first(function(x3) {
 					return x3.FullName === 'Laura Callahan';
 				}).EmployeeID;
 				var $t1 = [];
@@ -2024,7 +1940,7 @@
 				Q.alert('This product is already in order details!');
 				return false;
 			}
-			row.ProductName = Q.getLookup('Northwind.Product').get_itemById()[row.ProductID].ProductName;
+			row.ProductName = Q.getLookup('Northwind.Product').itemById[row.ProductID].ProductName;
 			row.LineTotal = ss.coalesce(row.Quantity, 0) * ss.coalesce(row.UnitPrice, 0) - ss.coalesce(row.Discount, 0);
 			return true;
 		}
@@ -3032,8 +2948,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_Administration_PermissionModuleEditor, { attr: [new Serenity.EditorAttribute()] });
-	ss.setMetadata($Serene_Administration_RoleCheckEditor, { attr: [new Serenity.EditorAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });

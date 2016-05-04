@@ -78,14 +78,6 @@ declare namespace Serene.Administration {
         GrantRevoke: any;
     }
 
-    class PermissionModuleEditor extends Serenity.Select2Editor<any, string> {
-        constructor(hidden: JQuery);
-    }
-
-    class RoleCheckEditor extends Serenity.CheckTreeEditor<any, any> {
-        constructor(div: JQuery);
-    }
-
     class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
         constructor(opt: UserRoleDialogOptions);
     }

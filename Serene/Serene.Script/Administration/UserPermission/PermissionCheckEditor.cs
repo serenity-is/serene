@@ -43,7 +43,7 @@ namespace Serene.Administration
     }
 
     /* 
-    This class has been ported to TypeScript. See UserDialog.ts
+    This class has been ported to TypeScript. See PermissionCheckEditor.ts
     Code below is only a reference for those who want to use Saltaralle
 
     [Editor, IdProperty("Key")]

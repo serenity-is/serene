@@ -1152,6 +1152,7 @@
     <TypeScriptCompile Include="Modules\Administration\Translation\TranslationGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\UserPermission\PermissionCheckEditor.ts" />
     <TypeScriptCompile Include="Modules\Administration\UserPermission\UserPermissionDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\UserRole\RoleCheckEditor.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -1578,9 +1579,6 @@
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
     <Compile Include="Modules\Common\Imports\ClientTypes\Administration.PermissionCheckEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Administration.PermissionModuleEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
