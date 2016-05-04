@@ -2233,4 +2233,115 @@ var Serene;
         })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderGrid = (function (_super) {
+            __extends(OrderGrid, _super);
+            function OrderGrid(container) {
+                _super.call(this, container);
+            }
+            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
+            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                var fld = Northwind.OrderRow.Fields;
+                this.customerFilter = this.addQuickFilter(fld.CustomerID, Northwind.CustomerEditor);
+                this.addDateRangeFilter(fld.OrderDate);
+                this.shippingState = this.addQuickFilter(fld.ShippingState, Serenity.EnumEditor, {
+                    options: {
+                        enumType: Northwind.OrderShippingState
+                    }
+                });
+                this.addQuickFilter(fld.ShipVia, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.ShipperRow.lookupKey
+                    }
+                });
+                this.addQuickFilter(fld.ShipCountry, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: 'Northwind.OrderShipCountry'
+                    }
+                });
+                this.addQuickFilter(fld.ShipCity, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: 'Northwind.OrderShipCity',
+                        cascadeFrom: fld.ShipCountry
+                    }
+                });
+                this.addQuickFilter(fld.EmployeeID, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.EmployeeRow.lookupKey
+                    }
+                });
+            };
+            OrderGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
+                return buttons;
+            };
+            OrderGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderGrid);
+            return OrderGrid;
+        }(Serenity.EntityGrid));
+        Northwind.OrderGrid = OrderGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerOrdersGrid = (function (_super) {
+            __extends(CustomerOrdersGrid, _super);
+            function CustomerOrdersGrid(container) {
+                _super.call(this, container);
+            }
+            CustomerOrdersGrid.prototype.getDialogType = function () { return Northwind.CustomerOrderDialog; };
+            CustomerOrdersGrid.prototype.getColumns = function () {
+                var fld = Northwind.OrderRow.Fields;
+                return _super.prototype.getColumns.call(this).filter(function (x) { return x.field !== fld.CustomerCompanyName; });
+            };
+            CustomerOrdersGrid.prototype.initEntityDialog = function (itemType, dialog) {
+                _super.prototype.initEntityDialog.call(this, itemType, dialog);
+                Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
+            };
+            CustomerOrdersGrid.prototype.addButtonClick = function () {
+                this.editItem({ CustomerID: this.get_customerID() });
+            };
+            CustomerOrdersGrid.prototype.getInitialTitle = function () {
+                return null;
+            };
+            CustomerOrdersGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.customerFilter.element.closest('.quick-filter-item').remove();
+            };
+            CustomerOrdersGrid.prototype.getGridCanLoad = function () {
+                return _super.prototype.getGridCanLoad.call(this) && !!this.customerID;
+            };
+            CustomerOrdersGrid.prototype.get_customerID = function () {
+                return this.customerID;
+            };
+            CustomerOrdersGrid.prototype.set_customerID = function (value) {
+                if (this.customerID !== value) {
+                    this.customerID = value;
+                    this.setEquality('CustomerID', value);
+                    this.refresh();
+                }
+            };
+            CustomerOrdersGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerOrdersGrid);
+            return CustomerOrdersGrid;
+        }(Northwind.OrderGrid));
+        Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

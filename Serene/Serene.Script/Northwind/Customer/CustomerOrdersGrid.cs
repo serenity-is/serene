@@ -1,10 +1,24 @@
 ﻿
 namespace Serene.Northwind
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using jQueryApi;
-    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class CustomerOrdersGrid : OrderGrid
+    {
+        public CustomerOrdersGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+
+        public string CustomerID { get; set; }
+    }
+
+
+    /* 
+    This class has been ported to TypeScript. See CustomerOrdersGrid.ts
+    Code below is only a reference for those who want to use Saltaralle
 
     [DialogType(typeof(CustomerOrderDialog))]
     public class CustomerOrdersGrid : OrderGrid
@@ -66,4 +80,5 @@ namespace Serene.Northwind
             }
         }
     }
+    */
 }

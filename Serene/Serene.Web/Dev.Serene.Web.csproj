@@ -1520,6 +1520,8 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />

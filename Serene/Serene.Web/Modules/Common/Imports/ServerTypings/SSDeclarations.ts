@@ -283,12 +283,6 @@ declare namespace Serene.Northwind {
     class CustomerOrderDialog extends OrderDialog {
     }
 
-    class CustomerOrdersGrid extends OrderGrid {
-        constructor(container: JQuery);
-        get_customerID(): string;
-        set_customerID(value: string): void;
-    }
-
     class EmployeeDialog extends Serenity.EntityDialog<EmployeeRow, any> {
     }
 
@@ -342,13 +336,6 @@ declare namespace Serene.Northwind {
 
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;
-    }
-
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        constructor(container: JQuery);
-        get_shippingState(): any;
-        set_shippingState(value: any): void;
-        get_customerFilter(): CustomerEditor;
     }
 
     class PhoneEditor extends Serenity.StringEditor {

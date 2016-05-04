@@ -3,8 +3,23 @@ namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
-    using System.Collections.Generic;
-    using Fields = OrderRow.Fields;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class OrderGrid : EntityGrid<OrderRow>
+    {
+        public OrderGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+
+        [IntrinsicProperty]
+        public CustomerEditor CustomerFilter { get; private set; }
+    }
+
+    /* 
+    This class has been ported to TypeScript. See OrderGrid.ts
+    Code below is only a reference for those who want to use Saltaralle
 
     [ColumnsKey("Northwind.Order"), IdProperty("OrderID")]
     [DialogType(typeof(OrderDialog)), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
@@ -27,7 +42,7 @@ namespace Serene.Northwind
 
             shippingState = AddEqualityFilter<EnumEditor>(Fields.ShippingState,
                 options: new EnumEditorOptions { EnumKey = "Northwind.OrderShippingState" });
-                
+
             AddEqualityFilter<LookupEditor>(Fields.ShipVia,
                 options: new LookupEditorOptions { LookupKey = ShipperRow.LookupKey });
 
@@ -59,6 +74,8 @@ namespace Serene.Northwind
             return buttons;
         }
 
+        [IntrinsicProperty]
         public CustomerEditor CustomerFilter { get; private set; }
     }
+    */
 }

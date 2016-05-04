@@ -8,11 +8,11 @@ namespace Serene.Common
     public abstract class ExcelExportHelper
     {
         public static ToolButton CreateToolButton(IDataGrid grid, string service, Func<bool> onViewSubmit,
-            string title = "Excel")
+            string title = null)
         {
             return new ToolButton
             {
-                Title = title,
+                Title = title ?? "Excel",
                 CssClass = "export-xlsx-button",
                 OnClick = delegate
                 {

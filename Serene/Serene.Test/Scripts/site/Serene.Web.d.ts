@@ -2019,11 +2019,6 @@ declare namespace Serene.Northwind {
     }
     class CustomerOrderDialog extends OrderDialog {
     }
-    class CustomerOrdersGrid extends OrderGrid {
-        constructor(container: JQuery);
-        get_customerID(): string;
-        set_customerID(value: string): void;
-    }
     class EmployeeDialog extends Serenity.EntityDialog<EmployeeRow, any> {
     }
     class EmployeeFormatter {
@@ -2067,12 +2062,6 @@ declare namespace Serene.Northwind {
     }
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;
-    }
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        constructor(container: JQuery);
-        get_shippingState(): any;
-        set_shippingState(value: any): void;
-        get_customerFilter(): CustomerEditor;
     }
     class PhoneEditor extends Serenity.StringEditor {
         constructor(input: JQuery);
@@ -2132,5 +2121,34 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void;
         function createToolButton<TItem>(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof OrderDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected shippingState: Serenity.EnumEditor;
+        customerFilter: CustomerEditor;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerOrdersGrid extends OrderGrid {
+        protected getDialogType(): typeof CustomerOrderDialog;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected initEntityDialog(itemType: any, dialog: any): void;
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected createToolbarExtensions(): void;
+        protected getGridCanLoad(): boolean;
+        private customerID;
+        get_customerID(): string;
+        set_customerID(value: any): void;
     }
 }
