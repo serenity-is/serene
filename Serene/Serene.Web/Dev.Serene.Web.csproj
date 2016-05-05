@@ -1185,8 +1185,6 @@
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Scripts\jlayout.border.js" />
-    <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
@@ -1215,12 +1213,8 @@
     <Content Include="Scripts\jquery.fileupload.min.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.iframe-transport.min.js" />
-    <Content Include="Scripts\jquery.jlayout.js" />
-    <Content Include="Scripts\jquery.jlayout.min.js" />
     <Content Include="Scripts\jquery.json.js" />
     <Content Include="Scripts\jquery.json.min.js" />
-    <Content Include="Scripts\jquery.metisMenu.js" />
-    <Content Include="Scripts\jquery.metisMenu.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
