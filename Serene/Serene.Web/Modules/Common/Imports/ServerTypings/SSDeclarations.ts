@@ -90,28 +90,6 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 
-    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-
-    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
-        constructor(container: JQuery);
-        get_categoryID(): any;
-        set_categoryID(value: any): void;
-    }
-
-    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-    }
-
-    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-
-    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
-        get_categoryID(): any;
-        set_categoryID(value: any): void;
-    }
-
     class GridFilteredByCriteria extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
@@ -127,32 +105,11 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 
-    class MultiColumnDialog extends Northwind.OrderDialog {
-    }
-
-    class MultiColumnGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-
-    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
-    }
-
-    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-
     class OrderBulkAction extends BulkServiceAction {
     }
 
     class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
         constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
-    }
-
-    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-    }
-
-    class ResponsiveGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
     }
 
     class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {

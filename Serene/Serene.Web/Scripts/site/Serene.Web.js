@@ -681,7 +681,7 @@ var Serene;
                     if (titleByKey[s]) {
                         continue;
                     }
-                    titleByKey[s] = Q.format(Q.tryGetText('Permission.' + s), s);
+                    titleByKey[s] = Q.coalesce(Q.tryGetText('Permission.' + s), s);
                     var parts = s.split(':');
                     var group = '';
                     var groupTitle = '';
@@ -901,32 +901,6 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserGrid = (function (_super) {
-            __extends(UserGrid, _super);
-            function UserGrid(container) {
-                _super.call(this, container);
-            }
-            UserGrid.prototype.getColumnsKey = function () { return "Administration.User"; };
-            UserGrid.prototype.getDialogType = function () { return Administration.UserDialog; };
-            UserGrid.prototype.getIdProperty = function () { return Administration.UserRow.idProperty; };
-            UserGrid.prototype.getIsActiveProperty = function () { return Administration.UserRow.isActiveProperty; };
-            UserGrid.prototype.getLocalTextPrefix = function () { return Administration.UserRow.localTextPrefix; };
-            UserGrid.prototype.getService = function () { return Administration.UserService.baseUrl; };
-            UserGrid.prototype.getDefaultSortBy = function () {
-                return [Administration.UserRow.Fields.Username];
-            };
-            UserGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], UserGrid);
-            return UserGrid;
-        }(Serenity.EntityGrid));
-        Administration.UserGrid = UserGrid;
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
     var Northwind;
     (function (Northwind) {
         var OrderGrid = (function (_super) {
@@ -985,6 +959,374 @@ var Serene;
         }(Serenity.EntityGrid));
         Northwind.OrderGrid = OrderGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DefaultValuesInNewGrid = (function (_super) {
+            __extends(DefaultValuesInNewGrid, _super);
+            function DefaultValuesInNewGrid(container) {
+                _super.call(this, container);
+            }
+            /**
+             * This method is called when New Item button is clicked.
+             * By default, it calls EditItem with an empty entity.
+             * This is a good place to fill in default values for New Item button.
+             */
+            DefaultValuesInNewGrid.prototype.addButtonClick = function () {
+                this.editItem({
+                    CustomerID: 'ANTON',
+                    RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'),
+                    EmployeeID: Serene.Northwind.EmployeeRow.lookup().items
+                        .filter(function (x) { return x.FullName === 'Robert King'; })[0].EmployeeID,
+                    ShipVia: Serene.Northwind.ShipperRow.lookup().items
+                        .filter(function (x) { return x.CompanyName === 'Speedy Express'; })[0].ShipperID
+                });
+            };
+            DefaultValuesInNewGrid.prototype.getButtons = function () {
+                var _this = this;
+                // preserving default New Item button
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push({
+                    title: 'Add Order from the Queen',
+                    cssClass: 'add-button',
+                    onClick: function () {
+                        // using EditItem method as a shortcut to create a new Order dialog,
+                        // bind to its events, load our order row, and open dialog
+                        _this.editItem({
+                            CustomerID: 'QUEEN',
+                            EmployeeID: Serene.Northwind.EmployeeRow.lookup().items
+                                .filter(function (x) { return x.FullName === 'Nancy Davolio'; })[0].EmployeeID,
+                            ShipVia: Serene.Northwind.ShipperRow.lookup().items
+                                .filter(function (x) { return x.CompanyName === 'United Package'; })[0].ShipperID
+                        });
+                    }
+                });
+                buttons.push({
+                    title: 'Add Order with 5 Chai by Laura', cssClass: 'add-note-button',
+                    onClick: function () {
+                        // we could use EditItem here too, but for demonstration
+                        // purposes we are manually creating dialog this time
+                        var dlg = new Serene.Northwind.OrderDialog();
+                        // let grid watch for changes to manually created dialog, 
+                        // so when a new item is saved, grid can refresh itself
+                        _this.initDialog(dlg);
+                        // get a reference to product Chai
+                        var chai = Serene.Northwind.ProductRow.lookup().items
+                            .filter(function (x) { return x.ProductName === 'Chai'; })[0];
+                        // LoadEntityAndOpenDialog, loads an OrderRow 
+                        // to dialog and opens it
+                        var lauraCallahanID = Serene.Northwind.EmployeeRow.lookup().items
+                            .filter(function (x) { return x.FullName === 'Laura Callahan'; })[0].EmployeeID;
+                        dlg.loadEntityAndOpenDialog({
+                            CustomerID: 'GOURL',
+                            EmployeeID: lauraCallahanID,
+                            DetailList: [{
+                                    ProductID: chai.ProductID,
+                                    ProductName: chai.ProductName,
+                                    UnitPrice: chai.UnitPrice,
+                                    Quantity: 5,
+                                    LineTotal: chai.UnitPrice * 5
+                                }]
+                        });
+                    }
+                });
+                return buttons;
+            };
+            DefaultValuesInNewGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DefaultValuesInNewGrid);
+            return DefaultValuesInNewGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.DefaultValuesInNewGrid = DefaultValuesInNewGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Styling for columns is done with CSS in site.basicsamples.less file.
+         * We just need to set flexify options here to determine how much editors
+         * will grow or shrink when dialog is resized. If dialog wasn't resizable
+         * we didn't have to do this.
+         *
+         * NOTE: Have a look at MultiColumnResponsiveDialog sample, it's easier
+         * and more recent version. This sample is for old dialog layouts.
+         */
+        var MultiColumnDialog = (function (_super) {
+            __extends(MultiColumnDialog, _super);
+            function MultiColumnDialog() {
+                _super.call(this);
+                this.form = new Serene.Northwind.OrderForm(this.idPrefix);
+                // as these editors are in a two column line, 
+                // all should grow 0.5px when dialog grows 1px
+                this.form.OrderDate().element.flexX(0.5);
+                this.form.RequiredDate().element.flexX(0.5);
+                this.form.ShipName().element.flexX(0.5);
+                this.form.ShipCity().element.flexX(0.5);
+                this.form.ShipPostalCode().element.flexX(0.5);
+                this.form.ShipAddress().element.flexX(0.5);
+                this.form.ShipRegion().element.flexX(0.5);
+                this.form.ShipCountry().element.flexX(0.5);
+                // as these editors are in a three column line, 
+                // all should grow 0.33px when dialog grows 1px
+                this.form.ShippedDate().element.flexX(0.33);
+                this.form.ShipVia().element.siblings('.select2-container').flexX(0.33);
+                this.form.Freight().element.flexX(0.33);
+                // grid should grow in height and width when dialog grows
+                this.form.DetailList().element.flexWidthHeight(1, 1);
+            }
+            MultiColumnDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MultiColumnDialog);
+            return MultiColumnDialog;
+        }(Serene.Northwind.OrderDialog));
+        BasicSamples.MultiColumnDialog = MultiColumnDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of OrderGrid to override dialog type to MultiColumnDialog
+         */
+        var MultiColumnGrid = (function (_super) {
+            __extends(MultiColumnGrid, _super);
+            function MultiColumnGrid(container) {
+                _super.call(this, container);
+            }
+            MultiColumnGrid.prototype.getDialogType = function () { return BasicSamples.MultiColumnDialog; };
+            MultiColumnGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MultiColumnGrid);
+            return MultiColumnGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.MultiColumnGrid = MultiColumnGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Styling for columns is done with CSS in site.basicsamples.less file.
+         * When comparing this to MultiColumnDialog sample, you may notice that
+         * this version requires much less JS and CSS code.
+         */
+        var MultiColumnResponsiveDialog = (function (_super) {
+            __extends(MultiColumnResponsiveDialog, _super);
+            function MultiColumnResponsiveDialog() {
+                _super.call(this);
+            }
+            MultiColumnResponsiveDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MultiColumnResponsiveDialog);
+            return MultiColumnResponsiveDialog;
+        }(Serene.Northwind.OrderDialog));
+        BasicSamples.MultiColumnResponsiveDialog = MultiColumnResponsiveDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+         */
+        var MultiColumnResponsiveGrid = (function (_super) {
+            __extends(MultiColumnResponsiveGrid, _super);
+            function MultiColumnResponsiveGrid(container) {
+                _super.call(this, container);
+            }
+            MultiColumnResponsiveGrid.prototype.getDialogType = function () { return BasicSamples.MultiColumnResponsiveDialog; };
+            MultiColumnResponsiveGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MultiColumnResponsiveGrid);
+            return MultiColumnResponsiveGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.MultiColumnResponsiveGrid = MultiColumnResponsiveGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Adding Responsive attribute makes this dialog use full screen in mobile devices.
+         */
+        var ResponsiveDialog = (function (_super) {
+            __extends(ResponsiveDialog, _super);
+            function ResponsiveDialog() {
+                _super.call(this);
+            }
+            ResponsiveDialog.prototype.getFormKey = function () { return Serene.Northwind.OrderForm.formKey; };
+            ResponsiveDialog.prototype.getIdProperty = function () { return Serene.Northwind.OrderRow.idProperty; };
+            ResponsiveDialog.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
+            ResponsiveDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
+            ResponsiveDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            ResponsiveDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive(),
+                Serenity.Decorators.maximizable()
+            ], ResponsiveDialog);
+            return ResponsiveDialog;
+        }(Serenity.EntityDialog));
+        BasicSamples.ResponsiveDialog = ResponsiveDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+         */
+        var ResponsiveGrid = (function (_super) {
+            __extends(ResponsiveGrid, _super);
+            function ResponsiveGrid(container) {
+                _super.call(this, container);
+            }
+            ResponsiveGrid.prototype.getDialogType = function () { return BasicSamples.ResponsiveDialog; };
+            ResponsiveGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ResponsiveGrid);
+            return ResponsiveGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.ResponsiveGrid = ResponsiveGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Our subclass of Order Details editor with a CategoryID property
+         */
+        var FilteredLookupDetailEditor = (function (_super) {
+            __extends(FilteredLookupDetailEditor, _super);
+            function FilteredLookupDetailEditor(container) {
+                _super.call(this, container);
+            }
+            FilteredLookupDetailEditor.prototype.getDialogType = function () { return BasicSamples.FilteredLookupOrderDetailDialog; };
+            /**
+             * This method is called to initialize an edit dialog created by
+             * grid editor when Add button or an edit link is clicked
+             * We have an opportunity here to pass CategoryID to edit dialog
+             */
+            FilteredLookupDetailEditor.prototype.initEntityDialog = function (itemType, dialog) {
+                _super.prototype.initEntityDialog.call(this, itemType, dialog);
+                // passing category ID from grid editor to detail dialog
+                dialog.categoryID = this.categoryID;
+            };
+            FilteredLookupDetailEditor = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.editor()
+            ], FilteredLookupDetailEditor);
+            return FilteredLookupDetailEditor;
+        }(Serene.Northwind.OrderDetailsEditor));
+        BasicSamples.FilteredLookupDetailEditor = FilteredLookupDetailEditor;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Basic order dialog with a category selection
+         */
+        var FilteredLookupInDetailDialog = (function (_super) {
+            __extends(FilteredLookupInDetailDialog, _super);
+            function FilteredLookupInDetailDialog() {
+                var _this = this;
+                _super.call(this);
+                this.form = new BasicSamples.FilteredLookupInDetailForm(this.idPrefix);
+                this.form.CategoryID().change(function (e) {
+                    _this.form.DetailList().categoryID = Q.toId(_this.form.CategoryID().get_value());
+                });
+            }
+            FilteredLookupInDetailDialog.prototype.getFormKey = function () { return BasicSamples.FilteredLookupInDetailForm.formKey; };
+            FilteredLookupInDetailDialog.prototype.getIdProperty = function () { return Serene.Northwind.OrderRow.idProperty; };
+            FilteredLookupInDetailDialog.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
+            FilteredLookupInDetailDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
+            FilteredLookupInDetailDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            FilteredLookupInDetailDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], FilteredLookupInDetailDialog);
+            return FilteredLookupInDetailDialog;
+        }(Serenity.EntityDialog));
+        BasicSamples.FilteredLookupInDetailDialog = FilteredLookupInDetailDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
+         */
+        var FilteredLookupInDetailGrid = (function (_super) {
+            __extends(FilteredLookupInDetailGrid, _super);
+            function FilteredLookupInDetailGrid(container) {
+                _super.call(this, container);
+            }
+            FilteredLookupInDetailGrid.prototype.getDialogType = function () { return BasicSamples.FilteredLookupInDetailDialog; };
+            FilteredLookupInDetailGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], FilteredLookupInDetailGrid);
+            return FilteredLookupInDetailGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.FilteredLookupInDetailGrid = FilteredLookupInDetailGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Our subclass of order detail dialog with a CategoryID property
+         * that will be used to set CascadeValue of product editor
+         */
+        var FilteredLookupOrderDetailDialog = (function (_super) {
+            __extends(FilteredLookupOrderDetailDialog, _super);
+            function FilteredLookupOrderDetailDialog() {
+                _super.call(this);
+                this.form = new Serene.Northwind.OrderDetailForm(this.idPrefix);
+                // we can set cascade field in constructor
+                // we could also use FilterField but in this case, when CategoryID is null
+                // lookup editor would show all products in any category
+                this.form.ProductID().set_cascadeField(Serene.Northwind.ProductRow.Fields.CategoryID);
+                // but CategoryID value is not yet available here as detail editor will set it 
+                // after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
+            }
+            /**
+             * This method is called just before an entity is loaded to dialog
+             * This is also called for new record mode with an empty entity
+             */
+            FilteredLookupOrderDetailDialog.prototype.beforeLoadEntity = function (entity) {
+                _super.prototype.beforeLoadEntity.call(this, entity);
+                // setting cascade value here
+                // make sure you have [LookupInclude] on CategoryID property of ProductRow
+                // otherwise this field won't be available in lookup script (will always be null),
+                // so can't be filtered and you'll end up with an empty product list.
+                this.form.ProductID().set_cascadeValue(this.categoryID);
+            };
+            FilteredLookupOrderDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], FilteredLookupOrderDetailDialog);
+            return FilteredLookupOrderDetailDialog;
+        }(Serene.Northwind.OrderDetailDialog));
+        BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;

@@ -244,7 +244,7 @@
                     continue;
                 }
 
-                titleByKey[s] = Q.format(Q.tryGetText('Permission.' + s), s);
+                titleByKey[s] = Q.coalesce(Q.tryGetText('Permission.' + s), s);
                 let parts = s.split(':');
                 let group = '';
                 let groupTitle = '';

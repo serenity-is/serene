@@ -2,68 +2,69 @@
 namespace Serene.BasicSamples.Pages
 {
     using System.Web.Mvc;
+    using MyViews = MVC.Views.BasicSamples;
 
     [Authorize, RoutePrefix("BasicSamples"), Route("{action=index}")]
     public class BasicSamplesController : Controller
     {
         public ActionResult ChartInDialog()
         {
-            return View(MVC.Views.BasicSamples.ChartInDialog);
+            return View(MyViews.Dialogs.ChartInDialog.Index);
         }
 
         public ActionResult CancellableBulkAction()
         {
-            return View(MVC.Views.BasicSamples.Grids.CancellableBulkAction.CancellableBulkActionView);
+            return View(MyViews.Grids.CancellableBulkAction.Index);
         }
 
         public ActionResult CloneableEntityDialog()
         {
-            return View(MVC.Views.BasicSamples.CloneableEntityDialog);
+            return View(MyViews.Dialogs.CloneableEntityDialog.Index);
         }
 
         public ActionResult DefaultValuesInNewDialog()
         {
-            return View(MVC.Views.BasicSamples.DefaultValuesInNewDialog);
+            return View(MyViews.Dialogs.DefaultValuesInNewDialog.Index);
         }
 
         public ActionResult FilteredLookupInDetailDialog()
         {
-            return View(MVC.Views.BasicSamples.FilteredLookupInDetailDialog);
+            return View(MyViews.Editors.FilteredLookupInDetailDialog.Index);
         }
 
         public ActionResult GridFilteredByCriteria()
         {
-            return View(MVC.Views.BasicSamples.GridFilteredByCriteria);
+            return View(MyViews.Grids.GridFilteredByCriteria.Index);
         }
 
         public ActionResult GroupingAndSummariesInGrid()
         {
-            return View(MVC.Views.BasicSamples.GroupingAndSummariesInGrid);
+            return View(MyViews.Grids.GroupingAndSummariesInGrid.Index);
         }
 
         public ActionResult LookupFilterByMultipleValues()
         {
-            return View(MVC.Views.BasicSamples.LookupFilterByMultipleValues);
+            return View(MyViews.Editors.LookupFilterByMultipleValues.Index);
         }
 
         public ActionResult MultiColumnDialog()
         {
-            return View(MVC.Views.BasicSamples.MultiColumnDialog);
+            return View(MyViews.Dialogs.MultiColumnDialog.Index);
         }
 
         public ActionResult MultiColumnResponsiveDialog()
         {
-            return View(MVC.Views.BasicSamples.MultiColumnResponsiveDialog);
+            return View(MyViews.Dialogs.MultiColumnResponsiveDialog.Index);
         }
 
         public ActionResult ResponsiveDialog()
         {
-            return View(MVC.Views.BasicSamples.ResponsiveDialog);
+            return View(MyViews.Dialogs.ResponsiveDialog.Index);
         }
 
         public ActionResult ViewWithoutID()
         {
-            return View(MVC.Views.BasicSamples.ViewWithoutID);
+            return View(MyViews.Grids.ViewWithoutID.Index);
         }
     }
 }

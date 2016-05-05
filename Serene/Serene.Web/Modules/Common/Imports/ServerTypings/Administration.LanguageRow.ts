@@ -11,8 +11,8 @@
         export const localTextPrefix = 'Administration.Language';
         export const lookupKey = 'Administration.Language';
 
-        export function lookup() {
-            return Q.getLookup('Administration.Language');
+        export function lookup(): Q.Lookup<LanguageRow> {
+            return Q.getLookup<LanguageRow>('Administration.Language');
         }
 
         export namespace Fields {

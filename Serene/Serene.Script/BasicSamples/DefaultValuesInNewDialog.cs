@@ -1,4 +1,8 @@
-﻿using jQueryApi;
+﻿/* 
+This class has been ported to TypeScript. See DefaultValuesInNewGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
+using jQueryApi;
 using Serene.Northwind;
 using Serenity;
 using System;
@@ -100,3 +104,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/

@@ -164,22 +164,10 @@ declare namespace Serene.Administration {
         username: string;
     }
 }
-declare namespace Serene.Administration {
-    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof UserDialog;
-        protected getIdProperty(): string;
-        protected getIsActiveProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
 declare namespace Serene.Northwind {
     class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         protected getColumnsKey(): string;
-        protected getDialogType(): typeof OrderDialog;
+        protected getDialogType(): any;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
@@ -188,6 +176,136 @@ declare namespace Serene.Northwind {
         constructor(container: JQuery);
         protected createToolbarExtensions(): void;
         protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called when New Item button is clicked.
+         * By default, it calls EditItem with an empty entity.
+         * This is a good place to fill in default values for New Item button.
+         */
+        protected addButtonClick(): void;
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Styling for columns is done with CSS in site.basicsamples.less file.
+     * We just need to set flexify options here to determine how much editors
+     * will grow or shrink when dialog is resized. If dialog wasn't resizable
+     * we didn't have to do this.
+     *
+     * NOTE: Have a look at MultiColumnResponsiveDialog sample, it's easier
+     * and more recent version. This sample is for old dialog layouts.
+     */
+    class MultiColumnDialog extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to MultiColumnDialog
+     */
+    class MultiColumnGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof MultiColumnDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Styling for columns is done with CSS in site.basicsamples.less file.
+     * When comparing this to MultiColumnDialog sample, you may notice that
+     * this version requires much less JS and CSS code.
+     */
+    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+     */
+    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof MultiColumnResponsiveDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Adding Responsive attribute makes this dialog use full screen in mobile devices.
+     */
+    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+     */
+    class ResponsiveGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof ResponsiveDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our subclass of Order Details editor with a CategoryID property
+     */
+    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
+        protected getDialogType(): typeof FilteredLookupOrderDetailDialog;
+        constructor(container: JQuery);
+        categoryID: number;
+        /**
+         * This method is called to initialize an edit dialog created by
+         * grid editor when Add button or an edit link is clicked
+         * We have an opportunity here to pass CategoryID to edit dialog
+         */
+        protected initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Basic order dialog with a category selection
+     */
+    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        private form;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
+     */
+    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof FilteredLookupInDetailDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our subclass of order detail dialog with a CategoryID property
+     * that will be used to set CascadeValue of product editor
+     */
+    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
+        constructor();
+        /**
+         * This method is called just before an entity is loaded to dialog
+         * This is also called for new record mode with an empty entity
+         */
+        protected beforeLoadEntity(entity: any): void;
+        categoryID: number;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -226,7 +344,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<LanguageRow>;
         namespace Fields {
             const Id: string;
             const LanguageId: string;
@@ -320,7 +438,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<RoleRow>;
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
@@ -759,7 +877,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<CategoryRow>;
         namespace Fields {
             const CategoryID: string;
             const CategoryName: string;
@@ -955,7 +1073,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<CustomerRow>;
         namespace Fields {
             const ID: string;
             const CustomerID: string;
@@ -1061,7 +1179,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<EmployeeRow>;
         namespace Fields {
             const EmployeeID: string;
             const LastName: string;
@@ -1361,7 +1479,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<OrderRow>;
         namespace Fields {
             const OrderID: string;
             const CustomerID: string;
@@ -1547,7 +1665,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<ProductRow>;
         namespace Fields {
             const ProductID: string;
             const ProductName: string;
@@ -1617,7 +1735,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<RegionRow>;
         namespace Fields {
             const RegionID: string;
             const RegionDescription: string;
@@ -1692,7 +1810,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<ShipperRow>;
         namespace Fields {
             const ShipperID: string;
             const CompanyName: string;
@@ -1757,7 +1875,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<SupplierRow>;
         namespace Fields {
             const SupplierID: string;
             const CompanyName: string;
@@ -1816,7 +1934,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<{}>;
+        function lookup(): Q.Lookup<TerritoryRow>;
         namespace Fields {
             const ID: string;
             const TerritoryID: string;
@@ -1933,23 +2051,6 @@ declare namespace Serene.BasicSamples {
     class CloneableEntityGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
-    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
-        constructor(container: JQuery);
-        get_categoryID(): any;
-        set_categoryID(value: any): void;
-    }
-    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-    }
-    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
-        get_categoryID(): any;
-        set_categoryID(value: any): void;
-    }
     class GridFilteredByCriteria extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
@@ -1961,25 +2062,10 @@ declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
-    class MultiColumnDialog extends Northwind.OrderDialog {
-    }
-    class MultiColumnGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
-    }
-    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
     class OrderBulkAction extends BulkServiceAction {
     }
     class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
         constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
-    }
-    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-    }
-    class ResponsiveGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
     }
     class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         constructor(container: JQuery);

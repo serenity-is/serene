@@ -1,9 +1,30 @@
 ﻿using jQueryApi;
 using Serene.Northwind;
+using System.Runtime.CompilerServices;
+
+namespace Serene.BasicSamples
+{
+    [Imported]
+    public class FilteredLookupDetailEditor : OrderDetailsEditor
+    {
+        public FilteredLookupDetailEditor(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+}
+
+/* 
+This sample has been ported to TypeScript. See .ts files under FilteredLookupInDetailDialog folder
+Code below is only a reference for those who want to use Saltaralle
+
+using jQueryApi;
+using Serene.Northwind;
 using Serenity;
 
 namespace Serene.BasicSamples
 {
+
     /// <summary>
     /// Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
     /// </summary>
@@ -99,3 +120,4 @@ namespace Serene.BasicSamples
         public int? CategoryID { get; set; }
     }
 }
+*/

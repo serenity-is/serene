@@ -46,8 +46,8 @@
         export const localTextPrefix = 'Northwind.Employee';
         export const lookupKey = 'Northwind.Employee';
 
-        export function lookup() {
-            return Q.getLookup('Northwind.Employee');
+        export function lookup(): Q.Lookup<EmployeeRow> {
+            return Q.getLookup<EmployeeRow>('Northwind.Employee');
         }
 
         export namespace Fields {

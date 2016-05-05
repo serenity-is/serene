@@ -1125,18 +1125,18 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.min.js" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinFlat.css" />
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
-    <Content Include="Modules\BasicSamples\ChartInDialog.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\ChartInDialog\Index.cshtml" />
     <Content Include="Content\site\site.basicsamples.less" />
-    <Content Include="Modules\BasicSamples\ViewWithoutID.cshtml" />
-    <Content Include="Modules\BasicSamples\MultiColumnDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\ResponsiveDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\MultiColumnResponsiveDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\CloneableEntityDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\LookupFilterByMultipleValues.cshtml" />
-    <Content Include="Modules\BasicSamples\GridFilteredByCriteria.cshtml" />
-    <Content Include="Modules\BasicSamples\DefaultValuesInNewDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\FilteredLookupInDetailDialog.cshtml" />
-    <Content Include="Modules\BasicSamples\GroupingAndSummariesInGrid.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\ViewWithoutID\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\Index.cshtml" />
     <Content Include="Modules\Common\Imports\CodeGenerationHelpers.ttinclude" />
     <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.log">
       <AutoGen>True</AutoGen>
@@ -1177,7 +1177,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionView.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1523,6 +1523,17 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupOrderDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupDetailEditor.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
@@ -1576,8 +1587,8 @@
     <Compile Include="Modules\BasicSamples\BasicSamplesEndpoint.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
-    <Compile Include="Modules\BasicSamples\FilteredLookupInDetailForm.cs" />
-    <Compile Include="Modules\BasicSamples\LookupFilterByMultipleForm.cs" />
+    <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
+    <Compile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />

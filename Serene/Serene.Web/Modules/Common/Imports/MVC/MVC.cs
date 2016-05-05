@@ -86,24 +86,77 @@ namespace MVC
 
         public static class BasicSamples
         {
-            public const string ChartInDialog = "~/Modules/BasicSamples/ChartInDialog.cshtml";
-            public const string CloneableEntityDialog = "~/Modules/BasicSamples/CloneableEntityDialog.cshtml";
-            public const string DefaultValuesInNewDialog = "~/Modules/BasicSamples/DefaultValuesInNewDialog.cshtml";
-            public const string FilteredLookupInDetailDialog = "~/Modules/BasicSamples/FilteredLookupInDetailDialog.cshtml";
-            public const string GridFilteredByCriteria = "~/Modules/BasicSamples/GridFilteredByCriteria.cshtml";
+            public static class Dialogs
+            {
+                public static class ChartInDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/ChartInDialog/Index.cshtml";
+                }
+
+                public static class CloneableEntityDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/CloneableEntityDialog/Index.cshtml";
+                }
+
+                public static class DefaultValuesInNewDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/DefaultValuesInNewDialog/Index.cshtml";
+                }
+
+                public static class MultiColumnDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/MultiColumnDialog/Index.cshtml";
+                }
+
+                public static class MultiColumnResponsiveDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/MultiColumnResponsiveDialog/Index.cshtml";
+                }
+
+                public static class ResponsiveDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/ResponsiveDialog/Index.cshtml";
+                }
+
+            }
+
+            public static class Editors
+            {
+                public static class FilteredLookupInDetailDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Editors/FilteredLookupInDetailDialog/Index.cshtml";
+                }
+
+                public static class LookupFilterByMultipleValues
+                {
+                    public const string Index = "~/Modules/BasicSamples/Editors/LookupFilterByMultipleValues/Index.cshtml";
+                }
+
+            }
+
             public static class Grids
             {
                 public static class CancellableBulkAction
                 {
-                    public const string CancellableBulkActionView = "~/Modules/BasicSamples/Grids/CancellableBulkAction/CancellableBulkActionView.cshtml";
+                    public const string Index = "~/Modules/BasicSamples/Grids/CancellableBulkAction/Index.cshtml";
+                }
+
+                public static class GridFilteredByCriteria
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/GridFilteredByCriteria/Index.cshtml";
+                }
+
+                public static class GroupingAndSummariesInGrid
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/GroupingAndSummariesInGrid/Index.cshtml";
+                }
+
+                public static class ViewWithoutID
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/ViewWithoutID/Index.cshtml";
                 }
             }
-            public const string GroupingAndSummariesInGrid = "~/Modules/BasicSamples/GroupingAndSummariesInGrid.cshtml";
-            public const string LookupFilterByMultipleValues = "~/Modules/BasicSamples/LookupFilterByMultipleValues.cshtml";
-            public const string MultiColumnDialog = "~/Modules/BasicSamples/MultiColumnDialog.cshtml";
-            public const string MultiColumnResponsiveDialog = "~/Modules/BasicSamples/MultiColumnResponsiveDialog.cshtml";
-            public const string ResponsiveDialog = "~/Modules/BasicSamples/ResponsiveDialog.cshtml";
-            public const string ViewWithoutID = "~/Modules/BasicSamples/ViewWithoutID.cshtml";
+
         }
 
         public static class Common

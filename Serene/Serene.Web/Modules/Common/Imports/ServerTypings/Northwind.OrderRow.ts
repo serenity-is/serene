@@ -36,8 +36,8 @@
         export const localTextPrefix = 'Northwind.Order';
         export const lookupKey = 'Northwind.OrderShipCity';
 
-        export function lookup() {
-            return Q.getLookup('Northwind.OrderShipCity');
+        export function lookup(): Q.Lookup<OrderRow> {
+            return Q.getLookup<OrderRow>('Northwind.OrderShipCity');
         }
 
         export namespace Fields {

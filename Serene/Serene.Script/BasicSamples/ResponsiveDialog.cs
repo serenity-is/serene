@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿/* 
+This class has been ported to TypeScript. See MultiColumnDialog.ts
+Code below is only a reference for those who want to use Saltaralle
+
+using System.Collections.Generic;
 using jQueryApi;
 using Serene.Northwind;
 using System.Linq;
@@ -28,3 +32,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/

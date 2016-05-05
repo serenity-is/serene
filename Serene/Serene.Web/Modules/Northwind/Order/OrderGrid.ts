@@ -3,7 +3,7 @@
     @Serenity.Decorators.registerClass()
     export class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         protected getColumnsKey() { return "Northwind.Order"; }
-        protected getDialogType() { return OrderDialog; }
+        protected getDialogType() { return <any>OrderDialog; }
         protected getIdProperty() { return OrderRow.idProperty; }
         protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
         protected getService() { return OrderService.baseUrl; }
