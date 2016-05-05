@@ -1184,6 +1184,7 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jlayout.border.js" />
     <Content Include="Scripts\jlayout.border.min.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
