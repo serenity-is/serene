@@ -13,7 +13,7 @@ namespace Serene.BasicSamples.Pages
 
         public ActionResult CancellableBulkAction()
         {
-            return View(MVC.Views.BasicSamples.CancellableBulkAction);
+            return View(MVC.Views.BasicSamples.Grids.CancellableBulkAction.CancellableBulkActionView);
         }
 
         public ActionResult CloneableEntityDialog()

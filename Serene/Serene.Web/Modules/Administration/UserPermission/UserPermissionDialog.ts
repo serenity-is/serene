@@ -51,7 +51,7 @@
                     click: () => this.dialogClose()
                 }];
 
-            opt.title = ss.formatString(Q.text('Site.UserPermissionDialog.DialogTitle'),
+            opt.title = Q.format(Q.text('Site.UserPermissionDialog.DialogTitle'),
                 this.options.username);
 
             return opt;

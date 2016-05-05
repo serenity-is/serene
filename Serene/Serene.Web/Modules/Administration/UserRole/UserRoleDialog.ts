@@ -36,7 +36,7 @@
                 click: () => this.dialogClose()
             }];
 
-            opt.title = ss.formatString(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
+            opt.title = Q.format(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
             return opt;
         }
 

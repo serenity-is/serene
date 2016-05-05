@@ -168,7 +168,7 @@ var Serene;
                         text: Q.text('Dialogs.CancelButton'),
                         click: function () { return _this.dialogClose(); }
                     }];
-                opt.title = ss.formatString(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
+                opt.title = Q.format(Q.text('Site.RolePermissionDialog.DialogTitle'), this.options.title);
                 return opt;
             };
             RolePermissionDialog.prototype.getTemplate = function () {
@@ -681,7 +681,7 @@ var Serene;
                     if (titleByKey[s]) {
                         continue;
                     }
-                    titleByKey[s] = ss.coalesce(Q.tryGetText('Permission.' + s), s);
+                    titleByKey[s] = Q.format(Q.tryGetText('Permission.' + s), s);
                     var parts = s.split(':');
                     var group = '';
                     var groupTitle = '';
@@ -721,7 +721,7 @@ var Serene;
                         var row = value_1[_b];
                         var r = this.view.getItemById(row.PermissionKey);
                         if (r) {
-                            r.GrantRevoke = ss.coalesce(row.Grant, true);
+                            r.GrantRevoke = Q.coalesce(row.Grant, true);
                         }
                     }
                 }
@@ -796,7 +796,7 @@ var Serene;
                         text: Q.text('Dialogs.CancelButton'),
                         click: function () { return _this.dialogClose(); }
                     }];
-                opt.title = ss.formatString(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
+                opt.title = Q.format(Q.text('Site.UserPermissionDialog.DialogTitle'), this.options.username);
                 return opt;
             };
             UserPermissionDialog.prototype.getTemplate = function () {
@@ -885,7 +885,7 @@ var Serene;
                         text: Q.text('Dialogs.CancelButton'),
                         click: function () { return _this.dialogClose(); }
                     }];
-                opt.title = ss.formatString(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
+                opt.title = Q.format(Q.text('Site.UserRoleDialog.DialogTitle'), this.options.username);
                 return opt;
             };
             UserRoleDialog.prototype.getTemplate = function () {
@@ -898,6 +898,141 @@ var Serene;
         }(Serenity.TemplatedDialog));
         Administration.UserRoleDialog = UserRoleDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserGrid = (function (_super) {
+            __extends(UserGrid, _super);
+            function UserGrid(container) {
+                _super.call(this, container);
+            }
+            UserGrid.prototype.getColumnsKey = function () { return "Administration.User"; };
+            UserGrid.prototype.getDialogType = function () { return Administration.UserDialog; };
+            UserGrid.prototype.getIdProperty = function () { return Administration.UserRow.idProperty; };
+            UserGrid.prototype.getIsActiveProperty = function () { return Administration.UserRow.isActiveProperty; };
+            UserGrid.prototype.getLocalTextPrefix = function () { return Administration.UserRow.localTextPrefix; };
+            UserGrid.prototype.getService = function () { return Administration.UserService.baseUrl; };
+            UserGrid.prototype.getDefaultSortBy = function () {
+                return [Administration.UserRow.Fields.Username];
+            };
+            UserGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserGrid);
+            return UserGrid;
+        }(Serenity.EntityGrid));
+        Administration.UserGrid = UserGrid;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderGrid = (function (_super) {
+            __extends(OrderGrid, _super);
+            function OrderGrid(container) {
+                _super.call(this, container);
+            }
+            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
+            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                var fld = Northwind.OrderRow.Fields;
+                this.customerFilter = this.addQuickFilter(fld.CustomerID, Northwind.CustomerEditor);
+                this.addDateRangeFilter(fld.OrderDate);
+                this.shippingState = this.addQuickFilter(fld.ShippingState, Serenity.EnumEditor, {
+                    options: {
+                        enumType: Northwind.OrderShippingState
+                    }
+                });
+                this.addQuickFilter(fld.ShipVia, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.ShipperRow.lookupKey
+                    }
+                });
+                this.addQuickFilter(fld.ShipCountry, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: 'Northwind.OrderShipCountry'
+                    }
+                });
+                this.addQuickFilter(fld.ShipCity, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: 'Northwind.OrderShipCity',
+                        cascadeFrom: fld.ShipCountry
+                    }
+                });
+                this.addQuickFilter(fld.EmployeeID, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.EmployeeRow.lookupKey
+                    }
+                });
+            };
+            OrderGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
+                return buttons;
+            };
+            OrderGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderGrid);
+            return OrderGrid;
+        }(Serenity.EntityGrid));
+        Northwind.OrderGrid = OrderGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CancellableBulkActionGrid = (function (_super) {
+            __extends(CancellableBulkActionGrid, _super);
+            function CancellableBulkActionGrid(container) {
+                _super.call(this, container);
+            }
+            CancellableBulkActionGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                this.rowSelection = new Serenity.GridRowSelectionMixin(this);
+            };
+            CancellableBulkActionGrid.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: 'Perform Bulk Action on Selected Orders',
+                        cssClass: 'send-button',
+                        onClick: function () {
+                            if (!_this.onViewSubmit()) {
+                                return;
+                            }
+                            var action = new BasicSamples.OrderBulkAction();
+                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(_this.rowSelection.getSelectedKeys());
+                        }
+                    }];
+            };
+            CancellableBulkActionGrid.prototype.getColumns = function () {
+                var _this = this;
+                var columns = _super.prototype.getColumns.call(this);
+                columns.splice(0, 0, Serenity.GridRowSelectionMixin.createSelectColumn(function () { return _this.rowSelection; }));
+                return columns;
+            };
+            CancellableBulkActionGrid.prototype.getViewOptions = function () {
+                var opt = _super.prototype.getViewOptions.call(this);
+                opt.rowsPerPage = 2500;
+                return opt;
+            };
+            CancellableBulkActionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CancellableBulkActionGrid);
+            return CancellableBulkActionGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.CancellableBulkActionGrid = CancellableBulkActionGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2277,7 +2412,7 @@ var Serene;
                             doc.putTotalPages(totalPagesExp);
                         }
                         var fileName = options.title || "{0}_{1}.pdf";
-                        fileName = ss.formatString(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
+                        fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
                         doc.save(fileName);
                     }
                 });
@@ -2321,67 +2456,6 @@ var Serene;
             }
         })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderGrid = (function (_super) {
-            __extends(OrderGrid, _super);
-            function OrderGrid(container) {
-                _super.call(this, container);
-            }
-            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
-            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
-            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderGrid.prototype.createToolbarExtensions = function () {
-                _super.prototype.createToolbarExtensions.call(this);
-                var fld = Northwind.OrderRow.Fields;
-                this.customerFilter = this.addQuickFilter(fld.CustomerID, Northwind.CustomerEditor);
-                this.addDateRangeFilter(fld.OrderDate);
-                this.shippingState = this.addQuickFilter(fld.ShippingState, Serenity.EnumEditor, {
-                    options: {
-                        enumType: Northwind.OrderShippingState
-                    }
-                });
-                this.addQuickFilter(fld.ShipVia, Serenity.LookupEditor, {
-                    options: {
-                        lookupKey: Northwind.ShipperRow.lookupKey
-                    }
-                });
-                this.addQuickFilter(fld.ShipCountry, Serenity.LookupEditor, {
-                    options: {
-                        lookupKey: 'Northwind.OrderShipCountry'
-                    }
-                });
-                this.addQuickFilter(fld.ShipCity, Serenity.LookupEditor, {
-                    options: {
-                        lookupKey: 'Northwind.OrderShipCity',
-                        cascadeFrom: fld.ShipCountry
-                    }
-                });
-                this.addQuickFilter(fld.EmployeeID, Serenity.LookupEditor, {
-                    options: {
-                        lookupKey: Northwind.EmployeeRow.lookupKey
-                    }
-                });
-            };
-            OrderGrid.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
-                return buttons;
-            };
-            OrderGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], OrderGrid);
-            return OrderGrid;
-        }(Serenity.EntityGrid));
-        Northwind.OrderGrid = OrderGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../Order/OrderGrid.ts" />
 var Serene;

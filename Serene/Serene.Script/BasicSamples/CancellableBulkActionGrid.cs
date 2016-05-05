@@ -1,6 +1,10 @@
 ﻿
 namespace Serene.BasicSamples
 {
+    /* 
+    This class has been ported to TypeScript. See CancellableBulkActionGrid.ts
+    Code below is only a reference for those who want to use Saltaralle
+
     using jQueryApi;
     using Serenity;
     using System.Collections.Generic;
@@ -56,4 +60,5 @@ namespace Serene.BasicSamples
             return opt;
         }
     }
+    */
 }

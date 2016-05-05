@@ -165,6 +165,46 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof UserDialog;
+        protected getIdProperty(): string;
+        protected getIsActiveProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof OrderDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected shippingState: Serenity.EnumEditor;
+        customerFilter: CustomerEditor;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CancellableBulkActionGrid extends Northwind.OrderGrid {
+        private rowSelection;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+        protected getColumns(): Slick.Column[];
+        protected getViewOptions(): Slick.RemoteViewOptions;
+    }
+}
+declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
     class LanguageForm extends Serenity.PrefixedContext {
@@ -186,7 +226,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<LanguageRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const Id: string;
             const LanguageId: string;
@@ -280,7 +320,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<RoleRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
@@ -719,7 +759,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<CategoryRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const CategoryID: string;
             const CategoryName: string;
@@ -915,7 +955,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<CustomerRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const ID: string;
             const CustomerID: string;
@@ -1021,7 +1061,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<EmployeeRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const EmployeeID: string;
             const LastName: string;
@@ -1321,7 +1361,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<OrderRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const OrderID: string;
             const CustomerID: string;
@@ -1507,7 +1547,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<ProductRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const ProductID: string;
             const ProductName: string;
@@ -1577,7 +1617,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<RegionRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const RegionID: string;
             const RegionDescription: string;
@@ -1652,7 +1692,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<ShipperRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const ShipperID: string;
             const CompanyName: string;
@@ -1717,7 +1757,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<SupplierRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const SupplierID: string;
             const CompanyName: string;
@@ -1776,7 +1816,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<TerritoryRow>;
+        function lookup(): Q.Lookup<{}>;
         namespace Fields {
             const ID: string;
             const TerritoryID: string;
@@ -1836,6 +1876,7 @@ declare namespace Serene {
         pendingRequests: number;
         completedRequests: number;
         errorByKey: any;
+        done: () => void;
         createProgressDialog(): void;
         getConfirmationFormat(): string;
         getConfirmationMessage(targetCount: number): string;
@@ -1861,8 +1902,6 @@ declare namespace Serene {
         set_successCount(value: number): void;
         get_errorCount(): number;
         set_errorCount(value: number): void;
-        get_done(): () => void;
-        set_done(value: () => void): void;
     }
     namespace DialogUtils {
         function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
@@ -1886,9 +1925,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class CancellableBulkActionGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
     class ChartInDialog extends Serenity.TemplatedDialog<any> {
         static initializePage(): void;
     }
@@ -2130,20 +2166,6 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void;
         function createToolButton<TItem>(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof OrderDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected shippingState: Serenity.EnumEditor;
-        customerFilter: CustomerEditor;
-        constructor(container: JQuery);
-        protected createToolbarExtensions(): void;
-        protected getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace Serene.Northwind {

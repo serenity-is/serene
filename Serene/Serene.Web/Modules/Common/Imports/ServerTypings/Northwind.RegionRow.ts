@@ -10,8 +10,8 @@
         export const localTextPrefix = 'Northwind.Region';
         export const lookupKey = 'Northwind.Region';
 
-        export function lookup(): Q.Lookup<RegionRow> {
-            return Q.getLookup<RegionRow>('Northwind.Region');
+        export function lookup() {
+            return Q.getLookup('Northwind.Region');
         }
 
         export namespace Fields {

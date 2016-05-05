@@ -49,7 +49,7 @@
 		this.$successCount = 0;
 		this.$errorCount = 0;
 		this.errorByKey = null;
-		this.$2$DoneField = null;
+		this.done = null;
 	};
 	$Serene_BulkServiceAction.__typeName = 'Serene.BulkServiceAction';
 	global.Serene.BulkServiceAction = $Serene_BulkServiceAction;
@@ -127,14 +127,6 @@
 	};
 	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
 	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.CancellableBulkActionGrid
-	var $Serene_BasicSamples_CancellableBulkActionGrid = function(container) {
-		this.$rowSelection = null;
-		Serene.Northwind.OrderGrid.call(this, container);
-	};
-	$Serene_BasicSamples_CancellableBulkActionGrid.__typeName = 'Serene.BasicSamples.CancellableBulkActionGrid';
-	global.Serene.BasicSamples.CancellableBulkActionGrid = $Serene_BasicSamples_CancellableBulkActionGrid;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ChartInDialog
 	var $Serene_BasicSamples_ChartInDialog = function() {
@@ -1403,9 +1395,9 @@
 			else if (this.pendingRequests === 0) {
 				this.progressDialog.dialogClose();
 				this.showResults();
-				if (!ss.staticEquals(this.get_done(), null)) {
-					this.get_done()();
-					this.set_done(null);
+				if (!ss.staticEquals(this.done, null)) {
+					this.done();
+					this.done = null;
 				}
 			}
 		},
@@ -1491,12 +1483,6 @@
 		},
 		set_errorCount: function(value) {
 			this.$errorCount = value;
-		},
-		get_done: function() {
-			return this.$2$DoneField;
-		},
-		set_done: function(value) {
-			this.$2$DoneField = value;
 		}
 	});
 	ss.initClass($Serene_DialogUtils, $asm, {});
@@ -1535,36 +1521,6 @@
 			this.$3$SourceField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_CancellableBulkActionGrid, $asm, {
-		createToolbarExtensions: function() {
-			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
-			this.$rowSelection = new Serenity.GridRowSelectionMixin(this);
-		},
-		getButtons: function() {
-			var $t1 = [];
-			$t1.push({ title: 'Perform Bulk Action on Selected Orders', cssClass: 'send-button', onClick: ss.mkdel(this, function() {
-				if (!this.onViewSubmit()) {
-					return;
-				}
-				var action = new $Serene_BasicSamples_OrderBulkAction();
-				action.set_done(ss.delegateCombine(action.get_done(), ss.mkdel(this.$rowSelection, this.$rowSelection.resetCheckedAndRefresh)));
-				action.execute(this.$rowSelection.getSelectedKeys());
-			}) });
-			return $t1;
-		},
-		getColumns: function() {
-			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
-			ss.insert(columns, 0, Serenity.GridRowSelectionMixin.createSelectColumn(ss.mkdel(this, function() {
-				return this.$rowSelection;
-			})));
-			return columns;
-		},
-		getViewOptions: function() {
-			var opt = Serenity.EntityGrid.prototype.getViewOptions.call(this);
-			opt.rowsPerPage = 2500;
-			return opt;
-		}
-	}, Serene.Northwind.OrderGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_ChartInDialog, $asm, {
 		onDialogOpen: function() {
 			Serenity.TemplatedDialog.prototype.onDialogOpen.call(this);

@@ -24,6 +24,7 @@
         pendingRequests: number;
         completedRequests: number;
         errorByKey: any;
+        done: () => void;
         createProgressDialog(): void;
         getConfirmationFormat(): string;
         getConfirmationMessage(targetCount: number): string;
@@ -49,8 +50,6 @@
         set_successCount(value: number): void;
         get_errorCount(): number;
         set_errorCount(value: number): void;
-        get_done(): () => void;
-        set_done(value: () => void): void;
     }
 
     namespace DialogUtils {
@@ -80,10 +79,6 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.BasicSamples {
-    class CancellableBulkActionGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-
     class ChartInDialog extends Serenity.TemplatedDialog<any> {
         static initializePage(): void;
     }

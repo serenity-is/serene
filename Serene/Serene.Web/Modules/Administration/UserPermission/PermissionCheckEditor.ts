@@ -244,7 +244,7 @@
                     continue;
                 }
 
-                titleByKey[s] = ss.coalesce(Q.tryGetText('Permission.' + s), s);
+                titleByKey[s] = Q.format(Q.tryGetText('Permission.' + s), s);
                 let parts = s.split(':');
                 let group = '';
                 let groupTitle = '';
@@ -291,7 +291,7 @@
                 for (let row of value) {
                     let r = this.view.getItemById(row.PermissionKey);
                     if (r) {
-                        r.GrantRevoke = ss.coalesce(row.Grant, true);
+                        r.GrantRevoke = Q.coalesce(row.Grant, true);
                     }
                 }
             }

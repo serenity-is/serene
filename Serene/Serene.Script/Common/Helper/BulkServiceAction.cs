@@ -6,7 +6,7 @@ namespace Serene
     using System.Collections.Generic;
     using System.Html;
     using System.Linq;
-
+    using System.Runtime.CompilerServices;
     public abstract class BulkServiceAction : ScriptContext
     {
         protected List<string> keys;
@@ -229,6 +229,6 @@ namespace Serene
             set { errorCount = value; }
         }
 
-        public Action Done { get; set; }
+        public Action Done;
     }
 }

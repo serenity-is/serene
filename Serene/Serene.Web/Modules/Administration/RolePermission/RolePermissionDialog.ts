@@ -43,7 +43,7 @@
                     click: () => this.dialogClose()
                 }];
 
-            opt.title = ss.formatString(Q.text('Site.RolePermissionDialog.DialogTitle'),
+            opt.title = Q.format(Q.text('Site.RolePermissionDialog.DialogTitle'),
                 this.options.title);
 
             return opt;

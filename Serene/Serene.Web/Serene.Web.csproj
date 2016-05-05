@@ -1147,7 +1147,7 @@
     <Content Include="Scripts\ionslider\ion.rangeSlider.skinNice.css" />
     <Content Include="Modules\BasicSamples\ChartInDialog.cshtml" />
     <Content Include="Content\site\site.basicsamples.less" />
-    <Content Include="Modules\BasicSamples\CancellableBulkAction.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionView.cshtml" />
     <Content Include="Modules\BasicSamples\ViewWithoutID.cshtml" />
     <Content Include="Modules\BasicSamples\MultiColumnDialog.cshtml" />
     <Content Include="Modules\BasicSamples\ResponsiveDialog.cshtml" />
@@ -1540,6 +1540,8 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\UserGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
@@ -1596,9 +1598,6 @@
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
     <Compile Include="Modules\Common\Imports\ClientTypes\Administration.PermissionCheckEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Administration.PermissionModuleEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
