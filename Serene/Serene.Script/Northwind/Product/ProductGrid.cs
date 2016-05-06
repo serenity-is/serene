@@ -1,4 +1,24 @@
-﻿
+﻿namespace Serene.Northwind
+{
+    using jQueryApi;
+    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class ProductGrid : EntityGrid<ProductRow>
+    {
+        public ProductGrid(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+
+}
+
+/* 
+This class has been ported to TypeScript. See OrderGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Northwind
 {
     using jQueryApi;
@@ -200,3 +220,4 @@ namespace Serene.Northwind
         }
     }
 }
+*/

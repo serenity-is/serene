@@ -7661,7 +7661,7 @@ section.content > .s-DataGrid {
   padding: 0 2px;
   border: 1px solid #e7e7e7;
 }
-.s-Northwind-ProductGrid .slick-cell input.dirty {
+.s-Northwind-ProductGrid .slick-cell .dirty {
   background-color: #ffe0e0;
 }
 .s-Northwind-RegionDialog > .size {

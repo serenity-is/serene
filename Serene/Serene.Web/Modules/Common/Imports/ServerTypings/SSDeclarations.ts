@@ -286,10 +286,6 @@ declare namespace Serene.Northwind {
     class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
     }
 
-    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        constructor(container: JQuery);
-    }
-
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
     }
 

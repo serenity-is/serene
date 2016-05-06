@@ -2205,9 +2205,6 @@ declare namespace Serene.Northwind {
     }
     class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
     }
-    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        constructor(container: JQuery);
-    }
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
     }
     class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
@@ -2267,5 +2264,26 @@ declare namespace Serene.Northwind {
         private customerID;
         get_customerID(): string;
         set_customerID(value: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private pendingChanges;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): Serenity.ToolButton[];
+        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
+        private decimalInputFormatter(ctx);
+        private stringInputFormatter(ctx);
+        private getEffectiveValue(item, field);
+        protected getColumns(): Slick.Column[];
+        private inputsChange(e);
+        private setSaveButtonState();
+        private saveClick();
     }
 }

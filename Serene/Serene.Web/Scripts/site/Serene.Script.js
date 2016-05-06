@@ -152,7 +152,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.CloneableEntityGrid
 	var $Serene_BasicSamples_CloneableEntityGrid = function(container) {
-		$Serene_Northwind_ProductGrid.call(this, container);
+		Serene.Northwind.ProductGrid.call(this, container);
 	};
 	$Serene_BasicSamples_CloneableEntityGrid.__typeName = 'Serene.BasicSamples.CloneableEntityGrid';
 	global.Serene.BasicSamples.CloneableEntityGrid = $Serene_BasicSamples_CloneableEntityGrid;
@@ -170,14 +170,14 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.GridFilteredByCriteria
 	var $Serene_BasicSamples_GridFilteredByCriteria = function(container) {
-		$Serene_Northwind_ProductGrid.call(this, container);
+		Serene.Northwind.ProductGrid.call(this, container);
 	};
 	$Serene_BasicSamples_GridFilteredByCriteria.__typeName = 'Serene.BasicSamples.GridFilteredByCriteria';
 	global.Serene.BasicSamples.GridFilteredByCriteria = $Serene_BasicSamples_GridFilteredByCriteria;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.GroupingAndSummariesInGrid
 	var $Serene_BasicSamples_GroupingAndSummariesInGrid = function(container) {
-		$Serene_Northwind_ProductGrid.call(this, container);
+		Serene.Northwind.ProductGrid.call(this, container);
 	};
 	$Serene_BasicSamples_GroupingAndSummariesInGrid.__typeName = 'Serene.BasicSamples.GroupingAndSummariesInGrid';
 	global.Serene.BasicSamples.GroupingAndSummariesInGrid = $Serene_BasicSamples_GroupingAndSummariesInGrid;
@@ -208,7 +208,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.LookupFilterByMultipleGrid
 	var $Serene_BasicSamples_LookupFilterByMultipleGrid = function(container) {
-		$Serene_Northwind_ProductGrid.call(this, container);
+		Serene.Northwind.ProductGrid.call(this, container);
 	};
 	$Serene_BasicSamples_LookupFilterByMultipleGrid.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleGrid';
 	global.Serene.BasicSamples.LookupFilterByMultipleGrid = $Serene_BasicSamples_LookupFilterByMultipleGrid;
@@ -1040,15 +1040,6 @@
 	$Serene_Northwind_ProductForm.__typeName = 'Serene.Northwind.ProductForm';
 	global.Serene.Northwind.ProductForm = $Serene_Northwind_ProductForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ProductGrid
-	var $Serene_Northwind_ProductGrid = function(container) {
-		this.$pendingChanges = {};
-		Serenity.EntityGrid.call(this, container);
-		this.slickContainer.on('change', 'input.edit', ss.mkdel(this, this.$inputsChange));
-	};
-	$Serene_Northwind_ProductGrid.__typeName = 'Serene.Northwind.ProductGrid';
-	global.Serene.Northwind.ProductGrid = $Serene_Northwind_ProductGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
 		Serenity.EntityDialog.call(this);
@@ -1469,138 +1460,7 @@
 			return clone;
 		}
 	}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_ProductGrid, $asm, {
-		createToolbarExtensions: function() {
-			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
-			var $t1 = Serenity.LookupEditorOptions.$ctor();
-			$t1.lookupKey = 'Northwind.Supplier';
-			this.addQuickFilter('SupplierID', Serenity.LookupEditor, { title: null, options: $t1, handler: null, init: null, element: null });
-			var $t2 = Serenity.LookupEditorOptions.$ctor();
-			$t2.lookupKey = 'Northwind.Category';
-			this.addQuickFilter('CategoryID', Serenity.LookupEditor, { title: null, options: $t2, handler: null, init: null, element: null });
-		},
-		getButtons: function() {
-			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
-			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Product/ListExcel', ss.mkdel(this, this.onViewSubmit), null));
-			var $t3 = ss.mkdel(this, this.onViewSubmit);
-			var $t1 = {};
-			$t1['Discontinued'] = 'Dis.';
-			var $t2 = {};
-			$t2['ProductID'] = { columnWidth: 25, halign: 'right' };
-			$t2['Discontinued'] = { columnWidth: 25 };
-			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, $t3, null, { title: 'Product List', columnTitles: $t1, tableOptions: { columnStyles: $t2 } }));
-			buttons.push({ title: 'Save Changes', cssClass: 'apply-changes-button', onClick: ss.mkdel(this, function(e) {
-				this.$saveClick();
-			}) });
-			return buttons;
-		},
-		onViewProcessData: function(response) {
-			ss.clearKeys(this.$pendingChanges);
-			this.$setSaveButtonState();
-			return Serenity.DataGrid.prototype.onViewProcessData.call(this, response);
-		},
-		$inputFormatter: function(ctx) {
-			var klass = 'edit';
-			var item = ctx.item;
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			if (!!(ss.isValue(pending) && ss.isValue(pending[ctx.column.field]))) {
-				klass += ' dirty';
-			}
-			var value = this.$getEffectiveValue(item, ctx.column.field);
-			return "<input type='text' class='" + klass + "'" + " value='" + Q.formatNumber(value, '0.##') + "'" + '/>';
-		},
-		$getEffectiveValue: function(item, field) {
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			if (ss.isValue(pending)) {
-				var $t1 = pending[field];
-				if (ss.isNullOrUndefined($t1)) {
-					$t1 = item[field];
-				}
-				return ss.cast($t1, Number);
-			}
-			return ss.cast(item[field], Number);
-		},
-		getColumns: function() {
-			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
-			Enumerable.from(columns).single(function(x) {
-				return x.field === 'UnitPrice';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x1) {
-				return x1.field === 'UnitsInStock';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x2) {
-				return x2.field === 'UnitsOnOrder';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			Enumerable.from(columns).single(function(x3) {
-				return x3.field === 'ReorderLevel';
-			}).format = ss.mkdel(this, this.$inputFormatter);
-			return columns;
-		},
-		$inputsChange: function(e) {
-			var cell = this.slickGrid.getCellFromEvent(e);
-			var item = this.rows.getDataItem(cell.row);
-			var field = this.getColumns()[cell.cell].field;
-			var input = $(e.target);
-			var text = ss.coalesce(Q.trimToNull(input.val()), '0');
-			var pending = this.$pendingChanges[ss.unbox(item.ProductID)];
-			var oldText = Q.formatNumber(this.$getEffectiveValue(item, field), '0.##');
-			var value;
-			if (field === 'UnitPrice') {
-				value = Q.parseDecimal(text);
-				if (ss.isNullOrUndefined(value) || isNaN(ss.unbox(value))) {
-					Q.notifyError(Q.text('Validation.Decimal'), '', null);
-					input.val(oldText);
-					input.focus();
-					return;
-				}
-			}
-			else {
-				var i = {};
-				if (!ss.Int32.tryParse(text, i) || i.$ > 32767 || i.$ < 0) {
-					Q.notifyError(Q.text('Validation.Integer'), '', null);
-					input.val(oldText);
-					input.focus();
-					return;
-				}
-				value = i.$;
-			}
-			if (ss.isNullOrUndefined(pending)) {
-				this.$pendingChanges[ss.unbox(item.ProductID)] = pending = {};
-			}
-			pending[field] = value;
-			item[field] = value;
-			this.view.refresh();
-			input.val(Q.formatNumber(value, '0.##')).addClass('dirty');
-			this.$setSaveButtonState();
-		},
-		$setSaveButtonState: function() {
-			this.toolbar.findButton('apply-changes-button').toggleClass('disabled', ss.getKeyCount(this.$pendingChanges) === 0);
-		},
-		$saveClick: function() {
-			if (ss.getKeyCount(this.$pendingChanges) === 0) {
-				return;
-			}
-			// this calls save service for all modified rows, one by one
-			// you could write a batch update service
-			var enumerator = new ss.ObjectEnumerator(Q.deepClone(this.$pendingChanges));
-			var saveNext = null;
-			saveNext = ss.mkdel(this, function() {
-				if (!enumerator.moveNext()) {
-					this.refresh();
-					return;
-				}
-				var pair = enumerator.current();
-				var entity = Q.deepClone(pair.value);
-				entity.ProductID = pair.key;
-				Q.serviceRequest('Northwind/Product/Update', { EntityId: pair.key, Entity: entity }, ss.mkdel(this, function(response) {
-					delete this.$pendingChanges[pair.key];
-					saveNext();
-				}), null);
-			});
-			saveNext();
-		}
-	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	ss.initClass($Serene_BasicSamples_CloneableEntityGrid, $asm, {}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailForm, $asm, {
 		set_customerID: function(value) {
 			this.$3$CustomerIDField = value;
@@ -1630,7 +1490,7 @@
 			request.Criteria = Serenity.Criteria.join(request.Criteria, 'and', Serenity.Criteria.join(Serenity.Criteria.join([['UnitsInStock'], '>', 10], 'and', [['CategoryName'], '!=', 'Condiments']), 'and', [['Discontinued'], '=', 0]));
 			return true;
 		}
-	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_GroupingAndSummariesInGrid, $asm, {
 		createSlickGrid: function() {
 			var grid = Serenity.DataGrid.prototype.createSlickGrid.call(this);
@@ -1646,7 +1506,7 @@
 			return grid;
 		},
 		getColumns: function() {
-			var columns = $Serene_Northwind_ProductGrid.prototype.getColumns.call(this);
+			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
 			Enumerable.from(columns).single(function(x) {
 				return x.field === 'UnitsOnOrder';
 			}).groupTotalsFormatter = function(totals, col) {
@@ -1697,7 +1557,7 @@
 			}) });
 			return $t1;
 		}
-	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleDialog, $asm, {}, $Serene_Northwind_ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
 		set_productName: function(value) {
@@ -1742,7 +1602,7 @@
 			this.view.params.Criteria = Serenity.Criteria.join(this.view.params.Criteria, 'and', [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
 			return true;
 		}
-	}, $Serene_Northwind_ProductGrid, [Serenity.IDataGrid]);
+	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_OrderBulkAction, $asm, {
 		getParallelRequests: function() {
 			return 10;
@@ -2714,7 +2574,6 @@
 	ss.setMetadata($Serene_Northwind_OrderShippingState, { attr: [new Serenity.EnumKeyAttribute('Northwind.OrderShippingState')] });
 	ss.setMetadata($Serene_Northwind_PhoneEditor, { attr: [new Serenity.EditorAttribute()], members: [{ attr: [new Serenity.OptionAttribute()], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, sname: 'get_multiple', returnType: Boolean, params: [] }, setter: { name: 'set_Multiple', type: 8, sname: 'set_multiple', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serene_Northwind_ProductDialog, { attr: [new Serenity.IdPropertyAttribute('ProductID'), new Serenity.NamePropertyAttribute('ProductName'), new Serenity.FormKeyAttribute('Northwind.Product'), new Serenity.LocalTextPrefixAttribute('Northwind.Product'), new Serenity.ServiceAttribute('Northwind/Product')] });
-	ss.setMetadata($Serene_Northwind_ProductGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Product'), new Serenity.FilterableAttribute(), new Serenity.IdPropertyAttribute('ProductID'), new Serenity.NamePropertyAttribute('ProductName'), new Serenity.DialogTypeAttribute($Serene_Northwind_ProductDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Product'), new Serenity.ServiceAttribute('Northwind/Product')] });
 	ss.setMetadata($Serene_Northwind_RegionDialog, { attr: [new Serenity.IdPropertyAttribute('RegionID'), new Serenity.NamePropertyAttribute('RegionDescription'), new Serenity.FormKeyAttribute('Northwind.Region'), new Serenity.LocalTextPrefixAttribute('Northwind.Region'), new Serenity.ServiceAttribute('Northwind/Region')] });
 	ss.setMetadata($Serene_Northwind_RegionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Region'), new Serenity.IdPropertyAttribute('RegionID'), new Serenity.NamePropertyAttribute('RegionDescription'), new Serenity.DialogTypeAttribute($Serene_Northwind_RegionDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Region'), new Serenity.ServiceAttribute('Northwind/Region')] });
 	ss.setMetadata($Serene_Northwind_ShipperDialog, { attr: [new Serenity.IdPropertyAttribute('ShipperID'), new Serenity.NamePropertyAttribute('CompanyName'), new Serenity.FormKeyAttribute('Northwind.Shipper'), new Serenity.LocalTextPrefixAttribute('Northwind.Shipper'), new Serenity.ServiceAttribute('Northwind/Shipper')] });

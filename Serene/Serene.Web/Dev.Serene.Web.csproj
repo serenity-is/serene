@@ -1531,6 +1531,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Product\ProductGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />

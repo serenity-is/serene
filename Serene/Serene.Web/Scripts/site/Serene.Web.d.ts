@@ -2205,9 +2205,6 @@ declare namespace Serene.Northwind {
     }
     class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
     }
-    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        constructor(container: JQuery);
-    }
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
     }
     class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
@@ -2267,5 +2264,35 @@ declare namespace Serene.Northwind {
         private customerID;
         get_customerID(): string;
         set_customerID(value: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private pendingChanges;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): Serenity.ToolButton[];
+        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
+        /**
+         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+         * no event handlers to rendered cell contents
+         */
+        private numericInputFormatter(ctx);
+        private stringInputFormatter(ctx);
+        /**
+         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+         */
+        private selectFormatter(ctx, idField, lookup);
+        private getEffectiveValue(item, field);
+        protected getColumns(): Slick.Column[];
+        private inputsChange(e);
+        private setSaveButtonState();
+        private saveClick();
     }
 }

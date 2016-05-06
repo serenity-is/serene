@@ -2849,4 +2849,230 @@ var Serene;
         Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductGrid = (function (_super) {
+            __extends(ProductGrid, _super);
+            function ProductGrid(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.pendingChanges = {};
+                this.slickContainer.on('change', '.edit:input', function (e) { return _this.inputsChange(e); });
+            }
+            ProductGrid.prototype.getColumnsKey = function () { return "Northwind.Product"; };
+            ProductGrid.prototype.getDialogType = function () { return Northwind.ProductDialog; };
+            ProductGrid.prototype.getIdProperty = function () { return Northwind.ProductRow.idProperty; };
+            ProductGrid.prototype.getLocalTextPrefix = function () { return Northwind.ProductRow.localTextPrefix; };
+            ProductGrid.prototype.getService = function () { return Northwind.ProductService.baseUrl; };
+            ProductGrid.prototype.createToolbarExtensions = function () {
+                _super.prototype.createToolbarExtensions.call(this);
+                var fld = Northwind.ProductRow.Fields;
+                this.addQuickFilter(fld.SupplierID, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.SupplierRow.lookupKey
+                    }
+                });
+                this.addQuickFilter(fld.CategoryID, Serenity.LookupEditor, {
+                    options: {
+                        lookupKey: Northwind.SupplierRow.lookupKey
+                    }
+                });
+            };
+            ProductGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.ProductService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () {
+                    return _this.onViewSubmit();
+                }, undefined, {
+                    title: 'Product List',
+                    columnTitles: {
+                        'Discontinued': 'Dis.'
+                    },
+                    tableOptions: {
+                        columnStyles: {
+                            ProductID: { columnWidth: 25, halign: 'right' },
+                            Discountinued: { columnWidth: 25 }
+                        }
+                    }
+                }));
+                buttons.push({
+                    title: 'Save Changes',
+                    cssClass: 'apply-changes-button',
+                    onClick: function (e) { return _this.saveClick(); }
+                });
+                return buttons;
+            };
+            ProductGrid.prototype.onViewProcessData = function (response) {
+                this.pendingChanges = {};
+                this.setSaveButtonState();
+                return _super.prototype.onViewProcessData.call(this, response);
+            };
+            /**
+             * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+             * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+             * no event handlers to rendered cell contents
+             */
+            ProductGrid.prototype.numericInputFormatter = function (ctx) {
+                var klass = 'edit numeric';
+                var item = ctx.item;
+                var pending = this.pendingChanges[item.ProductID];
+                if (pending && pending[ctx.column.field] !== undefined) {
+                    klass += ' dirty';
+                }
+                var value = this.getEffectiveValue(item, ctx.column.field);
+                return "<input type='text' class='" + klass + "'" +
+                    " value='" + Q.formatNumber(value, '0.##') + "'/>";
+            };
+            ProductGrid.prototype.stringInputFormatter = function (ctx) {
+                var klass = 'edit string';
+                var item = ctx.item;
+                var pending = this.pendingChanges[item.ProductID];
+                var column = ctx.column;
+                if (pending && pending[column.field] !== undefined) {
+                    klass += ' dirty';
+                }
+                var value = this.getEffectiveValue(item, column.field);
+                return "<input type='text' class='" + klass +
+                    "' value='" + Q.htmlEncode(value) +
+                    "' maxlength='" + column.sourceItem.maxLength + "'/>";
+            };
+            /**
+             * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+             */
+            ProductGrid.prototype.selectFormatter = function (ctx, idField, lookup) {
+                var fld = Northwind.ProductRow.Fields;
+                var klass = 'edit';
+                var item = ctx.item;
+                var pending = this.pendingChanges[item.ProductID];
+                var column = ctx.column;
+                if (pending && pending[idField] !== undefined) {
+                    klass += ' dirty';
+                }
+                var value = this.getEffectiveValue(item, idField);
+                var markup = "<select class='" + klass +
+                    "' data-field='" + idField +
+                    "' style='width: 100%; max-width: 100%'>";
+                for (var _i = 0, _a = lookup.items; _i < _a.length; _i++) {
+                    var c = _a[_i];
+                    var id = c[lookup.idField];
+                    markup += "<option value='" + id + "'";
+                    if (id == value) {
+                        markup += " selected";
+                    }
+                    markup += ">" + Q.htmlEncode(c[lookup.textField]) + "</option>";
+                }
+                return markup + "</select>";
+            };
+            ProductGrid.prototype.getEffectiveValue = function (item, field) {
+                var pending = this.pendingChanges[item.ProductID];
+                if (pending && pending[field] !== undefined) {
+                    return pending[field];
+                }
+                return item[field];
+            };
+            ProductGrid.prototype.getColumns = function () {
+                var _this = this;
+                var columns = _super.prototype.getColumns.call(this);
+                var num = function (ctx) { return _this.numericInputFormatter(ctx); };
+                var str = function (ctx) { return _this.stringInputFormatter(ctx); };
+                var fld = Northwind.ProductRow.Fields;
+                Q.first(columns, function (x) { return x.field === 'QuantityPerUnit'; }).format = str;
+                var category = Q.first(columns, function (x) { return x.field === fld.CategoryName; });
+                category.referencedFields = [fld.CategoryID];
+                category.format = function (ctx) { return _this.selectFormatter(ctx, fld.CategoryID, Northwind.CategoryRow.lookup()); };
+                var supplier = Q.first(columns, function (x) { return x.field === fld.SupplierCompanyName; });
+                supplier.referencedFields = [fld.SupplierID];
+                supplier.format = function (ctx) { return _this.selectFormatter(ctx, fld.SupplierID, Northwind.SupplierRow.lookup()); };
+                Q.first(columns, function (x) { return x.field === fld.UnitPrice; }).format = num;
+                Q.first(columns, function (x) { return x.field === fld.UnitsInStock; }).format = num;
+                Q.first(columns, function (x) { return x.field === fld.UnitsOnOrder; }).format = num;
+                Q.first(columns, function (x) { return x.field === fld.ReorderLevel; }).format = num;
+                return columns;
+            };
+            ProductGrid.prototype.inputsChange = function (e) {
+                var cell = this.slickGrid.getCellFromEvent(e);
+                var item = this.itemAt(cell.row);
+                var input = $(e.target);
+                var field = input.data('field') || this.getColumns()[cell.cell].field;
+                var text = ss.coalesce(Q.trimToNull(input.val()), '0');
+                var pending = this.pendingChanges[item.ProductID];
+                var effective = this.getEffectiveValue(item, field);
+                var oldText;
+                if (input.hasClass("numeric"))
+                    oldText = Q.formatNumber(effective, '0.##');
+                else
+                    oldText = effective;
+                var value;
+                if (field === 'UnitPrice') {
+                    value = Q.parseDecimal(text);
+                    if (value == null || isNaN(value)) {
+                        Q.notifyError(Q.text('Validation.Decimal'), '', null);
+                        input.val(oldText);
+                        input.focus();
+                        return;
+                    }
+                }
+                else if (input.hasClass("numeric")) {
+                    var i = Q.parseInteger(text);
+                    if (isNaN(i) || i > 32767 || i < 0) {
+                        Q.notifyError(Q.text('Validation.Integer'), '', null);
+                        input.val(oldText);
+                        input.focus();
+                        return;
+                    }
+                    value = i;
+                }
+                else
+                    value = text;
+                if (!pending) {
+                    this.pendingChanges[item.ProductID] = pending = {};
+                }
+                pending[field] = value;
+                item[field] = value;
+                this.view.refresh();
+                if (input.hasClass("numeric"))
+                    value = Q.formatNumber(value, '0.##');
+                input.val(value).addClass('dirty');
+                this.setSaveButtonState();
+            };
+            ProductGrid.prototype.setSaveButtonState = function () {
+                this.toolbar.findButton('apply-changes-button').toggleClass('disabled', Object.keys(this.pendingChanges).length === 0);
+            };
+            ProductGrid.prototype.saveClick = function () {
+                if (Object.keys(this.pendingChanges).length === 0) {
+                    return;
+                }
+                // this calls save service for all modified rows, one by one
+                // you could write a batch update service
+                var keys = Object.keys(this.pendingChanges);
+                var current = -1;
+                var self = this;
+                (function saveNext() {
+                    if (++current >= keys.length) {
+                        self.refresh();
+                        return;
+                    }
+                    var key = keys[current];
+                    var entity = Q.deepClone(self.pendingChanges[key]);
+                    entity.ProductID = key;
+                    Q.serviceRequest('Northwind/Product/Update', {
+                        EntityId: key,
+                        Entity: entity
+                    }, function (response) {
+                        delete self.pendingChanges[key];
+                        saveNext();
+                    });
+                })();
+            };
+            ProductGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ProductGrid);
+            return ProductGrid;
+        }(Serenity.EntityGrid));
+        Northwind.ProductGrid = ProductGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map
