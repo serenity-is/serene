@@ -25,15 +25,16 @@ namespace Serene.Northwind
         {
             var buttons = base.GetToolbarButtons();
 
-            buttons.Add(ReportHelper.CreateRenderButton(
-                title: "Invoice",
-                cssClass: "export-pdf-button",
-                reportKey: "Northwind.OrderDetail",
-                options: () => new
+            buttons.Add(ReportHelper.CreateToolButton(new ReportButtonOptions
+            {
+                Title = "Invoice",
+                CssClass = "export-pdf-button",
+                ReportKey = "Northwind.OrderDetail",
+                GetParams = () => new
                 {
                     OrderID = this.EntityId
                 }
-            ));
+            }));
 
             return buttons;
         }

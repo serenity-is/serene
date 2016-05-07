@@ -3,33 +3,43 @@ namespace Serene.Common
 {
     using Serenity;
     using System;
-    using System.Collections.Generic;
 
     public abstract class ReportHelper
     {
-        public static ToolButton CreateRenderButton(string reportKey, string title = "Report", 
-            string cssClass = "print-button",
-            string extension = "pdf", Func<object> options = null)
+        public static ToolButton CreateToolButton(ReportButtonOptions options)
         {
             return new ToolButton
             {
-                Title = title,
-                CssClass = cssClass,
+                Title = options.Title ?? "Report",
+                CssClass = options.CssClass ?? "print-button",
+                Icon = options.Icon,
                 OnClick = delegate
                 {
                     Q.Externals.PostToUrl(new PostToUrlOptions
                     {
-                        Url = "~/Report/Render",
+                        Url = "~/Report/" + (options.Download ? "Download" : "Render"),
                         Params = new
                         {
-                            key = reportKey,
-                            ext = extension,
-                            opt = options == null ? "" : Q.ToJson(options())
+                            key = options.ReportKey,
+                            ext = options.Extension ?? "pdf",
+                            opt = options.GetParams == null ? "" : Q.ToJson(options.GetParams())
                         },
-                        Target = "_blank"
+                        Target = options.Target ?? "_blank"
                     });
                 }
             };
         }
+    }
+
+    public class ReportButtonOptions
+    {
+        public bool Download { get; set; }
+        public string Title { get; set; }
+        public string CssClass { get; set; }
+        public string Icon { get; set; }
+        public string ReportKey { get; set; }
+        public string Extension { get; set; }
+        public Func<object> GetParams { get; set; }
+        public string Target { get; set; }
     }
 }
