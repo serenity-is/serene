@@ -4,19 +4,6 @@
         static get_userDefinition(): ScriptUserDefinition;
     }
 
-    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        get_cancelled(): boolean;
-        set_cancelled(value: boolean): void;
-        get_max(): number;
-        set_max(value: number): void;
-        get_value(): number;
-        set_value(value: number): void;
-        get_title(): string;
-        set_title(value: string): void;
-        get_cancelTitle(): string;
-        set_cancelTitle(value: string): void;
-    }
-
     namespace DialogUtils {
         function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
     }

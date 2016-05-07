@@ -317,7 +317,7 @@ declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     /**
-     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+     * Subclass of OrderGrid to override dialog type to ResponsiveDialog
      */
     class ResponsiveGrid extends Northwind.OrderGrid {
         protected getDialogType(): typeof ResponsiveDialog;
@@ -477,6 +477,26 @@ declare namespace Serene.BasicSamples {
          */
         protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
         protected getButtons(): any[];
+    }
+}
+declare namespace Serene {
+    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
+        private cancelled;
+        private cancelTitle;
+        constructor();
+        get_cancelled(): boolean;
+        set_cancelled(value: any): void;
+        get_max(): any;
+        set_max(value: any): void;
+        get_value(): any;
+        set_value(value: any): void;
+        get_title(): any;
+        set_title(value: any): void;
+        get_cancelTitle(): string;
+        set_cancelTitle(value: any): void;
+        getDialogOptions(): JQueryUI.DialogOptions;
+        initDialog(): void;
+        getTemplate(): string;
     }
 }
 declare namespace Serene.Common {
@@ -2169,18 +2189,6 @@ declare namespace Serene {
     class Authorization {
         static hasPermission(permissionKey: string): boolean;
         static get_userDefinition(): ScriptUserDefinition;
-    }
-    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        get_cancelled(): boolean;
-        set_cancelled(value: boolean): void;
-        get_max(): number;
-        set_max(value: number): void;
-        get_value(): number;
-        set_value(value: number): void;
-        get_title(): string;
-        set_title(value: string): void;
-        get_cancelTitle(): string;
-        set_cancelTitle(value: string): void;
     }
     namespace DialogUtils {
         function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;

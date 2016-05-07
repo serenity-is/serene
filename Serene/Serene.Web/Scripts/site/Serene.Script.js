@@ -22,23 +22,6 @@
 	};
 	global.Serene.Authorization = $Serene_Authorization;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicProgressDialog
-	var $Serene_BasicProgressDialog = function() {
-		this.$6$CancelledField = false;
-		this.$6$CancelTitleField = null;
-		Serenity.TemplatedDialog.call(this, null);
-		var self = this;
-		this.byId('ProgressBar').progressbar({
-			max: 100,
-			value: 0,
-			change: function(e, v) {
-				self.byId('ProgressLabel').text(self.get_value() + ' / ' + self.get_max());
-			}
-		});
-	};
-	$Serene_BasicProgressDialog.__typeName = 'Serene.BasicProgressDialog';
-	global.Serene.BasicProgressDialog = $Serene_BasicProgressDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.DialogUtils
 	var $Serene_DialogUtils = function() {
 	};
@@ -1039,64 +1022,6 @@
 	$Serenity_HtmlBasicContentEditor.__typeName = 'Serenity.HtmlBasicContentEditor';
 	global.Serenity.HtmlBasicContentEditor = $Serenity_HtmlBasicContentEditor;
 	ss.initClass($Serene_Authorization, $asm, {});
-	ss.initClass($Serene_BasicProgressDialog, $asm, {
-		get_cancelled: function() {
-			return this.$6$CancelledField;
-		},
-		set_cancelled: function(value) {
-			this.$6$CancelledField = value;
-		},
-		get_max: function() {
-			return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
-		},
-		set_max: function(value) {
-			this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
-		},
-		get_value: function() {
-			return ss.unbox(ss.cast(this.byId('ProgressBar').progressbar('value'), ss.Int32));
-		},
-		set_value: function(value) {
-			this.byId('ProgressBar').progressbar().progressbar('value', value);
-		},
-		get_title: function() {
-			return this.element.dialog().dialog('option', 'title');
-		},
-		set_title: function(value) {
-			this.element.dialog().dialog('option', 'title', value);
-		},
-		get_cancelTitle: function() {
-			return this.$6$CancelTitleField;
-		},
-		set_cancelTitle: function(value) {
-			this.$6$CancelTitleField = value;
-		},
-		getDialogOptions: function() {
-			var self = this;
-			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
-			opt.title = Q.text('Site.BasicProgressDialog.PleaseWait');
-			opt.width = 600;
-			var $t1 = [];
-			$t1.push({ text: Q.text('Dialogs.CancelButton'), click: ss.mkdel(this, function() {
-				self.set_cancelled(true);
-				self.element.closest('.ui-dialog').find('.ui-dialog-buttonpane .ui-button').attr('disabled', 'disabled').css('opacity', '0.5');
-				var $t3 = self.element.dialog();
-				var $t2 = Q.trimToNull(this.get_cancelTitle());
-				if (ss.isNullOrUndefined($t2)) {
-					$t2 = Q.text('Site.BasicProgressDialog.CancelTitle');
-				}
-				$t3.dialog('option', 'title', $t2);
-			}) });
-			opt.buttons = $t1;
-			return opt;
-		},
-		initDialog: function() {
-			Serenity.TemplatedDialog.prototype.initDialog.call(this);
-			this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
-		},
-		getTemplate: function() {
-			return "<div class='s-DialogContent s-BasicProgressDialogContent'><div id='~_StatusText' class='status-text'></div><div id='~_ProgressBar' class='progress-bar'><div id='~_ProgressLabel' class='progress-label'></div></div></div>";
-		}
-	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_DialogUtils, $asm, {});
 	ss.initClass($Serene_LanguageList, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});

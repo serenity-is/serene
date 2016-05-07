@@ -1984,6 +1984,86 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var BasicProgressDialog = (function (_super) {
+        __extends(BasicProgressDialog, _super);
+        function BasicProgressDialog() {
+            var _this = this;
+            _super.call(this);
+            this.byId('ProgressBar').progressbar({
+                max: 100,
+                value: 0,
+                change: function (e, v) {
+                    _this.byId('ProgressLabel').text(_this.get_value() + ' / ' + _this.get_max());
+                }
+            });
+        }
+        BasicProgressDialog.prototype.get_cancelled = function () {
+            return this.cancelled;
+        };
+        BasicProgressDialog.prototype.set_cancelled = function (value) {
+            this.cancelled = value;
+        };
+        BasicProgressDialog.prototype.get_max = function () {
+            return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
+        };
+        BasicProgressDialog.prototype.set_max = function (value) {
+            this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
+        };
+        BasicProgressDialog.prototype.get_value = function () {
+            return this.byId('ProgressBar').progressbar('value');
+        };
+        BasicProgressDialog.prototype.set_value = function (value) {
+            this.byId('ProgressBar').progressbar().progressbar('value', value);
+        };
+        BasicProgressDialog.prototype.get_title = function () {
+            return this.element.dialog().dialog('option', 'title');
+        };
+        BasicProgressDialog.prototype.set_title = function (value) {
+            this.element.dialog().dialog('option', 'title', value);
+        };
+        BasicProgressDialog.prototype.get_cancelTitle = function () {
+            return this.cancelTitle;
+        };
+        BasicProgressDialog.prototype.set_cancelTitle = function (value) {
+            this.cancelTitle = value;
+        };
+        BasicProgressDialog.prototype.getDialogOptions = function () {
+            var _this = this;
+            var opt = _super.prototype.getDialogOptions.call(this);
+            opt.title = Q.text('Site.BasicProgressDialog.PleaseWait');
+            opt.width = 600;
+            opt.buttons = [{
+                    text: Q.text('Dialogs.CancelButton'),
+                    click: function () {
+                        _this.set_cancelled(true);
+                        _this.element.closest('.ui-dialog')
+                            .find('.ui-dialog-buttonpane .ui-button')
+                            .attr('disabled', 'disabled')
+                            .css('opacity', '0.5');
+                        _this.element.dialog('option', 'title', Q.trimToNull(_this.get_cancelTitle()) ||
+                            Q.text('Site.BasicProgressDialog.CancelTitle'));
+                    }
+                }];
+            return opt;
+        };
+        BasicProgressDialog.prototype.initDialog = function () {
+            _super.prototype.initDialog.call(this);
+            this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
+        };
+        BasicProgressDialog.prototype.getTemplate = function () {
+            return ("<div class='s-DialogContent s-BasicProgressDialogContent'>" +
+                "<div id='~_StatusText' class='status-text' ></div>" +
+                "<div id='~_ProgressBar' class='progress-bar'>" +
+                "<div id='~_ProgressLabel' class='progress-label' ></div>" +
+                "</div>" +
+                "</div>");
+        };
+        return BasicProgressDialog;
+    }(Serenity.TemplatedDialog));
+    Serene.BasicProgressDialog = BasicProgressDialog;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Common;
     (function (Common) {
         var BulkServiceAction = (function () {
