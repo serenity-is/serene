@@ -45,10 +45,6 @@ declare namespace Serene.Administration {
 
 declare namespace Serene.BasicSamples {
 
-    class GridFilteredByCriteria extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
-
     class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }

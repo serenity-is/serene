@@ -124,13 +124,6 @@
 	$Serene_BasicSamples_FilteredLookupInDetailForm.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailForm';
 	global.Serene.BasicSamples.FilteredLookupInDetailForm = $Serene_BasicSamples_FilteredLookupInDetailForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.GridFilteredByCriteria
-	var $Serene_BasicSamples_GridFilteredByCriteria = function(container) {
-		Serene.Northwind.ProductGrid.call(this, container);
-	};
-	$Serene_BasicSamples_GridFilteredByCriteria.__typeName = 'Serene.BasicSamples.GridFilteredByCriteria';
-	global.Serene.BasicSamples.GridFilteredByCriteria = $Serene_BasicSamples_GridFilteredByCriteria;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.GroupingAndSummariesInGrid
 	var $Serene_BasicSamples_GroupingAndSummariesInGrid = function(container) {
 		Serene.Northwind.ProductGrid.call(this, container);
@@ -1190,22 +1183,6 @@
 			this.$3$DetailListField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_GridFilteredByCriteria, $asm, {
-		onViewSubmit: function() {
-			// only continue if base class returns true (didn't cancel request)
-			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
-				return false;
-			}
-			// view object is the data source for grid (SlickRemoteView)
-			// this is an EntityGrid so its Params object is a ListRequest
-			var request = this.view.params;
-			// list request has a Criteria parameter
-			// we use " &= " here because otherwise we might clear 
-			// filter set by an edit filter dialog if any.
-			request.Criteria = Serenity.Criteria.join(request.Criteria, 'and', Serenity.Criteria.join(Serenity.Criteria.join([['UnitsInStock'], '>', 10], 'and', [['CategoryName'], '!=', 'Condiments']), 'and', [['Discontinued'], '=', 0]));
-			return true;
-		}
-	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_GroupingAndSummariesInGrid, $asm, {
 		createSlickGrid: function() {
 			var grid = Serenity.DataGrid.prototype.createSlickGrid.call(this);

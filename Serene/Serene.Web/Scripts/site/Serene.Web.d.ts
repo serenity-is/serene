@@ -196,21 +196,6 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.Northwind {
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected shippingStateFilter: Serenity.EnumEditor;
-        customerFilter: CustomerEditor;
-        constructor(container: JQuery);
-        protected createQuickFilters(): void;
-        protected getButtons(): Serenity.ToolButton[];
-        set_shippingState(value: number): void;
-    }
-}
-declare namespace Serene.Northwind {
     class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): any;
@@ -246,6 +231,21 @@ declare namespace Serene.BasicSamples {
     class CloneableEntityGrid extends Northwind.ProductGrid {
         protected getDialogType(): typeof CloneableEntityDialog;
         constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected shippingStateFilter: Serenity.EnumEditor;
+        customerFilter: CustomerEditor;
+        constructor(container: JQuery);
+        protected createQuickFilters(): void;
+        protected getButtons(): Serenity.ToolButton[];
+        set_shippingState(value: number): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -390,6 +390,12 @@ declare namespace Serene.BasicSamples {
         }[];
         protected getColumns(): Slick.Column[];
         protected getViewOptions(): Slick.RemoteViewOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class GridFilteredByCriteria extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        protected onViewSubmit(): boolean;
     }
 }
 declare namespace Serene.Common {
@@ -2117,9 +2123,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class GridFilteredByCriteria extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
     class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }

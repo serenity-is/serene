@@ -1028,45 +1028,6 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderGrid = (function (_super) {
-            __extends(OrderGrid, _super);
-            function OrderGrid(container) {
-                _super.call(this, container);
-            }
-            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
-            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
-            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderGrid.prototype.createQuickFilters = function () {
-                _super.prototype.createQuickFilters.call(this);
-                var fld = Northwind.OrderRow.Fields;
-                this.customerFilter = this.findQuickFilter(Northwind.CustomerEditor, fld.CustomerID);
-                this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
-            };
-            OrderGrid.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
-                return buttons;
-            };
-            OrderGrid.prototype.set_shippingState = function (value) {
-                this.shippingStateFilter.set_value(value == null ? '' : value.toString());
-            };
-            OrderGrid = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.filterable()
-            ], OrderGrid);
-            return OrderGrid;
-        }(Serenity.EntityGrid));
-        Northwind.OrderGrid = OrderGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
         var ProductGrid = (function (_super) {
             __extends(ProductGrid, _super);
             function ProductGrid(container) {
@@ -1303,6 +1264,45 @@ var Serene;
         }(Serene.Northwind.ProductGrid));
         BasicSamples.CloneableEntityGrid = CloneableEntityGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderGrid = (function (_super) {
+            __extends(OrderGrid, _super);
+            function OrderGrid(container) {
+                _super.call(this, container);
+            }
+            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
+            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.createQuickFilters = function () {
+                _super.prototype.createQuickFilters.call(this);
+                var fld = Northwind.OrderRow.Fields;
+                this.customerFilter = this.findQuickFilter(Northwind.CustomerEditor, fld.CustomerID);
+                this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
+            };
+            OrderGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
+                return buttons;
+            };
+            OrderGrid.prototype.set_shippingState = function (value) {
+                this.shippingStateFilter.set_value(value == null ? '' : value.toString());
+            };
+            OrderGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], OrderGrid);
+            return OrderGrid;
+        }(Serenity.EntityGrid));
+        Northwind.OrderGrid = OrderGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
@@ -1717,6 +1717,45 @@ var Serene;
             return CancellableBulkActionGrid;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.CancellableBulkActionGrid = CancellableBulkActionGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var GridFilteredByCriteria = (function (_super) {
+            __extends(GridFilteredByCriteria, _super);
+            function GridFilteredByCriteria(container) {
+                _super.call(this, container);
+            }
+            GridFilteredByCriteria.prototype.onViewSubmit = function () {
+                // only continue if base class returns true (didn't cancel request)
+                if (!_super.prototype.onViewSubmit.call(this)) {
+                    return false;
+                }
+                // view object is the data source for grid (SlickRemoteView)
+                // this is an EntityGrid so its Params object is a ListRequest
+                var request = this.view.params;
+                // list request has a Criteria parameter
+                // we AND criteria here to existing one because 
+                // otherwise we might clear filter set by 
+                // an edit filter dialog if any.
+                request.Criteria = Serenity.Criteria.and(request.Criteria, [['UnitsInStock'], '>', 10], [['CategoryName'], '!=', 'Condiments'], [['Discontinued'], '=', 0]);
+                // TypeScript doesn't support operator overloading
+                // so we had to use array syntax above to build criteria.
+                // Make sure you write
+                // [['Field'], '>', 10] (which means field A is greater than 10)
+                // not 
+                // ['A', '>', 10] (which means string 'A' is greater than 10
+                return true;
+            };
+            GridFilteredByCriteria = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridFilteredByCriteria);
+            return GridFilteredByCriteria;
+        }(Serene.Northwind.ProductGrid));
+        BasicSamples.GridFilteredByCriteria = GridFilteredByCriteria;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
