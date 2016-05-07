@@ -1,4 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿/// <reference path="../../Common/Helpers/BulkServiceAction.ts" />
+
+namespace Serene.BasicSamples {
 
     export class OrderBulkAction extends Common.BulkServiceAction {
 

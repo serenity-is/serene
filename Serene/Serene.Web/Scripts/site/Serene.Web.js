@@ -2983,6 +2983,7 @@ var Serene;
         Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/BulkServiceAction.ts" />
 var Serene;
 (function (Serene) {
     var BasicSamples;
