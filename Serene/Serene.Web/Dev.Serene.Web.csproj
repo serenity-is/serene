@@ -1537,6 +1537,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\GridFilteredByCriteria.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\GroupingAndSummariesInGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\ViewWithoutID\ViewWithoutIDGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Note\NotesEditor.ts" />
@@ -1592,6 +1593,7 @@
     <Compile Include="Modules\AdminLTE\Forms\FormsController.cs" />
     <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesEndpoint.cs" />
+    <Compile Include="Modules\BasicSamples\BasicSamplesHelper.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
     <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />

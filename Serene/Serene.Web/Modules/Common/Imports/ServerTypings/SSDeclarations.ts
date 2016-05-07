@@ -43,12 +43,6 @@ declare namespace Serene.Administration {
     }
 }
 
-declare namespace Serene.BasicSamples {
-    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
-        constructor(container: JQuery);
-    }
-}
-
 declare namespace Serene.Common {
     class ExcelExportHelper {
         static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: () => boolean, title?: string): Serenity.ToolButton;

@@ -394,6 +394,11 @@ declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
         protected getDialogType(): typeof LookupFilterByMultipleDialog;
         constructor(container: JQuery);
+        /**
+         * This method is called just before List request is sent to service.
+         * You have an opportunity here to cancel request or modify it.
+         * Here we'll add a custom criteria to list request.
+         */
         protected onViewSubmit(): boolean;
     }
 }
@@ -456,6 +461,22 @@ declare namespace Serene.BasicSamples {
             cssClass: string;
             onClick: () => void;
         }[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private nextId;
+        constructor(container: JQuery);
+        /**
+         * This method is called to preprocess data returned from the list service
+         */
+        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
+        protected getButtons(): any[];
     }
 }
 declare namespace Serene.Common {
@@ -2181,8 +2202,6 @@ declare namespace Serene.Administration {
         IsGroup: boolean;
         GrantRevoke: any;
     }
-}
-declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.Common {
     class ExcelExportHelper {

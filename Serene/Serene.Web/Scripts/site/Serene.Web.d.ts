@@ -463,6 +463,22 @@ declare namespace Serene.BasicSamples {
         }[];
     }
 }
+declare namespace Serene.BasicSamples {
+    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private nextId;
+        constructor(container: JQuery);
+        /**
+         * This method is called to preprocess data returned from the list service
+         */
+        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
+        protected getButtons(): any[];
+    }
+}
 declare namespace Serene.Common {
     class BulkServiceAction {
         protected keys: string[];
@@ -2185,11 +2201,6 @@ declare namespace Serene.Administration {
         Title: string;
         IsGroup: boolean;
         GrantRevoke: any;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
-        constructor(container: JQuery);
     }
 }
 declare namespace Serene.Common {

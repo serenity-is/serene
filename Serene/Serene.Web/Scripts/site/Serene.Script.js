@@ -141,14 +141,6 @@
 	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
 	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.ViewWithoutIDGrid
-	var $Serene_BasicSamples_ViewWithoutIDGrid = function(container) {
-		this.$nextId = 1;
-		Serenity.EntityGrid.call(this, container);
-	};
-	$Serene_BasicSamples_ViewWithoutIDGrid.__typeName = 'Serene.BasicSamples.ViewWithoutIDGrid';
-	global.Serene.BasicSamples.ViewWithoutIDGrid = $Serene_BasicSamples_ViewWithoutIDGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.ExcelExportHelper
 	var $Serene_Common_ExcelExportHelper = function() {
 	};
@@ -1187,20 +1179,6 @@
 			this.$3$ReorderLevelField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_ViewWithoutIDGrid, $asm, {
-		onViewProcessData: function(response) {
-			response = Serenity.DataGrid.prototype.onViewProcessData.call(this, response);
-			// there is no __id property in SalesByCategoryRow but this is javascript and we can set any property of an object
-			for (var $t1 = 0; $t1 < response.Entities.length; $t1++) {
-				var x = response.Entities[$t1];
-				x.__id = this.$nextId++;
-			}
-			return response;
-		},
-		getButtons: function() {
-			return [];
-		}
-	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_GridEditorBase, $asm, {
 		id: function(entity) {
@@ -1987,7 +1965,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
 	ss.setMetadata($Serene_Common_GridEditorBase, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });

@@ -1942,6 +1942,47 @@ var Serene;
         BasicSamples.GroupingAndSummariesInGrid = GroupingAndSummariesInGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ViewWithoutIDGrid = (function (_super) {
+            __extends(ViewWithoutIDGrid, _super);
+            function ViewWithoutIDGrid(container) {
+                _super.call(this, container);
+                // this is our autoincrementing counter
+                this.nextId = 1;
+            }
+            ViewWithoutIDGrid.prototype.getColumnsKey = function () { return "Northwind.SalesByCategory"; };
+            ViewWithoutIDGrid.prototype.getIdProperty = function () { return "__id"; };
+            ViewWithoutIDGrid.prototype.getNameProperty = function () { return Serene.Northwind.SalesByCategoryRow.nameProperty; };
+            ViewWithoutIDGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.SalesByCategoryRow.localTextPrefix; };
+            ViewWithoutIDGrid.prototype.getService = function () { return Serene.Northwind.SalesByCategoryService.baseUrl; };
+            /**
+             * This method is called to preprocess data returned from the list service
+             */
+            ViewWithoutIDGrid.prototype.onViewProcessData = function (response) {
+                response = _super.prototype.onViewProcessData.call(this, response);
+                // there is no __id property in SalesByCategoryRow but 
+                // this is javascript and we can set any property of an object
+                for (var _i = 0, _a = response.Entities; _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    x.__id = this.nextId++;
+                }
+                return response;
+            };
+            ViewWithoutIDGrid.prototype.getButtons = function () {
+                return [];
+            };
+            ViewWithoutIDGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ViewWithoutIDGrid);
+            return ViewWithoutIDGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var Common;

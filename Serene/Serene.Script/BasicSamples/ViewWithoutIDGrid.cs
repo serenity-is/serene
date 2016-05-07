@@ -1,4 +1,7 @@
-﻿
+﻿/* 
+This class has been ported to TypeScript. See MultiColumnDialog.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.BasicSamples
 {
     using jQueryApi;
@@ -36,3 +39,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/
