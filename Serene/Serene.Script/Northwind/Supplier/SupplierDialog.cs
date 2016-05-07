@@ -7,7 +7,7 @@ namespace Serene.Northwind
 
     [IdProperty("SupplierID"), NameProperty("CompanyName")]
     [FormKey("Northwind.Supplier"), LocalTextPrefix("Northwind.Supplier"), Service("Northwind/Supplier")]
-    public class SupplierDialog : EntityDialog<SupplierRow>, IAsyncInit
+    public class SupplierDialog : EntityDialog<SupplierRow>
     {
     }
 }

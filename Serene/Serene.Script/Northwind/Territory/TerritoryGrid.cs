@@ -9,7 +9,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Territory"), IdProperty("ID"), NameProperty("TerritoryID")]
     [DialogType(typeof(TerritoryDialog)), LocalTextPrefix("Northwind.Territory"), Service("Northwind/Territory")]
-    public class TerritoryGrid : EntityGrid<TerritoryRow>, IAsyncInit
+    public class TerritoryGrid : EntityGrid<TerritoryRow>
     {
         private LookupEditor region;
 

@@ -44,12 +44,6 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.BasicSamples {
-    class CloneableEntityDialog extends Northwind.ProductDialog {
-    }
-
-    class CloneableEntityGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
 
     class GridFilteredByCriteria extends Northwind.ProductGrid {
         constructor(container: JQuery);
@@ -227,9 +221,6 @@ declare namespace Serene.Northwind {
         set_multiple(value: boolean): void;
         get_value(): string;
         set_value(value: string): void;
-    }
-
-    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
     }
 
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {

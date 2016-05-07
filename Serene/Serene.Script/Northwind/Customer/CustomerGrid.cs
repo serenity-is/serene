@@ -8,7 +8,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("ID"), NameProperty("CustomerID")]
     [DialogType(typeof(CustomerDialog)), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
-    public class CustomerGrid : EntityGrid<CustomerRow>, IAsyncInit
+    public class CustomerGrid : EntityGrid<CustomerRow>
     {
         public CustomerGrid(jQueryObject container)
             : base(container)

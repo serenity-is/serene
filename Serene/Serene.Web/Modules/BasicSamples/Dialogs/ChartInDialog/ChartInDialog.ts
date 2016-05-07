@@ -1,6 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿declare var Morris: any;
 
-    declare var Morris: any;
+namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.resizable()

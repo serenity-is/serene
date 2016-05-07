@@ -1,5 +1,11 @@
 @import "site.mixins.less";
 
+.s-Northwind-ProductDialog {
+    > .size { width: 650px; }
+    .caption { width: 180px; }
+    .s-PropertyGrid .categories { height: 500px; }
+}
+
 .s-Northwind-CategoryDialog {
     > .size { .widthAndMin(650px); }
     .dialog-styles(@h: auto, @l: 150px, @e: 400px);
@@ -33,12 +39,6 @@
 
 .s-Northwind-OrderGrid {
     .s-CustomerEditor { .widthAndMin(250px); }
-}
-
-.s-Northwind-ProductDialog {
-    > .size { .widthAndMin(650px); }
-    .dialog-styles(@h: auto, @l: 180px, @e: 380px);
-    .categories { height: 500px; }
 }
 
 .s-Northwind-ProductGrid {

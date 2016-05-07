@@ -1,4 +1,17 @@
-﻿
+﻿namespace Serene.Northwind
+{
+    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class ProductDialog : EntityDialog<ProductRow>
+    {
+    }
+}
+/* 
+This class has been ported to TypeScript. See ProductGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Northwind
 {
     using jQueryApi;
@@ -15,3 +28,4 @@ namespace Serene.Northwind
         }
     }
 }
+*/

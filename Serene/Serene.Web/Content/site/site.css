@@ -7401,6 +7401,15 @@ section.content > .s-DataGrid {
   padding: 8px;
   margin: 24px 0;
 }
+.s-Northwind-ProductDialog > .size {
+  width: 650px;
+}
+.s-Northwind-ProductDialog .caption {
+  width: 180px;
+}
+.s-Northwind-ProductDialog .s-PropertyGrid .categories {
+  height: 500px;
+}
 .s-Northwind-CategoryDialog > .size {
   min-width: 650px;
   width: 650px;
@@ -7615,44 +7624,6 @@ section.content > .s-DataGrid {
 .s-Northwind-OrderGrid .s-CustomerEditor {
   min-width: 250px;
   width: 250px;
-}
-.s-Northwind-ProductDialog > .size {
-  min-width: 650px;
-  width: 650px;
-}
-.s-Northwind-ProductDialog .tab-pane {
-  height: auto;
-}
-.s-Northwind-ProductDialog .caption {
-  width: 180px;
-}
-.s-Northwind-ProductDialog .editor {
-  width: 380px;
-}
-.s-Northwind-ProductDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-Northwind-ProductDialog .s-Form .editor.dateQ {
-  width: 356px;
-}
-.s-Northwind-ProductDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-Northwind-ProductDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 261px;
-}
-.s-Northwind-ProductDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-Northwind-ProductDialog .s-Form .editor.has-inplace-button {
-  width: 354px;
-}
-.s-Northwind-ProductDialog .s-Form .emaildomain {
-  width: 195px;
-}
-.s-Northwind-ProductDialog .categories {
-  height: 500px;
 }
 .s-Northwind-ProductGrid .slick-cell input[type=text] {
   text-align: right;

@@ -9,7 +9,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Supplier"), Filterable, IdProperty("SupplierID"), NameProperty("CompanyName")]
     [DialogType(typeof(SupplierDialog)), LocalTextPrefix("Northwind.Supplier"), Service("Northwind/Supplier")]
-    public class SupplierGrid : EntityGrid<SupplierRow>, IAsyncInit
+    public class SupplierGrid : EntityGrid<SupplierRow>
     {
         private LookupEditor country;
 

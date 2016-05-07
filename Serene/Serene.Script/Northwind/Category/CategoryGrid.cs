@@ -9,7 +9,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Category"), IdProperty("CategoryID"), NameProperty("CategoryName")]
     [DialogType(typeof(CategoryDialog)), LocalTextPrefix("Northwind.Category"), Service("Northwind/Category")]
-    public class CategoryGrid : EntityGrid<CategoryRow>, IAsyncInit
+    public class CategoryGrid : EntityGrid<CategoryRow>
     {
         public CategoryGrid(jQueryObject container)
             : base(container)

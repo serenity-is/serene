@@ -1518,6 +1518,8 @@
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ChartInDialog\ChartInDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnDialog.ts" />
@@ -1535,6 +1537,7 @@
     <TypeScriptCompile Include="Modules\Northwind\Note\NotesEditor.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderBulkAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Product\ProductDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Product\ProductGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />

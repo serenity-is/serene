@@ -7,7 +7,7 @@ namespace Serene.Northwind
 
     [IdProperty("ID"), NameProperty("CustomerTypeID")]
     [FormKey("Northwind.CustomerDemographic"), LocalTextPrefix("Northwind.CustomerDemographic"), Service("Northwind/CustomerDemographic")]
-    public class CustomerDemographicDialog : EntityDialog<CustomerDemographicRow>, IAsyncInit
+    public class CustomerDemographicDialog : EntityDialog<CustomerDemographicRow>
     {
     }
 }

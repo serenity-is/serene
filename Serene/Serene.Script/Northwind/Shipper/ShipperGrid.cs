@@ -6,7 +6,7 @@ namespace Serene.Northwind
 
     [ColumnsKey("Northwind.Shipper"), IdProperty("ShipperID"), NameProperty("CompanyName")]
     [DialogType(typeof(ShipperDialog)), LocalTextPrefix("Northwind.Shipper"), Service("Northwind/Shipper")]
-    public class ShipperGrid : EntityGrid<ShipperRow>, IAsyncInit
+    public class ShipperGrid : EntityGrid<ShipperRow>
     {
         public ShipperGrid(jQueryObject container)
             : base(container)

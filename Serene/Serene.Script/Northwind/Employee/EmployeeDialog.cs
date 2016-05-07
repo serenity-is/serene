@@ -7,7 +7,7 @@ namespace Serene.Northwind
 
     [IdProperty("EmployeeID"), NameProperty("LastName")]
     [FormKey("Northwind.Employee"), LocalTextPrefix("Northwind.Employee"), Service("Northwind/Employee")]
-    public class EmployeeDialog : EntityDialog<EmployeeRow>, IAsyncInit
+    public class EmployeeDialog : EntityDialog<EmployeeRow>
     {
     }
 }

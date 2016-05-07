@@ -164,6 +164,37 @@ declare namespace Serene.Administration {
         username: string;
     }
 }
+declare var Morris: any;
+declare namespace Serene.BasicSamples {
+    class ChartInDialog extends Serenity.TemplatedDialog<any> {
+        private areaChart;
+        static initializePage(): void;
+        protected onDialogOpen(): void;
+        protected arrange(): void;
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.Northwind {
+    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ProductForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CloneableEntityDialog extends Northwind.ProductDialog {
+        protected updateInterface(): void;
+        /**
+         * Overriding this method is optional to customize cloned entity
+         */
+        protected getCloningEntity(): Northwind.ProductRow;
+    }
+}
 declare namespace Serene.Northwind {
     class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         protected getColumnsKey(): string;
@@ -179,14 +210,42 @@ declare namespace Serene.Northwind {
         set_shippingState(value: number): void;
     }
 }
+declare namespace Serene.Northwind {
+    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private pendingChanges;
+        constructor(container: JQuery);
+        protected getButtons(): Serenity.ToolButton[];
+        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
+        /**
+         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+         * no event handlers to rendered cell contents
+         */
+        private numericInputFormatter(ctx);
+        private stringInputFormatter(ctx);
+        /**
+         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+         */
+        private selectFormatter(ctx, idField, lookup);
+        private getEffectiveValue(item, field);
+        protected getColumns(): Slick.Column[];
+        private inputsChange(e);
+        private setSaveButtonState();
+        private saveClick();
+    }
+}
 declare namespace Serene.BasicSamples {
-    class ChartInDialog extends Serenity.TemplatedDialog<any> {
-        private areaChart;
-        static initializePage(): void;
-        protected onDialogOpen(): void;
-        protected arrange(): void;
-        protected getTemplate(): string;
-        protected getDialogOptions(): JQueryUI.DialogOptions;
+    /**
+     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+     */
+    class CloneableEntityGrid extends Northwind.ProductGrid {
+        protected getDialogType(): typeof CloneableEntityDialog;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -2058,11 +2117,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class CloneableEntityDialog extends Northwind.ProductDialog {
-    }
-    class CloneableEntityGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
     class GridFilteredByCriteria extends Northwind.ProductGrid {
         constructor(container: JQuery);
     }
@@ -2202,8 +2256,6 @@ declare namespace Serene.Northwind {
         get_value(): string;
         set_value(value: string): void;
     }
-    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
-    }
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
     }
     class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
@@ -2305,34 +2357,5 @@ declare namespace Serene.BasicSamples {
          * that should be processed in this service call.
          */
         protected executeForBatch(batch: any): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private pendingChanges;
-        constructor(container: JQuery);
-        protected getButtons(): Serenity.ToolButton[];
-        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
-        /**
-         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
-         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
-         * no event handlers to rendered cell contents
-         */
-        private numericInputFormatter(ctx);
-        private stringInputFormatter(ctx);
-        /**
-         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
-         */
-        private selectFormatter(ctx, idField, lookup);
-        private getEffectiveValue(item, field);
-        protected getColumns(): Slick.Column[];
-        private inputsChange(e);
-        private setSaveButtonState();
-        private saveClick();
     }
 }

@@ -7,7 +7,7 @@ namespace Serene.Northwind
 
     [IdProperty("RegionID"), NameProperty("RegionDescription")]
     [FormKey("Northwind.Region"), LocalTextPrefix("Northwind.Region"), Service("Northwind/Region")]
-    public class RegionDialog : EntityDialog<RegionRow>, IAsyncInit
+    public class RegionDialog : EntityDialog<RegionRow>
     {
     }
 }
