@@ -2004,16 +2004,6 @@
 		}
 	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerGrid, $asm, {
-		createToolbarExtensions: function() {
-			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
-			var $t1 = Serenity.LookupEditorOptions.$ctor();
-			$t1.lookupKey = 'Northwind.CustomerCountry';
-			this.addQuickFilter('Country', Serenity.LookupEditor, { title: null, options: $t1, handler: null, init: null, element: null });
-			var $t2 = Serenity.LookupEditorOptions.$ctor();
-			$t2.lookupKey = 'Northwind.CustomerCity';
-			$t2.cascadeFrom = 'Country';
-			this.addQuickFilter('City', Serenity.LookupEditor, { title: null, options: $t2, handler: null, init: null, element: null });
-		},
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Customer/ListExcel', ss.mkdel(this, this.onViewSubmit), null));

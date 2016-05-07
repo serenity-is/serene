@@ -15,17 +15,6 @@ namespace Serene.Northwind
         {
         }
 
-        protected override void CreateToolbarExtensions()
-        {
-            base.CreateToolbarExtensions();
-
-            AddEqualityFilter<LookupEditor>(Fields.Country,
-                options: new LookupEditorOptions { LookupKey = "Northwind.CustomerCountry" });
-
-            AddEqualityFilter<LookupEditor>(Fields.City, options: new LookupEditorOptions {
-                LookupKey = "Northwind.CustomerCity", CascadeFrom = Fields.Country });
-        }
-
         protected override List<ToolButton> GetButtons()
         {
             var buttons = base.GetButtons();

@@ -1,6 +1,7 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.filterable()
     export class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
         protected getColumnsKey() { return "Northwind.Product"; }
         protected getDialogType() { return <any>ProductDialog; }
@@ -14,24 +15,6 @@
             super(container);
 
             this.slickContainer.on('change', '.edit:input', (e) => this.inputsChange(e));
-        }
-
-        protected createToolbarExtensions() {
-            super.createToolbarExtensions();
-
-            let fld = ProductRow.Fields;
-
-            this.addQuickFilter(fld.SupplierID, Serenity.LookupEditor, {
-                options: <Serenity.LookupEditorOptions>{
-                    lookupKey: SupplierRow.lookupKey
-                }
-            });
-
-            this.addQuickFilter(fld.CategoryID, Serenity.LookupEditor, {
-                options: {
-                    lookupKey: SupplierRow.lookupKey
-                }
-            });
         }
 
         protected getButtons()

@@ -35,7 +35,8 @@ namespace Serene.Northwind.Entities
             set { Fields.CustomerCompanyName[this] = value; }
         }
 
-        [DisplayName("Employee"), ForeignKey("Employees", "EmployeeID"), LeftJoin("e"), LookupEditor(typeof(EmployeeRow))]
+        [DisplayName("Employee"), ForeignKey("Employees", "EmployeeID"), LeftJoin("e")]
+        [LookupEditor(typeof(EmployeeRow)), TextualField("EmployeeFullName")]
         public Int32? EmployeeID
         {
             get { return Fields.EmployeeID[this]; }

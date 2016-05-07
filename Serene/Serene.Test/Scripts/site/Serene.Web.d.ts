@@ -171,11 +171,12 @@ declare namespace Serene.Northwind {
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
-        protected shippingState: Serenity.EnumEditor;
+        protected shippingStateFilter: Serenity.EnumEditor;
         customerFilter: CustomerEditor;
         constructor(container: JQuery);
-        protected createToolbarExtensions(): void;
+        protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
+        set_shippingState(value: number): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -2259,7 +2260,7 @@ declare namespace Serene.Northwind {
         protected initEntityDialog(itemType: any, dialog: any): void;
         protected addButtonClick(): void;
         protected getInitialTitle(): any;
-        protected createToolbarExtensions(): void;
+        protected createQuickFilters(): void;
         protected getGridCanLoad(): boolean;
         private customerID;
         get_customerID(): string;
@@ -2275,11 +2276,19 @@ declare namespace Serene.Northwind {
         protected getService(): string;
         private pendingChanges;
         constructor(container: JQuery);
-        protected createToolbarExtensions(): void;
         protected getButtons(): Serenity.ToolButton[];
         protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
-        private decimalInputFormatter(ctx);
+        /**
+         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+         * no event handlers to rendered cell contents
+         */
+        private numericInputFormatter(ctx);
         private stringInputFormatter(ctx);
+        /**
+         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+         */
+        private selectFormatter(ctx, idField, lookup);
         private getEffectiveValue(item, field);
         protected getColumns(): Slick.Column[];
         private inputsChange(e);

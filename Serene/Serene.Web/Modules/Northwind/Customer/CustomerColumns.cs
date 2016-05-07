@@ -17,14 +17,15 @@ namespace Serene.Northwind.Columns
         public String ContactName { get; set; }
         [Width(150)]
         public String ContactTitle { get; set; }
-        [Width(120)]
-        public String City { get; set; }
         [Width(60)]
         public String Region { get; set; }
         [Width(100)]
         public String PostalCode { get; set; }
-        [Width(130)]
+        [Width(130), LookupEditor(typeof(Scripts.CustomerCountryLookup)), QuickFilter]
         public String Country { get; set; }
+        [Width(120), LookupEditor(typeof(Scripts.CustomerCityLookup))]
+        [QuickFilter, QuickFilterOption("cascadeFrom", "Country")]
+        public String City { get; set; }
         [Width(120)]
         public String Phone { get; set; }
         [Width(120)]

@@ -28,8 +28,8 @@ namespace Serene.Northwind {
             return null;
         }
 
-        protected createToolbarExtensions() {
-            super.createToolbarExtensions();
+        protected createQuickFilters() {
+            super.createQuickFilters();
             this.customerFilter.element.closest('.quick-filter-item').remove();
         }
 

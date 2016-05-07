@@ -1,6 +1,7 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.filterable()
     export class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
         protected getColumnsKey() { return "Northwind.Order"; }
         protected getDialogType() { return <any>OrderDialog; }
@@ -8,52 +9,19 @@
         protected getLocalTextPrefix() { return OrderRow.localTextPrefix; }
         protected getService() { return OrderService.baseUrl; }
 
-        protected shippingState: Serenity.EnumEditor;
+        protected shippingStateFilter: Serenity.EnumEditor;
         public customerFilter: CustomerEditor;
 
         constructor(container: JQuery) {
             super(container);
         }
 
-        protected createToolbarExtensions() {
-            super.createToolbarExtensions();
+        protected createQuickFilters() {
+            super.createQuickFilters();
 
             let fld = OrderRow.Fields;
-
-            this.customerFilter = this.addQuickFilter(fld.CustomerID, CustomerEditor);
-
-            this.addDateRangeFilter(fld.OrderDate);
-
-            this.shippingState = this.addQuickFilter(fld.ShippingState, Serenity.EnumEditor, {
-                options: {
-                    enumType: Northwind.OrderShippingState
-                }
-            });
-
-            this.addQuickFilter(fld.ShipVia, Serenity.LookupEditor, {
-                options: {
-                    lookupKey: ShipperRow.lookupKey
-                }
-            });
-
-            this.addQuickFilter(fld.ShipCountry, Serenity.LookupEditor, {
-                options: {
-                    lookupKey: 'Northwind.OrderShipCountry'
-                }
-            });
-
-            this.addQuickFilter(fld.ShipCity, Serenity.LookupEditor, {
-                options: {
-                    lookupKey: 'Northwind.OrderShipCity',
-                    cascadeFrom: fld.ShipCountry
-                }
-            });
-
-            this.addQuickFilter(fld.EmployeeID, Serenity.LookupEditor, {
-                options: {
-                    lookupKey: EmployeeRow.lookupKey
-                }
-            });
+            this.customerFilter = this.findQuickFilter(CustomerEditor, fld.CustomerID);
+            this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
         }
 
         protected getButtons()
@@ -67,6 +35,10 @@
                 () => this.onViewSubmit()));
 
             return buttons;
+        }
+
+        public set_shippingState(value: number): void {
+            this.shippingStateFilter.set_value(value == null ? '' : value.toString());
         }
     }
 }
