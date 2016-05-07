@@ -17,13 +17,6 @@
 }
 
 declare namespace Serene.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        get_onSave(): (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void;
-        set_onSave(value: (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void): void;
-        get_onDelete(): (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void;
-        set_onDelete(value: (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void): void;
-    }
-
     class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string);
     }
@@ -124,10 +117,6 @@ declare namespace Serene.Northwind {
         okClick: () => void;
         get_text(): string;
         set_text(value: string): void;
-    }
-
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        form: OrderDetailForm;
     }
 
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {

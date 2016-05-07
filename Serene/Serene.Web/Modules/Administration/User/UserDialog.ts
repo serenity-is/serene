@@ -15,13 +15,13 @@
         constructor() {
             super();
 
-            this.form.Password().addValidationRule(this.uniqueName, e => {
-                if (this.form.Password().get_value().length < 7)
+            this.form.Password.addValidationRule(this.uniqueName, e => {
+                if (this.form.Password.value.length < 7)
                     return "Password must be at least 7 characters!";
             });
 
-            this.form.PasswordConfirm().addValidationRule(this.uniqueName, e => {
-                if (this.form.Password().get_value() != this.form.PasswordConfirm().get_value())
+            this.form.PasswordConfirm.addValidationRule(this.uniqueName, e => {
+                if (this.form.Password.value != this.form.PasswordConfirm.value)
                     return "The passwords entered doesn't match!";
             });
         }
@@ -70,9 +70,9 @@
             super.afterLoadEntity();
 
             // these fields are only required in new record mode
-            this.form.Password().element.toggleClass('required', this.isNew())
+            this.form.Password.element.toggleClass('required', this.isNew())
                 .closest('.field').find('sup').toggle(this.isNew());
-            this.form.PasswordConfirm().element.toggleClass('required', this.isNew())
+            this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                 .closest('.field').find('sup').toggle(this.isNew());
         }
     }

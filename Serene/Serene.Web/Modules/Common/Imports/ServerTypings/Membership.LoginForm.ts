@@ -5,10 +5,10 @@
     }
 
     export interface LoginForm {
-        Username(): Serenity.StringEditor;
-        Password(): Serenity.PasswordEditor;
+        Username: Serenity.StringEditor;
+        Password: Serenity.PasswordEditor;
     }
 
-    [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(x => LoginForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(x => Object.defineProperty(LoginForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

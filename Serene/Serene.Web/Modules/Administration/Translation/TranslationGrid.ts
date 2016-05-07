@@ -170,8 +170,8 @@
 
         protected onViewSubmit(): boolean {
             var request = this.view.params;
-            request.SourceLanguageID = this.sourceLanguage.get_value();
-            this.targetLanguageKey = this.targetLanguage.get_value() || '';
+            request.SourceLanguageID = this.sourceLanguage.value;
+            this.targetLanguageKey = this.targetLanguage.value || '';
             request.TargetLanguageID = this.targetLanguageKey;
             this.hasChanges = false;
             return super.onViewSubmit();

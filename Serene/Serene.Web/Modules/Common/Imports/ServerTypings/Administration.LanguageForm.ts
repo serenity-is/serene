@@ -5,10 +5,10 @@
     }
 
     export interface LanguageForm {
-        LanguageId(): Serenity.StringEditor;
-        LanguageName(): Serenity.StringEditor;
+        LanguageId: Serenity.StringEditor;
+        LanguageName: Serenity.StringEditor;
     }
 
-    [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(x => LanguageForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(x => Object.defineProperty(LanguageForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

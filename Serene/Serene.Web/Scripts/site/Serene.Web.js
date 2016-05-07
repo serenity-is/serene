@@ -327,8 +327,8 @@ var Serene;
             };
             TranslationGrid.prototype.onViewSubmit = function () {
                 var request = this.view.params;
-                request.SourceLanguageID = this.sourceLanguage.get_value();
-                this.targetLanguageKey = this.targetLanguage.get_value() || '';
+                request.SourceLanguageID = this.sourceLanguage.value;
+                this.targetLanguageKey = this.targetLanguage.value || '';
                 request.TargetLanguageID = this.targetLanguageKey;
                 this.hasChanges = false;
                 return _super.prototype.onViewSubmit.call(this);
@@ -386,12 +386,12 @@ var Serene;
                 var _this = this;
                 _super.call(this);
                 this.form = new Administration.UserForm(this.idPrefix);
-                this.form.Password().addValidationRule(this.uniqueName, function (e) {
-                    if (_this.form.Password().get_value().length < 7)
+                this.form.Password.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.Password.value.length < 7)
                         return "Password must be at least 7 characters!";
                 });
-                this.form.PasswordConfirm().addValidationRule(this.uniqueName, function (e) {
-                    if (_this.form.Password().get_value() != _this.form.PasswordConfirm().get_value())
+                this.form.PasswordConfirm.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.Password.value != _this.form.PasswordConfirm.value)
                         return "The passwords entered doesn't match!";
                 });
             }
@@ -436,9 +436,9 @@ var Serene;
             UserDialog.prototype.afterLoadEntity = function () {
                 _super.prototype.afterLoadEntity.call(this);
                 // these fields are only required in new record mode
-                this.form.Password().element.toggleClass('required', this.isNew())
+                this.form.Password.element.toggleClass('required', this.isNew())
                     .closest('.field').find('sup').toggle(this.isNew());
-                this.form.PasswordConfirm().element.toggleClass('required', this.isNew())
+                this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                     .closest('.field').find('sup').toggle(this.isNew());
             };
             UserDialog = __decorate([
@@ -770,7 +770,7 @@ var Serene;
                 Administration.UserPermissionService.ListRolePermissions({
                     UserID: this.options.userID,
                     Module: null,
-                    Submodule: null
+                    Submodule: null,
                 }, function (response) {
                     _this.permissions.set_rolePermissions(response.Entities);
                 });
@@ -831,7 +831,7 @@ var Serene;
                 return [];
             };
             RoleCheckEditor.prototype.getTreeItems = function () {
-                return Administration.RoleRow.lookup().items.map(function (role) { return {
+                return Administration.RoleRow.getLookup().items.map(function (role) { return {
                     id: role.RoleId.toString(),
                     text: role.RoleName
                 }; });
@@ -863,7 +863,7 @@ var Serene;
                 Administration.UserRoleService.List({
                     UserID: this.options.userID
                 }, function (response) {
-                    _this.permissions.set_value(response.Entities.map(function (x) { return x.toString(); }));
+                    _this.permissions.value = response.Entities.map(function (x) { return x.toString(); });
                 });
             }
             UserRoleDialog.prototype.getDialogOptions = function () {
@@ -874,7 +874,7 @@ var Serene;
                         click: function () {
                             Q.serviceRequest('Administration/UserRole/Update', {
                                 UserID: _this.options.userID,
-                                Roles: _this.permissions.get_value().map(function (x) { return parseInt(x, 10); })
+                                Roles: _this.permissions.value.map(function (x) { return parseInt(x, 10); })
                             }, function (response) {
                                 _this.dialogClose();
                                 Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'));
@@ -1054,7 +1054,7 @@ var Serene;
                     onViewSubmit: function () { return _this.onViewSubmit(); },
                     title: 'Product List',
                     columnTitles: {
-                        'Discontinued': 'Dis.'
+                        'Discontinued': 'Dis.',
                     },
                     tableOptions: {
                         columnStyles: {
@@ -1158,10 +1158,10 @@ var Serene;
                 Q.first(columns, function (x) { return x.field === 'QuantityPerUnit'; }).format = str;
                 var category = Q.first(columns, function (x) { return x.field === fld.CategoryName; });
                 category.referencedFields = [fld.CategoryID];
-                category.format = function (ctx) { return _this.selectFormatter(ctx, fld.CategoryID, Northwind.CategoryRow.lookup()); };
+                category.format = function (ctx) { return _this.selectFormatter(ctx, fld.CategoryID, Northwind.CategoryRow.getLookup()); };
                 var supplier = Q.first(columns, function (x) { return x.field === fld.SupplierCompanyName; });
                 supplier.referencedFields = [fld.SupplierID];
-                supplier.format = function (ctx) { return _this.selectFormatter(ctx, fld.SupplierID, Northwind.SupplierRow.lookup()); };
+                supplier.format = function (ctx) { return _this.selectFormatter(ctx, fld.SupplierID, Northwind.SupplierRow.getLookup()); };
                 Q.first(columns, function (x) { return x.field === fld.UnitPrice; }).format = num;
                 Q.first(columns, function (x) { return x.field === fld.UnitsInStock; }).format = num;
                 Q.first(columns, function (x) { return x.field === fld.UnitsOnOrder; }).format = num;
@@ -1309,7 +1309,7 @@ var Serene;
                 return buttons;
             };
             OrderGrid.prototype.set_shippingState = function (value) {
-                this.shippingStateFilter.set_value(value == null ? '' : value.toString());
+                this.shippingStateFilter.value = value == null ? '' : value.toString();
             };
             OrderGrid = __decorate([
                 Serenity.Decorators.registerClass(),
@@ -1339,9 +1339,9 @@ var Serene;
                 this.editItem({
                     CustomerID: 'ANTON',
                     RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'),
-                    EmployeeID: Serene.Northwind.EmployeeRow.lookup().items
+                    EmployeeID: Serene.Northwind.EmployeeRow.getLookup().items
                         .filter(function (x) { return x.FullName === 'Robert King'; })[0].EmployeeID,
-                    ShipVia: Serene.Northwind.ShipperRow.lookup().items
+                    ShipVia: Serene.Northwind.ShipperRow.getLookup().items
                         .filter(function (x) { return x.CompanyName === 'Speedy Express'; })[0].ShipperID
                 });
             };
@@ -1357,9 +1357,9 @@ var Serene;
                         // bind to its events, load our order row, and open dialog
                         _this.editItem({
                             CustomerID: 'QUEEN',
-                            EmployeeID: Serene.Northwind.EmployeeRow.lookup().items
+                            EmployeeID: Serene.Northwind.EmployeeRow.getLookup().items
                                 .filter(function (x) { return x.FullName === 'Nancy Davolio'; })[0].EmployeeID,
-                            ShipVia: Serene.Northwind.ShipperRow.lookup().items
+                            ShipVia: Serene.Northwind.ShipperRow.getLookup().items
                                 .filter(function (x) { return x.CompanyName === 'United Package'; })[0].ShipperID
                         });
                     }
@@ -1374,11 +1374,11 @@ var Serene;
                         // so when a new item is saved, grid can refresh itself
                         _this.initDialog(dlg);
                         // get a reference to product Chai
-                        var chai = Serene.Northwind.ProductRow.lookup().items
+                        var chai = Serene.Northwind.ProductRow.getLookup().items
                             .filter(function (x) { return x.ProductName === 'Chai'; })[0];
                         // LoadEntityAndOpenDialog, loads an OrderRow 
                         // to dialog and opens it
-                        var lauraCallahanID = Serene.Northwind.EmployeeRow.lookup().items
+                        var lauraCallahanID = Serene.Northwind.EmployeeRow.getLookup().items
                             .filter(function (x) { return x.FullName === 'Laura Callahan'; })[0].EmployeeID;
                         dlg.loadEntityAndOpenDialog({
                             CustomerID: 'GOURL',
@@ -1423,21 +1423,21 @@ var Serene;
                 this.form = new Serene.Northwind.OrderForm(this.idPrefix);
                 // as these editors are in a two column line, 
                 // all should grow 0.5px when dialog grows 1px
-                this.form.OrderDate().element.flexX(0.5);
-                this.form.RequiredDate().element.flexX(0.5);
-                this.form.ShipName().element.flexX(0.5);
-                this.form.ShipCity().element.flexX(0.5);
-                this.form.ShipPostalCode().element.flexX(0.5);
-                this.form.ShipAddress().element.flexX(0.5);
-                this.form.ShipRegion().element.flexX(0.5);
-                this.form.ShipCountry().element.flexX(0.5);
+                this.form.OrderDate.element.flexX(0.5);
+                this.form.RequiredDate.element.flexX(0.5);
+                this.form.ShipName.element.flexX(0.5);
+                this.form.ShipCity.element.flexX(0.5);
+                this.form.ShipPostalCode.element.flexX(0.5);
+                this.form.ShipAddress.element.flexX(0.5);
+                this.form.ShipRegion.element.flexX(0.5);
+                this.form.ShipCountry.element.flexX(0.5);
                 // as these editors are in a three column line, 
                 // all should grow 0.33px when dialog grows 1px
-                this.form.ShippedDate().element.flexX(0.33);
-                this.form.ShipVia().element.siblings('.select2-container').flexX(0.33);
-                this.form.Freight().element.flexX(0.33);
+                this.form.ShippedDate.element.flexX(0.33);
+                this.form.ShipVia.element.siblings('.select2-container').flexX(0.33);
+                this.form.Freight.element.flexX(0.33);
                 // grid should grow in height and width when dialog grows
-                this.form.DetailList().element.flexWidthHeight(1, 1);
+                this.form.DetailList.element.flexWidthHeight(1, 1);
             }
             MultiColumnDialog = __decorate([
                 Serenity.Decorators.registerClass()
@@ -1620,7 +1620,7 @@ var Serene;
                         onClick: function () {
                             _this.createEntityDialog(_this.getItemType(), function (dlg) {
                                 var dialog = dlg;
-                                dialog.set_onSave(function (opt, callback) { return _this.save(opt, callback); });
+                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
                                 dialog.loadEntityAndOpenDialog(_this.getNewEntity());
                             });
                         }
@@ -1632,38 +1632,42 @@ var Serene;
                 var item = this.view.getItemById(id);
                 this.createEntityDialog(this.getItemType(), function (dlg) {
                     var dialog = dlg;
-                    dialog.set_onDelete(function (opt, callback) {
+                    dialog.onDelete = function (opt, callback) {
                         if (!_this.deleteEntity(id)) {
                             return;
                         }
                         callback({});
-                    });
-                    dialog.set_onSave(function (opt, callback) { return _this.save(opt, callback); });
+                    };
+                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
                     dialog.loadEntityAndOpenDialog(item);
                 });
                 ;
             };
             GridEditorBase.prototype.getEditValue = function (property, target) {
-                target[property.name] = this.get_value();
+                target[property.name] = this.value;
             };
             GridEditorBase.prototype.setEditValue = function (source, property) {
-                this.set_value(source[property.name]);
+                this.value = source[property.name];
             };
-            GridEditorBase.prototype.get_value = function () {
-                return this.view.getItems().map(function (x) {
-                    var y = Q.deepClone(x);
-                    delete y['__id'];
-                    return y;
-                });
-            };
-            GridEditorBase.prototype.set_value = function (value) {
-                var _this = this;
-                this.view.setItems((value || []).map(function (x) {
-                    var y = Q.deepClone(x);
-                    y.__id = _this.nextId++;
-                    return y;
-                }), true);
-            };
+            Object.defineProperty(GridEditorBase.prototype, "value", {
+                get: function () {
+                    return this.view.getItems().map(function (x) {
+                        var y = Q.deepClone(x);
+                        delete y['__id'];
+                        return y;
+                    });
+                },
+                set: function (value) {
+                    var _this = this;
+                    this.view.setItems((value || []).map(function (x) {
+                        var y = Q.deepClone(x);
+                        y.__id = _this.nextId++;
+                        return y;
+                    }), true);
+                },
+                enumerable: true,
+                configurable: true
+            });
             GridEditorBase.prototype.getGridCanLoad = function () {
                 return false;
             };
@@ -1705,7 +1709,7 @@ var Serene;
                     Q.alert('This product is already in order details!');
                     return false;
                 }
-                row.ProductName = Northwind.ProductRow.lookup().itemById[row.ProductID].ProductName;
+                row.ProductName = Northwind.ProductRow.getLookup().itemById[row.ProductID].ProductName;
                 row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
                 return true;
             };
@@ -1762,8 +1766,8 @@ var Serene;
                 var _this = this;
                 _super.call(this);
                 this.form = new BasicSamples.FilteredLookupInDetailForm(this.idPrefix);
-                this.form.CategoryID().change(function (e) {
-                    _this.form.DetailList().categoryID = Q.toId(_this.form.CategoryID().get_value());
+                this.form.CategoryID.change(function (e) {
+                    _this.form.DetailList.categoryID = Q.toId(_this.form.CategoryID.value);
                 });
             }
             FilteredLookupInDetailDialog.prototype.getFormKey = function () { return BasicSamples.FilteredLookupInDetailForm.formKey; };
@@ -1818,7 +1822,7 @@ var Serene;
                 // we can set cascade field in constructor
                 // we could also use FilterField but in this case, when CategoryID is null
                 // lookup editor would show all products in any category
-                this.form.ProductID().set_cascadeField(Serene.Northwind.ProductRow.Fields.CategoryID);
+                this.form.ProductID.cascadeField = Serene.Northwind.ProductRow.Fields.CategoryID;
                 // but CategoryID value is not yet available here as detail editor will set it 
                 // after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
             }
@@ -1832,7 +1836,7 @@ var Serene;
                 // make sure you have [LookupInclude] on CategoryID property of ProductRow
                 // otherwise this field won't be available in lookup script (will always be null),
                 // so can't be filtered and you'll end up with an empty product list.
-                this.form.ProductID().set_cascadeValue(this.categoryID);
+                this.form.ProductID.set_cascadeValue(this.categoryID);
             };
             FilteredLookupOrderDetailDialog = __decorate([
                 Serenity.Decorators.registerClass()
@@ -2164,40 +2168,40 @@ var Serene;
                 max: 100,
                 value: 0,
                 change: function (e, v) {
-                    _this.byId('ProgressLabel').text(_this.get_value() + ' / ' + _this.get_max());
+                    _this.byId('ProgressLabel').text(_this.value + ' / ' + _this.max);
                 }
             });
         }
-        BasicProgressDialog.prototype.get_cancelled = function () {
-            return this.cancelled;
-        };
-        BasicProgressDialog.prototype.set_cancelled = function (value) {
-            this.cancelled = value;
-        };
-        BasicProgressDialog.prototype.get_max = function () {
-            return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
-        };
-        BasicProgressDialog.prototype.set_max = function (value) {
-            this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
-        };
-        BasicProgressDialog.prototype.get_value = function () {
-            return this.byId('ProgressBar').progressbar('value');
-        };
-        BasicProgressDialog.prototype.set_value = function (value) {
-            this.byId('ProgressBar').progressbar().progressbar('value', value);
-        };
-        BasicProgressDialog.prototype.get_title = function () {
-            return this.element.dialog().dialog('option', 'title');
-        };
-        BasicProgressDialog.prototype.set_title = function (value) {
-            this.element.dialog().dialog('option', 'title', value);
-        };
-        BasicProgressDialog.prototype.get_cancelTitle = function () {
-            return this.cancelTitle;
-        };
-        BasicProgressDialog.prototype.set_cancelTitle = function (value) {
-            this.cancelTitle = value;
-        };
+        Object.defineProperty(BasicProgressDialog.prototype, "max", {
+            get: function () {
+                return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
+            },
+            set: function (value) {
+                this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasicProgressDialog.prototype, "value", {
+            get: function () {
+                return this.byId('ProgressBar').progressbar('value');
+            },
+            set: function (value) {
+                this.byId('ProgressBar').progressbar().progressbar('value', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasicProgressDialog.prototype, "title", {
+            get: function () {
+                return this.element.dialog().dialog('option', 'title');
+            },
+            set: function (value) {
+                this.element.dialog().dialog('option', 'title', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
         BasicProgressDialog.prototype.getDialogOptions = function () {
             var _this = this;
             var opt = _super.prototype.getDialogOptions.call(this);
@@ -2206,12 +2210,12 @@ var Serene;
             opt.buttons = [{
                     text: Q.text('Dialogs.CancelButton'),
                     click: function () {
-                        _this.set_cancelled(true);
+                        _this.cancelled = true;
                         _this.element.closest('.ui-dialog')
                             .find('.ui-dialog-buttonpane .ui-button')
                             .attr('disabled', 'disabled')
                             .css('opacity', '0.5');
-                        _this.element.dialog('option', 'title', Q.trimToNull(_this.get_cancelTitle()) ||
+                        _this.element.dialog('option', 'title', Q.trimToNull(_this.cancelTitle) ||
                             Q.text('Site.BasicProgressDialog.CancelTitle'));
                     }
                 }];
@@ -2243,8 +2247,8 @@ var Serene;
             BulkServiceAction.prototype.createProgressDialog = function () {
                 this.progressDialog = new Serene.BasicProgressDialog();
                 this.progressDialog.dialogOpen();
-                this.progressDialog.set_max(this.keys.length);
-                this.progressDialog.set_value(0);
+                this.progressDialog.max = this.keys.length;
+                this.progressDialog.value = 0;
             };
             BulkServiceAction.prototype.getConfirmationFormat = function () {
                 return Q.text('Site.BulkServiceAction.ConfirmationFormat');
@@ -2285,7 +2289,7 @@ var Serene;
             BulkServiceAction.prototype.serviceCallCleanup = function () {
                 this.pendingRequests--;
                 this.completedRequests++;
-                var title = Q.text((this.progressDialog.get_cancelled() ?
+                var title = Q.text((this.progressDialog.cancelled ?
                     'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
                 title += ' (';
                 if (this.successCount > 0) {
@@ -2297,9 +2301,9 @@ var Serene;
                     }
                     title += Q.format(Q.text('Site.BulkServiceAction.ErrorCount'), this.errorCount);
                 }
-                this.progressDialog.set_title(title + ')');
-                this.progressDialog.set_value(this.successCount + this.errorCount);
-                if (!this.progressDialog.get_cancelled() && this.progressDialog.get_value() < this.keys.length) {
+                this.progressDialog.title = title + ')';
+                this.progressDialog.value = this.successCount + this.errorCount;
+                if (!this.progressDialog.cancelled && this.progressDialog.value < this.keys.length) {
                     this.executeNextBatch();
                 }
                 else if (this.pendingRequests === 0) {
@@ -2429,6 +2433,42 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
+        var GridEditorDialog = (function (_super) {
+            __extends(GridEditorDialog, _super);
+            function GridEditorDialog() {
+                _super.apply(this, arguments);
+            }
+            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorDialog.prototype.destroy = function () {
+                this.onSave = null;
+                this.onDelete = null;
+                _super.prototype.destroy.call(this);
+            };
+            GridEditorDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                // apply changes button doesn't work properly with in-memory grids yet
+                if (this.applyChangesButton) {
+                    this.applyChangesButton.hide();
+                }
+            };
+            GridEditorDialog.prototype.saveHandler = function (options, callback) {
+                this.onSave && this.onSave(options, callback);
+            };
+            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
+                this.onDelete && this.onDelete(options, callback);
+            };
+            GridEditorDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridEditorDialog);
+            return GridEditorDialog;
+        }(Serenity.EntityDialog));
+        Common.GridEditorDialog = GridEditorDialog;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
         var ReportHelper;
         (function (ReportHelper) {
             function createToolButton(options) {
@@ -2466,7 +2506,7 @@ var Serene;
             return LanguageForm;
         }(Serenity.PrefixedContext));
         Administration.LanguageForm = LanguageForm;
-        [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(function (x) { return LanguageForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2479,10 +2519,10 @@ var Serene;
             LanguageRow.nameProperty = 'LanguageName';
             LanguageRow.localTextPrefix = 'Administration.Language';
             LanguageRow.lookupKey = 'Administration.Language';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Administration.Language');
             }
-            LanguageRow.lookup = lookup;
+            LanguageRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
@@ -2520,7 +2560,7 @@ var Serene;
             return RoleForm;
         }(Serenity.PrefixedContext));
         Administration.RoleForm = RoleForm;
-        [['RoleName', Serenity.StringEditor]].forEach(function (x) { return RoleForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['RoleName', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2566,10 +2606,10 @@ var Serene;
             RoleRow.nameProperty = 'RoleName';
             RoleRow.localTextPrefix = 'Administration.Role';
             RoleRow.lookupKey = 'Administration.Role';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Administration.Role');
             }
-            RoleRow.lookup = lookup;
+            RoleRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
@@ -2624,7 +2664,7 @@ var Serene;
             return UserForm;
         }(Serenity.PrefixedContext));
         Administration.UserForm = UserForm;
-        [['Username', Serenity.StringEditor], ['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['PasswordConfirm', Serenity.PasswordEditor], ['Source', Serenity.StringEditor]].forEach(function (x) { return UserForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['Username', Serenity.StringEditor], ['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['PasswordConfirm', Serenity.PasswordEditor], ['Source', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2756,7 +2796,7 @@ var Serene;
             return FilteredLookupInDetailForm;
         }(Serenity.PrefixedContext));
         BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
-        [['CustomerID', Serene.Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['CategoryID', Serenity.LookupEditor], ['DetailList', BasicSamples.FilteredLookupDetailEditor]].forEach(function (x) { return FilteredLookupInDetailForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CustomerID', Serene.Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['CategoryID', Serenity.LookupEditor], ['DetailList', BasicSamples.FilteredLookupDetailEditor]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2772,7 +2812,7 @@ var Serene;
             return LookupFilterByMultipleForm;
         }(Serenity.PrefixedContext));
         BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
-        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', BasicSamples.ProduceSeafoodCategoryEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return LookupFilterByMultipleForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', BasicSamples.ProduceSeafoodCategoryEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2788,7 +2828,7 @@ var Serene;
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ChangePasswordForm = ChangePasswordForm;
-        [['OldPassword', Serenity.PasswordEditor], ['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return ChangePasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['OldPassword', Serenity.PasswordEditor], ['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2804,7 +2844,7 @@ var Serene;
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ForgotPasswordForm = ForgotPasswordForm;
-        [['Email', Serenity.EmailEditor]].forEach(function (x) { return ForgotPasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['Email', Serenity.EmailEditor]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2820,7 +2860,7 @@ var Serene;
             return LoginForm;
         }(Serenity.PrefixedContext));
         Membership.LoginForm = LoginForm;
-        [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(function (x) { return LoginForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2836,7 +2876,7 @@ var Serene;
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ResetPasswordForm = ResetPasswordForm;
-        [['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return ResetPasswordForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2852,7 +2892,7 @@ var Serene;
             return SignUpForm;
         }(Serenity.PrefixedContext));
         Membership.SignUpForm = SignUpForm;
-        [['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['ConfirmEmail', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return SignUpForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['ConfirmEmail', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2868,7 +2908,7 @@ var Serene;
             return CategoryForm;
         }(Serenity.PrefixedContext));
         Northwind.CategoryForm = CategoryForm;
-        [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(function (x) { return CategoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2914,10 +2954,10 @@ var Serene;
             CategoryRow.nameProperty = 'CategoryName';
             CategoryRow.localTextPrefix = 'Northwind.Category';
             CategoryRow.lookupKey = 'Northwind.Category';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Category');
             }
-            CategoryRow.lookup = lookup;
+            CategoryRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = CategoryRow.Fields || (CategoryRow.Fields = {}));
@@ -2955,7 +2995,7 @@ var Serene;
             return CustomerCustomerDemoForm;
         }(Serenity.PrefixedContext));
         Northwind.CustomerCustomerDemoForm = CustomerCustomerDemoForm;
-        [['CustomerID', Serenity.StringEditor], ['CustomerTypeID', Serenity.StringEditor]].forEach(function (x) { return CustomerCustomerDemoForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CustomerID', Serenity.StringEditor], ['CustomerTypeID', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CustomerCustomerDemoForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3004,7 +3044,7 @@ var Serene;
             return CustomerDemographicForm;
         }(Serenity.PrefixedContext));
         Northwind.CustomerDemographicForm = CustomerDemographicForm;
-        [['CustomerTypeID', Serenity.StringEditor], ['CustomerDesc', Serenity.StringEditor]].forEach(function (x) { return CustomerDemographicForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CustomerTypeID', Serenity.StringEditor], ['CustomerDesc', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CustomerDemographicForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3053,7 +3093,7 @@ var Serene;
             return CustomerForm;
         }(Serenity.PrefixedContext));
         Northwind.CustomerForm = CustomerForm;
-        [['CustomerID', Serenity.StringEditor], ['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Representatives', Serenity.LookupEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['NoteList', Northwind.NotesEditor]].forEach(function (x) { return CustomerForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CustomerID', Serenity.StringEditor], ['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Representatives', Serenity.LookupEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['NoteList', Northwind.NotesEditor]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3081,10 +3121,10 @@ var Serene;
             CustomerRow.nameProperty = 'CompanyName';
             CustomerRow.localTextPrefix = 'Northwind.Customer';
             CustomerRow.lookupKey = 'Northwind.Customer';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Customer');
             }
-            CustomerRow.lookup = lookup;
+            CustomerRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerRow.Fields || (CustomerRow.Fields = {}));
@@ -3122,7 +3162,7 @@ var Serene;
             return EmployeeForm;
         }(Serenity.PrefixedContext));
         Northwind.EmployeeForm = EmployeeForm;
-        [['LastName', Serenity.StringEditor], ['FirstName', Serenity.StringEditor], ['Title', Serenity.StringEditor], ['TitleOfCourtesy', Serenity.StringEditor], ['BirthDate', Serenity.DateEditor], ['HireDate', Serenity.DateEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['HomePhone', Serenity.StringEditor], ['Extension', Serenity.StringEditor], ['Photo', Serenity.StringEditor], ['Notes', Serenity.StringEditor], ['ReportsTo', Serenity.IntegerEditor], ['PhotoPath', Serenity.StringEditor]].forEach(function (x) { return EmployeeForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['LastName', Serenity.StringEditor], ['FirstName', Serenity.StringEditor], ['Title', Serenity.StringEditor], ['TitleOfCourtesy', Serenity.StringEditor], ['BirthDate', Serenity.DateEditor], ['HireDate', Serenity.DateEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['HomePhone', Serenity.StringEditor], ['Extension', Serenity.StringEditor], ['Photo', Serenity.StringEditor], ['Notes', Serenity.StringEditor], ['ReportsTo', Serenity.IntegerEditor], ['PhotoPath', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(EmployeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3135,10 +3175,10 @@ var Serene;
             EmployeeRow.nameProperty = 'FullName';
             EmployeeRow.localTextPrefix = 'Northwind.Employee';
             EmployeeRow.lookupKey = 'Northwind.Employee';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Employee');
             }
-            EmployeeRow.lookup = lookup;
+            EmployeeRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = EmployeeRow.Fields || (EmployeeRow.Fields = {}));
@@ -3176,7 +3216,7 @@ var Serene;
             return EmployeeTerritoryForm;
         }(Serenity.PrefixedContext));
         Northwind.EmployeeTerritoryForm = EmployeeTerritoryForm;
-        [['TerritoryID', Serenity.StringEditor]].forEach(function (x) { return EmployeeTerritoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['TerritoryID', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(EmployeeTerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3253,7 +3293,7 @@ var Serene;
             return OrderDetailForm;
         }(Serenity.PrefixedContext));
         Northwind.OrderDetailForm = OrderDetailForm;
-        [['ProductID', Serenity.LookupEditor], ['UnitPrice', Serenity.DecimalEditor], ['Quantity', Serenity.IntegerEditor], ['Discount', Serenity.DecimalEditor]].forEach(function (x) { return OrderDetailForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['ProductID', Serenity.LookupEditor], ['UnitPrice', Serenity.DecimalEditor], ['Quantity', Serenity.IntegerEditor], ['Discount', Serenity.DecimalEditor]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3301,7 +3341,7 @@ var Serene;
             return OrderForm;
         }(Serenity.PrefixedContext));
         Northwind.OrderForm = OrderForm;
-        [['CustomerID', Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['RequiredDate', Serenity.DateEditor], ['EmployeeID', Serenity.LookupEditor], ['DetailList', Northwind.OrderDetailsEditor], ['ShippedDate', Serenity.DateEditor], ['ShipVia', Serenity.LookupEditor], ['Freight', Serenity.DecimalEditor], ['ShipName', Serenity.StringEditor], ['ShipAddress', Serenity.StringEditor], ['ShipCity', Serenity.StringEditor], ['ShipRegion', Serenity.StringEditor], ['ShipPostalCode', Serenity.StringEditor], ['ShipCountry', Serenity.StringEditor]].forEach(function (x) { return OrderForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CustomerID', Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['RequiredDate', Serenity.DateEditor], ['EmployeeID', Serenity.LookupEditor], ['DetailList', Northwind.OrderDetailsEditor], ['ShippedDate', Serenity.DateEditor], ['ShipVia', Serenity.LookupEditor], ['Freight', Serenity.DecimalEditor], ['ShipName', Serenity.StringEditor], ['ShipAddress', Serenity.StringEditor], ['ShipCity', Serenity.StringEditor], ['ShipRegion', Serenity.StringEditor], ['ShipPostalCode', Serenity.StringEditor], ['ShipCountry', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3314,10 +3354,10 @@ var Serene;
             OrderRow.nameProperty = 'CustomerID';
             OrderRow.localTextPrefix = 'Northwind.Order';
             OrderRow.lookupKey = 'Northwind.OrderShipCity';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.OrderShipCity');
             }
-            OrderRow.lookup = lookup;
+            OrderRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
@@ -3367,7 +3407,7 @@ var Serene;
             return ProductForm;
         }(Serenity.PrefixedContext));
         Northwind.ProductForm = ProductForm;
-        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', Serenity.LookupEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return ProductForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', Serenity.LookupEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3428,10 +3468,10 @@ var Serene;
             ProductRow.nameProperty = 'ProductName';
             ProductRow.localTextPrefix = 'Northwind.Product';
             ProductRow.lookupKey = 'Northwind.Product';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Product');
             }
-            ProductRow.lookup = lookup;
+            ProductRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = ProductRow.Fields || (ProductRow.Fields = {}));
@@ -3469,7 +3509,7 @@ var Serene;
             return RegionForm;
         }(Serenity.PrefixedContext));
         Northwind.RegionForm = RegionForm;
-        [['RegionID', Serenity.IntegerEditor], ['RegionDescription', Serenity.StringEditor]].forEach(function (x) { return RegionForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['RegionID', Serenity.IntegerEditor], ['RegionDescription', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3482,10 +3522,10 @@ var Serene;
             RegionRow.nameProperty = 'RegionDescription';
             RegionRow.localTextPrefix = 'Northwind.Region';
             RegionRow.lookupKey = 'Northwind.Region';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Region');
             }
-            RegionRow.lookup = lookup;
+            RegionRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = RegionRow.Fields || (RegionRow.Fields = {}));
@@ -3555,7 +3595,7 @@ var Serene;
             return ShipperForm;
         }(Serenity.PrefixedContext));
         Northwind.ShipperForm = ShipperForm;
-        [['CompanyName', Serenity.StringEditor], ['Phone', Northwind.PhoneEditor]].forEach(function (x) { return ShipperForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CompanyName', Serenity.StringEditor], ['Phone', Northwind.PhoneEditor]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3568,10 +3608,10 @@ var Serene;
             ShipperRow.nameProperty = 'CompanyName';
             ShipperRow.localTextPrefix = 'Northwind.Shipper';
             ShipperRow.lookupKey = 'Northwind.Shipper';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Shipper');
             }
-            ShipperRow.lookup = lookup;
+            ShipperRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = ShipperRow.Fields || (ShipperRow.Fields = {}));
@@ -3609,7 +3649,7 @@ var Serene;
             return SupplierForm;
         }(Serenity.PrefixedContext));
         Northwind.SupplierForm = SupplierForm;
-        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return SupplierForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3622,10 +3662,10 @@ var Serene;
             SupplierRow.nameProperty = 'CompanyName';
             SupplierRow.localTextPrefix = 'Northwind.Supplier';
             SupplierRow.lookupKey = 'Northwind.Supplier';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Supplier');
             }
-            SupplierRow.lookup = lookup;
+            SupplierRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = SupplierRow.Fields || (SupplierRow.Fields = {}));
@@ -3663,7 +3703,7 @@ var Serene;
             return TerritoryForm;
         }(Serenity.PrefixedContext));
         Northwind.TerritoryForm = TerritoryForm;
-        [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(function (x) { return TerritoryForm.prototype[x[0]] = function () { return this.w(x[0], x[1]); }; });
+        [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3676,10 +3716,10 @@ var Serene;
             TerritoryRow.nameProperty = 'TerritoryID';
             TerritoryRow.localTextPrefix = 'Northwind.Territory';
             TerritoryRow.lookupKey = 'Northwind.Territory';
-            function lookup() {
+            function getLookup() {
                 return Q.getLookup('Northwind.Territory');
             }
-            TerritoryRow.lookup = lookup;
+            TerritoryRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = TerritoryRow.Fields || (TerritoryRow.Fields = {}));
@@ -4098,5 +4138,42 @@ var Serene;
         }(Serene.Common.BulkServiceAction));
         BasicSamples.OrderBulkAction = OrderBulkAction;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailDialog = (function (_super) {
+            __extends(OrderDetailDialog, _super);
+            function OrderDetailDialog() {
+                var _this = this;
+                _super.call(this);
+                this.form = new Northwind.OrderDetailForm(this.idPrefix);
+                this.form.ProductID.changeSelect2(function (e) {
+                    var productID = Q.toId(_this.form.ProductID.value);
+                    if (productID != null) {
+                        _this.form.UnitPrice.value = Northwind.ProductRow.getLookup().itemById[productID].UnitPrice;
+                    }
+                });
+                this.form.Discount.addValidationRule(this.uniqueName, function (e) {
+                    var price = _this.form.UnitPrice.value;
+                    var quantity = _this.form.Quantity.value;
+                    var discount = _this.form.Discount.value;
+                    if (price != null && quantity != null && discount != null &&
+                        discount > 0 && discount >= price * quantity) {
+                        return "Discount can't be higher than total price!";
+                    }
+                });
+            }
+            OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
+            OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            OrderDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailDialog);
+            return OrderDetailDialog;
+        }(Serene.Common.GridEditorDialog));
+        Northwind.OrderDetailDialog = OrderDetailDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

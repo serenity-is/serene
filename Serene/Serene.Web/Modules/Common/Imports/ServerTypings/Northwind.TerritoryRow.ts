@@ -13,7 +13,7 @@
         export const localTextPrefix = 'Northwind.Territory';
         export const lookupKey = 'Northwind.Territory';
 
-        export function lookup(): Q.Lookup<TerritoryRow> {
+        export function getLookup(): Q.Lookup<TerritoryRow> {
             return Q.getLookup<TerritoryRow>('Northwind.Territory');
         }
 

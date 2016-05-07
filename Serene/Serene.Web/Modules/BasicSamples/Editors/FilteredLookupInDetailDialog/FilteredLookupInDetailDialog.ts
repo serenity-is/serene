@@ -19,8 +19,8 @@
             super();
 
             this.form = new FilteredLookupInDetailForm(this.idPrefix);
-            this.form.CategoryID().change(e => {
-                this.form.DetailList().categoryID = Q.toId(this.form.CategoryID().get_value());
+            this.form.CategoryID.change(e => {
+                this.form.DetailList.categoryID = Q.toId(this.form.CategoryID.value);
             });
         }
     }

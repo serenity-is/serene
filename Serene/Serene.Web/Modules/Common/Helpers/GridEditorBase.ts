@@ -68,7 +68,7 @@
                 onClick: () => {
                     this.createEntityDialog(this.getItemType(), dlg => {
                         var dialog = dlg as GridEditorDialog<TEntity>;
-                        dialog.set_onSave((opt, callback) => this.save(opt, callback));
+                        dialog.onSave = (opt, callback) => this.save(opt, callback);
                         dialog.loadEntityAndOpenDialog(this.getNewEntity());
                     });
                 }
@@ -81,27 +81,27 @@
             var item = this.view.getItemById(id);
             this.createEntityDialog(this.getItemType(), dlg => {
                 var dialog = dlg as GridEditorDialog<TEntity>;
-                dialog.set_onDelete((opt, callback) => {
+                dialog.onDelete = (opt, callback) => {
                     if (!this.deleteEntity(id)) {
                         return;
                     }
                     callback({});
-                });
+                };
 
-                dialog.set_onSave((opt, callback) => this.save(opt, callback));
+                dialog.onSave = (opt, callback) => this.save(opt, callback);
                 dialog.loadEntityAndOpenDialog(item);
             });;
         }
 
         public getEditValue(property, target) {
-            target[property.name] = this.get_value();
+            target[property.name] = this.value;
         }
 
         public setEditValue(source, property) {
-            this.set_value(source[property.name]);
+            this.value = source[property.name];
         }
 
-        public get_value(): TEntity[] {
+        public get value(): TEntity[] {
             return this.view.getItems().map(x => {
                 var y = Q.deepClone(x);
                 delete y['__id'];
@@ -109,7 +109,7 @@
             });
         }
 
-        public set_value(value: TEntity[]) {
+        public set value(value: TEntity[]) {
             this.view.setItems((value || []).map(x => {
                 var y = Q.deepClone(x);
                 (y as any).__id = this.nextId++;

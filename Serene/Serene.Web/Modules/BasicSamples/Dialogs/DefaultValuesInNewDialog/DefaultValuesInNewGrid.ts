@@ -18,9 +18,9 @@ namespace Serene.BasicSamples {
             this.editItem(<Northwind.OrderRow>{
                 CustomerID: 'ANTON',
                 RequiredDate: Q.formatDate(new Date(), 'yyyy-MM-dd'),
-                EmployeeID: Northwind.EmployeeRow.lookup().items
+                EmployeeID: Northwind.EmployeeRow.getLookup().items
                     .filter(x => x.FullName === 'Robert King')[0].EmployeeID,
-                ShipVia: Northwind.ShipperRow.lookup().items
+                ShipVia: Northwind.ShipperRow.getLookup().items
                     .filter(x => x.CompanyName === 'Speedy Express')[0].ShipperID
             });
         }
@@ -37,9 +37,9 @@ namespace Serene.BasicSamples {
                     // bind to its events, load our order row, and open dialog
                     this.editItem(<Northwind.OrderRow>{
                         CustomerID: 'QUEEN',
-                        EmployeeID: Northwind.EmployeeRow.lookup().items
+                        EmployeeID: Northwind.EmployeeRow.getLookup().items
                             .filter(x => x.FullName === 'Nancy Davolio')[0].EmployeeID,
-                        ShipVia: Northwind.ShipperRow.lookup().items
+                        ShipVia: Northwind.ShipperRow.getLookup().items
                             .filter(x => x.CompanyName === 'United Package')[0].ShipperID
                     });
                 }
@@ -57,12 +57,12 @@ namespace Serene.BasicSamples {
                     this.initDialog(dlg);
 
                     // get a reference to product Chai
-                    var chai = Northwind.ProductRow.lookup().items
+                    var chai = Northwind.ProductRow.getLookup().items
                         .filter(x => x.ProductName === 'Chai')[0];
 
                     // LoadEntityAndOpenDialog, loads an OrderRow 
                     // to dialog and opens it
-                    var lauraCallahanID = Northwind.EmployeeRow.lookup().items
+                    var lauraCallahanID = Northwind.EmployeeRow.getLookup().items
                         .filter(x => x.FullName === 'Laura Callahan')[0].EmployeeID;
 
                     dlg.loadEntityAndOpenDialog(<Northwind.OrderRow>{

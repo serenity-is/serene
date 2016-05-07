@@ -5,11 +5,11 @@
     }
 
     export interface TerritoryForm {
-        TerritoryID(): Serenity.StringEditor;
-        TerritoryDescription(): Serenity.StringEditor;
-        RegionID(): Serenity.LookupEditor;
+        TerritoryID: Serenity.StringEditor;
+        TerritoryDescription: Serenity.StringEditor;
+        RegionID: Serenity.LookupEditor;
     }
 
-    [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(x => TerritoryForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(x => Object.defineProperty(TerritoryForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

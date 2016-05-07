@@ -1,4 +1,19 @@
-﻿
+﻿namespace Serene.Common
+{
+    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported, IncludeGenericArguments(false), ScriptName("GridEditorDialog")]
+    public abstract class GridEditorDialog<TEntity> : EntityDialog<TEntity>
+        where TEntity : class, new()
+    {
+    }
+}
+
+/* 
+This class has been ported to TypeScript. See GridEditorBase.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Common
 {
     using jQueryApi;
@@ -44,3 +59,4 @@ namespace Serene.Common
         public Action<ServiceCallOptions<DeleteResponse>, Action<DeleteResponse>> OnDelete { get; set; }
     }
 }
+*/

@@ -23,7 +23,7 @@
         }
 
         protected getTreeItems() {
-            return RoleRow.lookup().items.map(role => <Serenity.CheckTreeItem<any>>{
+            return RoleRow.getLookup().items.map(role => <Serenity.CheckTreeItem<any>>{
                 id: role.RoleId.toString(),
                 text: role.RoleName
             });

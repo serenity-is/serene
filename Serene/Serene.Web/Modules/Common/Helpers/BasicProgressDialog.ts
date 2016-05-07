@@ -2,9 +2,6 @@
 
     export class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
 
-        private cancelled: boolean;
-        private cancelTitle: string;
-
         constructor() {
             super();
 
@@ -12,50 +9,38 @@
                 max: 100,
                 value: 0,
                 change: (e, v) => {
-                    this.byId('ProgressLabel').text(this.get_value() + ' / ' + this.get_max());
+                    this.byId('ProgressLabel').text(this.value + ' / ' + this.max);
                 }
             });
         }
 
-        public get_cancelled() {
-            return this.cancelled;
-        }
+        public cancelled: boolean;
 
-        public set_cancelled(value) {
-            this.cancelled = value;
-        }
-
-        public get_max() {
+        public get max(): number {
             return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
         }
 
-        public set_max(value) {
+        public set max(value: number) {
             this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
         }
 
-        public get_value() {
+        public get value(): number {
             return this.byId('ProgressBar').progressbar('value');
         }
 
-        public set_value(value) {
+        public set value(value: number) {
             this.byId('ProgressBar').progressbar().progressbar('value', value);
         }
 
-        public get_title() {
+        public get title(): string {
             return this.element.dialog().dialog('option', 'title');
         }
 
-        public set_title(value) {
+        public set title(value: string) {
             this.element.dialog().dialog('option', 'title', value);
         }
 
-        public get_cancelTitle() {
-            return this.cancelTitle;
-        }
-
-        public set_cancelTitle(value) {
-            this.cancelTitle = value;
-        }
+        public cancelTitle: string;
 
         getDialogOptions() {
             var opt = super.getDialogOptions();
@@ -64,13 +49,13 @@
             opt.buttons = [{
                 text: Q.text('Dialogs.CancelButton'),
                 click: () => {
-                    this.set_cancelled(true);
+                    this.cancelled = true;
                     this.element.closest('.ui-dialog')
                         .find('.ui-dialog-buttonpane .ui-button')
                         .attr('disabled', 'disabled')
                         .css('opacity', '0.5');
 
-                    this.element.dialog('option', 'title', Q.trimToNull(this.get_cancelTitle()) ||
+                    this.element.dialog('option', 'title', Q.trimToNull(this.cancelTitle) ||
                         Q.text('Site.BasicProgressDialog.CancelTitle'));
                 }
             }];

@@ -20,7 +20,7 @@
         export const localTextPrefix = 'Northwind.Supplier';
         export const lookupKey = 'Northwind.Supplier';
 
-        export function lookup(): Q.Lookup<SupplierRow> {
+        export function getLookup(): Q.Lookup<SupplierRow> {
             return Q.getLookup<SupplierRow>('Northwind.Supplier');
         }
 

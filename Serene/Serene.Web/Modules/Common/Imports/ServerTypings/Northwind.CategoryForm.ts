@@ -5,10 +5,10 @@
     }
 
     export interface CategoryForm {
-        CategoryName(): Serenity.StringEditor;
-        Description(): Serenity.StringEditor;
+        CategoryName: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
     }
 
-    [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(x => CategoryForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(x => Object.defineProperty(CategoryForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

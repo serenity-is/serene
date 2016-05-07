@@ -22,7 +22,7 @@
         export const localTextPrefix = 'Northwind.Customer';
         export const lookupKey = 'Northwind.Customer';
 
-        export function lookup(): Q.Lookup<CustomerRow> {
+        export function getLookup(): Q.Lookup<CustomerRow> {
             return Q.getLookup<CustomerRow>('Northwind.Customer');
         }
 

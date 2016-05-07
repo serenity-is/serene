@@ -12,7 +12,7 @@
         export const localTextPrefix = 'Northwind.Category';
         export const lookupKey = 'Northwind.Category';
 
-        export function lookup(): Q.Lookup<CategoryRow> {
+        export function getLookup(): Q.Lookup<CategoryRow> {
             return Q.getLookup<CategoryRow>('Northwind.Category');
         }
 

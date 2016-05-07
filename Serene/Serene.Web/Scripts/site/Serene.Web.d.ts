@@ -349,8 +349,7 @@ declare namespace Serene.Common {
         protected editItem(entityOrId: any): void;
         getEditValue(property: any, target: any): void;
         setEditValue(source: any, property: any): void;
-        get_value(): TEntity[];
-        set_value(value: TEntity[]): void;
+        value: TEntity[];
         protected getGridCanLoad(): boolean;
         protected usePager(): boolean;
         protected getInitialTitle(): any;
@@ -523,19 +522,12 @@ declare namespace Serene.BasicSamples {
 }
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        private cancelled;
-        private cancelTitle;
         constructor();
-        get_cancelled(): boolean;
-        set_cancelled(value: any): void;
-        get_max(): any;
-        set_max(value: any): void;
-        get_value(): any;
-        set_value(value: any): void;
-        get_title(): any;
-        set_title(value: any): void;
-        get_cancelTitle(): string;
-        set_cancelTitle(value: any): void;
+        cancelled: boolean;
+        max: number;
+        value: number;
+        title: string;
+        cancelTitle: string;
         getDialogOptions(): JQueryUI.DialogOptions;
         initDialog(): void;
         getTemplate(): string;
@@ -591,6 +583,17 @@ declare namespace Serene.Common {
     }
 }
 declare namespace Serene.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        protected destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace Serene.Common {
     interface ReportButtonOptions {
         title?: string;
         cssClass?: string;
@@ -612,8 +615,8 @@ declare namespace Serene.Administration {
         static formKey: string;
     }
     interface LanguageForm {
-        LanguageId(): Serenity.StringEditor;
-        LanguageName(): Serenity.StringEditor;
+        LanguageId: Serenity.StringEditor;
+        LanguageName: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Administration {
@@ -627,7 +630,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<LanguageRow>;
+        function getLookup(): Q.Lookup<LanguageRow>;
         namespace Fields {
             const Id: string;
             const LanguageId: string;
@@ -659,7 +662,7 @@ declare namespace Serene.Administration {
         static formKey: string;
     }
     interface RoleForm {
-        RoleName(): Serenity.StringEditor;
+        RoleName: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Administration {
@@ -721,7 +724,7 @@ declare namespace Serene.Administration {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<RoleRow>;
+        function getLookup(): Q.Lookup<RoleRow>;
         namespace Fields {
             const RoleId: string;
             const RoleName: string;
@@ -785,12 +788,12 @@ declare namespace Serene.Administration {
         static formKey: string;
     }
     interface UserForm {
-        Username(): Serenity.StringEditor;
-        DisplayName(): Serenity.StringEditor;
-        Email(): Serenity.EmailEditor;
-        Password(): Serenity.PasswordEditor;
-        PasswordConfirm(): Serenity.PasswordEditor;
-        Source(): Serenity.StringEditor;
+        Username: Serenity.StringEditor;
+        DisplayName: Serenity.StringEditor;
+        Email: Serenity.EmailEditor;
+        Password: Serenity.PasswordEditor;
+        PasswordConfirm: Serenity.PasswordEditor;
+        Source: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Administration {
@@ -969,10 +972,10 @@ declare namespace Serene.BasicSamples {
         static formKey: string;
     }
     interface FilteredLookupInDetailForm {
-        CustomerID(): Northwind.CustomerEditor;
-        OrderDate(): Serenity.DateEditor;
-        CategoryID(): Serenity.LookupEditor;
-        DetailList(): FilteredLookupDetailEditor;
+        CustomerID: Northwind.CustomerEditor;
+        OrderDate: Serenity.DateEditor;
+        CategoryID: Serenity.LookupEditor;
+        DetailList: FilteredLookupDetailEditor;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -980,16 +983,16 @@ declare namespace Serene.BasicSamples {
         static formKey: string;
     }
     interface LookupFilterByMultipleForm {
-        ProductName(): Serenity.StringEditor;
-        ProductImage(): Serenity.ImageUploadEditor;
-        Discontinued(): Serenity.BooleanEditor;
-        SupplierID(): Serenity.LookupEditor;
-        CategoryID(): ProduceSeafoodCategoryEditor;
-        QuantityPerUnit(): Serenity.StringEditor;
-        UnitPrice(): Serenity.DecimalEditor;
-        UnitsInStock(): Serenity.IntegerEditor;
-        UnitsOnOrder(): Serenity.IntegerEditor;
-        ReorderLevel(): Serenity.IntegerEditor;
+        ProductName: Serenity.StringEditor;
+        ProductImage: Serenity.ImageUploadEditor;
+        Discontinued: Serenity.BooleanEditor;
+        SupplierID: Serenity.LookupEditor;
+        CategoryID: ProduceSeafoodCategoryEditor;
+        QuantityPerUnit: Serenity.StringEditor;
+        UnitPrice: Serenity.DecimalEditor;
+        UnitsInStock: Serenity.IntegerEditor;
+        UnitsOnOrder: Serenity.IntegerEditor;
+        ReorderLevel: Serenity.IntegerEditor;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -1024,9 +1027,9 @@ declare namespace Serene.Membership {
         static formKey: string;
     }
     interface ChangePasswordForm {
-        OldPassword(): Serenity.PasswordEditor;
-        NewPassword(): Serenity.PasswordEditor;
-        ConfirmPassword(): Serenity.PasswordEditor;
+        OldPassword: Serenity.PasswordEditor;
+        NewPassword: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
     }
 }
 declare namespace Serene.Membership {
@@ -1041,7 +1044,7 @@ declare namespace Serene.Membership {
         static formKey: string;
     }
     interface ForgotPasswordForm {
-        Email(): Serenity.EmailEditor;
+        Email: Serenity.EmailEditor;
     }
 }
 declare namespace Serene.Membership {
@@ -1054,8 +1057,8 @@ declare namespace Serene.Membership {
         static formKey: string;
     }
     interface LoginForm {
-        Username(): Serenity.StringEditor;
-        Password(): Serenity.PasswordEditor;
+        Username: Serenity.StringEditor;
+        Password: Serenity.PasswordEditor;
     }
 }
 declare namespace Serene.Membership {
@@ -1069,8 +1072,8 @@ declare namespace Serene.Membership {
         static formKey: string;
     }
     interface ResetPasswordForm {
-        NewPassword(): Serenity.PasswordEditor;
-        ConfirmPassword(): Serenity.PasswordEditor;
+        NewPassword: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
     }
 }
 declare namespace Serene.Membership {
@@ -1085,11 +1088,11 @@ declare namespace Serene.Membership {
         static formKey: string;
     }
     interface SignUpForm {
-        DisplayName(): Serenity.StringEditor;
-        Email(): Serenity.EmailEditor;
-        ConfirmEmail(): Serenity.EmailEditor;
-        Password(): Serenity.PasswordEditor;
-        ConfirmPassword(): Serenity.PasswordEditor;
+        DisplayName: Serenity.StringEditor;
+        Email: Serenity.EmailEditor;
+        ConfirmEmail: Serenity.EmailEditor;
+        Password: Serenity.PasswordEditor;
+        ConfirmPassword: Serenity.PasswordEditor;
     }
 }
 declare namespace Serene.Membership {
@@ -1106,8 +1109,8 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface CategoryForm {
-        CategoryName(): Serenity.StringEditor;
-        Description(): Serenity.StringEditor;
+        CategoryName: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1160,7 +1163,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<CategoryRow>;
+        function getLookup(): Q.Lookup<CategoryRow>;
         namespace Fields {
             const CategoryID: string;
             const CategoryName: string;
@@ -1195,8 +1198,8 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface CustomerCustomerDemoForm {
-        CustomerID(): Serenity.StringEditor;
-        CustomerTypeID(): Serenity.StringEditor;
+        CustomerID: Serenity.StringEditor;
+        CustomerTypeID: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1260,8 +1263,8 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface CustomerDemographicForm {
-        CustomerTypeID(): Serenity.StringEditor;
-        CustomerDesc(): Serenity.StringEditor;
+        CustomerTypeID: Serenity.StringEditor;
+        CustomerDesc: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1303,19 +1306,19 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface CustomerForm {
-        CustomerID(): Serenity.StringEditor;
-        CompanyName(): Serenity.StringEditor;
-        ContactName(): Serenity.StringEditor;
-        ContactTitle(): Serenity.StringEditor;
-        Representatives(): Serenity.LookupEditor;
-        Address(): Serenity.StringEditor;
-        City(): Serenity.StringEditor;
-        Region(): Serenity.StringEditor;
-        PostalCode(): Serenity.StringEditor;
-        Country(): Serenity.StringEditor;
-        Phone(): Serenity.StringEditor;
-        Fax(): Serenity.StringEditor;
-        NoteList(): NotesEditor;
+        CustomerID: Serenity.StringEditor;
+        CompanyName: Serenity.StringEditor;
+        ContactName: Serenity.StringEditor;
+        ContactTitle: Serenity.StringEditor;
+        Representatives: Serenity.LookupEditor;
+        Address: Serenity.StringEditor;
+        City: Serenity.StringEditor;
+        Region: Serenity.StringEditor;
+        PostalCode: Serenity.StringEditor;
+        Country: Serenity.StringEditor;
+        Phone: Serenity.StringEditor;
+        Fax: Serenity.StringEditor;
+        NoteList: NotesEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1356,7 +1359,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<CustomerRow>;
+        function getLookup(): Q.Lookup<CustomerRow>;
         namespace Fields {
             const ID: string;
             const CustomerID: string;
@@ -1397,23 +1400,23 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface EmployeeForm {
-        LastName(): Serenity.StringEditor;
-        FirstName(): Serenity.StringEditor;
-        Title(): Serenity.StringEditor;
-        TitleOfCourtesy(): Serenity.StringEditor;
-        BirthDate(): Serenity.DateEditor;
-        HireDate(): Serenity.DateEditor;
-        Address(): Serenity.StringEditor;
-        City(): Serenity.StringEditor;
-        Region(): Serenity.StringEditor;
-        PostalCode(): Serenity.StringEditor;
-        Country(): Serenity.StringEditor;
-        HomePhone(): Serenity.StringEditor;
-        Extension(): Serenity.StringEditor;
-        Photo(): Serenity.StringEditor;
-        Notes(): Serenity.StringEditor;
-        ReportsTo(): Serenity.IntegerEditor;
-        PhotoPath(): Serenity.StringEditor;
+        LastName: Serenity.StringEditor;
+        FirstName: Serenity.StringEditor;
+        Title: Serenity.StringEditor;
+        TitleOfCourtesy: Serenity.StringEditor;
+        BirthDate: Serenity.DateEditor;
+        HireDate: Serenity.DateEditor;
+        Address: Serenity.StringEditor;
+        City: Serenity.StringEditor;
+        Region: Serenity.StringEditor;
+        PostalCode: Serenity.StringEditor;
+        Country: Serenity.StringEditor;
+        HomePhone: Serenity.StringEditor;
+        Extension: Serenity.StringEditor;
+        Photo: Serenity.StringEditor;
+        Notes: Serenity.StringEditor;
+        ReportsTo: Serenity.IntegerEditor;
+        PhotoPath: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1462,7 +1465,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<EmployeeRow>;
+        function getLookup(): Q.Lookup<EmployeeRow>;
         namespace Fields {
             const EmployeeID: string;
             const LastName: string;
@@ -1527,7 +1530,7 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface EmployeeTerritoryForm {
-        TerritoryID(): Serenity.StringEditor;
+        TerritoryID: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1640,10 +1643,10 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface OrderDetailForm {
-        ProductID(): Serenity.LookupEditor;
-        UnitPrice(): Serenity.DecimalEditor;
-        Quantity(): Serenity.IntegerEditor;
-        Discount(): Serenity.DecimalEditor;
+        ProductID: Serenity.LookupEditor;
+        UnitPrice: Serenity.DecimalEditor;
+        Quantity: Serenity.IntegerEditor;
+        Discount: Serenity.DecimalEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1710,20 +1713,20 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface OrderForm {
-        CustomerID(): CustomerEditor;
-        OrderDate(): Serenity.DateEditor;
-        RequiredDate(): Serenity.DateEditor;
-        EmployeeID(): Serenity.LookupEditor;
-        DetailList(): OrderDetailsEditor;
-        ShippedDate(): Serenity.DateEditor;
-        ShipVia(): Serenity.LookupEditor;
-        Freight(): Serenity.DecimalEditor;
-        ShipName(): Serenity.StringEditor;
-        ShipAddress(): Serenity.StringEditor;
-        ShipCity(): Serenity.StringEditor;
-        ShipRegion(): Serenity.StringEditor;
-        ShipPostalCode(): Serenity.StringEditor;
-        ShipCountry(): Serenity.StringEditor;
+        CustomerID: CustomerEditor;
+        OrderDate: Serenity.DateEditor;
+        RequiredDate: Serenity.DateEditor;
+        EmployeeID: Serenity.LookupEditor;
+        DetailList: OrderDetailsEditor;
+        ShippedDate: Serenity.DateEditor;
+        ShipVia: Serenity.LookupEditor;
+        Freight: Serenity.DecimalEditor;
+        ShipName: Serenity.StringEditor;
+        ShipAddress: Serenity.StringEditor;
+        ShipCity: Serenity.StringEditor;
+        ShipRegion: Serenity.StringEditor;
+        ShipPostalCode: Serenity.StringEditor;
+        ShipCountry: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1762,7 +1765,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<OrderRow>;
+        function getLookup(): Q.Lookup<OrderRow>;
         namespace Fields {
             const OrderID: string;
             const CustomerID: string;
@@ -1825,16 +1828,16 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface ProductForm {
-        ProductName(): Serenity.StringEditor;
-        ProductImage(): Serenity.ImageUploadEditor;
-        Discontinued(): Serenity.BooleanEditor;
-        SupplierID(): Serenity.LookupEditor;
-        CategoryID(): Serenity.LookupEditor;
-        QuantityPerUnit(): Serenity.StringEditor;
-        UnitPrice(): Serenity.DecimalEditor;
-        UnitsInStock(): Serenity.IntegerEditor;
-        UnitsOnOrder(): Serenity.IntegerEditor;
-        ReorderLevel(): Serenity.IntegerEditor;
+        ProductName: Serenity.StringEditor;
+        ProductImage: Serenity.ImageUploadEditor;
+        Discontinued: Serenity.BooleanEditor;
+        SupplierID: Serenity.LookupEditor;
+        CategoryID: Serenity.LookupEditor;
+        QuantityPerUnit: Serenity.StringEditor;
+        UnitPrice: Serenity.DecimalEditor;
+        UnitsInStock: Serenity.IntegerEditor;
+        UnitsOnOrder: Serenity.IntegerEditor;
+        ReorderLevel: Serenity.IntegerEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1948,7 +1951,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<ProductRow>;
+        function getLookup(): Q.Lookup<ProductRow>;
         namespace Fields {
             const ProductID: string;
             const ProductName: string;
@@ -2004,8 +2007,8 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface RegionForm {
-        RegionID(): Serenity.IntegerEditor;
-        RegionDescription(): Serenity.StringEditor;
+        RegionID: Serenity.IntegerEditor;
+        RegionDescription: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -2018,7 +2021,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<RegionRow>;
+        function getLookup(): Q.Lookup<RegionRow>;
         namespace Fields {
             const RegionID: string;
             const RegionDescription: string;
@@ -2078,8 +2081,8 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface ShipperForm {
-        CompanyName(): Serenity.StringEditor;
-        Phone(): PhoneEditor;
+        CompanyName: Serenity.StringEditor;
+        Phone: PhoneEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -2093,7 +2096,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<ShipperRow>;
+        function getLookup(): Q.Lookup<ShipperRow>;
         namespace Fields {
             const ShipperID: string;
             const CompanyName: string;
@@ -2125,17 +2128,17 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface SupplierForm {
-        CompanyName(): Serenity.StringEditor;
-        ContactName(): Serenity.StringEditor;
-        ContactTitle(): Serenity.StringEditor;
-        Address(): Serenity.StringEditor;
-        City(): Serenity.StringEditor;
-        Region(): Serenity.StringEditor;
-        PostalCode(): Serenity.StringEditor;
-        Country(): Serenity.StringEditor;
-        Phone(): Serenity.StringEditor;
-        Fax(): Serenity.StringEditor;
-        HomePage(): Serenity.StringEditor;
+        CompanyName: Serenity.StringEditor;
+        ContactName: Serenity.StringEditor;
+        ContactTitle: Serenity.StringEditor;
+        Address: Serenity.StringEditor;
+        City: Serenity.StringEditor;
+        Region: Serenity.StringEditor;
+        PostalCode: Serenity.StringEditor;
+        Country: Serenity.StringEditor;
+        Phone: Serenity.StringEditor;
+        Fax: Serenity.StringEditor;
+        HomePage: Serenity.StringEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -2158,7 +2161,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<SupplierRow>;
+        function getLookup(): Q.Lookup<SupplierRow>;
         namespace Fields {
             const SupplierID: string;
             const CompanyName: string;
@@ -2199,9 +2202,9 @@ declare namespace Serene.Northwind {
         static formKey: string;
     }
     interface TerritoryForm {
-        TerritoryID(): Serenity.StringEditor;
-        TerritoryDescription(): Serenity.StringEditor;
-        RegionID(): Serenity.LookupEditor;
+        TerritoryID: Serenity.StringEditor;
+        TerritoryDescription: Serenity.StringEditor;
+        RegionID: Serenity.LookupEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -2217,7 +2220,7 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         const lookupKey: string;
-        function lookup(): Q.Lookup<TerritoryRow>;
+        function getLookup(): Q.Lookup<TerritoryRow>;
         namespace Fields {
             const ID: string;
             const TerritoryID: string;
@@ -2268,12 +2271,6 @@ declare namespace Serene {
     }
 }
 declare namespace Serene.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        get_onSave(): (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void;
-        set_onSave(value: (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void): void;
-        get_onDelete(): (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void;
-        set_onDelete(value: (p1: Serenity.ServiceOptions<Serenity.DeleteResponse>, p2: (p1: Serenity.DeleteResponse) => void) => void): void;
-    }
     class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string);
     }
@@ -2350,9 +2347,6 @@ declare namespace Serene.Northwind {
         okClick: () => void;
         get_text(): string;
         set_text(value: string): void;
-    }
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        form: OrderDetailForm;
     }
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;
@@ -2470,5 +2464,13 @@ declare namespace Serene.BasicSamples {
          * that should be processed in this service call.
          */
         protected executeForBatch(batch: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: OrderDetailForm;
+        constructor();
     }
 }

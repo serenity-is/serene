@@ -43,7 +43,7 @@
         }
 
         public set_shippingState(value: number): void {
-            this.shippingStateFilter.set_value(value == null ? '' : value.toString());
+            this.shippingStateFilter.value = value == null ? '' : value.toString();
         }
     }
 }

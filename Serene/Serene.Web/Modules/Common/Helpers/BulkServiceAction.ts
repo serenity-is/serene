@@ -16,8 +16,8 @@
         protected createProgressDialog() {
             this.progressDialog = new BasicProgressDialog();
             this.progressDialog.dialogOpen();
-            this.progressDialog.set_max(this.keys.length);
-            this.progressDialog.set_value(0);
+            this.progressDialog.max = this.keys.length;
+            this.progressDialog.value = 0;
         }
 
         protected getConfirmationFormat() {
@@ -68,7 +68,7 @@
             this.pendingRequests--;
             this.completedRequests++;
 
-            var title = Q.text((this.progressDialog.get_cancelled() ?
+            var title = Q.text((this.progressDialog.cancelled ?
                 'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
 
             title += ' (';
@@ -84,9 +84,9 @@
                 title += Q.format(Q.text('Site.BulkServiceAction.ErrorCount'), this.errorCount);
             }
 
-            this.progressDialog.set_title(title + ')');
-            this.progressDialog.set_value(this.successCount + this.errorCount);
-            if (!this.progressDialog.get_cancelled() && this.progressDialog.get_value() < this.keys.length) {
+            this.progressDialog.title = title + ')';
+            this.progressDialog.value = this.successCount + this.errorCount;
+            if (!this.progressDialog.cancelled && this.progressDialog.value < this.keys.length) {
                 this.executeNextBatch();
             }
 

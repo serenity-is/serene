@@ -5,9 +5,9 @@
     }
 
     export interface ForgotPasswordForm {
-        Email(): Serenity.EmailEditor;
+        Email: Serenity.EmailEditor;
     }
 
-    [['Email', Serenity.EmailEditor]].forEach(x => ForgotPasswordForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['Email', Serenity.EmailEditor]].forEach(x => Object.defineProperty(ForgotPasswordForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

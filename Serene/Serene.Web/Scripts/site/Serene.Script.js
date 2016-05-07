@@ -124,15 +124,6 @@
 	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
 	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.GridEditorDialog
-	var $Serene_Common_GridEditorDialog = function() {
-		this.$8$OnSaveField = null;
-		this.$8$OnDeleteField = null;
-		Serenity.EntityDialog.call(this);
-	};
-	$Serene_Common_GridEditorDialog.__typeName = 'Serene.Common.GridEditorDialog';
-	global.Serene.Common.GridEditorDialog = $Serene_Common_GridEditorDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.LanguageSelection
 	var $Serene_Common_LanguageSelection = function(select, currentLanguage) {
 		Serenity.Widget.call(this, select, null);
@@ -647,7 +638,7 @@
 	// Serene.Northwind.OrderDetailDialog
 	var $Serene_Northwind_OrderDetailDialog = function() {
 		this.form = null;
-		$Serene_Common_GridEditorDialog.call(this);
+		Serene.Common.GridEditorDialog.call(this);
 		this.form = new $Serene_Northwind_OrderDetailForm(this.idPrefix);
 		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
 			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
@@ -1038,42 +1029,6 @@
 			this.$3$ReorderLevelField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Common_GridEditorDialog, $asm, {
-		destroy: function() {
-			this.set_onSave(null);
-			this.set_onDelete(null);
-			Serenity.EntityDialog.prototype.destroy.call(this);
-		},
-		updateInterface: function() {
-			Serenity.EntityDialog.prototype.updateInterface.call(this);
-			// apply changes button doesn't work properly with in-memory grids yet
-			if (ss.isValue(this.applyChangesButton)) {
-				this.applyChangesButton.hide();
-			}
-		},
-		saveHandler: function(options, callback) {
-			if (!ss.staticEquals(this.get_onSave(), null)) {
-				this.get_onSave()(options, callback);
-			}
-		},
-		deleteHandler: function(options, callback) {
-			if (!ss.staticEquals(this.get_onDelete(), null)) {
-				this.get_onDelete()(options, callback);
-			}
-		},
-		get_onSave: function() {
-			return this.$8$OnSaveField;
-		},
-		set_onSave: function(value) {
-			this.$8$OnSaveField = value;
-		},
-		get_onDelete: function() {
-			return this.$8$OnDeleteField;
-		},
-		set_onDelete: function(value) {
-			this.$8$OnDeleteField = value;
-		}
-	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
@@ -1470,7 +1425,7 @@
 			this.byId('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
-	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, $Serene_Common_GridEditorDialog, [Serenity.IDialog, Serenity.IEditDialog]);
+	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, Serene.Common.GridEditorDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderDetailForm, $asm, {
 		set_productID: function(value) {
 			this.$3$ProductIDField = value;
@@ -1709,7 +1664,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_Common_GridEditorDialog, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });
 	ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
 	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.FormKeyAttribute('Membership.Login')] });

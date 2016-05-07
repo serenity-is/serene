@@ -5,10 +5,10 @@
     }
 
     export interface ShipperForm {
-        CompanyName(): Serenity.StringEditor;
-        Phone(): PhoneEditor;
+        CompanyName: Serenity.StringEditor;
+        Phone: PhoneEditor;
     }
 
-    [['CompanyName', Serenity.StringEditor], ['Phone', PhoneEditor]].forEach(x => ShipperForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['CompanyName', Serenity.StringEditor], ['Phone', PhoneEditor]].forEach(x => Object.defineProperty(ShipperForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

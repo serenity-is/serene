@@ -13,7 +13,7 @@
             UserRoleService.List({
                 UserID: this.options.userID
             }, response => {
-                this.permissions.set_value(response.Entities.map(x => x.toString()));
+                this.permissions.value = response.Entities.map(x => x.toString());
             });
         }
 
@@ -25,7 +25,7 @@
                 click: () => {
                     Q.serviceRequest('Administration/UserRole/Update', {
                         UserID: this.options.userID,
-                        Roles: this.permissions.get_value().map(x => parseInt(x, 10))
+                        Roles: this.permissions.value.map(x => parseInt(x, 10))
                     }, response => {
                         this.dialogClose();
                         Q.notifySuccess(Q.text('Site.UserRoleDialog.SaveSuccess'));

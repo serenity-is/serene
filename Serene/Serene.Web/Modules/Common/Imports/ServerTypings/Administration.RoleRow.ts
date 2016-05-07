@@ -10,7 +10,7 @@
         export const localTextPrefix = 'Administration.Role';
         export const lookupKey = 'Administration.Role';
 
-        export function lookup(): Q.Lookup<RoleRow> {
+        export function getLookup(): Q.Lookup<RoleRow> {
             return Q.getLookup<RoleRow>('Administration.Role');
         }
 

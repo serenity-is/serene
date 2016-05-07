@@ -5,9 +5,9 @@
     }
 
     export interface EmployeeTerritoryForm {
-        TerritoryID(): Serenity.StringEditor;
+        TerritoryID: Serenity.StringEditor;
     }
 
-    [['TerritoryID', Serenity.StringEditor]].forEach(x => EmployeeTerritoryForm.prototype[<string>x[0]] = function() { return this.w(x[0], x[1]); });
+    [['TerritoryID', Serenity.StringEditor]].forEach(x => Object.defineProperty(EmployeeTerritoryForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
 }
 

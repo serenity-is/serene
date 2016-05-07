@@ -513,7 +513,7 @@ var Serene;
                 var uiDialog = dialog.element.closest(".ui-dialog");
                 dialog.loadEntityAndOpenDialog({
                     RoleId: 789,
-                    RoleName: 'some.thing'
+                    RoleName: 'some.thing',
                 });
                 try {
                     assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');

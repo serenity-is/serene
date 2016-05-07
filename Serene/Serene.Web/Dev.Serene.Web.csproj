@@ -1538,6 +1538,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\GridFilteredByCriteria.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\GroupingAndSummariesInGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ViewWithoutID\ViewWithoutIDGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\ReportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorBase.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
@@ -1545,6 +1546,7 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Note\NotesEditor.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\OrderDetail\OrderDetailDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\OrderDetail\OrderDetailsEditor.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderBulkAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />

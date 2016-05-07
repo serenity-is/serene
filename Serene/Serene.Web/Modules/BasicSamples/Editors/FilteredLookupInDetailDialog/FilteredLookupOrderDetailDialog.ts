@@ -15,7 +15,7 @@
             // we can set cascade field in constructor
             // we could also use FilterField but in this case, when CategoryID is null
             // lookup editor would show all products in any category
-            this.form.ProductID().set_cascadeField(Northwind.ProductRow.Fields.CategoryID);
+            this.form.ProductID.cascadeField = Northwind.ProductRow.Fields.CategoryID;
 
             // but CategoryID value is not yet available here as detail editor will set it 
             // after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
@@ -32,7 +32,7 @@
             // make sure you have [LookupInclude] on CategoryID property of ProductRow
             // otherwise this field won't be available in lookup script (will always be null),
             // so can't be filtered and you'll end up with an empty product list.
-            this.form.ProductID().set_cascadeValue(this.categoryID);
+            this.form.ProductID.set_cascadeValue(this.categoryID);
         }
 
         public categoryID: number;
