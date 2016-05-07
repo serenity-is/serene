@@ -1531,7 +1531,7 @@ var Serene;
     var BasicSamples;
     (function (BasicSamples) {
         /**
-         * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+         * Subclass of OrderGrid to override dialog type to ResponsiveDialog
          */
         var ResponsiveGrid = (function (_super) {
             __extends(ResponsiveGrid, _super);
@@ -1942,7 +1942,6 @@ var Serene;
         BasicSamples.GroupingAndSummariesInGrid = GroupingAndSummariesInGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
 var Serene;
 (function (Serene) {
     var BasicSamples;

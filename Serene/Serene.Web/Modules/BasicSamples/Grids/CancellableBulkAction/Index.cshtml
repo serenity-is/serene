@@ -16,6 +16,8 @@
     We also use 10 parallel service requests to make it quick.</p>
     <p>The service used here is a fake one that delays between 100-500 ms and intentionally fails randomly for demonstration purposes.</p>
     <p>Note that these operations are not performed inside a transaction, thus cancelling action will not revert updates on already processed records.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> @Html.SereneSource("Index.cshtml"), @Html.SereneSource("CancellableBulkActionGrid.ts")</p>
 </div>
 
 <div id="GridDiv"></div>

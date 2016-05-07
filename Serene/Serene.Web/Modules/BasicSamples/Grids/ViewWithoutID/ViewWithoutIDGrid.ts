@@ -1,6 +1,4 @@
-﻿/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
-
-namespace Serene.BasicSamples {
+﻿namespace Serene.BasicSamples {
     @Serenity.Decorators.registerClass()
     export class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         protected getColumnsKey() { return "Northwind.SalesByCategory"; }

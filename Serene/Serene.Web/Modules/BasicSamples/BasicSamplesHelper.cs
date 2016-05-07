@@ -12,7 +12,7 @@ namespace Serene
             var path = Path.GetDirectoryName(location.Replace("/", "\\"));
             path = System.IO.Path.Combine(path, file);
 
-            return new MvcHtmlString("<a href=\"" +
+            return new MvcHtmlString("<a target=\"blank\" style=\"font-weight: bold; color: #ffc\" href=\"" +
                 helper.Encode(path.Replace("\\", "/").Replace("~/",
                     "https://github.com/volkanceylan/Serene/blob/master/Serene/Serene.Web/")) +
                 "\">" + 

@@ -317,7 +317,7 @@ declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     /**
-     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+     * Subclass of OrderGrid to override dialog type to ResponsiveDialog
      */
     class ResponsiveGrid extends Northwind.OrderGrid {
         protected getDialogType(): typeof ResponsiveDialog;
