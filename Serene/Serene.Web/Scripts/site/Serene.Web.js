@@ -1565,6 +1565,161 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var Common;
+    (function (Common) {
+        var GridEditorBase = (function (_super) {
+            __extends(GridEditorBase, _super);
+            function GridEditorBase(container) {
+                _super.call(this, container);
+                this.nextId = 1;
+            }
+            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorBase.prototype.id = function (entity) {
+                return entity.__id;
+            };
+            GridEditorBase.prototype.save = function (opt, callback) {
+                var _this = this;
+                var request = opt.request;
+                var row = Q.deepClone(request.Entity);
+                var id = row.__id;
+                if (id == null) {
+                    row.__id = this.nextId++;
+                }
+                if (!this.validateEntity(row, id)) {
+                    return;
+                }
+                var items = Q.arrayClone(this.view.getItems());
+                if (id == null) {
+                    items.push(row);
+                }
+                else {
+                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
+                    items[index] = Q.deepClone({}, items[index], row);
+                }
+                this.setEntities(items);
+                callback({});
+            };
+            GridEditorBase.prototype.deleteEntity = function (id) {
+                this.view.deleteItem(id);
+                return true;
+            };
+            GridEditorBase.prototype.validateEntity = function (row, id) {
+                return true;
+            };
+            GridEditorBase.prototype.setEntities = function (items) {
+                this.view.setItems(items, true);
+            };
+            GridEditorBase.prototype.getNewEntity = function () {
+                return {};
+            };
+            GridEditorBase.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: this.getAddButtonCaption(),
+                        cssClass: 'add-button',
+                        onClick: function () {
+                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
+                                var dialog = dlg;
+                                dialog.set_onSave(function (opt, callback) { return _this.save(opt, callback); });
+                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
+                            });
+                        }
+                    }];
+            };
+            GridEditorBase.prototype.editItem = function (entityOrId) {
+                var _this = this;
+                var id = entityOrId;
+                var item = this.view.getItemById(id);
+                this.createEntityDialog(this.getItemType(), function (dlg) {
+                    var dialog = dlg;
+                    dialog.set_onDelete(function (opt, callback) {
+                        if (!_this.deleteEntity(id)) {
+                            return;
+                        }
+                        callback({});
+                    });
+                    dialog.set_onSave(function (opt, callback) { return _this.save(opt, callback); });
+                    dialog.loadEntityAndOpenDialog(item);
+                });
+                ;
+            };
+            GridEditorBase.prototype.getEditValue = function (property, target) {
+                target[property.name] = this.get_value();
+            };
+            GridEditorBase.prototype.setEditValue = function (source, property) {
+                this.set_value(source[property.name]);
+            };
+            GridEditorBase.prototype.get_value = function () {
+                return this.view.getItems().map(function (x) {
+                    var y = Q.deepClone(x);
+                    delete y['__id'];
+                    return y;
+                });
+            };
+            GridEditorBase.prototype.set_value = function (value) {
+                var _this = this;
+                this.view.setItems((value || []).map(function (x) {
+                    var y = Q.deepClone(x);
+                    y.__id = _this.nextId++;
+                    return y;
+                }), true);
+            };
+            GridEditorBase.prototype.getGridCanLoad = function () {
+                return false;
+            };
+            GridEditorBase.prototype.usePager = function () {
+                return false;
+            };
+            GridEditorBase.prototype.getInitialTitle = function () {
+                return null;
+            };
+            GridEditorBase.prototype.createQuickSearchInput = function () {
+            };
+            GridEditorBase = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.element("<div/>")
+            ], GridEditorBase);
+            return GridEditorBase;
+        }(Serenity.EntityGrid));
+        Common.GridEditorBase = GridEditorBase;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailsEditor = (function (_super) {
+            __extends(OrderDetailsEditor, _super);
+            function OrderDetailsEditor(container) {
+                _super.call(this, container);
+            }
+            OrderDetailsEditor.prototype.getColumnsKey = function () { return "Northwind.OrderDetail"; };
+            OrderDetailsEditor.prototype.getDialogType = function () { return Northwind.OrderDetailDialog; };
+            OrderDetailsEditor.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            OrderDetailsEditor.prototype.validateEntity = function (row, id) {
+                row.ProductID = Q.toId(row.ProductID);
+                var sameProduct = Q.tryFirst(this.view.getItems(), function (x) { return x.ProductID === row.ProductID; });
+                if (sameProduct && this.id(sameProduct) !== id) {
+                    Q.alert('This product is already in order details!');
+                    return false;
+                }
+                row.ProductName = Northwind.ProductRow.lookup().itemById[row.ProductID].ProductName;
+                row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
+                return true;
+            };
+            OrderDetailsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailsEditor);
+            return OrderDetailsEditor;
+        }(Serene.Common.GridEditorBase));
+        Northwind.OrderDetailsEditor = OrderDetailsEditor;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/OrderDetail/OrderDetailsEditor.ts" />
+var Serene;
+(function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
         /**

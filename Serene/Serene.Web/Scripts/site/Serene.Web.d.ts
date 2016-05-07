@@ -324,6 +324,38 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
+declare namespace Serene.Common {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getIdProperty(): string;
+        private nextId;
+        constructor(container: JQuery);
+        protected id(entity: TEntity): any;
+        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
+        protected deleteEntity(id: number): boolean;
+        protected validateEntity(row: TEntity, id: number): boolean;
+        protected setEntities(items: TEntity[]): void;
+        protected getNewEntity(): TEntity;
+        protected getButtons(): Serenity.ToolButton[];
+        protected editItem(entityOrId: any): void;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        get_value(): TEntity[];
+        set_value(value: TEntity[]): void;
+        protected getGridCanLoad(): boolean;
+        protected usePager(): boolean;
+        protected getInitialTitle(): any;
+        protected createQuickSearchInput(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof OrderDetailDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        validateEntity(row: any, id: any): boolean;
+    }
+}
 declare namespace Serene.BasicSamples {
     /**
      * Our subclass of Order Details editor with a CategoryID property
@@ -2223,19 +2255,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
-        constructor(container: JQuery);
-        id(entity: any): any;
-        save(opt: Serenity.ServiceOptions<any>, callback: (p1: Serenity.ServiceResponse) => void): void;
-        deleteEntity(id: number): boolean;
-        validateEntity(row: any, id: any): boolean;
-        setEntities(items: any[]): void;
-        getNewEntity(): any;
-        getEditValue(property: Serenity.PropertyItem, target: any): void;
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-        get_value(): any[];
-        set_value(value: any[]): void;
-    }
     class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
         get_onSave(): (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void;
         set_onSave(value: (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void): void;
@@ -2324,9 +2343,6 @@ declare namespace Serene.Northwind {
     }
     class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
         form: OrderDetailForm;
-    }
-    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
-        constructor(container: JQuery);
     }
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;

@@ -1,4 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿/// <reference path="../../../Northwind/OrderDetail/OrderDetailsEditor.ts" />
+
+namespace Serene.BasicSamples {
 
     /**
      * Our subclass of Order Details editor with a CategoryID property

@@ -1,4 +1,23 @@
-﻿
+﻿namespace Serene.Northwind
+{
+    using Common;
+    using jQueryApi;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class OrderDetailsEditor : GridEditorBase<OrderDetailRow>
+    {
+        public OrderDetailsEditor(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+}
+
+/* 
+This class has been ported to TypeScript. See OrderDetailsEditor.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Northwind
 {
     using Common;
@@ -32,3 +51,4 @@ namespace Serene.Northwind
         }
     }
 }
+*/

@@ -124,14 +124,6 @@
 	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
 	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.GridEditorBase
-	var $Serene_Common_GridEditorBase = function(container) {
-		this.$nextId = 1;
-		Serenity.EntityGrid.call(this, container);
-	};
-	$Serene_Common_GridEditorBase.__typeName = 'Serene.Common.GridEditorBase';
-	global.Serene.Common.GridEditorBase = $Serene_Common_GridEditorBase;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorDialog
 	var $Serene_Common_GridEditorDialog = function() {
 		this.$8$OnSaveField = null;
@@ -699,13 +691,6 @@
 	$Serene_Northwind_OrderDetailForm.__typeName = 'Serene.Northwind.OrderDetailForm';
 	global.Serene.Northwind.OrderDetailForm = $Serene_Northwind_OrderDetailForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderDetailsEditor
-	var $Serene_Northwind_OrderDetailsEditor = function(container) {
-		$Serene_Common_GridEditorBase.call(this, container);
-	};
-	$Serene_Northwind_OrderDetailsEditor.__typeName = 'Serene.Northwind.OrderDetailsEditor';
-	global.Serene.Northwind.OrderDetailsEditor = $Serene_Northwind_OrderDetailsEditor;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDialog
 	var $Serene_Northwind_OrderDialog = function() {
 		this.form = null;
@@ -1068,104 +1053,6 @@
 			this.$3$ReorderLevelField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Common_GridEditorBase, $asm, {
-		id: function(entity) {
-			return ss.cast(entity.__id, ss.Int32);
-		},
-		save: function(opt, callback) {
-			var request = opt.request;
-			var row = Q.deepClone(request.Entity);
-			var id = ss.cast(row.__id, ss.Int32);
-			if (ss.isNullOrUndefined(id)) {
-				row.__id = this.$nextId++;
-			}
-			if (!this.validateEntity(row, id)) {
-				return;
-			}
-			var items = ss.arrayClone(this.view.getItems());
-			if (ss.isNullOrUndefined(id)) {
-				items.push(row);
-			}
-			else {
-				var index = Enumerable.from(items).indexOf(ss.mkdel(this, function(x) {
-					return this.id(x) === ss.unbox(id);
-				}));
-				items[index] = Q.deepClone(new Object(), items[index], row);
-			}
-			this.setEntities(items);
-			callback({});
-		},
-		deleteEntity: function(id) {
-			this.view.deleteItem(id);
-			return true;
-		},
-		validateEntity: function(row, id) {
-			return true;
-		},
-		setEntities: function(items) {
-			this.view.setItems(items, true);
-		},
-		getNewEntity: function() {
-			return new Object();
-		},
-		getButtons: function() {
-			var $t1 = [];
-			$t1.push({ title: this.getAddButtonCaption(), cssClass: 'add-button', onClick: ss.mkdel(this, function() {
-				this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
-					var dialog = ss.cast(dlg, $Serene_Common_GridEditorDialog);
-					dialog.set_onSave(ss.mkdel(this, this.save));
-					dialog.loadEntityAndOpenDialog(this.getNewEntity());
-				}));
-			}) });
-			return $t1;
-		},
-		editItem: function(entityOrId) {
-			var id = ss.unbox(Q.toId(entityOrId));
-			var item = this.view.getItemById(id);
-			this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
-				var dialog = ss.cast(dlg, $Serene_Common_GridEditorDialog);
-				dialog.set_onDelete(ss.mkdel(this, function(opt, callback) {
-					if (!this.deleteEntity(id)) {
-						return;
-					}
-					callback({});
-				}));
-				dialog.set_onSave(ss.mkdel(this, this.save));
-				dialog.loadEntityAndOpenDialog(item);
-			}));
-		},
-		getEditValue: function(property, target) {
-			target[property.name] = this.get_value();
-		},
-		setEditValue: function(source, property) {
-			this.set_value(ss.cast(source[property.name], Array));
-		},
-		get_value: function() {
-			return Enumerable.from(this.view.getItems()).select(function(x) {
-				var y = Q.deepClone(x);
-				delete y['__id'];
-				return y;
-			}).toArray();
-		},
-		set_value: function(value) {
-			this.view.setItems(Enumerable.from(value || []).select(ss.mkdel(this, function(x) {
-				var y = Q.deepClone(x);
-				y.__id = this.$nextId++;
-				return y;
-			})).toArray(), true);
-		},
-		getGridCanLoad: function() {
-			return false;
-		},
-		usePager: function() {
-			return false;
-		},
-		getInitialTitle: function() {
-			return null;
-		},
-		createQuickSearchInput: function() {
-		}
-	}, Serenity.EntityGrid, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_Common_GridEditorDialog, $asm, {
 		destroy: function() {
 			this.set_onSave(null);
@@ -1614,21 +1501,6 @@
 			this.$3$DiscountField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_OrderDetailsEditor, $asm, {
-		validateEntity: function(row, id) {
-			row.ProductID = Q.toId(row.ProductID);
-			var sameProduct = Enumerable.from(this.view.getItems()).firstOrDefault(function(x) {
-				return ss.referenceEquals(x.ProductID, row.ProductID);
-			}, ss.getDefaultValue(Object));
-			if (ss.isValue(sameProduct) && !ss.referenceEquals(this.id(sameProduct), id)) {
-				Q.alert('This product is already in order details!');
-				return false;
-			}
-			row.ProductName = Q.getLookup('Northwind.Product').itemById[row.ProductID].ProductName;
-			row.LineTotal = ss.coalesce(row.Quantity, 0) * ss.coalesce(row.UnitPrice, 0) - ss.coalesce(row.Discount, 0);
-			return true;
-		}
-	}, $Serene_Common_GridEditorBase, [Serenity.IDataGrid, Serenity.ISetEditValue, Serenity.IGetEditValue]);
 	ss.initClass($Serene_Northwind_OrderForm, $asm, {
 		set_customerID: function(value) {
 			this.$3$CustomerIDField = value;
@@ -1853,7 +1725,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_Common_GridEditorBase, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog, { attr: [new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });
 	ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
@@ -1875,7 +1746,6 @@
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryGrid, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_EmployeeTerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
-	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
 	ss.setMetadata($Serene_Northwind_OrderShippingState, { attr: [new Serenity.EnumKeyAttribute('Northwind.OrderShippingState')] });
 	ss.setMetadata($Serene_Northwind_PhoneEditor, { attr: [new Serenity.EditorAttribute()], members: [{ attr: [new Serenity.OptionAttribute()], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, sname: 'get_multiple', returnType: Boolean, params: [] }, setter: { name: 'set_Multiple', type: 8, sname: 'set_multiple', returnType: Object, params: [Boolean] } }] });

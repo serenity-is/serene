@@ -1,4 +1,24 @@
-﻿
+﻿namespace Serene.Common
+{
+    using jQueryApi;
+    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported, IncludeGenericArguments(false), ScriptName("GridEditorBase")]
+    public abstract class GridEditorBase<TEntity> : EntityGrid<TEntity, object>
+        where TEntity: class, new()
+    {
+        public GridEditorBase(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+}
+
+/* 
+This class has been ported to TypeScript. See GridEditorBase.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Common
 {
     using jQueryApi;
@@ -147,3 +167,4 @@ namespace Serene.Common
         protected override void CreateQuickSearchInput() {}
     }
 }
+*/
