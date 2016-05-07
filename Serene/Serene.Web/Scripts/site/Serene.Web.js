@@ -2874,6 +2874,12 @@ var Serene;
                 this.setSaveButtonState();
                 return _super.prototype.onViewProcessData.call(this, response);
             };
+            // PLEASE NOTE! Inline editing in grids is not something Serenity supports nor recommends.
+            // SlickGrid has some set of limitations, UI is very hard to use on some devices like mobile, 
+            // custom widgets and validations are not possible, and as a bonus the code can become a mess.
+            // 
+            // This was just a sample how-to after much requests, and is not supported. 
+            // This is all we can offer, please don't ask us to Guide you...
             /**
              * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
              * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
