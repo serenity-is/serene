@@ -124,13 +124,6 @@
 	$Serene_BasicSamples_FilteredLookupInDetailForm.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailForm';
 	global.Serene.BasicSamples.FilteredLookupInDetailForm = $Serene_BasicSamples_FilteredLookupInDetailForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.LookupFilterByMultipleDialog
-	var $Serene_BasicSamples_LookupFilterByMultipleDialog = function() {
-		Serene.Northwind.ProductDialog.call(this);
-	};
-	$Serene_BasicSamples_LookupFilterByMultipleDialog.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleDialog';
-	global.Serene.BasicSamples.LookupFilterByMultipleDialog = $Serene_BasicSamples_LookupFilterByMultipleDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.LookupFilterByMultipleForm
 	var $Serene_BasicSamples_LookupFilterByMultipleForm = function(idPrefix) {
 		this.$3$ProductNameField = null;
@@ -147,20 +140,6 @@
 	};
 	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
 	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.LookupFilterByMultipleGrid
-	var $Serene_BasicSamples_LookupFilterByMultipleGrid = function(container) {
-		Serene.Northwind.ProductGrid.call(this, container);
-	};
-	$Serene_BasicSamples_LookupFilterByMultipleGrid.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleGrid';
-	global.Serene.BasicSamples.LookupFilterByMultipleGrid = $Serene_BasicSamples_LookupFilterByMultipleGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.ProduceSeafoodCategoryEditor
-	var $Serene_BasicSamples_ProduceSeafoodCategoryEditor = function(hidden, opt) {
-		Serenity.LookupEditorBase.call(this, hidden, opt);
-	};
-	$Serene_BasicSamples_ProduceSeafoodCategoryEditor.__typeName = 'Serene.BasicSamples.ProduceSeafoodCategoryEditor';
-	global.Serene.BasicSamples.ProduceSeafoodCategoryEditor = $Serene_BasicSamples_ProduceSeafoodCategoryEditor;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ViewWithoutIDGrid
 	var $Serene_BasicSamples_ViewWithoutIDGrid = function(container) {
@@ -1176,7 +1155,6 @@
 			this.$3$DetailListField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleDialog, $asm, {}, Serene.Northwind.ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
 		set_productName: function(value) {
 			this.$3$ProductNameField = value;
@@ -1209,28 +1187,6 @@
 			this.$3$ReorderLevelField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleGrid, $asm, {
-		onViewSubmit: function() {
-			if (!Serenity.DataGrid.prototype.onViewSubmit.call(this)) {
-				return false;
-			}
-			// this has no relation to our lookup editor but as we'll allow picking only 
-			// categories of Produce and Seafood in product dialog, it's better to show
-			// only products from these categories in grid too
-			this.view.params.Criteria = Serenity.Criteria.join(this.view.params.Criteria, 'and', [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
-			return true;
-		}
-	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_BasicSamples_ProduceSeafoodCategoryEditor, $asm, {
-		getLookupKey: function() {
-			return 'Northwind.Category';
-		},
-		getItems: function(lookup) {
-			return Enumerable.from(Serenity.LookupEditorBase.prototype.getItems.call(this, lookup)).where(function(x) {
-				return x.CategoryName === 'Produce' || x.CategoryName === 'Seafood';
-			});
-		}
-	}, Serenity.LookupEditorBase, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
 	ss.initClass($Serene_BasicSamples_ViewWithoutIDGrid, $asm, {
 		onViewProcessData: function(response) {
 			response = Serenity.DataGrid.prototype.onViewProcessData.call(this, response);
@@ -2031,8 +1987,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('BasicSamples.LookupFilterByMultiple')] });
-	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_LookupFilterByMultipleDialog)] });
 	ss.setMetadata($Serene_BasicSamples_ViewWithoutIDGrid, { attr: [new Serenity.IdPropertyAttribute('__id'), new Serenity.ColumnsKeyAttribute('Northwind.SalesByCategory'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.LocalTextPrefixAttribute('Northwind.SalesByCategory'), new Serenity.ServiceAttribute('Northwind/SalesByCategory')] });
 	ss.setMetadata($Serene_Common_GridEditorBase, { attr: [new Serenity.ElementAttribute('<div/>'), new Serenity.EditorAttribute(), new Serenity.IdPropertyAttribute('__id')] });
 	ss.setMetadata($Serene_Common_GridEditorDialog, { attr: [new Serenity.IdPropertyAttribute('__id')] });

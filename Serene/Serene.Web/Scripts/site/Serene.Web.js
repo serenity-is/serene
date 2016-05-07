@@ -1671,6 +1671,113 @@ var Serene;
         BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * This is our custom product dialog that uses a different product form
+         * (LookupFilterByMultipleForm) with our special category editor.
+         */
+        var LookupFilterByMultipleDialog = (function (_super) {
+            __extends(LookupFilterByMultipleDialog, _super);
+            function LookupFilterByMultipleDialog() {
+                _super.apply(this, arguments);
+            }
+            LookupFilterByMultipleDialog.prototype.getFormKey = function () { return BasicSamples.LookupFilterByMultipleForm.formKey; };
+            LookupFilterByMultipleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LookupFilterByMultipleDialog);
+            return LookupFilterByMultipleDialog;
+        }(Serene.Northwind.ProductDialog));
+        BasicSamples.LookupFilterByMultipleDialog = LookupFilterByMultipleDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+         */
+        var LookupFilterByMultipleGrid = (function (_super) {
+            __extends(LookupFilterByMultipleGrid, _super);
+            function LookupFilterByMultipleGrid(container) {
+                _super.call(this, container);
+            }
+            LookupFilterByMultipleGrid.prototype.getDialogType = function () { return BasicSamples.LookupFilterByMultipleDialog; };
+            /**
+             * This method is called just before List request is sent to service.
+             * You have an opportunity here to cancel request or modify it.
+             * Here we'll add a custom criteria to list request.
+             */
+            LookupFilterByMultipleGrid.prototype.onViewSubmit = function () {
+                if (!_super.prototype.onViewSubmit.call(this)) {
+                    return false;
+                }
+                // this has no relation to our lookup editor but as we'll allow picking only 
+                // categories of Produce and Seafood in product dialog, it's better to show
+                // only products from these categories in grid too
+                var request = this.view.params;
+                request.Criteria = Serenity.Criteria.and(request.Criteria, [['CategoryName'], 'in', [['Produce', 'Seafood']]]);
+                // brackets used are important above, NOT ['CategoryName', 'in', ['Produce', 'Seafood']]
+                return true;
+            };
+            LookupFilterByMultipleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LookupFilterByMultipleGrid);
+            return LookupFilterByMultipleGrid;
+        }(Serene.Northwind.ProductGrid));
+        BasicSamples.LookupFilterByMultipleGrid = LookupFilterByMultipleGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * This is our category editor that will show only categories of Produce and
+         * Seafood. We are subclassing LookupEditorBase which also LookupEditor
+         * derives from.
+         *
+         * After compiling and transforming templates, this editor type will be
+         * available in server side to use in our LookupFilterByMultipleForm,
+         * which is a version of ProductForm that uses our custom editor.
+         */
+        var ProduceSeafoodCategoryEditor = (function (_super) {
+            __extends(ProduceSeafoodCategoryEditor, _super);
+            function ProduceSeafoodCategoryEditor(container, opt) {
+                _super.call(this, container, opt);
+            }
+            /**
+             * Normally LookupEditor requires a lookup key to determine which set of
+             * lookup data to show in editor. As our editor will only show category
+             * data, we lock it to category lookup key.
+             */
+            ProduceSeafoodCategoryEditor.prototype.getLookupKey = function () {
+                return Serene.Northwind.CategoryRow.lookupKey;
+            };
+            /**
+             * Here we are filtering by category name but you could filter by any field.
+             * Just make sure the fields you filter on has [LookupInclude] attribute on them,
+             * otherwise their value will be null in client side as they are not sent back
+             * from server in lookup script.
+             */
+            ProduceSeafoodCategoryEditor.prototype.getItems = function (lookup) {
+                return _super.prototype.getItems.call(this, lookup).filter(function (x) {
+                    return x.CategoryName === 'Produce' || x.CategoryName === 'Seafood';
+                });
+            };
+            ProduceSeafoodCategoryEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], ProduceSeafoodCategoryEditor);
+            return ProduceSeafoodCategoryEditor;
+        }(Serenity.LookupEditorBase));
+        BasicSamples.ProduceSeafoodCategoryEditor = ProduceSeafoodCategoryEditor;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {

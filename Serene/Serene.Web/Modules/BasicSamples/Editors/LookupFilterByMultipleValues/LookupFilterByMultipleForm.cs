@@ -1,13 +1,9 @@
 ﻿
 namespace Serene.BasicSamples.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
-    using System.IO;
 
     [FormScript("BasicSamples.LookupFilterByMultiple")]
     [BasedOnRow(typeof(Northwind.Entities.ProductRow))]

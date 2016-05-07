@@ -44,18 +44,6 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.BasicSamples {
-
-    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
-    }
-
-    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
-
-    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
-        constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
-    }
-
     class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         constructor(container: JQuery);
     }

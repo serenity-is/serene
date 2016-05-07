@@ -379,6 +379,57 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    /**
+     * This is our custom product dialog that uses a different product form
+     * (LookupFilterByMultipleForm) with our special category editor.
+     */
+    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
+        protected getFormKey(): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+     */
+    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
+        protected getDialogType(): typeof LookupFilterByMultipleDialog;
+        constructor(container: JQuery);
+        /**
+         * This method is called just before List request is sent to service.
+         * You have an opportunity here to cancel request or modify it.
+         * Here we'll add a custom criteria to list request.
+         */
+        protected onViewSubmit(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * This is our category editor that will show only categories of Produce and
+     * Seafood. We are subclassing LookupEditorBase which also LookupEditor
+     * derives from.
+     *
+     * After compiling and transforming templates, this editor type will be
+     * available in server side to use in our LookupFilterByMultipleForm,
+     * which is a version of ProductForm that uses our custom editor.
+     */
+    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.CategoryRow> {
+        constructor(container: JQuery, opt: Serenity.LookupEditorOptions);
+        /**
+         * Normally LookupEditor requires a lookup key to determine which set of
+         * lookup data to show in editor. As our editor will only show category
+         * data, we lock it to category lookup key.
+         */
+        protected getLookupKey(): string;
+        /**
+         * Here we are filtering by category name but you could filter by any field.
+         * Just make sure the fields you filter on has [LookupInclude] attribute on them,
+         * otherwise their value will be null in client side as they are not sent back
+         * from server in lookup script.
+         */
+        protected getItems(lookup: Q.Lookup<Northwind.CategoryRow>): Northwind.CategoryRow[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class CancellableBulkActionGrid extends Northwind.OrderGrid {
         private rowSelection;
         constructor(container: JQuery);
@@ -2137,14 +2188,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
-    }
-    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
-    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
-        constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
-    }
     class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         constructor(container: JQuery);
     }

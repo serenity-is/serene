@@ -1,6 +1,27 @@
 ﻿using jQueryApi;
 using Serene.Northwind;
 using Serenity;
+using System.Runtime.CompilerServices;
+
+namespace Serene.BasicSamples
+{
+    [Imported]
+    public class ProduceSeafoodCategoryEditor : LookupEditorBase<CategoryRow>
+    {
+        public ProduceSeafoodCategoryEditor(jQueryObject hidden, LookupEditorOptions opt)
+            : base(hidden, opt)
+        {
+        }
+    }
+}
+
+/* 
+This sample has been ported to TypeScript. See ProduceSeafoodCategoryEditor.ts
+Code below is only a reference for those who want to use Saltaralle
+
+using jQueryApi;
+using Serene.Northwind;
+using Serenity;
 using Serenity.Data;
 using System.Linq;
 using System.Collections.Generic;
@@ -85,3 +106,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/

@@ -1531,6 +1531,9 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupDetailEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\ProduceSeafoodCategoryEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\GridFilteredByCriteria.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\GroupingAndSummariesInGrid.ts" />
