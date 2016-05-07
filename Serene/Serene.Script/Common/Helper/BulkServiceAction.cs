@@ -1,4 +1,7 @@
-﻿
+﻿/* 
+This class has been ported to TypeScript. See OrderGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene
 {
     using Serenity;
@@ -7,6 +10,7 @@ namespace Serene
     using System.Html;
     using System.Linq;
     using System.Runtime.CompilerServices;
+
     public abstract class BulkServiceAction : ScriptContext
     {
         protected List<string> keys;
@@ -48,7 +52,7 @@ namespace Serene
 
         protected virtual void NothingToProcess()
         {
-            Delayed(() => Q.NotifyError(GetNothingToProcessMessage()));
+            Q.NotifyError(GetNothingToProcessMessage());
         }
 
         protected virtual int GetParallelRequests()
@@ -141,11 +145,6 @@ namespace Serene
             }
         }
 
-        protected virtual void Delayed(Action action)
-        {
-            Window.SetTimeout(action, 500);
-        }
-
         protected virtual string GetAllHadErrorsFormat()
         {
             return Q.Text("Site.BulkServiceAction.AllHadErrorsFormat");
@@ -153,7 +152,7 @@ namespace Serene
 
         protected virtual void ShowAllHadErrors()
         {
-            Delayed(() => Q.NotifyError(String.Format(GetAllHadErrorsFormat(), errorCount)));
+            Q.NotifyError(String.Format(GetAllHadErrorsFormat(), errorCount));
         }
 
         protected virtual string GetSomeHadErrorsFormat()
@@ -163,7 +162,7 @@ namespace Serene
 
         protected virtual void ShowSomeHadErrors()
         {
-            Delayed(() => Q.NotifyWarning(String.Format(GetSomeHadErrorsFormat(), successCount, errorCount)));
+            Q.NotifyWarning(String.Format(GetSomeHadErrorsFormat(), successCount, errorCount));
         }
 
         protected virtual string GetAllSuccessFormat()
@@ -173,7 +172,7 @@ namespace Serene
 
         protected virtual void ShowAllSuccess()
         {
-            Delayed(() => Q.NotifySuccess(String.Format(GetAllSuccessFormat(), successCount)));
+            Q.NotifySuccess(String.Format(GetAllSuccessFormat(), successCount));
         }
 
         protected virtual void ShowResults()
@@ -232,3 +231,4 @@ namespace Serene
         public Action Done;
     }
 }
+*/

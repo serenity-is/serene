@@ -39,21 +39,6 @@
 	$Serene_BasicProgressDialog.__typeName = 'Serene.BasicProgressDialog';
 	global.Serene.BasicProgressDialog = $Serene_BasicProgressDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BulkServiceAction
-	var $Serene_BulkServiceAction = function() {
-		this.keys = null;
-		this.queue = null;
-		this.progressDialog = null;
-		this.pendingRequests = 0;
-		this.completedRequests = 0;
-		this.$successCount = 0;
-		this.$errorCount = 0;
-		this.errorByKey = null;
-		this.done = null;
-	};
-	$Serene_BulkServiceAction.__typeName = 'Serene.BulkServiceAction';
-	global.Serene.BulkServiceAction = $Serene_BulkServiceAction;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.DialogUtils
 	var $Serene_DialogUtils = function() {
 	};
@@ -212,13 +197,6 @@
 	};
 	$Serene_BasicSamples_LookupFilterByMultipleGrid.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleGrid';
 	global.Serene.BasicSamples.LookupFilterByMultipleGrid = $Serene_BasicSamples_LookupFilterByMultipleGrid;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.OrderBulkAction
-	var $Serene_BasicSamples_OrderBulkAction = function() {
-		$Serene_BulkServiceAction.call(this);
-	};
-	$Serene_BasicSamples_OrderBulkAction.__typeName = 'Serene.BasicSamples.OrderBulkAction';
-	global.Serene.BasicSamples.OrderBulkAction = $Serene_BasicSamples_OrderBulkAction;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.ProduceSeafoodCategoryEditor
 	var $Serene_BasicSamples_ProduceSeafoodCategoryEditor = function(hidden, opt) {
@@ -1215,160 +1193,6 @@
 			return "<div class='s-DialogContent s-BasicProgressDialogContent'><div id='~_StatusText' class='status-text'></div><div id='~_ProgressBar' class='progress-bar'><div id='~_ProgressLabel' class='progress-label'></div></div></div>";
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
-	ss.initClass($Serene_BulkServiceAction, $asm, {
-		createProgressDialog: function() {
-			this.progressDialog = new $Serene_BasicProgressDialog();
-			this.progressDialog.dialogOpen();
-			this.progressDialog.set_max(Enumerable.from(this.keys).count());
-			this.progressDialog.set_value(0);
-		},
-		getConfirmationFormat: function() {
-			return Q.text('Site.BulkServiceAction.ConfirmationFormat');
-		},
-		getConfirmationMessage: function(targetCount) {
-			return ss.formatString(this.getConfirmationFormat(), targetCount);
-		},
-		confirm: function(targetCount, action) {
-			Q.confirm(this.getConfirmationMessage(targetCount), action);
-		},
-		getNothingToProcessMessage: function() {
-			return Q.text('Site.BulkServiceAction.NothingToProcess');
-		},
-		nothingToProcess: function() {
-			this.delayed(ss.mkdel(this, function() {
-				Q.notifyError(this.getNothingToProcessMessage(), '', null);
-			}));
-		},
-		getParallelRequests: function() {
-			return 1;
-		},
-		getBatchSize: function() {
-			return 1;
-		},
-		startParallelExecution: function() {
-			this.createProgressDialog();
-			this.pendingRequests = 0;
-			this.completedRequests = 0;
-			this.$errorCount = 0;
-			this.errorByKey = new (ss.makeGenericType(ss.Dictionary$2, [String, Object]))();
-			this.queue = ss.getEnumerator(this.keys);
-			var parallelRequests = this.getParallelRequests();
-			while (parallelRequests-- > 0) {
-				this.executeNextBatch();
-			}
-		},
-		serviceCallCleanup: function() {
-			this.pendingRequests--;
-			this.completedRequests++;
-			var title = Q.text((this.progressDialog.get_cancelled() ? 'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
-			title += ' (';
-			if (this.$successCount > 0) {
-				title += ss.formatString(Q.text('Site.BulkServiceAction.SuccessCount'), this.$successCount);
-			}
-			if (this.$errorCount > 0) {
-				if (this.$successCount > 0) {
-					title += ', ';
-				}
-				title += ss.formatString(Q.text('Site.BulkServiceAction.ErrorCount'), this.$errorCount);
-			}
-			this.progressDialog.set_title(title + ')');
-			this.progressDialog.set_value(this.$successCount + this.$errorCount);
-			if (!this.progressDialog.get_cancelled() && this.progressDialog.get_value() < this.keys.length) {
-				this.executeNextBatch();
-			}
-			else if (this.pendingRequests === 0) {
-				this.progressDialog.dialogClose();
-				this.showResults();
-				if (!ss.staticEquals(this.done, null)) {
-					this.done();
-					this.done = null;
-				}
-			}
-		},
-		executeForBatch: function(batch) {
-		},
-		executeNextBatch: function() {
-			var batchSize = this.getBatchSize();
-			var batch = [];
-			while (true) {
-				if (batch.length >= batchSize) {
-					break;
-				}
-				if (!this.queue.moveNext()) {
-					break;
-				}
-				batch.push(this.queue.current());
-			}
-			if (batch.length > 0) {
-				this.pendingRequests++;
-				this.executeForBatch(batch);
-			}
-		},
-		delayed: function(action) {
-			window.setTimeout(action, 500);
-		},
-		getAllHadErrorsFormat: function() {
-			return Q.text('Site.BulkServiceAction.AllHadErrorsFormat');
-		},
-		showAllHadErrors: function() {
-			this.delayed(ss.mkdel(this, function() {
-				Q.notifyError(ss.formatString(this.getAllHadErrorsFormat(), this.$errorCount), '', null);
-			}));
-		},
-		getSomeHadErrorsFormat: function() {
-			return Q.text('Site.BulkServiceAction.SomeHadErrorsFormat');
-		},
-		showSomeHadErrors: function() {
-			this.delayed(ss.mkdel(this, function() {
-				Q.notifyWarning(ss.formatString(this.getSomeHadErrorsFormat(), this.$successCount, this.$errorCount), '', null);
-			}));
-		},
-		getAllSuccessFormat: function() {
-			return Q.text('Site.BulkServiceAction.AllSuccessFormat');
-		},
-		showAllSuccess: function() {
-			this.delayed(ss.mkdel(this, function() {
-				Q.notifySuccess(ss.formatString(this.getAllSuccessFormat(), this.$successCount), '', null);
-			}));
-		},
-		showResults: function() {
-			if (this.$errorCount === 0 && this.$successCount === 0) {
-				this.nothingToProcess();
-				return;
-			}
-			if (this.$errorCount > 0 && this.$successCount === 0) {
-				this.showAllHadErrors();
-				return;
-			}
-			if (this.$errorCount > 0) {
-				this.showSomeHadErrors();
-				return;
-			}
-			this.showAllSuccess();
-		},
-		execute: function(keys) {
-			this.keys = keys;
-			if (this.keys.length === 0) {
-				this.nothingToProcess();
-				return;
-			}
-			this.confirm(this.keys.length, ss.mkdel(this, function() {
-				this.startParallelExecution();
-			}));
-		},
-		get_successCount: function() {
-			return this.$successCount;
-		},
-		set_successCount: function(value) {
-			this.$successCount = value;
-		},
-		get_errorCount: function() {
-			return this.$errorCount;
-		},
-		set_errorCount: function(value) {
-			this.$errorCount = value;
-		}
-	});
 	ss.initClass($Serene_DialogUtils, $asm, {});
 	ss.initClass($Serene_LanguageList, $asm, {});
 	ss.initClass($Serene_ScriptInitialization, $asm, {});
@@ -1603,23 +1427,6 @@
 			return true;
 		}
 	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
-	ss.initClass($Serene_BasicSamples_OrderBulkAction, $asm, {
-		getParallelRequests: function() {
-			return 10;
-		},
-		getBatchSize: function() {
-			return 5;
-		},
-		executeForBatch: function(batch) {
-			Q.serviceRequest('BasicSamples/BasicSamples/OrderBulkAction', { OrderIDs: Enumerable.from(batch).select(function(x) {
-				return parseInt(x, 10);
-			}).toArray() }, ss.mkdel(this, function(response) {
-				this.set_successCount(this.get_successCount() + batch.length);
-			}), { blockUI: false, onError: ss.mkdel(this, function(response1) {
-				this.set_errorCount(this.get_errorCount() + batch.length);
-			}), onCleanup: ss.mkdel(this, this.serviceCallCleanup) });
-		}
-	}, $Serene_BulkServiceAction);
 	ss.initClass($Serene_BasicSamples_ProduceSeafoodCategoryEditor, $asm, {
 		getLookupKey: function() {
 			return 'Northwind.Category';

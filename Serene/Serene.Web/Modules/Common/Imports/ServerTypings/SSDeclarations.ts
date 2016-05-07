@@ -17,41 +17,6 @@
         set_cancelTitle(value: string): void;
     }
 
-    class BulkServiceAction extends Serenity.ScriptContext {
-        keys: string[];
-        queue: any;
-        progressDialog: BasicProgressDialog;
-        pendingRequests: number;
-        completedRequests: number;
-        errorByKey: any;
-        done: () => void;
-        createProgressDialog(): void;
-        getConfirmationFormat(): string;
-        getConfirmationMessage(targetCount: number): string;
-        confirm(targetCount: number, action: () => void): void;
-        getNothingToProcessMessage(): string;
-        nothingToProcess(): void;
-        getParallelRequests(): number;
-        getBatchSize(): number;
-        startParallelExecution(): void;
-        serviceCallCleanup(): void;
-        executeForBatch(batch: string[]): void;
-        executeNextBatch(): void;
-        delayed(action: () => void): void;
-        getAllHadErrorsFormat(): string;
-        showAllHadErrors(): void;
-        getSomeHadErrorsFormat(): string;
-        showSomeHadErrors(): void;
-        getAllSuccessFormat(): string;
-        showAllSuccess(): void;
-        showResults(): void;
-        execute(keys: string[]): void;
-        get_successCount(): number;
-        set_successCount(value: number): void;
-        get_errorCount(): number;
-        set_errorCount(value: number): void;
-    }
-
     namespace DialogUtils {
         function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
     }
@@ -103,9 +68,6 @@ declare namespace Serene.BasicSamples {
 
     class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
-    }
-
-    class OrderBulkAction extends BulkServiceAction {
     }
 
     class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {

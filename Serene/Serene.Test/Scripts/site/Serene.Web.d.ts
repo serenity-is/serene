@@ -323,6 +323,44 @@ declare namespace Serene.BasicSamples {
         protected getViewOptions(): Slick.RemoteViewOptions;
     }
 }
+declare namespace Serene.Common {
+    class BulkServiceAction {
+        protected keys: string[];
+        protected queue: string[];
+        protected queueIndex: number;
+        protected progressDialog: BasicProgressDialog;
+        protected pendingRequests: number;
+        protected completedRequests: number;
+        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
+        private successCount;
+        private errorCount;
+        done: () => void;
+        protected createProgressDialog(): void;
+        protected getConfirmationFormat(): string;
+        protected getConfirmationMessage(targetCount: any): string;
+        protected confirm(targetCount: any, action: any): void;
+        protected getNothingToProcessMessage(): string;
+        protected nothingToProcess(): void;
+        protected getParallelRequests(): number;
+        protected getBatchSize(): number;
+        protected startParallelExecution(): void;
+        protected serviceCallCleanup(): void;
+        protected executeForBatch(batch: string[]): void;
+        protected executeNextBatch(): void;
+        protected getAllHadErrorsFormat(): string;
+        protected showAllHadErrors(): void;
+        protected getSomeHadErrorsFormat(): string;
+        protected showSomeHadErrors(): void;
+        protected getAllSuccessFormat(): string;
+        protected showAllSuccess(): void;
+        protected showResults(): void;
+        protected execute(keys: string[]): void;
+        get_successCount(): number;
+        set_successCount(value: number): void;
+        get_errorCount(): number;
+        set_errorCount(value: number): void;
+    }
+}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -1988,40 +2026,6 @@ declare namespace Serene {
         get_cancelTitle(): string;
         set_cancelTitle(value: string): void;
     }
-    class BulkServiceAction extends Serenity.ScriptContext {
-        keys: string[];
-        queue: any;
-        progressDialog: BasicProgressDialog;
-        pendingRequests: number;
-        completedRequests: number;
-        errorByKey: any;
-        done: () => void;
-        createProgressDialog(): void;
-        getConfirmationFormat(): string;
-        getConfirmationMessage(targetCount: number): string;
-        confirm(targetCount: number, action: () => void): void;
-        getNothingToProcessMessage(): string;
-        nothingToProcess(): void;
-        getParallelRequests(): number;
-        getBatchSize(): number;
-        startParallelExecution(): void;
-        serviceCallCleanup(): void;
-        executeForBatch(batch: string[]): void;
-        executeNextBatch(): void;
-        delayed(action: () => void): void;
-        getAllHadErrorsFormat(): string;
-        showAllHadErrors(): void;
-        getSomeHadErrorsFormat(): string;
-        showSomeHadErrors(): void;
-        getAllSuccessFormat(): string;
-        showAllSuccess(): void;
-        showResults(): void;
-        execute(keys: string[]): void;
-        get_successCount(): number;
-        set_successCount(value: number): void;
-        get_errorCount(): number;
-        set_errorCount(value: number): void;
-    }
     namespace DialogUtils {
         function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
     }
@@ -2062,8 +2066,6 @@ declare namespace Serene.BasicSamples {
     }
     class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
         constructor(container: JQuery);
-    }
-    class OrderBulkAction extends BulkServiceAction {
     }
     class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<any, any> {
         constructor(hidden: JQuery, opt: Serenity.LookupEditorOptions);
@@ -2265,6 +2267,29 @@ declare namespace Serene.Northwind {
         private customerID;
         get_customerID(): string;
         set_customerID(value: any): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class OrderBulkAction extends Common.BulkServiceAction {
+        /**
+         * This controls how many service requests will be used in parallel.
+         * Determine this number based on how many requests your server
+         * might be able to handle, and amount of wait on external resources.
+         */
+        protected getParallelRequests(): number;
+        /**
+         * These number of records IDs will be sent to your service in one
+         * service call. If your service is designed to handle one record only,
+         * set it to 1. But note that, if you have 5000 records, this will
+         * result in 5000 service calls / requests.
+         */
+        protected getBatchSize(): number;
+        /**
+         * This is where you should call your service.
+         * Batch parameter contains the selected order IDs
+         * that should be processed in this service call.
+         */
+        protected executeForBatch(batch: any): void;
     }
 }
 declare namespace Serene.Northwind {
