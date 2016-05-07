@@ -1,4 +1,7 @@
-﻿
+﻿/* 
+This class has been ported to TypeScript. See CancellableBulkActionGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.BasicSamples
 {
     using jQueryApi;
@@ -7,6 +10,7 @@ namespace Serene.BasicSamples
     using jQueryApi.UI.Widgets;
     using System.Runtime.CompilerServices;
     using System.Html;
+
     [Resizable, Maximizable]
     public class ChartInDialog : TemplatedDialog
     {
@@ -79,3 +83,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/

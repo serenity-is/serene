@@ -1517,6 +1517,7 @@
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ChartInDialog\ChartInDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnDialog.ts" />

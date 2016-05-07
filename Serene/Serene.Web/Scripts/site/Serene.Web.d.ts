@@ -180,6 +180,16 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.BasicSamples {
+    class ChartInDialog extends Serenity.TemplatedDialog<any> {
+        private areaChart;
+        static initializePage(): void;
+        protected onDialogOpen(): void;
+        protected arrange(): void;
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
     class DefaultValuesInNewGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
         /**
@@ -2048,9 +2058,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class ChartInDialog extends Serenity.TemplatedDialog<any> {
-        static initializePage(): void;
-    }
     class CloneableEntityDialog extends Northwind.ProductDialog {
     }
     class CloneableEntityGrid extends Northwind.ProductGrid {

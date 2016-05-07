@@ -3,8 +3,7 @@
     /**
      * Our subclass of Order Details editor with a CategoryID property
      */
-    @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.editor()
+    @Serenity.Decorators.registerEditor()
     export class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
 
         protected getDialogType() { return FilteredLookupOrderDetailDialog; }

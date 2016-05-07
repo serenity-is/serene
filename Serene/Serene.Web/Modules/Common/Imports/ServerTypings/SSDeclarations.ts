@@ -44,10 +44,6 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.BasicSamples {
-    class ChartInDialog extends Serenity.TemplatedDialog<any> {
-        static initializePage(): void;
-    }
-
     class CloneableEntityDialog extends Northwind.ProductDialog {
     }
 

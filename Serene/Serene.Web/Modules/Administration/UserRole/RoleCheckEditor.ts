@@ -1,7 +1,6 @@
 ﻿namespace Serene.Administration {
 
-    @Serenity.Decorators.editor()
-    @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.registerEditor()
     export class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
 
         private searchText: string;

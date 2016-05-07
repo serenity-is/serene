@@ -1,7 +1,6 @@
 ﻿namespace Serene.Northwind {
 
-    @Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
-    @Serenity.Decorators.editor()
+    @Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
     @Serenity.Decorators.element("<div/>")
     export class NotesEditor extends Serenity.TemplatedWidget<any>
         implements Serenity.IGetEditValue, Serenity.ISetEditValue {

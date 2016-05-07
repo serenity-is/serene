@@ -843,8 +843,7 @@ var Serene;
                             .toUpperCase().indexOf(this.searchText) >= 0);
             };
             RoleCheckEditor = __decorate([
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.registerClass()
+                Serenity.Decorators.registerEditor()
             ], RoleCheckEditor);
             return RoleCheckEditor;
         }(Serenity.CheckTreeEditor));
@@ -937,6 +936,59 @@ var Serene;
         }(Serenity.EntityGrid));
         Northwind.OrderGrid = OrderGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ChartInDialog = (function (_super) {
+            __extends(ChartInDialog, _super);
+            function ChartInDialog() {
+                _super.apply(this, arguments);
+            }
+            ChartInDialog.initializePage = function () {
+                $(function () {
+                    $('#LaunchDialogButton').click(function (e) {
+                        (new ChartInDialog()).dialogOpen();
+                    });
+                });
+            };
+            ChartInDialog.prototype.onDialogOpen = function () {
+                var _this = this;
+                _super.prototype.onDialogOpen.call(this);
+                BasicSamples.BasicSamplesService.OrdersByShipper({}, function (response) {
+                    _this.areaChart = new Morris.Area({
+                        element: _this.idPrefix + 'Chart',
+                        resize: true, parseTime: false,
+                        data: response.Values,
+                        xkey: 'Month',
+                        ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
+                    });
+                });
+                this.element.closest('.ui-dialog').bind('resize', function () { return _this.arrange(); });
+            };
+            ChartInDialog.prototype.arrange = function () {
+                _super.prototype.arrange.call(this);
+                this.areaChart && this.areaChart.redraw();
+            };
+            ChartInDialog.prototype.getTemplate = function () {
+                // you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
+                return "<div id='~_Chart'></div>";
+            };
+            ChartInDialog.prototype.getDialogOptions = function () {
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.title = 'Orders by Shipper';
+                return opt;
+            };
+            ChartInDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.resizable(),
+                Serenity.Decorators.maximizable()
+            ], ChartInDialog);
+            return ChartInDialog;
+        }(Serenity.TemplatedDialog));
+        BasicSamples.ChartInDialog = ChartInDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
@@ -1205,8 +1257,7 @@ var Serene;
                 dialog.categoryID = this.categoryID;
             };
             FilteredLookupDetailEditor = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.editor()
+                Serenity.Decorators.registerEditor()
             ], FilteredLookupDetailEditor);
             return FilteredLookupDetailEditor;
         }(Serene.Northwind.OrderDetailsEditor));
@@ -1321,16 +1372,17 @@ var Serene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
+                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!this.onViewSubmit()) {
+                            if (!_this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(this.rowSelection.getSelectedKeys());
+                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(_this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -3102,8 +3154,7 @@ var Serene;
                 this.isDirty = value;
             };
             NotesEditor = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
+                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
                 Serenity.Decorators.element("<div/>")
             ], NotesEditor);
             return NotesEditor;

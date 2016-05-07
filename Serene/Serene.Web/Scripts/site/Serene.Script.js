@@ -113,21 +113,6 @@
 	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
 	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.ChartInDialog
-	var $Serene_BasicSamples_ChartInDialog = function() {
-		this.$areaChart = null;
-		Serenity.TemplatedDialog.call(this);
-	};
-	$Serene_BasicSamples_ChartInDialog.__typeName = 'Serene.BasicSamples.ChartInDialog';
-	$Serene_BasicSamples_ChartInDialog.initializePage = function() {
-		$(function() {
-			$('#LaunchDialogButton').click(function(e) {
-				(new $Serene_BasicSamples_ChartInDialog()).dialogOpen();
-			});
-		});
-	};
-	global.Serene.BasicSamples.ChartInDialog = $Serene_BasicSamples_ChartInDialog;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.CloneableEntityDialog
 	var $Serene_BasicSamples_CloneableEntityDialog = function() {
 		$Serene_Northwind_ProductDialog.call(this);
@@ -1212,32 +1197,6 @@
 			this.$3$SourceField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_ChartInDialog, $asm, {
-		onDialogOpen: function() {
-			Serenity.TemplatedDialog.prototype.onDialogOpen.call(this);
-			Q.serviceRequest('BasicSamples/BasicSamples/OrdersByShipper', {}, ss.mkdel(this, function(response) {
-				this.$areaChart = new Morris.Area({ element: this.idPrefix + 'Chart', resize: true, parseTime: false, data: response.Values, xkey: 'Month', ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto' });
-			}), null);
-			this.element.closest('.ui-dialog').bind('resize', ss.mkdel(this, function() {
-				this.arrange();
-			}));
-		},
-		arrange: function() {
-			Serenity.TemplatedDialog.prototype.arrange.call(this);
-			if (ss.isValue(this.$areaChart)) {
-				this.$areaChart.redraw();
-			}
-		},
-		getTemplate: function() {
-			// you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
-			return "<div id='~_Chart'></div>";
-		},
-		getDialogOptions: function() {
-			var opt = Serenity.TemplatedDialog.prototype.getDialogOptions.call(this);
-			opt.title = 'Orders by Shipper';
-			return opt;
-		}
-	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
 	ss.initClass($Serene_Northwind_ProductDialog, $asm, {
 		getLanguages: function() {
 			return $Serene_LanguageList.get_value();
@@ -2220,7 +2179,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_BasicSamples_ChartInDialog, { attr: [new Serenity.ResizableAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute()] });
 	ss.setMetadata($Serene_BasicSamples_CloneableEntityGrid, { attr: [new Serenity.DialogTypeAttribute($Serene_BasicSamples_CloneableEntityDialog)] });
 	ss.setMetadata($Serene_BasicSamples_LookupFilterByMultipleDialog, { attr: [new Serenity.ResponsiveAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('BasicSamples.LookupFilterByMultiple')] });
