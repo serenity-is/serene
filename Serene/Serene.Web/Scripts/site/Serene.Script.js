@@ -169,22 +169,6 @@
 	$Serene_Common_LanguageSelection.__typeName = 'Serene.Common.LanguageSelection';
 	global.Serene.Common.LanguageSelection = $Serene_Common_LanguageSelection;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.ReportHelper
-	var $Serene_Common_ReportHelper = function() {
-	};
-	$Serene_Common_ReportHelper.__typeName = 'Serene.Common.ReportHelper';
-	$Serene_Common_ReportHelper.createToolButton = function(options) {
-		return {
-			title: ss.coalesce(options.title, 'Report'),
-			cssClass: ss.coalesce(options.cssClass, 'print-button'),
-			icon: options.icon,
-			onClick: function() {
-				Q.postToUrl({ url: '~/Report/' + (options.download ? 'Download' : 'Render'), params: { key: options.reportKey, ext: ss.coalesce(options.extension, 'pdf'), opt: (ss.staticEquals(options.getParams, null) ? '' : $.toJSON(options.getParams())) }, target: ss.coalesce(options.target, '_blank') });
-			}
-		};
-	};
-	global.Serene.Common.ReportHelper = $Serene_Common_ReportHelper;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.SidebarSearch
 	var $Serene_Common_SidebarSearch = function(input, menuUL) {
 		this.$menuUL = null;
@@ -1091,7 +1075,6 @@
 		}
 	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
-	ss.initClass($Serene_Common_ReportHelper, $asm, {});
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
 			var liList = this.$menuUL.find('li').removeClass('non-match');
@@ -1328,7 +1311,7 @@
 		},
 		getToolbarButtons: function() {
 			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
-			buttons.push($Serene_Common_ReportHelper.createToolButton({ title: 'Invoice', cssClass: 'export-pdf-button', reportKey: 'Northwind.OrderDetail', getParams: ss.mkdel(this, function() {
+			buttons.push(Serene.Common.ReportHelper.createToolButton({ title: 'Invoice', cssClass: 'export-pdf-button', reportKey: 'Northwind.OrderDetail', getParams: ss.mkdel(this, function() {
 				return { OrderID: this.get_entityId() };
 			}) }));
 			return buttons;

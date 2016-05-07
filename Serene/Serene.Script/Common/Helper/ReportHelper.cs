@@ -4,30 +4,13 @@ namespace Serene.Common
     using Serenity;
     using System;
     using System.Runtime.CompilerServices;
-    public abstract class ReportHelper
+
+    [Imported]
+    public static class ReportHelper
     {
         public static ToolButton CreateToolButton(ReportButtonOptions options)
         {
-            return new ToolButton
-            {
-                Title = options.Title ?? "Report",
-                CssClass = options.CssClass ?? "print-button",
-                Icon = options.Icon,
-                OnClick = delegate
-                {
-                    Q.Externals.PostToUrl(new PostToUrlOptions
-                    {
-                        Url = "~/Report/" + (options.Download ? "Download" : "Render"),
-                        Params = new
-                        {
-                            key = options.ReportKey,
-                            ext = options.Extension ?? "pdf",
-                            opt = options.GetParams == null ? "" : Q.ToJson(options.GetParams())
-                        },
-                        Target = options.Target ?? "_blank"
-                    });
-                }
-            };
+            return null;
         }
     }
 

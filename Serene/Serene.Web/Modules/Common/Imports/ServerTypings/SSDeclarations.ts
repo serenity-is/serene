@@ -28,21 +28,6 @@ declare namespace Serene.Common {
         constructor(select: JQuery, currentLanguage: string);
     }
 
-    class ReportButtonOptions {
-        download: boolean;
-        title: string;
-        cssClass: string;
-        icon: string;
-        reportKey: string;
-        extension: string;
-        getParams: () => any;
-        target: string;
-    }
-
-    class ReportHelper {
-        static createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-    }
-
     class SidebarSearch extends Serenity.Widget<any> {
         constructor(input: JQuery, menuUL: JQuery);
     }

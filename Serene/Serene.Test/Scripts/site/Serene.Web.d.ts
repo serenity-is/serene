@@ -129,6 +129,16 @@ declare namespace Serene.Administration {
         get_rolePermissions(): string[];
         set_rolePermissions(value: string[]): void;
     }
+    interface PermissionCheckEditorOptions {
+        showRevoke?: boolean;
+    }
+    interface PermissionCheckItem {
+        ParentKey?: string;
+        Key?: string;
+        Title?: string;
+        IsGroup?: boolean;
+        GrantRevoke?: boolean;
+    }
 }
 declare namespace Serene.Administration {
     class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
@@ -578,6 +588,21 @@ declare namespace Serene.Common {
     }
     namespace ExcelExportHelper {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Common {
+    interface ReportButtonOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+        download?: boolean;
+        reportKey: string;
+        extension?: string;
+        getParams?: () => any;
+        target?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
     }
 }
 declare namespace Serene.Administration {
@@ -2242,18 +2267,6 @@ declare namespace Serene {
     namespace ScriptInitialization {
     }
 }
-declare namespace Serene.Administration {
-    class PermissionCheckEditorOptions {
-        showRevoke: boolean;
-    }
-    class PermissionCheckItem {
-        ParentKey: string;
-        Key: string;
-        Title: string;
-        IsGroup: boolean;
-        GrantRevoke: any;
-    }
-}
 declare namespace Serene.Common {
     class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
         get_onSave(): (p1: Serenity.ServiceOptions<any>, p2: (p1: Serenity.ServiceResponse) => void) => void;
@@ -2263,9 +2276,6 @@ declare namespace Serene.Common {
     }
     class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string);
-    }
-    class ReportHelper {
-        static createRenderButton(reportKey: string, title?: string, cssClass?: string, extension?: string, options?: () => any): Serenity.ToolButton;
     }
     class SidebarSearch extends Serenity.Widget<any> {
         constructor(input: JQuery, menuUL: JQuery);

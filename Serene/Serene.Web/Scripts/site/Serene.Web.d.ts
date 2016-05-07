@@ -590,6 +590,21 @@ declare namespace Serene.Common {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
     }
 }
+declare namespace Serene.Common {
+    interface ReportButtonOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+        download?: boolean;
+        reportKey: string;
+        extension?: string;
+        getParams?: () => any;
+        target?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+    }
+}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -2261,19 +2276,6 @@ declare namespace Serene.Common {
     }
     class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string);
-    }
-    class ReportButtonOptions {
-        download: boolean;
-        title: string;
-        cssClass: string;
-        icon: string;
-        reportKey: string;
-        extension: string;
-        getParams: () => any;
-        target: string;
-    }
-    class ReportHelper {
-        static createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
     }
     class SidebarSearch extends Serenity.Widget<any> {
         constructor(input: JQuery, menuUL: JQuery);
