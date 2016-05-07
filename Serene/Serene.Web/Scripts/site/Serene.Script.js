@@ -792,23 +792,6 @@
 	$Serene_Northwind_NoteDialog.__typeName = 'Serene.Northwind.NoteDialog';
 	global.Serene.Northwind.NoteDialog = $Serene_Northwind_NoteDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.NotesEditor
-	var $Serene_Northwind_NotesEditor = function(container) {
-		this.$items = null;
-		this.$6$IsDirtyField = false;
-		this.$6$OnChangeField = null;
-		Serenity.TemplatedWidget.call(this, container);
-		var $t2 = this.byId('Toolbar');
-		var $t1 = [];
-		$t1.push({ title: 'Add Note', cssClass: 'add-button', onClick: ss.mkdel(this, function(e) {
-			e.preventDefault();
-			this.$addClick();
-		}) });
-		new Serenity.Toolbar($t2, { buttons: $t1 });
-	};
-	$Serene_Northwind_NotesEditor.__typeName = 'Serene.Northwind.NotesEditor';
-	global.Serene.Northwind.NotesEditor = $Serene_Northwind_NotesEditor;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDetailDialog
 	var $Serene_Northwind_OrderDetailDialog = function() {
 		this.form = null;
@@ -1983,106 +1966,6 @@
 			this.byId('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
-	ss.initClass($Serene_Northwind_NotesEditor, $asm, {
-		getTemplate: function() {
-			return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
-		},
-		$updateContent: function() {
-			var noteList = this.byId('NoteList');
-			noteList.children().remove();
-			if (ss.isValue(this.$items)) {
-				var index = 0;
-				for (var $t1 = 0; $t1 < this.$items.length; $t1++) {
-					var item = this.$items[$t1];
-					var li = $('<li/>');
-					$('<div/>').addClass('note-text').html(ss.coalesce(item.Text, '')).appendTo(li);
-					$('<a/>').attr('href', '#').addClass('note-date').text(item.InsertUserDisplayName + ' - ' + Q.formatDate(Q.parseISODateTime(item.InsertDate), 'dd/MM/yyyy HH:mm')).data('index', index).appendTo(li).click(ss.mkdel(this, this.$editClick));
-					$('<a/>').attr('href', '#').addClass('note-delete').attr('title', 'delete note').data('index', index).appendTo(li).click(ss.mkdel(this, this.$deleteClick));
-					li.appendTo(noteList);
-					index++;
-				}
-			}
-		},
-		$addClick: function() {
-			var dlg = new $Serene_Northwind_NoteDialog();
-			dlg.set_dialogTitle('Add Note');
-			dlg.okClick = ss.mkdel(this, function() {
-				var text = Q.trimToNull(dlg.get_text());
-				if (ss.isNullOrUndefined(text)) {
-					return;
-				}
-				this.$items = this.$items || [];
-				ss.insert(this.$items, 0, { Text: text, InsertUserDisplayName: $Serene_Authorization.get_userDefinition().DisplayName, InsertDate: Q.formatISODateTimeUTC(new Date()) });
-				this.$updateContent();
-				dlg.dialogClose();
-				this.set_isDirty(true);
-				if (!ss.staticEquals(this.get_onChange(), null)) {
-					this.get_onChange()();
-				}
-			});
-			dlg.dialogOpen();
-		},
-		$editClick: function(e) {
-			e.preventDefault();
-			var index = $(e.target).data('index');
-			var old = this.$items[index];
-			var dlg = new $Serene_Northwind_NoteDialog();
-			dlg.set_dialogTitle('Edit Note');
-			dlg.set_text(old.Text);
-			dlg.okClick = ss.mkdel(this, function() {
-				var text = Q.trimToNull(dlg.get_text());
-				if (ss.isNullOrUndefined(text)) {
-					return;
-				}
-				this.$items[index].Text = text;
-				this.$updateContent();
-				dlg.dialogClose();
-				this.set_isDirty(true);
-				if (!ss.staticEquals(this.get_onChange(), null)) {
-					this.get_onChange()();
-				}
-			});
-			dlg.dialogOpen();
-		},
-		$deleteClick: function(e) {
-			e.preventDefault();
-			var index = $(e.target).data('index');
-			Q.confirm('Delete this note?', ss.mkdel(this, function() {
-				ss.removeAt(this.$items, index);
-				this.$updateContent();
-				this.set_isDirty(true);
-				if (!ss.staticEquals(this.get_onChange(), null)) {
-					this.get_onChange()();
-				}
-			}));
-		},
-		get_value: function() {
-			return this.$items;
-		},
-		set_value: function(value) {
-			this.$items = value || [];
-			this.set_isDirty(false);
-			this.$updateContent();
-		},
-		getEditValue: function(property, target) {
-			target[property.name] = this.get_value();
-		},
-		setEditValue: function(source, property) {
-			this.set_value(ss.cast(source[property.name], Array));
-		},
-		get_isDirty: function() {
-			return this.$6$IsDirtyField;
-		},
-		set_isDirty: function(value) {
-			this.$6$IsDirtyField = value;
-		},
-		get_onChange: function() {
-			return this.$6$OnChangeField;
-		},
-		set_onChange: function(value) {
-			this.$6$OnChangeField = value;
-		}
-	}, Serenity.TemplatedWidget, [Serenity.IGetEditValue, Serenity.ISetEditValue]);
 	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, $Serene_Common_GridEditorDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_OrderDetailForm, $asm, {
 		set_productID: function(value) {
@@ -2364,7 +2247,6 @@
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryDialog, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.FormKeyAttribute('Northwind.EmployeeTerritory'), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryGrid, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_EmployeeTerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
-	ss.setMetadata($Serene_Northwind_NotesEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.ElementAttribute('<div/>')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDetailsEditor, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.OrderDetail'), new Serenity.DialogTypeAttribute($Serene_Northwind_OrderDetailDialog), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });

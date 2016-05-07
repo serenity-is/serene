@@ -211,18 +211,6 @@ declare namespace Serene.Northwind {
         set_text(value: string): void;
     }
 
-    class NotesEditor extends Serenity.TemplatedWidget<any> {
-        constructor(container: JQuery);
-        getEditValue(property: Serenity.PropertyItem, target: any): void;
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-        get_value(): NoteRow[];
-        set_value(value: NoteRow[]): void;
-        get_isDirty(): boolean;
-        set_isDirty(value: boolean): void;
-        get_onChange(): () => void;
-        set_onChange(value: () => void): void;
-    }
-
     class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
         form: OrderDetailForm;
     }

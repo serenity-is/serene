@@ -354,10 +354,10 @@ declare namespace Serene.Common {
         protected getAllSuccessFormat(): string;
         protected showAllSuccess(): void;
         protected showResults(): void;
-        protected execute(keys: string[]): void;
-        get_successCount(): number;
+        execute(keys: string[]): void;
+        get_successCount(): any;
         set_successCount(value: number): void;
-        get_errorCount(): number;
+        get_errorCount(): any;
         set_errorCount(value: number): void;
     }
 }
@@ -2177,17 +2177,6 @@ declare namespace Serene.Northwind {
         get_text(): string;
         set_text(value: string): void;
     }
-    class NotesEditor extends Serenity.TemplatedWidget<any> {
-        constructor(container: JQuery);
-        getEditValue(property: Serenity.PropertyItem, target: any): void;
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-        get_value(): NoteRow[];
-        set_value(value: NoteRow[]): void;
-        get_isDirty(): boolean;
-        set_isDirty(value: boolean): void;
-        get_onChange(): () => void;
-        set_onChange(value: () => void): void;
-    }
     class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
         form: OrderDetailForm;
     }
@@ -2267,6 +2256,25 @@ declare namespace Serene.Northwind {
         private customerID;
         get_customerID(): string;
         set_customerID(value: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        private isDirty;
+        private items;
+        constructor(div: JQuery);
+        protected getTemplate(): string;
+        protected updateContent(): void;
+        protected addClick(): void;
+        protected editClick(e: any): void;
+        deleteClick(e: any): void;
+        get_value(): NoteRow[];
+        set_value(value: any): void;
+        getEditValue(prop: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, prop: Serenity.PropertyItem): void;
+        get_isDirty(): boolean;
+        set_isDirty(value: any): void;
+        onChange: () => void;
     }
 }
 declare namespace Serene.BasicSamples {

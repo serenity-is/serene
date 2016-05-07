@@ -1,4 +1,23 @@
-﻿
+﻿namespace Serene.Northwind
+{
+    using jQueryApi;
+    using Serenity;
+    using System.Runtime.CompilerServices;
+
+    [Imported]
+    public class NotesEditor : TemplatedWidget
+    {
+        public NotesEditor(jQueryObject container)
+            : base(container)
+        {
+        }
+    }
+}
+
+/* 
+This class has been ported to TypeScript. See OrderGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
 namespace Serene.Northwind
 {
     using jQueryApi;
@@ -175,3 +194,4 @@ namespace Serene.Northwind
         public Action OnChange { get; set; }
     }
 }
+*/
