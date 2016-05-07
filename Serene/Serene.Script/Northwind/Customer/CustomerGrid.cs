@@ -26,7 +26,11 @@ namespace Serene.Northwind
                 Service = CustomerService.BaseUrl + "/ListExcel"
             }));
 
-            buttons.Add(Common.PdfExportHelper.CreateToolButton(this, this.OnViewSubmit));
+            buttons.Add(PdfExportHelper.CreateToolButton(new PdfExportOptions
+            {
+                Grid = this,
+                OnViewSubmit = this.OnViewSubmit
+            }));
 
             return buttons;
         }

@@ -9,14 +9,12 @@ namespace Serene.Common
     [Imported]
     public static class PdfExportHelper
     {
-        public static ToolButton CreateToolButton(IDataGrid grid, Func<bool> onViewSubmit, 
-            string buttonTitle = null, PdfExportOptions options = null)
+        public static ToolButton CreateToolButton(PdfExportOptions options)
         {
             return null;
         }
 
-        public static void ExportToPdf(IDataGrid grid, Func<bool> onViewSubmit, 
-            PdfExportOptions options = null)
+        public static void ExportToPdf(PdfExportOptions options)
         {
         }
     }
@@ -24,6 +22,9 @@ namespace Serene.Common
     [Imported, Serializable]
     public class PdfExportOptions
     {
+        public IDataGrid Grid { get; set; }
+        public Func<bool> OnViewSubmit { get; set; }
+        public string ButtonTitle { get; set; }
         public string Title { get; set; }
         public double? TitleTop { get; set; }
         public double? TitleFontSize { get; set; }

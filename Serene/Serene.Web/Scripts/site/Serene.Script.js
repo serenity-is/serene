@@ -1317,7 +1317,7 @@
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
 			buttons.push(Serene.Common.ExcelExportHelper.createToolButton({ grid: this, onViewSubmit: ss.mkdel(this, this.onViewSubmit), service: 'Northwind/Customer/ListExcel' }));
-			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, ss.mkdel(this, this.onViewSubmit), null, null));
+			buttons.push(Serene.Common.PdfExportHelper.createToolButton({ grid: this, onViewSubmit: ss.mkdel(this, this.onViewSubmit) }));
 			return buttons;
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
