@@ -537,6 +537,17 @@ declare namespace Serene.Common {
         set_errorCount(value: number): void;
     }
 }
+declare namespace Serene.Common {
+    interface ExcelExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        service: string;
+        onViewSubmit: () => boolean;
+        title?: string;
+    }
+    namespace ExcelExportHelper {
+        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
+    }
+}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -2212,9 +2223,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Common {
-    class ExcelExportHelper {
-        static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: () => boolean, title?: string): Serenity.ToolButton;
-    }
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
         constructor(container: JQuery);
         id(entity: any): any;
@@ -2363,6 +2371,9 @@ declare namespace Serenity {
 }
 declare namespace Serene.Common {
     interface PdfExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        onViewSubmit: () => boolean;
+        buttonTitle?: string;
         title?: string;
         titleTop?: number;
         titleFontSize?: number;
@@ -2374,8 +2385,8 @@ declare namespace Serene.Common {
         tableOptions?: jsPDF.AutoTableOptions;
     }
     namespace PdfExportHelper {
-        function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void;
-        function createToolButton<TItem>(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions): Serenity.ToolButton;
+        function exportToPdf(options: PdfExportOptions): void;
+        function createToolButton<TItem>(options: PdfExportOptions): Serenity.ToolButton;
     }
 }
 declare namespace Serene.Northwind {

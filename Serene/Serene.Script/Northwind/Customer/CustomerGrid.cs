@@ -1,10 +1,10 @@
 ﻿
 namespace Serene.Northwind
 {
+    using Common;
     using jQueryApi;
     using Serenity;
     using System.Collections.Generic;
-    using Fields = CustomerRow.Fields;
 
     [ColumnsKey("Northwind.Customer"), Filterable, IdProperty("ID"), NameProperty("CustomerID")]
     [DialogType(typeof(CustomerDialog)), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
@@ -19,8 +19,12 @@ namespace Serene.Northwind
         {
             var buttons = base.GetButtons();
 
-            buttons.Add(Common.ExcelExportHelper.CreateToolButton(this, 
-                CustomerService.BaseUrl + "/ListExcel", this.OnViewSubmit));
+            buttons.Add(ExcelExportHelper.CreateToolButton(new Common.ExcelExportOptions
+            {
+                Grid = this,
+                OnViewSubmit = this.OnViewSubmit,
+                Service = CustomerService.BaseUrl + "/ListExcel"
+            }));
 
             buttons.Add(Common.PdfExportHelper.CreateToolButton(this, this.OnViewSubmit));
 

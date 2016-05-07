@@ -1044,18 +1044,27 @@ var Serene;
             ProductGrid.prototype.getButtons = function () {
                 var _this = this;
                 var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.ProductService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () {
-                    return _this.onViewSubmit();
-                }, undefined, {
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    service: Northwind.ProductService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
                     title: 'Product List',
                     columnTitles: {
                         'Discontinued': 'Dis.'
                     },
                     tableOptions: {
                         columnStyles: {
-                            ProductID: { columnWidth: 25, halign: 'right' },
-                            Discountinued: { columnWidth: 25 }
+                            ProductID: {
+                                columnWidth: 25,
+                                halign: 'right'
+                            },
+                            Discountinued: {
+                                columnWidth: 25
+                            }
                         }
                     }
                 }));
@@ -1288,8 +1297,15 @@ var Serene;
             OrderGrid.prototype.getButtons = function () {
                 var _this = this;
                 var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton(this, Northwind.OrderService.baseUrl + '/ListExcel', function () { return _this.onViewSubmit(); }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, function () { return _this.onViewSubmit(); }));
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    service: Northwind.OrderService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
                 return buttons;
             };
             OrderGrid.prototype.set_shippingState = function (value) {
@@ -2216,6 +2232,42 @@ var Serene;
             return BulkServiceAction;
         }());
         Common.BulkServiceAction = BulkServiceAction;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ExcelExportHelper;
+        (function (ExcelExportHelper) {
+            function createToolButton(options) {
+                return {
+                    title: Q.coalesce(options.title, 'Excel'),
+                    cssClass: 'export-xlsx-button',
+                    onClick: function () {
+                        if (!options.onViewSubmit()) {
+                            return;
+                        }
+                        var grid = options.grid;
+                        var request = Q.deepClone(grid.getView().params);
+                        request.Take = 0;
+                        request.Skip = 0;
+                        var sortBy = grid.getView().sortBy;
+                        if (sortBy) {
+                            request.Sort = sortBy;
+                        }
+                        request.IncludeColumns = [];
+                        var columns = grid.getGrid().getColumns();
+                        for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
+                            var column = columns_1[_i];
+                            request.IncludeColumns.push(column.id || column.field);
+                        }
+                        Q.postToService({ service: options.service, request: request, target: '_blank' });
+                    }
+                };
+            }
+            ExcelExportHelper.createToolButton = createToolButton;
+        })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3478,7 +3530,7 @@ var Serene;
             function toAutoTableColumns(srcColumns, columnStyles, columnTitles) {
                 return srcColumns.map(function (src) {
                     var col = {
-                        dataKey: src.identifier || src.field,
+                        dataKey: src.id || src.field,
                         title: src.name || ''
                     };
                     if (columnTitles && columnTitles[col.dataKey] != null)
@@ -3533,9 +3585,9 @@ var Serene;
                     return dst;
                 });
             }
-            function exportToPdf(grid, onViewSubmit, options) {
-                var g = grid;
-                if (!onViewSubmit())
+            function exportToPdf(options) {
+                var g = options.grid;
+                if (!options.onViewSubmit())
                     return;
                 includeAutoTable();
                 var request = Q.deepClone(g.view.params);
@@ -3547,9 +3599,8 @@ var Serene;
                 request.IncludeColumns = [];
                 for (var _i = 0, _a = g.slickGrid.getColumns(); _i < _a.length; _i++) {
                     var column = _a[_i];
-                    request.IncludeColumns.push(column.identifier || column.field);
+                    request.IncludeColumns.push(column.id || column.field);
                 }
-                options = options || {};
                 Q.serviceCall({
                     url: g.view.url,
                     request: request,
@@ -3602,12 +3653,11 @@ var Serene;
                 });
             }
             PdfExportHelper.exportToPdf = exportToPdf;
-            function createToolButton(grid, onViewSubmit, buttonTitle, options) {
-                options = options || {};
+            function createToolButton(options) {
                 return {
-                    title: buttonTitle || 'PDF',
+                    title: options.buttonTitle || 'PDF',
                     cssClass: 'export-pdf-button',
-                    onClick: function () { return exportToPdf(grid, onViewSubmit, options); }
+                    onClick: function () { return exportToPdf(options); }
                 };
             }
             PdfExportHelper.createToolButton = createToolButton;

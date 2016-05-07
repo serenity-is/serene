@@ -28,11 +28,16 @@
         {
             var buttons = super.getButtons();
 
-            buttons.push(Common.ExcelExportHelper.createToolButton(this,
-                OrderService.baseUrl + '/ListExcel', () => this.onViewSubmit()));
+            buttons.push(Common.ExcelExportHelper.createToolButton({
+                grid: this,
+                service: OrderService.baseUrl + '/ListExcel',
+                onViewSubmit: () => this.onViewSubmit()
+            }));
 
-            buttons.push(Common.PdfExportHelper.createToolButton(this,
-                () => this.onViewSubmit()));
+            buttons.push(Common.PdfExportHelper.createToolButton({
+                grid: this,
+                onViewSubmit: () => this.onViewSubmit()
+            }));
 
             return buttons;
         }

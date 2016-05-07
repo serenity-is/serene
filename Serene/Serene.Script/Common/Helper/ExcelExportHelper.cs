@@ -3,42 +3,24 @@ namespace Serene.Common
 {
     using Serenity;
     using System;
-    using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
-    public abstract class ExcelExportHelper
+    [Imported]
+    public static class ExcelExportHelper
     {
-        public static ToolButton CreateToolButton(IDataGrid grid, string service, Func<bool> onViewSubmit,
-            string title = null)
+        public static ToolButton CreateToolButton(ExcelExportOptions options)
         {
-            return new ToolButton
-            {
-                Title = title ?? "Excel",
-                CssClass = "export-xlsx-button",
-                OnClick = delegate
-                {
-                    if (!onViewSubmit())
-                        return;
-
-                    var request = Q.DeepClone(((ListRequest)grid.GetView().Params));
-                    request.Take = 0;
-                    request.Skip = 0;
-
-                    var sortBy = grid.GetView().SortBy;
-                    if (sortBy != null)
-                        request.Sort = sortBy;
-
-                    request.IncludeColumns = new List<string>();
-                    foreach (var column in grid.GetGrid().GetColumns())
-                        request.IncludeColumns.Add(column.Identifier ?? column.Field);
-
-                    Q.Externals.PostToService(new PostToServiceOptions
-                    {
-                        Service = service,
-                        Request = request,
-                        Target = "_blank"
-                    });
-                }
-            };
+            return null;
         }
     }
+
+    [Imported, Serializable]
+    public class ExcelExportOptions
+    {
+        public Serenity.IDataGrid Grid { get; set; }
+        public string Service { get; set; }
+        public Func<bool> OnViewSubmit { get; set; }
+        public string Title { get; set; }
+    }
+
 }

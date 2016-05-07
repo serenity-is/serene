@@ -1,5 +1,8 @@
 ﻿namespace Serene.Common {
     export interface PdfExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        onViewSubmit: () => boolean;
+        buttonTitle?: string;
         title?: string;
         titleTop?: number;
         titleFontSize?: number;
@@ -15,7 +18,7 @@
                 columnTitles: { [key: string]: string }) {
             return srcColumns.map(src => {
                 let col: jsPDF.AutoTableColumn = {
-                    dataKey: src.identifier || src.field,
+                    dataKey: src.id || src.field,
                     title: src.name || ''
                 };
 
@@ -77,11 +80,11 @@
             });
         }
 
-        export function exportToPdf(grid: Serenity.IDataGrid, onViewSubmit: () => boolean, options: PdfExportOptions): void {
+        export function exportToPdf(options: PdfExportOptions): void {
 
-            var g = grid as Serenity.DataGrid<any, any>;
+            var g = options.grid;
 
-            if (!onViewSubmit())
+            if (!options.onViewSubmit())
                 return;
 
             includeAutoTable();
@@ -96,9 +99,7 @@
 
             request.IncludeColumns = [];
             for (var column of g.slickGrid.getColumns())
-                request.IncludeColumns.push(column.identifier || column.field);
-
-            options = options || {};
+                request.IncludeColumns.push(column.id || column.field);
 
             Q.serviceCall({
                 url: g.view.url,
@@ -164,15 +165,12 @@
             }); 
         }
 
-        export function createToolButton<TItem>(grid: Serenity.IDataGrid,
-            onViewSubmit: () => boolean, buttonTitle?: string, options?: PdfExportOptions) {
-
-            options = options || {};
+        export function createToolButton<TItem>(options: PdfExportOptions) {
 
             return <Serenity.ToolButton>{
-                title: buttonTitle || 'PDF',
+                title: options.buttonTitle || 'PDF',
                 cssClass: 'export-pdf-button',
-                onClick: () => exportToPdf(grid, onViewSubmit, options)
+                onClick: () => exportToPdf(options)
             };
         }
 

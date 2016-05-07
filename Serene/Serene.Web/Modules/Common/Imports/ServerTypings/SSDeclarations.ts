@@ -31,10 +31,6 @@ declare namespace Serene.Administration {
 }
 
 declare namespace Serene.Common {
-    class ExcelExportHelper {
-        static createToolButton(grid: Serenity.IDataGrid, service: string, onViewSubmit: () => boolean, title?: string): Serenity.ToolButton;
-    }
-
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
         constructor(container: JQuery);
         id(entity: any): any;

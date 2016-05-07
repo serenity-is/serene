@@ -21,24 +21,31 @@
         {
             var buttons = super.getButtons();
 
-            buttons.push(Common.ExcelExportHelper.createToolButton(this,
-                ProductService.baseUrl + '/ListExcel', () => this.onViewSubmit()));
+            buttons.push(Common.ExcelExportHelper.createToolButton({
+                grid: this,
+                service: ProductService.baseUrl + '/ListExcel',
+                onViewSubmit: () => this.onViewSubmit()
+            }));
 
-            buttons.push(Common.PdfExportHelper.createToolButton(this,
-                () => {
-                    return this.onViewSubmit();
-                }, undefined, {
-                    title: 'Product List',
-                    columnTitles: {
-                        'Discontinued': 'Dis.',
-                    },
-                    tableOptions: {
-                        columnStyles: {
-                            ProductID: { columnWidth: 25, halign: 'right' },
-                            Discountinued: { columnWidth: 25 }
+            buttons.push(Common.PdfExportHelper.createToolButton({
+                grid: this,
+                onViewSubmit: () => this.onViewSubmit(),
+                title: 'Product List',
+                columnTitles: {
+                    'Discontinued': 'Dis.',
+                },
+                tableOptions: {
+                    columnStyles: {
+                        ProductID: {
+                            columnWidth: 25,
+                            halign: 'right'
+                        },
+                        Discountinued: {
+                            columnWidth: 25
                         }
                     }
-                }));
+                }
+            }));
 
             buttons.push({
                 title: 'Save Changes',

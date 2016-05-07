@@ -124,42 +124,6 @@
 	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
 	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.ExcelExportHelper
-	var $Serene_Common_ExcelExportHelper = function() {
-	};
-	$Serene_Common_ExcelExportHelper.__typeName = 'Serene.Common.ExcelExportHelper';
-	$Serene_Common_ExcelExportHelper.createToolButton = function(grid, service, onViewSubmit, title) {
-		return {
-			title: ss.coalesce(title, 'Excel'),
-			cssClass: 'export-xlsx-button',
-			onClick: function() {
-				if (!onViewSubmit()) {
-					return;
-				}
-				var request = Q.deepClone(grid.getView().params);
-				request.Take = 0;
-				request.Skip = 0;
-				var sortBy = grid.getView().sortBy;
-				if (ss.isValue(sortBy)) {
-					request.Sort = sortBy;
-				}
-				request.IncludeColumns = [];
-				var $t1 = grid.getGrid().getColumns();
-				for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-					var column = $t1[$t2];
-					var $t4 = request.IncludeColumns;
-					var $t3 = column.id;
-					if (ss.isNullOrUndefined($t3)) {
-						$t3 = column.field;
-					}
-					$t4.push($t3);
-				}
-				Q.postToService({ service: service, request: request, target: '_blank' });
-			}
-		};
-	};
-	global.Serene.Common.ExcelExportHelper = $Serene_Common_ExcelExportHelper;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.GridEditorBase
 	var $Serene_Common_GridEditorBase = function(container) {
 		this.$nextId = 1;
@@ -1104,7 +1068,6 @@
 			this.$3$ReorderLevelField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Common_ExcelExportHelper, $asm, {});
 	ss.initClass($Serene_Common_GridEditorBase, $asm, {
 		id: function(entity) {
 			return ss.cast(entity.__id, ss.Int32);
@@ -1466,7 +1429,7 @@
 	ss.initClass($Serene_Northwind_CustomerGrid, $asm, {
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
-			buttons.push($Serene_Common_ExcelExportHelper.createToolButton(this, 'Northwind/Customer/ListExcel', ss.mkdel(this, this.onViewSubmit), null));
+			buttons.push(Serene.Common.ExcelExportHelper.createToolButton({ grid: this, onViewSubmit: ss.mkdel(this, this.onViewSubmit), service: 'Northwind/Customer/ListExcel' }));
 			buttons.push(Serene.Common.PdfExportHelper.createToolButton(this, ss.mkdel(this, this.onViewSubmit), null, null));
 			return buttons;
 		}
