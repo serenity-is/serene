@@ -1891,7 +1891,7 @@ var Serenity;
             if (rest) {
                 for (var _a = 0, rest_2 = rest; _a < rest_2.length; _a++) {
                     var k = rest_2[_a];
-                    result = join(result, 'and', k);
+                    result = join(result, 'or', k);
                 }
             }
             return result;

@@ -398,6 +398,16 @@ declare namespace Serene.BasicSamples {
         protected onViewSubmit(): boolean;
     }
 }
+declare namespace Serene.BasicSamples {
+    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        protected createSlickGrid(): Slick.Grid;
+        protected getColumns(): Slick.Column[];
+        protected getSlickOptions(): Slick.GridOptions;
+        protected usePager(): boolean;
+        protected getButtons(): any;
+    }
+}
 declare namespace Serene.Common {
     class BulkServiceAction {
         protected keys: string[];
@@ -2123,12 +2133,6 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.BasicSamples {
-    class GridFilteredByCriteria extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
-    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
     class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
     }
     class LookupFilterByMultipleGrid extends Northwind.ProductGrid {

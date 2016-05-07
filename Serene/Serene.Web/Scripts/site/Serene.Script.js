@@ -124,13 +124,6 @@
 	$Serene_BasicSamples_FilteredLookupInDetailForm.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailForm';
 	global.Serene.BasicSamples.FilteredLookupInDetailForm = $Serene_BasicSamples_FilteredLookupInDetailForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.GroupingAndSummariesInGrid
-	var $Serene_BasicSamples_GroupingAndSummariesInGrid = function(container) {
-		Serene.Northwind.ProductGrid.call(this, container);
-	};
-	$Serene_BasicSamples_GroupingAndSummariesInGrid.__typeName = 'Serene.BasicSamples.GroupingAndSummariesInGrid';
-	global.Serene.BasicSamples.GroupingAndSummariesInGrid = $Serene_BasicSamples_GroupingAndSummariesInGrid;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.BasicSamples.LookupFilterByMultipleDialog
 	var $Serene_BasicSamples_LookupFilterByMultipleDialog = function() {
 		Serene.Northwind.ProductDialog.call(this);
@@ -1183,73 +1176,6 @@
 			this.$3$DetailListField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_GroupingAndSummariesInGrid, $asm, {
-		createSlickGrid: function() {
-			var grid = Serenity.DataGrid.prototype.createSlickGrid.call(this);
-			// need to register this plugin for grouping or you'll have errors
-			grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
-			var $t2 = this.view;
-			var $t1 = [];
-			$t1.push(new Slick.Aggregators.Avg('UnitPrice'));
-			$t1.push(new Slick.Aggregators.Sum('UnitsInStock'));
-			$t1.push(new Slick.Aggregators.Max('UnitsOnOrder'));
-			$t1.push(new Slick.Aggregators.Avg('ReorderLevel'));
-			$t2.setSummaryOptions({ aggregators: $t1 });
-			return grid;
-		},
-		getColumns: function() {
-			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
-			Enumerable.from(columns).single(function(x) {
-				return x.field === 'UnitsOnOrder';
-			}).groupTotalsFormatter = function(totals, col) {
-				return (ss.isValue(totals.max) ? ('max: ' + ss.coalesce(totals.max[col.field], '')) : '');
-			};
-			Enumerable.from(columns).single(function(x1) {
-				return x1.field === 'ReorderLevel';
-			}).groupTotalsFormatter = function(totals1, col1) {
-				return (ss.isValue(totals1.avg) ? ('avg: ' + ss.coalesce(Q.formatNumber(totals1.avg[col1.field], '0.'), '')) : '');
-			};
-			return columns;
-		},
-		getSlickOptions: function() {
-			var opt = Serenity.DataGrid.prototype.getSlickOptions.call(this);
-			opt.showFooterRow = true;
-			return opt;
-		},
-		usePager: function() {
-			return false;
-		},
-		getButtons: function() {
-			var $t1 = [];
-			$t1.push({ title: 'Group By Category', cssClass: 'expand-all-button', onClick: ss.mkdel(this, function() {
-				var $t3 = this.view;
-				var $t2 = [];
-				$t2.push({ getter: 'CategoryName' });
-				$t3.setGrouping($t2);
-			}) });
-			$t1.push({ title: 'Group By Category and Supplier', cssClass: 'expand-all-button', onClick: ss.mkdel(this, function() {
-				var $t5 = this.view;
-				var $t4 = [];
-				$t4.push({
-					formatter: function(x) {
-						return 'Category: ' + x.value + ' (' + x.count + ' items)';
-					},
-					getter: 'CategoryName'
-				});
-				$t4.push({
-					formatter: function(x1) {
-						return 'Supplier: ' + x1.value + ' (' + x1.count + ' items)';
-					},
-					getter: 'SupplierCompanyName'
-				});
-				$t5.setGrouping($t4);
-			}) });
-			$t1.push({ title: 'No Grouping', cssClass: 'collapse-all-button', onClick: ss.mkdel(this, function() {
-				this.view.setGrouping([]);
-			}) });
-			return $t1;
-		}
-	}, Serene.Northwind.ProductGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleDialog, $asm, {}, Serene.Northwind.ProductDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
 		set_productName: function(value) {

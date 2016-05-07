@@ -1,4 +1,8 @@
-﻿using jQueryApi;
+﻿/* 
+This sample has been ported to TypeScript. See GroupingAndSummariesInGrid.ts
+Code below is only a reference for those who want to use Saltaralle
+
+using jQueryApi;
 using Serene.Northwind;
 using Serenity;
 using System.Collections.Generic;
@@ -139,3 +143,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+*/

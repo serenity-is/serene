@@ -1928,8 +1928,8 @@ declare namespace Serenity {
         function isEmpty(c: any[]): boolean;
         function join(c1: any[], op: string, c2: any[]): any[];
         function paren(c: any[]): any[];
-        function and(c1: any[], c2: any[]): any[];
-        function or(c1: any[], c2: any[]): any[];
+        function and(c1: any[], c2: any[], ...rest: any[][]): any[];
+        function or(c1: any[], c2: any[], ...rest: any[][]): any[];
     }
     namespace Decorators {
         function addAttribute(type: any, attr: any): void;

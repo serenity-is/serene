@@ -1758,6 +1758,83 @@ var Serene;
         BasicSamples.GridFilteredByCriteria = GridFilteredByCriteria;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var GroupingAndSummariesInGrid = (function (_super) {
+            __extends(GroupingAndSummariesInGrid, _super);
+            function GroupingAndSummariesInGrid(container) {
+                _super.call(this, container);
+            }
+            GroupingAndSummariesInGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                // need to register this plugin for grouping or you'll have errors
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                this.view.setSummaryOptions({
+                    aggregators: [
+                        new Slick.Aggregators.Avg('UnitPrice'),
+                        new Slick.Aggregators.Sum('UnitsInStock'),
+                        new Slick.Aggregators.Max('UnitsOnOrder'),
+                        new Slick.Aggregators.Avg('ReorderLevel')
+                    ]
+                });
+                return grid;
+            };
+            GroupingAndSummariesInGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                Q.first(columns, function (x) { return x.field === 'UnitsOnOrder'; })
+                    .groupTotalsFormatter = function (totals, col) {
+                    return (totals.max ? ('max: ' + Q.coalesce(totals.max[col.field], '')) : '');
+                };
+                Q.first(columns, function (x) { return x.field === 'ReorderLevel'; })
+                    .groupTotalsFormatter = function (totals, col) {
+                    return (totals.avg ? ('avg: ' + Q.coalesce(Q.formatNumber(totals.avg[col.field], '0.'), '')) : '');
+                };
+                return columns;
+            };
+            GroupingAndSummariesInGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.showFooterRow = true;
+                return opt;
+            };
+            GroupingAndSummariesInGrid.prototype.usePager = function () {
+                return false;
+            };
+            GroupingAndSummariesInGrid.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: 'Group By Category',
+                        cssClass: 'expand-all-button',
+                        onClick: function () { return _this.view.setGrouping([{
+                                getter: 'CategoryName'
+                            }]); }
+                    },
+                    {
+                        title: 'Group By Category and Supplier',
+                        cssClass: 'expand-all-button',
+                        onClick: function () { return _this.view.setGrouping([{
+                                formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
+                                getter: 'CategoryName'
+                            }, {
+                                formatter: function (x) { return 'Supplier: ' + x.value + ' (' + x.count + ' items)'; },
+                                getter: 'SupplierCompanyName'
+                            }]); }
+                    }, {
+                        title: 'No Grouping',
+                        cssClass: 'collapse-all-button',
+                        onClick: function () { return _this.view.setGrouping([]); }
+                    }];
+            };
+            GroupingAndSummariesInGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GroupingAndSummariesInGrid);
+            return GroupingAndSummariesInGrid;
+        }(Serene.Northwind.ProductGrid));
+        BasicSamples.GroupingAndSummariesInGrid = GroupingAndSummariesInGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var Common;

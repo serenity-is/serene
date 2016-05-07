@@ -45,10 +45,6 @@ declare namespace Serene.Administration {
 
 declare namespace Serene.BasicSamples {
 
-    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-    }
-
     class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
     }
 
