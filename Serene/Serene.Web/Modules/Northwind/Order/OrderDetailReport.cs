@@ -46,7 +46,7 @@ namespace Serene.Northwind
         public void Customize(IHtmlToPdfOptions options)
         {
             // you may customize HTML to PDF converter (WKHTML) parameters here, e.g. 
-            // converter.MarginsAll = "2cm";
+            // options.MarginsAll = "2cm";
         }
     }
 
