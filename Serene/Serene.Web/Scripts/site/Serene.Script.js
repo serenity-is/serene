@@ -169,31 +169,17 @@
 	$Serene_Common_LanguageSelection.__typeName = 'Serene.Common.LanguageSelection';
 	global.Serene.Common.LanguageSelection = $Serene_Common_LanguageSelection;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Common.ReportButtonOptions
-	var $Serene_Common_ReportButtonOptions = function() {
-		this.$1$DownloadField = false;
-		this.$1$TitleField = null;
-		this.$1$CssClassField = null;
-		this.$1$IconField = null;
-		this.$1$ReportKeyField = null;
-		this.$1$ExtensionField = null;
-		this.$1$GetParamsField = null;
-		this.$1$TargetField = null;
-	};
-	$Serene_Common_ReportButtonOptions.__typeName = 'Serene.Common.ReportButtonOptions';
-	global.Serene.Common.ReportButtonOptions = $Serene_Common_ReportButtonOptions;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Common.ReportHelper
 	var $Serene_Common_ReportHelper = function() {
 	};
 	$Serene_Common_ReportHelper.__typeName = 'Serene.Common.ReportHelper';
 	$Serene_Common_ReportHelper.createToolButton = function(options) {
 		return {
-			title: ss.coalesce(options.get_title(), 'Report'),
-			cssClass: ss.coalesce(options.get_cssClass(), 'print-button'),
-			icon: options.get_icon(),
+			title: ss.coalesce(options.title, 'Report'),
+			cssClass: ss.coalesce(options.cssClass, 'print-button'),
+			icon: options.icon,
 			onClick: function() {
-				Q.postToUrl({ url: '~/Report/' + (options.get_download() ? 'Download' : 'Render'), params: { key: options.get_reportKey(), ext: ss.coalesce(options.get_extension(), 'pdf'), opt: (ss.staticEquals(options.get_getParams(), null) ? '' : $.toJSON(options.get_getParams()())) }, target: ss.coalesce(options.get_target(), '_blank') });
+				Q.postToUrl({ url: '~/Report/' + (options.download ? 'Download' : 'Render'), params: { key: options.reportKey, ext: ss.coalesce(options.extension, 'pdf'), opt: (ss.staticEquals(options.getParams, null) ? '' : $.toJSON(options.getParams())) }, target: ss.coalesce(options.target, '_blank') });
 			}
 		};
 	};
@@ -1105,56 +1091,6 @@
 		}
 	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
-	ss.initClass($Serene_Common_ReportButtonOptions, $asm, {
-		get_download: function() {
-			return this.$1$DownloadField;
-		},
-		set_download: function(value) {
-			this.$1$DownloadField = value;
-		},
-		get_title: function() {
-			return this.$1$TitleField;
-		},
-		set_title: function(value) {
-			this.$1$TitleField = value;
-		},
-		get_cssClass: function() {
-			return this.$1$CssClassField;
-		},
-		set_cssClass: function(value) {
-			this.$1$CssClassField = value;
-		},
-		get_icon: function() {
-			return this.$1$IconField;
-		},
-		set_icon: function(value) {
-			this.$1$IconField = value;
-		},
-		get_reportKey: function() {
-			return this.$1$ReportKeyField;
-		},
-		set_reportKey: function(value) {
-			this.$1$ReportKeyField = value;
-		},
-		get_extension: function() {
-			return this.$1$ExtensionField;
-		},
-		set_extension: function(value) {
-			this.$1$ExtensionField = value;
-		},
-		get_getParams: function() {
-			return this.$1$GetParamsField;
-		},
-		set_getParams: function(value) {
-			this.$1$GetParamsField = value;
-		},
-		get_target: function() {
-			return this.$1$TargetField;
-		},
-		set_target: function(value) {
-			this.$1$TargetField = value;
-		}
-	});
 	ss.initClass($Serene_Common_ReportHelper, $asm, {});
 	ss.initClass($Serene_Common_SidebarSearch, $asm, {
 		$updateMatchFlags: function(text) {
@@ -1392,14 +1328,9 @@
 		},
 		getToolbarButtons: function() {
 			var buttons = Serenity.EntityDialog.prototype.getToolbarButtons.call(this);
-			var $t1 = new $Serene_Common_ReportButtonOptions();
-			$t1.set_title('Invoice');
-			$t1.set_cssClass('export-pdf-button');
-			$t1.set_reportKey('Northwind.OrderDetail');
-			$t1.set_getParams(ss.mkdel(this, function() {
+			buttons.push($Serene_Common_ReportHelper.createToolButton({ title: 'Invoice', cssClass: 'export-pdf-button', reportKey: 'Northwind.OrderDetail', getParams: ss.mkdel(this, function() {
 				return { OrderID: this.get_entityId() };
-			}));
-			buttons.push($Serene_Common_ReportHelper.createToolButton($t1));
+			}) }));
 			return buttons;
 		}
 	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);

@@ -3,7 +3,7 @@ namespace Serene.Common
 {
     using Serenity;
     using System;
-
+    using System.Runtime.CompilerServices;
     public abstract class ReportHelper
     {
         public static ToolButton CreateToolButton(ReportButtonOptions options)
@@ -31,6 +31,7 @@ namespace Serene.Common
         }
     }
 
+    [Imported, Serializable]
     public class ReportButtonOptions
     {
         public bool Download { get; set; }

@@ -315,4 +315,16 @@
             this.setItems(this.getItems());
         }
     }
+
+    export interface PermissionCheckEditorOptions {
+        showRevoke?: boolean;
+    }
+
+    export interface PermissionCheckItem {
+        ParentKey?: string;
+        Key?: string;
+        Title?: string;
+        IsGroup?: boolean;
+        GrantRevoke?: boolean;
+    }
 }

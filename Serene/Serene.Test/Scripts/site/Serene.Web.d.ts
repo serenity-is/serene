@@ -325,7 +325,7 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
         protected getIdProperty(): string;
         private nextId;
         constructor(container: JQuery);
