@@ -11,7 +11,7 @@ namespace Serene.Northwind
     {
         protected override IEnumerable<System.Tuple<string, string>> GetLanguages()
         {
-            return LanguageList.Value;
+            return LanguageList.GetValue();
         }
     }
 }

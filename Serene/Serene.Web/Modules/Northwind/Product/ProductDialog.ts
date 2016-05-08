@@ -13,7 +13,7 @@
         protected form = new ProductForm(this.idPrefix);
 
         protected getLanguages(): string[][] {
-            return LanguageList.get_value();
+            return LanguageList.getValue();
         }
     }
 }

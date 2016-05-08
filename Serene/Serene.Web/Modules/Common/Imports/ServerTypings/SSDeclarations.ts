@@ -1,36 +1,4 @@
-﻿declare namespace Serene {
-    class Authorization {
-        static hasPermission(permissionKey: string): boolean;
-        static get_userDefinition(): ScriptUserDefinition;
-    }
-
-    namespace DialogUtils {
-        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
-    }
-
-    class LanguageList {
-        static get_value(): any[];
-    }
-
-    namespace ScriptInitialization {
-    }
-}
-
-declare namespace Serene.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-
-    class SidebarSearch extends Serenity.Widget<any> {
-        constructor(input: JQuery, menuUL: JQuery);
-    }
-
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-    }
-}
-
-declare namespace Serene.Membership {
+﻿declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         constructor(container: JQuery);
     }
@@ -121,16 +89,6 @@ declare namespace Serene.Northwind {
 
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;
-    }
-
-    class PhoneEditor extends Serenity.StringEditor {
-        constructor(input: JQuery);
-        formatValue(): void;
-        getFormattedValue(): string;
-        get_multiple(): boolean;
-        set_multiple(value: boolean): void;
-        get_value(): string;
-        set_value(value: string): void;
     }
 
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {

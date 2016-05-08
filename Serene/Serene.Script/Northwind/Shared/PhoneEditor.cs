@@ -4,7 +4,9 @@
     using Serenity;
     using Serenity.ComponentModel;
     using System;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     [Editor]
     public class PhoneEditor : StringEditor, IStringValue
     {

@@ -5,7 +5,9 @@
     using Serenity;
     using System.Html;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class LanguageSelection : Widget
     {
         public LanguageSelection(jQueryObject select, string currentLanguage)

@@ -64,7 +64,7 @@
                 this.items = this.items || [];
                 Q.insert(this.items, 0, {
                     Text: text,
-                    InsertUserDisplayName: Authorization.get_userDefinition().DisplayName,
+                    InsertUserDisplayName: Authorization.userDefinition.DisplayName,
                     InsertDate: Q.formatISODateTimeUTC(new Date())
                 });
 

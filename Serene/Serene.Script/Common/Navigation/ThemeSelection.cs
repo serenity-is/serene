@@ -3,7 +3,9 @@
     using jQueryApi;
     using Serenity;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class ThemeSelection : Widget
     {
         public ThemeSelection(jQueryObject select)

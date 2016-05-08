@@ -104,6 +104,10 @@ declare namespace Serene.Administration {
         protected getDefaultSortBy(): string[];
     }
 }
+declare namespace Serene.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
 declare namespace Serene.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         protected getIdProperty(): string;
@@ -404,6 +408,25 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
+declare namespace Serene.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        protected destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: OrderDetailForm;
+        constructor();
+    }
+}
 declare namespace Serene.BasicSamples {
     /**
      * Our subclass of order detail dialog with a CategoryID property
@@ -520,6 +543,8 @@ declare namespace Serene.BasicSamples {
         protected getButtons(): any[];
     }
 }
+declare namespace Serene.ScriptInitialization {
+}
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();
@@ -571,6 +596,9 @@ declare namespace Serene.Common {
         set_errorCount(value: number): void;
     }
 }
+declare namespace Serene.DialogUtils {
+    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
 declare namespace Serene.Common {
     interface ExcelExportOptions {
         grid: Serenity.DataGrid<any, any>;
@@ -582,16 +610,8 @@ declare namespace Serene.Common {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
     }
 }
-declare namespace Serene.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        protected getIdProperty(): string;
-        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
-        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        protected destroy(): void;
-        protected updateInterface(): void;
-        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
-        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
-    }
+declare namespace Serene.LanguageList {
+    function getValue(): string[][];
 }
 declare namespace Serene.Common {
     interface ReportButtonOptions {
@@ -2256,31 +2276,6 @@ declare namespace Serene {
         };
     }
 }
-declare namespace Serene {
-    class Authorization {
-        static hasPermission(permissionKey: string): boolean;
-        static get_userDefinition(): ScriptUserDefinition;
-    }
-    namespace DialogUtils {
-        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
-    }
-    class LanguageList {
-        static get_value(): any[];
-    }
-    namespace ScriptInitialization {
-    }
-}
-declare namespace Serene.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-    class SidebarSearch extends Serenity.Widget<any> {
-        constructor(input: JQuery, menuUL: JQuery);
-    }
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-    }
-}
 declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         constructor(container: JQuery);
@@ -2351,15 +2346,6 @@ declare namespace Serene.Northwind {
     class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         form: OrderForm;
     }
-    class PhoneEditor extends Serenity.StringEditor {
-        constructor(input: JQuery);
-        formatValue(): void;
-        getFormattedValue(): string;
-        get_multiple(): boolean;
-        set_multiple(value: boolean): void;
-        get_value(): string;
-        set_value(value: string): void;
-    }
     class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
     }
     class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
@@ -2387,6 +2373,24 @@ declare namespace Serene.Northwind {
 declare namespace Serenity {
     class HtmlBasicContentEditor extends HtmlContentEditor {
         constructor(textArea: JQuery, opt: HtmlContentEditorOptions);
+    }
+}
+declare namespace Serene.Common {
+    class LanguageSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery, currentLanguage: string);
+    }
+}
+declare namespace Serene.Common {
+    class SidebarSearch extends Serenity.Widget<any> {
+        private menuUL;
+        constructor(input: JQuery, menuUL: JQuery);
+        protected updateMatchFlags(text: string): void;
+    }
+}
+declare namespace Serene.Common {
+    class ThemeSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery);
+        protected getCurrentTheme(): string;
     }
 }
 declare namespace Serene.Common {
@@ -2467,10 +2471,17 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.Northwind {
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: OrderDetailForm;
-        constructor();
+    class PhoneEditor extends Serenity.StringEditor {
+        constructor(input: JQuery);
+        protected formatValue(): void;
+        protected getFormattedValue(): string;
+        multiple: boolean;
+        get_value(): string;
+        set_value(value: string): void;
+        static validate(phone: string, isMultiple: boolean): string;
+        static isValidPhone(phone: string): boolean;
+        static formatPhone(phone: any): any;
+        static formatMulti(phone: string, format: (s: string) => string): string;
+        static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
     }
 }

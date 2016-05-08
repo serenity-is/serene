@@ -2,7 +2,9 @@
 {
     using jQueryApi;
     using Serenity;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class SidebarSearch : Widget
     {
         private jQueryObject menuUL;

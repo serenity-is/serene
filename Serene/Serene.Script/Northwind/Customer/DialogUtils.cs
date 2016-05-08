@@ -4,9 +4,11 @@ using jQueryApi.UI;
 using jQueryApi.UI.Widgets;
 using Serenity;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Serene
 {
+    [Imported]
     public static class DialogUtils
     {
         public static void PendingChangesConfirmation(jQueryObject element, 

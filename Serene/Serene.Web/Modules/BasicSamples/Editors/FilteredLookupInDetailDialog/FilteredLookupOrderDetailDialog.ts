@@ -1,4 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿/// <reference path="../../../Northwind/OrderDetail/OrderDetailDialog.ts" />
+
+namespace Serene.BasicSamples {
 
     /**
      * Our subclass of order detail dialog with a CategoryID property
@@ -32,7 +34,7 @@
             // make sure you have [LookupInclude] on CategoryID property of ProductRow
             // otherwise this field won't be available in lookup script (will always be null),
             // so can't be filtered and you'll end up with an empty product list.
-            this.form.ProductID.set_cascadeValue(this.categoryID);
+            this.form.ProductID.cascadeValue = this.categoryID;
         }
 
         public categoryID: number;

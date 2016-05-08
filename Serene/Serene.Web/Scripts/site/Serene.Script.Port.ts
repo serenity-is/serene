@@ -1,81 +1,7 @@
-﻿(function() {
-	'use strict';
-	var $asm = {};
-	global.Serene = global.Serene || {};
-	global.Serene.Administration = global.Serene.Administration || {};
-	global.Serene.BasicSamples = global.Serene.BasicSamples || {};
-	global.Serene.Membership = global.Serene.Membership || {};
-	global.Serene.Northwind = global.Serene.Northwind || {};
-	global.Serenity = global.Serenity || {};
-	ss.initAssembly($asm, 'Serene.Script');
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.LanguageForm
-	var $Serene_Administration_LanguageForm = function(idPrefix) {
-		this.$3$LanguageIdField = null;
-		this.$3$LanguageNameField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Administration_LanguageForm.__typeName = 'Serene.Administration.LanguageForm';
-	global.Serene.Administration.LanguageForm = $Serene_Administration_LanguageForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.RoleForm
-	var $Serene_Administration_RoleForm = function(idPrefix) {
-		this.$3$RoleNameField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Administration_RoleForm.__typeName = 'Serene.Administration.RoleForm';
-	global.Serene.Administration.RoleForm = $Serene_Administration_RoleForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Administration.UserForm
-	var $Serene_Administration_UserForm = function(idPrefix) {
-		this.$3$UsernameField = null;
-		this.$3$DisplayNameField = null;
-		this.$3$EmailField = null;
-		this.$3$PasswordField = null;
-		this.$3$PasswordConfirmField = null;
-		this.$3$SourceField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Administration_UserForm.__typeName = 'Serene.Administration.UserForm';
-	global.Serene.Administration.UserForm = $Serene_Administration_UserForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.FilteredLookupInDetailForm
-	var $Serene_BasicSamples_FilteredLookupInDetailForm = function(idPrefix) {
-		this.$3$CustomerIDField = null;
-		this.$3$OrderDateField = null;
-		this.$3$CategoryIDField = null;
-		this.$3$DetailListField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_BasicSamples_FilteredLookupInDetailForm.__typeName = 'Serene.BasicSamples.FilteredLookupInDetailForm';
-	global.Serene.BasicSamples.FilteredLookupInDetailForm = $Serene_BasicSamples_FilteredLookupInDetailForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.BasicSamples.LookupFilterByMultipleForm
-	var $Serene_BasicSamples_LookupFilterByMultipleForm = function(idPrefix) {
-		this.$3$ProductNameField = null;
-		this.$3$ProductImageField = null;
-		this.$3$DiscontinuedField = null;
-		this.$3$SupplierIDField = null;
-		this.$3$CategoryIDField = null;
-		this.$3$QuantityPerUnitField = null;
-		this.$3$UnitPriceField = null;
-		this.$3$UnitsInStockField = null;
-		this.$3$UnitsOnOrderField = null;
-		this.$3$ReorderLevelField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_BasicSamples_LookupFilterByMultipleForm.__typeName = 'Serene.BasicSamples.LookupFilterByMultipleForm';
-	global.Serene.BasicSamples.LookupFilterByMultipleForm = $Serene_BasicSamples_LookupFilterByMultipleForm;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.ChangePasswordForm
-	var $Serene_Membership_ChangePasswordForm = function(idPrefix) {
-		this.$3$OldPasswordField = null;
-		this.$3$NewPasswordField = null;
-		this.$3$ConfirmPasswordField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Membership_ChangePasswordForm.__typeName = 'Serene.Membership.ChangePasswordForm';
-	global.Serene.Membership.ChangePasswordForm = $Serene_Membership_ChangePasswordForm;
+﻿
+
+/*
+(function () {
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ChangePasswordPanel
 	var $Serene_Membership_ChangePasswordPanel = function(container) {
@@ -114,14 +40,6 @@
 	$Serene_Membership_ChangePasswordPanel.__typeName = 'Serene.Membership.ChangePasswordPanel';
 	global.Serene.Membership.ChangePasswordPanel = $Serene_Membership_ChangePasswordPanel;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.ForgotPasswordForm
-	var $Serene_Membership_ForgotPasswordForm = function(idPrefix) {
-		this.$3$EmailField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Membership_ForgotPasswordForm.__typeName = 'Serene.Membership.ForgotPasswordForm';
-	global.Serene.Membership.ForgotPasswordForm = $Serene_Membership_ForgotPasswordForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ForgotPasswordPanel
 	var $Serene_Membership_ForgotPasswordPanel = function(container) {
 		Serenity.PropertyPanel.call(this, container);
@@ -144,15 +62,6 @@
 	};
 	$Serene_Membership_ForgotPasswordPanel.__typeName = 'Serene.Membership.ForgotPasswordPanel';
 	global.Serene.Membership.ForgotPasswordPanel = $Serene_Membership_ForgotPasswordPanel;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.LoginForm
-	var $Serene_Membership_LoginForm = function(idPrefix) {
-		this.$3$UsernameField = null;
-		this.$3$PasswordField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Membership_LoginForm.__typeName = 'Serene.Membership.LoginForm';
-	global.Serene.Membership.LoginForm = $Serene_Membership_LoginForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.LoginPanel
 	var $Serene_Membership_LoginPanel = function(container) {
@@ -185,14 +94,6 @@
 	};
 	$Serene_Membership_LoginPanel.__typeName = 'Serene.Membership.LoginPanel';
 	global.Serene.Membership.LoginPanel = $Serene_Membership_LoginPanel;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.ResetPasswordForm
-	var $Serene_Membership_ResetPasswordForm = function(idPrefix) {
-		this.$3$NewPasswordField = null;
-		this.$3$ConfirmPasswordField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Membership_ResetPasswordForm.__typeName = 'Serene.Membership.ResetPasswordForm';
 	global.Serene.Membership.ResetPasswordForm = $Serene_Membership_ResetPasswordForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ResetPasswordPanel
@@ -232,18 +133,6 @@
 	};
 	$Serene_Membership_ResetPasswordPanel.__typeName = 'Serene.Membership.ResetPasswordPanel';
 	global.Serene.Membership.ResetPasswordPanel = $Serene_Membership_ResetPasswordPanel;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.SignUpForm
-	var $Serene_Membership_SignUpForm = function(idPrefix) {
-		this.$3$DisplayNameField = null;
-		this.$3$EmailField = null;
-		this.$3$ConfirmEmailField = null;
-		this.$3$PasswordField = null;
-		this.$3$ConfirmPasswordField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Membership_SignUpForm.__typeName = 'Serene.Membership.SignUpForm';
-	global.Serene.Membership.SignUpForm = $Serene_Membership_SignUpForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.SignUpPanel
 	var $Serene_Membership_SignUpPanel = function(container) {
@@ -288,15 +177,6 @@
 	$Serene_Northwind_CategoryDialog.__typeName = 'Serene.Northwind.CategoryDialog';
 	global.Serene.Northwind.CategoryDialog = $Serene_Northwind_CategoryDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CategoryForm
-	var $Serene_Northwind_CategoryForm = function(idPrefix) {
-		this.$3$CategoryNameField = null;
-		this.$3$DescriptionField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_CategoryForm.__typeName = 'Serene.Northwind.CategoryForm';
-	global.Serene.Northwind.CategoryForm = $Serene_Northwind_CategoryForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CategoryGrid
 	var $Serene_Northwind_CategoryGrid = function(container) {
 		Serenity.EntityGrid.call(this, container);
@@ -311,15 +191,6 @@
 	$Serene_Northwind_CustomerCustomerDemoDialog.__typeName = 'Serene.Northwind.CustomerCustomerDemoDialog';
 	global.Serene.Northwind.CustomerCustomerDemoDialog = $Serene_Northwind_CustomerCustomerDemoDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerCustomerDemoForm
-	var $Serene_Northwind_CustomerCustomerDemoForm = function(idPrefix) {
-		this.$3$CustomerIDField = null;
-		this.$3$CustomerTypeIDField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_CustomerCustomerDemoForm.__typeName = 'Serene.Northwind.CustomerCustomerDemoForm';
-	global.Serene.Northwind.CustomerCustomerDemoForm = $Serene_Northwind_CustomerCustomerDemoForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerCustomerDemoGrid
 	var $Serene_Northwind_CustomerCustomerDemoGrid = function(container) {
 		Serenity.EntityGrid.call(this, container);
@@ -333,15 +204,6 @@
 	};
 	$Serene_Northwind_CustomerDemographicDialog.__typeName = 'Serene.Northwind.CustomerDemographicDialog';
 	global.Serene.Northwind.CustomerDemographicDialog = $Serene_Northwind_CustomerDemographicDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerDemographicForm
-	var $Serene_Northwind_CustomerDemographicForm = function(idPrefix) {
-		this.$3$CustomerTypeIDField = null;
-		this.$3$CustomerDescField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_CustomerDemographicForm.__typeName = 'Serene.Northwind.CustomerDemographicForm';
-	global.Serene.Northwind.CustomerDemographicForm = $Serene_Northwind_CustomerDemographicForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerDemographicGrid
 	var $Serene_Northwind_CustomerDemographicGrid = function(container) {
@@ -358,7 +220,7 @@
 		this.$ordersGrid = new Serene.Northwind.CustomerOrdersGrid(this.byId('OrdersGrid'));
 		this.$ordersGrid.element.flexHeightOnly(1);
 		this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
-		Serene.DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
+		$Serene_DialogUtils.pendingChangesConfirmation(this.element, ss.mkdel(this, function() {
 			return !ss.referenceEquals(this.$getSaveState(), this.$loadedState);
 		}));
 		this.tabs.bind('tabsactivate', ss.mkdel(this, function(e, i) {
@@ -374,26 +236,6 @@
 	};
 	$Serene_Northwind_CustomerEditor.__typeName = 'Serene.Northwind.CustomerEditor';
 	global.Serene.Northwind.CustomerEditor = $Serene_Northwind_CustomerEditor;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.CustomerForm
-	var $Serene_Northwind_CustomerForm = function(idPrefix) {
-		this.$3$CustomerIDField = null;
-		this.$3$CompanyNameField = null;
-		this.$3$ContactNameField = null;
-		this.$3$ContactTitleField = null;
-		this.$3$RepresentativesField = null;
-		this.$3$AddressField = null;
-		this.$3$CityField = null;
-		this.$3$RegionField = null;
-		this.$3$PostalCodeField = null;
-		this.$3$CountryField = null;
-		this.$3$PhoneField = null;
-		this.$3$FaxField = null;
-		this.$3$NoteListField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_CustomerForm.__typeName = 'Serene.Northwind.CustomerForm';
-	global.Serene.Northwind.CustomerForm = $Serene_Northwind_CustomerForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.CustomerGrid
 	var $Serene_Northwind_CustomerGrid = function(container) {
@@ -416,30 +258,6 @@
 	$Serene_Northwind_EmployeeDialog.__typeName = 'Serene.Northwind.EmployeeDialog';
 	global.Serene.Northwind.EmployeeDialog = $Serene_Northwind_EmployeeDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.EmployeeForm
-	var $Serene_Northwind_EmployeeForm = function(idPrefix) {
-		this.$3$LastNameField = null;
-		this.$3$FirstNameField = null;
-		this.$3$TitleField = null;
-		this.$3$TitleOfCourtesyField = null;
-		this.$3$BirthDateField = null;
-		this.$3$HireDateField = null;
-		this.$3$AddressField = null;
-		this.$3$CityField = null;
-		this.$3$RegionField = null;
-		this.$3$PostalCodeField = null;
-		this.$3$CountryField = null;
-		this.$3$HomePhoneField = null;
-		this.$3$ExtensionField = null;
-		this.$3$PhotoField = null;
-		this.$3$NotesField = null;
-		this.$3$ReportsToField = null;
-		this.$3$PhotoPathField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_EmployeeForm.__typeName = 'Serene.Northwind.EmployeeForm';
-	global.Serene.Northwind.EmployeeForm = $Serene_Northwind_EmployeeForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeFormatter
 	var $Serene_Northwind_EmployeeFormatter = function() {
 		this.$1$GenderPropertyField = null;
@@ -460,14 +278,6 @@
 	};
 	$Serene_Northwind_EmployeeTerritoryDialog.__typeName = 'Serene.Northwind.EmployeeTerritoryDialog';
 	global.Serene.Northwind.EmployeeTerritoryDialog = $Serene_Northwind_EmployeeTerritoryDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.EmployeeTerritoryForm
-	var $Serene_Northwind_EmployeeTerritoryForm = function(idPrefix) {
-		this.$3$TerritoryIDField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_EmployeeTerritoryForm.__typeName = 'Serene.Northwind.EmployeeTerritoryForm';
-	global.Serene.Northwind.EmployeeTerritoryForm = $Serene_Northwind_EmployeeTerritoryForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.EmployeeTerritoryGrid
 	var $Serene_Northwind_EmployeeTerritoryGrid = function(container) {
@@ -500,16 +310,26 @@
 	$Serene_Northwind_NoteDialog.__typeName = 'Serene.Northwind.NoteDialog';
 	global.Serene.Northwind.NoteDialog = $Serene_Northwind_NoteDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderDetailForm
-	var $Serene_Northwind_OrderDetailForm = function(idPrefix) {
-		this.$3$ProductIDField = null;
-		this.$3$UnitPriceField = null;
-		this.$3$QuantityField = null;
-		this.$3$DiscountField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
+	// Serene.Northwind.OrderDetailDialog
+	var $Serene_Northwind_OrderDetailDialog = function() {
+		this.form = null;
+		Serene.Common.GridEditorDialog.call(this);
+		this.form = new $Serene_Northwind_OrderDetailForm(this.idPrefix);
+		Serenity.WX.changeSelect2(this.form.w('ProductID', Serenity.LookupEditor), ss.mkdel(this, function(e) {
+			var productID = Q.toId(this.form.w('ProductID', Serenity.LookupEditor).get_value());
+			if (ss.isValue(productID)) {
+				this.form.w('UnitPrice', Serenity.DecimalEditor).set_value(Q.getLookup('Northwind.Product').itemById[ss.unbox(productID)].UnitPrice);
+			}
+		}));
+		this.form.w('Discount', Serenity.DecimalEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
+			if (ss.isValue(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) && ss.isValue(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1()) && ss.isValue(this.form.w('Discount', Serenity.DecimalEditor).get_value()) && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > 0 && ss.unbox(this.form.w('Discount', Serenity.DecimalEditor).get_value()) > ss.unbox(this.form.w('UnitPrice', Serenity.DecimalEditor).get_value()) * ss.unbox(this.form.w('Quantity', Serenity.IntegerEditor).get_value$1())) {
+				return "Discount can't be higher than total price!";
+			}
+			return null;
+		}));
 	};
-	$Serene_Northwind_OrderDetailForm.__typeName = 'Serene.Northwind.OrderDetailForm';
-	global.Serene.Northwind.OrderDetailForm = $Serene_Northwind_OrderDetailForm;
+	$Serene_Northwind_OrderDetailDialog.__typeName = 'Serene.Northwind.OrderDetailDialog';
+	global.Serene.Northwind.OrderDetailDialog = $Serene_Northwind_OrderDetailDialog;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderDialog
 	var $Serene_Northwind_OrderDialog = function() {
@@ -520,49 +340,11 @@
 	$Serene_Northwind_OrderDialog.__typeName = 'Serene.Northwind.OrderDialog';
 	global.Serene.Northwind.OrderDialog = $Serene_Northwind_OrderDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.OrderForm
-	var $Serene_Northwind_OrderForm = function(idPrefix) {
-		this.$3$CustomerIDField = null;
-		this.$3$OrderDateField = null;
-		this.$3$RequiredDateField = null;
-		this.$3$EmployeeIDField = null;
-		this.$3$DetailListField = null;
-		this.$3$ShippedDateField = null;
-		this.$3$ShipViaField = null;
-		this.$3$FreightField = null;
-		this.$3$ShipNameField = null;
-		this.$3$ShipAddressField = null;
-		this.$3$ShipCityField = null;
-		this.$3$ShipRegionField = null;
-		this.$3$ShipPostalCodeField = null;
-		this.$3$ShipCountryField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_OrderForm.__typeName = 'Serene.Northwind.OrderForm';
-	global.Serene.Northwind.OrderForm = $Serene_Northwind_OrderForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.OrderShippingState
 	var $Serene_Northwind_OrderShippingState = function() {
 	};
 	$Serene_Northwind_OrderShippingState.__typeName = 'Serene.Northwind.OrderShippingState';
 	global.Serene.Northwind.OrderShippingState = $Serene_Northwind_OrderShippingState;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ProductForm
-	var $Serene_Northwind_ProductForm = function(idPrefix) {
-		this.$3$ProductNameField = null;
-		this.$3$ProductImageField = null;
-		this.$3$DiscontinuedField = null;
-		this.$3$SupplierIDField = null;
-		this.$3$CategoryIDField = null;
-		this.$3$QuantityPerUnitField = null;
-		this.$3$UnitPriceField = null;
-		this.$3$UnitsInStockField = null;
-		this.$3$UnitsOnOrderField = null;
-		this.$3$ReorderLevelField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_ProductForm.__typeName = 'Serene.Northwind.ProductForm';
-	global.Serene.Northwind.ProductForm = $Serene_Northwind_ProductForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionDialog
 	var $Serene_Northwind_RegionDialog = function() {
@@ -570,15 +352,6 @@
 	};
 	$Serene_Northwind_RegionDialog.__typeName = 'Serene.Northwind.RegionDialog';
 	global.Serene.Northwind.RegionDialog = $Serene_Northwind_RegionDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.RegionForm
-	var $Serene_Northwind_RegionForm = function(idPrefix) {
-		this.$3$RegionIDField = null;
-		this.$3$RegionDescriptionField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_RegionForm.__typeName = 'Serene.Northwind.RegionForm';
-	global.Serene.Northwind.RegionForm = $Serene_Northwind_RegionForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.RegionGrid
 	var $Serene_Northwind_RegionGrid = function(container) {
@@ -593,15 +366,6 @@
 	};
 	$Serene_Northwind_ShipperDialog.__typeName = 'Serene.Northwind.ShipperDialog';
 	global.Serene.Northwind.ShipperDialog = $Serene_Northwind_ShipperDialog;
-	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.ShipperForm
-	var $Serene_Northwind_ShipperForm = function(idPrefix) {
-		this.$3$CompanyNameField = null;
-		this.$3$PhoneField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_ShipperForm.__typeName = 'Serene.Northwind.ShipperForm';
-	global.Serene.Northwind.ShipperForm = $Serene_Northwind_ShipperForm;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.ShipperFormatter
 	var $Serene_Northwind_ShipperFormatter = function() {
@@ -623,24 +387,6 @@
 	$Serene_Northwind_SupplierDialog.__typeName = 'Serene.Northwind.SupplierDialog';
 	global.Serene.Northwind.SupplierDialog = $Serene_Northwind_SupplierDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.SupplierForm
-	var $Serene_Northwind_SupplierForm = function(idPrefix) {
-		this.$3$CompanyNameField = null;
-		this.$3$ContactNameField = null;
-		this.$3$ContactTitleField = null;
-		this.$3$AddressField = null;
-		this.$3$CityField = null;
-		this.$3$RegionField = null;
-		this.$3$PostalCodeField = null;
-		this.$3$CountryField = null;
-		this.$3$PhoneField = null;
-		this.$3$FaxField = null;
-		this.$3$HomePageField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_SupplierForm.__typeName = 'Serene.Northwind.SupplierForm';
-	global.Serene.Northwind.SupplierForm = $Serene_Northwind_SupplierForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.SupplierGrid
 	var $Serene_Northwind_SupplierGrid = function(container) {
 		this.$country = null;
@@ -656,16 +402,6 @@
 	$Serene_Northwind_TerritoryDialog.__typeName = 'Serene.Northwind.TerritoryDialog';
 	global.Serene.Northwind.TerritoryDialog = $Serene_Northwind_TerritoryDialog;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Northwind.TerritoryForm
-	var $Serene_Northwind_TerritoryForm = function(idPrefix) {
-		this.$3$TerritoryIDField = null;
-		this.$3$TerritoryDescriptionField = null;
-		this.$3$RegionIDField = null;
-		Serenity.PrefixedContext.call(this, idPrefix);
-	};
-	$Serene_Northwind_TerritoryForm.__typeName = 'Serene.Northwind.TerritoryForm';
-	global.Serene.Northwind.TerritoryForm = $Serene_Northwind_TerritoryForm;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Northwind.TerritoryGrid
 	var $Serene_Northwind_TerritoryGrid = function(container) {
 		this.$region = null;
@@ -680,6 +416,10 @@
 	};
 	$Serenity_HtmlBasicContentEditor.__typeName = 'Serenity.HtmlBasicContentEditor';
 	global.Serenity.HtmlBasicContentEditor = $Serenity_HtmlBasicContentEditor;
+	ss.initClass($Serene_Authorization, $asm, {});
+	ss.initClass($Serene_DialogUtils, $asm, {});
+	ss.initClass($Serene_LanguageList, $asm, {});
+	ss.initClass($Serene_ScriptInitialization, $asm, {});
 	ss.initClass($Serene_Administration_LanguageForm, $asm, {
 		set_languageId: function(value) {
 			this.$3$LanguageIdField = value;
@@ -688,154 +428,22 @@
 			this.$3$LanguageNameField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_RoleForm, $asm, {
-		set_roleName: function(value) {
-			this.$3$RoleNameField = value;
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Administration_UserForm, $asm, {
-		set_username: function(value) {
-			this.$3$UsernameField = value;
-		},
-		set_displayName: function(value) {
-			this.$3$DisplayNameField = value;
-		},
-		set_email: function(value) {
-			this.$3$EmailField = value;
-		},
-		set_password: function(value) {
-			this.$3$PasswordField = value;
-		},
-		set_passwordConfirm: function(value) {
-			this.$3$PasswordConfirmField = value;
-		},
-		set_source: function(value) {
-			this.$3$SourceField = value;
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_FilteredLookupInDetailForm, $asm, {
-		set_customerID: function(value) {
-			this.$3$CustomerIDField = value;
-		},
-		set_orderDate: function(value) {
-			this.$3$OrderDateField = value;
-		},
-		set_categoryID: function(value) {
-			this.$3$CategoryIDField = value;
-		},
-		set_detailList: function(value) {
-			this.$3$DetailListField = value;
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_BasicSamples_LookupFilterByMultipleForm, $asm, {
-		set_productName: function(value) {
-			this.$3$ProductNameField = value;
-		},
-		set_productImage: function(value) {
-			this.$3$ProductImageField = value;
-		},
-		set_discontinued: function(value) {
-			this.$3$DiscontinuedField = value;
-		},
-		set_supplierID: function(value) {
-			this.$3$SupplierIDField = value;
-		},
-		set_categoryID: function(value) {
-			this.$3$CategoryIDField = value;
-		},
-		set_quantityPerUnit: function(value) {
-			this.$3$QuantityPerUnitField = value;
-		},
-		set_unitPrice: function(value) {
-			this.$3$UnitPriceField = value;
-		},
-		set_unitsInStock: function(value) {
-			this.$3$UnitsInStockField = value;
-		},
-		set_unitsOnOrder: function(value) {
-			this.$3$UnitsOnOrderField = value;
-		},
-		set_reorderLevel: function(value) {
-			this.$3$ReorderLevelField = value;
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_ChangePasswordForm, $asm, {
-		set_oldPassword: function(value) {
-			this.$3$OldPasswordField = value;
-		},
-		set_newPassword: function(value) {
-			this.$3$NewPasswordField = value;
-		},
-		set_confirmPassword: function(value) {
-			this.$3$ConfirmPasswordField = value;
-		}
-	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Common_LanguageSelection, $asm, {}, Serenity.Widget);
+	ss.initClass($Serene_Common_SidebarSearch, $asm, {
+
+	}, Serenity.Widget);
 	ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, Serenity.PropertyPanel);
-	ss.initClass($Serene_Membership_ForgotPasswordForm, $asm, {
-		set_email: function(value) {
-			this.$3$EmailField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, Serenity.PropertyPanel);
-	ss.initClass($Serene_Membership_LoginForm, $asm, {
-		set_username: function(value) {
-			this.$3$UsernameField = value;
-		},
-		set_password: function(value) {
-			this.$3$PasswordField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_LoginPanel, $asm, {}, Serenity.PropertyPanel);
-	ss.initClass($Serene_Membership_ResetPasswordForm, $asm, {
-		set_newPassword: function(value) {
-			this.$3$NewPasswordField = value;
-		},
-		set_confirmPassword: function(value) {
-			this.$3$ConfirmPasswordField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, Serenity.PropertyPanel);
-	ss.initClass($Serene_Membership_SignUpForm, $asm, {
-		set_displayName: function(value) {
-			this.$3$DisplayNameField = value;
-		},
-		set_email: function(value) {
-			this.$3$EmailField = value;
-		},
-		set_confirmEmail: function(value) {
-			this.$3$ConfirmEmailField = value;
-		},
-		set_password: function(value) {
-			this.$3$PasswordField = value;
-		},
-		set_confirmPassword: function(value) {
-			this.$3$ConfirmPasswordField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Northwind_CategoryDialog, $asm, {
 		getLanguages: function() {
-			return Serene.LanguageList.getValue();
+			return $Serene_LanguageList.get_value();
 		}
 	}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_CategoryForm, $asm, {
-		set_categoryName: function(value) {
-			this.$3$CategoryNameField = value;
-		},
-		set_description: function(value) {
-			this.$3$DescriptionField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CategoryGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_CustomerCustomerDemoForm, $asm, {
-		set_customerID: function(value) {
-			this.$3$CustomerIDField = value;
-		},
-		set_customerTypeID: function(value) {
-			this.$3$CustomerTypeIDField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerCustomerDemoGrid, $asm, {
 		getColumns: function() {
 			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
@@ -846,14 +454,6 @@
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_CustomerDemographicDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_CustomerDemographicForm, $asm, {
-		set_customerTypeID: function(value) {
-			this.$3$CustomerTypeIDField = value;
-		},
-		set_customerDesc: function(value) {
-			this.$3$CustomerDescField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerDemographicGrid, $asm, {
 		getColumns: function() {
 			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
@@ -894,47 +494,6 @@
 			return Serenity.LookupEditorBase.prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
 		}
 	}, Serenity.LookupEditorBase, [Serenity.ISetEditValue, Serenity.IGetEditValue, Serenity.IStringValue]);
-	ss.initClass($Serene_Northwind_CustomerForm, $asm, {
-		set_customerID: function(value) {
-			this.$3$CustomerIDField = value;
-		},
-		set_companyName: function(value) {
-			this.$3$CompanyNameField = value;
-		},
-		set_contactName: function(value) {
-			this.$3$ContactNameField = value;
-		},
-		set_contactTitle: function(value) {
-			this.$3$ContactTitleField = value;
-		},
-		set_representatives: function(value) {
-			this.$3$RepresentativesField = value;
-		},
-		set_address: function(value) {
-			this.$3$AddressField = value;
-		},
-		set_city: function(value) {
-			this.$3$CityField = value;
-		},
-		set_region: function(value) {
-			this.$3$RegionField = value;
-		},
-		set_postalCode: function(value) {
-			this.$3$PostalCodeField = value;
-		},
-		set_country: function(value) {
-			this.$3$CountryField = value;
-		},
-		set_phone: function(value) {
-			this.$3$PhoneField = value;
-		},
-		set_fax: function(value) {
-			this.$3$FaxField = value;
-		},
-		set_noteList: function(value) {
-			this.$3$NoteListField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_CustomerGrid, $asm, {
 		getButtons: function() {
 			var buttons = Serenity.EntityGrid.prototype.getButtons.call(this);
@@ -962,59 +521,6 @@
 		}
 	}, $Serene_Northwind_OrderDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initClass($Serene_Northwind_EmployeeDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_EmployeeForm, $asm, {
-		set_lastName: function(value) {
-			this.$3$LastNameField = value;
-		},
-		set_firstName: function(value) {
-			this.$3$FirstNameField = value;
-		},
-		set_title: function(value) {
-			this.$3$TitleField = value;
-		},
-		set_titleOfCourtesy: function(value) {
-			this.$3$TitleOfCourtesyField = value;
-		},
-		set_birthDate: function(value) {
-			this.$3$BirthDateField = value;
-		},
-		set_hireDate: function(value) {
-			this.$3$HireDateField = value;
-		},
-		set_address: function(value) {
-			this.$3$AddressField = value;
-		},
-		set_city: function(value) {
-			this.$3$CityField = value;
-		},
-		set_region: function(value) {
-			this.$3$RegionField = value;
-		},
-		set_postalCode: function(value) {
-			this.$3$PostalCodeField = value;
-		},
-		set_country: function(value) {
-			this.$3$CountryField = value;
-		},
-		set_homePhone: function(value) {
-			this.$3$HomePhoneField = value;
-		},
-		set_extension: function(value) {
-			this.$3$ExtensionField = value;
-		},
-		set_photo: function(value) {
-			this.$3$PhotoField = value;
-		},
-		set_notes: function(value) {
-			this.$3$NotesField = value;
-		},
-		set_reportsTo: function(value) {
-			this.$3$ReportsToField = value;
-		},
-		set_photoPath: function(value) {
-			this.$3$PhotoPathField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_EmployeeFormatter, $asm, {
 		format: function(ctx) {
 			var text = Q.htmlEncode(ctx.value);
@@ -1063,11 +569,6 @@
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_EmployeeTerritoryDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_EmployeeTerritoryForm, $asm, {
-		set_territoryID: function(value) {
-			this.$3$TerritoryIDField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_EmployeeTerritoryGrid, $asm, {
 		getColumns: function() {
 			var columns = Serenity.DataGrid.prototype.getColumns.call(this);
@@ -1108,116 +609,13 @@
 			this.byId('Text').val(value);
 		}
 	}, Serenity.TemplatedDialog, [Serenity.IDialog]);
-	ss.initClass($Serene_Northwind_OrderDetailForm, $asm, {
-		set_productID: function(value) {
-			this.$3$ProductIDField = value;
-		},
-		set_unitPrice: function(value) {
-			this.$3$UnitPriceField = value;
-		},
-		set_quantity: function(value) {
-			this.$3$QuantityField = value;
-		},
-		set_discount: function(value) {
-			this.$3$DiscountField = value;
-		}
-	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Northwind_OrderForm, $asm, {
-		set_customerID: function(value) {
-			this.$3$CustomerIDField = value;
-		},
-		set_orderDate: function(value) {
-			this.$3$OrderDateField = value;
-		},
-		set_requiredDate: function(value) {
-			this.$3$RequiredDateField = value;
-		},
-		set_employeeID: function(value) {
-			this.$3$EmployeeIDField = value;
-		},
-		set_detailList: function(value) {
-			this.$3$DetailListField = value;
-		},
-		set_shippedDate: function(value) {
-			this.$3$ShippedDateField = value;
-		},
-		set_shipVia: function(value) {
-			this.$3$ShipViaField = value;
-		},
-		set_freight: function(value) {
-			this.$3$FreightField = value;
-		},
-		set_shipName: function(value) {
-			this.$3$ShipNameField = value;
-		},
-		set_shipAddress: function(value) {
-			this.$3$ShipAddressField = value;
-		},
-		set_shipCity: function(value) {
-			this.$3$ShipCityField = value;
-		},
-		set_shipRegion: function(value) {
-			this.$3$ShipRegionField = value;
-		},
-		set_shipPostalCode: function(value) {
-			this.$3$ShipPostalCodeField = value;
-		},
-		set_shipCountry: function(value) {
-			this.$3$ShipCountryField = value;
-		}
-	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Northwind_OrderDetailDialog, $asm, {}, Serene.Common.GridEditorDialog, [Serenity.IDialog, Serenity.IEditDialog]);
 	ss.initEnum($Serene_Northwind_OrderShippingState, $asm, { NotShipped: 0, Shipped: 1 });
-	ss.initClass($Serene_Northwind_ProductForm, $asm, {
-		set_productName: function(value) {
-			this.$3$ProductNameField = value;
-		},
-		set_productImage: function(value) {
-			this.$3$ProductImageField = value;
-		},
-		set_discontinued: function(value) {
-			this.$3$DiscontinuedField = value;
-		},
-		set_supplierID: function(value) {
-			this.$3$SupplierIDField = value;
-		},
-		set_categoryID: function(value) {
-			this.$3$CategoryIDField = value;
-		},
-		set_quantityPerUnit: function(value) {
-			this.$3$QuantityPerUnitField = value;
-		},
-		set_unitPrice: function(value) {
-			this.$3$UnitPriceField = value;
-		},
-		set_unitsInStock: function(value) {
-			this.$3$UnitsInStockField = value;
-		},
-		set_unitsOnOrder: function(value) {
-			this.$3$UnitsOnOrderField = value;
-		},
-		set_reorderLevel: function(value) {
-			this.$3$ReorderLevelField = value;
-		}
-	}, Serenity.PrefixedContext);
+	ss.initClass($Serene_Northwind_PhoneEditor, $asm, {
+	}, Serenity.StringEditor, [Serenity.IStringValue]);
 	ss.initClass($Serene_Northwind_RegionDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_RegionForm, $asm, {
-		set_regionID: function(value) {
-			this.$3$RegionIDField = value;
-		},
-		set_regionDescription: function(value) {
-			this.$3$RegionDescriptionField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_RegionGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_ShipperDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_ShipperForm, $asm, {
-		set_companyName: function(value) {
-			this.$3$CompanyNameField = value;
-		},
-		set_phone: function(value) {
-			this.$3$PhoneField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_ShipperFormatter, $asm, {
 		format: function(ctx) {
 			return "<span class='shipper-symbol shipper-" + ss.replaceAllString(ss.coalesce(ss.safeCast(ctx.value, String), ''), ' ', '') + "'>" + Q.htmlEncode(ctx.value) + '</span>';
@@ -1225,41 +623,6 @@
 	}, null, [Serenity.ISlickFormatter]);
 	ss.initClass($Serene_Northwind_ShipperGrid, $asm, {}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_SupplierDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_SupplierForm, $asm, {
-		set_companyName: function(value) {
-			this.$3$CompanyNameField = value;
-		},
-		set_contactName: function(value) {
-			this.$3$ContactNameField = value;
-		},
-		set_contactTitle: function(value) {
-			this.$3$ContactTitleField = value;
-		},
-		set_address: function(value) {
-			this.$3$AddressField = value;
-		},
-		set_city: function(value) {
-			this.$3$CityField = value;
-		},
-		set_region: function(value) {
-			this.$3$RegionField = value;
-		},
-		set_postalCode: function(value) {
-			this.$3$PostalCodeField = value;
-		},
-		set_country: function(value) {
-			this.$3$CountryField = value;
-		},
-		set_phone: function(value) {
-			this.$3$PhoneField = value;
-		},
-		set_fax: function(value) {
-			this.$3$FaxField = value;
-		},
-		set_homePage: function(value) {
-			this.$3$HomePageField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_SupplierGrid, $asm, {
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
@@ -1282,17 +645,6 @@
 		}
 	}, Serenity.EntityGrid, [Serenity.IDataGrid]);
 	ss.initClass($Serene_Northwind_TerritoryDialog, $asm, {}, Serenity.EntityDialog, [Serenity.IDialog, Serenity.IEditDialog]);
-	ss.initClass($Serene_Northwind_TerritoryForm, $asm, {
-		set_territoryID: function(value) {
-			this.$3$TerritoryIDField = value;
-		},
-		set_territoryDescription: function(value) {
-			this.$3$TerritoryDescriptionField = value;
-		},
-		set_regionID: function(value) {
-			this.$3$RegionIDField = value;
-		}
-	}, Serenity.PrefixedContext);
 	ss.initClass($Serene_Northwind_TerritoryGrid, $asm, {
 		createToolbarExtensions: function() {
 			Serenity.EntityGrid.prototype.createToolbarExtensions.call(this);
@@ -1341,8 +693,10 @@
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryDialog, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.FormKeyAttribute('Northwind.EmployeeTerritory'), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_EmployeeTerritoryGrid, { attr: [new Serenity.IdPropertyAttribute('EmployeeID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_EmployeeTerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.EmployeeTerritory'), new Serenity.ServiceAttribute('Northwind/EmployeeTerritory')] });
 	ss.setMetadata($Serene_Northwind_Gender, { attr: [new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender')] });
+	ss.setMetadata($Serene_Northwind_OrderDetailDialog, { attr: [new Serenity.FormKeyAttribute('Northwind.OrderDetail'), new Serenity.LocalTextPrefixAttribute('Northwind.OrderDetail')] });
 	ss.setMetadata($Serene_Northwind_OrderDialog, { attr: [new Serenity.IdPropertyAttribute('OrderID'), new Serenity.NamePropertyAttribute('OrderID'), new Serenity.FlexifyAttribute(), new Serenity.MaximizableAttribute(), new Serenity.FormKeyAttribute('Northwind.Order'), new Serenity.LocalTextPrefixAttribute('Northwind.Order'), new Serenity.ServiceAttribute('Northwind/Order')] });
 	ss.setMetadata($Serene_Northwind_OrderShippingState, { attr: [new Serenity.EnumKeyAttribute('Northwind.OrderShippingState')] });
+	ss.setMetadata($Serene_Northwind_PhoneEditor, { attr: [new Serenity.EditorAttribute()], members: [{ attr: [new Serenity.OptionAttribute()], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, sname: 'get_multiple', returnType: Boolean, params: [] }, setter: { name: 'set_Multiple', type: 8, sname: 'set_multiple', returnType: Object, params: [Boolean] } }] });
 	ss.setMetadata($Serene_Northwind_RegionDialog, { attr: [new Serenity.IdPropertyAttribute('RegionID'), new Serenity.NamePropertyAttribute('RegionDescription'), new Serenity.FormKeyAttribute('Northwind.Region'), new Serenity.LocalTextPrefixAttribute('Northwind.Region'), new Serenity.ServiceAttribute('Northwind/Region')] });
 	ss.setMetadata($Serene_Northwind_RegionGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Region'), new Serenity.IdPropertyAttribute('RegionID'), new Serenity.NamePropertyAttribute('RegionDescription'), new Serenity.DialogTypeAttribute($Serene_Northwind_RegionDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Region'), new Serenity.ServiceAttribute('Northwind/Region')] });
 	ss.setMetadata($Serene_Northwind_ShipperDialog, { attr: [new Serenity.IdPropertyAttribute('ShipperID'), new Serenity.NamePropertyAttribute('CompanyName'), new Serenity.FormKeyAttribute('Northwind.Shipper'), new Serenity.LocalTextPrefixAttribute('Northwind.Shipper'), new Serenity.ServiceAttribute('Northwind/Shipper')] });
@@ -1353,3 +707,4 @@
 	ss.setMetadata($Serene_Northwind_TerritoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Territory'), new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('TerritoryID'), new Serenity.DialogTypeAttribute($Serene_Northwind_TerritoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Territory'), new Serenity.ServiceAttribute('Northwind/Territory')] });
 	ss.setMetadata($Serenity_HtmlBasicContentEditor, { attr: [new Serenity.EditorAttribute(), new System.ComponentModel.DisplayNameAttribute('Html Content (Basic Set)'), new Serenity.OptionsTypeAttribute(Serenity.HtmlContentEditorOptions), new Serenity.ElementAttribute('<textarea />')] });
 })();
+*/

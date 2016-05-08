@@ -2,16 +2,17 @@
 namespace Serene
 {
     using Serenity;
+    using System.Runtime.CompilerServices;
 
-    public class Authorization
+    [Imported]
+    public static class Authorization
     {
-        public static ScriptUserDefinition UserDefinition { get { return Q.GetRemoteData<ScriptUserDefinition>("UserData"); } }
+        [IntrinsicProperty]
+        public static ScriptUserDefinition UserDefinition { get; private set; }
 
         public static bool HasPermission(string permissionKey)
         {
-            return 
-                UserDefinition.Username == "admin" ||
-                Q.IsTrue(UserDefinition.Permissions[permissionKey]);
+            return false;
         }
     }
 }

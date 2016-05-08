@@ -3,7 +3,9 @@ namespace Serene.Northwind
 {
     using Common;
     using Serenity;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     [FormKey("Northwind.OrderDetail"), LocalTextPrefix("Northwind.OrderDetail")]
     public class OrderDetailDialog : GridEditorDialog<OrderDetailRow>
     {
