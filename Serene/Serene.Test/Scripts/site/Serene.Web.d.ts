@@ -2277,19 +2277,7 @@ declare namespace Serene {
     }
 }
 declare namespace Serene.Membership {
-    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
-        constructor(container: JQuery);
-    }
-    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
-        constructor(container: JQuery);
-    }
     class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        constructor(container: JQuery);
-    }
-    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
-        constructor(container: JQuery);
-    }
-    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         constructor(container: JQuery);
     }
 }
@@ -2411,6 +2399,34 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
         function createToolButton<TItem>(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Membership {
+    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.Northwind {

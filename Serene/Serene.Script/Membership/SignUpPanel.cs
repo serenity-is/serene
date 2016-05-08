@@ -4,8 +4,9 @@ namespace Serene.Membership
     using jQueryApi;
     using Serenity;
     using System.Html;
+    using System.Runtime.CompilerServices;
 
-    [Panel, FormKey("Membership.SignUp")]
+    [Imported, Panel, FormKey("Membership.SignUp")]
     public class SignUpPanel : PropertyPanel<SignUpRequest>
     {
         private SignUpForm form;

@@ -4,8 +4,9 @@ namespace Serene.Membership
     using jQueryApi;
     using Serenity;
     using System.Html;
+    using System.Runtime.CompilerServices;
 
-    [Panel, FormKey("Membership.ChangePassword")]
+    [Imported, Panel, FormKey("Membership.ChangePassword")]
     public class ChangePasswordPanel : PropertyPanel<ChangePasswordRequest>
     {
         private ChangePasswordForm form;

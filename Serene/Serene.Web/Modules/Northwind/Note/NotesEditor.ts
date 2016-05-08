@@ -30,12 +30,12 @@
         protected updateContent() {
             var noteList = this.byId('NoteList');
             noteList.children().remove();
-            if (ss.isValue(this.items)) {
+            if (this.items) {
                 var index = 0;
                 for (var t1 = 0; t1 < this.items.length; t1++) {
                     var item = this.items[t1];
                     var li = $('<li/>');
-                    $('<div/>').addClass('note-text').html(ss.coalesce(item.Text, '')).appendTo(li);
+                    $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
 
                     $('<a/>').attr('href', '#').addClass('note-date')
                         .text(item.InsertUserDisplayName + ' - ' +
@@ -124,7 +124,7 @@
         }
 
         public setEditValue(source, prop: Serenity.PropertyItem) {
-            this.set_value(ss.cast(source[prop.name], Array));
+            this.set_value(source[prop.name]);
         }
 
         public get_isDirty(): boolean {

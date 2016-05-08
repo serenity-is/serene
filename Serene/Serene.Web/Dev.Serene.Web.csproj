@@ -1191,6 +1191,10 @@
     <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
     <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\SignUp\SignUpPanel.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Shared\PhoneEditor.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Script.Port.ts" />
     <Content Include="Scripts\_references.js" />

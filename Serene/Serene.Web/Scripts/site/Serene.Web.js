@@ -1189,7 +1189,7 @@ var Serene;
                 var item = this.itemAt(cell.row);
                 var input = $(e.target);
                 var field = input.data('field') || this.getColumns()[cell.cell].field;
-                var text = ss.coalesce(Q.trimToNull(input.val()), '0');
+                var text = Q.coalesce(Q.trimToNull(input.val()), '0');
                 var pending = this.pendingChanges[item.ProductID];
                 var effective = this.getEffectiveValue(item, field);
                 var oldText;
@@ -3915,7 +3915,7 @@ var Serene;
                 var items = liList;
                 items.each(function (idx, e) {
                     var x = $(e);
-                    var title = Select2.util.stripDiacritics(ss.coalesce(x.text(), '').toUpperCase());
+                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
                     for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
                         var p = parts_1[_i];
                         if (p != null && !(title.indexOf(p) !== -1)) {
@@ -4149,6 +4149,184 @@ var Serene;
         })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ChangePasswordPanel = (function (_super) {
+            __extends(ChangePasswordPanel, _super);
+            function ChangePasswordPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.form = new Membership.ChangePasswordForm(this.idPrefix);
+                this.form.NewPassword.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ChangePassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+            }
+            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
+            ChangePasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ChangePasswordPanel);
+            return ChangePasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ChangePasswordPanel = ChangePasswordPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordPanel = (function (_super) {
+            __extends(ForgotPasswordPanel, _super);
+            function ForgotPasswordPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.form = new Membership.ForgotPasswordForm(this.idPrefix);
+                this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ForgotPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+            }
+            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
+            ForgotPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ForgotPasswordPanel);
+            return ForgotPasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ResetPasswordPanel = (function (_super) {
+            __extends(ResetPasswordPanel, _super);
+            function ResetPasswordPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.form = new Membership.ResetPasswordForm(this.idPrefix);
+                this.form.NewPassword.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    request.Token = _this.byId('Token').val();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ResetPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ResetPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/Account/Login');
+                            });
+                        }
+                    });
+                });
+            }
+            ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
+            ResetPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ResetPasswordPanel);
+            return ResetPasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ResetPasswordPanel = ResetPasswordPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var SignUpPanel = (function (_super) {
+            __extends(SignUpPanel, _super);
+            function SignUpPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.form = new Membership.SignUpForm(this.idPrefix);
+                this.form.ConfirmEmail.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.ConfirmEmail.value !== _this.form.Email.value) {
+                        return Q.text('Validation.EmailConfirm');
+                    }
+                });
+                this.form.ConfirmPassword.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.Password.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/SignUp'),
+                        request: {
+                            DisplayName: _this.form.DisplayName.value,
+                            Email: _this.form.Email.value,
+                            Password: _this.form.Password.value
+                        },
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.SignUp.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+            }
+            SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
+            SignUpPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SignUpPanel);
+            return SignUpPanel;
+        }(Serenity.PropertyPanel));
+        Membership.SignUpPanel = SignUpPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -4226,12 +4404,12 @@ var Serene;
                 var _this = this;
                 var noteList = this.byId('NoteList');
                 noteList.children().remove();
-                if (ss.isValue(this.items)) {
+                if (this.items) {
                     var index = 0;
                     for (var t1 = 0; t1 < this.items.length; t1++) {
                         var item = this.items[t1];
                         var li = $('<li/>');
-                        $('<div/>').addClass('note-text').html(ss.coalesce(item.Text, '')).appendTo(li);
+                        $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
                         $('<a/>').attr('href', '#').addClass('note-date')
                             .text(item.InsertUserDisplayName + ' - ' +
                             Q.formatDate(Q.parseISODateTime(item.InsertDate), 'dd/MM/yyyy HH:mm'))
@@ -4310,7 +4488,7 @@ var Serene;
                 target[prop.name] = this.get_value();
             };
             NotesEditor.prototype.setEditValue = function (source, prop) {
-                this.set_value(ss.cast(source[prop.name], Array));
+                this.set_value(source[prop.name]);
             };
             NotesEditor.prototype.get_isDirty = function () {
                 return this.isDirty;
@@ -4519,65 +4697,6 @@ var Serene;
 /*
 (function () {
     ////////////////////////////////////////////////////////////////////////////////
-    // Serene.Membership.ChangePasswordPanel
-    var $Serene_Membership_ChangePasswordPanel = function(container) {
-        this.$form = null;
-        Serenity.PropertyPanel.call(this, container);
-        this.$form = new $Serene_Membership_ChangePasswordForm(this.idPrefix);
-        this.$form.w('NewPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
-            if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
-                return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
-            }
-            return null;
-        }));
-        this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
-            if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
-                return Q.text('Validation.PasswordConfirm');
-            }
-            return null;
-        }));
-        this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
-            e2.preventDefault();
-            if (!this.validateForm()) {
-                return;
-            }
-            var request = this.getSaveEntity();
-            Q.serviceCall({
-                url: Q.resolveUrl('~/Account/ChangePassword'),
-                request: request,
-                onSuccess: function(response) {
-                    Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function() {
-                        window.location.href = Q.resolveUrl('~/');
-                    }, {});
-                }
-            });
-        })));
-    };
-    $Serene_Membership_ChangePasswordPanel.__typeName = 'Serene.Membership.ChangePasswordPanel';
-    global.Serene.Membership.ChangePasswordPanel = $Serene_Membership_ChangePasswordPanel;
-    ////////////////////////////////////////////////////////////////////////////////
-    // Serene.Membership.ForgotPasswordPanel
-    var $Serene_Membership_ForgotPasswordPanel = function(container) {
-        Serenity.PropertyPanel.call(this, container);
-        this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
-            e.preventDefault();
-            if (!this.validateForm()) {
-                return;
-            }
-            var request = this.getSaveEntity();
-            Q.serviceCall({
-                url: Q.resolveUrl('~/Account/ForgotPassword'),
-                request: request,
-                onSuccess: function(response) {
-                    Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function() {
-                        window.location.href = Q.resolveUrl('~/');
-                    }, {});
-                }
-            });
-        })));
-    };
-    $Serene_Membership_ForgotPasswordPanel.__typeName = 'Serene.Membership.ForgotPasswordPanel';
-    global.Serene.Membership.ForgotPasswordPanel = $Serene_Membership_ForgotPasswordPanel;
     ////////////////////////////////////////////////////////////////////////////////
     // Serene.Membership.LoginPanel
     var $Serene_Membership_LoginPanel = function(container) {
@@ -4610,77 +4729,12 @@ var Serene;
     };
     $Serene_Membership_LoginPanel.__typeName = 'Serene.Membership.LoginPanel';
     global.Serene.Membership.LoginPanel = $Serene_Membership_LoginPanel;
-    global.Serene.Membership.ResetPasswordForm = $Serene_Membership_ResetPasswordForm;
-    ////////////////////////////////////////////////////////////////////////////////
-    // Serene.Membership.ResetPasswordPanel
-    var $Serene_Membership_ResetPasswordPanel = function(container) {
-        this.$form = null;
-        Serenity.PropertyPanel.call(this, container);
-        this.$form = new $Serene_Membership_ResetPasswordForm(this.idPrefix);
-        this.$form.w('NewPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
-            if (this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value().length < 7) {
-                return ss.formatString(Q.text('Validation.MinRequiredPasswordLength'), 7);
-            }
-            return null;
-        }));
-        this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
-            if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('NewPassword', Serenity.PasswordEditor).get_value())) {
-                return Q.text('Validation.PasswordConfirm');
-            }
-            return null;
-        }));
-        this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
-            e2.preventDefault();
-            if (!this.validateForm()) {
-                return;
-            }
-            var request = this.getSaveEntity();
-            request.Token = this.byId('Token').val();
-            Q.serviceCall({
-                url: Q.resolveUrl('~/Account/ResetPassword'),
-                request: request,
-                onSuccess: function(response) {
-                    Q.information(Q.text('Forms.Membership.ResetPassword.Success'), function() {
-                        window.location.href = Q.resolveUrl('~/Account/Login');
-                    }, {});
-                }
-            });
-        })));
-    };
-    $Serene_Membership_ResetPasswordPanel.__typeName = 'Serene.Membership.ResetPasswordPanel';
-    global.Serene.Membership.ResetPasswordPanel = $Serene_Membership_ResetPasswordPanel;
     ////////////////////////////////////////////////////////////////////////////////
     // Serene.Membership.SignUpPanel
     var $Serene_Membership_SignUpPanel = function(container) {
         this.$form = null;
         Serenity.PropertyPanel.call(this, container);
-        this.$form = new $Serene_Membership_SignUpForm(this.idPrefix);
-        this.$form.w('ConfirmPassword', Serenity.PasswordEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e) {
-            if (!ss.referenceEquals(this.$form.w('ConfirmPassword', Serenity.PasswordEditor).get_value(), this.$form.w('Password', Serenity.PasswordEditor).get_value())) {
-                return Q.text('Validation.PasswordConfirm');
-            }
-            return null;
-        }));
-        this.$form.w('ConfirmEmail', Serenity.EmailEditor).addValidationRule(this.uniqueName, ss.mkdel(this, function(e1) {
-            if (!ss.referenceEquals(this.$form.w('ConfirmEmail', Serenity.EmailEditor).get_value(), this.$form.w('Email', Serenity.EmailEditor).get_value())) {
-                return Q.text('Validation.EmailConfirm');
-            }
-            return null;
-        }));
-        this.byId('SubmitButton').click(ss.thisFix(ss.mkdel(this, function(s, e2) {
-            e2.preventDefault();
-            if (!this.validateForm()) {
-                return;
-            }
-            Q.serviceCall({
-                url: Q.resolveUrl('~/Account/SignUp'),
-                request: { DisplayName: this.$form.w('DisplayName', Serenity.StringEditor).get_value(), Email: this.$form.w('Email', Serenity.EmailEditor).get_value(), Password: this.$form.w('Password', Serenity.PasswordEditor).get_value() },
-                onSuccess: function(response) {
-                    Q.information(Q.text('Forms.Membership.SignUp.Success'), function() {
-                        window.location.href = Q.resolveUrl('~/');
-                    }, {});
-                }
-            });
+        
         })));
     };
     $Serene_Membership_SignUpPanel.__typeName = 'Serene.Membership.SignUpPanel';
@@ -4949,9 +5003,7 @@ var Serene;
 
     }, Serenity.Widget);
     ss.initClass($Serene_Membership_ChangePasswordPanel, $asm, {}, Serenity.PropertyPanel);
-    ss.initClass($Serene_Membership_ForgotPasswordPanel, $asm, {}, Serenity.PropertyPanel);
     ss.initClass($Serene_Membership_LoginPanel, $asm, {}, Serenity.PropertyPanel);
-    ss.initClass($Serene_Membership_ResetPasswordPanel, $asm, {}, Serenity.PropertyPanel);
     ss.initClass($Serene_Membership_SignUpPanel, $asm, {}, Serenity.PropertyPanel);
     ss.initClass($Serene_Northwind_CategoryDialog, $asm, {
         getLanguages: function() {
@@ -5190,10 +5242,7 @@ var Serene;
             return config;
         }
     }, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-    ss.setMetadata($Serene_Membership_ChangePasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ChangePassword')] });
-    ss.setMetadata($Serene_Membership_ForgotPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ForgotPassword')] });
     ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.FormKeyAttribute('Membership.Login')] });
-    ss.setMetadata($Serene_Membership_ResetPasswordPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.ResetPassword')] });
     ss.setMetadata($Serene_Membership_SignUpPanel, { attr: [new Serenity.PanelAttribute(), new Serenity.FormKeyAttribute('Membership.SignUp')] });
     ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
     ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });

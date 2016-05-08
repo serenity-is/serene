@@ -35,7 +35,7 @@
             var items = liList;
             items.each(function (idx, e) {
                 var x = $(e);
-                var title = Select2.util.stripDiacritics(ss.coalesce(x.text(), '').toUpperCase());
+                var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
                 for (var p of parts) {
                     if (p != null && !(title.indexOf(p) !== -1)) {
                         x.addClass('non-match');

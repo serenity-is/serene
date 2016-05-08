@@ -4,8 +4,9 @@ namespace Serene.Membership
     using jQueryApi;
     using Serenity;
     using System.Html;
+    using System.Runtime.CompilerServices;
 
-    [Panel, FormKey("Membership.ForgotPassword")]
+    [Imported, Panel, FormKey("Membership.ForgotPassword")]
     public class ForgotPasswordPanel : PropertyPanel<ForgotPasswordRequest>
     {
         public ForgotPasswordPanel(jQueryObject container)

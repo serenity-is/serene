@@ -4,8 +4,9 @@ namespace Serene.Membership
     using jQueryApi;
     using Serenity;
     using System.Html;
+    using System.Runtime.CompilerServices;
 
-    [Panel, FormKey("Membership.ResetPassword")]
+    [Imported, Panel, FormKey("Membership.ResetPassword")]
     public class ResetPasswordPanel : PropertyPanel<ResetPasswordRequest>
     {
         private ResetPasswordForm form;
@@ -40,6 +41,7 @@ namespace Serene.Membership
 
                 var request = GetSaveEntity();
                 request.Token = this.ById("Token").GetValue();
+
                 Q.ServiceCall(new ServiceCallOptions
                 {
                     Url = Q.ResolveUrl("~/Account/ResetPassword"),

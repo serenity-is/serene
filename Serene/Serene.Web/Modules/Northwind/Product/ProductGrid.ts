@@ -173,7 +173,7 @@
             var item = this.itemAt(cell.row);
             var input = $(e.target);
             var field = input.data('field') || this.getColumns()[cell.cell].field;
-            var text = ss.coalesce(Q.trimToNull(input.val()), '0');
+            var text = Q.coalesce(Q.trimToNull(input.val()), '0');
             var pending = this.pendingChanges[item.ProductID];
 
             var effective = this.getEffectiveValue(item, field);
