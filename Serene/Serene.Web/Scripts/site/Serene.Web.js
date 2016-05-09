@@ -3084,22 +3084,6 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerCustomerDemoForm = (function (_super) {
-            __extends(CustomerCustomerDemoForm, _super);
-            function CustomerCustomerDemoForm() {
-                _super.apply(this, arguments);
-            }
-            CustomerCustomerDemoForm.formKey = 'Northwind.CustomerCustomerDemo';
-            return CustomerCustomerDemoForm;
-        }(Serenity.PrefixedContext));
-        Northwind.CustomerCustomerDemoForm = CustomerCustomerDemoForm;
-        [['CustomerID', Serenity.StringEditor], ['CustomerTypeID', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CustomerCustomerDemoForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
         var CustomerCustomerDemoRow;
         (function (CustomerCustomerDemoRow) {
             CustomerCustomerDemoRow.idProperty = 'ID';
@@ -3116,39 +3100,6 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerCustomerDemoService;
-        (function (CustomerCustomerDemoService) {
-            CustomerCustomerDemoService.baseUrl = 'Northwind/CustomerCustomerDemo';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CustomerCustomerDemoService.Methods || (CustomerCustomerDemoService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                CustomerCustomerDemoService[x] = function (r, s, o) { return Q.serviceRequest(CustomerCustomerDemoService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CustomerCustomerDemoService.baseUrl + '/' + x;
-            });
-        })(CustomerCustomerDemoService = Northwind.CustomerCustomerDemoService || (Northwind.CustomerCustomerDemoService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerDemographicForm = (function (_super) {
-            __extends(CustomerDemographicForm, _super);
-            function CustomerDemographicForm() {
-                _super.apply(this, arguments);
-            }
-            CustomerDemographicForm.formKey = 'Northwind.CustomerDemographic';
-            return CustomerDemographicForm;
-        }(Serenity.PrefixedContext));
-        Northwind.CustomerDemographicForm = CustomerDemographicForm;
-        [['CustomerTypeID', Serenity.StringEditor], ['CustomerDesc', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CustomerDemographicForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
         var CustomerDemographicRow;
         (function (CustomerDemographicRow) {
             CustomerDemographicRow.idProperty = 'ID';
@@ -3159,23 +3110,6 @@ var Serene;
             })(Fields = CustomerDemographicRow.Fields || (CustomerDemographicRow.Fields = {}));
             ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(function (x) { return Fields[x] = x; });
         })(CustomerDemographicRow = Northwind.CustomerDemographicRow || (Northwind.CustomerDemographicRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerDemographicService;
-        (function (CustomerDemographicService) {
-            CustomerDemographicService.baseUrl = 'Northwind/CustomerDemographic';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CustomerDemographicService.Methods || (CustomerDemographicService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                CustomerDemographicService[x] = function (r, s, o) { return Q.serviceRequest(CustomerDemographicService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CustomerDemographicService.baseUrl + '/' + x;
-            });
-        })(CustomerDemographicService = Northwind.CustomerDemographicService || (Northwind.CustomerDemographicService = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3251,22 +3185,6 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var EmployeeForm = (function (_super) {
-            __extends(EmployeeForm, _super);
-            function EmployeeForm() {
-                _super.apply(this, arguments);
-            }
-            EmployeeForm.formKey = 'Northwind.Employee';
-            return EmployeeForm;
-        }(Serenity.PrefixedContext));
-        Northwind.EmployeeForm = EmployeeForm;
-        [['LastName', Serenity.StringEditor], ['FirstName', Serenity.StringEditor], ['Title', Serenity.StringEditor], ['TitleOfCourtesy', Serenity.StringEditor], ['BirthDate', Serenity.DateEditor], ['HireDate', Serenity.DateEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['HomePhone', Serenity.StringEditor], ['Extension', Serenity.StringEditor], ['Photo', Serenity.StringEditor], ['Notes', Serenity.StringEditor], ['ReportsTo', Serenity.IntegerEditor], ['PhotoPath', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(EmployeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
         var EmployeeRow;
         (function (EmployeeRow) {
             EmployeeRow.idProperty = 'EmployeeID';
@@ -3288,39 +3206,6 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var EmployeeService;
-        (function (EmployeeService) {
-            EmployeeService.baseUrl = 'Northwind/Employee';
-            var Methods;
-            (function (Methods) {
-            })(Methods = EmployeeService.Methods || (EmployeeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                EmployeeService[x] = function (r, s, o) { return Q.serviceRequest(EmployeeService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = EmployeeService.baseUrl + '/' + x;
-            });
-        })(EmployeeService = Northwind.EmployeeService || (Northwind.EmployeeService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeTerritoryForm = (function (_super) {
-            __extends(EmployeeTerritoryForm, _super);
-            function EmployeeTerritoryForm() {
-                _super.apply(this, arguments);
-            }
-            EmployeeTerritoryForm.formKey = 'Northwind.EmployeeTerritory';
-            return EmployeeTerritoryForm;
-        }(Serenity.PrefixedContext));
-        Northwind.EmployeeTerritoryForm = EmployeeTerritoryForm;
-        [['TerritoryID', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(EmployeeTerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
         var EmployeeTerritoryRow;
         (function (EmployeeTerritoryRow) {
             EmployeeTerritoryRow.idProperty = 'EmployeeID';
@@ -3331,23 +3216,6 @@ var Serene;
             })(Fields = EmployeeTerritoryRow.Fields || (EmployeeTerritoryRow.Fields = {}));
             ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(function (x) { return Fields[x] = x; });
         })(EmployeeTerritoryRow = Northwind.EmployeeTerritoryRow || (Northwind.EmployeeTerritoryRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeTerritoryService;
-        (function (EmployeeTerritoryService) {
-            EmployeeTerritoryService.baseUrl = 'Northwind/EmployeeTerritory';
-            var Methods;
-            (function (Methods) {
-            })(Methods = EmployeeTerritoryService.Methods || (EmployeeTerritoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                EmployeeTerritoryService[x] = function (r, s, o) { return Q.serviceRequest(EmployeeTerritoryService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = EmployeeTerritoryService.baseUrl + '/' + x;
-            });
-        })(EmployeeTerritoryService = Northwind.EmployeeTerritoryService || (Northwind.EmployeeTerritoryService = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3747,7 +3615,7 @@ var Serene;
             return SupplierForm;
         }(Serenity.PrefixedContext));
         Northwind.SupplierForm = SupplierForm;
-        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
