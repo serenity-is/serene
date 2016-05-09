@@ -56,7 +56,6 @@ declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
     class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        protected getColumnsKey(): string;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;

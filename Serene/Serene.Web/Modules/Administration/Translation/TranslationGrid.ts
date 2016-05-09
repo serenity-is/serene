@@ -2,7 +2,6 @@
 
     @Serenity.Decorators.registerClass()
     export class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        protected getColumnsKey() { return "Administration.Translation"; }
         protected getIdProperty() { return "Key"; }
         protected getLocalTextPrefix() { return "Administration.Translation"; }
         protected getService() { return TranslationService.baseUrl; }
