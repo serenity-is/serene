@@ -9,6 +9,6 @@
         ConfirmPassword: Serenity.PasswordEditor;
     }
 
-    [['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(x => Object.defineProperty(ResetPasswordForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
+    [['NewPassword', () => Serenity.PasswordEditor], ['ConfirmPassword', () => Serenity.PasswordEditor]].forEach(x => Object.defineProperty(ResetPasswordForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
 

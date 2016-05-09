@@ -44,8 +44,8 @@ namespace Serene.Northwind {
         }
 
         set customerID(value: string) {
-            if (this.customerID !== value) {
-                this.customerID = value;
+            if (this._customerID !== value) {
+                this._customerID = value;
                 this.setEquality('CustomerID', value);
                 this.refresh();
             }

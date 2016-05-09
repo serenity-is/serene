@@ -9,6 +9,6 @@
         Phone: PhoneEditor;
     }
 
-    [['CompanyName', Serenity.StringEditor], ['Phone', PhoneEditor]].forEach(x => Object.defineProperty(ShipperForm.prototype, <string>x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }));
+    [['CompanyName', () => Serenity.StringEditor], ['Phone', () => PhoneEditor]].forEach(x => Object.defineProperty(ShipperForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
 

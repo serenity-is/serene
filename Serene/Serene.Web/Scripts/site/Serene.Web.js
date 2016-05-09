@@ -2095,17 +2095,16 @@ var Serene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
-                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!_this.onViewSubmit()) {
+                            if (!this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(_this.rowSelection.getSelectedKeys());
+                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -2223,7 +2222,7 @@ var Serene;
                     {
                         title: 'Group By Category and Supplier',
                         cssClass: 'expand-all-button',
-                        onClick: function () { return _this.view.setGrouping([{
+                        onClick: function () { return this.view.setGrouping([{
                                 formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
                                 getter: 'CategoryName'
                             }, {
@@ -2233,7 +2232,7 @@ var Serene;
                     }, {
                         title: 'No Grouping',
                         cssClass: 'collapse-all-button',
-                        onClick: function () { return _this.view.setGrouping([]); }
+                        onClick: function () { return this.view.setGrouping([]); }
                     }];
             };
             GroupingAndSummariesInGrid = __decorate([
@@ -2641,7 +2640,7 @@ var Serene;
             return LanguageForm;
         }(Serenity.PrefixedContext));
         Administration.LanguageForm = LanguageForm;
-        [['LanguageId', Serenity.StringEditor], ['LanguageName', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2695,7 +2694,7 @@ var Serene;
             return RoleForm;
         }(Serenity.PrefixedContext));
         Administration.RoleForm = RoleForm;
-        [['RoleName', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2799,7 +2798,7 @@ var Serene;
             return UserForm;
         }(Serenity.PrefixedContext));
         Administration.UserForm = UserForm;
-        [['Username', Serenity.StringEditor], ['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['PasswordConfirm', Serenity.PasswordEditor], ['Source', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2931,7 +2930,7 @@ var Serene;
             return FilteredLookupInDetailForm;
         }(Serenity.PrefixedContext));
         BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
-        [['CustomerID', Serene.Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['CategoryID', Serenity.LookupEditor], ['DetailList', BasicSamples.FilteredLookupDetailEditor]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return BasicSamples.FilteredLookupDetailEditor; }]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2947,7 +2946,7 @@ var Serene;
             return LookupFilterByMultipleForm;
         }(Serenity.PrefixedContext));
         BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
-        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', BasicSamples.ProduceSeafoodCategoryEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return BasicSamples.ProduceSeafoodCategoryEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2963,7 +2962,7 @@ var Serene;
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ChangePasswordForm = ChangePasswordForm;
-        [['OldPassword', Serenity.PasswordEditor], ['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2979,7 +2978,7 @@ var Serene;
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ForgotPasswordForm = ForgotPasswordForm;
-        [['Email', Serenity.EmailEditor]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2995,7 +2994,7 @@ var Serene;
             return LoginForm;
         }(Serenity.PrefixedContext));
         Membership.LoginForm = LoginForm;
-        [['Username', Serenity.StringEditor], ['Password', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3011,7 +3010,7 @@ var Serene;
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
         Membership.ResetPasswordForm = ResetPasswordForm;
-        [['NewPassword', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3027,7 +3026,7 @@ var Serene;
             return SignUpForm;
         }(Serenity.PrefixedContext));
         Membership.SignUpForm = SignUpForm;
-        [['DisplayName', Serenity.StringEditor], ['Email', Serenity.EmailEditor], ['ConfirmEmail', Serenity.EmailEditor], ['Password', Serenity.PasswordEditor], ['ConfirmPassword', Serenity.PasswordEditor]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3043,7 +3042,7 @@ var Serene;
             return CategoryForm;
         }(Serenity.PrefixedContext));
         Northwind.CategoryForm = CategoryForm;
-        [['CategoryName', Serenity.StringEditor], ['Description', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CategoryName', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3162,7 +3161,7 @@ var Serene;
             return CustomerForm;
         }(Serenity.PrefixedContext));
         Northwind.CustomerForm = CustomerForm;
-        [['CustomerID', Serenity.StringEditor], ['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Representatives', Serenity.LookupEditor], ['Address', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['NoteList', Northwind.NotesEditor]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CustomerID', function () { return Serenity.StringEditor; }], ['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Representatives', function () { return Serenity.LookupEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['NoteList', function () { return Northwind.NotesEditor; }]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3265,7 +3264,6 @@ var Serene;
         })(Northwind.Gender || (Northwind.Gender = {}));
         var Gender = Northwind.Gender;
         Serenity.Decorators.registerEnum(Gender, 'Serene.Northwind.Entities.Gender');
-        ;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3297,7 +3295,7 @@ var Serene;
             return OrderDetailForm;
         }(Serenity.PrefixedContext));
         Northwind.OrderDetailForm = OrderDetailForm;
-        [['ProductID', Serenity.LookupEditor], ['UnitPrice', Serenity.DecimalEditor], ['Quantity', Serenity.IntegerEditor], ['Discount', Serenity.DecimalEditor]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['ProductID', function () { return Serenity.LookupEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3345,7 +3343,7 @@ var Serene;
             return OrderForm;
         }(Serenity.PrefixedContext));
         Northwind.OrderForm = OrderForm;
-        [['CustomerID', Northwind.CustomerEditor], ['OrderDate', Serenity.DateEditor], ['RequiredDate', Serenity.DateEditor], ['EmployeeID', Serenity.LookupEditor], ['DetailList', Northwind.OrderDetailsEditor], ['ShippedDate', Serenity.DateEditor], ['ShipVia', Serenity.LookupEditor], ['Freight', Serenity.DecimalEditor], ['ShipName', Serenity.StringEditor], ['ShipAddress', Serenity.StringEditor], ['ShipCity', Serenity.StringEditor], ['ShipRegion', Serenity.StringEditor], ['ShipPostalCode', Serenity.StringEditor], ['ShipCountry', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CustomerID', function () { return Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Northwind.OrderDetailsEditor; }], ['ShippedDate', function () { return Serenity.DateEditor; }], ['ShipVia', function () { return Serenity.LookupEditor; }], ['Freight', function () { return Serenity.DecimalEditor; }], ['ShipName', function () { return Serenity.StringEditor; }], ['ShipAddress', function () { return Serenity.StringEditor; }], ['ShipCity', function () { return Serenity.StringEditor; }], ['ShipRegion', function () { return Serenity.StringEditor; }], ['ShipPostalCode', function () { return Serenity.StringEditor; }], ['ShipCountry', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3396,7 +3394,6 @@ var Serene;
         })(Northwind.OrderShippingState || (Northwind.OrderShippingState = {}));
         var OrderShippingState = Northwind.OrderShippingState;
         Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
-        ;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3412,7 +3409,7 @@ var Serene;
             return ProductForm;
         }(Serenity.PrefixedContext));
         Northwind.ProductForm = ProductForm;
-        [['ProductName', Serenity.StringEditor], ['ProductImage', Serenity.ImageUploadEditor], ['Discontinued', Serenity.BooleanEditor], ['SupplierID', Serenity.LookupEditor], ['CategoryID', Serenity.LookupEditor], ['QuantityPerUnit', Serenity.StringEditor], ['UnitPrice', Serenity.DecimalEditor], ['UnitsInStock', Serenity.IntegerEditor], ['UnitsOnOrder', Serenity.IntegerEditor], ['ReorderLevel', Serenity.IntegerEditor]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3514,7 +3511,7 @@ var Serene;
             return RegionForm;
         }(Serenity.PrefixedContext));
         Northwind.RegionForm = RegionForm;
-        [['RegionID', Serenity.IntegerEditor], ['RegionDescription', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['RegionID', function () { return Serenity.IntegerEditor; }], ['RegionDescription', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3600,7 +3597,7 @@ var Serene;
             return ShipperForm;
         }(Serenity.PrefixedContext));
         Northwind.ShipperForm = ShipperForm;
-        [['CompanyName', Serenity.StringEditor], ['Phone', Northwind.PhoneEditor]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CompanyName', function () { return Serenity.StringEditor; }], ['Phone', function () { return Northwind.PhoneEditor; }]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3654,7 +3651,7 @@ var Serene;
             return SupplierForm;
         }(Serenity.PrefixedContext));
         Northwind.SupplierForm = SupplierForm;
-        [['CompanyName', Serenity.StringEditor], ['ContactName', Serenity.StringEditor], ['ContactTitle', Serenity.StringEditor], ['Address', Serenity.StringEditor], ['Region', Serenity.StringEditor], ['PostalCode', Serenity.StringEditor], ['Country', Serenity.StringEditor], ['City', Serenity.StringEditor], ['Phone', Serenity.StringEditor], ['Fax', Serenity.StringEditor], ['HomePage', Serenity.StringEditor]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['HomePage', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3708,7 +3705,7 @@ var Serene;
             return TerritoryForm;
         }(Serenity.PrefixedContext));
         Northwind.TerritoryForm = TerritoryForm;
-        [['TerritoryID', Serenity.StringEditor], ['TerritoryDescription', Serenity.StringEditor], ['RegionID', Serenity.LookupEditor]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]); }, enumerable: true, configurable: true }); });
+        [['TerritoryID', function () { return Serenity.StringEditor; }], ['TerritoryDescription', function () { return Serenity.StringEditor; }], ['RegionID', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -4495,8 +4492,8 @@ var Serene;
                     return this._customerID;
                 },
                 set: function (value) {
-                    if (this.customerID !== value) {
-                        this.customerID = value;
+                    if (this._customerID !== value) {
+                        this._customerID = value;
                         this.setEquality('CustomerID', value);
                         this.refresh();
                     }
@@ -4553,7 +4550,7 @@ var Serene;
             __extends(NoteDialog, _super);
             function NoteDialog() {
                 _super.call(this);
-                this.textEditor = new Serenity.HtmlContentEditor(this.byId('Text'));
+                this.textEditor = new Serenity.HtmlNoteContentEditor(this.byId('Text'));
             }
             NoteDialog.prototype.getTemplate = function () {
                 return ("<form id='~_Form' class='s-Form'>" +
