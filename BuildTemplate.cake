@@ -21,7 +21,6 @@ Task("PrepareVSIX")
     CleanDirectory(templateFolder);
     CreateDirectory(templateFolder);
     var sampleWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
-    var sampleScriptProj = r + @"Serene\Serene.Script\Serene.Script.csproj";
 
     Func<string, List<Tuple<string, string>>> parsePackages = path => {
         var xml = XElement.Parse(System.IO.File.ReadAllText(path));
@@ -45,10 +44,8 @@ Task("PrepareVSIX")
     };
     
     
-    Action<List<Tuple<string, string>>, List<Tuple<string, string>>> updateVsixProj = (wp, sp) => {
+    Action<List<Tuple<string, string>>, List<Tuple<string, string>>> updateVsixProj = (wp) => {
         var hash = new HashSet<Tuple<string, string>>();
-        foreach (var x in sp)
-            hash.Add(x);
         foreach (var x in wp)
             hash.Add(x);
         var allPackages = new List<Tuple<string, string>>();
@@ -92,7 +89,6 @@ Task("PrepareVSIX")
         if (content.IndexOf("Serene") >= 0)
         {
             content = content.Replace(@"\Serene", @"\$ext_projectname$");
-            content = content.Replace(@"Serene.Script\", @"$ext_projectname$.Script\");
             content = content.Replace(@"Serene.Web\", @"$ext_projectname$.Web\");
             content = content.Replace(@"Serene\", @"$ext_projectname$\");
             content = content.Replace("Serene", "$ext_safeprojectname$");
@@ -103,9 +99,6 @@ Task("PrepareVSIX")
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
         { @"Scripts\jquery-2.2.3.intellisense.js", true }
-    };
-
-    var scriptSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
     };
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
@@ -261,8 +254,7 @@ Task("PrepareVSIX")
         System.IO.File.Delete(file);
     
     var webPackages = parseAndCopyPackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
-    var scriptPackages = parseAndCopyPackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleScriptProj), "packages.config"));
-    updateVsixProj(webPackages, scriptPackages);
+    updateVsixProj(webPackages);
     
     if (System.IO.Directory.Exists(templateFolder)) 
         System.IO.Directory.Delete(templateFolder, true);
@@ -272,7 +264,6 @@ Task("PrepareVSIX")
     System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));
     
     
-    replaceTemplateFileList(sampleScriptProj, scriptPackages, scriptSkipFiles);
     replaceTemplateFileList(sampleWebProj, webPackages, webSkipFiles);
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 

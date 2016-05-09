@@ -2,7 +2,7 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
     <Name>SERENE (Serenity Application Template)</Name>
-    <Description>Contains Web and Script project templates for Serenity Application Platform.</Description>
+    <Description>Contains project template for Serenity Application Platform.</Description>
     <Icon>SerenityLogo.ico</Icon>
     <DefaultName>Serene</DefaultName>
     <ProjectType>CSharp</ProjectType>
@@ -11,9 +11,6 @@
     <ProjectCollection>
       <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
         Serene.Web\Serene.Web.vstemplate
-      </ProjectTemplateLink>
-      <ProjectTemplateLink ProjectName="$projectname$.Script" CopyParameters="true">
-        Serene.Script\Serene.Script.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
   </TemplateContent>
