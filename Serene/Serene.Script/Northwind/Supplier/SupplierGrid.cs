@@ -7,6 +7,7 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
+    [Imported]
     [ColumnsKey("Northwind.Supplier"), Filterable, IdProperty("SupplierID"), NameProperty("CompanyName")]
     [DialogType(typeof(SupplierDialog)), LocalTextPrefix("Northwind.Supplier"), Service("Northwind/Supplier")]
     public class SupplierGrid : EntityGrid<SupplierRow>

@@ -7,6 +7,7 @@ namespace Serene.Northwind
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
+    [Imported]
     [ColumnsKey("Northwind.Territory"), IdProperty("ID"), NameProperty("TerritoryID")]
     [DialogType(typeof(TerritoryDialog)), LocalTextPrefix("Northwind.Territory"), Service("Northwind/Territory")]
     public class TerritoryGrid : EntityGrid<TerritoryRow>

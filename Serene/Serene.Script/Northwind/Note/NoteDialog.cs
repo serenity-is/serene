@@ -5,12 +5,14 @@ namespace Serene.Northwind
     using Serenity;
     using System;
     using jQueryApi.UI.Widgets;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class NoteDialog : TemplatedDialog
     {
         public NoteDialog()
         {
-            new HtmlBasicContentEditor(this.ById("Text"), new HtmlContentEditorOptions { Rows = 12 });
+            new HtmlNoteContentEditor(this.ById("Text"), new HtmlContentEditorOptions { Rows = 12 });
         }
 
         protected override string GetTemplate()

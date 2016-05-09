@@ -4,7 +4,9 @@ namespace Serene.Northwind
     using Common;
     using Serenity;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     [IdProperty(OrderRow.IdProperty), NameProperty(OrderRow.Fields.OrderID), Flexify, Maximizable]
     [FormKey("Northwind.Order"), LocalTextPrefix("Northwind.Order"), Service("Northwind/Order")]
     public class OrderDialog : EntityDialog<OrderRow>

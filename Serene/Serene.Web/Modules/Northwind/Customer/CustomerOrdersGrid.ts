@@ -21,7 +21,7 @@ namespace Serene.Northwind {
         }
 
         protected addButtonClick() {
-            this.editItem({ CustomerID: this.get_customerID() });
+            this.editItem({ CustomerID: this.customerID });
         }
 
         protected getInitialTitle() {
@@ -37,13 +37,13 @@ namespace Serene.Northwind {
             return super.getGridCanLoad() && !!this.customerID;
         }
 
-        private customerID: string;
+        private _customerID: string;
 
-        get_customerID() {
-            return this.customerID;
+        get customerID() {
+            return this._customerID;
         }
 
-        set_customerID(value) {
+        set customerID(value: string) {
             if (this.customerID !== value) {
                 this.customerID = value;
                 this.setEquality('CustomerID', value);

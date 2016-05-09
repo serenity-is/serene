@@ -56,7 +56,7 @@
             var dlg = new NoteDialog();
             dlg.set_dialogTitle('Add Note');
             dlg.okClick = () => {
-                var text = Q.trimToNull(dlg.get_text());
+                var text = Q.trimToNull(dlg.text);
                 if (text == null) {
                     return;
                 }
@@ -82,9 +82,9 @@
             var old = this.items[index];
             var dlg = new NoteDialog();
             dlg.set_dialogTitle('Edit Note');
-            dlg.set_text(old.Text);
+            dlg.text = old.Text;
             dlg.okClick = () => {
-                var text = Q.trimToNull(dlg.get_text());
+                var text = Q.trimToNull(dlg.text);
                 if (!text) {
                     return;
                 }
@@ -109,22 +109,22 @@
             });
         }
 
-        public get_value() {
+        public get value() {
             return this.items;
         }
 
-        public set_value(value) {
+        public set value(value: NoteRow[]) {
             this.items = value || [];
             this.set_isDirty(false);
             this.updateContent();
         }
 
         public getEditValue(prop: Serenity.PropertyItem, target) {
-            target[prop.name] = this.get_value();
+            target[prop.name] = this.value;
         }
 
         public setEditValue(source, prop: Serenity.PropertyItem) {
-            this.set_value(source[prop.name]);
+            this.value = source[prop.name] || [];
         }
 
         public get_isDirty(): boolean {

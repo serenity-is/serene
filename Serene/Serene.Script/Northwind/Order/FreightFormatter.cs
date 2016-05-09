@@ -2,7 +2,9 @@
 namespace Serene.Northwind
 {
     using Serenity;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class FreightFormatter : ISlickFormatter
     {
         public string Format(SlickFormatterContext ctx)

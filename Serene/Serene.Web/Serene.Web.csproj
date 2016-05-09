@@ -71,24 +71,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.0.13\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.0.14\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.0.13\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.0.14\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.13\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.0.14\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.0.13\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.0.14\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.0.13.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.0.13\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.0.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.0.14\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -1173,6 +1173,7 @@
     <TypeScriptCompile Include="Modules\Administration\UserPermission\UserPermissionDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\UserRole\UserRoleDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\UserRole\RoleCheckEditor.ts" />
+    <TypeScriptCompile Include="Modules\Administration\User\Authentication\Authorization.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\User\UserDialog.ts" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -1181,6 +1182,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\Index.cshtml" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
@@ -1197,20 +1199,43 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Scripts\jlayout.border.js" />
-    <Content Include="Scripts\jlayout.border.min.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
+    <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
+    <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
+    <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
+    <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\LoginPanel.ts" />
+    <TypeScriptCompile Include="Modules\Membership\Account\SignUp\SignUpPanel.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrderDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerEditor.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Employee\EmployeeFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Note\NoteDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Order\OrderDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Order\FreightFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Region\RegionDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Region\RegionGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Shared\PhoneEditor.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Shipper\ShipperDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Shipper\ShipperFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Shipper\ShipperGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Supplier\SupplierGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Supplier\SupplierDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryGrid.ts" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1225,30 +1250,16 @@
     <Content Include="Scripts\jquery.cropzoom.min.js" />
     <Content Include="Scripts\jquery.dialogextendQ.js" />
     <Content Include="Scripts\jquery.dialogextendQ.min.js" />
-    <Content Include="Scripts\jquery.event.drag.js" />
-    <Content Include="Scripts\jquery.event.drag.live.js" />
-    <Content Include="Scripts\jquery.event.drag.live.min.js" />
-    <Content Include="Scripts\jquery.event.drag.min.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.fileupload.js" />
     <Content Include="Scripts\jquery.fileupload.min.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.iframe-transport.min.js" />
-    <Content Include="Scripts\jquery.jlayout.js" />
-    <Content Include="Scripts\jquery.jlayout.min.js" />
     <Content Include="Scripts\jquery.json.js" />
     <Content Include="Scripts\jquery.json.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jspdf.js" />
-    <Content Include="Scripts\jspdf.min.js" />
-    <Content Include="Scripts\jspdf.plugin.autotable.js" />
-    <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
     <Content Include="Scripts\jsrender.js" />
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\pace.js" />
@@ -1259,12 +1270,54 @@
     <Content Include="Scripts\saltarelle\linq.min.js" />
     <Content Include="Scripts\saltarelle\mscorlib.js" />
     <Content Include="Scripts\saltarelle\mscorlib.min.js" />
+    <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
+    <Content Include="Scripts\serenity\Serenity.Externals.Slick.min.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
+    <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.min.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
+    <Content Include="Scripts\SlickGrid\slick.editors.js" />
+    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.event.drag.js" />
+    <Content Include="Scripts\jquery.event.drag.live.js" />
+    <Content Include="Scripts\jquery.event.drag.live.min.js" />
+    <Content Include="Scripts\jquery.event.drag.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jspdf.js" />
+    <Content Include="Scripts\jspdf.min.js" />
+    <Content Include="Scripts\jspdf.plugin.autotable.js" />
+    <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.min.js" />
-    <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
-    <Content Include="Scripts\serenity\Serenity.Externals.Slick.min.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
@@ -1321,38 +1374,13 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <None Include="Scripts\site\ScriptBundles.json" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
-    <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.min.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
-    <Content Include="Scripts\SlickGrid\slick.editors.js" />
-    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
     <Content Include="Scripts\site\texts\site.texts.pt.json" />
-    <Content Include="tools\JsEngine\json2.min.js" />
     <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="tools\JsEngine\json2.min.js" />
     <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
     <Content Include="tools\JsEngine\typescriptServices.js" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
@@ -1505,7 +1533,6 @@
     <Content Include="Modules\Common\Dashboard\DashboardIndex.cshtml" />
     <Content Include="Modules\Membership\_ViewStart.cshtml" />
     <Content Include="Modules\_ViewStart.cshtml" />
-    <Content Include="Scripts\site\Serene.Script.js" />
     <Content Include="Views\Templates\EntityDialog.Template.html" />
     <Content Include="Views\Templates\PropertyDialog.Template.html" />
     <Content Include="Views\Web.config" />
@@ -1527,8 +1554,6 @@
     <Content Include="Modules\Administration\User\UserIndex.cshtml" />
     <Content Include="Modules\Northwind\Category\CategoryIndex.cshtml" />
     <Content Include="Modules\Northwind\Customer\CustomerIndex.cshtml" />
-    <Content Include="Modules\Northwind\Employee\EmployeeIndex.cshtml" />
-    <Content Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryIndex.cshtml" />
     <Content Include="Modules\Northwind\OrderDetail\OrderDetailIndex.cshtml" />
     <Content Include="Modules\Northwind\Order\OrderIndex.cshtml" />
     <Content Include="Modules\Northwind\Product\ProductIndex.cshtml" />
@@ -1536,11 +1561,12 @@
     <Content Include="Modules\Northwind\Shipper\ShipperIndex.cshtml" />
     <Content Include="Modules\Northwind\Supplier\SupplierIndex.cshtml" />
     <Content Include="Modules\Northwind\Territory\TerritoryIndex.cshtml" />
-    <Content Include="Modules\Northwind\CustomerDemographic\CustomerDemographicIndex.cshtml" />
-    <Content Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoIndex.cshtml" />
     <Content Include="Modules\Administration\Language\LanguageIndex.cshtml" />
     <Content Include="Modules\Administration\Translation\TranslationIndex.cshtml" />
     <Content Include="Modules\Administration\Role\RoleIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ChartInDialog\ChartInDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnDialog.ts" />
@@ -1552,12 +1578,31 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupDetailEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\ProduceSeafoodCategoryEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\CancellableBulkAction\CancellableBulkActionGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\GridFilteredByCriteria.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\GroupingAndSummariesInGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\ViewWithoutID\ViewWithoutIDGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\ReportHelper.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorBase.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrdersGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Note\NotesEditor.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\OrderDetail\OrderDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\OrderDetail\OrderDetailsEditor.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Order\OrderBulkAction.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Product\ProductDialog.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Product\ProductGrid.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.cookie\jquery.cookie.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
@@ -1603,6 +1648,7 @@
     <Compile Include="Modules\AdminLTE\Forms\FormsController.cs" />
     <Compile Include="Modules\AdminLTE\UIElements\UIElementsController.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesEndpoint.cs" />
+    <Compile Include="Modules\BasicSamples\BasicSamplesHelper.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
     <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
@@ -1757,15 +1803,7 @@
     <Compile Include="Modules\Northwind\Customer\CustomerEndpoint.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerPage.cs" />
     <Compile Include="Modules\Northwind\Employee\EmployeeRow.cs" />
-    <Compile Include="Modules\Northwind\Employee\EmployeeForm.cs" />
-    <Compile Include="Modules\Northwind\Employee\EmployeeRepository.cs" />
-    <Compile Include="Modules\Northwind\Employee\EmployeeEndpoint.cs" />
-    <Compile Include="Modules\Northwind\Employee\EmployeePage.cs" />
     <Compile Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryRow.cs" />
-    <Compile Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryForm.cs" />
-    <Compile Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryRepository.cs" />
-    <Compile Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryEndpoint.cs" />
-    <Compile Include="Modules\Northwind\EmployeeTerritory\EmployeeTerritoryPage.cs" />
     <Compile Include="Modules\Northwind\OrderDetail\OrderDetailRow.cs" />
     <Compile Include="Modules\Northwind\OrderDetail\OrderDetailForm.cs" />
     <Compile Include="Modules\Northwind\OrderDetail\OrderDetailRepository.cs" />
@@ -1802,15 +1840,7 @@
     <Compile Include="Modules\Northwind\Territory\TerritoryEndpoint.cs" />
     <Compile Include="Modules\Northwind\Territory\TerritoryPage.cs" />
     <Compile Include="Modules\Northwind\CustomerDemographic\CustomerDemographicRow.cs" />
-    <Compile Include="Modules\Northwind\CustomerDemographic\CustomerDemographicForm.cs" />
-    <Compile Include="Modules\Northwind\CustomerDemographic\CustomerDemographicRepository.cs" />
-    <Compile Include="Modules\Northwind\CustomerDemographic\CustomerDemographicEndpoint.cs" />
-    <Compile Include="Modules\Northwind\CustomerDemographic\CustomerDemographicPage.cs" />
     <Compile Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoRow.cs" />
-    <Compile Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoForm.cs" />
-    <Compile Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoRepository.cs" />
-    <Compile Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoEndpoint.cs" />
-    <Compile Include="Modules\Northwind\CustomerCustomerDemo\CustomerCustomerDemoPage.cs" />
     <Compile Include="Modules\Administration\Language\LanguageRow.cs" />
     <Compile Include="Modules\Administration\Language\LanguageColumns.cs" />
     <Compile Include="Modules\Administration\Language\LanguageForm.cs" />

@@ -4,7 +4,9 @@ namespace Serene.Northwind
     using Serenity;
     using Serenity.ComponentModel;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class EmployeeFormatter : ISlickFormatter, IInitializeColumn
     {
         public string Format(SlickFormatterContext ctx)

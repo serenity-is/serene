@@ -392,7 +392,6 @@
     <Compile Include="Northwind\Customer\CustomerOrderDialog.cs" />
     <Compile Include="Northwind\Employee\EmployeeFormatter.cs" />
     <Compile Include="Common\Helper\GridEditorBase.cs" />
-    <Compile Include="Northwind\Note\HtmlBasicContentEditor.cs" />
     <Compile Include="Northwind\Note\NotesEditor.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailsEditor.cs" />
     <Compile Include="Northwind\Order\FreightFormatter.cs" />
@@ -407,10 +406,6 @@
     <Compile Include="Northwind\Category\CategoryDialog.cs" />
     <Compile Include="Northwind\Customer\CustomerGrid.cs" />
     <Compile Include="Northwind\Customer\CustomerDialog.cs" />
-    <Compile Include="Northwind\Employee\EmployeeGrid.cs" />
-    <Compile Include="Northwind\Employee\EmployeeDialog.cs" />
-    <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryGrid.cs" />
-    <Compile Include="Northwind\EmployeeTerritory\EmployeeTerritoryDialog.cs" />
     <Compile Include="Northwind\OrderDetail\OrderDetailDialog.cs" />
     <Compile Include="Northwind\Order\OrderGrid.cs" />
     <Compile Include="Northwind\Order\OrderDialog.cs" />
@@ -424,10 +419,6 @@
     <Compile Include="Northwind\Supplier\SupplierDialog.cs" />
     <Compile Include="Northwind\Territory\TerritoryGrid.cs" />
     <Compile Include="Northwind\Territory\TerritoryDialog.cs" />
-    <Compile Include="Northwind\CustomerDemographic\CustomerDemographicGrid.cs" />
-    <Compile Include="Northwind\CustomerDemographic\CustomerDemographicDialog.cs" />
-    <Compile Include="Northwind\CustomerCustomerDemo\CustomerCustomerDemoGrid.cs" />
-    <Compile Include="Northwind\CustomerCustomerDemo\CustomerCustomerDemoDialog.cs" />
     <Compile Include="Administration\Language\LanguageGrid.cs" />
     <Compile Include="Administration\Language\LanguageDialog.cs" />
     <Compile Include="Administration\Translation\TranslationGrid.cs" />

@@ -4,7 +4,9 @@ namespace Serene.Northwind
     using jQueryApi;
     using Serenity;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     [IdProperty("ID"), NameProperty("CustomerID"), Flexify, Maximizable]
     [FormKey("Northwind.Customer"), LocalTextPrefix("Northwind.Customer"), Service("Northwind/Customer")]
     public class CustomerDialog : EntityDialog<CustomerRow>

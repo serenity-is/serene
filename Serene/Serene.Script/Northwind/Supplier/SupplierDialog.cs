@@ -4,7 +4,9 @@ namespace Serene.Northwind
     using jQueryApi;
     using Serenity;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     [IdProperty("SupplierID"), NameProperty("CompanyName")]
     [FormKey("Northwind.Supplier"), LocalTextPrefix("Northwind.Supplier"), Service("Northwind/Supplier")]
     public class SupplierDialog : EntityDialog<SupplierRow>

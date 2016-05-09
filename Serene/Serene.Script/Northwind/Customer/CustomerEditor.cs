@@ -3,7 +3,9 @@ namespace Serene.Northwind
 {
     using jQueryApi;
     using Serenity;
+    using System.Runtime.CompilerServices;
 
+    [Imported]
     public class CustomerEditor : LookupEditorBase<CustomerRow>
     {
         public CustomerEditor(jQueryObject container, LookupEditorOptions options)

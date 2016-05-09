@@ -19,11 +19,12 @@ namespace Serene.Northwind.Forms
         public String ContactTitle { get; set; }
         [Width(120)]
         public String Phone { get; set; }
-        [Width(130)]
-        public String City { get; set; }
         [Width(80)]
         public String Region { get; set; }
         [Width(130)]
+        [LookupEditor(typeof(Scripts.SupplierCountryLookup)), QuickFilter]
         public String Country { get; set; }
+        [Width(130)]
+        public String City { get; set; }
     }
 }
