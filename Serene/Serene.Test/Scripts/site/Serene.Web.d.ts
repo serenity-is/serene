@@ -274,6 +274,18 @@ declare namespace Serene.BasicSamples {
         protected getButtons(): Serenity.ToolButton[];
     }
 }
+declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+    }
+}
 declare namespace Serene.BasicSamples {
     /**
      * Styling for columns is done with CSS in site.basicsamples.less file.
@@ -1214,15 +1226,6 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class CustomerCustomerDemoForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface CustomerCustomerDemoForm {
-        CustomerID: Serenity.StringEditor;
-        CustomerTypeID: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Northwind {
     interface CustomerCustomerDemoRow {
         ID?: number;
         CustomerID?: string;
@@ -1262,32 +1265,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
-    namespace CustomerCustomerDemoService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<CustomerCustomerDemoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<CustomerCustomerDemoRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerCustomerDemoRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerCustomerDemoRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerDemographicForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface CustomerDemographicForm {
-        CustomerTypeID: Serenity.StringEditor;
-        CustomerDesc: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Northwind {
     interface CustomerDemographicRow {
         ID?: number;
         CustomerTypeID?: string;
@@ -1301,23 +1278,6 @@ declare namespace Serene.Northwind {
             const ID: string;
             const CustomerTypeID: string;
             const CustomerDesc: string;
-        }
-    }
-}
-declare namespace Serene.Northwind {
-    namespace CustomerDemographicService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<CustomerDemographicRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<CustomerDemographicRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerDemographicRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerDemographicRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
         }
     }
 }
@@ -1416,30 +1376,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
-    class EmployeeForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface EmployeeForm {
-        LastName: Serenity.StringEditor;
-        FirstName: Serenity.StringEditor;
-        Title: Serenity.StringEditor;
-        TitleOfCourtesy: Serenity.StringEditor;
-        BirthDate: Serenity.DateEditor;
-        HireDate: Serenity.DateEditor;
-        Address: Serenity.StringEditor;
-        City: Serenity.StringEditor;
-        Region: Serenity.StringEditor;
-        PostalCode: Serenity.StringEditor;
-        Country: Serenity.StringEditor;
-        HomePhone: Serenity.StringEditor;
-        Extension: Serenity.StringEditor;
-        Photo: Serenity.StringEditor;
-        Notes: Serenity.StringEditor;
-        ReportsTo: Serenity.IntegerEditor;
-        PhotoPath: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Northwind {
     interface EmployeeRow {
         EmployeeID?: number;
         LastName?: string;
@@ -1529,31 +1465,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
-    namespace EmployeeService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<EmployeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<EmployeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EmployeeRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EmployeeRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Northwind {
-    class EmployeeTerritoryForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface EmployeeTerritoryForm {
-        TerritoryID: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Northwind {
     interface EmployeeTerritoryRow {
         EmployeeID?: number;
         TerritoryID?: string;
@@ -1603,23 +1514,6 @@ declare namespace Serene.Northwind {
             const EmployeePhotoPath: string;
             const TerritoryTerritoryDescription: string;
             const TerritoryRegionID: string;
-        }
-    }
-}
-declare namespace Serene.Northwind {
-    namespace EmployeeTerritoryService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<EmployeeTerritoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<EmployeeTerritoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<EmployeeTerritoryRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<EmployeeTerritoryRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
         }
     }
 }
@@ -2152,10 +2046,10 @@ declare namespace Serene.Northwind {
         ContactName: Serenity.StringEditor;
         ContactTitle: Serenity.StringEditor;
         Address: Serenity.StringEditor;
-        City: Serenity.StringEditor;
         Region: Serenity.StringEditor;
         PostalCode: Serenity.StringEditor;
         Country: Serenity.StringEditor;
+        City: Serenity.StringEditor;
         Phone: Serenity.StringEditor;
         Fax: Serenity.StringEditor;
         HomePage: Serenity.StringEditor;
@@ -2486,18 +2380,6 @@ declare namespace Serene.BasicSamples {
          * that should be processed in this service call.
          */
         protected executeForBatch(batch: any): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace Serene.Northwind {

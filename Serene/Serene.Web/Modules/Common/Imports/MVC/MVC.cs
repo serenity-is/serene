@@ -214,26 +214,6 @@ namespace MVC
                 public const string CustomerIndex = "~/Modules/Northwind/Customer/CustomerIndex.cshtml";
             }
 
-            public static class CustomerCustomerDemo
-            {
-                public const string CustomerCustomerDemoIndex = "~/Modules/Northwind/CustomerCustomerDemo/CustomerCustomerDemoIndex.cshtml";
-            }
-
-            public static class CustomerDemographic
-            {
-                public const string CustomerDemographicIndex = "~/Modules/Northwind/CustomerDemographic/CustomerDemographicIndex.cshtml";
-            }
-
-            public static class Employee
-            {
-                public const string EmployeeIndex = "~/Modules/Northwind/Employee/EmployeeIndex.cshtml";
-            }
-
-            public static class EmployeeTerritory
-            {
-                public const string EmployeeTerritoryIndex = "~/Modules/Northwind/EmployeeTerritory/EmployeeTerritoryIndex.cshtml";
-            }
-
             public static class Order
             {
                 public const string OrderDetailReport = "~/Modules/Northwind/Order/OrderDetailReport.cshtml";

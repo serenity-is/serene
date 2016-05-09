@@ -3,6 +3,6 @@
         NotShipped = 0,
         Shipped = 1
     }
-    Serenity.Decorators.addAttribute(OrderShippingState, new Serenity.EnumKeyAttribute('Northwind.OrderShippingState'));
+    Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
 }
 

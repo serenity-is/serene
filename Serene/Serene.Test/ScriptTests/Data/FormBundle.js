@@ -1,16 +1,28 @@
-﻿Q.ScriptData.set('Form.Northwind.Category', [{"name":"CategoryName","title":"Db.Northwind.Category.CategoryName","editorParams":{"maxLength":15},"maxLength":15,"required":true,"localizable":true,"width":150},{"name":"Description","title":"Db.Northwind.Category.Description","localizable":true,"width":250}]);
+﻿Q.ScriptData.set('Form.Membership.ResetPassword', [{"name":"NewPassword","title":"New Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
+
+
+
+Q.ScriptData.set('Form.Membership.ForgotPassword', [{"name":"Email","title":"E-mail Address","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}}]);
+
+
+
+Q.ScriptData.set('Form.Membership.ChangePassword', [{"name":"OldPassword","title":"Current Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"NewPassword","title":"New Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
+
+
+
+Q.ScriptData.set('Form.Membership.SignUp', [{"name":"DisplayName","title":"Full Name","required":true,"width":80},{"name":"Email","title":"E-mail","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"ConfirmEmail","title":"Confirm Email","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"Password","title":"Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
+
+
+
+Q.ScriptData.set('Form.Membership.Login', [{"name":"Username","title":"Db.Administration.User.Username","placeholder":"default username is 'admin'","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150},{"name":"Password","title":"Db.Administration.User.Password","placeholder":"default password for admin user is 'serenity'","editorType":"Password","editorParams":{"maxLength":50},"maxLength":50,"required":true,"width":150,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
+
+
+
+Q.ScriptData.set('Form.Northwind.Category', [{"name":"CategoryName","title":"Db.Northwind.Category.CategoryName","editorParams":{"maxLength":15},"maxLength":15,"required":true,"localizable":true,"width":150},{"name":"Description","title":"Db.Northwind.Category.Description","localizable":true,"width":250}]);
 
 
 
 Q.ScriptData.set('Form.Northwind.Customer', [{"name":"CustomerID","title":"Db.Northwind.Customer.CustomerID","editorParams":{"maxLength":5},"category":"General","maxLength":5,"required":true,"updatable":false,"width":150},{"name":"CompanyName","title":"Db.Northwind.Customer.CompanyName","editorParams":{"maxLength":40},"category":"General","maxLength":40,"required":true,"width":150},{"name":"ContactName","title":"Db.Northwind.Customer.ContactName","editorParams":{"maxLength":30},"category":"Contact","maxLength":30,"width":150},{"name":"ContactTitle","title":"Db.Northwind.Customer.ContactTitle","editorParams":{"maxLength":30},"category":"Contact","maxLength":30,"width":150},{"name":"Representatives","title":"Representatives","editorType":"Lookup","editorParams":{"lookupKey":"Northwind.Employee","multiple":true},"category":"Contact","width":80,"filteringType":"Lookup","filteringParams":{"lookupKey":"Northwind.Employee"}},{"name":"Address","title":"Db.Northwind.Customer.Address","editorParams":{"maxLength":60},"category":"Address","maxLength":60,"width":150},{"name":"City","title":"Db.Northwind.Customer.City","editorParams":{"maxLength":15},"category":"Address","maxLength":15,"width":150},{"name":"Region","title":"Db.Northwind.Customer.Region","editorParams":{"maxLength":15},"category":"Address","maxLength":15,"width":150},{"name":"PostalCode","title":"Db.Northwind.Customer.PostalCode","editorParams":{"maxLength":10},"category":"Address","maxLength":10,"width":150},{"name":"Country","title":"Db.Northwind.Customer.Country","editorParams":{"maxLength":15},"category":"Address","maxLength":15,"width":150,"filteringType":"Lookup","filteringParams":{"lookupKey":"Northwind.CustomerCountry"}},{"name":"Phone","title":"Db.Northwind.Customer.Phone","editorParams":{"maxLength":24},"category":"Address","maxLength":24,"width":150},{"name":"Fax","title":"Db.Northwind.Customer.Fax","editorParams":{"maxLength":24},"category":"Address","maxLength":24,"width":150},{"name":"NoteList","title":"NoteList","editorType":"Serene.Northwind.NotesEditor","category":"Address","width":80,"filteringType":"Editor","filteringParams":{"editorType":"Serene.Northwind.NotesEditor","useLike":false}}]);
-
-
-
-Q.ScriptData.set('Form.Northwind.Employee', [{"name":"LastName","title":"Db.Northwind.Employee.LastName","editorParams":{"maxLength":20},"maxLength":20,"required":true,"width":150},{"name":"FirstName","title":"Db.Northwind.Employee.FirstName","editorParams":{"maxLength":10},"maxLength":10,"required":true,"width":150},{"name":"Title","title":"Db.Northwind.Employee.Title","editorParams":{"maxLength":30},"maxLength":30,"width":150},{"name":"TitleOfCourtesy","title":"Db.Northwind.Employee.TitleOfCourtesy","editorParams":{"maxLength":25},"maxLength":25,"width":150},{"name":"BirthDate","title":"Db.Northwind.Employee.BirthDate","editorType":"Date","formatterType":"Date","width":85,"filteringType":"Date"},{"name":"HireDate","title":"Db.Northwind.Employee.HireDate","editorType":"Date","formatterType":"Date","width":85,"filteringType":"Date"},{"name":"Address","title":"Db.Northwind.Employee.Address","editorParams":{"maxLength":60},"maxLength":60,"width":150},{"name":"City","title":"Db.Northwind.Employee.City","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"Region","title":"Db.Northwind.Employee.Region","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"PostalCode","title":"Db.Northwind.Employee.PostalCode","editorParams":{"maxLength":10},"maxLength":10,"width":150},{"name":"Country","title":"Db.Northwind.Employee.Country","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"HomePhone","title":"Db.Northwind.Employee.HomePhone","editorParams":{"maxLength":24},"maxLength":24,"width":150},{"name":"Extension","title":"Db.Northwind.Employee.Extension","editorParams":{"maxLength":4},"maxLength":4,"width":150},{"name":"Photo","title":"Db.Northwind.Employee.Photo","width":80},{"name":"Notes","title":"Db.Northwind.Employee.Notes","width":250},{"name":"ReportsTo","title":"Db.Northwind.Employee.ReportsTo","editorType":"Integer","formatterType":"Number","width":65,"filteringType":"Integer"},{"name":"PhotoPath","title":"Db.Northwind.Employee.PhotoPath","editorParams":{"maxLength":255},"maxLength":255,"width":150}]);
-
-
-
-Q.ScriptData.set('Form.Northwind.EmployeeTerritory', [{"name":"TerritoryID","title":"Db.Northwind.EmployeeTerritory.TerritoryID","editorParams":{"maxLength":20},"maxLength":20,"width":150}]);
 
 
 
@@ -34,39 +46,11 @@ Q.ScriptData.set('Form.Northwind.Shipper', [{"name":"CompanyName","title":"Db.No
 
 
 
-Q.ScriptData.set('Form.Northwind.Supplier', [{"name":"CompanyName","title":"Db.Northwind.Supplier.CompanyName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":150},{"name":"ContactName","title":"Db.Northwind.Supplier.ContactName","editorParams":{"maxLength":30},"maxLength":30,"width":150},{"name":"ContactTitle","title":"Db.Northwind.Supplier.ContactTitle","editorParams":{"maxLength":30},"maxLength":30,"width":150},{"name":"Address","title":"Db.Northwind.Supplier.Address","editorParams":{"maxLength":60},"maxLength":60,"width":150},{"name":"City","title":"Db.Northwind.Supplier.City","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"Region","title":"Db.Northwind.Supplier.Region","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"PostalCode","title":"Db.Northwind.Supplier.PostalCode","editorParams":{"maxLength":10},"maxLength":10,"width":150},{"name":"Country","title":"Db.Northwind.Supplier.Country","editorParams":{"maxLength":15},"maxLength":15,"width":150,"filteringType":"Lookup","filteringParams":{"lookupKey":"Northwind.SupplierCountry"}},{"name":"Phone","title":"Db.Northwind.Supplier.Phone","editorParams":{"maxLength":24},"maxLength":24,"width":150},{"name":"Fax","title":"Db.Northwind.Supplier.Fax","editorParams":{"maxLength":24},"maxLength":24,"width":150},{"name":"HomePage","title":"Db.Northwind.Supplier.HomePage","width":250}]);
+Q.ScriptData.set('Form.Northwind.Supplier', [{"name":"CompanyName","title":"Db.Northwind.Supplier.CompanyName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":150},{"name":"ContactName","title":"Db.Northwind.Supplier.ContactName","editorParams":{"maxLength":30},"maxLength":30,"width":150},{"name":"ContactTitle","title":"Db.Northwind.Supplier.ContactTitle","editorParams":{"maxLength":30},"maxLength":30,"width":150},{"name":"Address","title":"Db.Northwind.Supplier.Address","editorParams":{"maxLength":60},"maxLength":60,"width":150},{"name":"Region","title":"Db.Northwind.Supplier.Region","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"PostalCode","title":"Db.Northwind.Supplier.PostalCode","editorParams":{"maxLength":10},"maxLength":10,"width":150},{"name":"Country","title":"Db.Northwind.Supplier.Country","editorParams":{"maxLength":15},"maxLength":15,"width":150,"filteringType":"Lookup","filteringParams":{"lookupKey":"Northwind.SupplierCountry"}},{"name":"City","title":"Db.Northwind.Supplier.City","editorParams":{"maxLength":15},"maxLength":15,"width":150},{"name":"Phone","title":"Db.Northwind.Supplier.Phone","editorParams":{"maxLength":24},"maxLength":24,"width":150},{"name":"Fax","title":"Db.Northwind.Supplier.Fax","editorParams":{"maxLength":24},"maxLength":24,"width":150},{"name":"HomePage","title":"Db.Northwind.Supplier.HomePage","width":250}]);
 
 
 
 Q.ScriptData.set('Form.Northwind.Territory', [{"name":"TerritoryID","title":"Db.Northwind.Territory.TerritoryID","editorParams":{"maxLength":20},"maxLength":20,"required":true,"updatable":false,"width":150},{"name":"TerritoryDescription","title":"Db.Northwind.Territory.TerritoryDescription","editorParams":{"maxLength":50},"maxLength":50,"required":true,"width":150},{"name":"RegionID","title":"Db.Northwind.Territory.RegionID","editorType":"Lookup","editorParams":{"lookupKey":"Northwind.Region"},"required":true,"formatterType":"Number","width":65,"filteringType":"Lookup","filteringParams":{"lookupKey":"Northwind.Region"}}]);
-
-
-
-Q.ScriptData.set('Form.Northwind.CustomerDemographic', [{"name":"CustomerTypeID","title":"Db.Northwind.CustomerDemographic.CustomerTypeID","editorParams":{"maxLength":10},"maxLength":10,"width":150},{"name":"CustomerDesc","title":"Db.Northwind.CustomerDemographic.CustomerDesc","width":250}]);
-
-
-
-Q.ScriptData.set('Form.Northwind.CustomerCustomerDemo', [{"name":"CustomerID","title":"Db.Northwind.CustomerCustomerDemo.CustomerID","editorParams":{"maxLength":5},"maxLength":5,"width":150},{"name":"CustomerTypeID","title":"Db.Northwind.CustomerCustomerDemo.CustomerTypeID","editorParams":{"maxLength":10},"maxLength":10,"width":150}]);
-
-
-
-Q.ScriptData.set('Form.Membership.ResetPassword', [{"name":"NewPassword","title":"New Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
-
-
-
-Q.ScriptData.set('Form.Membership.ForgotPassword', [{"name":"Email","title":"E-mail Address","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}}]);
-
-
-
-Q.ScriptData.set('Form.Membership.ChangePassword', [{"name":"OldPassword","title":"Current Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"NewPassword","title":"New Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
-
-
-
-Q.ScriptData.set('Form.Membership.SignUp', [{"name":"DisplayName","title":"Full Name","required":true,"width":80},{"name":"Email","title":"E-mail","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"ConfirmEmail","title":"Confirm Email","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"Password","title":"Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
-
-
-
-Q.ScriptData.set('Form.Membership.Login', [{"name":"Username","title":"Db.Administration.User.Username","placeholder":"default username is 'admin'","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150},{"name":"Password","title":"Db.Administration.User.Password","placeholder":"default password for admin user is 'serenity'","editorType":"Password","editorParams":{"maxLength":50},"maxLength":50,"required":true,"width":150,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
 
 
 

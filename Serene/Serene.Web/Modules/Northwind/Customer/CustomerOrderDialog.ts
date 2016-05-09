@@ -1,4 +1,6 @@
-﻿namespace Serene.Northwind {
+﻿/// <reference path="../Order/OrderDialog.ts" />
+
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.responsive()

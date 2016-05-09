@@ -274,6 +274,18 @@ declare namespace Serene.BasicSamples {
         protected getButtons(): Serenity.ToolButton[];
     }
 }
+declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+    }
+}
 declare namespace Serene.BasicSamples {
     /**
      * Styling for columns is done with CSS in site.basicsamples.less file.
@@ -2368,18 +2380,6 @@ declare namespace Serene.BasicSamples {
          * that should be processed in this service call.
          */
         protected executeForBatch(batch: any): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace Serene.Northwind {

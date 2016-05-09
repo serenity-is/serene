@@ -1,4 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
+
+namespace Serene.BasicSamples {
 
     /**
      * Styling for columns is done with CSS in site.basicsamples.less file.

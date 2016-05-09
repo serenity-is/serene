@@ -1421,6 +1421,42 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDialog = (function (_super) {
+            __extends(OrderDialog, _super);
+            function OrderDialog() {
+                _super.call(this);
+                this.form = new Northwind.OrderForm(this.idPrefix);
+            }
+            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
+            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
+            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                buttons.push(Serene.Common.ReportHelper.createToolButton({
+                    title: 'Invoice',
+                    cssClass: 'export-pdf-button',
+                    reportKey: 'Northwind.OrderDetail',
+                    getParams: function () { return ({ OrderID: _this.get_entityId() }); }
+                }));
+                return buttons;
+            };
+            OrderDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], OrderDialog);
+            return OrderDialog;
+        }(Serenity.EntityDialog));
+        Northwind.OrderDialog = OrderDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
+var Serene;
+(function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
         /**
@@ -1485,6 +1521,7 @@ var Serene;
         BasicSamples.MultiColumnGrid = MultiColumnGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
 var Serene;
 (function (Serene) {
     var BasicSamples;
@@ -3227,7 +3264,8 @@ var Serene;
             Gender[Gender["Female"] = 2] = "Female";
         })(Northwind.Gender || (Northwind.Gender = {}));
         var Gender = Northwind.Gender;
-        Serenity.Decorators.addAttribute(Gender, new Serenity.EnumKeyAttribute('Serene.Northwind.Entities.Gender'));
+        Serenity.Decorators.registerEnum(Gender, 'Serene.Northwind.Entities.Gender');
+        ;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -3357,7 +3395,8 @@ var Serene;
             OrderShippingState[OrderShippingState["Shipped"] = 1] = "Shipped";
         })(Northwind.OrderShippingState || (Northwind.OrderShippingState = {}));
         var OrderShippingState = Northwind.OrderShippingState;
-        Serenity.Decorators.addAttribute(OrderShippingState, new Serenity.EnumKeyAttribute('Northwind.OrderShippingState'));
+        Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
+        ;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -4396,6 +4435,7 @@ var Serene;
         Northwind.CustomerGrid = CustomerGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../Order/OrderDialog.ts" />
 var Serene;
 (function (Serene) {
     var Northwind;
@@ -4752,41 +4792,6 @@ var Serene;
         }(Serene.Common.BulkServiceAction));
         BasicSamples.OrderBulkAction = OrderBulkAction;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDialog = (function (_super) {
-            __extends(OrderDialog, _super);
-            function OrderDialog() {
-                _super.call(this);
-                this.form = new Northwind.OrderForm(this.idPrefix);
-            }
-            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
-            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
-            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderDialog.prototype.getToolbarButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getToolbarButtons.call(this);
-                buttons.push(Serene.Common.ReportHelper.createToolButton({
-                    title: 'Invoice',
-                    cssClass: 'export-pdf-button',
-                    reportKey: 'Northwind.OrderDetail',
-                    getParams: function () { return ({ OrderID: _this.get_entityId() }); }
-                }));
-                return buttons;
-            };
-            OrderDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], OrderDialog);
-            return OrderDialog;
-        }(Serenity.EntityDialog));
-        Northwind.OrderDialog = OrderDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
