@@ -9,15 +9,15 @@
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
 <# 
-    var solutionDir = Host.ResolvePath(@"..\..\..\..\..\");
+    var solutionDir = Host.ResolvePath(@"..\..\..\..\..\..\");
     var webDir = Host.ResolvePath(@"..\..\..\..\");
 
     var generator = new ClientTypesGenerator();
     generator.RootNamespaces.Add("Serene");
 
-    if (System.IO.File.Exists(solutionDir + @"Serene.Script\Serene.Script.csproj"))
+    if (System.IO.File.Exists(solutionDir + @"Serene\Serene.Script\Serene.Script.csproj"))
     {
-        var ssDir = solutionDir + @"Serene.Script\bin\debug\";
+        var ssDir = solutionDir + @"Serene\Serene.Script\bin\debug\";
         var ssTypeLister = new SSTypeLister(
             ssDir + "Serenity.Script.Imports.dll",
             ssDir + "Serenity.Script.UI.dll",
