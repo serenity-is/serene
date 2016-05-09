@@ -47,7 +47,6 @@
             return this.getFormattedValue();
         }
 
-        @Serenity.Decorators.option()
         set_value(value: string) {
             this.element.val(value);
         }

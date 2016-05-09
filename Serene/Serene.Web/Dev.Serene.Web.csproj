@@ -1648,24 +1648,6 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\ComponentModel.HtmlBasicContentEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Membership.ChangePasswordPanelAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Membership.ForgotPasswordPanelAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Membership.LoginPanelAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Membership.ResetPasswordPanelAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Membership.SignUpPanelAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>

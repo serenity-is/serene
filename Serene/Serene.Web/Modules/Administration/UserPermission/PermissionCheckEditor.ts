@@ -1,6 +1,6 @@
 ﻿namespace Serene.Administration {
 
-    @Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
+    @Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
     export class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
 
         protected getIdProperty() { return "Key"; }

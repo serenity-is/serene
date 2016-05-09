@@ -247,7 +247,8 @@ public class TSTypeLister
     public List<ExternalType> List()
     {
         var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
-            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories));
+            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
+            .Where(x => !x.EndsWith(".d.ts") || x.IndexOf("Serenity") >= 0);
 
         using (var jsEngine = SetupJsEngine())
         {

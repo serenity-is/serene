@@ -2428,7 +2428,7 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
     class EmployeeFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext): string;
-        genderPropery: string;
+        genderProperty: string;
         initializeColumn(column: Slick.Column): void;
     }
 }

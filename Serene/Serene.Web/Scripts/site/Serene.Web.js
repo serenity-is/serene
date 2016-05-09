@@ -757,7 +757,7 @@ var Serene;
                 this.setItems(this.getItems());
             };
             PermissionCheckEditor = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
+                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
             ], PermissionCheckEditor);
             return PermissionCheckEditor;
         }(Serenity.DataGrid));
@@ -5100,9 +5100,6 @@ var Serene;
             __decorate([
                 Serenity.Decorators.option()
             ], PhoneEditor.prototype, "multiple", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], PhoneEditor.prototype, "set_value", null);
             PhoneEditor = __decorate([
                 Serenity.Decorators.registerEditor()
             ], PhoneEditor);
