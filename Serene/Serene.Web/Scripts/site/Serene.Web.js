@@ -4153,6 +4153,47 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
+        var LoginPanel = (function (_super) {
+            __extends(LoginPanel, _super);
+            function LoginPanel(container) {
+                var _this = this;
+                _super.call(this, container);
+                this.form = new Membership.LoginForm(this.idPrefix);
+                this.byId('LoginButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/Login'),
+                        request: request,
+                        onSuccess: function (response) {
+                            var q = Q.parseQueryString();
+                            var returnUrl = q['returnUrl'] || q['ReturnUrl'];
+                            if (returnUrl) {
+                                window.location.href = returnUrl;
+                            }
+                            else {
+                                window.location.href = Q.resolveUrl('~/');
+                            }
+                        }
+                    });
+                });
+            }
+            LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
+            LoginPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LoginPanel);
+            return LoginPanel;
+        }(Serenity.PropertyPanel));
+        Membership.LoginPanel = LoginPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
         var ChangePasswordPanel = (function (_super) {
             __extends(ChangePasswordPanel, _super);
             function ChangePasswordPanel(container) {

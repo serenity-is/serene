@@ -2276,11 +2276,6 @@ declare namespace Serene {
         };
     }
 }
-declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        constructor(container: JQuery);
-    }
-}
 declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
     }
@@ -2399,6 +2394,13 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
         function createToolButton<TItem>(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.Membership {

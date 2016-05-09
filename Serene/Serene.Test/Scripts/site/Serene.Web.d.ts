@@ -104,9 +104,11 @@ declare namespace Serene.Administration {
         protected getDefaultSortBy(): string[];
     }
 }
-declare namespace Serene.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
+declare namespace Serene {
+    namespace Authorization {
+        let userDefinition: ScriptUserDefinition;
+        function hasPermission(permissionKey: string): boolean;
+    }
 }
 declare namespace Serene.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
@@ -597,7 +599,6 @@ declare namespace Serene.Common {
     }
 }
 declare namespace Serene.DialogUtils {
-    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
 }
 declare namespace Serene.Common {
     interface ExcelExportOptions {
@@ -611,7 +612,6 @@ declare namespace Serene.Common {
     }
 }
 declare namespace Serene.LanguageList {
-    function getValue(): string[][];
 }
 declare namespace Serene.Common {
     interface ReportButtonOptions {
@@ -2276,9 +2276,14 @@ declare namespace Serene {
         };
     }
 }
-declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        constructor(container: JQuery);
+declare namespace Serene {
+    namespace DialogUtils {
+        function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+    }
+    namespace LanguageList {
+        function getValue(): any[];
+    }
+    namespace ScriptInitialization {
     }
 }
 declare namespace Serene.Northwind {
@@ -2399,6 +2404,13 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
         function createToolButton<TItem>(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.Membership {

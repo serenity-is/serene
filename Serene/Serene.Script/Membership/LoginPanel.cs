@@ -3,11 +3,10 @@ namespace Serene.Membership
 {
     using jQueryApi;
     using Serenity;
-    using System;
-    using System.Collections.Generic;
     using System.Html;
+    using System.Runtime.CompilerServices;
 
-    [FormKey("Membership.Login")]
+    [Imported, FormKey("Membership.Login")]
     public class LoginPanel : PropertyPanel<LoginRequest>
     {
         public LoginPanel(jQueryObject container)

@@ -1,10 +1,4 @@
-﻿declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        constructor(container: JQuery);
-    }
-}
-
-declare namespace Serene.Northwind {
+﻿declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
     }
 

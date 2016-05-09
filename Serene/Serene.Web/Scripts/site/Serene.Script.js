@@ -94,38 +94,6 @@
 	$Serene_Membership_LoginForm.__typeName = 'Serene.Membership.LoginForm';
 	global.Serene.Membership.LoginForm = $Serene_Membership_LoginForm;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serene.Membership.LoginPanel
-	var $Serene_Membership_LoginPanel = function(container) {
-		Serenity.PropertyPanel.call(this, container);
-		this.byId('LoginButton').click(ss.thisFix(ss.mkdel(this, function(s, e) {
-			e.preventDefault();
-			if (!this.validateForm()) {
-				return;
-			}
-			var request = this.getSaveEntity();
-			Q.serviceCall({
-				url: Q.resolveUrl('~/Account/Login'),
-				request: request,
-				onSuccess: function(response) {
-					var q = Q.parseQueryString();
-					var $t1 = q['returnUrl'];
-					if (ss.isNullOrUndefined($t1)) {
-						$t1 = q['ReturnUrl'];
-					}
-					var r = $t1;
-					if (!ss.isNullOrEmptyString(r)) {
-						window.location.href = r;
-					}
-					else {
-						window.location.href = Q.resolveUrl('~/');
-					}
-				}
-			});
-		})));
-	};
-	$Serene_Membership_LoginPanel.__typeName = 'Serene.Membership.LoginPanel';
-	global.Serene.Membership.LoginPanel = $Serene_Membership_LoginPanel;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serene.Membership.ResetPasswordForm
 	var $Serene_Membership_ResetPasswordForm = function(idPrefix) {
 		this.$3$NewPasswordField = null;
@@ -649,7 +617,6 @@
 			this.$3$PasswordField = value;
 		}
 	}, Serenity.PrefixedContext);
-	ss.initClass($Serene_Membership_LoginPanel, $asm, {}, Serenity.PropertyPanel);
 	ss.initClass($Serene_Membership_ResetPasswordForm, $asm, {
 		set_newPassword: function(value) {
 			this.$3$NewPasswordField = value;
@@ -1184,7 +1151,6 @@
 			return config;
 		}
 	}, Serenity.HtmlContentEditor, [Serenity.IStringValue]);
-	ss.setMetadata($Serene_Membership_LoginPanel, { attr: [new Serenity.FormKeyAttribute('Membership.Login')] });
 	ss.setMetadata($Serene_Northwind_CategoryDialog, { attr: [new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.FormKeyAttribute('Northwind.Category'), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CategoryGrid, { attr: [new Serenity.ColumnsKeyAttribute('Northwind.Category'), new Serenity.IdPropertyAttribute('CategoryID'), new Serenity.NamePropertyAttribute('CategoryName'), new Serenity.DialogTypeAttribute($Serene_Northwind_CategoryDialog), new Serenity.LocalTextPrefixAttribute('Northwind.Category'), new Serenity.ServiceAttribute('Northwind/Category')] });
 	ss.setMetadata($Serene_Northwind_CustomerCustomerDemoDialog, { attr: [new Serenity.IdPropertyAttribute('ID'), new Serenity.NamePropertyAttribute('CustomerID'), new Serenity.FormKeyAttribute('Northwind.CustomerCustomerDemo'), new Serenity.LocalTextPrefixAttribute('Northwind.CustomerCustomerDemo'), new Serenity.ServiceAttribute('Northwind/CustomerCustomerDemo')] });
