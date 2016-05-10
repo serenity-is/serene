@@ -212,8 +212,6 @@
     <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.d.ts" />
-    <TypeScriptCompile Include="Scripts\serenity\Serenity.Externals.Slick.d.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Web.d.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\Language\LanguageDialog\LanguageDialog.Edit_LoadById_ApplyChangesButton.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\Language\LanguageDialog\LanguageDialog.Edit_LoadById_DeleteButton.ts" />
