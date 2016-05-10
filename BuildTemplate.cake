@@ -44,7 +44,7 @@ Task("PrepareVSIX")
     };
     
     
-    Action<List<Tuple<string, string>>, List<Tuple<string, string>>> updateVsixProj = (wp) => {
+    Action<List<Tuple<string, string>>> updateVsixProj = (wp) => {
         var hash = new HashSet<Tuple<string, string>>();
         foreach (var x in wp)
             hash.Add(x);

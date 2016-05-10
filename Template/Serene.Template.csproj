@@ -119,6 +119,9 @@
     <Content Include="packages\jQuery.2.2.3.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="packages\jquery.cookie.TypeScript.DefinitelyTyped.0.2.1.nupkg">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="packages\jquery.event.drag.2.2.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -155,46 +158,25 @@
     <Content Include="packages\Newtonsoft.Json.8.0.3.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Saltarelle.Compiler.2.7.0.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Saltarelle.jQuery.1.10.1.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Saltarelle.jQuery.UI.1.10.1.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Saltarelle.Linq.2.4.0.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Saltarelle.Runtime.2.7.0.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Saltarelle.Web.3.1.0.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="packages\Select2.js.3.5.1.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.CodeGenerator.2.0.13.nupkg">
+    <Content Include="packages\Serenity.CodeGenerator.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.2.0.13.nupkg">
+    <Content Include="packages\Serenity.Core.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.2.0.13.nupkg">
+    <Content Include="packages\Serenity.Data.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.2.0.13.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Script.2.0.13.nupkg">
+    <Content Include="packages\Serenity.Services.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.2.0.13.nupkg">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="packages\Serenity.Web.2.0.13.nupkg">
+    <Content Include="packages\Serenity.Web.2.1.0.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\toastr.2.1.1.nupkg">
