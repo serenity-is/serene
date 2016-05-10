@@ -71,24 +71,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.1.0\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.1.2\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.1.0\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.1.2\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.1.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.1.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.1.0\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.1.2\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.1.0\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.1.2\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -1321,10 +1321,14 @@
     <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.min.js" />
+    <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
+    <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -1344,6 +1348,7 @@
     <Content Include="Scripts\SlickGrid\slick.dataview.js" />
     <Content Include="Scripts\SlickGrid\slick.editors.js" />
     <Content Include="Scripts\SlickGrid\slick.formatters.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.js" />
     <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
     <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
     <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
@@ -1364,16 +1369,11 @@
     <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
-    <Content Include="Scripts\SlickGrid\slick.grid.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />

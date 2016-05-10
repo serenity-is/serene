@@ -6,7 +6,7 @@ namespace Serene
 {
     public static class BasicSamplesHelper
     {
-        public static IHtmlString SereneSource(this HtmlHelper helper, string file)
+        public static IHtmlString AppSourceFile(this HtmlHelper helper, string file)
         {
             var location = ((RazorView)helper.ViewContext.View).ViewPath;
             var path = Path.GetDirectoryName(location.Replace("/", "\\"));
@@ -14,7 +14,8 @@ namespace Serene
 
             return new MvcHtmlString("<a target=\"blank\" style=\"font-weight: bold; color: #ffc\" href=\"" +
                 helper.Encode(path.Replace("\\", "/").Replace("~/",
-                    "https://github.com/volkanceylan/Serene/blob/master/Serene/Serene.Web/")) +
+                    // using syntax below to prevent replace of S E R E N E in URL
+                    "https://github.com/volkanceylan/S" + "erene/blob/master/S" + "erene/S" + "erene.Web/")) +
                 "\">" + 
                 helper.Encode(file) +
                 "</a>");
