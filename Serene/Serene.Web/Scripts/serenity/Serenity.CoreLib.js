@@ -1,4 +1,6 @@
-﻿/// <reference path="ServiceError.ts" />
+﻿/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
+/// <reference path="ServiceError.ts" />
+/// <reference path="../../../typings/jquery/jquery.d.ts" />
 /// <reference path="../Imports/SS.ts" />
 var Q;
 (function (Q) {
@@ -841,6 +843,7 @@ var Q;
     }());
     Q.Lookup = Lookup;
 })(Q || (Q = {}));
+/// <reference path="../../../typings/jquery.blockUI/jquery.blockUI.d.ts" />
 /// <reference path="../Imports/JQBlockUI.ts" />
 var Q;
 (function (Q) {
@@ -964,6 +967,8 @@ var Q;
     }
     Q.outerHtml = outerHtml;
 })(Q || (Q = {}));
+/// <reference path="../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../typings/jqueryui/jqueryui.d.ts" />
 /// <reference path="Q.LocalText.ts" />
 /// <reference path="Q.Html.ts" />
 var Q;
@@ -1126,6 +1131,7 @@ var Q;
     }
     Q.warning = warning;
 })(Q || (Q = {}));
+/// <reference path="../../../typings/toastr/toastr.d.ts" />
 var Q;
 (function (Q) {
     Q.defaultNotifyOptions = {
@@ -1485,6 +1491,7 @@ var Q;
 /// <reference path="Q.BlockUI.ts" />
 /// <reference path="Q.StringHelpers.ts" />
 /// <reference path="Q.Url.ts" />
+/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
 var Q;
 (function (Q) {
     var ScriptData;
@@ -2340,6 +2347,8 @@ var Serenity;
         TabsExtensions.indexByKey = indexByKey;
     })(TabsExtensions = Serenity.TabsExtensions || (Serenity.TabsExtensions = {}));
 })(Serenity || (Serenity = {}));
+/// <reference path="../../../../typings/jquery/jquery.d.ts" />
+/// <reference path="../../../../typings/jquery.validation/jquery.validation.d.ts" />
 if ($.fn.button && $.fn.button.noConflict) {
     var btn = $.fn.button.noConflict();
     $.fn.btn = btn;
@@ -2367,6 +2376,7 @@ if ($.fn.button && $.fn.button.noConflict) {
     var btn = $.fn.button.noConflict();
     $.fn.btn = btn;
 }
+/// <reference path="../../typings/jquery/jquery.d.ts" />
 // PAGER -----
 (function ($) {
     $.widget("ui.slickPager", {
@@ -3682,6 +3692,11 @@ var Slick;
         Aggregators.Sum = Sum;
     })(Aggregators = Slick.Aggregators || (Slick.Aggregators = {}));
 })(Slick || (Slick = {}));
+/// <reference path = "Q/Q.Config.ts" />
+/// <reference path = "Q/Q.Culture.ts" />
+/// <reference path = "Q/Q.LocalText.ts" />
+/// <reference path = "Q/Q.Notify.ts" />
+/// <reference path = "Q/Q.Url.ts" />
 var Q;
 (function (Q) {
     var oldShowLabel;
