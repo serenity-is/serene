@@ -273,4 +273,37 @@ public class TSTypeLister
     }
 }
 
+public class TypeScriptCompiler
+{
+    public string DetermineTSCPath() {
+        var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+            @"Microsoft SDKs\TypeScript\");
+
+        var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+            @"Microsoft SDKs\TypeScript\");
+
+        var list = new List<string>();
+        if (Directory.Exists(pf86))
+            list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
+        if (Directory.Exists(pf64))
+            list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
+
+        if (list.Count > 0)
+        {
+            return list.OrderByDescending(x => Path.GetFileName(Path.GetDirectoryName(x)))
+                .FirstOrDefault();
+        }
+
+        throw new Exception("Can't determine path of TSC.exe that is required to compile generated TypeScript files!");
+    }
+
+    public void Compile(string workingDirectory, string arguments) {
+        var tscPath = DetermineTSCPath();
+
+        var psi = new System.Diagnostics.ProcessStartInfo(tscPath, arguments);
+        psi.WorkingDirectory = workingDirectory;
+        System.Diagnostics.Process.Start(psi).WaitForExit(10000);
+    }
+}
+
 #>
