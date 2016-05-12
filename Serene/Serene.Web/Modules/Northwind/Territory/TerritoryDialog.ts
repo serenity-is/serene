@@ -1,7 +1,6 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     export class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
         protected getFormKey() { return TerritoryForm.formKey; }
         protected getIdProperty() { return TerritoryRow.idProperty; }

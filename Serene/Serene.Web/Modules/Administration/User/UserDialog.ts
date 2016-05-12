@@ -1,7 +1,6 @@
 ﻿namespace Serene.Administration {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     export class UserDialog extends Serenity.EntityDialog<UserRow, any> {
         protected getFormKey() { return UserForm.formKey; }
         protected getIdProperty() { return UserRow.idProperty; }

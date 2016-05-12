@@ -1,7 +1,6 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     export class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
         protected getFormKey() { return SupplierForm.formKey; }
         protected getIdProperty() { return SupplierRow.idProperty; }

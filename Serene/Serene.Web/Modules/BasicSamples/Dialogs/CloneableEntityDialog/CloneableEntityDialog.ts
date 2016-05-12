@@ -3,7 +3,6 @@
 namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     @Serenity.Decorators.maximizable()
     export class CloneableEntityDialog extends Northwind.ProductDialog {
         protected updateInterface() {

@@ -7495,58 +7495,31 @@ section.content > .s-DataGrid {
   height: 296px;
 }
 .s-Northwind-CustomerDialog .s-NotesEditor {
-  height: 490px;
+  height: 100%;
   margin: 6px;
   width: initial !important;
 }
+.s-Northwind-CustomerDialog .grid-toolbar {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -moz-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 0;
+  -ms-flex-preferred-size: auto;
+}
 .s-Northwind-OrderDialog > .size,
 .s-CustomerOrderDialog > .size {
-  min-width: 850px;
   width: 850px;
-}
-.s-Northwind-OrderDialog .tab-pane,
-.s-CustomerOrderDialog .tab-pane {
-  height: auto;
 }
 .s-Northwind-OrderDialog .caption,
 .s-CustomerOrderDialog .caption {
   width: 130px;
 }
-.s-Northwind-OrderDialog .editor,
-.s-CustomerOrderDialog .editor {
-  width: 630px;
-}
-.s-Northwind-OrderDialog input.editor[type=checkbox],
-.s-CustomerOrderDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-Northwind-OrderDialog .s-Form .editor.dateQ,
-.s-CustomerOrderDialog .s-Form .editor.dateQ {
-  width: 606px;
-}
-.s-Northwind-OrderDialog .s-Form .editor.emailuser,
-.s-CustomerOrderDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-Northwind-OrderDialog .s-Form .editor.dateQ.s-DateTimeEditor,
-.s-CustomerOrderDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 511px;
-}
-.s-Northwind-OrderDialog .s-Form .editor.s-DateTimeEditor.time,
-.s-CustomerOrderDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-Northwind-OrderDialog .s-Form .editor.has-inplace-button,
-.s-CustomerOrderDialog .s-Form .editor.has-inplace-button {
-  width: 604px;
-}
-.s-Northwind-OrderDialog .s-Form .emaildomain,
-.s-CustomerOrderDialog .s-Form .emaildomain {
-  width: 445px;
-}
-.s-Northwind-OrderDialog .categories,
-.s-CustomerOrderDialog .categories {
+.s-Northwind-OrderDialog .s-PropertyGrid .categories,
+.s-CustomerOrderDialog .s-PropertyGrid .categories {
   height: 550px;
 }
 .s-Northwind-OrderDetailDialog > .size {
@@ -7855,11 +7828,8 @@ section.content > .s-DataGrid {
   padding: 4px;
 }
 .s-NoteDialog > .size {
-  min-width: 465px;
   width: 465px;
-  min-height: 415px;
-  height: 415px;
 }
 .s-NoteDialog .ui-dialog-content {
-  overflow-y: hidden;
+  padding-bottom: 10px;
 }

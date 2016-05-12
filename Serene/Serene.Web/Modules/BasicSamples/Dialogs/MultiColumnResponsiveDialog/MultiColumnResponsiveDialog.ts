@@ -8,7 +8,6 @@ namespace Serene.BasicSamples {
      * this version requires much less JS and CSS code.
      */
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     export class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
 
         constructor() {

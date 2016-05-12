@@ -3,7 +3,6 @@
 namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     export class CustomerOrderDialog extends OrderDialog {
 
         constructor() {

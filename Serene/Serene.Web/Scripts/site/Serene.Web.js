@@ -25,8 +25,7 @@ var Serene;
             LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
             LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
             LanguageDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], LanguageDialog);
             return LanguageDialog;
         }(Serenity.EntityDialog));
@@ -94,8 +93,7 @@ var Serene;
                 this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
             RoleDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], RoleDialog);
             return RoleDialog;
         }(Serenity.EntityDialog));
@@ -441,8 +439,7 @@ var Serene;
                     .closest('.field').find('sup').toggle(this.isNew());
             };
             UserDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], UserDialog);
             return UserDialog;
         }(Serenity.EntityDialog));
@@ -986,7 +983,6 @@ var Serene;
             };
             ProductDialog = __decorate([
                 Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
                 Serenity.Decorators.maximizable()
             ], ProductDialog);
             return ProductDialog;
@@ -1031,7 +1027,6 @@ var Serene;
             };
             CloneableEntityDialog = __decorate([
                 Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive(),
                 Serenity.Decorators.maximizable()
             ], CloneableEntityDialog);
             return CloneableEntityDialog;
@@ -1445,8 +1440,7 @@ var Serene;
                 return buttons;
             };
             OrderDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], OrderDialog);
             return OrderDialog;
         }(Serenity.EntityDialog));
@@ -1536,8 +1530,7 @@ var Serene;
                 _super.call(this);
             }
             MultiColumnResponsiveDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], MultiColumnResponsiveDialog);
             return MultiColumnResponsiveDialog;
         }(Serene.Northwind.OrderDialog));
@@ -1828,8 +1821,7 @@ var Serene;
             FilteredLookupInDetailDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
             FilteredLookupInDetailDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
             FilteredLookupInDetailDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], FilteredLookupInDetailDialog);
             return FilteredLookupInDetailDialog;
         }(Serenity.EntityDialog));
@@ -2287,6 +2279,7 @@ var Serene;
 (function (Serene) {
     var ScriptInitialization;
     (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
         Q.Config.rootNamespaces.push('Serene');
     })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
 })(Serene || (Serene = {}));
@@ -4291,8 +4284,7 @@ var Serene;
                 return Serene.LanguageList.getValue();
             };
             CategoryDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], CategoryDialog);
             return CategoryDialog;
         }(Serenity.EntityDialog));
@@ -4364,8 +4356,7 @@ var Serene;
                 Q.reloadLookup('Northwind.Customer');
             };
             CustomerDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], CustomerDialog);
             return CustomerDialog;
         }(Serenity.EntityDialog));
@@ -4447,8 +4438,7 @@ var Serene;
                 Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
             };
             CustomerOrderDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], CustomerOrderDialog);
             return CustomerOrderDialog;
         }(Northwind.OrderDialog));
@@ -4809,8 +4799,7 @@ var Serene;
                 return Serene.LanguageList.getValue();
             };
             RegionDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], RegionDialog);
             return RegionDialog;
         }(Serenity.EntityDialog));
@@ -4997,8 +4986,7 @@ var Serene;
                 return Serene.LanguageList.getValue();
             };
             ShipperDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], ShipperDialog);
             return ShipperDialog;
         }(Serenity.EntityDialog));
@@ -5066,8 +5054,7 @@ var Serene;
                 return Serene.LanguageList.getValue();
             };
             SupplierDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], SupplierDialog);
             return SupplierDialog;
         }(Serenity.EntityDialog));
@@ -5115,8 +5102,7 @@ var Serene;
                 return Serene.LanguageList.getValue();
             };
             TerritoryDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
+                Serenity.Decorators.registerClass()
             ], TerritoryDialog);
             return TerritoryDialog;
         }(Serenity.EntityDialog));

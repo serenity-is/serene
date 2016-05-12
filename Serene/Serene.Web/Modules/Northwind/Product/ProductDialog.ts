@@ -1,7 +1,6 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
-    @Serenity.Decorators.responsive()
     @Serenity.Decorators.maximizable()
     export class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
         protected getFormKey() { return ProductForm.formKey; }

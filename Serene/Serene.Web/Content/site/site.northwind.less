@@ -18,13 +18,14 @@
     .dialog-styles(@h: auto, @l: 150px, @e: 600px);
     .categories { height: 400px; }
     .s-CustomerOrdersGrid > .grid-container { height: 296px; }
-    .s-NotesEditor { height: 490px; margin: 6px; width: initial !important; }
+    .s-NotesEditor { height: 100%; margin: 6px; width: initial !important; }
+    .grid-toolbar { .flex(0, 0, auto); }
 }
 
 .s-Northwind-OrderDialog, .s-CustomerOrderDialog {
-    > .size { .widthAndMin(850px); }
-    .dialog-styles(@h: auto, @l: 130px, @e: 630px);
-    .categories { height: 550px; }
+    > .size { width: 850px; }
+    .caption { width: 130px; }
+    .s-PropertyGrid .categories { height: 550px; }
 }
 
 .s-Northwind-OrderDetailDialog {
@@ -149,6 +150,9 @@
 }
 
 .s-NoteDialog {
-    > .size { .widthAndMin(465px); .heightAndMin(415px); }
-    .ui-dialog-content { overflow-y: hidden; }
+    > .size { width: 465px; }
+
+    .ui-dialog-content {
+        padding-bottom: 10px;
+    }
 }

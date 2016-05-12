@@ -209,15 +209,49 @@ declare namespace Q {
     function deepClone<TItem>(arg1: TItem, ...args: TItem[]): TItem;
 }
 declare namespace Q {
-    function arrayClone<T>(a: T[]): T[];
+    /**
+     * Clones an array
+     */
+    function arrayClone<T>(array: T[]): T[];
+    /**
+     * Tests if any of array elements matches given predicate
+     */
     function any<TItem>(array: TItem[], predicate: (x: TItem) => boolean): boolean;
+    /**
+     * Counts number of array elements that matches a given predicate
+     */
     function count<TItem>(array: TItem[], predicate: (x: TItem) => boolean): number;
+    /**
+     * Gets first element in an array that matches given predicate.
+     * Throws an error if no match is found.
+     */
     function first<TItem>(array: TItem[], predicate: (x: TItem) => boolean): TItem;
+    /**
+     * Gets index of first element in an array that matches given predicate
+     */
     function indexOf<TItem>(array: TItem[], predicate: (x: TItem) => boolean): number;
-    function insert(obj: any, index: number, item: any): void;
-    function isArray(a: any): boolean;
+    /**
+     * Inserts an item to the array at specified index
+     */
+    function insert<TItem>(array: TItem[], index: number, item: TItem): void;
+    /**
+     * Determines if the object is an array
+     */
+    function isArray(obj: any): boolean;
+    /**
+    * Gets first element in an array that matches given predicate.
+    * Throws an error if no matches is found, or there are multiple matches.
+    */
     function single<TItem>(array: TItem[], predicate: (x: TItem) => boolean): TItem;
+    /**
+     * Maps an array into a dictionary with keys determined by specified getKey() callback,
+     * and values that are arrays containing elements for a particular key.
+     */
     function toGrouping<TItem>(items: TItem[], getKey: (x: TItem) => any): Q.Grouping<TItem>;
+    /**
+     * Gets first element in an array that matches given predicate.
+     * Returns null if no match is found.
+     */
     function tryFirst<TItem>(array: TItem[], predicate: (x: TItem) => boolean): TItem;
 }
 declare namespace Q {
@@ -370,9 +404,34 @@ declare namespace Q {
 }
 declare namespace Q {
     namespace Config {
+        /**
+         * This is the root path of your application. If your application resides under http://localhost/mysite/,
+         * your root path is "mysite/". This variable is automatically initialized by reading from a <link> element
+         * with ID "ApplicationPath" from current page, which is usually located in your _LayoutHead.cshtml file
+         */
         let applicationPath: string;
+        /**
+         * Email validation by default only allows ASCII characters. Set this to true if you want to allow unicode.
+         */
         let emailAllowOnlyAscii: boolean;
+        /**
+         * Set this to true, to enable responsive dialogs by default, without having to add Serenity.Decorators.responsive()"
+         * on dialog classes manually. It's false by default for backward compability.
+         */
+        let responsiveDialogs: boolean;
+        /**
+         * This is the list of root namespaces that may be searched for types. For example, if you specify an editor type
+         * of "MyEditor", first a class with name "MyEditor" will be searched, if not found, search will be followed by
+         * "Serenity.MyEditor" and "MyApp.MyEditor" if you added "MyApp" to the list of root namespaces.
+         *
+         * You should usually add your application root namespace to this list in ScriptInitialization.ts file.
+         */
         let rootNamespaces: string[];
+        /**
+         * This is an optional method for handling when user is not logged in. If a users session is expired
+         * and when a NotAuthorized response is received from a service call, Serenity will call this handler, so
+         * you may intercept it and notify user about this situation and ask if she wants to login again...
+         */
         let notLoggedInHandler: Function;
     }
 }
