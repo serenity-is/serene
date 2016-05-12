@@ -2,8 +2,10 @@
     export interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
         onViewSubmit: () => boolean;
-        buttonTitle?: string;
         title?: string;
+        hint?: string;
+        separator?: boolean;
+        reportTitle?: string;
         titleTop?: number;
         titleFontSize?: number;
         fileName?: string;
@@ -115,7 +117,7 @@
 
                     doc.setFontSize(options.titleFontSize || 10);
                     doc.setFontStyle('bold');
-                    let reportTitle = options.title || g.getTitle() || "Report";
+                    let reportTitle = options.reportTitle || g.getTitle() || "Report";
 
                     doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2,
                         options.titleTop || 25, { halign: 'center' });
@@ -156,7 +158,7 @@
                         doc.putTotalPages(totalPagesExp);
                     }
 
-                    var fileName = options.title || "{0}_{1}.pdf";
+                    var fileName = options.reportTitle || "{0}_{1}.pdf";
                     fileName = Q.format(fileName, g.getTitle() || "report",
                         Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
 
@@ -168,9 +170,11 @@
         export function createToolButton<TItem>(options: PdfExportOptions) {
 
             return <Serenity.ToolButton>{
-                title: options.buttonTitle || 'PDF',
+                title: options.title || '',
+                hint: options.hint || 'PDF',
                 cssClass: 'export-pdf-button',
-                onClick: () => exportToPdf(options)
+                onClick: () => exportToPdf(options),
+                separator: options.separator
             };
         }
 

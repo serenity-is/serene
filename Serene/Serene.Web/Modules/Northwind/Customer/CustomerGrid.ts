@@ -19,7 +19,8 @@
             buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
                 grid: this,
                 onViewSubmit: () => this.onViewSubmit(),
-                service: 'Northwind/Customer/ListExcel'
+                service: 'Northwind/Customer/ListExcel',
+                separator: true
             }));
 
             buttons.push(Serene.Common.PdfExportHelper.createToolButton({

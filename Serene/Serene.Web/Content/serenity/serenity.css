@@ -2137,12 +2137,11 @@ a.quick-search-field {
   padding-bottom: 3px;
   margin-bottom: 8px;
 }
-.s-Toolbar .sep-button {
-  display: inline-block;
-  height: 22px;
-  border-left: 1px solid #bbb;
-  border-right: 1px solid #fff;
-  margin: 1px;
+.s-Toolbar .separator {
+  float: left;
+  height: 24px;
+  border-left: 1px solid #ccc;
+  margin: 2px 6px 0 3px;
 }
 .s-Toolbar .buttons-inner {
   float: left;

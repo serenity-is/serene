@@ -616,6 +616,8 @@ declare namespace Serene.Common {
         service: string;
         onViewSubmit: () => boolean;
         title?: string;
+        hint?: string;
+        separator?: boolean;
     }
     namespace ExcelExportHelper {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
@@ -2191,8 +2193,10 @@ declare namespace Serene.Common {
     interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
         onViewSubmit: () => boolean;
-        buttonTitle?: string;
         title?: string;
+        hint?: string;
+        separator?: boolean;
+        reportTitle?: string;
         titleTop?: number;
         titleFontSize?: number;
         fileName?: string;

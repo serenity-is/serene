@@ -24,13 +24,14 @@
             buttons.push(Common.ExcelExportHelper.createToolButton({
                 grid: this,
                 service: ProductService.baseUrl + '/ListExcel',
-                onViewSubmit: () => this.onViewSubmit()
+                onViewSubmit: () => this.onViewSubmit(),
+                separator: true
             }));
 
             buttons.push(Common.PdfExportHelper.createToolButton({
                 grid: this,
                 onViewSubmit: () => this.onViewSubmit(),
-                title: 'Product List',
+                reportTitle: 'Product List',
                 columnTitles: {
                     'Discontinued': 'Dis.',
                 },
@@ -50,7 +51,8 @@
             buttons.push({
                 title: 'Save Changes',
                 cssClass: 'apply-changes-button',
-                onClick: e => this.saveClick()
+                onClick: e => this.saveClick(),
+                separator: true
             });
 
             return buttons;

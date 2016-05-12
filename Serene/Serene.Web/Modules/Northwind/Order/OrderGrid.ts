@@ -31,7 +31,8 @@
             buttons.push(Common.ExcelExportHelper.createToolButton({
                 grid: this,
                 service: OrderService.baseUrl + '/ListExcel',
-                onViewSubmit: () => this.onViewSubmit()
+                onViewSubmit: () => this.onViewSubmit(),
+                separator: true
             }));
 
             buttons.push(Common.PdfExportHelper.createToolButton({

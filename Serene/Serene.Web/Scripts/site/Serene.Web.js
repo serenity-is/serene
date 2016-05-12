@@ -1057,12 +1057,13 @@ var Serene;
                 buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
                     grid: this,
                     service: Northwind.ProductService.baseUrl + '/ListExcel',
-                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
                 }));
                 buttons.push(Serene.Common.PdfExportHelper.createToolButton({
                     grid: this,
                     onViewSubmit: function () { return _this.onViewSubmit(); },
-                    title: 'Product List',
+                    reportTitle: 'Product List',
                     columnTitles: {
                         'Discontinued': 'Dis.',
                     },
@@ -1081,7 +1082,8 @@ var Serene;
                 buttons.push({
                     title: 'Save Changes',
                     cssClass: 'apply-changes-button',
-                    onClick: function (e) { return _this.saveClick(); }
+                    onClick: function (e) { return _this.saveClick(); },
+                    separator: true
                 });
                 return buttons;
             };
@@ -1310,7 +1312,8 @@ var Serene;
                 buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
                     grid: this,
                     service: Northwind.OrderService.baseUrl + '/ListExcel',
-                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
                 }));
                 buttons.push(Serene.Common.PdfExportHelper.createToolButton({
                     grid: this,
@@ -2547,7 +2550,8 @@ var Serene;
         (function (ExcelExportHelper) {
             function createToolButton(options) {
                 return {
-                    title: Q.coalesce(options.title, 'Excel'),
+                    hint: Q.coalesce(options.title, 'Excel'),
+                    title: Q.coalesce(options.hint, ''),
                     cssClass: 'export-xlsx-button',
                     onClick: function () {
                         if (!options.onViewSubmit()) {
@@ -2568,7 +2572,8 @@ var Serene;
                             request.IncludeColumns.push(column.id || column.field);
                         }
                         Q.postToService({ service: options.service, request: request, target: '_blank' });
-                    }
+                    },
+                    separator: options.separator
                 };
             }
             ExcelExportHelper.createToolButton = createToolButton;
@@ -3969,7 +3974,7 @@ var Serene;
                         var data = toAutoTableData(entities, keys, srcColumns);
                         doc.setFontSize(options.titleFontSize || 10);
                         doc.setFontStyle('bold');
-                        var reportTitle = options.title || g.getTitle() || "Report";
+                        var reportTitle = options.reportTitle || g.getTitle() || "Report";
                         doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
                         var totalPagesExp = "{{T}}";
                         var pageNumbers = options.pageNumbers == null || options.pageNumbers;
@@ -4001,7 +4006,7 @@ var Serene;
                         if (typeof doc.putTotalPages === 'function') {
                             doc.putTotalPages(totalPagesExp);
                         }
-                        var fileName = options.title || "{0}_{1}.pdf";
+                        var fileName = options.reportTitle || "{0}_{1}.pdf";
                         fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
                         doc.save(fileName);
                     }
@@ -4010,9 +4015,11 @@ var Serene;
             PdfExportHelper.exportToPdf = exportToPdf;
             function createToolButton(options) {
                 return {
-                    title: options.buttonTitle || 'PDF',
+                    title: options.title || '',
+                    hint: options.hint || 'PDF',
                     cssClass: 'export-pdf-button',
-                    onClick: function () { return exportToPdf(options); }
+                    onClick: function () { return exportToPdf(options); },
+                    separator: options.separator
                 };
             }
             PdfExportHelper.createToolButton = createToolButton;
@@ -4406,7 +4413,8 @@ var Serene;
                 buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
                     grid: this,
                     onViewSubmit: function () { return _this.onViewSubmit(); },
-                    service: 'Northwind/Customer/ListExcel'
+                    service: 'Northwind/Customer/ListExcel',
+                    separator: true
                 }));
                 buttons.push(Serene.Common.PdfExportHelper.createToolButton({
                     grid: this,
