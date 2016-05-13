@@ -10,7 +10,6 @@
         protected getService() { return OrderService.baseUrl; }
 
         protected shippingStateFilter: Serenity.EnumEditor;
-        public customerFilter: CustomerEditor;
 
         constructor(container: JQuery) {
             super(container);
@@ -20,7 +19,6 @@
             super.createQuickFilters();
 
             let fld = OrderRow.Fields;
-            this.customerFilter = this.findQuickFilter(CustomerEditor, fld.CustomerID);
             this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
         }
 

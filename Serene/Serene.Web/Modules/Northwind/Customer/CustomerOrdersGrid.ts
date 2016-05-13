@@ -10,7 +10,7 @@ namespace Serene.Northwind {
             super(container);
         }
 
-        protected getColumns() {
+        protected getColumns(): Slick.Column[] {
             let fld = OrderRow.Fields;
             return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
         }
@@ -26,11 +26,6 @@ namespace Serene.Northwind {
 
         protected getInitialTitle() {
             return null;
-        }
-
-        protected createQuickFilters() {
-            super.createQuickFilters();
-            this.customerFilter.element.closest('.quick-filter-item').remove();
         }
 
         protected getGridCanLoad() {
