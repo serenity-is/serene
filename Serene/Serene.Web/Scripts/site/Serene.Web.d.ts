@@ -606,6 +606,19 @@ declare namespace Serene.Common {
         set_errorCount(value: number): void;
     }
 }
+declare namespace Serenity {
+    class ColumnPickerDialog extends Serenity.TemplatedDialog<any> {
+        constructor();
+        allColumns: Slick.Column[];
+        visibleColumns: Slick.Column[];
+        protected availableColumns: Slick.Column[];
+        getDialogOptions(): JQueryUI.DialogOptions;
+        protected setupColumns(): void;
+        protected onDialogOpen(): void;
+        protected getTemplate(): string;
+        getTitle(col: Slick.Column): string;
+    }
+}
 declare namespace Serene.DialogUtils {
     function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
 }

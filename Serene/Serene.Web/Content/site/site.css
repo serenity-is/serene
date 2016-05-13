@@ -7833,3 +7833,65 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
 }
+.sortable-ghost {
+  opacity: .2;
+}
+.s-ColumnPickerDialog .ui-dialog-content {
+  overflow-x: hidden;
+  flex-direction: row;
+}
+.s-ColumnPickerDialog .column-list {
+  flex: 1 1 50%;
+  margin: 6px;
+}
+.s-ColumnPickerDialog .column-list ul {
+  padding-left: 0;
+  min-height: 50px;
+}
+.s-ColumnPickerDialog h5 {
+  padding: 8px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+.s-ColumnPickerDialog h5 i {
+  color: darkmagenta;
+  margin-right: 2px;
+  font-size: 15px;
+}
+.s-ColumnPickerDialog li {
+  cursor: move;
+  list-style: none;
+  padding: 5px 5px;
+  position: relative;
+}
+.s-ColumnPickerDialog .drag-handle {
+  color: #5F9EDF;
+  margin-right: 6px;
+  font: bold 20px Sans-Serif;
+  display: inline-block;
+  cursor: move;
+  cursor: -webkit-grabbing;
+  position: relative;
+  top: 2px;
+}
+.s-ColumnPickerDialog i.js-remove {
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  opacity: 0.1;
+  display: block;
+  cursor: pointer;
+  color: #c00;
+  top: 13px;
+  right: 8px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+}
+.s-ColumnPickerDialog li:hover i.js-remove {
+  opacity: 1;
+}
