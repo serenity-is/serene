@@ -613,6 +613,8 @@ declare namespace Serenity {
         visibleColumns: Slick.Column[];
         protected availableColumns: Slick.Column[];
         getDialogOptions(): JQueryUI.DialogOptions;
+        private createLI(col);
+        private updateListStates();
         protected setupColumns(): void;
         protected onDialogOpen(): void;
         protected getTemplate(): string;

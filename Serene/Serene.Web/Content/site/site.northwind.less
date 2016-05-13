@@ -157,13 +157,29 @@
     }
 }
 
-.sortable-ghost {
-    opacity: .2;
-}
-
 .s-ColumnPickerDialog {
+    .sortable-ghost {
+        opacity: .5;
+        background-color: darksalmon;
+    }
+
     .ui-dialog-content {
         overflow-x: hidden;
+        flex-direction: column;
+    }
+
+    .search {
+        flex: 0 0 auto;
+        text-align: right;
+
+        input {
+            margin: 6px 6px 2px 6px;
+        }
+    }
+
+    .columns-container {
+        flex: 1 1 90%;
+        display: flex;
         flex-direction: row;
     }
 
@@ -173,7 +189,10 @@
         ul {
             padding-left: 0;
             min-height: 50px;
+            flex: 1 1 90%;
         }
+        display: flex;
+        flex-direction: column;
     }
 
     h5 {
@@ -184,6 +203,7 @@
         font-weight: bold;
         white-space: nowrap;
         overflow-x: hidden;
+        flex: 0 0 auto;
 
         i {
             color: darkmagenta;
@@ -210,14 +230,12 @@
         top: 2px;
     }
 
-    i.js-remove {
+    i.js-show, i.js-hide {
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
-        opacity: 0.1;
+        opacity: 0.5;
         display: block;
         cursor: pointer;
-        color: #c00;
-        top: 13px;
         right: 8px;
         position: absolute;
         font-size: 14px;
@@ -225,7 +243,29 @@
         font-style: normal;
     }
 
-    li:hover i.js-remove {
+    i.js-hide {
+        color: #c00;
+        top: 11px;
+    }
+
+    i.js-show {
+        color: limegreen;
+        top: 9px;
+    }
+
+    .visible-list i.js-show {
+        display: none;
+    }
+
+    .available-list i.js-hide {
+        display: none;
+    }
+
+    .available-list .drag-handle {
+        display: none;
+    }
+
+    li:hover i.js-show, li:hover i.js-hide {
         opacity: 1;
     }
 }
