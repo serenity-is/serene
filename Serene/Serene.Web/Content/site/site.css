@@ -6976,104 +6976,6 @@ section.content > .s-DataGrid {
   min-height: 400px;
   height: 400px;
 }
-.s-BasicSamples-MultiColumnDialog > .size {
-  min-width: 850px;
-  width: 850px;
-}
-.s-BasicSamples-MultiColumnDialog .tab-pane {
-  height: auto;
-}
-.s-BasicSamples-MultiColumnDialog .caption {
-  width: 130px;
-}
-.s-BasicSamples-MultiColumnDialog .editor {
-  width: 650px;
-}
-.s-BasicSamples-MultiColumnDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .editor.dateQ {
-  width: 626px;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 531px;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .editor.has-inplace-button {
-  width: 624px;
-}
-.s-BasicSamples-MultiColumnDialog .s-Form .emaildomain {
-  width: 465px;
-}
-.s-BasicSamples-MultiColumnDialog .categories {
-  height: 570px;
-}
-.s-BasicSamples-MultiColumnDialog .ui-dialog-content {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-.s-BasicSamples-MultiColumnDialog .field.OrderDate,
-.s-BasicSamples-MultiColumnDialog .field.RequiredDate {
-  float: left;
-  width: 50%;
-}
-.s-BasicSamples-MultiColumnDialog .field.OrderDate .editor,
-.s-BasicSamples-MultiColumnDialog .field.RequiredDate .editor {
-  width: 213px;
-}
-.s-BasicSamples-MultiColumnDialog .field.EmployeeID {
-  clear: both;
-}
-.s-BasicSamples-MultiColumnDialog .field.DetailList .editor {
-  width: 780px;
-}
-.s-BasicSamples-MultiColumnDialog .field.DetailList .grid-container {
-  min-height: 90px;
-}
-.s-BasicSamples-MultiColumnDialog .field.DetailList label.caption {
-  display: none;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShippedDate,
-.s-BasicSamples-MultiColumnDialog .field.ShipVia,
-.s-BasicSamples-MultiColumnDialog .field.Freight {
-  float: left;
-  width: 33%;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShippedDate label.caption,
-.s-BasicSamples-MultiColumnDialog .field.ShipVia label.caption,
-.s-BasicSamples-MultiColumnDialog .field.Freight label.caption {
-  width: 90px;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShippedDate .editor {
-  width: 120px;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShipVia .editor,
-.s-BasicSamples-MultiColumnDialog .field.Freight .editor {
-  width: 145px;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShipName,
-.s-BasicSamples-MultiColumnDialog .field.ShipAddress,
-.s-BasicSamples-MultiColumnDialog .field.ShipCity,
-.s-BasicSamples-MultiColumnDialog .field.ShipRegion,
-.s-BasicSamples-MultiColumnDialog .field.ShipPostalCode,
-.s-BasicSamples-MultiColumnDialog .field.ShipCountry {
-  float: left;
-  width: 50%;
-}
-.s-BasicSamples-MultiColumnDialog .field.ShipName .editor,
-.s-BasicSamples-MultiColumnDialog .field.ShipAddress .editor,
-.s-BasicSamples-MultiColumnDialog .field.ShipCity .editor,
-.s-BasicSamples-MultiColumnDialog .field.ShipRegion .editor,
-.s-BasicSamples-MultiColumnDialog .field.ShipPostalCode .editor,
-.s-BasicSamples-MultiColumnDialog .field.ShipCountry .editor {
-  width: 237px;
-}
 .s-BasicSamples-ResponsiveDialog > .size {
   width: 750px;
   height: 550px;
@@ -7097,18 +6999,14 @@ section.content > .s-DataGrid {
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipRegion,
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipPostalCode,
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipCountry {
-    -webkit-flex-basis: 50%;
-    -moz-flex-basis: 50%;
-    -ms-flex-basis: 50%;
-    flex-basis: 50%;
+    flex: auto;
+    min-width: 50%;
   }
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShippedDate,
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipVia,
   .s-BasicSamples-MultiColumnResponsiveDialog .field.Freight {
-    -webkit-flex-basis: 33%;
-    -moz-flex-basis: 33%;
-    -ms-flex-basis: 33%;
-    flex-basis: 33%;
+    flex: auto;
+    min-width: 33%;
   }
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShippedDate .caption,
   .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipVia .caption,
@@ -7498,6 +7396,7 @@ section.content > .s-DataGrid {
   height: 100%;
   margin: 6px;
   width: initial !important;
+  min-width: 100%;
 }
 .s-Northwind-CustomerDialog .grid-toolbar {
   -webkit-box-flex: 0;
@@ -7832,97 +7731,4 @@ section.content > .s-DataGrid {
 }
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
-}
-.s-ColumnPickerDialog .sortable-ghost {
-  opacity: .5;
-  background-color: darksalmon;
-}
-.s-ColumnPickerDialog .ui-dialog-content {
-  overflow-x: hidden;
-  flex-direction: column;
-}
-.s-ColumnPickerDialog .search {
-  flex: 0 0 auto;
-  text-align: right;
-}
-.s-ColumnPickerDialog .search input {
-  margin: 6px 6px 2px 6px;
-}
-.s-ColumnPickerDialog .columns-container {
-  flex: 1 1 90%;
-  display: flex;
-  flex-direction: row;
-}
-.s-ColumnPickerDialog .column-list {
-  flex: 1 1 50%;
-  margin: 6px;
-  display: flex;
-  flex-direction: column;
-}
-.s-ColumnPickerDialog .column-list ul {
-  padding-left: 0;
-  min-height: 50px;
-  flex: 1 1 90%;
-}
-.s-ColumnPickerDialog h5 {
-  padding: 8px;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  font-size: 13px;
-  font-weight: bold;
-  white-space: nowrap;
-  overflow-x: hidden;
-  flex: 0 0 auto;
-}
-.s-ColumnPickerDialog h5 i {
-  color: darkmagenta;
-  margin-right: 2px;
-  font-size: 15px;
-}
-.s-ColumnPickerDialog li {
-  cursor: move;
-  list-style: none;
-  padding: 5px 5px;
-  position: relative;
-}
-.s-ColumnPickerDialog .drag-handle {
-  color: #5F9EDF;
-  margin-right: 6px;
-  font: bold 20px Sans-Serif;
-  display: inline-block;
-  cursor: move;
-  cursor: -webkit-grabbing;
-  position: relative;
-  top: 2px;
-}
-.s-ColumnPickerDialog i.js-show,
-.s-ColumnPickerDialog i.js-hide {
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
-  opacity: 0.5;
-  display: block;
-  cursor: pointer;
-  right: 8px;
-  position: absolute;
-  font-size: 14px;
-  font-weight: bold;
-  font-style: normal;
-}
-.s-ColumnPickerDialog i.js-hide {
-  top: 11px;
-  color: #c00;
-}
-.s-ColumnPickerDialog i.js-show {
-  top: 15px;
-  color: limegreen;
-}
-.s-ColumnPickerDialog .visible-list i.js-show {
-  display: none;
-}
-.s-ColumnPickerDialog .hidden-list i.js-hide {
-  display: none;
-}
-.s-ColumnPickerDialog li:hover i.js-show,
-.s-ColumnPickerDialog li:hover i.js-hide {
-  opacity: 1;
 }

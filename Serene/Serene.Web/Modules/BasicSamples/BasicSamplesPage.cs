@@ -47,11 +47,6 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Editors.LookupFilterByMultipleValues.Index);
         }
 
-        public ActionResult MultiColumnDialog()
-        {
-            return View(MyViews.Dialogs.MultiColumnDialog.Index);
-        }
-
         public ActionResult MultiColumnResponsiveDialog()
         {
             return View(MyViews.Dialogs.MultiColumnResponsiveDialog.Index);

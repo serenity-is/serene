@@ -10,7 +10,7 @@
         public onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>,
             callback: (response: Serenity.DeleteResponse) => void) => void;
 
-        protected destroy() {
+        public destroy() {
             this.onSave = null;
             this.onDelete = null;
             super.destroy();

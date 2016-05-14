@@ -54,7 +54,7 @@
 
         protected addClick() {
             var dlg = new NoteDialog();
-            dlg.set_dialogTitle('Add Note');
+            dlg.dialogTitle = 'Add Note';
             dlg.okClick = () => {
                 var text = Q.trimToNull(dlg.text);
                 if (text == null) {
@@ -81,7 +81,7 @@
             var index = $(e.target).data('index');
             var old = this.items[index];
             var dlg = new NoteDialog();
-            dlg.set_dialogTitle('Edit Note');
+            dlg.dialogTitle = 'Edit Note';
             dlg.text = old.Text;
             dlg.okClick = () => {
                 var text = Q.trimToNull(dlg.text);

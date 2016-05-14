@@ -255,6 +255,7 @@ declare namespace Serene.Northwind {
         protected getService(): string;
         protected shippingStateFilter: Serenity.EnumEditor;
         constructor(container: JQuery);
+        protected getPersistanceStorage(): Storage;
         protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
         set_shippingState(value: number): void;
@@ -282,29 +283,6 @@ declare namespace Serene.Northwind {
         protected form: OrderForm;
         constructor();
         getToolbarButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Styling for columns is done with CSS in site.basicsamples.less file.
-     * We just need to set flexify options here to determine how much editors
-     * will grow or shrink when dialog is resized. If dialog wasn't resizable
-     * we didn't have to do this.
-     *
-     * NOTE: Have a look at MultiColumnResponsiveDialog sample, it's easier
-     * and more recent version. This sample is for old dialog layouts.
-     */
-    class MultiColumnDialog extends Northwind.OrderDialog {
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to MultiColumnDialog
-     */
-    class MultiColumnGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof MultiColumnDialog;
-        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -423,7 +401,7 @@ declare namespace Serene.Common {
         protected getIdProperty(): string;
         onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
         onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        protected destroy(): void;
+        destroy(): void;
         protected updateInterface(): void;
         protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
         protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
@@ -604,23 +582,6 @@ declare namespace Serene.Common {
         set_successCount(value: number): void;
         get_errorCount(): any;
         set_errorCount(value: number): void;
-    }
-}
-declare namespace Serenity {
-    class ColumnPickerDialog extends Serenity.TemplatedDialog<any> {
-        private ulVisible;
-        private ulHidden;
-        constructor();
-        allColumns: Slick.Column[];
-        visibleColumns: Slick.Column[];
-        protected hiddenColumns: Slick.Column[];
-        getDialogOptions(): JQueryUI.DialogOptions;
-        getTitle(col: Slick.Column): string;
-        private createLI(col);
-        private updateListStates();
-        protected setupColumns(): void;
-        protected onDialogOpen(): void;
-        protected getTemplate(): string;
     }
 }
 declare namespace Serene.DialogUtils {

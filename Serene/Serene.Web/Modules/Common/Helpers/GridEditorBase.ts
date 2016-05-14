@@ -31,7 +31,7 @@
                 return;
             }
 
-            var items = Q.arrayClone(this.view.getItems());
+            var items = this.view.getItems().slice();
             if (id == null) {
                 items.push(row);
             }

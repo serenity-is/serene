@@ -279,10 +279,12 @@ var Serene;
                 var opt = {
                     lookupKey: 'Administration.Language'
                 };
-                this.sourceLanguage = Serenity.Widget.create(Serenity.LookupEditor)(function (el) {
-                    return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
-                        Q.text('Db.Administration.Translation.SourceLanguage') + ' ---');
-                }, opt);
+                this.sourceLanguage = Serenity.Widget.create({
+                    type: Serenity.LookupEditor,
+                    element: function (el) { return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
+                        Q.text('Db.Administration.Translation.SourceLanguage') + ' ---'); },
+                    options: opt
+                });
                 this.sourceLanguage.changeSelect2(function (e) {
                     if (_this.hasChanges) {
                         _this.saveChanges(_this.targetLanguageKey).then(function () { return _this.refresh(); });
@@ -291,10 +293,12 @@ var Serene;
                         _this.refresh();
                     }
                 });
-                this.targetLanguage = Serenity.Widget.create(Serenity.LookupEditor)(function (el) {
-                    return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
-                        Q.text('Db.Administration.Translation.TargetLanguage') + ' ---');
-                }, opt);
+                this.targetLanguage = Serenity.Widget.create({
+                    type: Serenity.LookupEditor,
+                    element: function (el) { return el.appendTo(_this.toolbar.element).attr('placeholder', '--- ' +
+                        Q.text('Db.Administration.Translation.TargetLanguage') + ' ---'); },
+                    options: opt
+                });
                 this.targetLanguage.changeSelect2(function (e) {
                     if (_this.hasChanges) {
                         _this.saveChanges(_this.targetLanguageKey).then(function () { return _this.refresh(); });
@@ -1300,6 +1304,9 @@ var Serene;
             OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
             OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
             OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.getPersistanceStorage = function () {
+                return window.sessionStorage;
+            };
             OrderGrid.prototype.createQuickFilters = function () {
                 _super.prototype.createQuickFilters.call(this);
                 var fld = Northwind.OrderRow.Fields;
@@ -1456,73 +1463,6 @@ var Serene;
     (function (BasicSamples) {
         /**
          * Styling for columns is done with CSS in site.basicsamples.less file.
-         * We just need to set flexify options here to determine how much editors
-         * will grow or shrink when dialog is resized. If dialog wasn't resizable
-         * we didn't have to do this.
-         *
-         * NOTE: Have a look at MultiColumnResponsiveDialog sample, it's easier
-         * and more recent version. This sample is for old dialog layouts.
-         */
-        var MultiColumnDialog = (function (_super) {
-            __extends(MultiColumnDialog, _super);
-            function MultiColumnDialog() {
-                _super.call(this);
-                this.form = new Serene.Northwind.OrderForm(this.idPrefix);
-                // as these editors are in a two column line, 
-                // all should grow 0.5px when dialog grows 1px
-                this.form.OrderDate.element.flexX(0.5);
-                this.form.RequiredDate.element.flexX(0.5);
-                this.form.ShipName.element.flexX(0.5);
-                this.form.ShipCity.element.flexX(0.5);
-                this.form.ShipPostalCode.element.flexX(0.5);
-                this.form.ShipAddress.element.flexX(0.5);
-                this.form.ShipRegion.element.flexX(0.5);
-                this.form.ShipCountry.element.flexX(0.5);
-                // as these editors are in a three column line, 
-                // all should grow 0.33px when dialog grows 1px
-                this.form.ShippedDate.element.flexX(0.33);
-                this.form.ShipVia.element.siblings('.select2-container').flexX(0.33);
-                this.form.Freight.element.flexX(0.33);
-                // grid should grow in height and width when dialog grows
-                this.form.DetailList.element.flexWidthHeight(1, 1);
-            }
-            MultiColumnDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], MultiColumnDialog);
-            return MultiColumnDialog;
-        }(Serene.Northwind.OrderDialog));
-        BasicSamples.MultiColumnDialog = MultiColumnDialog;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        /**
-         * Subclass of OrderGrid to override dialog type to MultiColumnDialog
-         */
-        var MultiColumnGrid = (function (_super) {
-            __extends(MultiColumnGrid, _super);
-            function MultiColumnGrid(container) {
-                _super.call(this, container);
-            }
-            MultiColumnGrid.prototype.getDialogType = function () { return BasicSamples.MultiColumnDialog; };
-            MultiColumnGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], MultiColumnGrid);
-            return MultiColumnGrid;
-        }(Serene.Northwind.OrderGrid));
-        BasicSamples.MultiColumnGrid = MultiColumnGrid;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        /**
-         * Styling for columns is done with CSS in site.basicsamples.less file.
          * When comparing this to MultiColumnDialog sample, you may notice that
          * this version requires much less JS and CSS code.
          */
@@ -1635,7 +1575,7 @@ var Serene;
                 if (!this.validateEntity(row, id)) {
                     return;
                 }
-                var items = Q.arrayClone(this.view.getItems());
+                var items = this.view.getItems().slice();
                 if (id == null) {
                     items.push(row);
                 }
@@ -2407,7 +2347,7 @@ var Serene;
                 this.completedRequests = 0;
                 this.errorCount = 0;
                 this.errorByKey = {};
-                this.queue = Q.arrayClone(this.keys);
+                this.queue = this.keys.slice();
                 this.queueIndex = 0;
                 var parallelRequests = this.getParallelRequests();
                 while (parallelRequests-- > 0) {
@@ -2521,142 +2461,6 @@ var Serene;
         Common.BulkServiceAction = BulkServiceAction;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
-Q.LT.add({
-    "Controls.ColumnPickerDialog.Title": "Column Picker",
-    "Controls.ColumnPickerDialog.VisibleColumns": "Visible Columns",
-    "Controls.ColumnPickerDialog.HiddenColumns": "Hidden Columns",
-    "Controls.ColumnPickerDialog.HideHint": "hide",
-    "Controls.ColumnPickerDialog.ShowHint": "show"
-}, "");
-var Serenity;
-(function (Serenity) {
-    var ColumnPickerDialog = (function (_super) {
-        __extends(ColumnPickerDialog, _super);
-        function ColumnPickerDialog() {
-            var _this = this;
-            _super.call(this);
-            new Serenity.QuickSearchInput(this.byId("Search"), {
-                onSearch: function (fld, txt, done) {
-                    txt = Q.trimToNull(txt);
-                    if (txt != null)
-                        txt = Select2.util.stripDiacritics(txt.toLowerCase());
-                    _this.element.find('li').each(function (x, e) {
-                        $(e).toggle(!txt || Select2.util.stripDiacritics($(e).text().toLowerCase()).indexOf(txt) >= 0);
-                    });
-                }
-            });
-            this.ulVisible = this.byId("VisibleCols");
-            this.ulHidden = this.byId("HiddenCols");
-        }
-        ColumnPickerDialog.prototype.getDialogOptions = function () {
-            var _this = this;
-            var opt = _super.prototype.getDialogOptions.call(this);
-            opt.title = Q.text("Controls.ColumnPickerDialog.Title");
-            opt.width = 600;
-            opt.buttons = [
-                {
-                    text: Q.text("Dialogs.OkButton"),
-                    click: function () {
-                        _this.dialogClose();
-                    }
-                },
-                {
-                    text: Q.text("Dialogs.CancelButton"),
-                    click: function () {
-                        _this.dialogClose();
-                    }
-                }
-            ];
-            return opt;
-        };
-        ColumnPickerDialog.prototype.getTitle = function (col) {
-            return col.name || col.toolTip || col.id;
-        };
-        ColumnPickerDialog.prototype.createLI = function (col) {
-            return $("\n<li data-key=\"" + col.id + "\">\n  <span class=\"drag-handle\">\u2630</span>\n  " + Q.htmlEncode(this.getTitle(col)) + "\n  <i class=\"js-hide\" title=\"" + Q.text("Controls.ColumnPickerDialog.HideHint") + "\">\u2716</i>\n  <i class=\"js-show icon-eye\" title=\"" + Q.text("Controls.ColumnPickerDialog.ShowHint") + "\"></i>\n</li>");
-        };
-        ColumnPickerDialog.prototype.updateListStates = function () {
-            this.ulVisible.children().removeClass("bg-info").addClass("bg-success");
-            this.ulHidden.children().removeClass("bg-success").addClass("bg-info");
-        };
-        ColumnPickerDialog.prototype.setupColumns = function () {
-            var _this = this;
-            this.allColumns = this.allColumns || [];
-            this.visibleColumns = this.visibleColumns || [];
-            var visible = {};
-            for (var _i = 0, _a = this.visibleColumns; _i < _a.length; _i++) {
-                var c = _a[_i];
-                visible[c.id] = true;
-            }
-            var hidden = [];
-            for (var _b = 0, _c = this.allColumns; _b < _c.length; _b++) {
-                var c = _c[_b];
-                if (!visible[c.id])
-                    hidden.push(c);
-            }
-            this.hiddenColumns = hidden.sort(function (a, b) { return Q.turkishLocaleCompare(_this.getTitle(a), _this.getTitle(b)); });
-            for (var _d = 0, _e = this.visibleColumns; _d < _e.length; _d++) {
-                var c = _e[_d];
-                this.createLI(c).appendTo(this.ulVisible);
-            }
-            for (var _f = 0, _g = this.hiddenColumns; _f < _g.length; _f++) {
-                var c = _g[_f];
-                this.createLI(c).appendTo(this.ulHidden);
-            }
-            this.updateListStates();
-            if (typeof Sortable !== "undefined" &&
-                Sortable.create) {
-                Sortable.create(this.ulVisible[0], {
-                    group: this.uniqueName + "_group",
-                    filter: '.js-hide',
-                    onFilter: function (evt) {
-                        $(evt.item).appendTo(_this.ulHidden);
-                        _this.updateListStates();
-                    },
-                    onEnd: function (evt) { return _this.updateListStates(); }
-                });
-                Sortable.create(this.ulHidden[0], {
-                    group: this.uniqueName + "_group",
-                    sort: false,
-                    filter: '.js-show',
-                    onFilter: function (evt) {
-                        $(evt.item).appendTo(_this.ulVisible);
-                        _this.updateListStates();
-                    },
-                    onEnd: function (evt) { return _this.updateListStates(); }
-                });
-            }
-        };
-        ColumnPickerDialog.prototype.onDialogOpen = function () {
-            _super.prototype.onDialogOpen.call(this);
-            this.setupColumns();
-            Q.centerDialog(this.element);
-        };
-        ColumnPickerDialog.prototype.getTemplate = function () {
-            return "\n<div class=\"search\"><input id=\"~_Search\" type=\"text\" /></div>\n<div class=\"columns-container\">\n<div class=\"column-list visible-list bg-success\">\n  <h5><i class=\"icon-eye\"></i> " + Q.text("Controls.ColumnPickerDialog.VisibleColumns") + "</h5>\n  <ul id=\"~_VisibleCols\"></ul>\n</div>\n<div class=\"column-list hidden-list bg-info\">\n  <h5><i class=\"icon-list\"></i> " + Q.text("Controls.ColumnPickerDialog.HiddenColumns") + "</h5>\n  <ul id=\"~_HiddenCols\"></ul>\n</div>\n</div>";
-        };
-        ColumnPickerDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.resizable(),
-            Serenity.Decorators.responsive()
-        ], ColumnPickerDialog);
-        return ColumnPickerDialog;
-    }(Serenity.TemplatedDialog));
-    Serenity.ColumnPickerDialog = ColumnPickerDialog;
-})(Serenity || (Serenity = {}));
-$(function () {
-    try {
-        var gridDiv = $('<div id="Test">').appendTo(document.body).hide();
-        var grid = new Serene.Northwind.OrderGrid(gridDiv);
-        var picker = new Serenity.ColumnPickerDialog();
-        picker.allColumns = grid.allColumns;
-        picker.visibleColumns = grid.slickGrid.getColumns();
-        picker.dialogOpen();
-    }
-    catch (e) {
-        console.log(e);
-    }
-});
 var Serene;
 (function (Serene) {
     var DialogUtils;
@@ -4770,7 +4574,7 @@ var Serene;
             NotesEditor.prototype.addClick = function () {
                 var _this = this;
                 var dlg = new Northwind.NoteDialog();
-                dlg.set_dialogTitle('Add Note');
+                dlg.dialogTitle = 'Add Note';
                 dlg.okClick = function () {
                     var text = Q.trimToNull(dlg.text);
                     if (text == null) {
@@ -4795,7 +4599,7 @@ var Serene;
                 var index = $(e.target).data('index');
                 var old = this.items[index];
                 var dlg = new Northwind.NoteDialog();
-                dlg.set_dialogTitle('Edit Note');
+                dlg.dialogTitle = 'Edit Note';
                 dlg.text = old.Text;
                 dlg.okClick = function () {
                     var text = Q.trimToNull(dlg.text);

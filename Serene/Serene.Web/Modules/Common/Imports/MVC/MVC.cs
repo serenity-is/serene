@@ -103,11 +103,6 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/DefaultValuesInNewDialog/Index.cshtml";
                 }
 
-                public static class MultiColumnDialog
-                {
-                    public const string Index = "~/Modules/BasicSamples/Dialogs/MultiColumnDialog/Index.cshtml";
-                }
-
                 public static class MultiColumnResponsiveDialog
                 {
                     public const string Index = "~/Modules/BasicSamples/Dialogs/MultiColumnResponsiveDialog/Index.cshtml";

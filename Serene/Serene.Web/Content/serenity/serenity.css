@@ -887,6 +887,106 @@ button.ui-state-hover .ui-button-text {
   height: 16px;
   padding: 1px;
 }
+.s-ColumnPickerDialog > .size {
+  min-height: 250px;
+}
+.s-ColumnPickerDialog .sortable-ghost {
+  opacity: .5;
+  background-color: darksalmon;
+}
+.s-ColumnPickerDialog .ui-dialog-content {
+  overflow-x: hidden;
+  flex-direction: column;
+}
+.s-ColumnPickerDialog .search {
+  flex: 0 0 auto;
+  text-align: right;
+}
+.s-ColumnPickerDialog .search input {
+  margin: 6px 6px 2px 6px;
+}
+.s-ColumnPickerDialog .columns-container {
+  flex: 1 1 90%;
+  display: flex;
+  flex-direction: row;
+}
+.s-ColumnPickerDialog .column-list {
+  flex: 1 1 50%;
+  margin: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.s-ColumnPickerDialog .column-list ul {
+  padding-left: 0;
+  min-height: 50px;
+  flex: 1 1 90%;
+}
+.s-ColumnPickerDialog h5 {
+  padding: 8px;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow-x: hidden;
+  flex: 0 0 auto;
+}
+.s-ColumnPickerDialog h5 i {
+  color: darkmagenta;
+  margin-right: 2px;
+  font-size: 15px;
+}
+.s-ColumnPickerDialog li {
+  cursor: move;
+  list-style: none;
+  padding: 5px 5px;
+  position: relative;
+}
+.s-ColumnPickerDialog .drag-handle {
+  color: #5F9EDF;
+  margin-right: 6px;
+  font: bold 20px Sans-Serif;
+  display: inline-block;
+  cursor: move;
+  cursor: -webkit-grabbing;
+  position: relative;
+  top: 2px;
+}
+.s-ColumnPickerDialog i.js-show,
+.s-ColumnPickerDialog i.js-hide {
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  opacity: 0.5;
+  display: block;
+  cursor: pointer;
+  right: 8px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+}
+.s-ColumnPickerDialog i.js-hide {
+  top: 11px;
+  color: #c00;
+}
+.s-ColumnPickerDialog i.js-show {
+  top: 15px;
+  color: limegreen;
+}
+.s-ColumnPickerDialog .visible-list i.js-show {
+  display: none;
+}
+.s-ColumnPickerDialog .hidden-list i.js-hide {
+  display: none;
+}
+.s-ColumnPickerDialog li:hover i.js-show,
+.s-ColumnPickerDialog li:hover i.js-hide {
+  opacity: 1;
+}
+.s-ColumnPickerDialog .restore-defaults {
+  position: absolute;
+  left: 6px;
+}
 .s-Dialog {
   line-height: normal;
 }
@@ -1188,30 +1288,35 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   flex-direction: column;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
-  -webkit-flex: 1 1 50%;
-  -moz-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
   -ms-flex-positive: 1;
   -ms-flex-negative: 1;
-  -ms-flex-preferred-size: 50%;
+  -ms-flex-preferred-size: auto;
 }
 .flex-layout .grid-container {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
-  -webkit-flex: 1 1 50%;
-  -moz-flex: 1 1 50%;
-  -ms-flex: 1 1 50%;
-  flex: 1 1 50%;
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
   -ms-flex-positive: 1;
   -ms-flex-negative: 1;
-  -ms-flex-preferred-size: 50%;
+  -ms-flex-preferred-size: auto;
 }
 .flex-layout .s-PropertyGrid .categories {
-  -webkit-flex-grow: 1;
-  -moz-flex-grow: 1;
-  -ms-flex-grow: 1;
-  flex-grow: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -moz-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -ms-flex-positive: 1;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: auto;
 }
 @media (max-width: 760px) {
   .flex-layout .field {
@@ -2418,6 +2523,9 @@ a.quick-search-field {
 }
 .select-all-button.checked span.button-inner {
   background-image: url(images/checkbox-yes.png);
+}
+.column-picker-button span.button-inner {
+  background-image: url(images/column-picker.png);
 }
 .s-TreeIndent {
   padding: 1px 0 0 0;

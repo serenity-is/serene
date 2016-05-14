@@ -122,9 +122,12 @@
                 lookupKey: 'Administration.Language'
             };
 
-            this.sourceLanguage = Serenity.Widget.create(Serenity.LookupEditor)(el =>
-                el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
-                    Q.text('Db.Administration.Translation.SourceLanguage') + ' ---'), opt);
+            this.sourceLanguage = Serenity.Widget.create({
+                type: Serenity.LookupEditor,
+                element: el => el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
+                    Q.text('Db.Administration.Translation.SourceLanguage') + ' ---'),
+                options: opt
+            });
 
             this.sourceLanguage.changeSelect2(e => {
                 if (this.hasChanges) {
@@ -135,9 +138,12 @@
                 }
             });
 
-            this.targetLanguage = Serenity.Widget.create(Serenity.LookupEditor)(el =>
-                el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
-                    Q.text('Db.Administration.Translation.TargetLanguage') + ' ---'), opt);
+            this.targetLanguage = Serenity.Widget.create({
+                type: Serenity.LookupEditor,
+                element: el => el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
+                    Q.text('Db.Administration.Translation.TargetLanguage') + ' ---'),
+                options: opt
+            });
 
             this.targetLanguage.changeSelect2(e => {
                 if (this.hasChanges) {

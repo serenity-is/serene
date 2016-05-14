@@ -56,7 +56,7 @@
             this.completedRequests = 0;
             this.errorCount = 0;
             this.errorByKey = {};
-            this.queue = Q.arrayClone(this.keys);
+            this.queue = this.keys.slice();
             this.queueIndex = 0;
             var parallelRequests = this.getParallelRequests();
             while (parallelRequests-- > 0) {

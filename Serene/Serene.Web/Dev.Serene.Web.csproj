@@ -1134,7 +1134,6 @@
     <Content Include="Modules\BasicSamples\Dialogs\ChartInDialog\Index.cshtml" />
     <Content Include="Content\site\site.basicsamples.less" />
     <Content Include="Modules\BasicSamples\Grids\ViewWithoutID\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\Index.cshtml" />
@@ -1190,7 +1189,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
-    <TypeScriptCompile Include="Modules\Common\Helpers\ColumnPickerDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1338,6 +1336,8 @@
     <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\sortable.js" />
+    <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
@@ -1555,8 +1555,6 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnGrid.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnDialog\MultiColumnDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveDialog.ts" />
