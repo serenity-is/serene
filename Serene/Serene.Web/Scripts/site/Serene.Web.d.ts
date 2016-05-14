@@ -608,17 +608,19 @@ declare namespace Serene.Common {
 }
 declare namespace Serenity {
     class ColumnPickerDialog extends Serenity.TemplatedDialog<any> {
+        private ulVisible;
+        private ulHidden;
         constructor();
         allColumns: Slick.Column[];
         visibleColumns: Slick.Column[];
-        protected availableColumns: Slick.Column[];
+        protected hiddenColumns: Slick.Column[];
         getDialogOptions(): JQueryUI.DialogOptions;
+        getTitle(col: Slick.Column): string;
         private createLI(col);
         private updateListStates();
         protected setupColumns(): void;
         protected onDialogOpen(): void;
         protected getTemplate(): string;
-        getTitle(col: Slick.Column): string;
     }
 }
 declare namespace Serene.DialogUtils {

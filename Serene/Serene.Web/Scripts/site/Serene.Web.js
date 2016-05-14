@@ -2524,7 +2524,7 @@ var Serene;
 Q.LT.add({
     "Controls.ColumnPickerDialog.Title": "Column Picker",
     "Controls.ColumnPickerDialog.VisibleColumns": "Visible Columns",
-    "Controls.ColumnPickerDialog.AvailableColumns": "Available Columns",
+    "Controls.ColumnPickerDialog.HiddenColumns": "Hidden Columns",
     "Controls.ColumnPickerDialog.HideHint": "hide",
     "Controls.ColumnPickerDialog.ShowHint": "show"
 }, "");
@@ -2535,7 +2535,7 @@ var Serenity;
         function ColumnPickerDialog() {
             var _this = this;
             _super.call(this);
-            new Serenity.QuickSearchInput(this.byId("Search").children(), {
+            new Serenity.QuickSearchInput(this.byId("Search"), {
                 onSearch: function (fld, txt, done) {
                     txt = Q.trimToNull(txt);
                     if (txt != null)
@@ -2545,6 +2545,8 @@ var Serenity;
                     });
                 }
             });
+            this.ulVisible = this.byId("VisibleCols");
+            this.ulHidden = this.byId("HiddenCols");
         }
         ColumnPickerDialog.prototype.getDialogOptions = function () {
             var _this = this;
@@ -2567,12 +2569,15 @@ var Serenity;
             ];
             return opt;
         };
+        ColumnPickerDialog.prototype.getTitle = function (col) {
+            return col.name || col.toolTip || col.id;
+        };
         ColumnPickerDialog.prototype.createLI = function (col) {
-            return $("<li data-key=\"" + col.id + "\"><span class=\"drag-handle\">\u2630</span>" + Q.htmlEncode(this.getTitle(col)) + "<i class=\"js-hide\">\u2716</i><i class=\"js-show icon-eye\"></i></li>");
+            return $("\n<li data-key=\"" + col.id + "\">\n  <span class=\"drag-handle\">\u2630</span>\n  " + Q.htmlEncode(this.getTitle(col)) + "\n  <i class=\"js-hide\" title=\"" + Q.text("Controls.ColumnPickerDialog.HideHint") + "\">\u2716</i>\n  <i class=\"js-show icon-eye\" title=\"" + Q.text("Controls.ColumnPickerDialog.ShowHint") + "\"></i>\n</li>");
         };
         ColumnPickerDialog.prototype.updateListStates = function () {
-            this.byId("VisibleColumns").find("li").removeClass("bg-info").addClass("bg-success");
-            this.byId("AvailableColumns").find("li").removeClass("bg-success").addClass("bg-info");
+            this.ulVisible.children().removeClass("bg-info").addClass("bg-success");
+            this.ulHidden.children().removeClass("bg-success").addClass("bg-info");
         };
         ColumnPickerDialog.prototype.setupColumns = function () {
             var _this = this;
@@ -2583,53 +2588,52 @@ var Serenity;
                 var c = _a[_i];
                 visible[c.id] = true;
             }
-            var available = [];
+            var hidden = [];
             for (var _b = 0, _c = this.allColumns; _b < _c.length; _b++) {
                 var c = _c[_b];
                 if (!visible[c.id])
-                    available.push(c);
+                    hidden.push(c);
             }
-            this.availableColumns = available.sort(function (a, b) { return Q.turkishLocaleCompare(_this.getTitle(a), _this.getTitle(b)); });
-            var visibleUL = this.byId("VisibleColumns").children("ul");
+            this.hiddenColumns = hidden.sort(function (a, b) { return Q.turkishLocaleCompare(_this.getTitle(a), _this.getTitle(b)); });
             for (var _d = 0, _e = this.visibleColumns; _d < _e.length; _d++) {
                 var c = _e[_d];
-                this.createLI(c).addClass("bg-success").appendTo(visibleUL);
+                this.createLI(c).appendTo(this.ulVisible);
             }
-            var availableUL = this.byId("AvailableColumns").children("ul");
-            for (var _f = 0, _g = this.availableColumns; _f < _g.length; _f++) {
+            for (var _f = 0, _g = this.hiddenColumns; _f < _g.length; _f++) {
                 var c = _g[_f];
-                this.createLI(c).addClass("bg-info").appendTo(availableUL);
+                this.createLI(c).appendTo(this.ulHidden);
             }
-            var self = this;
-            var visibleSortable = Sortable.create(visibleUL[0], {
-                group: this.uniqueName + "_group",
-                filter: '.js-hide',
-                onFilter: function (evt) {
-                    $(evt.item).appendTo(availableUL);
-                    _this.updateListStates();
-                },
-                onEnd: function (evt) { return _this.updateListStates(); }
-            });
-            var availableSortable = Sortable.create(availableUL[0], {
-                group: this.uniqueName + "_group",
-                sort: false,
-                filter: '.js-show',
-                onFilter: function (evt) {
-                    $(evt.item).appendTo(visibleUL);
-                    _this.updateListStates();
-                },
-                onEnd: function (evt) { return _this.updateListStates(); }
-            });
+            this.updateListStates();
+            if (typeof Sortable !== "undefined" &&
+                Sortable.create) {
+                Sortable.create(this.ulVisible[0], {
+                    group: this.uniqueName + "_group",
+                    filter: '.js-hide',
+                    onFilter: function (evt) {
+                        $(evt.item).appendTo(_this.ulHidden);
+                        _this.updateListStates();
+                    },
+                    onEnd: function (evt) { return _this.updateListStates(); }
+                });
+                Sortable.create(this.ulHidden[0], {
+                    group: this.uniqueName + "_group",
+                    sort: false,
+                    filter: '.js-show',
+                    onFilter: function (evt) {
+                        $(evt.item).appendTo(_this.ulVisible);
+                        _this.updateListStates();
+                    },
+                    onEnd: function (evt) { return _this.updateListStates(); }
+                });
+            }
         };
         ColumnPickerDialog.prototype.onDialogOpen = function () {
             _super.prototype.onDialogOpen.call(this);
             this.setupColumns();
+            Q.centerDialog(this.element);
         };
         ColumnPickerDialog.prototype.getTemplate = function () {
-            return "\n<div id=\"~_Search\" class=\"search\"><input type=\"text\" /></div>\n<div class=\"columns-container\">\n<div id=\"~_VisibleColumns\" class=\"column-list visible-list bg-success\">\n  <h5><i class=\"icon-eye\"></i> " + Q.text("Controls.ColumnPickerDialog.VisibleColumns") + "</h5>\n  <ul></ul>\n</div>\n<div id=\"~_AvailableColumns\" class=\"column-list available-list bg-info\">\n  <h5><i class=\"icon-list\"></i> " + Q.text("Controls.ColumnPickerDialog.AvailableColumns") + "</h5>\n  <ul></ul>\n</div>\n</div>";
-        };
-        ColumnPickerDialog.prototype.getTitle = function (col) {
-            return col.name || col.toolTip || col.id;
+            return "\n<div class=\"search\"><input id=\"~_Search\" type=\"text\" /></div>\n<div class=\"columns-container\">\n<div class=\"column-list visible-list bg-success\">\n  <h5><i class=\"icon-eye\"></i> " + Q.text("Controls.ColumnPickerDialog.VisibleColumns") + "</h5>\n  <ul id=\"~_VisibleCols\"></ul>\n</div>\n<div class=\"column-list hidden-list bg-info\">\n  <h5><i class=\"icon-list\"></i> " + Q.text("Controls.ColumnPickerDialog.HiddenColumns") + "</h5>\n  <ul id=\"~_HiddenCols\"></ul>\n</div>\n</div>";
         };
         ColumnPickerDialog = __decorate([
             Serenity.Decorators.registerClass(),
@@ -2641,12 +2645,17 @@ var Serenity;
     Serenity.ColumnPickerDialog = ColumnPickerDialog;
 })(Serenity || (Serenity = {}));
 $(function () {
-    var gridDiv = $('<div id="Test">').appendTo(document.body).hide();
-    var grid = new Serene.Northwind.OrderGrid(gridDiv);
-    var picker = new Serenity.ColumnPickerDialog();
-    picker.allColumns = grid.allColumns;
-    picker.visibleColumns = grid.slickGrid.getColumns();
-    picker.dialogOpen();
+    try {
+        var gridDiv = $('<div id="Test">').appendTo(document.body).hide();
+        var grid = new Serene.Northwind.OrderGrid(gridDiv);
+        var picker = new Serenity.ColumnPickerDialog();
+        picker.allColumns = grid.allColumns;
+        picker.visibleColumns = grid.slickGrid.getColumns();
+        picker.dialogOpen();
+    }
+    catch (e) {
+        console.log(e);
+    }
 });
 var Serene;
 (function (Serene) {

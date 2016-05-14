@@ -7909,20 +7909,17 @@ section.content > .s-DataGrid {
   font-style: normal;
 }
 .s-ColumnPickerDialog i.js-hide {
-  color: #c00;
   top: 11px;
+  color: #c00;
 }
 .s-ColumnPickerDialog i.js-show {
+  top: 15px;
   color: limegreen;
-  top: 9px;
 }
 .s-ColumnPickerDialog .visible-list i.js-show {
   display: none;
 }
-.s-ColumnPickerDialog .available-list i.js-hide {
-  display: none;
-}
-.s-ColumnPickerDialog .available-list .drag-handle {
+.s-ColumnPickerDialog .hidden-list i.js-hide {
   display: none;
 }
 .s-ColumnPickerDialog li:hover i.js-show,
