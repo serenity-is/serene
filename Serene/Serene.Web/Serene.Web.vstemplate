@@ -329,11 +329,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewGrid.ts">DefaultValuesInNewGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
-            <Folder Name="MultiColumnDialog" TargetFolderName="MultiColumnDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnDialog.ts">MultiColumnDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnGrid.ts">MultiColumnGrid.ts</ProjectItem>
-            </Folder>
             <Folder Name="MultiColumnResponsiveDialog" TargetFolderName="MultiColumnResponsiveDialog">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.ts">MultiColumnResponsiveDialog.ts</ProjectItem>
@@ -463,6 +458,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.ts">BasicSamples.OrdersByShipperRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.ts">BasicSamples.OrdersByShipperResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRow.ts">Common.UserPreferenceRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceService.ts">Common.UserPreferenceService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceUpdateRequest.ts">Common.UserPreferenceUpdateRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
@@ -535,6 +535,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151111_133500_UserPermissionGrant.cs">DefaultDB_20151111_133500_UserPermissionGrant.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151217_000600_LastDirectoryUpdate.cs">DefaultDB_20151217_000600_LastDirectoryUpdate.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
             </Folder>
             <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20141123_155100_Initial.cs">NorthwindDB_20141123_155100_Initial.cs</ProjectItem>
@@ -564,6 +565,13 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInitialization.ts">ScriptInitialization.ts</ProjectItem>
+          <Folder Name="UserPreference" TargetFolderName="UserPreference">
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceEndpoint.cs">UserPreferenceEndpoint.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceModels.cs">UserPreferenceModels.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceRepository.cs">UserPreferenceRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceRow.cs">UserPreferenceRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceStorage.ts">UserPreferenceStorage.ts</ProjectItem>
+          </Folder>
         </Folder>
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
@@ -1582,12 +1590,13 @@
       <package id="MsieJavaScriptEngine" version="1.7.0" />
       <package id="Newtonsoft.Json" version="8.0.3" />
       <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="2.1.4" />
-      <package id="Serenity.Core" version="2.1.4" />
-      <package id="Serenity.Data" version="2.1.4" />
-      <package id="Serenity.Data.Entity" version="2.1.4" />
-      <package id="Serenity.Services" version="2.1.4" />
-      <package id="Serenity.Web" version="2.1.4" />
+      <package id="Serenity.CodeGenerator" version="2.1.5" />
+      <package id="Serenity.Core" version="2.1.5" />
+      <package id="Serenity.Data" version="2.1.5" />
+      <package id="Serenity.Data.Entity" version="2.1.5" />
+      <package id="Serenity.Services" version="2.1.5" />
+      <package id="Serenity.Web" version="2.1.5" />
+      <package id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.7" />
       <package id="toastr" version="2.1.1" />
       <package id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />
     </packages>

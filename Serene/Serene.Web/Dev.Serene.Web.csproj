@@ -33,7 +33,7 @@
     <TypeScriptPreserveConstEnums>True</TypeScriptPreserveConstEnums>
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
     <TypeScriptOutFile>Scripts\site\Serene.Web.js</TypeScriptOutFile>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
