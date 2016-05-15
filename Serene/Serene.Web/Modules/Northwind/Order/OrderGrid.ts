@@ -15,10 +15,6 @@
             super(container);
         }
 
-        protected getPersistanceStorage() {
-            return window.sessionStorage;
-        }
-
         protected createQuickFilters() {
             super.createQuickFilters();
 

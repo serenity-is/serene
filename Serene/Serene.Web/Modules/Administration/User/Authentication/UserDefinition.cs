@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration
+﻿namespace Serene
 {
     using Serenity;
     using System;
