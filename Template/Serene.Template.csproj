@@ -167,22 +167,22 @@
     <Content Include="packages\Select2.js.3.5.1.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.CodeGenerator.2.1.6.nupkg">
+    <Content Include="packages\Serenity.CodeGenerator.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Core.2.1.6.nupkg">
+    <Content Include="packages\Serenity.Core.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.2.1.6.nupkg">
+    <Content Include="packages\Serenity.Data.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Data.Entity.2.1.6.nupkg">
+    <Content Include="packages\Serenity.Data.Entity.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Services.2.1.6.nupkg">
+    <Content Include="packages\Serenity.Services.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="packages\Serenity.Web.2.1.6.nupkg">
+    <Content Include="packages\Serenity.Web.2.1.7.nupkg">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="packages\sortablejs.TypeScript.DefinitelyTyped.0.1.7.nupkg">
