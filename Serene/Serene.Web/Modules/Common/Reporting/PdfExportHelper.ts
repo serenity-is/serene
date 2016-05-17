@@ -99,8 +99,11 @@
             if (sortBy != null)
                 request.Sort = sortBy;
 
+            var gridColumns = g.slickGrid.getColumns();
+            gridColumns = gridColumns.filter(x => x.id !== "__select__");
+
             request.IncludeColumns = [];
-            for (var column of g.slickGrid.getColumns())
+            for (var column of gridColumns)
                 request.IncludeColumns.push(column.id || column.field);
 
             Q.serviceCall({
@@ -108,7 +111,7 @@
                 request: request,
                 onSuccess: response => {
                     let doc = new jsPDF('l', 'pt');
-                    let srcColumns = g.slickGrid.getColumns();
+                    let srcColumns = gridColumns;
                     let columnStyles: { [dataKey: string]: jsPDF.AutoTableStyles; } = {};
                     let columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                     var keys = columns.map(x => x.dataKey);
@@ -167,7 +170,7 @@
             }); 
         }
 
-        export function createToolButton<TItem>(options: PdfExportOptions) {
+        export function createToolButton(options: PdfExportOptions) {
 
             return <Serenity.ToolButton>{
                 title: options.title || '',

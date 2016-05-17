@@ -456,7 +456,7 @@ declare namespace Serene.Common {
     }
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
-        function createToolButton<TItem>(options: PdfExportOptions): Serenity.ToolButton;
+        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
     }
 }
 declare namespace Serene.Common {

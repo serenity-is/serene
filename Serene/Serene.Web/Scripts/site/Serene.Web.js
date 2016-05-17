@@ -1927,9 +1927,11 @@ var Serene;
                 var sortBy = g.view.sortBy;
                 if (sortBy != null)
                     request.Sort = sortBy;
+                var gridColumns = g.slickGrid.getColumns();
+                gridColumns = gridColumns.filter(function (x) { return x.id !== "__select__"; });
                 request.IncludeColumns = [];
-                for (var _i = 0, _a = g.slickGrid.getColumns(); _i < _a.length; _i++) {
-                    var column = _a[_i];
+                for (var _i = 0, gridColumns_1 = gridColumns; _i < gridColumns_1.length; _i++) {
+                    var column = gridColumns_1[_i];
                     request.IncludeColumns.push(column.id || column.field);
                 }
                 Q.serviceCall({
@@ -1937,7 +1939,7 @@ var Serene;
                     request: request,
                     onSuccess: function (response) {
                         var doc = new jsPDF('l', 'pt');
-                        var srcColumns = g.slickGrid.getColumns();
+                        var srcColumns = gridColumns;
                         var columnStyles = {};
                         var columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
                         var keys = columns.map(function (x) { return x.dataKey; });
