@@ -253,6 +253,7 @@
     <Content Include="Content\serenity\images\clipboard-list.png" />
     <Content Include="Content\serenity\images\clipboard-task.png" />
     <Content Include="Content\serenity\images\clock.png" />
+    <Content Include="Content\serenity\images\column-picker.png" />
     <Content Include="Content\serenity\images\construction.png" />
     <Content Include="Content\serenity\images\control-record-small.png" />
     <Content Include="Content\serenity\images\counter.png" />
@@ -1371,8 +1372,8 @@
     <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
