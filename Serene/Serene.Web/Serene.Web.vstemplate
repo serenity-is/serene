@@ -362,6 +362,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.ts">CancellableBulkActionGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="ConditionalFormatting" TargetFolderName="ConditionalFormatting">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ConditionalFormattingGrid.ts">ConditionalFormattingGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="GridFilteredByCriteria" TargetFolderName="GridFilteredByCriteria">
               <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.ts">GridFilteredByCriteria.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>

@@ -7083,6 +7083,38 @@ section.content > .s-DataGrid {
 .s-BasicSamples-GroupingAndSummariesInGrid .slick-cell input.dirty {
   background-color: #ffe0e0;
 }
+.s-BasicSamples-ConditionalFormattingGrid .discontinued .slick-cell,
+.s-BasicSamples-ConditionalFormattingGrid .discontinued .slick-cell a {
+  color: lightgray;
+}
+.s-BasicSamples-ConditionalFormattingGrid .out-of-stock .slick-cell,
+.s-BasicSamples-ConditionalFormattingGrid .out-of-stock .slick-cell a {
+  background-color: #ffaaaa;
+  color: red;
+}
+.s-BasicSamples-ConditionalFormattingGrid .critical-stock {
+  background-color: #ffd5c0;
+}
+.s-BasicSamples-ConditionalFormattingGrid .critical-stock .slick-cell,
+.s-BasicSamples-ConditionalFormattingGrid .critical-stock .slick-cell a {
+  color: black;
+}
+.s-BasicSamples-ConditionalFormattingGrid .much-stock .slick-cell,
+.s-BasicSamples-ConditionalFormattingGrid .much-stock .slick-cell a {
+  font-style: italic;
+}
+.s-BasicSamples-ConditionalFormattingGrid .high-price .col-unit-price {
+  background-color: darkorchid;
+  color: #fff;
+}
+.s-BasicSamples-ConditionalFormattingGrid .medium-price .col-unit-price {
+  background-color: yellow;
+  color: #000;
+}
+.s-BasicSamples-ConditionalFormattingGrid .low-price .col-unit-price {
+  background-color: green;
+  color: #fff;
+}
 .s-LoginPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;

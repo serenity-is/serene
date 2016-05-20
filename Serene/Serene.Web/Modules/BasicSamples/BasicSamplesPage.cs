@@ -22,6 +22,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.CloneableEntityDialog.Index);
         }
 
+        public ActionResult ConditionalFormatting()
+        {
+            return View(MyViews.Grids.ConditionalFormatting.Index);
+        }
+
         public ActionResult DefaultValuesInNewDialog()
         {
             return View(MyViews.Dialogs.DefaultValuesInNewDialog.Index);

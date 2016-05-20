@@ -63,3 +63,45 @@
         input.dirty { background-color: #ffe0e0; }
     }
 }
+
+.s-BasicSamples-ConditionalFormattingGrid {
+    .discontinued .slick-cell, .discontinued .slick-cell a {
+        color: lightgray;
+    }
+
+    .out-of-stock .slick-cell, .out-of-stock .slick-cell a {
+        background-color: #ffaaaa;
+        color: red;
+    }
+
+    .critical-stock {
+        background-color: #ffd5c0;
+
+        .slick-cell, .slick-cell a {
+            color: black;
+        }
+    }
+
+    .much-stock {
+
+        .slick-cell, .slick-cell a {
+            font-style: italic;
+        }
+    }
+
+    .high-price .col-unit-price {
+        background-color: darkorchid;
+        color: #fff;
+    }
+
+    .medium-price .col-unit-price {
+        background-color: yellow;
+        color: #000;
+    }
+
+    .low-price .col-unit-price {
+        background-color: green;
+        color: #fff;
+    }
+
+}

@@ -3654,6 +3654,64 @@ var Serene;
         BasicSamples.GridFilteredByCriteria = GridFilteredByCriteria;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ConditionalFormattingGrid = (function (_super) {
+            __extends(ConditionalFormattingGrid, _super);
+            function ConditionalFormattingGrid(container) {
+                _super.call(this, container);
+            }
+            ConditionalFormattingGrid.prototype.getColumnsKey = function () { return "Northwind.Product"; };
+            ConditionalFormattingGrid.prototype.getDialogType = function () { return Serene.Northwind.ProductDialog; };
+            ConditionalFormattingGrid.prototype.getIdProperty = function () { return Serene.Northwind.ProductRow.idProperty; };
+            ConditionalFormattingGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.ProductRow.localTextPrefix; };
+            ConditionalFormattingGrid.prototype.getService = function () { return Serene.Northwind.ProductService.baseUrl; };
+            /**
+             * We override getColumns() to be able to add a custom CSS class to UnitPrice
+             * We could also add this class in ProductColumns.cs but didn't want to modify
+             * it solely for this sample.
+             */
+            ConditionalFormattingGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                var fld = Serene.Northwind.ProductRow.Fields;
+                // adding a specific css class to UnitPrice column, 
+                // to be able to format cell with a different background
+                Q.first(columns, function (x) { return x.field == fld.UnitPrice; }).cssClass += " col-unit-price";
+                return columns;
+            };
+            /**
+             * This method is called for all rows
+             * @param item Data item for current row
+             * @param index Index of the row in grid
+             */
+            ConditionalFormattingGrid.prototype.getItemCssClass = function (item, index) {
+                var klass = "";
+                if (item.Discontinued == true)
+                    klass += " discontinued";
+                else if (item.UnitsInStock <= 0)
+                    klass += " out-of-stock";
+                else if (item.UnitsInStock < 20)
+                    klass += " critical-stock";
+                else if (item.UnitsInStock > 50)
+                    klass += " needs-reorder";
+                if (item.UnitPrice >= 50)
+                    klass += " high-price";
+                else if (item.UnitPrice >= 20)
+                    klass += " medium-price";
+                else
+                    klass += " low-price";
+                return Q.trimToNull(klass);
+            };
+            ConditionalFormattingGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ConditionalFormattingGrid);
+            return ConditionalFormattingGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.ConditionalFormattingGrid = ConditionalFormattingGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {
