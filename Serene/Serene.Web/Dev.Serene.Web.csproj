@@ -1224,6 +1224,7 @@
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\EmployeeListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrderDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerEditor.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerDialog.ts" />
@@ -1679,6 +1680,9 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.EmployeeListFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">

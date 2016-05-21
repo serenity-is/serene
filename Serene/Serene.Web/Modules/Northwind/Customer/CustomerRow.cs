@@ -110,6 +110,7 @@ namespace Serene.Northwind.Entities
 
         [LookupEditor(typeof(EmployeeRow), Multiple = true), ClientSide]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
+        [MinSelectLevel(SelectLevel.Details)]
         public List<Int32> Representatives
         {
             get { return Fields.Representatives[this]; }

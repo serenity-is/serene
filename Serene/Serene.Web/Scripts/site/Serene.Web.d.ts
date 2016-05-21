@@ -374,6 +374,11 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
+    class EmployeeListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;

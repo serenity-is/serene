@@ -1552,6 +1552,29 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var EmployeeListFormatter = (function () {
+            function EmployeeListFormatter() {
+            }
+            EmployeeListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = Northwind.EmployeeRow.getLookup().itemById;
+                var z;
+                return idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", ");
+            };
+            EmployeeListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EmployeeListFormatter);
+            return EmployeeListFormatter;
+        }());
+        Northwind.EmployeeListFormatter = EmployeeListFormatter;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var CategoryDialog = (function (_super) {
             __extends(CategoryDialog, _super);
             function CategoryDialog() {

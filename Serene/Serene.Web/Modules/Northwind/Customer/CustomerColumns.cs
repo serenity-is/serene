@@ -30,5 +30,7 @@ namespace Serene.Northwind.Columns
         public String Phone { get; set; }
         [Width(120)]
         public String Fax { get; set; }
+        [Width(250), EmployeeListFormatter]
+        public String Representatives { get; set; }
     }
 }

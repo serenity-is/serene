@@ -1244,6 +1244,7 @@
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerGrid.ts" />
+    <TypeScriptCompile Include="Modules\Northwind\Customer\EmployeeListFormatter.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerOrderDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerEditor.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Customer\CustomerDialog.ts" />

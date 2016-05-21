@@ -374,6 +374,11 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
+    class EmployeeListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -2138,6 +2143,28 @@ declare namespace Serene.BasicSamples {
     class GridFilteredByCriteria extends Northwind.ProductGrid {
         constructor(container: JQuery);
         protected onViewSubmit(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ConditionalFormattingGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * We override getColumns() to be able to add a custom CSS class to UnitPrice
+         * We could also add this class in ProductColumns.cs but didn't want to modify
+         * it solely for this sample.
+         */
+        protected getColumns(): Slick.Column[];
+        /**
+         * This method is called for all rows
+         * @param item Data item for current row
+         * @param index Index of the row in grid
+         */
+        protected getItemCssClass(item: Northwind.ProductRow, index: number): string;
     }
 }
 declare namespace Serene.BasicSamples {
