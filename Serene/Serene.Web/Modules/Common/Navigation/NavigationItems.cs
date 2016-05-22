@@ -28,6 +28,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationMenu(7900, "Basic Samples/Grids")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Conditional Formatting", typeof(Basic.BasicSamplesController), action: "ConditionalFormatting")]
+[assembly: NavigationLink(7900, "Basic Samples/Grids/Custom Links In Grid", typeof(Basic.BasicSamplesController), action: "CustomLinksInGrid")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Grouping and Sum. In Grid", typeof(Basic.BasicSamplesController), action: "GroupingAndSummariesInGrid")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Grid Filtered by Criteria", typeof(Basic.BasicSamplesController), action: "GridFilteredByCriteria")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/View Without ID", typeof(Basic.BasicSamplesController), action: "ViewWithoutID")]

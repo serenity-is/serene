@@ -2146,6 +2146,21 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class CustomLinksInGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * We override getColumns() to change format functions for some columns.
+         * You could also write them as formatter classes, and use them at server side
+         */
+        protected getColumns(): Slick.Column[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class ConditionalFormattingGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): any;

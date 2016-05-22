@@ -27,6 +27,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Grids.ConditionalFormatting.Index);
         }
 
+        public ActionResult CustomLinksInGrid()
+        {
+            return View(MyViews.Grids.CustomLinksInGrid.Index);
+        }
+
         public ActionResult DefaultValuesInNewDialog()
         {
             return View(MyViews.Dialogs.DefaultValuesInNewDialog.Index);

@@ -141,6 +141,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/ConditionalFormatting/Index.cshtml";
                 }
 
+                public static class CustomLinksInGrid
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/CustomLinksInGrid/Index.cshtml";
+                }
+
                 public static class GridFilteredByCriteria
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/GridFilteredByCriteria/Index.cshtml";
