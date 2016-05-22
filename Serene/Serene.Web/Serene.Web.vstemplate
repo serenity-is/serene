@@ -366,6 +366,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ConditionalFormattingGrid.ts">ConditionalFormattingGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="CustomLinksInGrid" TargetFolderName="CustomLinksInGrid">
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomLinksInGrid.ts">CustomLinksInGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="GridFilteredByCriteria" TargetFolderName="GridFilteredByCriteria">
               <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.ts">GridFilteredByCriteria.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
