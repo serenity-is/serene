@@ -8,15 +8,15 @@ namespace Serene.Membership
     [FormScript("Membership.SignUp")]
     public class SignUpForm
     {
-        [DisplayName("Full Name"), Required(true)]
+        [DisplayName("Forms.Membership.SignUp.DisplayName"), Required(true)]
         public String DisplayName { get; set; }
-        [DisplayName("E-mail"), EmailEditor, Required(true)]
+        [DisplayName("Forms.Membership.SignUp.Email"), EmailEditor, Required(true)]
         public String Email { get; set; }
-        [DisplayName("Confirm Email"), EmailEditor, Required(true)]
+        [DisplayName("Forms.Membership.SignUp.ConfirmEmail"), EmailEditor, Required(true)]
         public String ConfirmEmail { get; set; }
-        [DisplayName("Password"), PasswordEditor, Required(true)]
+        [DisplayName("Forms.Membership.SignUp.Password"), PasswordEditor, Required(true)]
         public String Password { get; set; }
-        [DisplayName("Confirm Password"), PasswordEditor, Required(true)]
+        [DisplayName("Forms.Membership.SignUp.ConfirmPassword"), PasswordEditor, Required(true)]
         public String ConfirmPassword { get; set; }
     }
 }
