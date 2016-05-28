@@ -149,7 +149,7 @@ namespace Serene.Northwind.Entities
             public StringField Phone;
             public StringField Fax;
             public RowListField<NoteRow> NoteList;
-            public CustomClassField<List<Int32>> Representatives;
+            public ListField<Int32> Representatives;
 
             public RowFields()
                 : base("Customers")
