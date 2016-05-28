@@ -70,6 +70,12 @@ namespace Serene
                     public static LocalText SubmitButton = "Sign Up";
                     public static LocalText Success = "An e-mail with instructions to active your account is " + 
                         "sent to your e-mail address. Please check your e-mails.";
+
+                    public static LocalText DisplayName = "Full Name";
+                    public static LocalText Email = "E-mail";
+                    public static LocalText ConfirmEmail = "Confirm Email";
+                    public static LocalText Password = "Password";
+                    public static LocalText ConfirmPassword = "Confirm Password";
                 }
             }
         }
