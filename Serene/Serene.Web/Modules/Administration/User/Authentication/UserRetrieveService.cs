@@ -46,7 +46,8 @@
             if (username.IsEmptyOrNull())
                 return null;
 
-            return TwoLevelCache.Get<UserDefinition>("UserByName_" + username, TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
+            return TwoLevelCache.Get<UserDefinition>("UserByName_" + username.ToLowerInvariant(), 
+                TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                     return GetFirst(connection, new Criteria(fld.Username) == username);
@@ -59,7 +60,7 @@
                 TwoLevelCache.Remove("UserByID_" + userId);
 
             if (username != null)
-                TwoLevelCache.Remove("UserByName_" + username);
+                TwoLevelCache.Remove("UserByName_" + username.ToLowerInvariant());
         }
     }
 }
