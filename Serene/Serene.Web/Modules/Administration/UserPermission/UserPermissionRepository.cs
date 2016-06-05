@@ -27,11 +27,11 @@ namespace Serene.Administration.Repositories
             var userID = request.UserID.Value;
             var oldList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
             foreach (var p in GetExisting(uow.Connection, userID, request.Module, request.Submodule))
-                oldList[p.PermissionKey] = p.Grant.Value;
+                oldList[p.PermissionKey] = p.Granted.Value;
 
             var newList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
             foreach (var p in request.Permissions)
-                newList[p.PermissionKey] = p.Grant ?? false;
+                newList[p.PermissionKey] = p.Granted ?? false;
 
             if (oldList.Count == newList.Count &&
                 oldList.All(x => newList.ContainsKey(x.Key) && newList[x.Key] == x.Value))
@@ -57,7 +57,7 @@ namespace Serene.Administration.Repositories
                     {
                         UserId = userID,
                         PermissionKey = k,
-                        Grant = newList[k]
+                        Granted = newList[k]
                     });
                 }
                 else if (oldList[k] != newList[k])
@@ -66,7 +66,7 @@ namespace Serene.Administration.Repositories
                         .Where(
                             fld.UserId == userID &
                             fld.PermissionKey == k)
-                        .Set(fld.Grant, newList[k])
+                        .Set(fld.Granted, newList[k])
                         .Execute(uow.Connection);
                 }
             }
@@ -90,7 +90,7 @@ namespace Serene.Administration.Repositories
 
             return connection.List<MyRow>(q =>
             {
-                q.Select(fld.UserPermissionId, fld.PermissionKey, fld.Grant)
+                q.Select(fld.UserPermissionId, fld.PermissionKey, fld.Granted)
                     .Where(new Criteria(fld.UserId) == userId);
 
                 if (prefix.Length > 0)

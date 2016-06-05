@@ -43,9 +43,9 @@
 
                     connection.List<UserPermissionRow>(q => q
                             .Select(fld.PermissionKey)
-                            .Select(fld.Grant)
+                            .Select(fld.Granted)
                             .Where(new Criteria(fld.UserId) == userId))
-                        .ForEach(x => result[x.PermissionKey] = x.Grant ?? true);
+                        .ForEach(x => result[x.PermissionKey] = x.Granted ?? true);
 
                     return result;
                 }

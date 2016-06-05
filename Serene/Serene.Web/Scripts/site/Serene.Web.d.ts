@@ -682,7 +682,7 @@ declare namespace Serene.Administration {
         UserPermissionId?: number;
         UserId?: number;
         PermissionKey?: string;
-        Grant?: boolean;
+        Granted?: boolean;
         Username?: string;
         User?: string;
     }
@@ -694,7 +694,7 @@ declare namespace Serene.Administration {
             const UserPermissionId: string;
             const UserId: string;
             const PermissionKey: string;
-            const Grant: string;
+            const Granted: string;
             const Username: string;
             const User: string;
         }

@@ -3,7 +3,7 @@
         UserPermissionId?: number;
         UserId?: number;
         PermissionKey?: string;
-        Grant?: boolean;
+        Granted?: boolean;
         Username?: string;
         User?: string;
     }
@@ -17,12 +17,12 @@
             export declare const UserPermissionId: string;
             export declare const UserId: string;
             export declare const PermissionKey: string;
-            export declare const Grant: string;
+            export declare const Granted: string;
             export declare const Username: string;
             export declare const User: string;
         }
 
-        ['UserPermissionId', 'UserId', 'PermissionKey', 'Grant', 'Username', 'User'].forEach(x => (<any>Fields)[x] = x);
+        ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

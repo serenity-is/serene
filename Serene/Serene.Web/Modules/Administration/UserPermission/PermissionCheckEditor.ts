@@ -274,7 +274,7 @@
 
             for (let item of this.view.getItems()) {
                 if (item.GrantRevoke != null && item.Key.charAt(item.Key.length - 1) != ':') {
-                    result.push({ PermissionKey: item.Key, Grant: item.GrantRevoke });
+                    result.push({ PermissionKey: item.Key, Granted: item.GrantRevoke });
                 }
             }
 
@@ -291,7 +291,7 @@
                 for (let row of value) {
                     let r = this.view.getItemById(row.PermissionKey);
                     if (r) {
-                        r.GrantRevoke = Q.coalesce(row.Grant, true);
+                        r.GrantRevoke = Q.coalesce(row.Granted, true);
                     }
                 }
             }

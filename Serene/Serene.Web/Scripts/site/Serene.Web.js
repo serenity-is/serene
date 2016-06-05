@@ -2372,7 +2372,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserPermissionRow.Fields || (UserPermissionRow.Fields = {}));
-            ['UserPermissionId', 'UserId', 'PermissionKey', 'Grant', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
+            ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
         })(UserPermissionRow = Administration.UserPermissionRow || (Administration.UserPermissionRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -4742,7 +4742,7 @@ var Serene;
                 for (var _i = 0, _a = this.view.getItems(); _i < _a.length; _i++) {
                     var item = _a[_i];
                     if (item.GrantRevoke != null && item.Key.charAt(item.Key.length - 1) != ':') {
-                        result.push({ PermissionKey: item.Key, Grant: item.GrantRevoke });
+                        result.push({ PermissionKey: item.Key, Granted: item.GrantRevoke });
                     }
                 }
                 return result;
@@ -4757,7 +4757,7 @@ var Serene;
                         var row = value_1[_b];
                         var r = this.view.getItemById(row.PermissionKey);
                         if (r) {
-                            r.GrantRevoke = Q.coalesce(row.Grant, true);
+                            r.GrantRevoke = Q.coalesce(row.Granted, true);
                         }
                     }
                 }

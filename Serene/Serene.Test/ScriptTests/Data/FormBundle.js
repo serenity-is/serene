@@ -10,7 +10,7 @@ Q.ScriptData.set('Form.Membership.ChangePassword', [{"name":"OldPassword","title
 
 
 
-Q.ScriptData.set('Form.Membership.SignUp', [{"name":"DisplayName","title":"Full Name","required":true,"width":80},{"name":"Email","title":"E-mail","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"ConfirmEmail","title":"Confirm Email","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"Password","title":"Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"Confirm Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
+Q.ScriptData.set('Form.Membership.SignUp', [{"name":"DisplayName","title":"DisplayName","required":true,"width":80},{"name":"Email","title":"Email","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"ConfirmEmail","title":"ConfirmEmail","editorType":"Email","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Email","useLike":true}},{"name":"Password","title":"Password","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}},{"name":"ConfirmPassword","title":"ConfirmPassword","editorType":"Password","required":true,"width":80,"filteringType":"Editor","filteringParams":{"editorType":"Password","useLike":true}}]);
 
 
 

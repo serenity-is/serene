@@ -1,15 +1,55 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Builders.Create.Table;
 using System;
+
+namespace Serene.Migrations
+{
+    public static class Utils
+    {
+        public static string[] AllExceptOracle =
+        {
+            "SqlServer",
+            "SqlServer2000",
+            "SqlServerCe",
+            "Postgres",
+            "MySql",
+            "Jet",
+            "Sqlite",
+            "SAP HANA"
+        };
+
+        public static void AddOracleIdentity(MigrationBase migration,
+            string table, string id)
+        {
+            migration.IfDatabase("Oracle")
+                .Execute.Sql("CREATE SEQUENCE " + table + "_SEQ");
+
+            migration.IfDatabase("Oracle")
+                .Execute.Sql(String.Format(@"
+CREATE OR REPLACE TRIGGER {0}_SEQ_TRG
+BEFORE INSERT ON {0}
+FOR EACH ROW
+BEGIN
+	IF :new.{1} IS NULL THEN
+		SELECT {0}_SEQ.nextval INTO :new.{1} FROM DUAL;
+	END IF;
+END;", table, id));
+
+            migration.IfDatabase("Oracle")
+                .Execute.Sql(@"ALTER TRIGGER " + table + "_SEQ_TRG ENABLE");
+        }
+    }
+}
 
 namespace Serene.Migrations.DefaultDB
 {
+
     [Migration(20141103140000)]
     public class DefaultDB_20141103_140000_Initial : AutoReversingMigration
     {
         public override void Up()
         {
-            Create.Table("Users")
-                .WithColumn("UserId").AsInt32().Identity().PrimaryKey().NotNullable()
+            Action<ICreateTableWithColumnSyntax> addUsersColumns = expr => expr
                 .WithColumn("Username").AsString(100).NotNullable()
                 .WithColumn("DisplayName").AsString(100).NotNullable()
                 .WithColumn("Email").AsString(100).Nullable()
@@ -21,6 +61,16 @@ namespace Serene.Migrations.DefaultDB
                 .WithColumn("UpdateDate").AsDateTime().Nullable()
                 .WithColumn("UpdateUserId").AsInt32().Nullable()
                 .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1);
+
+            addUsersColumns(IfDatabase(Utils.AllExceptOracle)
+                .Create.Table("Users")
+                .WithColumn("UserId").AsInt32().PrimaryKey().NotNullable());
+
+            addUsersColumns(IfDatabase("Oracle")
+                .Create.Table("Users")
+                .WithColumn("UserId").AsInt32().PrimaryKey().NotNullable());
+
+            Utils.AddOracleIdentity(this, "Users", "UserId");
 
             Insert.IntoTable("Users").Row(new {
                 Username = "admin",
@@ -34,10 +84,19 @@ namespace Serene.Migrations.DefaultDB
                 IsActive = 1
             });
 
-            Create.Table("Languages")
-                .WithColumn("Id").AsInt32().Identity().PrimaryKey().NotNullable()
+            Action<ICreateTableWithColumnSyntax> addLanguagesColumns = expr => expr
                 .WithColumn("LanguageId").AsString(10).NotNullable()
                 .WithColumn("LanguageName").AsString(50).NotNullable();
+
+            addLanguagesColumns(IfDatabase(Utils.AllExceptOracle)
+                .Create.Table("Languages")
+                .WithColumn("Id").AsInt32().Identity().PrimaryKey().NotNullable());
+
+            addLanguagesColumns(IfDatabase("Oracle")
+                .Create.Table("Languages")
+                .WithColumn("Id").AsInt32().PrimaryKey().NotNullable());
+
+            Utils.AddOracleIdentity(this, "Languages", "Id");
 
             Insert.IntoTable("Languages").Row(new
             {

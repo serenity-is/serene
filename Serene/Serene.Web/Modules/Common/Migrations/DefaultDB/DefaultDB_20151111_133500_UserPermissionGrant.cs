@@ -7,8 +7,13 @@ namespace Serene.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Alter.Table("UserPermissions")
-                .AddColumn("Grant").AsBoolean().WithDefaultValue(true).NotNullable();
+            IfDatabase(Utils.AllExceptOracle)
+                .Alter.Table("UserPermissions")
+                    .AddColumn("Grant").AsBoolean().WithDefaultValue(true).NotNullable();
+
+            IfDatabase("Oracle")
+                .Alter.Table("UserPermissions")
+                    .AddColumn("Granted").AsBoolean().WithDefaultValue(true).NotNullable();
         }
     }
 }
