@@ -25,7 +25,7 @@ namespace Serene.Migrations.DefaultDB
 
             Utils.AddOracleIdentity(this, "UserPreferences", "UserId");
 
-            Create.Index("IX_UserPreferences_UserId_PreferenceType_Name")
+            Create.Index("IX_UserPref_UID_PrefType_Name")
                 .OnTable("UserPreferences")
                 .OnColumn("UserId").Ascending()
                 .OnColumn("PreferenceType").Ascending()

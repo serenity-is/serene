@@ -1,4 +1,6 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Builders.Create.Table;
+using System;
 
 namespace Serene.Migrations.NorthwindDB
 {
@@ -7,13 +9,22 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            Create.Table("Notes")
-                .WithColumn("NoteID").AsInt64().PrimaryKey().Identity().NotNullable()
+            Action<ICreateTableWithColumnSyntax> addCols = expr => expr
                 .WithColumn("EntityType").AsString(100).NotNullable()
                 .WithColumn("EntityID").AsInt64().NotNullable()
                 .WithColumn("Text").AsString(int.MaxValue).NotNullable()
                 .WithColumn("InsertUserId").AsInt32().NotNullable()
                 .WithColumn("InsertDate").AsDateTime().NotNullable();
+
+            addCols(IfDatabase(Utils.AllExceptOracle)
+                .Create.Table("Notes")
+                    .WithColumn("NoteID").AsInt64().PrimaryKey().Identity().NotNullable());
+
+            addCols(IfDatabase("oracle")
+                .Create.Table("Notes")
+                    .WithColumn("NoteID").AsInt64().PrimaryKey().NotNullable());
+
+            Utils.AddOracleIdentity(this, "Notes", "NoteID");
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Builders.Create.Table;
+using System;
 
 namespace Serene.Migrations.NorthwindDB
 {
@@ -7,8 +9,7 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            Create.Table("ProductLog")
-                .WithColumn("ProductLogID").AsInt64().PrimaryKey().Identity().NotNullable()
+            Action<ICreateTableWithColumnSyntax> addCols = expr => expr
                 .WithColumn("OperationType").AsInt16().NotNullable()
                 .WithColumn("ChangingUserId").AsInt32().Nullable()
                 .WithColumn("ValidFrom").AsDateTime().NotNullable()
@@ -24,6 +25,16 @@ namespace Serene.Migrations.NorthwindDB
                 .WithColumn("UnitsInStock").AsInt16().Nullable()
                 .WithColumn("UnitsOnOrder").AsInt16().Nullable()
                 .WithColumn("ReorderLevel").AsInt16().Nullable();
+
+            addCols(IfDatabase(Utils.AllExceptOracle)
+                .Create.Table("ProductLog")
+                .WithColumn("ProductLogID").AsInt64().PrimaryKey().Identity().NotNullable());
+
+            addCols(IfDatabase("oracle")
+                .Create.Table("ProductLog")
+                .WithColumn("ProductLogID").AsInt64().PrimaryKey().NotNullable());
+
+            Utils.AddOracleIdentity(this, "ProductLog", "ProductLogID");
         }
     }
 }

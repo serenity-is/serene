@@ -132,10 +132,9 @@
 
             using (var sw = new StringWriter())
             {
-                Announcer announcer = isOracle ? new TextWriterAnnouncer(sw) 
-                    : new TextWriterWithGoAnnouncer(sw)
-                {
-                };
+                Announcer announcer = isOracle ?
+                    new TextWriterAnnouncer(sw) { ShowSql = true } :
+                    new TextWriterWithGoAnnouncer(sw) { ShowSql = true };
 
                 var runner = new RunnerContext(announcer)
                 {
@@ -147,7 +146,17 @@
                     Namespace = "Serene.Migrations." + databaseKey + "DB"
                 };
 
-                new TaskExecutor(runner).Execute();
+                try
+                {
+                    new TaskExecutor(runner).Execute();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error executing migration:\r\n" +
+                        sw.ToString(), ex);
+                }
+
+                
             }
         }
     }

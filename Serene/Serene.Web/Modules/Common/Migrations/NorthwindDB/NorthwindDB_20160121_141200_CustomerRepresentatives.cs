@@ -7,10 +7,19 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            Create.Table("CustomerRepresentatives")
-                .WithColumn("RepresentativeID").AsInt32().PrimaryKey().Identity().NotNullable()
-                .WithColumn("CustomerID").AsInt32().NotNullable()
-                .WithColumn("EmployeeID").AsInt32().NotNullable();
+            IfDatabase(Utils.AllExceptOracle)
+                .Create.Table("CustomerRepresentatives")
+                    .WithColumn("RepresentativeID").AsInt32().PrimaryKey().Identity().NotNullable()
+                    .WithColumn("CustomerID").AsInt32().NotNullable()
+                    .WithColumn("EmployeeID").AsInt32().NotNullable();
+
+            IfDatabase("Oracle")
+                .Create.Table("CustomerRepresentatives")
+                    .WithColumn("RepresentativeID").AsInt32().PrimaryKey().NotNullable()
+                    .WithColumn("CustomerID").AsInt32().NotNullable()
+                    .WithColumn("EmployeeID").AsInt32().NotNullable();
+
+            Utils.AddOracleIdentity(this, "CustomerRepresentatives", "RepresentativeID");
         }
     }
 }

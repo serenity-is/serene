@@ -21,22 +21,26 @@ namespace Serene.Migrations
         public static void AddOracleIdentity(MigrationBase migration,
             string table, string id)
         {
+            var seq = table.Replace(" ", "_").Replace("\"", "");
+            seq = seq.Substring(0, Math.Min(20, seq.Length));
+            seq = seq + "_SEQ";
+
             migration.IfDatabase("Oracle")
-                .Execute.Sql("CREATE SEQUENCE " + table + "_SEQ");
+                .Execute.Sql("CREATE SEQUENCE " + seq);
 
             migration.IfDatabase("Oracle")
                 .Execute.Sql(String.Format(@"
-CREATE OR REPLACE TRIGGER {0}_SEQ_TRG
+CREATE OR REPLACE TRIGGER {2}_TRG
 BEFORE INSERT ON {0}
 FOR EACH ROW
 BEGIN
 	IF :new.{1} IS NULL THEN
-		SELECT {0}_SEQ.nextval INTO :new.{1} FROM DUAL;
+		SELECT {2}.nextval INTO :new.{1} FROM DUAL;
 	END IF;
-END;", table, id));
+END;", table, id, seq));
 
             migration.IfDatabase("Oracle")
-                .Execute.Sql(@"ALTER TRIGGER " + table + "_SEQ_TRG ENABLE");
+                .Execute.Sql(@"ALTER TRIGGER " + seq + "_TRG ENABLE");
         }
     }
 }
