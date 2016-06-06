@@ -13,8 +13,8 @@ namespace Serene.Membership.Pages
         [HttpGet]
         public ActionResult Login(string activated)
         {
-            ViewBag.Activated = activated;
-            ViewBag.HideLeftNavigation = true;
+            ViewData["Activated"] = activated;
+            ViewData["HideLeftNavigation"] = true;
             return View(MVC.Views.Membership.Account.AccountLogin);
         }
 

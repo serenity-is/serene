@@ -15,7 +15,7 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(Northwind.PermissionKeys.General)]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
     {
-        [DisplayName("Note Id"), Column("NoteID"), Identity]
+        [DisplayName("Note Id"), Identity]
         public Int64? NoteId
         {
             get { return Fields.NoteId[this]; }
@@ -108,7 +108,7 @@ namespace Serene.Northwind.Entities
             public StringField InsertUserDisplayName;
 
             public RowFields()
-                : base("[dbo].[Notes]")
+                : base("Notes")
             {
                 LocalTextPrefix = "Northwind.Note";
             }

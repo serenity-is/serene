@@ -51,7 +51,7 @@ namespace Serene.Northwind.Entities
             public Int32Field EmployeeId;
 
             public RowFields()
-                : base("[dbo].[CustomerRepresentatives]")
+                : base("CustomerRepresentatives")
             {
                 LocalTextPrefix = "CustomerRepresentatives";
             }

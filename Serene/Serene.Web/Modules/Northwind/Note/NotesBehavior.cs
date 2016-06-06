@@ -72,7 +72,7 @@ namespace Serene.Northwind
                             .Select(u.UserId)
                             .Select(u.DisplayName)
                             .Where(u.UserId.In(userIdList)))
-                        .ToDictionary(x => (int)x.UserId, x => (string)x.DisplayName);
+                        .ToDictionary(x => (int)(x.UserId ?? x.USERID), x => (string)x.DisplayName);
 
                 string s;
                 foreach (var x in notes)
