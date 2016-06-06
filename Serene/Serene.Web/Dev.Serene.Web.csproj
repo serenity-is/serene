@@ -1171,6 +1171,8 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Modules\BasicSamples\Grids\CancellableBulkAction\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\ConditionalFormatting\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\CustomLinksInGrid\Index.cshtml" />
     <Content Include="fonts\Simple-Line-Icons.woff2" />
     <Content Include="fonts\Simple-Line-Icons.woff" />
     <Content Include="fonts\Simple-Line-Icons.ttf" />
@@ -1187,8 +1189,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\BasicSamples\Grids\ConditionalFormatting\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Grids\CustomLinksInGrid\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
