@@ -4,9 +4,9 @@
 <head>
     @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
     @RenderSection("Head", false)
-    <title>@ViewBag.Title</title>
+    <title>@ViewData["Title"]</title>
 </head>
-<body id="s-@(ViewBag.PageId)Page" class="@(ViewBag.BodyClass) no-navigation">
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) no-navigation">
     @RenderBody()
 </body>
 </html>

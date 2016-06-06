@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Blank Page";
+    ViewData["Title"] = "Blank Page";
 }
 
 @section Head {
@@ -7,7 +7,7 @@
 }
 
 @section ContentHeader {
-    <h1>@ViewBag.Title<small> it all starts here</small></h1>
+    <h1>@ViewData["Title"]<small> it all starts here</small></h1>
 }
 
 <!-- Default box -->

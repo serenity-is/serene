@@ -1,8 +1,8 @@
 ﻿@model Serenity.Services.ValidationError
 
 @{
-    ViewBag.Title = Texts.Site.ValidationError.Title;
-    ViewBag.PageId = "ValidationError";
+    ViewData["Title"] = Texts.Site.ValidationError.Title;
+    ViewData["PageId"] = "ValidationError";
     Layout = Serenity.Authorization.IsLoggedIn ? MVC.Views.Shared._Layout : MVC.Views.Shared._LayoutNoNavigation;
 }
 

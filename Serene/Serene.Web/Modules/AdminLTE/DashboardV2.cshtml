@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Dashboard";
+    ViewData["Title"] = "Dashboard";
 }
 
 @section Head {
@@ -13,7 +13,7 @@
 }
 
 @section ContentHeader {
-<h1>@ViewBag.Title<small> Version 2.0</small></h1>
+<h1>@ViewData["Title"]<small> Version 2.0</small></h1>
 }
 
 <!-- Info boxes -->

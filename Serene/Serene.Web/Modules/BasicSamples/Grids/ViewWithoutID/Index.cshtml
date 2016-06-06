@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "View Without ID";
+    ViewData["Title"] = "View Without ID";
 }
 
 @section ContentHeader {
-    <h1>@ViewBag.Title<small></small></h1>
+    <h1>@ViewData["Title"]<small></small></h1>
 }
 
 <div class="alert alert-info alert-dismissable">

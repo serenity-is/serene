@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Error 404";
+    ViewData["Title"] = "Error 404";
 }
 
 @section Head {
@@ -7,7 +7,7 @@
 }
 
 @section ContentHeader {
-    <h1>@ViewBag.Title<small></small></h1>
+    <h1>@ViewData["Title"]<small></small></h1>
 }
 
 <div class="error-page">

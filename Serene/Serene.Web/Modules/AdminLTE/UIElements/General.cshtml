@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "General UI";
+    ViewData["Title"] = "General UI";
 }
 
 @section Head {
@@ -36,7 +36,7 @@
 }
 
 @section ContentHeader {
-    <h1>@ViewBag.Title<small> preview of UI elements</small></h1>
+    <h1>@ViewData["Title"]<small> preview of UI elements</small></h1>
 }
 
 <!-- COLOR PALETTE -->

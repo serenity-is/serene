@@ -14,9 +14,9 @@
 <head>
     @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
     @RenderSection("Head", false)
-    <title>@ViewBag.Title - Serene</title>
+    <title>@(ViewData["Title"]) - Serene</title>
 </head>
-<body id="s-@(ViewBag.PageId)Page" class="@(ViewBag.BodyClass) fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")">
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")">
 
 @if (hideNav)
 {

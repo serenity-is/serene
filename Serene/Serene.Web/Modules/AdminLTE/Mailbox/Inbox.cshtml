@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Mailbox";
+    ViewData["Title"] = "Mailbox";
 }
 
 @section Head {
@@ -13,7 +13,7 @@
 }
 
 @section ContentHeader {
-    <h1>@ViewBag.Title<small> 13 new messages</small></h1>
+    <h1>@ViewData["Title"]<small> 13 new messages</small></h1>
 }
 
 <div class="row">
