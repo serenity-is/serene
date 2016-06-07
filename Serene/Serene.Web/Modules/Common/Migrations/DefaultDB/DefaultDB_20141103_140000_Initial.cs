@@ -68,7 +68,7 @@ namespace Serene.Migrations.DefaultDB
 
             addUsersColumns(IfDatabase(Utils.AllExceptOracle)
                 .Create.Table("Users")
-                .WithColumn("UserId").AsInt32().PrimaryKey().NotNullable());
+                .WithColumn("UserId").AsInt32().Identity().PrimaryKey().NotNullable());
 
             addUsersColumns(IfDatabase("Oracle")
                 .Create.Table("Users")
