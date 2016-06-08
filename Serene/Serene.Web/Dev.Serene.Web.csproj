@@ -1410,6 +1410,9 @@
     <Content Include="Scripts\site\texts\northwind\northwind.pt.json" />
     <Content Include="Scripts\site\texts\samples\samples.pt.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.tr.json" />
+    <Content Include="Scripts\site\texts\site.texts.pt-BR.json" />
+    <Content Include="Scripts\site\texts\northwind\northwind.pt-BR.json" />
+    <Content Include="Scripts\site\texts\samples\samples.pt-BR.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -1714,6 +1717,7 @@
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160605_215300_Granted.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
+    <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160216_154900_DataLocalization.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160121_141200_CustomerRepresentatives.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151226_184500_Notes.cs" />
