@@ -1,0 +1,7 @@
+{
+    "Permission.Northwind:Customer": "Customers",
+    "Permission.Northwind:Customer:View": "View",
+    "Permission.Northwind:Customer:Delete": "Delete",
+    "Permission.Northwind:Customer:Modify": "Create/Update",
+    "Permission.Northwind:General": "[General]"
+}
