@@ -22,13 +22,20 @@ Task("PrepareVSIX")
     
     NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
         Id = new List<string> {
-            "Serenity.Web",
+            "Serenity.Web"
+        },
+        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
+        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
+    });
+
+    NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
+        Id = new List<string> {
             "Serenity.CodeGenerator"
         },
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
-        Source = new List<string> { "https://api.nuget.org/v3/index.json" }
+        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
     });
-    
+
     MSBuild("./Serene.sln", s => {
         s.SetConfiguration(configuration);
     });
