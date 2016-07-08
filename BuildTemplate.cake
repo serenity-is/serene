@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 
 var target = Argument("target", "PrepareVSIX");
+var configuration = Argument("configuration", "Release");
 
 Task("PrepareVSIX")
   .Does(() => 
@@ -11,8 +12,27 @@ Task("PrepareVSIX")
     CreateDirectory("./Template/packages");
     CleanDirectory("./Template/bin/Debug");
     CleanDirectory("./Template/bin/Release");
-
+    
     var r = System.IO.Path.GetFullPath(@".\");
+
+    NuGetRestore(System.IO.Path.Combine(r, @"Serene.sln"), new NuGetRestoreSettings {
+        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
+        Source = new List<string> { "https://api.nuget.org/v3/index.json" }
+    });
+    
+    NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
+        Id = new List<string> {
+            "Serenity.Web",
+            "Serenity.CodeGenerator"
+        },
+        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
+        Source = new List<string> { "https://api.nuget.org/v3/index.json" }
+    });
+    
+    MSBuild("./Serene.sln", s => {
+        s.SetConfiguration(configuration);
+    });
+
     var samplePackagesFolder = r + @"packages\";
     var vsixPackagesFolder = r + @"Template\packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
