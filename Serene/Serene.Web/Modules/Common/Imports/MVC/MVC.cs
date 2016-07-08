@@ -156,6 +156,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/GroupingAndSummariesInGrid/Index.cshtml";
                 }
 
+                public static class InitialValuesForQuickFilters
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/InitialValuesForQuickFilters/Index.cshtml";
+                }
+
                 public static class ViewWithoutID
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/ViewWithoutID/Index.cshtml";

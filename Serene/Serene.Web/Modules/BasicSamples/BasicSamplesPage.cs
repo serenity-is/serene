@@ -52,6 +52,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Grids.GroupingAndSummariesInGrid.Index);
         }
 
+        public ActionResult InitialValuesForQuickFilters()
+        {
+            return View(MyViews.Grids.InitialValuesForQuickFilters.Index);
+        }
+
         public ActionResult LookupFilterByMultipleValues()
         {
             return View(MyViews.Editors.LookupFilterByMultipleValues.Index);

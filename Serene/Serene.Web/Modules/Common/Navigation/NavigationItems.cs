@@ -31,6 +31,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Custom Links In Grid", typeof(Basic.BasicSamplesController), action: "CustomLinksInGrid")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Grouping and Sum. In Grid", typeof(Basic.BasicSamplesController), action: "GroupingAndSummariesInGrid")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Grid Filtered by Criteria", typeof(Basic.BasicSamplesController), action: "GridFilteredByCriteria")]
+[assembly: NavigationLink(7900, "Basic Samples/Grids/Initial Value for Quick Flt.", typeof(Basic.BasicSamplesController), action: "InitialValuesForQuickFilters")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/View Without ID", typeof(Basic.BasicSamplesController), action: "ViewWithoutID")]
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
