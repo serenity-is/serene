@@ -378,6 +378,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="GroupingAndSummariesInGrid.ts">GroupingAndSummariesInGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="InitialValuesForQuickFilters" TargetFolderName="InitialValuesForQuickFilters">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="InitialValuesForQuickFilters.ts">InitialValuesForQuickFilters.ts</ProjectItem>
+            </Folder>
             <Folder Name="ViewWithoutID" TargetFolderName="ViewWithoutID">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
