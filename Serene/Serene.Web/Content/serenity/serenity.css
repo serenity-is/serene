@@ -1967,6 +1967,14 @@ body.mobile-device.modal-dialog-open {
 .emaildomain.disabled {
   background-color: #f0f0f7;
 }
+.s-RadioButtonEditor label {
+  margin-right: 8px;
+}
+.s-RadioButtonEditor input {
+  margin-right: 2px;
+  position: relative;
+  top: 2px;
+}
 .inplace-button {
   display: inline-block;
   height: 26px;

@@ -3358,6 +3358,62 @@
 	};
 	global.Serenity.QuickSearchInputOptions = $Serenity_QuickSearchInputOptions;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.RadioButtonEditor
+	var $Serenity_RadioButtonEditor = function(input, opt) {
+		Serenity.Widget.call(this, input, opt);
+		if (Q.isEmptyOrNull(this.options.enumKey) && ss.isNullOrUndefined(this.options.enumType) && Q.isEmptyOrNull(this.options.lookupKey)) {
+			return;
+		}
+		if (!Q.isEmptyOrNull(this.options.lookupKey)) {
+			var lookup = Q.getLookup(this.options.lookupKey);
+			for (var $t1 = 0; $t1 < lookup.items.length; $t1++) {
+				var item = lookup.items[$t1];
+				var textValue = item[lookup.textField];
+				var text = (ss.isNullOrUndefined(textValue) ? '' : textValue.toString());
+				var idValue = item[lookup.idField];
+				var id = (ss.isNullOrUndefined(idValue) ? '' : idValue.toString());
+				this.$addRadio(id, text);
+			}
+		}
+		else {
+			var enumType = this.options.enumType || $Serenity_EnumTypeRegistry.get(this.options.enumKey);
+			var enumKey = this.options.enumKey;
+			if (ss.isNullOrUndefined(enumKey) && ss.isValue(enumType)) {
+				var enumKeyAttr = ss.getAttributes(enumType, Serenity.EnumKeyAttribute, false);
+				if (enumKeyAttr.length > 0) {
+					enumKey = enumKeyAttr[0].value;
+				}
+			}
+			var $t2 = ss.Enum.getValues(enumType);
+			for (var $t3 = 0; $t3 < $t2.length; $t3++) {
+				var x = $t2[$t3];
+				var name = ss.Enum.toString(enumType, x);
+				this.$addRadio(ss.unbox(ss.cast(x, ss.Int32)).toString(), ss.coalesce(Q.tryGetText('Enums.' + enumKey + '.' + name), name));
+			}
+		}
+	};
+	$Serenity_RadioButtonEditor.__typeName = 'Serenity.RadioButtonEditor';
+	global.Serenity.RadioButtonEditor = $Serenity_RadioButtonEditor;
+	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.RadioButtonEditorOptions
+	var $Serenity_RadioButtonEditorOptions = function() {
+	};
+	$Serenity_RadioButtonEditorOptions.__typeName = 'Serenity.RadioButtonEditorOptions';
+	$Serenity_RadioButtonEditorOptions.createInstance = function() {
+		return $Serenity_RadioButtonEditorOptions.$ctor();
+	};
+	$Serenity_RadioButtonEditorOptions.$ctor = function() {
+		var $this = {};
+		$this.enumKey = null;
+		$this.enumType = null;
+		$this.lookupKey = null;
+		return $this;
+	};
+	$Serenity_RadioButtonEditorOptions.isInstanceOfType = function() {
+		return true;
+	};
+	global.Serenity.RadioButtonEditorOptions = $Serenity_RadioButtonEditorOptions;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.ReadOnlyAttribute
 	var $Serenity_ReadOnlyAttribute = function(readOnly) {
 		this.value = false;
@@ -9441,6 +9497,9 @@
 			if (ss.isInstanceOfType(editor, $Serenity_BooleanEditor) && (ss.isNullOrUndefined(item.editorParams) || !!!item.editorParams['labelFor'])) {
 				label.removeAttr('for');
 			}
+			if (ss.isInstanceOfType(editor, $Serenity_RadioButtonEditor) && (ss.isNullOrUndefined(item.editorParams) || !!!item.editorParams['labelFor'])) {
+				label.removeAttr('for');
+			}
 			if (ss.isValue(item.maxLength)) {
 				$Serenity_PropertyGrid.$setMaxLength(editor, ss.unbox(item.maxLength));
 			}
@@ -9824,6 +9883,26 @@
 		}
 	}, Serenity.Widget);
 	ss.initClass($Serenity_QuickSearchInputOptions, $asm, {});
+	ss.initClass($Serenity_RadioButtonEditor, $asm, {
+		$addRadio: function(value, text) {
+			var label = $('<label/>').text(text);
+			$('<input type="radio"/>').attr('name', this.uniqueName).attr('id', this.uniqueName + '_' + value).attr('value', value).prependTo(label);
+			label.appendTo(this.element);
+		},
+		get_value: function() {
+			return this.element.find('input:checked').first().val();
+		},
+		set_value: function(value) {
+			if (!ss.referenceEquals(value, this.get_value())) {
+				var inputs = this.element.find('input');
+				inputs.filter(':checked').removeAttr('checked');
+				if (!ss.isNullOrEmptyString(value)) {
+					inputs.filter('[value=' + value + ']').attr('checked', 'checked');
+				}
+			}
+		}
+	}, Serenity.Widget, [$Serenity_IStringValue]);
+	ss.initClass($Serenity_RadioButtonEditorOptions, $asm, {});
 	ss.initClass($Serenity_ReadOnlyAttribute, $asm, {});
 	ss.initClass($Serenity_Recaptcha, $asm, {
 		get_value: function() {
@@ -10256,6 +10335,7 @@
 	ss.setMetadata($Serenity_PersonNameEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Kişi İsim'), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_PhoneEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Telefon'), new Serenity.OptionsTypeAttribute($Serenity_PhoneEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_PhoneEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Dahili Girişine İzin Ver')], name: 'AllowExtension', type: 16, returnType: Boolean, getter: { name: 'get_AllowExtension', type: 8, params: [], returnType: Boolean, fget: 'allowExtension' }, setter: { name: 'set_AllowExtension', type: 8, params: [Boolean], returnType: Object, fset: 'allowExtension' }, fname: 'allowExtension' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Uluslararası Telefon Girişine İzin Ver')], name: 'AllowInternational', type: 16, returnType: Boolean, getter: { name: 'get_AllowInternational', type: 8, params: [], returnType: Boolean, fget: 'allowInternational' }, setter: { name: 'set_AllowInternational', type: 8, params: [Boolean], returnType: Object, fset: 'allowInternational' }, fname: 'allowInternational' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Dahili Telefon')], name: 'Internal', type: 16, returnType: Boolean, getter: { name: 'get_Internal', type: 8, params: [], returnType: Boolean, fget: 'internal' }, setter: { name: 'set_Internal', type: 8, params: [Boolean], returnType: Object, fset: 'internal' }, fname: 'internal' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Cep Telefonu')], name: 'Mobile', type: 16, returnType: Boolean, getter: { name: 'get_Mobile', type: 8, params: [], returnType: Boolean, fget: 'mobile' }, setter: { name: 'set_Mobile', type: 8, params: [Boolean], returnType: Object, fset: 'mobile' }, fname: 'mobile' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Birden Çok Girişe İzin Ver')], name: 'Multiple', type: 16, returnType: Boolean, getter: { name: 'get_Multiple', type: 8, params: [], returnType: Boolean, fget: 'multiple' }, setter: { name: 'set_Multiple', type: 8, params: [Boolean], returnType: Object, fset: 'multiple' }, fname: 'multiple' }] });
+	ss.setMetadata($Serenity_RadioButtonEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Radio Button'), new Serenity.ElementAttribute('<div/>')] });
 	ss.setMetadata($Serenity_Recaptcha, { attr: [new Serenity.EditorAttribute(), new Serenity.ElementAttribute('<div />')] });
 	ss.setMetadata($Serenity_Select2AjaxEditor, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')] });
 	ss.setMetadata($Serenity_Select2Editor, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')] });
@@ -10430,6 +10510,9 @@
 	})();
 	(function() {
 		Q.prop($Serenity_EmailEditor, 'value');
+	})();
+	(function() {
+		Q.prop($Serenity_RadioButtonEditor, 'value');
 	})();
 	(function() {
 		$Serenity_PropertyGrid.$knownEditorTypes = null;
