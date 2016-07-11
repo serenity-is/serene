@@ -161,6 +161,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/InitialValuesForQuickFilters/Index.cshtml";
                 }
 
+                public static class InlineImageInGrid
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/InlineImageInGrid/Index.cshtml";
+                }
+
                 public static class ViewWithoutID
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/ViewWithoutID/Index.cshtml";

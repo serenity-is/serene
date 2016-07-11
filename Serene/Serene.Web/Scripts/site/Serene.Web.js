@@ -3561,6 +3561,74 @@ var Serene;
         BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var InlineImageFormatter = (function () {
+            function InlineImageFormatter() {
+            }
+            InlineImageFormatter.prototype.format = function (ctx) {
+                var file = (this.fileProperty ? ctx.item[this.fileProperty] : ctx.value);
+                if (!file || !file.length)
+                    return "";
+                var href = Q.resolveUrl("~/upload/" + file);
+                if (this.thumb) {
+                    var parts = file.split('.');
+                    file = parts.slice(0, parts.length - 1).join('.') + '_t.jpg';
+                }
+                var src = Q.resolveUrl('~/upload/' + file);
+                return ("<a class=\"inline-image\" target='_blank' href=\"" + href + "\">") +
+                    ("<img src=\"" + src + "\" style='max-height: 145px; max-width: 100%;' /></a>");
+            };
+            InlineImageFormatter.prototype.initializeColumn = function (column) {
+                if (this.fileProperty) {
+                    column.referencedFields = column.referencedFields || [];
+                    column.referencedFields.push(this.fileProperty);
+                }
+            };
+            __decorate([
+                Serenity.Decorators.option()
+            ], InlineImageFormatter.prototype, "fileProperty", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], InlineImageFormatter.prototype, "thumb", void 0);
+            InlineImageFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], InlineImageFormatter);
+            return InlineImageFormatter;
+        }());
+        BasicSamples.InlineImageFormatter = InlineImageFormatter;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var InlineImageInGrid = (function (_super) {
+            __extends(InlineImageInGrid, _super);
+            function InlineImageInGrid(container) {
+                _super.call(this, container);
+            }
+            InlineImageInGrid.prototype.getColumnsKey = function () { return "BasicSamples.InlineImageInGrid"; };
+            InlineImageInGrid.prototype.getDialogType = function () { return Serene.Northwind.ProductDialog; };
+            InlineImageInGrid.prototype.getIdProperty = function () { return Serene.Northwind.ProductRow.idProperty; };
+            InlineImageInGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.ProductRow.localTextPrefix; };
+            InlineImageInGrid.prototype.getService = function () { return Serene.Northwind.ProductService.baseUrl; };
+            InlineImageInGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.rowHeight = 150;
+                return opt;
+            };
+            InlineImageInGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], InlineImageInGrid);
+            return InlineImageInGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.InlineImageInGrid = InlineImageInGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {

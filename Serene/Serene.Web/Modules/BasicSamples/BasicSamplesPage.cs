@@ -57,6 +57,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Grids.InitialValuesForQuickFilters.Index);
         }
 
+        public ActionResult InlineImageInGrid()
+        {
+            return View(MyViews.Grids.InlineImageInGrid.Index);
+        }
+
         public ActionResult LookupFilterByMultipleValues()
         {
             return View(MyViews.Editors.LookupFilterByMultipleValues.Index);
