@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TemplateWizard;
+﻿using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.TemplateWizard;
+using NuGet.VisualStudio;
+using System;
 using System.Collections.Generic;
 
 namespace RootProjectWizard
@@ -6,6 +9,7 @@ namespace RootProjectWizard
     public class RootWizard : IWizard
     {
         public static Dictionary<string, string> GlobalDictionary = new Dictionary<string, string>();
+
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
@@ -27,6 +31,7 @@ namespace RootProjectWizard
 
         public void RunFinished()
         {
+            
         }
 
         public bool ShouldAddProjectItem(string filePath)

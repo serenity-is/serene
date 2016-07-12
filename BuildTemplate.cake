@@ -55,22 +55,8 @@ Task("PrepareVSIX")
         foreach (var x in xml.Descendants("package"))
             pkg.Add(new Tuple<string, string>(x.Attribute("id").Value, x.Attribute("version").Value));
         return pkg;
-    };
-    
-    Func<string, List<Tuple<string, string>>> parseAndCopyPackages = path => {
-        var list = parsePackages(path);
-        foreach (var p in list)
-        {
-            var pkg = p.Item1 + "." + p.Item2;
-            var pkgFile = pkg + ".nupkg";
-            var src = System.IO.Path.Combine(System.IO.Path.Combine(samplePackagesFolder, pkg), pkgFile);
-            var dst = System.IO.Path.Combine(System.IO.Path.Combine(vsixPackagesFolder, pkgFile));
-            System.IO.File.Copy(src, dst, overwrite: true);
-        }
-        return list;
-    };
-    
-    
+    };    
+  
     Action<List<Tuple<string, string>>> updateVsixProj = (wp) => {
         var hash = new HashSet<Tuple<string, string>>();
         foreach (var x in wp)
@@ -88,25 +74,7 @@ Task("PrepareVSIX")
         else
             ver = ver + ".0";
         identity.SetAttributeValue("Version", ver);
-        System.IO.File.WriteAllText(vsixManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
-    
-        var xv = XElement.Parse(System.IO.File.ReadAllText(vsixProjFile));
-        XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
-        var xp = xv.Descendants().Where(x => x.Name == ns + "Content" && x.Attribute("Include") != null &&
-            x.Attribute("Include").Value.StartsWith(@"packages\"));
-        var first = xp.First();
-        var firstText = first.ToString();
-        var itemGroup = first.Parent;
-        xp.Remove();
-        
-        foreach (var p in allPackages)
-        {
-            var xu = XElement.Parse(firstText); 
-            xu.Attribute("Include").SetValue(@"packages\" + p.Item1 + "." + p.Item2 + ".nupkg");
-            itemGroup.Add(xu);
-        }
-        
-        System.IO.File.WriteAllText(vsixProjFile, xv.ToString(SaveOptions.OmitDuplicateNamespaces));  
+        System.IO.File.WriteAllText(vsixManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));   
     };
 
     var utf8Bom = new System.Text.UTF8Encoding(true);
@@ -256,11 +224,11 @@ Task("PrepareVSIX")
             }
         }
         
-        var pkg = xv.Descendants(ns + "packages").Single();
+        var pkg = xv.Descendants(ns + "packagesToInstall").Single();
         pkg.Elements().Remove();
         foreach (var p in packages)
         {
-            var pk = new XElement(ns + "package");
+            var pk = new XElement(ns + "installPackage");
             pk.SetAttributeValue("id", p.Item1);
             pk.SetAttributeValue("version", p.Item2);
             pkg.Add(pk);
@@ -280,7 +248,7 @@ Task("PrepareVSIX")
     foreach (var file in System.IO.Directory.GetFiles(vsixPackagesFolder, "*.nupkg"))
         System.IO.File.Delete(file);
     
-    var webPackages = parseAndCopyPackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
+    var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
     updateVsixProj(webPackages);
     
     if (System.IO.Directory.Exists(templateFolder)) 

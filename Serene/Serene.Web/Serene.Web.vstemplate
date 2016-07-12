@@ -1578,6 +1578,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
       <Folder Name="Views" TargetFolderName="Views">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Errors" TargetFolderName="Errors">
@@ -1603,45 +1604,41 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
-  </WizardExtension>
-  <WizardData>
-    <packages repository="extension" repositoryId="Serene_SerenityApplicationTemplate">
-      <package id="bootstrap" version="3.3.6" />
-      <package id="EPPlus" version="4.0.5" />
-      <package id="FluentMigrator" version="1.6.1" />
-      <package id="FluentMigrator.Runner" version="1.6.1" />
-      <package id="jQuery" version="2.2.3" />
-      <package id="jquery.blockUI.TypeScript.DefinitelyTyped" version="0.0.4" />
-      <package id="jquery.cookie.TypeScript.DefinitelyTyped" version="0.2.1" />
-      <package id="jquery.event.drag" version="2.2.0" />
-      <package id="jquery.TypeScript.DefinitelyTyped" version="3.0.5" />
-      <package id="jQuery.UI.Combined" version="1.11.4" />
-      <package id="jQuery.Validation" version="1.14.0" />
-      <package id="jquery.validation.TypeScript.DefinitelyTyped" version="0.2.8" />
-      <package id="jqueryui.TypeScript.DefinitelyTyped" version="1.4.6" />
-      <package id="jspdf.TypeScript.DefinitelyTyped" version="0.0.2" />
-      <package id="Microsoft.AspNet.Mvc" version="5.2.3" />
-      <package id="Microsoft.AspNet.Razor" version="3.2.3" />
-      <package id="Microsoft.AspNet.WebPages" version="3.2.3" />
-      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <package id="MsieJavaScriptEngine" version="1.7.0" />
-      <package id="Newtonsoft.Json" version="8.0.3" />
-      <package id="Select2.js" version="3.5.1" />
-      <package id="Serenity.CodeGenerator" version="2.2.8" />
-      <package id="Serenity.Core" version="2.2.8" />
-      <package id="Serenity.Data" version="2.2.8" />
-      <package id="Serenity.Data.Entity" version="2.2.8" />
-      <package id="Serenity.Services" version="2.2.8" />
-      <package id="Serenity.Web" version="2.2.8" />
-      <package id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.7" />
-      <package id="toastr" version="2.1.1" />
-      <package id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />
-    </packages>
-  </WizardData>
-  <WizardExtension>
     <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
     <FullClassName>RootProjectWizard.ChildWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+    <packagesToInstall>
+      <installPackage id="bootstrap" version="3.3.6" />
+      <installPackage id="EPPlus" version="4.0.5" />
+      <installPackage id="FluentMigrator" version="1.6.1" />
+      <installPackage id="FluentMigrator.Runner" version="1.6.1" />
+      <installPackage id="jQuery" version="2.2.3" />
+      <installPackage id="jquery.blockUI.TypeScript.DefinitelyTyped" version="0.0.4" />
+      <installPackage id="jquery.cookie.TypeScript.DefinitelyTyped" version="0.2.1" />
+      <installPackage id="jquery.event.drag" version="2.2.0" />
+      <installPackage id="jquery.TypeScript.DefinitelyTyped" version="3.0.5" />
+      <installPackage id="jQuery.UI.Combined" version="1.11.4" />
+      <installPackage id="jQuery.Validation" version="1.14.0" />
+      <installPackage id="jquery.validation.TypeScript.DefinitelyTyped" version="0.2.8" />
+      <installPackage id="jqueryui.TypeScript.DefinitelyTyped" version="1.4.6" />
+      <installPackage id="jspdf.TypeScript.DefinitelyTyped" version="0.0.2" />
+      <installPackage id="Microsoft.AspNet.Mvc" version="5.2.3" />
+      <installPackage id="Microsoft.AspNet.Razor" version="3.2.3" />
+      <installPackage id="Microsoft.AspNet.WebPages" version="3.2.3" />
+      <installPackage id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <installPackage id="MsieJavaScriptEngine" version="1.7.0" />
+      <installPackage id="Newtonsoft.Json" version="8.0.3" />
+      <installPackage id="Select2.js" version="3.5.1" />
+      <installPackage id="Serenity.CodeGenerator" version="2.2.8" />
+      <installPackage id="Serenity.Core" version="2.2.8" />
+      <installPackage id="Serenity.Data" version="2.2.8" />
+      <installPackage id="Serenity.Data.Entity" version="2.2.8" />
+      <installPackage id="Serenity.Services" version="2.2.8" />
+      <installPackage id="Serenity.Web" version="2.2.8" />
+      <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.7" />
+      <installPackage id="toastr" version="2.1.1" />
+      <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />
+    </packagesToInstall>
+  </WizardData>
 </VSTemplate>
