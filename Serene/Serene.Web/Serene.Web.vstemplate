@@ -379,6 +379,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGrid.ts">InlineImageInGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGridColumns.cs">InlineImageInGridColumns.cs</ProjectItem>
             </Folder>
+            <Folder Name="RemovingAddButton" TargetFolderName="RemovingAddButton">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RemovingAddButton.ts">RemovingAddButton.ts</ProjectItem>
+            </Folder>
             <Folder Name="ViewWithoutID" TargetFolderName="ViewWithoutID">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
