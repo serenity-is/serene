@@ -2128,6 +2128,15 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class RemovingAddButton extends Northwind.SupplierGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of buttons to be created.
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
         format(ctx: Slick.FormatterContext): string;
         initializeColumn(column: Slick.Column): void;

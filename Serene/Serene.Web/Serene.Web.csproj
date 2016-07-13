@@ -1141,11 +1141,13 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Modules\BasicSamples\Grids\RemovingAddButton\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageFormatter.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageInGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ConditionalFormatting\ConditionalFormattingGrid.ts" />

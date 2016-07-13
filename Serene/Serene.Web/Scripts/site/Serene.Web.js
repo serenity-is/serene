@@ -3561,6 +3561,48 @@ var Serene;
         BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Supplier/SupplierGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var RemovingAddButton = (function (_super) {
+            __extends(RemovingAddButton, _super);
+            function RemovingAddButton(container) {
+                _super.call(this, container);
+            }
+            /**
+             * This method is called to get list of buttons to be created.
+             */
+            RemovingAddButton.prototype.getButtons = function () {
+                // call base method to get list of buttons
+                // by default, base entity grid adds a few buttons, 
+                // add, refresh, column selection in order.
+                var buttons = _super.prototype.getButtons.call(this);
+                // here is several methods to remove add button
+                // only one is enabled, others are commented
+                // METHOD 1
+                // we would be able to simply return an empty button list,
+                // but this would also remove all other buttons
+                // return [];
+                // METHOD 2
+                // remove by splicing (something like delete by index)
+                // here we hard code add button index (not nice!)
+                // buttons.splice(0, 1);
+                // METHOD 3 - recommended
+                // remove by splicing, but this time find button index
+                // by its css class. it is the best and safer method
+                buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
+                return buttons;
+            };
+            RemovingAddButton = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RemovingAddButton);
+            return RemovingAddButton;
+        }(Serene.Northwind.SupplierGrid));
+        BasicSamples.RemovingAddButton = RemovingAddButton;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var BasicSamples;

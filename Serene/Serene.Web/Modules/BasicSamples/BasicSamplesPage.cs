@@ -72,6 +72,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.MultiColumnResponsiveDialog.Index);
         }
 
+        public ActionResult RemovingAddButton()
+        {
+            return View(MyViews.Grids.RemovingAddButton.Index);
+        }
+
         public ActionResult ResponsiveDialog()
         {
             return View(MyViews.Dialogs.ResponsiveDialog.Index);

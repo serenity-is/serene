@@ -68,7 +68,6 @@ namespace MVC
 
             public static class Tables
             {
-                public const string DataTables = "~/Modules/AdminLTE/Tables/DataTables.cshtml";
                 public const string SimpleTables = "~/Modules/AdminLTE/Tables/SimpleTables.cshtml";
             }
 
@@ -164,6 +163,11 @@ namespace MVC
                 public static class InlineImageInGrid
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/InlineImageInGrid/Index.cshtml";
+                }
+
+                public static class RemovingAddButton
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/RemovingAddButton/Index.cshtml";
                 }
 
                 public static class ViewWithoutID
