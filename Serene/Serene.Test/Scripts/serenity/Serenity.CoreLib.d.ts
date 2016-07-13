@@ -856,6 +856,15 @@ declare namespace Serenity {
         constructor(input: JQuery);
         value: boolean;
     }
+    interface RadioButtonEditorOptions {
+        enumKey?: string;
+        enumType?: any;
+        lookupKey?: string;
+    }
+    class RadioButtonEditor extends Widget<RadioButtonEditorOptions> {
+        constructor(input: JQuery);
+        value: string;
+    }
     interface EnumEditorOptions {
         enumKey?: string;
         enumType?: any;
@@ -1053,25 +1062,25 @@ declare namespace Serenity {
         function initialize(): void;
         function reset(): void;
     }
-    class FilterLine {
-        field: string;
-        operator: string;
-        isOr: boolean;
-        leftParen: boolean;
-        rightParen: boolean;
-        validationError: string;
-        criteria: any[];
-        displayText: string;
-        state: any;
+    interface FilterLine {
+        field?: string;
+        operator?: string;
+        isOr?: boolean;
+        leftParen?: boolean;
+        rightParen?: boolean;
+        validationError?: string;
+        criteria?: any[];
+        displayText?: string;
+        state?: any;
     }
     interface QuickFilterArgs<TWidget> {
-        field: string;
-        widget: TWidget;
-        request: ListRequest;
-        equalityFilter: any;
-        value: any;
-        active: boolean;
-        handled: boolean;
+        field?: string;
+        widget?: TWidget;
+        request?: ListRequest;
+        equalityFilter?: any;
+        value?: any;
+        active?: boolean;
+        handled?: boolean;
     }
     class QuickSearchInput extends Widget<QuickSearchInputOptions> {
         constructor(input: JQuery, opt: QuickSearchInputOptions);

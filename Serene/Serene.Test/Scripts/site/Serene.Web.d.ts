@@ -853,6 +853,8 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -2123,6 +2125,25 @@ declare namespace Serene.BasicSamples {
          */
         protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
         protected getButtons(): any[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
+        format(ctx: Slick.FormatterContext): string;
+        initializeColumn(column: Slick.Column): void;
+        fileProperty: string;
+        thumb: boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineImageInGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getSlickOptions(): Slick.GridOptions;
     }
 }
 declare namespace Serene.BasicSamples {
