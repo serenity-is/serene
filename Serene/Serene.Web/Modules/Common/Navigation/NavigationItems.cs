@@ -61,7 +61,6 @@ using Basic = Serene.BasicSamples.Pages;
 
 [assembly: NavigationMenu(8600, "Theme Samples/Tables", icon: "fa-table")]
 [assembly: NavigationLink(8610, "Theme Samples/Tables/Simple Tables", url: "~/AdminLTE/Tables/SimpleTables", permission: "")]
-[assembly: NavigationLink(8620, "Theme Samples/Tables/Data Tables", url: "~/AdminLTE/Tables/DataTables", permission: "")]
 
 [assembly: NavigationLink(8700, "Theme Samples/Calendar", url: "~/AdminLTE/Calendar", permission: "", icon: "fa-calendar")]
 
