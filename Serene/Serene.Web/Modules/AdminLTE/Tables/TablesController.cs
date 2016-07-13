@@ -10,10 +10,5 @@ namespace Serene.AdminLTE
         {
             return View(MVC.Views.AdminLTE.Tables.SimpleTables);
         }
-
-        public ActionResult DataTables()
-        {
-            return View(MVC.Views.AdminLTE.Tables.DataTables);
-        }
     }
 }
