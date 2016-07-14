@@ -4398,6 +4398,66 @@ var Serene;
         BasicSamples.MultiColumnResponsiveGrid = MultiColumnResponsiveGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Category/CategoryDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var GetInsertedRecordIdDialog = (function (_super) {
+            __extends(GetInsertedRecordIdDialog, _super);
+            function GetInsertedRecordIdDialog() {
+                _super.apply(this, arguments);
+            }
+            /**
+             * This method is called after the save request to service
+             * is completed succesfully. This can be an insert or update.
+             *
+             * @param response Response that is returned from server
+             */
+            GetInsertedRecordIdDialog.prototype.onSaveSuccess = function (response) {
+                // check that this is an insert
+                if (this.isNew) {
+                    Q.notifySuccess("Just inserted a category with ID: " + response.EntityId);
+                    // you could also open a new dialog
+                    // new Northwind.CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
+                    // but let's better load inserted record using Retrieve service
+                    Serene.Northwind.CategoryService.Retrieve({
+                        EntityId: response.EntityId
+                    }, function (resp) {
+                        Q.notifyInfo("Looks like the category you added has name: " + resp.Entity.CategoryName);
+                    });
+                }
+            };
+            GetInsertedRecordIdDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GetInsertedRecordIdDialog);
+            return GetInsertedRecordIdDialog;
+        }(Serene.Northwind.CategoryDialog));
+        BasicSamples.GetInsertedRecordIdDialog = GetInsertedRecordIdDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Category/CategoryGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
+         */
+        var GetInsertedRecordIdGrid = (function (_super) {
+            __extends(GetInsertedRecordIdGrid, _super);
+            function GetInsertedRecordIdGrid(container) {
+                _super.call(this, container);
+            }
+            GetInsertedRecordIdGrid.prototype.getDialogType = function () { return BasicSamples.GetInsertedRecordIdDialog; };
+            GetInsertedRecordIdGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GetInsertedRecordIdGrid);
+            return GetInsertedRecordIdGrid;
+        }(Serene.Northwind.CategoryGrid));
+        BasicSamples.GetInsertedRecordIdGrid = GetInsertedRecordIdGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {

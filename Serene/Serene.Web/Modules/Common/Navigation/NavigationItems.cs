@@ -20,6 +20,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Chart in a Dialog", typeof(Basic.BasicSamplesController), action: "ChartInDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Cloneable Entity Dialog", typeof(Basic.BasicSamplesController), action: "CloneableEntityDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Default Values in New Dialog", typeof(Basic.BasicSamplesController), action: "DefaultValuesInNewDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Dialogs/Get Inserted Record ID", typeof(Basic.BasicSamplesController), action: "GetInsertedRecordId")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnResponsiveDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Responsive Dialog", typeof(Basic.BasicSamplesController), action: "ResponsiveDialog")]
 [assembly: NavigationMenu(7900, "Basic Samples/Editors")]

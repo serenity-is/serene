@@ -78,25 +78,20 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.3.1\lib\net45\Serenity.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Core">
+      <HintPath>..\..\packages\Serenity.Core.2.3.2\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.3.1\lib\net45\Serenity.Data.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Data">
+      <HintPath>..\..\packages\Serenity.Data.2.3.2\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.3.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Data.Entity">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.3.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.3.1\lib\net45\Serenity.Services.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Services">
+      <HintPath>..\..\packages\Serenity.Services.2.3.2\lib\net45\Serenity.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.3.1\lib\net45\Serenity.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serenity.Web">
+      <HintPath>..\..\packages\Serenity.Web.2.3.2\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -1141,6 +1136,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\RemovingAddButton\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
@@ -1148,6 +1144,8 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageFormatter.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageInGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ConditionalFormatting\ConditionalFormattingGrid.ts" />

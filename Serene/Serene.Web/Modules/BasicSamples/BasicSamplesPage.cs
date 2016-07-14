@@ -42,6 +42,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Editors.FilteredLookupInDetailDialog.Index);
         }
 
+        public ActionResult GetInsertedRecordId()
+        {
+            return View(MyViews.Dialogs.GetInsertedRecordId.Index);
+        }
+
         public ActionResult GridFilteredByCriteria()
         {
             return View(MyViews.Grids.GridFilteredByCriteria.Index);

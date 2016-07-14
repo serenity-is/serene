@@ -853,8 +853,6 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
-}
-declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -2128,6 +2126,15 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class RemovingAddButton extends Northwind.SupplierGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of buttons to be created.
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
         format(ctx: Slick.FormatterContext): string;
         initializeColumn(column: Slick.Column): void;
@@ -2389,6 +2396,26 @@ declare namespace Serene.BasicSamples {
      */
     class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
         protected getDialogType(): typeof MultiColumnResponsiveDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    class GetInsertedRecordIdDialog extends Northwind.CategoryDialog {
+        /**
+         * This method is called after the save request to service
+         * is completed succesfully. This can be an insert or update.
+         *
+         * @param response Response that is returned from server
+         */
+        protected onSaveSuccess(response: Serenity.SaveResponse): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
+     */
+    class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
+        protected getDialogType(): typeof GetInsertedRecordIdDialog;
         constructor(container: JQuery);
     }
 }

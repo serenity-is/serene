@@ -38,6 +38,10 @@ Q.ScriptData.set('Columns.Northwind.Territory', [{"name":"TerritoryID","title":"
 
 
 
+Q.ScriptData.set('Columns.BasicSamples.InlineImageInGrid', [{"name":"ProductID","title":"Db.Shared.RecordId","required":true,"insertable":false,"updatable":false,"localizable":true,"alignment":"right","width":65,"editLink":true},{"name":"ProductName","title":"Db.Northwind.Product.ProductName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"localizable":true,"width":250,"editLink":true},{"name":"ProductImage","title":"Db.Northwind.Product.ProductImage","editorType":"ImageUpload","editorParams":{"maxLength":100},"maxLength":100,"formatterType":"Serene.BasicSamples.InlineImageFormatter","width":450,"filteringType":"Editor","filteringParams":{"editorType":"ImageUpload","useLike":true}},{"name":"ProductThumbnail","title":"ProductThumbnail","formatterType":"Serene.BasicSamples.InlineImageFormatter","formatterParams":{"fileProperty":"ProductImage","thumb":true},"width":450}]);
+
+
+
 Q.ScriptData.set('Columns.Administration.User', [{"name":"UserId","title":"Db.Administration.User.UserId","required":true,"insertable":false,"updatable":false,"alignment":"right","width":55,"editLink":true},{"name":"Username","title":"Db.Administration.User.Username","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150,"editLink":true},{"name":"DisplayName","title":"Db.Administration.User.DisplayName","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150},{"name":"Email","title":"Db.Administration.User.Email","editorParams":{"maxLength":100},"maxLength":100,"width":250},{"name":"Source","title":"Db.Administration.User.Source","editorParams":{"maxLength":4},"maxLength":4,"required":true,"insertable":false,"updatable":false,"defaultValue":"site","width":100}]);
 
 

@@ -2402,6 +2402,26 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class GetInsertedRecordIdDialog extends Northwind.CategoryDialog {
+        /**
+         * This method is called after the save request to service
+         * is completed succesfully. This can be an insert or update.
+         *
+         * @param response Response that is returned from server
+         */
+        protected onSaveSuccess(response: Serenity.SaveResponse): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
+     */
+    class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
+        protected getDialogType(): typeof GetInsertedRecordIdDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
     class DefaultValuesInNewGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
         /**
