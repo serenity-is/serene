@@ -8,10 +8,10 @@ Task("PrepareVSIX")
 {
     CleanDirectory("./Template/ProjectTemplates");
     CreateDirectory("./Template/ProjectTemplates");
-    CleanDirectory("./Template/packages");
-    CreateDirectory("./Template/packages");
     CleanDirectory("./Template/bin/Debug");
     CleanDirectory("./Template/bin/Release");
+    CleanDirectory("./Template/RootProjectWizard/obj/Debug");
+    CleanDirectory("./Template/RootProjectWizard/obj/Release");
     
     var r = System.IO.Path.GetFullPath(@".\");
 
@@ -41,7 +41,6 @@ Task("PrepareVSIX")
     });
 
     var samplePackagesFolder = r + @"packages\";
-    var vsixPackagesFolder = r + @"Template\packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
     var templateFolder = r + @"Template\obj\Serene.Template";
@@ -245,9 +244,6 @@ Task("PrepareVSIX")
         replaceParams(targetProj);
     };
 
-    foreach (var file in System.IO.Directory.GetFiles(vsixPackagesFolder, "*.nupkg"))
-        System.IO.File.Delete(file);
-    
     var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
     updateVsixProj(webPackages);
     
