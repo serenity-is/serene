@@ -31,6 +31,26 @@ namespace Serenity.Reporting
             return package;
         }
 
+        private static Type[] DateTimeTypes = new[]
+        {
+            typeof(DateTime),
+            typeof(DateTime?),
+            typeof(TimeSpan),
+            typeof(TimeSpan?)
+        };
+
+        private static string FixFormatSpecifier(string format, Type dataType)
+        {
+            if (string.IsNullOrEmpty(format))
+                return format;
+
+            if (format.IndexOf('f') >= 0 &&
+                Array.IndexOf(DateTimeTypes, dataType) >= 0)
+                return format.Replace('f', '0');
+
+            return format;
+        }
+
         public static void PopulateSheet(ExcelWorksheet worksheet, List<ReportColumn> columns, IList rows,
             string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
         {
@@ -106,7 +126,7 @@ namespace Serenity.Reporting
             {
                 var column = columns[i - 1];
                 if (!column.Format.IsEmptyOrNull())
-                    worksheet.Column(i).Style.Numberformat.Format = column.Format;
+                    worksheet.Column(i).Style.Numberformat.Format = FixFormatSpecifier(column.Format, column.DataType);
             }
 
             worksheet.Cells[1, 1, Math.Min(endRow, 250), endCol].AutoFitColumns(1, 100);
@@ -160,7 +180,7 @@ namespace Serenity.Reporting
                                 cell.Style.Font.Color.SetColor(decorator.Foreground);
 
                             if (decorator.Format != null)
-                                cell.Style.Numberformat.Format = decorator.Format;
+                                cell.Style.Numberformat.Format = FixFormatSpecifier(decorator.Format, col.DataType);
 
                             if (!Object.Equals(decorator.Value, value))
                                 cell.Value = decorator.Value;
