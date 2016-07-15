@@ -853,6 +853,8 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -2418,6 +2420,9 @@ declare namespace Serene.BasicSamples {
         protected getDialogType(): typeof GetInsertedRecordIdDialog;
         constructor(container: JQuery);
     }
+}
+declare namespace Serene.BasicSamples.DialogBoxes {
+    function initializePage(): void;
 }
 declare namespace Serene.BasicSamples {
     class DefaultValuesInNewGrid extends Northwind.OrderGrid {

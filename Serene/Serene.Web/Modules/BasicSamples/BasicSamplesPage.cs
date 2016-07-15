@@ -37,6 +37,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.DefaultValuesInNewDialog.Index);
         }
 
+        public ActionResult DialogBoxes()
+        {
+            return View(MyViews.Dialogs.DialogBoxes.Index);
+        }
+
         public ActionResult FilteredLookupInDetailDialog()
         {
             return View(MyViews.Editors.FilteredLookupInDetailDialog.Index);

@@ -1123,11 +1123,13 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\RemovingAddButton\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\DialogBoxes\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdGrid.ts" />
