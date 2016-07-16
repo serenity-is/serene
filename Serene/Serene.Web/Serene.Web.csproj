@@ -618,9 +618,9 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
-    <Content Include="Content\site\images\serenity-icon.png" />
     <Content Include="Content\site\images\serenity-logo-40.png" />
     <Content Include="Content\site\images\serenity-logo-g-40.png" />
+    <Content Include="Content\site\images\serenity-logo-w-128.png" />
     <Content Include="Content\site\images\serenity-logo-w-40.png" />
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
@@ -713,6 +713,11 @@
     <Content Include="Content\bootstrap-less\mixins\text-overflow.less" />
     <Content Include="Content\bootstrap-less\mixins\vendor-prefixes.less" />
     <Content Include="Content\bootstrap-less\variables.less" />
+    <Content Include="Content\site\slides\slide1.jpg" />
+    <Content Include="Content\site\slides\slide2.jpg" />
+    <Content Include="Content\site\slides\slide3.jpg" />
+    <Content Include="Content\site\slides\slide4.jpg" />
+    <Content Include="Content\site\slides\slide5.jpg" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -1856,7 +1861,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\site\slides\" />
     <Folder Include="Scripts\typings\site\" />
   </ItemGroup>
   <ItemGroup>

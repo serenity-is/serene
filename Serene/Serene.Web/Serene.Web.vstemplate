@@ -140,6 +140,7 @@
           <Folder Name="images" TargetFolderName="images">
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-g-40.png">serenity-logo-g-40.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-w-128.png">serenity-logo-w-128.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-w-40.png">serenity-logo-w-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-empty.png">tick-empty.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="tick-green-partial.png">tick-green-partial.png</ProjectItem>
@@ -154,6 +155,13 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="site.mixins.less">site.mixins.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.northwind.less">site.northwind.less</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="site.theme.less">site.theme.less</ProjectItem>
+          <Folder Name="slides" TargetFolderName="slides">
+            <ProjectItem ReplaceParameters="false" TargetFileName="slide1.jpg">slide1.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="slide2.jpg">slide2.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="slide3.jpg">slide3.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="slide4.jpg">slide4.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="slide5.jpg">slide5.jpg</ProjectItem>
+          </Folder>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
@@ -1007,6 +1015,24 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.autotable.d.ts">jspdf.autotable.d.ts</ProjectItem>
           </Folder>
           <Folder Name="site" TargetFolderName="site" />
+        </Folder>
+        <Folder Name="vegas" TargetFolderName="vegas">
+          <Folder Name="overlays" TargetFolderName="overlays">
+            <ProjectItem ReplaceParameters="false" TargetFileName="01.png">01.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="02.png">02.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="03.png">03.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="04.png">04.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="05.png">05.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="06.png">06.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="07.png">07.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="08.png">08.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="09.png">09.png</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="vegas.css">vegas.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="vegas.js">vegas.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="vegas.min.css">vegas.min.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="vegas.min.js">vegas.min.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="vegas.min.js.map">vegas.min.js.map</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="tools" TargetFolderName="tools">
