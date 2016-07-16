@@ -7116,11 +7116,12 @@ section.content > .s-DataGrid {
   color: #fff;
 }
 .s-LoginPanel {
-  border: 2px solid #e7e7e7;
   padding: 40px;
-  border-radius: 8px;
   width: 570px;
-  margin: 60px auto auto auto;
+  margin: 90px auto auto auto;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  font-weight: 700;
 }
 .s-LoginPanel .caption {
   width: 150px;
@@ -7150,26 +7151,71 @@ section.content > .s-DataGrid {
 .s-LoginPanel .s-Form .emaildomain {
   width: 115px;
 }
+.s-LoginPanel .logo {
+  margin: 0 auto 20px auto;
+  width: 128px;
+  height: 128px;
+  background: transparent url(images/serenity-logo-w-128.png) no-repeat center center;
+}
 .s-LoginPanel h3 {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
   margin: 16px 0 24px;
-  color: #999;
+  color: #f5f27e;
+  text-align: center;
+  text-shadow: 0 1px 1px #333;
 }
 .s-LoginPanel .buttons {
   padding: 8px 0 0 158px;
 }
-.s-LoginPanel .buttons a {
+.s-LoginPanel .buttons .btn {
+  padding: 8px 24px;
+  font-weight: 700;
+}
+.s-LoginPanel .caption {
+  color: #ececec;
+  font-weight: 700;
+  text-shadow: 0 1px 1px #333;
+}
+.s-LoginPanel .actions {
+  padding-right: 28px;
+}
+.s-LoginPanel .actions a {
+  color: #ececec;
+  padding: 2px 2px 2px 2px;
+  margin-top: 5px;
+  display: block;
   float: right;
-  margin: 0 24px;
+  clear: both;
+  border-bottom: 1px dashed #999;
+  text-shadow: 0 1px 1px #333;
+}
+.s-LoginPanel .actions a i {
+  font-weight: 700;
+  margin-right: 4px;
+}
+.s-LoginPanel .s-Form label.error {
+  background-image: url(../serenity/images/cross.png);
+  padding: 26px 0 0 22px;
+}
+.s-LoginPanel .s-Form label.error.checked {
+  background-image: none;
 }
 .s-LoginPanel .s-Form .field {
   padding: 8px;
 }
 .s-LoginPanel .s-Form input {
   padding: 6px 10px;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 .s-LoginPanel .s-Form .caption {
   padding: 6px 10px;
+  color: #fff;
+}
+.s-LoginPanel a {
+  color: aqua;
 }
 .s-ChangePasswordPanel {
   width: 550px;

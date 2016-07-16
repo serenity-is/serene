@@ -1628,6 +1628,18 @@ var Serene;
             function LoginPanel(container) {
                 var _this = this;
                 _super.call(this, container);
+                $(function () {
+                    $('body').vegas({
+                        delay: 5000,
+                        slides: [
+                            { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide3.jpg'), transition: 'zoomOut' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide4.jpg'), transition: 'blur' },
+                            { src: Q.resolveUrl('~/content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
+                        ]
+                    });
+                });
                 this.form = new Membership.LoginForm(this.idPrefix);
                 this.byId('LoginButton').click(function (e) {
                     e.preventDefault();

@@ -618,6 +618,7 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\images\serenity-icon.png" />
     <Content Include="Content\site\images\serenity-logo-40.png" />
     <Content Include="Content\site\images\serenity-logo-g-40.png" />
     <Content Include="Content\site\images\serenity-logo-w-40.png" />
@@ -1342,6 +1343,19 @@
     <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\vegas\overlays\01.png" />
+    <Content Include="Scripts\vegas\overlays\02.png" />
+    <Content Include="Scripts\vegas\overlays\03.png" />
+    <Content Include="Scripts\vegas\overlays\04.png" />
+    <Content Include="Scripts\vegas\overlays\05.png" />
+    <Content Include="Scripts\vegas\overlays\06.png" />
+    <Content Include="Scripts\vegas\overlays\07.png" />
+    <Content Include="Scripts\vegas\overlays\08.png" />
+    <Content Include="Scripts\vegas\overlays\09.png" />
+    <Content Include="Scripts\vegas\vegas.css" />
+    <Content Include="Scripts\vegas\vegas.js" />
+    <Content Include="Scripts\vegas\vegas.min.css" />
+    <Content Include="Scripts\vegas\vegas.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery.icheck.min.js.map" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
@@ -1428,6 +1442,7 @@
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="Scripts\vegas\vegas.min.js.map" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -1841,6 +1856,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\site\slides\" />
     <Folder Include="Scripts\typings\site\" />
   </ItemGroup>
   <ItemGroup>
