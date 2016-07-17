@@ -7116,40 +7116,15 @@ section.content > .s-DataGrid {
   color: #fff;
 }
 .s-LoginPanel {
-  padding: 40px;
-  width: 570px;
+  padding: 30px 20px;
+  width: 550px;
   margin: 90px auto auto auto;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   font-weight: 700;
 }
 .s-LoginPanel .caption {
-  width: 150px;
-}
-.s-LoginPanel .editor {
-  width: 300px;
-}
-.s-LoginPanel input.editor[type=checkbox] {
-  width: auto;
-}
-.s-LoginPanel .s-Form .editor.dateQ {
-  width: 276px;
-}
-.s-LoginPanel .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-LoginPanel .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 181px;
-}
-.s-LoginPanel .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-LoginPanel .s-Form .editor.has-inplace-button {
-  width: 274px;
-}
-.s-LoginPanel .s-Form .emaildomain {
-  width: 115px;
+  width: 180px;
 }
 .s-LoginPanel .logo {
   margin: 0 auto 20px auto;
@@ -7166,7 +7141,9 @@ section.content > .s-DataGrid {
   text-shadow: 0 1px 1px #333;
 }
 .s-LoginPanel .buttons {
-  padding: 8px 0 0 158px;
+  text-align: right;
+  padding: 8px 0 4px 0;
+  margin-right: 28px;
 }
 .s-LoginPanel .buttons .btn {
   padding: 8px 24px;
@@ -7216,6 +7193,17 @@ section.content > .s-DataGrid {
 }
 .s-LoginPanel a {
   color: aqua;
+}
+@media (max-width: 550px) {
+  .s-LoginPanel {
+    padding: 16px 4px 16px 4px;
+    position: absolute;
+    margin: 0;
+    width: auto;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
 }
 .s-ChangePasswordPanel {
   width: 550px;

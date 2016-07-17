@@ -1,13 +1,13 @@
 @import "site.mixins.less";
 
 .s-LoginPanel {
-    padding: 40px;
-    width: 570px;
+    padding: 30px 20px;
+    width: 550px;
     margin: 90px auto auto auto;
     background: rgba(0,0,0,0.5);
     border-radius: 12px;
     font-weight: 700;
-    .form-styles(150px, 300px);
+    .caption { width: 180px; }
 
     .logo {
         margin: 0 auto 20px auto;
@@ -26,7 +26,9 @@
     }
 
     .buttons {
-        padding: 8px 0 0 158px;
+        text-align: right;
+        padding: 8px 0 4px 0;
+        margin-right: 28px;
 
         .btn {
             padding: 8px 24px;
@@ -88,6 +90,20 @@
     a {
         color: aqua;
     }
+}
+
+@media(max-width: 550px) {
+    .s-LoginPanel {
+        padding: 16px 4px 16px 4px;
+        position: absolute;
+        margin: 0;
+        width: auto;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+
 }
 
 .s-ChangePasswordPanel {
