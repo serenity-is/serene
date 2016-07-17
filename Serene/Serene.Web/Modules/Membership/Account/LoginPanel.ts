@@ -14,7 +14,7 @@
                 ($('body') as any).vegas({
                     delay: 10000,
                     cover: true,
-                    overlay: Q.resolveUrl("~/scripts/vegas/overlays/03.png"),
+                    overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
                     slides: [
                         { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
                         { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },

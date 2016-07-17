@@ -2193,17 +2193,16 @@ var Serene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
-                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!_this.onViewSubmit()) {
+                            if (!this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(_this.rowSelection.getSelectedKeys());
+                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -2492,7 +2491,7 @@ var Serene;
                     {
                         title: 'Group By Category and Supplier',
                         cssClass: 'expand-all-button',
-                        onClick: function () { return _this.view.setGrouping([{
+                        onClick: function () { return this.view.setGrouping([{
                                 formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
                                 getter: 'CategoryName'
                             }, {
@@ -2502,7 +2501,7 @@ var Serene;
                     }, {
                         title: 'No Grouping',
                         cssClass: 'collapse-all-button',
-                        onClick: function () { return _this.view.setGrouping([]); }
+                        onClick: function () { return this.view.setGrouping([]); }
                     }];
             };
             GroupingAndSummariesInGrid = __decorate([
@@ -4603,7 +4602,7 @@ var Serene;
                     $('body').vegas({
                         delay: 10000,
                         cover: true,
-                        overlay: Q.resolveUrl("~/scripts/vegas/overlays/03.png"),
+                        overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
                         slides: [
                             { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
                             { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
