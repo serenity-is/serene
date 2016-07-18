@@ -175,6 +175,7 @@
     <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\pace.css" />
     <Content Include="Content\pace.min.css" />
+    <Content Include="Content\rtl.css" />
     <Content Include="Content\serenity\images\32px.png" />
     <Content Include="Content\serenity\images\accessright.png" />
     <Content Include="Content\serenity\images\accordion-down.png" />
@@ -1384,6 +1385,7 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
@@ -1402,6 +1404,7 @@
     <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="Scripts\site\texts\site.texts.fa.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />

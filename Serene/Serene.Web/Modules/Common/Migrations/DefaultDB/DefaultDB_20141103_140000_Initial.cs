@@ -86,6 +86,12 @@ namespace Serene.Migrations.DefaultDB
                 LanguageId = "pt",
                 LanguageName = "Portuguese"
             });
+
+            Insert.IntoTable("Languages").Row(new
+            {
+                LanguageId = "fa",
+                LanguageName = "Farsi"
+            });
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Serene.Northwind.Scripts
         {
             IdField = TextField = "Country";
         }
-        
+
         protected override void PrepareQuery(SqlQuery query)
         {
             var fld = Entities.SupplierRow.Fields;
