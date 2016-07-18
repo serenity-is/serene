@@ -7115,6 +7115,13 @@ section.content > .s-DataGrid {
   background-color: green;
   color: #fff;
 }
+.s-BasicSamples-ReadOnlyDialog > .size {
+  width: 650px;
+  height: 550px;
+}
+.s-BasicSamples-ReadOnlyDialog .caption {
+  width: 150px;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;

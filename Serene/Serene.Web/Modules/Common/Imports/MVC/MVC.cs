@@ -117,6 +117,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/MultiColumnResponsiveDialog/Index.cshtml";
                 }
 
+                public static class ReadOnlyDialog
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/ReadOnlyDialog/Index.cshtml";
+                }
+
                 public static class ResponsiveDialog
                 {
                     public const string Index = "~/Modules/BasicSamples/Dialogs/ResponsiveDialog/Index.cshtml";
