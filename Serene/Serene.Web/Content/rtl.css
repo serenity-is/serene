@@ -1,11 +1,4 @@
-﻿@import 'irfonts.css';
-
-body {
-    direction: rtl;
-    font-family: IRMitra !important;
-    font-size: 14px !important;
-}
-/*font-open-sans.css*/
+﻿/*font-open-sans.css*/
 .fa-ul {
     padding-right: 0 !important;
     margin-right: 2.14285714em;
@@ -3013,23 +3006,9 @@ a.quick-search-field {
     font-size: 14px !important;
 }
 
-.main-header .logo i {
-    float: right !important;
-    background: url(site/images/pasmand-logo-w-40.png) no-repeat center center !important;
-    -moz-animation: fa-spin 60s infinite linear reverse;
-    -o-animation: fa-spin 60s infinite linear reverse;
-    -webkit-animation: fa-spin 60s infinite linear reverse;
-    animation: fa-spin 60s infinite linear reverse;
-}
-
 .main-header .logo b {
     float: right;
     margin-right: 4px;
-}
-
-.skin-black .main-header .logo i,
-.skin-black-light .main-header .logo i {
-    background: url(site/images/pasmand-logo-w-40.png) no-repeat center center !important;
 }
 
 /*SlickGrid.Pager*/
