@@ -7,6 +7,8 @@ namespace Serene.Administration.Repositories
     using Serenity.Web.Providers;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Configuration;
     using System.Data;
     using System.Web.Security;
     using MyRow = Entities.UserRow;
@@ -14,6 +16,18 @@ namespace Serene.Administration.Repositories
     public partial class UserRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
+        private static bool isPublicDemo;
+
+        static UserRepository()
+        {
+            isPublicDemo = ConfigurationManager.AppSettings["IsPublicDemo"] == "1";
+        }
+
+        public static void CheckPublicDemo(int? userID)
+        {
+            if (userID == 1 && isPublicDemo)
+                throw new ValidationException("Sorry, but no changes are allowed in public demo on ADMIN user!");
+        }
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
@@ -170,6 +184,8 @@ namespace Serene.Administration.Repositories
 
                 if (IsUpdate)
                 {
+                    CheckPublicDemo(Row.UserId);
+
                     if (Row.IsAssigned(fld.Password) && !Row.Password.IsEmptyOrNull())
                         password = Row.Password = ValidatePassword(Old.Username, Row.Password, false);
 
@@ -225,7 +241,16 @@ namespace Serene.Administration.Repositories
             return CalculateHash(password, salt);
         }
 
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
+        private class MyDeleteHandler : DeleteRequestHandler<MyRow>
+        {
+            protected override void ValidateRequest()
+            {
+                base.ValidateRequest();
+
+                CheckPublicDemo(Row.UserId);
+            }
+        }
+
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
         private class MyListHandler : ListRequestHandler<MyRow> { }

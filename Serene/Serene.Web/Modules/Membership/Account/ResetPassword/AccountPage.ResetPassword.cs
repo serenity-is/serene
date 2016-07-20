@@ -83,6 +83,7 @@ namespace Serene.Membership.Pages
 
                 var salt = Membership.GeneratePassword(5, 1);
                 var hash = SiteMembershipProvider.ComputeSHA512(request.NewPassword + salt);
+                UserRepository.CheckPublicDemo(user.UserId);
 
                 uow.Connection.UpdateById(new UserRow
                 {

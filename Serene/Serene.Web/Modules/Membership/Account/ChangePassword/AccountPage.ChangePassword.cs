@@ -42,10 +42,13 @@ namespace Serene.Membership.Pages
 
                 var salt = Membership.GeneratePassword(5, 1);
                 var hash = SiteMembershipProvider.ComputeSHA512(request.NewPassword + salt);
+                var userId = int.Parse(Authorization.UserId);
+
+                UserRepository.CheckPublicDemo(userId);
 
                 uow.Connection.UpdateById(new UserRow
                 {
-                    UserId = int.Parse(Authorization.UserId),
+                    UserId = userId,
                     PasswordSalt = salt,
                     PasswordHash = hash
                 });
