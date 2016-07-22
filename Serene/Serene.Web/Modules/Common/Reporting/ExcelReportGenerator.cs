@@ -24,9 +24,9 @@ namespace Serenity.Reporting
         {
             var package = new ExcelPackage();
             var workbook = package.Workbook;
-            var worksheet = package.Workbook.Worksheets.Add("Page1");
+            var worksheet = package.Workbook.Worksheets.Add(sheetName);
 
-            PopulateSheet(worksheet, columns, rows);
+            PopulateSheet(worksheet, columns, rows, tableName, tableStyle);
 
             return package;
         }
