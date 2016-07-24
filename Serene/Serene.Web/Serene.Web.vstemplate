@@ -352,6 +352,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveDialog.ts">ResponsiveDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveGrid.ts">ResponsiveGrid.ts</ProjectItem>
             </Folder>
+            <Folder Name="SerialAutoNumber" TargetFolderName="SerialAutoNumber">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SerialAutoNumberDialog.ts">SerialAutoNumberDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SerialAutoNumberGrid.ts">SerialAutoNumberGrid.ts</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="Editors" TargetFolderName="Editors">
             <Folder Name="FilteredLookupInDetailDialog" TargetFolderName="FilteredLookupInDetailDialog">
@@ -426,6 +431,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="DetailListSaveHandler.cs">DetailListSaveHandler.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DialogUtils.ts">DialogUtils.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.ts">ExcelExportHelper.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberHelper.cs">GetNextNumberHelper.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.cs">GetNextNumberRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.ts">GridEditorBase.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.ts">GridEditorDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
@@ -501,6 +508,8 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRow.ts">Common.UserPreferenceRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceService.ts">Common.UserPreferenceService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceUpdateRequest.ts">Common.UserPreferenceUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.ts">GetNextNumberRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberResponse.ts">GetNextNumberResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
