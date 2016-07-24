@@ -97,6 +97,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.ResponsiveDialog.Index);
         }
 
+        public ActionResult SerialAutoNumber()
+        {
+            return View(MyViews.Dialogs.SerialAutoNumber.Index);
+        }
+
         public ActionResult ViewWithoutID()
         {
             return View(MyViews.Grids.ViewWithoutID.Index);

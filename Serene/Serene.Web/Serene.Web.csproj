@@ -1146,12 +1146,15 @@
     <Content Include="Modules\BasicSamples\Grids\RemovingAddButton\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\DialogBoxes\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
@@ -1180,6 +1183,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1741,6 +1750,8 @@
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
+    <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
+    <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerRepresentativesRow.cs" />

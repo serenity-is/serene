@@ -25,6 +25,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Multi Column Dialog", typeof(Basic.BasicSamplesController), action: "MultiColumnResponsiveDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Read-Only Dialog", typeof(Basic.BasicSamplesController), action: "ReadOnlyDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Dialogs/Responsive Dialog", typeof(Basic.BasicSamplesController), action: "ResponsiveDialog")]
+[assembly: NavigationLink(7900, "Basic Samples/Dialogs/Serial Auto Numbering", typeof(Basic.BasicSamplesController), action: "SerialAutoNumber")]
 [assembly: NavigationMenu(7900, "Basic Samples/Editors")]
 [assembly: NavigationLink(7900, "Basic Samples/Editors/Filtered Lookup in Detail.", typeof(Basic.BasicSamplesController), action: "FilteredLookupInDetailDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Editors/Lookup Filter by Multi Val.", typeof(Basic.BasicSamplesController), action: "LookupFilterByMultipleValues")]

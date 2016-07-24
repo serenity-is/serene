@@ -948,6 +948,18 @@ declare namespace Serene.Common {
         Value?: string;
     }
 }
+declare namespace Serene {
+    interface GetNextNumberRequest extends Serenity.ServiceRequest {
+        Prefix?: string;
+        Length?: number;
+    }
+}
+declare namespace Serene {
+    interface GetNextNumberResponse extends Serenity.ServiceResponse {
+        Number?: number;
+        Serial?: string;
+    }
+}
 declare namespace Serene.Membership {
     class ChangePasswordForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -1258,12 +1270,14 @@ declare namespace Serene.Northwind {
         function Create(request: Serenity.SaveRequest<CustomerRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Update(request: Serenity.SaveRequest<CustomerRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function GetNextNumber(request: GetNextNumberRequest, onSuccess?: (response: GetNextNumberResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
+            const GetNextNumber: string;
             const Retrieve: string;
             const List: string;
         }
@@ -2358,6 +2372,22 @@ declare namespace Serene.BasicSamples {
          */
         protected beforeLoadEntity(entity: any): void;
         categoryID: number;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class SerialAutoNumberDialog extends Northwind.CustomerDialog {
+        constructor();
+        protected afterLoadEntity(): void;
+        private getNextNumber();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
+     */
+    class SerialAutoNumberGrid extends Northwind.CustomerGrid {
+        protected getDialogType(): typeof SerialAutoNumberDialog;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {

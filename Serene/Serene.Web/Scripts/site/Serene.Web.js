@@ -2816,7 +2816,7 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CustomerService.Methods || (CustomerService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'GetNextNumber', 'Retrieve', 'List'].forEach(function (x) {
                 CustomerService[x] = function (r, s, o) { return Q.serviceRequest(CustomerService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = CustomerService.baseUrl + '/' + x;
             });
@@ -4316,6 +4316,76 @@ var Serene;
             return FilteredLookupOrderDetailDialog;
         }(Serene.Northwind.OrderDetailDialog));
         BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Customer/CustomerDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var SerialAutoNumberDialog = (function (_super) {
+            __extends(SerialAutoNumberDialog, _super);
+            function SerialAutoNumberDialog() {
+                var _this = this;
+                _super.call(this);
+                this.form.CustomerID.element.on('keyup', function (e) {
+                    // only auto number when a key between 'A' and 'Z' is pressed
+                    if (e.which >= 65 && e.which <= 90)
+                        _this.getNextNumber();
+                });
+            }
+            SerialAutoNumberDialog.prototype.afterLoadEntity = function () {
+                _super.prototype.afterLoadEntity.call(this);
+                // fill next number in new record mode
+                if (this.isNew())
+                    this.getNextNumber();
+            };
+            SerialAutoNumberDialog.prototype.getNextNumber = function () {
+                var _this = this;
+                var val = Q.trimToNull(this.form.CustomerID.value);
+                // we will only get next number when customer ID is empty or 1 character in length
+                if (!val || val.length <= 1) {
+                    // if no customer ID yet (new record mode probably) use 'C' as a prefix
+                    var prefix = (val || 'C').toUpperCase();
+                    // call our service, see CustomerEndpoint.cs and CustomerRepository.cs
+                    Serene.Northwind.CustomerService.GetNextNumber({
+                        Prefix: prefix,
+                        Length: 5 // we want service to search for and return serials of 5 in length
+                    }, function (response) {
+                        _this.form.CustomerID.value = response.Serial;
+                        // this is to mark numerical part after prefix
+                        _this.form.CustomerID.element[0].setSelectionRange(prefix.length, response.Serial.length);
+                    });
+                }
+            };
+            SerialAutoNumberDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SerialAutoNumberDialog);
+            return SerialAutoNumberDialog;
+        }(Serene.Northwind.CustomerDialog));
+        BasicSamples.SerialAutoNumberDialog = SerialAutoNumberDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Customer/CustomerGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
+         */
+        var SerialAutoNumberGrid = (function (_super) {
+            __extends(SerialAutoNumberGrid, _super);
+            function SerialAutoNumberGrid(container) {
+                _super.call(this, container);
+            }
+            SerialAutoNumberGrid.prototype.getDialogType = function () { return BasicSamples.SerialAutoNumberDialog; };
+            SerialAutoNumberGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SerialAutoNumberGrid);
+            return SerialAutoNumberGrid;
+        }(Serene.Northwind.CustomerGrid));
+        BasicSamples.SerialAutoNumberGrid = SerialAutoNumberGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;

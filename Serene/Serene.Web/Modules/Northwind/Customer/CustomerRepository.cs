@@ -7,6 +7,7 @@ namespace Serene.Northwind.Repositories
     using Serenity.Services;
     using System;
     using System.Data;
+    using System.Linq;
     using MyRow = Entities.CustomerRow;
 
     public class CustomerRepository
@@ -41,6 +42,11 @@ namespace Serene.Northwind.Repositories
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyListHandler().Process(connection, request);
+        }
+
+        public GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request)
+        {
+            return GetNextNumberHelper.GetNextNumber(connection, request, fld.CustomerID);
         }
 
         private class MySaveHandler : SaveRequestHandler<MyRow> { }

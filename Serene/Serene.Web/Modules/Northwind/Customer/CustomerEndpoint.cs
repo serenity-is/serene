@@ -33,6 +33,11 @@ namespace Serene.Northwind.Endpoints
             return new MyRepository().Delete(uow, request);
         }
 
+        public GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request)
+        {
+            return new MyRepository().GetNextNumber(connection, request);
+        }
+
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
         {
             return new MyRepository().Retrieve(connection, request);

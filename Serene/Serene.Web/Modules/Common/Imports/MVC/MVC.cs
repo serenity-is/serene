@@ -127,6 +127,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/ResponsiveDialog/Index.cshtml";
                 }
 
+                public static class SerialAutoNumber
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/SerialAutoNumber/Index.cshtml";
+                }
+
             }
 
             public static class Editors
