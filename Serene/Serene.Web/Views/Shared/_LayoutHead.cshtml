@@ -18,6 +18,10 @@
 @Html.Stylesheet("~/Content/toastr.css")
 @Html.Stylesheet("~/Content/serenity/serenity.css")
 @Html.Stylesheet("~/Content/site/site.css")
+@if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
+{
+    @Html.Stylesheet("~/Content/site/rtl/rtl.css")
+}
 @{var cookie = Request.Cookies["ThemePreference"]; var theme = cookie != null && !cookie.Value.IsEmptyOrNull() ? cookie.Value : "default"; }
 <script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
 <script type="text/javascript">window.paceOptions = { minTime: 250, ghostTime: 250, restartOnRequestAfter: 250, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: true, ignoreURLs: [] } };</script>
