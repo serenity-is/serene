@@ -5,6 +5,7 @@
     var logged = Serenity.Authorization.Username;
     var themeCookie = Request.Cookies["ThemePreference"];
     var theme = themeCookie != null && !themeCookie.Value.IsEmptyOrNull() ? themeCookie.Value : "blue";
+    var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
 }
 <!--[if IE 8]> <html lang="@UICulture" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="@UICulture" class="ie9 no-js"> <![endif]-->
@@ -16,7 +17,7 @@
     @RenderSection("Head", false)
     <title>@(ViewData["Title"]) - Serene</title>
 </head>
-<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")">
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")@(rtl ? " rtl" : "")">
 
 @if (hideNav)
 {
