@@ -342,6 +342,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.ts">MultiColumnResponsiveDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveGrid.ts">MultiColumnResponsiveGrid.ts</ProjectItem>
             </Folder>
+            <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataDialog.ts">PopulateLinkedDataDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataForm.cs">PopulateLinkedDataForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataGrid.ts">PopulateLinkedDataGrid.ts</ProjectItem>
+            </Folder>
             <Folder Name="ReadOnlyDialog" TargetFolderName="ReadOnlyDialog">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ReadOnlyDialog.ts">ReadOnlyDialog.ts</ProjectItem>
@@ -502,6 +508,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrderBulkActionRequest.ts">BasicSamples.OrderBulkActionRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.ts">BasicSamples.OrdersByShipperRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.ts">BasicSamples.OrdersByShipperResponse.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.PopulateLinkedDataForm.ts">BasicSamples.PopulateLinkedDataForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
