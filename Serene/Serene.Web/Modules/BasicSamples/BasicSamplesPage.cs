@@ -82,6 +82,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.MultiColumnResponsiveDialog.Index);
         }
 
+        public ActionResult PopulateLinkedData()
+        {
+            return View(MyViews.Dialogs.PopulateLinkedData.Index);
+        }
+
         public ActionResult ReadOnlyDialog()
         {
             return View(MyViews.Dialogs.ReadOnlyDialog.Index);

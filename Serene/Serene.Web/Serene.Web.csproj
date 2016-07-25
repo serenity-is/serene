@@ -1147,12 +1147,15 @@
     <Content Include="Modules\BasicSamples\Dialogs\DialogBoxes\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyDialog.ts" />
@@ -1168,6 +1171,9 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.InlineImageInGridColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.PopulateLinkedDataForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRetrieveRequest.ts">
@@ -1652,6 +1658,7 @@
     <Compile Include="Modules\BasicSamples\BasicSamplesHelper.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
+    <Compile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageInGridColumns.cs" />

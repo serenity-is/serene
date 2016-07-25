@@ -889,6 +889,25 @@ declare namespace Serene.BasicSamples {
         ShipperLabels?: string[];
     }
 }
+declare namespace Serene.BasicSamples {
+    class PopulateLinkedDataForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PopulateLinkedDataForm {
+        CustomerID: Northwind.CustomerEditor;
+        CustomerContactName: Serenity.StringEditor;
+        CustomerContactTitle: Serenity.StringEditor;
+        CustomerCity: Serenity.StringEditor;
+        CustomerRegion: Serenity.StringEditor;
+        CustomerCountry: Serenity.StringEditor;
+        CustomerPhone: Serenity.StringEditor;
+        CustomerFax: Serenity.StringEditor;
+        OrderDate: Serenity.DateEditor;
+        RequiredDate: Serenity.DateEditor;
+        EmployeeID: Serenity.LookupEditor;
+        DetailList: Northwind.OrderDetailsEditor;
+    }
+}
 declare namespace Serene.Common.Pages {
     interface UploadResponse extends Serenity.ServiceResponse {
         TemporaryFile?: string;
@@ -2442,6 +2461,33 @@ declare namespace Serene.BasicSamples {
          * Removing add button from grid using its css class
          */
         protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class PopulateLinkedDataDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PopulateLinkedDataForm;
+        constructor();
+        private setCustomerDetails(details);
+        /**
+         * This dialog will have CSS class "s-PopulateLinkedDataDialog"
+         * We are changing it here to "s-OrderDialog", to make it use default OrderDialog styles
+         * This has no effect other than looks on populate linked data demonstration
+         */
+        protected getCssClass(): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A subclass of OrderGrid that launches PopulateLinkedDataDialog
+     */
+    class PopulateLinkedDataGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof PopulateLinkedDataDialog;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {

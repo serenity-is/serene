@@ -2524,6 +2524,22 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var PopulateLinkedDataForm = (function (_super) {
+            __extends(PopulateLinkedDataForm, _super);
+            function PopulateLinkedDataForm() {
+                _super.apply(this, arguments);
+            }
+            PopulateLinkedDataForm.formKey = 'BasicSamples.PopulateLinkedData';
+            return PopulateLinkedDataForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.PopulateLinkedDataForm = PopulateLinkedDataForm;
+        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['CustomerContactName', function () { return Serenity.StringEditor; }], ['CustomerContactTitle', function () { return Serenity.StringEditor; }], ['CustomerCity', function () { return Serenity.StringEditor; }], ['CustomerRegion', function () { return Serenity.StringEditor; }], ['CustomerCountry', function () { return Serenity.StringEditor; }], ['CustomerPhone', function () { return Serenity.StringEditor; }], ['CustomerFax', function () { return Serenity.StringEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Serene.Northwind.OrderDetailsEditor; }]].forEach(function (x) { return Object.defineProperty(PopulateLinkedDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Common;
     (function (Common) {
         var UserPreferenceRow;
@@ -4532,6 +4548,90 @@ var Serene;
             return ReadOnlyGrid;
         }(Serene.Northwind.SupplierGrid));
         BasicSamples.ReadOnlyGrid = ReadOnlyGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var PopulateLinkedDataDialog = (function (_super) {
+            __extends(PopulateLinkedDataDialog, _super);
+            function PopulateLinkedDataDialog() {
+                var _this = this;
+                _super.call(this);
+                this.form = new BasicSamples.PopulateLinkedDataForm(this.idPrefix);
+                // "changeSelect2" is only fired when user changes the selection
+                // but "change" is fired when dialog sets customer on load too
+                // so we prefer "changeSelect2", as initial customer details 
+                // will get populated by initial load, we don't want extra call
+                this.form.CustomerID.changeSelect2(function (e) {
+                    var customerID = _this.form.CustomerID.value;
+                    if (Q.isEmptyOrNull(customerID)) {
+                        _this.setCustomerDetails({});
+                        return;
+                    }
+                    // in northwind CustomerID is a string like "ALFKI", 
+                    // while its actual integer ID value is 1.
+                    // so we need to convert customer ID to ID.
+                    // you won't have to do this conversion with your tables
+                    var id = Q.first(Serene.Northwind.CustomerRow.getLookup().items, function (x) { return x.CustomerID == customerID; }).ID;
+                    Serene.Northwind.CustomerService.Retrieve({
+                        EntityId: id
+                    }, function (response) {
+                        _this.setCustomerDetails(response.Entity);
+                    });
+                });
+            }
+            PopulateLinkedDataDialog.prototype.getFormKey = function () { return BasicSamples.PopulateLinkedDataForm.formKey; };
+            PopulateLinkedDataDialog.prototype.getIdProperty = function () { return Serene.Northwind.OrderRow.idProperty; };
+            PopulateLinkedDataDialog.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
+            PopulateLinkedDataDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
+            PopulateLinkedDataDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            PopulateLinkedDataDialog.prototype.setCustomerDetails = function (details) {
+                this.form.CustomerCity.value = details.City;
+                this.form.CustomerContactName.value = details.ContactName;
+                this.form.CustomerContactTitle.value = details.ContactTitle;
+                this.form.CustomerCountry.value = details.Country;
+                this.form.CustomerFax.value = details.Fax;
+                this.form.CustomerPhone.value = details.Phone;
+                this.form.CustomerRegion.value = details.Region;
+            };
+            /**
+             * This dialog will have CSS class "s-PopulateLinkedDataDialog"
+             * We are changing it here to "s-OrderDialog", to make it use default OrderDialog styles
+             * This has no effect other than looks on populate linked data demonstration
+             */
+            PopulateLinkedDataDialog.prototype.getCssClass = function () {
+                return _super.prototype.getCssClass.call(this) + " s-OrderDialog s-Northwind-OrderDialog";
+            };
+            PopulateLinkedDataDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PopulateLinkedDataDialog);
+            return PopulateLinkedDataDialog;
+        }(Serenity.EntityDialog));
+        BasicSamples.PopulateLinkedDataDialog = PopulateLinkedDataDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * A subclass of OrderGrid that launches PopulateLinkedDataDialog
+         */
+        var PopulateLinkedDataGrid = (function (_super) {
+            __extends(PopulateLinkedDataGrid, _super);
+            function PopulateLinkedDataGrid(container) {
+                _super.call(this, container);
+            }
+            PopulateLinkedDataGrid.prototype.getDialogType = function () { return BasicSamples.PopulateLinkedDataDialog; };
+            PopulateLinkedDataGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PopulateLinkedDataGrid);
+            return PopulateLinkedDataGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.PopulateLinkedDataGrid = PopulateLinkedDataGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderDialog.ts" />

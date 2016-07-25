@@ -1131,12 +1131,18 @@
     <Content Include="Modules\BasicSamples\Grids\RemovingAddButton\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\DialogBoxes\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
@@ -1152,6 +1158,9 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.InlineImageInGridColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.PopulateLinkedDataForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRetrieveRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1165,6 +1174,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1628,6 +1643,7 @@
     <Compile Include="Modules\BasicSamples\BasicSamplesHelper.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesModels.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesPage.cs" />
+    <Compile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageInGridColumns.cs" />
@@ -1726,6 +1742,8 @@
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangEndpoint.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRepository.cs" />
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
+    <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
+    <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerRepresentativesRow.cs" />
