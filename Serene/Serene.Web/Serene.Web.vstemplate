@@ -412,6 +412,14 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGrid.ts">InlineImageInGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGridColumns.cs">InlineImageInGridColumns.cs</ProjectItem>
             </Folder>
+            <Folder Name="ProductExcelImport" TargetFolderName="ProductExcelImport">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportDialog.ts">ProductExcelImportDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportEndpoint.cs">ProductExcelImportEndpoint.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportForm.cs">ProductExcelImportForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportGrid.ts">ProductExcelImportGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="SampleProductList.xlsx">SampleProductList.xlsx</ProjectItem>
+            </Folder>
             <Folder Name="RemovingAddButton" TargetFolderName="RemovingAddButton">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="RemovingAddButton.ts">RemovingAddButton.ts</ProjectItem>
@@ -437,6 +445,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="DetailListSaveHandler.cs">DetailListSaveHandler.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DialogUtils.ts">DialogUtils.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.ts">ExcelExportHelper.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.cs">ExcelImportRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberHelper.cs">GetNextNumberHelper.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.cs">GetNextNumberRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.ts">GridEditorBase.ts</ProjectItem>
@@ -509,12 +518,16 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.ts">BasicSamples.OrdersByShipperRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.ts">BasicSamples.OrdersByShipperResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.PopulateLinkedDataForm.ts">BasicSamples.PopulateLinkedDataForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportForm.ts">BasicSamples.ProductExcelImportForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportService.ts">BasicSamples.ProductExcelImportService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRow.ts">Common.UserPreferenceRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceService.ts">Common.UserPreferenceService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceUpdateRequest.ts">Common.UserPreferenceUpdateRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.ts">ExcelImportRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportResponse.ts">ExcelImportResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.ts">GetNextNumberRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberResponse.ts">GetNextNumberResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
