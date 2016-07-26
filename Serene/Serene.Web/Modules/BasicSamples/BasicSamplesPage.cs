@@ -102,6 +102,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.ResponsiveDialog.Index);
         }
 
+        public ActionResult ProductExcelImport()
+        {
+            return View(MyViews.Grids.ProductExcelImport.Index);
+        }
+
         public ActionResult SerialAutoNumber()
         {
             return View(MyViews.Dialogs.SerialAutoNumber.Index);

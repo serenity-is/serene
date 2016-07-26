@@ -1148,6 +1148,8 @@
     <Content Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\ProductExcelImport\SampleProductList.xlsx" />
+    <Content Include="Modules\BasicSamples\Grids\ProductExcelImport\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1160,6 +1162,8 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\SerialAutoNumber\SerialAutoNumberGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdGrid.ts" />
@@ -1176,6 +1180,12 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.PopulateLinkedDataForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ProductExcelImportForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ProductExcelImportService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRetrieveRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1189,6 +1199,12 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\ExcelImportRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\ExcelImportResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberRequest.ts">
@@ -1662,6 +1678,9 @@
     <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\InlineImageInGrid\InlineImageInGridColumns.cs" />
+    <Compile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportForm.cs" />
+    <Compile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportEndpoint.cs" />
+    <Compile Include="Modules\Common\Helpers\ExcelImportRequest.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />

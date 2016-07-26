@@ -190,6 +190,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/InlineImageInGrid/Index.cshtml";
                 }
 
+                public static class ProductExcelImport
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/ProductExcelImport/Index.cshtml";
+                }
+
                 public static class RemovingAddButton
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/RemovingAddButton/Index.cshtml";

@@ -7122,6 +7122,12 @@ section.content > .s-DataGrid {
 .s-BasicSamples-ReadOnlyDialog .caption {
   width: 150px;
 }
+.s-BasicSamples-ProductExcelImportDialog {
+  overflow: hidden;
+}
+.s-BasicSamples-ProductExcelImportDialog .size {
+  height: 350px;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;
