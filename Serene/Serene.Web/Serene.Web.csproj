@@ -78,20 +78,25 @@
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core">
-      <HintPath>..\..\packages\Serenity.Core.2.3.7\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.4.0\lib\net45\Serenity.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data">
-      <HintPath>..\..\packages\Serenity.Data.2.3.7\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.4.0\lib\net45\Serenity.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.3.7\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.4.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services">
-      <HintPath>..\..\packages\Serenity.Services.2.3.7\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.4.0\lib\net45\Serenity.Services.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web">
-      <HintPath>..\..\packages\Serenity.Web.2.3.7\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.4.0\lib\net45\Serenity.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -1350,6 +1355,7 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
+    <Content Include="Scripts\serenity\Serenity.Externals.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
@@ -1404,6 +1410,7 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
@@ -1428,6 +1435,7 @@
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
+    <Content Include="tools\Node\less\lib\lessc.js" />
     <Content Include="tools\Node\less\lib\less\colors.js" />
     <Content Include="tools\Node\less\lib\less\encoder.js" />
     <Content Include="tools\Node\less\lib\less\env.js" />
@@ -1477,11 +1485,9 @@
     <Content Include="tools\Node\node.exe" />
     <Content Include="tslint.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
-    <Content Include="tools\Node\less\lib\lessc" />
-    <Content Include="tools\Node\less\bin\lessc" />
     <Content Include="tools\Node\lessc.cmd" />
-    <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="Scripts\vegas\vegas.min.js.map" />
+    <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />

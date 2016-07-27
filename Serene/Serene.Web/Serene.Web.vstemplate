@@ -1006,6 +1006,9 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
         </Folder>
+        <Folder Name="serenity" TargetFolderName="serenity">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Externals.js">Serenity.Externals.js</ProjectItem>
+        </Folder>
         <Folder Name="site" TargetFolderName="site">
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
@@ -1127,14 +1130,14 @@
       <installPackage id="MsieJavaScriptEngine" version="1.7.0" />
       <installPackage id="Newtonsoft.Json" version="8.0.3" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.3.7" />
-      <installPackage id="Serenity.Core" version="2.3.7" />
-      <installPackage id="Serenity.Data" version="2.3.7" />
-      <installPackage id="Serenity.Data.Entity" version="2.3.7" />
-      <installPackage id="Serenity.Services" version="2.3.7" />
-      <installPackage id="Serenity.Web" version="2.3.7" />
+      <installPackage id="Serenity.CodeGenerator" version="2.4.0" />
+      <installPackage id="Serenity.Core" version="2.4.0" />
+      <installPackage id="Serenity.Data" version="2.4.0" />
+      <installPackage id="Serenity.Data.Entity" version="2.4.0" />
+      <installPackage id="Serenity.Services" version="2.4.0" />
+      <installPackage id="Serenity.Web" version="2.4.0" />
       <installPackage id="Serenity.Web.Assets" version="2.3.0" />
-      <installPackage id="Serenity.Web.Tooling" version="2.3.1" />
+      <installPackage id="Serenity.Web.Tooling" version="2.4.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.7" />
       <installPackage id="toastr" version="2.1.1" />
       <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />

@@ -889,6 +889,42 @@ declare namespace Serene.BasicSamples {
         ShipperLabels?: string[];
     }
 }
+declare namespace Serene.BasicSamples {
+    class PopulateLinkedDataForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PopulateLinkedDataForm {
+        CustomerID: Northwind.CustomerEditor;
+        CustomerContactName: Serenity.StringEditor;
+        CustomerContactTitle: Serenity.StringEditor;
+        CustomerCity: Serenity.StringEditor;
+        CustomerRegion: Serenity.StringEditor;
+        CustomerCountry: Serenity.StringEditor;
+        CustomerPhone: Serenity.StringEditor;
+        CustomerFax: Serenity.StringEditor;
+        OrderDate: Serenity.DateEditor;
+        RequiredDate: Serenity.DateEditor;
+        EmployeeID: Serenity.LookupEditor;
+        DetailList: Northwind.OrderDetailsEditor;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ProductExcelImportForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ProductExcelImportForm {
+        FileName: Serenity.ImageUploadEditor;
+    }
+}
+declare namespace Serene.BasicSamples {
+    namespace ProductExcelImportService {
+        const baseUrl: string;
+        function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const ExcelImport: string;
+        }
+    }
+}
 declare namespace Serene.Common.Pages {
     interface UploadResponse extends Serenity.ServiceResponse {
         TemporaryFile?: string;
@@ -946,6 +982,30 @@ declare namespace Serene.Common {
         PreferenceType?: string;
         Name?: string;
         Value?: string;
+    }
+}
+declare namespace Serene {
+    interface ExcelImportRequest extends Serenity.ServiceRequest {
+        FileName?: string;
+    }
+}
+declare namespace Serene {
+    interface ExcelImportResponse extends Serenity.ServiceResponse {
+        Inserted?: number;
+        Updated?: number;
+        ErrorList?: string[];
+    }
+}
+declare namespace Serene {
+    interface GetNextNumberRequest extends Serenity.ServiceRequest {
+        Prefix?: string;
+        Length?: number;
+    }
+}
+declare namespace Serene {
+    interface GetNextNumberResponse extends Serenity.ServiceResponse {
+        Number?: number;
+        Serial?: string;
     }
 }
 declare namespace Serene.Membership {
@@ -1258,12 +1318,14 @@ declare namespace Serene.Northwind {
         function Create(request: Serenity.SaveRequest<CustomerRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Update(request: Serenity.SaveRequest<CustomerRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function GetNextNumber(request: GetNextNumberRequest, onSuccess?: (response: GetNextNumberResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
+            const GetNextNumber: string;
             const Retrieve: string;
             const List: string;
         }
@@ -2137,6 +2199,23 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class ProductExcelImportDialog extends Serenity.PropertyDialog<any, any> {
+        private form;
+        constructor();
+        protected getDialogTitle(): string;
+        protected getDialogButtons(): Serenity.DialogButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ProductExcelImportGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of buttons to be created.
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
         format(ctx: Slick.FormatterContext): string;
         initializeColumn(column: Slick.Column): void;
@@ -2361,6 +2440,22 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class SerialAutoNumberDialog extends Northwind.CustomerDialog {
+        constructor();
+        protected afterLoadEntity(): void;
+        private getNextNumber();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
+     */
+    class SerialAutoNumberGrid extends Northwind.CustomerGrid {
+        protected getDialogType(): typeof SerialAutoNumberDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
     /**
      * Adding Responsive attribute makes this dialog use full screen in mobile devices.
      */
@@ -2412,6 +2507,33 @@ declare namespace Serene.BasicSamples {
          * Removing add button from grid using its css class
          */
         protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class PopulateLinkedDataDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PopulateLinkedDataForm;
+        constructor();
+        private setCustomerDetails(details);
+        /**
+         * This dialog will have CSS class "s-PopulateLinkedDataDialog"
+         * We are changing it here to "s-OrderDialog", to make it use default OrderDialog styles
+         * This has no effect other than looks on populate linked data demonstration
+         */
+        protected getCssClass(): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A subclass of OrderGrid that launches PopulateLinkedDataDialog
+     */
+    class PopulateLinkedDataGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof PopulateLinkedDataDialog;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {
