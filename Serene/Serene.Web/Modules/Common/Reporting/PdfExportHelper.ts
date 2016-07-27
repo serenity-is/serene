@@ -11,7 +11,8 @@
         fileName?: string;
         pageNumbers?: boolean;
         columnTitles?: { [key: string]: string };
-        tableOptions?: jsPDF.AutoTableOptions
+        tableOptions?: jsPDF.AutoTableOptions;
+        output?: string;
     }
 
     export namespace PdfExportHelper {
@@ -165,7 +166,15 @@
                     fileName = Q.format(fileName, g.getTitle() || "report",
                         Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
 
-                    doc.save(fileName);
+                    if (options.output === undefined || options.output == "file")
+                        doc.save(fileName);
+
+                    if (options.output == "window-print" || options.output == "newwindow-print")
+                        doc.autoPrint();
+                    if (options.output == "newwindow" || options.output == "newwindow-print")
+                        doc.output('dataurlnewwindow');
+                    if (options.output == "window" || options.output == "window-print")
+                        doc.output('dataurl');
                 }
             }); 
         }
