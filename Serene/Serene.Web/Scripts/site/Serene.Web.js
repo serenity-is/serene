@@ -2016,9 +2016,20 @@ var Serene;
                         if (typeof doc.putTotalPages === 'function') {
                             doc.putTotalPages(totalPagesExp);
                         }
-                        var fileName = options.reportTitle || "{0}_{1}.pdf";
-                        fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
-                        doc.save(fileName);
+                        if (!options.output || options.output == "file") {
+                            var fileName = options.reportTitle || "{0}_{1}.pdf";
+                            fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
+                            doc.save(fileName);
+                            return;
+                        }
+                        if (options.autoPrint)
+                            doc.autoPrint();
+                        var output = options.output;
+                        if (output == 'newwindow' || '_blank')
+                            output = 'dataurlnewwindow';
+                        else if (output == 'window')
+                            output = 'datauri';
+                        doc.output(output);
                     }
                 });
             }

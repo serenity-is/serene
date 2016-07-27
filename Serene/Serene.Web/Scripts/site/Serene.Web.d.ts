@@ -458,6 +458,8 @@ declare namespace Serene.Common {
             [key: string]: string;
         };
         tableOptions?: jsPDF.AutoTableOptions;
+        output?: string;
+        autoPrint?: boolean;
     }
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;

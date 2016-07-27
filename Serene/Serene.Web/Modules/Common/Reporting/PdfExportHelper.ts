@@ -13,6 +13,7 @@
         columnTitles?: { [key: string]: string };
         tableOptions?: jsPDF.AutoTableOptions;
         output?: string;
+        autoPrint?: boolean;
     }
 
     export namespace PdfExportHelper {
@@ -162,19 +163,25 @@
                         doc.putTotalPages(totalPagesExp);
                     }
 
-                    var fileName = options.reportTitle || "{0}_{1}.pdf";
-                    fileName = Q.format(fileName, g.getTitle() || "report",
-                        Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
 
-                    if (options.output === undefined || options.output == "file")
+                    if (!options.output || options.output == "file") {
+                        var fileName = options.reportTitle || "{0}_{1}.pdf";
+                        fileName = Q.format(fileName, g.getTitle() || "report",
+                            Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
                         doc.save(fileName);
+                        return;
+                    }
 
-                    if (options.output == "window-print" || options.output == "newwindow-print")
+                    if (options.autoPrint)
                         doc.autoPrint();
-                    if (options.output == "newwindow" || options.output == "newwindow-print")
-                        doc.output('dataurlnewwindow');
-                    if (options.output == "window" || options.output == "window-print")
-                        doc.output('dataurl');
+
+                    var output = options.output;
+                    if (output == 'newwindow' || '_blank')
+                        output = 'dataurlnewwindow';
+                    else if (output == 'window')
+                        output = 'datauri';
+
+                    doc.output(output);
                 }
             }); 
         }
