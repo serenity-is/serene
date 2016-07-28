@@ -4649,6 +4649,28 @@ var Serene;
                 // 
                 // this.deleteButton.toggleClass('disabled', true);
             };
+            /**
+             * This method is called when dialog title needs to be updated.
+             * Base class returns something like 'Edit xyz' for edit mode,
+             * and 'New xyz' for new record mode.
+             *
+             * But our dialog is readonly, so we should change it to 'View xyz'
+             */
+            ReadOnlyDialog.prototype.getEntityTitle = function () {
+                if (!this.isEditMode()) {
+                    // we shouldn't hit here, but anyway for demo...
+                    return "How did you manage to open this dialog in new record mode?";
+                }
+                else {
+                    // entitySingular is type of record this dialog edits. something like 'Supplier'.
+                    // you could hardcode it, but this is for demonstration
+                    var entityType = _super.prototype.getEntitySingular.call(this);
+                    // get name field value of record this dialog edits
+                    var name_1 = this.getEntityNameFieldValue() || "";
+                    // you could use Q.format with a local text, but again demo...
+                    return 'View ' + entityType + " (" + name_1 + ")";
+                }
+            };
             ReadOnlyDialog = __decorate([
                 Serenity.Decorators.registerClass()
             ], ReadOnlyDialog);

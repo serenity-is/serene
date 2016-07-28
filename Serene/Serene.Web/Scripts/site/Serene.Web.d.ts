@@ -2496,6 +2496,14 @@ declare namespace Serene.BasicSamples {
          * This is also called in new item mode.
          */
         protected updateInterface(): void;
+        /**
+         * This method is called when dialog title needs to be updated.
+         * Base class returns something like 'Edit xyz' for edit mode,
+         * and 'New xyz' for new record mode.
+         *
+         * But our dialog is readonly, so we should change it to 'View xyz'
+         */
+        protected getEntityTitle(): string;
     }
 }
 declare namespace Serene.BasicSamples {
