@@ -92,5 +92,18 @@ namespace Serene.BasicSamples {
             }
         }
 
+        /**
+         * This method is actually the one that calls getEntityTitle()
+         * and updates the dialog title. We could do it here too...
+         */
+        protected updateTitle(): void {
+            super.updateTitle();
+
+            // remove super.updateTitle() call above and uncomment 
+            // below line if you'd like to use this version
+            // 
+            // this.dialogTitle = 'View Supplier (' + this.getEntityNameFieldValue() + ')';
+        }
+
     }
 }
