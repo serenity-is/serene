@@ -630,6 +630,7 @@
     <Content Include="Content\site\images\tick-empty.png" />
     <Content Include="Content\site\images\tick-green-partial.png" />
     <Content Include="Content\site\images\tick-red-partial.png" />
+    <Content Include="Content\site\site.rtl.css" />
     <Content Include="Content\site\site.htmlcontent.css" />
     <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
@@ -1488,6 +1489,9 @@
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="Scripts\vegas\vegas.min.js.map" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="Scripts\site\texts\site.texts.fa.json" />
+    <Content Include="Scripts\site\texts\northwind\northwind.fa.json" />
+    <Content Include="Scripts\site\texts\samples\samples.fa.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
