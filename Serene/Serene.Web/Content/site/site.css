@@ -7207,6 +7207,9 @@ section.content > .s-DataGrid {
 .s-LoginPanel a {
   color: aqua;
 }
+.s-LoginPanel .flex-layout .s-PropertyGrid {
+  display: block;
+}
 @media (max-width: 550px), (max-height: 500px) {
   .s-LoginPanel {
     padding: 16px 4px 16px 4px;
