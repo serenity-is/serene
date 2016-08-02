@@ -41,6 +41,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Product Excel Import", typeof(Basic.BasicSamplesController), action: "ProductExcelImport")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Removing Add Button", typeof(Basic.BasicSamplesController), action: "RemovingAddButton")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/View Without ID", typeof(Basic.BasicSamplesController), action: "ViewWithoutID")]
+[assembly: NavigationLink(7900, "Basic Samples/Grids/Visual Studio Gallery Q & A", typeof(Basic.BasicSamplesController), action: "VSGalleryQA")]
 
 [assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
 

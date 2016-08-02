@@ -204,6 +204,11 @@ namespace MVC
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/ViewWithoutID/Index.cshtml";
                 }
+
+                public static class VSGalleryQA
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/VSGalleryQA/Index.cshtml";
+                }
             }
 
         }

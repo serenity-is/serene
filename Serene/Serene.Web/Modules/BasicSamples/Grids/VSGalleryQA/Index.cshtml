@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Visual Studio Gallery Questions & Answers";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>We have about 500+ threads in Visual Studio Gallery for Serene extension, but unfortunately that site lacks a proper search facility.</p>
+    <p>Here is a searchable version of those threads as requested by some of our users. </p>
+    <p>This is also a sample for using a data source other than SQL with Serenity. As VSGallery has no service to load issues, issues are parsed directly from the web page.</p>
+    <p>NOTE: Please prefer GitHub for issues!</p>
+       
+    <p style="text-align: right;">
+        <b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("VSGalleryQAColumns.cs")
+        @Html.AppSourceFile("VSGalleryQAEndpoint.cs")
+        @Html.AppSourceFile("VSGalleryQAGrid.ts")
+        @Html.AppSourceFile("VSGalleryQAParser.cs")
+        @Html.AppSourceFile("VSGalleryQAPost.cs")
+        @Html.AppSourceFile("VSGalleryQAThread.cs")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.VSGalleryQAGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

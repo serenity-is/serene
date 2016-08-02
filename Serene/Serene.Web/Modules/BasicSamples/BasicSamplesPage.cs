@@ -116,5 +116,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(MyViews.Grids.ViewWithoutID.Index);
         }
+
+        public ActionResult VSGalleryQA()
+        {
+            return View(MyViews.Grids.VSGalleryQA.Index);
+        }
     }
 }

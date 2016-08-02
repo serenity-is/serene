@@ -927,6 +927,38 @@ declare namespace Serene.BasicSamples {
         }
     }
 }
+declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
+    interface VSGalleryQAPost {
+        PostId?: number;
+        PostedOn?: string;
+        PostedByName?: string;
+        PostedByUserId?: string;
+        Message?: string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    namespace VSGalleryQAService {
+        const baseUrl: string;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<VSGalleryQAThread>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.BasicSamples {
+    interface VSGalleryQAThread {
+        ThreadId?: number;
+        Title?: string;
+        StartedOn?: string;
+        StartedByName?: string;
+        StartedByUserId?: string;
+        LastPostOn?: string;
+        PostCount?: number;
+        Posts?: VSGalleryQAPost[];
+    }
+}
 declare namespace Serene.Common.Pages {
     interface UploadResponse extends Serenity.ServiceResponse {
         TemporaryFile?: string;
@@ -2173,6 +2205,18 @@ declare namespace Serene.Common {
     }
     namespace ReportHelper {
         function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class VSGalleryQAGrid extends Serenity.EntityGrid<BasicSamples.VSGalleryQAThread, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getButtons(): any[];
+        protected getSlickOptions(): Slick.GridOptions;
+        protected getColumns(): Slick.Column[];
+        protected getInitialTitle(): any;
     }
 }
 declare namespace Serene.BasicSamples {

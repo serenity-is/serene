@@ -7128,6 +7128,38 @@ section.content > .s-DataGrid {
 .s-BasicSamples-ProductExcelImportDialog .size {
   height: 350px;
 }
+.s-BasicSamples-VSGalleryQAGrid .wrap-text {
+  white-space: normal;
+}
+.s-BasicSamples-VSGalleryQAGrid ul.posts {
+  height: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+.s-BasicSamples-VSGalleryQAGrid ul.posts pre {
+  white-space: pre-wrap;
+  font-size: 12px;
+  border: none;
+  background-color: transparent;
+}
+.s-BasicSamples-VSGalleryQAGrid ul.posts li {
+  list-style: none;
+  margin: 6px;
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  background-color: #f8d699;
+}
+.s-BasicSamples-VSGalleryQAGrid ul.posts li.odd {
+  background-color: #d6f899;
+}
+.s-BasicSamples-VSGalleryQAGrid ul.posts h4 {
+  font-size: 13px;
+  text-align: right;
+  font-weight: bold;
+  font-style: italic;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;
