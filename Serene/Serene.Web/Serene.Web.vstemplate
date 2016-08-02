@@ -429,6 +429,15 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
             </Folder>
+            <Folder Name="VSGalleryQA" TargetFolderName="VSGalleryQA">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAColumns.cs">VSGalleryQAColumns.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAEndpoint.cs">VSGalleryQAEndpoint.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAGrid.ts">VSGalleryQAGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAParser.cs">VSGalleryQAParser.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAPost.cs">VSGalleryQAPost.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAThread.cs">VSGalleryQAThread.cs</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
@@ -521,6 +530,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.PopulateLinkedDataForm.ts">BasicSamples.PopulateLinkedDataForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportForm.ts">BasicSamples.ProductExcelImportForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportService.ts">BasicSamples.ProductExcelImportService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAColumns.ts">BasicSamples.VSGalleryQAColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAPost.ts">BasicSamples.VSGalleryQAPost.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAService.ts">BasicSamples.VSGalleryQAService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAThread.ts">BasicSamples.VSGalleryQAThread.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
@@ -1112,6 +1125,7 @@
   <WizardData>
     <packagesToInstall>
       <installPackage id="bootstrap" version="3.3.6" />
+      <installPackage id="CsQuery" version="1.3.4" />
       <installPackage id="EPPlus" version="4.0.5" />
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator" version="1.6.1" />
