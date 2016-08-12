@@ -221,7 +221,7 @@ public class TSTypeLister
 
     private MsieJsEngine SetupJsEngine()
     {
-        var jsEngine = new MsieJsEngine();
+        var jsEngine = new MsieJsEngine(new JsEngineSettings { EngineMode = JsEngineMode.ChakraIeJsRt, UseEcmaScript5Polyfill = true, UseJson2Library = true }); 
         try
         {
             var json2 = File.ReadAllText(projectDir + @"tools\JsEngine\json2.min.js");
