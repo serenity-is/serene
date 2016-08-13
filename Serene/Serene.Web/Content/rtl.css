@@ -1,4 +1,6 @@
-﻿/*font-open-sans.css*/
+﻿ body{direction: rtl;}
+ 
+ /*font-open-sans.css*/
 .fa-ul {
     padding-right: 0 !important;
     margin-right: 2.14285714em;
