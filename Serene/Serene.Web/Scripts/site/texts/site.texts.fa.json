@@ -142,7 +142,7 @@
   "Forms.Membership.ForgotPassword.SubmitButton": "رمز عبور من را بازنشانی کنید.",
   "Forms.Membership.ForgotPassword.Success": "یک نامه حاوی لینک بازیابی رمز عبور به آدرس پست الکترونیک شما ارسال گردید.",
   "Forms.Membership.Login.ForgotPassword": "رمز عبور خود را فراموش کرده ام",
-  "Forms.Membership.Login.FormTitle": "سیستم امور مشتریان پسماند",
+  "Forms.Membership.Login.FormTitle": "پلتفرم آرامش",
   "Forms.Membership.Login.Password_Placeholder": "لطفا رمز عبور خود را وارد کنید.",
   "Forms.Membership.Login.SignInButton": "ورود",
   "Forms.Membership.Login.SignUpButton": "ثبت نام کاربر جدید",
