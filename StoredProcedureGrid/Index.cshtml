@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Stored Procedure Grid";
+}
+
+@section ContentHeader {
+    <h1>@ViewBag.Title<small></small></h1>
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new SereneSample.BasicSamples.StoredProcedureGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>
