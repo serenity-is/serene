@@ -135,6 +135,133 @@
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="variables.less">variables.less</ProjectItem>
         </Folder>
+        <Folder Name="iCheck" TargetFolderName="iCheck">
+          <ProjectItem ReplaceParameters="true" TargetFileName="all.css">all.css</ProjectItem>
+          <Folder Name="flat" TargetFolderName="flat">
+            <ProjectItem ReplaceParameters="true" TargetFileName="_all.css">_all.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="aero.css">aero.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero.png">aero.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero@2x.png">aero@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="blue.css">blue.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue.png">blue.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue@2x.png">blue@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="flat.css">flat.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="flat.png">flat.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="flat@2x.png">flat@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="green.css">green.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green.png">green.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green@2x.png">green@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="grey.css">grey.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey.png">grey.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey@2x.png">grey@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="orange.css">orange.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange.png">orange.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange@2x.png">orange@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pink.css">pink.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink.png">pink.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink@2x.png">pink@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="purple.css">purple.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple.png">purple.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple@2x.png">purple@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="red.css">red.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red.png">red.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red@2x.png">red@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="yellow.css">yellow.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow.png">yellow.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
+          </Folder>
+          <Folder Name="futurico" TargetFolderName="futurico">
+            <ProjectItem ReplaceParameters="true" TargetFileName="futurico.css">futurico.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="futurico.png">futurico.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="futurico@2x.png">futurico@2x.png</ProjectItem>
+          </Folder>
+          <Folder Name="line" TargetFolderName="line">
+            <ProjectItem ReplaceParameters="true" TargetFileName="_all.css">_all.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="aero.css">aero.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="blue.css">blue.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="green.css">green.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="grey.css">grey.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="line.css">line.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="line.png">line.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="line@2x.png">line@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="orange.css">orange.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pink.css">pink.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="purple.css">purple.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="red.css">red.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="yellow.css">yellow.css</ProjectItem>
+          </Folder>
+          <Folder Name="minimal" TargetFolderName="minimal">
+            <ProjectItem ReplaceParameters="true" TargetFileName="_all.css">_all.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="aero.css">aero.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero.png">aero.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero@2x.png">aero@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="blue.css">blue.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue.png">blue.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue@2x.png">blue@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="green.css">green.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green.png">green.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green@2x.png">green@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="grey.css">grey.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey.png">grey.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey@2x.png">grey@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="minimal.css">minimal.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="minimal.png">minimal.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="minimal@2x.png">minimal@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="orange.css">orange.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange.png">orange.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange@2x.png">orange@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pink.css">pink.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink.png">pink.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink@2x.png">pink@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="purple.css">purple.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple.png">purple.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple@2x.png">purple@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="red.css">red.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red.png">red.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red@2x.png">red@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="yellow.css">yellow.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow.png">yellow.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
+          </Folder>
+          <Folder Name="polaris" TargetFolderName="polaris">
+            <ProjectItem ReplaceParameters="true" TargetFileName="polaris.css">polaris.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="polaris.png">polaris.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="polaris@2x.png">polaris@2x.png</ProjectItem>
+          </Folder>
+          <Folder Name="square" TargetFolderName="square">
+            <ProjectItem ReplaceParameters="true" TargetFileName="_all.css">_all.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="aero.css">aero.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero.png">aero.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="aero@2x.png">aero@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="blue.css">blue.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue.png">blue.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="blue@2x.png">blue@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="green.css">green.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green.png">green.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="green@2x.png">green@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="grey.css">grey.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey.png">grey.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="grey@2x.png">grey@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="orange.css">orange.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange.png">orange.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="orange@2x.png">orange@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="pink.css">pink.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink.png">pink.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="pink@2x.png">pink@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="purple.css">purple.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple.png">purple.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="purple@2x.png">purple@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="red.css">red.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red.png">red.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="red@2x.png">red@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="square.css">square.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="square.png">square.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="square@2x.png">square@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="yellow.css">yellow.css</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow.png">yellow.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
+          </Folder>
+        </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="pace.min.css">pace.min.css</ProjectItem>
         <Folder Name="site" TargetFolderName="site">
           <Folder Name="images" TargetFolderName="images">
@@ -1001,6 +1128,9 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinFlat.css">ion.rangeSlider.skinFlat.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinNice.css">ion.rangeSlider.skinNice.css</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
         <Folder Name="jvectormap" TargetFolderName="jvectormap">
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -1130,7 +1260,6 @@
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator" version="1.6.1" />
       <installPackage id="FluentMigrator.Runner" version="1.6.1" />
-      <installPackage id="iCheck" version="1.0.2" />
       <installPackage id="jQuery" version="2.2.3" />
       <installPackage id="jquery.blockUI.TypeScript.DefinitelyTyped" version="0.0.4" />
       <installPackage id="jquery.cookie.TypeScript.DefinitelyTyped" version="0.2.1" />
