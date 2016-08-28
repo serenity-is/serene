@@ -207,7 +207,8 @@
                 return true;
             }
 
-            var sd = Select2.util.stripDiacritics;
+            var x: Select2Options;
+            var sd = Q.stripDiacritics;
             var searching = sd(this.searchText).toLowerCase();
 
             function match(str: string) {

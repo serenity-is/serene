@@ -1,5 +1,5 @@
-﻿/// <reference path="jquery-ui-1.11.4.js" />
-/// <reference path="jquery-2.2.3.js" />
+﻿/// <reference path="jquery-ui-1.12.0.js" />
+/// <reference path="jquery-3.1.0.js" />
 /// <autosync enabled="false" />
 /// <reference path="serenity/Serenity.CoreLib.js" />
 /// <reference path="serenity/Serenity.Externals.js" />

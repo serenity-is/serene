@@ -6085,7 +6085,8 @@ var Serene;
                 if (!this.searchText) {
                     return true;
                 }
-                var sd = Select2.util.stripDiacritics;
+                var x;
+                var sd = Q.stripDiacritics;
                 var searching = sd(this.searchText).toLowerCase();
                 function match(str) {
                     if (!str)
