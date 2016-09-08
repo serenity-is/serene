@@ -112,6 +112,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.SerialAutoNumber.Index);
         }
 
+        public ActionResult StoredProcedureGrid()
+        {
+            return View(MyViews.Grids.StoredProcedureGrid.Index);
+        }
+
         public ActionResult ViewWithoutID()
         {
             return View(MyViews.Grids.ViewWithoutID.Index);

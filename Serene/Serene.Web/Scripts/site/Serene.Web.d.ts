@@ -844,6 +844,43 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
+    interface CustomerGrossSalesListRequest extends Serenity.ListRequest {
+        StartDate?: string;
+        EndDate?: string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    interface CustomerGrossSalesRow {
+        CustomerId?: string;
+        ContactName?: string;
+        ProductId?: number;
+        ProductName?: string;
+        GrossAmount?: number;
+    }
+    namespace CustomerGrossSalesRow {
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const CustomerId: string;
+            const ContactName: string;
+            const ProductId: string;
+            const ProductName: string;
+            const GrossAmount: string;
+        }
+    }
+}
+declare namespace Serene.BasicSamples {
+    namespace CustomerGrossSalesService {
+        const baseUrl: string;
+        function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.BasicSamples {
     class FilteredLookupInDetailForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -2233,6 +2270,26 @@ declare namespace Serene.BasicSamples {
          */
         protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
         protected getButtons(): any[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CustomerGrossSalesGrid extends Serenity.EntityGrid<CustomerGrossSalesRow, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private nextId;
+        constructor(container: JQuery);
+        /**
+         * This method is called to preprocess data returned from the list service
+         */
+        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
+        protected getButtons(): any[];
+        protected createSlickGrid(): Slick.Grid;
+        protected getSlickOptions(): Slick.GridOptions;
+        protected usePager(): boolean;
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
     }
 }
 declare namespace Serene.BasicSamples {

@@ -2505,6 +2505,38 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
+        var CustomerGrossSalesRow;
+        (function (CustomerGrossSalesRow) {
+            CustomerGrossSalesRow.nameProperty = 'ContactName';
+            CustomerGrossSalesRow.localTextPrefix = 'BasicSamples.GrossSales';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
+            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerGrossSalesRow = BasicSamples.CustomerGrossSalesRow || (BasicSamples.CustomerGrossSalesRow = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CustomerGrossSalesService;
+        (function (CustomerGrossSalesService) {
+            CustomerGrossSalesService.baseUrl = 'BasicSamples/CustomerGrossSales';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CustomerGrossSalesService.Methods || (CustomerGrossSalesService.Methods = {}));
+            ['List'].forEach(function (x) {
+                CustomerGrossSalesService[x] = function (r, s, o) { return Q.serviceRequest(CustomerGrossSalesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CustomerGrossSalesService.baseUrl + '/' + x;
+            });
+        })(CustomerGrossSalesService = BasicSamples.CustomerGrossSalesService || (BasicSamples.CustomerGrossSalesService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
         var FilteredLookupInDetailForm = (function (_super) {
             __extends(FilteredLookupInDetailForm, _super);
             function FilteredLookupInDetailForm() {
@@ -3703,6 +3735,105 @@ var Serene;
             return ViewWithoutIDGrid;
         }(Serenity.EntityGrid));
         BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CustomerGrossSalesGrid = (function (_super) {
+            __extends(CustomerGrossSalesGrid, _super);
+            function CustomerGrossSalesGrid(container) {
+                _super.call(this, container);
+                this.nextId = 1;
+            }
+            CustomerGrossSalesGrid.prototype.getColumnsKey = function () { return "BasicSamples.CustomerGrossSales"; };
+            CustomerGrossSalesGrid.prototype.getIdProperty = function () { return "__id"; };
+            CustomerGrossSalesGrid.prototype.getNameProperty = function () { return BasicSamples.CustomerGrossSalesRow.nameProperty; };
+            CustomerGrossSalesGrid.prototype.getLocalTextPrefix = function () { return BasicSamples.CustomerGrossSalesRow.localTextPrefix; };
+            CustomerGrossSalesGrid.prototype.getService = function () { return BasicSamples.CustomerGrossSalesService.baseUrl; };
+            /**
+             * This method is called to preprocess data returned from the list service
+             */
+            CustomerGrossSalesGrid.prototype.onViewProcessData = function (response) {
+                response = _super.prototype.onViewProcessData.call(this, response);
+                // there is no __id property in CustomerGrossSalesRow but 
+                // this is javascript and we can set any property of an object
+                for (var _i = 0, _a = response.Entities; _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    x.__id = this.nextId++;
+                }
+                return response;
+            };
+            CustomerGrossSalesGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = [];
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    service: BasicSamples.CustomerGrossSalesService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                return buttons;
+            };
+            CustomerGrossSalesGrid.prototype.createSlickGrid = function () {
+                var grid = _super.prototype.createSlickGrid.call(this);
+                // need to register this plugin for grouping or you'll have errors
+                grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
+                this.view.setSummaryOptions({
+                    aggregators: [
+                        new Slick.Aggregators.Sum('GrossAmount')
+                    ]
+                });
+                this.view.setGrouping([{
+                        getter: 'ContactName'
+                    }]);
+                return grid;
+            };
+            CustomerGrossSalesGrid.prototype.getSlickOptions = function () {
+                var opt = _super.prototype.getSlickOptions.call(this);
+                opt.showFooterRow = true;
+                return opt;
+            };
+            CustomerGrossSalesGrid.prototype.usePager = function () {
+                return false;
+            };
+            CustomerGrossSalesGrid.prototype.getQuickFilters = function () {
+                var filters = _super.prototype.getQuickFilters.call(this);
+                var endDate = null;
+                filters.push({
+                    field: 'OrderDate',
+                    type: Serenity.DateEditor,
+                    title: 'Order Date',
+                    element: function (el) {
+                        endDate = Serenity.Widget.create({
+                            type: Serenity.DateEditor,
+                            element: function (el2) { return el2.insertAfter(el); }
+                        });
+                        endDate.element.change(function (x) { return el.triggerHandler("change"); });
+                        $("<span/>").addClass("range-separator").text("-").insertAfter(el);
+                    },
+                    handler: function (args) {
+                        var start = args.widget.value;
+                        args.active =
+                            !Q.isEmptyOrNull(start) ||
+                                !Q.isEmptyOrNull(endDate.value);
+                        args.request.StartDate = start;
+                        args.request.EndDate = endDate.value;
+                    }
+                });
+                return filters;
+            };
+            CustomerGrossSalesGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerGrossSalesGrid);
+            return CustomerGrossSalesGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.CustomerGrossSalesGrid = CustomerGrossSalesGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Supplier/SupplierGrid.ts" />
