@@ -552,6 +552,15 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="RemovingAddButton.ts">RemovingAddButton.ts</ProjectItem>
             </Folder>
+            <Folder Name="StoredProcedureGrid" TargetFolderName="StoredProcedureGrid">
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesColumns.cs">CustomerGrossSalesColumns.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesEndpoint.cs">CustomerGrossSalesEndpoint.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesGrid.ts">CustomerGrossSalesGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesListRequest.cs">CustomerGrossSalesListRequest.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRepository.cs">CustomerGrossSalesRepository.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRow.cs">CustomerGrossSalesRow.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="ViewWithoutID" TargetFolderName="ViewWithoutID">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
@@ -648,6 +657,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.ts">Administration.UserRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.ts">Administration.UserService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.ts">BasicSamples.BasicSamplesService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesColumns.ts">BasicSamples.CustomerGrossSalesColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesListRequest.ts">BasicSamples.CustomerGrossSalesListRequest.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesRow.ts">BasicSamples.CustomerGrossSalesRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesService.ts">BasicSamples.CustomerGrossSalesService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.ts">BasicSamples.FilteredLookupInDetailForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageInGridColumns.ts">BasicSamples.InlineImageInGridColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.ts">BasicSamples.LookupFilterByMultipleForm.ts</ProjectItem>
@@ -754,7 +767,9 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151226_184500_Notes.cs">NorthwindDB_20151226_184500_Notes.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160121_141200_CustomerRepresentatives.cs">NorthwindDB_20160121_141200_CustomerRepresentatives.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160216_154900_DataLocalization.cs">NorthwindDB_20160216_154900_DataLocalization.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160908_180100_CustomerGrossSales.cs">NorthwindDB_20160908_180100_CustomerGrossSales.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Oracle.sql">NorthwindDBScript_Oracle.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
