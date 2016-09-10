@@ -1,7 +1,9 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.ComponentModel;
 using System;
 using System.DirectoryServices.AccountManagement;
+using System.Web;
+using System.Security.Principal;
 
 namespace Serene.Administration
 {
@@ -9,22 +11,44 @@ namespace Serene.Administration
     {
         public DirectoryEntry Validate(string username, string password)
         {
-            var config = Config.Get<Settings>();
-            using (var context = new PrincipalContext(ContextType.Domain, config.Domain))
+            var config = Config.Get<Settings>();            
+            
+            // For freelancer like me: Allow to work with windows authentication
+            // even if your machine isn't part of a domain or active directory
+            // (ActiveDirectory appSetting in web.config must be set to name of machine)
+            using (var context = (config.Domain == Environment.MachineName
+                ? new PrincipalContext(ContextType.Machine, config.Domain)
+                : new PrincipalContext(ContextType.Domain, config.Domain)))
             {
-                bool isValid;
-                try
+                // If windows authentication is used, HttpContext.Current.User will be
+                // of type WindowsPrincipal
+                HttpContext httpContext = HttpContext.Current;
+                WindowsPrincipal windowsUser = httpContext.User as WindowsPrincipal;
+                
+                // With windows authentication enabled, we can assume that the user is already 
+                // authenticated and we don't have to check this again here
+                // (Won't work anyway, as pw is a dummy pw)
+                if (windowsUser == null 
+                    || windowsUser.Identity == null 
+                    || windowsUser.Identity.Name != username 
+                    || !windowsUser.Identity.IsAuthenticated)
                 {
-                    isValid = context.ValidateCredentials(username, password, ContextOptions.Negotiate);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("Error authenticating user", ex, this.GetType());
-                    return null;
-                }
+                    bool isValid;
+                    try
+                    {
+                        // If you get a 'File not found' Exception here, check this:
+                        // https://connect.microsoft.com/IE/feedback/details/1904887/windows-10-insider-preview-build-10565                    
+                        isValid = context.ValidateCredentials(username, password, ContextOptions.Negotiate);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error("Error authenticating user", ex, this.GetType());
+                        return null;
+                    }
 
-                if (!isValid)
-                    return null;
+                    if (!isValid)
+                        return null;
+                }
 
                 var identity = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, username);
                 return new DirectoryEntry
