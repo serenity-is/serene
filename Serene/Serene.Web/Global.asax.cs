@@ -50,6 +50,17 @@ namespace Serene
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
+            // If windows authentication is used, HttpContext.Current.User will be
+            // of type WindowsPrincipal
+            var windowsUser = Context.User as System.Security.Principal.WindowsPrincipal;
+
+            if (windowsUser != null && windowsUser.Identity != null && windowsUser.Identity.IsAuthenticated)
+            {                
+                string userName = windowsUser.Identity.Name;
+                // the pw passed to Authenticate will not be used with windows authentication enabled
+                // so just simply pass a dummy pw
+                Serenity.WebSecurityHelper.Authenticate(ref userName, "DummyPW_NotUsed", true);
+            }
         }
 
         protected void Application_Error(object sender, EventArgs e)
