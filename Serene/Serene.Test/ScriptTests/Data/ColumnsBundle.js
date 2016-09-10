@@ -42,6 +42,14 @@ Q.ScriptData.set('Columns.BasicSamples.InlineImageInGrid', [{"name":"ProductID",
 
 
 
+Q.ScriptData.set('Columns.BasicSamples.CustomerGrossSales', [{"name":"ContactName","title":"Db.BasicSamples.GrossSales.ContactName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":150,"sortOrder":1},{"name":"ProductName","title":"Db.BasicSamples.GrossSales.ProductName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":250},{"name":"GrossAmount","title":"Db.BasicSamples.GrossSales.GrossAmount","editorType":"Decimal","editorParams":{"minValue":"00000000000000000.00","maxValue":"99999999999999999.99"},"formatterType":"Number","formatterParams":{"displayFormat":"#,##0.00"},"displayFormat":"#,##0.00","alignment":"right","width":150,"sortOrder":-2,"filteringType":"Decimal","filteringParams":{"displayFormat":"#,##0.00"}}]);
+
+
+
+Q.ScriptData.set('Columns.BasicSamples.VSGalleryQA', [{"name":"ThreadId","title":"Thread ID","editorType":"Integer","formatterType":"Number","alignment":"right","width":70,"sortable":false,"filteringType":"Integer"},{"name":"Title","title":"Title","cssClass":"wrap-text","width":200,"sortable":false},{"name":"Posts","title":"Posts","width":800,"sortable":false},{"name":"StartedByName","title":"Started By","editorType":"Date","formatterType":"Date","width":150,"sortable":false,"filteringType":"Date"},{"name":"StartedOn","title":"Started On","editorType":"Date","formatterType":"Date","formatterParams":{"displayFormat":"dd/MM/yyyy HH:mm"},"displayFormat":"dd/MM/yyyy HH:mm","width":120,"sortable":false,"filteringType":"Date","filteringParams":{"displayFormat":"dd/MM/yyyy HH:mm"}},{"name":"LastPostOn","title":"Last Post On","editorType":"Date","formatterType":"Date","formatterParams":{"displayFormat":"dd/MM/yyyy HH:mm"},"displayFormat":"dd/MM/yyyy HH:mm","width":120,"sortable":false,"filteringType":"Date","filteringParams":{"displayFormat":"dd/MM/yyyy HH:mm"}}]);
+
+
+
 Q.ScriptData.set('Columns.Administration.User', [{"name":"UserId","title":"Db.Administration.User.UserId","required":true,"insertable":false,"updatable":false,"alignment":"right","width":55,"editLink":true},{"name":"Username","title":"Db.Administration.User.Username","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150,"editLink":true},{"name":"DisplayName","title":"Db.Administration.User.DisplayName","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150},{"name":"Email","title":"Db.Administration.User.Email","editorParams":{"maxLength":100},"maxLength":100,"width":250},{"name":"Source","title":"Db.Administration.User.Source","editorParams":{"maxLength":4},"maxLength":4,"required":true,"insertable":false,"updatable":false,"defaultValue":"site","width":100}]);
 
 

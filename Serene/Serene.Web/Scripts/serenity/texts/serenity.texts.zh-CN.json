@@ -131,7 +131,7 @@
     "Validation.RequestIsNull": "请求为空!",
     "Validation.Required": "该项必填!",
     "Validation.UnexpectedError": "发生一个未知错误!",
-    "Validation.UniqueConstraint": "另一个有相同‘{0}’值的数据已存在!",
+    "Validation.UniqueConstraint": "另一个有相同‘{0}’值得数据存在!",
     "Validation.Url": "请输入一个有效的网址(e.g. http://www.site.com).",
     "Validation.Username": "不是一个有效的用户名。",
     "Validation.UsernameExists": "用户名已存在，请重新输入。",
