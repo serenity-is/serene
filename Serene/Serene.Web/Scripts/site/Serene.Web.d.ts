@@ -436,6 +436,9 @@ declare namespace Serene.Membership {
 }
 declare namespace Serene.ScriptInitialization {
 }
+declare namespace Select2.util {
+    function stripDiacritics(text: string): string;
+}
 declare namespace Serene.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
         getItem(key: string): string;

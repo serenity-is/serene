@@ -1860,6 +1860,16 @@ var Serene;
         Q.Config.rootNamespaces.push('Serene');
     })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
 })(Serene || (Serene = {}));
+var Select2;
+(function (Select2) {
+    var util;
+    (function (util) {
+        function stripDiacritics(text) {
+            return Q.stripDiacritics(text);
+        }
+        util.stripDiacritics = stripDiacritics;
+    })(util = Select2.util || (Select2.util = {}));
+})(Select2 || (Select2 = {}));
 var Serene;
 (function (Serene) {
     var Common;
