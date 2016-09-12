@@ -493,6 +493,12 @@
             </Folder>
           </Folder>
           <Folder Name="Editors" TargetFolderName="Editors">
+            <Folder Name="ChangingLookupText" TargetFolderName="ChangingLookupText">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextDialog.ts">ChangingLookupTextDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextEditor.ts">ChangingLookupTextEditor.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextForm.cs">ChangingLookupTextForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="FilteredLookupInDetailDialog" TargetFolderName="FilteredLookupInDetailDialog">
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailEditor.ts">FilteredLookupDetailEditor.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.ts">FilteredLookupInDetailDialog.ts</ProjectItem>
@@ -605,6 +611,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ClientTypes.tt">ClientTypes.tt</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionCheckEditorAttribute.cs">Administration.PermissionCheckEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleCheckEditorAttribute.cs">Administration.RoleCheckEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextEditorAttribute.cs">BasicSamples.ChangingLookupTextEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupDetailEditorAttribute.cs">BasicSamples.FilteredLookupDetailEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageFormatterAttribute.cs">BasicSamples.InlineImageFormatterAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
@@ -657,6 +664,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.ts">Administration.UserRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.ts">Administration.UserService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.ts">BasicSamples.BasicSamplesService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextForm.ts">BasicSamples.ChangingLookupTextForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesColumns.ts">BasicSamples.CustomerGrossSalesColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesListRequest.ts">BasicSamples.CustomerGrossSalesListRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesRow.ts">BasicSamples.CustomerGrossSalesRow.ts</ProjectItem>
