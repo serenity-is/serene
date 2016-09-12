@@ -141,6 +141,11 @@ namespace MVC
 
             public static class Editors
             {
+                public static class ChangingLookupText
+                {
+                    public const string Index = "~/Modules/BasicSamples/Editors/ChangingLookupText/Index.cshtml";
+                }
+
                 public static class FilteredLookupInDetailDialog
                 {
                     public const string Index = "~/Modules/BasicSamples/Editors/FilteredLookupInDetailDialog/Index.cshtml";

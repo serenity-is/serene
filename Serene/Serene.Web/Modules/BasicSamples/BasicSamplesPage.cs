@@ -17,6 +17,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Grids.CancellableBulkAction.Index);
         }
 
+        public ActionResult ChangingLookupText()
+        {
+            return View(MyViews.Editors.ChangingLookupText.Index);
+        }
+
         public ActionResult CloneableEntityDialog()
         {
             return View(MyViews.Dialogs.CloneableEntityDialog.Index);

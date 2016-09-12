@@ -77,7 +77,7 @@ namespace Serene.Northwind.Entities
             set { Fields.UnitPrice[this] = value; }
         }
 
-        [DisplayName("Units In Stock"), NotNull, DefaultValue(0)]
+        [DisplayName("Units In Stock"), NotNull, DefaultValue(0), LookupInclude]
         public Int16? UnitsInStock
         {
             get { return Fields.UnitsInStock[this]; }
@@ -98,7 +98,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ReorderLevel[this] = value; }
         }
 
-        [DisplayName("Supplier"), Expression("sup.[CompanyName]")]
+        [DisplayName("Supplier"), Expression("sup.[CompanyName]"), LookupInclude]
         public String SupplierCompanyName
         {
             get { return Fields.SupplierCompanyName[this]; }
