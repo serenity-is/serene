@@ -1,4 +1,6 @@
-﻿namespace Serene.BasicSamples {
+﻿/// <reference path="../../../Common/Helpers/GridEditorDialog.ts" />
+
+namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerClass()
     export class ChangingLookupTextDialog extends Common.GridEditorDialog<Northwind.OrderDetailRow> {
