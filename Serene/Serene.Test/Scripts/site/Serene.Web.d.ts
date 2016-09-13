@@ -844,6 +844,17 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class ChangingLookupTextForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ChangingLookupTextForm {
+        ProductID: ChangingLookupTextEditor;
+        UnitPrice: Serenity.DecimalEditor;
+        Quantity: Serenity.IntegerEditor;
+        Discount: Serenity.DecimalEditor;
+    }
+}
+declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     interface CustomerGrossSalesListRequest extends Serenity.ListRequest {
@@ -2540,6 +2551,25 @@ declare namespace Serene.BasicSamples {
          */
         protected beforeLoadEntity(entity: any): void;
         categoryID: number;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ChangingLookupTextDialog extends Common.GridEditorDialog<Northwind.OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: ChangingLookupTextForm;
+        constructor();
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our custom product editor type
+     */
+    class ChangingLookupTextEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.ProductRow> {
+        constructor(container: JQuery, options: Serenity.LookupEditorOptions);
+        protected getLookupKey(): string;
+        protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>): string;
     }
 }
 declare namespace Serene.BasicSamples {

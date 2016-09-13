@@ -4688,6 +4688,7 @@ var Serene;
         BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Common/Helpers/GridEditorDialog.ts" />
 var Serene;
 (function (Serene) {
     var BasicSamples;
