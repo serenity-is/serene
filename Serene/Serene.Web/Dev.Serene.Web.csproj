@@ -771,8 +771,10 @@
     <Content Include="Scripts\adminlte\demo.js" />
     <Content Include="Scripts\adminlte\pages\dashboard.js" />
     <Content Include="Scripts\adminlte\pages\dashboard2.js" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.css" />
     <Content Include="Scripts\bootstrap-slider\bootstrap-slider.js" />
-    <Content Include="Scripts\bootstrap-slider\slider.css" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.css" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
     <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
