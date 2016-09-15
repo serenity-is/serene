@@ -1029,8 +1029,10 @@
           </Folder>
         </Folder>
         <Folder Name="bootstrap-slider" TargetFolderName="bootstrap-slider">
+          <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-slider.css">bootstrap-slider.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-slider.js">bootstrap-slider.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="slider.css">slider.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-slider.min.css">bootstrap-slider.min.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-slider.min.js">bootstrap-slider.min.js</ProjectItem>
         </Folder>
         <Folder Name="bootstrap-wysihtml5" TargetFolderName="bootstrap-wysihtml5">
           <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap3-wysihtml5.all.js">bootstrap3-wysihtml5.all.js</ProjectItem>
