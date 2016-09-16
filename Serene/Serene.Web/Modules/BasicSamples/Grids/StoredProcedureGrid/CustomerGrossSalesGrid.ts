@@ -80,32 +80,29 @@
         protected getQuickFilters() {
             var filters = super.getQuickFilters();
 
-            let endDate: Serenity.DateEditor = null;
+            // we create a date-range quick filter, which is a composite
+            // filter with two date time editors
+            var orderDate = this.dateRangeQuickFilter('OrderDate', 'Order Date');
 
-            filters.push({
-                field: 'OrderDate',
-                type: Serenity.DateEditor,
-                title: 'Order Date',
-                element: el => {
-                    endDate = Serenity.Widget.create({
-                        type: Serenity.DateEditor,
-                        element: el2 => el2.insertAfter(el)
-                    });
+            // need to override its handler, as default date-range filter will set Criteria parameter of list request.
+            // we need to set StartDate and EndDate custom parameters of our CustomerGrossSalesListRequest
+            orderDate.handler = args => {
+                
+                // args.widget here is the start date editor. value of a date editor is a ISO date string
+                var start = args.widget.value;
 
-                    endDate.element.change(x => el.triggerHandler("change"));
-                    $("<span/>").addClass("range-separator").text("-").insertAfter(el);
-                },
-                handler: args => {
-                    var start = (args.widget as Serenity.DateEditor).value;
+                // to find end date editor, need to search it by its css class among siblings
+                var end = args.widget.element.nextAll('.s-DateEditor')
+                    .getWidget(Serenity.DateEditor).value;
 
-                    args.active =
-                        !Q.isEmptyOrNull(start) ||
-                        !Q.isEmptyOrNull(endDate.value);
+                (args.request as CustomerGrossSalesListRequest).StartDate = start;
+                (args.request as CustomerGrossSalesListRequest).EndDate = end;
 
-                    (args.request as CustomerGrossSalesListRequest).StartDate = start;
-                    (args.request as CustomerGrossSalesListRequest).EndDate = endDate.value;
-                }
-            });
+                // active option controls when a filter editor looks active, e.g. its label is blueish
+                args.active = !Q.isEmptyOrNull(start) || !Q.isEmptyOrNull(end);
+            };
+
+            filters.push(orderDate);
 
             return filters;
         }
