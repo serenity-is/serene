@@ -13,6 +13,7 @@ namespace Serene.Northwind.Columns
         public String ProductID { get; set; }
         [EditLink, Width(250)]
         public String ProductName { get; set; }
+        [QuickFilter]
         public Boolean Discontinued { get; set; }
         [EditLink(ItemType = "Northwind.Supplier"), QuickFilter]
         public String SupplierCompanyName { get; set; }
