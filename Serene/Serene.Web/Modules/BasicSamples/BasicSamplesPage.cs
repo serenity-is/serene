@@ -47,6 +47,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.DialogBoxes.Index);
         }
 
+        public ActionResult EnablingRowSelection()
+        {
+            return View(MyViews.Grids.EnablingRowSelection.Index);
+        }
+
         public ActionResult FilteredLookupInDetailDialog()
         {
             return View(MyViews.Editors.FilteredLookupInDetailDialog.Index);

@@ -4232,6 +4232,55 @@ var Serene;
         BasicSamples.GridFilteredByCriteria = GridFilteredByCriteria;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var SelectableEntityGrid = (function (_super) {
+        __extends(SelectableEntityGrid, _super);
+        function SelectableEntityGrid() {
+            _super.apply(this, arguments);
+        }
+        SelectableEntityGrid.prototype.getSlickOptions = function () {
+            var opt = _super.prototype.getSlickOptions.call(this);
+            opt.enableTextSelectionOnCells = true;
+            opt.selectedCellCssClass = "slick-row-selected";
+            opt.enableCellNavigation = true;
+            return opt;
+        };
+        SelectableEntityGrid.prototype.createSlickGrid = function () {
+            var grid = _super.prototype.createSlickGrid.call(this);
+            grid.setSelectionModel(new Slick.RowSelectionModel());
+            return grid;
+        };
+        SelectableEntityGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SelectableEntityGrid);
+        return SelectableEntityGrid;
+    }(Serenity.EntityGrid));
+    Serene.SelectableEntityGrid = SelectableEntityGrid;
+})(Serene || (Serene = {}));
+/// <reference path="SelectableEntityGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var RowSelectionGrid = (function (_super) {
+            __extends(RowSelectionGrid, _super);
+            function RowSelectionGrid(container) {
+                _super.call(this, container);
+            }
+            RowSelectionGrid.prototype.getColumnsKey = function () { return "Northwind.Supplier"; };
+            RowSelectionGrid.prototype.getDialogType = function () { return Serene.Northwind.SupplierDialog; };
+            RowSelectionGrid.prototype.getIdProperty = function () { return Serene.Northwind.SupplierRow.idProperty; };
+            RowSelectionGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.SupplierRow.localTextPrefix; };
+            RowSelectionGrid.prototype.getService = function () { return Serene.Northwind.SupplierService.baseUrl; };
+            RowSelectionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RowSelectionGrid);
+            return RowSelectionGrid;
+        }(Serene.SelectableEntityGrid));
+        BasicSamples.RowSelectionGrid = RowSelectionGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {

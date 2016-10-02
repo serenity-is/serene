@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Enabling Row Selection";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        Sometimes you might want to let user highlight a SlickGrid row. For this, you just need to
+        derive your grid from SelectableEntityGrid instead of EntityGrid.
+    </p>
+    <p>
+        You might also apply code in @Html.AppSourceFile("SelectableEntityGrid.ts") manually to 
+        an existing grid class without having to change the base type.
+    </p>
+    <p>
+        This sample also enables the text selection (e.g. copy/paste) in SlickGrid.
+        Thanks to @@marcobisio for the original sample in GitHub.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("RowSelectionGrid.ts"),
+        @Html.AppSourceFile("SelectableEntityGrid.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.RowSelectionGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

@@ -175,6 +175,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/CustomLinksInGrid/Index.cshtml";
                 }
 
+                public static class EnablingRowSelection
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/EnablingRowSelection/Index.cshtml";
+                }
+
                 public static class GridFilteredByCriteria
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/GridFilteredByCriteria/Index.cshtml";

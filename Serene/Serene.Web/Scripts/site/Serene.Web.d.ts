@@ -2390,6 +2390,22 @@ declare namespace Serene.BasicSamples {
         protected onViewSubmit(): boolean;
     }
 }
+declare namespace Serene {
+    class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {
+        protected getSlickOptions(): Slick.GridOptions;
+        protected createSlickGrid(): Slick.Grid;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class RowSelectionGrid extends SelectableEntityGrid<Northwind.SupplierRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
 declare namespace Serene.BasicSamples {
     class CustomLinksInGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
