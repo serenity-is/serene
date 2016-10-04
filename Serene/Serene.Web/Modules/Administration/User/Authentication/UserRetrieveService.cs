@@ -20,6 +20,7 @@
                     UserId = user.UserId.Value,
                     Username = user.Username,
                     Email = user.Email,
+                    UserImage = user.UserImage,
                     DisplayName = user.DisplayName,
                     IsActive = user.IsActive.Value,
                     Source = user.Source,

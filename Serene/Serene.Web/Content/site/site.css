@@ -6906,6 +6906,9 @@ section.content > .s-DataGrid {
 .s-Administration-UserDialog .caption {
   width: 150px;
 }
+.s-Administration-UserDialog .s-PropertyGrid .categories {
+  height: 450px;
+}
 .s-TranslationGrid input.custom-text {
   width: 100%;
   height: 23px;

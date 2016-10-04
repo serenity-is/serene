@@ -63,6 +63,14 @@ namespace Serene.Administration.Entities
             set { Fields.Email[this] = value; }
         }
 
+        [DisplayName("User Image"), Size(100)]
+        [ImageUploadEditor(FilenameFormat = "UserImage/~", CopyToHistory = true)]
+        public String UserImage
+        {
+            get { return Fields.UserImage[this]; }
+            set { Fields.UserImage[this] = value; }
+        }
+
         [DisplayName("Password"), Size(50), SetFieldFlags(FieldFlags.ClientSide)]
         public String Password
         {
@@ -122,6 +130,7 @@ namespace Serene.Administration.Entities
             public StringField PasswordSalt;
             public StringField DisplayName;
             public StringField Email;
+            public StringField UserImage;
             public DateTimeField LastDirectoryUpdate;
             public Int16Field IsActive;
 

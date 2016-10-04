@@ -6,6 +6,10 @@
     var themeCookie = Request.Cookies["ThemePreference"];
     var theme = themeCookie != null && !themeCookie.Value.IsEmptyOrNull() ? themeCookie.Value : "blue";
     var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+    var user = (UserDefinition)Serenity.Authorization.UserDefinition;
+    var userImage = VirtualPathUtility.ToAbsolute(
+        (user == null || string.IsNullOrEmpty(user.UserImage)) ? "~/Content/adminlte/img/avatar04.png" :
+        "~/upload/" + user.UserImage);
 }
 <!--[if IE 8]> <html lang="@UICulture" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="@UICulture" class="ie9 no-js"> <![endif]-->
@@ -47,18 +51,29 @@ else
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i>
-                            @Serenity.Authorization.Username
-                            <i class="fa fa-caret-down"></i>
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="@userImage" class="user-image" alt="User Image">
+                            <span class="hidden-xs">@Serenity.Authorization.Username</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li>
-                                <a href="~/Account/ChangePassword"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="@userImage" class="img-circle" alt="User Image">
+
+                                <p>
+                                    @(user != null ? user.DisplayName : "")
+                                </p>
                             </li>
-                            <li>
-                                <a href="~/Account/Signout"><i class="fa fa-sign-out fa-fw"></i> @LocalText.Get("Navigation.LogoutLink")</a>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="~/Account/ChangePassword" class="btn btn-default btn-flat"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="~/Account/Signout" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> @LocalText.Get("Navigation.LogoutLink")</a>
+                                </div>
                             </li>
                         </ul>
                     </li>

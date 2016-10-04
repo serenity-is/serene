@@ -9,6 +9,7 @@
         public string Id { get { return UserId.ToInvariant(); } }
         public string DisplayName { get; set; }
         public string Email { get; set; }
+        public string UserImage { get; set; }
         public short IsActive { get; set; }
         public int UserId { get; set; }
         public string Username { get; set; }
