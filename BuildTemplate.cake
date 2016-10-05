@@ -2,10 +2,42 @@
 
 var target = Argument("target", "PrepareVSIX");
 var configuration = Argument("configuration", "Release");
+var r = System.IO.Path.GetFullPath(@".\");
+var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
+var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
+
+Func<string, IEnumerable<XElement>> getProjectItemList = (csproj) => {
+	XNamespace ns1 = "http://schemas.microsoft.com/developer/msbuild/2003";
+	var csprojElement = XElement.Parse(System.IO.File.ReadAllText(csproj));
+	return csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
+			x.Name == ns1 + "Content" ||
+			x.Name == ns1 + "Compile" ||
+			x.Name == ns1 + "TypeScriptCompile" ||
+			x.Name == ns1 + "EmbeddedResource" ||
+			x.Name == ns1 + "Folder" ||
+			x.Name == ns1 + "None"));
+};
+
+Func<XElement, string> itemToFile = (x) => {
+	return (x.Attribute("Include").Value ?? "").Replace("%40", "@");
+};
+
+Action ensureDevProjSync = () => {
+	var devFiles = getProjectItemList(devSereneWebProj).Select(itemToFile);
+	var sereneFiles = getProjectItemList(sereneWebProj).Select(itemToFile).ToLookup(x => x);
+	var missingFiles = devFiles.Where(x => !sereneFiles[x].Any());
+	if (missingFiles.Any()) {
+		System.Console.WriteLine("Serene.Web.csproj missing following files in Dev.Serene.Web.csproj:");
+		foreach (var f in missingFiles)
+			System.Console.WriteLine(f);
+		System.Console.ReadLine();
+	}
+};
 
 Task("PrepareVSIX")
   .Does(() => 
 {
+	ensureDevProjSync();
     CleanDirectory("./Template/ProjectTemplates");
     CreateDirectory("./Template/ProjectTemplates");
     CleanDirectory("./Template/bin/Debug");
@@ -13,7 +45,7 @@ Task("PrepareVSIX")
     CleanDirectory("./Template/RootProjectWizard/obj/Debug");
     CleanDirectory("./Template/RootProjectWizard/obj/Release");
     
-    var r = System.IO.Path.GetFullPath(@".\");
+
 
     NuGetRestore(System.IO.Path.Combine(r, @"Serene.sln"), new NuGetRestoreSettings {
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
@@ -40,13 +72,12 @@ Task("PrepareVSIX")
         s.SetConfiguration(configuration);
     });
 
-    var samplePackagesFolder = r + @"packages\";
+    var serenePackagesFolder = r + @"packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
     var templateFolder = r + @"Template\obj\Serene.Template";
     CleanDirectory(templateFolder);
     CreateDirectory(templateFolder);
-    var sampleWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
 
     Func<string, List<Tuple<string, string>>> parsePackages = path => {
         var xml = XElement.Parse(System.IO.File.ReadAllText(path));
@@ -98,7 +129,7 @@ Task("PrepareVSIX")
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
     
         foreach (var package in packages) {
-            var contentFolder = System.IO.Path.Combine(samplePackagesFolder, 
+            var contentFolder = System.IO.Path.Combine(serenePackagesFolder, 
                package.Item1 + "." + package.Item2 + @"\content");
             if (System.IO.Directory.Exists(contentFolder)) {
                 foreach (var f in System.IO.Directory.GetFiles(contentFolder, 
@@ -109,20 +140,9 @@ Task("PrepareVSIX")
         }
     
         var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
-        
-        XNamespace ns1 = "http://schemas.microsoft.com/developer/msbuild/2003";
-        var csprojElement = XElement.Parse(System.IO.File.ReadAllText(csproj));
-        var itemList = csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
-            x.Name == ns1 + "Content" ||
-            x.Name == ns1 + "Compile" ||
-            x.Name == ns1 + "TypeScriptCompile" ||
-            x.Name == ns1 + "EmbeddedResource" ||
-            x.Name == ns1 + "Folder" ||
-            x.Name == ns1 + "None"));
-        
-        var byName = itemList.ToDictionary(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"));
-        var fileList = itemList.Select(x => (x.Attribute("Include").Value ?? "").Replace("%40", "@"))
-            .ToList();
+        var itemList = getProjectItemList(csproj);       
+        var byName = itemList.ToDictionary(itemToFile);
+        var fileList = itemList.Select(itemToFile).ToList();
                        
         fileList.Sort(delegate(string x, string y) {
             var px = System.IO.Path.GetDirectoryName(x);
@@ -236,6 +256,7 @@ Task("PrepareVSIX")
         System.IO.File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
         System.IO.File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
+		var csprojElement = XElement.Parse(System.IO.File.ReadAllText(csproj));
         System.IO.File.WriteAllText(targetProj, 
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
             csprojElement.ToString(SaveOptions.OmitDuplicateNamespaces)
@@ -244,7 +265,7 @@ Task("PrepareVSIX")
         replaceParams(targetProj);
     };
 
-    var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sampleWebProj), "packages.config"));  
+    var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneWebProj), "packages.config"));  
     updateVsixProj(webPackages);
     
     if (System.IO.Directory.Exists(templateFolder)) 
@@ -252,10 +273,9 @@ Task("PrepareVSIX")
         
     System.IO.Directory.CreateDirectory(templateFolder);
     System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Web"));
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));   
     
-    
-    replaceTemplateFileList(sampleWebProj, webPackages, webSkipFiles);
+    replaceTemplateFileList(sereneWebProj, webPackages, webSkipFiles);
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 
     System.IO.File.Copy(r + @"Serene\Serene.vstemplate", 
