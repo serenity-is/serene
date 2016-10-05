@@ -528,6 +528,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomLinksInGrid.ts">CustomLinksInGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="EnablingRowSelection" TargetFolderName="EnablingRowSelection">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RowSelectionGrid.ts">RowSelectionGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SelectableEntityGrid.ts">SelectableEntityGrid.ts</ProjectItem>
+            </Folder>
             <Folder Name="GridFilteredByCriteria" TargetFolderName="GridFilteredByCriteria">
               <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.ts">GridFilteredByCriteria.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -766,6 +771,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20151217_000600_LastDirectoryUpdate.cs">DefaultDB_20151217_000600_LastDirectoryUpdate.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160605_215300_Granted.cs">DefaultDB_20160605_215300_Granted.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161004_212900_UserImage.cs">DefaultDB_20161004_212900_UserImage.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="MigrationUtils.cs">MigrationUtils.cs</ProjectItem>
             <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
