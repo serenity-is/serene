@@ -18,7 +18,7 @@ namespace Serene.BasicSamples {
         protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>) {
             return super.getItemText(item, lookup) +
                 ' (' +
-                '$' + Q.formatNumber(item.UnitPrice, '#,###.00') +
+                '$' + Q.formatNumber(item.UnitPrice, '#,##0.00') +
                 ', ' + (item.UnitsInStock > 0 ? (item.UnitsInStock + ' in stock') : 'out of stock') +
                 ', ' + (item.SupplierCompanyName || 'Unknown') +
                 ')';

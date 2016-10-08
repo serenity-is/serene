@@ -7,6 +7,7 @@
         PasswordSalt?: string;
         DisplayName?: string;
         Email?: string;
+        UserImage?: string;
         LastDirectoryUpdate?: string;
         IsActive?: number;
         Password?: string;
@@ -31,6 +32,7 @@
             export declare const PasswordSalt: string;
             export declare const DisplayName: string;
             export declare const Email: string;
+            export declare const UserImage: string;
             export declare const LastDirectoryUpdate: string;
             export declare const IsActive: string;
             export declare const Password: string;
@@ -41,7 +43,7 @@
             export declare const UpdateDate: string;
         }
 
-        ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
+        ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

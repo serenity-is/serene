@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Select With Hardcoded Values";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Sometimes you might want to use a select editor with hardcoded values, e.g. one that doesn't exist in database.</p>
+    <p>This sample demonstrates how to do it with a custom editor defined in script code.</p>
+    <p>Two inputs below also show how to use an editor without a dialog / form.</p>
+    
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("HardcodedValuesEditor.ts")
+        @Html.AppSourceFile("HardcodedValuesDialog.ts")
+        @Html.AppSourceFile("HardcodedValuesForm.cs")
+    </p>
+</div>
+
+<div id="UsingWidgetCreate">
+    <label style="margin-right: 4px;">Using Widget.create:</label>
+</div>
+
+<div id="CreatingOnInput" style="margin-top: 8px;">
+    <label style="margin-right: 4px;">Creating on hidden input:</label>
+    <input type="hidden" />
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var dlg = new Serene.BasicSamples.HardcodedValuesDialog();
+        dlg.dialogOpen();
+        dlg.element.find('.field.SomeValue .editor').select2('open');
+
+        // let's also create it in our page, for demonstration purposes
+        // this time we use Serenity.Widget.create helper
+        Serenity.Widget.create({
+            type: Serene.BasicSamples.HardcodedValuesEditor,
+            element: e => e.insertAfter('#UsingWidgetCreate label')
+        });
+
+        // here we directly create it on a hidden input element
+        // for this to work, we should be aware of what kind of 
+        // element our editor widget expects
+        new Serene.BasicSamples.HardcodedValuesEditor($('#CreatingOnInput input'));
+    });
+</script>

@@ -117,6 +117,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Grids.ProductExcelImport.Index);
         }
 
+        public ActionResult SelectWithHardcodedValues()
+        {
+            return View(MyViews.Editors.SelectWithHardcodedValues.Index);
+        }
+
         public ActionResult SerialAutoNumber()
         {
             return View(MyViews.Dialogs.SerialAutoNumber.Index);

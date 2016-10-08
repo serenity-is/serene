@@ -31,6 +31,7 @@ using Basic = Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7900, "Basic Samples/Editors/Changing Lookup Text", typeof(Basic.BasicSamplesController), action: "ChangingLookupText")]
 [assembly: NavigationLink(7900, "Basic Samples/Editors/Filtered Lookup in Detail.", typeof(Basic.BasicSamplesController), action: "FilteredLookupInDetailDialog")]
 [assembly: NavigationLink(7900, "Basic Samples/Editors/Lookup Filter by Multi Val.", typeof(Basic.BasicSamplesController), action: "LookupFilterByMultipleValues")]
+[assembly: NavigationLink(7900, "Basic Samples/Editors/Select with Hardcod.Vals.", typeof(Basic.BasicSamplesController), action: "SelectWithHardcodedValues")]
 [assembly: NavigationMenu(7900, "Basic Samples/Grids")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Cancellable Bulk Action", typeof(Basic.BasicSamplesController), action: "CancellableBulkAction")]
 [assembly: NavigationLink(7900, "Basic Samples/Grids/Conditional Formatting", typeof(Basic.BasicSamplesController), action: "ConditionalFormatting")]

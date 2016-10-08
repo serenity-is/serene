@@ -156,6 +156,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Editors/LookupFilterByMultipleValues/Index.cshtml";
                 }
 
+                public static class SelectWithHardcodedValues
+                {
+                    public const string Index = "~/Modules/BasicSamples/Editors/SelectWithHardcodedValues/Index.cshtml";
+                }
+
             }
 
             public static class Grids
