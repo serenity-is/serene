@@ -514,6 +514,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleGrid.ts">LookupFilterByMultipleGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ProduceSeafoodCategoryEditor.ts">ProduceSeafoodCategoryEditor.ts</ProjectItem>
             </Folder>
+            <Folder Name="SelectWithHardcodedValues" TargetFolderName="SelectWithHardcodedValues">
+              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesDialog.ts">HardcodedValuesDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesEditor.ts">HardcodedValuesEditor.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesForm.cs">HardcodedValuesForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="Grids" TargetFolderName="Grids">
             <Folder Name="CancellableBulkAction" TargetFolderName="CancellableBulkAction">
@@ -618,6 +624,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleCheckEditorAttribute.cs">Administration.RoleCheckEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextEditorAttribute.cs">BasicSamples.ChangingLookupTextEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupDetailEditorAttribute.cs">BasicSamples.FilteredLookupDetailEditorAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.HardcodedValuesEditorAttribute.cs">BasicSamples.HardcodedValuesEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageFormatterAttribute.cs">BasicSamples.InlineImageFormatterAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="ClientTypes.log">ClientTypes.log</ProjectItem>
@@ -675,6 +682,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesRow.ts">BasicSamples.CustomerGrossSalesRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesService.ts">BasicSamples.CustomerGrossSalesService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.ts">BasicSamples.FilteredLookupInDetailForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.HardcodedValuesForm.ts">BasicSamples.HardcodedValuesForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageInGridColumns.ts">BasicSamples.InlineImageInGridColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.ts">BasicSamples.LookupFilterByMultipleForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrderBulkActionRequest.ts">BasicSamples.OrderBulkActionRequest.ts</ProjectItem>
