@@ -520,6 +520,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesForm.cs">HardcodedValuesForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="StaticTextBlock" TargetFolderName="StaticTextBlock">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlock.ts">StaticTextBlock.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockDialog.ts">StaticTextBlockDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockForm.cs">StaticTextBlockForm.cs</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="Grids" TargetFolderName="Grids">
             <Folder Name="CancellableBulkAction" TargetFolderName="CancellableBulkAction">
@@ -636,6 +642,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailsEditorAttribute.cs">Northwind.OrderDetailsEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PhoneEditorAttribute.cs">Northwind.PhoneEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperFormatterAttribute.cs">Northwind.ShipperFormatterAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockAttribute.cs">StaticTextBlockAttribute.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="CodeGenerationHelpers.ttinclude">CodeGenerationHelpers.ttinclude</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MultipleOutputHelper.ttinclude">MultipleOutputHelper.ttinclude</ProjectItem>
@@ -691,6 +698,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.PopulateLinkedDataForm.ts">BasicSamples.PopulateLinkedDataForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportForm.ts">BasicSamples.ProductExcelImportForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportService.ts">BasicSamples.ProductExcelImportService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.StaticTextBlockForm.ts">BasicSamples.StaticTextBlockForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAColumns.ts">BasicSamples.VSGalleryQAColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAPost.ts">BasicSamples.VSGalleryQAPost.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.VSGalleryQAService.ts">BasicSamples.VSGalleryQAService.ts</ProjectItem>
