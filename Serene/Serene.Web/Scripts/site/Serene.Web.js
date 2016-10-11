@@ -2650,6 +2650,22 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
+        var StaticTextBlockForm = (function (_super) {
+            __extends(StaticTextBlockForm, _super);
+            function StaticTextBlockForm() {
+                _super.apply(this, arguments);
+            }
+            StaticTextBlockForm.formKey = 'BasicSamples.StaticTextBlock';
+            return StaticTextBlockForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.StaticTextBlockForm = StaticTextBlockForm;
+        [['StaticText', function () { return Serene.StaticTextBlock; }], ['SomeInput', function () { return Serenity.StringEditor; }], ['HtmlList', function () { return Serene.StaticTextBlock; }], ['FromLocalText', function () { return Serene.StaticTextBlock; }], ['DisplayFieldValue', function () { return Serene.StaticTextBlock; }]].forEach(function (x) { return Object.defineProperty(StaticTextBlockForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
         var VSGalleryQAService;
         (function (VSGalleryQAService) {
             VSGalleryQAService.baseUrl = 'BasicSamples/VSGalleryQA';
@@ -4514,6 +4530,84 @@ var Serene;
             return CancellableBulkActionGrid;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.CancellableBulkActionGrid = CancellableBulkActionGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    var StaticTextBlock = (function (_super) {
+        __extends(StaticTextBlock, _super);
+        function StaticTextBlock(container, options) {
+            _super.call(this, container, options);
+            // hide the caption label for this editor if in a form. ugly hack
+            if (this.options.hideLabel)
+                this.element.closest('.field').find('.caption').hide();
+            this.updateElementContent();
+        }
+        StaticTextBlock.prototype.updateElementContent = function () {
+            var text = Q.coalesce(this.options.text, this.value);
+            // if isLocalText is set, text is actually a local text key
+            if (this.options.isLocalText)
+                text = Q.text(text);
+            // don't html encode if isHtml option is true
+            if (this.options.isHtml)
+                this.element.html(text);
+            else
+                this.element.text(text);
+        };
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        StaticTextBlock.prototype.setEditValue = function (source, property) {
+            if (this.options.text == null) {
+                this.value = Q.coalesce(this.options.text, source[property.name]);
+                this.updateElementContent();
+            }
+        };
+        StaticTextBlock = __decorate([
+            Serenity.Decorators.element("<div/>"),
+            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
+        ], StaticTextBlock);
+        return StaticTextBlock;
+    }(Serenity.Widget));
+    Serene.StaticTextBlock = StaticTextBlock;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var StaticTextBlockDialog = (function (_super) {
+            __extends(StaticTextBlockDialog, _super);
+            function StaticTextBlockDialog() {
+                _super.call(this);
+                this.form = new BasicSamples.StaticTextBlockForm(this.idPrefix);
+                this.dialogTitle = "A form with static text blocks";
+            }
+            StaticTextBlockDialog.prototype.getFormKey = function () { return BasicSamples.StaticTextBlockForm.formKey; };
+            /**
+             * Here we override loadInitialEntity method to set value for "DisplayFieldValue" field.
+             * If this was an EntityDialog, your field value would be originating from server side entity.
+             */
+            StaticTextBlockDialog.prototype.loadInitialEntity = function () {
+                this.propertyGrid.load({
+                    DisplayFieldValue: 'This content comes from <b>the value</b> of <em>DisplayFieldValue</em> field.'
+                });
+            };
+            StaticTextBlockDialog.prototype.getDialogOptions = function () {
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.width = 650;
+                return opt;
+            };
+            StaticTextBlockDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], StaticTextBlockDialog);
+            return StaticTextBlockDialog;
+        }(Serenity.PropertyDialog));
+        BasicSamples.StaticTextBlockDialog = StaticTextBlockDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;

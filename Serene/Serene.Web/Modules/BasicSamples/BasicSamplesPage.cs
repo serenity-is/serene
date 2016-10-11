@@ -127,6 +127,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.SerialAutoNumber.Index);
         }
 
+        public ActionResult StaticTextBlock()
+        {
+            return View(MyViews.Editors.StaticTextBlock.Index);
+        }
+
         public ActionResult StoredProcedureGrid()
         {
             return View(MyViews.Grids.StoredProcedureGrid.Index);

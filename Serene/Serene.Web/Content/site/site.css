@@ -7166,6 +7166,12 @@ section.content > .s-DataGrid {
   font-weight: bold;
   font-style: italic;
 }
+.s-BasicSamples-StaticTextBlockDialog .caption {
+  width: 130px;
+}
+.s-StaticTextBlock {
+  padding-top: 4px;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;

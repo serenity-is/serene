@@ -987,6 +987,18 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class StaticTextBlockForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface StaticTextBlockForm {
+        StaticText: StaticTextBlock;
+        SomeInput: Serenity.StringEditor;
+        HtmlList: StaticTextBlock;
+        FromLocalText: StaticTextBlock;
+        DisplayFieldValue: StaticTextBlock;
+    }
+}
+declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     interface VSGalleryQAPost {
@@ -2473,6 +2485,41 @@ declare namespace Serene.BasicSamples {
         }[];
         protected getColumns(): Slick.Column[];
         protected getViewOptions(): Slick.RemoteViewOptions;
+    }
+}
+declare namespace Serene {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
+        private value;
+        constructor(container: JQuery, options: StaticTextBlockOptions);
+        private updateElementContent();
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+    interface StaticTextBlockOptions {
+        text: string;
+        isHtml: boolean;
+        isLocalText: boolean;
+        hideLabel: boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class StaticTextBlockDialog extends Serenity.PropertyDialog<any, any> {
+        protected getFormKey(): string;
+        protected form: StaticTextBlockForm;
+        constructor();
+        /**
+         * Here we override loadInitialEntity method to set value for "DisplayFieldValue" field.
+         * If this was an EntityDialog, your field value would be originating from server side entity.
+         */
+        protected loadInitialEntity(): void;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
     }
 }
 declare namespace Serene.BasicSamples {

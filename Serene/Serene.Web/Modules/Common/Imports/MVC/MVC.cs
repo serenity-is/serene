@@ -161,6 +161,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Editors/SelectWithHardcodedValues/Index.cshtml";
                 }
 
+                public static class StaticTextBlock
+                {
+                    public const string Index = "~/Modules/BasicSamples/Editors/StaticTextBlock/Index.cshtml";
+                }
+
             }
 
             public static class Grids
