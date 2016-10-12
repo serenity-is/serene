@@ -9,7 +9,6 @@ namespace Serene.Migrations.NorthwindDB
         {
             Create.Table("CustomerDetails")
                 .WithColumn("ID").AsInt32().PrimaryKey().NotNullable()
-                    .ForeignKey("FK_CustomerDetails_ID", "Customers", "ID")
                 .WithColumn("LastContactDate").AsDateTime().Nullable()
                 .WithColumn("LastContactedBy").AsInt32().Nullable()
                     .ForeignKey("FK_CustomerDetails_LastContactedBy", "Employees", "EmployeeID")
