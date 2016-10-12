@@ -667,6 +667,7 @@ declare namespace Serene.Administration {
         Username: Serenity.StringEditor;
         DisplayName: Serenity.StringEditor;
         Email: Serenity.EmailEditor;
+        UserImage: Serenity.ImageUploadEditor;
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
@@ -780,6 +781,7 @@ declare namespace Serene.Administration {
         PasswordSalt?: string;
         DisplayName?: string;
         Email?: string;
+        UserImage?: string;
         LastDirectoryUpdate?: string;
         IsActive?: number;
         Password?: string;
@@ -802,6 +804,7 @@ declare namespace Serene.Administration {
             const PasswordSalt: string;
             const DisplayName: string;
             const Email: string;
+            const UserImage: string;
             const LastDirectoryUpdate: string;
             const IsActive: string;
             const Password: string;
@@ -903,6 +906,14 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class HardcodedValuesForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface HardcodedValuesForm {
+        SomeValue: HardcodedValuesEditor;
+    }
+}
+declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
@@ -973,6 +984,18 @@ declare namespace Serene.BasicSamples {
         namespace Methods {
             const ExcelImport: string;
         }
+    }
+}
+declare namespace Serene.BasicSamples {
+    class StaticTextBlockForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface StaticTextBlockForm {
+        StaticText: StaticTextBlock;
+        SomeInput: Serenity.StringEditor;
+        HtmlList: StaticTextBlock;
+        FromLocalText: StaticTextBlock;
+        DisplayFieldValue: StaticTextBlock;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -1314,6 +1337,89 @@ declare namespace Serene.Northwind {
             const ID: string;
             const CustomerTypeID: string;
             const CustomerDesc: string;
+        }
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerDetailsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface CustomerDetailsForm {
+        LastContactDate: Serenity.DateEditor;
+        LastContactedBy: Serenity.IntegerEditor;
+        Email: Serenity.StringEditor;
+        SendBulletin: Serenity.BooleanEditor;
+    }
+}
+declare namespace Serene.Northwind {
+    interface CustomerDetailsRow {
+        Id?: number;
+        LastContactDate?: string;
+        LastContactedBy?: number;
+        Email?: string;
+        SendBulletin?: boolean;
+        LastContactedByLastName?: string;
+        LastContactedByFirstName?: string;
+        LastContactedByTitle?: string;
+        LastContactedByTitleOfCourtesy?: string;
+        LastContactedByBirthDate?: string;
+        LastContactedByHireDate?: string;
+        LastContactedByAddress?: string;
+        LastContactedByCity?: string;
+        LastContactedByRegion?: string;
+        LastContactedByPostalCode?: string;
+        LastContactedByCountry?: string;
+        LastContactedByHomePhone?: string;
+        LastContactedByExtension?: string;
+        LastContactedByPhoto?: number[];
+        LastContactedByNotes?: string;
+        LastContactedByReportsTo?: number;
+        LastContactedByPhotoPath?: string;
+    }
+    namespace CustomerDetailsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: any;
+            const LastContactDate: any;
+            const LastContactedBy: any;
+            const Email: any;
+            const SendBulletin: any;
+            const LastContactedByLastName: string;
+            const LastContactedByFirstName: string;
+            const LastContactedByTitle: string;
+            const LastContactedByTitleOfCourtesy: string;
+            const LastContactedByBirthDate: string;
+            const LastContactedByHireDate: string;
+            const LastContactedByAddress: string;
+            const LastContactedByCity: string;
+            const LastContactedByRegion: string;
+            const LastContactedByPostalCode: string;
+            const LastContactedByCountry: string;
+            const LastContactedByHomePhone: string;
+            const LastContactedByExtension: string;
+            const LastContactedByPhoto: string;
+            const LastContactedByNotes: string;
+            const LastContactedByReportsTo: string;
+            const LastContactedByPhotoPath: string;
+        }
+    }
+}
+declare namespace Serene.Northwind {
+    namespace CustomerDetailsService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<CustomerDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<CustomerDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
         }
     }
 }
@@ -2462,6 +2568,60 @@ declare namespace Serene.BasicSamples {
         }[];
         protected getColumns(): Slick.Column[];
         protected getViewOptions(): Slick.RemoteViewOptions;
+    }
+}
+declare namespace Serene {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
+        private value;
+        constructor(container: JQuery, options: StaticTextBlockOptions);
+        private updateElementContent();
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+    interface StaticTextBlockOptions {
+        text: string;
+        isHtml: boolean;
+        isLocalText: boolean;
+        hideLabel: boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class StaticTextBlockDialog extends Serenity.PropertyDialog<any, any> {
+        protected getFormKey(): string;
+        protected form: StaticTextBlockForm;
+        constructor();
+        /**
+         * Here we override loadInitialEntity method to set value for "DisplayFieldValue" field.
+         * If this was an EntityDialog, your field value would be originating from server side entity.
+         */
+        protected loadInitialEntity(): void;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class HardcodedValuesDialog extends Serenity.PropertyDialog<any, any> {
+        protected getFormKey(): string;
+        protected form: HardcodedValuesForm;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our select editor with hardcoded values.
+     *
+     * When you define a new editor type, make sure you build
+     * and transform templates for it to be available
+     * in server side forms, e.g. [HardCodedValuesEditor]
+     */
+    class HardcodedValuesEditor extends Serenity.Select2Editor<any, any> {
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {

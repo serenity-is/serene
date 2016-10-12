@@ -1341,6 +1341,61 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
+    interface CustomerDetailsRow {
+        Id?: number;
+        LastContactDate?: string;
+        LastContactedBy?: number;
+        Email?: string;
+        SendBulletin?: boolean;
+        LastContactedByLastName?: string;
+        LastContactedByFirstName?: string;
+        LastContactedByTitle?: string;
+        LastContactedByTitleOfCourtesy?: string;
+        LastContactedByBirthDate?: string;
+        LastContactedByHireDate?: string;
+        LastContactedByAddress?: string;
+        LastContactedByCity?: string;
+        LastContactedByRegion?: string;
+        LastContactedByPostalCode?: string;
+        LastContactedByCountry?: string;
+        LastContactedByHomePhone?: string;
+        LastContactedByExtension?: string;
+        LastContactedByPhoto?: number[];
+        LastContactedByNotes?: string;
+        LastContactedByReportsTo?: number;
+        LastContactedByPhotoPath?: string;
+    }
+    namespace CustomerDetailsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const LastContactDate: string;
+            const LastContactedBy: string;
+            const Email: string;
+            const SendBulletin: string;
+            const LastContactedByLastName: string;
+            const LastContactedByFirstName: string;
+            const LastContactedByTitle: string;
+            const LastContactedByTitleOfCourtesy: string;
+            const LastContactedByBirthDate: string;
+            const LastContactedByHireDate: string;
+            const LastContactedByAddress: string;
+            const LastContactedByCity: string;
+            const LastContactedByRegion: string;
+            const LastContactedByPostalCode: string;
+            const LastContactedByCountry: string;
+            const LastContactedByHomePhone: string;
+            const LastContactedByExtension: string;
+            const LastContactedByPhoto: string;
+            const LastContactedByNotes: string;
+            const LastContactedByReportsTo: string;
+            const LastContactedByPhotoPath: string;
+        }
+    }
+}
+declare namespace Serene.Northwind {
     class CustomerForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1358,6 +1413,10 @@ declare namespace Serene.Northwind {
         Phone: Serenity.StringEditor;
         Fax: Serenity.StringEditor;
         NoteList: NotesEditor;
+        LastContactDate: Serenity.DateEditor;
+        LastContactedBy: Serenity.LookupEditor;
+        Email: Serenity.EmailEditor;
+        SendBulletin: Serenity.BooleanEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1392,6 +1451,10 @@ declare namespace Serene.Northwind {
         Fax?: string;
         NoteList?: NoteRow[];
         Representatives?: number[];
+        LastContactDate?: string;
+        LastContactedBy?: number;
+        Email?: string;
+        SendBulletin?: boolean;
     }
     namespace CustomerRow {
         const idProperty: string;
@@ -1414,6 +1477,10 @@ declare namespace Serene.Northwind {
             const Fax: string;
             const NoteList: string;
             const Representatives: string;
+            const LastContactDate: string;
+            const LastContactedBy: string;
+            const Email: string;
+            const SendBulletin: string;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace Serene.Northwind.Entities
     [ReadPermission(Northwind.PermissionKeys.Customer.View)]
     [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
     [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]
+    [LeftJoin("cd", "CustomerDetails", "cd.ID = t0.ID")]
+    [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]
@@ -101,6 +103,35 @@ namespace Serene.Northwind.Entities
             set { Fields.Fax[this] = value; }
         }
 
+        [DisplayName("Last Contact Date"), Expression("cd.[LastContactDate]")]
+        public DateTime? LastContactDate
+        {
+            get { return Fields.LastContactDate[this]; }
+            set { Fields.LastContactDate[this] = value; }
+        }
+
+        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("[dbo].[Employees]", "EmployeeID"), LeftJoin("lcb")]
+        [LookupEditor(typeof(EmployeeRow))]
+        public Int32? LastContactedBy
+        {
+            get { return Fields.LastContactedBy[this]; }
+            set { Fields.LastContactedBy[this] = value; }
+        }
+
+        [DisplayName("Email"), Size(100), Expression("cd.[Email]"), EmailEditor]
+        public String Email
+        {
+            get { return Fields.Email[this]; }
+            set { Fields.Email[this] = value; }
+        }
+
+        [DisplayName("Send Bulletin"), NotNull, Expression("cd.[SendBulletin]"), DefaultValue(false)]
+        public Boolean? SendBulletin
+        {
+            get { return Fields.SendBulletin[this]; }
+            set { Fields.SendBulletin[this] = value; }
+        }
+
         [NotesEditor, ClientSide]
         public List<NoteRow> NoteList
         {
@@ -150,6 +181,10 @@ namespace Serene.Northwind.Entities
             public StringField Fax;
             public RowListField<NoteRow> NoteList;
             public ListField<Int32> Representatives;
+            public DateTimeField LastContactDate;
+            public Int32Field LastContactedBy;
+            public StringField Email;
+            public BooleanField SendBulletin;
 
             public RowFields()
                 : base("Customers")

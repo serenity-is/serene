@@ -14,6 +14,10 @@
         Fax?: string;
         NoteList?: NoteRow[];
         Representatives?: number[];
+        LastContactDate?: string;
+        LastContactedBy?: number;
+        Email?: string;
+        SendBulletin?: boolean;
     }
 
     export namespace CustomerRow {
@@ -41,9 +45,13 @@
             export declare const Fax: string;
             export declare const NoteList: string;
             export declare const Representatives: string;
+            export declare const LastContactDate: string;
+            export declare const LastContactedBy: string;
+            export declare const Email: string;
+            export declare const SendBulletin: string;
         }
 
-        ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives'].forEach(x => (<any>Fields)[x] = x);
+        ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
