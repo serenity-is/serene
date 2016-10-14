@@ -7169,6 +7169,9 @@ section.content > .s-DataGrid {
 .s-BasicSamples-StaticTextBlockDialog .caption {
   width: 130px;
 }
+.s-BasicSamples-StaticTextBlockDialog .s-PropertyGrid {
+  display: block;
+}
 .s-StaticTextBlock {
   padding-top: 4px;
 }
