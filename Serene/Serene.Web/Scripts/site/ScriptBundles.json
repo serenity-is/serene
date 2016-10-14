@@ -41,7 +41,6 @@
     ],
     "Site": [
         "~/Scripts/adminlte/app.js",
-        "~/Scripts/Site/Serene.Script.js",
         "~/Scripts/Site/Serene.Web.js"
     ]
 }
