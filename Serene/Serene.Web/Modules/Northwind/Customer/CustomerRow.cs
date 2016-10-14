@@ -132,14 +132,14 @@ namespace Serene.Northwind.Entities
             set { Fields.SendBulletin[this] = value; }
         }
 
-        [NotesEditor, ClientSide]
+        [NotesEditor, NotMapped]
         public List<NoteRow> NoteList
         {
             get { return Fields.NoteList[this]; }
             set { Fields.NoteList[this] = value; }
         }
 
-        [LookupEditor(typeof(EmployeeRow), Multiple = true), ClientSide]
+        [LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
         [MinSelectLevel(SelectLevel.Details)]
         public List<Int32> Representatives

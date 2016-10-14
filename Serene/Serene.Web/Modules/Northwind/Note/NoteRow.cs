@@ -50,7 +50,7 @@ namespace Serene.Northwind.Entities
             set { Fields.InsertUserId[this] = value; }
         }
 
-        [DisplayName("Insert User"), ClientSide]
+        [DisplayName("Insert User"), NotMapped]
         public String InsertUserDisplayName
         {
             get { return Fields.InsertUserDisplayName[this]; }

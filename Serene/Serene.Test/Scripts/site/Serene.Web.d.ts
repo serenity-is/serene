@@ -1341,17 +1341,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
-    class CustomerDetailsForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface CustomerDetailsForm {
-        LastContactDate: Serenity.DateEditor;
-        LastContactedBy: Serenity.IntegerEditor;
-        Email: Serenity.StringEditor;
-        SendBulletin: Serenity.BooleanEditor;
-    }
-}
-declare namespace Serene.Northwind {
     interface CustomerDetailsRow {
         Id?: number;
         LastContactDate?: string;
@@ -1381,11 +1370,11 @@ declare namespace Serene.Northwind {
         const nameProperty: string;
         const localTextPrefix: string;
         namespace Fields {
-            const Id: any;
-            const LastContactDate: any;
-            const LastContactedBy: any;
-            const Email: any;
-            const SendBulletin: any;
+            const Id: string;
+            const LastContactDate: string;
+            const LastContactedBy: string;
+            const Email: string;
+            const SendBulletin: string;
             const LastContactedByLastName: string;
             const LastContactedByFirstName: string;
             const LastContactedByTitle: string;
@@ -1407,23 +1396,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
-    namespace CustomerDetailsService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<CustomerDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<CustomerDetailsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerDetailsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Northwind {
     class CustomerForm extends Serenity.PrefixedContext {
         static formKey: string;
     }
@@ -1441,6 +1413,10 @@ declare namespace Serene.Northwind {
         Phone: Serenity.StringEditor;
         Fax: Serenity.StringEditor;
         NoteList: NotesEditor;
+        LastContactDate: Serenity.DateEditor;
+        LastContactedBy: Serenity.LookupEditor;
+        Email: Serenity.EmailEditor;
+        SendBulletin: Serenity.BooleanEditor;
     }
 }
 declare namespace Serene.Northwind {
@@ -1475,6 +1451,10 @@ declare namespace Serene.Northwind {
         Fax?: string;
         NoteList?: NoteRow[];
         Representatives?: number[];
+        LastContactDate?: string;
+        LastContactedBy?: number;
+        Email?: string;
+        SendBulletin?: boolean;
     }
     namespace CustomerRow {
         const idProperty: string;
@@ -1497,6 +1477,10 @@ declare namespace Serene.Northwind {
             const Fax: string;
             const NoteList: string;
             const Representatives: string;
+            const LastContactDate: string;
+            const LastContactedBy: string;
+            const Email: string;
+            const SendBulletin: string;
         }
     }
 }
