@@ -80,6 +80,7 @@
             var klass = 'edit numeric';
             var item = ctx.item as ProductRow;
             var pending = this.pendingChanges[item.ProductID];
+            var column = ctx.column as Slick.Column;
 
             if (pending && pending[ctx.column.field] !== undefined) {
                 klass += ' dirty';
@@ -88,6 +89,7 @@
             var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
             return "<input type='text' class='" + klass + "'" +
+                "' data-field='" + column.field + 
                 " value='" + Q.formatNumber(value, '0.##') + "'/>";
         }
 
@@ -105,6 +107,7 @@
 
             return "<input type='text' class='" + klass +
                 "' value='" + Q.htmlEncode(value) + 
+                "' data-field='" + column.field + 
                 "' maxlength='" + column.sourceItem.maxLength + "'/>";
         }
 
@@ -174,7 +177,7 @@
             var cell = this.slickGrid.getCellFromEvent(e);
             var item = this.itemAt(cell.row);
             var input = $(e.target);
-            var field = input.data('field') || this.getColumns()[cell.cell].field;
+            var field = input.data('field');// || this.getColumns()[cell.cell].field;
             var text = Q.coalesce(Q.trimToNull(input.val()), '0');
             var pending = this.pendingChanges[item.ProductID];
 
