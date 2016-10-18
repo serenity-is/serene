@@ -50,7 +50,7 @@
 
             buttons.push({
                 title: 'Save Changes',
-                cssClass: 'apply-changes-button',
+                cssClass: 'apply-changes-button disabled',
                 onClick: e => this.saveClick(),
                 separator: true
             });
@@ -87,8 +87,9 @@
 
             var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
-            return "<input type='text' class='" + klass + "'" +
-                " value='" + Q.formatNumber(value, '0.##') + "'/>";
+            return "<input type='text' class='" + klass + 
+                "' data-field='" + column.field + 
+                "' value='" + Q.formatNumber(value, '0.##') + "'/>";
         }
 
         private stringInputFormatter(ctx) {
@@ -104,6 +105,7 @@
             var value = this.getEffectiveValue(item, column.field) as string;
 
             return "<input type='text' class='" + klass +
+                "' data-field='" + column.field + 
                 "' value='" + Q.htmlEncode(value) + 
                 "' maxlength='" + column.sourceItem.maxLength + "'/>";
         }
@@ -174,7 +176,7 @@
             var cell = this.slickGrid.getCellFromEvent(e);
             var item = this.itemAt(cell.row);
             var input = $(e.target);
-            var field = input.data('field') || this.getColumns()[cell.cell].field;
+            var field = input.data('field');
             var text = Q.coalesce(Q.trimToNull(input.val()), '0');
             var pending = this.pendingChanges[item.ProductID];
 
