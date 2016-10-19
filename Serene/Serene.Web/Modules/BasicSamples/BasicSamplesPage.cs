@@ -112,6 +112,11 @@ namespace Serene.BasicSamples.Pages
             return View(MyViews.Dialogs.ResponsiveDialog.Index);
         }
 
+        public ActionResult OtherFormInTab()
+        {
+            return View(MyViews.Dialogs.OtherFormInTab.Index);
+        }
+
         public ActionResult ProductExcelImport()
         {
             return View(MyViews.Grids.ProductExcelImport.Index);

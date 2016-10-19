@@ -434,7 +434,7 @@ var Serene;
                 }));
                 buttons.push({
                     title: 'Save Changes',
-                    cssClass: 'apply-changes-button',
+                    cssClass: 'apply-changes-button disabled',
                     onClick: function (e) { return _this.saveClick(); },
                     separator: true
                 });
@@ -464,8 +464,9 @@ var Serene;
                     klass += ' dirty';
                 }
                 var value = this.getEffectiveValue(item, ctx.column.field);
-                return "<input type='text' class='" + klass + "'" +
-                    " value='" + Q.formatNumber(value, '0.##') + "'/>";
+                return "<input type='text' class='" + klass +
+                    "' data-field='" + ctx.column.field +
+                    "' value='" + Q.formatNumber(value, '0.##') + "'/>";
             };
             ProductGrid.prototype.stringInputFormatter = function (ctx) {
                 var klass = 'edit string';
@@ -477,6 +478,7 @@ var Serene;
                 }
                 var value = this.getEffectiveValue(item, column.field);
                 return "<input type='text' class='" + klass +
+                    "' data-field='" + column.field +
                     "' value='" + Q.htmlEncode(value) +
                     "' maxlength='" + column.sourceItem.maxLength + "'/>";
             };
@@ -537,7 +539,7 @@ var Serene;
                 var cell = this.slickGrid.getCellFromEvent(e);
                 var item = this.itemAt(cell.row);
                 var input = $(e.target);
-                var field = input.data('field') || this.getColumns()[cell.cell].field;
+                var field = input.data('field');
                 var text = Q.coalesce(Q.trimToNull(input.val()), '0');
                 var pending = this.pendingChanges[item.ProductID];
                 var effective = this.getEffectiveValue(item, field);
@@ -5324,6 +5326,124 @@ var Serene;
             return PopulateLinkedDataGrid;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.PopulateLinkedDataGrid = PopulateLinkedDataGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+         */
+        var OtherFormInTabDialog = (function (_super) {
+            __extends(OtherFormInTabDialog, _super);
+            function OtherFormInTabDialog() {
+                var _this = this;
+                _super.call(this);
+                // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
+                // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
+                this.customerPropertyGrid = new Serenity.PropertyGrid(this.byId("CustomerPropertyGrid"), {
+                    items: Q.getForm(Serene.Northwind.CustomerForm.formKey).filter(function (x) { return x.name != 'CustomerID'; }),
+                    useCategories: true
+                });
+                // this is just a helper to access editors if needed
+                this.customerForm = new Serene.Northwind.CustomerForm(this.customerPropertyGrid.idPrefix);
+                var selfChange = 0;
+                // creating another toolbar for customer tab that will only save Customer
+                new Serenity.Toolbar(this.byId("CustomerToolbar"), {
+                    buttons: [{
+                            cssClass: "apply-changes-button",
+                            title: Q.text("Controls.EntityDialog.SaveButton"),
+                            onClick: function () {
+                                var id = _this.getCustomerID();
+                                if (!id)
+                                    return;
+                                // prepare an empty entity to serialize customer details into
+                                var c = {};
+                                _this.customerPropertyGrid.save(c);
+                                Serene.Northwind.CustomerService.Update({
+                                    EntityId: id,
+                                    Entity: c
+                                }, function (response) {
+                                    // reload customer list just in case
+                                    Q.reloadLookup(Serene.Northwind.CustomerRow.lookupKey);
+                                    // set flag that we are triggering customer select change event
+                                    // otherwise active tab will change to first one
+                                    selfChange++;
+                                    try {
+                                        // trigger change so that customer select updates its text
+                                        // in case if Company Name is changed
+                                        _this.form.CustomerID.element.change();
+                                    }
+                                    finally {
+                                        selfChange--;
+                                    }
+                                    Q.notifySuccess("Saved customer details");
+                                });
+                            }
+                        }]
+                });
+                this.form.CustomerID.change(function (e) {
+                    if (selfChange)
+                        return;
+                    var customerID = _this.getCustomerID();
+                    Serenity.TabsExtensions.setDisabled(_this.tabs, 'Customer', !customerID);
+                    if (!customerID) {
+                        // no customer is selected, just load an empty entity
+                        _this.customerPropertyGrid.load({});
+                        return;
+                    }
+                    // load selected customer into customer form by calling CustomerService
+                    Serene.Northwind.CustomerService.Retrieve({
+                        EntityId: customerID
+                    }, function (response) {
+                        _this.customerPropertyGrid.load(response.Entity);
+                    });
+                });
+            }
+            OtherFormInTabDialog.prototype.getCustomerID = function () {
+                var customerID = this.form.CustomerID.value;
+                if (Q.isEmptyOrNull(customerID))
+                    return null;
+                // unfortunately, CustomerID (a string) used in this form and 
+                // the ID (auto increment ID) are different, so we need to 
+                // find numeric ID from customer lookups. 
+                // you'll probably won't need this step.
+                return Q.first(Serene.Northwind.CustomerRow.getLookup().items, function (x) { return x.CustomerID == customerID; }).ID;
+            };
+            OtherFormInTabDialog.prototype.loadEntity = function (entity) {
+                _super.prototype.loadEntity.call(this, entity);
+                Serenity.TabsExtensions.setDisabled(this.tabs, 'Customer', !this.getCustomerID());
+            };
+            OtherFormInTabDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormInTabDialog);
+            return OtherFormInTabDialog;
+        }(Serene.Northwind.OrderDialog));
+        BasicSamples.OtherFormInTabDialog = OtherFormInTabDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
+         */
+        var OtherFormInTabGrid = (function (_super) {
+            __extends(OtherFormInTabGrid, _super);
+            function OtherFormInTabGrid(container) {
+                _super.call(this, container);
+            }
+            OtherFormInTabGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormInTabDialog; };
+            OtherFormInTabGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormInTabGrid);
+            return OtherFormInTabGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.OtherFormInTabGrid = OtherFormInTabGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderDialog.ts" />

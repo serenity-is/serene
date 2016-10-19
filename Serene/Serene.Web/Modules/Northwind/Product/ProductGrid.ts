@@ -88,7 +88,7 @@
             var value = this.getEffectiveValue(item, ctx.column.field) as number;
 
             return "<input type='text' class='" + klass + 
-                "' data-field='" + column.field + 
+                "' data-field='" + ctx.column.field + 
                 "' value='" + Q.formatNumber(value, '0.##') + "'/>";
         }
 

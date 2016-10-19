@@ -2844,6 +2844,27 @@ declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     /**
+     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+     */
+    class OtherFormInTabDialog extends Northwind.OrderDialog {
+        private customerPropertyGrid;
+        private customerForm;
+        constructor();
+        getCustomerID(): number;
+        loadEntity(entity: Northwind.OrderRow): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
+     */
+    class OtherFormInTabGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormInTabDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
      * Styling for columns is done with CSS in site.basicsamples.less file.
      * When comparing this to MultiColumnDialog sample, you may notice that
      * this version requires much less JS and CSS code.

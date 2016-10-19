@@ -7175,6 +7175,13 @@ section.content > .s-DataGrid {
 .s-StaticTextBlock {
   padding-top: 4px;
 }
+.s-BasicSamples-OtherFormInTabDialog > .size {
+  width: 750px;
+  height: 550px;
+}
+.s-BasicSamples-OtherFormInTabDialog .caption {
+  width: 120px;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;
