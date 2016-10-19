@@ -470,6 +470,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.ts">MultiColumnResponsiveDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveGrid.ts">MultiColumnResponsiveGrid.ts</ProjectItem>
             </Folder>
+            <Folder Name="OtherFormInTab" TargetFolderName="OtherFormInTab">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.Template.html">OtherFormInTabDialog.Template.html</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.ts">OtherFormInTabDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabGrid.ts">OtherFormInTabGrid.ts</ProjectItem>
+            </Folder>
             <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataDialog.ts">PopulateLinkedDataDialog.ts</ProjectItem>
