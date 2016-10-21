@@ -1186,9 +1186,12 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinFlat.css">ion.rangeSlider.skinFlat.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinNice.css">ion.rangeSlider.skinNice.css</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.event.drag.live.js">jquery.event.drag.live.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.event.drag.live.min.js">jquery.event.drag.live.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.1.1.intellisense.js">jquery-3.1.1.intellisense.js</ProjectItem>
         <Folder Name="jvectormap" TargetFolderName="jvectormap">
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -1312,40 +1315,39 @@
   </WizardExtension>
   <WizardData>
     <packagesToInstall>
-      <installPackage id="bootstrap" version="3.3.6" />
+      <installPackage id="bootstrap" version="3.3.7" />
       <installPackage id="CsQuery" version="1.3.4" />
-      <installPackage id="EPPlus" version="4.0.5" />
+      <installPackage id="EPPlus" version="4.1.0" />
       <installPackage id="flot" version="0.8.3" />
-      <installPackage id="FluentMigrator" version="1.6.1" />
-      <installPackage id="FluentMigrator.Runner" version="1.6.1" />
-      <installPackage id="jQuery" version="2.2.3" />
+      <installPackage id="FluentMigrator" version="1.6.2" />
+      <installPackage id="FluentMigrator.Runner" version="1.6.2" />
+      <installPackage id="jQuery" version="3.1.1" />
       <installPackage id="jquery.blockUI.TypeScript.DefinitelyTyped" version="0.0.4" />
       <installPackage id="jquery.cookie.TypeScript.DefinitelyTyped" version="0.2.1" />
-      <installPackage id="jquery.event.drag" version="2.2.0" />
-      <installPackage id="jquery.TypeScript.DefinitelyTyped" version="3.0.5" />
-      <installPackage id="jQuery.UI.Combined" version="1.11.4" />
-      <installPackage id="jQuery.Validation" version="1.14.0" />
-      <installPackage id="jquery.validation.TypeScript.DefinitelyTyped" version="0.2.8" />
-      <installPackage id="jqueryui.TypeScript.DefinitelyTyped" version="1.4.6" />
-      <installPackage id="jspdf.TypeScript.DefinitelyTyped" version="0.0.2" />
+      <installPackage id="jquery.TypeScript.DefinitelyTyped" version="3.1.2" />
+      <installPackage id="jQuery.UI.Combined" version="1.12.1" />
+      <installPackage id="jQuery.Validation" version="1.15.1" />
+      <installPackage id="jquery.validation.TypeScript.DefinitelyTyped" version="0.4.5" />
+      <installPackage id="jqueryui.TypeScript.DefinitelyTyped" version="1.5.1" />
+      <installPackage id="jspdf.TypeScript.DefinitelyTyped" version="0.0.4" />
       <installPackage id="Microsoft.AspNet.Mvc" version="5.2.3" />
       <installPackage id="Microsoft.AspNet.Razor" version="3.2.3" />
       <installPackage id="Microsoft.AspNet.WebPages" version="3.2.3" />
       <installPackage id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <installPackage id="MsieJavaScriptEngine" version="1.7.0" />
-      <installPackage id="Newtonsoft.Json" version="8.0.3" />
+      <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
+      <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.4.13" />
-      <installPackage id="Serenity.Core" version="2.4.13" />
-      <installPackage id="Serenity.Data" version="2.4.13" />
-      <installPackage id="Serenity.Data.Entity" version="2.4.13" />
-      <installPackage id="Serenity.Services" version="2.4.13" />
-      <installPackage id="Serenity.Web" version="2.4.13" />
-      <installPackage id="Serenity.Web.Assets" version="2.4.9" />
-      <installPackage id="Serenity.Web.Tooling" version="2.4.0" />
-      <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.7" />
+      <installPackage id="Serenity.CodeGenerator" version="2.5.0" />
+      <installPackage id="Serenity.Core" version="2.5.0" />
+      <installPackage id="Serenity.Data" version="2.5.0" />
+      <installPackage id="Serenity.Data.Entity" version="2.5.0" />
+      <installPackage id="Serenity.Services" version="2.5.0" />
+      <installPackage id="Serenity.Web" version="2.5.0" />
+      <installPackage id="Serenity.Web.Assets" version="2.5.0" />
+      <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
+      <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
       <installPackage id="toastr" version="2.1.1" />
-      <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.0" />
+      <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.1" />
     </packagesToInstall>
   </WizardData>
 </VSTemplate>
