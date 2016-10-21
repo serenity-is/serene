@@ -442,6 +442,7 @@ declare namespace Serene.Common {
         setItem(key: string, data: string): void;
     }
 }
+declare var jsPDF: any;
 declare namespace Serene.Common {
     interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
@@ -2839,6 +2840,27 @@ declare namespace Serene.BasicSamples {
      */
     class PopulateLinkedDataGrid extends Northwind.OrderGrid {
         protected getDialogType(): typeof PopulateLinkedDataDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+     */
+    class OtherFormInTabDialog extends Northwind.OrderDialog {
+        private customerPropertyGrid;
+        private customerForm;
+        constructor();
+        getCustomerID(): number;
+        loadEntity(entity: Northwind.OrderRow): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
+     */
+    class OtherFormInTabGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormInTabDialog;
         constructor(container: JQuery);
     }
 }

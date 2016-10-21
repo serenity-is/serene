@@ -57,16 +57,16 @@
       <HintPath>..\..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentMigrator, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentMigrator.1.6.1\lib\40\FluentMigrator.dll</HintPath>
+    <Reference Include="FluentMigrator, Version=1.6.2.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentMigrator.1.6.2\lib\40\FluentMigrator.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentMigrator.Runner, Version=1.6.1.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FluentMigrator.Runner.1.6.1\lib\40\FluentMigrator.Runner.dll</HintPath>
+    <Reference Include="FluentMigrator.Runner, Version=1.6.2.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentMigrator.Runner.1.6.2\lib\40\FluentMigrator.Runner.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -74,12 +74,13 @@
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MsieJavaScriptEngine, Version=1.7.0.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MsieJavaScriptEngine.1.7.0\lib\net40\MsieJavaScriptEngine.dll</HintPath>
+    <Reference Include="MsieJavaScriptEngine, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MsieJavaScriptEngine.2.0.0\lib\net40-client\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
@@ -733,9 +734,17 @@
     <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
     <Content Include="Content\themes\base\menu.css" />
     <Content Include="Content\themes\base\progressbar.css" />
     <Content Include="Content\themes\base\resizable.css" />
@@ -1108,10 +1117,6 @@
     <Content Include="Modules\BasicSamples\Grids\CustomLinksInGrid\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\InitialValuesForQuickFilters\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\InlineImageInGrid\Index.cshtml" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\Index.cshtml" />
@@ -1122,6 +1127,17 @@
     <Content Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\ProductExcelImport\SampleProductList.xlsx" />
     <Content Include="Modules\BasicSamples\Grids\ProductExcelImport\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\VSGalleryQA\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\StoredProcedureGrid\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\ChangingLookupText\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\EnablingRowSelection\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\StaticTextBlock\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\Index.cshtml" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Fonts\Simple-Line-Icons.woff2" />
     <Content Include="Fonts\Simple-Line-Icons.woff" />
     <Content Include="Fonts\Simple-Line-Icons.ttf" />
@@ -1143,13 +1159,6 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\BasicSamples\Grids\VSGalleryQA\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Grids\StoredProcedureGrid\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Editors\ChangingLookupText\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Grids\EnablingRowSelection\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Editors\StaticTextBlock\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1294,11 +1303,13 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.autoNumeric.js" />
@@ -1326,6 +1337,8 @@
     <Content Include="Scripts\jquery.iframe-transport.min.js" />
     <Content Include="Scripts\jquery.json.js" />
     <Content Include="Scripts\jquery.json.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
     <Content Include="Scripts\jquery.scrollintoview.js" />
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
@@ -1444,7 +1457,8 @@
     <Content Include="Scripts\vegas\vegas.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery.icheck.min.js.map" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
@@ -1525,13 +1539,13 @@
     <Content Include="tools\Node\less\lib\less\visitor.js" />
     <Content Include="tools\Node\node.exe" />
     <Content Include="tslint.json" />
-    <Content Include="tools\Node\lessc.cmd" />
     <Content Include="Scripts\vegas\vegas.min.js.map" />
-    <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="Scripts\site\texts\site.texts.fa.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.fa.json" />
     <Content Include="Scripts\site\texts\samples\samples.fa.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -1675,14 +1689,15 @@
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Product\ProductDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Product\ProductGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerDetailsRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\slickgrid\slickgrid.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\sortablejs\sortablejs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerDetailsRow.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

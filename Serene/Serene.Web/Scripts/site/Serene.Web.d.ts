@@ -442,6 +442,7 @@ declare namespace Serene.Common {
         setItem(key: string, data: string): void;
     }
 }
+declare var jsPDF: any;
 declare namespace Serene.Common {
     interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;

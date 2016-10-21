@@ -15,17 +15,17 @@ namespace Serene.Administration.Test {
                 'has correct title');
 
             let fields = DialogTesting.getVisibleFields(dialog);
-            assert.strictEqual(6, fields.length,
-                'has 6 fields');
+            assert.strictEqual(7, fields.length,
+                'has 7 fields');
 
             var formTesting = new FormTesting(assert);
 
             var username = fields.eq(0);
             var displayName = fields.eq(1);
             var email = fields.eq(2);
-            var password = fields.eq(3);
-            var confirm = fields.eq(4);
-            var source = fields.eq(5);
+            var password = fields.eq(4);
+            var confirm = fields.eq(5);
+            var source = fields.eq(6);
 
             formTesting.setValue(username, 'ABC  ');
             formTesting.setValue(displayName, 'DEF');
@@ -47,7 +47,8 @@ namespace Serene.Administration.Test {
                             Username: 'ABC  ',
                             DisplayName: 'DEF',
                             Email: 'ghi@jkl.com',
-                            Password: '1234567'
+                            Password: '1234567',
+                            UserImage: null
                         }
                     },
                     'save request');

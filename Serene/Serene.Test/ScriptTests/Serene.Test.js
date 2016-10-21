@@ -1171,7 +1171,7 @@ var Serene;
                             buttonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
                             buttonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
                             var fields = Serene.DialogTesting.getVisibleFields(dialog);
-                            assert.strictEqual(6, fields.length, 'has 6 fields');
+                            assert.strictEqual(7, fields.length, 'has 7 fields');
                             var formTesting = new Serene.FormTesting(assert);
                             var username = fields.eq(0);
                             formTesting.assertTitle(username, 'Username');
@@ -1196,7 +1196,13 @@ var Serene;
                             formTesting.assertValue(email, 'some_thing@somedomain.com');
                             var emaildomain = email.find('.emaildomain');
                             assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
-                            var password = fields.eq(3);
+                            var image = fields.eq(3);
+                            formTesting.assertTitle(image, 'User Image');
+                            formTesting.assertNotRequired(image);
+                            formTesting.assertEditable(image);
+                            formTesting.assertHasClass(image, 's-ImageUploadEditor');
+                            formTesting.assertValue(image, null);
+                            var password = fields.eq(4);
                             formTesting.assertTitle(password, 'Password');
                             formTesting.assertNotRequired(password);
                             formTesting.assertEditable(password);
@@ -1204,7 +1210,7 @@ var Serene;
                             formTesting.assertEditorIs(password, 'input[type=password]');
                             formTesting.assertMaxLength(password, 50);
                             formTesting.assertValue(password, '');
-                            var confirm = fields.eq(4);
+                            var confirm = fields.eq(5);
                             formTesting.assertTitle(confirm, 'Confirm Password');
                             formTesting.assertNotRequired(confirm);
                             formTesting.assertEditable(confirm);
@@ -1212,7 +1218,7 @@ var Serene;
                             formTesting.assertEditorIs(confirm, 'input[type=password]');
                             formTesting.assertMaxLength(confirm, 50);
                             formTesting.assertValue(confirm, '');
-                            var source = fields.eq(5);
+                            var source = fields.eq(6);
                             formTesting.assertTitle(source, 'Source');
                             formTesting.assertNotRequired(source);
                             formTesting.assertNotEditable(source);
@@ -1238,7 +1244,8 @@ var Serene;
                                         Username: 'ABC  ',
                                         DisplayName: 'DEF',
                                         Email: 'ghi@jkl.com',
-                                        Password: '1234567'
+                                        Password: '1234567',
+                                        UserImage: null
                                     }
                                 }, 'save request');
                                 var retrieveCalls = 0;
@@ -1411,7 +1418,8 @@ var Serene;
                                         Username: 'some.thing',
                                         DisplayName: 'Some Thing',
                                         Email: 'some_thing@somedomain.com',
-                                        Password: ''
+                                        Password: '',
+                                        UserImage: null
                                     }
                                 }, 'save request');
                                 var retrieveCalls = 0;
@@ -1489,7 +1497,7 @@ var Serene;
                     buttonTesting.assertEnabled(buttons.eq(3), 'edit-roles-button');
                     buttonTesting.assertEnabled(buttons.eq(4), 'edit-permissions-button');
                     var fields = Serene.DialogTesting.getVisibleFields(dialog);
-                    assert.strictEqual(6, fields.length, 'has 6 fields');
+                    assert.strictEqual(7, fields.length, 'has 7 fields');
                     var formTesting = new Serene.FormTesting(assert);
                     var username = fields.eq(0);
                     formTesting.assertTitle(username, 'Username');
@@ -1514,7 +1522,13 @@ var Serene;
                     formTesting.assertValue(email, 'some_thing@somedomain.com');
                     var emaildomain = email.find('.emaildomain');
                     assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
-                    var password = fields.eq(3);
+                    var image = fields.eq(3);
+                    formTesting.assertTitle(image, 'User Image');
+                    formTesting.assertNotRequired(image);
+                    formTesting.assertEditable(image);
+                    formTesting.assertHasClass(image, 's-ImageUploadEditor');
+                    formTesting.assertValue(image, null);
+                    var password = fields.eq(4);
                     formTesting.assertTitle(password, 'Password');
                     formTesting.assertNotRequired(password);
                     formTesting.assertEditable(password);
@@ -1522,7 +1536,7 @@ var Serene;
                     formTesting.assertEditorIs(password, 'input[type=password]');
                     formTesting.assertMaxLength(password, 50);
                     formTesting.assertValue(password, '');
-                    var confirm = fields.eq(4);
+                    var confirm = fields.eq(5);
                     formTesting.assertTitle(confirm, 'Confirm Password');
                     formTesting.assertNotRequired(confirm);
                     formTesting.assertEditable(confirm);
@@ -1530,7 +1544,7 @@ var Serene;
                     formTesting.assertEditorIs(confirm, 'input[type=password]');
                     formTesting.assertMaxLength(confirm, 50);
                     formTesting.assertValue(confirm, '');
-                    var source = fields.eq(5);
+                    var source = fields.eq(6);
                     formTesting.assertTitle(source, 'Source');
                     formTesting.assertNotRequired(source);
                     formTesting.assertNotEditable(source);
@@ -1599,7 +1613,7 @@ var Serene;
                     buttonTesting.assertDisabled(buttons.eq(2), 'edit-roles-button');
                     buttonTesting.assertDisabled(buttons.eq(3), 'edit-permissions-button');
                     var fields = Serene.DialogTesting.getVisibleFields(dialog);
-                    assert.strictEqual(6, fields.length, 'has 6 fields');
+                    assert.strictEqual(7, fields.length, 'has 7 fields');
                     var formTesting = new Serene.FormTesting(assert);
                     var username = fields.eq(0);
                     formTesting.assertTitle(username, 'Username');
@@ -1624,7 +1638,13 @@ var Serene;
                     formTesting.assertValue(email, '');
                     var emaildomain = email.find('.emaildomain');
                     assert.ok(Serene.EditorTesting.isEditable(emaildomain), 'email domain is editable');
-                    var password = fields.eq(3);
+                    var image = fields.eq(3);
+                    formTesting.assertTitle(image, 'User Image');
+                    formTesting.assertNotRequired(image);
+                    formTesting.assertEditable(image);
+                    formTesting.assertHasClass(image, 's-ImageUploadEditor');
+                    formTesting.assertValue(image, null);
+                    var password = fields.eq(4);
                     formTesting.assertTitle(password, 'Password');
                     formTesting.assertRequired(password);
                     formTesting.assertEditable(password);
@@ -1632,7 +1652,7 @@ var Serene;
                     formTesting.assertEditorIs(password, 'input[type=password]');
                     formTesting.assertMaxLength(password, 50);
                     formTesting.assertValue(password, '');
-                    var confirm = fields.eq(4);
+                    var confirm = fields.eq(5);
                     formTesting.assertTitle(confirm, 'Confirm Password');
                     formTesting.assertRequired(confirm);
                     formTesting.assertEditable(confirm);
@@ -1640,7 +1660,7 @@ var Serene;
                     formTesting.assertEditorIs(confirm, 'input[type=password]');
                     formTesting.assertMaxLength(confirm, 50);
                     formTesting.assertValue(confirm, '');
-                    var source = fields.eq(5);
+                    var source = fields.eq(6);
                     formTesting.assertTitle(source, 'Source');
                     formTesting.assertNotRequired(source);
                     formTesting.assertNotEditable(source);
@@ -1665,7 +1685,8 @@ var Serene;
                                 Username: 'ABC  ',
                                 DisplayName: 'DEF',
                                 Email: 'ghi@jkl.com',
-                                Password: '1234567'
+                                Password: '1234567',
+                                UserImage: null
                             }
                         }, 'save request');
                         var retrieveCalls = 0;
@@ -1730,14 +1751,14 @@ var Serene;
                     assert.ok(uiDialog.is(":visible"), 'open a new entity dialog');
                     assert.strictEqual(Serene.DialogTesting.getDialogTitle(uiDialog), "New User", 'has correct title');
                     var fields = Serene.DialogTesting.getVisibleFields(dialog);
-                    assert.strictEqual(6, fields.length, 'has 6 fields');
+                    assert.strictEqual(7, fields.length, 'has 7 fields');
                     var formTesting = new Serene.FormTesting(assert);
                     var username = fields.eq(0);
                     var displayName = fields.eq(1);
                     var email = fields.eq(2);
-                    var password = fields.eq(3);
-                    var confirm = fields.eq(4);
-                    var source = fields.eq(5);
+                    var password = fields.eq(4);
+                    var confirm = fields.eq(5);
+                    var source = fields.eq(6);
                     formTesting.setValue(username, 'ABC  ');
                     formTesting.setValue(displayName, 'DEF');
                     formTesting.setValue(email, 'ghi@jkl.com');
@@ -1756,7 +1777,8 @@ var Serene;
                                 Username: 'ABC  ',
                                 DisplayName: 'DEF',
                                 Email: 'ghi@jkl.com',
-                                Password: '1234567'
+                                Password: '1234567',
+                                UserImage: null
                             }
                         }, 'save request');
                         var retrieveCalls = 0;

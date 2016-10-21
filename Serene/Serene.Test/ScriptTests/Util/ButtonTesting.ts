@@ -1,7 +1,7 @@
 namespace Serene {
     export class ButtonTesting {
 
-        constructor(private assert: QUnitAssert) {
+        constructor(private assert: Assert) {
         }
 
         assertEnabled(button: JQuery, klass: string) {

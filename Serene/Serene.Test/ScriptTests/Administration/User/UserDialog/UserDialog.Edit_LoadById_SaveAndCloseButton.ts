@@ -32,7 +32,8 @@ namespace Serene.Administration.Test {
                                 Username: 'some.thing',
                                 DisplayName: 'Some Thing',
                                 Email: 'some_thing@somedomain.com',
-                                Password: ''
+                                Password: '',
+                                UserImage: null
                             }
                         }, 'save request');
 

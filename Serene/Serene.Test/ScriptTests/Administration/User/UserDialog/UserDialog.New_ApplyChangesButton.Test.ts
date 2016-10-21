@@ -25,8 +25,8 @@ namespace Serene.Administration.Test {
             buttonTesting.assertDisabled(buttons.eq(3), 'edit-permissions-button');
 
             let fields = DialogTesting.getVisibleFields(dialog);
-            assert.strictEqual(6, fields.length,
-                'has 6 fields');
+            assert.strictEqual(7, fields.length,
+                'has 7 fields');
 
             var formTesting = new FormTesting(assert);
 
@@ -58,7 +58,14 @@ namespace Serene.Administration.Test {
             assert.ok(EditorTesting.isEditable(emaildomain),
                 'email domain is editable');
 
-            var password = fields.eq(3);
+            var image = fields.eq(3);
+            formTesting.assertTitle(image, 'User Image');
+            formTesting.assertNotRequired(image);
+            formTesting.assertEditable(image);
+            formTesting.assertHasClass(image, 's-ImageUploadEditor');
+            formTesting.assertValue(image, null);
+
+            var password = fields.eq(4);
             formTesting.assertTitle(password, 'Password');
             formTesting.assertRequired(password);
             formTesting.assertEditable(password);
@@ -67,7 +74,7 @@ namespace Serene.Administration.Test {
             formTesting.assertMaxLength(password, 50);
             formTesting.assertValue(password, '');
 
-            var confirm = fields.eq(4);
+            var confirm = fields.eq(5);
             formTesting.assertTitle(confirm, 'Confirm Password');
             formTesting.assertRequired(confirm);
             formTesting.assertEditable(confirm);
@@ -76,7 +83,7 @@ namespace Serene.Administration.Test {
             formTesting.assertMaxLength(confirm, 50);
             formTesting.assertValue(confirm, '');
 
-            var source = fields.eq(5);
+            var source = fields.eq(6);
             formTesting.assertTitle(source, 'Source');
             formTesting.assertNotRequired(source);
             formTesting.assertNotEditable(source);
@@ -104,7 +111,8 @@ namespace Serene.Administration.Test {
                             Username: 'ABC  ',
                             DisplayName: 'DEF',
                             Email: 'ghi@jkl.com',
-                            Password: '1234567'
+                            Password: '1234567',
+                            UserImage: null
                         }
                     },
                     'save request');
