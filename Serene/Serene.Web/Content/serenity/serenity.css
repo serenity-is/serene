@@ -2156,8 +2156,20 @@ a.s-LinkDropDown input {
   padding-bottom: 4px;
   margin-right: 6px;
 }
-.quick-filter-item .s-DateEditor {
+.quick-filter-item .s-DateEditor,
+.quick-filter-item .s-DateTimeEditor.dateQ {
   width: 85px;
+}
+.quick-filter-item .s-DateTimeEditor.time {
+  position: relative;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  top: 3px;
+  margin-right: 6px;
+  border: 1px solid #ccc;
+}
+.quick-filter-item .inplace-now {
+  display: none;
 }
 .quick-filter-item input.hasDatepicker {
   margin-right: 1px;
