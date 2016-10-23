@@ -1191,7 +1191,6 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.1.1.intellisense.js">jquery-3.1.1.intellisense.js</ProjectItem>
         <Folder Name="jvectormap" TargetFolderName="jvectormap">
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
