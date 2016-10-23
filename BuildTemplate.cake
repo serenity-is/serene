@@ -127,7 +127,7 @@ Task("PrepareVSIX")
     
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
-        { @"Scripts\jquery-2.2.3.intellisense.js", true }
+		{ @"Scripts\jquery-3.1.1.intellisense.js", true }
     };
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
