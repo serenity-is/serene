@@ -7868,12 +7868,3 @@ section.content > .s-DataGrid {
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
 }
-/* ------------------------------------------------------------------------- */
-/* APPENDED BY CODE GENERATOR, MOVE TO CORRECT PLACE AND REMOVE THIS COMMENT */
-/* ------------------------------------------------------------------------- */
-.s-Northwind-CustomerDetailsDialog > .size {
-  width: 650px;
-}
-.s-Northwind-CustomerDetailsDialog .caption {
-  width: 150px;
-}
