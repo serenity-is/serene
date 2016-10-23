@@ -1903,7 +1903,6 @@
     <Compile Include="Modules\Administration\User\Authentication\AuthenticationService.cs" />
     <Compile Include="Modules\Administration\User\Authentication\UserRetrieveService.cs" />
     <Compile Include="Modules\Membership\Account\LoginRequest.cs" />
-    <Compile Include="Modules\Membership\Account\LoginForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\Administration\User\UserRow.cs" />
     <Compile Include="Modules\Administration\User\UserForm.cs" />
