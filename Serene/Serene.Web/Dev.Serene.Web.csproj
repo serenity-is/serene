@@ -1860,7 +1860,6 @@
     <Compile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordRequest.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordForm.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\ChangePasswordRequest.cs" />
-    <Compile Include="Modules\Membership\Account\ChangePassword\ChangePasswordForm.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\AccountPage.SignUp.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\ActivateEmailModel.cs" />
     <Compile Include="Modules\Membership\Account\SignUp\SignUpForm.cs" />
