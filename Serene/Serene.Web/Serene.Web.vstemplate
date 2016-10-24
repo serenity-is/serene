@@ -844,7 +844,6 @@
             <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountChangePassword.cshtml">AccountChangePassword.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ChangePassword.cs">AccountPage.ChangePassword.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.cs">ChangePasswordForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPanel.ts">ChangePasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
             </Folder>
@@ -852,11 +851,9 @@
             <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ForgotPassword.cs">AccountPage.ForgotPassword.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.cs">ForgotPasswordForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.ts">ForgotPasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.cs">LoginForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.ts">LoginPanel.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
@@ -864,7 +861,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPassword.cshtml">AccountResetPassword.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPasswordEmail.cshtml">AccountResetPasswordEmail.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.cs">ResetPasswordForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPanel.ts">ResetPasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
@@ -1336,13 +1332,13 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.5.2" />
-      <installPackage id="Serenity.Core" version="2.5.2" />
-      <installPackage id="Serenity.Data" version="2.5.2" />
-      <installPackage id="Serenity.Data.Entity" version="2.5.2" />
-      <installPackage id="Serenity.Services" version="2.5.2" />
-      <installPackage id="Serenity.Web" version="2.5.2" />
-      <installPackage id="Serenity.Web.Assets" version="2.5.2" />
+      <installPackage id="Serenity.CodeGenerator" version="2.5.3" />
+      <installPackage id="Serenity.Core" version="2.5.3" />
+      <installPackage id="Serenity.Data" version="2.5.3" />
+      <installPackage id="Serenity.Data.Entity" version="2.5.3" />
+      <installPackage id="Serenity.Services" version="2.5.3" />
+      <installPackage id="Serenity.Web" version="2.5.3" />
+      <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
       <installPackage id="toastr" version="2.1.1" />
