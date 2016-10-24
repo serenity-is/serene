@@ -6879,6 +6879,22 @@ section.content > .s-DataGrid {
 .slick-row-selected {
   background-color: lightblue;
 }
+.inline-action {
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  min-width: 16px;
+  min-height: 22px;
+  cursor: pointer;
+  opacity: 0.5;
+  display: inline-block;
+}
+.inline-action > i {
+  font-size: 15px;
+}
+.inline-action:hover {
+  opacity: 1;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
@@ -7181,6 +7197,12 @@ section.content > .s-DataGrid {
 }
 .s-BasicSamples-OtherFormInTabDialog .caption {
   width: 120px;
+}
+.inline-action.view-details {
+  background-image: url(../serenity/images/magnifier-left.png);
+}
+.inline-action.new-order {
+  background-image: url(../serenity/images/store.png);
 }
 .s-LoginPanel {
   padding: 30px 20px;

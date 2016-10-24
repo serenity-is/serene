@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Inline Action Buttons";
+}
+
+@section Head {
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Some inline action buttons to perform actions like delete / view / new order on row they are in.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+    @Html.AppSourceFile("Index.cshtml"), 
+    @Html.AppSourceFile("InlineActionGrid.ts")</p>
+</div>
+
+<div id="GridDiv"></div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.InlineActionGrid($('#GridDiv'));
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

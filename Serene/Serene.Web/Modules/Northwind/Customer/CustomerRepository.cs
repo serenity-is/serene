@@ -50,7 +50,23 @@ namespace Serene.Northwind.Repositories
         }
 
         private class MySaveHandler : SaveRequestHandler<MyRow> { }
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
+
+        private class MyDeleteHandler : DeleteRequestHandler<MyRow>
+        {
+            protected override void ExecuteDelete()
+            {
+                try
+                {
+                    base.ExecuteDelete();
+                }
+                catch (Exception e)
+                {
+                    SqlExceptionHelper.HandleDeleteForeignKeyException(e);
+                    throw;
+                }
+            }
+        }
+
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
         private class MyListHandler : ListRequestHandler<MyRow> { }

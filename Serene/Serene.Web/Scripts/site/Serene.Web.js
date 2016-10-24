@@ -3381,6 +3381,86 @@ var Serene;
         BasicSamples.InitialValuesForQuickFilters = InitialValuesForQuickFilters;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Customer/CustomerGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var InlineActionGrid = (function (_super) {
+            __extends(InlineActionGrid, _super);
+            function InlineActionGrid(container) {
+                _super.call(this, container);
+            }
+            InlineActionGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.unshift({
+                    field: 'Delete Row',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action delete-row" title="delete">' +
+                        '<i class="fa fa-trash-o text-red"></i></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                columns.splice(1, 0, {
+                    field: 'View Details',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action view-details" title="view details"></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                columns.splice(2, 0, {
+                    field: 'New Order',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action new-order" title="new order"></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                return columns;
+            };
+            InlineActionGrid.prototype.onClick = function (e, row, cell) {
+                var _this = this;
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('delete-row')) {
+                        Q.confirm('Delete record?', function () {
+                            Serene.Northwind.CustomerService.Delete({
+                                EntityId: item.ID,
+                            }, function (response) {
+                                _this.refresh();
+                            });
+                        });
+                    }
+                    else if (target.hasClass('view-details')) {
+                        this.editItem(item.ID);
+                    }
+                    else if (target.hasClass('new-order')) {
+                        var dlg = new Serene.Northwind.OrderDialog();
+                        this.initDialog(dlg);
+                        dlg.loadEntityAndOpenDialog({
+                            CustomerID: item.CustomerID
+                        });
+                    }
+                }
+            };
+            InlineActionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], InlineActionGrid);
+            return InlineActionGrid;
+        }(Serene.Northwind.CustomerGrid));
+        BasicSamples.InlineActionGrid = InlineActionGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var BasicSamples;
