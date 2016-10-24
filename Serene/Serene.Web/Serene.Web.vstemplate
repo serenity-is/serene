@@ -388,6 +388,7 @@
         </Folder>
         <Folder Name="AdminLTE" TargetFolderName="AdminLTE">
           <ProjectItem ReplaceParameters="true" TargetFileName="AdminLTEController.cs">AdminLTEController.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="AdminLTENavigation.cs">AdminLTENavigation.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Calendar.cshtml">Calendar.cshtml</ProjectItem>
           <Folder Name="Charts" TargetFolderName="Charts">
             <ProjectItem ReplaceParameters="true" TargetFileName="ChartJS.cshtml">ChartJS.cshtml</ProjectItem>
@@ -441,8 +442,11 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesEndpoint.cs">BasicSamplesEndpoint.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesHelper.cs">BasicSamplesHelper.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesModels.cs">BasicSamplesModels.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.cs">BasicSamplesNavigation.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
           <Folder Name="Dialogs" TargetFolderName="Dialogs">
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Dialogs.cs">BasicSamplesNavigation.Dialogs.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Dialogs.cs">BasicSamplesPage.Dialogs.cs</ProjectItem>
             <Folder Name="ChartInDialog" TargetFolderName="ChartInDialog">
               <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.ts">ChartInDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -499,6 +503,8 @@
             </Folder>
           </Folder>
           <Folder Name="Editors" TargetFolderName="Editors">
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Editors.cs">BasicSamplesNavigation.Editors.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Editors.cs">BasicSamplesPage.Editors.cs</ProjectItem>
             <Folder Name="ChangingLookupText" TargetFolderName="ChangingLookupText">
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextDialog.ts">ChangingLookupTextDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextEditor.ts">ChangingLookupTextEditor.ts</ProjectItem>
@@ -534,6 +540,8 @@
             </Folder>
           </Folder>
           <Folder Name="Grids" TargetFolderName="Grids">
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Grids.cs">BasicSamplesNavigation.Grids.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Grids.cs">BasicSamplesPage.Grids.cs</ProjectItem>
             <Folder Name="CancellableBulkAction" TargetFolderName="CancellableBulkAction">
               <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.ts">CancellableBulkActionGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -562,6 +570,10 @@
             <Folder Name="InitialValuesForQuickFilters" TargetFolderName="InitialValuesForQuickFilters">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="InitialValuesForQuickFilters.ts">InitialValuesForQuickFilters.ts</ProjectItem>
+            </Folder>
+            <Folder Name="InlineActionButtons" TargetFolderName="InlineActionButtons">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="InlineActionGrid.ts">InlineActionGrid.ts</ProjectItem>
             </Folder>
             <Folder Name="InlineImageInGrid" TargetFolderName="InlineImageInGrid">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -930,6 +942,7 @@
           <Folder Name="EmployeeTerritory" TargetFolderName="EmployeeTerritory">
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryRow.cs">EmployeeTerritoryRow.cs</ProjectItem>
           </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindNavigation.cs">NorthwindNavigation.cs</ProjectItem>
           <Folder Name="Note" TargetFolderName="Note">
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteDialog.ts">NoteDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteRepository.cs">NoteRepository.cs</ProjectItem>
