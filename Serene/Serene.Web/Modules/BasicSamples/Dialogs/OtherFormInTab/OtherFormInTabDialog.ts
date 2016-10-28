@@ -10,6 +10,7 @@ namespace Serene.BasicSamples {
 
         private customerPropertyGrid: Serenity.PropertyGrid;
         private customerForm: Northwind.CustomerForm;
+        private customerValidator: JQueryValidation.Validator;
 
         constructor() {
             super();
@@ -24,6 +25,9 @@ namespace Serene.BasicSamples {
             // this is just a helper to access editors if needed
             this.customerForm = new Northwind.CustomerForm((this.customerPropertyGrid as any).idPrefix);
 
+            // initialize validator for customer form
+            this.customerValidator = this.byId("CustomerForm").validate(Q.validateOptions({}));
+
             var selfChange = 0;
 
             // creating another toolbar for customer tab that will only save Customer
@@ -34,6 +38,9 @@ namespace Serene.BasicSamples {
                     onClick: () => {
                         var id = this.getCustomerID();
                         if (!id)
+                            return;
+
+                        if (!this.customerValidator.form())
                             return;
 
                         // prepare an empty entity to serialize customer details into

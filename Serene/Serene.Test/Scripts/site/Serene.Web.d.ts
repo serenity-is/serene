@@ -354,6 +354,7 @@ declare namespace Serene.BasicSamples {
     class OtherFormInTabDialog extends Northwind.OrderDialog {
         private customerPropertyGrid;
         private customerForm;
+        private customerValidator;
         constructor();
         getCustomerID(): number;
         loadEntity(entity: Northwind.OrderRow): void;
@@ -869,6 +870,13 @@ declare namespace Serene.BasicSamples {
          * but this is for demonstration purposes
          */
         protected createQuickFilters(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineActionGrid extends Northwind.CustomerGrid {
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }
 declare namespace Serene.BasicSamples {

@@ -1689,6 +1689,8 @@ var Serene;
                 });
                 // this is just a helper to access editors if needed
                 this.customerForm = new Serene.Northwind.CustomerForm(this.customerPropertyGrid.idPrefix);
+                // initialize validator for customer form
+                this.customerValidator = this.byId("CustomerForm").validate(Q.validateOptions({}));
                 var selfChange = 0;
                 // creating another toolbar for customer tab that will only save Customer
                 new Serenity.Toolbar(this.byId("CustomerToolbar"), {
@@ -1698,6 +1700,8 @@ var Serene;
                             onClick: function () {
                                 var id = _this.getCustomerID();
                                 if (!id)
+                                    return;
+                                if (!_this.customerValidator.form())
                                     return;
                                 // prepare an empty entity to serialize customer details into
                                 var c = {};

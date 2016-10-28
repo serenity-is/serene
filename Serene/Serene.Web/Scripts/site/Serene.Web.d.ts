@@ -354,6 +354,7 @@ declare namespace Serene.BasicSamples {
     class OtherFormInTabDialog extends Northwind.OrderDialog {
         private customerPropertyGrid;
         private customerForm;
+        private customerValidator;
         constructor();
         getCustomerID(): number;
         loadEntity(entity: Northwind.OrderRow): void;
