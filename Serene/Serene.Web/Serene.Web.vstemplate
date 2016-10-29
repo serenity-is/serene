@@ -18,7 +18,9 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="FilterConfig.cs">FilterConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="RouteConfig.cs">RouteConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="SiteInitialization.cs">SiteInitialization.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SiteInitialization.ExceptionLog.cs">SiteInitialization.ExceptionLog.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="SiteInitialization.Migrations.cs">SiteInitialization.Migrations.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SqlErrorStore.cs">SqlErrorStore.cs</ProjectItem>
       </Folder>
       <Folder Name="Content" TargetFolderName="Content">
         <Folder Name="adminlte" TargetFolderName="adminlte">
@@ -807,6 +809,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160605_215300_Granted.cs">DefaultDB_20160605_215300_Granted.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161004_212900_UserImage.cs">DefaultDB_20161004_212900_UserImage.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_130000_ExceptionLog.cs">DefaultDB_20161029_130000_ExceptionLog.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="MigrationUtils.cs">MigrationUtils.cs</ProjectItem>
             <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
@@ -1325,6 +1328,7 @@
     <packagesToInstall>
       <installPackage id="bootstrap" version="3.3.7" />
       <installPackage id="CsQuery" version="1.3.4" />
+      <installPackage id="Dapper" version="1.42" />
       <installPackage id="EPPlus" version="4.1.0" />
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator" version="1.6.2" />
@@ -1354,6 +1358,7 @@
       <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
+      <installPackage id="StackExchange.Exceptional" version="1.0.122" />
       <installPackage id="toastr" version="2.1.1" />
       <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.1" />
     </packagesToInstall>
