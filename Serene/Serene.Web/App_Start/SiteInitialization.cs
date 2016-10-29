@@ -27,6 +27,8 @@
 
                 if (!ConfigurationManager.AppSettings["ActiveDirectory"].IsTrimmedEmpty())
                     registrar.RegisterInstance<IDirectoryService>(new ActiveDirectoryService());
+
+                InitializeExceptionLog();
             }
             catch (Exception ex)
             {
