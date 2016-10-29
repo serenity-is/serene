@@ -1433,6 +1433,7 @@ var Serene;
                 information();
                 warning();
                 alert();
+                alertWithHtmlContent();
             }
             DialogBoxes.initializePage = initializePage;
             function confirmDialogButtons() {
@@ -1476,6 +1477,15 @@ var Serene;
             function alert() {
                 $('#Alert').click(function () {
                     Q.alert("Houston, we got a problem!");
+                });
+            }
+            function alertWithHtmlContent() {
+                $('#AlertWithHtmlContent').click(function () {
+                    Q.alert("<h4>Here is some HTML content!</h4>" +
+                        "<ul><li>Item 1</li><li>Item 2</li >" +
+                        "<li>Visit <a href='http://serenity.is/' target='_blank' style='color: #ddf'>http://serenity.is/</a>!</li></ul>", {
+                        htmlEncode: false
+                    });
                 });
             }
         })(DialogBoxes = BasicSamples.DialogBoxes || (BasicSamples.DialogBoxes = {}));
