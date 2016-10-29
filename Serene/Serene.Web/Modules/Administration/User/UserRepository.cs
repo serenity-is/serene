@@ -74,9 +74,9 @@ namespace Serene.Administration.Repositories
             password = password.TrimToNull();
 
             if (password == null ||
-                password.Length < 7)
+                password.Length < 5)
                 throw new ValidationError("PasswordLength", "Password",
-                    String.Format(Texts.Validation.MinRequiredPasswordLength, 7));
+                    String.Format(Texts.Validation.MinRequiredPasswordLength, 5));
 
             return password;
         }
