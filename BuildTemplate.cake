@@ -127,6 +127,8 @@ Task("PrepareVSIX")
     
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
+		{ @"wkhtmltopdf.exe", true },
+		{ @"..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe", true },
 		{ @"Scripts\jquery-3.1.1.intellisense.js", true }
     };
 
