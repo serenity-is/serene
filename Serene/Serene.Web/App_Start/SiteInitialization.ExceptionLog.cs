@@ -4,7 +4,9 @@
     using Serenity.Abstractions;
     using StackExchange.Exceptional;
     using System;
+    using System.Collections.Specialized;
     using System.Web;
+    using System.Web.Security;
 
     public static partial class SiteInitialization
     {
@@ -35,9 +37,20 @@
             {
                 if (args.Error.Exception != null && args.Error is INotLoggedException)
                     args.Abort = true;
+
+                args.Error.Cookies.Remove(FormsAuthentication.FormsCookieName);
+                ReplaceKey(args.Error.Form, "Password");
+                ReplaceKey(args.Error.Form, "PasswordConfirm");
             };
 
             Dependency.Resolve<IDependencyRegistrar>().RegisterInstance<IExceptionLogger>(new ErrorStoreLogger());
+        }
+
+        private static void ReplaceKey(NameValueCollection collection, string key)
+        {
+            var item = collection[key];
+            if (item != null)
+                collection[item] = "***";
         }
 
         private class ErrorStoreLogger : IExceptionLogger
