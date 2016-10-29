@@ -7,6 +7,7 @@ namespace Serene.Navigation
     using System;
     using System.Collections.Generic;
     using System.Web;
+    using System.Web.Hosting;
 
     public partial class NavigationModel
     {
@@ -27,7 +28,13 @@ namespace Serene.Navigation
         {
             string currentUrl = "";
             if (HttpContext.Current != null)
-                currentUrl = HttpContext.Current.Request.Url.ToString();
+            {
+                var requestUrl = HttpContext.Current.Request.Url;
+                currentUrl = requestUrl.ToString();
+                if (!requestUrl.ToString().EndsWith("/") &&
+                    String.Compare(requestUrl.AbsolutePath, HostingEnvironment.ApplicationVirtualPath, StringComparison.OrdinalIgnoreCase) == 0)
+                    currentUrl += "/";
+            }
 
             int[] currentPath = new int[10];
             int[] bestMatch = null;
