@@ -915,8 +915,6 @@ button.ui-state-hover .ui-button-text {
 .s-ColumnPickerDialog .column-list {
   flex: 1 1 50%;
   margin: 6px;
-  display: flex;
-  flex-direction: column;
 }
 .s-ColumnPickerDialog .column-list ul {
   padding-left: 0;
