@@ -149,6 +149,11 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe">
+      <Link>wkhtmltopdf.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wkhtmltopdf-license.txt" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
     <Content Include="Content\adminlte\img\avatar.png" />
     <Content Include="Content\adminlte\img\avatar04.png" />

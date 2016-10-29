@@ -4,9 +4,11 @@ using Serenity.Reporting;
 using Serenity.Web;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Mime;
 using System.Text;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -118,6 +120,10 @@ namespace Serene
             renderUrl += "&print=1";
 
             var converter = new HtmlToPdfConverter();
+            var wkhtmlPath = HostingEnvironment.MapPath("~/bin/wkhtmltopdf.exe");
+            if (System.IO.File.Exists(wkhtmlPath))
+                converter.UtilityExePath = wkhtmlPath;
+            
             converter.Url = renderUrl;
             var formsCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (formsCookie != null)
