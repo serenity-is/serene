@@ -3118,6 +3118,7 @@ var Serene;
                     Q.notifySuccess("Let's filter the grid to orders from " + item.ShipCountry);
                     var countryFilter = this.findQuickFilter(Serenity.LookupEditor, Serene.Northwind.OrderRow.Fields.ShipCountry);
                     countryFilter.value = item.ShipCountry;
+                    this.refresh();
                 }
             };
             /**

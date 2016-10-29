@@ -101,6 +101,7 @@ namespace Serene.BasicSamples {
                 var countryFilter = this.findQuickFilter(Serenity.LookupEditor,
                     Northwind.OrderRow.Fields.ShipCountry);
                 countryFilter.value = item.ShipCountry;
+                this.refresh();
             }
         }
 
