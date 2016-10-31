@@ -1625,6 +1625,10 @@ var Serene;
                 }));
                 return buttons;
             };
+            OrderDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
+            };
             OrderDialog = __decorate([
                 Serenity.Decorators.registerClass()
             ], OrderDialog);

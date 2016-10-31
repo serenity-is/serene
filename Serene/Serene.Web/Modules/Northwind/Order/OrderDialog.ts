@@ -26,5 +26,11 @@
 
             return buttons;
         }
+
+        protected updateInterface() {
+            super.updateInterface();
+
+            this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
+        }
     }
 }

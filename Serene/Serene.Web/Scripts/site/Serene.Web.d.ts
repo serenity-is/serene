@@ -326,6 +326,7 @@ declare namespace Serene.Northwind {
         protected form: OrderForm;
         constructor();
         getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
     }
 }
 declare namespace Serene.BasicSamples {
