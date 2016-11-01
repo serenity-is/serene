@@ -371,6 +371,34 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    /**
+     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+     * With single toolbar for all forms
+     */
+    class OtherFormInTabWithOneToolbarDialog extends Northwind.OrderDialog {
+        private customerPropertyGrid;
+        private customerForm;
+        private customerValidator;
+        private selfChange;
+        constructor();
+        getCustomerID(): number;
+        loadEntity(entity: Northwind.OrderRow): void;
+        protected saveCustomer(callback: (response: Serenity.SaveResponse) => void, onSuccess?: (response: Serenity.SaveResponse) => void): boolean;
+        protected saveOrder(callback: (response: Serenity.SaveResponse) => void): void;
+        protected saveAll(callback: (response: Serenity.SaveResponse) => void): void;
+        protected save(callback: (response: Serenity.SaveResponse) => void): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabWithOneToolbar
+     */
+    class OtherFormInTabWithOneToolbarGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormInTabWithOneToolbarDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
     class PopulateLinkedDataDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;

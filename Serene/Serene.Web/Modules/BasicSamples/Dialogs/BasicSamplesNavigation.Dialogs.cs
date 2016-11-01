@@ -9,6 +9,7 @@ using Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Get Inserted Record ID", typeof(BasicSamplesController), action: "GetInsertedRecordId")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Multi Column Dialog", typeof(BasicSamplesController), action: "MultiColumnResponsiveDialog")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Other Form In Tab", typeof(BasicSamplesController), action: "OtherFormInTab")]
+[assembly: NavigationLink(7910, "Basic Samples/Dialogs/Other Form In Tab With One Toolbar", typeof(BasicSamplesController), action: "OtherFormInTabWithOneToolbar")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Populate Linked Data", typeof(BasicSamplesController), action: "PopulateLinkedData")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Read-Only Dialog", typeof(BasicSamplesController), action: "ReadOnlyDialog")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Responsive Dialog", typeof(BasicSamplesController), action: "ResponsiveDialog")]
