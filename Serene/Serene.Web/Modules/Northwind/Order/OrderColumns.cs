@@ -18,13 +18,13 @@ namespace Serene.Northwind.Columns
         [EditLink, QuickFilter]
         public DateTime? OrderDate { get; set; }
 
-        [FilterOnly, QuickFilter]
-        public OrderShippingState ShippingState { get; set; }
-
         [Width(140), EmployeeFormatter(GenderProperty = "EmployeeGender"), QuickFilter]
         public String EmployeeFullName { get; set; }
 
         public DateTime? RequiredDate { get; set; }
+
+        [FilterOnly, QuickFilter]
+        public OrderShippingState ShippingState { get; set; }
 
         public DateTime? ShippedDate { get; set; }
 

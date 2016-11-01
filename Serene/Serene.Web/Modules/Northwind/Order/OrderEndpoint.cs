@@ -38,12 +38,12 @@ namespace Serene.Northwind.Endpoints
             return new MyRepository().Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, OrderListRequest request)
         {
             return new MyRepository().List(connection, request);
         }
 
-        public FileContentResult ListExcel(IDbConnection connection, ListRequest request)
+        public FileContentResult ListExcel(IDbConnection connection, OrderListRequest request)
         {
             var data = List(connection, request).Entities;
             var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.OrderColumns));

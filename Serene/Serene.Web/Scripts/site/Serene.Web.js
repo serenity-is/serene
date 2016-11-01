@@ -1306,6 +1306,22 @@ var Serene;
             OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
             OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
             OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.getQuickFilters = function () {
+                var _this = this;
+                var filters = _super.prototype.getQuickFilters.call(this);
+                filters.push({
+                    type: Serenity.LookupEditor,
+                    options: {
+                        lookupKey: Northwind.ProductRow.lookupKey
+                    },
+                    field: 'ProductID',
+                    title: 'Contains Product in Details',
+                    handler: function (w) {
+                        _this.view.params.ProductID = Q.toId(w.value);
+                    }
+                });
+                return filters;
+            };
             OrderGrid.prototype.createQuickFilters = function () {
                 _super.prototype.createQuickFilters.call(this);
                 var fld = Northwind.OrderRow.Fields;

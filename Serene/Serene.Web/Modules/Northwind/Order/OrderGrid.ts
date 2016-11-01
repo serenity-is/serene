@@ -15,6 +15,24 @@
             super(container);
         }
 
+        protected getQuickFilters() {
+            var filters = super.getQuickFilters();
+
+            filters.push({
+                type: Serenity.LookupEditor,
+                options: {
+                    lookupKey: ProductRow.lookupKey
+                },
+                field: 'ProductID',
+                title: 'Contains Product in Details',
+                handler: w => {
+                    (this.view.params as OrderListRequest).ProductID = Q.toId(w.value);
+                }
+            });
+
+            return filters;
+        }
+
         protected createQuickFilters() {
             super.createQuickFilters();
 

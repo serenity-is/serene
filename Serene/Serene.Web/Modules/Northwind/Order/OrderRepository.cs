@@ -36,7 +36,7 @@ namespace Serene.Northwind.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, OrderListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
@@ -45,6 +45,27 @@ namespace Serene.Northwind.Repositories
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+
+        private class MyListHandler : ListRequestHandler<MyRow, OrderListRequest>
+        {
+            protected override void ApplyFilters(SqlQuery query)
+            {
+                base.ApplyFilters(query);
+
+                if (Request.ProductID != null)
+                {
+                    var od = Entities.OrderDetailRow.Fields.As("od");
+
+                    query.Where(Criteria.Exists(
+                        query.SubQuery()
+                            .Select("1")
+                            .From(od)
+                            .Where(
+                                od.OrderID == fld.OrderID &
+                                od.ProductID == Request.ProductID.Value)
+                            .ToString()));
+                }
+            }
+        }
     }
 }

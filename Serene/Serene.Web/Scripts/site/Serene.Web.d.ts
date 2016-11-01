@@ -255,6 +255,7 @@ declare namespace Serene.Northwind {
         protected getService(): string;
         protected shippingStateFilter: Serenity.EnumEditor;
         constructor(container: JQuery);
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
         protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
         set_shippingState(value: number): void;
@@ -2346,6 +2347,11 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Northwind {
+    interface OrderListRequest extends Serenity.ListRequest {
+        ProductID?: number;
+    }
+}
+declare namespace Serene.Northwind {
     interface OrderRow {
         OrderID?: number;
         CustomerID?: string;
@@ -2421,7 +2427,7 @@ declare namespace Serene.Northwind {
         function Update(request: Serenity.SaveRequest<OrderRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<OrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<OrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: OrderListRequest, onSuccess?: (response: Serenity.ListResponse<OrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
