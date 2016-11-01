@@ -767,6 +767,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailRow.ts">Northwind.OrderDetailRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailService.ts">Northwind.OrderDetailService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderForm.ts">Northwind.OrderForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderListRequest.ts">Northwind.OrderListRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.ts">Northwind.OrderRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.ts">Northwind.OrderService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.ts">Northwind.OrderShippingState.ts</ProjectItem>
@@ -964,6 +965,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderForm.cs">OrderForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderGrid.ts">OrderGrid.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderIndex.cshtml">OrderIndex.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="OrderListRequest.cs">OrderListRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderPage.cs">OrderPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderRepository.cs">OrderRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderRow.cs">OrderRow.cs</ProjectItem>
