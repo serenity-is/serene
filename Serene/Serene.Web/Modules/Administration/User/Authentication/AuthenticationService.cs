@@ -171,19 +171,19 @@
                 using (var connection = SqlConnections.NewFor<UserRow>())
                 using (var uow = new UnitOfWork(connection))
                 {
-                    var fld = UserRow.Fields;
-                    var userId = (int?)new SqlInsert(fld.TableName)
-                        .Set(fld.Username, username)
-                        .Set(fld.Source, "ldap")
-                        .Set(fld.DisplayName, displayName)
-                        .Set(fld.Email, email)
-                        .Set(fld.PasswordHash, hash)
-                        .Set(fld.PasswordSalt, salt)
-                        .Set(fld.IsActive, 1)
-                        .Set(fld.InsertDate, DateTime.Now)
-                        .Set(fld.InsertUserId, 1)
-                        .Set(fld.LastDirectoryUpdate, DateTime.Now)
-                        .ExecuteAndGetID(connection);
+                    var userId = (int)connection.InsertAndGetID(new UserRow
+                    {
+                        Username = username,
+                        Source = "ldap", 
+                        DisplayName = displayName, 
+                        Email = email, 
+                        PasswordHash = hash, 
+                        PasswordSalt = salt, 
+                        IsActive = 1, 
+                        InsertDate = DateTime.Now, 
+                        InsertUserId = 1, 
+                        LastDirectoryUpdate = DateTime.Now
+                    });
 
                     uow.Commit();
 

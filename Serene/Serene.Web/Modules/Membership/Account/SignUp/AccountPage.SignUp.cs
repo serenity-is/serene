@@ -51,18 +51,19 @@ namespace Serene.Membership.Pages
                     var username = request.Email;
 
                     var fld = UserRow.Fields;
-                    var userId = (int)new SqlInsert(fld.TableName)
-                        .Set(fld.Username, username)
-                        .Set(fld.Source, "sign")
-                        .Set(fld.DisplayName, displayName)
-                        .Set(fld.Email, email)
-                        .Set(fld.PasswordHash, hash)
-                        .Set(fld.PasswordSalt, salt)
-                        .Set(fld.IsActive, 0)
-                        .Set(fld.InsertDate, DateTime.Now)
-                        .Set(fld.InsertUserId, 1)
-                        .Set(fld.LastDirectoryUpdate, DateTime.Now)
-                        .ExecuteAndGetID(connection);
+                    var userId = (int)connection.InsertAndGetID(new UserRow
+                    {
+                        Username = username,
+                        Source = "sign",
+                        DisplayName = displayName,
+                        Email = email,
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        IsActive = 0,
+                        InsertDate = DateTime.Now,
+                        InsertUserId = 1,
+                        LastDirectoryUpdate = DateTime.Now
+                    });
 
                     byte[] bytes;
                     using (var ms = new MemoryStream())
