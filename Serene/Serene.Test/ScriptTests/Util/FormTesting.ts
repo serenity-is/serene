@@ -1,6 +1,6 @@
 namespace Serene {
     export class FormTesting {
-        constructor(private assert: QUnitAssert) {
+        constructor(private assert: Assert) {
         }
 
         getTitle(field: JQuery) {
