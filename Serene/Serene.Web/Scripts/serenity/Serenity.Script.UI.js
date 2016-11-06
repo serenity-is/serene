@@ -302,6 +302,15 @@
 	$Serenity_CheckTreeEditor.__typeName = 'Serenity.CheckTreeEditor';
 	global.Serenity.CheckTreeEditor = $Serenity_CheckTreeEditor;
 	////////////////////////////////////////////////////////////////////////////////
+	// Serenity.CollapsibleAttribute
+	var $Serenity_CollapsibleAttribute = function(value) {
+		this.value = false;
+		this.collapsed = false;
+		this.value = value;
+	};
+	$Serenity_CollapsibleAttribute.__typeName = 'Serenity.CollapsibleAttribute';
+	global.Serenity.CollapsibleAttribute = $Serenity_CollapsibleAttribute;
+	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.CssClassAttribute
 	var $Serenity_CssClassAttribute = function(cssClass) {
 		this.cssClass = null;
@@ -2884,7 +2893,7 @@
 		for (var i = 0; i < this.$items.length; i++) {
 			var item = this.$items[i];
 			if (this.options.useCategories && !ss.referenceEquals(priorCategory, item.category)) {
-				var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, item.category);
+				var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, item.category, ((item.collapsible !== true) ? null : ss.coalesce(item.collapsed, false)));
 				if (ss.isNullOrUndefined(priorCategory)) {
 					categoryDiv.addClass('first-category');
 				}
@@ -2900,6 +2909,9 @@
 	$Serenity_PropertyGrid.$categoryLinkClick = function(e) {
 		e.preventDefault();
 		var title = $('a[name=' + e.target.getAttribute('href').toString().substr(1) + ']');
+		if (title.closest('.category').hasClass('collapsed')) {
+			title.closest('.category').click();
+		}
 		var animate = function() {
 			title.fadeTo(100, 0.5, function() {
 				title.fadeTo(100, 1, function() {
@@ -2996,21 +3008,12 @@
 			var displayNameAttribute = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $System_ComponentModel_DisplayNameAttribute);
 			});
-			if (displayNameAttribute.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla başlık belirlenmiş!', ss.getTypeName(type), pi.name));
-			}
 			var hintAttribute = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_HintAttribute);
 			});
-			if (hintAttribute.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla ipucu belirlenmiş!', ss.getTypeName(type), pi.name));
-			}
 			var placeholderAttribute = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_PlaceholderAttribute);
 			});
-			if (placeholderAttribute.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla placeholder belirlenmiş!', ss.getTypeName(type), pi.name));
-			}
 			var memberType = ((member.type === 16) ? ss.cast(member, ss.isValue(member) && member.type === 16).returnType : ss.cast(member, ss.isValue(member) && member.type === 4).returnType);
 			if (member.type === 16) {
 				var p = ss.cast(member, ss.isValue(member) && member.type === 16);
@@ -3029,23 +3032,24 @@
 			var categoryAttribute = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_CategoryAttribute);
 			});
-			if (categoryAttribute.length === 1) {
+			if (categoryAttribute.length > 0) {
 				pi.category = ss.cast(categoryAttribute[0], $Serenity_CategoryAttribute).category;
-			}
-			else if (categoryAttribute.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla kategori belirlenmiş!', ss.getTypeName(type), pi.name));
 			}
 			else if (list.length > 0) {
 				pi.category = list[list.length - 1].category;
 			}
+			var collapsibleAttribute = (member.attr || []).filter(function(a) {
+				return ss.isInstanceOfType(a, $Serenity_CollapsibleAttribute);
+			});
+			if (collapsibleAttribute.length > 0 && ss.cast(collapsibleAttribute[0], $Serenity_CollapsibleAttribute).value) {
+				pi.collapsible = true;
+				pi.collapsed = ss.cast(collapsibleAttribute[0], $Serenity_CollapsibleAttribute).collapsed;
+			}
 			var cssClassAttr = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_CssClassAttribute);
 			});
-			if (cssClassAttr.length === 1) {
+			if (cssClassAttr.length > 0) {
 				pi.cssClass = ss.cast(cssClassAttr[0], $Serenity_CssClassAttribute).cssClass;
-			}
-			else if (cssClassAttr.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla css class belirlenmiş!', ss.getTypeName(type), pi.name));
 			}
 			if ((member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_OneWayAttribute);
@@ -3096,9 +3100,6 @@
 			var typeAttrArray = (member.attr || []).filter(function(a) {
 				return ss.isInstanceOfType(a, $Serenity_EditorTypeAttribute);
 			});
-			if (typeAttrArray.length > 1) {
-				throw new ss.Exception(ss.formatString('{0}.{1} için birden fazla editör tipi belirlenmiş!', ss.getTypeName(type), pi.name));
-			}
 			var nullableType = memberType;
 			//Nullable.GetUnderlyingType(memberType);
 			var enumType = null;
@@ -6596,6 +6597,7 @@
 			}
 		}
 	}, $Serenity_DataGrid, [$Serenity_IDataGrid, $Serenity_IGetEditValue, $Serenity_ISetEditValue]);
+	ss.initClass($Serenity_CollapsibleAttribute, $asm, {});
 	ss.initClass($Serenity_CssClassAttribute, $asm, {});
 	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_DateEditor, $asm, {
@@ -9522,11 +9524,19 @@
 			this.element.find('a.category-link').unbind('click', $Serenity_PropertyGrid.$categoryLinkClick).remove();
 			Serenity.Widget.prototype.destroy.call(this);
 		},
-		$createCategoryDiv: function(categoriesDiv, categoryIndexes, category) {
+		$createCategoryDiv: function(categoriesDiv, categoryIndexes, category, collapsed) {
 			var categoryDiv = $('<div/>').addClass('category').appendTo(categoriesDiv);
-			$('<div/>').addClass('category-title').append($('<a/>').addClass('category-anchor').text(this.$determineText(category, function(prefix) {
+			var title = $('<div/>').addClass('category-title').append($('<a/>').addClass('category-anchor').text(this.$determineText(category, function(prefix) {
 				return prefix + 'Categories.' + category;
 			})).attr('name', this.options.idPrefix + 'Category' + categoryIndexes[category].toString())).appendTo(categoryDiv);
+			if (ss.isValue(collapsed)) {
+				categoryDiv.addClass(((collapsed === true) ? 'collapsible collapsed' : 'collapsible'));
+				var img = $('<i/>').addClass(((collapsed === true) ? 'fa fa-plus' : 'fa fa-minus')).appendTo(title);
+				title.click(function(e) {
+					categoryDiv.toggleClass('collapsed');
+					img.toggleClass('fa-plus').toggleClass('fa-minus');
+				});
+			}
 			return categoryDiv;
 		},
 		$determineText: function(text, getKey) {
