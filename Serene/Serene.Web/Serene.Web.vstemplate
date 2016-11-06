@@ -604,6 +604,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRow.cs">CustomerGrossSalesRow.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="TreeGrid" TargetFolderName="TreeGrid">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="TreeGrid.ts">TreeGrid.ts</ProjectItem>
+            </Folder>
             <Folder Name="ViewWithoutID" TargetFolderName="ViewWithoutID">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
