@@ -235,6 +235,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/StoredProcedureGrid/Index.cshtml";
                 }
 
+                public static class TreeGrid
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/TreeGrid/Index.cshtml";
+                }
+
                 public static class ViewWithoutID
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/ViewWithoutID/Index.cshtml";

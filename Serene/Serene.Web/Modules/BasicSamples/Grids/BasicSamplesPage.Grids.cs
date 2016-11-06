@@ -66,6 +66,11 @@ namespace Serene.BasicSamples.Pages
             return View(Views.StoredProcedureGrid.Index);
         }
 
+        public ActionResult TreeGrid()
+        {
+            return View(Views.TreeGrid.Index);
+        }
+
         public ActionResult ViewWithoutID()
         {
             return View(Views.ViewWithoutID.Index);

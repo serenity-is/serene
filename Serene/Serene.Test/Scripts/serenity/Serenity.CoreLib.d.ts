@@ -708,6 +708,7 @@ declare namespace Serenity {
         constructor(grid: IDataGrid);
         clear(): void;
         resetCheckedAndRefresh(): void;
+        selectKeys(keys: string[]): void;
         getSelectedKeys(): string[];
         getSelectedAsInt32(): number[];
         getSelectedAsInt64(): number[];
@@ -781,6 +782,7 @@ declare namespace Serenity {
         function setDisabled(tabs: JQuery, tabKey: string, isDisabled: boolean): void;
         function activeTabKey(tabs: JQuery): string;
         function indexByKey(tabs: JQuery): any;
+        function selectTab(tabs: JQuery, tabKey: string): void;
     }
 }
 declare namespace Serenity {
@@ -824,6 +826,35 @@ declare namespace Serenity {
         function addValidationRule(element: JQuery, eventClass: string, rule: (p1: JQuery) => string): JQuery;
         function removeValidationRule(element: JQuery, eventClass: string): JQuery;
         function validateElement(validator: JQueryValidation.Validator, widget: Serenity.Widget<any>): boolean;
+    }
+}
+declare namespace Serenity {
+    class Widget<TOptions> {
+        private static nextWidgetNumber;
+        element: JQuery;
+        protected options: TOptions;
+        protected widgetName: string;
+        protected uniqueName: string;
+        protected asyncPromise: PromiseLike<void>;
+        constructor(element: JQuery, options?: TOptions);
+        destroy(): void;
+        protected addCssClass(): void;
+        protected getCssClass(): string;
+        protected initializeAsync(): PromiseLike<void>;
+        protected isAsyncWidget(): boolean;
+        static getWidgetName(type: Function): string;
+        static elementFor<TWidget>(editorType: {
+            new (...args: any[]): TWidget;
+        }): JQuery;
+        static create<TWidget extends Widget<TOpt>, TOpt>(params: CreateWidgetParams<TWidget, TOpt>): TWidget;
+        init(action?: (widget: any) => void): this;
+        private initialize();
+    }
+    interface Widget<TOptions> {
+        addValidationRule(eventClass: string, rule: (p1: JQuery) => string): JQuery;
+        getGridField(): JQuery;
+        change(handler: (e: JQueryEventObject) => void): void;
+        changeSelect2(handler: (e: JQueryEventObject) => void): void;
     }
 }
 declare namespace Serenity {
@@ -1767,35 +1798,6 @@ declare namespace Serenity {
     }
 }
 declare namespace Serenity {
-    class Widget<TOptions> {
-        private static nextWidgetNumber;
-        element: JQuery;
-        protected options: TOptions;
-        protected widgetName: string;
-        protected uniqueName: string;
-        protected asyncPromise: PromiseLike<void>;
-        constructor(element: JQuery, options?: TOptions);
-        destroy(): void;
-        protected addCssClass(): void;
-        protected getCssClass(): string;
-        protected initializeAsync(): PromiseLike<void>;
-        protected isAsyncWidget(): boolean;
-        static getWidgetName(type: Function): string;
-        static elementFor<TWidget>(editorType: {
-            new (...args: any[]): TWidget;
-        }): JQuery;
-        static create<TWidget extends Widget<TOpt>, TOpt>(params: CreateWidgetParams<TWidget, TOpt>): TWidget;
-        init(action?: (widget: any) => void): this;
-        private initialize();
-    }
-    interface Widget<TOptions> {
-        addValidationRule(eventClass: string, rule: (p1: JQuery) => string): JQuery;
-        getGridField(): JQuery;
-        change(handler: (e: JQueryEventObject) => void): void;
-        changeSelect2(handler: (e: JQueryEventObject) => void): void;
-    }
-}
-declare namespace Serenity {
     class Select2Editor<TOptions, TItem> extends Widget<TOptions> {
         items: Select2Item[];
         itemById: any;
@@ -2174,6 +2176,35 @@ declare namespace Serenity {
         protected setupColumns(): void;
         protected onDialogOpen(): void;
         protected getTemplate(): string;
+    }
+}
+declare namespace Serenity {
+    /**
+     * A mixin that can be applied to a DataGrid for tree functionality
+     */
+    class TreeGridMixin<TItem> {
+        private options;
+        private dataGrid;
+        private getId;
+        constructor(options: TreeGridMixinOptions<TItem>);
+        /**
+         * Expands / collapses all rows in a grid automatically
+         */
+        toggleAll(): void;
+        /**
+         * Reorders a set of items so that parents comes before their children.
+         * This method is required for proper tree ordering, as it is not so easy to perform with SQL.
+         * @param items list of items to be ordered
+         * @param getId a delegate to get ID of a record (must return same ID with grid identity field)
+         * @param getParentId a delegate to get parent ID of a record
+         */
+        static applyTreeOrdering<TItem>(items: TItem[], getId: (item: TItem) => any, getParentId: (item: TItem) => any): TItem[];
+    }
+    interface TreeGridMixinOptions<TItem> {
+        grid: Serenity.DataGrid<TItem, any>;
+        getParentId: (item: TItem) => any;
+        toggleField: string;
+        initialCollapse?: () => boolean;
     }
 }
 interface JQuery {

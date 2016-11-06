@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Tree Grid";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        It is possible to turn a grid into a tree by using Serenity.TreeGridMixin.
+        This mixin requires your items to have a ParentID field. 
+    </p>
+    <p>
+        As we don't have such a field in our order table, we cheat by using modulus 10 and modulus 50.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("TreeGrid.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.TreeGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

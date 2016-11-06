@@ -3793,6 +3793,47 @@ var Serene;
         BasicSamples.CustomerGrossSalesGrid = CustomerGrossSalesGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var TreeGrid = (function (_super) {
+            __extends(TreeGrid, _super);
+            function TreeGrid(container) {
+                _super.call(this, container);
+                this.treeMixin = new Serenity.TreeGridMixin({
+                    grid: this,
+                    // bring tree items initially collapsed
+                    initialCollapse: function () { return true; },
+                    // which column to place tree toggle / expand/collapse button
+                    toggleField: Serene.Northwind.OrderRow.Fields.CustomerCompanyName,
+                    getParentId: function (x) {
+                        // as we don't have parentId column here, we are cheating by using modulus 10 and 50
+                        // e.g. order with ID 1605 will have parent 1600, order with ID 1613 will have parent 1610
+                        var parentId = Math.floor(x.OrderID / 10) * 10;
+                        if (parentId == x.OrderID) {
+                            parentId = Math.floor(x.OrderID / 50) * 50;
+                            // orders with ID 16050 and 17000 should have NULL parent
+                            if (parentId == x.OrderID)
+                                return null;
+                        }
+                        // if you had a ParentID column, you'd just return x.ParentID
+                        return parentId;
+                    }
+                });
+            }
+            TreeGrid.prototype.usePager = function () {
+                return false;
+            };
+            TreeGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TreeGrid);
+            return TreeGrid;
+        }(Serene.Northwind.OrderGrid));
+        BasicSamples.TreeGrid = TreeGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var BasicSamples;

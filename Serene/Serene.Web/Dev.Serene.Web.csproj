@@ -1173,6 +1173,7 @@
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1208,6 +1209,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\EnablingRowSelection\RowSelectionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\EnablingRowSelection\SelectableEntityGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />

@@ -947,6 +947,13 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class TreeGrid extends Northwind.OrderGrid {
+        private treeMixin;
+        constructor(container: JQuery);
+        protected usePager(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
     class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
         protected getColumnsKey(): string;
         protected getIdProperty(): string;
