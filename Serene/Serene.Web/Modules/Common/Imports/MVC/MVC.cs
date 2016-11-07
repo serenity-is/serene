@@ -122,6 +122,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/OtherFormInTab/Index.cshtml";
                 }
 
+                public static class OtherFormInTabWithOneToolbar
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/OtherFormInTabWithOneToolbar/Index.cshtml";
+                }
+
                 public static class PopulateLinkedData
                 {
                     public const string Index = "~/Modules/BasicSamples/Dialogs/PopulateLinkedData/Index.cshtml";
