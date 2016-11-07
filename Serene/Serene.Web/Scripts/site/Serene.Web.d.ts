@@ -376,7 +376,7 @@ declare namespace Serene.BasicSamples {
      * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
      * With single toolbar for all forms
      */
-    class OtherFormInTabWithOneToolbarDialog extends Northwind.OrderDialog {
+    class OtherFormInTabOneBarDialog extends Northwind.OrderDialog {
         private customerPropertyGrid;
         private customerForm;
         private customerValidator;
@@ -392,10 +392,10 @@ declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
     /**
-     * Subclass of OrderGrid to override dialog type to OtherFormInTabWithOneToolbarDialog
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
      */
-    class OtherFormInTabWithOneToolbarGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof OtherFormInTabWithOneToolbarDialog;
+    class OtherFormInTabOneBarGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormInTabOneBarDialog;
         constructor(container: JQuery);
     }
 }

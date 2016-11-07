@@ -7,7 +7,7 @@ namespace Serene.BasicSamples {
      * With single toolbar for all forms
      */
     @Serenity.Decorators.registerClass()
-    export class OtherFormInTabWithOneToolbarDialog extends Northwind.OrderDialog {
+    export class OtherFormInTabOneBarDialog extends Northwind.OrderDialog {
 
         private customerPropertyGrid: Serenity.PropertyGrid;
         private customerForm: Northwind.CustomerForm;

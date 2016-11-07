@@ -56,9 +56,9 @@ namespace Serene.BasicSamples.Pages
             return View(Views.OtherFormInTab.Index);
         }
 
-        public ActionResult OtherFormInTabWithOneToolbar()
+        public ActionResult OtherFormInTabOneBar()
         {
-            return View(Views.OtherFormInTabWithOneToolbar.Index);
+            return View(Views.OtherFormInTabOneBar.Index);
         }
 
         public ActionResult SerialAutoNumber()

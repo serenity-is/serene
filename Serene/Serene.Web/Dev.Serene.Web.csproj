@@ -138,7 +138,7 @@
       <Link>wkhtmltopdf.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabWithOneToolbar\OtherFormInTabWithOneToolbarDialog.Template.html" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="wkhtmltopdf-license.txt" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
     <Content Include="Content\adminlte\img\avatar.png" />
@@ -1175,15 +1175,15 @@
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabWithOneToolbar\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabWithOneToolbar\OtherFormInTabWithOneToolbarDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabWithOneToolbar\OtherFormInTabWithOneToolbarGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />

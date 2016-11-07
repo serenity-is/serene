@@ -1829,9 +1829,9 @@ var Serene;
          * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
          * With single toolbar for all forms
          */
-        var OtherFormInTabWithOneToolbarDialog = (function (_super) {
-            __extends(OtherFormInTabWithOneToolbarDialog, _super);
-            function OtherFormInTabWithOneToolbarDialog() {
+        var OtherFormInTabOneBarDialog = (function (_super) {
+            __extends(OtherFormInTabOneBarDialog, _super);
+            function OtherFormInTabOneBarDialog() {
                 var _this = this;
                 _super.call(this);
                 this.selfChange = 0;
@@ -1863,7 +1863,7 @@ var Serene;
                     });
                 });
             }
-            OtherFormInTabWithOneToolbarDialog.prototype.getCustomerID = function () {
+            OtherFormInTabOneBarDialog.prototype.getCustomerID = function () {
                 var customerID = this.form.CustomerID.value;
                 if (Q.isEmptyOrNull(customerID))
                     return null;
@@ -1873,12 +1873,12 @@ var Serene;
                 // you'll probably won't need this step.
                 return Q.first(Serene.Northwind.CustomerRow.getLookup().items, function (x) { return x.CustomerID == customerID; }).ID;
             };
-            OtherFormInTabWithOneToolbarDialog.prototype.loadEntity = function (entity) {
+            OtherFormInTabOneBarDialog.prototype.loadEntity = function (entity) {
                 _super.prototype.loadEntity.call(this, entity);
                 Serenity.TabsExtensions.setDisabled(this.tabs, 'Customer', !this.getCustomerID());
             };
             // Save the customer and the order 
-            OtherFormInTabWithOneToolbarDialog.prototype.saveCustomer = function (callback, onSuccess) {
+            OtherFormInTabOneBarDialog.prototype.saveCustomer = function (callback, onSuccess) {
                 var _this = this;
                 var id = this.getCustomerID();
                 if (!id) {
@@ -1921,25 +1921,25 @@ var Serene;
                 return true;
             };
             // Call super.save to save Order entity
-            OtherFormInTabWithOneToolbarDialog.prototype.saveOrder = function (callback) {
+            OtherFormInTabOneBarDialog.prototype.saveOrder = function (callback) {
                 _super.prototype.save.call(this, callback);
             };
-            OtherFormInTabWithOneToolbarDialog.prototype.saveAll = function (callback) {
+            OtherFormInTabOneBarDialog.prototype.saveAll = function (callback) {
                 var _this = this;
                 this.saveCustomer(callback, 
                 // If customer successa, save Order entity
                 function (resp) { return _this.saveOrder(callback); });
             };
             // This is called when save/update button is pressed
-            OtherFormInTabWithOneToolbarDialog.prototype.save = function (callback) {
+            OtherFormInTabOneBarDialog.prototype.save = function (callback) {
                 this.saveAll(callback);
             };
-            OtherFormInTabWithOneToolbarDialog = __decorate([
+            OtherFormInTabOneBarDialog = __decorate([
                 Serenity.Decorators.registerClass()
-            ], OtherFormInTabWithOneToolbarDialog);
-            return OtherFormInTabWithOneToolbarDialog;
+            ], OtherFormInTabOneBarDialog);
+            return OtherFormInTabOneBarDialog;
         }(Serene.Northwind.OrderDialog));
-        BasicSamples.OtherFormInTabWithOneToolbarDialog = OtherFormInTabWithOneToolbarDialog;
+        BasicSamples.OtherFormInTabOneBarDialog = OtherFormInTabOneBarDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
@@ -1948,20 +1948,20 @@ var Serene;
     var BasicSamples;
     (function (BasicSamples) {
         /**
-         * Subclass of OrderGrid to override dialog type to OtherFormInTabWithOneToolbarDialog
+         * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
          */
-        var OtherFormInTabWithOneToolbarGrid = (function (_super) {
-            __extends(OtherFormInTabWithOneToolbarGrid, _super);
-            function OtherFormInTabWithOneToolbarGrid(container) {
+        var OtherFormInTabOneBarGrid = (function (_super) {
+            __extends(OtherFormInTabOneBarGrid, _super);
+            function OtherFormInTabOneBarGrid(container) {
                 _super.call(this, container);
             }
-            OtherFormInTabWithOneToolbarGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormInTabWithOneToolbarDialog; };
-            OtherFormInTabWithOneToolbarGrid = __decorate([
+            OtherFormInTabOneBarGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormInTabOneBarDialog; };
+            OtherFormInTabOneBarGrid = __decorate([
                 Serenity.Decorators.registerClass()
-            ], OtherFormInTabWithOneToolbarGrid);
-            return OtherFormInTabWithOneToolbarGrid;
+            ], OtherFormInTabOneBarGrid);
+            return OtherFormInTabOneBarGrid;
         }(Serene.Northwind.OrderGrid));
-        BasicSamples.OtherFormInTabWithOneToolbarGrid = OtherFormInTabWithOneToolbarGrid;
+        BasicSamples.OtherFormInTabOneBarGrid = OtherFormInTabOneBarGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;

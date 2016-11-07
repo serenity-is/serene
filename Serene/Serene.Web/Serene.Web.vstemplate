@@ -482,11 +482,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.ts">OtherFormInTabDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabGrid.ts">OtherFormInTabGrid.ts</ProjectItem>
             </Folder>
-            <Folder Name="OtherFormInTabWithOneToolbar" TargetFolderName="OtherFormInTabWithOneToolbar">
+            <Folder Name="OtherFormInTabOneBar" TargetFolderName="OtherFormInTabOneBar">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabWithOneToolbarDialog.Template.html">OtherFormInTabWithOneToolbarDialog.Template.html</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabWithOneToolbarDialog.ts">OtherFormInTabWithOneToolbarDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabWithOneToolbarGrid.ts">OtherFormInTabWithOneToolbarGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.Template.html">OtherFormInTabOneBarDialog.Template.html</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.ts">OtherFormInTabOneBarDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarGrid.ts">OtherFormInTabOneBarGrid.ts</ProjectItem>
             </Folder>
             <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
