@@ -267,6 +267,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="pace.min.css">pace.min.css</ProjectItem>
         <Folder Name="site" TargetFolderName="site">
           <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="accordion-arrows.png">accordion-arrows.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-g-40.png">serenity-logo-g-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-w-128.png">serenity-logo-w-128.png</ProjectItem>
@@ -851,7 +852,12 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelReportGenerator.cs">ExcelReportGenerator.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PdfExportHelper.ts">PdfExportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportController.cs">ReportController.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.Template.html">ReportDialog.Template.html</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.ts">ReportDialog.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.cshtml">ReportPage.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.ts">ReportPage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportTree.cs">ReportTree.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInitialization.ts">ScriptInitialization.ts</ProjectItem>
           <Folder Name="UserPreference" TargetFolderName="UserPreference">
@@ -1022,6 +1028,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionPage.cs">RegionPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRepository.cs">RegionRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRow.cs">RegionRow.cs</ProjectItem>
+          </Folder>
+          <Folder Name="Reports" TargetFolderName="Reports">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesReport.cs">CustomerGrossSalesReport.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportsPage.cs">ReportsPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryReport.cs">SalesByCategoryReport.cs</ProjectItem>
           </Folder>
           <Folder Name="SalesByCategory" TargetFolderName="SalesByCategory">
             <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryColumns.cs">SalesByCategoryColumns.cs</ProjectItem>
