@@ -1311,6 +1311,8 @@
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
+    <TypeScriptCompile Include="Modules\Common\Reporting\ReportPage.ts" />
+    <TypeScriptCompile Include="Modules\Common\Reporting\ReportDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
     <TypeScriptCompile Include="Modules\Common\UserPreference\UserPreferenceStorage.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
@@ -1944,6 +1946,7 @@
     <Compile Include="Modules\Northwind\Product\ProductLogRow.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />
     <Compile Include="Modules\Northwind\Reports\ReportsPage.cs" />
+    <Compile Include="Modules\Northwind\Reports\CustomerGrossSalesReport.cs" />
     <Compile Include="Modules\Northwind\Reports\SalesByCategoryReport.cs" />
     <Compile Include="Modules\Northwind\Shipper\ShipperColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />

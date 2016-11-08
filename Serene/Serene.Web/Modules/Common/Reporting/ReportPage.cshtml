@@ -30,13 +30,13 @@
 
 @helper RenderTree(Serene.ReportTree.Category category)
 {
-    <li class="category">
+    <li class="category expanded">
         <div class="line"><span class="toggle"></span><span class="caption">@category.Title</span></div>
 
         @if (category.SubCategories != null && category.SubCategories.Count() > 0 ||
         category.Reports != null && category.Reports.Count() > 0)
         {
-        <ul class="@(category.Reports != null ? "has-reports" : "")">
+        <ul class="@(category.Reports != null ? "has-reports" : "")" style="display: block;">
             @RenderItems(category)
         </ul>
         }
@@ -49,10 +49,10 @@
         <div class="title-text">Reports</div>
     </div>
     <div class="grid-toolbar s-Toolbar clearfix">
-        <div id="QuickSearchBar" class="s-QuickSearchBar"><input id="QuickSearchInput" /></div>
+        <div class="s-QuickSearchBar"><input /></div>
     </div>
     <div class="report-box">
-        <div class="report-list center" id="ReportList">
+        <div class="report-list center">
             <ul>
             @RenderItems(Model.Root)
             </ul>
@@ -62,7 +62,7 @@
 
 <script type="text/javascript">
     jQuery(function () {
-        new Serenity.Reporting.ReportPage($('#ReportPage'));
+        new Serene.Common.ReportPage($('#ReportPage'));
         Q.initFullHeightGridPage($('#ReportPage'));
     });
 </script>
