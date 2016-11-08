@@ -10,3 +10,4 @@ using Northwind = Serene.Northwind.Pages;
 [assembly: NavigationLink(7600, "Northwind/Categories", typeof(Northwind.CategoryController), icon: "icon-folder-alt")]
 [assembly: NavigationLink(7700, "Northwind/Regions", typeof(Northwind.RegionController), icon: "icon-map")]
 [assembly: NavigationLink(7800, "Northwind/Territories", typeof(Northwind.TerritoryController), icon: "icon-puzzle")]
+[assembly: NavigationLink(7900, "Northwind/Reports", typeof(Northwind.ReportsController), icon: "icon-docs")]

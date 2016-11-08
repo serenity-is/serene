@@ -153,6 +153,7 @@
       <Link>wkhtmltopdf.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\site\images\accordion-arrows.png" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="wkhtmltopdf-license.txt" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
@@ -1894,6 +1895,8 @@
     <Content Include="Modules\Northwind\Customer\Northwind.CustomerDialog.Template.html" />
     <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
     <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <None Include="Modules\Common\Reporting\ReportPage.cshtml" />
+    <Compile Include="Modules\Common\Reporting\ReportTree.cs" />
     <Compile Include="Modules\Common\Reporting\ReportController.cs" />
     <Compile Include="Modules\Common\Reporting\ReportRepository.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
@@ -1939,6 +1942,8 @@
     <Compile Include="Modules\Northwind\Product\ProductColumns.cs" />
     <Compile Include="Modules\Northwind\Product\ProductLogRow.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />
+    <Compile Include="Modules\Northwind\Reports\ReportsPage.cs" />
+    <Compile Include="Modules\Northwind\Reports\SalesByCategoryReport.cs" />
     <Compile Include="Modules\Northwind\Shipper\ShipperColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />

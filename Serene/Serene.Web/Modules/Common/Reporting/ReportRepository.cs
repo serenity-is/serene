@@ -1,6 +1,8 @@
 ﻿namespace Serene
 {
+    using Serenity;
     using Serenity.Reporting;
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -17,6 +19,12 @@
                 data.Add(item);
 
             return ExcelReportGenerator.GeneratePackageBytes(columns, data);
+        }
+
+        public ReportTree GetReportTree(string category)
+        {
+            var reports = ReportRegistry.GetAvailableReportsInCategory(category);
+            return ReportTree.FromList(reports, category);
         }
     }
 }
