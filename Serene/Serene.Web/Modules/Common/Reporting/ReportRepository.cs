@@ -41,12 +41,7 @@
                 throw new ArgumentOutOfRangeException("reportKey");
 
             if (reportInfo.Permission != null)
-            {
-                if (reportInfo.Permission == "")
-                    Authorization.ValidateLoggedIn();
-                else
-                    Authorization.ValidatePermission(reportInfo.Permission);
-            }
+                Authorization.ValidatePermission(reportInfo.Permission);
 
             var response = new ReportRetrieveResponse();
 

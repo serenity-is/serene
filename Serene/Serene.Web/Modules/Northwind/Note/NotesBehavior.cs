@@ -42,6 +42,7 @@ namespace Serene.Northwind
         public void OnReturn(IRetrieveRequestHandler handler)
         {
             if (ReferenceEquals(null, Target) ||
+                !handler.AllowSelectField(Target) ||
                 !handler.ShouldSelectField(Target))
                 return;
 

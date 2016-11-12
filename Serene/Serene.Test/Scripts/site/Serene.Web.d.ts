@@ -2908,6 +2908,7 @@ declare namespace Serene {
     interface ScriptUserDefinition {
         Username?: string;
         DisplayName?: string;
+        IsAdmin?: boolean;
         Permissions?: {
             [key: string]: boolean;
         };
@@ -2954,6 +2955,40 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
         function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
+        private report;
+        private propertyItems;
+        private propertyGrid;
+        constructor(options: ReportDialogOptions);
+        protected getDialogButtons(): any;
+        protected createPropertyGrid(): void;
+        protected loadReport(reportKey: string): void;
+        protected updateInterface(): void;
+        executeReport(target: string, ext: string, download: boolean): void;
+        getToolbarButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+    interface ReportDialogOptions {
+        reportKey: string;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportPage extends Serenity.Widget<any> {
+        private reportKey;
+        private propertyItems;
+        private propertyGrid;
+        constructor(element: JQuery);
+        protected updateMatchFlags(text: string): void;
+        protected categoryClick(e: any): void;
+        protected reportLinkClick(e: any): void;
     }
 }
 declare namespace Serene.ScriptInitialization {

@@ -13,6 +13,7 @@
     {
         public String Username { get; set; }
         public String DisplayName { get; set; }
+        public Boolean IsAdmin { get; set; }
         public Dictionary<string, bool> Permissions { get; set; }
     }
 }
