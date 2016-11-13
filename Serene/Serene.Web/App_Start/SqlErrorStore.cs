@@ -66,7 +66,13 @@ namespace Serene
         /// <summary>
         /// Name for this error store
         /// </summary>
-        public override string Name => "Serenity Sql Error Store";
+        public override string Name
+        {
+            get
+            {
+                return "Serenity Sql Error Store";
+            }
+        }
 
         /// <summary>
         /// Protects an error from deletion, by making IsProtected = 1 in the database
