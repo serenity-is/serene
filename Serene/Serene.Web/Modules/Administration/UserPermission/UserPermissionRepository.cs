@@ -159,14 +159,25 @@ namespace Serene.Administration.Repositories
             };
         }
 
-        private void ProcessAttributes<TAttr>(HashSet<string> hash, MemberInfo member, Func<TAttr, string> getPermission)
-            where TAttr: Attribute
+        private static readonly string[] emptyPermissions = new string[0];
+        private static readonly char[] splitChar = new char[] { '|', '&' };
+
+        private string[] SplitPermissions(string permission)
+        {
+            if (string.IsNullOrEmpty(permission))
+                return emptyPermissions;
+
+            return permission.Split(splitChar, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private void ProcessAttributes<TAttr>(HashSet<string> hash,
+                MemberInfo member, Func<TAttr, string> getPermission)
+            where TAttr : Attribute
         {
             foreach (var attr in member.GetCustomAttributes<TAttr>())
             {
                 var permission = getPermission(attr);
-                if (!permission.IsEmptyOrNull())
-                    hash.Add(permission);
+                hash.AddRange(SplitPermissions(permission));
             }
         }
 
@@ -180,7 +191,7 @@ namespace Serene.Administration.Repositories
                 {
                     foreach (var attr in assembly.GetCustomAttributes<PermissionAttributeBase>())
                         if (!attr.Permission.IsEmptyOrNull())
-                            result.Add(attr.Permission);
+                            result.AddRange(SplitPermissions(attr.Permission));
 
                     foreach (var type in assembly.GetTypes())
                     {
