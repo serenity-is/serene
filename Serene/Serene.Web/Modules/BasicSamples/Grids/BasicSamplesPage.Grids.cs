@@ -51,14 +51,19 @@ namespace Serene.BasicSamples.Pages
             return View(Views.InlineImageInGrid.Index);
         }
 
-        public ActionResult RemovingAddButton()
-        {
-            return View(Views.RemovingAddButton.Index);
-        }
-
         public ActionResult ProductExcelImport()
         {
             return View(Views.ProductExcelImport.Index);
+        }
+
+        public ActionResult QuickFilterCustomization()
+        {
+            return View(Views.QuickFilterCustomization.Index);
+        }
+
+        public ActionResult RemovingAddButton()
+        {
+            return View(Views.RemovingAddButton.Index);
         }
 
         public ActionResult StoredProcedureGrid()

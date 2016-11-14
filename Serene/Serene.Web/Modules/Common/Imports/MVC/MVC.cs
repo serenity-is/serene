@@ -230,6 +230,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/ProductExcelImport/Index.cshtml";
                 }
 
+                public static class QuickFilterCustomization
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/QuickFilterCustomization/Index.cshtml";
+                }
+
                 public static class RemovingAddButton
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/RemovingAddButton/Index.cshtml";

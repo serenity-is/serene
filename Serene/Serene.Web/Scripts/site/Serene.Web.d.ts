@@ -946,6 +946,22 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
+    class QuickFilterCustomization extends Serenity.EntityGrid<Northwind.OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof Northwind.OrderDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of quick filters to be created for this grid.
+         * By default, it returns quick filter objects corresponding to properties that
+         * have a [QuickFilter] attribute at server side OrderColumns.cs
+         */
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+    }
+}
+declare namespace Serene.BasicSamples {
     class RemovingAddButton extends Northwind.SupplierGrid {
         constructor(container: JQuery);
         /**

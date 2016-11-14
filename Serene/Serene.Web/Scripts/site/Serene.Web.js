@@ -3801,6 +3801,109 @@ var Serene;
         BasicSamples.ProductExcelImportGrid = ProductExcelImportGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var QuickFilterCustomization = (function (_super) {
+            __extends(QuickFilterCustomization, _super);
+            function QuickFilterCustomization(container) {
+                _super.call(this, container);
+            }
+            QuickFilterCustomization.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            QuickFilterCustomization.prototype.getDialogType = function () { return Serene.Northwind.OrderDialog; };
+            QuickFilterCustomization.prototype.getIdProperty = function () { return Serene.Northwind.OrderRow.idProperty; };
+            QuickFilterCustomization.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
+            QuickFilterCustomization.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            /**
+             * This method is called to get list of quick filters to be created for this grid.
+             * By default, it returns quick filter objects corresponding to properties that
+             * have a [QuickFilter] attribute at server side OrderColumns.cs
+             */
+            QuickFilterCustomization.prototype.getQuickFilters = function () {
+                // get quick filter list from base class, e.g. columns
+                var filters = _super.prototype.getQuickFilters.call(this);
+                // get a reference to order row field names
+                var fld = Serene.Northwind.OrderRow.Fields;
+                // we start by turning CustomerID filter to a Not Equal one
+                var filter = Q.first(filters, function (x) { return x.field == fld.CustomerID; });
+                filter.title = "Customer Not Equal To";
+                filter.handler = function (h) {
+                    // if filter is active, e.g. editor has some value
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.CustomerID], '!=', h.value]);
+                    }
+                };
+                // turn order date filter to exact match, not a range
+                filter = Q.first(filters, function (x) { return x.field == fld.OrderDate; });
+                filter.title = "Order Date Is Exactly";
+                // element method in DataGrid turns this into a range editor, clear it to prevent
+                filter.element = function (e) { };
+                // need to override handler too, otherwise default handler will try to handle a date range
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.EqualityFilter[fld.OrderDate] = h.value;
+                    }
+                    else {
+                        h.request.EqualityFilter[fld.OrderDate] = null;
+                    }
+                };
+                // make employee filter a textbox, instead of lookup, and search by starts with
+                filter = Q.first(filters, function (x) { return x.field == fld.EmployeeID; });
+                filter.title = "Employee Name Starts With";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.EmployeeFullName], 'like', h.value + '%']);
+                    }
+                };
+                // turn shipping state into a boolean filter
+                filter = Q.first(filters, function (x) { return x.field == fld.ShippingState; });
+                filter.title = "Show Only Shipped";
+                filter.type = Serenity.BooleanEditor;
+                filter.handler = function (h) {
+                    h.active = !!h.value;
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, ['is not null', [fld.ShippedDate]]);
+                    }
+                };
+                // ship via filters by NOT IN
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipVia; });
+                filter.title = "Ship Via Not IN";
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipVia], 'not in', [h.value]]);
+                    }
+                };
+                // ship country filters by NOT contains
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipCountry; });
+                filter.title = "Ship Country NOT Contains";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipCountry], 'not like', '%' + h.value + '%']);
+                    }
+                };
+                // ship city filters by GREATER THAN (>)
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipCity; });
+                filter.title = "Ship City Greater Than";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipCity], '>', h.value]);
+                    }
+                };
+                return filters;
+            };
+            QuickFilterCustomization = __decorate([
+                Serenity.Decorators.registerClass()
+            ], QuickFilterCustomization);
+            return QuickFilterCustomization;
+        }(Serenity.EntityGrid));
+        BasicSamples.QuickFilterCustomization = QuickFilterCustomization;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Supplier/SupplierGrid.ts" />
 var Serene;
 (function (Serene) {
