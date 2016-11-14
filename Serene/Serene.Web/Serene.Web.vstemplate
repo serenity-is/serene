@@ -598,6 +598,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportGrid.ts">ProductExcelImportGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="SampleProductList.xlsx">SampleProductList.xlsx</ProjectItem>
             </Folder>
+            <Folder Name="QuickFilterCustomization" TargetFolderName="QuickFilterCustomization">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="QuickFilterCustomization.ts">QuickFilterCustomization.ts</ProjectItem>
+            </Folder>
             <Folder Name="RemovingAddButton" TargetFolderName="RemovingAddButton">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="RemovingAddButton.ts">RemovingAddButton.ts</ProjectItem>

@@ -1177,6 +1177,7 @@
     <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1200,6 +1201,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\HardcodedValuesEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextEditor.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\QuickFilterCustomization\QuickFilterCustomization.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineActionButtons\InlineActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportGrid.ts" />
