@@ -109,6 +109,38 @@ namespace Serene.BasicSamples {
                 }
             };
 
+            // create a range editor for freight
+            let endFreight: Serenity.DecimalEditor = null;
+
+            filters.push({
+                field: fld.Freight,
+                type: Serenity.DecimalEditor,
+                title: 'Freight Between',
+                element: e1 => {
+                    e1.css("width", "80px");
+                    endFreight = Serenity.Widget.create({
+                        type: Serenity.DecimalEditor,
+                        element: e2 => e2.insertAfter(e1).css("width", "80px")
+                    });
+
+                    endFreight.element.change(x => e1.triggerHandler("change"));
+                    $("<span/>").addClass("range-separator").text("-").insertAfter(e1);
+                },
+                handler: h => {
+                    var active1 = h.value != null && !isNaN(h.value);
+                    var active2 = endFreight.value != null && !isNaN(endFreight.value);
+                    h.active = active1 || active2;
+
+                    if (active1)
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria,
+                            [[fld.Freight], '>=', h.value]);
+
+                    if (active2)
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria,
+                            [[fld.Freight], '<=', endFreight.value]);
+                }
+            });
+
             return filters;
         }
     }
