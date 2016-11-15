@@ -3129,16 +3129,17 @@ var Serene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
+                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!this.onViewSubmit()) {
+                            if (!_this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(this.rowSelection.getSelectedKeys());
+                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(_this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -3477,7 +3478,7 @@ var Serene;
                     {
                         title: 'Group By Category and Supplier',
                         cssClass: 'expand-all-button',
-                        onClick: function () { return this.view.setGrouping([{
+                        onClick: function () { return _this.view.setGrouping([{
                                 formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
                                 getter: 'CategoryName'
                             }, {
@@ -3487,7 +3488,7 @@ var Serene;
                     }, {
                         title: 'No Grouping',
                         cssClass: 'collapse-all-button',
-                        onClick: function () { return this.view.setGrouping([]); }
+                        onClick: function () { return _this.view.setGrouping([]); }
                     }];
             };
             GroupingAndSummariesInGrid = __decorate([
@@ -6252,12 +6253,12 @@ var Serene;
                     {
                         title: 'PDF',
                         cssClass: 'export-pdf-button',
-                        onClick: function () { return this.executeReport('_blank', 'pdf', true); }
+                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
                     },
                     {
                         title: 'Excel',
                         cssClass: 'export-xlsx-button',
-                        onClick: function () { return this.executeReport('_blank', 'xlsx', true); }
+                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
                     }
                 ];
             };

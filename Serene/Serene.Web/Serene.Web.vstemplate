@@ -1376,12 +1376,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.0" />
-      <installPackage id="Serenity.Core" version="2.6.0" />
-      <installPackage id="Serenity.Data" version="2.6.0" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.0" />
-      <installPackage id="Serenity.Services" version="2.6.0" />
-      <installPackage id="Serenity.Web" version="2.6.0" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.1" />
+      <installPackage id="Serenity.Core" version="2.6.1" />
+      <installPackage id="Serenity.Data" version="2.6.1" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.1" />
+      <installPackage id="Serenity.Services" version="2.6.1" />
+      <installPackage id="Serenity.Web" version="2.6.1" />
       <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
