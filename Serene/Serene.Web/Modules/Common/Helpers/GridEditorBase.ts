@@ -15,16 +15,16 @@
         }
 
         protected id(entity: TEntity) {
-            return (entity as any).__id;
+            return (entity as any)[this.getIdProperty()];
         }
 
         protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void) {
             var request = opt.request as Serenity.SaveRequest<TEntity>;
             var row = Q.deepClone(request.Entity);
 
-            var id = (row as any).__id;
+            var id = this.id(row);
             if (id == null) {
-                (row as any).__id = this.nextId++;
+                (row as any)[this.getIdProperty()] = "`" + this.nextId++;
             }
 
             if (!this.validateEntity(row, id)) {
@@ -102,17 +102,22 @@
         }
 
         public get value(): TEntity[] {
+            var p = this.getIdProperty();
             return this.view.getItems().map(x => {
                 var y = Q.deepClone(x);
-                delete y['__id'];
+                var id = y[p];
+                if (id && id.toString().charAt(0) == '`')
+                    delete y[p];
                 return y;
             });
         }
 
         public set value(value: TEntity[]) {
+            var p = this.getIdProperty();
             this.view.setItems((value || []).map(x => {
                 var y = Q.deepClone(x);
-                (y as any).__id = this.nextId++;
+                if ((y as any)[p] == null)
+                    (y as any)[p] = "`" + this.nextId++;
                 return y;
             }), true);
         }

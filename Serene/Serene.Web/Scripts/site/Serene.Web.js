@@ -2554,15 +2554,15 @@ var Serene;
             }
             GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
             GridEditorBase.prototype.id = function (entity) {
-                return entity.__id;
+                return entity[this.getIdProperty()];
             };
             GridEditorBase.prototype.save = function (opt, callback) {
                 var _this = this;
                 var request = opt.request;
                 var row = Q.deepClone(request.Entity);
-                var id = row.__id;
+                var id = this.id(row);
                 if (id == null) {
-                    row.__id = this.nextId++;
+                    row[this.getIdProperty()] = "`" + this.nextId++;
                 }
                 if (!this.validateEntity(row, id)) {
                     return;
@@ -2630,17 +2630,22 @@ var Serene;
             };
             Object.defineProperty(GridEditorBase.prototype, "value", {
                 get: function () {
+                    var p = this.getIdProperty();
                     return this.view.getItems().map(function (x) {
                         var y = Q.deepClone(x);
-                        delete y['__id'];
+                        var id = y[p];
+                        if (id && id.toString().charAt(0) == '`')
+                            delete y[p];
                         return y;
                     });
                 },
                 set: function (value) {
                     var _this = this;
+                    var p = this.getIdProperty();
                     this.view.setItems((value || []).map(function (x) {
                         var y = Q.deepClone(x);
-                        y.__id = _this.nextId++;
+                        if (y[p] == null)
+                            y[p] = "`" + _this.nextId++;
                         return y;
                     }), true);
                 },
@@ -3124,17 +3129,16 @@ var Serene;
                 this.rowSelection = new Serenity.GridRowSelectionMixin(this);
             };
             CancellableBulkActionGrid.prototype.getButtons = function () {
-                var _this = this;
                 return [{
                         title: 'Perform Bulk Action on Selected Orders',
                         cssClass: 'send-button',
                         onClick: function () {
-                            if (!_this.onViewSubmit()) {
+                            if (!this.onViewSubmit()) {
                                 return;
                             }
                             var action = new BasicSamples.OrderBulkAction();
-                            action.done = function () { return _this.rowSelection.resetCheckedAndRefresh(); };
-                            action.execute(_this.rowSelection.getSelectedKeys());
+                            action.done = function () { return this.rowSelection.resetCheckedAndRefresh(); };
+                            action.execute(this.rowSelection.getSelectedKeys());
                         }
                     }];
             };
@@ -3473,7 +3477,7 @@ var Serene;
                     {
                         title: 'Group By Category and Supplier',
                         cssClass: 'expand-all-button',
-                        onClick: function () { return _this.view.setGrouping([{
+                        onClick: function () { return this.view.setGrouping([{
                                 formatter: function (x) { return 'Category: ' + x.value + ' (' + x.count + ' items)'; },
                                 getter: 'CategoryName'
                             }, {
@@ -3483,7 +3487,7 @@ var Serene;
                     }, {
                         title: 'No Grouping',
                         cssClass: 'collapse-all-button',
-                        onClick: function () { return _this.view.setGrouping([]); }
+                        onClick: function () { return this.view.setGrouping([]); }
                     }];
             };
             GroupingAndSummariesInGrid = __decorate([
@@ -6248,12 +6252,12 @@ var Serene;
                     {
                         title: 'PDF',
                         cssClass: 'export-pdf-button',
-                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
+                        onClick: function () { return this.executeReport('_blank', 'pdf', true); }
                     },
                     {
                         title: 'Excel',
                         cssClass: 'export-xlsx-button',
-                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
+                        onClick: function () { return this.executeReport('_blank', 'xlsx', true); }
                     }
                 ];
             };
