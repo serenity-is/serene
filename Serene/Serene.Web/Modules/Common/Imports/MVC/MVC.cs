@@ -107,6 +107,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/DialogBoxes/Index.cshtml";
                 }
 
+                public static class EntityDialogAsPanel
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/EntityDialogAsPanel/Index.cshtml";
+                }
+
                 public static class GetInsertedRecordId
                 {
                     public const string Index = "~/Modules/BasicSamples/Dialogs/GetInsertedRecordId/Index.cshtml";

@@ -7285,6 +7285,17 @@ section.content > .s-DataGrid {
 .inline-action.new-order {
   background-image: url(../serenity/images/store.png);
 }
+.s-BasicSamples-EntityDialogAsPanel {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+}
+.s-BasicSamples-EntityDialogAsPanel .caption {
+  width: 120px;
+}
+.s-BasicSamples-EntityDialogAsPanel .s-PropertyGrid .categories {
+  height: auto;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;

@@ -1193,12 +1193,14 @@
     <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabGrid.ts" />

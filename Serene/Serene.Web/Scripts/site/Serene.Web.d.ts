@@ -277,6 +277,27 @@ declare namespace Serene.BasicSamples.DialogBoxes {
     function initializePage(): void;
 }
 declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
+     */
+    class EntityDialogAsPanel extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -315,19 +336,6 @@ declare namespace Serene.BasicSamples {
     class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
         protected getDialogType(): typeof GetInsertedRecordIdDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
     }
 }
 declare namespace Serene.BasicSamples {
