@@ -467,6 +467,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DialogBoxes.ts">DialogBoxes.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="EntityDialogAsPanel" TargetFolderName="EntityDialogAsPanel">
+              <ProjectItem ReplaceParameters="true" TargetFileName="EntityDialogAsPanel.ts">EntityDialogAsPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="GetInsertedRecordId" TargetFolderName="GetInsertedRecordId">
               <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdDialog.ts">GetInsertedRecordIdDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdGrid.ts">GetInsertedRecordIdGrid.ts</ProjectItem>
