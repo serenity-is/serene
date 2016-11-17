@@ -273,3 +273,96 @@ section.content > .s-DataGrid {
         opacity: 1;
     }
 }
+
+.s-ReportPage {
+
+    div.report-list ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    div.report-list ul ul {
+        margin-left: 20px;
+    }
+
+    div.report-list li {
+        margin-top: 1px;
+    }
+
+    div.report-list li.category > .line {
+        position: relative;
+        padding: 4px 0 4px 20px;
+        display: block;
+        cursor: pointer;
+        color: #666;
+        font-weight: bold;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    div.report-list li.category.expanded > .line {
+        box-shadow: none;
+    }
+
+    div.report-list .line {
+        background: #ffffff;
+        background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+        background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+        //box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+    }
+
+    div.report-list li {
+        background-color: #eaeaea;
+        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+    }
+
+
+    div.report-list ul.has-reports {
+        background-color: #fff;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+    }
+
+    li > .line > span.toggle {
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        display: block;
+        height: 11px;
+        width: 11px;
+        background: transparent url(images/accordion-arrows.png) no-repeat 0px -22px;
+    }
+
+    li.expanded > .line > span.toggle {
+        background-position: 0px 0px;
+    }
+
+    div.report-list li.report-item {
+        background-color: #fff;
+        box-shadow: none;
+        margin-top: 0px;
+        font-size: 13px;
+        padding: 4px;
+        border-bottom: 1px solid #eee;
+    }
+
+    div.report-list li.report-item.even {
+        background-color: #f7f7f7;
+    }
+
+    .report-item a {
+        background: url(../serenity/images/spreadsheet.png) no-repeat 0 center;
+        padding: 0 0 0 18px;
+        line-height: 16px;
+        display: inline-block;
+    }
+
+    ul ul {
+        display: none;
+    }
+}

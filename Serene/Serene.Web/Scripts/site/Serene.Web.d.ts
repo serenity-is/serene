@@ -277,6 +277,27 @@ declare namespace Serene.BasicSamples.DialogBoxes {
     function initializePage(): void;
 }
 declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
+     */
+    class EntityDialogAsPanel extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -315,19 +336,6 @@ declare namespace Serene.BasicSamples {
     class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
         protected getDialogType(): typeof GetInsertedRecordIdDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -943,6 +951,22 @@ declare namespace Serene.BasicSamples {
          * This method is called to get list of buttons to be created.
          */
         protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class QuickFilterCustomization extends Serenity.EntityGrid<Northwind.OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof Northwind.OrderDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of quick filters to be created for this grid.
+         * By default, it returns quick filter objects corresponding to properties that
+         * have a [QuickFilter] attribute at server side OrderColumns.cs
+         */
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
     }
 }
 declare namespace Serene.BasicSamples {
@@ -2908,6 +2932,7 @@ declare namespace Serene {
     interface ScriptUserDefinition {
         Username?: string;
         DisplayName?: string;
+        IsAdmin?: boolean;
         Permissions?: {
             [key: string]: boolean;
         };
@@ -2954,6 +2979,40 @@ declare namespace Serene.Common {
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
         function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
+        private report;
+        private propertyItems;
+        private propertyGrid;
+        constructor(options: ReportDialogOptions);
+        protected getDialogButtons(): any;
+        protected createPropertyGrid(): void;
+        protected loadReport(reportKey: string): void;
+        protected updateInterface(): void;
+        executeReport(target: string, ext: string, download: boolean): void;
+        getToolbarButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+    interface ReportDialogOptions {
+        reportKey: string;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportPage extends Serenity.Widget<any> {
+        private reportKey;
+        private propertyItems;
+        private propertyGrid;
+        constructor(element: JQuery);
+        protected updateMatchFlags(text: string): void;
+        protected categoryClick(e: any): void;
+        protected reportLinkClick(e: any): void;
     }
 }
 declare namespace Serene.ScriptInitialization {

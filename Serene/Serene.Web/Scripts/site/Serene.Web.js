@@ -1511,6 +1511,66 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
+        var OrderDialog = (function (_super) {
+            __extends(OrderDialog, _super);
+            function OrderDialog() {
+                _super.call(this);
+                this.form = new Northwind.OrderForm(this.idPrefix);
+            }
+            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
+            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
+            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                buttons.push(Serene.Common.ReportHelper.createToolButton({
+                    title: 'Invoice',
+                    cssClass: 'export-pdf-button',
+                    reportKey: 'Northwind.OrderDetail',
+                    getParams: function () { return ({ OrderID: _this.get_entityId() }); }
+                }));
+                return buttons;
+            };
+            OrderDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
+            };
+            OrderDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDialog);
+            return OrderDialog;
+        }(Serenity.EntityDialog));
+        Northwind.OrderDialog = OrderDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
+         */
+        var EntityDialogAsPanel = (function (_super) {
+            __extends(EntityDialogAsPanel, _super);
+            function EntityDialogAsPanel() {
+                _super.call(this);
+                this.element.addClass('flex-layout');
+            }
+            EntityDialogAsPanel = __decorate([
+                Serenity.Decorators.panel()
+            ], EntityDialogAsPanel);
+            return EntityDialogAsPanel;
+        }(Serene.Northwind.OrderDialog));
+        BasicSamples.EntityDialogAsPanel = EntityDialogAsPanel;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
         var CategoryDialog = (function (_super) {
             __extends(CategoryDialog, _super);
             function CategoryDialog() {
@@ -1614,44 +1674,6 @@ var Serene;
         }(Serene.Northwind.CategoryGrid));
         BasicSamples.GetInsertedRecordIdGrid = GetInsertedRecordIdGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDialog = (function (_super) {
-            __extends(OrderDialog, _super);
-            function OrderDialog() {
-                _super.call(this);
-                this.form = new Northwind.OrderForm(this.idPrefix);
-            }
-            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
-            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
-            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderDialog.prototype.getToolbarButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getToolbarButtons.call(this);
-                buttons.push(Serene.Common.ReportHelper.createToolButton({
-                    title: 'Invoice',
-                    cssClass: 'export-pdf-button',
-                    reportKey: 'Northwind.OrderDetail',
-                    getParams: function () { return ({ OrderID: _this.get_entityId() }); }
-                }));
-                return buttons;
-            };
-            OrderDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
-            };
-            OrderDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], OrderDialog);
-            return OrderDialog;
-        }(Serenity.EntityDialog));
-        Northwind.OrderDialog = OrderDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderDialog.ts" />
 var Serene;
@@ -2554,15 +2576,15 @@ var Serene;
             }
             GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
             GridEditorBase.prototype.id = function (entity) {
-                return entity.__id;
+                return entity[this.getIdProperty()];
             };
             GridEditorBase.prototype.save = function (opt, callback) {
                 var _this = this;
                 var request = opt.request;
                 var row = Q.deepClone(request.Entity);
-                var id = row.__id;
+                var id = this.id(row);
                 if (id == null) {
-                    row.__id = this.nextId++;
+                    row[this.getIdProperty()] = "`" + this.nextId++;
                 }
                 if (!this.validateEntity(row, id)) {
                     return;
@@ -2630,17 +2652,22 @@ var Serene;
             };
             Object.defineProperty(GridEditorBase.prototype, "value", {
                 get: function () {
+                    var p = this.getIdProperty();
                     return this.view.getItems().map(function (x) {
                         var y = Q.deepClone(x);
-                        delete y['__id'];
+                        var id = y[p];
+                        if (id && id.toString().charAt(0) == '`')
+                            delete y[p];
                         return y;
                     });
                 },
                 set: function (value) {
                     var _this = this;
+                    var p = this.getIdProperty();
                     this.view.setItems((value || []).map(function (x) {
                         var y = Q.deepClone(x);
-                        y.__id = _this.nextId++;
+                        if (y[p] == null)
+                            y[p] = "`" + _this.nextId++;
                         return y;
                     }), true);
                 },
@@ -3799,6 +3826,134 @@ var Serene;
             return ProductExcelImportGrid;
         }(Serene.Northwind.ProductGrid));
         BasicSamples.ProductExcelImportGrid = ProductExcelImportGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var QuickFilterCustomization = (function (_super) {
+            __extends(QuickFilterCustomization, _super);
+            function QuickFilterCustomization(container) {
+                _super.call(this, container);
+            }
+            QuickFilterCustomization.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            QuickFilterCustomization.prototype.getDialogType = function () { return Serene.Northwind.OrderDialog; };
+            QuickFilterCustomization.prototype.getIdProperty = function () { return Serene.Northwind.OrderRow.idProperty; };
+            QuickFilterCustomization.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
+            QuickFilterCustomization.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            /**
+             * This method is called to get list of quick filters to be created for this grid.
+             * By default, it returns quick filter objects corresponding to properties that
+             * have a [QuickFilter] attribute at server side OrderColumns.cs
+             */
+            QuickFilterCustomization.prototype.getQuickFilters = function () {
+                // get quick filter list from base class, e.g. columns
+                var filters = _super.prototype.getQuickFilters.call(this);
+                // get a reference to order row field names
+                var fld = Serene.Northwind.OrderRow.Fields;
+                // we start by turning CustomerID filter to a Not Equal one
+                var filter = Q.first(filters, function (x) { return x.field == fld.CustomerID; });
+                filter.title = "Customer Not Equal To";
+                filter.handler = function (h) {
+                    // if filter is active, e.g. editor has some value
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.CustomerID], '!=', h.value]);
+                    }
+                };
+                // turn order date filter to exact match, not a range
+                filter = Q.first(filters, function (x) { return x.field == fld.OrderDate; });
+                filter.title = "Order Date Is Exactly";
+                // element method in DataGrid turns this into a range editor, clear it to prevent
+                filter.element = function (e) { };
+                // need to override handler too, otherwise default handler will try to handle a date range
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.EqualityFilter[fld.OrderDate] = h.value;
+                    }
+                    else {
+                        h.request.EqualityFilter[fld.OrderDate] = null;
+                    }
+                };
+                // make employee filter a textbox, instead of lookup, and search by starts with
+                filter = Q.first(filters, function (x) { return x.field == fld.EmployeeID; });
+                filter.title = "Employee Name Starts With";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.EmployeeFullName], 'like', h.value + '%']);
+                    }
+                };
+                // turn shipping state into a boolean filter
+                filter = Q.first(filters, function (x) { return x.field == fld.ShippingState; });
+                filter.title = "Show Only Shipped";
+                filter.type = Serenity.BooleanEditor;
+                filter.handler = function (h) {
+                    h.active = !!h.value;
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, ['is not null', [fld.ShippedDate]]);
+                    }
+                };
+                // ship via filters by NOT IN
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipVia; });
+                filter.title = "Ship Via Not IN";
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipVia], 'not in', [h.value]]);
+                    }
+                };
+                // ship country filters by NOT contains
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipCountry; });
+                filter.title = "Ship Country NOT Contains";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipCountry], 'not like', '%' + h.value + '%']);
+                    }
+                };
+                // ship city filters by GREATER THAN (>)
+                filter = Q.first(filters, function (x) { return x.field == fld.ShipCity; });
+                filter.title = "Ship City Greater Than";
+                filter.type = Serenity.StringEditor;
+                filter.handler = function (h) {
+                    if (h.active) {
+                        h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.ShipCity], '>', h.value]);
+                    }
+                };
+                // create a range editor for freight
+                var endFreight = null;
+                filters.push({
+                    field: fld.Freight,
+                    type: Serenity.DecimalEditor,
+                    title: 'Freight Between',
+                    element: function (e1) {
+                        e1.css("width", "80px");
+                        endFreight = Serenity.Widget.create({
+                            type: Serenity.DecimalEditor,
+                            element: function (e2) { return e2.insertAfter(e1).css("width", "80px"); }
+                        });
+                        endFreight.element.change(function (x) { return e1.triggerHandler("change"); });
+                        $("<span/>").addClass("range-separator").text("-").insertAfter(e1);
+                    },
+                    handler: function (h) {
+                        var active1 = h.value != null && !isNaN(h.value);
+                        var active2 = endFreight.value != null && !isNaN(endFreight.value);
+                        h.active = active1 || active2;
+                        if (active1)
+                            h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.Freight], '>=', h.value]);
+                        if (active2)
+                            h.request.Criteria = Serenity.Criteria.and(h.request.Criteria, [[fld.Freight], '<=', endFreight.value]);
+                    }
+                });
+                return filters;
+            };
+            QuickFilterCustomization = __decorate([
+                Serenity.Decorators.registerClass()
+            ], QuickFilterCustomization);
+            return QuickFilterCustomization;
+        }(Serenity.EntityGrid));
+        BasicSamples.QuickFilterCustomization = QuickFilterCustomization;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Supplier/SupplierGrid.ts" />
@@ -6044,6 +6199,165 @@ var Serene;
                     .appendTo(document.head);
             }
         })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportDialog = (function (_super) {
+            __extends(ReportDialog, _super);
+            function ReportDialog(options) {
+                _super.call(this, options);
+                this.updateInterface();
+                this.loadReport(this.options.reportKey);
+            }
+            ReportDialog.prototype.getDialogButtons = function () {
+                return null;
+            };
+            ReportDialog.prototype.createPropertyGrid = function () {
+                this.propertyGrid && this.byId('PropertyGrid').html('').attr('class', '');
+                this.propertyGrid = new Serenity.PropertyGrid(this.byId('PropertyGrid'), {
+                    idPrefix: this.idPrefix,
+                    useCategories: true,
+                    items: this.propertyItems
+                }).init(null);
+            };
+            ReportDialog.prototype.loadReport = function (reportKey) {
+                var _this = this;
+                Q.serviceCall({
+                    url: Q.resolveUrl('~/Report/Retrieve'),
+                    request: {
+                        ReportKey: reportKey
+                    },
+                    onSuccess: function (response) {
+                        _this.report = response;
+                        _this.element.dialog().dialog('option', 'title', _this.report.Title);
+                        _this.createPropertyGrid();
+                        _this.propertyGrid.load(_this.report.InitialSettings || {});
+                        _this.updateInterface();
+                        _this.dialogOpen();
+                    }
+                });
+            };
+            ReportDialog.prototype.updateInterface = function () {
+                this.toolbar.findButton('print-preview-button')
+                    .toggle(this.report && !this.report.IsDataOnlyReport);
+                this.toolbar.findButton('export-pdf-button')
+                    .toggle(this.report && !this.report.IsDataOnlyReport);
+                this.toolbar.findButton('export-xlsx-button')
+                    .toggle(this.report && this.report.IsDataOnlyReport);
+            };
+            ReportDialog.prototype.executeReport = function (target, ext, download) {
+                if (!this.validateForm()) {
+                    return;
+                }
+                var opt = {};
+                this.propertyGrid.save(opt);
+                Q.postToUrl({
+                    url: Q.resolveUrl(download ? '~/Report/Download' : '~/Report/Execute'),
+                    params: {
+                        key: this.report.ReportKey,
+                        opt: JSON.stringify(opt),
+                        ext: ext
+                    },
+                    target: target
+                });
+            };
+            ReportDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                return [
+                    {
+                        title: 'Preview',
+                        cssClass: 'print-preview-button',
+                        onClick: function () { return _this.executeReport('_blank', null, false); }
+                    },
+                    {
+                        title: 'PDF',
+                        cssClass: 'export-pdf-button',
+                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
+                    },
+                    {
+                        title: 'Excel',
+                        cssClass: 'export-xlsx-button',
+                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
+                    }
+                ];
+            };
+            return ReportDialog;
+        }(Serenity.TemplatedDialog));
+        Common.ReportDialog = ReportDialog;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportPage = (function (_super) {
+            __extends(ReportPage, _super);
+            function ReportPage(element) {
+                var _this = this;
+                _super.call(this, element);
+                $('.report-link', element).click(function (e) { return _this.reportLinkClick(e); });
+                $('div.line', element).click(function (e) { return _this.categoryClick(e); });
+                new Serenity.QuickSearchInput($('.s-QuickSearchBar input', element), {
+                    onSearch: function (field, text, done) {
+                        _this.updateMatchFlags(text);
+                        done(true);
+                    }
+                });
+            }
+            ReportPage.prototype.updateMatchFlags = function (text) {
+                var liList = $('.report-list', this.element).find('li').removeClass('non-match');
+                text = Q.trimToNull(text);
+                if (!text) {
+                    liList.children('ul').hide();
+                    liList.show().removeClass('expanded');
+                    return;
+                }
+                text = Select2.util.stripDiacritics(text).toUpperCase();
+                var reportItems = liList.filter('.report-item');
+                reportItems.each(function (ix, e) {
+                    var x = $(e);
+                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
+                    if (title.indexOf(text) < 0) {
+                        x.addClass('non-match');
+                    }
+                });
+                var matchingItems = reportItems.not('.non-match');
+                var visibles = matchingItems.parents('li').add(matchingItems);
+                var nonVisibles = liList.not(visibles);
+                nonVisibles.hide().addClass('non-match');
+                visibles.show();
+                if (visibles.length <= 100) {
+                    liList.children('ul').show();
+                    liList.addClass('expanded');
+                }
+            };
+            ReportPage.prototype.categoryClick = function (e) {
+                var li = $(e.target).closest('li');
+                if (li.hasClass('expanded')) {
+                    li.find('ul').hide('fast');
+                    li.removeClass('expanded');
+                    li.find('li').removeClass('expanded');
+                }
+                else {
+                    li.addClass('expanded');
+                    li.children('ul').show('fast');
+                    if (li.children('ul').children('li').length === 1 && !li.children('ul').children('li').hasClass('expanded')) {
+                        li.children('ul').children('li').children('.line').click();
+                    }
+                }
+            };
+            ReportPage.prototype.reportLinkClick = function (e) {
+                e.preventDefault();
+                new Common.ReportDialog({
+                    reportKey: $(e.target).data('key')
+                }).dialogOpen();
+            };
+            return ReportPage;
+        }(Serenity.Widget));
+        Common.ReportPage = ReportPage;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;

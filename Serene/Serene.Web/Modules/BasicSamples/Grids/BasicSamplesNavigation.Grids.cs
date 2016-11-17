@@ -12,6 +12,7 @@ using Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Inline Action Buttons", typeof(BasicSamplesController), action: "InlineActionButtons")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Inline Image In Grid", typeof(BasicSamplesController), action: "InlineImageInGrid")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Product Excel Import", typeof(BasicSamplesController), action: "ProductExcelImport")]
+[assembly: NavigationLink(7950, "Basic Samples/Grids/Quick Filter Customization", typeof(BasicSamplesController), action: "QuickFilterCustomization")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Removing Add Button", typeof(BasicSamplesController), action: "RemovingAddButton")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Stored Procedure Grid", typeof(BasicSamplesController), action: "StoredProcedureGrid")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Tree Grid", typeof(BasicSamplesController), action: "TreeGrid")]

@@ -6,6 +6,7 @@ using Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Cloneable Entity Dialog", typeof(BasicSamplesController), action: "CloneableEntityDialog")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Default Values in New Dialog", typeof(BasicSamplesController), action: "DefaultValuesInNewDialog")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Dialog Boxes", typeof(BasicSamplesController), action: "DialogBoxes")]
+[assembly: NavigationLink(7910, "Basic Samples/Dialogs/Entity Dialog as Panel", typeof(BasicSamplesController), action: "EntityDialogAsPanel", Url = "~/BasicSamples/EntityDialogAsPanel/11077")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Get Inserted Record ID", typeof(BasicSamplesController), action: "GetInsertedRecordId")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Multi Column Dialog", typeof(BasicSamplesController), action: "MultiColumnResponsiveDialog")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Other Form In Tab", typeof(BasicSamplesController), action: "OtherFormInTab")]

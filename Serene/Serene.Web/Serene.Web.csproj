@@ -88,19 +88,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Serenity.Core">
-      <HintPath>..\..\packages\Serenity.Core.2.5.9\lib\net45\Serenity.Core.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Core.2.6.1\lib\net45\Serenity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Serenity.Data">
-      <HintPath>..\..\packages\Serenity.Data.2.5.9\lib\net45\Serenity.Data.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.2.6.1\lib\net45\Serenity.Data.dll</HintPath>
     </Reference>
     <Reference Include="Serenity.Data.Entity">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.5.9\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.6.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Serenity.Services">
-      <HintPath>..\..\packages\Serenity.Services.2.5.9\lib\net45\Serenity.Services.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Services.2.6.1\lib\net45\Serenity.Services.dll</HintPath>
     </Reference>
     <Reference Include="Serenity.Web">
-      <HintPath>..\..\packages\Serenity.Web.2.5.9\lib\net45\Serenity.Web.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.2.6.1\lib\net45\Serenity.Web.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.0.122, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Exceptional.1.0.122\lib\StackExchange.Exceptional.dll</HintPath>
@@ -153,6 +153,7 @@
       <Link>wkhtmltopdf.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\site\images\accordion-arrows.png" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="wkhtmltopdf-license.txt" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
@@ -1191,12 +1192,15 @@
     <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabGrid.ts" />
@@ -1214,6 +1218,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\HardcodedValuesEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextEditor.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\QuickFilterCustomization\QuickFilterCustomization.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineActionButtons\InlineActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportGrid.ts" />
@@ -1310,6 +1315,8 @@
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
+    <TypeScriptCompile Include="Modules\Common\Reporting\ReportPage.ts" />
+    <TypeScriptCompile Include="Modules\Common\Reporting\ReportDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\ScriptInitialization.ts" />
     <TypeScriptCompile Include="Modules\Common\UserPreference\UserPreferenceStorage.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
@@ -1342,6 +1349,7 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
+    <Content Include="Modules\Common\Reporting\ReportDialog.Template.html" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1894,6 +1902,8 @@
     <Content Include="Modules\Northwind\Customer\Northwind.CustomerDialog.Template.html" />
     <Compile Include="Modules\Common\Reporting\DynamicDataReport.cs" />
     <Compile Include="Modules\Common\Reporting\ExcelReportGenerator.cs" />
+    <None Include="Modules\Common\Reporting\ReportPage.cshtml" />
+    <Compile Include="Modules\Common\Reporting\ReportTree.cs" />
     <Compile Include="Modules\Common\Reporting\ReportController.cs" />
     <Compile Include="Modules\Common\Reporting\ReportRepository.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
@@ -1939,6 +1949,9 @@
     <Compile Include="Modules\Northwind\Product\ProductColumns.cs" />
     <Compile Include="Modules\Northwind\Product\ProductLogRow.cs" />
     <Compile Include="Modules\Northwind\Region\RegionColumns.cs" />
+    <Compile Include="Modules\Northwind\Reports\ReportsPage.cs" />
+    <Compile Include="Modules\Northwind\Reports\CustomerGrossSalesReport.cs" />
+    <Compile Include="Modules\Northwind\Reports\SalesByCategoryReport.cs" />
     <Compile Include="Modules\Northwind\Shipper\ShipperColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />

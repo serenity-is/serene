@@ -4,6 +4,7 @@
     using Serenity;
     using Serenity.Abstractions;
     using Serenity.Data;
+    using Serenity.Web;
     using System;
     using System.Configuration;
 
@@ -19,7 +20,7 @@
                 var registrar = Dependency.Resolve<IDependencyRegistrar>();
                 registrar.RegisterInstance<IAuthorizationService>(new Administration.AuthorizationService());
                 registrar.RegisterInstance<IAuthenticationService>(new Administration.AuthenticationService());
-                registrar.RegisterInstance<IPermissionService>(new Administration.PermissionService());
+                registrar.RegisterInstance<IPermissionService>(new LogicOperatorPermissionService(new Administration.PermissionService()));
                 registrar.RegisterInstance<IUserRetrieveService>(new Administration.UserRetrieveService());
 
                 if (!ConfigurationManager.AppSettings["LDAP"].IsTrimmedEmpty())

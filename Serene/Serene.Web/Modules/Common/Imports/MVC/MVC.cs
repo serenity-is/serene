@@ -107,6 +107,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Dialogs/DialogBoxes/Index.cshtml";
                 }
 
+                public static class EntityDialogAsPanel
+                {
+                    public const string Index = "~/Modules/BasicSamples/Dialogs/EntityDialogAsPanel/Index.cshtml";
+                }
+
                 public static class GetInsertedRecordId
                 {
                     public const string Index = "~/Modules/BasicSamples/Dialogs/GetInsertedRecordId/Index.cshtml";
@@ -230,6 +235,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/ProductExcelImport/Index.cshtml";
                 }
 
+                public static class QuickFilterCustomization
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/QuickFilterCustomization/Index.cshtml";
+                }
+
                 public static class RemovingAddButton
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/RemovingAddButton/Index.cshtml";
@@ -263,6 +273,11 @@ namespace MVC
             public static class Dashboard
             {
                 public const string DashboardIndex = "~/Modules/Common/Dashboard/DashboardIndex.cshtml";
+            }
+
+            public static class Reporting
+            {
+                public const string ReportPage = "~/Modules/Common/Reporting/ReportPage.cshtml";
             }
         }
 

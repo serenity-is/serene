@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Serenity;
+using Serenity.PropertyGrid;
 using Serenity.Reporting;
+using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.Collections.Generic;
@@ -37,12 +39,7 @@ namespace Serene
                 throw new ArgumentOutOfRangeException("reportKey");
 
             if (reportInfo.Permission != null)
-            {
-                if (reportInfo.Permission == "")
-                    Authorization.ValidateLoggedIn();
-                else
-                    Authorization.ValidatePermission(reportInfo.Permission);
-            }
+                Authorization.ValidatePermission(reportInfo.Permission);
 
             var report = (IReport)JsonConvert.DeserializeObject(opt.TrimToNull() ?? "{}",
                 reportInfo.Type, JsonSettings.Tolerant);
@@ -162,6 +159,12 @@ namespace Serene
             var html = TemplateHelper.RenderViewToString(designAttr.Design, viewData);
             renderedBytes = Encoding.UTF8.GetBytes(html);
             return null;
+        }
+
+        [HttpPost, JsonFilter]
+        public ActionResult Retrieve(ReportRetrieveRequest request)
+        {
+            return this.ExecuteMethod(() => new ReportRepository().Retrieve(request));
         }
     }
 }

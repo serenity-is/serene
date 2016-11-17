@@ -267,6 +267,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="pace.min.css">pace.min.css</ProjectItem>
         <Folder Name="site" TargetFolderName="site">
           <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="accordion-arrows.png">accordion-arrows.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-g-40.png">serenity-logo-g-40.png</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-w-128.png">serenity-logo-w-128.png</ProjectItem>
@@ -466,6 +467,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DialogBoxes.ts">DialogBoxes.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="EntityDialogAsPanel" TargetFolderName="EntityDialogAsPanel">
+              <ProjectItem ReplaceParameters="true" TargetFileName="EntityDialogAsPanel.ts">EntityDialogAsPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="GetInsertedRecordId" TargetFolderName="GetInsertedRecordId">
               <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdDialog.ts">GetInsertedRecordIdDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdGrid.ts">GetInsertedRecordIdGrid.ts</ProjectItem>
@@ -596,6 +601,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportForm.cs">ProductExcelImportForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportGrid.ts">ProductExcelImportGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="SampleProductList.xlsx">SampleProductList.xlsx</ProjectItem>
+            </Folder>
+            <Folder Name="QuickFilterCustomization" TargetFolderName="QuickFilterCustomization">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="QuickFilterCustomization.ts">QuickFilterCustomization.ts</ProjectItem>
             </Folder>
             <Folder Name="RemovingAddButton" TargetFolderName="RemovingAddButton">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -851,7 +860,12 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelReportGenerator.cs">ExcelReportGenerator.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PdfExportHelper.ts">PdfExportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportController.cs">ReportController.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.Template.html">ReportDialog.Template.html</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.ts">ReportDialog.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.cshtml">ReportPage.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.ts">ReportPage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportTree.cs">ReportTree.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInitialization.ts">ScriptInitialization.ts</ProjectItem>
           <Folder Name="UserPreference" TargetFolderName="UserPreference">
@@ -1022,6 +1036,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionPage.cs">RegionPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRepository.cs">RegionRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RegionRow.cs">RegionRow.cs</ProjectItem>
+          </Folder>
+          <Folder Name="Reports" TargetFolderName="Reports">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesReport.cs">CustomerGrossSalesReport.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportsPage.cs">ReportsPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryReport.cs">SalesByCategoryReport.cs</ProjectItem>
           </Folder>
           <Folder Name="SalesByCategory" TargetFolderName="SalesByCategory">
             <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryColumns.cs">SalesByCategoryColumns.cs</ProjectItem>
@@ -1361,12 +1380,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.5.9" />
-      <installPackage id="Serenity.Core" version="2.5.9" />
-      <installPackage id="Serenity.Data" version="2.5.9" />
-      <installPackage id="Serenity.Data.Entity" version="2.5.9" />
-      <installPackage id="Serenity.Services" version="2.5.9" />
-      <installPackage id="Serenity.Web" version="2.5.9" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.1" />
+      <installPackage id="Serenity.Core" version="2.6.1" />
+      <installPackage id="Serenity.Data" version="2.6.1" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.1" />
+      <installPackage id="Serenity.Services" version="2.6.1" />
+      <installPackage id="Serenity.Web" version="2.6.1" />
       <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
