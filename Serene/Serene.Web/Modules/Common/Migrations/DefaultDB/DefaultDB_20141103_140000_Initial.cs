@@ -118,6 +118,12 @@ namespace Serene.Migrations.DefaultDB
                 LanguageId = "fa",
                 LanguageName = "Farsi"
             });
+
+            Insert.IntoTable("Languages").Row(new
+            {
+                LanguageId = "vi-VN",
+                LanguageName = "Vietnamese (Vietnam)"
+            });
         }
     }
 }

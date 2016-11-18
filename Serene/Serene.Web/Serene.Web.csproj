@@ -1515,6 +1515,7 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
@@ -1593,6 +1594,9 @@
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="Scripts\site\texts\site.texts.vi-VN.json" />
+    <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
+    <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
