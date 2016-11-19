@@ -21,6 +21,12 @@ namespace Serene.BasicSamples.Pages
             return View(Views.CustomLinksInGrid.Index);
         }
 
+        public ActionResult DragDropInTreeGrid()
+        {
+            Repositories.DragDropSampleRepository.PopulateInitialItems();
+            return View(Views.DragDropInTreeGrid.Index);
+        }
+
         public ActionResult EnablingRowSelection()
         {
             return View(Views.EnablingRowSelection.Index);

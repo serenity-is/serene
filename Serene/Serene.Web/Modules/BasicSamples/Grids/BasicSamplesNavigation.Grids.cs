@@ -5,6 +5,7 @@ using Serene.BasicSamples.Pages;
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Cancellable Bulk Action", typeof(BasicSamplesController), action: "CancellableBulkAction")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Conditional Formatting", typeof(BasicSamplesController), action: "ConditionalFormatting")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Custom Links In Grid", typeof(BasicSamplesController), action: "CustomLinksInGrid")]
+[assembly: NavigationLink(7950, "Basic Samples/Grids/Drag & Drop in Tree Grid", typeof(BasicSamplesController), action: "DragDropInTreeGrid")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Enabling Row Selection", typeof(BasicSamplesController), action: "EnablingRowSelection")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Grouping and Sum. In Grid", typeof(BasicSamplesController), action: "GroupingAndSummariesInGrid")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Grid Filtered by Criteria", typeof(BasicSamplesController), action: "GridFilteredByCriteria")]
