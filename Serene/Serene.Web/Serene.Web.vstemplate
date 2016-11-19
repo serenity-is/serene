@@ -515,7 +515,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="SerialAutoNumberGrid.ts">SerialAutoNumberGrid.ts</ProjectItem>
             </Folder>
           </Folder>
-          <Folder Name="DragDropSample" TargetFolderName="DragDropSample" />
           <Folder Name="Editors" TargetFolderName="Editors">
             <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Editors.cs">BasicSamplesNavigation.Editors.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Editors.cs">BasicSamplesPage.Editors.cs</ProjectItem>
@@ -1271,9 +1270,6 @@
         </Folder>
         <Folder Name="serenity" TargetFolderName="serenity">
           <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Externals.js">Serenity.Externals.js</ProjectItem>
-          <Folder Name="texts" TargetFolderName="texts">
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.vi-VN.json">serenity.texts.vi-VN.json</ProjectItem>
-          </Folder>
         </Folder>
         <Folder Name="site" TargetFolderName="site">
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
@@ -1402,12 +1398,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.1" />
-      <installPackage id="Serenity.Core" version="2.6.1" />
-      <installPackage id="Serenity.Data" version="2.6.1" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.1" />
-      <installPackage id="Serenity.Services" version="2.6.1" />
-      <installPackage id="Serenity.Web" version="2.6.1" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.2" />
+      <installPackage id="Serenity.Core" version="2.6.2" />
+      <installPackage id="Serenity.Data" version="2.6.2" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.2" />
+      <installPackage id="Serenity.Services" version="2.6.2" />
+      <installPackage id="Serenity.Web" version="2.6.2" />
       <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
