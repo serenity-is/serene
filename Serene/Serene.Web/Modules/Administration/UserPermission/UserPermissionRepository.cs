@@ -205,6 +205,9 @@ namespace Serene.Administration.Repositories
                             ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                             ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
                         }
+
+                        foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                            ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                     }
                 }
 
