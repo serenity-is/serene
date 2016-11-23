@@ -3358,6 +3358,225 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleDialog = (function (_super) {
+            __extends(DragDropSampleDialog, _super);
+            function DragDropSampleDialog() {
+                _super.apply(this, arguments);
+                this.form = new BasicSamples.DragDropSampleForm(this.idPrefix);
+            }
+            DragDropSampleDialog.prototype.getFormKey = function () { return BasicSamples.DragDropSampleForm.formKey; };
+            DragDropSampleDialog.prototype.getIdProperty = function () { return BasicSamples.DragDropSampleRow.idProperty; };
+            DragDropSampleDialog.prototype.getLocalTextPrefix = function () { return BasicSamples.DragDropSampleRow.localTextPrefix; };
+            DragDropSampleDialog.prototype.getNameProperty = function () { return BasicSamples.DragDropSampleRow.nameProperty; };
+            DragDropSampleDialog.prototype.getService = function () { return BasicSamples.DragDropSampleService.baseUrl; };
+            DragDropSampleDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], DragDropSampleDialog);
+            return DragDropSampleDialog;
+        }(Serenity.EntityDialog));
+        BasicSamples.DragDropSampleDialog = DragDropSampleDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleGrid = (function (_super) {
+            __extends(DragDropSampleGrid, _super);
+            function DragDropSampleGrid(container) {
+                var _this = this;
+                _super.call(this, container);
+                new Serenity.TreeGridMixin({
+                    grid: this,
+                    toggleField: BasicSamples.DragDropSampleRow.Fields.Title,
+                    getParentId: function (x) { return x.ParentId; },
+                    initialCollapse: function () { return false; },
+                });
+                // save prior drag target to restore its color during drag
+                var priorDragTarget;
+                // prevent the grid from cancelling drag'n'drop by default
+                this.slickGrid.onDragInit.subscribe(function (e, dd) {
+                    e.stopImmediatePropagation();
+                });
+                // this method is called when an item is about to be dragged
+                this.slickGrid.onDragStart.subscribe(function (e, dd) {
+                    // only allow edit links to be dragged
+                    if (!$(e.target).hasClass('s-EditLink'))
+                        return;
+                    // make sure there is a cell in source location
+                    var cell = _this.slickGrid.getCellFromEvent(e);
+                    if (!cell) {
+                        return;
+                    }
+                    // notify that we'll handle drag
+                    e.stopImmediatePropagation();
+                    // save details about dragged item
+                    dd.row = cell.row;
+                    var item = _this.itemAt(cell.row);
+                    dd.item = item;
+                    // a unique name for our operation
+                    dd.mode = "move";
+                    // create an absolute position helper shown during dragging
+                    var helper = $("<span></span>")
+                        .addClass('drag-helper')
+                        .text("Moving " + item.Title)
+                        .appendTo(document.body);
+                    dd.helper = helper;
+                });
+                // this method is periodically called during drag
+                this.slickGrid.onDrag.subscribe(function (e, dd) {
+                    // only handle our operation
+                    if (dd.mode != "move") {
+                        return;
+                    }
+                    // if we changed color of some target before, reset it
+                    if (priorDragTarget && priorDragTarget != e.target) {
+                        $(priorDragTarget).css('background-color', '');
+                        priorDragTarget = null;
+                    }
+                    // find target, the source will drag into
+                    var cell = _this.slickGrid.getCellFromEvent(e);
+                    var target = !cell ? null : _this.itemAt(cell.row);
+                    // accept only edit links and valid items as drag target
+                    var reject = !$(e.target).hasClass('s-EditLink') || !_this.canMoveUnder(dd.item, target);
+                    if (reject) {
+                        dd.helper.text("Can't move " + dd.item.Title + " here");
+                    }
+                    else {
+                        dd.helper.text("Move " + dd.item.Title + " under " + $(e.target).text());
+                        // change color of current drag target
+                        $(e.target).css('background-color', '#ddeeee');
+                        priorDragTarget = e.target;
+                    }
+                    // toggle class of helper to show relevant accept / reject icon
+                    dd.helper.toggleClass('reject', reject);
+                    // position helper next to current mouse position
+                    dd.helper.css({ top: e.pageY + 5, left: e.pageX + 4 });
+                });
+                // this is called when drag is completed
+                this.slickGrid.onDragEnd.subscribe(function (e, dd) {
+                    if (dd.mode != "move") {
+                        return;
+                    }
+                    // prevent browser from changing url
+                    e.preventDefault();
+                    // clear indicator color and drag helper
+                    priorDragTarget && $(priorDragTarget).css('background-color', '');
+                    dd.helper.remove();
+                    // determine target row
+                    var cell = _this.slickGrid.getCellFromEvent(e);
+                    var item = dd.item;
+                    var target = !cell ? null : _this.itemAt(cell.row);
+                    // check again that this is valid drag target
+                    if ($(e.target).hasClass('s-EditLink') && _this.canMoveUnder(item, target)) {
+                        // this will move our primary drag source under new parent
+                        var moveItem = function (onSuccess) {
+                            BasicSamples.DragDropSampleService.Update({
+                                EntityId: item.Id,
+                                Entity: {
+                                    ParentId: target.Id
+                                }
+                            }, onSuccess);
+                        };
+                        // if drag source has some children, need some confirmation
+                        var children = _this.getChildren(dd.item);
+                        if (children.length > 0) {
+                            Q.confirm('Move its children alongside the item?', function () {
+                                // if responded yes, moving item under new parent should be enough
+                                moveItem(function () { return _this.refresh(); });
+                            }, {
+                                onNo: function () {
+                                    // if responded no, children should move under old parent of item
+                                    var oldParentId = item.ParentId == null ? null : item.ParentId;
+                                    var moveNextChild = function (onSuccess) {
+                                        var _this = this;
+                                        if (children.length) {
+                                            var x = children.shift();
+                                            BasicSamples.DragDropSampleService.Update({
+                                                EntityId: x.Id,
+                                                Entity: {
+                                                    ParentId: oldParentId || null
+                                                }
+                                            }, function () { return moveNextChild(onSuccess); }, {
+                                                onError: function () { return _this.refresh(); }
+                                            });
+                                        }
+                                        else
+                                            onSuccess();
+                                    };
+                                    // first move item itself under new parent, 
+                                    // then move its children under old parent one by one
+                                    moveItem(function () { return moveNextChild(function () { return _this.refresh(); }); });
+                                }
+                            });
+                        }
+                        else {
+                            // item has no children, just move it under new parent
+                            moveItem(function () { return _this.refresh(); });
+                        }
+                    }
+                    return false;
+                });
+            }
+            DragDropSampleGrid.prototype.getColumnsKey = function () { return 'BasicSamples.DragDropSample'; };
+            DragDropSampleGrid.prototype.getDialogType = function () { return BasicSamples.DragDropSampleDialog; };
+            DragDropSampleGrid.prototype.getIdProperty = function () { return BasicSamples.DragDropSampleRow.idProperty; };
+            DragDropSampleGrid.prototype.getLocalTextPrefix = function () { return BasicSamples.DragDropSampleRow.localTextPrefix; };
+            DragDropSampleGrid.prototype.getService = function () { return BasicSamples.DragDropSampleService.baseUrl; };
+            /**
+             * This method will determine if item can be moved under a given target
+             * An item can't be moved under itself, under one of its children
+             */
+            DragDropSampleGrid.prototype.canMoveUnder = function (item, target) {
+                if (!item || !target || item.Id == target.Id || item.ParentId == target.Id)
+                    return false;
+                if (Q.any(this.getParents(target), function (x) { return x.Id == item.Id; }))
+                    return false;
+                return true;
+            };
+            /**
+             * Gets children list of an item
+             */
+            DragDropSampleGrid.prototype.getChildren = function (item) {
+                return this.getItems().filter(function (x) { return x.ParentId == item.Id; });
+            };
+            /**
+             * Gets all parents of an item
+             */
+            DragDropSampleGrid.prototype.getParents = function (item) {
+                // use this to prevent infinite recursion
+                var visited = {};
+                var result = [];
+                // while item has a parent and not visited yet
+                while (item.ParentId && !visited[item.ParentId]) {
+                    // find parent by its ID
+                    item = this.view.getItemById(item.ParentId);
+                    if (!item)
+                        break;
+                    result.push(item);
+                    visited[item.Id] = true;
+                }
+                return result;
+            };
+            DragDropSampleGrid.prototype.getButtons = function () {
+                return [];
+            };
+            DragDropSampleGrid.prototype.usePager = function () {
+                return false;
+            };
+            DragDropSampleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DragDropSampleGrid);
+            return DragDropSampleGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.DragDropSampleGrid = DragDropSampleGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var SelectableEntityGrid = (function (_super) {
         __extends(SelectableEntityGrid, _super);
         function SelectableEntityGrid() {
@@ -4901,6 +5120,55 @@ var Serene;
                 Methods[x] = CustomerGrossSalesService.baseUrl + '/' + x;
             });
         })(CustomerGrossSalesService = BasicSamples.CustomerGrossSalesService || (BasicSamples.CustomerGrossSalesService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleForm = (function (_super) {
+            __extends(DragDropSampleForm, _super);
+            function DragDropSampleForm() {
+                _super.apply(this, arguments);
+            }
+            DragDropSampleForm.formKey = 'BasicSamples.DragDropSample';
+            return DragDropSampleForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.DragDropSampleForm = DragDropSampleForm;
+        [['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(DragDropSampleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleRow;
+        (function (DragDropSampleRow) {
+            DragDropSampleRow.idProperty = 'Id';
+            DragDropSampleRow.nameProperty = 'Title';
+            DragDropSampleRow.localTextPrefix = 'BasicSamples.DragDropSample';
+            var Fields;
+            (function (Fields) {
+            })(Fields = DragDropSampleRow.Fields || (DragDropSampleRow.Fields = {}));
+            ['Id', 'ParentId', 'Title'].forEach(function (x) { return Fields[x] = x; });
+        })(DragDropSampleRow = BasicSamples.DragDropSampleRow || (BasicSamples.DragDropSampleRow = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleService;
+        (function (DragDropSampleService) {
+            DragDropSampleService.baseUrl = 'BasicSamples/DragDropSample';
+            var Methods;
+            (function (Methods) {
+            })(Methods = DragDropSampleService.Methods || (DragDropSampleService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                DragDropSampleService[x] = function (r, s, o) { return Q.serviceRequest(DragDropSampleService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = DragDropSampleService.baseUrl + '/' + x;
+            });
+        })(DragDropSampleService = BasicSamples.DragDropSampleService || (BasicSamples.DragDropSampleService = {}));
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;

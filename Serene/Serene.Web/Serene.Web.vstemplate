@@ -567,6 +567,16 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomLinksInGrid.ts">CustomLinksInGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
+            <Folder Name="DragDropInTreeGrid" TargetFolderName="DragDropInTreeGrid">
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleColumns.cs">DragDropSampleColumns.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleDialog.ts">DragDropSampleDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleEndpoint.cs">DragDropSampleEndpoint.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleForm.cs">DragDropSampleForm.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleGrid.ts">DragDropSampleGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleRepository.cs">DragDropSampleRepository.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleRow.cs">DragDropSampleRow.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+            </Folder>
             <Folder Name="EnablingRowSelection" TargetFolderName="EnablingRowSelection">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="RowSelectionGrid.ts">RowSelectionGrid.ts</ProjectItem>
@@ -727,6 +737,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesListRequest.ts">BasicSamples.CustomerGrossSalesListRequest.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesRow.ts">BasicSamples.CustomerGrossSalesRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesService.ts">BasicSamples.CustomerGrossSalesService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleColumns.ts">BasicSamples.DragDropSampleColumns.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleForm.ts">BasicSamples.DragDropSampleForm.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleRow.ts">BasicSamples.DragDropSampleRow.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleService.ts">BasicSamples.DragDropSampleService.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.ts">BasicSamples.FilteredLookupInDetailForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.HardcodedValuesForm.ts">BasicSamples.HardcodedValuesForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageInGridColumns.ts">BasicSamples.InlineImageInGridColumns.ts</ProjectItem>
@@ -841,6 +855,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160216_154900_DataLocalization.cs">NorthwindDB_20160216_154900_DataLocalization.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160908_180100_CustomerGrossSales.cs">NorthwindDB_20160908_180100_CustomerGrossSales.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161013_002500_CustomerDetails.cs">NorthwindDB_20161013_002500_CustomerDetails.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161118_195400_DragDropSample.cs">NorthwindDB_20161118_195400_DragDropSample.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Oracle.sql">NorthwindDBScript_Oracle.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
@@ -1268,6 +1283,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt-BR.json">northwind.pt-BR.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
             </Folder>
             <Folder Name="samples" TargetFolderName="samples">
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.de.json">samples.de.json</ProjectItem>
@@ -1275,6 +1291,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.fa.json">samples.fa.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt-BR.json">samples.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
@@ -1284,6 +1301,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>
           </Folder>
         </Folder>
@@ -1380,12 +1398,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.1" />
-      <installPackage id="Serenity.Core" version="2.6.1" />
-      <installPackage id="Serenity.Data" version="2.6.1" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.1" />
-      <installPackage id="Serenity.Services" version="2.6.1" />
-      <installPackage id="Serenity.Web" version="2.6.1" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.2" />
+      <installPackage id="Serenity.Core" version="2.6.2" />
+      <installPackage id="Serenity.Data" version="2.6.2" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.2" />
+      <installPackage id="Serenity.Services" version="2.6.2" />
+      <installPackage id="Serenity.Web" version="2.6.2" />
       <installPackage id="Serenity.Web.Assets" version="2.5.3" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />

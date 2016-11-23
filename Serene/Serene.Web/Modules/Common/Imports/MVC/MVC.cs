@@ -200,6 +200,11 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Grids/CustomLinksInGrid/Index.cshtml";
                 }
 
+                public static class DragDropInTreeGrid
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/DragDropInTreeGrid/Index.cshtml";
+                }
+
                 public static class EnablingRowSelection
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/EnablingRowSelection/Index.cshtml";

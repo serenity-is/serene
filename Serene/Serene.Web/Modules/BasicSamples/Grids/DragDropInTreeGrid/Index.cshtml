@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Drag & Drop in Tree Grid";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        This is a sample that demonstrates how you could implement drag &amp; drop in a tree grid.
+        You can't move an item under itself, or under one of its descendants,
+        This validation is done at both client side and server side on repository level.
+    </p>
+    <p>
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("DragDropSampleGrid.ts")
+        @Html.AppSourceFile("DragDropSampleRepository.cs")
+        @Html.AppSourceFile("DragDropSampleRow.cs")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.DragDropSampleGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>
