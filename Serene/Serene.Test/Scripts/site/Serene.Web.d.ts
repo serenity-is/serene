@@ -277,6 +277,27 @@ declare namespace Serene.BasicSamples.DialogBoxes {
     function initializePage(): void;
 }
 declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
+     */
+    class EntityDialogAsPanel extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.Northwind {
     class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -315,19 +336,6 @@ declare namespace Serene.BasicSamples {
     class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
         protected getDialogType(): typeof GetInsertedRecordIdDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -842,6 +850,42 @@ declare namespace Serene.BasicSamples {
          * for links in remaining OrderID column
          */
         protected editItem(entityOrId: any): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DragDropSampleDialog extends Serenity.EntityDialog<DragDropSampleRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: DragDropSampleForm;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DragDropSampleGrid extends Serenity.EntityGrid<DragDropSampleRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof DragDropSampleDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private dragging;
+        constructor(container: JQuery);
+        /**
+         * This method will determine if item can be moved under a given target
+         * An item can't be moved under itself, under one of its children
+         */
+        private canMoveUnder(item, target);
+        /**
+         * Gets children list of an item
+         */
+        private getChildren(item);
+        /**
+         * Gets all parents of an item
+         */
+        private getParents(item);
+        protected getButtons(): any[];
+        protected usePager(): boolean;
     }
 }
 declare namespace Serene {
@@ -1516,6 +1560,50 @@ declare namespace Serene.BasicSamples {
         const baseUrl: string;
         function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
+    class DragDropSampleForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface DragDropSampleForm {
+        Title: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.BasicSamples {
+    interface DragDropSampleRow {
+        Id?: number;
+        ParentId?: number;
+        Title?: string;
+    }
+    namespace DragDropSampleRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const ParentId: string;
+            const Title: string;
+        }
+    }
+}
+declare namespace Serene.BasicSamples {
+    namespace DragDropSampleService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<DragDropSampleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<DragDropSampleRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<DragDropSampleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<DragDropSampleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
             const List: string;
         }
     }
