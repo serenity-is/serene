@@ -1874,11 +1874,8 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161126_210000_Meeting.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161029_130000_ExceptionLog.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161004_212900_UserImage.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160605_215300_Granted.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161126_141700_ForwardDates.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />

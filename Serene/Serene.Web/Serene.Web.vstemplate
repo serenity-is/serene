@@ -669,7 +669,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.ts">GridEditorBase.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.ts">GridEditorDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportHelper.ts">ReportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
           </Folder>
           <Folder Name="Imports" TargetFolderName="Imports">
@@ -856,6 +855,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160908_180100_CustomerGrossSales.cs">NorthwindDB_20160908_180100_CustomerGrossSales.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161013_002500_CustomerDetails.cs">NorthwindDB_20161013_002500_CustomerDetails.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161118_195400_DragDropSample.cs">NorthwindDB_20161118_195400_DragDropSample.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161126_141700_ForwardDates.cs">NorthwindDB_20161126_141700_ForwardDates.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Oracle.sql">NorthwindDBScript_Oracle.sql</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
@@ -877,6 +877,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportController.cs">ReportController.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.Template.html">ReportDialog.Template.html</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.ts">ReportDialog.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ReportHelper.ts">ReportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.cshtml">ReportPage.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.ts">ReportPage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
@@ -1398,13 +1399,13 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.2" />
-      <installPackage id="Serenity.Core" version="2.6.2" />
-      <installPackage id="Serenity.Data" version="2.6.2" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.2" />
-      <installPackage id="Serenity.Services" version="2.6.2" />
-      <installPackage id="Serenity.Web" version="2.6.2" />
-      <installPackage id="Serenity.Web.Assets" version="2.5.3" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.3" />
+      <installPackage id="Serenity.Core" version="2.6.3" />
+      <installPackage id="Serenity.Data" version="2.6.3" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.3" />
+      <installPackage id="Serenity.Services" version="2.6.3" />
+      <installPackage id="Serenity.Web" version="2.6.3" />
+      <installPackage id="Serenity.Web.Assets" version="2.6.4" />
       <installPackage id="Serenity.Web.Tooling" version="2.5.0" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
       <installPackage id="StackExchange.Exceptional" version="1.0.122" />

@@ -9,7 +9,7 @@ namespace Serene.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Action<ICreateTableWithColumnSyntax> addExceptionsColumns = expr => expr
+            this.CreateTableWithId64("Exceptions", "Id", s => s
                 .WithColumn("GUID").AsGuid().NotNullable()
                 .WithColumn("ApplicationName").AsString(50).NotNullable()
                 .WithColumn("MachineName").AsString(50).NotNullable()
@@ -28,17 +28,7 @@ namespace Serene.Migrations.DefaultDB
                 .WithColumn("DeletionDate").AsDateTime().Nullable()
                 .WithColumn("FullJson").AsString(int.MaxValue).Nullable()
                 .WithColumn("ErrorHash").AsInt32().Nullable()
-                .WithColumn("DuplicateCount").AsInt32().NotNullable().WithDefaultValue(1);
-
-            addExceptionsColumns(IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("Exceptions")
-                .WithColumn("Id").AsInt64().Identity().PrimaryKey().NotNullable());
-
-            addExceptionsColumns(IfDatabase("Oracle")
-                .Create.Table("Exceptions")
-                .WithColumn("Id").AsInt64().PrimaryKey().NotNullable());
-
-            Utils.AddOracleIdentity(this, "Exceptions", "Id");
+                .WithColumn("DuplicateCount").AsInt32().NotNullable().WithDefaultValue(1));
 
             Create.Index("IX_Exceptions_GUID_App_Del_Cre")
                 .OnTable("Exceptions")

@@ -1,10 +1,66 @@
 ﻿using FluentMigrator;
+using FluentMigrator.Builders.Create.Table;
 using System;
 
 namespace Serene.Migrations
 {
     public static class Utils
     {
+        public static void CreateTableWithId32(
+            this MigrationBase migration, string table, string idField,
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null)
+        {
+            CreateTableWithId(migration, table, idField, addColumns, schema, 32);
+        }
+
+        public static void CreateTableWithId64(
+            this MigrationBase migration, string table, string idField,
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null)
+        {
+            CreateTableWithId(migration, table, idField, addColumns, schema, 64);
+        }
+
+        private static void CreateTableWithId(
+            MigrationBase migration, string table, string idField,
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size)
+        {
+            Func<ICreateTableColumnAsTypeSyntax, ICreateTableColumnOptionOrWithColumnSyntax> addAsType =
+                col =>
+                {
+                    if (size == 64)
+                        return col.AsInt64();
+                    else if (size == 16)
+                        return col.AsInt16();
+                    else
+                        return col.AsInt32();
+                };
+
+            Func<ICreateTableWithColumnOrSchemaOrDescriptionSyntax, ICreateTableWithColumnSyntax> addSchema =
+                syntax =>
+                {
+                    if (schema != null)
+                        return syntax.InSchema(schema);
+                    else
+                        return syntax;
+                };
+
+            addColumns(
+                addAsType(
+                    addSchema(migration.IfDatabase(Utils.AllExceptOracle)
+                        .Create.Table(table))
+                            .WithColumn(idField))
+                            .Identity().PrimaryKey().NotNullable());
+
+            addColumns(
+                addAsType(
+                    addSchema(migration.IfDatabase("Oracle")
+                        .Create.Table(table))
+                            .WithColumn(idField))
+                            .PrimaryKey().NotNullable());
+
+            AddOracleIdentity(migration, table, idField);
+        }
+
         public static string[] AllExceptOracle =
         {
             "SqlServer",

@@ -7,25 +7,11 @@ namespace Serene.Migrations.DefaultDB
     {
         public override void Up()
         {
-            IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("UserPermissions")
-                    .WithColumn("UserPermissionId").AsInt64().Identity().PrimaryKey().NotNullable()
-                    .WithColumn("UserId").AsInt32().NotNullable()
-                    .WithColumn("PermissionKey").AsString(100).NotNullable();
-
-            IfDatabase("Oracle")
-                .Create.Table("UserPermissions")
-                    .WithColumn("UserPermissionId").AsInt64().PrimaryKey().NotNullable()
-                    .WithColumn("UserId").AsInt32().NotNullable()
-                    .WithColumn("PermissionKey").AsString(100).NotNullable();
-
-            Utils.AddOracleIdentity(this, "UserPermissions", "UserPermissionId");
-
-            Create.ForeignKey("FK_UserPermissions_UserId")
-                .FromTable("UserPermissions")
-                .ForeignColumn("UserId")
-                .ToTable("Users")
-                .PrimaryColumn("UserId");
+            this.CreateTableWithId64("UserPermissions", "UserPermissionId", s => s
+                .WithColumn("UserId").AsInt32().NotNullable()
+                    .ForeignKey("FK_UserPermissions_UserId", "Users", "UserId")
+                .WithColumn("PermissionKey").AsString(100).NotNullable()
+                .WithColumn("Granted").AsBoolean().NotNullable().WithDefaultValue(true));
 
             Create.Index("UQ_UserPerm_UserId_PermKey")
                 .OnTable("UserPermissions")
@@ -33,37 +19,13 @@ namespace Serene.Migrations.DefaultDB
                 .OnColumn("PermissionKey").Ascending()
                 .WithOptions().Unique();
 
-            IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("Roles")
-                    .WithColumn("RoleId").AsInt32().Identity().PrimaryKey().NotNullable()
-                    .WithColumn("RoleName").AsString(100).NotNullable();
+            this.CreateTableWithId32("Roles", "RoleId", s => s
+                .WithColumn("RoleName").AsString(100).NotNullable());
 
-            IfDatabase("Oracle")
-                .Create.Table("Roles")
-                    .WithColumn("RoleId").AsInt32().PrimaryKey().NotNullable()
-                    .WithColumn("RoleName").AsString(100).NotNullable();
-
-            Utils.AddOracleIdentity(this, "Roles", "RoleId");
-
-            IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("RolePermissions")
-                    .WithColumn("RolePermissionId").AsInt64().Identity().PrimaryKey().NotNullable()
-                    .WithColumn("RoleId").AsInt32().NotNullable()
-                    .WithColumn("PermissionKey").AsString(100).NotNullable();
-
-            IfDatabase("Oracle")
-                .Create.Table("RolePermissions")
-                    .WithColumn("RolePermissionId").AsInt64().PrimaryKey().NotNullable()
-                    .WithColumn("RoleId").AsInt32().NotNullable()
-                    .WithColumn("PermissionKey").AsString(100).NotNullable();
-
-            Utils.AddOracleIdentity(this, "RolePermissions", "RolePermissionId");
-
-            Create.ForeignKey("FK_RolePermissions_RoleId")
-                .FromTable("RolePermissions")
-                .ForeignColumn("RoleId")
-                .ToTable("Roles")
-                .PrimaryColumn("RoleId");
+            this.CreateTableWithId64("RolePermissions", "RolePermissionId", s => s
+                .WithColumn("RoleId").AsInt32().NotNullable()
+                    .ForeignKey("FK_RolePermissions_RoleId", "Roles", "RoleId")
+                .WithColumn("PermissionKey").AsString(100).NotNullable());
 
             Create.Index("UQ_RolePerm_RoleId_PermKey")
                 .OnTable("RolePermissions")
@@ -71,31 +33,11 @@ namespace Serene.Migrations.DefaultDB
                 .OnColumn("PermissionKey").Ascending()
                 .WithOptions().Unique();
 
-            IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("UserRoles")
-                    .WithColumn("UserRoleId").AsInt64().Identity().PrimaryKey().NotNullable()
-                    .WithColumn("UserId").AsInt32().NotNullable()
-                    .WithColumn("RoleId").AsInt32().NotNullable();
-
-            IfDatabase("Oracle")
-                .Create.Table("UserRoles")
-                    .WithColumn("UserRoleId").AsInt64().PrimaryKey().NotNullable()
-                    .WithColumn("UserId").AsInt32().NotNullable()
-                    .WithColumn("RoleId").AsInt32().NotNullable();
-
-            Utils.AddOracleIdentity(this, "UserRoles", "UserRoleId");
-
-            Create.ForeignKey("FK_UserRoles_UserId")
-                .FromTable("UserRoles")
-                .ForeignColumn("UserId")
-                .ToTable("Users")
-                .PrimaryColumn("UserId");
-
-            Create.ForeignKey("FK_UserRoles_RoleId")
-                .FromTable("UserRoles")
-                .ForeignColumn("RoleId")
-                .ToTable("Roles")
-                .PrimaryColumn("RoleId");
+            this.CreateTableWithId64("UserRoles", "UserRoleId", s => s
+                .WithColumn("UserId").AsInt32().NotNullable()
+                    .ForeignKey("FK_UserRoles_UserId", "Users", "UserId")
+                .WithColumn("RoleId").AsInt32().NotNullable()
+                    .ForeignKey("FK_UserRoles_RoleId", "Roles", "RoleId"));
 
             Create.Index("UQ_UserRoles_UserId_RoleId")
                 .OnTable("UserRoles")

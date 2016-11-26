@@ -10,28 +10,20 @@ namespace Serene.Migrations.DefaultDB
     {
         public override void Up()
         {
-            Action<ICreateTableWithColumnSyntax> addUsersColumns = expr => expr
+            this.CreateTableWithId32("Users", "UserId", s => s
                 .WithColumn("Username").AsString(100).NotNullable()
                 .WithColumn("DisplayName").AsString(100).NotNullable()
                 .WithColumn("Email").AsString(100).Nullable()
                 .WithColumn("Source").AsString(4).NotNullable()
                 .WithColumn("PasswordHash").AsString(86).NotNullable()
                 .WithColumn("PasswordSalt").AsString(10).NotNullable()
+                .WithColumn("LastDirectoryUpdate").AsDateTime().Nullable()
+                .WithColumn("UserImage").AsString(100).Nullable()
                 .WithColumn("InsertDate").AsDateTime().NotNullable()
                 .WithColumn("InsertUserId").AsInt32().NotNullable()
                 .WithColumn("UpdateDate").AsDateTime().Nullable()
                 .WithColumn("UpdateUserId").AsInt32().Nullable()
-                .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1);
-
-            addUsersColumns(IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("Users")
-                .WithColumn("UserId").AsInt32().Identity().PrimaryKey().NotNullable());
-
-            addUsersColumns(IfDatabase("Oracle")
-                .Create.Table("Users")
-                .WithColumn("UserId").AsInt32().PrimaryKey().NotNullable());
-
-            Utils.AddOracleIdentity(this, "Users", "UserId");
+                .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1));
 
             Insert.IntoTable("Users").Row(new {
                 Username = "admin",
@@ -45,19 +37,9 @@ namespace Serene.Migrations.DefaultDB
                 IsActive = 1
             });
 
-            Action<ICreateTableWithColumnSyntax> addLanguagesColumns = expr => expr
+            this.CreateTableWithId32("Languages", "Id", s => s
                 .WithColumn("LanguageId").AsString(10).NotNullable()
-                .WithColumn("LanguageName").AsString(50).NotNullable();
-
-            addLanguagesColumns(IfDatabase(Utils.AllExceptOracle)
-                .Create.Table("Languages")
-                .WithColumn("Id").AsInt32().Identity().PrimaryKey().NotNullable());
-
-            addLanguagesColumns(IfDatabase("Oracle")
-                .Create.Table("Languages")
-                .WithColumn("Id").AsInt32().PrimaryKey().NotNullable());
-
-            Utils.AddOracleIdentity(this, "Languages", "Id");
+                .WithColumn("LanguageName").AsString(50).NotNullable());
 
             Insert.IntoTable("Languages").Row(new
             {
