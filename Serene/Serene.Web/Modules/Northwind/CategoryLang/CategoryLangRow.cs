@@ -81,7 +81,7 @@ namespace Serene.Northwind.Entities
             public StringField Description;
 
             public RowFields()
-                : base("[dbo].[CategoryLang]")
+                : base("CategoryLang")
             {
                 LocalTextPrefix = "Northwind.CategoryLang";
             }

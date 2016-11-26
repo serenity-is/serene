@@ -39,6 +39,7 @@ namespace Serene.Migrations.DefaultDB
                 .WithColumn("StartDate").AsDateTime().NotNullable()
                 .WithColumn("EndDate").AsDateTime().NotNullable()
                 .WithColumn("LocationId").AsInt32().Nullable()
+                    .ForeignKey("FK_Meetings_LocationId", "MeetingLocations", "LocationId")
                 .WithColumn("UnitId").AsInt32().Nullable()
                     .ForeignKey("FK_Meetings_UnitId", "BusinessUnits", "UnitId")
                 .WithColumn("OrganizerContactId").AsInt32().Nullable()

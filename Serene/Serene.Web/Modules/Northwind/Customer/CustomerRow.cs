@@ -110,7 +110,7 @@ namespace Serene.Northwind.Entities
             set { Fields.LastContactDate[this] = value; }
         }
 
-        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("[dbo].[Employees]", "EmployeeID"), LeftJoin("lcb")]
+        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("Employees", "EmployeeID"), LeftJoin("lcb")]
         [LookupEditor(typeof(EmployeeRow))]
         public Int32? LastContactedBy
         {

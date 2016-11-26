@@ -57,7 +57,7 @@ namespace Serene.BasicSamples.Entities
             public StringField Title;
 
             public RowFields()
-                : base("[dbo].[DragDropSample]")
+                : base("DragDropSample")
             {
                 LocalTextPrefix = "BasicSamples.DragDropSample";
             }

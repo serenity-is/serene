@@ -12,6 +12,7 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
     [ReadPermission(Administration.PermissionKeys.Security)]
     [ModifyPermission(Administration.PermissionKeys.Security)]
+    [LookupScript("Administration.User", Permission = "?")]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity]
@@ -21,7 +22,7 @@ namespace Serene.Administration.Entities
             set { Fields.UserId[this] = value; }
         }
 
-        [DisplayName("Username"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Username"), Size(100), NotNull, QuickSearch, LookupInclude]
         public String Username
         {
             get { return Fields.Username[this]; }
@@ -49,7 +50,7 @@ namespace Serene.Administration.Entities
             set { Fields.PasswordSalt[this] = value; }
         }
 
-        [DisplayName("Display Name"), Size(100), NotNull]
+        [DisplayName("Display Name"), Size(100), NotNull, LookupInclude]
         public String DisplayName
         {
             get { return Fields.DisplayName[this]; }

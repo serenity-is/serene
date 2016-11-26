@@ -73,7 +73,7 @@ namespace Serene.Northwind.Entities
             public StringField ProductName;
 
             public RowFields()
-                : base("[dbo].[ProductLang]")
+                : base("ProductLang")
             {
                 LocalTextPrefix = "Northwind.ProductLang";
             }
