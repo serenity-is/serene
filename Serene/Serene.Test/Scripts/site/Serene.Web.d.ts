@@ -1139,21 +1139,6 @@ declare namespace Serene.Common {
 declare namespace Serene.LanguageList {
     function getValue(): string[][];
 }
-declare namespace Serene.Common {
-    interface ReportButtonOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-        download?: boolean;
-        reportKey: string;
-        extension?: string;
-        getParams?: () => any;
-        target?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-    }
-}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -3081,6 +3066,26 @@ declare namespace Serene.Common {
     }
     interface ReportDialogOptions {
         reportKey: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ReportExecuteOptions {
+        download?: boolean;
+        reportKey: string;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        params?: () => any | {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
     }
 }
 declare var jsPDF: any;

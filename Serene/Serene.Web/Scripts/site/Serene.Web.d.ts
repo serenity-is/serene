@@ -258,6 +258,8 @@ declare namespace Serene.Northwind {
         protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
         protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
         set_shippingState(value: number): void;
     }
 }
@@ -1138,21 +1140,6 @@ declare namespace Serene.Common {
 }
 declare namespace Serene.LanguageList {
     function getValue(): string[][];
-}
-declare namespace Serene.Common {
-    interface ReportButtonOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-        download?: boolean;
-        reportKey: string;
-        extension?: string;
-        getParams?: () => any;
-        target?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-    }
 }
 declare namespace Serene.Administration {
 }
@@ -3081,6 +3068,27 @@ declare namespace Serene.Common {
     }
     interface ReportDialogOptions {
         reportKey: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ReportExecuteOptions {
+        reportKey: string;
+        download?: boolean;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        getParams?: () => any;
+        params?: {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
     }
 }
 declare var jsPDF: any;

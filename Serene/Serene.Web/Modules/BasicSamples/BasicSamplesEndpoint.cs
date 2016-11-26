@@ -18,7 +18,7 @@ namespace Serene.BasicSamples.Endpoints
         public OrdersByShipperResponse OrdersByShipper(IDbConnection connection, OrdersByShipperRequest request)
         {
             var fld = OrderRow.Fields;
-            var year = 1998; // as Northwind data is old, this is hardcoded, use DateTime.Today.Year for other tables
+            var year = DateTime.Today.Year;
             var startOfMonth = new DateTime(year, DateTime.Today.Month, 1);
             var startingFrom = startOfMonth.AddMonths(-11);
 

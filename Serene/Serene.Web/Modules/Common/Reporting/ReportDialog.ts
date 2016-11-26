@@ -62,14 +62,12 @@ namespace Serene.Common {
 
             var opt = {};
             this.propertyGrid.save(opt);
-            Q.postToUrl({
-                url: Q.resolveUrl(download ? '~/Report/Download' : '~/Report/Execute'),
-                params: {
-                    key: this.report.ReportKey,
-                    opt: JSON.stringify(opt),
-                    ext: ext
-                },
-                target: target
+            ReportHelper.execute({
+                download: download,
+                reportKey: this.report.ReportKey,
+                extension: ext as any,
+                target: target,
+                params: opt
             });
         }
     

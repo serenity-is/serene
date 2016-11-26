@@ -1342,6 +1342,40 @@ var Serene;
                 }));
                 return buttons;
             };
+            OrderGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.splice(1, 0, {
+                    field: 'Print Invoice',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action print-invoice" title="invoice">' +
+                        '<i class="fa fa-file-pdf-o text-red"></i></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                return columns;
+            };
+            OrderGrid.prototype.onClick = function (e, row, cell) {
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('print-invoice')) {
+                        Serene.Common.ReportHelper.execute({
+                            reportKey: 'Northwind.OrderDetail',
+                            params: {
+                                OrderID: item.OrderID
+                            }
+                        });
+                    }
+                }
+            };
             OrderGrid.prototype.set_shippingState = function (value) {
                 this.shippingStateFilter.value = value == null ? '' : value.toString();
             };
@@ -1529,7 +1563,9 @@ var Serene;
                     title: 'Invoice',
                     cssClass: 'export-pdf-button',
                     reportKey: 'Northwind.OrderDetail',
-                    getParams: function () { return ({ OrderID: _this.get_entityId() }); }
+                    getParams: function () { return ({
+                        OrderID: _this.get_entityId()
+                    }); }
                 }));
                 return buttons;
             };
@@ -3766,13 +3802,13 @@ var Serene;
                     // w is a reference to the editor for this quick filter widget
                     // here we cast it to DateEditor, and set its value as date.
                     // note that in Javascript, months are 0 based, so date below
-                    // is actually 1998-05-01
-                    w.valueAsDate = new Date(1998, 4, 1);
+                    // is actually 2016-05-01
+                    w.valueAsDate = new Date(2016, 4, 1);
                     // setting start date was simple. but this quick filter is actually
                     // a combination of two date editors. to get reference to second one,
                     // need to find its next sibling element by its class
                     var endDate = w.element.nextAll(".s-DateEditor").getWidget(Serenity.DateEditor);
-                    endDate.valueAsDate = new Date(1998, 6, 1);
+                    endDate.valueAsDate = new Date(2016, 6, 1);
                 };
                 Q.first(filters, function (x) { return x.field == fld.ShippingState; }).init = function (w) {
                     // enum editor has a string value, so need to call toString()
@@ -4755,34 +4791,6 @@ var Serene;
         }
         LanguageList.getValue = getValue;
     })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ReportHelper;
-        (function (ReportHelper) {
-            function createToolButton(options) {
-                return {
-                    title: Q.coalesce(options.title, 'Report'),
-                    cssClass: Q.coalesce(options.cssClass, 'print-button'),
-                    icon: options.icon,
-                    onClick: function () {
-                        Q.postToUrl({
-                            url: '~/Report/' + (options.download ? 'Download' : 'Render'),
-                            params: {
-                                key: options.reportKey,
-                                ext: Q.coalesce(options.extension, 'pdf'),
-                                opt: (options.getParams == null ? '' : $.toJSON(options.getParams()))
-                            },
-                            target: Q.coalesce(options.target, '_blank')
-                        });
-                    }
-                };
-            }
-            ReportHelper.createToolButton = createToolButton;
-        })(ReportHelper = Common.ReportHelper || (Common.ReportHelper = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -6522,14 +6530,12 @@ var Serene;
                 }
                 var opt = {};
                 this.propertyGrid.save(opt);
-                Q.postToUrl({
-                    url: Q.resolveUrl(download ? '~/Report/Download' : '~/Report/Execute'),
-                    params: {
-                        key: this.report.ReportKey,
-                        opt: JSON.stringify(opt),
-                        ext: ext
-                    },
-                    target: target
+                Common.ReportHelper.execute({
+                    download: download,
+                    reportKey: this.report.ReportKey,
+                    extension: ext,
+                    target: target,
+                    params: opt
                 });
             };
             ReportDialog.prototype.getToolbarButtons = function () {
@@ -6555,6 +6561,39 @@ var Serene;
             return ReportDialog;
         }(Serenity.TemplatedDialog));
         Common.ReportDialog = ReportDialog;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportHelper;
+        (function (ReportHelper) {
+            function createToolButton(options) {
+                return {
+                    title: Q.coalesce(options.title, 'Report'),
+                    cssClass: Q.coalesce(options.cssClass, 'print-button'),
+                    icon: options.icon,
+                    onClick: function () {
+                        ReportHelper.execute(options);
+                    }
+                };
+            }
+            ReportHelper.createToolButton = createToolButton;
+            function execute(options) {
+                var opt = options.getParams ? options.getParams() : options.params;
+                Q.postToUrl({
+                    url: '~/Report/' + (options.download ? 'Download' : 'Render'),
+                    params: {
+                        key: options.reportKey,
+                        ext: Q.coalesce(options.extension, 'pdf'),
+                        opt: opt ? $.toJSON(opt) : ''
+                    },
+                    target: Q.coalesce(options.target, '_blank')
+                });
+            }
+            ReportHelper.execute = execute;
+        })(ReportHelper = Common.ReportHelper || (Common.ReportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;
