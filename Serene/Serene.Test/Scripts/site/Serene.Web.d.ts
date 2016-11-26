@@ -258,6 +258,8 @@ declare namespace Serene.Northwind {
         protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
         protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
         set_shippingState(value: number): void;
     }
 }
@@ -3070,10 +3072,11 @@ declare namespace Serene.Common {
 }
 declare namespace Serene.Common {
     interface ReportExecuteOptions {
-        download?: boolean;
         reportKey: string;
+        download?: boolean;
         extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
-        params?: () => any | {
+        getParams?: () => any;
+        params?: {
             [key: string]: any;
         };
         target?: string;
