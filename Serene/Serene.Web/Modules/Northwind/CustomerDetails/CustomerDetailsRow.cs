@@ -27,7 +27,7 @@ namespace Serene.Northwind.Entities
             set { Fields.LastContactDate[this] = value; }
         }
 
-        [DisplayName("Last Contacted By"), ForeignKey("[dbo].[Employees]", "EmployeeID"), LeftJoin("jLastContactedBy"), TextualField("LastContactedByLastName")]
+        [DisplayName("Last Contacted By"), ForeignKey("Employees", "EmployeeID"), LeftJoin("jLastContactedBy"), TextualField("LastContactedByLastName")]
         public Int32? LastContactedBy
         {
             get { return Fields.LastContactedBy[this]; }
@@ -211,7 +211,7 @@ namespace Serene.Northwind.Entities
             public StringField LastContactedByPhotoPath;
 
             public RowFields()
-                : base("[dbo].[CustomerDetails]")
+                : base("CustomerDetails")
             {
                 LocalTextPrefix = "Northwind.CustomerDetails";
             }

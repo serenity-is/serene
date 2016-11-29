@@ -7319,6 +7319,60 @@ section.content > .s-DataGrid {
 .drag-helper.reject {
   background-image: url(../serenity/images/slash.png);
 }
+.s-Meeting-MeetingDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingAgendaDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingAgendaDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingAgendaRelevantDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingAgendaRelevantDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingAgendaTypeDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingAgendaTypeDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingAttendeeDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingAttendeeDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingDecisionDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingDecisionDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingDecisionRelevantDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingDecisionRelevantDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingLocationDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingLocationDialog .caption {
+  width: 150px;
+}
+.s-Meeting-MeetingTypeDialog > .size {
+  width: 650px;
+}
+.s-Meeting-MeetingTypeDialog .caption {
+  width: 150px;
+}
 .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;
@@ -8004,4 +8058,19 @@ section.content > .s-DataGrid {
 }
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
+}
+.s-Organization-BusinessUnitDialog > .size {
+  width: 650px;
+}
+.s-Organization-BusinessUnitDialog .caption {
+  width: 150px;
+}
+.s-Organization-ContactDialog > .size {
+  width: 650px;
+}
+.s-Organization-ContactDialog .caption {
+  width: 150px;
+}
+.inline-action.add-child-unit {
+  background-image: url(../serenity/images/node-insert-next.png);
 }

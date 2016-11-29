@@ -21,7 +21,9 @@
                 title: 'Invoice',
                 cssClass: 'export-pdf-button',
                 reportKey: 'Northwind.OrderDetail',
-                getParams: () => ({ OrderID: this.get_entityId() })
+                getParams: () => ({
+                    OrderID: this.get_entityId()
+                })
             }));
 
             return buttons;

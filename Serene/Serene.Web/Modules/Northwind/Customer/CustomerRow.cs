@@ -110,7 +110,7 @@ namespace Serene.Northwind.Entities
             set { Fields.LastContactDate[this] = value; }
         }
 
-        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("[dbo].[Employees]", "EmployeeID"), LeftJoin("lcb")]
+        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("Employees", "EmployeeID"), LeftJoin("lcb")]
         [LookupEditor(typeof(EmployeeRow))]
         public Int32? LastContactedBy
         {
@@ -141,7 +141,7 @@ namespace Serene.Northwind.Entities
 
         [LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
-        [MinSelectLevel(SelectLevel.Details)]
+        [MinSelectLevel(SelectLevel.Details), QuickFilter]
         public List<Int32> Representatives
         {
             get { return Fields.Representatives[this]; }

@@ -87,20 +87,25 @@
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core">
-      <HintPath>..\..\packages\Serenity.Core.2.6.2\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.6.3\lib\net45\Serenity.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data">
-      <HintPath>..\..\packages\Serenity.Data.2.6.2\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.6.3\lib\net45\Serenity.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.6.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.6.3\lib\net45\Serenity.Data.Entity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services">
-      <HintPath>..\..\packages\Serenity.Services.2.6.2\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.6.3\lib\net45\Serenity.Services.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web">
-      <HintPath>..\..\packages\Serenity.Web.2.6.2\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.6.3\lib\net45\Serenity.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.0.122, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Exceptional.1.0.122\lib\StackExchange.Exceptional.dll</HintPath>
@@ -153,164 +158,21 @@
       <Link>wkhtmltopdf.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\site\images\accordion-arrows.png" />
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
-    <Content Include="wkhtmltopdf-license.txt" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
-    <Content Include="Content\adminlte\img\avatar.png" />
-    <Content Include="Content\adminlte\img\avatar04.png" />
-    <Content Include="Content\adminlte\img\avatar2.png" />
-    <Content Include="Content\adminlte\img\avatar3.png" />
-    <Content Include="Content\adminlte\img\avatar5.png" />
-    <Content Include="Content\adminlte\img\boxed-bg.jpg" />
-    <Content Include="Content\adminlte\img\boxed-bg.png" />
-    <Content Include="Content\adminlte\img\credit\american-express.png" />
-    <Content Include="Content\adminlte\img\credit\cirrus.png" />
-    <Content Include="Content\adminlte\img\credit\mastercard.png" />
-    <Content Include="Content\adminlte\img\credit\mestro.png" />
-    <Content Include="Content\adminlte\img\credit\paypal.png" />
-    <Content Include="Content\adminlte\img\credit\paypal2.png" />
-    <Content Include="Content\adminlte\img\credit\visa.png" />
-    <Content Include="Content\adminlte\img\default-50x50.gif" />
-    <Content Include="Content\adminlte\img\icons.png" />
-    <Content Include="Content\adminlte\img\photo1.jpg" />
-    <Content Include="Content\adminlte\img\photo2.jpg" />
     <Content Include="Content\aristo\aristo.css" />
     <Content Include="Content\aristo\images\icon_sprite.png" />
     <Content Include="Content\aristo\images\progress_bar.gif" />
     <Content Include="Content\aristo\images\slider_handles.png" />
     <Content Include="Content\aristo\images\ui-icons_222222_256x240.png" />
     <Content Include="Content\aristo\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\colorbox\images\border.png" />
     <Content Include="Content\colorbox\images\controls.png" />
     <Content Include="Content\colorbox\images\loading.gif" />
     <Content Include="Content\colorbox\images\loading_background.png" />
     <Content Include="Content\colorbox\jquery.colorbox.css" />
-    <Content Include="Content\css\select2-spinner.gif" />
-    <Content Include="Content\css\select2.css" />
-    <Content Include="Content\css\select2.png" />
-    <Content Include="Content\css\select2x2.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font-open-sans.css" />
     <Content Include="Content\glyphicons.css" />
-    <Content Include="Content\iCheck\all.css" />
-    <Content Include="Content\iCheck\flat\aero%402x.png" />
-    <Content Include="Content\iCheck\flat\aero.css" />
-    <Content Include="Content\iCheck\flat\aero.png" />
-    <Content Include="Content\iCheck\flat\blue%402x.png" />
-    <Content Include="Content\iCheck\flat\blue.css" />
-    <Content Include="Content\iCheck\flat\blue.png" />
-    <Content Include="Content\iCheck\flat\flat%402x.png" />
-    <Content Include="Content\iCheck\flat\flat.css" />
-    <Content Include="Content\iCheck\flat\flat.png" />
-    <Content Include="Content\iCheck\flat\green%402x.png" />
-    <Content Include="Content\iCheck\flat\green.css" />
-    <Content Include="Content\iCheck\flat\green.png" />
-    <Content Include="Content\iCheck\flat\grey%402x.png" />
-    <Content Include="Content\iCheck\flat\grey.css" />
-    <Content Include="Content\iCheck\flat\grey.png" />
-    <Content Include="Content\iCheck\flat\orange%402x.png" />
-    <Content Include="Content\iCheck\flat\orange.css" />
-    <Content Include="Content\iCheck\flat\orange.png" />
-    <Content Include="Content\iCheck\flat\pink%402x.png" />
-    <Content Include="Content\iCheck\flat\pink.css" />
-    <Content Include="Content\iCheck\flat\pink.png" />
-    <Content Include="Content\iCheck\flat\purple%402x.png" />
-    <Content Include="Content\iCheck\flat\purple.css" />
-    <Content Include="Content\iCheck\flat\purple.png" />
-    <Content Include="Content\iCheck\flat\red%402x.png" />
-    <Content Include="Content\iCheck\flat\red.css" />
-    <Content Include="Content\iCheck\flat\red.png" />
-    <Content Include="Content\iCheck\flat\yellow%402x.png" />
-    <Content Include="Content\iCheck\flat\yellow.css" />
-    <Content Include="Content\iCheck\flat\yellow.png" />
-    <Content Include="Content\iCheck\flat\_all.css" />
-    <Content Include="Content\iCheck\futurico\futurico%402x.png" />
-    <Content Include="Content\iCheck\futurico\futurico.css" />
-    <Content Include="Content\iCheck\futurico\futurico.png" />
-    <Content Include="Content\iCheck\line\aero.css" />
-    <Content Include="Content\iCheck\line\blue.css" />
-    <Content Include="Content\iCheck\line\green.css" />
-    <Content Include="Content\iCheck\line\grey.css" />
-    <Content Include="Content\iCheck\line\line%402x.png" />
-    <Content Include="Content\iCheck\line\line.css" />
-    <Content Include="Content\iCheck\line\line.png" />
-    <Content Include="Content\iCheck\line\orange.css" />
-    <Content Include="Content\iCheck\line\pink.css" />
-    <Content Include="Content\iCheck\line\purple.css" />
-    <Content Include="Content\iCheck\line\red.css" />
-    <Content Include="Content\iCheck\line\yellow.css" />
-    <Content Include="Content\iCheck\line\_all.css" />
-    <Content Include="Content\iCheck\minimal\aero%402x.png" />
-    <Content Include="Content\iCheck\minimal\aero.css" />
-    <Content Include="Content\iCheck\minimal\aero.png" />
-    <Content Include="Content\iCheck\minimal\blue%402x.png" />
-    <Content Include="Content\iCheck\minimal\blue.css" />
-    <Content Include="Content\iCheck\minimal\blue.png" />
-    <Content Include="Content\iCheck\minimal\green%402x.png" />
-    <Content Include="Content\iCheck\minimal\green.css" />
-    <Content Include="Content\iCheck\minimal\green.png" />
-    <Content Include="Content\iCheck\minimal\grey%402x.png" />
-    <Content Include="Content\iCheck\minimal\grey.css" />
-    <Content Include="Content\iCheck\minimal\grey.png" />
-    <Content Include="Content\iCheck\minimal\minimal%402x.png" />
-    <Content Include="Content\iCheck\minimal\minimal.css" />
-    <Content Include="Content\iCheck\minimal\minimal.png" />
-    <Content Include="Content\iCheck\minimal\orange%402x.png" />
-    <Content Include="Content\iCheck\minimal\orange.css" />
-    <Content Include="Content\iCheck\minimal\orange.png" />
-    <Content Include="Content\iCheck\minimal\pink%402x.png" />
-    <Content Include="Content\iCheck\minimal\pink.css" />
-    <Content Include="Content\iCheck\minimal\pink.png" />
-    <Content Include="Content\iCheck\minimal\purple%402x.png" />
-    <Content Include="Content\iCheck\minimal\purple.css" />
-    <Content Include="Content\iCheck\minimal\purple.png" />
-    <Content Include="Content\iCheck\minimal\red%402x.png" />
-    <Content Include="Content\iCheck\minimal\red.css" />
-    <Content Include="Content\iCheck\minimal\red.png" />
-    <Content Include="Content\iCheck\minimal\yellow%402x.png" />
-    <Content Include="Content\iCheck\minimal\yellow.css" />
-    <Content Include="Content\iCheck\minimal\yellow.png" />
-    <Content Include="Content\iCheck\minimal\_all.css" />
-    <Content Include="Content\iCheck\polaris\polaris%402x.png" />
-    <Content Include="Content\iCheck\polaris\polaris.css" />
-    <Content Include="Content\iCheck\polaris\polaris.png" />
-    <Content Include="Content\iCheck\square\aero%402x.png" />
-    <Content Include="Content\iCheck\square\aero.css" />
-    <Content Include="Content\iCheck\square\aero.png" />
-    <Content Include="Content\iCheck\square\blue%402x.png" />
-    <Content Include="Content\iCheck\square\blue.css" />
-    <Content Include="Content\iCheck\square\blue.png" />
-    <Content Include="Content\iCheck\square\green%402x.png" />
-    <Content Include="Content\iCheck\square\green.css" />
-    <Content Include="Content\iCheck\square\green.png" />
-    <Content Include="Content\iCheck\square\grey%402x.png" />
-    <Content Include="Content\iCheck\square\grey.css" />
-    <Content Include="Content\iCheck\square\grey.png" />
-    <Content Include="Content\iCheck\square\orange%402x.png" />
-    <Content Include="Content\iCheck\square\orange.css" />
-    <Content Include="Content\iCheck\square\orange.png" />
-    <Content Include="Content\iCheck\square\pink%402x.png" />
-    <Content Include="Content\iCheck\square\pink.css" />
-    <Content Include="Content\iCheck\square\pink.png" />
-    <Content Include="Content\iCheck\square\purple%402x.png" />
-    <Content Include="Content\iCheck\square\purple.css" />
-    <Content Include="Content\iCheck\square\purple.png" />
-    <Content Include="Content\iCheck\square\red%402x.png" />
-    <Content Include="Content\iCheck\square\red.css" />
-    <Content Include="Content\iCheck\square\red.png" />
-    <Content Include="Content\iCheck\square\square%402x.png" />
-    <Content Include="Content\iCheck\square\square.css" />
-    <Content Include="Content\iCheck\square\square.png" />
-    <Content Include="Content\iCheck\square\yellow%402x.png" />
-    <Content Include="Content\iCheck\square\yellow.css" />
-    <Content Include="Content\iCheck\square\yellow.png" />
-    <Content Include="Content\iCheck\square\_all.css" />
     <Content Include="Content\images\collapse.gif" />
     <Content Include="Content\images\down.gif" />
     <Content Include="Content\images\expand.gif" />
@@ -322,7 +184,6 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\pace.css" />
-    <Content Include="Content\pace.min.css" />
     <Content Include="Content\serenity\images\32px.png" />
     <Content Include="Content\serenity\images\accessright.png" />
     <Content Include="Content\serenity\images\accordion-down.png" />
@@ -637,191 +498,18 @@
     <Content Include="Content\serenity\images\zones-stack.png" />
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
-    <Content Include="Content\simple-line-icons.css" />
-    <Content Include="Content\site\images\serenity-logo-40.png" />
-    <Content Include="Content\site\images\serenity-logo-g-40.png" />
-    <Content Include="Content\site\images\serenity-logo-w-128.png" />
-    <Content Include="Content\site\images\serenity-logo-w-40.png" />
-    <Content Include="Content\site\images\tick-empty.png" />
-    <Content Include="Content\site\images\tick-green-partial.png" />
-    <Content Include="Content\site\images\tick-red-partial.png" />
-    <Content Include="Content\site\site.rtl.css" />
-    <Content Include="Content\site\site.htmlcontent.css" />
-    <Content Include="Content\site\site.css" />
-    <Content Include="Content\site\site.mixins.less" />
-    <Content Include="Content\site\site.northwind.less" />
-    <Content Include="Content\site\site.membership.less" />
-    <Content Include="Content\adminlte\.csslintrc" />
-    <Content Include="Content\adminlte\404_500_errors.less" />
-    <Content Include="Content\adminlte\AdminLTE.less" />
-    <Content Include="Content\adminlte\alerts.less" />
-    <Content Include="Content\adminlte\bootstrap-social.less" />
-    <Content Include="Content\adminlte\boxes.less" />
-    <Content Include="Content\adminlte\buttons.less" />
-    <Content Include="Content\adminlte\callout.less" />
-    <Content Include="Content\adminlte\carousel.less" />
-    <Content Include="Content\adminlte\control-sidebar.less" />
-    <Content Include="Content\adminlte\core.less" />
-    <Content Include="Content\adminlte\direct-chat.less" />
-    <Content Include="Content\adminlte\dropdown.less" />
-    <Content Include="Content\adminlte\forms.less" />
-    <Content Include="Content\adminlte\fullcalendar.less" />
-    <Content Include="Content\adminlte\header.less" />
-    <Content Include="Content\adminlte\info-box.less" />
-    <Content Include="Content\adminlte\invoice.less" />
-    <Content Include="Content\adminlte\labels.less" />
-    <Content Include="Content\adminlte\lockscreen.less" />
-    <Content Include="Content\adminlte\login_and_register.less" />
-    <Content Include="Content\adminlte\mailbox.less" />
-    <Content Include="Content\adminlte\miscellaneous.less" />
-    <Content Include="Content\adminlte\mixins.less" />
-    <Content Include="Content\adminlte\modal.less" />
-    <Content Include="Content\adminlte\navs.less" />
-    <Content Include="Content\adminlte\print.less" />
-    <Content Include="Content\adminlte\products.less" />
-    <Content Include="Content\adminlte\profile.less" />
-    <Content Include="Content\adminlte\progress-bars.less" />
-    <Content Include="Content\adminlte\select2.less" />
-    <Content Include="Content\adminlte\sidebar-mini.less" />
-    <Content Include="Content\adminlte\sidebar.less" />
-    <Content Include="Content\adminlte\skins\skin-black-light.less" />
-    <Content Include="Content\adminlte\skins\skin-black.less" />
-    <Content Include="Content\adminlte\skins\skin-blue-light.less" />
-    <Content Include="Content\adminlte\skins\skin-blue.less" />
-    <Content Include="Content\adminlte\skins\skin-green-light.less" />
-    <Content Include="Content\adminlte\skins\skin-green.less" />
-    <Content Include="Content\adminlte\skins\skin-purple-light.less" />
-    <Content Include="Content\adminlte\skins\skin-purple.less" />
-    <Content Include="Content\adminlte\skins\skin-red-light.less" />
-    <Content Include="Content\adminlte\skins\skin-red.less" />
-    <Content Include="Content\adminlte\skins\skin-yellow-light.less" />
-    <Content Include="Content\adminlte\skins\skin-yellow.less" />
-    <Content Include="Content\adminlte\skins\_all-skins.less" />
-    <Content Include="Content\adminlte\small-box.less" />
-    <Content Include="Content\adminlte\social-widgets.less" />
-    <Content Include="Content\adminlte\table.less" />
-    <Content Include="Content\adminlte\timeline.less" />
-    <Content Include="Content\adminlte\users-list.less" />
-    <Content Include="Content\adminlte\variables.less" />
-    <Content Include="Content\bootstrap-less\mixins.less" />
-    <Content Include="Content\bootstrap-less\mixins\alerts.less" />
-    <Content Include="Content\bootstrap-less\mixins\background-variant.less" />
-    <Content Include="Content\bootstrap-less\mixins\border-radius.less" />
-    <Content Include="Content\bootstrap-less\mixins\buttons.less" />
-    <Content Include="Content\bootstrap-less\mixins\center-block.less" />
-    <Content Include="Content\bootstrap-less\mixins\clearfix.less" />
-    <Content Include="Content\bootstrap-less\mixins\forms.less" />
-    <Content Include="Content\bootstrap-less\mixins\gradients.less" />
-    <Content Include="Content\bootstrap-less\mixins\grid-framework.less" />
-    <Content Include="Content\bootstrap-less\mixins\grid.less" />
-    <Content Include="Content\bootstrap-less\mixins\hide-text.less" />
-    <Content Include="Content\bootstrap-less\mixins\image.less" />
-    <Content Include="Content\bootstrap-less\mixins\labels.less" />
-    <Content Include="Content\bootstrap-less\mixins\list-group.less" />
-    <Content Include="Content\bootstrap-less\mixins\nav-divider.less" />
-    <Content Include="Content\bootstrap-less\mixins\nav-vertical-align.less" />
-    <Content Include="Content\bootstrap-less\mixins\opacity.less" />
-    <Content Include="Content\bootstrap-less\mixins\pagination.less" />
-    <Content Include="Content\bootstrap-less\mixins\panels.less" />
-    <Content Include="Content\bootstrap-less\mixins\progress-bar.less" />
-    <Content Include="Content\bootstrap-less\mixins\reset-filter.less" />
-    <Content Include="Content\bootstrap-less\mixins\resize.less" />
-    <Content Include="Content\bootstrap-less\mixins\responsive-visibility.less" />
-    <Content Include="Content\bootstrap-less\mixins\size.less" />
-    <Content Include="Content\bootstrap-less\mixins\tab-focus.less" />
-    <Content Include="Content\bootstrap-less\mixins\table-row.less" />
-    <Content Include="Content\bootstrap-less\mixins\text-emphasis.less" />
-    <Content Include="Content\bootstrap-less\mixins\text-overflow.less" />
-    <Content Include="Content\bootstrap-less\mixins\vendor-prefixes.less" />
-    <Content Include="Content\bootstrap-less\variables.less" />
-    <Content Include="Content\site\slides\slide1.jpg" />
-    <Content Include="Content\site\slides\slide2.jpg" />
-    <Content Include="Content\site\slides\slide3.jpg" />
-    <Content Include="Content\site\slides\slide4.jpg" />
-    <Content Include="Content\site\slides\slide5.jpg" />
+    <Content Include="Content\site\images\accordion-arrows.png" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
     <Content Include="Content\slick.headerbuttons.css" />
     <Content Include="Content\slick.headermenu.css" />
     <Content Include="Content\slick.pager.css" />
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery-ui.min.css" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\ionicons.svg" />
-    <Content Include="Fonts\Simple-Line-Icons.dev.svg" />
-    <Content Include="Fonts\Simple-Line-Icons.svg" />
-    <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
-    <Content Include="Content\site\site.administration.less" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
-    <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ClientTypes.log</LastGenOutput>
-    </Content>
-    <Content Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Oracle.sql" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="Readme.CodeGenerator.txt" />
-    <Content Include="Scripts\adminlte\app.js" />
-    <Content Include="Scripts\adminlte\app.min.js" />
-    <Content Include="Scripts\adminlte\demo.js" />
-    <Content Include="Scripts\adminlte\pages\dashboard.js" />
-    <Content Include="Scripts\adminlte\pages\dashboard2.js" />
-    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.css" />
-    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.js" />
-    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.css" />
-    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.js" />
-    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
-    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
-    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
-    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\chartjs\Chart.js" />
-    <Content Include="Scripts\chartjs\Chart.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
@@ -993,6 +681,394 @@
     <Content Include="Scripts\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Scripts\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="Scripts\ckeditor\styles.js" />
+    <Content Include="Scripts\jquery-ui-i18n.js" />
+    <Content Include="Scripts\jquery-ui-i18n.min.js" />
+    <Content Include="Scripts\jquery.autoNumeric.js" />
+    <Content Include="Scripts\jquery.autoNumeric.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.blockUI.min.js" />
+    <Content Include="Scripts\jquery.colorbox.js" />
+    <Content Include="Scripts\jquery.colorbox.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.cropzoom.js" />
+    <Content Include="Scripts\jquery.cropzoom.min.js" />
+    <Content Include="Scripts\jquery.dialogextendQ.js" />
+    <Content Include="Scripts\jquery.dialogextendQ.min.js" />
+    <Content Include="Scripts\jquery.event.drag.js" />
+    <Content Include="Scripts\jquery.event.drag.min.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.fileupload.min.js" />
+    <Content Include="Scripts\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.iframe-transport.min.js" />
+    <Content Include="Scripts\jquery.json.js" />
+    <Content Include="Scripts\jquery.json.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.scrollintoview.js" />
+    <Content Include="Scripts\jquery.scrollintoview.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jspdf.js" />
+    <Content Include="Scripts\jspdf.min.js" />
+    <Content Include="Scripts\jspdf.plugin.autotable.js" />
+    <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
+    <Content Include="Scripts\jsrender.js" />
+    <Content Include="Scripts\jsrender.min.js" />
+    <Content Include="Scripts\pace.js" />
+    <Content Include="Scripts\pace.min.js" />
+    <Content Include="Scripts\rsvp.js" />
+    <Content Include="Scripts\rsvp.min.js" />
+    <Content Include="Scripts\saltarelle\linq.js" />
+    <Content Include="Scripts\saltarelle\linq.min.js" />
+    <Content Include="Scripts\saltarelle\mscorlib.js" />
+    <Content Include="Scripts\saltarelle\mscorlib.min.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
+    <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
+    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
+    <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.min.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
+    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
+    <Content Include="Scripts\SlickGrid\slick.editors.js" />
+    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\sortable.js" />
+    <Content Include="Scripts\sortable.min.js" />
+    <Content Include="wkhtmltopdf-license.txt" />
+    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
+    <Content Include="Content\adminlte\img\avatar.png" />
+    <Content Include="Content\adminlte\img\avatar04.png" />
+    <Content Include="Content\adminlte\img\avatar2.png" />
+    <Content Include="Content\adminlte\img\avatar3.png" />
+    <Content Include="Content\adminlte\img\avatar5.png" />
+    <Content Include="Content\adminlte\img\boxed-bg.jpg" />
+    <Content Include="Content\adminlte\img\boxed-bg.png" />
+    <Content Include="Content\adminlte\img\credit\american-express.png" />
+    <Content Include="Content\adminlte\img\credit\cirrus.png" />
+    <Content Include="Content\adminlte\img\credit\mastercard.png" />
+    <Content Include="Content\adminlte\img\credit\mestro.png" />
+    <Content Include="Content\adminlte\img\credit\paypal.png" />
+    <Content Include="Content\adminlte\img\credit\paypal2.png" />
+    <Content Include="Content\adminlte\img\credit\visa.png" />
+    <Content Include="Content\adminlte\img\default-50x50.gif" />
+    <Content Include="Content\adminlte\img\icons.png" />
+    <Content Include="Content\adminlte\img\photo1.jpg" />
+    <Content Include="Content\adminlte\img\photo2.jpg" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\select2-spinner.gif" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.png" />
+    <Content Include="Content\css\select2x2.png" />
+    <Content Include="Content\iCheck\all.css" />
+    <Content Include="Content\iCheck\flat\aero%402x.png" />
+    <Content Include="Content\iCheck\flat\aero.css" />
+    <Content Include="Content\iCheck\flat\aero.png" />
+    <Content Include="Content\iCheck\flat\blue%402x.png" />
+    <Content Include="Content\iCheck\flat\blue.css" />
+    <Content Include="Content\iCheck\flat\blue.png" />
+    <Content Include="Content\iCheck\flat\flat%402x.png" />
+    <Content Include="Content\iCheck\flat\flat.css" />
+    <Content Include="Content\iCheck\flat\flat.png" />
+    <Content Include="Content\iCheck\flat\green%402x.png" />
+    <Content Include="Content\iCheck\flat\green.css" />
+    <Content Include="Content\iCheck\flat\green.png" />
+    <Content Include="Content\iCheck\flat\grey%402x.png" />
+    <Content Include="Content\iCheck\flat\grey.css" />
+    <Content Include="Content\iCheck\flat\grey.png" />
+    <Content Include="Content\iCheck\flat\orange%402x.png" />
+    <Content Include="Content\iCheck\flat\orange.css" />
+    <Content Include="Content\iCheck\flat\orange.png" />
+    <Content Include="Content\iCheck\flat\pink%402x.png" />
+    <Content Include="Content\iCheck\flat\pink.css" />
+    <Content Include="Content\iCheck\flat\pink.png" />
+    <Content Include="Content\iCheck\flat\purple%402x.png" />
+    <Content Include="Content\iCheck\flat\purple.css" />
+    <Content Include="Content\iCheck\flat\purple.png" />
+    <Content Include="Content\iCheck\flat\red%402x.png" />
+    <Content Include="Content\iCheck\flat\red.css" />
+    <Content Include="Content\iCheck\flat\red.png" />
+    <Content Include="Content\iCheck\flat\yellow%402x.png" />
+    <Content Include="Content\iCheck\flat\yellow.css" />
+    <Content Include="Content\iCheck\flat\yellow.png" />
+    <Content Include="Content\iCheck\flat\_all.css" />
+    <Content Include="Content\iCheck\futurico\futurico%402x.png" />
+    <Content Include="Content\iCheck\futurico\futurico.css" />
+    <Content Include="Content\iCheck\futurico\futurico.png" />
+    <Content Include="Content\iCheck\line\aero.css" />
+    <Content Include="Content\iCheck\line\blue.css" />
+    <Content Include="Content\iCheck\line\green.css" />
+    <Content Include="Content\iCheck\line\grey.css" />
+    <Content Include="Content\iCheck\line\line%402x.png" />
+    <Content Include="Content\iCheck\line\line.css" />
+    <Content Include="Content\iCheck\line\line.png" />
+    <Content Include="Content\iCheck\line\orange.css" />
+    <Content Include="Content\iCheck\line\pink.css" />
+    <Content Include="Content\iCheck\line\purple.css" />
+    <Content Include="Content\iCheck\line\red.css" />
+    <Content Include="Content\iCheck\line\yellow.css" />
+    <Content Include="Content\iCheck\line\_all.css" />
+    <Content Include="Content\iCheck\minimal\aero%402x.png" />
+    <Content Include="Content\iCheck\minimal\aero.css" />
+    <Content Include="Content\iCheck\minimal\aero.png" />
+    <Content Include="Content\iCheck\minimal\blue%402x.png" />
+    <Content Include="Content\iCheck\minimal\blue.css" />
+    <Content Include="Content\iCheck\minimal\blue.png" />
+    <Content Include="Content\iCheck\minimal\green%402x.png" />
+    <Content Include="Content\iCheck\minimal\green.css" />
+    <Content Include="Content\iCheck\minimal\green.png" />
+    <Content Include="Content\iCheck\minimal\grey%402x.png" />
+    <Content Include="Content\iCheck\minimal\grey.css" />
+    <Content Include="Content\iCheck\minimal\grey.png" />
+    <Content Include="Content\iCheck\minimal\minimal%402x.png" />
+    <Content Include="Content\iCheck\minimal\minimal.css" />
+    <Content Include="Content\iCheck\minimal\minimal.png" />
+    <Content Include="Content\iCheck\minimal\orange%402x.png" />
+    <Content Include="Content\iCheck\minimal\orange.css" />
+    <Content Include="Content\iCheck\minimal\orange.png" />
+    <Content Include="Content\iCheck\minimal\pink%402x.png" />
+    <Content Include="Content\iCheck\minimal\pink.css" />
+    <Content Include="Content\iCheck\minimal\pink.png" />
+    <Content Include="Content\iCheck\minimal\purple%402x.png" />
+    <Content Include="Content\iCheck\minimal\purple.css" />
+    <Content Include="Content\iCheck\minimal\purple.png" />
+    <Content Include="Content\iCheck\minimal\red%402x.png" />
+    <Content Include="Content\iCheck\minimal\red.css" />
+    <Content Include="Content\iCheck\minimal\red.png" />
+    <Content Include="Content\iCheck\minimal\yellow%402x.png" />
+    <Content Include="Content\iCheck\minimal\yellow.css" />
+    <Content Include="Content\iCheck\minimal\yellow.png" />
+    <Content Include="Content\iCheck\minimal\_all.css" />
+    <Content Include="Content\iCheck\polaris\polaris%402x.png" />
+    <Content Include="Content\iCheck\polaris\polaris.css" />
+    <Content Include="Content\iCheck\polaris\polaris.png" />
+    <Content Include="Content\iCheck\square\aero%402x.png" />
+    <Content Include="Content\iCheck\square\aero.css" />
+    <Content Include="Content\iCheck\square\aero.png" />
+    <Content Include="Content\iCheck\square\blue%402x.png" />
+    <Content Include="Content\iCheck\square\blue.css" />
+    <Content Include="Content\iCheck\square\blue.png" />
+    <Content Include="Content\iCheck\square\green%402x.png" />
+    <Content Include="Content\iCheck\square\green.css" />
+    <Content Include="Content\iCheck\square\green.png" />
+    <Content Include="Content\iCheck\square\grey%402x.png" />
+    <Content Include="Content\iCheck\square\grey.css" />
+    <Content Include="Content\iCheck\square\grey.png" />
+    <Content Include="Content\iCheck\square\orange%402x.png" />
+    <Content Include="Content\iCheck\square\orange.css" />
+    <Content Include="Content\iCheck\square\orange.png" />
+    <Content Include="Content\iCheck\square\pink%402x.png" />
+    <Content Include="Content\iCheck\square\pink.css" />
+    <Content Include="Content\iCheck\square\pink.png" />
+    <Content Include="Content\iCheck\square\purple%402x.png" />
+    <Content Include="Content\iCheck\square\purple.css" />
+    <Content Include="Content\iCheck\square\purple.png" />
+    <Content Include="Content\iCheck\square\red%402x.png" />
+    <Content Include="Content\iCheck\square\red.css" />
+    <Content Include="Content\iCheck\square\red.png" />
+    <Content Include="Content\iCheck\square\square%402x.png" />
+    <Content Include="Content\iCheck\square\square.css" />
+    <Content Include="Content\iCheck\square\square.png" />
+    <Content Include="Content\iCheck\square\yellow%402x.png" />
+    <Content Include="Content\iCheck\square\yellow.css" />
+    <Content Include="Content\iCheck\square\yellow.png" />
+    <Content Include="Content\iCheck\square\_all.css" />
+    <Content Include="Content\pace.min.css" />
+    <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\images\serenity-logo-40.png" />
+    <Content Include="Content\site\images\serenity-logo-g-40.png" />
+    <Content Include="Content\site\images\serenity-logo-w-128.png" />
+    <Content Include="Content\site\images\serenity-logo-w-40.png" />
+    <Content Include="Content\site\images\tick-empty.png" />
+    <Content Include="Content\site\images\tick-green-partial.png" />
+    <Content Include="Content\site\images\tick-red-partial.png" />
+    <Content Include="Content\site\site.rtl.css" />
+    <Content Include="Content\site\site.htmlcontent.css" />
+    <Content Include="Content\site\site.css" />
+    <Content Include="Content\site\site.mixins.less" />
+    <Content Include="Content\site\site.northwind.less" />
+    <Content Include="Content\site\site.membership.less" />
+    <Content Include="Content\adminlte\.csslintrc" />
+    <Content Include="Content\adminlte\404_500_errors.less" />
+    <Content Include="Content\adminlte\AdminLTE.less" />
+    <Content Include="Content\adminlte\alerts.less" />
+    <Content Include="Content\adminlte\bootstrap-social.less" />
+    <Content Include="Content\adminlte\boxes.less" />
+    <Content Include="Content\adminlte\buttons.less" />
+    <Content Include="Content\adminlte\callout.less" />
+    <Content Include="Content\adminlte\carousel.less" />
+    <Content Include="Content\adminlte\control-sidebar.less" />
+    <Content Include="Content\adminlte\core.less" />
+    <Content Include="Content\adminlte\direct-chat.less" />
+    <Content Include="Content\adminlte\dropdown.less" />
+    <Content Include="Content\adminlte\forms.less" />
+    <Content Include="Content\adminlte\fullcalendar.less" />
+    <Content Include="Content\adminlte\header.less" />
+    <Content Include="Content\adminlte\info-box.less" />
+    <Content Include="Content\adminlte\invoice.less" />
+    <Content Include="Content\adminlte\labels.less" />
+    <Content Include="Content\adminlte\lockscreen.less" />
+    <Content Include="Content\adminlte\login_and_register.less" />
+    <Content Include="Content\adminlte\mailbox.less" />
+    <Content Include="Content\adminlte\miscellaneous.less" />
+    <Content Include="Content\adminlte\mixins.less" />
+    <Content Include="Content\adminlte\modal.less" />
+    <Content Include="Content\adminlte\navs.less" />
+    <Content Include="Content\adminlte\print.less" />
+    <Content Include="Content\adminlte\products.less" />
+    <Content Include="Content\adminlte\profile.less" />
+    <Content Include="Content\adminlte\progress-bars.less" />
+    <Content Include="Content\adminlte\select2.less" />
+    <Content Include="Content\adminlte\sidebar-mini.less" />
+    <Content Include="Content\adminlte\sidebar.less" />
+    <Content Include="Content\adminlte\skins\skin-black-light.less" />
+    <Content Include="Content\adminlte\skins\skin-black.less" />
+    <Content Include="Content\adminlte\skins\skin-blue-light.less" />
+    <Content Include="Content\adminlte\skins\skin-blue.less" />
+    <Content Include="Content\adminlte\skins\skin-green-light.less" />
+    <Content Include="Content\adminlte\skins\skin-green.less" />
+    <Content Include="Content\adminlte\skins\skin-purple-light.less" />
+    <Content Include="Content\adminlte\skins\skin-purple.less" />
+    <Content Include="Content\adminlte\skins\skin-red-light.less" />
+    <Content Include="Content\adminlte\skins\skin-red.less" />
+    <Content Include="Content\adminlte\skins\skin-yellow-light.less" />
+    <Content Include="Content\adminlte\skins\skin-yellow.less" />
+    <Content Include="Content\adminlte\skins\_all-skins.less" />
+    <Content Include="Content\adminlte\small-box.less" />
+    <Content Include="Content\adminlte\social-widgets.less" />
+    <Content Include="Content\adminlte\table.less" />
+    <Content Include="Content\adminlte\timeline.less" />
+    <Content Include="Content\adminlte\users-list.less" />
+    <Content Include="Content\adminlte\variables.less" />
+    <Content Include="Content\bootstrap-less\mixins.less" />
+    <Content Include="Content\bootstrap-less\mixins\alerts.less" />
+    <Content Include="Content\bootstrap-less\mixins\background-variant.less" />
+    <Content Include="Content\bootstrap-less\mixins\border-radius.less" />
+    <Content Include="Content\bootstrap-less\mixins\buttons.less" />
+    <Content Include="Content\bootstrap-less\mixins\center-block.less" />
+    <Content Include="Content\bootstrap-less\mixins\clearfix.less" />
+    <Content Include="Content\bootstrap-less\mixins\forms.less" />
+    <Content Include="Content\bootstrap-less\mixins\gradients.less" />
+    <Content Include="Content\bootstrap-less\mixins\grid-framework.less" />
+    <Content Include="Content\bootstrap-less\mixins\grid.less" />
+    <Content Include="Content\bootstrap-less\mixins\hide-text.less" />
+    <Content Include="Content\bootstrap-less\mixins\image.less" />
+    <Content Include="Content\bootstrap-less\mixins\labels.less" />
+    <Content Include="Content\bootstrap-less\mixins\list-group.less" />
+    <Content Include="Content\bootstrap-less\mixins\nav-divider.less" />
+    <Content Include="Content\bootstrap-less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\bootstrap-less\mixins\opacity.less" />
+    <Content Include="Content\bootstrap-less\mixins\pagination.less" />
+    <Content Include="Content\bootstrap-less\mixins\panels.less" />
+    <Content Include="Content\bootstrap-less\mixins\progress-bar.less" />
+    <Content Include="Content\bootstrap-less\mixins\reset-filter.less" />
+    <Content Include="Content\bootstrap-less\mixins\resize.less" />
+    <Content Include="Content\bootstrap-less\mixins\responsive-visibility.less" />
+    <Content Include="Content\bootstrap-less\mixins\size.less" />
+    <Content Include="Content\bootstrap-less\mixins\tab-focus.less" />
+    <Content Include="Content\bootstrap-less\mixins\table-row.less" />
+    <Content Include="Content\bootstrap-less\mixins\text-emphasis.less" />
+    <Content Include="Content\bootstrap-less\mixins\text-overflow.less" />
+    <Content Include="Content\bootstrap-less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\bootstrap-less\variables.less" />
+    <Content Include="Content\site\slides\slide1.jpg" />
+    <Content Include="Content\site\slides\slide2.jpg" />
+    <Content Include="Content\site\slides\slide3.jpg" />
+    <Content Include="Content\site\slides\slide4.jpg" />
+    <Content Include="Content\site\slides\slide5.jpg" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Fonts\Simple-Line-Icons.svg" />
+    <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
+    <Content Include="Content\site\site.administration.less" />
+    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
+    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
+    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
+    <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ClientTypes.log</LastGenOutput>
+    </Content>
+    <Content Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Oracle.sql" />
+    <Content Include="Scripts\adminlte\app.js" />
+    <Content Include="Scripts\adminlte\app.min.js" />
+    <Content Include="Scripts\adminlte\demo.js" />
+    <Content Include="Scripts\adminlte\pages\dashboard.js" />
+    <Content Include="Scripts\adminlte\pages\dashboard2.js" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.css" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.js" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.css" />
+    <Content Include="Scripts\bootstrap-slider\bootstrap-slider.min.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.css" />
+    <Content Include="Scripts\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chartjs\Chart.js" />
+    <Content Include="Scripts\chartjs\Chart.min.js" />
     <Content Include="Scripts\colorpicker\bootstrap-colorpicker.css" />
     <Content Include="Scripts\colorpicker\bootstrap-colorpicker.js" />
     <Content Include="Scripts\colorpicker\bootstrap-colorpicker.min.css" />
@@ -1173,6 +1249,11 @@
     <Content Include="Fonts\Simple-Line-Icons.woff" />
     <Content Include="Fonts\Simple-Line-Icons.ttf" />
     <Content Include="Fonts\Simple-Line-Icons.eot" />
+    <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
     <Content Include="Fonts\OpenSansSemiBold.woff" />
     <Content Include="Fonts\OpenSansLight.woff" />
     <Content Include="Fonts\OpenSansItalic.woff" />
@@ -1190,11 +1271,8 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
-    <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
+    <Content Include="Content\site\site.meeting.less" />
+    <Content Include="Content\site\site.organization.less" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1322,7 +1400,40 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderListRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1358,11 +1469,11 @@
     <TypeScriptCompile Include="Modules\Northwind\Supplier\SupplierDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryGrid.ts" />
+    <Content Include="Modules\Common\Reporting\ReportDialog.Template.html" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Modules\Common\Reporting\ReportDialog.Template.html" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1370,55 +1481,13 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
-    <Content Include="Scripts\jquery-ui-i18n.js" />
-    <Content Include="Scripts\jquery-ui-i18n.min.js" />
-    <Content Include="Scripts\jquery.autoNumeric.js" />
-    <Content Include="Scripts\jquery.autoNumeric.min.js" />
-    <Content Include="Scripts\jquery.blockUI.js" />
-    <Content Include="Scripts\jquery.blockUI.min.js" />
-    <Content Include="Scripts\jquery.colorbox.js" />
-    <Content Include="Scripts\jquery.colorbox.min.js" />
-    <Content Include="Scripts\jquery.cookie.js" />
-    <Content Include="Scripts\jquery.cookie.min.js" />
-    <Content Include="Scripts\jquery.cropzoom.js" />
-    <Content Include="Scripts\jquery.cropzoom.min.js" />
-    <Content Include="Scripts\jquery.dialogextendQ.js" />
-    <Content Include="Scripts\jquery.dialogextendQ.min.js" />
-    <Content Include="Scripts\jquery.event.drag.js" />
     <Content Include="Scripts\jquery.event.drag.live.js" />
     <Content Include="Scripts\jquery.event.drag.live.min.js" />
-    <Content Include="Scripts\jquery.event.drag.min.js" />
-    <Content Include="Scripts\jquery.fileupload.js" />
-    <Content Include="Scripts\jquery.fileupload.min.js" />
     <Content Include="Scripts\jquery.icheck.js" />
     <Content Include="Scripts\jquery.icheck.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.iframe-transport.js" />
-    <Content Include="Scripts\jquery.iframe-transport.min.js" />
-    <Content Include="Scripts\jquery.json.js" />
-    <Content Include="Scripts\jquery.json.min.js" />
-    <Content Include="Scripts\jquery.maskedinput.js" />
-    <Content Include="Scripts\jquery.maskedinput.min.js" />
-    <Content Include="Scripts\jquery.scrollintoview.js" />
-    <Content Include="Scripts\jquery.scrollintoview.min.js" />
-    <Content Include="Scripts\jquery.slimscroll.js" />
-    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jspdf.js" />
-    <Content Include="Scripts\jspdf.min.js" />
-    <Content Include="Scripts\jspdf.plugin.autotable.js" />
-    <Content Include="Scripts\jspdf.plugin.autotable.min.js" />
-    <Content Include="Scripts\jsrender.js" />
-    <Content Include="Scripts\jsrender.min.js" />
-    <Content Include="Scripts\pace.js" />
-    <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\rsvp.js" />
-    <Content Include="Scripts\rsvp.min.js" />
-    <Content Include="Scripts\saltarelle\linq.js" />
-    <Content Include="Scripts\saltarelle\linq.min.js" />
-    <Content Include="Scripts\saltarelle\mscorlib.js" />
-    <Content Include="Scripts\saltarelle\mscorlib.min.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_az.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
@@ -1467,39 +1536,9 @@
     <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
     <Content Include="Scripts\serenity\Serenity.Externals.js" />
-    <Content Include="Scripts\serenity\Serenity.Externals.Slick.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
-    <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
-    <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.autotooltips.min.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellcopymanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangedecorator.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellrangeselector.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.cellselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.checkboxselectcolumn.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headerbuttons.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
-    <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
-    <Content Include="Scripts\SlickGrid\slick.editors.js" />
-    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
-    <Content Include="Scripts\sortable.js" />
-    <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\vegas\overlays\01.png" />
@@ -1520,6 +1559,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
@@ -1528,7 +1568,6 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
     <None Include="Scripts\site\ScriptBundles.json" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
@@ -1604,12 +1643,12 @@
     <Content Include="Scripts\site\texts\site.texts.fa.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.fa.json" />
     <Content Include="Scripts\site\texts\samples\samples.fa.json" />
-    <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="Scripts\site\texts\site.texts.vi-VN.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
     <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
+    <Content Include="Scripts\SlickGrid\README.md" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -1740,7 +1779,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\GroupingAndSummariesInGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ViewWithoutID\ViewWithoutIDGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorDialog.ts" />
-    <TypeScriptCompile Include="Modules\Common\Helpers\ReportHelper.ts" />
+    <TypeScriptCompile Include="Modules\Common\Reporting\ReportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\GridEditorBase.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
@@ -1756,6 +1795,7 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerDetailsRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitEditor.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\rsvp\rsvp.d.ts" />
@@ -1764,6 +1804,138 @@
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleDialog.ts" />
+    <Content Include="Modules\Organization\Contact\ContactIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Organization\Contact\ContactGrid.ts" />
+    <TypeScriptCompile Include="Modules\Organization\Contact\ContactDialog.ts" />
+    <Content Include="Modules\Organization\BusinessUnit\BusinessUnitIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitGrid.ts" />
+    <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingAgenda\MeetingAgendaIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingDecision\MeetingDecisionIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingDecision\MeetingDecisionGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingDecision\MeetingDecisionDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingLocation\MeetingLocationIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingLocation\MeetingLocationGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingLocation\MeetingLocationDialog.ts" />
+    <Content Include="Modules\Meeting\Meeting\MeetingIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\Meeting\MeetingGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\Meeting\MeetingDialog.ts" />
+    <Content Include="Modules\Meeting\MeetingType\MeetingTypeIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Meeting\MeetingType\MeetingTypeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingType\MeetingTypeDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1886,16 +2058,17 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Organization.BusinessUnitEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\StaticTextBlockAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161126_210000_Meeting.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161029_130000_ExceptionLog.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161004_212900_UserImage.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160605_215300_Granted.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
+    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161126_141700_ForwardDates.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161013_002500_CustomerDetails.cs" />
     <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160908_180100_CustomerGrossSales.cs" />
@@ -1929,6 +2102,8 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingNavigation.cs" />
+    <Compile Include="Modules\Meeting\PermissionKeys.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPassword\AccountPage.ForgotPassword.cs" />
@@ -1976,6 +2151,7 @@
     <Compile Include="Modules\Northwind\Supplier\SupplierColumns.cs" />
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
+    <Compile Include="Modules\Organization\OrganizationNavigation.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
     <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
@@ -2078,6 +2254,67 @@
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleRepository.cs" />
     <Compile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleEndpoint.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactRow.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactColumns.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactForm.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactRepository.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactEndpoint.cs" />
+    <Compile Include="Modules\Organization\Contact\ContactPage.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitRow.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitColumns.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitForm.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitRepository.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitEndpoint.cs" />
+    <Compile Include="Modules\Organization\BusinessUnit\BusinessUnitPage.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypePage.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingDecision\MeetingDecisionEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingLocation\MeetingLocationPage.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingRow.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingColumns.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingForm.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingRepository.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingEndpoint.cs" />
+    <Compile Include="Modules\Meeting\Meeting\MeetingPage.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeRow.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeColumns.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeForm.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypeEndpoint.cs" />
+    <Compile Include="Modules\Meeting\MeetingType\MeetingTypePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

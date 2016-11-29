@@ -258,6 +258,8 @@ declare namespace Serene.Northwind {
         protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
         protected createQuickFilters(): void;
         protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
         set_shippingState(value: number): void;
     }
 }
@@ -1139,21 +1141,6 @@ declare namespace Serene.Common {
 declare namespace Serene.LanguageList {
     function getValue(): string[][];
 }
-declare namespace Serene.Common {
-    interface ReportButtonOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-        download?: boolean;
-        reportKey: string;
-        extension?: string;
-        getParams?: () => any;
-        target?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-    }
-}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -1466,6 +1453,8 @@ declare namespace Serene.Administration {
         const isActiveProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<UserRow>;
         namespace Fields {
             const UserId: string;
             const Username: string;
@@ -1825,6 +1814,717 @@ declare namespace Serene {
     interface GetNextNumberResponse extends Serenity.ServiceResponse {
         Number?: number;
         Serial?: string;
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingAgendaForm {
+        MeetingId: Serenity.IntegerEditor;
+        AgendaNumber: Serenity.IntegerEditor;
+        Title: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        AgendaTypeId: Serenity.IntegerEditor;
+        RequestedByContactId: Serenity.IntegerEditor;
+        Images: Serenity.StringEditor;
+        Attachments: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaRelevantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingAgendaRelevantForm {
+        AgendaId: Serenity.IntegerEditor;
+        ContactId: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingAgendaRelevantRow {
+        AgendaRelevantId?: number;
+        AgendaId?: number;
+        ContactId?: number;
+        AgendaMeetingId?: number;
+        AgendaAgendaNumber?: number;
+        AgendaTitle?: string;
+        AgendaDescription?: string;
+        AgendaAgendaTypeId?: number;
+        AgendaRequestedByContactId?: number;
+        AgendaImages?: string;
+        AgendaAttachments?: string;
+        ContactTitle?: string;
+        ContactFirstName?: string;
+        ContactLastName?: string;
+        ContactEmail?: string;
+        ContactIdentityNo?: string;
+        ContactUserId?: number;
+    }
+    namespace MeetingAgendaRelevantRow {
+        const idProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const AgendaRelevantId: string;
+            const AgendaId: string;
+            const ContactId: string;
+            const AgendaMeetingId: string;
+            const AgendaAgendaNumber: string;
+            const AgendaTitle: string;
+            const AgendaDescription: string;
+            const AgendaAgendaTypeId: string;
+            const AgendaRequestedByContactId: string;
+            const AgendaImages: string;
+            const AgendaAttachments: string;
+            const ContactTitle: string;
+            const ContactFirstName: string;
+            const ContactLastName: string;
+            const ContactEmail: string;
+            const ContactIdentityNo: string;
+            const ContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingAgendaRelevantService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingAgendaRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingAgendaRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingAgendaRow {
+        AgendaId?: number;
+        MeetingId?: number;
+        AgendaNumber?: number;
+        Title?: string;
+        Description?: string;
+        AgendaTypeId?: number;
+        RequestedByContactId?: number;
+        Images?: string;
+        Attachments?: string;
+        MeetingMeetingName?: string;
+        MeetingMeetingNumber?: string;
+        MeetingMeetingGuid?: string;
+        MeetingMeetingTypeId?: number;
+        MeetingStartDate?: string;
+        MeetingEndDate?: string;
+        MeetingLocationId?: number;
+        MeetingUnitId?: number;
+        MeetingOrganizerContactId?: number;
+        MeetingReporterContactId?: number;
+        MeetingInsertUserId?: number;
+        MeetingInsertDate?: string;
+        MeetingUpdateUserId?: number;
+        MeetingUpdateDate?: string;
+        AgendaTypeName?: string;
+        RequestedByContactTitle?: string;
+        RequestedByContactFirstName?: string;
+        RequestedByContactLastName?: string;
+        RequestedByContactEmail?: string;
+        RequestedByContactIdentityNo?: string;
+        RequestedByContactUserId?: number;
+    }
+    namespace MeetingAgendaRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const AgendaId: string;
+            const MeetingId: string;
+            const AgendaNumber: string;
+            const Title: string;
+            const Description: string;
+            const AgendaTypeId: string;
+            const RequestedByContactId: string;
+            const Images: string;
+            const Attachments: string;
+            const MeetingMeetingName: string;
+            const MeetingMeetingNumber: string;
+            const MeetingMeetingGuid: string;
+            const MeetingMeetingTypeId: string;
+            const MeetingStartDate: string;
+            const MeetingEndDate: string;
+            const MeetingLocationId: string;
+            const MeetingUnitId: string;
+            const MeetingOrganizerContactId: string;
+            const MeetingReporterContactId: string;
+            const MeetingInsertUserId: string;
+            const MeetingInsertDate: string;
+            const MeetingUpdateUserId: string;
+            const MeetingUpdateDate: string;
+            const AgendaTypeName: string;
+            const RequestedByContactTitle: string;
+            const RequestedByContactFirstName: string;
+            const RequestedByContactLastName: string;
+            const RequestedByContactEmail: string;
+            const RequestedByContactIdentityNo: string;
+            const RequestedByContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingAgendaService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingAgendaRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingAgendaRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaTypeForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingAgendaTypeForm {
+        Name: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingAgendaTypeRow {
+        AgendaTypeId?: number;
+        Name?: string;
+    }
+    namespace MeetingAgendaTypeRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const AgendaTypeId: string;
+            const Name: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingAgendaTypeService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingAgendaTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingAgendaTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingAttendeeForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingAttendeeForm {
+        MeetingId: Serenity.IntegerEditor;
+        ContactId: Serenity.IntegerEditor;
+        AttendeeType: Serenity.IntegerEditor;
+        AttendanceStatus: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingAttendeeRow {
+        AttendeeId?: number;
+        MeetingId?: number;
+        ContactId?: number;
+        AttendeeType?: number;
+        AttendanceStatus?: number;
+        MeetingMeetingName?: string;
+        MeetingMeetingNumber?: string;
+        MeetingMeetingGuid?: string;
+        MeetingMeetingTypeId?: number;
+        MeetingStartDate?: string;
+        MeetingEndDate?: string;
+        MeetingLocationId?: number;
+        MeetingUnitId?: number;
+        MeetingOrganizerContactId?: number;
+        MeetingReporterContactId?: number;
+        MeetingInsertUserId?: number;
+        MeetingInsertDate?: string;
+        MeetingUpdateUserId?: number;
+        MeetingUpdateDate?: string;
+        ContactTitle?: string;
+        ContactFirstName?: string;
+        ContactLastName?: string;
+        ContactEmail?: string;
+        ContactIdentityNo?: string;
+        ContactUserId?: number;
+    }
+    namespace MeetingAttendeeRow {
+        const idProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const AttendeeId: string;
+            const MeetingId: string;
+            const ContactId: string;
+            const AttendeeType: string;
+            const AttendanceStatus: string;
+            const MeetingMeetingName: string;
+            const MeetingMeetingNumber: string;
+            const MeetingMeetingGuid: string;
+            const MeetingMeetingTypeId: string;
+            const MeetingStartDate: string;
+            const MeetingEndDate: string;
+            const MeetingLocationId: string;
+            const MeetingUnitId: string;
+            const MeetingOrganizerContactId: string;
+            const MeetingReporterContactId: string;
+            const MeetingInsertUserId: string;
+            const MeetingInsertDate: string;
+            const MeetingUpdateUserId: string;
+            const MeetingUpdateDate: string;
+            const ContactTitle: string;
+            const ContactFirstName: string;
+            const ContactLastName: string;
+            const ContactEmail: string;
+            const ContactIdentityNo: string;
+            const ContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingAttendeeService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingAttendeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingAttendeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAttendeeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAttendeeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingDecisionForm {
+        MeetingId: Serenity.IntegerEditor;
+        AgendaId: Serenity.IntegerEditor;
+        Description: Serenity.StringEditor;
+        DecisionNumber: Serenity.IntegerEditor;
+        ResponsibleContactId: Serenity.IntegerEditor;
+        DueDate: Serenity.DateEditor;
+        ResolutionStatus: Serenity.IntegerEditor;
+        Images: Serenity.StringEditor;
+        Attachments: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionRelevantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingDecisionRelevantForm {
+        DecisionId: Serenity.IntegerEditor;
+        ContactId: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingDecisionRelevantRow {
+        DecisionRelevantId?: number;
+        DecisionId?: number;
+        ContactId?: number;
+        DecisionMeetingId?: number;
+        DecisionAgendaId?: number;
+        DecisionDescription?: string;
+        DecisionDecisionNumber?: number;
+        DecisionResponsibleContactId?: number;
+        DecisionDueDate?: string;
+        DecisionResolutionStatus?: number;
+        DecisionImages?: string;
+        DecisionAttachments?: string;
+        ContactTitle?: string;
+        ContactFirstName?: string;
+        ContactLastName?: string;
+        ContactEmail?: string;
+        ContactIdentityNo?: string;
+        ContactUserId?: number;
+    }
+    namespace MeetingDecisionRelevantRow {
+        const idProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const DecisionRelevantId: string;
+            const DecisionId: string;
+            const ContactId: string;
+            const DecisionMeetingId: string;
+            const DecisionAgendaId: string;
+            const DecisionDescription: string;
+            const DecisionDecisionNumber: string;
+            const DecisionResponsibleContactId: string;
+            const DecisionDueDate: string;
+            const DecisionResolutionStatus: string;
+            const DecisionImages: string;
+            const DecisionAttachments: string;
+            const ContactTitle: string;
+            const ContactFirstName: string;
+            const ContactLastName: string;
+            const ContactEmail: string;
+            const ContactIdentityNo: string;
+            const ContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingDecisionRelevantService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingDecisionRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingDecisionRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingDecisionRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingDecisionRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingDecisionRow {
+        DecisionId?: number;
+        MeetingId?: number;
+        AgendaId?: number;
+        Description?: string;
+        DecisionNumber?: number;
+        ResponsibleContactId?: number;
+        DueDate?: string;
+        ResolutionStatus?: number;
+        Images?: string;
+        Attachments?: string;
+        MeetingMeetingName?: string;
+        MeetingMeetingNumber?: string;
+        MeetingMeetingGuid?: string;
+        MeetingMeetingTypeId?: number;
+        MeetingStartDate?: string;
+        MeetingEndDate?: string;
+        MeetingLocationId?: number;
+        MeetingUnitId?: number;
+        MeetingOrganizerContactId?: number;
+        MeetingReporterContactId?: number;
+        MeetingInsertUserId?: number;
+        MeetingInsertDate?: string;
+        MeetingUpdateUserId?: number;
+        MeetingUpdateDate?: string;
+        AgendaMeetingId?: number;
+        AgendaAgendaNumber?: number;
+        AgendaTitle?: string;
+        AgendaDescription?: string;
+        AgendaAgendaTypeId?: number;
+        AgendaRequestedByContactId?: number;
+        AgendaImages?: string;
+        AgendaAttachments?: string;
+        DecisionNumberName?: string;
+        ResponsibleContactTitle?: string;
+        ResponsibleContactFirstName?: string;
+        ResponsibleContactLastName?: string;
+        ResponsibleContactEmail?: string;
+        ResponsibleContactIdentityNo?: string;
+        ResponsibleContactUserId?: number;
+    }
+    namespace MeetingDecisionRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const DecisionId: string;
+            const MeetingId: string;
+            const AgendaId: string;
+            const Description: string;
+            const DecisionNumber: string;
+            const ResponsibleContactId: string;
+            const DueDate: string;
+            const ResolutionStatus: string;
+            const Images: string;
+            const Attachments: string;
+            const MeetingMeetingName: string;
+            const MeetingMeetingNumber: string;
+            const MeetingMeetingGuid: string;
+            const MeetingMeetingTypeId: string;
+            const MeetingStartDate: string;
+            const MeetingEndDate: string;
+            const MeetingLocationId: string;
+            const MeetingUnitId: string;
+            const MeetingOrganizerContactId: string;
+            const MeetingReporterContactId: string;
+            const MeetingInsertUserId: string;
+            const MeetingInsertDate: string;
+            const MeetingUpdateUserId: string;
+            const MeetingUpdateDate: string;
+            const AgendaMeetingId: string;
+            const AgendaAgendaNumber: string;
+            const AgendaTitle: string;
+            const AgendaDescription: string;
+            const AgendaAgendaTypeId: string;
+            const AgendaRequestedByContactId: string;
+            const AgendaImages: string;
+            const AgendaAttachments: string;
+            const DecisionNumberName: string;
+            const ResponsibleContactTitle: string;
+            const ResponsibleContactFirstName: string;
+            const ResponsibleContactLastName: string;
+            const ResponsibleContactEmail: string;
+            const ResponsibleContactIdentityNo: string;
+            const ResponsibleContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingDecisionService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingDecisionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingDecisionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingDecisionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingDecisionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingForm {
+        MeetingName: Serenity.StringEditor;
+        MeetingNumber: Serenity.StringEditor;
+        MeetingGuid: Serenity.StringEditor;
+        MeetingTypeId: Serenity.IntegerEditor;
+        StartDate: Serenity.DateEditor;
+        EndDate: Serenity.DateEditor;
+        LocationId: Serenity.IntegerEditor;
+        UnitId: Serenity.IntegerEditor;
+        OrganizerContactId: Serenity.IntegerEditor;
+        ReporterContactId: Serenity.IntegerEditor;
+        InsertUserId: Serenity.IntegerEditor;
+        InsertDate: Serenity.DateEditor;
+        UpdateUserId: Serenity.IntegerEditor;
+        UpdateDate: Serenity.DateEditor;
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingLocationForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingLocationForm {
+        Name: Serenity.StringEditor;
+        Address: Serenity.StringEditor;
+        Latitude: Serenity.DecimalEditor;
+        Longitude: Serenity.DecimalEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingLocationRow {
+        LocationId?: number;
+        Name?: string;
+        Address?: string;
+        Latitude?: number;
+        Longitude?: number;
+    }
+    namespace MeetingLocationRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const LocationId: string;
+            const Name: string;
+            const Address: string;
+            const Latitude: string;
+            const Longitude: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingLocationService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingLocationRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingLocationRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingLocationRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingLocationRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingRow {
+        MeetingId?: number;
+        MeetingName?: string;
+        MeetingNumber?: string;
+        MeetingGuid?: string;
+        MeetingTypeId?: number;
+        StartDate?: string;
+        EndDate?: string;
+        LocationId?: number;
+        UnitId?: number;
+        OrganizerContactId?: number;
+        ReporterContactId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
+        MeetingTypeName?: string;
+        UnitName?: string;
+        UnitParentUnitId?: number;
+        OrganizerContactTitle?: string;
+        OrganizerContactFirstName?: string;
+        OrganizerContactLastName?: string;
+        OrganizerContactEmail?: string;
+        OrganizerContactIdentityNo?: string;
+        OrganizerContactUserId?: number;
+        ReporterContactTitle?: string;
+        ReporterContactFirstName?: string;
+        ReporterContactLastName?: string;
+        ReporterContactEmail?: string;
+        ReporterContactIdentityNo?: string;
+        ReporterContactUserId?: number;
+    }
+    namespace MeetingRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MeetingId: string;
+            const MeetingName: string;
+            const MeetingNumber: string;
+            const MeetingGuid: string;
+            const MeetingTypeId: string;
+            const StartDate: string;
+            const EndDate: string;
+            const LocationId: string;
+            const UnitId: string;
+            const OrganizerContactId: string;
+            const ReporterContactId: string;
+            const InsertUserId: string;
+            const InsertDate: string;
+            const UpdateUserId: string;
+            const UpdateDate: string;
+            const MeetingTypeName: string;
+            const UnitName: string;
+            const UnitParentUnitId: string;
+            const OrganizerContactTitle: string;
+            const OrganizerContactFirstName: string;
+            const OrganizerContactLastName: string;
+            const OrganizerContactEmail: string;
+            const OrganizerContactIdentityNo: string;
+            const OrganizerContactUserId: string;
+            const ReporterContactTitle: string;
+            const ReporterContactFirstName: string;
+            const ReporterContactLastName: string;
+            const ReporterContactEmail: string;
+            const ReporterContactIdentityNo: string;
+            const ReporterContactUserId: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+}
+declare namespace Serene.Meeting {
+    class MeetingTypeForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface MeetingTypeForm {
+        Name: Serenity.StringEditor;
+    }
+}
+declare namespace Serene.Meeting {
+    interface MeetingTypeRow {
+        MeetingTypeId?: number;
+        Name?: string;
+    }
+    namespace MeetingTypeRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const MeetingTypeId: string;
+            const Name: string;
+        }
+    }
+}
+declare namespace Serene.Meeting {
+    namespace MeetingTypeService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<MeetingTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<MeetingTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
     }
 }
 declare namespace Serene.Membership {
@@ -3008,6 +3708,187 @@ declare namespace Serene.Northwind {
         }
     }
 }
+declare namespace Serene.Organization {
+}
+declare namespace Serene.Organization {
+    class BusinessUnitForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface BusinessUnitForm {
+        Name: Serenity.StringEditor;
+        ParentUnitId: BusinessUnitEditor;
+    }
+}
+declare namespace Serene.Organization {
+    interface BusinessUnitRow {
+        UnitId?: number;
+        Name?: string;
+        ParentUnitId?: number;
+        ParentUnitName?: string;
+        ParentUnitParentUnitId?: number;
+    }
+    namespace BusinessUnitRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<BusinessUnitRow>;
+        namespace Fields {
+            const UnitId: string;
+            const Name: string;
+            const ParentUnitId: string;
+            const ParentUnitName: string;
+            const ParentUnitParentUnitId: string;
+        }
+    }
+}
+declare namespace Serene.Organization {
+    namespace BusinessUnitService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<BusinessUnitRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<BusinessUnitRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<BusinessUnitRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<BusinessUnitRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface BusinessUnitsForm {
+        Name: Serenity.StringEditor;
+        ParentUnitId: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.Organization {
+    interface BusinessUnitsRow {
+        UnitId?: number;
+        Name?: string;
+        ParentUnitId?: number;
+        ParentUnitName?: string;
+        ParentUnitParentUnitId?: number;
+    }
+    namespace BusinessUnitsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const UnitId: any;
+            const Name: any;
+            const ParentUnitId: any;
+            const ParentUnitName: string;
+            const ParentUnitParentUnitId: string;
+        }
+    }
+}
+declare namespace Serene.Organization {
+    namespace BusinessUnitsService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<BusinessUnitsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<BusinessUnitsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<BusinessUnitsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<BusinessUnitsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace Serene.Organization {
+}
+declare namespace Serene.Organization {
+    class ContactForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ContactForm {
+        Title: Serenity.StringEditor;
+        FirstName: Serenity.StringEditor;
+        LastName: Serenity.StringEditor;
+        Email: Serenity.EmailEditor;
+        IdentityNo: Serenity.StringEditor;
+        UserId: Serenity.IntegerEditor;
+    }
+}
+declare namespace Serene.Organization {
+    interface ContactRow {
+        ContactId?: number;
+        Title?: string;
+        FirstName?: string;
+        LastName?: string;
+        Email?: string;
+        IdentityNo?: string;
+        UserId?: number;
+        UserUsername?: string;
+        UserDisplayName?: string;
+        UserEmail?: string;
+        UserSource?: string;
+        UserPasswordHash?: string;
+        UserPasswordSalt?: string;
+        UserLastDirectoryUpdate?: string;
+        UserUserImage?: string;
+        UserInsertDate?: string;
+        UserInsertUserId?: number;
+        UserUpdateDate?: string;
+        UserUpdateUserId?: number;
+        UserIsActive?: number;
+    }
+    namespace ContactRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const ContactId: string;
+            const Title: string;
+            const FirstName: string;
+            const LastName: string;
+            const Email: string;
+            const IdentityNo: string;
+            const UserId: string;
+            const UserUsername: string;
+            const UserDisplayName: string;
+            const UserEmail: string;
+            const UserSource: string;
+            const UserPasswordHash: string;
+            const UserPasswordSalt: string;
+            const UserLastDirectoryUpdate: string;
+            const UserUserImage: string;
+            const UserInsertDate: string;
+            const UserInsertUserId: string;
+            const UserUpdateDate: string;
+            const UserUpdateUserId: string;
+            const UserIsActive: string;
+        }
+    }
+}
+declare namespace Serene.Organization {
+    namespace ContactService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<ContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
 declare namespace Serene {
     interface ScriptUserDefinition {
         Username?: string;
@@ -3083,6 +3964,27 @@ declare namespace Serene.Common {
         reportKey: string;
     }
 }
+declare namespace Serene.Common {
+    interface ReportExecuteOptions {
+        reportKey: string;
+        download?: boolean;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        getParams?: () => any;
+        params?: {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
+    }
+}
 declare var jsPDF: any;
 declare namespace Serene.Common {
     class ReportPage extends Serenity.Widget<any> {
@@ -3101,6 +4003,183 @@ declare namespace Serene.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
         getItem(key: string): string;
         setItem(key: string, data: string): void;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDialog extends Serenity.EntityDialog<MeetingRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingGrid extends Serenity.EntityGrid<MeetingRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaDialog extends Serenity.EntityDialog<MeetingAgendaRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaGrid extends Serenity.EntityGrid<MeetingAgendaRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaRelevantDialog extends Serenity.EntityDialog<MeetingAgendaRelevantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaRelevantForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaRelevantGrid extends Serenity.EntityGrid<MeetingAgendaRelevantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaRelevantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaTypeDialog extends Serenity.EntityDialog<MeetingAgendaTypeRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaTypeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaTypeGrid extends Serenity.EntityGrid<MeetingAgendaTypeRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaTypeDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAttendeeDialog extends Serenity.EntityDialog<MeetingAttendeeRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: MeetingAttendeeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAttendeeGrid extends Serenity.EntityGrid<MeetingAttendeeRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAttendeeDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionDialog extends Serenity.EntityDialog<MeetingDecisionRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingDecisionForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionGrid extends Serenity.EntityGrid<MeetingDecisionRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDecisionDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionRelevantDialog extends Serenity.EntityDialog<MeetingDecisionRelevantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: MeetingDecisionRelevantForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionRelevantGrid extends Serenity.EntityGrid<MeetingDecisionRelevantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDecisionRelevantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingLocationDialog extends Serenity.EntityDialog<MeetingLocationRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingLocationForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingLocationGrid extends Serenity.EntityGrid<MeetingLocationRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingLocationDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingTypeDialog extends Serenity.EntityDialog<MeetingTypeRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingTypeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingTypeGrid extends Serenity.EntityGrid<MeetingTypeRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingTypeDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }
 declare namespace Serene.Membership {
@@ -3309,6 +4388,57 @@ declare namespace Serene.Northwind {
     class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitDialog extends Serenity.EntityDialog<BusinessUnitRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: BusinessUnitForm;
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitEditor extends Serenity.LookupEditorBase<BusinessUnitRow, any> {
+        constructor(hidden: JQuery);
+        protected getLookupKey(): string;
+        protected getItemText(item: BusinessUnitRow, lookup: Q.Lookup<BusinessUnitRow>): string;
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitGrid extends Serenity.EntityGrid<BusinessUnitRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof BusinessUnitDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected subDialogDataChange(): void;
+        protected usePager(): boolean;
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+    }
+}
+declare namespace Serene.Organization {
+    class ContactDialog extends Serenity.EntityDialog<ContactRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ContactForm;
+    }
+}
+declare namespace Serene.Organization {
+    class ContactGrid extends Serenity.EntityGrid<ContactRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ContactDialog;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;

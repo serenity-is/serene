@@ -59,7 +59,7 @@ namespace Serene.Northwind.Entities
             public DecimalField ProductSales;
 
             public RowFields()
-                : base("[dbo].[Sales by Category]")
+                : base("[Sales by Category]")
             {
                 LocalTextPrefix = "Northwind.SalesByCategory";
             }

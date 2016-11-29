@@ -29,14 +29,14 @@ namespace Serene.BasicSamples {
                 // w is a reference to the editor for this quick filter widget
                 // here we cast it to DateEditor, and set its value as date.
                 // note that in Javascript, months are 0 based, so date below
-                // is actually 1998-05-01
-                (w as Serenity.DateEditor).valueAsDate = new Date(1998, 4, 1);
+                // is actually 2016-05-01
+                (w as Serenity.DateEditor).valueAsDate = new Date(2016, 4, 1);
 
                 // setting start date was simple. but this quick filter is actually
                 // a combination of two date editors. to get reference to second one,
                 // need to find its next sibling element by its class
                 let endDate = w.element.nextAll(".s-DateEditor").getWidget(Serenity.DateEditor);
-                endDate.valueAsDate = new Date(1998, 6, 1);
+                endDate.valueAsDate = new Date(2016, 6, 1);
             };
 
             Q.first(filters, x => x.field == fld.ShippingState).init = w => {
