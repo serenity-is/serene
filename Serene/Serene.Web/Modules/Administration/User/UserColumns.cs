@@ -1,5 +1,5 @@
 ﻿
-namespace Serene.Administration.Forms
+namespace Serene.Administration.Columns
 {
     using Serenity.ComponentModel;
     using System;
