@@ -1649,6 +1649,8 @@
     <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
     <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="Scripts\site\texts\meeting\meeting.vi-VN.json" />
+    <Content Include="Scripts\site\texts\organization\organization.vi-VN.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
