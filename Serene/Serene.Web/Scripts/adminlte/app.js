@@ -282,7 +282,7 @@ function _init() {
       //Make sure the body tag has the .fixed class
       if (!$("body").hasClass("fixed")) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          $(".sidebar-menu").slimScroll({destroy: true}).height("auto");
         }
         return;
       } else if (typeof $.fn.slimScroll == 'undefined' && window.console) {
@@ -291,21 +291,14 @@ function _init() {
       //Enable slimscroll for fixed layout
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          if ($('.slimScrollDiv').length) {
-              var h = ($(window).height() - $(".main-header").height()) + "px";
-              $('.slimScrollDiv').css('height', h);
-              $('.slimScrollDiv').children().css('height', h);
-          }
-          else {
-              //Destroy if it exists
-              $(".sidebar").slimScroll({destroy: true}).height("auto");
-              //Add slimscroll
-              $(".sidebar").slimscroll({
-                height: ($(window).height() - $(".main-header").height()) + "px",
-                color: "rgba(0,0,0,0.2)",
-                size: "3px"
-              });
-          }
+            //Destroy if it exists
+            $(".sidebar-menu").slimScroll({destroy: true}).height("auto");
+            //Add slimscroll
+            $(".sidebar-menu").slimscroll({
+            height: ($(window).height() - $(".main-header").height() - ($('.sidebar-form').outerHeight(true) || 0)) + "px",
+            color: "rgba(0,0,0,0.2)",
+            size: "3px"
+            });
         }
       }
 
