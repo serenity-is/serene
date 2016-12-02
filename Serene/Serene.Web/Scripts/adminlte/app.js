@@ -291,16 +291,25 @@ function _init() {
       //Enable slimscroll for fixed layout
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          //Destroy if it exists
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
-          //Add slimscroll
-          $(".sidebar").slimscroll({
-            height: ($(window).height() - $(".main-header").height()) + "px",
-            color: "rgba(0,0,0,0.2)",
-            size: "3px"
-          });
+          if ($('.slimScrollDiv').length) {
+              var h = ($(window).height() - $(".main-header").height()) + "px";
+              $('.slimScrollDiv').css('height', h);
+              $('.slimScrollDiv').children().css('height', h);
+          }
+          else {
+              //Destroy if it exists
+              $(".sidebar").slimScroll({destroy: true}).height("auto");
+              //Add slimscroll
+              $(".sidebar").slimscroll({
+                height: ($(window).height() - $(".main-header").height()) + "px",
+                color: "rgba(0,0,0,0.2)",
+                size: "3px"
+              });
+          }
         }
       }
+
+      window.setTimeout(function() { $(window).triggerHandler('layout'); }, 500);
     }
   };
 
