@@ -143,7 +143,8 @@
                     Targets = new string[] { typeof(SiteInitialization).Assembly.Location },
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),
-                    Namespace = "Serene.Migrations." + databaseKey + "DB"
+                    Namespace = "Serene.Migrations." + databaseKey + "DB",
+                    Timeout = 90
                 };
 
                 try
