@@ -20,7 +20,10 @@ namespace Serene.Membership.Pages
         [HttpGet]
         public ActionResult SignUp()
         {
-            return View(MVC.Views.Membership.Account.SignUp.AccountSignUp);
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUpAdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUp);
         }
 
         [HttpPost, JsonFilter]

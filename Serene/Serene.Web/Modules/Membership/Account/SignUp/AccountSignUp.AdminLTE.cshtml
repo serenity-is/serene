@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = Texts.Forms.Membership.SignUp.FormTitle;
+    ViewData["PageId"] = "SignUp";
+    ViewData["BodyClass"] = "register-page";
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+@section Head {
+    <link rel="stylesheet" href="~/Content/iCheck/square/blue.css" />
+    <script src="~/Scripts/jquery.icheck.min.js"></script>
+}
+<script id="Template_Membership_SignUpPanel" type="text/template">
+    <div class="s-Form">
+        <form id="~_Form" action="">
+            <div class="fieldset">
+                <div id="~_PropertyGrid"></div>
+                <div class="clear"></div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-xs-7">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> @Texts.Forms.Membership.SignUp.AcceptTerms
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <button id="~_SubmitButton" type="submit" class="btn btn-primary btn-block btn-flat">@Texts.Forms.Membership.SignUp.SubmitButton</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+
+<div class="register-box">
+    <div class="register-logo">
+        @Texts.Navigation.SiteTitle
+    </div>
+    <div class="register-box-body">
+        <h3 class="page-title">@Texts.Forms.Membership.SignUp.FormTitle</h3>
+        <p class="login-box-msg">@Texts.Forms.Membership.SignUp.FormInfo</p>
+        <div id="SignUpPanel">
+        </div>
+        <a href="~/Account/Login" class="text-center">@Texts.Forms.Membership.SignUp.BackToLogin</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    new Serene.Membership.SignUpPanel($('#SignUpPanel')).init();
+    $('.field.DisplayName,.field.Email,.field.ConfirmEmail,.field.Password,.field.ConfirmPassword').addClass("has-icon");
+    $('.field.DisplayName input').after("<span class='glyphicon glyphicon-user form-control-feedback'></span>");
+    $('.emaildomain').after("<span class='glyphicon glyphicon-envelope form-control-feedback'></span>");
+    $('.field.Password input').after("<span class='glyphicon glyphicon-lock form-control-feedback'></span>");
+    $('.field.ConfirmPassword input').after("<span class='glyphicon glyphicon-log-in form-control-feedback'></span>");
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%'
+    });
+});
+</script>

@@ -10,12 +10,18 @@ namespace Serene.Membership.Pages
     [RoutePrefix("Account"), Route("{action=index}")]
     public partial class AccountController : Controller
     {
+        public static bool UseAdminLTELoginBox = true;
+
         [HttpGet]
         public ActionResult Login(string activated)
         {
             ViewData["Activated"] = activated;
             ViewData["HideLeftNavigation"] = true;
-            return View(MVC.Views.Membership.Account.AccountLogin);
+
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.AccountLoginAdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.AccountLogin);
         }
 
         [HttpPost, JsonFilter]

@@ -10,7 +10,7 @@ namespace Serene.Membership
     {
         [Placeholder("default username is 'admin'")]
         public string Username { get; set; }
-        [PasswordEditor, Placeholder("default password for admin user is 'serenity'"), Required(true)]
+        [PasswordEditor, Placeholder("default password for 'admin' is 'serenity'"), Required(true)]
         public string Password { get; set; }
     }
 }

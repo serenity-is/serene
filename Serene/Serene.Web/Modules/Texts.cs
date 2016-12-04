@@ -42,6 +42,7 @@ namespace Serene
                     public static LocalText FormTitle = "Forgot My Password";
                     public static LocalText SubmitButton = "Reset My Password";
                     public static LocalText Success = "An e-mail with password reset instructions is sent to your e-mail address.";
+                    public static LocalText BackToLogin = "I remember my password";
                 }
 
                 public static class ResetPassword
@@ -50,14 +51,19 @@ namespace Serene
                     public static LocalText FormTitle = "Reset Password";
                     public static LocalText SubmitButton = "Reset Password";
                     public static LocalText Success = "Your password is changed. Please login with your new password.";
+                    public static LocalText BackToLogin = "I remember my password. Don't reset it!";
                 }
 
                 public static class Login
                 {
                     public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
                     public static LocalText SignInButton = "Sign In";
-                    public static LocalText ForgotPassword = "forgot password?";
-                    public static LocalText SignUpButton = "register a new account";
+                    public static LocalText ForgotPassword = "Forgot password?";
+                    public static LocalText SignUpButton = "Register a new account";
+                    public static LocalText RememberMe = "Remember Me";
+                    public static LocalText OR = "OR";
+                    public static LocalText FacebookButton = "Sign in using Facebook";
+                    public static LocalText GoogleButton = "Sign in using Google+";
                 }
 
                 public static class SignUp
@@ -76,6 +82,9 @@ namespace Serene
                     public static LocalText ConfirmEmail = "Confirm Email";
                     public static LocalText Password = "Password";
                     public static LocalText ConfirmPassword = "Confirm Password";
+
+                    public static LocalText AcceptTerms = "I agree to the terms";
+                    public static LocalText BackToLogin = "I already have a membership";
                 }
             }
         }

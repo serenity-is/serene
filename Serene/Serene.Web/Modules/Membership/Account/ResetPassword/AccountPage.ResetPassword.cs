@@ -42,8 +42,11 @@ namespace Serene.Membership.Pages
                     return Error(Texts.Validation.InvalidResetToken);
             }
 
-            return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, 
-                new ResetPasswordModel { Token = t });
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordAdminLTE, new ResetPasswordModel { Token = t });
+            else
+                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, new ResetPasswordModel { Token = t });
+
         }
 
         [HttpPost, JsonFilter]
