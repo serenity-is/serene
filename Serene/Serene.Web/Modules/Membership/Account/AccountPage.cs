@@ -10,7 +10,7 @@ namespace Serene.Membership.Pages
     [RoutePrefix("Account"), Route("{action=index}")]
     public partial class AccountController : Controller
     {
-        public static bool UseAdminLTELoginBox = true;
+        public static bool UseAdminLTELoginBox = false;
 
         [HttpGet]
         public ActionResult Login(string activated)
