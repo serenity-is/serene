@@ -7407,7 +7407,8 @@ section.content > .s-DataGrid {
 .s-Meeting-MeetingTypeDialog .caption {
   width: 150px;
 }
-.s-LoginPanel {
+/*Default styles for login/register pages*/
+.page-content .s-LoginPanel {
   padding: 30px 20px;
   width: 550px;
   margin: 90px auto auto auto;
@@ -7415,16 +7416,16 @@ section.content > .s-DataGrid {
   border-radius: 12px;
   font-weight: 700;
 }
-.s-LoginPanel .caption {
+.page-content .s-LoginPanel .caption {
   width: 180px;
 }
-.s-LoginPanel .logo {
+.page-content .s-LoginPanel .logo {
   margin: 0 auto 20px auto;
   width: 128px;
   height: 128px;
   background: transparent url(images/serenity-logo-w-128.png) no-repeat center center;
 }
-.s-LoginPanel h3 {
+.page-content .s-LoginPanel h3 {
   font-size: 18px;
   font-weight: 700;
   margin: 16px 0 24px;
@@ -7432,24 +7433,24 @@ section.content > .s-DataGrid {
   text-align: center;
   text-shadow: 0 1px 1px #333;
 }
-.s-LoginPanel .buttons {
+.page-content .s-LoginPanel .buttons {
   text-align: right;
   padding: 8px 0 4px 0;
   margin-right: 28px;
 }
-.s-LoginPanel .buttons .btn {
+.page-content .s-LoginPanel .buttons .btn {
   padding: 8px 24px;
   font-weight: 700;
 }
-.s-LoginPanel .caption {
+.page-content .s-LoginPanel .caption {
   color: #ececec;
   font-weight: 700;
   text-shadow: 0 1px 1px #333;
 }
-.s-LoginPanel .actions {
+.page-content .s-LoginPanel .actions {
   padding-right: 28px;
 }
-.s-LoginPanel .actions a {
+.page-content .s-LoginPanel .actions a {
   color: #ececec;
   padding: 2px 2px 2px 2px;
   margin-top: 5px;
@@ -7459,38 +7460,38 @@ section.content > .s-DataGrid {
   border-bottom: 1px dashed #999;
   text-shadow: 0 1px 1px #333;
 }
-.s-LoginPanel .actions a i {
+.page-content .s-LoginPanel .actions a i {
   font-weight: 700;
   margin-right: 4px;
 }
-.s-LoginPanel .s-Form label.error {
+.page-content .s-LoginPanel .s-Form label.error {
   background-image: url(../serenity/images/cross.png);
   padding: 26px 0 0 22px;
 }
-.s-LoginPanel .s-Form label.error.checked {
+.page-content .s-LoginPanel .s-Form label.error.checked {
   background-image: none;
 }
-.s-LoginPanel .s-Form .field {
+.page-content .s-LoginPanel .s-Form .field {
   padding: 8px;
 }
-.s-LoginPanel .s-Form input {
+.page-content .s-LoginPanel .s-Form input {
   padding: 6px 10px;
   border: none;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
-.s-LoginPanel .s-Form .caption {
+.page-content .s-LoginPanel .s-Form .caption {
   padding: 6px 10px;
   color: #fff;
 }
-.s-LoginPanel a {
+.page-content .s-LoginPanel a {
   color: aqua;
 }
-.s-LoginPanel .flex-layout .s-PropertyGrid {
+.page-content .s-LoginPanel .flex-layout .s-PropertyGrid {
   display: block;
 }
 @media (max-width: 550px), (max-height: 500px) {
-  .s-LoginPanel {
+  .page-content .s-LoginPanel {
     padding: 16px 4px 16px 4px;
     position: absolute;
     margin: 0;
@@ -7500,165 +7501,252 @@ section.content > .s-DataGrid {
     right: 10px;
   }
 }
-.s-ChangePasswordPanel {
+.page-content .s-ChangePasswordPanel {
   width: 550px;
 }
-.s-ChangePasswordPanel .caption {
+.page-content .s-ChangePasswordPanel .caption {
   width: 150px;
 }
-.s-ChangePasswordPanel .editor {
+.page-content .s-ChangePasswordPanel .editor {
   width: 350px;
 }
-.s-ChangePasswordPanel input.editor[type=checkbox] {
+.page-content .s-ChangePasswordPanel input.editor[type=checkbox] {
   width: auto;
 }
-.s-ChangePasswordPanel .s-Form .editor.dateQ {
+.page-content .s-ChangePasswordPanel .s-Form .editor.dateQ {
   width: 326px;
 }
-.s-ChangePasswordPanel .s-Form .editor.emailuser {
+.page-content .s-ChangePasswordPanel .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-ChangePasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+.page-content .s-ChangePasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 231px;
 }
-.s-ChangePasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+.page-content .s-ChangePasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
   margin-left: 4px;
 }
-.s-ChangePasswordPanel .s-Form .editor.has-inplace-button {
+.page-content .s-ChangePasswordPanel .s-Form .editor.has-inplace-button {
   width: 324px;
 }
-.s-ChangePasswordPanel .s-Form .emaildomain {
+.page-content .s-ChangePasswordPanel .s-Form .emaildomain {
   width: 165px;
 }
-.s-ChangePasswordPanel .buttons {
+.page-content .s-ChangePasswordPanel .buttons {
   text-align: right;
   padding: 8px 48px;
 }
-.s-ForgotPasswordPanel {
+.page-content .s-ForgotPasswordPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
   border-radius: 8px;
   width: 650px;
   margin: 60px auto auto auto;
 }
-.s-ForgotPasswordPanel .caption {
+.page-content .s-ForgotPasswordPanel .caption {
   width: 150px;
 }
-.s-ForgotPasswordPanel .editor {
+.page-content .s-ForgotPasswordPanel .editor {
   width: 350px;
 }
-.s-ForgotPasswordPanel input.editor[type=checkbox] {
+.page-content .s-ForgotPasswordPanel input.editor[type=checkbox] {
   width: auto;
 }
-.s-ForgotPasswordPanel .s-Form .editor.dateQ {
+.page-content .s-ForgotPasswordPanel .s-Form .editor.dateQ {
   width: 326px;
 }
-.s-ForgotPasswordPanel .s-Form .editor.emailuser {
+.page-content .s-ForgotPasswordPanel .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-ForgotPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+.page-content .s-ForgotPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 231px;
 }
-.s-ForgotPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+.page-content .s-ForgotPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
   margin-left: 4px;
 }
-.s-ForgotPasswordPanel .s-Form .editor.has-inplace-button {
+.page-content .s-ForgotPasswordPanel .s-Form .editor.has-inplace-button {
   width: 324px;
 }
-.s-ForgotPasswordPanel .s-Form .emaildomain {
+.page-content .s-ForgotPasswordPanel .s-Form .emaildomain {
   width: 165px;
 }
-.s-ForgotPasswordPanel .buttons {
+.page-content .s-ForgotPasswordPanel .buttons {
   text-align: right;
   padding: 8px 62px;
 }
-.s-ForgotPasswordPanel p {
+.page-content .s-ForgotPasswordPanel p {
   padding: 8px;
   margin: 24px 0;
 }
-.s-ResetPasswordPanel {
+.page-content .s-ResetPasswordPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
   border-radius: 8px;
   width: 650px;
   margin: 60px auto auto auto;
 }
-.s-ResetPasswordPanel .caption {
+.page-content .s-ResetPasswordPanel .caption {
   width: 150px;
 }
-.s-ResetPasswordPanel .editor {
+.page-content .s-ResetPasswordPanel .editor {
   width: 350px;
 }
-.s-ResetPasswordPanel input.editor[type=checkbox] {
+.page-content .s-ResetPasswordPanel input.editor[type=checkbox] {
   width: auto;
 }
-.s-ResetPasswordPanel .s-Form .editor.dateQ {
+.page-content .s-ResetPasswordPanel .s-Form .editor.dateQ {
   width: 326px;
 }
-.s-ResetPasswordPanel .s-Form .editor.emailuser {
+.page-content .s-ResetPasswordPanel .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-ResetPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+.page-content .s-ResetPasswordPanel .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 231px;
 }
-.s-ResetPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
+.page-content .s-ResetPasswordPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
   margin-left: 4px;
 }
-.s-ResetPasswordPanel .s-Form .editor.has-inplace-button {
+.page-content .s-ResetPasswordPanel .s-Form .editor.has-inplace-button {
   width: 324px;
 }
-.s-ResetPasswordPanel .s-Form .emaildomain {
+.page-content .s-ResetPasswordPanel .s-Form .emaildomain {
   width: 165px;
 }
-.s-ResetPasswordPanel .buttons {
+.page-content .s-ResetPasswordPanel .buttons {
   text-align: right;
   padding: 8px 62px;
 }
-.s-SignUpPanel {
+.page-content .s-SignUpPanel {
   border: 2px solid #e7e7e7;
   padding: 40px;
   border-radius: 8px;
   width: 650px;
   margin: 60px auto auto auto;
 }
-.s-SignUpPanel .caption {
+.page-content .s-SignUpPanel .caption {
   width: 150px;
 }
-.s-SignUpPanel .editor {
+.page-content .s-SignUpPanel .editor {
   width: 350px;
 }
-.s-SignUpPanel input.editor[type=checkbox] {
+.page-content .s-SignUpPanel input.editor[type=checkbox] {
   width: auto;
 }
-.s-SignUpPanel .s-Form .editor.dateQ {
+.page-content .s-SignUpPanel .s-Form .editor.dateQ {
   width: 326px;
 }
-.s-SignUpPanel .s-Form .editor.emailuser {
+.page-content .s-SignUpPanel .s-Form .editor.emailuser {
   width: 170px;
 }
-.s-SignUpPanel .s-Form .editor.dateQ.s-DateTimeEditor {
+.page-content .s-SignUpPanel .s-Form .editor.dateQ.s-DateTimeEditor {
   width: 231px;
 }
-.s-SignUpPanel .s-Form .editor.s-DateTimeEditor.time {
+.page-content .s-SignUpPanel .s-Form .editor.s-DateTimeEditor.time {
   width: 64px;
   margin-left: 4px;
 }
-.s-SignUpPanel .s-Form .editor.has-inplace-button {
+.page-content .s-SignUpPanel .s-Form .editor.has-inplace-button {
   width: 324px;
 }
-.s-SignUpPanel .s-Form .emaildomain {
+.page-content .s-SignUpPanel .s-Form .emaildomain {
   width: 165px;
 }
-.s-SignUpPanel .buttons {
+.page-content .s-SignUpPanel .buttons {
   text-align: right;
   padding: 8px 62px;
 }
-.s-SignUpPanel p {
+.page-content .s-SignUpPanel p {
   padding: 8px;
   margin: 24px 0;
+}
+/*AdminLTE style login/register box*/
+.login-box .page-title,
+.register-box .page-title {
+  margin-top: 0;
+  padding: 0 0 8px;
+}
+.login-box login-box-msg,
+.register-box login-box-msg,
+.login-box .register-box-msg,
+.register-box .register-box-msg {
+  padding-bottom: 0 0 20px;
+}
+.login-box .s-LoginPanel,
+.register-box .s-LoginPanel,
+.login-box .s-SignUpPanel,
+.register-box .s-SignUpPanel,
+.login-box .s-ForgotPasswordPanel,
+.register-box .s-ForgotPasswordPanel,
+.login-box .s-ChangePasswordPanel,
+.register-box .s-ChangePasswordPanel,
+.login-box .s-ResetPasswordPanel,
+.register-box .s-ResetPasswordPanel {
+  margin-bottom: 10px;
+}
+.login-box .s-Form input,
+.register-box .s-Form input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 0;
+}
+.login-box .s-Form .field,
+.register-box .s-Form .field {
+  margin-bottom: 15px;
+  padding: 0;
+}
+.login-box .s-Form .has-icon,
+.register-box .s-Form .has-icon {
+  position: relative;
+}
+.login-box .s-Form .has-icon input,
+.register-box .s-Form .has-icon input {
+  padding-right: 34px;
+}
+.login-box .s-Form .has-icon input.emailuser,
+.register-box .s-Form .has-icon input.emailuser {
+  padding-right: 6px;
+}
+.login-box .s-Form .caption,
+.register-box .s-Form .caption {
+  width: 100%;
+  text-align: left;
+  display: none;
+}
+.login-box .s-Form label.error,
+.register-box .s-Form label.error {
+  background-image: url(../serenity/images/cross.png);
+  padding: 26px 0 0 22px;
+}
+.login-box .s-Form label.error.checked,
+.register-box .s-Form label.error.checked {
+  background-image: none;
+}
+.login-box .s-Form .vx,
+.register-box .s-Form .vx {
+  position: absolute;
+  top: 3px;
+  right: -20px;
+  z-index: 2;
+  width: 22px;
+}
+.login-box .s-Form .btn,
+.register-box .s-Form .btn {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.login-box .s-Form .s-EmailEditor,
+.register-box .s-Form .s-EmailEditor {
+  width: 45%;
+}
+.login-box .s-Form .emaildomain,
+.register-box .s-Form .emaildomain {
+  width: 45%;
+  float: right;
 }
 .s-Northwind-ProductDialog > .size {
   width: 650px;
