@@ -235,6 +235,7 @@ declare namespace Serene.Northwind {
         private inputsChange(e);
         private setSaveButtonState();
         private saveClick();
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
     }
 }
 declare namespace Serene.BasicSamples {

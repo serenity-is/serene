@@ -261,5 +261,19 @@
             })();
         }
 
+        protected getQuickFilters() {
+            var flt = super.getQuickFilters();
+
+            var q = Q.parseQueryString();
+            if (q["cat"]) {
+                var category = Q.tryFirst(flt, x => x.field == "CategoryID");
+                category.init = e => {
+                    e.element.getWidget(Serenity.LookupEditor).value = q["cat"];
+                };
+            }
+
+            return flt;
+        }
+
     }
 }

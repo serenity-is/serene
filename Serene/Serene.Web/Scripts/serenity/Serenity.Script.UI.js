@@ -6707,7 +6707,7 @@
 			return datePart + 'T' + timePart + ':00.000';
 		},
 		set_value: function(value) {
-			if (ss.isNullOrUndefined(value)) {
+			if (ss.isNullOrEmptyString(value)) {
 				this.element.val('');
 				this.$time.val('00:00');
 			}

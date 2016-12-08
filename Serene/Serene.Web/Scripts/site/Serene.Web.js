@@ -1261,6 +1261,17 @@ var Serene;
                     });
                 })();
             };
+            ProductGrid.prototype.getQuickFilters = function () {
+                var flt = _super.prototype.getQuickFilters.call(this);
+                var q = Q.parseQueryString();
+                if (q["cat"]) {
+                    var category = Q.tryFirst(flt, function (x) { return x.field == "CategoryID"; });
+                    category.init = function (e) {
+                        e.element.getWidget(Serenity.LookupEditor).value = q["cat"];
+                    };
+                }
+                return flt;
+            };
             ProductGrid = __decorate([
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.filterable()

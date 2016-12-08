@@ -1972,6 +1972,7 @@
     <Compile Include="Modules\BasicSamples\Dialogs\BasicSamplesNavigation.Dialogs.cs" />
     <Compile Include="Modules\BasicSamples\Dialogs\BasicSamplesPage.Dialogs.cs" />
     <Compile Include="Modules\BasicSamples\Dialogs\PopulateLinkedData\PopulateLinkedDataForm.cs" />
+    <Compile Include="Modules\BasicSamples\DynamicNavigation\DynamicNavigationSample.cs" />
     <Compile Include="Modules\BasicSamples\Editors\BasicSamplesNavigation.Editors.cs" />
     <Compile Include="Modules\BasicSamples\Editors\BasicSamplesPage.Editors.cs" />
     <Compile Include="Modules\BasicSamples\Editors\StaticTextBlock\StaticTextBlockForm.cs" />
