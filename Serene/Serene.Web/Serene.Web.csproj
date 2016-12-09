@@ -87,24 +87,24 @@
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Core, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Core.2.6.3\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=2.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Core.2.6.6\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.2.6.3\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=2.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.2.6.6\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Data.Entity.2.6.3\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=2.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Data.Entity.2.6.6\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Services.2.6.3\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=2.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Services.2.6.6\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Serenity.Web.2.6.3\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=2.6.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Serenity.Web.2.6.6\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.0.122, Culture=neutral, processorArchitecture=MSIL">
@@ -498,6 +498,7 @@
     <Content Include="Content\serenity\images\zones-stack.png" />
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
+    <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\accordion-arrows.png" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
@@ -508,6 +509,7 @@
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\ionicons.svg" />
+    <Content Include="Fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Readme.CodeGenerator.txt" />
@@ -754,6 +756,61 @@
     <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
     <Content Include="Scripts\sortable.js" />
     <Content Include="Scripts\sortable.min.js" />
+    <Content Include="tools\JsEngine\json2.min.js" />
+    <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
+    <Content Include="tools\JsEngine\typescriptServices.js" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
+    <Content Include="tools\Node\less\lib\lessc.js" />
+    <Content Include="tools\Node\less\lib\less\colors.js" />
+    <Content Include="tools\Node\less\lib\less\encoder.js" />
+    <Content Include="tools\Node\less\lib\less\env.js" />
+    <Content Include="tools\Node\less\lib\less\extend-visitor.js" />
+    <Content Include="tools\Node\less\lib\less\fs.js" />
+    <Content Include="tools\Node\less\lib\less\functions.js" />
+    <Content Include="tools\Node\less\lib\less\import-visitor.js" />
+    <Content Include="tools\Node\less\lib\less\index.js" />
+    <Content Include="tools\Node\less\lib\less\join-selector-visitor.js" />
+    <Content Include="tools\Node\less\lib\less\lessc_helper.js" />
+    <Content Include="tools\Node\less\lib\less\parser.js" />
+    <Content Include="tools\Node\less\lib\less\rhino.js" />
+    <Content Include="tools\Node\less\lib\less\source-map-output.js" />
+    <Content Include="tools\Node\less\lib\less\to-css-visitor.js" />
+    <Content Include="tools\Node\less\lib\less\tree.js" />
+    <Content Include="tools\Node\less\lib\less\tree\alpha.js" />
+    <Content Include="tools\Node\less\lib\less\tree\anonymous.js" />
+    <Content Include="tools\Node\less\lib\less\tree\assignment.js" />
+    <Content Include="tools\Node\less\lib\less\tree\call.js" />
+    <Content Include="tools\Node\less\lib\less\tree\color.js" />
+    <Content Include="tools\Node\less\lib\less\tree\comment.js" />
+    <Content Include="tools\Node\less\lib\less\tree\condition.js" />
+    <Content Include="tools\Node\less\lib\less\tree\detached-ruleset.js" />
+    <Content Include="tools\Node\less\lib\less\tree\dimension.js" />
+    <Content Include="tools\Node\less\lib\less\tree\directive.js" />
+    <Content Include="tools\Node\less\lib\less\tree\element.js" />
+    <Content Include="tools\Node\less\lib\less\tree\expression.js" />
+    <Content Include="tools\Node\less\lib\less\tree\extend.js" />
+    <Content Include="tools\Node\less\lib\less\tree\import.js" />
+    <Content Include="tools\Node\less\lib\less\tree\javascript.js" />
+    <Content Include="tools\Node\less\lib\less\tree\keyword.js" />
+    <Content Include="tools\Node\less\lib\less\tree\media.js" />
+    <Content Include="tools\Node\less\lib\less\tree\mixin.js" />
+    <Content Include="tools\Node\less\lib\less\tree\negative.js" />
+    <Content Include="tools\Node\less\lib\less\tree\operation.js" />
+    <Content Include="tools\Node\less\lib\less\tree\paren.js" />
+    <Content Include="tools\Node\less\lib\less\tree\quoted.js" />
+    <Content Include="tools\Node\less\lib\less\tree\rule.js" />
+    <Content Include="tools\Node\less\lib\less\tree\ruleset-call.js" />
+    <Content Include="tools\Node\less\lib\less\tree\ruleset.js" />
+    <Content Include="tools\Node\less\lib\less\tree\selector.js" />
+    <Content Include="tools\Node\less\lib\less\tree\unicode-descriptor.js" />
+    <Content Include="tools\Node\less\lib\less\tree\url.js" />
+    <Content Include="tools\Node\less\lib\less\tree\value.js" />
+    <Content Include="tools\Node\less\lib\less\tree\variable.js" />
+    <Content Include="tools\Node\less\lib\less\visitor.js" />
+    <Content Include="tools\Node\node.exe" />
     <Content Include="wkhtmltopdf-license.txt" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
     <Content Include="Content\adminlte\img\avatar.png" />
@@ -896,7 +953,6 @@
     <Content Include="Content\iCheck\square\yellow.png" />
     <Content Include="Content\iCheck\square\_all.css" />
     <Content Include="Content\pace.min.css" />
-    <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\site\images\serenity-logo-40.png" />
     <Content Include="Content\site\images\serenity-logo-g-40.png" />
     <Content Include="Content\site\images\serenity-logo-w-128.png" />
@@ -1042,7 +1098,6 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
     <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
@@ -1246,15 +1301,17 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Fonts\Simple-Line-Icons.woff2" />
-    <Content Include="Fonts\Simple-Line-Icons.woff" />
-    <Content Include="Fonts\Simple-Line-Icons.ttf" />
-    <Content Include="Fonts\Simple-Line-Icons.eot" />
     <Content Include="Modules\BasicSamples\Grids\InlineActionButtons\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\TreeGrid\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
+    <Content Include="Content\site\site.meeting.less" />
+    <Content Include="Content\site\site.organization.less" />
+    <Content Include="Fonts\Simple-Line-Icons.woff2" />
+    <Content Include="Fonts\Simple-Line-Icons.woff" />
+    <Content Include="Fonts\Simple-Line-Icons.ttf" />
+    <Content Include="Fonts\Simple-Line-Icons.eot" />
     <Content Include="Fonts\OpenSansSemiBold.woff" />
     <Content Include="Fonts\OpenSansLight.woff" />
     <Content Include="Fonts\OpenSansItalic.woff" />
@@ -1272,8 +1329,6 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\site\site.meeting.less" />
-    <Content Include="Content\site\site.organization.less" />
     <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1471,13 +1526,13 @@
     <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Territory\TerritoryGrid.ts" />
     <Content Include="Modules\Common\Reporting\ReportDialog.Template.html" />
+    <Content Include="Modules\Membership\Account\ForgotPassword\AccountForgotPassword.AdminLTE.cshtml" />
+    <Content Include="Modules\Membership\Account\ResetPassword\AccountResetPassword.AdminLTE.cshtml" />
+    <Content Include="Modules\Membership\Account\AccountLogin.AdminLTE.cshtml" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Modules\Membership\Account\ForgotPassword\AccountForgotPassword.AdminLTE.cshtml" />
-    <Content Include="Modules\Membership\Account\ResetPassword\AccountResetPassword.AdminLTE.cshtml" />
-    <Content Include="Modules\Membership\Account\AccountLogin.AdminLTE.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -1587,74 +1642,19 @@
     <Content Include="Scripts\site\texts\site.texts.pt-BR.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.pt-BR.json" />
     <Content Include="Scripts\site\texts\samples\samples.pt-BR.json" />
-    <Content Include="tools\JsEngine\json2.min.js" />
-    <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
-    <Content Include="tools\JsEngine\typescriptServices.js" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
-    <Content Include="tools\Node\less\lib\lessc.js" />
-    <Content Include="tools\Node\less\lib\less\colors.js" />
-    <Content Include="tools\Node\less\lib\less\encoder.js" />
-    <Content Include="tools\Node\less\lib\less\env.js" />
-    <Content Include="tools\Node\less\lib\less\extend-visitor.js" />
-    <Content Include="tools\Node\less\lib\less\fs.js" />
-    <Content Include="tools\Node\less\lib\less\functions.js" />
-    <Content Include="tools\Node\less\lib\less\import-visitor.js" />
-    <Content Include="tools\Node\less\lib\less\index.js" />
-    <Content Include="tools\Node\less\lib\less\join-selector-visitor.js" />
-    <Content Include="tools\Node\less\lib\less\lessc_helper.js" />
-    <Content Include="tools\Node\less\lib\less\parser.js" />
-    <Content Include="tools\Node\less\lib\less\rhino.js" />
-    <Content Include="tools\Node\less\lib\less\source-map-output.js" />
-    <Content Include="tools\Node\less\lib\less\to-css-visitor.js" />
-    <Content Include="tools\Node\less\lib\less\tree.js" />
-    <Content Include="tools\Node\less\lib\less\tree\alpha.js" />
-    <Content Include="tools\Node\less\lib\less\tree\anonymous.js" />
-    <Content Include="tools\Node\less\lib\less\tree\assignment.js" />
-    <Content Include="tools\Node\less\lib\less\tree\call.js" />
-    <Content Include="tools\Node\less\lib\less\tree\color.js" />
-    <Content Include="tools\Node\less\lib\less\tree\comment.js" />
-    <Content Include="tools\Node\less\lib\less\tree\condition.js" />
-    <Content Include="tools\Node\less\lib\less\tree\detached-ruleset.js" />
-    <Content Include="tools\Node\less\lib\less\tree\dimension.js" />
-    <Content Include="tools\Node\less\lib\less\tree\directive.js" />
-    <Content Include="tools\Node\less\lib\less\tree\element.js" />
-    <Content Include="tools\Node\less\lib\less\tree\expression.js" />
-    <Content Include="tools\Node\less\lib\less\tree\extend.js" />
-    <Content Include="tools\Node\less\lib\less\tree\import.js" />
-    <Content Include="tools\Node\less\lib\less\tree\javascript.js" />
-    <Content Include="tools\Node\less\lib\less\tree\keyword.js" />
-    <Content Include="tools\Node\less\lib\less\tree\media.js" />
-    <Content Include="tools\Node\less\lib\less\tree\mixin.js" />
-    <Content Include="tools\Node\less\lib\less\tree\negative.js" />
-    <Content Include="tools\Node\less\lib\less\tree\operation.js" />
-    <Content Include="tools\Node\less\lib\less\tree\paren.js" />
-    <Content Include="tools\Node\less\lib\less\tree\quoted.js" />
-    <Content Include="tools\Node\less\lib\less\tree\rule.js" />
-    <Content Include="tools\Node\less\lib\less\tree\ruleset-call.js" />
-    <Content Include="tools\Node\less\lib\less\tree\ruleset.js" />
-    <Content Include="tools\Node\less\lib\less\tree\selector.js" />
-    <Content Include="tools\Node\less\lib\less\tree\unicode-descriptor.js" />
-    <Content Include="tools\Node\less\lib\less\tree\url.js" />
-    <Content Include="tools\Node\less\lib\less\tree\value.js" />
-    <Content Include="tools\Node\less\lib\less\tree\variable.js" />
-    <Content Include="tools\Node\less\lib\less\visitor.js" />
-    <Content Include="tools\Node\node.exe" />
     <Content Include="tslint.json" />
     <Content Include="Scripts\vegas\vegas.min.js.map" />
     <Content Include="Scripts\site\texts\site.texts.fa.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.fa.json" />
     <Content Include="Scripts\site\texts\samples\samples.fa.json" />
-    <Content Include="tools\Node\lessc.cmd" />
-    <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="Scripts\site\texts\site.texts.vi-VN.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
     <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
-    <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="Scripts\site\texts\meeting\meeting.vi-VN.json" />
     <Content Include="Scripts\site\texts\organization\organization.vi-VN.json" />
+    <Content Include="Scripts\SlickGrid\README.md" />
+    <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
