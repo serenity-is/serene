@@ -18,4 +18,20 @@
     <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
     <FullClassName>RootProjectWizard.RootWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+	<features>
+	  <feature key="BasicSamples" title="Basic Samples">
+		<dependency feature="Northwind" />
+	  </feature>
+	  <feature key="Meeting" title="Meeting">
+		<dependency feature="Organization" />
+	  </feature>
+	  <feature key="Northwind" title="Northwind">
+	  </feature>
+	  <feature key="Organization" title="Organization">
+	  </feature>
+	  <feature key="ThemeSamples" title="Theme Samples (AdminLTE)">
+	  </feature>
+    </features>
+  </WizardData>
 </VSTemplate>

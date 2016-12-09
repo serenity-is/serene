@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Data.SqlLocalDb;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text;
 
 namespace RootProjectWizard
 {
@@ -70,14 +73,34 @@ namespace RootProjectWizard
         {
         }
 
+        public IEnumerable<Tuple<string, ProjectItem>> Recurse(string path, ProjectItems i)
+        {
+            if (i == null)
+                yield break;
+
+            path = string.IsNullOrEmpty(path) ? "" : path + @"\";
+            foreach (ProjectItem j in i)
+            {
+                var path2 = path + j.Name;
+                yield return new Tuple<string, ProjectItem>(path2, j);
+                foreach (var k in Recurse(path2, j.ProjectItems))
+                    yield return k;
+            }
+        }
+
+        XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
+
         public void ProjectFinishedGenerating(EnvDTE.Project project)
         {
             if (!string.IsNullOrEmpty(wizardData))
             {
+                var data = XElement.Parse("<data>" + wizardData + "</data>");
+
+                RemoveExcludedFiles(project, data);
+                PreprocessConditionals(project, data);
+
                 var packageInstaller = componentModel.GetService<IVsPackageInstaller>();
                 var packageQuery = componentModel.GetService<IVsPackageInstallerServices>();
-                var data = XElement.Parse(wizardData);
-                XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
                 foreach (var el in data.Descendants(ns + "installPackage"))
                 {
                     var id = el.Attribute("id").Value;
@@ -87,6 +110,176 @@ namespace RootProjectWizard
                         project.DTE.StatusBar.Text = "Installing NuGet Package: " + id + " " + ver;
                         packageInstaller.InstallPackage((string)null, project, id, ver, false);
                     }
+                }
+            }
+        }
+
+        private void PreprocessConditionals(EnvDTE.Project project, XElement data)
+        {
+            var elConditionals = data.Element(ns + "conditionals");
+            var conditionals = GetPathMatcher(elConditionals);
+
+            foreach (var item in Recurse("", project.ProjectItems).ToList())
+            {
+                var path = item.Item1;
+                if (string.IsNullOrEmpty(path))
+                    continue;
+
+                if (conditionals.IsMatch(path))
+                {
+                    PreprocessConditional((string)item.Item2.Properties.Item("FullPath").Value);
+                }
+            }
+        }
+
+        private void PreprocessConditional(string fullPath)
+        {
+            if (!System.IO.File.Exists(fullPath))
+                return;
+
+            var lines = new List<string>(System.IO.File.ReadAllLines(fullPath));
+            var ifCSStart = "//<if:";
+            var ifCSElse = "//<else>";
+            var ifXMLStart = "<!--<if:";
+            var ifXMLElse = "<!--<else>-->";
+
+            while (true)
+            {
+                var start = lines.FindIndex(x =>
+                    x.TrimStart().StartsWith(ifCSStart) ||
+                    x.TrimStart().StartsWith(ifXMLStart));
+
+                if (start < 0)
+                    break;
+
+                var line = lines[start];
+                lines.RemoveAt(start);
+
+                string feature;
+                bool xml = line.TrimStart().StartsWith(ifXMLStart);
+                int end;
+                int eelse;
+                if (xml)
+                {
+                    line = line.TrimStart().Substring(ifXMLStart.Length);
+
+                    var endidx = line.LastIndexOf(">-->");
+                    if (endidx < 0)
+                        break;
+
+                    feature = line.Substring(0, endidx).Trim();
+                    end = lines.FindIndex(start, x => x.Trim() == "<!--</if:" + feature + ">-->");
+                    if (end < 0)
+                        break;
+
+                    eelse = lines.FindIndex(start, x => x.Trim() == ifXMLElse);
+                    if (eelse > end)
+                        eelse = -1;
+                }
+                else
+                {
+                    line = line.TrimStart().Substring(ifCSStart.Length);
+
+                    var endidx = line.LastIndexOf(">");
+                    if (endidx < 0)
+                        break;
+
+                    feature = line.Substring(0, endidx).Trim();
+                    end = lines.FindIndex(start, x => x.Trim() == "//</if:" + feature + ">");
+                    if (end < 0)
+                        break;
+
+                    eelse = lines.FindIndex(start, x => x.Trim() == ifCSElse);
+                    if (eelse > end)
+                        eelse = -1;
+                }
+
+                lines.RemoveAt(end);
+
+                if (!RootWizard.SelectedFeatures.Contains(feature))
+                {
+                    var z = end;
+                    if (eelse >= 0)
+                    {
+                        lines.RemoveAt(eelse);
+                        z = eelse;
+                        for (var l = eelse; l < end - 1; l++)
+                        {
+                            var e = lines[l];
+                            if (xml)
+                            {
+                                var cidx = e.IndexOf("<!--");
+                                if (cidx >= 0)
+                                {
+                                    e = e.Substring(0, cidx) + e.Substring(cidx + 4);
+                                    cidx = e.LastIndexOf("-->");
+                                    if (cidx >= 0)
+                                        e = e.Substring(0, cidx);
+                                    lines[l] = e;
+                                }
+                            }
+                            else
+                            {
+                                var cidx = e.IndexOf("//");
+                                if (cidx >= 0)
+                                    lines[l] = e.Substring(0, cidx) + e.Substring(cidx + 2);
+                            }
+                        }
+                    }
+
+                    for (var l = start; l < z; l++)
+                        lines.RemoveAt(start);
+                }
+                else if (eelse >= 0)
+                {
+                    for (var l = eelse; l < end; l++)
+                        lines.RemoveAt(eelse);
+                }
+            }
+
+            System.IO.File.WriteAllLines(fullPath, lines, new UTF8Encoding(true));
+        }
+
+        private PathMatcher GetPathMatcher(XElement node)
+        {
+            var includes = node.Elements(ns + "files")
+                .Where(x => x.Attribute("include") != null)
+                .Select(x => x.Attribute("include").Value)
+                .Where(x => x != null);
+
+            var excludes = node.Elements(ns + "files")
+                .Where(x => x.Attribute("exclude") != null)
+                .Select(x => x.Attribute("exclude").Value)
+                .Where(x => x != null);
+
+            return new PathMatcher(includes, excludes);
+        }
+
+        private void RemoveExcludedFiles(EnvDTE.Project project, XElement data)
+        {
+            var selectedMatchers = new List<PathMatcher>();
+            var unselectedMatchers = new List<PathMatcher>();
+            var elFeatures = data.Elements(ns + "features");
+            var elFeatureList = elFeatures.Elements(ns + "feature");
+            foreach (var elFeature in elFeatureList)
+            {
+                var matcher = GetPathMatcher(elFeature);
+                if (RootWizard.SelectedFeatures.Contains(elFeature.Attribute("key").Value))
+                    selectedMatchers.Add(matcher);
+                else
+                    unselectedMatchers.Add(matcher);
+            }
+
+            foreach (var item in Recurse("", project.ProjectItems).ToList())
+            {
+                var path = item.Item1;
+                if (string.IsNullOrEmpty(path))
+                    continue;
+
+                if (unselectedMatchers.Any(x => x.IsMatch(path)))
+                {
+                    if (!selectedMatchers.Any(x => x.IsMatch(path)))
+                        item.Item2.Delete();
                 }
             }
         }

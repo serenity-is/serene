@@ -8,21 +8,21 @@ namespace Serene.Migrations
     {
         public static void CreateTableWithId32(
             this MigrationBase migration, string table, string idField,
-            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null)
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
         {
             CreateTableWithId(migration, table, idField, addColumns, schema, 32);
         }
 
         public static void CreateTableWithId64(
             this MigrationBase migration, string table, string idField,
-            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null)
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
         {
             CreateTableWithId(migration, table, idField, addColumns, schema, 64);
         }
 
         private static void CreateTableWithId(
             MigrationBase migration, string table, string idField,
-            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size)
+            Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema, int size, bool checkExists = false)
         {
             Func<ICreateTableColumnAsTypeSyntax, ICreateTableColumnOptionOrWithColumnSyntax> addAsType =
                 col =>
@@ -43,6 +43,15 @@ namespace Serene.Migrations
                     else
                         return syntax;
                 };
+
+            if (checkExists)
+            {
+                if (schema != null && migration.Schema.Schema(schema).Table(table).Exists())
+                    return;
+
+                if (schema == null && migration.Schema.Table(table).Exists())
+                    return;
+            }
 
             addColumns(
                 addAsType(

@@ -303,6 +303,7 @@
       <Folder Name="Modules" TargetFolderName="Modules">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Administration" TargetFolderName="Administration">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AdministrationPermissionKeys.cs">AdministrationPermissionKeys.cs</ProjectItem>
           <Folder Name="Language" TargetFolderName="Language">
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageColumns.cs">LanguageColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageDialog.ts">LanguageDialog.ts</ProjectItem>
@@ -315,7 +316,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRepository.cs">LanguageRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRow.cs">LanguageRow.cs</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeys.cs">PermissionKeys.cs</ProjectItem>
           <Folder Name="Role" TargetFolderName="Role">
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleColumns.cs">RoleColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleDialog.ts">RoleDialog.ts</ProjectItem>
@@ -889,6 +889,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_130000_ExceptionLog.cs">DefaultDB_20161029_130000_ExceptionLog.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161126_200000_Organization.cs">DefaultDB_20161126_200000_Organization.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161126_210000_Meeting.cs">DefaultDB_20161126_210000_Meeting.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="MigrationUtils.cs">MigrationUtils.cs</ProjectItem>
@@ -1024,6 +1025,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationRow.cs">MeetingLocationRow.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="MeetingNavigation.cs">MeetingNavigation.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="MeetingPermissionKeys.cs">MeetingPermissionKeys.cs</ProjectItem>
           <Folder Name="MeetingType" TargetFolderName="MeetingType">
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeColumns.cs">MeetingTypeColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeDialog.ts">MeetingTypeDialog.ts</ProjectItem>
@@ -1035,7 +1037,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeRepository.cs">MeetingTypeRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeRow.cs">MeetingTypeRow.cs</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeys.cs">PermissionKeys.cs</ProjectItem>
         </Folder>
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
@@ -1136,6 +1137,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryRow.cs">EmployeeTerritoryRow.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindNavigation.cs">NorthwindNavigation.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindPermissionKeys.cs">NorthwindPermissionKeys.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindTexts.cs">NorthwindTexts.cs</ProjectItem>
           <Folder Name="Note" TargetFolderName="Note">
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteDialog.ts">NoteDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NoteRepository.cs">NoteRepository.cs</ProjectItem>
@@ -1173,7 +1176,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailRow.cs">OrderDetailRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailsEditor.ts">OrderDetailsEditor.ts</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeys.cs">PermissionKeys.cs</ProjectItem>
           <Folder Name="Product" TargetFolderName="Product">
             <ProjectItem ReplaceParameters="true" TargetFileName="ProductColumns.cs">ProductColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ProductDialog.ts">ProductDialog.ts</ProjectItem>
@@ -1580,12 +1582,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.6" />
-      <installPackage id="Serenity.Core" version="2.6.6" />
-      <installPackage id="Serenity.Data" version="2.6.6" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.6" />
-      <installPackage id="Serenity.Services" version="2.6.6" />
-      <installPackage id="Serenity.Web" version="2.6.6" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.7" />
+      <installPackage id="Serenity.Core" version="2.6.7" />
+      <installPackage id="Serenity.Data" version="2.6.7" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.7" />
+      <installPackage id="Serenity.Services" version="2.6.7" />
+      <installPackage id="Serenity.Web" version="2.6.7" />
       <installPackage id="Serenity.Web.Assets" version="2.6.6" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
@@ -1594,5 +1596,42 @@
       <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.1" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />
     </packagesToInstall>
+    <features>
+      <feature key="BasicSamples">
+        <files include="Content\site\site.basicsamples.less" />
+        <files include="Modules\BasicSamples" />
+        <files include="Modules\Common\Imports\ServerTypings\**\BasicSamples.*" />
+        <files include="Scripts\site\texts\samples" />
+      </feature>
+      <feature key="Meeting">
+        <files include="Modules\Common\Imports\ServerTypings\**\Meeting.*" />
+        <files include="Modules\Common\Migrations\DefaultDB\**\*00_*Meeting*.cs" />
+        <files include="Modules\Meeting" />
+        <files include="Content\site\site.meeting.less" />
+      </feature>
+      <feature key="Northwind">
+        <files include="Content\site\site.northwind.less" />
+        <files include="Modules\Common\Imports\ServerTypings\**\Northwind.*" />
+        <files include="Modules\Northwind" />
+        <files include="Modules\Common\Migrations\NorthwindDB" />
+        <files include="Scripts\site\texts\northwind" />
+      </feature>
+      <feature key="Organization">
+        <files include="Modules\Common\Imports\ServerTypings\**\Organization.*" />
+        <files include="Modules\Common\Migrations\DefaultDB\**\*00_*Organization*.cs" />
+        <files include="Modules\Organization" />
+        <files include="Content\site\site.organization.less" />
+      </feature>
+      <feature key="ThemeSamples">
+        <files include="Modules\AdminLTE" />
+      </feature>
+    </features>
+    <conditionals>
+      <files include="App_Start\SiteInitialization.Migrations.cs" />
+      <files include="Content\site\site.less" />
+      <files include="Modules\Common\Dashboard\DashboardIndex.cshtml" />
+      <files include="Modules\Common\Dashboard\DashboardPage.cs" />
+      <files include="Web.config" />
+    </conditionals>
   </WizardData>
 </VSTemplate>

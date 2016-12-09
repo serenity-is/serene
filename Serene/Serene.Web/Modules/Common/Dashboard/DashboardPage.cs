@@ -1,14 +1,14 @@
 ﻿
 namespace Serene.Common.Pages
 {
+    //<if:Northwind>
     using Northwind;
     using Northwind.Entities;
+    //</if:Northwind>
     using Serenity;
     using Serenity.Data;
-    using Serenity.Services;
     using System;
     using System.Web.Mvc;
-    using System.Web.Security;
 
     [RoutePrefix("Dashboard"), Route("{action=index}")]
     public class DashboardController : Controller
@@ -16,6 +16,7 @@ namespace Serene.Common.Pages
         [Authorize, HttpGet, Route("~/")]
         public ActionResult Index()
         {
+            //<if:Northwind>
             var cachedModel = TwoLevelCache.GetLocalStoreOnly("DashboardPageModel", TimeSpan.FromMinutes(5),
                 OrderRow.Fields.GenerationKey, () =>
                 {
@@ -33,8 +34,10 @@ namespace Serene.Common.Pages
                     }
                     return model;
                 });
-
             return View(MVC.Views.Common.Dashboard.DashboardIndex, cachedModel);
+            //<else>
+            //return View(MVC.Views.Common.Dashboard.DashboardIndex, new DashboardPageModel());
+            //</if:Northwind>
         }
     }
 }
