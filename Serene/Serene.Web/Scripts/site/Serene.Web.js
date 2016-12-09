@@ -5480,6 +5480,11 @@ var Serene;
             MeetingAgendaTypeRow.idProperty = 'AgendaTypeId';
             MeetingAgendaTypeRow.nameProperty = 'Name';
             MeetingAgendaTypeRow.localTextPrefix = 'Meeting.MeetingAgendaType';
+            MeetingAgendaTypeRow.lookupKey = 'Meeting.MeetingAgendaType';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingAgendaType');
+            }
+            MeetingAgendaTypeRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAgendaTypeRow.Fields || (MeetingAgendaTypeRow.Fields = {}));
@@ -5662,7 +5667,7 @@ var Serene;
             return MeetingForm;
         }(Serenity.PrefixedContext));
         Meeting.MeetingForm = MeetingForm;
-        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['MeetingGuid', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.IntegerEditor; }], ['StartDate', function () { return Serenity.DateEditor; }], ['EndDate', function () { return Serenity.DateEditor; }], ['LocationId', function () { return Serenity.IntegerEditor; }], ['UnitId', function () { return Serenity.IntegerEditor; }], ['OrganizerContactId', function () { return Serenity.IntegerEditor; }], ['ReporterContactId', function () { return Serenity.IntegerEditor; }], ['InsertUserId', function () { return Serenity.IntegerEditor; }], ['InsertDate', function () { return Serenity.DateEditor; }], ['UpdateUserId', function () { return Serenity.IntegerEditor; }], ['UpdateDate', function () { return Serenity.DateEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -5690,6 +5695,11 @@ var Serene;
             MeetingLocationRow.idProperty = 'LocationId';
             MeetingLocationRow.nameProperty = 'Name';
             MeetingLocationRow.localTextPrefix = 'Meeting.MeetingLocation';
+            MeetingLocationRow.lookupKey = 'Meeting.MeetingLocation';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingLocation');
+            }
+            MeetingLocationRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingLocationRow.Fields || (MeetingLocationRow.Fields = {}));
@@ -5726,7 +5736,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingRow.Fields || (MeetingRow.Fields = {}));
-            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate', 'MeetingTypeName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
         })(MeetingRow = Meeting.MeetingRow || (Meeting.MeetingRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -5772,6 +5782,11 @@ var Serene;
             MeetingTypeRow.idProperty = 'MeetingTypeId';
             MeetingTypeRow.nameProperty = 'Name';
             MeetingTypeRow.localTextPrefix = 'Meeting.MeetingType';
+            MeetingTypeRow.lookupKey = 'Meeting.MeetingType';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingType');
+            }
+            MeetingTypeRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingTypeRow.Fields || (MeetingTypeRow.Fields = {}));
@@ -6725,7 +6740,7 @@ var Serene;
             return ContactForm;
         }(Serenity.PrefixedContext));
         Organization.ContactForm = ContactForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['IdentityNo', function () { return Serenity.StringEditor; }], ['UserId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ContactForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['IdentityNo', function () { return Serenity.StringEditor; }], ['UserId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(ContactForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -6735,12 +6750,17 @@ var Serene;
         var ContactRow;
         (function (ContactRow) {
             ContactRow.idProperty = 'ContactId';
-            ContactRow.nameProperty = 'Title';
+            ContactRow.nameProperty = 'FullName';
             ContactRow.localTextPrefix = 'Organization.Contact';
+            ContactRow.lookupKey = 'Organization.Contact';
+            function getLookup() {
+                return Q.getLookup('Organization.Contact');
+            }
+            ContactRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = ContactRow.Fields || (ContactRow.Fields = {}));
-            ['ContactId', 'Title', 'FirstName', 'LastName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
+            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
         })(ContactRow = Organization.ContactRow || (Organization.ContactRow = {}));
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));

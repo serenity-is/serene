@@ -11,6 +11,11 @@
         export const idProperty = 'LocationId';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Meeting.MeetingLocation';
+        export const lookupKey = 'Meeting.MeetingLocation';
+
+        export function getLookup(): Q.Lookup<MeetingLocationRow> {
+            return Q.getLookup<MeetingLocationRow>('Meeting.MeetingLocation');
+        }
 
         export namespace Fields {
             export declare const LocationId: string;

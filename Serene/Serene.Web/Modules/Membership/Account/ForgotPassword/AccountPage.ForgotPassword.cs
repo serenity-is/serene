@@ -19,7 +19,7 @@ namespace Serene.Membership.Pages
         public ActionResult ForgotPassword()
         {
             if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPasswordAdminLTE);
+                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword_AdminLTE);
             else
                 return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
         }

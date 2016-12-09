@@ -2013,6 +2013,8 @@ declare namespace Serene.Meeting {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<MeetingAgendaTypeRow>;
         namespace Fields {
             const AgendaTypeId: string;
             const Name: string;
@@ -2333,18 +2335,13 @@ declare namespace Serene.Meeting {
     interface MeetingForm {
         MeetingName: Serenity.StringEditor;
         MeetingNumber: Serenity.StringEditor;
-        MeetingGuid: Serenity.StringEditor;
-        MeetingTypeId: Serenity.IntegerEditor;
-        StartDate: Serenity.DateEditor;
-        EndDate: Serenity.DateEditor;
-        LocationId: Serenity.IntegerEditor;
-        UnitId: Serenity.IntegerEditor;
-        OrganizerContactId: Serenity.IntegerEditor;
-        ReporterContactId: Serenity.IntegerEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        InsertDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
+        MeetingTypeId: Serenity.LookupEditor;
+        StartDate: Serenity.DateTimeEditor;
+        EndDate: Serenity.DateTimeEditor;
+        LocationId: Serenity.LookupEditor;
+        UnitId: Organization.BusinessUnitEditor;
+        OrganizerContactId: Serenity.LookupEditor;
+        ReporterContactId: Serenity.LookupEditor;
     }
 }
 declare namespace Serene.Meeting {
@@ -2372,6 +2369,8 @@ declare namespace Serene.Meeting {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<MeetingLocationRow>;
         namespace Fields {
             const LocationId: string;
             const Name: string;
@@ -2411,25 +2410,28 @@ declare namespace Serene.Meeting {
         UnitId?: number;
         OrganizerContactId?: number;
         ReporterContactId?: number;
-        InsertUserId?: number;
-        InsertDate?: string;
-        UpdateUserId?: number;
-        UpdateDate?: string;
         MeetingTypeName?: string;
+        LocationName?: string;
         UnitName?: string;
         UnitParentUnitId?: number;
         OrganizerContactTitle?: string;
         OrganizerContactFirstName?: string;
         OrganizerContactLastName?: string;
+        OrganizerContactFullName?: string;
         OrganizerContactEmail?: string;
         OrganizerContactIdentityNo?: string;
         OrganizerContactUserId?: number;
         ReporterContactTitle?: string;
         ReporterContactFirstName?: string;
         ReporterContactLastName?: string;
+        ReporterContactFullName?: string;
         ReporterContactEmail?: string;
         ReporterContactIdentityNo?: string;
         ReporterContactUserId?: number;
+        InsertUserId?: number;
+        InsertDate?: string;
+        UpdateUserId?: number;
+        UpdateDate?: string;
     }
     namespace MeetingRow {
         const idProperty: string;
@@ -2447,25 +2449,28 @@ declare namespace Serene.Meeting {
             const UnitId: string;
             const OrganizerContactId: string;
             const ReporterContactId: string;
-            const InsertUserId: string;
-            const InsertDate: string;
-            const UpdateUserId: string;
-            const UpdateDate: string;
             const MeetingTypeName: string;
+            const LocationName: string;
             const UnitName: string;
             const UnitParentUnitId: string;
             const OrganizerContactTitle: string;
             const OrganizerContactFirstName: string;
             const OrganizerContactLastName: string;
+            const OrganizerContactFullName: string;
             const OrganizerContactEmail: string;
             const OrganizerContactIdentityNo: string;
             const OrganizerContactUserId: string;
             const ReporterContactTitle: string;
             const ReporterContactFirstName: string;
             const ReporterContactLastName: string;
+            const ReporterContactFullName: string;
             const ReporterContactEmail: string;
             const ReporterContactIdentityNo: string;
             const ReporterContactUserId: string;
+            const InsertUserId: string;
+            const InsertDate: string;
+            const UpdateUserId: string;
+            const UpdateDate: string;
         }
     }
 }
@@ -2505,6 +2510,8 @@ declare namespace Serene.Meeting {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<MeetingTypeRow>;
         namespace Fields {
             const MeetingTypeId: string;
             const Name: string;
@@ -3819,7 +3826,7 @@ declare namespace Serene.Organization {
         LastName: Serenity.StringEditor;
         Email: Serenity.EmailEditor;
         IdentityNo: Serenity.StringEditor;
-        UserId: Serenity.IntegerEditor;
+        UserId: Serenity.LookupEditor;
     }
 }
 declare namespace Serene.Organization {
@@ -3828,6 +3835,7 @@ declare namespace Serene.Organization {
         Title?: string;
         FirstName?: string;
         LastName?: string;
+        FullName?: string;
         Email?: string;
         IdentityNo?: string;
         UserId?: number;
@@ -3849,11 +3857,14 @@ declare namespace Serene.Organization {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<ContactRow>;
         namespace Fields {
             const ContactId: string;
             const Title: string;
             const FirstName: string;
             const LastName: string;
+            const FullName: string;
             const Email: string;
             const IdentityNo: string;
             const UserId: string;

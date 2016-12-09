@@ -19,7 +19,7 @@ namespace Serene.Membership.Pages
             ViewData["HideLeftNavigation"] = true;
 
             if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.AccountLoginAdminLTE);
+                return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
             else
                 return View(MVC.Views.Membership.Account.AccountLogin);
         }

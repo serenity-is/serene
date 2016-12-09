@@ -7,20 +7,15 @@
     export interface MeetingForm {
         MeetingName: Serenity.StringEditor;
         MeetingNumber: Serenity.StringEditor;
-        MeetingGuid: Serenity.StringEditor;
-        MeetingTypeId: Serenity.IntegerEditor;
-        StartDate: Serenity.DateEditor;
-        EndDate: Serenity.DateEditor;
-        LocationId: Serenity.IntegerEditor;
-        UnitId: Serenity.IntegerEditor;
-        OrganizerContactId: Serenity.IntegerEditor;
-        ReporterContactId: Serenity.IntegerEditor;
-        InsertUserId: Serenity.IntegerEditor;
-        InsertDate: Serenity.DateEditor;
-        UpdateUserId: Serenity.IntegerEditor;
-        UpdateDate: Serenity.DateEditor;
+        MeetingTypeId: Serenity.LookupEditor;
+        StartDate: Serenity.DateTimeEditor;
+        EndDate: Serenity.DateTimeEditor;
+        LocationId: Serenity.LookupEditor;
+        UnitId: Organization.BusinessUnitEditor;
+        OrganizerContactId: Serenity.LookupEditor;
+        ReporterContactId: Serenity.LookupEditor;
     }
 
-    [['MeetingName', () => Serenity.StringEditor], ['MeetingNumber', () => Serenity.StringEditor], ['MeetingGuid', () => Serenity.StringEditor], ['MeetingTypeId', () => Serenity.IntegerEditor], ['StartDate', () => Serenity.DateEditor], ['EndDate', () => Serenity.DateEditor], ['LocationId', () => Serenity.IntegerEditor], ['UnitId', () => Serenity.IntegerEditor], ['OrganizerContactId', () => Serenity.IntegerEditor], ['ReporterContactId', () => Serenity.IntegerEditor], ['InsertUserId', () => Serenity.IntegerEditor], ['InsertDate', () => Serenity.DateEditor], ['UpdateUserId', () => Serenity.IntegerEditor], ['UpdateDate', () => Serenity.DateEditor]].forEach(x => Object.defineProperty(MeetingForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    [['MeetingName', () => Serenity.StringEditor], ['MeetingNumber', () => Serenity.StringEditor], ['MeetingTypeId', () => Serenity.LookupEditor], ['StartDate', () => Serenity.DateTimeEditor], ['EndDate', () => Serenity.DateTimeEditor], ['LocationId', () => Serenity.LookupEditor], ['UnitId', () => Organization.BusinessUnitEditor], ['OrganizerContactId', () => Serenity.LookupEditor], ['ReporterContactId', () => Serenity.LookupEditor]].forEach(x => Object.defineProperty(MeetingForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
 

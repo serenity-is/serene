@@ -21,7 +21,7 @@ namespace Serene.Membership.Pages
         public ActionResult SignUp()
         {
             if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.SignUp.AccountSignUpAdminLTE);
+                return View(MVC.Views.Membership.Account.SignUp.AccountSignUp_AdminLTE);
             else
                 return View(MVC.Views.Membership.Account.SignUp.AccountSignUp);
         }

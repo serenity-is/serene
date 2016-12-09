@@ -4,6 +4,7 @@
         Title?: string;
         FirstName?: string;
         LastName?: string;
+        FullName?: string;
         Email?: string;
         IdentityNo?: string;
         UserId?: number;
@@ -24,14 +25,20 @@
 
     export namespace ContactRow {
         export const idProperty = 'ContactId';
-        export const nameProperty = 'Title';
+        export const nameProperty = 'FullName';
         export const localTextPrefix = 'Organization.Contact';
+        export const lookupKey = 'Organization.Contact';
+
+        export function getLookup(): Q.Lookup<ContactRow> {
+            return Q.getLookup<ContactRow>('Organization.Contact');
+        }
 
         export namespace Fields {
             export declare const ContactId: string;
             export declare const Title: string;
             export declare const FirstName: string;
             export declare const LastName: string;
+            export declare const FullName: string;
             export declare const Email: string;
             export declare const IdentityNo: string;
             export declare const UserId: string;
@@ -50,7 +57,7 @@
             export declare const UserIsActive: string;
         }
 
-        ['ContactId', 'Title', 'FirstName', 'LastName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(x => (<any>Fields)[x] = x);
+        ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 
