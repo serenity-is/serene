@@ -1365,6 +1365,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ChangingLookupTextForm.ts">
@@ -1460,7 +1461,13 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendanceStatus.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingColumns.ts">
@@ -1868,9 +1875,6 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeService.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -2033,6 +2037,12 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Meeting.MeetingAttendeeEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
