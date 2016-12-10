@@ -2345,7 +2345,7 @@
 				self.updateItems();
 			});
 		}
-		if (this.options.inplaceAdd) {
+		if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
 			this.addInplaceCreate(Q.text('Controls.SelectEditor.InplaceAdd'), null);
 		}
 	};
@@ -2877,6 +2877,9 @@
 		this.$editors = [];
 		var categoryIndexes = {};
 		var categoriesDiv = div;
+		var useCategories = this.options.useCategories && Enumerable.from(this.$items).any(function(x) {
+			return !ss.isNullOrEmptyString(x.category);
+		});
 		if (this.options.useCategories) {
 			var linkContainer = $('<div/>').addClass('category-links');
 			categoryIndexes = this.$createCategoryLinks(linkContainer, this.$items);
@@ -2886,18 +2889,29 @@
 			else {
 				linkContainer.find('a.category-link').unbind('click', $Serenity_PropertyGrid.$categoryLinkClick).remove();
 			}
-			categoriesDiv = $('<div/>').addClass('categories').appendTo(div);
 		}
-		var fieldContainer = categoriesDiv;
+		categoriesDiv = $('<div/>').addClass('categories').appendTo(div);
+		var fieldContainer;
+		if (useCategories) {
+			fieldContainer = categoriesDiv;
+		}
+		else {
+			fieldContainer = $('<div/>').addClass('category').appendTo(categoriesDiv);
+		}
 		var priorCategory = null;
 		for (var i = 0; i < this.$items.length; i++) {
 			var item = this.$items[i];
-			if (this.options.useCategories && !ss.referenceEquals(priorCategory, item.category)) {
-				var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, item.category, ((item.collapsible !== true) ? null : ss.coalesce(item.collapsed, false)));
+			var $t1 = item.category;
+			if (ss.isNullOrUndefined($t1)) {
+				$t1 = ss.coalesce(this.options.defaultCategory, '');
+			}
+			var category = $t1;
+			if (useCategories && !ss.referenceEquals(priorCategory, category)) {
+				var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, category, ((item.collapsible !== true) ? null : ss.coalesce(item.collapsed, false)));
 				if (ss.isNullOrUndefined(priorCategory)) {
 					categoryDiv.addClass('first-category');
 				}
-				priorCategory = item.category;
+				priorCategory = category;
 				fieldContainer = categoryDiv;
 			}
 			var editor = this.$createField(fieldContainer, item);
@@ -4379,6 +4393,7 @@
 	ss.initInterface($Serenity_ISetEditValue, $asm, { setEditValue: null });
 	ss.initInterface($Serenity_IGetEditValue, $asm, { getEditValue: null });
 	ss.initInterface($Serenity_IStringValue, $asm, { get_value: null, set_value: null });
+	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_Select2Editor, $asm, {
 		emptyItemText: function() {
 			var $t1 = this.element.attr('placeholder');
@@ -4553,8 +4568,17 @@
 				$t1 = new Object();
 			}
 			return ss.cast($t1.text, String);
+		},
+		get_readOnly: function() {
+			return !ss.isNullOrEmptyString(this.element.attr('readonly'));
+		},
+		set_readOnly: function(value) {
+			if (value !== this.get_readOnly()) {
+				$Serenity_EditorUtils.setReadonly(this.element, value);
+				this.element.nextAll('.inplace-create').attr('disabled', (value ? 'disabled' : '')).css('opacity', (value ? '0.1' : '')).css('cursor', (value ? 'default' : ''));
+			}
 		}
-	}, Serenity.Widget, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, Serenity.Widget, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_$FilterPanel$FieldSelect, $asm, {
 		emptyItemText: function() {
 			if (Q.isEmptyOrNull(this.get_value())) {
@@ -4567,7 +4591,7 @@
 			opt.allowClear = false;
 			return opt;
 		}
-	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_$FilterPanel$OperatorSelect, $asm, {
 		emptyItemText: function() {
 			return null;
@@ -4577,7 +4601,7 @@
 			opt.allowClear = false;
 			return opt;
 		}
-	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_LookupEditorBase, $asm, {
 		initializeAsync: function() {
 			return this.updateItemsAsync().then(ss.mkdel(this, function() {
@@ -4687,6 +4711,9 @@
 			}
 		},
 		inplaceCreateClick: function(e) {
+			if (this.get_readOnly()) {
+				return;
+			}
 			var self = this;
 			this.createEditDialog(ss.mkdel(this, function(dialog) {
 				$Serenity_SubDialogHelper.bindToDataChange(dialog, this, ss.mkdel(this, function(x, dci) {
@@ -4768,7 +4795,7 @@
 			if (ss.isValue(this.options.minimumResultsForSearch)) {
 				opt.minimumResultsForSearch = ss.unbox(this.options.minimumResultsForSearch);
 			}
-			if (this.options.inplaceAdd) {
+			if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
 				opt.createSearchChoice = this.getCreateSearchChoice(null);
 			}
 			if (this.options.multiple) {
@@ -4822,7 +4849,7 @@
 				this.updateItems();
 			}
 		}
-	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initInterface($Serenity_IAsyncInit, $asm, {});
 	ss.initClass($Serenity_AsyncLookupEditor, $asm, {
 		getLookupKey: function() {
@@ -4832,7 +4859,7 @@
 			}
 			return $t1;
 		}
-	}, $Serenity_LookupEditorBase, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IAsyncInit]);
+	}, $Serenity_LookupEditorBase, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly, $Serenity_IAsyncInit]);
 	ss.initInterface($Serenity_IFiltering, $asm, { get_field: null, set_field: null, get_container: null, set_container: null, get_operator: null, set_operator: null, createEditor: null, getCriteria: null, getOperators: null, loadState: null, saveState: null });
 	ss.initInterface($Serenity_IQuickFiltering, $asm, { initQuickFilter: null });
 	ss.initClass($Serenity_BaseFiltering, $asm, {
@@ -6595,7 +6622,6 @@
 	}, $Serenity_DataGrid, [$Serenity_IDataGrid, $Serenity_IGetEditValue, $Serenity_ISetEditValue]);
 	ss.initClass($Serenity_CollapsibleAttribute, $asm, {});
 	ss.initClass($Serenity_CssClassAttribute, $asm, {});
-	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_DateEditor, $asm, {
 		get_value: function() {
 			var value = this.element.val().trim();
@@ -6871,7 +6897,7 @@
 				}
 			}
 		}
-	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_DateYearEditor, $asm, {
 		getItems: function() {
 			var opt = this.options;
@@ -6917,7 +6943,7 @@
 			}
 			return years;
 		}
-	}, $Serenity_SelectEditor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_SelectEditor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_SelectEditorOptions, $asm, {});
 	ss.initClass($Serenity_DateYearEditorOptions, $asm, {}, $Serenity_SelectEditorOptions);
 	ss.initInterface($Serenity_IDoubleValue, $asm, { get_value: null, set_value: null });
@@ -7047,7 +7073,7 @@
 			}
 			return $Serenity_EditorTypeEditor.$editorTypeList;
 		}
-	}, $Serenity_SelectEditor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_SelectEditor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_EditorTypeRegistry, $asm, {});
 	ss.initClass($Serenity_EditorUtils, $asm, {});
 	ss.initClass($Serenity_EmailEditor, $asm, {
@@ -8226,7 +8252,7 @@
 				this.addOption(ss.unbox(ss.cast(x, ss.Int32)).toString(), ss.coalesce(Q.tryGetText('Enums.' + enumKey + '.' + name), name), null, false);
 			}
 		}
-	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_EnumEditorOptions, $asm, {});
 	ss.initClass($Serenity_EnumFiltering, $asm, {
 		getOperators: function() {
@@ -9131,7 +9157,7 @@
 	}, ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_IntegerEditor]), [$Serenity_IFiltering, $Serenity_IQuickFiltering]);
 	ss.initInterface($Serenity_IValidateRequired, $asm, { get_required: null, set_required: null });
 	ss.initClass($Serenity_JsRender, $asm, {});
-	ss.initClass($Serenity_LookupEditor, $asm, {}, $Serenity_LookupEditorBase, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue]);
+	ss.initClass($Serenity_LookupEditor, $asm, {}, $Serenity_LookupEditorBase, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_LookupFiltering, $asm, {
 		getOperators: function() {
 			var $t1 = [];
@@ -9659,8 +9685,13 @@
 			}
 			for (var $t2 = 0; $t2 < items.length; $t2++) {
 				var x1 = items[$t2];
-				if (ss.isNullOrUndefined(result[x1.category])) {
-					result[x1.category] = order++;
+				var $t3 = x1.category;
+				if (ss.isNullOrUndefined($t3)) {
+					$t3 = ss.coalesce(this.options.defaultCategory, '');
+				}
+				var category = $t3;
+				if (ss.isNullOrUndefined(result[category])) {
+					result[category] = order++;
 				}
 			}
 			return result;
@@ -9668,22 +9699,26 @@
 		$createCategoryLinks: function(container, items) {
 			var idx = 0;
 			var itemIndex = {};
+			var itemCategory = {};
 			for (var $t1 = 0; $t1 < items.length; $t1++) {
 				var x = items[$t1];
+				var $t3 = x.name;
 				var $t2 = x.category;
 				if (ss.isNullOrUndefined($t2)) {
 					$t2 = ss.coalesce(this.options.defaultCategory, '');
 				}
-				x.category = $t2;
+				itemCategory[$t3] = $t2;
 				itemIndex[x.name] = idx++;
 			}
 			var self = this;
 			var categoryOrder = this.$getCategoryOrder(items);
 			items.sort(function(x1, y) {
 				var c = 0;
-				if (!ss.referenceEquals(x1.category, y.category)) {
-					var c1 = categoryOrder[x1.category];
-					var c2 = categoryOrder[y.category];
+				var xcategory = itemCategory[x1.name];
+				var ycategory = itemCategory[y.name];
+				if (!ss.referenceEquals(xcategory, ycategory)) {
+					var c1 = categoryOrder[xcategory];
+					var c2 = categoryOrder[ycategory];
 					if (ss.isValue(c1) && ss.isValue(c2)) {
 						c = ss.unbox(c1) - ss.unbox(c2);
 					}
@@ -9695,7 +9730,7 @@
 					}
 				}
 				if (c === 0) {
-					c = ss.compareStrings(x1.category, y.category);
+					c = ss.compareStrings(xcategory, ycategory);
 				}
 				if (c === 0) {
 					c = ss.compare(itemIndex[x1.name], itemIndex[y.name]);
@@ -9704,15 +9739,16 @@
 			});
 			var categoryIndexes = {};
 			for (var i = 0; i < items.length; i++) {
-				var item = { $: items[i] };
-				if (!ss.keyExists(categoryIndexes, item.$.category)) {
+				var item = items[i];
+				var category = { $: itemCategory[item.name] };
+				if (!ss.keyExists(categoryIndexes, category.$)) {
 					var index = ss.getKeyCount(categoryIndexes) + 1;
-					categoryIndexes[item.$.category] = index;
+					categoryIndexes[category.$] = index;
 					if (index > 1) {
 						$('<span/>').addClass('separator').text('|').prependTo(container);
 					}
-					$('<a/>').addClass('category-link').text(this.$determineText(item.$.category, ss.mkdel({ item: item }, function(prefix) {
-						return prefix + 'Categories.' + this.item.$.category;
+					$('<a/>').addClass('category-link').text(this.$determineText(category.$, ss.mkdel({ category: category }, function(prefix) {
+						return prefix + 'Categories.' + this.category.$;
 					}))).attr('tabindex', '-1').attr('href', '#' + this.options.idPrefix + 'Category' + index.toString()).click($Serenity_PropertyGrid.$categoryLinkClick).prependTo(container);
 				}
 			}
@@ -10561,14 +10597,15 @@
 		};
 	})();
 	(function() {
+		$Serenity_EditorUtils.$dummy = { name: '_' };
+	})();
+	(function() {
 		Q.prop($Serenity_Select2Editor, 'value');
 		Q.prop($Serenity_Select2Editor, 'values');
+		Q.prop($Serenity_Select2Editor, 'readOnly');
 	})();
 	(function() {
 		$Serenity_DialogTypeRegistry.$knownTypes = {};
-	})();
-	(function() {
-		$Serenity_EditorUtils.$dummy = { name: '_' };
 	})();
 	(function() {
 		Q.prop($Serenity_LookupEditorBase, 'cascadeField');

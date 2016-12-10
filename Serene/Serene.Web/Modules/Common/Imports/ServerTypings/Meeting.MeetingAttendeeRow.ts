@@ -3,8 +3,8 @@
         AttendeeId?: number;
         MeetingId?: number;
         ContactId?: number;
-        AttendeeType?: number;
-        AttendanceStatus?: number;
+        AttendeeType?: MeetingAttendeeType;
+        AttendanceStatus?: MeetingAttendanceStatus;
         MeetingMeetingName?: string;
         MeetingMeetingNumber?: string;
         MeetingMeetingGuid?: string;
@@ -22,6 +22,7 @@
         ContactTitle?: string;
         ContactFirstName?: string;
         ContactLastName?: string;
+        ContactFullName?: string;
         ContactEmail?: string;
         ContactIdentityNo?: string;
         ContactUserId?: number;
@@ -54,12 +55,13 @@
             export declare const ContactTitle: string;
             export declare const ContactFirstName: string;
             export declare const ContactLastName: string;
+            export declare const ContactFullName: string;
             export declare const ContactEmail: string;
             export declare const ContactIdentityNo: string;
             export declare const ContactUserId: string;
         }
 
-        ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactFullName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

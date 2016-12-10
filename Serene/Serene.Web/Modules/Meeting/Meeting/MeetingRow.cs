@@ -6,6 +6,7 @@ namespace Serene.Meeting.Entities
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Meetings"), InstanceName("Meeting"), TwoLevelCached]
@@ -42,7 +43,7 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Meeting Type"), NotNull, ForeignKey("MeetingTypes", "MeetingTypeId"), LeftJoin("jMeetingType"), TextualField("MeetingTypeName")]
-        [LookupEditor(typeof(MeetingTypeRow), InplaceAdd = true)]
+        [LookupEditor(typeof(MeetingTypeRow), InplaceAdd = true, InplaceAddPermission = PermissionKeys.Management)]
         public Int32? MeetingTypeId
         {
             get { return Fields.MeetingTypeId[this]; }
@@ -66,7 +67,7 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Location"), ForeignKey("MeetingLocations", "LocationId"), LeftJoin("jLocation"), TextualField("LocationName")]
-        [LookupEditor(typeof(MeetingLocationRow), InplaceAdd = true)]
+        [LookupEditor(typeof(MeetingLocationRow), InplaceAdd = true, InplaceAddPermission = PermissionKeys.Management)]
         public Int32? LocationId
         {
             get { return Fields.LocationId[this]; }
@@ -81,7 +82,7 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Unit"), ForeignKey("BusinessUnits", "UnitId"), LeftJoin("jUnit"), TextualField("UnitName")]
-        [Organization.BusinessUnitEditor(InplaceAdd = true)]
+        [Organization.BusinessUnitEditor(InplaceAdd = true, InplaceAddPermission = Organization.PermissionKeys.BusinessUnits.Management)]
         public Int32? UnitId
         {
             get { return Fields.UnitId[this]; }
@@ -89,7 +90,7 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Organized By"), ForeignKey("Contacts", "ContactId"), LeftJoin("jOrganizerContact"), TextualField("OrganizerContactFullName")]
-        [LookupEditor(typeof(ContactRow), InplaceAdd = true)]
+        [LookupEditor(typeof(ContactRow), InplaceAdd = true, InplaceAddPermission = Organization.PermissionKeys.Contacts.Management)]
         public Int32? OrganizerContactId
         {
             get { return Fields.OrganizerContactId[this]; }
@@ -105,7 +106,7 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Reporter"), ForeignKey("Contacts", "ContactId"), LeftJoin("jReporterContact"), TextualField("ReporterContactFullName")]
-        [LookupEditor(typeof(ContactRow), InplaceAdd = true)]       
+        [LookupEditor(typeof(ContactRow), InplaceAdd = true, InplaceAddPermission = Organization.PermissionKeys.Contacts.Management)]
         public Int32? ReporterContactId
         {
             get { return Fields.ReporterContactId[this]; }
@@ -120,7 +121,7 @@ namespace Serene.Meeting.Entities
             set { Fields.ReporterContactFullName[this] = value; }
         }
 
-        [DisplayName("Meeting Type Name"), Expression("jMeetingType.[Name]")]
+        [DisplayName("Meeting Type"), Expression("jMeetingType.[Name]")]
         public String MeetingTypeName
         {
             get { return Fields.MeetingTypeName[this]; }
@@ -225,6 +226,14 @@ namespace Serene.Meeting.Entities
             set { Fields.ReporterContactUserId[this] = value; }
         }
 
+        [DisplayName("Attendee List")]
+        [MasterDetailRelation("MeetingId", IncludeColumns = "ContactFullName"), MeetingAttendeeEditor]
+        public List<MeetingAttendeeRow> AttendeeList
+        {
+            get { return Fields.AttendeeList[this]; }
+            set { Fields.AttendeeList[this] = value; }
+        }
+
         IIdField IIdRow.IdField
         {
             get { return Fields.MeetingId; }
@@ -278,6 +287,8 @@ namespace Serene.Meeting.Entities
             public StringField ReporterContactEmail;
             public StringField ReporterContactIdentityNo;
             public Int32Field ReporterContactUserId;
+
+            public ListField<MeetingAttendeeRow> AttendeeList;
 
             public RowFields()
                 : base("Meetings")

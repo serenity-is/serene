@@ -1998,7 +1998,6 @@ body.mobile-device.modal-dialog-open {
   height: 22px;
   background-repeat: no-repeat;
   background-position: center 2px;
-  cursor: pointer;
 }
 .inplace-create b {
   background-image: url(../serenity/images/star-pencil.png);

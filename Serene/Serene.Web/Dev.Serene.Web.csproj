@@ -1350,6 +1350,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ChangingLookupTextForm.ts">
@@ -1445,7 +1446,13 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendanceStatus.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingColumns.ts">
@@ -1850,17 +1857,13 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeDialog.ts" />
-    <Content Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEditor.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeDialog.ts" />
     <Content Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantRow.ts">
@@ -2021,6 +2024,12 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\Meeting.MeetingAttendeeEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
@@ -2090,6 +2099,8 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendanceStatus.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeType.cs" />
     <Compile Include="Modules\Meeting\MeetingNavigation.cs" />
     <Compile Include="Modules\Meeting\MeetingPermissionKeys.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
@@ -2140,6 +2151,7 @@
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
     <Compile Include="Modules\Northwind\NorthwindTexts.cs" />
+    <Compile Include="Modules\Organization\OrganizationPermissionKeys.cs" />
     <Compile Include="Modules\Organization\OrganizationNavigation.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
@@ -2275,7 +2287,6 @@
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeColumns.cs" />
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeForm.cs" />
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEndpoint.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRow.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantColumns.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantForm.cs" />

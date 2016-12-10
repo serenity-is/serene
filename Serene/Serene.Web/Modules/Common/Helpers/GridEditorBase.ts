@@ -8,7 +8,7 @@
 
         protected getIdProperty() { return "__id"; }
 
-        private nextId = 1;
+        protected nextId = 1;
 
         constructor(container: JQuery) {
             super(container);
@@ -18,13 +18,21 @@
             return (entity as any)[this.getIdProperty()];
         }
 
+        protected getNextId() {
+            return "`" + this.nextId++;
+        }
+
+        protected setNewId(entity: TEntity) {
+            entity[this.getIdProperty()] = this.getNextId();
+        }
+
         protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void) {
             var request = opt.request as Serenity.SaveRequest<TEntity>;
             var row = Q.deepClone(request.Entity);
 
             var id = this.id(row);
             if (id == null) {
-                (row as any)[this.getIdProperty()] = "`" + this.nextId++;
+                (row as any)[this.getIdProperty()] = this.getNextId();
             }
 
             if (!this.validateEntity(row, id)) {
@@ -117,7 +125,7 @@
             this.view.setItems((value || []).map(x => {
                 var y = Q.deepClone(x);
                 if ((y as any)[p] == null)
-                    (y as any)[p] = "`" + this.nextId++;
+                    (y as any)[p] = "`" + this.getNextId();
                 return y;
             }), true);
         }

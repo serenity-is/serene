@@ -2625,13 +2625,19 @@ var Serene;
             GridEditorBase.prototype.id = function (entity) {
                 return entity[this.getIdProperty()];
             };
+            GridEditorBase.prototype.getNextId = function () {
+                return "`" + this.nextId++;
+            };
+            GridEditorBase.prototype.setNewId = function (entity) {
+                entity[this.getIdProperty()] = this.getNextId();
+            };
             GridEditorBase.prototype.save = function (opt, callback) {
                 var _this = this;
                 var request = opt.request;
                 var row = Q.deepClone(request.Entity);
                 var id = this.id(row);
                 if (id == null) {
-                    row[this.getIdProperty()] = "`" + this.nextId++;
+                    row[this.getIdProperty()] = this.getNextId();
                 }
                 if (!this.validateEntity(row, id)) {
                     return;
@@ -2714,7 +2720,7 @@ var Serene;
                     this.view.setItems((value || []).map(function (x) {
                         var y = Q.deepClone(x);
                         if (y[p] == null)
-                            y[p] = "`" + _this.nextId++;
+                            y[p] = "`" + _this.getNextId();
                         return y;
                     }), true);
                 },
@@ -4752,6 +4758,52 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
+        var EnumSelectFormatter = (function () {
+            function EnumSelectFormatter() {
+                this.allowClear = true;
+            }
+            EnumSelectFormatter.prototype.format = function (ctx) {
+                var enumType = Serenity.EnumTypeRegistry.get(this.enumKey);
+                var sb = "<select>";
+                if (this.allowClear) {
+                    sb += '<option value="">';
+                    sb += Q.htmlEncode(this.emptyItemText || Q.text("Controls.SelectEditor.EmptyItemText"));
+                    sb += '</option>';
+                }
+                for (var _i = 0, _a = Object.keys(enumType).filter(function (v) { return !isNaN(parseInt(v, 10)); }); _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    sb += '<option value="' + x + '"';
+                    if (x == ctx.value)
+                        sb += " selected";
+                    var name = enumType[x];
+                    sb += ">";
+                    sb += Q.htmlEncode(Q.tryGetText("Enums." + this.enumKey + "." + name) || name);
+                    sb += "</option>";
+                }
+                sb += "</select>";
+                return sb;
+            };
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "enumKey", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "allowClear", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
+            EnumSelectFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EnumSelectFormatter);
+            return EnumSelectFormatter;
+        }());
+        Common.EnumSelectFormatter = EnumSelectFormatter;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
         var ExcelExportHelper;
         (function (ExcelExportHelper) {
             function createToolButton(options) {
@@ -5513,6 +5565,20 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
+        (function (MeetingAttendanceStatus) {
+            MeetingAttendanceStatus[MeetingAttendanceStatus["NotSet"] = 0] = "NotSet";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["Attended"] = 1] = "Attended";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["Absent"] = 2] = "Absent";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["AbsentWithPermission"] = 3] = "AbsentWithPermission";
+        })(Meeting.MeetingAttendanceStatus || (Meeting.MeetingAttendanceStatus = {}));
+        var MeetingAttendanceStatus = Meeting.MeetingAttendanceStatus;
+        Serenity.Decorators.registerEnum(MeetingAttendanceStatus, 'Meeting.MeetingAttendanceStatus');
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
         var MeetingAttendeeForm = (function (_super) {
             __extends(MeetingAttendeeForm, _super);
             function MeetingAttendeeForm() {
@@ -5522,7 +5588,7 @@ var Serene;
             return MeetingAttendeeForm;
         }(Serenity.PrefixedContext));
         Meeting.MeetingAttendeeForm = MeetingAttendeeForm;
-        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }], ['AttendeeType', function () { return Serenity.IntegerEditor; }], ['AttendanceStatus', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAttendeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }], ['AttendeeType', function () { return Serenity.EnumEditor; }], ['AttendanceStatus', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAttendeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -5536,7 +5602,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAttendeeRow.Fields || (MeetingAttendeeRow.Fields = {}));
-            ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactFullName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
         })(MeetingAttendeeRow = Meeting.MeetingAttendeeRow || (Meeting.MeetingAttendeeRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -5544,17 +5610,12 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAttendeeService;
-        (function (MeetingAttendeeService) {
-            MeetingAttendeeService.baseUrl = 'Meeting/MeetingAttendee';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingAttendeeService.Methods || (MeetingAttendeeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAttendeeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAttendeeService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingAttendeeService.baseUrl + '/' + x;
-            });
-        })(MeetingAttendeeService = Meeting.MeetingAttendeeService || (Meeting.MeetingAttendeeService = {}));
+        (function (MeetingAttendeeType) {
+            MeetingAttendeeType[MeetingAttendeeType["Attendee"] = 1] = "Attendee";
+            MeetingAttendeeType[MeetingAttendeeType["Guest"] = 2] = "Guest";
+        })(Meeting.MeetingAttendeeType || (Meeting.MeetingAttendeeType = {}));
+        var MeetingAttendeeType = Meeting.MeetingAttendeeType;
+        Serenity.Decorators.registerEnum(MeetingAttendeeType, 'Meeting.MeetingAttendeeType');
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -5667,7 +5728,7 @@ var Serene;
             return MeetingForm;
         }(Serenity.PrefixedContext));
         Meeting.MeetingForm = MeetingForm;
-        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }], ['AttendeeList', function () { return Meeting.MeetingAttendeeEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -5736,7 +5797,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingRow.Fields || (MeetingRow.Fields = {}));
-            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'AttendeeList', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
         })(MeetingRow = Meeting.MeetingRow || (Meeting.MeetingRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -6760,7 +6821,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ContactRow.Fields || (ContactRow.Fields = {}));
-            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
+            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
         })(ContactRow = Organization.ContactRow || (Organization.ContactRow = {}));
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -7345,6 +7406,10 @@ var Serene;
             MeetingDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingRow.localTextPrefix; };
             MeetingDialog.prototype.getNameProperty = function () { return Meeting.MeetingRow.nameProperty; };
             MeetingDialog.prototype.getService = function () { return Meeting.MeetingService.baseUrl; };
+            MeetingDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.form.MeetingTypeId.readOnly = false;
+            };
             MeetingDialog = __decorate([
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.responsive()
@@ -7526,36 +7591,111 @@ var Serene;
             MeetingAttendeeDialog.prototype.getFormKey = function () { return Meeting.MeetingAttendeeForm.formKey; };
             MeetingAttendeeDialog.prototype.getIdProperty = function () { return Meeting.MeetingAttendeeRow.idProperty; };
             MeetingAttendeeDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAttendeeRow.localTextPrefix; };
-            MeetingAttendeeDialog.prototype.getService = function () { return Meeting.MeetingAttendeeService.baseUrl; };
             MeetingAttendeeDialog = __decorate([
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.responsive()
             ], MeetingAttendeeDialog);
             return MeetingAttendeeDialog;
-        }(Serenity.EntityDialog));
+        }(Serene.Common.GridEditorDialog));
         Meeting.MeetingAttendeeDialog = MeetingAttendeeDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../common/helpers/grideditorbase.ts" />
 var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAttendeeGrid = (function (_super) {
-            __extends(MeetingAttendeeGrid, _super);
-            function MeetingAttendeeGrid(container) {
+        var MeetingAttendeeEditor = (function (_super) {
+            __extends(MeetingAttendeeEditor, _super);
+            function MeetingAttendeeEditor(container) {
+                var _this = this;
                 _super.call(this, container);
+                this.slickContainer.on('change', 'select', function (e) {
+                    var cell = _this.slickGrid.getCellFromEvent(e);
+                    if (!cell)
+                        return;
+                    var item = _this.itemAt(cell.row);
+                    var field = _this.slickGrid.getColumns()[cell.cell].field;
+                    item[field] = Q.toId($(e.target).val());
+                    _this.view.updateItem(_this.id(item), item);
+                });
             }
-            MeetingAttendeeGrid.prototype.getColumnsKey = function () { return 'Meeting.MeetingAttendee'; };
-            MeetingAttendeeGrid.prototype.getDialogType = function () { return Meeting.MeetingAttendeeDialog; };
-            MeetingAttendeeGrid.prototype.getIdProperty = function () { return Meeting.MeetingAttendeeRow.idProperty; };
-            MeetingAttendeeGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAttendeeRow.localTextPrefix; };
-            MeetingAttendeeGrid.prototype.getService = function () { return Meeting.MeetingAttendeeService.baseUrl; };
-            MeetingAttendeeGrid = __decorate([
+            MeetingAttendeeEditor.prototype.getColumnsKey = function () { return 'Meeting.MeetingAttendee'; };
+            MeetingAttendeeEditor.prototype.getDialogType = function () { return Meeting.MeetingAttendeeDialog; };
+            MeetingAttendeeEditor.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAttendeeRow.localTextPrefix; };
+            MeetingAttendeeEditor.prototype.getButtons = function () {
+                return [];
+            };
+            MeetingAttendeeEditor.prototype.createToolbarExtensions = function () {
+                var _this = this;
+                _super.prototype.createToolbarExtensions.call(this);
+                Serenity.Widget.create({
+                    type: Serenity.LookupEditor,
+                    options: {
+                        lookupKey: Serene.Organization.ContactRow.lookupKey
+                    },
+                    element: function (e) { return e.attr('placeholder', '--select contact to add--').appendTo(_this.toolbar.element); },
+                    init: function (w) { return w.changeSelect2(function (x) {
+                        if (Q.isEmptyOrNull(w.value))
+                            return;
+                        var contact = Serene.Organization.ContactRow.getLookup().itemById[Q.toId(w.value)];
+                        w.value = null;
+                        if (!contact)
+                            return;
+                        if (Q.any(_this.getItems(), function (i) { return i.ContactId == contact.ContactId; })) {
+                            Q.notifyWarning("Contact is already in attendee list!");
+                            return;
+                        }
+                        var item = {
+                            ContactId: contact.ContactId,
+                            ContactFullName: contact.FullName,
+                            AttendeeType: Meeting.MeetingAttendeeType.Attendee,
+                            AttendanceStatus: Meeting.MeetingAttendanceStatus.NotSet
+                        };
+                        _this.setNewId(item);
+                        var items = _this.getItems().slice();
+                        items.push(item);
+                        items.sort(function (a, b) { return Q.turkishLocaleCompare(a.ContactFullName, b.ContactFullName); });
+                        _this.setItems(items);
+                    }); }
+                });
+            };
+            MeetingAttendeeEditor.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.unshift({
+                    field: 'Remove Attendee',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action delete-row" title="delete">' +
+                        '<i class="fa fa-times text-red"></i></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                return columns;
+            };
+            MeetingAttendeeEditor.prototype.onClick = function (e, row, cell) {
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('delete-row')) {
+                        var items = this.getItems();
+                        items.splice(row, 1);
+                        this.setItems(items);
+                    }
+                }
+            };
+            MeetingAttendeeEditor = __decorate([
                 Serenity.Decorators.registerClass()
-            ], MeetingAttendeeGrid);
-            return MeetingAttendeeGrid;
-        }(Serenity.EntityGrid));
-        Meeting.MeetingAttendeeGrid = MeetingAttendeeGrid;
+            ], MeetingAttendeeEditor);
+            return MeetingAttendeeEditor;
+        }(Serene.Common.GridEditorBase));
+        Meeting.MeetingAttendeeEditor = MeetingAttendeeEditor;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
 var Serene;

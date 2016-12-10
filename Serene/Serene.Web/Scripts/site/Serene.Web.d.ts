@@ -602,9 +602,11 @@ declare namespace Serene.BasicSamples {
 declare namespace Serene.Common {
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
         protected getIdProperty(): string;
-        private nextId;
+        protected nextId: number;
         constructor(container: JQuery);
         protected id(entity: TEntity): any;
+        protected getNextId(): string;
+        protected setNewId(entity: TEntity): void;
         protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
         protected deleteEntity(id: number): boolean;
         protected validateEntity(row: TEntity, id: number): boolean;
@@ -1125,6 +1127,15 @@ declare namespace Serene.Common {
 }
 declare namespace Serene.DialogUtils {
     function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
+declare namespace Serene.Common {
+    class EnumSelectFormatter implements Slick.Formatter {
+        constructor();
+        format(ctx: Slick.FormatterContext): string;
+        enumKey: string;
+        allowClear: boolean;
+        emptyItemText: string;
+    }
 }
 declare namespace Serene.Common {
     interface ExcelExportOptions {
@@ -2039,6 +2050,14 @@ declare namespace Serene.Meeting {
     }
 }
 declare namespace Serene.Meeting {
+    enum MeetingAttendanceStatus {
+        NotSet = 0,
+        Attended = 1,
+        Absent = 2,
+        AbsentWithPermission = 3,
+    }
+}
+declare namespace Serene.Meeting {
 }
 declare namespace Serene.Meeting {
     class MeetingAttendeeForm extends Serenity.PrefixedContext {
@@ -2047,8 +2066,8 @@ declare namespace Serene.Meeting {
     interface MeetingAttendeeForm {
         MeetingId: Serenity.IntegerEditor;
         ContactId: Serenity.IntegerEditor;
-        AttendeeType: Serenity.IntegerEditor;
-        AttendanceStatus: Serenity.IntegerEditor;
+        AttendeeType: Serenity.EnumEditor;
+        AttendanceStatus: Serenity.EnumEditor;
     }
 }
 declare namespace Serene.Meeting {
@@ -2056,8 +2075,8 @@ declare namespace Serene.Meeting {
         AttendeeId?: number;
         MeetingId?: number;
         ContactId?: number;
-        AttendeeType?: number;
-        AttendanceStatus?: number;
+        AttendeeType?: MeetingAttendeeType;
+        AttendanceStatus?: MeetingAttendanceStatus;
         MeetingMeetingName?: string;
         MeetingMeetingNumber?: string;
         MeetingMeetingGuid?: string;
@@ -2075,6 +2094,7 @@ declare namespace Serene.Meeting {
         ContactTitle?: string;
         ContactFirstName?: string;
         ContactLastName?: string;
+        ContactFullName?: string;
         ContactEmail?: string;
         ContactIdentityNo?: string;
         ContactUserId?: number;
@@ -2105,6 +2125,7 @@ declare namespace Serene.Meeting {
             const ContactTitle: string;
             const ContactFirstName: string;
             const ContactLastName: string;
+            const ContactFullName: string;
             const ContactEmail: string;
             const ContactIdentityNo: string;
             const ContactUserId: string;
@@ -2112,20 +2133,9 @@ declare namespace Serene.Meeting {
     }
 }
 declare namespace Serene.Meeting {
-    namespace MeetingAttendeeService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<MeetingAttendeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingAttendeeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAttendeeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAttendeeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
+    enum MeetingAttendeeType {
+        Attendee = 1,
+        Guest = 2,
     }
 }
 declare namespace Serene.Meeting {
@@ -2334,14 +2344,15 @@ declare namespace Serene.Meeting {
     }
     interface MeetingForm {
         MeetingName: Serenity.StringEditor;
-        MeetingNumber: Serenity.StringEditor;
         MeetingTypeId: Serenity.LookupEditor;
+        MeetingNumber: Serenity.StringEditor;
         StartDate: Serenity.DateTimeEditor;
         EndDate: Serenity.DateTimeEditor;
         LocationId: Serenity.LookupEditor;
         UnitId: Organization.BusinessUnitEditor;
         OrganizerContactId: Serenity.LookupEditor;
         ReporterContactId: Serenity.LookupEditor;
+        AttendeeList: MeetingAttendeeEditor;
     }
 }
 declare namespace Serene.Meeting {
@@ -2428,6 +2439,7 @@ declare namespace Serene.Meeting {
         ReporterContactEmail?: string;
         ReporterContactIdentityNo?: string;
         ReporterContactUserId?: number;
+        AttendeeList?: MeetingAttendeeRow[];
         InsertUserId?: number;
         InsertDate?: string;
         UpdateUserId?: number;
@@ -2467,6 +2479,7 @@ declare namespace Serene.Meeting {
             const ReporterContactEmail: string;
             const ReporterContactIdentityNo: string;
             const ReporterContactUserId: string;
+            const AttendeeList: string;
             const InsertUserId: string;
             const InsertDate: string;
             const UpdateUserId: string;
@@ -3839,7 +3852,7 @@ declare namespace Serene.Organization {
         Email?: string;
         IdentityNo?: string;
         UserId?: number;
-        UserUsername?: string;
+        Username?: string;
         UserDisplayName?: string;
         UserEmail?: string;
         UserSource?: string;
@@ -3868,7 +3881,7 @@ declare namespace Serene.Organization {
             const Email: string;
             const IdentityNo: string;
             const UserId: string;
-            const UserUsername: string;
+            const Username: string;
             const UserDisplayName: string;
             const UserEmail: string;
             const UserSource: string;
@@ -4025,6 +4038,7 @@ declare namespace Serene.Meeting {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: MeetingForm;
+        protected updateInterface(): void;
     }
 }
 declare namespace Serene.Meeting {
@@ -4097,22 +4111,23 @@ declare namespace Serene.Meeting {
     }
 }
 declare namespace Serene.Meeting {
-    class MeetingAttendeeDialog extends Serenity.EntityDialog<MeetingAttendeeRow, any> {
+    class MeetingAttendeeDialog extends Common.GridEditorDialog<MeetingAttendeeRow> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
-        protected getService(): string;
         protected form: MeetingAttendeeForm;
     }
 }
 declare namespace Serene.Meeting {
-    class MeetingAttendeeGrid extends Serenity.EntityGrid<MeetingAttendeeRow, any> {
+    class MeetingAttendeeEditor extends Common.GridEditorBase<MeetingAttendeeRow> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof MeetingAttendeeDialog;
-        protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
-        protected getService(): string;
         constructor(container: JQuery);
+        protected getButtons(): any[];
+        protected createToolbarExtensions(): void;
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }
 declare namespace Serene.Meeting {

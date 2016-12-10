@@ -15,15 +15,23 @@ namespace Serene.Meeting.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Int32 MeetingId { get; set; }
-        [EditLink]
+        [EditLink, Width(200)]
         public String MeetingName { get; set; }
+        [Width(80)]
         public String MeetingNumber { get; set; }
+        [Width(120), QuickFilter]
         public String MeetingTypeName { get; set; }
+        [Width(125)]
         public DateTime StartDate { get; set; }
+        [Width(125)]
         public DateTime EndDate { get; set; }
+        [Width(120), QuickFilter]
         public String LocationName { get; set; }
+        [Width(150), QuickFilter]
         public String UnitName { get; set; }
+        [Width(150), QuickFilter]
         public String OrganizerContactFullName { get; set; }
+        [Width(150), QuickFilter]
         public String ReporterContactFullName { get; set; }
     }
 }

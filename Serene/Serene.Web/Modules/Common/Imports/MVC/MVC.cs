@@ -313,11 +313,6 @@ namespace MVC
                 public const string MeetingAgendaTypeIndex = "~/Modules/Meeting/MeetingAgendaType/MeetingAgendaTypeIndex.cshtml";
             }
 
-            public static class MeetingAttendee
-            {
-                public const string MeetingAttendeeIndex = "~/Modules/Meeting/MeetingAttendee/MeetingAttendeeIndex.cshtml";
-            }
-
             public static class MeetingDecision
             {
                 public const string MeetingDecisionIndex = "~/Modules/Meeting/MeetingDecision/MeetingDecisionIndex.cshtml";

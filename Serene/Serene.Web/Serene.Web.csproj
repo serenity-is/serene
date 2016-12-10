@@ -1865,7 +1865,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeDialog.ts" />
-    <Content Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1875,7 +1874,7 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeGrid.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEditor.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeDialog.ts" />
     <Content Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantRow.ts">
@@ -2105,6 +2104,8 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendanceStatus.cs" />
+    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeType.cs" />
     <Compile Include="Modules\Meeting\MeetingNavigation.cs" />
     <Compile Include="Modules\Meeting\MeetingPermissionKeys.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
@@ -2291,7 +2292,6 @@
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeColumns.cs" />
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeForm.cs" />
     <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeRepository.cs" />
-    <Compile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEndpoint.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantRow.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantColumns.cs" />
     <Compile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantForm.cs" />

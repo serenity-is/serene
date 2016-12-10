@@ -2,14 +2,10 @@
 
 namespace Serene.Meeting.Entities
 {
-    using Newtonsoft.Json;
-    using Serenity;
-    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
-    using System.IO;
 
     [ConnectionKey("Default"), DisplayName("MeetingAttendees"), InstanceName("MeetingAttendees"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
@@ -37,18 +33,18 @@ namespace Serene.Meeting.Entities
             set { Fields.ContactId[this] = value; }
         }
 
-        [DisplayName("Attendee Type"), NotNull]
-        public Int32? AttendeeType
+        [DisplayName("Attendee Type"), NotNull, DefaultValue(1)]
+        public MeetingAttendeeType? AttendeeType
         {
-            get { return Fields.AttendeeType[this]; }
-            set { Fields.AttendeeType[this] = value; }
+            get { return (MeetingAttendeeType?)Fields.AttendeeType[this]; }
+            set { Fields.AttendeeType[this] = (Int32?)value; }
         }
 
-        [DisplayName("Attendance Status"), NotNull]
-        public Int32? AttendanceStatus
+        [DisplayName("Attendance Status"), NotNull, DefaultValue(0)]
+        public MeetingAttendanceStatus? AttendanceStatus
         {
-            get { return Fields.AttendanceStatus[this]; }
-            set { Fields.AttendanceStatus[this] = value; }
+            get { return (MeetingAttendanceStatus?)Fields.AttendanceStatus[this]; }
+            set { Fields.AttendanceStatus[this] = (Int32?)value; }
         }
 
         [DisplayName("Meeting Meeting Name"), Expression("jMeeting.[MeetingName]")]
@@ -170,6 +166,14 @@ namespace Serene.Meeting.Entities
             set { Fields.ContactLastName[this] = value; }
         }
 
+        [DisplayName("Attendee Name")]
+        [Expression("CONCAT(CONCAT(jContact.FirstName, ' '), jContact.LastName)")]
+        public String ContactFullName
+        {
+            get { return Fields.ContactFullName[this]; }
+            set { Fields.ContactFullName[this] = value; }
+        }
+
         [DisplayName("Contact Email"), Expression("jContact.[Email]")]
         public String ContactEmail
         {
@@ -229,6 +233,7 @@ namespace Serene.Meeting.Entities
             public StringField ContactTitle;
             public StringField ContactFirstName;
             public StringField ContactLastName;
+            public StringField ContactFullName;
             public StringField ContactEmail;
             public StringField ContactIdentityNo;
             public Int32Field ContactUserId;

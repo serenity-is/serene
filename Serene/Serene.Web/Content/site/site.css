@@ -7354,10 +7354,25 @@ section.content > .s-DataGrid {
   background-image: url(../serenity/images/slash.png);
 }
 .s-Meeting-MeetingDialog > .size {
-  width: 650px;
+  width: 850px;
+  height: 550px;
 }
 .s-Meeting-MeetingDialog .caption {
-  width: 150px;
+  width: 120px;
+}
+@media (min-width: 768px) {
+  .s-Meeting-MeetingDialog .field.MeetingTypeId,
+  .s-Meeting-MeetingDialog .field.MeetingNumber,
+  .s-Meeting-MeetingDialog .field.StartDate,
+  .s-Meeting-MeetingDialog .field.EndDate,
+  .s-Meeting-MeetingDialog .field.OrganizerContactId,
+  .s-Meeting-MeetingDialog .field.ReporterContactId {
+    max-width: 50%;
+  }
+}
+.s-Meeting-MeetingAttendeeEditor .slick-cell select {
+  padding: 0;
+  width: 100%;
 }
 .s-Meeting-MeetingAgendaDialog > .size {
   width: 650px;
@@ -7375,12 +7390,6 @@ section.content > .s-DataGrid {
   width: 650px;
 }
 .s-Meeting-MeetingAgendaTypeDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingAttendeeDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingAttendeeDialog .caption {
   width: 150px;
 }
 .s-Meeting-MeetingDecisionDialog > .size {

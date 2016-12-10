@@ -8,7 +8,7 @@
         Email?: string;
         IdentityNo?: string;
         UserId?: number;
-        UserUsername?: string;
+        Username?: string;
         UserDisplayName?: string;
         UserEmail?: string;
         UserSource?: string;
@@ -42,7 +42,7 @@
             export declare const Email: string;
             export declare const IdentityNo: string;
             export declare const UserId: string;
-            export declare const UserUsername: string;
+            export declare const Username: string;
             export declare const UserDisplayName: string;
             export declare const UserEmail: string;
             export declare const UserSource: string;
@@ -57,7 +57,7 @@
             export declare const UserIsActive: string;
         }
 
-        ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'UserUsername', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(x => (<any>Fields)[x] = x);
+        ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

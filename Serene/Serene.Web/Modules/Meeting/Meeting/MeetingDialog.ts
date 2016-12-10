@@ -12,5 +12,10 @@ namespace Serene.Meeting {
 
         protected form = new MeetingForm(this.idPrefix);
 
+        protected updateInterface() {
+            super.updateInterface();
+
+            this.form.MeetingTypeId.readOnly = false;
+        }
     }
 }
