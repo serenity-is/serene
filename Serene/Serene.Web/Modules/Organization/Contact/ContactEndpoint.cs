@@ -10,7 +10,7 @@ namespace Serene.Organization.Endpoints
     using MyRow = Entities.ContactRow;
 
     [RoutePrefix("Services/Organization/Contact"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(PermissionKeys.Contacts.Management)]
     public class ContactController : ServiceEndpoint
     {
         [HttpPost]

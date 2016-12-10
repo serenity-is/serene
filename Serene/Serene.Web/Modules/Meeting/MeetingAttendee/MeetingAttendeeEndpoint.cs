@@ -10,7 +10,7 @@ namespace Serene.Meeting.Endpoints
     using MyRow = Entities.MeetingAttendeeRow;
 
     [RoutePrefix("Services/Meeting/MeetingAttendee"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(PermissionKeys.General)]
     public class MeetingAttendeeController : ServiceEndpoint
     {
         [HttpPost]

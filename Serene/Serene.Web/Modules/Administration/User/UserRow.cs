@@ -1,8 +1,6 @@
 ﻿
 namespace Serene.Administration.Entities
 {
-    using Newtonsoft.Json;
-    using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -10,9 +8,9 @@ namespace Serene.Administration.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
-    [ReadPermission(Administration.PermissionKeys.Security)]
-    [ModifyPermission(Administration.PermissionKeys.Security)]
-    [LookupScript("Administration.User", Permission = "?")]
+    [ReadPermission(PermissionKeys.Security)]
+    [ModifyPermission(PermissionKeys.Security)]
+    [LookupScript("Administration.User", Permission = PermissionKeys.Security)]
     public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity]

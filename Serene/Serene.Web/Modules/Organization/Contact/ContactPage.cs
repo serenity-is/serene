@@ -8,7 +8,7 @@ namespace Serene.Organization.Pages
     [RoutePrefix("Organization/Contact"), Route("{action=index}")]
     public class ContactController : Controller
     {
-        [PageAuthorize("Administration")]
+        [PageAuthorize(PermissionKeys.Contacts.Management)]
         public ActionResult Index()
         {
             return View("~/Modules/Organization/Contact/ContactIndex.cshtml");

@@ -2155,6 +2155,7 @@
     <Compile Include="Modules\Northwind\Supplier\SupplierCountryLookup.cs" />
     <Compile Include="Modules\Northwind\Territory\TerritoryColumns.cs" />
     <Compile Include="Modules\Northwind\NorthwindTexts.cs" />
+    <Compile Include="Modules\Organization\OrganizationPermissionKeys.cs" />
     <Compile Include="Modules\Organization\OrganizationNavigation.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />

@@ -8,7 +8,7 @@ namespace Serene.Organization.Pages
     [RoutePrefix("Organization/BusinessUnit"), Route("{action=index}")]
     public class BusinessUnitController : Controller
     {
-        [PageAuthorize(Administration.PermissionKeys.Security)]
+        [PageAuthorize(PermissionKeys.BusinessUnits.Management)]
         public ActionResult Index()
         {
             return View("~/Modules/Organization/BusinessUnit/BusinessUnitIndex.cshtml");

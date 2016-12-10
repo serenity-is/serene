@@ -12,8 +12,8 @@ namespace Serene.Meeting.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("MeetingAgendas"), InstanceName("MeetingAgendas"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     public sealed class MeetingAgendaRow : Row, IIdRow, INameRow
     {
         [DisplayName("Agenda Id"), Identity]

@@ -10,7 +10,7 @@ namespace Serene.Organization.Endpoints
     using MyRow = Entities.BusinessUnitRow;
 
     [RoutePrefix("Services/Organization/BusinessUnit"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize(Administration.PermissionKeys.Security)]
+    [ConnectionKey("Default"), ServiceAuthorize(PermissionKeys.BusinessUnits.Management)]
     public class BusinessUnitController : ServiceEndpoint
     {
         [HttpPost]

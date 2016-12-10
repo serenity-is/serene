@@ -8,7 +8,7 @@ namespace Serene.Meeting.Pages
     [RoutePrefix("Meeting/Meeting"), Route("{action=index}")]
     public class MeetingController : Controller
     {
-        [PageAuthorize("Administration")]
+        [PageAuthorize(PermissionKeys.General)]
         public ActionResult Index()
         {
             return View("~/Modules/Meeting/Meeting/MeetingIndex.cshtml");

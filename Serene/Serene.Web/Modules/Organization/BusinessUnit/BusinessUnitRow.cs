@@ -12,9 +12,9 @@ namespace Serene.Organization.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Business Units"), InstanceName("Business Unit"), TwoLevelCached]
-    [ReadPermission(Administration.PermissionKeys.Security)]
-    [ModifyPermission(Administration.PermissionKeys.Security)]
-    [LookupScript("Organization.BusinessUnit", Permission = "?")]
+    [ReadPermission(PermissionKeys.BusinessUnits.Management)]
+    [ModifyPermission(PermissionKeys.BusinessUnits.Management)]
+    [LookupScript("Organization.BusinessUnit", Permission = PermissionKeys.General)]
     public sealed class BusinessUnitRow : Row, IIdRow, INameRow
     {
         [DisplayName("Unit Id"), Identity]

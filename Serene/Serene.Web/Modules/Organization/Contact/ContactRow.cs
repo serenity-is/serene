@@ -2,19 +2,16 @@
 
 namespace Serene.Organization.Entities
 {
-    using Newtonsoft.Json;
-    using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
-    using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Contacts"), InstanceName("Contact"), TwoLevelCached]
-    [ReadPermission("Administration")]
-    [ModifyPermission("Administration")]
-    [LookupScript("Organization.Contact", Permission = "*")]
+    [ReadPermission(PermissionKeys.Contacts.Management)]
+    [ModifyPermission(PermissionKeys.Contacts.Management)]
+    [LookupScript("Organization.Contact", Permission = PermissionKeys.General)]
     public sealed class ContactRow : Row, IIdRow, INameRow
     {
         [DisplayName("Contact Id"), Identity]
@@ -75,11 +72,11 @@ namespace Serene.Organization.Entities
             set { Fields.UserId[this] = value; }
         }
 
-        [DisplayName("User Username"), Expression("jUser.[Username]")]
-        public String UserUsername
+        [DisplayName("Username"), Expression("jUser.[Username]")]
+        public String Username
         {
-            get { return Fields.UserUsername[this]; }
-            set { Fields.UserUsername[this] = value; }
+            get { return Fields.Username[this]; }
+            set { Fields.Username[this] = value; }
         }
 
         [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
@@ -194,7 +191,7 @@ namespace Serene.Organization.Entities
             public StringField IdentityNo;
             public Int32Field UserId;
 
-            public StringField UserUsername;
+            public StringField Username;
             public StringField UserDisplayName;
             public StringField UserEmail;
             public StringField UserSource;

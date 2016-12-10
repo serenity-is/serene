@@ -10,7 +10,7 @@ namespace Serene.Meeting.Endpoints
     using MyRow = Entities.MeetingAgendaRelevantRow;
 
     [RoutePrefix("Services/Meeting/MeetingAgendaRelevant"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize("Administration")]
+    [ConnectionKey("Default"), ServiceAuthorize(PermissionKeys.General)]
     public class MeetingAgendaRelevantController : ServiceEndpoint
     {
         [HttpPost]
