@@ -10,14 +10,14 @@ namespace Serene.Migrations
             this MigrationBase migration, string table, string idField,
             Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
         {
-            CreateTableWithId(migration, table, idField, addColumns, schema, 32);
+            CreateTableWithId(migration, table, idField, addColumns, schema, 32, checkExists);
         }
 
         public static void CreateTableWithId64(
             this MigrationBase migration, string table, string idField,
             Action<ICreateTableColumnOptionOrWithColumnSyntax> addColumns, string schema = null, bool checkExists = false)
         {
-            CreateTableWithId(migration, table, idField, addColumns, schema, 64);
+            CreateTableWithId(migration, table, idField, addColumns, schema, 64, checkExists);
         }
 
         private static void CreateTableWithId(
