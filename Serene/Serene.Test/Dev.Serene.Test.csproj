@@ -184,13 +184,6 @@
     <Content Include="phantomjs-license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="ScriptTests\Data\ColumnsBundle.js">
       <DependentUpon>Data.tt</DependentUpon>
     </Content>
@@ -212,8 +205,6 @@
     </Content>
     <Content Include="ScriptTests\Serene.Test.js" />
     <Content Include="ScriptTests\MultipleOutputHelper.ttinclude" />
-    <None Include="Scripts\jquery-3.1.1.min.map" />
-    <None Include="Scripts\jquery-3.1.1.slim.min.map" />
     <None Include="ScriptTests\Data\Data.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
