@@ -22,7 +22,7 @@ namespace Serene.BasicSamples {
                 ctx => `<a href="javascript:;" class="customer-link">${Q.htmlEncode(ctx.value)}</a>`;
 
             Q.first(columns, x => x.field == fld.OrderDate).format =
-                ctx => `<a href="javascript:;" class="date-link">${Q.formatDate(Q.parseISODateTime(ctx.value))}</a>`;
+                ctx => `<a href="javascript:;" class="date-link">${Q.formatDate(ctx.value)}</a>`;
 
             Q.first(columns, x => x.field == fld.EmployeeFullName).format =
                 ctx => `<a href="javascript:;" class="employee-link">${Q.htmlEncode(ctx.value)}</a>`;
@@ -79,7 +79,7 @@ namespace Serene.BasicSamples {
                 var ordersInSameDate = Q.count(this.view.getItems(), x => x.OrderDate == item.OrderDate);
 
                 Q.notifyInfo("You clicked an order from date " +
-                    Q.formatDate(Q.parseISODateTime(item.OrderDate)) + ". There are " +
+                    Q.formatDate(item.OrderDate) + ". There are " +
                     ordersInSameDate + " orders from the same date that is loaded in grid at the moment");
             }
             else if (target.hasClass("employee-link")) {
@@ -121,7 +121,7 @@ namespace Serene.BasicSamples {
                 // convert ID to an integer, and find order with that ID
                 var item = this.view.getItemById(Q.toId(entityOrId));
                 // date is a ISO string, so need to parse it first
-                var date = Q.formatDate(Q.parseISODateTime(item.OrderDate));
+                var date = Q.formatDate(item.OrderDate);
 
                 // ask for confirmation
                 Q.confirm(Q.format("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?",

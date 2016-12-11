@@ -501,12 +501,35 @@ var Q;
 /// <reference path="Q.Number.ts" />
 var Q;
 (function (Q) {
-    function formatDate(date, format) {
-        if (!date) {
+    function formatDate(d, format) {
+        if (!d) {
             return '';
         }
-        if (format == null) {
+        var date;
+        if (typeof d == "string") {
+            var res = Q.parseDate(d);
+            if (!res)
+                return d;
+            date = res;
+        }
+        else
+            date = d;
+        if (format == null || format == "d") {
             format = Q.Culture.dateFormat;
+        }
+        else {
+            switch (format) {
+                case "g":
+                    format = Q.Culture.dateTimeFormat.replace(":ss", "");
+                    break;
+                case "G":
+                    format = Q.Culture.dateTimeFormat;
+                    break;
+                case "s":
+                    format = "yyyy-MM-ddTHH:mm:ss";
+                    break;
+                case "u": return Q.formatISODateTimeUTC(date);
+            }
         }
         var pad = function (i) {
             return Q.zeroPad(i, 2);
@@ -673,6 +696,13 @@ var Q;
     function parseDate(s, dateOrder) {
         if (!s || !s.length)
             return null;
+        if (s.length >= 10 && s.charAt(4) === '-' && s.charAt(7) === '-' &&
+            (s.length === 10 || (s.length > 10 && s.charAt(10) === 'T'))) {
+            var res = Q.parseISODateTime(s);
+            if (res == null)
+                return false;
+            return res;
+        }
         var dateVal;
         var dArray;
         var d, m, y;
@@ -1983,6 +2013,7 @@ var Serenity;
     Serenity.EnumKeyAttribute = EnumKeyAttribute;
     var FlexifyAttribute = (function () {
         function FlexifyAttribute(value) {
+            if (value === void 0) { value = true; }
             this.value = value;
         }
         return FlexifyAttribute;
@@ -2162,8 +2193,9 @@ var Serenity;
         }
         Decorators.enumKey = enumKey;
         function flexify(value) {
+            if (value === void 0) { value = true; }
             return function (target) {
-                addAttribute(target, new Serenity.FlexifyAttribute(value || true));
+                addAttribute(target, new Serenity.FlexifyAttribute(value));
             };
         }
         Decorators.flexify = flexify;
@@ -4687,7 +4719,14 @@ var Q;
         oldShowLabel = p.showLabel;
         p.showLabel = validateShowLabel;
         $.validator.addMethod("dateQ", function (value, element) {
-            return this.optional(element) || Q.parseDate(value) != false;
+            if (this.optional(element))
+                return false;
+            var d = Q.parseDate(value);
+            if (!d)
+                return false;
+            var z = new Date(d);
+            z.setHours(0, 0, 0, 0);
+            return z.getTime() === d.getTime();
         });
         $.validator.addMethod("hourAndMin", function (value, element) {
             return this.optional(element) || !isNaN(Q.parseHourAndMin(value));

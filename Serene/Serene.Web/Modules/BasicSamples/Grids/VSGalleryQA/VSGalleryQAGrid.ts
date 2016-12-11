@@ -32,7 +32,7 @@
                 for (var post of posts) {
                     text += "<li class='" + (i++ % 2 == 0 ? 'even': 'odd') + "'><h4>";
                     text += post.PostedByName + " - ";
-                    text += Q.formatDate(Q.parseISODateTime(post.PostedOn), 'dd/MM/yyyy HH:mm');
+                    text += Q.formatDate(post.PostedOn, 'g');
                     text += "</h4><pre>";
                     text += Q.htmlEncode(post.Message);
                     text += "</pre></li>";

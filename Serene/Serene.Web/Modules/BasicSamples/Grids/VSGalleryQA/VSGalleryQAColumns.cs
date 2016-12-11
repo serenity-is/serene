@@ -16,9 +16,9 @@ namespace Serene.BasicSamples.Columns
         public string Posts { get; set; }
         [DisplayName("Started By"), Width(150), Sortable(false)]
         public DateTime StartedByName { get; set; }
-        [DisplayName("Started On"), Width(120), Sortable(false), DisplayFormat("dd/MM/yyyy HH:mm")]
+        [DisplayName("Started On"), Width(120), Sortable(false), DisplayFormat("g")]
         public DateTime StartedOn { get; set; }
-        [DisplayName("Last Post On"), Width(120), Sortable(false), DisplayFormat("dd/MM/yyyy HH:mm")]
+        [DisplayName("Last Post On"), Width(120), Sortable(false), DisplayFormat("g")]
         public DateTime LastPostOn { get; set; }
     }
 }

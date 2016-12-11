@@ -39,7 +39,7 @@
 
                     $('<a/>').attr('href', '#').addClass('note-date')
                         .text(item.InsertUserDisplayName + ' - ' +
-                            Q.formatDate(Q.parseISODateTime(item.InsertDate), 'dd/MM/yyyy HH:mm'))
+                            Q.formatDate(item.InsertDate, 'g'))
                         .data('index', index).appendTo(li).click((e) => this.editClick(e));
 
                     $('<a/>').attr('href', '#').addClass('note-delete')

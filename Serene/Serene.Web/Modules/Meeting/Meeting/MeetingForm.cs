@@ -15,7 +15,6 @@ namespace Serene.Meeting.Forms
     public class MeetingForm
     {
         public String MeetingName { get; set; }
-        [ReadOnly(true)]
         public Int32 MeetingTypeId { get; set; }
         public String MeetingNumber { get; set; }
         [DefaultValue("now")]

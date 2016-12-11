@@ -3313,7 +3313,7 @@ var Serene;
                 Q.first(columns, function (x) { return x.field == fld.CustomerCompanyName; }).format =
                     function (ctx) { return ("<a href=\"javascript:;\" class=\"customer-link\">" + Q.htmlEncode(ctx.value) + "</a>"); };
                 Q.first(columns, function (x) { return x.field == fld.OrderDate; }).format =
-                    function (ctx) { return ("<a href=\"javascript:;\" class=\"date-link\">" + Q.formatDate(Q.parseISODateTime(ctx.value)) + "</a>"); };
+                    function (ctx) { return ("<a href=\"javascript:;\" class=\"date-link\">" + Q.formatDate(ctx.value) + "</a>"); };
                 Q.first(columns, function (x) { return x.field == fld.EmployeeFullName; }).format =
                     function (ctx) { return ("<a href=\"javascript:;\" class=\"employee-link\">" + Q.htmlEncode(ctx.value) + "</a>"); };
                 Q.first(columns, function (x) { return x.field == fld.ShipCountry; }).format =
@@ -3352,7 +3352,7 @@ var Serene;
                     e.preventDefault();
                     var ordersInSameDate = Q.count(this.view.getItems(), function (x) { return x.OrderDate == item.OrderDate; });
                     Q.notifyInfo("You clicked an order from date " +
-                        Q.formatDate(Q.parseISODateTime(item.OrderDate)) + ". There are " +
+                        Q.formatDate(item.OrderDate) + ". There are " +
                         ordersInSameDate + " orders from the same date that is loaded in grid at the moment");
                 }
                 else if (target.hasClass("employee-link")) {
@@ -3389,7 +3389,7 @@ var Serene;
                     // convert ID to an integer, and find order with that ID
                     var item = this.view.getItemById(Q.toId(entityOrId));
                     // date is a ISO string, so need to parse it first
-                    var date = Q.formatDate(Q.parseISODateTime(item.OrderDate));
+                    var date = Q.formatDate(item.OrderDate);
                     // ask for confirmation
                     Q.confirm(Q.format("You clicked edit link for order with ID: {0} and Date: {1}. Should i open that order?", item.OrderID, date), function () {
                         new Serene.Northwind.OrderDialog().loadByIdAndOpenDialog(item.OrderID);
@@ -4475,7 +4475,7 @@ var Serene;
                         var post = posts_1[_i];
                         text += "<li class='" + (i++ % 2 == 0 ? 'even' : 'odd') + "'><h4>";
                         text += post.PostedByName + " - ";
-                        text += Q.formatDate(Q.parseISODateTime(post.PostedOn), 'dd/MM/yyyy HH:mm');
+                        text += Q.formatDate(post.PostedOn, 'g');
                         text += "</h4><pre>";
                         text += Q.htmlEncode(post.Message);
                         text += "</pre></li>";
@@ -8362,7 +8362,7 @@ var Serene;
                         $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
                         $('<a/>').attr('href', '#').addClass('note-date')
                             .text(item.InsertUserDisplayName + ' - ' +
-                            Q.formatDate(Q.parseISODateTime(item.InsertDate), 'dd/MM/yyyy HH:mm'))
+                            Q.formatDate(item.InsertDate, 'g'))
                             .data('index', index).appendTo(li).click(function (e) { return _this.editClick(e); });
                         $('<a/>').attr('href', '#').addClass('note-delete')
                             .attr('title', 'delete note').data('index', index)

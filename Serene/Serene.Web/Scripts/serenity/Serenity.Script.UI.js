@@ -403,10 +403,10 @@
 				return null;
 			}
 			if (!ss.isNullOrEmptyString(this.get_minValue()) && ss.compareStrings(value, this.get_minValue()) < 0) {
-				return ss.formatString(Q.text('Validation.MinDate'), Q.formatDate(Q.parseISODateTime(this.get_minValue()), null));
+				return ss.formatString(Q.text('Validation.MinDate'), Q.formatDate(this.get_minValue(), null));
 			}
 			if (!ss.isNullOrEmptyString(this.get_maxValue()) && ss.compareStrings(value, this.get_maxValue()) >= 0) {
-				return ss.formatString(Q.text('Validation.MaxDate'), Q.formatDate(Q.parseISODateTime(this.get_maxValue()), null));
+				return ss.formatString(Q.text('Validation.MaxDate'), Q.formatDate(this.get_maxValue(), null));
 			}
 			return null;
 		}));
@@ -626,10 +626,10 @@
 				return null;
 			}
 			if (!ss.isNullOrEmptyString(this.get_minValue()) && ss.compareStrings(value, this.get_minValue()) < 0) {
-				return ss.formatString(Q.text('Validation.MinDate'), Q.formatDate(Q.parseISODateTime(this.get_minValue()), null));
+				return ss.formatString(Q.text('Validation.MinDate'), Q.formatDate(this.get_minValue(), null));
 			}
 			if (!ss.isNullOrEmptyString(this.get_maxValue()) && ss.compareStrings(value, this.get_maxValue()) >= 0) {
-				return ss.formatString(Q.text('Validation.MaxDate'), Q.formatDate(Q.parseISODateTime(this.get_maxValue()), null));
+				return ss.formatString(Q.text('Validation.MaxDate'), Q.formatDate(this.get_maxValue(), null));
 			}
 			return null;
 		}));
@@ -6628,7 +6628,7 @@
 			if (ss.isValue(value) && value.length === 0) {
 				return null;
 			}
-			return Q.formatDate(Q.parseDate(value), 'yyyy-MM-dd');
+			return Q.formatDate(value, 'yyyy-MM-dd');
 		},
 		set_value: function(value) {
 			if (ss.isNullOrUndefined(value)) {
@@ -6638,7 +6638,7 @@
 				this.element.val(Q.formatDate(ss.today(), null));
 			}
 			else {
-				this.element.val(Q.formatDate(Q.parseISODateTime(value), null));
+				this.element.val(Q.formatDate(value, null));
 			}
 		},
 		get_valueAsDate: function() {
@@ -6728,7 +6728,7 @@
 			if (ss.isValue(value) && value.length === 0) {
 				return null;
 			}
-			var datePart = Q.formatDate(Q.parseDate(value), 'yyyy-MM-dd');
+			var datePart = Q.formatDate(value, 'yyyy-MM-dd');
 			var timePart = this.$time.val();
 			return datePart + 'T' + timePart + ':00.000';
 		},
