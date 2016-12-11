@@ -667,6 +667,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="BulkServiceAction.ts">BulkServiceAction.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DetailListSaveHandler.cs">DetailListSaveHandler.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DialogUtils.ts">DialogUtils.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="EnumSelectFormatter.ts">EnumSelectFormatter.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.ts">ExcelExportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.cs">ExcelImportRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberHelper.cs">GetNextNumberHelper.cs</ProjectItem>
@@ -687,6 +688,8 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageFormatterAttribute.cs">BasicSamples.InlineImageFormatterAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="ClientTypes.log">ClientTypes.log</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Common.EnumSelectFormatterAttribute.cs">Common.EnumSelectFormatterAttribute.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeEditorAttribute.cs">Meeting.MeetingAttendeeEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerEditorAttribute.cs">Northwind.CustomerEditorAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeFormatterAttribute.cs">Northwind.EmployeeFormatterAttribute.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeListFormatterAttribute.cs">Northwind.EmployeeListFormatterAttribute.cs</ProjectItem>
@@ -783,10 +786,11 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeForm.ts">Meeting.MeetingAgendaTypeForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeRow.ts">Meeting.MeetingAgendaTypeRow.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeService.ts">Meeting.MeetingAgendaTypeService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendanceStatus.ts">Meeting.MeetingAttendanceStatus.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeColumns.ts">Meeting.MeetingAttendeeColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeForm.ts">Meeting.MeetingAttendeeForm.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeRow.ts">Meeting.MeetingAttendeeRow.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeService.ts">Meeting.MeetingAttendeeService.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeType.ts">Meeting.MeetingAttendeeType.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingColumns.ts">Meeting.MeetingColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionColumns.ts">Meeting.MeetingDecisionColumns.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionForm.ts">Meeting.MeetingDecisionForm.ts</ProjectItem>
@@ -984,14 +988,14 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeRow.cs">MeetingAgendaTypeRow.cs</ProjectItem>
           </Folder>
           <Folder Name="MeetingAttendee" TargetFolderName="MeetingAttendee">
+            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendanceStatus.cs">MeetingAttendanceStatus.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeColumns.cs">MeetingAttendeeColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeDialog.ts">MeetingAttendeeDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeEndpoint.cs">MeetingAttendeeEndpoint.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeEditor.ts">MeetingAttendeeEditor.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeForm.cs">MeetingAttendeeForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeGrid.ts">MeetingAttendeeGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeIndex.cshtml">MeetingAttendeeIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeRepository.cs">MeetingAttendeeRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeRow.cs">MeetingAttendeeRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeType.cs">MeetingAttendeeType.cs</ProjectItem>
           </Folder>
           <Folder Name="MeetingDecision" TargetFolderName="MeetingDecision">
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionColumns.cs">MeetingDecisionColumns.cs</ProjectItem>
@@ -1279,6 +1283,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ContactRow.cs">ContactRow.cs</ProjectItem>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="OrganizationNavigation.cs">OrganizationNavigation.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="OrganizationPermissionKeys.cs">OrganizationPermissionKeys.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
@@ -1582,12 +1587,12 @@
       <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.7" />
-      <installPackage id="Serenity.Core" version="2.6.7" />
-      <installPackage id="Serenity.Data" version="2.6.7" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.7" />
-      <installPackage id="Serenity.Services" version="2.6.7" />
-      <installPackage id="Serenity.Web" version="2.6.7" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.8" />
+      <installPackage id="Serenity.Core" version="2.6.8" />
+      <installPackage id="Serenity.Data" version="2.6.8" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.8" />
+      <installPackage id="Serenity.Services" version="2.6.8" />
+      <installPackage id="Serenity.Web" version="2.6.8" />
       <installPackage id="Serenity.Web.Assets" version="2.6.6" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
