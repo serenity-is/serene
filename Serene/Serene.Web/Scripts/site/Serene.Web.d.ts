@@ -4038,8 +4038,11 @@ declare namespace Serene.Meeting {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: MeetingForm;
+        private agendaGrid;
+        private decisionGrid;
         constructor();
         protected arrange(): void;
+        loadEntity(entity: MeetingRow): void;
     }
 }
 declare namespace Serene.Meeting {

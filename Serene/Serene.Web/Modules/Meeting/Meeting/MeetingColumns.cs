@@ -15,9 +15,9 @@ namespace Serene.Meeting.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Int32 MeetingId { get; set; }
-        [EditLink, Width(200)]
+        [EditLink, Width(250)]
         public String MeetingName { get; set; }
-        [Width(90)]
+        [Width(125)]
         public String MeetingNumber { get; set; }
         [Width(120), QuickFilter]
         public String MeetingTypeName { get; set; }

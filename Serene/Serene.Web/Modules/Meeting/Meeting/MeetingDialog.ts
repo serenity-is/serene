@@ -13,6 +13,9 @@ namespace Serene.Meeting {
 
         protected form = new MeetingForm(this.idPrefix);
 
+        private agendaGrid = new MeetingAgendaGrid(this.byId('AgendaGrid'));
+        private decisionGrid = new MeetingDecisionGrid(this.byId('DecisionGrid'));
+
         constructor() {
             super();
 
@@ -35,5 +38,15 @@ namespace Serene.Meeting {
             attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
                 .triggerHandler('layout');
         }
+
+        loadEntity(entity: MeetingRow) {
+            super.loadEntity(entity);
+
+            Serenity.TabsExtensions.setDisabled(this.tabs, 'Agenda', this.isNewOrDeleted());
+            Serenity.TabsExtensions.setDisabled(this.tabs, 'Decision', this.isNewOrDeleted());
+
+            //this.agendaGrid.customerID = entity.CustomerID;
+        }
+
     }
 }

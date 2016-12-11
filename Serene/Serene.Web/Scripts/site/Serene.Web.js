@@ -7399,6 +7399,8 @@ var Serene;
                 var _this = this;
                 _super.call(this);
                 this.form = new Meeting.MeetingForm(this.idPrefix);
+                this.agendaGrid = new Meeting.MeetingAgendaGrid(this.byId('AgendaGrid'));
+                this.decisionGrid = new Meeting.MeetingDecisionGrid(this.byId('DecisionGrid'));
                 this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-maximize').click();
                 this.form.EndDate.addValidationRule(this.uniqueName, function (e) {
                     if (_this.form.EndDate.valueAsDate != null &&
@@ -7419,6 +7421,12 @@ var Serene;
                 var attendeeGrid = this.form.AttendeeList.element.find('.grid-container');
                 attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
                     .triggerHandler('layout');
+            };
+            MeetingDialog.prototype.loadEntity = function (entity) {
+                _super.prototype.loadEntity.call(this, entity);
+                Serenity.TabsExtensions.setDisabled(this.tabs, 'Agenda', this.isNewOrDeleted());
+                Serenity.TabsExtensions.setDisabled(this.tabs, 'Decision', this.isNewOrDeleted());
+                //this.agendaGrid.customerID = entity.CustomerID;
             };
             MeetingDialog = __decorate([
                 Serenity.Decorators.maximizable(),

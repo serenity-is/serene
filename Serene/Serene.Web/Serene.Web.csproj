@@ -506,6 +506,7 @@
     <Content Include="Fonts\ionicons.svg" />
     <Content Include="Fonts\Simple-Line-Icons.svg" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
+    <Content Include="Modules\Meeting\Meeting\Meeting.MeetingDialog.Template.html" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
