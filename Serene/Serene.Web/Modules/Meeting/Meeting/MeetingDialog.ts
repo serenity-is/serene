@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.Meeting {
 
+    @Serenity.Decorators.maximizable()
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.responsive()
     export class MeetingDialog extends Serenity.EntityDialog<MeetingRow, any> {
@@ -12,10 +13,27 @@ namespace Serene.Meeting {
 
         protected form = new MeetingForm(this.idPrefix);
 
-        protected updateInterface() {
-            super.updateInterface();
+        constructor() {
+            super();
 
-            this.form.MeetingTypeId.readOnly = false;
+            this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-maximize').click();
+
+            this.form.EndDate.addValidationRule(this.uniqueName, e => {
+                if (this.form.EndDate.valueAsDate != null &&
+                    this.form.StartDate.valueAsDate != null &&
+                    this.form.StartDate.valueAsDate > this.form.EndDate.valueAsDate) {
+                    return "End Date can't be earlier than Start Date";
+                }
+
+                return null;
+            });
+        }
+
+        protected arrange() {
+            super.arrange();
+            var attendeeGrid = this.form.AttendeeList.element.find('.grid-container');
+            attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
+                .triggerHandler('layout');
         }
     }
 }

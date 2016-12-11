@@ -21,8 +21,6 @@
 
             this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
             DialogUtils.pendingChangesConfirmation(this.element, () => this.getSaveState() != this.loadedState);
-
-            this.tabs.bind('tabsactivate', () => this.arrange());
         }
 
         getSaveState() {

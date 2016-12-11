@@ -4038,7 +4038,8 @@ declare namespace Serene.Meeting {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: MeetingForm;
-        protected updateInterface(): void;
+        constructor();
+        protected arrange(): void;
     }
 }
 declare namespace Serene.Meeting {

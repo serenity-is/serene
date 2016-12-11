@@ -942,7 +942,6 @@ var Serene;
                         ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
                     });
                 });
-                this.element.closest('.ui-dialog').bind('resize', function () { return _this.arrange(); });
             };
             ChartInDialog.prototype.arrange = function () {
                 _super.prototype.arrange.call(this);
@@ -2358,7 +2357,6 @@ var Serene;
                 this.ordersGrid.element.flexHeightOnly(1);
                 this.byId('NoteList').closest('.field').hide().end().appendTo(this.byId('TabNotes'));
                 Serene.DialogUtils.pendingChangesConfirmation(this.element, function () { return _this.getSaveState() != _this.loadedState; });
-                this.tabs.bind('tabsactivate', function () { return _this.arrange(); });
             }
             CustomerDialog.prototype.getFormKey = function () { return Northwind.CustomerForm.formKey; };
             CustomerDialog.prototype.getIdProperty = function () { return Northwind.CustomerRow.idProperty; };
@@ -7398,19 +7396,32 @@ var Serene;
         var MeetingDialog = (function (_super) {
             __extends(MeetingDialog, _super);
             function MeetingDialog() {
-                _super.apply(this, arguments);
+                var _this = this;
+                _super.call(this);
                 this.form = new Meeting.MeetingForm(this.idPrefix);
+                this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-maximize').click();
+                this.form.EndDate.addValidationRule(this.uniqueName, function (e) {
+                    if (_this.form.EndDate.valueAsDate != null &&
+                        _this.form.StartDate.valueAsDate != null &&
+                        _this.form.StartDate.valueAsDate > _this.form.EndDate.valueAsDate) {
+                        return "End Date can't be earlier than Start Date";
+                    }
+                    return null;
+                });
             }
             MeetingDialog.prototype.getFormKey = function () { return Meeting.MeetingForm.formKey; };
             MeetingDialog.prototype.getIdProperty = function () { return Meeting.MeetingRow.idProperty; };
             MeetingDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingRow.localTextPrefix; };
             MeetingDialog.prototype.getNameProperty = function () { return Meeting.MeetingRow.nameProperty; };
             MeetingDialog.prototype.getService = function () { return Meeting.MeetingService.baseUrl; };
-            MeetingDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                this.form.MeetingTypeId.readOnly = false;
+            MeetingDialog.prototype.arrange = function () {
+                _super.prototype.arrange.call(this);
+                var attendeeGrid = this.form.AttendeeList.element.find('.grid-container');
+                attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
+                    .triggerHandler('layout');
             };
             MeetingDialog = __decorate([
+                Serenity.Decorators.maximizable(),
                 Serenity.Decorators.registerClass(),
                 Serenity.Decorators.responsive()
             ], MeetingDialog);

@@ -28,13 +28,10 @@ namespace Serene.BasicSamples {
                     ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
                 });
             });
-
-            this.element.closest('.ui-dialog').bind('resize', () => this.arrange());
         }
 
         protected arrange() {
             super.arrange();
-
             this.areaChart && this.areaChart.redraw();
         }
 
