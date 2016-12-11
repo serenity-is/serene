@@ -13,16 +13,15 @@ namespace Serene.Meeting.Columns
     [BasedOnRow(typeof(Entities.MeetingAgendaRow))]
     public class MeetingAgendaColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
-        public Int32 AgendaId { get; set; }
-        public Int32 MeetingId { get; set; }
+        [EditLink, AlignRight]
         public Int32 AgendaNumber { get; set; }
-        [EditLink]
+        [EditLink, Width(250)]
         public String Title { get; set; }
+        [Width(350)]
         public String Description { get; set; }
-        public Int32 AgendaTypeId { get; set; }
-        public Int32 RequestedByContactId { get; set; }
-        public String Images { get; set; }
-        public String Attachments { get; set; }
+        [Width(130)]
+        public String AgendaTypeName { get; set; }
+        [Width(130)]
+        public Int32 RequestedByContactFullName { get; set; }
     }
 }

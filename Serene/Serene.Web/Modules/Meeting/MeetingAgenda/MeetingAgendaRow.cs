@@ -11,7 +11,7 @@ namespace Serene.Meeting.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MeetingAgendas"), InstanceName("MeetingAgendas"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Agenda"), InstanceName("Agenda"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class MeetingAgendaRow : Row, IIdRow, INameRow
@@ -30,7 +30,7 @@ namespace Serene.Meeting.Entities
             set { Fields.MeetingId[this] = value; }
         }
 
-        [DisplayName("Agenda Number"), NotNull]
+        [DisplayName("No"), NotNull]
         public Int32? AgendaNumber
         {
             get { return Fields.AgendaNumber[this]; }
@@ -65,14 +65,14 @@ namespace Serene.Meeting.Entities
             set { Fields.RequestedByContactId[this] = value; }
         }
 
-        [DisplayName("Images")]
+        [DisplayName("Images"), MultipleImageUploadEditor]
         public String Images
         {
             get { return Fields.Images[this]; }
             set { Fields.Images[this] = value; }
         }
 
-        [DisplayName("Attachments")]
+        [DisplayName("Attachments"), MultipleFileUploadEditor]
         public String Attachments
         {
             get { return Fields.Attachments[this]; }
@@ -177,7 +177,7 @@ namespace Serene.Meeting.Entities
             set { Fields.MeetingUpdateDate[this] = value; }
         }
 
-        [DisplayName("Agenda Type Name"), Expression("jAgendaType.[Name]")]
+        [DisplayName("Agenda Type"), Expression("jAgendaType.[Name]")]
         public String AgendaTypeName
         {
             get { return Fields.AgendaTypeName[this]; }
@@ -203,6 +203,14 @@ namespace Serene.Meeting.Entities
         {
             get { return Fields.RequestedByContactLastName[this]; }
             set { Fields.RequestedByContactLastName[this] = value; }
+        }
+
+        [DisplayName("Requested By")]
+        [Expression("CONCAT(CONCAT(jRequestedByContact.FirstName, ' '), jRequestedByContact.LastName)")]
+        public String RequestedByContactFullName
+        {
+            get { return Fields.RequestedByContactFullName[this]; }
+            set { Fields.RequestedByContactFullName[this] = value; }
         }
 
         [DisplayName("Requested By Contact Email"), Expression("jRequestedByContact.[Email]")]
@@ -275,6 +283,7 @@ namespace Serene.Meeting.Entities
             public StringField RequestedByContactTitle;
             public StringField RequestedByContactFirstName;
             public StringField RequestedByContactLastName;
+            public StringField RequestedByContactFullName;
             public StringField RequestedByContactEmail;
             public StringField RequestedByContactIdentityNo;
             public Int32Field RequestedByContactUserId;

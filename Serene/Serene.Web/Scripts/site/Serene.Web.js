@@ -7419,7 +7419,7 @@ var Serene;
             MeetingDialog.prototype.arrange = function () {
                 _super.prototype.arrange.call(this);
                 var attendeeGrid = this.form.AttendeeList.element.find('.grid-container');
-                attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
+                attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 15) + 'px')
                     .triggerHandler('layout');
             };
             MeetingDialog.prototype.loadEntity = function (entity) {
@@ -7498,6 +7498,29 @@ var Serene;
             MeetingAgendaGrid.prototype.getIdProperty = function () { return Meeting.MeetingAgendaRow.idProperty; };
             MeetingAgendaGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaRow.localTextPrefix; };
             MeetingAgendaGrid.prototype.getService = function () { return Meeting.MeetingAgendaService.baseUrl; };
+            MeetingAgendaGrid.prototype.addButtonClick = function () {
+                this.editItem({ MeetingId: this.meetingId });
+            };
+            MeetingAgendaGrid.prototype.getInitialTitle = function () {
+                return null;
+            };
+            MeetingAgendaGrid.prototype.getGridCanLoad = function () {
+                return _super.prototype.getGridCanLoad.call(this) && !!this.meetingId;
+            };
+            Object.defineProperty(MeetingAgendaGrid.prototype, "meetingId", {
+                get: function () {
+                    return this._meetingId;
+                },
+                set: function (value) {
+                    if (this._meetingId !== value) {
+                        this._meetingId = value;
+                        this.setEquality('MeetingId', value);
+                        this.refresh();
+                    }
+                },
+                enumerable: true,
+                configurable: true
+            });
             MeetingAgendaGrid = __decorate([
                 Serenity.Decorators.registerClass()
             ], MeetingAgendaGrid);
@@ -7755,6 +7778,29 @@ var Serene;
             MeetingDecisionGrid.prototype.getIdProperty = function () { return Meeting.MeetingDecisionRow.idProperty; };
             MeetingDecisionGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingDecisionRow.localTextPrefix; };
             MeetingDecisionGrid.prototype.getService = function () { return Meeting.MeetingDecisionService.baseUrl; };
+            MeetingDecisionGrid.prototype.addButtonClick = function () {
+                this.editItem({ MeetingId: this.meetingId });
+            };
+            MeetingDecisionGrid.prototype.getInitialTitle = function () {
+                return null;
+            };
+            MeetingDecisionGrid.prototype.getGridCanLoad = function () {
+                return _super.prototype.getGridCanLoad.call(this) && !!this.meetingId;
+            };
+            Object.defineProperty(MeetingDecisionGrid.prototype, "meetingId", {
+                get: function () {
+                    return this._meetingId;
+                },
+                set: function (value) {
+                    if (this._meetingId !== value) {
+                        this._meetingId = value;
+                        this.setEquality('MeetingId', value);
+                        this.refresh();
+                    }
+                },
+                enumerable: true,
+                configurable: true
+            });
             MeetingDecisionGrid = __decorate([
                 Serenity.Decorators.registerClass()
             ], MeetingDecisionGrid);

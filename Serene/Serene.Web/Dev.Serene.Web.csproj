@@ -1834,7 +1834,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantDialog.ts" />
-    <Content Include="Modules\Meeting\MeetingAgenda\MeetingAgendaIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1878,7 +1877,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantDialog.ts" />
-    <Content Include="Modules\Meeting\MeetingDecision\MeetingDecisionIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>

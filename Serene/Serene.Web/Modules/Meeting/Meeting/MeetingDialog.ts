@@ -35,7 +35,7 @@ namespace Serene.Meeting {
         protected arrange() {
             super.arrange();
             var attendeeGrid = this.form.AttendeeList.element.find('.grid-container');
-            attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 10) + 'px')
+            attendeeGrid.css('height', Math.max(150, this.element.height() - attendeeGrid.position().top - 15) + 'px')
                 .triggerHandler('layout');
         }
 

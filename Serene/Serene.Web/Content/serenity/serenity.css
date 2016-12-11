@@ -1459,6 +1459,11 @@ body.mobile-device.modal-dialog-open {
   border-radius: 0px;
   padding: 4px;
   background-color: #eee;
+  margin-bottom: 0;
+}
+.s-ImageUploadEditor .s-Toolbar .tool-button,
+.s-MultipleImageUploadEditor .s-Toolbar .tool-button {
+  margin-bottom: 0;
 }
 .s-MultipleImageUploadEditor li {
   float: left;

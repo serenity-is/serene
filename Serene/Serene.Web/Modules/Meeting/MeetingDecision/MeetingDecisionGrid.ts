@@ -12,5 +12,31 @@ namespace Serene.Meeting {
         constructor(container: JQuery) {
             super(container);
         }
+
+        protected addButtonClick() {
+            this.editItem({ MeetingId: this.meetingId });
+        }
+
+        protected getInitialTitle() {
+            return null;
+        }
+
+        protected getGridCanLoad() {
+            return super.getGridCanLoad() && !!this.meetingId;
+        }
+
+        private _meetingId: string;
+
+        get meetingId() {
+            return this._meetingId;
+        }
+
+        set meetingId(value: string) {
+            if (this._meetingId !== value) {
+                this._meetingId = value;
+                this.setEquality('MeetingId', value);
+                this.refresh();
+            }
+        }
     }
 }

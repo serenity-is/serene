@@ -4038,8 +4038,11 @@ declare namespace Serene.Meeting {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: MeetingForm;
+        private agendaGrid;
+        private decisionGrid;
         constructor();
         protected arrange(): void;
+        loadEntity(entity: MeetingRow): void;
     }
 }
 declare namespace Serene.Meeting {
@@ -4070,6 +4073,11 @@ declare namespace Serene.Meeting {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _meetingId;
+        meetingId: string;
     }
 }
 declare namespace Serene.Meeting {
@@ -4149,6 +4157,11 @@ declare namespace Serene.Meeting {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _meetingId;
+        meetingId: string;
     }
 }
 declare namespace Serene.Meeting {

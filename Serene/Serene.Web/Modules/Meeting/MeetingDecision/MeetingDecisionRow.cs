@@ -11,7 +11,7 @@ namespace Serene.Meeting.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), DisplayName("MeetingDecisions"), InstanceName("MeetingDecisions"), TwoLevelCached]
+    [ConnectionKey("Default"), DisplayName("Decisions"), InstanceName("Decision"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class MeetingDecisionRow : Row, IIdRow, INameRow
@@ -191,11 +191,11 @@ namespace Serene.Meeting.Entities
             set { Fields.AgendaMeetingId[this] = value; }
         }
 
-        [DisplayName("Agenda Agenda Number"), Expression("jAgenda.[AgendaNumber]")]
-        public Int32? AgendaAgendaNumber
+        [DisplayName("Agenda No"), Expression("jAgenda.[AgendaNumber]")]
+        public Int32? AgendaNumber
         {
-            get { return Fields.AgendaAgendaNumber[this]; }
-            set { Fields.AgendaAgendaNumber[this] = value; }
+            get { return Fields.AgendaNumber[this]; }
+            set { Fields.AgendaNumber[this] = value; }
         }
 
         [DisplayName("Agenda Title"), Expression("jAgenda.[Title]")]
@@ -268,6 +268,14 @@ namespace Serene.Meeting.Entities
             set { Fields.ResponsibleContactLastName[this] = value; }
         }
 
+        [DisplayName("Requested By")]
+        [Expression("CONCAT(CONCAT(jResponsibleContact.FirstName, ' '), jResponsibleContact.LastName)")]
+        public String ResponsibleContactFullName
+        {
+            get { return Fields.ResponsibleContactFullName[this]; }
+            set { Fields.ResponsibleContactFullName[this] = value; }
+        }
+
         [DisplayName("Responsible Contact Email"), Expression("jResponsibleContact.[Email]")]
         public String ResponsibleContactEmail
         {
@@ -335,7 +343,7 @@ namespace Serene.Meeting.Entities
             public DateTimeField MeetingUpdateDate;
 
             public Int32Field AgendaMeetingId;
-            public Int32Field AgendaAgendaNumber;
+            public Int32Field AgendaNumber;
             public StringField AgendaTitle;
             public StringField AgendaDescription;
             public Int32Field AgendaAgendaTypeId;
@@ -348,6 +356,7 @@ namespace Serene.Meeting.Entities
             public StringField ResponsibleContactTitle;
             public StringField ResponsibleContactFirstName;
             public StringField ResponsibleContactLastName;
+            public StringField ResponsibleContactFullName;
             public StringField ResponsibleContactEmail;
             public StringField ResponsibleContactIdentityNo;
             public Int32Field ResponsibleContactUserId;
