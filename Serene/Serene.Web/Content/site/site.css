@@ -7496,6 +7496,9 @@ section.content > .s-DataGrid {
 .page-content .s-LoginPanel a {
   color: aqua;
 }
+.page-content .s-LoginPanel .s-PropertyGrid .categories {
+  height: auto;
+}
 .page-content .s-LoginPanel .flex-layout .s-PropertyGrid {
   display: block;
 }

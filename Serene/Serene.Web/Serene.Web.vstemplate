@@ -946,6 +946,7 @@
         </Folder>
         <Folder Name="Meeting" TargetFolderName="Meeting">
           <Folder Name="Meeting" TargetFolderName="Meeting">
+            <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDialog.Template.html">Meeting.MeetingDialog.Template.html</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingColumns.cs">MeetingColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDialog.ts">MeetingDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingEndpoint.cs">MeetingEndpoint.cs</ProjectItem>
@@ -962,7 +963,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaEndpoint.cs">MeetingAgendaEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaForm.cs">MeetingAgendaForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaGrid.ts">MeetingAgendaGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaIndex.cshtml">MeetingAgendaIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRepository.cs">MeetingAgendaRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRow.cs">MeetingAgendaRow.cs</ProjectItem>
           </Folder>
@@ -1003,7 +1003,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionEndpoint.cs">MeetingDecisionEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionForm.cs">MeetingDecisionForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionGrid.ts">MeetingDecisionGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionIndex.cshtml">MeetingDecisionIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRepository.cs">MeetingDecisionRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRow.cs">MeetingDecisionRow.cs</ProjectItem>
           </Folder>
@@ -1451,9 +1450,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
         </Folder>
-        <Folder Name="serenity" TargetFolderName="serenity">
-          <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Externals.js">Serenity.Externals.js</ProjectItem>
-        </Folder>
         <Folder Name="site" TargetFolderName="site">
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
@@ -1566,7 +1562,7 @@
     <packagesToInstall>
       <installPackage id="bootstrap" version="3.3.7" />
       <installPackage id="CsQuery" version="1.3.4" />
-      <installPackage id="Dapper" version="1.42" />
+      <installPackage id="Dapper" version="1.50.2" />
       <installPackage id="EPPlus" version="4.1.0" />
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator" version="1.6.2" />
@@ -1576,29 +1572,29 @@
       <installPackage id="jquery.cookie.TypeScript.DefinitelyTyped" version="0.2.1" />
       <installPackage id="jquery.TypeScript.DefinitelyTyped" version="3.1.2" />
       <installPackage id="jQuery.UI.Combined" version="1.12.1" />
-      <installPackage id="jQuery.Validation" version="1.15.1" />
-      <installPackage id="jquery.validation.TypeScript.DefinitelyTyped" version="0.4.5" />
+      <installPackage id="jQuery.Validation" version="1.16.0" />
+      <installPackage id="jquery.validation.TypeScript.DefinitelyTyped" version="0.4.6" />
       <installPackage id="jqueryui.TypeScript.DefinitelyTyped" version="1.5.1" />
       <installPackage id="jspdf.TypeScript.DefinitelyTyped" version="0.0.4" />
       <installPackage id="Microsoft.AspNet.Mvc" version="5.2.3" />
       <installPackage id="Microsoft.AspNet.Razor" version="3.2.3" />
       <installPackage id="Microsoft.AspNet.WebPages" version="3.2.3" />
       <installPackage id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <installPackage id="MsieJavaScriptEngine" version="2.0.0" />
+      <installPackage id="MsieJavaScriptEngine" version="2.0.2" />
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.6.8" />
-      <installPackage id="Serenity.Core" version="2.6.8" />
-      <installPackage id="Serenity.Data" version="2.6.8" />
-      <installPackage id="Serenity.Data.Entity" version="2.6.8" />
-      <installPackage id="Serenity.Services" version="2.6.8" />
-      <installPackage id="Serenity.Web" version="2.6.8" />
+      <installPackage id="Serenity.CodeGenerator" version="2.6.10" />
+      <installPackage id="Serenity.Core" version="2.6.10" />
+      <installPackage id="Serenity.Data" version="2.6.10" />
+      <installPackage id="Serenity.Data.Entity" version="2.6.10" />
+      <installPackage id="Serenity.Services" version="2.6.10" />
+      <installPackage id="Serenity.Web" version="2.6.10" />
       <installPackage id="Serenity.Web.Assets" version="2.6.6" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="sortablejs.TypeScript.DefinitelyTyped" version="0.1.8" />
       <installPackage id="StackExchange.Exceptional" version="1.0.122" />
       <installPackage id="toastr" version="2.1.1" />
-      <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.1" />
+      <installPackage id="toastr.TypeScript.DefinitelyTyped" version="0.3.3" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />
     </packagesToInstall>
     <features>
