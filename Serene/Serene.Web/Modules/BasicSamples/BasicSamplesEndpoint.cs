@@ -39,9 +39,10 @@ namespace Serene.BasicSamples.Endpoints
                     .GroupBy(fld.ShipVia)
                     .Where(
                         fld.OrderDate.IsNotNull() &
+                        fld.ShipVia.IsNotNull() &
                         fld.OrderDate < startOfMonth.AddMonths(1) &
                         fld.OrderDate >= startingFrom))
-                    .ToDictionary(x => new Tuple<int, int>(x.Month, x.ShipVia), x => (int)x.Count);
+                    .ToDictionary(x => new Tuple<int, int>((int)x.Month, (int)x.ShipVia), x => (int)x.Count);
 
             response.Values = new List<Dictionary<string, object>>();
             var month = startingFrom.Month;
