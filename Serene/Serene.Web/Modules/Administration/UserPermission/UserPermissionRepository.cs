@@ -174,10 +174,17 @@ namespace Serene.Administration.Repositories
                 MemberInfo member, Func<TAttr, string> getPermission)
             where TAttr : Attribute
         {
-            foreach (var attr in member.GetCustomAttributes<TAttr>())
+            try
             {
-                var permission = getPermission(attr);
-                hash.AddRange(SplitPermissions(permission));
+                foreach (var attr in member.GetCustomAttributes<TAttr>())
+                {
+                    var permission = getPermission(attr);
+                    hash.AddRange(SplitPermissions(permission));
+                }
+            }
+            catch
+            {
+                // GetCustomAttributes might fail before .NET 4.6
             }
         }
 
@@ -207,7 +214,8 @@ namespace Serene.Administration.Repositories
                         }
 
                         foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-                            ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
+                            if (member.GetIndexParameters().Length == 0)
+                                ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                     }
                 }
 
