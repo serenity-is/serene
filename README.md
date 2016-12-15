@@ -1,4 +1,4 @@
 Serene
 ======
 
-Serenity Application Template
+Serenity Application Template (VSIX)
