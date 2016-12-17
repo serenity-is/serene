@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
@@ -11,8 +10,8 @@ namespace Serene.Northwind.Entities
     using System.IO;
 
     [ConnectionKey("Northwind"), DisplayName("Notes"), InstanceName("Note"), TwoLevelCached]
-    [ReadPermission(Northwind.PermissionKeys.General)]
-    [ModifyPermission(Northwind.PermissionKeys.General)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
     {
         [DisplayName("Note Id"), Identity]

@@ -2,7 +2,6 @@
 
 namespace Serene.Organization.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;

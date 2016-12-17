@@ -1,18 +1,16 @@
 ﻿
 namespace Serene.Administration.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
-    using System.IO;
 
     [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
-    [ReadPermission(Administration.PermissionKeys.Translation)]
-    [ModifyPermission(Administration.PermissionKeys.Translation)]
+    [ReadPermission(PermissionKeys.Translation)]
+    [ModifyPermission(PermissionKeys.Translation)]
     public sealed class LanguageRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

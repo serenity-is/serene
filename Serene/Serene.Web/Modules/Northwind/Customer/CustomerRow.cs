@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -12,9 +11,9 @@ namespace Serene.Northwind.Entities
     using System.Collections.Generic;
 
     [ConnectionKey("Northwind"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
-    [ReadPermission(Northwind.PermissionKeys.Customer.View)]
-    [ModifyPermission(Northwind.PermissionKeys.Customer.Modify)]
-    [DeletePermission(Northwind.PermissionKeys.Customer.Delete)]
+    [ReadPermission(PermissionKeys.Customer.View)]
+    [ModifyPermission(PermissionKeys.Customer.Modify)]
+    [DeletePermission(PermissionKeys.Customer.Delete)]
     [LeftJoin("cd", "CustomerDetails", "cd.ID = t0.ID")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
     public sealed class CustomerRow : Row, IIdRow, INameRow

@@ -9,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.OrderDetailRow;
 
     [RoutePrefix("Services/Northwind/OrderDetail"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class OrderDetailController : ServiceEndpoint
     {
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)

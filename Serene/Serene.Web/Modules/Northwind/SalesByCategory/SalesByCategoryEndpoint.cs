@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
@@ -10,7 +9,7 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.SalesByCategoryRow;
 
     [RoutePrefix("Services/Northwind/SalesByCategory"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize("Northwind:General")]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class SalesByCategoryController : ServiceEndpoint
     {
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)

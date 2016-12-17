@@ -13,7 +13,6 @@ namespace Serene.Administration.Repositories
     using System.IO;
     using System.Reflection;
     using System.Web.Hosting;
-    using Newtonsoft.Json;
     using Serenity.Web;
     using Serene.Administration.Entities;
     using Serenity.Navigation;

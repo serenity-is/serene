@@ -9,22 +9,22 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.ShipperRow;
 
     [RoutePrefix("Services/Northwind/Shipper"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ShipperController : ServiceEndpoint
     {
-        [HttpPost]
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
             return new MyRepository().Delete(uow, request);

@@ -6,9 +6,9 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 
     [RoutePrefix("Northwind/Category"), Route("{action=index}")]
+    [PageAuthorize(typeof(Entities.CategoryRow))]
     public class CategoryController : Controller
     {
-        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View(MVC.Views.Northwind.Category.CategoryIndex);

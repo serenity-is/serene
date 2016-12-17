@@ -12,22 +12,22 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.CustomerRow;
 
     [RoutePrefix("Services/Northwind/Customer"), Route("{action}")]
-    [ConnectionKey("Northwind")]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerController : ServiceEndpoint
     {
-        [HttpPost]
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
             return new MyRepository().Delete(uow, request);
@@ -53,7 +53,7 @@ namespace Serene.Northwind.Endpoints
             var data = List(connection, request).Entities;
             var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.CustomerColumns));
             var bytes = new ReportRepository().Render(report);
-            return ExcelContentResult.Create(bytes, "CustomerList_" + 
+            return ExcelContentResult.Create(bytes, "CustomerList_" +
                 DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx");
         }
     }

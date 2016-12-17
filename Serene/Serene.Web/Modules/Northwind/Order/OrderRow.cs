@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Newtonsoft.Json;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -10,8 +9,8 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("Orders"), InstanceName("Order"), TwoLevelCached]
-    [ReadPermission(Northwind.PermissionKeys.General)]
-    [ModifyPermission(Northwind.PermissionKeys.General)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     public sealed class OrderRow : Row, IIdRow, INameRow
     {
         [DisplayName("Order ID"), NotNull, Identity, QuickSearch]

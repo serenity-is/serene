@@ -6,9 +6,10 @@ namespace Serene.Common.Endpoints
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.UserPreferenceRepository;
+    using MyRow = Entities.UserPreferenceRow;
 
     [RoutePrefix("Services/Common/UserPreference"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
     public class UserPreferenceController : ServiceEndpoint
     {
         [HttpPost]

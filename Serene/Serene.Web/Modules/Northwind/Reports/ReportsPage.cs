@@ -5,9 +5,9 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 
     [RoutePrefix("Northwind/Reports"), Route("{action=index}")]
+    [PageAuthorize(PermissionKeys.General)]
     public class ReportsController : Controller
     {
-        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View(MVC.Views.Common.Reporting.ReportPage, 

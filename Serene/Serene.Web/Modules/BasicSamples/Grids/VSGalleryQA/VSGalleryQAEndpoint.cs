@@ -13,7 +13,7 @@ namespace Serene.BasicSamples.Endpoints
     using System.IO.Compression;
 
     [RoutePrefix("Services/BasicSamples/VSGalleryQA"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize]
+    [ServiceAuthorize]
     public class VSGalleryQAController : ServiceEndpoint
     {
         public ListResponse<VSGalleryQAThread> List(ListRequest request)

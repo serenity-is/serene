@@ -9,9 +9,9 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 
     [RoutePrefix("Northwind/OrderDetail"), Route("{action=index}")]
+    [PageAuthorize(typeof(Entities.OrderDetailRow))]
     public class OrderDetailController : Controller
     {
-        [PageAuthorize(Northwind.PermissionKeys.General)]
         public ActionResult Index()
         {
             return View(MVC.Views.Northwind.OrderDetail.OrderDetailIndex);

@@ -2,12 +2,9 @@
 namespace Serene.Administration
 {
     using Newtonsoft.Json;
-    using Serenity;
     using Serenity.Services;
-    using Serenity.Web;
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
 
     public class RolePermissionUpdateRequest : ServiceRequest
     {

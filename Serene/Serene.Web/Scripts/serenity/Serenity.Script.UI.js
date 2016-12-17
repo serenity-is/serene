@@ -3203,6 +3203,7 @@
 		}
 		result.name = $t1;
 		result.cssClass = item.cssClass;
+		result.headerCssClass = item.headerCssClass;
 		result.sortable = item.sortable !== false;
 		result.sortOrder = ss.coalesce(item.sortOrder, 0);
 		if (ss.isValue(item.alignment) && item.alignment.length > 0) {

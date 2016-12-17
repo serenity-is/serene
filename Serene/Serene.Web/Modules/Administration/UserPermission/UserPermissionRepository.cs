@@ -176,7 +176,7 @@ namespace Serene.Administration.Repositories
         {
             try
             {
-                foreach (var attr in member.GetCustomAttributes<TAttr>())
+                foreach (var attr in member.GetCustomAttributes<TAttr>(false))
                 {
                     var permission = getPermission(attr);
                     hash.AddRange(SplitPermissions(permission));

@@ -12,22 +12,22 @@ namespace Serene.Northwind.Endpoints
     using MyRow = Entities.ProductRow;
 
     [RoutePrefix("Services/Northwind/Product"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize(Northwind.PermissionKeys.General)]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductController : ServiceEndpoint
     {
-        [HttpPost]
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
         public SaveResponse Create(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
         }
 
-        [HttpPost]
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
             return new MyRepository().Delete(uow, request);

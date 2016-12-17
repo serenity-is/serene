@@ -12,7 +12,7 @@ namespace Serene.BasicSamples.Endpoints
     using System.Web.Mvc;
 
     [ServiceAuthorize, RoutePrefix("Services/BasicSamples/BasicSamples"), Route("{action}")]
-    [ConnectionKey("Northwind")]
+    [ConnectionKey(typeof(OrderRow))]
     public class BasicSamplesController : ServiceEndpoint
     {
         public OrdersByShipperResponse OrdersByShipper(IDbConnection connection, OrdersByShipperRequest request)

@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Administration.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
@@ -11,8 +10,8 @@ namespace Serene.Administration.Entities
     using System.IO;
 
     [ConnectionKey("Default"), DisplayName("UserRoles"), InstanceName("UserRoles"), TwoLevelCached]
-    [ReadPermission(Administration.PermissionKeys.Security)]
-    [ModifyPermission(Administration.PermissionKeys.Security)]
+    [ReadPermission(PermissionKeys.Security)]
+    [ModifyPermission(PermissionKeys.Security)]
     public sealed class UserRoleRow : Row, IIdRow
     {
         [DisplayName("User Role Id"), Identity]

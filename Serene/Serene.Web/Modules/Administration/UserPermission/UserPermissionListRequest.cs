@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Administration
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.Services;
     using Serenity.Web;

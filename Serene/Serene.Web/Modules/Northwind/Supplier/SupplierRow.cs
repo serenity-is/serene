@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -11,8 +10,8 @@ namespace Serene.Northwind.Entities
     using Serenity.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("Suppliers"), InstanceName("Supplier"), TwoLevelCached]
-    [ReadPermission(Northwind.PermissionKeys.General)]
-    [ModifyPermission(Northwind.PermissionKeys.General)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Supplier")]
     public sealed class SupplierRow : Row, IIdRow, INameRow
     {

@@ -1,21 +1,19 @@
 ﻿
 namespace Serene.Administration.Endpoints
 {
-    using Serenity;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Services;
-    using System;
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.UserPermissionRepository;
     using MyRow = Entities.UserPermissionRow;
 
     [RoutePrefix("Services/Administration/UserPermission"), Route("{action}")]
-    [ConnectionKey("Default"), ServiceAuthorize(Administration.PermissionKeys.Security)]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserPermissionController : ServiceEndpoint
     {
-        [HttpPost]
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
         public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
         {
             return new MyRepository().Update(uow, request);

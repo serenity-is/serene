@@ -7,8 +7,8 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("CustomerRepresentatives"), InstanceName("CustomerRepresentatives")]
-    [ReadPermission(Northwind.PermissionKeys.Customer.View)]
-    [ModifyPermission(Northwind.PermissionKeys.Customer.View)]
+    [ReadPermission(PermissionKeys.Customer.View)]
+    [ModifyPermission(PermissionKeys.Customer.View)]
     public sealed class CustomerRepresentativesRow : Row, IIdRow
     {
         [DisplayName("Representative Id"), Column("RepresentativeID"), Identity]

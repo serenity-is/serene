@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Newtonsoft.Json;
     using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
@@ -10,8 +9,8 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories"), TwoLevelCached]
-    [ReadPermission(Northwind.PermissionKeys.General)]
-    [ModifyPermission(Northwind.PermissionKeys.General)]
+    [ReadPermission(PermissionKeys.General)]
+    [ModifyPermission(PermissionKeys.General)]
     public sealed class EmployeeTerritoryRow : Row, IIdRow, INameRow
     {
         [DisplayName("Employee Id"), PrimaryKey, ForeignKey("Employees", "EmployeeID"), LeftJoin("jEmployee")]

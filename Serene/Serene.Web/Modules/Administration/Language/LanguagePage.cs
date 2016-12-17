@@ -6,9 +6,9 @@ namespace Serene.Administration.Pages
     using System.Web.Mvc;
 
     [RoutePrefix("Administration/Language"), Route("{action=index}")]
+    [PageAuthorize(typeof(Entities.LanguageRow))]
     public class LanguageController : Controller
     {
-        [PageAuthorize(Administration.PermissionKeys.Translation)]
         public ActionResult Index()
         {
             return View(MVC.Views.Administration.Language.LanguageIndex);

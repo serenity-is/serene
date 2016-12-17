@@ -6,50 +6,50 @@ namespace Serene.Administration.Endpoints
     using Repositories;
     using Serenity;
     using Serenity.ComponentModel;
+    using Serenity.Data;
     using Serenity.Services;
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using System.Web.Mvc;
     using MyRepository = Repositories.UserRepository;
     using MyRow = Entities.UserRow;
 
-    [ServiceAuthorize]
     [RoutePrefix("Services/Administration/User"), Route("{action}")]
-    public class UserController : Controller
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
+    public class UserController : ServiceEndpoint
     {
-        [AcceptVerbs("POST"), JsonFilter]
-        public Result<SaveResponse> Create(SaveRequest<MyRow> request)
+        [HttpPost, AuthorizeCreate(typeof(MyRow))]
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return this.InTransaction("Default", (uow) => new MyRepository().Create(uow, request));
+            return new MyRepository().Create(uow, request);
         }
 
-        [AcceptVerbs("POST"), JsonFilter]
-        public Result<SaveResponse> Update(SaveRequest<MyRow> request)
+        [HttpPost, AuthorizeUpdate(typeof(MyRow))]
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return this.InTransaction("Default", (uow) => new MyRepository().Update(uow, request));
+            return new MyRepository().Update(uow, request);
         }
  
-        [AcceptVerbs("POST"), JsonFilter]
-        public Result<DeleteResponse> Delete(DeleteRequest request)
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
-            return this.InTransaction("Default", (uow) => new MyRepository().Delete(uow, request));
+            return new MyRepository().Delete(uow, request);
         }
 
-        [AcceptVerbs("POST"), JsonFilter]
-        public Result<UndeleteResponse> Undelete(UndeleteRequest request)
+        [HttpPost, AuthorizeDelete(typeof(MyRow))]
+        public UndeleteResponse Undelete(IUnitOfWork uow, UndeleteRequest request)
         {
-            return this.InTransaction("Default", (uow) => new MyRepository().Undelete(uow, request));
+            return new MyRepository().Undelete(uow, request);
         }
 
-        [AcceptVerbs("GET", "POST"), JsonFilter]
-        public Result<RetrieveResponse<MyRow>> Retrieve(RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
         {
-            return this.UseConnection("Default", (cnn) => new MyRepository().Retrieve(cnn, request));
+            return new MyRepository().Retrieve(connection, request);
         }
 
-        [AcceptVerbs("GET", "POST"), JsonFilter]
-        public Result<ListResponse<MyRow>> List(ListRequest request)
+        public Result<ListResponse<MyRow>> List(IDbConnection connection, ListRequest request)
         {
             return this.UseConnection("Default", (cnn) => new MyRepository().List(cnn, request));
         }

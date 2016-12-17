@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Common.Entities
 {
-    using Newtonsoft.Json;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;

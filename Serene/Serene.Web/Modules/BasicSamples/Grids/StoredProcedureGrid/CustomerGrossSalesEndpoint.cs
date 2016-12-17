@@ -11,7 +11,7 @@
     using MyRow = Entities.CustomerGrossSalesRow;
 
     [RoutePrefix("Services/BasicSamples/CustomerGrossSales"), Route("{action}")]
-    [ConnectionKey("Northwind"), ServiceAuthorize("Northwind:General")]
+    [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerGrossSalesController : ServiceEndpoint
     {
         public ListResponse<MyRow> List(IDbConnection connection, CustomerGrossSalesListRequest request)
