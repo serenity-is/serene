@@ -1,4 +1,4 @@
-declare interface jsPDF {
+interface jsPDF {
     autoTableEndPosY?: number;
     autoTableHtmlToJson(table: HTMLElement);
     autoTable(columns: string[] | jsPDF.AutoTableColumn[], data: any[], options: jsPDF.AutoTableOptions);
