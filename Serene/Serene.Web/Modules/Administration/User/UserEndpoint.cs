@@ -49,9 +49,9 @@ namespace Serene.Administration.Endpoints
             return new MyRepository().Retrieve(connection, request);
         }
 
-        public Result<ListResponse<MyRow>> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
-            return this.UseConnection("Default", (cnn) => new MyRepository().List(cnn, request));
+            return new MyRepository().List(connection, request);
         }
 
         private static string[] permissionsUsedFromScript;
