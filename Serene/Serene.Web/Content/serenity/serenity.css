@@ -2233,8 +2233,6 @@ a.s-LinkDropDown input {
   background: url(images/sprites.png) no-repeat -214px -90px;
 }
 .s-QuickSearchBar .s-QuickSearchInput {
-  line-height: 23px;
-  height: 28px;
   padding: 0 2px 0 4px;
   border-radius: 0 4px 4px 0;
   background-clip: padding-box;
@@ -2246,10 +2244,14 @@ a.s-LinkDropDown input {
 .s-QuickSearchBar .s-QuickSearchInput:focus {
   outline: none;
 }
+.s-QuickSearchBar input.s-QuickSearchInput {
+  line-height: 23px;
+  height: 28px;
+}
 .has-quick-search-fields {
   border-right: none;
 }
-.s-QuickSearchBar.has-quick-search-fields .s-QuickSearchInput {
+.s-QuickSearchBar.has-quick-search-fields input.s-QuickSearchInput {
   border-radius: 0;
 }
 .s-QuickSearchLoading,

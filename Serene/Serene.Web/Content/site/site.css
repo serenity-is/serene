@@ -7683,7 +7683,7 @@ section.content > .s-DataGrid {
 .register-box login-box-msg,
 .login-box .register-box-msg,
 .register-box .register-box-msg {
-  padding-bottom: 0 0 20px;
+  padding-bottom: 20px;
 }
 .login-box .s-LoginPanel,
 .register-box .s-LoginPanel,
