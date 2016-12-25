@@ -7,7 +7,7 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            IfDatabase("sqlserver", "postgres")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Order Details")
                     .AddColumn("DetailID").AsInt32().Identity().NotNullable();
 

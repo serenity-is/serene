@@ -7,26 +7,26 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            IfDatabase("sqlserver")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_SqlServer.sql");
 
-            IfDatabase("postgres")
+            IfDatabase("Postgres")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_Postgres.sql");
 
-            IfDatabase("postgres")
+            IfDatabase("Postgres")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql");
 
-            IfDatabase("mysql")
+            IfDatabase("MySql")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql");
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Execute.EmbeddedScript("Serene.Modules.Common.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql");
 
-            IfDatabase("sqlserver", "postgres")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Customers")
                     .AddColumn("ID").AsInt32().Identity().NotNullable();
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Alter.Table("Customers")
                     .AddColumn("ID").AsInt32().Nullable();
 
@@ -34,15 +34,15 @@ namespace Serene.Migrations.NorthwindDB
             IfDatabase("Oracle")
                 .Execute.Sql("UPDATE Customers SET ID = CUSTOMERS_SEQ.nextval");
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Alter.Column("ID").OnTable("Customers")
                     .AsInt32().NotNullable();
 
-            IfDatabase("sqlserver", "postgres")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Territories")
                     .AddColumn("ID").AsInt32().Identity();
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Alter.Table("Territories")
                     .AddColumn("ID").AsInt32().Nullable();
 
@@ -51,7 +51,7 @@ namespace Serene.Migrations.NorthwindDB
             IfDatabase("Oracle")
                 .Execute.Sql("UPDATE Territories SET ID = Territories_SEQ.nextval");
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Alter.Column("ID").OnTable("Territories")
                     .AsInt32().NotNullable();
 

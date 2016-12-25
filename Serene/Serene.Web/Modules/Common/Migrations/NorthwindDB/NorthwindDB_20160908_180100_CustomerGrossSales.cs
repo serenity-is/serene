@@ -7,7 +7,7 @@ namespace Serene.Migrations.NorthwindDB
     {
         public override void Up()
         {
-            IfDatabase("SqlServer")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
                 .Execute.Sql(@"
 CREATE PROCEDURE [dbo].[CustomerGrossSales]
     @startDate DATE,

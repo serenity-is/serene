@@ -12,7 +12,7 @@ namespace Serene.Migrations.NorthwindDB
         {
             var o = OrderRow.Fields;
 
-            IfDatabase("SqlServer")
+            IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
                 .Execute.Sql(
                     new SqlUpdate(o.TableName)
                         .SetTo(o.OrderDate, "DATEADD(MONTH, 6, DATEADD(YEAR, 18, " + o.OrderDate.Name + "))")

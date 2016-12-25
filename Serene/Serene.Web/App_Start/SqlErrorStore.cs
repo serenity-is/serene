@@ -46,13 +46,13 @@ namespace Serene
                 var cs = SqlConnections.GetConnectionString(connectionKey);
                 this.connectionString = cs.ConnectionString;
                 this.providerName = cs.ProviderName;
-                isSqlServer = cs.Dialect.GetType().Name.StartsWith("SqlServer");
+                isSqlServer = cs.Dialect.ServerType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             }
             else
             {
                 this.connectionString = connectionString;
                 this.providerName = connectionKey;
-                isSqlServer = String.Compare(providerName, "System.Data.SqlClient") == 0;
+                isSqlServer = providerName.IndexOf("SqlClient", StringComparison.OrdinalIgnoreCase) >= 0;
             }
 
             // check that provider name is valid

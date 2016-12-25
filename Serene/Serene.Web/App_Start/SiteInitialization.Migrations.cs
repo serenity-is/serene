@@ -26,7 +26,11 @@
         {
             var cs = SqlConnections.GetConnectionString(databaseKey);
 
-            if (cs.Dialect.GetType() == typeof(OracleDialect))
+            var serverType = cs.Dialect.ServerType;
+            bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
+            bool isPostgres = !isSql & serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
+            bool isMySql = !isSql && !isPostgres && serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
+            if (!isSql && !isPostgres && !isMySql)
                 return;
 
             var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
@@ -71,13 +75,12 @@
                 string databasesQuery = "SELECT * FROM sys.databases WHERE NAME = @name";
                 string createDatabaseQuery = @"CREATE DATABASE [{0}]";
 
-                if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
+                if (isPostgres)
                 {
                     databasesQuery = "select * from postgres.pg_catalog.pg_database where datname = @name";
                     createDatabaseQuery = "CREATE DATABASE \"{0}\"";
                 }
-
-                if (String.Equals(cs.ProviderName, "MySql.Data.MySqlClient", StringComparison.OrdinalIgnoreCase))
+                else if (isMySql)
                 {
                     databasesQuery = "SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = @name";
                     createDatabaseQuery = "CREATE DATABASE `{0}`";
@@ -86,7 +89,8 @@
                 if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
                     return;
 
-                var isLocalServer = serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                var isLocalServer = isSql && 
+                    serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
                     serverConnection.ConnectionString.IndexOf(@".\") >= 0;
 
                 string command;
@@ -116,7 +120,9 @@
             var cs = SqlConnections.GetConnectionString(databaseKey);
             var connection = cs.ConnectionString;
 
-            bool isOracle = cs.Dialect.GetType() == typeof(OracleDialect);
+            string serverType = cs.Dialect.ServerType;
+            bool isSqlServer = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
+            bool isOracle = !isSqlServer && serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.
@@ -127,13 +133,7 @@
                 return;
             }
 
-            string databaseType = "SqlServer";
-            if (String.Equals(cs.ProviderName, "npgsql", StringComparison.OrdinalIgnoreCase))
-                databaseType = "Postgres";
-            else if (String.Equals(cs.ProviderName, "MySql.Data.MySqlClient", StringComparison.OrdinalIgnoreCase))
-                databaseType = "MySql";
-            else if (isOracle)
-                databaseType = "OracleManaged";
+            string databaseType = isOracle ? "OracleManaged" : serverType;
 
             using (var sw = new StringWriter())
             {
@@ -161,8 +161,6 @@
                     throw new Exception("Error executing migration:\r\n" +
                         sw.ToString(), ex);
                 }
-
-                
             }
         }
     }
