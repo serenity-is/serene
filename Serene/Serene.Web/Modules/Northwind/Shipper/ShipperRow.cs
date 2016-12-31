@@ -1,13 +1,11 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Serenity;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
     using System.ComponentModel;
-    using Serenity.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("Shippers"), InstanceName("Shipper"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]

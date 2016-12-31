@@ -1,11 +1,14 @@
-﻿
+
 namespace Serene.Administration.Pages
 {
-    using Serenity;
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Administration/User"), Route("{action=index}")]
+    [Route("Administration/User/{action=index}")]
     [PageAuthorize(typeof(Entities.UserRow))]
     public class UserController : Controller
     {

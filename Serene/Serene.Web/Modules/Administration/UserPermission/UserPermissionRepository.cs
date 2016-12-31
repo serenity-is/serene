@@ -188,6 +188,26 @@ namespace Serene.Administration.Repositories
             }
         }
 
+#if COREFX
+        private void ProcessAttributes<TAttr>(HashSet<string> hash,
+                Type member, Func<TAttr, string> getPermission)
+            where TAttr : Attribute
+        {
+            try
+            {
+                foreach (var attr in member.GetCustomAttributes<TAttr>(false))
+                {
+                    var permission = getPermission(attr);
+                    hash.AddRange(SplitPermissions(permission));
+                }
+            }
+            catch
+            {
+                // GetCustomAttributes might fail before .NET 4.6
+            }
+        }
+#endif
+
         public ListResponse<string> ListPermissionKeys()
         {
             return LocalCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>

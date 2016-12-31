@@ -1,7 +1,11 @@
-﻿
+
 namespace Serene.BasicSamples.Pages
 {
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using Views = MVC.Views.BasicSamples.Editors;
 
     public partial class BasicSamplesController : Controller

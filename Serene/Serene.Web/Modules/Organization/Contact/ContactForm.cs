@@ -1,13 +1,8 @@
 ﻿
 namespace Serene.Organization.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
-    using System.ComponentModel;
-    using System.Collections.Generic;
-    using System.IO;
 
     [FormScript("Organization.Contact")]
     [BasedOnRow(typeof(Entities.ContactRow))]

@@ -1,15 +1,18 @@
-﻿
+
 namespace Serene.Organization.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.BusinessUnitRepository;
     using MyRow = Entities.BusinessUnitRow;
 
-    [RoutePrefix("Services/Organization/BusinessUnit"), Route("{action}")]
+    [Route("Services/Organization/BusinessUnit/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class BusinessUnitController : ServiceEndpoint
     {

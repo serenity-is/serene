@@ -1,9 +1,7 @@
 ﻿namespace Serene.Administration.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
     using System;
-    using System.ComponentModel;
 
     [FormScript("Administration.User")]
     [BasedOnRow(typeof(Entities.UserRow))]

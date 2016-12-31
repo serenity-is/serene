@@ -1,12 +1,8 @@
 ﻿
 namespace Serene.Northwind.Forms
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
-    using System.Collections.Generic;
-    using System.IO;
 
     [ColumnsScript("Northwind.OrderDetail")]
     [BasedOnRow(typeof(Entities.OrderDetailRow))]

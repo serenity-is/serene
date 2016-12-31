@@ -1,15 +1,18 @@
-﻿
+
 namespace Serene.Meeting.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.MeetingTypeRepository;
     using MyRow = Entities.MeetingTypeRow;
 
-    [RoutePrefix("Services/Meeting/MeetingType"), Route("{action}")]
+    [Route("Services/Meeting/MeetingType/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class MeetingTypeController : ServiceEndpoint
     {

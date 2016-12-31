@@ -1,10 +1,14 @@
-﻿
+
 namespace Serene.Administration.Pages
 {
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Administration/Translation"), Route("{action=index}")]
+    [Route("Administration/Translation/{action=index}")]
     [PageAuthorize(PermissionKeys.Translation)]
     public class TranslationController : Controller
     {  

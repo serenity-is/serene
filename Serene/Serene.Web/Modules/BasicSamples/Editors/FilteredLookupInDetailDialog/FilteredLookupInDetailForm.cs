@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.BasicSamples.Forms
 {
-    using Northwind;
     using Northwind.Entities;
     using Serenity.ComponentModel;
     using System;

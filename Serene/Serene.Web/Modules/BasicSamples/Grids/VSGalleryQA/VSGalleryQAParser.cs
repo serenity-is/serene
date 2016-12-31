@@ -1,4 +1,4 @@
-﻿
+﻿#if !COREFX
 namespace Serene.BasicSamples
 {
     using CsQuery;
@@ -6,8 +6,8 @@ namespace Serene.BasicSamples
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Net;
     using System.Linq;
+    using System.Net;
 
     public class VSGalleryQAParser
     {
@@ -173,3 +173,4 @@ namespace Serene.BasicSamples
         }
     }
 }
+#endif

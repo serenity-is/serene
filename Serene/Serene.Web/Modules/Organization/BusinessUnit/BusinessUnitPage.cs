@@ -1,11 +1,14 @@
-﻿
+
 namespace Serene.Organization.Pages
 {
-    using Serenity;
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Organization/BusinessUnit"), Route("{action=index}")]
+    [Route("Organization/BusinessUnit/{action=index}")]
     [PageAuthorize(typeof(Entities.BusinessUnitRow))]
     public class BusinessUnitController : Controller
     {

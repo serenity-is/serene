@@ -4,7 +4,6 @@ namespace Serene.Northwind.Entities
     using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
-    using Serenity.Services;
     using System;
 
     [ConnectionKey("Northwind")]

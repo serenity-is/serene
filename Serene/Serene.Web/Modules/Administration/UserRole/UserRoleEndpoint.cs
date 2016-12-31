@@ -1,17 +1,18 @@
-﻿
+
 namespace Serene.Administration.Endpoints
 {
-    using Serenity;
-    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Services;
-    using System;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.UserRoleRepository;
     using MyRow = Entities.UserRoleRow;
 
-    [RoutePrefix("Services/Administration/UserRole"), Route("{action}")]
+    [Route("Services/Administration/UserRole/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserRoleController : ServiceEndpoint
     {

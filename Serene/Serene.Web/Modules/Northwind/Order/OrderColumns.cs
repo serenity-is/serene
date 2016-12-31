@@ -3,7 +3,6 @@ namespace Serene.Northwind.Columns
 {
     using Serenity.ComponentModel;
     using System;
-    using System.ComponentModel;
 
     [ColumnsScript("Northwind.Order")]
     [BasedOnRow(typeof(Entities.OrderRow))]

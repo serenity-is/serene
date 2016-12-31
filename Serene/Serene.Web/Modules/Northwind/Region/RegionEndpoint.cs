@@ -1,14 +1,18 @@
-﻿
+
 namespace Serene.Northwind.Endpoints
 {
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.RegionRepository;
     using MyRow = Entities.RegionRow;
 
-    [RoutePrefix("Services/Northwind/Region"), Route("{action}")]
+    [Route("Services/Northwind/Region/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class RegionController : ServiceEndpoint
     {

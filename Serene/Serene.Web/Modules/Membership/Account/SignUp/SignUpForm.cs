@@ -3,7 +3,6 @@ namespace Serene.Membership
 {
     using Serenity.ComponentModel;
     using System;
-    using System.ComponentModel;
 
     [FormScript("Membership.SignUp")]
     public class SignUpForm

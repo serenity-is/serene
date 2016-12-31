@@ -1,12 +1,8 @@
 ﻿
 namespace Serene.Northwind.Forms
 {
-    using System;
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
-    using System.Collections.Generic;
-    using System.IO;
+    using System;
 
     [FormScript("Northwind.Category")]
     [BasedOnRow(typeof(Entities.CategoryRow))]

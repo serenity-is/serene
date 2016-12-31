@@ -2,12 +2,7 @@
 
 namespace Serene.Administration
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Data;
 
     [ScriptInclude]
     public class TranslationItem

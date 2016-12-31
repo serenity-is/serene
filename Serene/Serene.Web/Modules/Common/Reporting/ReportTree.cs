@@ -90,7 +90,7 @@ namespace Serene
                     category.Reports.Add(report);
             }
 
-            var order = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
+            var order = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             var i = 0;
             foreach (var x in categoryOrder.Split(new char[] { ';' }))
             {

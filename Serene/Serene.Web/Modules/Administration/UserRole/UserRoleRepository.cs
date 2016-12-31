@@ -3,7 +3,6 @@ namespace Serene.Administration.Repositories
 {
     using Serenity;
     using Serenity.Data;
-    using Serenity.Extensibility;
     using Serenity.Services;
     using System;
     using System.Collections.Generic;

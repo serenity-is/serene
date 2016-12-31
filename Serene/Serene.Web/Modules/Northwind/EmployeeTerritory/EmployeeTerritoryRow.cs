@@ -1,12 +1,11 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
     using System.ComponentModel;
+    using System.IO;
 
     [ConnectionKey("Northwind"), DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]

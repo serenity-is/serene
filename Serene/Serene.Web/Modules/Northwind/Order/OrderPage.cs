@@ -1,14 +1,17 @@
-﻿
+
 
 //[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "Northwind/Order", url: "~/Northwind/Order", permission: "Northwind")]
 
 namespace Serene.Northwind.Pages
 {
-    using Serenity;
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Northwind/Order"), Route("{action=index}")]
+    [Route("Northwind/Order/{action=index}")]
     [PageAuthorize(typeof(Entities.OrderRow))]
     public class OrderController : Controller
     {

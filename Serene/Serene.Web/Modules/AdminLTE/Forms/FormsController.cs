@@ -1,9 +1,14 @@
-﻿
+
 namespace Serene.AdminLTE
 {
+    using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [Authorize, RoutePrefix("AdminLTE/Forms"), Route("{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Forms/{action=index}")]
     public class FormsController : Controller
     {
         public ActionResult GeneralElements()

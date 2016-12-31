@@ -1997,6 +1997,7 @@
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAPost.cs" />
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAThread.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesNavigation.cs" />
+    <Compile Include="Modules\Common\Helpers\EmailHelper.cs" />
     <Compile Include="Modules\Common\Helpers\ExcelImportRequest.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
@@ -2679,6 +2680,14 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+<!--
+  <Target Name="AfterBuild">
+    <CreateItem Include="$(ProjectDir)Modules\**\*.cs;$(ProjectDir)Modules\**\*.cshtml;$(ProjectDir)Modules\**\*.html">
+      <Output TaskParameter="Include" ItemName="ModulesFiles" />
+    </CreateItem>
+    <Copy SourceFiles="@(ModulesFiles)" DestinationFiles="@(ModulesFiles->'$(ProjectDir)..\Serene.App\Modules\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+-->
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)..\..\Serenity\Serenity.Web\Style\serenity.less&quot; &gt; &quot;$(ProjectDir)Content\serenity\serenity.css&quot;">
     </Exec>
@@ -2686,11 +2695,4 @@
     </Exec>
     <Exec Command="&quot;$(TscToolPath)\$(TypeScriptToolsVersion)\$(TscToolExe)&quot; -project &quot;$(ProjectDir)tsconfig.json&quot;" ContinueOnError="true" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

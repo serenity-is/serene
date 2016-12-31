@@ -1,10 +1,14 @@
-﻿
+
 namespace Serene.Organization.Pages
 {
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Organization/Contact"), Route("{action=index}")]
+    [Route("Organization/Contact/{action=index}")]
     [PageAuthorize(typeof(Entities.ContactRow))]
     public class ContactController : Controller
     {

@@ -1,9 +1,14 @@
-﻿
+
 namespace Serene.BasicSamples.Pages
 {
+    using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [Authorize, RoutePrefix("BasicSamples"), Route("{action=index}")]
+    [PageAuthorize, Route("BasicSamples/{action=index}")]
     public partial class BasicSamplesController : Controller
     {
     }

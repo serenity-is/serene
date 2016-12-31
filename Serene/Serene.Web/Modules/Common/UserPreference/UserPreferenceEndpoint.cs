@@ -1,14 +1,18 @@
-﻿
+
 namespace Serene.Common.Endpoints
 {
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.UserPreferenceRepository;
     using MyRow = Entities.UserPreferenceRow;
 
-    [RoutePrefix("Services/Common/UserPreference"), Route("{action}")]
+    [Route("Services/Common/UserPreference/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
     public class UserPreferenceController : ServiceEndpoint
     {

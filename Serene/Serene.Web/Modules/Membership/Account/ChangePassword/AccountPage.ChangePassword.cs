@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Membership.Pages
 {
     using Administration.Entities;
@@ -7,14 +7,19 @@ namespace Serene.Membership.Pages
     using Serenity.Abstractions;
     using Serenity.Data;
     using Serenity.Services;
+    using Serenity.Web;
     using Serenity.Web.Providers;
     using System;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
     using System.Web.Security;
+#endif
 
     public partial class AccountController : Controller
     {
-        [HttpGet, Authorize]
+        [HttpGet, PageAuthorize]
         public ActionResult ChangePassword()
         {
             return View(MVC.Views.Membership.Account.ChangePassword.AccountChangePassword);
@@ -40,8 +45,8 @@ namespace Serene.Membership.Pages
 
                 request.NewPassword = UserRepository.ValidatePassword(username, request.NewPassword, false);
 
-                var salt = Membership.GeneratePassword(5, 1);
-                var hash = SiteMembershipProvider.ComputeSHA512(request.NewPassword + salt);
+                string salt = null;
+                var hash = UserRepository.GenerateHash(request.NewPassword, ref salt);
                 var userId = int.Parse(Authorization.UserId);
 
                 UserRepository.CheckPublicDemo(userId);

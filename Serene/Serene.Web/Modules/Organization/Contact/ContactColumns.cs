@@ -1,13 +1,9 @@
 ﻿
 namespace Serene.Organization.Columns
 {
-    using Serenity;
     using Serenity.ComponentModel;
-    using Serenity.Data;
     using System;
     using System.ComponentModel;
-    using System.Collections.Generic;
-    using System.IO;
 
     [ColumnsScript("Organization.Contact")]
     [BasedOnRow(typeof(Entities.ContactRow))]

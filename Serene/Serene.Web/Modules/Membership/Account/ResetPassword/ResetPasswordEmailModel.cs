@@ -1,9 +1,6 @@
 ﻿
 namespace Serene.Membership
 {
-    using Serenity.Services;
-    using System;
-
     public class ResetPasswordEmailModel
     {
         public string Username { get; set; }

@@ -1,9 +1,14 @@
 ﻿
 namespace Serene.AdminLTE
 {
+    using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [Authorize, RoutePrefix("AdminLTE/Charts"), Route("{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Charts/{action=index}")]
     public class ChartsController : Controller
     {
         public ActionResult ChartJS()

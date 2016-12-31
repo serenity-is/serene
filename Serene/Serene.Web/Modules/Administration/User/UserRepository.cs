@@ -10,7 +10,9 @@ namespace Serene.Administration.Repositories
     using System.ComponentModel.DataAnnotations;
     using System.Configuration;
     using System.Data;
+#if !ASPNETCORE
     using System.Web.Security;
+#endif
     using MyRow = Entities.UserRow;
 
     public partial class UserRepository
@@ -237,7 +239,11 @@ namespace Serene.Administration.Repositories
 
         public static string GenerateHash(string password, ref string salt)
         {
+#if ASPNETCORE
+            salt = salt ?? Serenity.IO.TemporaryFileHelper.RandomFileCode().Substring(0, 5);
+#else
             salt = salt ?? Membership.GeneratePassword(5, 1);
+#endif
             return CalculateHash(password, salt);
         }
 

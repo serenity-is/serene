@@ -1,15 +1,18 @@
-﻿
+
 namespace Serene.Organization.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.ContactRepository;
     using MyRow = Entities.ContactRow;
 
-    [RoutePrefix("Services/Organization/Contact"), Route("{action}")]
+    [Route("Services/Organization/Contact/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ContactController : ServiceEndpoint
     {

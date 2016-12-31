@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Membership.Pages
 {
     using Administration;
@@ -10,10 +10,22 @@ namespace Serene.Membership.Pages
     using Serenity.Web;
     using System;
     using System.IO;
+#if COREFX
+    using MailKit.Net.Smtp;
+    using MimeKit;
+    using MailKit.Security;
+#else
     using System.Net.Mail;
+#endif
     using System.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.DataProtection;
+    using System.Web.Hosting;
+#else
     using System.Web.Mvc;
     using System.Web.Security;
+#endif
 
     public partial class AccountController : Controller
     {
@@ -78,10 +90,19 @@ namespace Serene.Membership.Pages
                         bytes = ms.ToArray();
                     }
 
+#if ASPNETCORE
+                    var token = Convert.ToBase64String(HttpContext.RequestServices
+                        .GetDataProtector("Activate").Protect(bytes));
+#else
                     var token = Convert.ToBase64String(MachineKey.Protect(bytes, "Activate"));
+#endif
 
                     var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
-                        Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+#if ASPNETCORE
+                    Request.GetBaseUri().ToString();
+#else
+                    Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
+#endif
 
                     var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
                     activateLink = activateLink + Uri.EscapeDataString(token);
@@ -92,29 +113,18 @@ namespace Serene.Membership.Pages
                     emailModel.ActivateLink = activateLink;
 
                     var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString();
+#if ASPNETCORE
+                    var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
+                        MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
+#else
                     var emailBody = TemplateHelper.RenderTemplate(
                         MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
+#endif
 
-                    var message = new MailMessage();
-                    message.To.Add(email);
-                    message.Subject = emailSubject;
-                    message.Body = emailBody;
-                    message.IsBodyHtml = true;
-
-                    var client = new SmtpClient();
-
-                    if (client.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory &&
-                        string.IsNullOrEmpty(client.PickupDirectoryLocation))
-                    {
-                        var pickupPath = Server.MapPath("~/App_Data");
-                        pickupPath = Path.Combine(pickupPath, "Mail");
-                        Directory.CreateDirectory(pickupPath);
-                        client.PickupDirectoryLocation = pickupPath;
-                    }
+                    Common.EmailHelper.Send(emailSubject, emailBody, email);
 
                     uow.Commit();
                     UserRetrieveService.RemoveCachedUser(userId, username);
-                    client.Send(message);
 
                     return new ServiceResponse();
                 }
@@ -130,7 +140,13 @@ namespace Serene.Membership.Pages
                 int userId;
                 try
                 {
-                    using (var ms = new MemoryStream(MachineKey.Unprotect(Convert.FromBase64String(t), "Activate")))
+#if ASPNETCORE
+                    var bytes = HttpContext.RequestServices
+                        .GetDataProtector("Activate").Unprotect(Convert.FromBase64String(t));
+#else
+                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
+#endif
+                    using (var ms = new MemoryStream(bytes))
                     using (var br = new BinaryReader(ms))
                     {
                         var dt = DateTime.FromBinary(br.ReadInt64());

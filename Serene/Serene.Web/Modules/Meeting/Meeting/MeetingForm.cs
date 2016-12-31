@@ -1,14 +1,11 @@
 ﻿
 namespace Serene.Meeting.Forms
 {
-    using Serenity;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using System;
-    using System.ComponentModel;
-    using System.Collections.Generic;
-    using System.IO;
     using Entities;
+    using Serenity.ComponentModel;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
 
     [FormScript("Meeting.Meeting")]
     [BasedOnRow(typeof(Entities.MeetingRow))]

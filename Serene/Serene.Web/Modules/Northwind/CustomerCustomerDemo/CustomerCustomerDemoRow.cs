@@ -1,11 +1,9 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
     using System.ComponentModel;
 
     [ConnectionKey("Northwind"), DisplayName("CustomerCustomerDemo"), InstanceName("CustomerCustomerDemo"), TwoLevelCached]

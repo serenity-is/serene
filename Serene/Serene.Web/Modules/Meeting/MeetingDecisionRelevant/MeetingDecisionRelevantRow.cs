@@ -2,13 +2,10 @@
 
 namespace Serene.Meeting.Entities
 {
-    using Serenity;
-    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
-    using System.IO;
 
     [ConnectionKey("Default"), DisplayName("MeetingDecisionRelevant"), InstanceName("MeetingDecisionRelevant"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]

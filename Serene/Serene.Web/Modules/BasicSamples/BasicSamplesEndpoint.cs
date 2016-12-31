@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.BasicSamples.Endpoints
 {
     using Northwind.Entities;
@@ -9,9 +9,13 @@ namespace Serene.BasicSamples.Endpoints
     using System.Data;
     using System.Linq;
     using System.Threading;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [ServiceAuthorize, RoutePrefix("Services/BasicSamples/BasicSamples"), Route("{action}")]
+    [ServiceAuthorize, Route("Services/BasicSamples/BasicSamples/{action}")]
     [ConnectionKey(typeof(OrderRow))]
     public class BasicSamplesController : ServiceEndpoint
     {

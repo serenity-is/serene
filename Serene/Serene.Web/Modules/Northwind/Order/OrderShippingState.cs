@@ -1,10 +1,7 @@
 ﻿
 namespace Serene.Northwind
 {
-    using Entities;
     using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Web;
     using System.ComponentModel;
 
     [EnumKey("Northwind.OrderShippingState")]

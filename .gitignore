@@ -21,3 +21,6 @@ Template/packages/
 Template/UpgradeLog.htm
 Serene/Serene.Web/.vs
 Template/Serene.Template.log
+Serene/Serene.App/Modules/**/*.cs
+Serene/Serene.App/Modules/**/*.cshtml
+Serene/Serene.App/Modules/**/*.html

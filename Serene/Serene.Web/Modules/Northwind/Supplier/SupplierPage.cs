@@ -1,10 +1,14 @@
-﻿
+
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
 
-    [RoutePrefix("Northwind/Supplier"), Route("{action=index}")]
+    [Route("Northwind/Supplier/{action=index}")]
     [PageAuthorize(typeof(Entities.SupplierRow))]
     public class SupplierController : Controller
     {

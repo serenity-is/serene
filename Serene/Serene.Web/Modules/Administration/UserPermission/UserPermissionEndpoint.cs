@@ -1,15 +1,19 @@
-﻿
+
 namespace Serene.Administration.Endpoints
 {
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.UserPermissionRepository;
     using MyRow = Entities.UserPermissionRow;
 
-    [RoutePrefix("Services/Administration/UserPermission"), Route("{action}")]
+    [Route("Services/Administration/UserPermission/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserPermissionController : ServiceEndpoint
     {

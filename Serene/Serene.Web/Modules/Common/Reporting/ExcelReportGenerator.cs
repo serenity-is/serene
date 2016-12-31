@@ -1,4 +1,7 @@
-﻿using OfficeOpenXml;
+﻿#if COREFX
+using FastMember;
+#endif
+using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
 using Serenity.Data;
@@ -7,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace Serenity.Reporting
 {
@@ -71,7 +75,7 @@ namespace Serenity.Reporting
             var header = worksheet.Cells[1, 1, 1, columns.Count];
             header.LoadFromArrays(new List<object[]>
             {
-                columns.ConvertAll(x => (x.Title ?? x.Name)).ToArray()
+                columns.Select(x => (x.Title ?? x.Name)).ToArray()
             });
 
             var dataList = new List<object[]>();

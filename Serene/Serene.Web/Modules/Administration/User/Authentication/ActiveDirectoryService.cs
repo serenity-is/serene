@@ -1,4 +1,5 @@
-﻿using Serenity;
+﻿#if !COREFX
+using Serenity;
 using Serenity.ComponentModel;
 using System;
 using System.DirectoryServices.AccountManagement;
@@ -44,3 +45,4 @@ namespace Serene.Administration
         }
     }
 }
+#endif

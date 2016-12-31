@@ -1,15 +1,18 @@
-﻿
+
 namespace Serene.Northwind.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
+#if ASPNETCORE
+    using Microsoft.AspNetCore.Mvc;
+#else
     using System.Web.Mvc;
+#endif
     using MyRepository = Repositories.CategoryLangRepository;
     using MyRow = Entities.CategoryLangRow;
 
-    [RoutePrefix("Services/Northwind/CategoryLang"), Route("{action}")]
+    [Route("Services/Northwind/CategoryLang/{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CategoryLangController : ServiceEndpoint
     {

@@ -1,5 +1,5 @@
-﻿using Serenity.Navigation;
-using Serene.BasicSamples.Pages;
+﻿using Serene.BasicSamples.Pages;
+using Serenity.Navigation;
 
 [assembly: NavigationMenu(7910, "Basic Samples/Dialogs")]
 [assembly: NavigationLink(7910, "Basic Samples/Dialogs/Chart in a Dialog", typeof(BasicSamplesController), action: "ChartInDialog")]

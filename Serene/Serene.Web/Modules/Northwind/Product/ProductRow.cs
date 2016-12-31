@@ -1,13 +1,12 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
-    using Serenity;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.IO;
     using System.ComponentModel;
-    using Serenity.ComponentModel;
+    using System.IO;
 
     [ConnectionKey("Northwind"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]

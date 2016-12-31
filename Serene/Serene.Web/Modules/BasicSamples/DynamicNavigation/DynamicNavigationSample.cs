@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Serenity.Navigation;
+﻿using Serene.Northwind.Entities;
 using Serenity.Data;
-using Serene.Northwind.Entities;
+using Serenity.Navigation;
+using System.Collections.Generic;
 
 namespace Serene.BasicSamples
 {

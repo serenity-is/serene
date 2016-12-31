@@ -1,8 +1,6 @@
-﻿using Serene;
+﻿using Serenity.Services;
 using System;
-using Serenity;
 using System.Data.SqlClient;
-using Serenity.Services;
 
 namespace Serene
 {

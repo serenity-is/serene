@@ -1,0 +1,77 @@
+﻿{
+    "dependencies": {
+        "Microsoft.AspNetCore.Diagnostics": "1.1.0",
+        "Microsoft.AspNetCore.Mvc": "1.1.0",
+        "Microsoft.AspNetCore.Routing": "1.1.0",
+        "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
+        "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
+        "Microsoft.AspNetCore.StaticFiles": "1.1.0",
+        "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
+        "Microsoft.Extensions.Configuration.Json": "1.1.0",
+        "Microsoft.Extensions.Logging": "1.1.0",
+        "Microsoft.Extensions.Logging.Console": "1.1.0",
+        "Microsoft.Extensions.Logging.Debug": "1.1.0",
+        "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
+        "Microsoft.NETCore.App": {
+            "version": "1.1.0",
+            "type": "platform"
+        },
+        "EPPlus.Core": "1.1.0",
+        "FastMember": "1.1.0",
+        "MailKit": "1.10.1",
+        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+        "Serenity.Core": "3.0.0-*",
+        "Serenity.Data.Entity": "3.0.0-*",
+        "Serenity.Data": "3.0.0-*",
+        "Serenity.Services": "3.0.0-*",
+        "Serenity.Web": "3.0.0-*",
+        "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0"
+    },
+
+  "tools": {
+    "BundlerMinifier.Core": "2.2.306",
+    "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ],
+      "buildOptions": {
+          "define": ["COREFX", "ASPNETCORE"]
+      }
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true,
+    "compile": {
+        "include": "../Serene.Web/Modules/**/*.cs",
+        "exclude": "../Serene.Web/Modules/Common/Migrations/**/*.cs"
+    }
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "**/*.cshtml",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+}

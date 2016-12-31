@@ -2,12 +2,10 @@
 
 namespace Serene.Northwind.Repositories
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System;
     using System.Data;
-    using System.Linq;
     using MyRow = Entities.CustomerRow;
 
     public class CustomerRepository
