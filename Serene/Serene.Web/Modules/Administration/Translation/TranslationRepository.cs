@@ -143,8 +143,10 @@ namespace Serene.Administration.Repositories
             Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));
             File.WriteAllText(textsFilePath, json);
 
+#if !COREFX
             Dependency.Resolve<IDependencyRegistrar>().RegisterInstance<ILocalTextRegistry>(new LocalTextRegistry());
             CommonInitialization.InitializeLocalTexts();
+#endif
             TwoLevelCache.ExpireGroupItems(UserRow.Fields.GenerationKey);
             DynamicScriptManager.Reset();
 

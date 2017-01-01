@@ -1,12 +1,12 @@
 #:P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj
 P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Core\Serenity.Core.xproj
-P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj
 P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.xproj
+P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj
 P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Services\Serenity.Services.xproj
 P:\Sandbox\Serene\Serene\Serene.App\Serene.App.xproj|P:\Sandbox\Serene\Serenity\Serenity.Web\Serenity.Web.xproj
-P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj|P:\Sandbox\Serene\Serenity\Serenity.Core\Serenity.Core.xproj
 P:\Sandbox\Serene\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.xproj|P:\Sandbox\Serene\Serenity\Serenity.Core\Serenity.Core.xproj
 P:\Sandbox\Serene\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj
+P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj|P:\Sandbox\Serene\Serenity\Serenity.Core\Serenity.Core.xproj
 P:\Sandbox\Serene\Serenity\Serenity.Services\Serenity.Services.xproj|P:\Sandbox\Serene\Serenity\Serenity.Core\Serenity.Core.xproj
 P:\Sandbox\Serene\Serenity\Serenity.Services\Serenity.Services.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data\Serenity.Data.xproj
 P:\Sandbox\Serene\Serenity\Serenity.Services\Serenity.Services.xproj|P:\Sandbox\Serene\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.xproj
