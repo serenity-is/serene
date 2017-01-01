@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Product Excel Import";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        Importing data from Excel can be done using integrated EPPlus library.
+    </p>
+    <p>
+        Click "Import Excel" and choose this file that you can download from GitHub:
+        @(Html.AppSourceFile("SampleProductList.xlsx")).
+    </p>
+    <p>
+        This sample is very basic. It works based on product name. If a product doesn't exists,
+        inserts new one, otherwise updates existing product. It should also fail for one
+        invalid line in imported Excel file.
+    </p>
+    <p>
+        In a production environment, you should have better error handling, and shouldn't 
+        depend on predetermined column order like we do here.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"),
+        @Html.AppSourceFile("ProductExcelImportDialog.ts"),
+        @Html.AppSourceFile("ProductExcelImportEndpoint.cs"),
+        @Html.AppSourceFile("ProductExcelImportForm.cs"),
+        @Html.AppSourceFile("ProductExcelImportGrid.ts"),
+        @Html.AppSourceFile("SampleProductList.xlsx")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.ProductExcelImportGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

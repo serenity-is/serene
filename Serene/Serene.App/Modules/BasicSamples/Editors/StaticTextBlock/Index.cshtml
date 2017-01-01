@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Static Text Block";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>In some forms you might want to display some static text, instead of an editor.</p>
+    <p>StaticTextBlock editor we define for this sample provides this and more.</p>
+    <p>It lets you enter HTML, use a local text as source (recommended), or display the field value as static text.</p>
+    
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("StaticTextBlock.ts")
+        @Html.AppSourceFile("StaticTextBlockDialog.ts")
+        @Html.AppSourceFile("StaticTextBlockForm.cs")
+    </p>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var dlg = new Serene.BasicSamples.StaticTextBlockDialog();
+        dlg.dialogOpen();
+    });
+</script>

@@ -1,0 +1,368 @@
+﻿@import (reference) "../bootstrap-less/mixins.less";
+@import (reference) "../bootstrap-less/variables.less";
+
+@import "../adminlte/core.less";
+@import "../adminlte/variables.less";
+@import "../adminlte/mixins.less";
+
+@import "../adminlte/header.less";
+@import "../adminlte/sidebar.less";
+@import "../adminlte/sidebar-mini.less";
+@import "../adminlte/control-sidebar.less";
+@import "../adminlte/dropdown.less";
+@import "../adminlte/forms.less";
+@import "../adminlte/progress-bars.less";
+@import "../adminlte/small-box.less";
+@import "../adminlte/boxes.less";
+@import "../adminlte/info-box.less";
+@import "../adminlte/timeline.less";
+@import "../adminlte/buttons.less";
+@import "../adminlte/callout.less";
+@import "../adminlte/alerts.less";
+@import "../adminlte/navs.less";
+@import "../adminlte/table.less";
+@import "../adminlte/labels.less";
+@import "../adminlte/modal.less";
+@import "../adminlte/social-widgets.less";
+@import "../adminlte/skins/_all-skins.less";
+
+@import "../adminlte/mailbox.less";
+@import "../adminlte/lockscreen.less";
+@import "../adminlte/login_and_register.less";
+@import "../adminlte/404_500_errors.less";
+@import "../adminlte/invoice.less";
+@import "../adminlte/profile.less";
+
+@import "../adminlte/bootstrap-social.less";
+@import "../adminlte/fullcalendar.less";
+@import "../adminlte/select2.less";
+
+@import "../adminlte/carousel.less";
+@import "../adminlte/direct-chat.less";
+@import "../adminlte/products.less";
+@import "../adminlte/users-list.less";
+@import "../adminlte/miscellaneous.less";
+@import "../adminlte/print.less";
+
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #000;
+    -ms-overflow-style: scrollbar;
+}
+
+.ui-front {
+    z-index: 1100;
+}
+
+.slick-cell > a {
+    color: #0000be;
+}
+
+.main-sidebar, .main-header {
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+}
+
+.sidebar-menu > li {
+    font-size: 14px;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+    font-size: 13px;
+}
+
+.main-footer {
+    padding: 3px 15px;
+}
+
+.sidebar-menu li.expanded > .treeview-menu {
+    display: block;
+}
+
+.treeview-menu > li > a > i {
+    width: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+textarea {
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.sidebar-form input[type="text"] {
+    padding: 6px 12px;
+    border-color: transparent;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+    opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+    opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+}
+
+section.content > .s-DataGrid {
+    padding: 10px;
+    border-radius: @box-border-radius;
+    background: #fff;
+    border-top: 3px solid @light-blue;
+    box-shadow: @box-boxshadow;
+}
+
+.grid-toolbar {
+    margin-bottom: 0px;
+}
+
+.s-Dialog .s-DataGrid.editor {
+    border: 1px solid #eee;
+
+    .grid-toolbar {
+        background: #f8fafc;
+        border-bottom: 1px solid #e7e7e7;
+        padding: 5px 4px 5px 4px;
+        min-height: 43px;
+        margin-bottom: 0;
+    }
+}
+
+.s-Dialog .tab-pane > .s-DataGrid {
+    padding: 0px 8px 4px 8px;
+}
+
+.s-Dialog .grid-container {
+}
+
+.s-Dialog .tab-pane > .s-DialogToolbar {
+    padding-top: 0;
+    background-color: transparent;
+    min-height: initial;
+}
+
+.page-title {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 8px;
+    color: #0090d9;
+    padding: 8px 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.main-header .logo i {
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: url(images/serenity-logo-w-40.png) no-repeat center center;
+    animation: fa-spin 5s infinite linear reverse;
+}
+
+.main-header .logo b {
+    float: left;
+    margin-left: 4px;
+}
+
+.skin-black .main-header .logo i,
+.skin-black-light .main-header .logo i {
+    background: url(images/serenity-logo-g-40.png) no-repeat center center;
+}
+
+.s-BasicProgressDialogContent .status-text {
+    height: 1em;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.s-BasicProgressDialogContent .ui-progressbar {
+    margin: 12px 2%;
+    position: relative;
+    height: 26px;
+    background-image: none;
+    background-color: aliceblue;
+    width: 96%;
+    margin: 0 2%;
+}
+
+.s-BasicProgressDialogContent .progress-label {
+    position: absolute;
+    left: 45%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #cef;
+    color: #245;
+    font-size: 14px;
+}
+
+.ui-dialog.mobile-layout .ui-dialog-titlebar {
+    color: white;
+    background: @blue;
+
+    .ui-dialog-titlebar-close, .ui-dialog-titlebar-close:hover {
+        background-color: transparent;
+        background-image: url(../serenity/images/back-arrow-white.png);
+    }
+}
+
+.skin-green .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @green;
+}
+
+.skin-red .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @red;
+}
+
+.skin-orange .ui-dialog.mobile-layout .ui-dialog-titlebar {
+    background: @orange;
+}
+
+.skin-black, .skin-black-light {
+    .ui-dialog.mobile-layout .ui-dialog-titlebar {
+        color: black;
+        background: white;
+    }
+
+    .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close,
+    .ui-dialog.mobile-layout .ui-dialog-titlebar .ui-dialog-titlebar-close:hover {
+        background-color: transparent;
+        background-image: url(../serenity/images/back-arrow-black.png);
+    }
+}
+
+.s-MessageDialog {
+    min-width: 310px;
+}
+
+.slick-row-selected {
+    background-color: lightblue;
+}
+
+.inline-action {
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    min-width: 16px;
+    min-height: 22px;
+    cursor: pointer;
+    opacity: 0.5;
+    display: inline-block;
+
+    >i {
+        font-size: 15px;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.s-ReportPage {
+
+    div.report-list ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    div.report-list ul ul {
+        margin-left: 20px;
+    }
+
+    div.report-list li {
+        margin-top: 1px;
+    }
+
+    div.report-list li.category > .line {
+        position: relative;
+        padding: 4px 0 4px 20px;
+        display: block;
+        cursor: pointer;
+        color: #666;
+        font-weight: bold;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    div.report-list li.category.expanded > .line {
+        box-shadow: none;
+    }
+
+    div.report-list .line {
+        background: #ffffff;
+        background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+        background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+        //box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 1px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+    }
+
+    div.report-list li {
+        background-color: #eaeaea;
+        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3), 0px 0px 0px 0px rgba(255,255,255,0.9) inset, 0px 2px 2px rgba(0,0,0,0.1);
+    }
+
+
+    div.report-list ul.has-reports {
+        background-color: #fff;
+        border-top: 1px solid #999;
+        border-left: 1px solid #999;
+    }
+
+    li > .line > span.toggle {
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        display: block;
+        height: 11px;
+        width: 11px;
+        background: transparent url(images/accordion-arrows.png) no-repeat 0px -22px;
+    }
+
+    li.expanded > .line > span.toggle {
+        background-position: 0px 0px;
+    }
+
+    div.report-list li.report-item {
+        background-color: #fff;
+        box-shadow: none;
+        margin-top: 0px;
+        font-size: 13px;
+        padding: 4px;
+        border-bottom: 1px solid #eee;
+    }
+
+    div.report-list li.report-item.even {
+        background-color: #f7f7f7;
+    }
+
+    .report-item a {
+        background: url(../serenity/images/spreadsheet.png) no-repeat 0 center;
+        padding: 0 0 0 18px;
+        line-height: 16px;
+        display: inline-block;
+    }
+
+    ul ul {
+        display: none;
+    }
+}

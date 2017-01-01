@@ -1,0 +1,158 @@
+@import "site.mixins.less";
+
+.s-Northwind-ProductDialog {
+    > .size { width: 650px; }
+    .caption { width: 180px; }
+    .s-PropertyGrid .categories { height: 500px; }
+}
+
+.s-Northwind-CategoryDialog {
+    > .size { .widthAndMin(650px); }
+    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    .s-PropertyGrid .categories { height: 260px; }
+}
+
+.s-Northwind-CustomerDialog {
+    > .size { .widthAndMin(850px); .heightAndMin(580px); }
+    .ui-dialog-content { overflow: hidden; }
+    .dialog-styles(@h: auto, @l: 150px, @e: 600px);
+    .categories { height: 400px; }
+    .s-CustomerOrdersGrid > .grid-container { height: 296px; }
+    .s-NotesEditor { height: 100%; margin: 6px; width: initial !important; min-width: 100%; }
+    .grid-toolbar { .flex(0, 0, auto); }
+}
+
+.s-Northwind-OrderDialog, .s-CustomerOrderDialog {
+    > .size { width: 850px; }
+    .caption { width: 130px; }
+    .s-PropertyGrid .categories { height: 550px; }
+}
+
+.s-Northwind-OrderDetailDialog {
+    > .size { .widthAndMin(450px); }
+    .dialog-styles(@h: auto, @l: 80px, @e: 310px);
+
+    @media(max-width: 445px) {
+        > .size { .widthAndMin(320px); }
+        .dialog-styles(@h: auto, @l: 80px, @e: 180px);
+    }
+}
+
+.s-Northwind-OrderGrid {
+    .s-CustomerEditor { .widthAndMin(250px); }
+}
+
+.s-Northwind-ProductGrid {
+    .slick-cell {
+        input[type=text] { text-align: right; border-radius: 0; width: 100%; padding: 0 2px; border: 1px solid #e7e7e7; }
+        .dirty { background-color: #ffe0e0; }
+    }
+}
+
+.s-Northwind-RegionDialog {
+    > .size { .widthAndMin(650px); }
+    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    .s-PropertyGrid .categories { height: 260px; }
+}
+
+.s-Northwind-ShipperDialog {
+    > .size { .widthAndMin(650px); }
+    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    .s-PropertyGrid .categories { height: 260px; }
+}
+
+.s-Northwind-SupplierDialog {
+    > .size { .widthAndMin(650px); }
+    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    .s-PropertyGrid .categories { height: 460px; }
+}
+
+.s-Northwind-TerritoryDialog {
+    > .size { .widthAndMin(650px); }
+    .dialog-styles(@h: auto, @l: 150px, @e: 400px);
+    .s-PropertyGrid .categories { height: 260px; }
+}
+
+.employee-symbol {
+    padding: 2px 0px 2px 20px;
+    background: url(../serenity/images/sprites.png) no-repeat -217px 2px;
+}
+
+.employee-symbol.female {
+    background-position: -217px -23px;
+}
+
+.shipper-symbol {
+    padding: 2px 0px 2px 20px;
+    background: url(../serenity/images/wheel.png) no-repeat center left;
+
+    &.shipper-UnitedPackage { background-image: url(../serenity/images/box.png); }
+    &.shipper-SpeedyExpress { background-image: url(../serenity/images/clock.png); }
+}
+
+.freight-symbol {
+    padding: 2px 20px 2px 0px;
+    background: url(../serenity/images/balance.png) no-repeat center right;
+}
+
+.s-NotesEditor {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    ul {
+        padding: 0;
+        min-height: 110px;
+        overflow-y: auto;
+        list-style: none;
+    }
+
+    li {
+        margin: 10px;
+        border-radius: 4px;
+        border: 1px solid #C3C2C2;
+        background-color: #F5E7DC;
+        padding: 8px;
+        position: relative;
+    }
+
+    .note-text {
+        padding-right: 24px;
+        display: block;
+    }
+
+    .note-delete {
+        background-image: url('../serenity/images/delete2.png'); 
+        display: block;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: 6px;
+        top: 6px;
+        opacity: 0.4;
+    }
+
+    .note-delete:hover {
+        opacity: 1;
+    }
+
+    .note-date {
+        margin-top: 6px;
+        display: block;
+        text-align: right;
+        color: rgb(42, 64, 132);
+        font-style: italic;
+    }
+
+    .s-Toolbar {
+        background-color: #eee;
+        padding: 4px;
+    }
+}
+
+.s-NoteDialog {
+    > .size { width: 465px; }
+
+    .ui-dialog-content {
+        padding-bottom: 10px;
+    }
+}

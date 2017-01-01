@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = Serenity.LocalText.Get("Db.Northwind.Order.EntityPlural");
+}
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var orderGrid = new Serene.Northwind.OrderGrid($('#GridDiv'), {
+        });
+
+        var q = Q.parseQueryString();
+        if (q.shippingState != null && q.shippingState.length) {
+            orderGrid.set_shippingState(parseInt(q.shippingState, 10));
+        }
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

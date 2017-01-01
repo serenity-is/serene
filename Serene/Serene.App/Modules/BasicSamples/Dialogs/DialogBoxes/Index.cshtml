@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Dialog Box Types";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small>Alert, Confirm, Information, Warning</small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Here are some samples for Q.confirm, Q.alert, Q.information functions</p>
+    <p>Click buttons below to launch dialogs.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("DialogBoxes.ts")
+    </p>
+</div>
+
+<button id="ConfirmDialogButtons" class="btn btn-block btn-primary">Confirm Dialog and Buttons</button>
+<button id="ConfirmWithCustomTitle" class="btn btn-block btn-primary">Confirm With Custom Title</button>
+<button id="Information" class="btn btn-block btn-info">Information</button>
+<button id="Warning" class="btn btn-block btn-warning">Warning</button>
+<button id="Alert" class="btn btn-block btn-danger">Alert</button>
+<button id="AlertWithHtmlContent" class="btn btn-block btn-danger">Alert with HTML Content</button>
+
+<script type="text/javascript">
+    $(Serene.BasicSamples.DialogBoxes.initializePage);
+</script>

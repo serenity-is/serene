@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Filtered Lookup in Detail Dialog";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>A frequently asked question is how to pass some data from master dialog to a lookup editor
+    in a detail dialog to filter items.</p>
+    <p>In this sample we have a custom Order dialog that has a Product Category selection.</p>
+    <p>When you click Add button in Order Details grid, Product editor in detail dialog will 
+    only show products in selected Category.</p>
+    <p>To achieve this, we need to flow selected category information on this route: Master Order Dialog -&gt;
+       Order Detail Grid Editor -&gt; Order Detail Dialog -&gt; Product Lookup Editor.
+    
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("FilteredLookupInDetailForm.cs")
+        @Html.AppSourceFile("FilteredLookupInDetailGrid.ts")
+        @Html.AppSourceFile("FilteredLookupInDetailDialog.ts")
+        @Html.AppSourceFile("FilteredLookupDetailEditor.ts")
+        @Html.AppSourceFile("FilteredLookupOrderDetailDialog.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.FilteredLookupInDetailGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

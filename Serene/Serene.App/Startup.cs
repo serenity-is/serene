@@ -10,6 +10,7 @@ using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
+using Serenity.Web.Middleware;
 using Serenity.Services;
 using System;
 using System.Data.SqlClient;
@@ -65,9 +66,9 @@ namespace Serene
             textRegistry.AddEnumTexts();
             textRegistry.AddRowTexts();
             var contentRoot = env.ContentRootPath;
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/serenity"));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/site"));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/user"));
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/serenity/texts"));
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/site/texts"));
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "App_Data/texts"));
 
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 
@@ -84,6 +85,7 @@ namespace Serene
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseDynamicScripts();
             app.UseStaticFiles();
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

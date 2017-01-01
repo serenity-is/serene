@@ -1,0 +1,68 @@
+﻿@model Serene.ReportTree
+
+@{
+    ViewData["Title"] = "Reports";
+}
+
+
+@helper RenderItems(Serene.ReportTree.Category category)
+{
+    if (category.Reports != null)
+    {
+        int i = 0;
+        foreach (var x in category.Reports)
+        {
+            <li class="report-item @(i++ % 2 == 0 ? "odd" : "even")">
+                <a href="#" class="report-link" data-key="@x.Key">
+                    @x.Title
+                </a>
+            </li>
+        }
+    }
+    if (category.SubCategories != null)
+    {
+        foreach (var x in category.SubCategories)
+        {
+            @RenderTree(x)
+        }
+    }    
+}
+
+@helper RenderTree(Serene.ReportTree.Category category)
+{
+    <li class="category expanded">
+        <div class="line"><span class="toggle"></span><span class="caption">@category.Title</span></div>
+
+        @if (category.SubCategories != null && category.SubCategories.Count() > 0 ||
+        category.Reports != null && category.Reports.Count() > 0)
+        {
+        <ul class="@(category.Reports != null ? "has-reports" : "")" style="display: block;">
+            @RenderItems(category)
+        </ul>
+        }
+    </li>
+}
+
+
+<div id="ReportPage" class="s-DataGrid">
+    <div class="grid-title">
+        <div class="title-text">Reports</div>
+    </div>
+    <div class="grid-toolbar s-Toolbar clearfix">
+        <div class="s-QuickSearchBar"><input /></div>
+    </div>
+    <div class="report-box">
+        <div class="report-list center">
+            <ul>
+            @RenderItems(Model.Root)
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.Common.ReportPage($('#ReportPage'));
+        Q.initFullHeightGridPage($('#ReportPage'));
+    });
+</script>

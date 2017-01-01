@@ -1,0 +1,317 @@
+﻿<#@ assembly name="System.Core"
+#><#@ assembly name="EnvDTE"
+#><#@ assembly name="EnvDTE80" 
+#><#@ assembly name="VSLangProj" 
+#><#@ assembly name="$(TargetDir)Serenity.Core.dll"
+#><#@ assembly name="$(TargetDir)Serenity.Web.dll" 
+#><#@ assembly name="$(ProjectDir)tools\Mono.Cecil\Mono.Cecil.dll" 
+#><#@ assembly name="$(ProjectDir)\tools\JsEngine\MsieJavaScriptEngine.dll"
+#><#@ import namespace="System.Linq" 
+#><#@ import namespace="System.Collections.Generic" 
+#><#@ import namespace="Microsoft.VisualStudio.TextTemplating" 
+#><#@ import namespace="Serenity.CodeGeneration"
+#><#@ import namespace="MsieJavaScriptEngine"
+#><#+
+
+public class SSTypeLister
+{
+    private List<Mono.Cecil.AssemblyDefinition> assemblyDefinitions;
+
+    public SSTypeLister(params string[] assemblies)
+    {
+        if (assemblies == null)
+            throw new ArgumentNullException("assemblies");
+
+        var resolver = new Mono.Cecil.DefaultAssemblyResolver();
+
+        foreach (var assembly in assemblies)
+            resolver.AddSearchDirectory(Path.GetDirectoryName(assembly));
+
+        assemblyDefinitions = new List<Mono.Cecil.AssemblyDefinition>();
+        foreach (var assembly in assemblies)
+            assemblyDefinitions.Add(Mono.Cecil.AssemblyDefinition.ReadAssembly(
+                assembly, new Mono.Cecil.ReaderParameters { AssemblyResolver = resolver }));
+    }
+    
+    private List<Mono.Cecil.TypeDefinition> GetAllBaseTypes(Mono.Cecil.TypeDefinition type)
+    {
+        var result = new List<Mono.Cecil.TypeDefinition>();
+
+        while (type.BaseType != null &&
+            !type.BaseType.Namespace.StartsWith("System"))
+        {
+            type = type.BaseType.Resolve();
+            result.Add(type);
+        }
+
+        return result;
+    }
+
+    private object GetArgumentValue(object value)
+    {
+        if (value == null)
+            return null;
+
+        var reference = value as Mono.Cecil.TypeReference;
+        if (reference != null)
+            return reference.FullName;
+
+        return value;
+    }
+
+    private ExternalAttribute ToExternalAttribute(Mono.Cecil.CustomAttribute attr)
+    {
+        var externalAttr = new ExternalAttribute();
+        externalAttr.Type = attr.AttributeType.FullName;
+        foreach (var arg in attr.ConstructorArguments)
+        {
+            externalAttr.Arguments.Add(new ExternalArgument
+            {
+                Type = arg.Type.FullName,
+                Value = GetArgumentValue(arg.Value)
+            });
+        }
+
+        foreach (var arg in attr.Properties)
+        {
+            externalAttr.Arguments.Add(new ExternalArgument
+            {
+                Type = arg.Argument.Type.FullName,
+                Value = GetArgumentValue(arg.Argument.Value),
+                Name = arg.Name
+            });
+        }
+        
+        return externalAttr;
+    }
+
+    private ExternalArgument ToExternalArgument(Mono.Cecil.ParameterDefinition prm)
+    {
+        var resolved = prm.Resolve();
+        
+        return new ExternalArgument
+        {
+            Name = prm.Name,
+            Type = prm.ParameterType.FullName,
+            IsOptional = resolved.IsOptional,
+            HasDefault = resolved.HasDefault
+        };
+    }
+
+    private ExternalMethod ToExternalMethod(Mono.Cecil.MethodDefinition method)
+    {
+        var result = new ExternalMethod();
+        result.Name = method.Name;
+        result.IsProtected = !method.IsPublic;
+        result.IsStatic = method.IsStatic;
+        result.IsConstructor = method.IsConstructor;
+        result.Type = method.ReturnType.FullName;
+        result.IsOverride = method.IsVirtual && method.IsReuseSlot;
+        result.IsGetter = method.IsGetter;
+        result.IsSetter = method.IsSetter;
+
+        foreach (var attr in method.CustomAttributes)
+            result.Attributes.Add(ToExternalAttribute(attr));
+        
+        foreach (var arg in method.Parameters)
+            result.Arguments.Add(ToExternalArgument(arg));
+
+        return result;
+    }
+
+    private ExternalProperty ToExternalProperty(Mono.Cecil.PropertyDefinition prop)
+    {
+        var result = new ExternalProperty();
+        result.Name = prop.Name;
+        result.Type = prop.PropertyType.FullName;
+        result.IsStatic = !prop.HasThis;
+        if (prop.GetMethod != null && !prop.GetMethod.IsPrivate)
+            result.GetMethod = prop.GetMethod.Name;
+
+        if (prop.SetMethod != null && !prop.SetMethod.IsPrivate)
+            result.SetMethod = prop.SetMethod.Name;
+
+        foreach (var attr in prop.CustomAttributes)
+            result.Attributes.Add(ToExternalAttribute(attr));
+
+        return result;
+    }
+
+    private ExternalMember ToExternalField(Mono.Cecil.FieldDefinition field)
+    {
+        var result = new ExternalMember();
+        result.Name = field.Name;
+        result.Type = field.FieldType.FullName;
+        result.IsStatic = field.IsStatic;
+
+        return result;
+    }
+
+    private ExternalType ToExternalType(Mono.Cecil.TypeDefinition type)
+    {
+        var externalType = new ExternalType
+        {
+            Namespace = type.Namespace,
+            Name = type.Name,
+            IsAbstract = type.IsAbstract,
+            IsInterface = type.IsInterface,
+            IsSealed = type.IsSealed,
+            BaseType = type.BaseType != null ? type.BaseType.FullName : "",
+            IsSerializable = type.IsSerializable
+        };
+
+        foreach (var attr in type.CustomAttributes)
+            externalType.Attributes.Add(ToExternalAttribute(attr));
+
+        foreach (var intf in type.Interfaces)
+            externalType.Interfaces.Add(intf.FullName);
+
+        foreach (var method in type.Methods)
+            if (!method.IsPrivate)
+                externalType.Methods.Add(ToExternalMethod(method));
+
+        foreach (var prop in type.Properties)
+            externalType.Properties.Add(ToExternalProperty(prop));
+
+        foreach (var field in type.Fields)
+            if (!field.IsPrivate && !field.IsAssembly && !field.IsCompilerControlled)
+                externalType.Fields.Add(ToExternalField(field));
+
+        foreach (var prm in type.GenericParameters)
+            externalType.GenericParameters.Add(new ExternalGenericParameter {
+                Name = prm.Name
+            });
+
+        return externalType;
+    }
+    
+    public List<ExternalType> List()
+    {
+        var result = new List<ExternalType>();
+        
+        foreach (var assembly in this.assemblyDefinitions)
+        {
+            var assemblyName = assembly.Name.Name;
+            foreach (var module in assembly.Modules)
+            {
+                foreach (var type in module.Types)
+                {
+                    if (!type.IsPublic)
+                        continue;
+                    
+                    var externalType = ToExternalType(type);
+                    externalType.AssemblyName = assemblyName;
+                    result.Add(externalType);
+                }
+            }
+        }
+        
+        return result;
+    }
+}
+
+public class TSTypeLister
+{
+    private string projectDir;
+
+    public TSTypeLister(string projectDir)
+    {
+        this.projectDir = projectDir;
+    }
+
+    private MsieJsEngine SetupJsEngine()
+    {
+        MsieJsEngine jsEngine;
+        try
+        {
+            jsEngine = new MsieJsEngine(new JsEngineSettings { EngineMode = JsEngineMode.ChakraIeJsRt });
+        }
+        catch
+        {
+            jsEngine = new MsieJsEngine();
+        }
+        try
+        {
+            var json2 = File.ReadAllText(projectDir + @"tools\JsEngine\json2.min.js");
+            jsEngine.Evaluate(json2);
+            var tsServices = File.ReadAllText(projectDir + @"tools\JsEngine\typeScriptServices.js");
+            jsEngine.Evaluate(tsServices);
+            using (var sr = new StreamReader(
+                typeof(Serenity.CodeGeneration.DtoGenerator).Assembly.GetManifestResourceStream(
+                    "Serenity.Web.Scripts.tsservices.Serenity.CodeGeneration.js")))
+            {
+                jsEngine.Evaluate(sr.ReadToEnd());
+            }
+
+            return jsEngine;
+        }
+        catch
+        {
+            jsEngine.Dispose();
+            throw;
+        }
+    }
+
+    public List<ExternalType> List()
+    {
+        var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
+            .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
+            .Where(x => !x.EndsWith(".d.ts") || x.IndexOf("Serenity") >= 0);
+
+        using (var jsEngine = SetupJsEngine())
+        {
+            jsEngine.SetVariableValue("fileName", "/lib.d.ts");
+            jsEngine.SetVariableValue("sourceText", File.ReadAllText(projectDir + @"tools\JsEngine\lib.d.ts_"));
+            jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
+
+            foreach (var file in files)
+            {
+                var name = file.Substring(projectDir.Length - 1).Replace("\\", "/");
+                jsEngine.SetVariableValue("fileName", name);
+                jsEngine.SetVariableValue("sourceText", File.ReadAllText(file));
+                jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
+            }
+
+                
+            var json = jsEngine.Evaluate<string>(
+                "JSON.stringify(Serenity.CodeGeneration.parseTypes(sourceText))");
+
+            return JSON.Parse<List<ExternalType>>(json);
+        }
+    }
+}
+
+public class TypeScriptCompiler
+{
+    public string DetermineTSCPath() {
+        var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+            @"Microsoft SDKs\TypeScript\");
+
+        var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+            @"Microsoft SDKs\TypeScript\");
+
+        var list = new List<string>();
+        if (Directory.Exists(pf86))
+            list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
+        if (Directory.Exists(pf64))
+            list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
+
+        if (list.Count > 0)
+        {
+            return list.OrderByDescending(x => Path.GetFileName(Path.GetDirectoryName(x)))
+                .FirstOrDefault();
+        }
+
+        throw new Exception("Can't determine path of TSC.exe that is required to compile generated TypeScript files!");
+    }
+
+    public void Compile(string workingDirectory, string arguments) {
+        var tscPath = DetermineTSCPath();
+
+        var psi = new System.Diagnostics.ProcessStartInfo(tscPath, arguments);
+        psi.WorkingDirectory = workingDirectory;
+        System.Diagnostics.Process.Start(psi).WaitForExit(10000);
+    }
+}
+
+#>

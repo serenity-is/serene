@@ -52,8 +52,7 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
     "compile": {
-        "include": "../Serene.Web/Modules/**/*.cs",
-        "exclude": "../Serene.Web/Modules/Common/Migrations/**/*.cs"
+        "exclude": "Modules/Common/Migrations/**/*.cs"
     }
   },
 
