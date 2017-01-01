@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/Forms/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Forms/" + R.ActionIndex)]
     public class FormsController : Controller
     {
         public ActionResult GeneralElements()

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApplication7
+namespace Serene
 {
     public class Program
     {
@@ -20,5 +20,11 @@ namespace WebApplication7
 
             host.Run();
         }
+    }
+
+    public static class R
+    {
+        public const string Action = "[action]";
+        public const string ActionIndex = "[action]";
     }
 }

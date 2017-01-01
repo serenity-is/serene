@@ -21,7 +21,7 @@ using System.Web.Security;
 
 namespace Serene
 {
-    [Route("Report/{action=index}")]
+    [Route("Report/" + R.ActionIndex)]
     public class ReportController : Controller
     {
         public ActionResult Render(string key, string opt, string ext, int? print = 0)

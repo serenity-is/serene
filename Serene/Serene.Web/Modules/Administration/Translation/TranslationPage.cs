@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Administration/Translation/{action=index}")]
+    [Route("Administration/Translation/" + R.ActionIndex)]
     [PageAuthorize(PermissionKeys.Translation)]
     public class TranslationController : Controller
     {  

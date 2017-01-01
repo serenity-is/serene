@@ -12,7 +12,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.RegionRepository;
     using MyRow = Entities.RegionRow;
 
-    [Route("Services/Northwind/Region/{action}")]
+    [Route("Services/Northwind/Region/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class RegionController : ServiceEndpoint
     {

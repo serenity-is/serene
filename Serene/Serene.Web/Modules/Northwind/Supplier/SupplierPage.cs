@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Northwind/Supplier/{action=index}")]
+    [Route("Northwind/Supplier/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.SupplierRow))]
     public class SupplierController : Controller
     {

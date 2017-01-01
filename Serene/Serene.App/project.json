@@ -25,6 +25,8 @@
         "Serenity.Data": "3.0.0-*",
         "Serenity.Services": "3.0.0-*",
         "Serenity.Web": "3.0.0-*",
+        "System.Data.Common": "4.3.0",
+        "System.Data.SqlClient": "4.3.0",
         "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0"
     },
 

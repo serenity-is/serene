@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/" + R.ActionIndex)]
     public class AdminLTEController : Controller
     {
         public ActionResult DashboardV2()

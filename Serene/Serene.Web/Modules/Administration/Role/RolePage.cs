@@ -7,7 +7,7 @@
     using System.Web.Mvc;
 #endif
 
-    [Route("Administration/Role/{action=index}")]
+    [Route("Administration/Role/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.RoleRow))]
     public class RoleController : Controller
     {       

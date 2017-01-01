@@ -16,7 +16,7 @@ namespace Serene.BasicSamples.Endpoints
     using System.IO;
     using System.IO.Compression;
 
-    [Route("Services/BasicSamples/VSGalleryQA/{action}")]
+    [Route("Services/BasicSamples/VSGalleryQA/" + R.Action)]
     [ServiceAuthorize]
     public class VSGalleryQAController : ServiceEndpoint
     {

@@ -1,67 +1,172 @@
 ﻿<!DOCTYPE html>
-<html>
+@{
+    Func<string, HtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
+    //var hideNav = Request["hideNav"] == "1";
+    var hideNav = false;
+    var logged = Serenity.Authorization.Username;
+    //var themeCookie = Request.Cookies["ThemePreference"];
+    //var theme = themeCookie != null && !themeCookie.Value.IsEmptyOrNull() ? themeCookie.Value : "blue";
+    var theme = "blue";
+    var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+    var user = (UserDefinition)Serenity.Authorization.UserDefinition;
+    var userImage = System.Web.VirtualPathUtility.ToAbsolute(
+        (user == null || string.IsNullOrEmpty(user.UserImage)) ? "~/Content/adminlte/img/avatar04.png" :
+        "~/upload/" + user.UserImage);
+}
+<!--[if IE 8]> <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="no-js@(hideNav ? " no-navigation" : "")">
+<!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication7</title>
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
+    @RenderSection("Head", false)
+    <title>@(ViewData["Title"]) - Serene</title>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApplication7</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) fixed sidebar-mini hold-transition skin-@theme@(hideNav ? " no-navigation" : " has-layout-event")@(rtl ? " rtl" : "")">
+
+    @if (hideNav)
+    {
+        <script type="text/javascript">
+    $(function () {
+        @RenderSection("PageInitScript", false)
+    });
+        </script>
+        <div id="page-outer-nonav">
+            <div id="page-container" class="page-container-common">
+                @RenderBody()
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - WebApplication7</p>
-        </footer>
-    </div>
+    }
+    else
+    {
+        <div class="wrapper">
+            <header class="main-header">
+                <a href="~/" class="logo">
+                    <span class="logo-mini"><i></i></span>
+                    <span class="logo-lg"><i></i><b>@LocalText.Get("Navigation.SiteTitle")</b></span>
+                </a>
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="@userImage" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">@Serenity.Authorization.Username</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="@userImage" class="img-circle" alt="User Image">
 
-    @RenderSection("scripts", required: false)
+                                        <p>
+                                            @(user != null ? user.DisplayName : "")
+                                        </p>
+                                    </li>
+
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="~/Account/ChangePassword" class="btn btn-default btn-flat"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="~/Account/Signout" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> @LocalText.Get("Navigation.LogoutLink")</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" id="SidebarSearch" name="q" class="form-control" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <ul class="sidebar-menu" id="SidebarMenu">
+                        @{Html.RenderPartial(MVC.Views.Shared.LeftNavigation, new Serene.Navigation.NavigationModel()); }
+                    </ul>
+                </section>
+            </aside>
+
+            <div class="content-wrapper">
+                @if (IsSectionDefined("ContentHeader"))
+                {
+                    <section class="content-header">
+                        @RenderSection("ContentHeader")
+                    </section>
+                }
+                <section class="content">
+                    @RenderBody()
+                </section>
+            </div>
+
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    @Texts.Site.Layout.FooterInfo
+                </div>
+                <strong>@Texts.Site.Layout.FooterCopyright</strong> @Texts.Site.Layout.FooterRights
+            </footer>
+
+            <aside class="control-sidebar control-sidebar-dark">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="control-sidebar-settings-tab">
+                        <form method="post">
+                            <h3 class="control-sidebar-heading">@Texts.Site.Layout.GeneralSettings</h3>
+
+                            <div class="form-group">
+                                <label class="control-sidebar-subheading">@Texts.Site.Layout.Language</label>
+                                <select id="LanguageSelect" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 15px;">
+                                <label class="control-sidebar-subheading">@Texts.Site.Layout.Theme</label>
+                                <select id="ThemeSelect" class="form-control"></select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+            <div class="control-sidebar-bg"></div>
+        </div>
+
+        <script type="text/javascript">
+    $().ready(function () {
+        new Serene.Common.SidebarSearch($('#SidebarSearch'), $('#SidebarMenu')).init();
+        new Serene.Common.LanguageSelection($('#LanguageSelect'), '@(System.Globalization.CultureInfo.CurrentUICulture.Name)');
+        new Serene.Common.ThemeSelection($('#ThemeSelect'));
+        @RenderSection("PageInitScript", false);
+
+        var doLayout = function () {
+            height = (this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height;
+            height -= $('header.main-header').outerHeight() || 0;
+            height -= $('section.content-header').outerHeight() || 0;
+            height -= $('footer.main-footer').outerHeight() || 0;
+            if (height < 200) height = 200;
+            $("section.content").css("min-height", (height) + "px");
+
+            $('body').triggerHandler('layout');
+        };
+
+        $(window).bind("load resize layout", doLayout);
+        doLayout();
+    });
+        </script>
+                            }
 </body>
 </html>

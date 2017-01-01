@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/UIElements/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/UIElements/" + R.ActionIndex)]
     public class UIElementsController : Controller
     {
         public ActionResult Buttons()

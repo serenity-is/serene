@@ -15,7 +15,7 @@ namespace Serene.BasicSamples.Endpoints
     using System.Web.Mvc;
 #endif
 
-    [ServiceAuthorize, Route("Services/BasicSamples/BasicSamples/{action}")]
+    [ServiceAuthorize, Route("Services/BasicSamples/BasicSamples/" + R.Action)]
     [ConnectionKey(typeof(OrderRow))]
     public class BasicSamplesController : ServiceEndpoint
     {

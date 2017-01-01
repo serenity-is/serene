@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/Charts/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Charts/" + R.ActionIndex)]
     public class ChartsController : Controller
     {
         public ActionResult ChartJS()

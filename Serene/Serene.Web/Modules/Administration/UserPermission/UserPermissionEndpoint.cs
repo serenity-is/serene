@@ -13,7 +13,7 @@ namespace Serene.Administration.Endpoints
     using MyRepository = Repositories.UserPermissionRepository;
     using MyRow = Entities.UserPermissionRow;
 
-    [Route("Services/Administration/UserPermission/{action}")]
+    [Route("Services/Administration/UserPermission/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserPermissionController : ServiceEndpoint
     {
@@ -33,7 +33,7 @@ namespace Serene.Administration.Endpoints
             return new MyRepository().ListRolePermissions(connection, request);
         }
 
-        [DataScript("Administration.PermissionKeys")]
+        [DataScript("Administration.PermissionKeys/" + R.Action)]
         public ListResponse<string> ListPermissionKeys()
         {
             return new MyRepository().ListPermissionKeys();

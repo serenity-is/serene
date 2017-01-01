@@ -8,7 +8,7 @@ namespace Serene.Organization.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Organization/Contact/{action=index}")]
+    [Route("Organization/Contact/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.ContactRow))]
     public class ContactController : Controller
     {

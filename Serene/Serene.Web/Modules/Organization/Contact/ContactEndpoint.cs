@@ -12,7 +12,7 @@ namespace Serene.Organization.Endpoints
     using MyRepository = Repositories.ContactRepository;
     using MyRow = Entities.ContactRow;
 
-    [Route("Services/Organization/Contact/{action}")]
+    [Route("Services/Organization/Contact/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ContactController : ServiceEndpoint
     {

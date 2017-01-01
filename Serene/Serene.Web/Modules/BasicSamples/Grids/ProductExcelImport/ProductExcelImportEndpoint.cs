@@ -19,7 +19,7 @@ namespace Serene.BasicSamples.Endpoints
 #endif
     using MyRow = Northwind.Entities.ProductRow;
 
-    [Route("Services/BasicSamples/ProductExcelImport/{action}")]
+    [Route("Services/BasicSamples/ProductExcelImport/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
     public class ProductExcelImportController : ServiceEndpoint
     {

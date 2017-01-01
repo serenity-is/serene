@@ -26,3 +26,7 @@ Serene/Serene.App/Modules/**/*.cshtml
 Serene/Serene.App/Modules/**/*.html
 .vs/restore.dg
 project.lock.json
+Serene/Serene.App/wwwroot/Content/
+Serene/Serene.App/wwwroot/Scripts/
+Serene/Serene.App/wwwroot/fonts/
+.vs/restore.dg

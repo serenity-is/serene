@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serene;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
@@ -10,8 +12,9 @@ using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
 using Serenity.Services;
 using System;
+using System.Data.SqlClient;
 
-namespace WebApplication7
+namespace Serene
 {
     public class Startup
     {
@@ -32,10 +35,14 @@ namespace WebApplication7
         {
             // Add framework services.
             services.AddMvc();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddConfig(Configuration);
             services.AddCaching();
             services.AddTextRegistry();
             services.AddFileLogging();
+            services.AddSingleton<IAuthorizationService, MyAuthorizationService>();
+            services.AddSingleton<IUserRetrieveService, MyUserRetrieveService>();
+            services.AddSingleton<IPermissionService, MyPermissionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +58,8 @@ namespace WebApplication7
                 typeof(Startup).GetAssembly()
             };
 
+            Dependency.SetResolver(new MyDependencyResolver(app.ApplicationServices));
+
             var textRegistry = app.ApplicationServices.GetRequiredService<ILocalTextRegistry>();
             textRegistry.AddNestedTexts();
             textRegistry.AddEnumTexts();
@@ -58,7 +67,9 @@ namespace WebApplication7
             var contentRoot = env.ContentRootPath;
             textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/serenity"));
             textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/site"));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/user"));           
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "texts/user"));
+
+            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -87,4 +98,77 @@ namespace WebApplication7
             });
         }
     }
+
+    public class MyDependencyResolver : IDependencyResolver
+    {
+        private IServiceProvider provider;
+
+        public MyDependencyResolver(IServiceProvider provider)
+        {
+            this.provider = provider;
+        }
+
+        public TService Resolve<TService>() where TService : class
+        {
+            return provider.GetRequiredService<TService>();
+        }
+
+        public TService TryResolve<TService>() where TService : class
+        {
+            return provider.GetService<TService>();
+        }
+    }
+
+    public class MyAuthorizationService : IAuthorizationService
+    {
+        public bool IsLoggedIn
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public string Username
+        {
+            get
+            {
+                return "admin";
+            }
+        }
+    }
+
+    public class MyUserRetrieveService : IUserRetrieveService
+    {
+        public IUserDefinition ById(string id)
+        {
+            return new UserDefinition
+            {
+                UserId = Convert.ToInt32(id),
+                Username = "admin",
+                DisplayName = "admin",
+                IsActive = 1
+            };
+        }
+
+        public IUserDefinition ByUsername(string username)
+        {
+            return new UserDefinition
+            {
+                UserId = 1,
+                Username = username,
+                DisplayName = "admin",
+                IsActive = 1
+            };
+        }
+    }
+
+    public class MyPermissionService : IPermissionService
+    {
+        public bool HasPermission(string permission)
+        {
+            return true;
+        }
+    }
+
 }

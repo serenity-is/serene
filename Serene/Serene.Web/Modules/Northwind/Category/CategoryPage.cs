@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Northwind/Category/{action=index}")]
+    [Route("Northwind/Category/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.CategoryRow))]
     public class CategoryController : Controller
     {

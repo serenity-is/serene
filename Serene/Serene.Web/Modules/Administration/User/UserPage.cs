@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Administration/User/{action=index}")]
+    [Route("Administration/User/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.UserRow))]
     public class UserController : Controller
     {

@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/Tables/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Tables/" + R.ActionIndex)]
     public class TablesController : Controller
     {
         public ActionResult SimpleTables()

@@ -12,7 +12,7 @@ namespace Serene.Meeting.Endpoints
     using MyRepository = Repositories.MeetingAgendaTypeRepository;
     using MyRow = Entities.MeetingAgendaTypeRow;
 
-    [Route("Services/Meeting/MeetingAgendaType/{action}")]
+    [Route("Services/Meeting/MeetingAgendaType/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class MeetingAgendaTypeController : ServiceEndpoint
     {

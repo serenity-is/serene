@@ -8,7 +8,7 @@ namespace Serene.BasicSamples.Pages
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("BasicSamples/{action=index}")]
+    [PageAuthorize, Route("BasicSamples/" + R.ActionIndex)]
     public partial class BasicSamplesController : Controller
     {
     }

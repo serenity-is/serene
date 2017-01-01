@@ -8,7 +8,7 @@ namespace Serene.AdminLTE
     using System.Web.Mvc;
 #endif
 
-    [PageAuthorize, Route("AdminLTE/Examples/{action=index}")]
+    [PageAuthorize, Route("AdminLTE/Examples/" + R.ActionIndex)]
     public class ExamplesController : Controller
     {
         public ActionResult BlankPage()

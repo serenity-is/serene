@@ -12,7 +12,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.ShipperRepository;
     using MyRow = Entities.ShipperRow;
 
-    [Route("Services/Northwind/Shipper/{action}")]
+    [Route("Services/Northwind/Shipper/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ShipperController : ServiceEndpoint
     {

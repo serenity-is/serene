@@ -11,7 +11,7 @@ namespace Serene.Membership.Pages
     using System.Web.Security;
 #endif
 
-    [Route("Account/{action=index}")]
+    [Route("Account/" + R.ActionIndex)]
     public partial class AccountController : Controller
     {
         public static bool UseAdminLTELoginBox = false;

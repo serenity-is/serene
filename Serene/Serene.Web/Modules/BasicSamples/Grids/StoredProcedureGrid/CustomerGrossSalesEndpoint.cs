@@ -14,7 +14,7 @@ namespace Serene.BasicSamples.Endpoints
     using MyRepository = Repositories.CustomerGrossSalesRepository;
     using MyRow = Entities.CustomerGrossSalesRow;
 
-    [Route("Services/BasicSamples/CustomerGrossSales/{action}")]
+    [Route("Services/BasicSamples/CustomerGrossSales/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerGrossSalesController : ServiceEndpoint
     {

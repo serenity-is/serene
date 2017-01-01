@@ -12,7 +12,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.ProductLangRepository;
     using MyRow = Entities.ProductLangRow;
 
-    [Route("Services/Northwind/ProductLang/{action}")]
+    [Route("Services/Northwind/ProductLang/" + R.Action)]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductLangController : ServiceEndpoint
     {

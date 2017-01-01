@@ -8,7 +8,7 @@ namespace Serene.Organization.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Organization/BusinessUnit/{action=index}")]
+    [Route("Organization/BusinessUnit/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.BusinessUnitRow))]
     public class BusinessUnitController : Controller
     {

@@ -15,7 +15,7 @@ namespace Serene.Common.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Dashboard/{action=index}")]
+    [Route("Dashboard/" + R.ActionIndex)]
     public class DashboardController : Controller
     {
         [PageAuthorize, HttpGet, Route("~/")]

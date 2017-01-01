@@ -8,7 +8,7 @@ namespace Serene.Administration.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Administration/Language/{action=index}")]
+    [Route("Administration/Language/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.LanguageRow))]
     public class LanguageController : Controller
     {

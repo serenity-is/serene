@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Northwind/Region/{action=index}")]
+    [Route("Northwind/Region/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.RegionRow))]
     public class RegionController : Controller
     {

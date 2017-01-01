@@ -8,7 +8,7 @@ namespace Serene.Northwind.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Northwind/Customer/{action=index}")]
+    [Route("Northwind/Customer/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.CustomerRow))]
     public class CustomerController : Controller
     {

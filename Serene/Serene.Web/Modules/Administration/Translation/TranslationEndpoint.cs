@@ -9,7 +9,7 @@ namespace Serene.Administration.Endpoints
 #endif
     using MyRepository = Repositories.TranslationRepository;
 
-    [Route("Services/Administration/Translation/{action}")]
+    [Route("Services/Administration/Translation/" + R.Action)]
     [ServiceAuthorize(PermissionKeys.Translation)]
     public class TranslationController : ServiceEndpoint
     {

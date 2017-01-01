@@ -8,7 +8,7 @@ namespace Serene.Meeting.Pages
     using System.Web.Mvc;
 #endif
 
-    [Route("Meeting/Meeting/{action=index}")]
+    [Route("Meeting/Meeting/" + R.ActionIndex)]
     [PageAuthorize(typeof(Entities.MeetingRow))]
     public class MeetingController : Controller
     {
