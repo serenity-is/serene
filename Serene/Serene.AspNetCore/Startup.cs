@@ -14,6 +14,7 @@ using Serenity.Web.Middleware;
 using Serenity.Services;
 using System;
 using System.Data.SqlClient;
+using Newtonsoft.Json.Serialization;
 
 namespace Serene
 {
@@ -35,7 +36,16 @@ namespace Serene
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.ModelBinderProviders.Insert(0, new ServiceEndpointModelBinderProvider());
+                options.Conventions.Add(new ServiceEndpointActionModelConvention());
+            })
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddConfig(Configuration);
             services.AddCaching();
@@ -78,20 +88,19 @@ namespace Serene
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseDynamicScripts();
             app.UseStaticFiles();
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 CookieName = ".AspNetAuth"
             });
 
+            app.UseDynamicScripts();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

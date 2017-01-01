@@ -13,7 +13,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Serenity.Services", "Sereni
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Serenity.Web", "Serenity\Serenity.Web\Serenity.Web.xproj", "{2DB8084A-1CF1-490F-AE59-7DB6AFC29FCA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Serene.App", "Serene\Serene.App\Serene.App.xproj", "{0054D396-3BA3-434E-9AD8-21089EAB716C}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Serene.AspNetCore", "Serene\Serene.AspNetCore\Serene.AspNetCore.xproj", "{0054D396-3BA3-434E-9AD8-21089EAB716C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
