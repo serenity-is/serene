@@ -24,7 +24,7 @@
         "<i class='fa " + icon + "'></i><span>" + title + "</span>" + (!item.Children.IsEmptyOrNull() ? "<i class='fa fa-angle-left pull-right'></i>" : "") + "</a>");
 
         if (item.Children.Count > 0) {
-            sb.Append("<ul class='treeview-menu'");
+            sb.Append("<ul class='treeview-menu'>");
             path[depth + 1] = 0;
             foreach (var child in item.Children)
             {

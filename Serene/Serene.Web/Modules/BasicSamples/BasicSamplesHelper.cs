@@ -4,6 +4,7 @@ using System.Web;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.Razor;
+using HtmlHelper = Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper;
 #else
 using System.Web.Mvc;
 #endif
