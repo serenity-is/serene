@@ -3,11 +3,7 @@ namespace Serene.BasicSamples.Pages
 {
 
     using Views = MVC.Views.BasicSamples.Grids;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
 
     public partial class BasicSamplesController : Controller
     {

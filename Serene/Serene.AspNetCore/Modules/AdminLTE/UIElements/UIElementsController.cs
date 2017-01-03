@@ -2,13 +2,9 @@
 namespace Serene.AdminLTE
 {
     using Serenity.Web;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
 
-    [PageAuthorize, Route("AdminLTE/UIElements/" + R.ActionIndex)]
+    [PageAuthorize, Route("AdminLTE/UIElements")]
     public class UIElementsController : Controller
     {
         public ActionResult Buttons()

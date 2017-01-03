@@ -16,14 +16,9 @@ namespace Serene.Membership.Pages
     using System.Net.Mail;
 #endif
     using System.Web;
-#if ASPNETCORE
     using Microsoft.AspNetCore.DataProtection;
     using Microsoft.AspNetCore.Mvc;
     using System.Web.Hosting;
-#else
-    using System.Web.Mvc;
-    using System.Web.Security;
-#endif
 
     public partial class AccountController : Controller
     {
@@ -60,19 +55,11 @@ namespace Serene.Membership.Pages
                     bytes = ms.ToArray();
                 }
 
-#if ASPNETCORE
                 var token = Convert.ToBase64String(HttpContext.RequestServices
                     .GetDataProtector("ResetPassword").Protect(bytes));
-#else
-                var token = Convert.ToBase64String(MachineKey.Protect(bytes, "ResetPassword"));
-#endif
 
                 var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
-#if ASPNETCORE
                     Request.GetBaseUri().ToString();
-#else
-                    Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
-#endif
 
                 var resetLink = UriHelper.Combine(externalUrl, "Account/ResetPassword?t=");
                 resetLink = resetLink + Uri.EscapeDataString(token);
@@ -83,13 +70,8 @@ namespace Serene.Membership.Pages
                 emailModel.ResetLink = resetLink;
 
                 var emailSubject = Texts.Forms.Membership.ResetPassword.EmailSubject.ToString();
-#if ASPNETCORE
                 var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                     MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordEmail, emailModel);
-#else
-                var emailBody = TemplateHelper.RenderTemplate(
-                    MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordEmail, emailModel);
-#endif
 
                 Common.EmailHelper.Send(emailSubject, emailBody, user.Email);
 

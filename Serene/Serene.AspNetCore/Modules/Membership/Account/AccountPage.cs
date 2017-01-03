@@ -4,14 +4,9 @@ namespace Serene.Membership.Pages
     using Serenity;
     using Serenity.Services;
     using System;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-    using System.Web.Security;
-#endif
 
-    [Route("Account/" + R.Action)]
+    [Route("Account")]
     public partial class AccountController : Controller
     {
         public static bool UseAdminLTELoginBox = false;
@@ -65,11 +60,8 @@ namespace Serene.Membership.Pages
 
         public ActionResult Signout()
         {
-#if ASPNETCORE
-#else
-            Session.Abandon();
-            FormsAuthentication.SignOut();
-#endif
+            //Session.Abandon();
+            //FormsAuthentication.SignOut();
             return new RedirectResult("~/");
         }
     }

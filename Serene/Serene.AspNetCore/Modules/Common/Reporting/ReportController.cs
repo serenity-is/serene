@@ -10,18 +10,12 @@ using System.Reflection;
 #if !COREFX
 using System.Net.Mime;
 #endif
-#if ASPNETCORE
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#else
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-#endif
 
 namespace Serene
 {
-    [Route("Report/" + R.ActionIndex)]
+    [Route("Report")]
     public class ReportController : Controller
     {
         public ActionResult Render(string key, string opt, string ext, int? print = 0)
@@ -98,28 +92,14 @@ namespace Serene
                 };
             }
 
-#if ASPNETCORE
             Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
-#else
-            var cd = new ContentDisposition
-            {
-                Inline = true,
-                FileName = fileDownloadName
-            };
-
-            Response.AddHeader("Content-Disposition", cd.ToString());
-#endif
             return File(renderedBytes, UploadHelper.GetMimeType(fileDownloadName));
         }
 
         private byte[] RenderAsPdf(IReport report, string key, string opt)
         {
             var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
-#if ASPNETCORE
                 Request.GetBaseUri().ToString();
-#else
-                Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
-#endif
 
             var renderUrl = UriHelper.Combine(externalUrl, "Report/Render?" +
                 "key=" + Uri.EscapeDataString(key));
@@ -135,17 +115,10 @@ namespace Serene
                 converter.UtilityExePath = wkhtmlPath;
             
             converter.Url = renderUrl;
-#if ASPNETCORE
             var formsCookieName = ".AspNetAuth";
             var formsCookie = Request.Cookies[formsCookieName];
             if (formsCookie != null)
                 converter.Cookies[formsCookieName] = formsCookie;
-#else
-            var formsCookieName = FormsAuthentication.FormsCookieName;
-            var formsCookie = Request.Cookies[formsCookieName];
-            if (formsCookie != null)
-                converter.Cookies[formsCookieName] = formsCookie.Value;
-#endif
 
             var icustomize = report as ICustomizeHtmlToPdf;
             if (icustomize != null)
@@ -164,11 +137,7 @@ namespace Serene
                     report.GetType().FullName));
 
             var data = report.GetData();
-#if ASPNETCORE
             var viewData = download ? new ViewDataDictionary(this.ViewData) { Model = data } : ViewData;
-#else
-            var viewData = download ? new ViewDataDictionary(data) : ViewData;
-#endif
 
             var iadditional = report as IReportWithAdditionalData;
             if (iadditional == null)
@@ -181,11 +150,7 @@ namespace Serene
             if (!download)
                 return View(viewName: designAttr.Design, model: data);
 
-#if ASPNETCORE
             var html = TemplateHelper.RenderViewToString(HttpContext.RequestServices, designAttr.Design, viewData);
-#else
-            var html = TemplateHelper.RenderViewToString(designAttr.Design, viewData);
-#endif
             renderedBytes = System.Text.Encoding.UTF8.GetBytes(html);
             return null;
         }

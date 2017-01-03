@@ -18,14 +18,9 @@ namespace Serene.Membership.Pages
     using System.Net.Mail;
 #endif
     using System.Web;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.DataProtection;
     using System.Web.Hosting;
-#else
-    using System.Web.Mvc;
-    using System.Web.Security;
-#endif
 
     public partial class AccountController : Controller
     {
@@ -90,19 +85,11 @@ namespace Serene.Membership.Pages
                         bytes = ms.ToArray();
                     }
 
-#if ASPNETCORE
                     var token = Convert.ToBase64String(HttpContext.RequestServices
                         .GetDataProtector("Activate").Protect(bytes));
-#else
-                    var token = Convert.ToBase64String(MachineKey.Protect(bytes, "Activate"));
-#endif
 
                     var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
-#if ASPNETCORE
                     Request.GetBaseUri().ToString();
-#else
-                    Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/");
-#endif
 
                     var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
                     activateLink = activateLink + Uri.EscapeDataString(token);
@@ -113,13 +100,8 @@ namespace Serene.Membership.Pages
                     emailModel.ActivateLink = activateLink;
 
                     var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString();
-#if ASPNETCORE
                     var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                         MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
-#else
-                    var emailBody = TemplateHelper.RenderTemplate(
-                        MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
-#endif
 
                     Common.EmailHelper.Send(emailSubject, emailBody, email);
 
@@ -140,12 +122,9 @@ namespace Serene.Membership.Pages
                 int userId;
                 try
                 {
-#if ASPNETCORE
                     var bytes = HttpContext.RequestServices
                         .GetDataProtector("Activate").Unprotect(Convert.FromBase64String(t));
-#else
-                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
-#endif
+
                     using (var ms = new MemoryStream(bytes))
                     using (var br = new BinaryReader(ms))
                     {

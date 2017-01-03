@@ -6,15 +6,11 @@ namespace Serene.BasicSamples.Endpoints
     using Serenity.Web;
     using System;
     using System.Data;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.CustomerGrossSalesRepository;
     using MyRow = Entities.CustomerGrossSalesRow;
 
-    [Route("Services/BasicSamples/CustomerGrossSales/" + R.Action)]
+    [Route("Services/BasicSamples/CustomerGrossSales")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerGrossSalesController : ServiceEndpoint
     {

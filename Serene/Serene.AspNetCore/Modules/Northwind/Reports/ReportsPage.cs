@@ -2,16 +2,13 @@
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
 
-    [Route("Northwind/Reports/" + R.ActionIndex)]
+    [Route("Northwind/Reports")]
     [PageAuthorize(PermissionKeys.General)]
     public class ReportsController : Controller
     {
+        [Route("")]
         public ActionResult Index()
         {
             return View(MVC.Views.Common.Reporting.ReportPage, 

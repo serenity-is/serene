@@ -4,15 +4,11 @@ namespace Serene.Northwind.Endpoints
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.ProductLangRepository;
     using MyRow = Entities.ProductLangRow;
 
-    [Route("Services/Northwind/ProductLang/" + R.Action)]
+    [Route("Services/Northwind/ProductLang")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductLangController : ServiceEndpoint
     {

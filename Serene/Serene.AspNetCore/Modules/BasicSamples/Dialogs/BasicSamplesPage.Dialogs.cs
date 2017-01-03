@@ -1,8 +1,4 @@
-﻿#if ASPNETCORE
-using Microsoft.AspNetCore.Mvc;
-#else
-using System.Web.Mvc;
-#endif
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.BasicSamples.Pages
 {

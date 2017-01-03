@@ -2,14 +2,10 @@
 namespace Serene.Administration.Endpoints
 {
     using Serenity.Services;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.TranslationRepository;
 
-    [Route("Services/Administration/Translation/" + R.Action)]
+    [Route("Services/Administration/Translation")]
     [ServiceAuthorize(PermissionKeys.Translation)]
     public class TranslationController : ServiceEndpoint
     {

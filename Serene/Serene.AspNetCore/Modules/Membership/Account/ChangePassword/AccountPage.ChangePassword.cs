@@ -10,12 +10,7 @@ namespace Serene.Membership.Pages
     using Serenity.Web;
     using Serenity.Web.Providers;
     using System;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-    using System.Web.Security;
-#endif
 
     public partial class AccountController : Controller
     {

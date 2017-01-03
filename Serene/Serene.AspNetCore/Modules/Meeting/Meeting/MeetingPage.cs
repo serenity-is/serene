@@ -2,16 +2,13 @@
 namespace Serene.Meeting.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
     using Microsoft.AspNetCore.Mvc;
-#else
-    using System.Web.Mvc;
-#endif
 
-    [Route("Meeting/Meeting/" + R.ActionIndex)]
+    [Route("Meeting/Meeting")]
     [PageAuthorize(typeof(Entities.MeetingRow))]
     public class MeetingController : Controller
     {
+        [Route("")]
         public ActionResult Index()
         {
             return View("~/Modules/Meeting/Meeting/MeetingIndex.cshtml");

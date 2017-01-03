@@ -1,4 +1,6 @@
-﻿namespace MVC
+﻿using System;
+
+namespace MVC
 {
     public static class Views
     {
