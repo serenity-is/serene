@@ -3,11 +3,10 @@
     using Serenity.Web;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("Administration/Role")]
     [PageAuthorize(typeof(Entities.RoleRow))]
     public class RoleController : Controller
     {
-        [Route("")]
+        [Route("Administration/Role")]
         public ActionResult Index()
         {
             return View(MVC.Views.Administration.Role.RoleIndex);

@@ -8,7 +8,7 @@ namespace Serene.Administration.Endpoints
     using MyRepository = Repositories.RolePermissionRepository;
     using MyRow = Entities.RolePermissionRow;
 
-    [Route("Services/Administration/RolePermission")]
+    [Route("Services/Administration/RolePermission/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class RolePermissionController : ServiceEndpoint
     {

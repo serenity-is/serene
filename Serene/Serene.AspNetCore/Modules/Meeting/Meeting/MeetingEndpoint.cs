@@ -10,7 +10,7 @@ namespace Serene.Meeting.Endpoints
     using MyRepository = Repositories.MeetingRepository;
     using MyRow = Entities.MeetingRow;
 
-    [Route("Services/Meeting/Meeting")]
+    [Route("Services/Meeting/Meeting/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class MeetingController : ServiceEndpoint
     {

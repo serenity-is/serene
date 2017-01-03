@@ -4,11 +4,10 @@ namespace Serene.Northwind.Pages
     using Serenity.Web;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("Northwind/Reports")]
     [PageAuthorize(PermissionKeys.General)]
     public class ReportsController : Controller
     {
-        [Route("")]
+        [Route("Northwind/Reports")]
         public ActionResult Index()
         {
             return View(MVC.Views.Common.Reporting.ReportPage, 

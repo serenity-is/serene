@@ -8,7 +8,7 @@ namespace Serene.Administration.Endpoints
     using MyRepository = Repositories.LanguageRepository;
     using MyRow = Entities.LanguageRow;
 
-    [Route("Services/Administration/Language")]
+    [Route("Services/Administration/Language/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class LanguageController : ServiceEndpoint
     {

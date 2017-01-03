@@ -8,7 +8,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.CategoryRepository;
     using MyRow = Entities.CategoryRow;
 
-    [Route("Services/Northwind/Category")]
+    [Route("Services/Northwind/Category/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CategoryController : ServiceEndpoint
     {

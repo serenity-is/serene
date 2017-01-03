@@ -4,7 +4,7 @@ namespace Serene.AdminLTE
     using Serenity.Web;
     using Microsoft.AspNetCore.Mvc;
 
-    [PageAuthorize, Route("AdminLTE/Mailbox")]
+    [PageAuthorize, Route("AdminLTE/Mailbox/[action]")]
     public class MailboxController : Controller
     {
         public ActionResult Inbox()

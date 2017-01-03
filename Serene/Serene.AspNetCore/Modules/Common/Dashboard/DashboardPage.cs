@@ -11,11 +11,10 @@ namespace Serene.Common.Pages
     using System;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("Dashboard")]
+    [Route("Dashboard/[action]")]
     public class DashboardController : Controller
     {
         [PageAuthorize, HttpGet, Route("~/")]
-        [Route("")]
         public ActionResult Index()
         {
             //<if:Northwind>

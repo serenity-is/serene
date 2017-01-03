@@ -6,7 +6,7 @@ namespace Serene.Membership.Pages
     using System;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("Account")]
+    [Route("Account/[action]")]
     public partial class AccountController : Controller
     {
         public static bool UseAdminLTELoginBox = false;

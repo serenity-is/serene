@@ -11,7 +11,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.ProductRepository;
     using MyRow = Entities.ProductRow;
 
-    [Route("Services/Northwind/Product")]
+    [Route("Services/Northwind/Product/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductController : ServiceEndpoint
     {

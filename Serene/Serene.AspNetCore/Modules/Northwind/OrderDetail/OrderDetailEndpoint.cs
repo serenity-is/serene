@@ -8,7 +8,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.OrderDetailRepository;
     using MyRow = Entities.OrderDetailRow;
 
-    [Route("Services/Northwind/OrderDetail")]
+    [Route("Services/Northwind/OrderDetail/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class OrderDetailController : ServiceEndpoint
     {

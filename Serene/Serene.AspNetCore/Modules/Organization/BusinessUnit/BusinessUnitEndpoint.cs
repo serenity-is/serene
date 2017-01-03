@@ -8,7 +8,7 @@ namespace Serene.Organization.Endpoints
     using MyRepository = Repositories.BusinessUnitRepository;
     using MyRow = Entities.BusinessUnitRow;
 
-    [Route("Services/Organization/BusinessUnit")]
+    [Route("Services/Organization/BusinessUnit/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class BusinessUnitController : ServiceEndpoint
     {

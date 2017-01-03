@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Serene
 {
-    [Route("Report")]
+    [Route("Report/[action]")]
     public class ReportController : Controller
     {
         public ActionResult Render(string key, string opt, string ext, int? print = 0)

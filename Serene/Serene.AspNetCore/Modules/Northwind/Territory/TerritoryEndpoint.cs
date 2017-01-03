@@ -8,7 +8,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.TerritoryRepository;
     using MyRow = Entities.TerritoryRow;
 
-    [Route("Services/Northwind/Territory")]
+    [Route("Services/Northwind/Territory/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class TerritoryController : ServiceEndpoint
     {

@@ -16,7 +16,7 @@ namespace Serene.Administration.Endpoints
     using MyRepository = Repositories.UserRepository;
     using MyRow = Entities.UserRow;
 
-    [Route("Services/Administration/User")]
+    [Route("Services/Administration/User/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserController : ServiceEndpoint
     {

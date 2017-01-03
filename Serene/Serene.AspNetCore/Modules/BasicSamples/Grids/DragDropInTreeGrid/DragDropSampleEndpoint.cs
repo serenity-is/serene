@@ -8,7 +8,7 @@ namespace Serene.BasicSamples.Endpoints
     using MyRepository = Repositories.DragDropSampleRepository;
     using MyRow = Entities.DragDropSampleRow;
 
-    [Route("Services/BasicSamples/DragDropSample")]
+    [Route("Services/BasicSamples/DragDropSample/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class DragDropSampleController : ServiceEndpoint
     {

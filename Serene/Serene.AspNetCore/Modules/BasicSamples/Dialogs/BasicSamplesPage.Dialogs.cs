@@ -26,7 +26,7 @@ namespace Serene.BasicSamples.Pages
             return View(Views.DialogBoxes.Index);
         }
 
-        [Route("EntityDialogAsPanel/{orderID=null}")]
+        [Route("{orderID?}")]
         public ActionResult EntityDialogAsPanel(int? orderID)
         {
             return View(Views.EntityDialogAsPanel.Index, orderID);

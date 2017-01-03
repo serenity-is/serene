@@ -11,7 +11,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.CustomerRepository;
     using MyRow = Entities.CustomerRow;
 
-    [Route("Services/Northwind/Customer")]
+    [Route("Services/Northwind/Customer/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerController : ServiceEndpoint
     {

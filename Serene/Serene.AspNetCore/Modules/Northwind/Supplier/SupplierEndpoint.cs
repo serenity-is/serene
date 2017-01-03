@@ -8,7 +8,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.SupplierRepository;
     using MyRow = Entities.SupplierRow;
 
-    [Route("Services/Northwind/Supplier")]
+    [Route("Services/Northwind/Supplier/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class SupplierController : ServiceEndpoint
     {

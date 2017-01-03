@@ -8,7 +8,7 @@ namespace Serene.Common.Endpoints
     using MyRepository = Repositories.UserPreferenceRepository;
     using MyRow = Entities.UserPreferenceRow;
 
-    [Route("Services/Common/UserPreference")]
+    [Route("Services/Common/UserPreference/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
     public class UserPreferenceController : ServiceEndpoint
     {

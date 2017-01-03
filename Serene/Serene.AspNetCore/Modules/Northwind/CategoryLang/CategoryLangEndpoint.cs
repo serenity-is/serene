@@ -8,7 +8,7 @@ namespace Serene.Northwind.Endpoints
     using MyRepository = Repositories.CategoryLangRepository;
     using MyRow = Entities.CategoryLangRow;
 
-    [Route("Services/Northwind/CategoryLang")]
+    [Route("Services/Northwind/CategoryLang/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CategoryLangController : ServiceEndpoint
     {
