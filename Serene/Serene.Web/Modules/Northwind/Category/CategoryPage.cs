@@ -1,14 +1,11 @@
 
 namespace Serene.Northwind.Pages
 {
+    using Serenity;
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Northwind/Category/" + R.ActionIndex)]
+    [RoutePrefix("Northwind/Category"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.CategoryRow))]
     public class CategoryController : Controller
     {

@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Membership.Pages
 {
     using Administration.Entities;
@@ -9,13 +9,8 @@ namespace Serene.Membership.Pages
     using Serenity.Web.Providers;
     using System;
     using System.IO;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.DataProtection;
-#else
     using System.Web.Mvc;
     using System.Web.Security;
-#endif
 
     public partial class AccountController : Controller
     {
@@ -25,13 +20,7 @@ namespace Serene.Membership.Pages
             int userId;
             try
             {
-#if ASPNETCORE
-                var bytes = HttpContext.RequestServices
-                    .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(t));
-#else
-                var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
-#endif
-                using (var ms = new MemoryStream(bytes))
+                using (var ms = new MemoryStream(MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword")))
                 using (var br = new BinaryReader(ms))
                 {
                     var dt = DateTime.FromBinary(br.ReadInt64());
@@ -70,15 +59,9 @@ namespace Serene.Membership.Pages
                 if (string.IsNullOrEmpty(request.Token))
                     throw new ArgumentNullException("token");
 
-#if ASPNETCORE
-                var bytes = HttpContext.RequestServices
-                    .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(request.Token));
-#else
-                var bytes = MachineKey.Unprotect(Convert.FromBase64String(request.Token), "ResetPassword");
-#endif
-
                 int userId;
-                using (var ms = new MemoryStream(bytes))
+                using (var ms = new MemoryStream(MachineKey.Unprotect(
+                    Convert.FromBase64String(request.Token), "ResetPassword")))
                 using (var br = new BinaryReader(ms))
                 {
                     var dt = DateTime.FromBinary(br.ReadInt64());
@@ -101,9 +84,8 @@ namespace Serene.Membership.Pages
 
                 request.NewPassword = UserRepository.ValidatePassword(user.Username, request.NewPassword, false);
 
-
-                string salt = null;
-                var hash = UserRepository.GenerateHash(request.NewPassword, ref salt);
+                var salt = Membership.GeneratePassword(5, 1);
+                var hash = SiteMembershipProvider.ComputeSHA512(request.NewPassword + salt);
                 UserRepository.CheckPublicDemo(user.UserId);
 
                 uow.Connection.UpdateById(new UserRow

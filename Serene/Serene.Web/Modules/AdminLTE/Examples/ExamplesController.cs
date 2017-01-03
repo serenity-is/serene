@@ -1,14 +1,9 @@
-
+﻿
 namespace Serene.AdminLTE
 {
-    using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [PageAuthorize, Route("AdminLTE/Examples/" + R.ActionIndex)]
+    [Authorize, RoutePrefix("AdminLTE/Examples"), Route("{action=index}")]
     public class ExamplesController : Controller
     {
         public ActionResult BlankPage()
@@ -51,11 +46,7 @@ namespace Serene.AdminLTE
             return View(MVC.Views.AdminLTE.Examples.PacePage);
         }
 
-#if ASPNETCORE
-        public ActionResult Profile()
-#else
         public new ActionResult Profile()
-#endif
         {
             return View(MVC.Views.AdminLTE.Examples.Profile);
         }

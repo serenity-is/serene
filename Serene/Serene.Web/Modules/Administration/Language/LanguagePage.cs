@@ -1,14 +1,10 @@
-
+﻿
 namespace Serene.Administration.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Administration/Language/" + R.ActionIndex)]
+    [RoutePrefix("Administration/Language"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.LanguageRow))]
     public class LanguageController : Controller
     {

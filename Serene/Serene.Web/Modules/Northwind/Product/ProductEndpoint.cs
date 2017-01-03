@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Northwind.Endpoints
 {
     using Serenity.Data;
@@ -7,15 +7,11 @@ namespace Serene.Northwind.Endpoints
     using Serenity.Web;
     using System;
     using System.Data;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.ProductRepository;
     using MyRow = Entities.ProductRow;
 
-    [Route("Services/Northwind/Product/" + R.Action)]
+    [RoutePrefix("Services/Northwind/Product"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductController : ServiceEndpoint
     {

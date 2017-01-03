@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Common.Pages
 {
     //<if:Northwind>
@@ -7,18 +7,13 @@ namespace Serene.Common.Pages
     //</if:Northwind>
     using Serenity;
     using Serenity.Data;
-    using Serenity.Web;
     using System;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Dashboard/" + R.ActionIndex)]
+    [RoutePrefix("Dashboard"), Route("{action=index}")]
     public class DashboardController : Controller
     {
-        [PageAuthorize, HttpGet, Route("~/")]
+        [Authorize, HttpGet, Route("~/")]
         public ActionResult Index()
         {
             //<if:Northwind>

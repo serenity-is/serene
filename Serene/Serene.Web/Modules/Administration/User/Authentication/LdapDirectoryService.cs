@@ -1,5 +1,4 @@
-﻿#if !COREFX
-using Serenity;
+﻿using Serenity;
 using Serenity.ComponentModel;
 using System;
 using System.DirectoryServices.Protocols;
@@ -91,4 +90,3 @@ namespace Serene.Administration
         }
     }
 }
-#endif

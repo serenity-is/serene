@@ -1,14 +1,10 @@
-
+﻿
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Northwind/Territory/" + R.ActionIndex)]
+    [RoutePrefix("Northwind/Territory"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.TerritoryRow))]
     public class TerritoryController : Controller
     {

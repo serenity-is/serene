@@ -1,13 +1,9 @@
 ﻿namespace Serene.Administration.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Administration/Role/" + R.ActionIndex)]
+    [RoutePrefix("Administration/Role"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.RoleRow))]
     public class RoleController : Controller
     {       

@@ -1,14 +1,10 @@
-
+﻿
 namespace Serene.Meeting.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Meeting/MeetingAgendaType/" + R.ActionIndex)]
+    [RoutePrefix("Meeting/MeetingAgendaType"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.MeetingAgendaRow))]
     public class MeetingAgendaTypeController : Controller
     {

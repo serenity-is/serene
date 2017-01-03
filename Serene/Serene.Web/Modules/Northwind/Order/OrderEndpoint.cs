@@ -7,15 +7,11 @@ namespace Serene.Northwind.Endpoints
     using Serenity.Web;
     using System;
     using System.Data;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.OrderRepository;
     using MyRow = Entities.OrderRow;
 
-    [Route("Services/Northwind/Order/" + R.Action)]
+    [RoutePrefix("Services/Northwind/Order"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class OrderController : ServiceEndpoint
     {

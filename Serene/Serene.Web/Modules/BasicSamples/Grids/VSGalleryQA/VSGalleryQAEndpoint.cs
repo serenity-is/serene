@@ -1,4 +1,4 @@
-#if !COREFX
+﻿
 namespace Serene.BasicSamples.Endpoints
 {
     using Serenity;
@@ -6,17 +6,13 @@ namespace Serene.BasicSamples.Endpoints
     using Serenity.Services;
     using System;
     using System.Collections.Generic;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
     using System.Linq;
     using System.Net;
     using System.IO;
     using System.IO.Compression;
 
-    [Route("Services/BasicSamples/VSGalleryQA/" + R.Action)]
+    [RoutePrefix("Services/BasicSamples/VSGalleryQA"), Route("{action}")]
     [ServiceAuthorize]
     public class VSGalleryQAController : ServiceEndpoint
     {
@@ -125,4 +121,3 @@ namespace Serene.BasicSamples.Endpoints
 
     }
 }
-#endif

@@ -1,11 +1,7 @@
-﻿#if ASPNETCORE
-using Microsoft.AspNetCore.Mvc;
-#else
-using System.Web.Mvc;
-#endif
-
+﻿
 namespace Serene.BasicSamples.Pages
 {
+    using System.Web.Mvc;
     using Views = MVC.Views.BasicSamples.Dialogs;
 
     public partial class BasicSamplesController : Controller

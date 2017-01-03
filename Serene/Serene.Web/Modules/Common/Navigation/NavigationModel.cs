@@ -8,10 +8,6 @@ namespace Serene.Navigation
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Hosting;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Extensions;
-#endif
 
     public partial class NavigationModel
     {
@@ -31,27 +27,12 @@ namespace Serene.Navigation
         private void SetActivePath()
         {
             string currentUrl = "";
-#if ASPNETCORE
-            var httpContext = Dependency.Resolve<IHttpContextAccessor>().HttpContext;
-#else
-            var httpContext = HttpContext.Current;
-#endif
-            if (httpContext != null)
+            if (HttpContext.Current != null)
             {
-#if ASPNETCORE
-                var requestUrl = httpContext.Request.GetDisplayUrl();
-#else
-                var requestUrl = httpContext.Request.Url;
-#endif
-
+                var requestUrl = HttpContext.Current.Request.Url;
                 currentUrl = requestUrl.ToString();
                 if (!requestUrl.ToString().EndsWith("/") &&
-#if ASPNETCORE
-                    String.Compare(httpContext.Request.Path,
-#else
-                    String.Compare(requestUrl.AbsolutePath,
-#endif
-                        HostingEnvironment.ApplicationVirtualPath, StringComparison.OrdinalIgnoreCase) == 0)
+                    String.Compare(requestUrl.AbsolutePath, HostingEnvironment.ApplicationVirtualPath, StringComparison.OrdinalIgnoreCase) == 0)
                     currentUrl += "/";
             }
 

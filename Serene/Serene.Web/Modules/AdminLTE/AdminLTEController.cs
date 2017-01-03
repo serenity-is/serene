@@ -1,14 +1,10 @@
-
+﻿
 namespace Serene.AdminLTE
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [PageAuthorize, Route("AdminLTE/" + R.ActionIndex)]
+    [Authorize, RoutePrefix("AdminLTE"), Route("{action=index}")]
     public class AdminLTEController : Controller
     {
         public ActionResult DashboardV2()

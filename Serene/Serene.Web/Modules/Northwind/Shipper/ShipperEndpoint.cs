@@ -1,18 +1,14 @@
-
+﻿
 namespace Serene.Northwind.Endpoints
 {
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.ShipperRepository;
     using MyRow = Entities.ShipperRow;
 
-    [Route("Services/Northwind/Shipper/" + R.Action)]
+    [RoutePrefix("Services/Northwind/Shipper"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ShipperController : ServiceEndpoint
     {

@@ -5,13 +5,9 @@
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Northwind/OrderDetail/" + R.ActionIndex)]
+    [RoutePrefix("Northwind/OrderDetail"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.OrderDetailRow))]
     public class OrderDetailController : Controller
     {

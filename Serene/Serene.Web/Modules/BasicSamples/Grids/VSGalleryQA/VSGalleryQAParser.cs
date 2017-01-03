@@ -1,5 +1,4 @@
-﻿#if !COREFX
-namespace Serene.BasicSamples
+﻿namespace Serene.BasicSamples
 {
     using CsQuery;
     using Serenity;
@@ -173,4 +172,3 @@ namespace Serene.BasicSamples
         }
     }
 }
-#endif

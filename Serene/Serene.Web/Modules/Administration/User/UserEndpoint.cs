@@ -1,4 +1,4 @@
-
+﻿
 
 namespace Serene.Administration.Endpoints
 {
@@ -12,15 +12,11 @@ namespace Serene.Administration.Endpoints
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
     using MyRepository = Repositories.UserRepository;
     using MyRow = Entities.UserRow;
 
-    [Route("Services/Administration/User/" + R.Action)]
+    [RoutePrefix("Services/Administration/User"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserController : ServiceEndpoint
     {

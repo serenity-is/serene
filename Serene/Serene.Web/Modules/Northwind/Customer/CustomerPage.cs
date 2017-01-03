@@ -2,13 +2,9 @@
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
-#endif
 
-    [Route("Northwind/Customer/" + R.ActionIndex)]
+    [RoutePrefix("Northwind/Customer"), Route("{action=index}")]
     [PageAuthorize(typeof(Entities.CustomerRow))]
     public class CustomerController : Controller
     {

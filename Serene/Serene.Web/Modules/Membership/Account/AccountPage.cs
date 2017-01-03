@@ -1,17 +1,13 @@
-
+﻿
 namespace Serene.Membership.Pages
 {
     using Serenity;
     using Serenity.Services;
     using System;
-#if ASPNETCORE
-    using Microsoft.AspNetCore.Mvc;
-#else
     using System.Web.Mvc;
     using System.Web.Security;
-#endif
 
-    [Route("Account/" + R.Action)]
+    [RoutePrefix("Account"), Route("{action=index}")]
     public partial class AccountController : Controller
     {
         public static bool UseAdminLTELoginBox = false;
@@ -39,6 +35,7 @@ namespace Serene.Membership.Pages
                     throw new ArgumentNullException("username");
 
                 var username = request.Username;
+                
                 if (WebSecurityHelper.Authenticate(ref username, request.Password, false))
                     return new ServiceResponse();
 
@@ -54,11 +51,8 @@ namespace Serene.Membership.Pages
 
         public ActionResult Signout()
         {
-#if ASPNETCORE
-#else
             Session.Abandon();
             FormsAuthentication.SignOut();
-#endif
             return new RedirectResult("~/");
         }
     }
