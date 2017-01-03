@@ -11,7 +11,7 @@ namespace Serene.Membership.Pages
     using System.Web.Security;
 #endif
 
-    [Route("Account/" + R.ActionIndex)]
+    [Route("Account/" + R.Action)]
     public partial class AccountController : Controller
     {
         public static bool UseAdminLTELoginBox = false;
@@ -20,6 +20,17 @@ namespace Serene.Membership.Pages
         public ActionResult Login(string activated)
         {
             ViewData["Activated"] = activated;
+            ViewData["HideLeftNavigation"] = true;
+
+            if (UseAdminLTELoginBox)
+                return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
+            else
+                return View(MVC.Views.Membership.Account.AccountLogin);
+        }
+
+        [HttpGet]
+        public ActionResult AccessDenied()
+        {
             ViewData["HideLeftNavigation"] = true;
 
             if (UseAdminLTELoginBox)
