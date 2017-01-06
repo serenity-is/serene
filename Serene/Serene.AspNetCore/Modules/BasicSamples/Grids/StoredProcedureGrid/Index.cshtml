@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Stored Procedure Grid";
+}
+
+@section ContentHeader {
+    <h1>@ViewBag.Title<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>How to use a stored procedure as a data source.</p>
+
+    <p style="text-align: right;">
+        <b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("CustomerGrossSalesGrid.ts")
+        @Html.AppSourceFile("CustomerGrossSalesEndpoint.cs")
+        @Html.AppSourceFile("CustomerGrossSalesRepository.cs")
+        @Html.AppSourceFile("CustomerGrossSalesListRequest.cs")
+        @Html.AppSourceFile("CustomerGrossSalesColumns.cs")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.CustomerGrossSalesGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

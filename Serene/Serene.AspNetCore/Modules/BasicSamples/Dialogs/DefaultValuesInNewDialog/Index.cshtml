@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Default Values In New Dialog";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>You might want to prefill some fields in new entity dialog.</p>
+    <p>It is possible to set field defaults in row / form server side using [DefaultValue] attributes. For example,
+    in new order dialog, Order Date is set to today using such an attribute in form definition.</p>
+    <p>Here we'll populate some field values client side when default New Order button is clicked.</p>
+    <p>There are also two extra buttons here that does custom things, like setting initial order details.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("DefaultValuesInNewGrid.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.DefaultValuesInNewGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

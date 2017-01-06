@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.AdminLTE
 {
+    using Serenity.Web;
     using System.Web.Mvc;
 
     [Authorize, RoutePrefix("AdminLTE"), Route("{action=index}")]

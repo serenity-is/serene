@@ -2017,6 +2017,7 @@
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAPost.cs" />
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAThread.cs" />
     <Compile Include="Modules\BasicSamples\BasicSamplesNavigation.cs" />
+    <Compile Include="Modules\Common\Helpers\EmailHelper.cs" />
     <Compile Include="Modules\Common\Helpers\ExcelImportRequest.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />

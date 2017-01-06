@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Changing Lookup Text";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Lookups by default shows name field of your row as text. You might want to override this text to something custom.</p>
+    <p>There are several options to change this text, including setting name field to something else, declaring an expression field etc.</p>
+    <p>But in some cases, such solutions might not be enough. For this, you might define a new editor type deriving from LookupEditor and override its getItemText() method.</p>
+    <p>Here, using a custom lookup editor, we list Supplier Name, Unit Price and Units in Stock information alongside with product name.</p>
+    
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("ChangingLookupTextEditor.ts")
+        @Html.AppSourceFile("ChangingLookupTextDialog.ts")
+        @Html.AppSourceFile("ChangingLookupTextForm.cs")
+    </p>
+</div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        var dlg = new Serene.BasicSamples.ChangingLookupTextDialog();
+        dlg.loadNewAndOpenDialog();
+        dlg.element.find('.field.ProductID .editor').select2('open');
+    });
+</script>

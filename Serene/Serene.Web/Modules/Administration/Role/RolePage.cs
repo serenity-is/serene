@@ -1,6 +1,5 @@
 ﻿namespace Serene.Administration.Pages
 {
-    using Serenity;
     using Serenity.Web;
     using System.Web.Mvc;
 

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Cloneable Entity Dialog";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        Product dialog here has a clone button. This is actually an integrated 
+        feature but clone button is invisible by default.
+    </p>
+    <p>
+        Open an existing product and click clone button to create a new copy of it. 
+    </p>
+    <p>
+        See CloneableEntityDialog.ts for information about how to
+        make this button visible and customizing cloned entity.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("CloneableEntityDialog.ts")
+        @Html.AppSourceFile("CloneableEntityGrid.ts")
+    </p>
+
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.CloneableEntityGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

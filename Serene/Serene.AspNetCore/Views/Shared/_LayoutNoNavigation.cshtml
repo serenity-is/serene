@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+@{
+var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
+    @RenderSection("Head", false)
+    <title>@ViewData["Title"]</title>
+</head>
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) no-navigation@(rtl ? " rtl" : "")">
+    @RenderBody()
+</body>
+</html>

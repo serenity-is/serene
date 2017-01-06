@@ -8,7 +8,6 @@ namespace Serene.Membership.Pages
     using Serenity.Web;
     using System;
     using System.IO;
-    using System.Net.Mail;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
@@ -65,24 +64,7 @@ namespace Serene.Membership.Pages
                 var emailBody = TemplateHelper.RenderTemplate(
                     MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordEmail, emailModel);
 
-                var message = new MailMessage();
-                message.To.Add(user.Email);
-                message.Subject = emailSubject;
-                message.Body = emailBody;
-                message.IsBodyHtml = true;
-
-                var client = new SmtpClient();
-
-                if (client.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory &&
-                    string.IsNullOrEmpty(client.PickupDirectoryLocation))
-                {
-                    var pickupPath = Server.MapPath("~/App_Data");
-                    pickupPath = Path.Combine(pickupPath, "Mail");
-                    Directory.CreateDirectory(pickupPath);
-                    client.PickupDirectoryLocation = pickupPath;
-                }
-
-                client.Send(message);
+                Common.EmailHelper.Send(emailSubject, emailBody, user.Email);
 
                 return new ServiceResponse();
             });

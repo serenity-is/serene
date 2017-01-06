@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Chart in a Dialog";
+}
+
+@section Head {
+<link rel="stylesheet" href="~/Scripts/morris/morris.css">
+<script src="~/Scripts/raphael/raphael-min.js"></script>
+<script src="~/Scripts/morris/morris.min.js"></script>
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>This sample demonstrates showing a resizable chart in a dialog. Chart data is populated from Northwind Orders with a service call.</p>
+    <p>Click button below to launch the dialog.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("ChartInDialog.ts")
+    </p>
+</div>
+
+<button id="LaunchDialogButton" class="btn btn-block btn-primary">Launch Dialog</button>
+
+<script type="text/javascript">
+    Serene.BasicSamples.ChartInDialog.initializePage();
+</script>

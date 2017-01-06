@@ -1,13 +1,12 @@
-﻿
-namespace Serene.BasicSamples
+﻿namespace Serene.BasicSamples
 {
     using CsQuery;
     using Serenity;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Net;
     using System.Linq;
+    using System.Net;
 
     public class VSGalleryQAParser
     {

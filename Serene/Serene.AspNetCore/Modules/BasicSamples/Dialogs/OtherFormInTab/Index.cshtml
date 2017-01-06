@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Another Form In Tab";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Sometimes you may want to display / edit details of a related entity in a tab.</p>
+    <p>Here we show customer details in a tab under order dialog.</p>
+    <p>Note that, customer details are loaded / saved separately from the order itself.</p>
+
+    <p style="text-align: right;">
+        <b>Source Files:</b>
+        @Html.AppSourceFile("Index.cshtml"),
+        @Html.AppSourceFile("OtherFormInTabDialog.ts")
+        @Html.AppSourceFile("OtherFormInTabGrid.ts")
+        @Html.AppSourceFile("OtherFormInTabDialog.Template.html")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.OtherFormInTabGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

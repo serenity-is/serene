@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Cancellable Bulk Action With Progress";
+}
+
+@section Head {
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Here we demonstrate how to handle an action that will run on many records and might take a very long time.</p>
+    <p>To keep user patient, we show a cancellable progress dialog. Selected records are splitted into small batches of size 5 per service call.
+    We also use 10 parallel service requests to make it quick.</p>
+    <p>The service used here is a fake one that delays between 100-500 ms and intentionally fails randomly for demonstration purposes.</p>
+    <p>Note that these operations are not performed inside a transaction, thus cancelling action will not revert updates on already processed records.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> @Html.AppSourceFile("Index.cshtml"), @Html.AppSourceFile("CancellableBulkActionGrid.ts")</p>
+</div>
+
+<div id="GridDiv"></div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.CancellableBulkActionGrid($('#GridDiv'));
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

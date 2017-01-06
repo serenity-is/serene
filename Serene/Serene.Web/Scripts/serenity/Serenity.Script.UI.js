@@ -614,7 +614,20 @@
 			}
 		}));
 		input.bind('change.' + this.uniqueName, $Serenity_DateEditor.dateInputChange);
-		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time').insertAfter(input.next('.ui-datepicker-trigger'));
+		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time');
+		var after = input.next('.ui-datepicker-trigger');
+		if (after.length > 0) {
+			this.$time.insertAfter(after);
+		}
+		else {
+			after = input.prev('.ui-datepicker-trigger');
+			if (after.length > 0) {
+				this.$time.insertBefore(after);
+			}
+			else {
+				this.$time.insertAfter(input);
+			}
+		}
 		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(ss.coalesce(this.options.startHour, 0), 0, ss.coalesce(this.options.endHour, 23), 59, ss.coalesce(this.options.intervalMinutes, 5));
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var t = $t1[$t2];
@@ -5244,6 +5257,8 @@
 						quick = this.dateTimeRangeQuickFilter($t7, $t6);
 					}
 					else if (ss.referenceEquals(filteringType, $Serenity_BooleanFiltering)) {
+						var q = item.quickFilterParams || {};
+						var f = item.filteringParams || {};
 						var $t10 = item.name;
 						var $t9 = Q.tryGetText(item.title);
 						if (ss.isNullOrUndefined($t9)) {
@@ -5253,7 +5268,15 @@
 							}
 							$t9 = $t8;
 						}
-						quick = this.booleanQuickFilter($t10, $t9, null, null);
+						var $t11 = q['trueText'];
+						if (ss.isNullOrUndefined($t11)) {
+							$t11 = f['trueText'];
+						}
+						var $t12 = q['falseText'];
+						if (ss.isNullOrUndefined($t12)) {
+							$t12 = f['falseText'];
+						}
+						quick = this.booleanQuickFilter($t10, $t9, $t11, $t12);
 					}
 					else {
 						var filtering = ss.cast(ss.createInstance(filteringType), $Serenity_IFiltering);
@@ -5268,6 +5291,10 @@
 							continue;
 						}
 					}
+					if (item.quickFilterSeparator === true) {
+						quick.seperator = true;
+					}
+					quick.cssClass = item.quickFilterCssClass;
 					list.push(quick);
 				}
 			}
@@ -5897,6 +5924,9 @@
 				$('<div/>').addClass('clear').appendTo(this.toolbar.element);
 				this.quickFiltersDiv = $('<div/>').addClass('quick-filters-bar').appendTo(this.toolbar.element);
 			}
+			if (opt.seperator) {
+				this.addFilterSeparator();
+			}
 			var $t3 = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).children();
 			var $t2 = opt.title;
 			if (ss.isNullOrUndefined($t2)) {
@@ -5909,6 +5939,9 @@
 				$t2 = $t1;
 			}
 			var quickFilter = $t3.text($t2).parent();
+			if (!ss.isNullOrEmptyString(opt.cssClass)) {
+				quickFilter.addClass(opt.cssClass);
+			}
 			var widget = Serenity.Widget.create({ type: opt.type, element: ss.mkdel(this, function(e) {
 				if (!Q.isEmptyOrNull(opt.field)) {
 					e.attr('id', this.uniqueName + '_QuickFilter_' + opt.field);

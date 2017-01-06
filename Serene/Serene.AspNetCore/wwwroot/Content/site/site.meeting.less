@@ -1,0 +1,53 @@
+@import "site.mixins.less";
+
+.s-Meeting-MeetingDialog {
+    > .size { width: 850px; height: 550px; }
+    .caption { width: 120px; }
+
+    @media (min-width: 768px) {
+        .field.MeetingTypeId, .field.MeetingNumber, .field.StartDate, 
+        .field.EndDate, .field.OrganizerContactId, .field.ReporterContactId {
+            max-width: 50%;
+        }
+    }
+}
+
+.s-Meeting-MeetingAttendeeEditor .slick-cell select {
+    padding: 0;
+    width: 100%;
+}
+
+.s-Meeting-MeetingAgendaDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingAgendaRelevantDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingAgendaTypeDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingDecisionDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingDecisionRelevantDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingLocationDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}
+
+.s-Meeting-MeetingTypeDialog {
+    > .size { width: 650px; }
+    .caption { width: 150px; }
+}

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Conditional Formatting In Grid Rows";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        This sample demonstrates how to style rows depending on data item values.
+    </p>
+    <p>
+        Discontinued rows use grayed text. Rows with Units In Stock &lt; 0 shows with a red background.
+        Rows with Units In Stock &lt; 20 shows with a orange background.
+        Rows with Units In Stock &gt; 50 are in italic.
+        Unit price is colored depending on the price level being higher than 50, or lower than 20.
+    </p>
+    <p>
+        Coloring is done by adding CSS classes to row, by overriding <em>getItemCssClass</em> method.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("ConditionalFormattingGrid.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.ConditionalFormattingGrid($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

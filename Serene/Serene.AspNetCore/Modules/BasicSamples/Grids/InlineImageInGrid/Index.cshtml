@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Inline Image in Grid";
+}
+
+@section Head {
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>Here is how to show a product image inline in grid.</p>
+    <p>If you didn't yet, please upload an image for a product for this demonstration to work.</p>
+
+    <p style="text-align: right;"><b>Source Files:</b> @Html.AppSourceFile("Index.cshtml"), @Html.AppSourceFile("InlineImageInGrid.ts")</p>
+</div>
+
+<div id="GridDiv"></div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.InlineImageInGrid($('#GridDiv'));
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>

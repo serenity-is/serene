@@ -95,26 +95,10 @@ namespace Serene.Membership.Pages
                     var emailBody = TemplateHelper.RenderTemplate(
                         MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
 
-                    var message = new MailMessage();
-                    message.To.Add(email);
-                    message.Subject = emailSubject;
-                    message.Body = emailBody;
-                    message.IsBodyHtml = true;
-
-                    var client = new SmtpClient();
-
-                    if (client.DeliveryMethod == SmtpDeliveryMethod.SpecifiedPickupDirectory &&
-                        string.IsNullOrEmpty(client.PickupDirectoryLocation))
-                    {
-                        var pickupPath = Server.MapPath("~/App_Data");
-                        pickupPath = Path.Combine(pickupPath, "Mail");
-                        Directory.CreateDirectory(pickupPath);
-                        client.PickupDirectoryLocation = pickupPath;
-                    }
+                    Common.EmailHelper.Send(emailSubject, emailBody, email);
 
                     uow.Commit();
                     UserRetrieveService.RemoveCachedUser(userId, username);
-                    client.Send(message);
 
                     return new ServiceResponse();
                 }
@@ -130,7 +114,8 @@ namespace Serene.Membership.Pages
                 int userId;
                 try
                 {
-                    using (var ms = new MemoryStream(MachineKey.Unprotect(Convert.FromBase64String(t), "Activate")))
+                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
+                    using (var ms = new MemoryStream(bytes))
                     using (var br = new BinaryReader(ms))
                     {
                         var dt = DateTime.FromBinary(br.ReadInt64());

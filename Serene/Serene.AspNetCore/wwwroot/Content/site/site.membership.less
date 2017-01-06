@@ -1,0 +1,224 @@
+@import "site.mixins.less";
+
+/*Default styles for login/register pages*/
+.page-content {    
+    .s-LoginPanel {
+        padding: 30px 20px;
+        width: 550px;
+        margin: 90px auto auto auto;
+        background: rgba(0,0,0,0.5);
+        border-radius: 12px;
+        font-weight: 700;
+
+        .caption { width: 180px; }
+
+        .logo {
+            margin: 0 auto 20px auto;
+            width: 128px;
+            height: 128px;
+            background: transparent url(images/serenity-logo-w-128.png) no-repeat center center;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 16px 0 24px;
+            color: #f5f27e;
+            text-align: center;
+            text-shadow: 0 1px 1px #333;
+        }
+
+        .buttons {
+            text-align: right;
+            padding: 8px 0 4px 0;
+            margin-right: 28px;
+
+            .btn {
+                padding: 8px 24px;
+                font-weight: 700;
+            }
+        }
+
+        .caption {
+            color: #ececec;
+            font-weight: 700;
+            text-shadow: 0 1px 1px #333;
+        }
+
+        .actions {
+            padding-right: 28px;
+
+            a {
+                color: #ececec;
+                padding: 2px 2px 2px 2px;
+                margin-top: 5px;
+                display: block;
+                float: right;
+                clear: both;
+                border-bottom: 1px dashed #999;
+                text-shadow: 0 1px 1px #333;
+
+                i {
+                    font-weight: 700;
+                    margin-right: 4px;
+                }
+            }
+        }
+
+        .s-Form label.error {
+            background-image: url(../serenity/images/cross.png);
+            padding: 26px 0 0 22px;
+        }
+
+        .s-Form label.error.checked {
+            background-image: none;
+        }
+
+        .s-Form .field {
+            padding: 8px;
+        }
+
+        .s-Form input {
+            padding: 6px 10px;
+            border: none;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+        }
+
+        .s-Form .caption {
+            padding: 6px 10px;
+            color: #fff;
+        }
+
+        a {
+            color: aqua;
+        }
+
+        .s-PropertyGrid .categories {
+            height: auto;
+        }
+    }
+
+    .s-LoginPanel .flex-layout .s-PropertyGrid {
+        display: block;
+    }
+
+    @media(max-width: 550px), (max-height: 500px) {
+        .s-LoginPanel {
+            padding: 16px 4px 16px 4px;
+            position: absolute;
+            margin: 0;
+            width: auto;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+        }
+    }
+
+    .s-ChangePasswordPanel {
+        width: 550px;
+        .form-styles(150px, 350px);
+        .buttons { text-align: right; padding: 8px 48px; }
+    }
+
+    .s-ForgotPasswordPanel {
+        border: 2px solid #e7e7e7;
+        padding: 40px;
+        border-radius: 8px;
+        width: 650px;
+        margin: 60px auto auto auto;
+        .form-styles(150px, 350px);
+        .buttons { text-align: right; padding: 8px 62px; }
+        p { padding: 8px; margin: 24px 0; }
+    }
+
+    .s-ResetPasswordPanel {
+        border: 2px solid #e7e7e7;
+        padding: 40px;
+        border-radius: 8px;
+        width: 650px;
+        margin: 60px auto auto auto;
+        .form-styles(150px, 350px);
+        .buttons { text-align: right; padding: 8px 62px; }
+    }
+
+    .s-SignUpPanel {
+        border: 2px solid #e7e7e7;
+        padding: 40px;
+        border-radius: 8px;
+        width: 650px;
+        margin: 60px auto auto auto;
+        .form-styles(150px, 350px);
+        .buttons { text-align: right; padding: 8px 62px; }
+        p { padding: 8px; margin: 24px 0; }
+    }
+}
+
+/*AdminLTE style login/register box*/
+.login-box, .register-box{    
+    .page-title{
+        margin-top: 0;
+        padding: 0 0 8px;
+    }
+    login-box-msg, .register-box-msg {
+        padding-bottom: 20px;
+    }
+    .s-LoginPanel, .s-SignUpPanel, .s-ForgotPasswordPanel, .s-ChangePasswordPanel, .s-ResetPasswordPanel{
+        margin-bottom: 10px;
+    }
+    .s-Form{        
+        input {
+            display: block;
+            width: 100%;
+            height: 34px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            border-radius: 0;
+        }
+        .field{
+            margin-bottom: 15px;
+            padding: 0;
+        }
+        .has-icon{
+            position: relative;
+            input {
+                padding-right:34px;
+            }
+            input.emailuser{
+                padding-right:6px;
+            }
+        }
+        .caption {
+            width: 100%;
+            text-align: left;
+            display:none;
+        }
+        label.error {
+            background-image: url(../serenity/images/cross.png);
+            padding: 26px 0 0 22px;
+        }
+
+        label.error.checked {
+            background-image: none;
+        }
+        .vx{
+            position: absolute;
+            top: 3px;
+            right: -20px;
+            z-index: 2;
+            width: 22px;
+        }
+        .btn{
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .s-EmailEditor{
+            width:45%;
+        }
+        .emaildomain{
+            width:45%;
+            float:right;
+        }
+    }
+}
+

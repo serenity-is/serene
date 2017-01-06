@@ -2,23 +2,23 @@
 namespace Serene.Administration.Repositories
 {
     using Newtonsoft.Json.Linq;
+    using Serene.Administration.Entities;
     using Serenity;
     using Serenity.Abstractions;
+    using Serenity.ComponentModel;
     using Serenity.Configuration;
-    using System.Linq;
+    using Serenity.Extensibility;
     using Serenity.Localization;
+    using Serenity.Navigation;
     using Serenity.Services;
+    using Serenity.Web;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Web.Hosting;
-    using Serenity.Web;
-    using Serene.Administration.Entities;
-    using Serenity.Navigation;
-    using Serenity.Extensibility;
-    using Serenity.ComponentModel;
-    using System.ComponentModel;
 
     public class TranslationRepository
     {
@@ -94,7 +94,7 @@ namespace Serene.Administration.Repositories
 
             foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
             {
-                foreach (NavigationItemAttribute attr in assembly.GetCustomAttributes(typeof(NavigationItemAttribute), false))
+                foreach (NavigationItemAttribute attr in assembly.GetCustomAttributes<NavigationItemAttribute>())
                     result.Add("Navigation." + (attr.Category.IsEmptyOrNull() ? "" : attr.Category + "/") + attr.Title);
 
                 foreach (var type in assembly.GetTypes())

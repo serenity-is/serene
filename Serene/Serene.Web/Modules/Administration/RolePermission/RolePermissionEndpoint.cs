@@ -1,7 +1,6 @@
 ﻿
 namespace Serene.Administration.Endpoints
 {
-    using Serenity;
     using Serenity.Data;
     using Serenity.Services;
     using System.Data;

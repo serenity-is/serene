@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Removing Add Button";
+}
+
+@section ContentHeader {
+    <h1>@ViewData["Title"]<small></small></h1>
+}
+
+<div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <p>
+        This is a simple one, but neverthless is asked several times. How to remove Add button from the grid?
+    </p>
+    <p>
+        See source code of @Html.AppSourceFile("RemovingAddButton.ts") for how.
+    </p>
+
+    <p style="text-align: right;"><b>Source Files:</b> 
+        @Html.AppSourceFile("Index.cshtml"), 
+        @Html.AppSourceFile("RemovingAddButton.ts")
+    </p>
+</div>
+
+<div id="GridDiv"></div>
+
+<script type="text/javascript">
+    jQuery(function () {
+        new Serene.BasicSamples.RemovingAddButton($('#GridDiv'), {}).init();
+
+        Q.initFullHeightGridPage($('#GridDiv'));
+    });
+</script>
