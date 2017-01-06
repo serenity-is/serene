@@ -56,9 +56,9 @@ namespace Serene.Northwind
             {
                 var item = this.Item as Item;
                 if (item.GrossAmount > 1000)
-                    Foreground = Color.Red;
+                    Foreground = "#ff0000";
                 else if (item.GrossAmount > 500)
-                    Foreground = Color.Orange;
+                    Foreground = "#ffa500";
             }
         }
     }
