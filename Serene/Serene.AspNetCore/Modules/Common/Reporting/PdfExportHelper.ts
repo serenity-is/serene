@@ -1,6 +1,4 @@
-﻿declare var jsPDF;
-
-namespace Serene.Common {
+﻿namespace Serene.Common {
     export interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;
         onViewSubmit: () => boolean;

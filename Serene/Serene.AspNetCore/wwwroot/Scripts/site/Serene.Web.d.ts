@@ -1062,18 +1062,6 @@ declare namespace Serene.BasicSamples {
         protected getButtons(): any[];
     }
 }
-declare namespace Serene.BasicSamples {
-    class VSGalleryQAGrid extends Serenity.EntityGrid<BasicSamples.VSGalleryQAThread, any> {
-        protected getColumnsKey(): string;
-        protected getIdProperty(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getButtons(): any[];
-        protected getSlickOptions(): Slick.GridOptions;
-        protected getColumns(): Slick.Column[];
-        protected getInitialTitle(): any;
-    }
-}
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();
@@ -3942,7 +3930,6 @@ declare namespace Serene.Common {
         protected getCurrentTheme(): string;
     }
 }
-declare var jsPDF: any;
 declare namespace Serene.Common {
     interface PdfExportOptions {
         grid: Serenity.DataGrid<any, any>;

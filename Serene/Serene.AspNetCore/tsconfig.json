@@ -11,10 +11,8 @@
     "allowJs": false
   },
   "exclude": [
-    "wwwroot/Scripts/site/Serene.Web.d.ts"
-  ],
-  "include": [
-    "./Modules/",
-    "./typings/"
+    ".vs/",
+    "wwwroot/",
+    "Views/"
   ]
 }
