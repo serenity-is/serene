@@ -11,10 +11,9 @@
         Description: Serenity.StringEditor;
         AgendaTypeId: Serenity.IntegerEditor;
         RequestedByContactId: Serenity.IntegerEditor;
-        Images: Serenity.StringEditor;
-        Attachments: Serenity.StringEditor;
+        Images: Serenity.MultipleImageUploadEditor;
+        Attachments: Serenity.MultipleImageUploadEditor;
     }
 
-    [['MeetingId', () => Serenity.IntegerEditor], ['AgendaNumber', () => Serenity.IntegerEditor], ['Title', () => Serenity.StringEditor], ['Description', () => Serenity.StringEditor], ['AgendaTypeId', () => Serenity.IntegerEditor], ['RequestedByContactId', () => Serenity.IntegerEditor], ['Images', () => Serenity.StringEditor], ['Attachments', () => Serenity.StringEditor]].forEach(x => Object.defineProperty(MeetingAgendaForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    [['MeetingId', () => Serenity.IntegerEditor], ['AgendaNumber', () => Serenity.IntegerEditor], ['Title', () => Serenity.StringEditor], ['Description', () => Serenity.StringEditor], ['AgendaTypeId', () => Serenity.IntegerEditor], ['RequestedByContactId', () => Serenity.IntegerEditor], ['Images', () => Serenity.MultipleImageUploadEditor], ['Attachments', () => Serenity.MultipleImageUploadEditor]].forEach(x => Object.defineProperty(MeetingAgendaForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
-

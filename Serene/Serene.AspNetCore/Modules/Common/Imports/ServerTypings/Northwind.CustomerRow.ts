@@ -24,10 +24,10 @@
         export const idProperty = 'ID';
         export const nameProperty = 'CompanyName';
         export const localTextPrefix = 'Northwind.Customer';
-        export const lookupKey = 'Northwind.Customer';
+        export const lookupKey = 'Northwind.CustomerCity';
 
         export function getLookup(): Q.Lookup<CustomerRow> {
-            return Q.getLookup<CustomerRow>('Northwind.Customer');
+            return Q.getLookup<CustomerRow>('Northwind.CustomerCity');
         }
 
         export namespace Fields {
@@ -54,4 +54,3 @@
         ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin'].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

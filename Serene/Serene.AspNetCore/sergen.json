@@ -1,0 +1,9 @@
+﻿{
+  "RootNamespace": "Serene",
+  "ServerTypings": {
+    "Assemblies": [
+      "bin/Debug/netcoreapp1.1/Serene.AspNetCore.dll"
+    ],
+    "OutDir": "Modules/Common/Imports/ServerTypings"
+  }
+}

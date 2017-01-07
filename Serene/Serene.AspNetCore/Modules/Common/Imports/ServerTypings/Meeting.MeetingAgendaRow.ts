@@ -27,6 +27,7 @@
         RequestedByContactTitle?: string;
         RequestedByContactFirstName?: string;
         RequestedByContactLastName?: string;
+        RequestedByContactFullName?: string;
         RequestedByContactEmail?: string;
         RequestedByContactIdentityNo?: string;
         RequestedByContactUserId?: number;
@@ -65,12 +66,12 @@
             export declare const RequestedByContactTitle: string;
             export declare const RequestedByContactFirstName: string;
             export declare const RequestedByContactLastName: string;
+            export declare const RequestedByContactFullName: string;
             export declare const RequestedByContactEmail: string;
             export declare const RequestedByContactIdentityNo: string;
             export declare const RequestedByContactUserId: string;
         }
 
-        ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactFullName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
-
