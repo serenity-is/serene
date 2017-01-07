@@ -614,7 +614,20 @@
 			}
 		}));
 		input.bind('change.' + this.uniqueName, $Serenity_DateEditor.dateInputChange);
-		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time').insertAfter(input.next('.ui-datepicker-trigger'));
+		this.$time = $('<select/>').addClass('editor s-DateTimeEditor time');
+		var after = input.next('.ui-datepicker-trigger');
+		if (after.length > 0) {
+			this.$time.insertAfter(after);
+		}
+		else {
+			after = input.prev('.ui-datepicker-trigger');
+			if (after.length > 0) {
+				this.$time.insertBefore(after);
+			}
+			else {
+				this.$time.insertAfter(input);
+			}
+		}
 		var $t1 = $Serenity_DateTimeEditor.$getTimeOptions(ss.coalesce(this.options.startHour, 0), 0, ss.coalesce(this.options.endHour, 23), 59, ss.coalesce(this.options.intervalMinutes, 5));
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var t = $t1[$t2];
