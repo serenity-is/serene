@@ -3954,7 +3954,6 @@ declare namespace Serene.Common {
         function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
     }
 }
-declare var jsPDF: any;
 declare namespace Serene.Common {
     class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
         private report;
@@ -3997,7 +3996,6 @@ declare namespace Serene.Common {
         function execute(options: ReportExecuteOptions): void;
     }
 }
-declare var jsPDF: any;
 declare namespace Serene.Common {
     class ReportPage extends Serenity.Widget<any> {
         private reportKey;
