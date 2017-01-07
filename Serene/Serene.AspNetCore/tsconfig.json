@@ -1,0 +1,20 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "emitBOM": true,
+    "sourceMap": true,
+    "outFile": "wwwroot/Scripts/site/Serene.Web.js",
+    "target": "es5",
+    "allowJs": false
+  },
+  "exclude": [
+    "wwwroot/Scripts/site/Serene.Web.d.ts"
+  ],
+  "include": [
+    "./Modules/",
+    "./typings/"
+  ]
+}

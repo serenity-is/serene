@@ -4445,59 +4445,6 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var VSGalleryQAGrid = (function (_super) {
-            __extends(VSGalleryQAGrid, _super);
-            function VSGalleryQAGrid(container) {
-                _super.call(this, container);
-            }
-            VSGalleryQAGrid.prototype.getColumnsKey = function () { return "BasicSamples.VSGalleryQA"; };
-            VSGalleryQAGrid.prototype.getIdProperty = function () { return "ThreadId"; };
-            VSGalleryQAGrid.prototype.getService = function () { return BasicSamples.VSGalleryQAService.baseUrl; };
-            VSGalleryQAGrid.prototype.getButtons = function () {
-                return [];
-            };
-            VSGalleryQAGrid.prototype.getSlickOptions = function () {
-                var opt = _super.prototype.getSlickOptions.call(this);
-                opt.rowHeight = 250;
-                return opt;
-            };
-            VSGalleryQAGrid.prototype.getColumns = function () {
-                var columns = _super.prototype.getColumns.call(this);
-                Q.first(columns, function (x) { return x.field == 'Posts'; }).format = function (ctx) {
-                    var posts = ctx.value;
-                    if (!posts || !posts.length)
-                        return "";
-                    var i = 0;
-                    var text = "<ul class='posts'>";
-                    for (var _i = 0, posts_1 = posts; _i < posts_1.length; _i++) {
-                        var post = posts_1[_i];
-                        text += "<li class='" + (i++ % 2 == 0 ? 'even' : 'odd') + "'><h4>";
-                        text += post.PostedByName + " - ";
-                        text += Q.formatDate(post.PostedOn, 'g');
-                        text += "</h4><pre>";
-                        text += Q.htmlEncode(post.Message);
-                        text += "</pre></li>";
-                    }
-                    text += "</ul>";
-                    return text;
-                };
-                return columns;
-            };
-            VSGalleryQAGrid.prototype.getInitialTitle = function () {
-                return null;
-            };
-            VSGalleryQAGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], VSGalleryQAGrid);
-            return VSGalleryQAGrid;
-        }(Serenity.EntityGrid));
-        BasicSamples.VSGalleryQAGrid = VSGalleryQAGrid;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
     var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
