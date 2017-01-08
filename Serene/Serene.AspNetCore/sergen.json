@@ -1,5 +1,8 @@
 ﻿{
   "RootNamespace": "Serene",
+  "ClientTypes": {
+    "OutDir": "Imports/ClientTypes"
+  },
   "ServerTypings": {
     "Assemblies": [
       "bin/Debug/netcoreapp1.1/Serene.AspNetCore.dll"
