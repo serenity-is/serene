@@ -1601,25 +1601,25 @@
       <feature key="BasicSamples">
         <files include="Content\site\site.basicsamples.less" />
         <files include="Modules\BasicSamples" />
-        <files include="Modules\Common\Imports\ServerTypings\**\BasicSamples.*" />
+        <files include="Imports\ServerTypings\**\BasicSamples.*" />
         <files include="Scripts\site\texts\samples" />
       </feature>
       <feature key="Meeting">
-        <files include="Modules\Common\Imports\ServerTypings\**\Meeting.*" />
-        <files include="Modules\Common\Migrations\DefaultDB\**\*00_*Meeting*.cs" />
+        <files include="Imports\ServerTypings\**\Meeting.*" />
+        <files include="Migrations\DefaultDB\**\*00_*Meeting*.cs" />
         <files include="Modules\Meeting" />
         <files include="Content\site\site.meeting.less" />
       </feature>
       <feature key="Northwind">
         <files include="Content\site\site.northwind.less" />
-        <files include="Modules\Common\Imports\ServerTypings\**\Northwind.*" />
+        <files include="Imports\ServerTypings\**\Northwind.*" />
         <files include="Modules\Northwind" />
-        <files include="Modules\Common\Migrations\NorthwindDB" />
+        <files include="Migrations\NorthwindDB" />
         <files include="Scripts\site\texts\northwind" />
       </feature>
       <feature key="Organization">
-        <files include="Modules\Common\Imports\ServerTypings\**\Organization.*" />
-        <files include="Modules\Common\Migrations\DefaultDB\**\*00_*Organization*.cs" />
+        <files include="Imports\ServerTypings\**\Organization.*" />
+        <files include="Migrations\DefaultDB\**\*00_*Organization*.cs" />
         <files include="Modules\Organization" />
         <files include="Content\site\site.organization.less" />
       </feature>
