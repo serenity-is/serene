@@ -5,7 +5,7 @@
 #><#@ assembly name="$(TargetDir)Serenity.Core.dll"
 #><#@ assembly name="$(TargetDir)Serenity.Web.dll" 
 #><#@ assembly name="$(ProjectDir)tools\Mono.Cecil\Mono.Cecil.dll" 
-#><#@ assembly name="$(ProjectDir)\tools\JsEngine\MsieJavaScriptEngine.dll"
+#><#@ assembly name="$(ProjectDir)tools\JsEngine\MsieJavaScriptEngine.dll"
 #><#@ import namespace="System.Linq" 
 #><#@ import namespace="System.Collections.Generic" 
 #><#@ import namespace="Microsoft.VisualStudio.TextTemplating" 
@@ -255,6 +255,7 @@ public class TSTypeLister
     public List<ExternalType> List()
     {
         var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
+			.Concat(Directory.GetFiles(projectDir + @"Imports", "*.ts", SearchOption.AllDirectories))
             .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
             .Where(x => !x.EndsWith(".d.ts") || x.IndexOf("Serenity") >= 0);
 

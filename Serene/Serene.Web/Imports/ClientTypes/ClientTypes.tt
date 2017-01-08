@@ -2,18 +2,17 @@
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(TargetDir)Serenity.Core.dll" #>
 <#@ assembly name="$(TargetDir)Serenity.Web.dll" #>
-<#@ assembly name="$(TargetDir)Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
-<#
-    var solutionDir = Host.ResolvePath(@"..\..\..\..\..\..\");
-    var webDir = Host.ResolvePath(@"..\..\..\..\");
+<# 
+    var solutionDir = Host.ResolvePath(@"..\..\..\..\");
+    var webDir = Host.ResolvePath(@"..\..\");
 
-    var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
+    var generator = new ClientTypesGenerator();
     generator.RootNamespaces.Add("Serene");
 
     if (System.IO.File.Exists(solutionDir + @"Serene\Serene.Script\Serene.Script.csproj"))
@@ -27,11 +26,12 @@
         foreach (var type in ssTypes)
             generator.AddSSType(type);
     }
-
+   
     var tsTypeLister = new TSTypeLister(webDir);
     var tsTypes = tsTypeLister.List();
     foreach (var type in tsTypes)
         generator.AddTSType(type);
+    //throw new Exception(JSON.StringifyIndented(tsTypes));
 
     var codeByFilename = generator.Run();
     var manager = Manager.Create(Host, GenerationEnvironment);
@@ -45,7 +45,5 @@
     }
 
     manager.Process(true);
-
-    new TypeScriptCompiler().Compile(webDir + @"Scripts\", "");
 #>
 Executed on <#=DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")#>

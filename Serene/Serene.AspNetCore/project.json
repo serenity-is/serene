@@ -53,7 +53,7 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
     "compile": {
-        "exclude": "Modules/Common/Migrations/**/*.cs"
+        "exclude": "Migrations/**/*.cs"
     }
   },
 

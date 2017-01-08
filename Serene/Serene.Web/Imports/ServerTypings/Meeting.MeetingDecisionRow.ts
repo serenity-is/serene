@@ -25,7 +25,7 @@
         MeetingUpdateUserId?: number;
         MeetingUpdateDate?: string;
         AgendaMeetingId?: number;
-        AgendaAgendaNumber?: number;
+        AgendaNumber?: number;
         AgendaTitle?: string;
         AgendaDescription?: string;
         AgendaAgendaTypeId?: number;
@@ -36,6 +36,7 @@
         ResponsibleContactTitle?: string;
         ResponsibleContactFirstName?: string;
         ResponsibleContactLastName?: string;
+        ResponsibleContactFullName?: string;
         ResponsibleContactEmail?: string;
         ResponsibleContactIdentityNo?: string;
         ResponsibleContactUserId?: number;
@@ -72,7 +73,7 @@
             export declare const MeetingUpdateUserId: string;
             export declare const MeetingUpdateDate: string;
             export declare const AgendaMeetingId: string;
-            export declare const AgendaAgendaNumber: string;
+            export declare const AgendaNumber: string;
             export declare const AgendaTitle: string;
             export declare const AgendaDescription: string;
             export declare const AgendaAgendaTypeId: string;
@@ -83,12 +84,13 @@
             export declare const ResponsibleContactTitle: string;
             export declare const ResponsibleContactFirstName: string;
             export declare const ResponsibleContactLastName: string;
+            export declare const ResponsibleContactFullName: string;
             export declare const ResponsibleContactEmail: string;
             export declare const ResponsibleContactIdentityNo: string;
             export declare const ResponsibleContactUserId: string;
         }
 
-        ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactFullName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

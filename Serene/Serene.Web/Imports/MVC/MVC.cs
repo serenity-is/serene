@@ -298,11 +298,6 @@ namespace MVC
                 public const string MeetingIndex = "~/Modules/Meeting/Meeting/MeetingIndex.cshtml";
             }
 
-            public static class MeetingAgenda
-            {
-                public const string MeetingAgendaIndex = "~/Modules/Meeting/MeetingAgenda/MeetingAgendaIndex.cshtml";
-            }
-
             public static class MeetingAgendaRelevant
             {
                 public const string MeetingAgendaRelevantIndex = "~/Modules/Meeting/MeetingAgendaRelevant/MeetingAgendaRelevantIndex.cshtml";
@@ -311,11 +306,6 @@ namespace MVC
             public static class MeetingAgendaType
             {
                 public const string MeetingAgendaTypeIndex = "~/Modules/Meeting/MeetingAgendaType/MeetingAgendaTypeIndex.cshtml";
-            }
-
-            public static class MeetingDecision
-            {
-                public const string MeetingDecisionIndex = "~/Modules/Meeting/MeetingDecision/MeetingDecisionIndex.cshtml";
             }
 
             public static class MeetingDecisionRelevant

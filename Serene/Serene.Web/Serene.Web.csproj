@@ -713,6 +713,7 @@
     <Content Include="Scripts\jquery.scrollintoview.min.js" />
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Imports\Web.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -815,7 +816,7 @@
     <Content Include="tools\Node\less\lib\less\visitor.js" />
     <Content Include="tools\Node\node.exe" />
     <Content Include="wkhtmltopdf-license.txt" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
+    <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_SqlServer.sql" />
     <Content Include="Content\adminlte\img\avatar.png" />
     <Content Include="Content\adminlte\img\avatar04.png" />
     <Content Include="Content\adminlte\img\avatar2.png" />
@@ -1101,16 +1102,16 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Modules\Common\Imports\MultipleOutputHelper.ttinclude" />
+    <Content Include="Imports\MultipleOutputHelper.ttinclude" />
     <Content Include="Content\site\site.administration.less" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
-    <EmbeddedResource Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
-    <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.tt">
+    <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_Postgres.sql" />
+    <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_PostgresData.sql" />
+    <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_MySql.sql" />
+    <Content Include="Imports\ClientTypes\ClientTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ClientTypes.log</LastGenOutput>
     </Content>
-    <Content Include="Modules\Common\Migrations\NorthwindDB\NorthwindDBScript_Oracle.sql" />
+    <Content Include="Migrations\NorthwindDB\NorthwindDBScript_Oracle.sql" />
     <Content Include="Scripts\adminlte\app.js" />
     <Content Include="Scripts\adminlte\app.min.js" />
     <Content Include="Scripts\adminlte\demo.js" />
@@ -1258,8 +1259,8 @@
     <Content Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\Index.cshtml" />
-    <Content Include="Modules\Common\Imports\CodeGenerationHelpers.ttinclude" />
-    <Content Include="Modules\Common\Imports\ClientTypes\ClientTypes.log">
+    <Content Include="Imports\CodeGenerationHelpers.ttinclude" />
+    <Content Include="Imports\ClientTypes\ClientTypes.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
@@ -1332,7 +1333,7 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
-    <None Include="Modules\Common\Imports\ServerTypings\ServerTypings.log">
+    <None Include="Imports\ServerTypings\ServerTypings.log">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServerTypings.tt</DependentUpon>
@@ -1376,130 +1377,130 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ChangingLookupTextForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.ChangingLookupTextForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.CustomerGrossSalesColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.CustomerGrossSalesColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.CustomerGrossSalesListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.CustomerGrossSalesListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.CustomerGrossSalesRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.CustomerGrossSalesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.CustomerGrossSalesService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.CustomerGrossSalesService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.DragDropSampleColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.DragDropSampleColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.DragDropSampleForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.DragDropSampleForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.DragDropSampleRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.DragDropSampleRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.DragDropSampleService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.DragDropSampleService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.HardcodedValuesForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.HardcodedValuesForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.InlineImageInGridColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.InlineImageInGridColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.PopulateLinkedDataForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.PopulateLinkedDataForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ProductExcelImportForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.ProductExcelImportForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.ProductExcelImportService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.ProductExcelImportService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.StaticTextBlockForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.StaticTextBlockForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.VSGalleryQAColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.VSGalleryQAColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.VSGalleryQAPost.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.VSGalleryQAPost.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.VSGalleryQAService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.VSGalleryQAService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.VSGalleryQAThread.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.VSGalleryQAThread.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRetrieveRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.UserPreferenceRetrieveRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRetrieveResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.UserPreferenceRetrieveResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.UserPreferenceRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.UserPreferenceService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.UserPreferenceUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\ExcelImportRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\ExcelImportRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\ExcelImportResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\ExcelImportResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\GetNextNumberRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaRelevantColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaTypeColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendanceStatus.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAttendanceStatus.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAttendeeColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeType.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAttendeeType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionRelevantColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingLocationColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingTypeColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.BusinessUnitColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.ContactColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
@@ -1680,7 +1681,7 @@
     <Content Include="Scripts\timepicker\bootstrap-timepicker.js" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.min.js" />
-    <Content Include="Modules\Common\Imports\ServerTypings\ServerTypings.tt">
+    <Content Include="Imports\ServerTypings\ServerTypings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServerTypings.log</LastGenOutput>
     </Content>
@@ -1698,7 +1699,7 @@
     <Content Include="Modules\AdminLTE\Charts\ChartJS.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\Flot.cshtml" />
     <Content Include="Modules\AdminLTE\Charts\InlineCharts.cshtml" />
-    <Content Include="Modules\Common\Imports\MVC\MVC.tt">
+    <Content Include="Imports\MVC\MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MVC.cs</LastGenOutput>
     </Content>
@@ -1804,7 +1805,7 @@
     <TypeScriptCompile Include="Modules\Northwind\Order\OrderGrid.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Product\ProductDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Product\ProductGrid.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerDetailsRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerDetailsRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitEditor.ts" />
@@ -1817,127 +1818,127 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleDialog.ts" />
     <Content Include="Modules\Organization\Contact\ContactIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.ContactRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.ContactService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.ContactForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.ContactForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Organization\Contact\ContactGrid.ts" />
     <TypeScriptCompile Include="Modules\Organization\Contact\ContactDialog.ts" />
     <Content Include="Modules\Organization\BusinessUnit\BusinessUnitIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.BusinessUnitRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.BusinessUnitService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Organization.BusinessUnitForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Organization.BusinessUnitForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitGrid.ts" />
     <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitDialog.ts" />
     <Content Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaRelevantRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaRelevantService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRelevantForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaRelevantForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaRelevant\MeetingAgendaRelevantDialog.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaDialog.ts" />
     <Content Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaTypeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaTypeService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAgendaTypeForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAgendaTypeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAgendaType\MeetingAgendaTypeDialog.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAttendeeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingAttendeeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeEditor.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingAttendee\MeetingAttendeeDialog.ts" />
     <Content Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionRelevantRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionRelevantService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRelevantForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionRelevantForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecisionRelevant\MeetingDecisionRelevantDialog.ts" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingDecisionForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingDecisionForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecision\MeetingDecisionGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingDecision\MeetingDecisionDialog.ts" />
     <Content Include="Modules\Meeting\MeetingLocation\MeetingLocationIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingLocationRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingLocationService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingLocationForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingLocationForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingLocation\MeetingLocationGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingLocation\MeetingLocationDialog.ts" />
     <Content Include="Modules\Meeting\Meeting\MeetingIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\Meeting\MeetingGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\Meeting\MeetingDialog.ts" />
     <Content Include="Modules\Meeting\MeetingType\MeetingTypeIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingTypeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingTypeService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Meeting.MeetingTypeForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Meeting.MeetingTypeForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingType\MeetingTypeGrid.ts" />
@@ -2022,86 +2023,86 @@
     <Compile Include="Modules\Common\Dashboard\DashboardPageModel.cs" />
     <Compile Include="Modules\Common\File\FilePage.cs" />
     <Compile Include="Modules\Common\Helpers\DetailListSaveHandler.cs" />
-    <Compile Include="Modules\Common\Imports\ClientTypes\Administration.PermissionCheckEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Administration.PermissionCheckEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ChangingLookupTextEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\BasicSamples.ChangingLookupTextEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.FilteredLookupDetailEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\BasicSamples.FilteredLookupDetailEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.HardcodedValuesEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\BasicSamples.HardcodedValuesEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.InlineImageFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\BasicSamples.InlineImageFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Meeting.MeetingAttendeeEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Meeting.MeetingAttendeeEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.EmployeeListFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.EmployeeListFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.NotesEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.NotesEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.OrderDetailsEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.OrderDetailsEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.PhoneEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.PhoneEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\Organization.BusinessUnitEditorAttribute.cs">
+    <Compile Include="Imports\ClientTypes\Organization.BusinessUnitEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\StaticTextBlockAttribute.cs">
+    <Compile Include="Imports\ClientTypes\StaticTextBlockAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161126_200000_Organization.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161126_210000_Meeting.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20161029_130000_ExceptionLog.cs" />
-    <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161126_141700_ForwardDates.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20161013_002500_CustomerDetails.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160908_180100_CustomerGrossSales.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160216_154900_DataLocalization.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20160121_141200_CustomerRepresentatives.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151226_184500_Notes.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20151014_030700_OrderDetailID.cs" />
-    <Compile Include="Modules\Common\Migrations\NorthwindDB\NorthwindDB_20141123_155100_Initial.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
-    <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20161126_200000_Organization.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20161126_210000_Meeting.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20161029_130000_ExceptionLog.cs" />
+    <Compile Include="Migrations\MigrationUtils.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20161126_141700_ForwardDates.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20161118_195400_DragDropSample.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20161013_002500_CustomerDetails.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20160908_180100_CustomerGrossSales.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20160216_154900_DataLocalization.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20160121_141200_CustomerRepresentatives.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20151226_184500_Notes.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20151202_193700_ProductLog.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20151014_030700_OrderDetailID.cs" />
+    <Compile Include="Migrations\NorthwindDB\NorthwindDB_20141123_155100_Initial.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationUpdateRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationListRequest.cs" />
     <Compile Include="Modules\Administration\Translation\TranslationItem.cs" />
     <Compile Include="Modules\Common\Dashboard\DashboardPage.cs" />
     <Compile Include="Modules\Common\Helpers\SqlExceptionHelper.cs" />
-    <Compile Include="Modules\Common\Imports\MVC\MVC.cs">
+    <Compile Include="Imports\MVC\MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MVC.tt</DependentUpon>
@@ -2344,304 +2345,304 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.LanguageColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.LanguageColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.LanguageForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.LanguageForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.LanguageRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.LanguageRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.LanguageService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.LanguageService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RoleColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RoleColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RoleForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RoleForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RolePermissionListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RolePermissionListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RolePermissionListResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RolePermissionListResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RolePermissionRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RolePermissionRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RolePermissionService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RolePermissionService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RolePermissionUpdateRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RolePermissionUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RoleRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RoleRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.RoleService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.RoleService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.TranslationItem.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TranslationItem.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.TranslationListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TranslationListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.TranslationService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TranslationService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.TranslationUpdateRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TranslationUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserPermissionListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserPermissionListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserPermissionRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserPermissionRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserPermissionService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserPermissionService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserPermissionUpdateRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserPermissionUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRoleListRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleListRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRoleListResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleListResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRoleRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRoleService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRoleUpdateRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRoleUpdateRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Administration.UserService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.UserService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.BasicSamplesService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.BasicSamplesService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.FilteredLookupInDetailForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.FilteredLookupInDetailForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.LookupFilterByMultipleForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.LookupFilterByMultipleForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.OrderBulkActionRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.OrderBulkActionRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.OrdersByShipperRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.OrdersByShipperRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\BasicSamples.OrdersByShipperResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.OrdersByShipperResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Common.Pages.UploadResponse.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Common.Pages.UploadResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ChangePasswordForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ChangePasswordForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ChangePasswordRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ChangePasswordRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ForgotPasswordForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ForgotPasswordForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ForgotPasswordRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ForgotPasswordRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.LoginForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.LoginForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.LoginRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.LoginRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ResetPasswordForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ResetPasswordForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.ResetPasswordRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.ResetPasswordRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.SignUpForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.SignUpForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Membership.SignUpRequest.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Membership.SignUpRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryLangRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryLangRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryLangService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryLangService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CategoryService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CategoryService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerCustomerDemoRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerCustomerDemoRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerDemographicRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerDemographicRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerRepresentativesRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerRepresentativesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.CustomerService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.EmployeeRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.EmployeeRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.EmployeeTerritoryRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.EmployeeTerritoryRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.Gender.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.Gender.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.NoteRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.NoteRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderDetailColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderDetailColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderDetailForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderDetailForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderDetailRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderDetailRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderDetailService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderDetailService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.OrderShippingState.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.OrderShippingState.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductLangRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductLangRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductLangService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductLangService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductLogRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductLogRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ProductService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ProductService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.RegionColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.RegionColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.RegionForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.RegionForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.RegionRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.RegionRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.RegionService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.RegionService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SalesByCategoryColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SalesByCategoryColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SalesByCategoryRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SalesByCategoryRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SalesByCategoryService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SalesByCategoryService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ShipperColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ShipperColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ShipperForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ShipperForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ShipperRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ShipperRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.ShipperService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.ShipperService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SupplierColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SupplierColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SupplierForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SupplierForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SupplierRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SupplierRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.SupplierService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.SupplierService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.TerritoryColumns.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.TerritoryColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.TerritoryForm.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.TerritoryForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.TerritoryRow.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.TerritoryRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\Northwind.TerritoryService.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\Northwind.TerritoryService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\ScriptUserDefinition.ts">
+    <TypeScriptCompile Include="Imports\ServerTypings\ScriptUserDefinition.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Reporting\PdfExportHelper.ts" />

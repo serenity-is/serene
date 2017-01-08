@@ -13,6 +13,1993 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var LanguageForm = (function (_super) {
+            __extends(LanguageForm, _super);
+            function LanguageForm() {
+                _super.apply(this, arguments);
+            }
+            LanguageForm.formKey = 'Administration.Language';
+            return LanguageForm;
+        }(Serenity.PrefixedContext));
+        Administration.LanguageForm = LanguageForm;
+        [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var LanguageRow;
+        (function (LanguageRow) {
+            LanguageRow.idProperty = 'Id';
+            LanguageRow.nameProperty = 'LanguageName';
+            LanguageRow.localTextPrefix = 'Administration.Language';
+            LanguageRow.lookupKey = 'Administration.Language';
+            function getLookup() {
+                return Q.getLookup('Administration.Language');
+            }
+            LanguageRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
+            ['Id', 'LanguageId', 'LanguageName'].forEach(function (x) { return Fields[x] = x; });
+        })(LanguageRow = Administration.LanguageRow || (Administration.LanguageRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var LanguageService;
+        (function (LanguageService) {
+            LanguageService.baseUrl = 'Administration/Language';
+            var Methods;
+            (function (Methods) {
+            })(Methods = LanguageService.Methods || (LanguageService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                LanguageService[x] = function (r, s, o) { return Q.serviceRequest(LanguageService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = LanguageService.baseUrl + '/' + x;
+            });
+        })(LanguageService = Administration.LanguageService || (Administration.LanguageService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RoleForm = (function (_super) {
+            __extends(RoleForm, _super);
+            function RoleForm() {
+                _super.apply(this, arguments);
+            }
+            RoleForm.formKey = 'Administration.Role';
+            return RoleForm;
+        }(Serenity.PrefixedContext));
+        Administration.RoleForm = RoleForm;
+        [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RolePermissionRow;
+        (function (RolePermissionRow) {
+            RolePermissionRow.idProperty = 'RolePermissionId';
+            RolePermissionRow.nameProperty = 'PermissionKey';
+            RolePermissionRow.localTextPrefix = 'Administration.RolePermission';
+            var Fields;
+            (function (Fields) {
+            })(Fields = RolePermissionRow.Fields || (RolePermissionRow.Fields = {}));
+            ['RolePermissionId', 'RoleId', 'PermissionKey', 'RoleRoleName'].forEach(function (x) { return Fields[x] = x; });
+        })(RolePermissionRow = Administration.RolePermissionRow || (Administration.RolePermissionRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RolePermissionService;
+        (function (RolePermissionService) {
+            RolePermissionService.baseUrl = 'Administration/RolePermission';
+            var Methods;
+            (function (Methods) {
+            })(Methods = RolePermissionService.Methods || (RolePermissionService.Methods = {}));
+            ['Update', 'List'].forEach(function (x) {
+                RolePermissionService[x] = function (r, s, o) { return Q.serviceRequest(RolePermissionService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = RolePermissionService.baseUrl + '/' + x;
+            });
+        })(RolePermissionService = Administration.RolePermissionService || (Administration.RolePermissionService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RoleRow;
+        (function (RoleRow) {
+            RoleRow.idProperty = 'RoleId';
+            RoleRow.nameProperty = 'RoleName';
+            RoleRow.localTextPrefix = 'Administration.Role';
+            RoleRow.lookupKey = 'Administration.Role';
+            function getLookup() {
+                return Q.getLookup('Administration.Role');
+            }
+            RoleRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
+            ['RoleId', 'RoleName'].forEach(function (x) { return Fields[x] = x; });
+        })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var RoleService;
+        (function (RoleService) {
+            RoleService.baseUrl = 'Administration/Role';
+            var Methods;
+            (function (Methods) {
+            })(Methods = RoleService.Methods || (RoleService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                RoleService[x] = function (r, s, o) { return Q.serviceRequest(RoleService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = RoleService.baseUrl + '/' + x;
+            });
+        })(RoleService = Administration.RoleService || (Administration.RoleService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var TranslationService;
+        (function (TranslationService) {
+            TranslationService.baseUrl = 'Administration/Translation';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TranslationService.Methods || (TranslationService.Methods = {}));
+            ['List', 'Update'].forEach(function (x) {
+                TranslationService[x] = function (r, s, o) { return Q.serviceRequest(TranslationService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TranslationService.baseUrl + '/' + x;
+            });
+        })(TranslationService = Administration.TranslationService || (Administration.TranslationService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserForm = (function (_super) {
+            __extends(UserForm, _super);
+            function UserForm() {
+                _super.apply(this, arguments);
+            }
+            UserForm.formKey = 'Administration.User';
+            return UserForm;
+        }(Serenity.PrefixedContext));
+        Administration.UserForm = UserForm;
+        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserPermissionRow;
+        (function (UserPermissionRow) {
+            UserPermissionRow.idProperty = 'UserPermissionId';
+            UserPermissionRow.nameProperty = 'PermissionKey';
+            UserPermissionRow.localTextPrefix = 'Administration.UserPermission';
+            var Fields;
+            (function (Fields) {
+            })(Fields = UserPermissionRow.Fields || (UserPermissionRow.Fields = {}));
+            ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
+        })(UserPermissionRow = Administration.UserPermissionRow || (Administration.UserPermissionRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserPermissionService;
+        (function (UserPermissionService) {
+            UserPermissionService.baseUrl = 'Administration/UserPermission';
+            var Methods;
+            (function (Methods) {
+            })(Methods = UserPermissionService.Methods || (UserPermissionService.Methods = {}));
+            ['Update', 'List', 'ListRolePermissions', 'ListPermissionKeys'].forEach(function (x) {
+                UserPermissionService[x] = function (r, s, o) { return Q.serviceRequest(UserPermissionService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = UserPermissionService.baseUrl + '/' + x;
+            });
+        })(UserPermissionService = Administration.UserPermissionService || (Administration.UserPermissionService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserRoleRow;
+        (function (UserRoleRow) {
+            UserRoleRow.idProperty = 'UserRoleId';
+            UserRoleRow.localTextPrefix = 'Administration.UserRole';
+            var Fields;
+            (function (Fields) {
+            })(Fields = UserRoleRow.Fields || (UserRoleRow.Fields = {}));
+            ['UserRoleId', 'UserId', 'RoleId', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
+        })(UserRoleRow = Administration.UserRoleRow || (Administration.UserRoleRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserRoleService;
+        (function (UserRoleService) {
+            UserRoleService.baseUrl = 'Administration/UserRole';
+            var Methods;
+            (function (Methods) {
+            })(Methods = UserRoleService.Methods || (UserRoleService.Methods = {}));
+            ['Update', 'List'].forEach(function (x) {
+                UserRoleService[x] = function (r, s, o) { return Q.serviceRequest(UserRoleService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = UserRoleService.baseUrl + '/' + x;
+            });
+        })(UserRoleService = Administration.UserRoleService || (Administration.UserRoleService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserRow;
+        (function (UserRow) {
+            UserRow.idProperty = 'UserId';
+            UserRow.isActiveProperty = 'IsActive';
+            UserRow.nameProperty = 'Username';
+            UserRow.localTextPrefix = 'Administration.User';
+            UserRow.lookupKey = 'Administration.User';
+            function getLookup() {
+                return Q.getLookup('Administration.User');
+            }
+            UserRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = UserRow.Fields || (UserRow.Fields = {}));
+            ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+        })(UserRow = Administration.UserRow || (Administration.UserRow = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var UserService;
+        (function (UserService) {
+            UserService.baseUrl = 'Administration/User';
+            var Methods;
+            (function (Methods) {
+            })(Methods = UserService.Methods || (UserService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(function (x) {
+                UserService[x] = function (r, s, o) { return Q.serviceRequest(UserService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = UserService.baseUrl + '/' + x;
+            });
+        })(UserService = Administration.UserService || (Administration.UserService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var BasicSamplesService;
+        (function (BasicSamplesService) {
+            BasicSamplesService.baseUrl = 'BasicSamples/BasicSamples';
+            var Methods;
+            (function (Methods) {
+            })(Methods = BasicSamplesService.Methods || (BasicSamplesService.Methods = {}));
+            ['OrdersByShipper', 'OrderBulkAction'].forEach(function (x) {
+                BasicSamplesService[x] = function (r, s, o) { return Q.serviceRequest(BasicSamplesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = BasicSamplesService.baseUrl + '/' + x;
+            });
+        })(BasicSamplesService = BasicSamples.BasicSamplesService || (BasicSamples.BasicSamplesService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ChangingLookupTextForm = (function (_super) {
+            __extends(ChangingLookupTextForm, _super);
+            function ChangingLookupTextForm() {
+                _super.apply(this, arguments);
+            }
+            ChangingLookupTextForm.formKey = 'BasicSamples.ChangingLookupText';
+            return ChangingLookupTextForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.ChangingLookupTextForm = ChangingLookupTextForm;
+        [['ProductID', function () { return BasicSamples.ChangingLookupTextEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(ChangingLookupTextForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CustomerGrossSalesRow;
+        (function (CustomerGrossSalesRow) {
+            CustomerGrossSalesRow.nameProperty = 'ContactName';
+            CustomerGrossSalesRow.localTextPrefix = 'BasicSamples.GrossSales';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
+            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerGrossSalesRow = BasicSamples.CustomerGrossSalesRow || (BasicSamples.CustomerGrossSalesRow = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CustomerGrossSalesService;
+        (function (CustomerGrossSalesService) {
+            CustomerGrossSalesService.baseUrl = 'BasicSamples/CustomerGrossSales';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CustomerGrossSalesService.Methods || (CustomerGrossSalesService.Methods = {}));
+            ['List'].forEach(function (x) {
+                CustomerGrossSalesService[x] = function (r, s, o) { return Q.serviceRequest(CustomerGrossSalesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CustomerGrossSalesService.baseUrl + '/' + x;
+            });
+        })(CustomerGrossSalesService = BasicSamples.CustomerGrossSalesService || (BasicSamples.CustomerGrossSalesService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleForm = (function (_super) {
+            __extends(DragDropSampleForm, _super);
+            function DragDropSampleForm() {
+                _super.apply(this, arguments);
+            }
+            DragDropSampleForm.formKey = 'BasicSamples.DragDropSample';
+            return DragDropSampleForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.DragDropSampleForm = DragDropSampleForm;
+        [['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(DragDropSampleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleRow;
+        (function (DragDropSampleRow) {
+            DragDropSampleRow.idProperty = 'Id';
+            DragDropSampleRow.nameProperty = 'Title';
+            DragDropSampleRow.localTextPrefix = 'BasicSamples.DragDropSample';
+            var Fields;
+            (function (Fields) {
+            })(Fields = DragDropSampleRow.Fields || (DragDropSampleRow.Fields = {}));
+            ['Id', 'ParentId', 'Title'].forEach(function (x) { return Fields[x] = x; });
+        })(DragDropSampleRow = BasicSamples.DragDropSampleRow || (BasicSamples.DragDropSampleRow = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var DragDropSampleService;
+        (function (DragDropSampleService) {
+            DragDropSampleService.baseUrl = 'BasicSamples/DragDropSample';
+            var Methods;
+            (function (Methods) {
+            })(Methods = DragDropSampleService.Methods || (DragDropSampleService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                DragDropSampleService[x] = function (r, s, o) { return Q.serviceRequest(DragDropSampleService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = DragDropSampleService.baseUrl + '/' + x;
+            });
+        })(DragDropSampleService = BasicSamples.DragDropSampleService || (BasicSamples.DragDropSampleService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var FilteredLookupInDetailForm = (function (_super) {
+            __extends(FilteredLookupInDetailForm, _super);
+            function FilteredLookupInDetailForm() {
+                _super.apply(this, arguments);
+            }
+            FilteredLookupInDetailForm.formKey = 'BasicSamples.FilteredLookupInDetail';
+            return FilteredLookupInDetailForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
+        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return BasicSamples.FilteredLookupDetailEditor; }]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var HardcodedValuesForm = (function (_super) {
+            __extends(HardcodedValuesForm, _super);
+            function HardcodedValuesForm() {
+                _super.apply(this, arguments);
+            }
+            HardcodedValuesForm.formKey = 'BasicSamples.HarcodedValues';
+            return HardcodedValuesForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.HardcodedValuesForm = HardcodedValuesForm;
+        [['SomeValue', function () { return BasicSamples.HardcodedValuesEditor; }]].forEach(function (x) { return Object.defineProperty(HardcodedValuesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var LookupFilterByMultipleForm = (function (_super) {
+            __extends(LookupFilterByMultipleForm, _super);
+            function LookupFilterByMultipleForm() {
+                _super.apply(this, arguments);
+            }
+            LookupFilterByMultipleForm.formKey = 'BasicSamples.LookupFilterByMultiple';
+            return LookupFilterByMultipleForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
+        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return BasicSamples.ProduceSeafoodCategoryEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var PopulateLinkedDataForm = (function (_super) {
+            __extends(PopulateLinkedDataForm, _super);
+            function PopulateLinkedDataForm() {
+                _super.apply(this, arguments);
+            }
+            PopulateLinkedDataForm.formKey = 'BasicSamples.PopulateLinkedData';
+            return PopulateLinkedDataForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.PopulateLinkedDataForm = PopulateLinkedDataForm;
+        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['CustomerContactName', function () { return Serenity.StringEditor; }], ['CustomerContactTitle', function () { return Serenity.StringEditor; }], ['CustomerCity', function () { return Serenity.StringEditor; }], ['CustomerRegion', function () { return Serenity.StringEditor; }], ['CustomerCountry', function () { return Serenity.StringEditor; }], ['CustomerPhone', function () { return Serenity.StringEditor; }], ['CustomerFax', function () { return Serenity.StringEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Serene.Northwind.OrderDetailsEditor; }]].forEach(function (x) { return Object.defineProperty(PopulateLinkedDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ProductExcelImportForm = (function (_super) {
+            __extends(ProductExcelImportForm, _super);
+            function ProductExcelImportForm() {
+                _super.apply(this, arguments);
+            }
+            ProductExcelImportForm.formKey = 'BasicSamples.ProductExcelImport';
+            return ProductExcelImportForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.ProductExcelImportForm = ProductExcelImportForm;
+        [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(ProductExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ProductExcelImportService;
+        (function (ProductExcelImportService) {
+            ProductExcelImportService.baseUrl = 'BasicSamples/ProductExcelImport';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ProductExcelImportService.Methods || (ProductExcelImportService.Methods = {}));
+            ['ExcelImport'].forEach(function (x) {
+                ProductExcelImportService[x] = function (r, s, o) { return Q.serviceRequest(ProductExcelImportService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ProductExcelImportService.baseUrl + '/' + x;
+            });
+        })(ProductExcelImportService = BasicSamples.ProductExcelImportService || (BasicSamples.ProductExcelImportService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var StaticTextBlockForm = (function (_super) {
+            __extends(StaticTextBlockForm, _super);
+            function StaticTextBlockForm() {
+                _super.apply(this, arguments);
+            }
+            StaticTextBlockForm.formKey = 'BasicSamples.StaticTextBlock';
+            return StaticTextBlockForm;
+        }(Serenity.PrefixedContext));
+        BasicSamples.StaticTextBlockForm = StaticTextBlockForm;
+        [['StaticText', function () { return Serene.StaticTextBlock; }], ['SomeInput', function () { return Serenity.StringEditor; }], ['HtmlList', function () { return Serene.StaticTextBlock; }], ['FromLocalText', function () { return Serene.StaticTextBlock; }], ['DisplayFieldValue', function () { return Serene.StaticTextBlock; }]].forEach(function (x) { return Object.defineProperty(StaticTextBlockForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var VSGalleryQAService;
+        (function (VSGalleryQAService) {
+            VSGalleryQAService.baseUrl = 'BasicSamples/VSGalleryQA';
+            var Methods;
+            (function (Methods) {
+            })(Methods = VSGalleryQAService.Methods || (VSGalleryQAService.Methods = {}));
+            ['List'].forEach(function (x) {
+                VSGalleryQAService[x] = function (r, s, o) { return Q.serviceRequest(VSGalleryQAService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = VSGalleryQAService.baseUrl + '/' + x;
+            });
+        })(VSGalleryQAService = BasicSamples.VSGalleryQAService || (BasicSamples.VSGalleryQAService = {}));
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var UserPreferenceRow;
+        (function (UserPreferenceRow) {
+            UserPreferenceRow.idProperty = 'UserPreferenceId';
+            UserPreferenceRow.nameProperty = 'Name';
+            UserPreferenceRow.localTextPrefix = 'Common.UserPreference';
+            var Fields;
+            (function (Fields) {
+            })(Fields = UserPreferenceRow.Fields || (UserPreferenceRow.Fields = {}));
+            ['UserPreferenceId', 'UserId', 'PreferenceType', 'Name', 'Value'].forEach(function (x) { return Fields[x] = x; });
+        })(UserPreferenceRow = Common.UserPreferenceRow || (Common.UserPreferenceRow = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var UserPreferenceService;
+        (function (UserPreferenceService) {
+            UserPreferenceService.baseUrl = 'Common/UserPreference';
+            var Methods;
+            (function (Methods) {
+            })(Methods = UserPreferenceService.Methods || (UserPreferenceService.Methods = {}));
+            ['Update', 'Retrieve'].forEach(function (x) {
+                UserPreferenceService[x] = function (r, s, o) { return Q.serviceRequest(UserPreferenceService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = UserPreferenceService.baseUrl + '/' + x;
+            });
+        })(UserPreferenceService = Common.UserPreferenceService || (Common.UserPreferenceService = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaForm = (function (_super) {
+            __extends(MeetingAgendaForm, _super);
+            function MeetingAgendaForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingAgendaForm.formKey = 'Meeting.MeetingAgenda';
+            return MeetingAgendaForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingAgendaForm = MeetingAgendaForm;
+        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaNumber', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['AgendaTypeId', function () { return Serenity.IntegerEditor; }], ['RequestedByContactId', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.MultipleImageUploadEditor; }], ['Attachments', function () { return Serenity.MultipleImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaRelevantForm = (function (_super) {
+            __extends(MeetingAgendaRelevantForm, _super);
+            function MeetingAgendaRelevantForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingAgendaRelevantForm.formKey = 'Meeting.MeetingAgendaRelevant';
+            return MeetingAgendaRelevantForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingAgendaRelevantForm = MeetingAgendaRelevantForm;
+        [['AgendaId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaRelevantRow;
+        (function (MeetingAgendaRelevantRow) {
+            MeetingAgendaRelevantRow.idProperty = 'AgendaRelevantId';
+            MeetingAgendaRelevantRow.localTextPrefix = 'Meeting.MeetingAgendaRelevant';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingAgendaRelevantRow.Fields || (MeetingAgendaRelevantRow.Fields = {}));
+            ['AgendaRelevantId', 'AgendaId', 'ContactId', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingAgendaRelevantRow = Meeting.MeetingAgendaRelevantRow || (Meeting.MeetingAgendaRelevantRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaRelevantService;
+        (function (MeetingAgendaRelevantService) {
+            MeetingAgendaRelevantService.baseUrl = 'Meeting/MeetingAgendaRelevant';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingAgendaRelevantService.Methods || (MeetingAgendaRelevantService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingAgendaRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaRelevantService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingAgendaRelevantService.baseUrl + '/' + x;
+            });
+        })(MeetingAgendaRelevantService = Meeting.MeetingAgendaRelevantService || (Meeting.MeetingAgendaRelevantService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaRow;
+        (function (MeetingAgendaRow) {
+            MeetingAgendaRow.idProperty = 'AgendaId';
+            MeetingAgendaRow.nameProperty = 'Title';
+            MeetingAgendaRow.localTextPrefix = 'Meeting.MeetingAgenda';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingAgendaRow.Fields || (MeetingAgendaRow.Fields = {}));
+            ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactFullName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingAgendaRow = Meeting.MeetingAgendaRow || (Meeting.MeetingAgendaRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaService;
+        (function (MeetingAgendaService) {
+            MeetingAgendaService.baseUrl = 'Meeting/MeetingAgenda';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingAgendaService.Methods || (MeetingAgendaService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingAgendaService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingAgendaService.baseUrl + '/' + x;
+            });
+        })(MeetingAgendaService = Meeting.MeetingAgendaService || (Meeting.MeetingAgendaService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaTypeForm = (function (_super) {
+            __extends(MeetingAgendaTypeForm, _super);
+            function MeetingAgendaTypeForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingAgendaTypeForm.formKey = 'Meeting.MeetingAgendaType';
+            return MeetingAgendaTypeForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingAgendaTypeForm = MeetingAgendaTypeForm;
+        [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaTypeRow;
+        (function (MeetingAgendaTypeRow) {
+            MeetingAgendaTypeRow.idProperty = 'AgendaTypeId';
+            MeetingAgendaTypeRow.nameProperty = 'Name';
+            MeetingAgendaTypeRow.localTextPrefix = 'Meeting.MeetingAgendaType';
+            MeetingAgendaTypeRow.lookupKey = 'Meeting.MeetingAgendaType';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingAgendaType');
+            }
+            MeetingAgendaTypeRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingAgendaTypeRow.Fields || (MeetingAgendaTypeRow.Fields = {}));
+            ['AgendaTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingAgendaTypeRow = Meeting.MeetingAgendaTypeRow || (Meeting.MeetingAgendaTypeRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAgendaTypeService;
+        (function (MeetingAgendaTypeService) {
+            MeetingAgendaTypeService.baseUrl = 'Meeting/MeetingAgendaType';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingAgendaTypeService.Methods || (MeetingAgendaTypeService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingAgendaTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaTypeService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingAgendaTypeService.baseUrl + '/' + x;
+            });
+        })(MeetingAgendaTypeService = Meeting.MeetingAgendaTypeService || (Meeting.MeetingAgendaTypeService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        (function (MeetingAttendanceStatus) {
+            MeetingAttendanceStatus[MeetingAttendanceStatus["NotSet"] = 0] = "NotSet";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["Attended"] = 1] = "Attended";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["Absent"] = 2] = "Absent";
+            MeetingAttendanceStatus[MeetingAttendanceStatus["AbsentWithPermission"] = 3] = "AbsentWithPermission";
+        })(Meeting.MeetingAttendanceStatus || (Meeting.MeetingAttendanceStatus = {}));
+        var MeetingAttendanceStatus = Meeting.MeetingAttendanceStatus;
+        Serenity.Decorators.registerEnum(MeetingAttendanceStatus, 'Meeting.MeetingAttendanceStatus');
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAttendeeForm = (function (_super) {
+            __extends(MeetingAttendeeForm, _super);
+            function MeetingAttendeeForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingAttendeeForm.formKey = 'Meeting.MeetingAttendee';
+            return MeetingAttendeeForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingAttendeeForm = MeetingAttendeeForm;
+        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }], ['AttendeeType', function () { return Serenity.EnumEditor; }], ['AttendanceStatus', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAttendeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingAttendeeRow;
+        (function (MeetingAttendeeRow) {
+            MeetingAttendeeRow.idProperty = 'AttendeeId';
+            MeetingAttendeeRow.localTextPrefix = 'Meeting.MeetingAttendee';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingAttendeeRow.Fields || (MeetingAttendeeRow.Fields = {}));
+            ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactFullName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingAttendeeRow = Meeting.MeetingAttendeeRow || (Meeting.MeetingAttendeeRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        (function (MeetingAttendeeType) {
+            MeetingAttendeeType[MeetingAttendeeType["Attendee"] = 1] = "Attendee";
+            MeetingAttendeeType[MeetingAttendeeType["Guest"] = 2] = "Guest";
+        })(Meeting.MeetingAttendeeType || (Meeting.MeetingAttendeeType = {}));
+        var MeetingAttendeeType = Meeting.MeetingAttendeeType;
+        Serenity.Decorators.registerEnum(MeetingAttendeeType, 'Meeting.MeetingAttendeeType');
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionForm = (function (_super) {
+            __extends(MeetingDecisionForm, _super);
+            function MeetingDecisionForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingDecisionForm.formKey = 'Meeting.MeetingDecision';
+            return MeetingDecisionForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingDecisionForm = MeetingDecisionForm;
+        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaId', function () { return Serenity.IntegerEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['DecisionNumber', function () { return Serenity.IntegerEditor; }], ['ResponsibleContactId', function () { return Serenity.IntegerEditor; }], ['DueDate', function () { return Serenity.DateEditor; }], ['ResolutionStatus', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.StringEditor; }], ['Attachments', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionRelevantForm = (function (_super) {
+            __extends(MeetingDecisionRelevantForm, _super);
+            function MeetingDecisionRelevantForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingDecisionRelevantForm.formKey = 'Meeting.MeetingDecisionRelevant';
+            return MeetingDecisionRelevantForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingDecisionRelevantForm = MeetingDecisionRelevantForm;
+        [['DecisionId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionRelevantRow;
+        (function (MeetingDecisionRelevantRow) {
+            MeetingDecisionRelevantRow.idProperty = 'DecisionRelevantId';
+            MeetingDecisionRelevantRow.localTextPrefix = 'Meeting.MeetingDecisionRelevant';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingDecisionRelevantRow.Fields || (MeetingDecisionRelevantRow.Fields = {}));
+            ['DecisionRelevantId', 'DecisionId', 'ContactId', 'DecisionMeetingId', 'DecisionAgendaId', 'DecisionDescription', 'DecisionDecisionNumber', 'DecisionResponsibleContactId', 'DecisionDueDate', 'DecisionResolutionStatus', 'DecisionImages', 'DecisionAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingDecisionRelevantRow = Meeting.MeetingDecisionRelevantRow || (Meeting.MeetingDecisionRelevantRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionRelevantService;
+        (function (MeetingDecisionRelevantService) {
+            MeetingDecisionRelevantService.baseUrl = 'Meeting/MeetingDecisionRelevant';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingDecisionRelevantService.Methods || (MeetingDecisionRelevantService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingDecisionRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionRelevantService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingDecisionRelevantService.baseUrl + '/' + x;
+            });
+        })(MeetingDecisionRelevantService = Meeting.MeetingDecisionRelevantService || (Meeting.MeetingDecisionRelevantService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionRow;
+        (function (MeetingDecisionRow) {
+            MeetingDecisionRow.idProperty = 'DecisionId';
+            MeetingDecisionRow.nameProperty = 'Description';
+            MeetingDecisionRow.localTextPrefix = 'Meeting.MeetingDecision';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingDecisionRow.Fields || (MeetingDecisionRow.Fields = {}));
+            ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactFullName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingDecisionRow = Meeting.MeetingDecisionRow || (Meeting.MeetingDecisionRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingDecisionService;
+        (function (MeetingDecisionService) {
+            MeetingDecisionService.baseUrl = 'Meeting/MeetingDecision';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingDecisionService.Methods || (MeetingDecisionService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingDecisionService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingDecisionService.baseUrl + '/' + x;
+            });
+        })(MeetingDecisionService = Meeting.MeetingDecisionService || (Meeting.MeetingDecisionService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingForm = (function (_super) {
+            __extends(MeetingForm, _super);
+            function MeetingForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingForm.formKey = 'Meeting.Meeting';
+            return MeetingForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingForm = MeetingForm;
+        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }], ['AttendeeList', function () { return Meeting.MeetingAttendeeEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingLocationForm = (function (_super) {
+            __extends(MeetingLocationForm, _super);
+            function MeetingLocationForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingLocationForm.formKey = 'Meeting.MeetingLocation';
+            return MeetingLocationForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingLocationForm = MeetingLocationForm;
+        [['Name', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Latitude', function () { return Serenity.DecimalEditor; }], ['Longitude', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingLocationForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingLocationRow;
+        (function (MeetingLocationRow) {
+            MeetingLocationRow.idProperty = 'LocationId';
+            MeetingLocationRow.nameProperty = 'Name';
+            MeetingLocationRow.localTextPrefix = 'Meeting.MeetingLocation';
+            MeetingLocationRow.lookupKey = 'Meeting.MeetingLocation';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingLocation');
+            }
+            MeetingLocationRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingLocationRow.Fields || (MeetingLocationRow.Fields = {}));
+            ['LocationId', 'Name', 'Address', 'Latitude', 'Longitude'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingLocationRow = Meeting.MeetingLocationRow || (Meeting.MeetingLocationRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingLocationService;
+        (function (MeetingLocationService) {
+            MeetingLocationService.baseUrl = 'Meeting/MeetingLocation';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingLocationService.Methods || (MeetingLocationService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingLocationService[x] = function (r, s, o) { return Q.serviceRequest(MeetingLocationService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingLocationService.baseUrl + '/' + x;
+            });
+        })(MeetingLocationService = Meeting.MeetingLocationService || (Meeting.MeetingLocationService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingRow;
+        (function (MeetingRow) {
+            MeetingRow.idProperty = 'MeetingId';
+            MeetingRow.nameProperty = 'MeetingName';
+            MeetingRow.localTextPrefix = 'Meeting.Meeting';
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingRow.Fields || (MeetingRow.Fields = {}));
+            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'AttendeeList', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingRow = Meeting.MeetingRow || (Meeting.MeetingRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingService;
+        (function (MeetingService) {
+            MeetingService.baseUrl = 'Meeting/Meeting';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingService.Methods || (MeetingService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingService[x] = function (r, s, o) { return Q.serviceRequest(MeetingService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingService.baseUrl + '/' + x;
+            });
+        })(MeetingService = Meeting.MeetingService || (Meeting.MeetingService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingTypeForm = (function (_super) {
+            __extends(MeetingTypeForm, _super);
+            function MeetingTypeForm() {
+                _super.apply(this, arguments);
+            }
+            MeetingTypeForm.formKey = 'Meeting.MeetingType';
+            return MeetingTypeForm;
+        }(Serenity.PrefixedContext));
+        Meeting.MeetingTypeForm = MeetingTypeForm;
+        [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingTypeRow;
+        (function (MeetingTypeRow) {
+            MeetingTypeRow.idProperty = 'MeetingTypeId';
+            MeetingTypeRow.nameProperty = 'Name';
+            MeetingTypeRow.localTextPrefix = 'Meeting.MeetingType';
+            MeetingTypeRow.lookupKey = 'Meeting.MeetingType';
+            function getLookup() {
+                return Q.getLookup('Meeting.MeetingType');
+            }
+            MeetingTypeRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = MeetingTypeRow.Fields || (MeetingTypeRow.Fields = {}));
+            ['MeetingTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
+        })(MeetingTypeRow = Meeting.MeetingTypeRow || (Meeting.MeetingTypeRow = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Meeting;
+    (function (Meeting) {
+        var MeetingTypeService;
+        (function (MeetingTypeService) {
+            MeetingTypeService.baseUrl = 'Meeting/MeetingType';
+            var Methods;
+            (function (Methods) {
+            })(Methods = MeetingTypeService.Methods || (MeetingTypeService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                MeetingTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingTypeService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = MeetingTypeService.baseUrl + '/' + x;
+            });
+        })(MeetingTypeService = Meeting.MeetingTypeService || (Meeting.MeetingTypeService = {}));
+    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ChangePasswordForm = (function (_super) {
+            __extends(ChangePasswordForm, _super);
+            function ChangePasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ChangePasswordForm.formKey = 'Membership.ChangePassword';
+            return ChangePasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ChangePasswordForm = ChangePasswordForm;
+        [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordForm = (function (_super) {
+            __extends(ForgotPasswordForm, _super);
+            function ForgotPasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
+            return ForgotPasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ForgotPasswordForm = ForgotPasswordForm;
+        [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var LoginForm = (function (_super) {
+            __extends(LoginForm, _super);
+            function LoginForm() {
+                _super.apply(this, arguments);
+            }
+            LoginForm.formKey = 'Membership.Login';
+            return LoginForm;
+        }(Serenity.PrefixedContext));
+        Membership.LoginForm = LoginForm;
+        [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ResetPasswordForm = (function (_super) {
+            __extends(ResetPasswordForm, _super);
+            function ResetPasswordForm() {
+                _super.apply(this, arguments);
+            }
+            ResetPasswordForm.formKey = 'Membership.ResetPassword';
+            return ResetPasswordForm;
+        }(Serenity.PrefixedContext));
+        Membership.ResetPasswordForm = ResetPasswordForm;
+        [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var SignUpForm = (function (_super) {
+            __extends(SignUpForm, _super);
+            function SignUpForm() {
+                _super.apply(this, arguments);
+            }
+            SignUpForm.formKey = 'Membership.SignUp';
+            return SignUpForm;
+        }(Serenity.PrefixedContext));
+        Membership.SignUpForm = SignUpForm;
+        [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryForm = (function (_super) {
+            __extends(CategoryForm, _super);
+            function CategoryForm() {
+                _super.apply(this, arguments);
+            }
+            CategoryForm.formKey = 'Northwind.Category';
+            return CategoryForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CategoryForm = CategoryForm;
+        [['CategoryName', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryLangRow;
+        (function (CategoryLangRow) {
+            CategoryLangRow.idProperty = 'Id';
+            CategoryLangRow.nameProperty = 'CategoryName';
+            CategoryLangRow.localTextPrefix = 'Northwind.CategoryLang';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CategoryLangRow.Fields || (CategoryLangRow.Fields = {}));
+            ['Id', 'CategoryId', 'LanguageId', 'CategoryName', 'Description'].forEach(function (x) { return Fields[x] = x; });
+        })(CategoryLangRow = Northwind.CategoryLangRow || (Northwind.CategoryLangRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryLangService;
+        (function (CategoryLangService) {
+            CategoryLangService.baseUrl = 'Northwind/CategoryLang';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CategoryLangService.Methods || (CategoryLangService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                CategoryLangService[x] = function (r, s, o) { return Q.serviceRequest(CategoryLangService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CategoryLangService.baseUrl + '/' + x;
+            });
+        })(CategoryLangService = Northwind.CategoryLangService || (Northwind.CategoryLangService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryRow;
+        (function (CategoryRow) {
+            CategoryRow.idProperty = 'CategoryID';
+            CategoryRow.nameProperty = 'CategoryName';
+            CategoryRow.localTextPrefix = 'Northwind.Category';
+            CategoryRow.lookupKey = 'Northwind.Category';
+            function getLookup() {
+                return Q.getLookup('Northwind.Category');
+            }
+            CategoryRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = CategoryRow.Fields || (CategoryRow.Fields = {}));
+            ['CategoryID', 'CategoryName', 'Description', 'Picture'].forEach(function (x) { return Fields[x] = x; });
+        })(CategoryRow = Northwind.CategoryRow || (Northwind.CategoryRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryService;
+        (function (CategoryService) {
+            CategoryService.baseUrl = 'Northwind/Category';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CategoryService.Methods || (CategoryService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'RetrieveLocalization', 'Retrieve', 'List'].forEach(function (x) {
+                CategoryService[x] = function (r, s, o) { return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CategoryService.baseUrl + '/' + x;
+            });
+        })(CategoryService = Northwind.CategoryService || (Northwind.CategoryService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerCustomerDemoRow;
+        (function (CustomerCustomerDemoRow) {
+            CustomerCustomerDemoRow.idProperty = 'ID';
+            CustomerCustomerDemoRow.nameProperty = 'CustomerID';
+            CustomerCustomerDemoRow.localTextPrefix = 'Northwind.CustomerCustomerDemo';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerCustomerDemoRow.Fields || (CustomerCustomerDemoRow.Fields = {}));
+            ['ID', 'CustomerID', 'CustomerTypeID', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerAddress', 'CustomerCity', 'CustomerRegion', 'CustomerPostalCode', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'CustomerTypeCustomerDesc'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerCustomerDemoRow = Northwind.CustomerCustomerDemoRow || (Northwind.CustomerCustomerDemoRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerDemographicRow;
+        (function (CustomerDemographicRow) {
+            CustomerDemographicRow.idProperty = 'ID';
+            CustomerDemographicRow.nameProperty = 'CustomerTypeID';
+            CustomerDemographicRow.localTextPrefix = 'Northwind.CustomerDemographic';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerDemographicRow.Fields || (CustomerDemographicRow.Fields = {}));
+            ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerDemographicRow = Northwind.CustomerDemographicRow || (Northwind.CustomerDemographicRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerDetailsRow;
+        (function (CustomerDetailsRow) {
+            CustomerDetailsRow.idProperty = 'Id';
+            CustomerDetailsRow.nameProperty = 'Email';
+            CustomerDetailsRow.localTextPrefix = 'Northwind.CustomerDetails';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerDetailsRow.Fields || (CustomerDetailsRow.Fields = {}));
+            ['Id', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin', 'LastContactedByLastName', 'LastContactedByFirstName', 'LastContactedByTitle', 'LastContactedByTitleOfCourtesy', 'LastContactedByBirthDate', 'LastContactedByHireDate', 'LastContactedByAddress', 'LastContactedByCity', 'LastContactedByRegion', 'LastContactedByPostalCode', 'LastContactedByCountry', 'LastContactedByHomePhone', 'LastContactedByExtension', 'LastContactedByPhoto', 'LastContactedByNotes', 'LastContactedByReportsTo', 'LastContactedByPhotoPath'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerDetailsRow = Northwind.CustomerDetailsRow || (Northwind.CustomerDetailsRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerForm = (function (_super) {
+            __extends(CustomerForm, _super);
+            function CustomerForm() {
+                _super.apply(this, arguments);
+            }
+            CustomerForm.formKey = 'Northwind.Customer';
+            return CustomerForm;
+        }(Serenity.PrefixedContext));
+        Northwind.CustomerForm = CustomerForm;
+        [['CustomerID', function () { return Serenity.StringEditor; }], ['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Representatives', function () { return Serenity.LookupEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['NoteList', function () { return Northwind.NotesEditor; }], ['LastContactDate', function () { return Serenity.DateEditor; }], ['LastContactedBy', function () { return Serenity.LookupEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['SendBulletin', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerRepresentativesRow;
+        (function (CustomerRepresentativesRow) {
+            CustomerRepresentativesRow.idProperty = 'RepresentativeId';
+            CustomerRepresentativesRow.localTextPrefix = 'CustomerRepresentatives';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerRepresentativesRow.Fields || (CustomerRepresentativesRow.Fields = {}));
+            ['RepresentativeId', 'CustomerId', 'EmployeeId'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerRepresentativesRow = Northwind.CustomerRepresentativesRow || (Northwind.CustomerRepresentativesRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerRow;
+        (function (CustomerRow) {
+            CustomerRow.idProperty = 'ID';
+            CustomerRow.nameProperty = 'CompanyName';
+            CustomerRow.localTextPrefix = 'Northwind.Customer';
+            CustomerRow.lookupKey = 'Northwind.Customer';
+            function getLookup() {
+                return Q.getLookup('Northwind.Customer');
+            }
+            CustomerRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerRow.Fields || (CustomerRow.Fields = {}));
+            ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerRow = Northwind.CustomerRow || (Northwind.CustomerRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerService;
+        (function (CustomerService) {
+            CustomerService.baseUrl = 'Northwind/Customer';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CustomerService.Methods || (CustomerService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'GetNextNumber', 'Retrieve', 'List'].forEach(function (x) {
+                CustomerService[x] = function (r, s, o) { return Q.serviceRequest(CustomerService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CustomerService.baseUrl + '/' + x;
+            });
+        })(CustomerService = Northwind.CustomerService || (Northwind.CustomerService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var EmployeeRow;
+        (function (EmployeeRow) {
+            EmployeeRow.idProperty = 'EmployeeID';
+            EmployeeRow.nameProperty = 'FullName';
+            EmployeeRow.localTextPrefix = 'Northwind.Employee';
+            EmployeeRow.lookupKey = 'Northwind.Employee';
+            function getLookup() {
+                return Q.getLookup('Northwind.Employee');
+            }
+            EmployeeRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = EmployeeRow.Fields || (EmployeeRow.Fields = {}));
+            ['EmployeeID', 'LastName', 'FirstName', 'FullName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath', 'ReportsToFullName', 'ReportsToLastName', 'ReportsToFirstName', 'ReportsToTitle', 'ReportsToTitleOfCourtesy', 'ReportsToBirthDate', 'ReportsToHireDate', 'ReportsToAddress', 'ReportsToCity', 'ReportsToRegion', 'ReportsToPostalCode', 'ReportsToCountry', 'ReportsToHomePhone', 'ReportsToExtension', 'ReportsToPhoto', 'ReportsToNotes', 'ReportsToReportsTo', 'ReportsToPhotoPath', 'Gender'].forEach(function (x) { return Fields[x] = x; });
+        })(EmployeeRow = Northwind.EmployeeRow || (Northwind.EmployeeRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var EmployeeTerritoryRow;
+        (function (EmployeeTerritoryRow) {
+            EmployeeTerritoryRow.idProperty = 'EmployeeID';
+            EmployeeTerritoryRow.nameProperty = 'TerritoryID';
+            EmployeeTerritoryRow.localTextPrefix = 'Northwind.EmployeeTerritory';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EmployeeTerritoryRow.Fields || (EmployeeTerritoryRow.Fields = {}));
+            ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(function (x) { return Fields[x] = x; });
+        })(EmployeeTerritoryRow = Northwind.EmployeeTerritoryRow || (Northwind.EmployeeTerritoryRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        (function (Gender) {
+            Gender[Gender["Male"] = 1] = "Male";
+            Gender[Gender["Female"] = 2] = "Female";
+        })(Northwind.Gender || (Northwind.Gender = {}));
+        var Gender = Northwind.Gender;
+        Serenity.Decorators.registerEnum(Gender, 'Serene.Northwind.Entities.Gender');
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var NoteRow;
+        (function (NoteRow) {
+            NoteRow.idProperty = 'NoteId';
+            NoteRow.nameProperty = 'EntityType';
+            NoteRow.localTextPrefix = 'Northwind.Note';
+            var Fields;
+            (function (Fields) {
+            })(Fields = NoteRow.Fields || (NoteRow.Fields = {}));
+            ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(function (x) { return Fields[x] = x; });
+        })(NoteRow = Northwind.NoteRow || (Northwind.NoteRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailForm = (function (_super) {
+            __extends(OrderDetailForm, _super);
+            function OrderDetailForm() {
+                _super.apply(this, arguments);
+            }
+            OrderDetailForm.formKey = 'Northwind.OrderDetail';
+            return OrderDetailForm;
+        }(Serenity.PrefixedContext));
+        Northwind.OrderDetailForm = OrderDetailForm;
+        [['ProductID', function () { return Serenity.LookupEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailRow;
+        (function (OrderDetailRow) {
+            OrderDetailRow.idProperty = 'DetailID';
+            OrderDetailRow.localTextPrefix = 'Northwind.OrderDetail';
+            var Fields;
+            (function (Fields) {
+            })(Fields = OrderDetailRow.Fields || (OrderDetailRow.Fields = {}));
+            ['DetailID', 'OrderID', 'ProductID', 'UnitPrice', 'Quantity', 'Discount', 'OrderCustomerID', 'OrderEmployeeID', 'OrderDate', 'OrderShippedDate', 'OrderShipVia', 'OrderShipCity', 'OrderShipCountry', 'ProductName', 'ProductDiscontinued', 'ProductSupplierID', 'ProductQuantityPerUnit', 'ProductUnitPrice', 'LineTotal'].forEach(function (x) { return Fields[x] = x; });
+        })(OrderDetailRow = Northwind.OrderDetailRow || (Northwind.OrderDetailRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailService;
+        (function (OrderDetailService) {
+            OrderDetailService.baseUrl = 'Northwind/OrderDetail';
+            var Methods;
+            (function (Methods) {
+            })(Methods = OrderDetailService.Methods || (OrderDetailService.Methods = {}));
+            ['Retrieve', 'List'].forEach(function (x) {
+                OrderDetailService[x] = function (r, s, o) { return Q.serviceRequest(OrderDetailService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = OrderDetailService.baseUrl + '/' + x;
+            });
+        })(OrderDetailService = Northwind.OrderDetailService || (Northwind.OrderDetailService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderForm = (function (_super) {
+            __extends(OrderForm, _super);
+            function OrderForm() {
+                _super.apply(this, arguments);
+            }
+            OrderForm.formKey = 'Northwind.Order';
+            return OrderForm;
+        }(Serenity.PrefixedContext));
+        Northwind.OrderForm = OrderForm;
+        [['CustomerID', function () { return Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Northwind.OrderDetailsEditor; }], ['ShippedDate', function () { return Serenity.DateEditor; }], ['ShipVia', function () { return Serenity.LookupEditor; }], ['Freight', function () { return Serenity.DecimalEditor; }], ['ShipName', function () { return Serenity.StringEditor; }], ['ShipAddress', function () { return Serenity.StringEditor; }], ['ShipCity', function () { return Serenity.StringEditor; }], ['ShipRegion', function () { return Serenity.StringEditor; }], ['ShipPostalCode', function () { return Serenity.StringEditor; }], ['ShipCountry', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderRow;
+        (function (OrderRow) {
+            OrderRow.idProperty = 'OrderID';
+            OrderRow.nameProperty = 'CustomerID';
+            OrderRow.localTextPrefix = 'Northwind.Order';
+            OrderRow.lookupKey = 'Northwind.OrderShipCity';
+            function getLookup() {
+                return Q.getLookup('Northwind.OrderShipCity');
+            }
+            OrderRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
+            ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(function (x) { return Fields[x] = x; });
+        })(OrderRow = Northwind.OrderRow || (Northwind.OrderRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderService;
+        (function (OrderService) {
+            OrderService.baseUrl = 'Northwind/Order';
+            var Methods;
+            (function (Methods) {
+            })(Methods = OrderService.Methods || (OrderService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                OrderService[x] = function (r, s, o) { return Q.serviceRequest(OrderService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = OrderService.baseUrl + '/' + x;
+            });
+        })(OrderService = Northwind.OrderService || (Northwind.OrderService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        (function (OrderShippingState) {
+            OrderShippingState[OrderShippingState["NotShipped"] = 0] = "NotShipped";
+            OrderShippingState[OrderShippingState["Shipped"] = 1] = "Shipped";
+        })(Northwind.OrderShippingState || (Northwind.OrderShippingState = {}));
+        var OrderShippingState = Northwind.OrderShippingState;
+        Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductForm = (function (_super) {
+            __extends(ProductForm, _super);
+            function ProductForm() {
+                _super.apply(this, arguments);
+            }
+            ProductForm.formKey = 'Northwind.Product';
+            return ProductForm;
+        }(Serenity.PrefixedContext));
+        Northwind.ProductForm = ProductForm;
+        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductLangRow;
+        (function (ProductLangRow) {
+            ProductLangRow.idProperty = 'Id';
+            ProductLangRow.nameProperty = 'ProductName';
+            ProductLangRow.localTextPrefix = 'Northwind.ProductLang';
+            var Fields;
+            (function (Fields) {
+            })(Fields = ProductLangRow.Fields || (ProductLangRow.Fields = {}));
+            ['Id', 'ProductId', 'LanguageId', 'ProductName'].forEach(function (x) { return Fields[x] = x; });
+        })(ProductLangRow = Northwind.ProductLangRow || (Northwind.ProductLangRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductLangService;
+        (function (ProductLangService) {
+            ProductLangService.baseUrl = 'Northwind/ProductLang';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ProductLangService.Methods || (ProductLangService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                ProductLangService[x] = function (r, s, o) { return Q.serviceRequest(ProductLangService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ProductLangService.baseUrl + '/' + x;
+            });
+        })(ProductLangService = Northwind.ProductLangService || (Northwind.ProductLangService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductLogRow;
+        (function (ProductLogRow) {
+            ProductLogRow.idProperty = 'ProductLogID';
+            ProductLogRow.localTextPrefix = 'Northwind.ProductLog';
+            var Fields;
+            (function (Fields) {
+            })(Fields = ProductLogRow.Fields || (ProductLogRow.Fields = {}));
+            ['ProductLogID', 'OperationType', 'ChangingUserId', 'ValidFrom', 'ValidUntil', 'ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel'].forEach(function (x) { return Fields[x] = x; });
+        })(ProductLogRow = Northwind.ProductLogRow || (Northwind.ProductLogRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductRow;
+        (function (ProductRow) {
+            ProductRow.idProperty = 'ProductID';
+            ProductRow.nameProperty = 'ProductName';
+            ProductRow.localTextPrefix = 'Northwind.Product';
+            ProductRow.lookupKey = 'Northwind.Product';
+            function getLookup() {
+                return Q.getLookup('Northwind.Product');
+            }
+            ProductRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = ProductRow.Fields || (ProductRow.Fields = {}));
+            ['ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel', 'SupplierCompanyName', 'SupplierContactName', 'SupplierContactTitle', 'SupplierAddress', 'SupplierCity', 'SupplierRegion', 'SupplierPostalCode', 'SupplierCountry', 'SupplierPhone', 'SupplierFax', 'SupplierHomePage', 'CategoryName', 'CategoryDescription', 'CategoryPicture'].forEach(function (x) { return Fields[x] = x; });
+        })(ProductRow = Northwind.ProductRow || (Northwind.ProductRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ProductService;
+        (function (ProductService) {
+            ProductService.baseUrl = 'Northwind/Product';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ProductService.Methods || (ProductService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'RetrieveLocalization', 'List'].forEach(function (x) {
+                ProductService[x] = function (r, s, o) { return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ProductService.baseUrl + '/' + x;
+            });
+        })(ProductService = Northwind.ProductService || (Northwind.ProductService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var RegionForm = (function (_super) {
+            __extends(RegionForm, _super);
+            function RegionForm() {
+                _super.apply(this, arguments);
+            }
+            RegionForm.formKey = 'Northwind.Region';
+            return RegionForm;
+        }(Serenity.PrefixedContext));
+        Northwind.RegionForm = RegionForm;
+        [['RegionID', function () { return Serenity.IntegerEditor; }], ['RegionDescription', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var RegionRow;
+        (function (RegionRow) {
+            RegionRow.idProperty = 'RegionID';
+            RegionRow.nameProperty = 'RegionDescription';
+            RegionRow.localTextPrefix = 'Northwind.Region';
+            RegionRow.lookupKey = 'Northwind.Region';
+            function getLookup() {
+                return Q.getLookup('Northwind.Region');
+            }
+            RegionRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = RegionRow.Fields || (RegionRow.Fields = {}));
+            ['RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
+        })(RegionRow = Northwind.RegionRow || (Northwind.RegionRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var RegionService;
+        (function (RegionService) {
+            RegionService.baseUrl = 'Northwind/Region';
+            var Methods;
+            (function (Methods) {
+            })(Methods = RegionService.Methods || (RegionService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                RegionService[x] = function (r, s, o) { return Q.serviceRequest(RegionService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = RegionService.baseUrl + '/' + x;
+            });
+        })(RegionService = Northwind.RegionService || (Northwind.RegionService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SalesByCategoryRow;
+        (function (SalesByCategoryRow) {
+            SalesByCategoryRow.nameProperty = 'CategoryName';
+            SalesByCategoryRow.localTextPrefix = 'Northwind.SalesByCategory';
+            var Fields;
+            (function (Fields) {
+            })(Fields = SalesByCategoryRow.Fields || (SalesByCategoryRow.Fields = {}));
+            ['CategoryId', 'CategoryName', 'ProductName', 'ProductSales'].forEach(function (x) { return Fields[x] = x; });
+        })(SalesByCategoryRow = Northwind.SalesByCategoryRow || (Northwind.SalesByCategoryRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SalesByCategoryService;
+        (function (SalesByCategoryService) {
+            SalesByCategoryService.baseUrl = 'Northwind/SalesByCategory';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SalesByCategoryService.Methods || (SalesByCategoryService.Methods = {}));
+            ['List'].forEach(function (x) {
+                SalesByCategoryService[x] = function (r, s, o) { return Q.serviceRequest(SalesByCategoryService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SalesByCategoryService.baseUrl + '/' + x;
+            });
+        })(SalesByCategoryService = Northwind.SalesByCategoryService || (Northwind.SalesByCategoryService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperForm = (function (_super) {
+            __extends(ShipperForm, _super);
+            function ShipperForm() {
+                _super.apply(this, arguments);
+            }
+            ShipperForm.formKey = 'Northwind.Shipper';
+            return ShipperForm;
+        }(Serenity.PrefixedContext));
+        Northwind.ShipperForm = ShipperForm;
+        [['CompanyName', function () { return Serenity.StringEditor; }], ['Phone', function () { return Northwind.PhoneEditor; }]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperRow;
+        (function (ShipperRow) {
+            ShipperRow.idProperty = 'ShipperID';
+            ShipperRow.nameProperty = 'CompanyName';
+            ShipperRow.localTextPrefix = 'Northwind.Shipper';
+            ShipperRow.lookupKey = 'Northwind.Shipper';
+            function getLookup() {
+                return Q.getLookup('Northwind.Shipper');
+            }
+            ShipperRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = ShipperRow.Fields || (ShipperRow.Fields = {}));
+            ['ShipperID', 'CompanyName', 'Phone'].forEach(function (x) { return Fields[x] = x; });
+        })(ShipperRow = Northwind.ShipperRow || (Northwind.ShipperRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperService;
+        (function (ShipperService) {
+            ShipperService.baseUrl = 'Northwind/Shipper';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ShipperService.Methods || (ShipperService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                ShipperService[x] = function (r, s, o) { return Q.serviceRequest(ShipperService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ShipperService.baseUrl + '/' + x;
+            });
+        })(ShipperService = Northwind.ShipperService || (Northwind.ShipperService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SupplierForm = (function (_super) {
+            __extends(SupplierForm, _super);
+            function SupplierForm() {
+                _super.apply(this, arguments);
+            }
+            SupplierForm.formKey = 'Northwind.Supplier';
+            return SupplierForm;
+        }(Serenity.PrefixedContext));
+        Northwind.SupplierForm = SupplierForm;
+        [['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['HomePage', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SupplierRow;
+        (function (SupplierRow) {
+            SupplierRow.idProperty = 'SupplierID';
+            SupplierRow.nameProperty = 'CompanyName';
+            SupplierRow.localTextPrefix = 'Northwind.Supplier';
+            SupplierRow.lookupKey = 'Northwind.Supplier';
+            function getLookup() {
+                return Q.getLookup('Northwind.Supplier');
+            }
+            SupplierRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = SupplierRow.Fields || (SupplierRow.Fields = {}));
+            ['SupplierID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'HomePage'].forEach(function (x) { return Fields[x] = x; });
+        })(SupplierRow = Northwind.SupplierRow || (Northwind.SupplierRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SupplierService;
+        (function (SupplierService) {
+            SupplierService.baseUrl = 'Northwind/Supplier';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SupplierService.Methods || (SupplierService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                SupplierService[x] = function (r, s, o) { return Q.serviceRequest(SupplierService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SupplierService.baseUrl + '/' + x;
+            });
+        })(SupplierService = Northwind.SupplierService || (Northwind.SupplierService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryForm = (function (_super) {
+            __extends(TerritoryForm, _super);
+            function TerritoryForm() {
+                _super.apply(this, arguments);
+            }
+            TerritoryForm.formKey = 'Northwind.Territory';
+            return TerritoryForm;
+        }(Serenity.PrefixedContext));
+        Northwind.TerritoryForm = TerritoryForm;
+        [['TerritoryID', function () { return Serenity.StringEditor; }], ['TerritoryDescription', function () { return Serenity.StringEditor; }], ['RegionID', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryRow;
+        (function (TerritoryRow) {
+            TerritoryRow.idProperty = 'ID';
+            TerritoryRow.nameProperty = 'TerritoryID';
+            TerritoryRow.localTextPrefix = 'Northwind.Territory';
+            TerritoryRow.lookupKey = 'Northwind.Territory';
+            function getLookup() {
+                return Q.getLookup('Northwind.Territory');
+            }
+            TerritoryRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = TerritoryRow.Fields || (TerritoryRow.Fields = {}));
+            ['ID', 'TerritoryID', 'TerritoryDescription', 'RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
+        })(TerritoryRow = Northwind.TerritoryRow || (Northwind.TerritoryRow = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryService;
+        (function (TerritoryService) {
+            TerritoryService.baseUrl = 'Northwind/Territory';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TerritoryService.Methods || (TerritoryService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                TerritoryService[x] = function (r, s, o) { return Q.serviceRequest(TerritoryService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TerritoryService.baseUrl + '/' + x;
+            });
+        })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitForm = (function (_super) {
+            __extends(BusinessUnitForm, _super);
+            function BusinessUnitForm() {
+                _super.apply(this, arguments);
+            }
+            BusinessUnitForm.formKey = 'Organization.BusinessUnit';
+            return BusinessUnitForm;
+        }(Serenity.PrefixedContext));
+        Organization.BusinessUnitForm = BusinessUnitForm;
+        [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Organization.BusinessUnitEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitRow;
+        (function (BusinessUnitRow) {
+            BusinessUnitRow.idProperty = 'UnitId';
+            BusinessUnitRow.nameProperty = 'Name';
+            BusinessUnitRow.localTextPrefix = 'Organization.BusinessUnit';
+            BusinessUnitRow.lookupKey = 'Organization.BusinessUnit';
+            function getLookup() {
+                return Q.getLookup('Organization.BusinessUnit');
+            }
+            BusinessUnitRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = BusinessUnitRow.Fields || (BusinessUnitRow.Fields = {}));
+            ['UnitId', 'Name', 'ParentUnitId', 'ParentUnitName', 'ParentUnitParentUnitId'].forEach(function (x) { return Fields[x] = x; });
+        })(BusinessUnitRow = Organization.BusinessUnitRow || (Organization.BusinessUnitRow = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitService;
+        (function (BusinessUnitService) {
+            BusinessUnitService.baseUrl = 'Organization/BusinessUnit';
+            var Methods;
+            (function (Methods) {
+            })(Methods = BusinessUnitService.Methods || (BusinessUnitService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                BusinessUnitService[x] = function (r, s, o) { return Q.serviceRequest(BusinessUnitService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = BusinessUnitService.baseUrl + '/' + x;
+            });
+        })(BusinessUnitService = Organization.BusinessUnitService || (Organization.BusinessUnitService = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitsForm = (function (_super) {
+            __extends(BusinessUnitsForm, _super);
+            function BusinessUnitsForm() {
+                _super.apply(this, arguments);
+            }
+            BusinessUnitsForm.formKey = 'Organization.BusinessUnits';
+            return BusinessUnitsForm;
+        }(Serenity.PrefixedContext));
+        Organization.BusinessUnitsForm = BusinessUnitsForm;
+        [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitsRow;
+        (function (BusinessUnitsRow) {
+            BusinessUnitsRow.idProperty = 'UnitId';
+            BusinessUnitsRow.nameProperty = 'Name';
+            BusinessUnitsRow.localTextPrefix = 'Organization.BusinessUnits';
+            var Fields;
+            (function (Fields) {
+            })(Fields = BusinessUnitsRow.Fields || (BusinessUnitsRow.Fields = {}));
+            ['UnitId', 'Name', 'ParentUnitId', 'ParentUnitName', 'ParentUnitParentUnitId'].forEach(function (x) { return Fields[x] = x; });
+        })(BusinessUnitsRow = Organization.BusinessUnitsRow || (Organization.BusinessUnitsRow = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var BusinessUnitsService;
+        (function (BusinessUnitsService) {
+            BusinessUnitsService.baseUrl = 'Organization/BusinessUnits';
+            var Methods;
+            (function (Methods) {
+            })(Methods = BusinessUnitsService.Methods || (BusinessUnitsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                BusinessUnitsService[x] = function (r, s, o) { return Q.serviceRequest(BusinessUnitsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = BusinessUnitsService.baseUrl + '/' + x;
+            });
+        })(BusinessUnitsService = Organization.BusinessUnitsService || (Organization.BusinessUnitsService = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var ContactForm = (function (_super) {
+            __extends(ContactForm, _super);
+            function ContactForm() {
+                _super.apply(this, arguments);
+            }
+            ContactForm.formKey = 'Organization.Contact';
+            return ContactForm;
+        }(Serenity.PrefixedContext));
+        Organization.ContactForm = ContactForm;
+        [['Title', function () { return Serenity.StringEditor; }], ['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['IdentityNo', function () { return Serenity.StringEditor; }], ['UserId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(ContactForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var ContactRow;
+        (function (ContactRow) {
+            ContactRow.idProperty = 'ContactId';
+            ContactRow.nameProperty = 'FullName';
+            ContactRow.localTextPrefix = 'Organization.Contact';
+            ContactRow.lookupKey = 'Organization.Contact';
+            function getLookup() {
+                return Q.getLookup('Organization.Contact');
+            }
+            ContactRow.getLookup = getLookup;
+            var Fields;
+            (function (Fields) {
+            })(Fields = ContactRow.Fields || (ContactRow.Fields = {}));
+            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
+        })(ContactRow = Organization.ContactRow || (Organization.ContactRow = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Organization;
+    (function (Organization) {
+        var ContactService;
+        (function (ContactService) {
+            ContactService.baseUrl = 'Organization/Contact';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ContactService.Methods || (ContactService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                ContactService[x] = function (r, s, o) { return Q.serviceRequest(ContactService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ContactService.baseUrl + '/' + x;
+            });
+        })(ContactService = Organization.ContactService || (Organization.ContactService = {}));
+    })(Organization = Serene.Organization || (Serene.Organization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
@@ -4852,1993 +6839,6 @@ var Serene;
         }
         LanguageList.getValue = getValue;
     })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var LanguageForm = (function (_super) {
-            __extends(LanguageForm, _super);
-            function LanguageForm() {
-                _super.apply(this, arguments);
-            }
-            LanguageForm.formKey = 'Administration.Language';
-            return LanguageForm;
-        }(Serenity.PrefixedContext));
-        Administration.LanguageForm = LanguageForm;
-        [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var LanguageRow;
-        (function (LanguageRow) {
-            LanguageRow.idProperty = 'Id';
-            LanguageRow.nameProperty = 'LanguageName';
-            LanguageRow.localTextPrefix = 'Administration.Language';
-            LanguageRow.lookupKey = 'Administration.Language';
-            function getLookup() {
-                return Q.getLookup('Administration.Language');
-            }
-            LanguageRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
-            ['Id', 'LanguageId', 'LanguageName'].forEach(function (x) { return Fields[x] = x; });
-        })(LanguageRow = Administration.LanguageRow || (Administration.LanguageRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var LanguageService;
-        (function (LanguageService) {
-            LanguageService.baseUrl = 'Administration/Language';
-            var Methods;
-            (function (Methods) {
-            })(Methods = LanguageService.Methods || (LanguageService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                LanguageService[x] = function (r, s, o) { return Q.serviceRequest(LanguageService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = LanguageService.baseUrl + '/' + x;
-            });
-        })(LanguageService = Administration.LanguageService || (Administration.LanguageService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var RoleForm = (function (_super) {
-            __extends(RoleForm, _super);
-            function RoleForm() {
-                _super.apply(this, arguments);
-            }
-            RoleForm.formKey = 'Administration.Role';
-            return RoleForm;
-        }(Serenity.PrefixedContext));
-        Administration.RoleForm = RoleForm;
-        [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var RolePermissionRow;
-        (function (RolePermissionRow) {
-            RolePermissionRow.idProperty = 'RolePermissionId';
-            RolePermissionRow.nameProperty = 'PermissionKey';
-            RolePermissionRow.localTextPrefix = 'Administration.RolePermission';
-            var Fields;
-            (function (Fields) {
-            })(Fields = RolePermissionRow.Fields || (RolePermissionRow.Fields = {}));
-            ['RolePermissionId', 'RoleId', 'PermissionKey', 'RoleRoleName'].forEach(function (x) { return Fields[x] = x; });
-        })(RolePermissionRow = Administration.RolePermissionRow || (Administration.RolePermissionRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var RolePermissionService;
-        (function (RolePermissionService) {
-            RolePermissionService.baseUrl = 'Administration/RolePermission';
-            var Methods;
-            (function (Methods) {
-            })(Methods = RolePermissionService.Methods || (RolePermissionService.Methods = {}));
-            ['Update', 'List'].forEach(function (x) {
-                RolePermissionService[x] = function (r, s, o) { return Q.serviceRequest(RolePermissionService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = RolePermissionService.baseUrl + '/' + x;
-            });
-        })(RolePermissionService = Administration.RolePermissionService || (Administration.RolePermissionService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var RoleRow;
-        (function (RoleRow) {
-            RoleRow.idProperty = 'RoleId';
-            RoleRow.nameProperty = 'RoleName';
-            RoleRow.localTextPrefix = 'Administration.Role';
-            RoleRow.lookupKey = 'Administration.Role';
-            function getLookup() {
-                return Q.getLookup('Administration.Role');
-            }
-            RoleRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
-            ['RoleId', 'RoleName'].forEach(function (x) { return Fields[x] = x; });
-        })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var RoleService;
-        (function (RoleService) {
-            RoleService.baseUrl = 'Administration/Role';
-            var Methods;
-            (function (Methods) {
-            })(Methods = RoleService.Methods || (RoleService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                RoleService[x] = function (r, s, o) { return Q.serviceRequest(RoleService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = RoleService.baseUrl + '/' + x;
-            });
-        })(RoleService = Administration.RoleService || (Administration.RoleService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var TranslationService;
-        (function (TranslationService) {
-            TranslationService.baseUrl = 'Administration/Translation';
-            var Methods;
-            (function (Methods) {
-            })(Methods = TranslationService.Methods || (TranslationService.Methods = {}));
-            ['List', 'Update'].forEach(function (x) {
-                TranslationService[x] = function (r, s, o) { return Q.serviceRequest(TranslationService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = TranslationService.baseUrl + '/' + x;
-            });
-        })(TranslationService = Administration.TranslationService || (Administration.TranslationService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserForm = (function (_super) {
-            __extends(UserForm, _super);
-            function UserForm() {
-                _super.apply(this, arguments);
-            }
-            UserForm.formKey = 'Administration.User';
-            return UserForm;
-        }(Serenity.PrefixedContext));
-        Administration.UserForm = UserForm;
-        [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserPermissionRow;
-        (function (UserPermissionRow) {
-            UserPermissionRow.idProperty = 'UserPermissionId';
-            UserPermissionRow.nameProperty = 'PermissionKey';
-            UserPermissionRow.localTextPrefix = 'Administration.UserPermission';
-            var Fields;
-            (function (Fields) {
-            })(Fields = UserPermissionRow.Fields || (UserPermissionRow.Fields = {}));
-            ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
-        })(UserPermissionRow = Administration.UserPermissionRow || (Administration.UserPermissionRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserPermissionService;
-        (function (UserPermissionService) {
-            UserPermissionService.baseUrl = 'Administration/UserPermission';
-            var Methods;
-            (function (Methods) {
-            })(Methods = UserPermissionService.Methods || (UserPermissionService.Methods = {}));
-            ['Update', 'List', 'ListRolePermissions', 'ListPermissionKeys'].forEach(function (x) {
-                UserPermissionService[x] = function (r, s, o) { return Q.serviceRequest(UserPermissionService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = UserPermissionService.baseUrl + '/' + x;
-            });
-        })(UserPermissionService = Administration.UserPermissionService || (Administration.UserPermissionService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserRoleRow;
-        (function (UserRoleRow) {
-            UserRoleRow.idProperty = 'UserRoleId';
-            UserRoleRow.localTextPrefix = 'Administration.UserRole';
-            var Fields;
-            (function (Fields) {
-            })(Fields = UserRoleRow.Fields || (UserRoleRow.Fields = {}));
-            ['UserRoleId', 'UserId', 'RoleId', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
-        })(UserRoleRow = Administration.UserRoleRow || (Administration.UserRoleRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserRoleService;
-        (function (UserRoleService) {
-            UserRoleService.baseUrl = 'Administration/UserRole';
-            var Methods;
-            (function (Methods) {
-            })(Methods = UserRoleService.Methods || (UserRoleService.Methods = {}));
-            ['Update', 'List'].forEach(function (x) {
-                UserRoleService[x] = function (r, s, o) { return Q.serviceRequest(UserRoleService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = UserRoleService.baseUrl + '/' + x;
-            });
-        })(UserRoleService = Administration.UserRoleService || (Administration.UserRoleService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserRow;
-        (function (UserRow) {
-            UserRow.idProperty = 'UserId';
-            UserRow.isActiveProperty = 'IsActive';
-            UserRow.nameProperty = 'Username';
-            UserRow.localTextPrefix = 'Administration.User';
-            UserRow.lookupKey = 'Administration.User';
-            function getLookup() {
-                return Q.getLookup('Administration.User');
-            }
-            UserRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = UserRow.Fields || (UserRow.Fields = {}));
-            ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
-        })(UserRow = Administration.UserRow || (Administration.UserRow = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var UserService;
-        (function (UserService) {
-            UserService.baseUrl = 'Administration/User';
-            var Methods;
-            (function (Methods) {
-            })(Methods = UserService.Methods || (UserService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(function (x) {
-                UserService[x] = function (r, s, o) { return Q.serviceRequest(UserService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = UserService.baseUrl + '/' + x;
-            });
-        })(UserService = Administration.UserService || (Administration.UserService = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var BasicSamplesService;
-        (function (BasicSamplesService) {
-            BasicSamplesService.baseUrl = 'BasicSamples/BasicSamples';
-            var Methods;
-            (function (Methods) {
-            })(Methods = BasicSamplesService.Methods || (BasicSamplesService.Methods = {}));
-            ['OrdersByShipper', 'OrderBulkAction'].forEach(function (x) {
-                BasicSamplesService[x] = function (r, s, o) { return Q.serviceRequest(BasicSamplesService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = BasicSamplesService.baseUrl + '/' + x;
-            });
-        })(BasicSamplesService = BasicSamples.BasicSamplesService || (BasicSamples.BasicSamplesService = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var ChangingLookupTextForm = (function (_super) {
-            __extends(ChangingLookupTextForm, _super);
-            function ChangingLookupTextForm() {
-                _super.apply(this, arguments);
-            }
-            ChangingLookupTextForm.formKey = 'BasicSamples.ChangingLookupText';
-            return ChangingLookupTextForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.ChangingLookupTextForm = ChangingLookupTextForm;
-        [['ProductID', function () { return BasicSamples.ChangingLookupTextEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(ChangingLookupTextForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var CustomerGrossSalesRow;
-        (function (CustomerGrossSalesRow) {
-            CustomerGrossSalesRow.nameProperty = 'ContactName';
-            CustomerGrossSalesRow.localTextPrefix = 'BasicSamples.GrossSales';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
-            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerGrossSalesRow = BasicSamples.CustomerGrossSalesRow || (BasicSamples.CustomerGrossSalesRow = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var CustomerGrossSalesService;
-        (function (CustomerGrossSalesService) {
-            CustomerGrossSalesService.baseUrl = 'BasicSamples/CustomerGrossSales';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CustomerGrossSalesService.Methods || (CustomerGrossSalesService.Methods = {}));
-            ['List'].forEach(function (x) {
-                CustomerGrossSalesService[x] = function (r, s, o) { return Q.serviceRequest(CustomerGrossSalesService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CustomerGrossSalesService.baseUrl + '/' + x;
-            });
-        })(CustomerGrossSalesService = BasicSamples.CustomerGrossSalesService || (BasicSamples.CustomerGrossSalesService = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var DragDropSampleForm = (function (_super) {
-            __extends(DragDropSampleForm, _super);
-            function DragDropSampleForm() {
-                _super.apply(this, arguments);
-            }
-            DragDropSampleForm.formKey = 'BasicSamples.DragDropSample';
-            return DragDropSampleForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.DragDropSampleForm = DragDropSampleForm;
-        [['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(DragDropSampleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var DragDropSampleRow;
-        (function (DragDropSampleRow) {
-            DragDropSampleRow.idProperty = 'Id';
-            DragDropSampleRow.nameProperty = 'Title';
-            DragDropSampleRow.localTextPrefix = 'BasicSamples.DragDropSample';
-            var Fields;
-            (function (Fields) {
-            })(Fields = DragDropSampleRow.Fields || (DragDropSampleRow.Fields = {}));
-            ['Id', 'ParentId', 'Title'].forEach(function (x) { return Fields[x] = x; });
-        })(DragDropSampleRow = BasicSamples.DragDropSampleRow || (BasicSamples.DragDropSampleRow = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var DragDropSampleService;
-        (function (DragDropSampleService) {
-            DragDropSampleService.baseUrl = 'BasicSamples/DragDropSample';
-            var Methods;
-            (function (Methods) {
-            })(Methods = DragDropSampleService.Methods || (DragDropSampleService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                DragDropSampleService[x] = function (r, s, o) { return Q.serviceRequest(DragDropSampleService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = DragDropSampleService.baseUrl + '/' + x;
-            });
-        })(DragDropSampleService = BasicSamples.DragDropSampleService || (BasicSamples.DragDropSampleService = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var FilteredLookupInDetailForm = (function (_super) {
-            __extends(FilteredLookupInDetailForm, _super);
-            function FilteredLookupInDetailForm() {
-                _super.apply(this, arguments);
-            }
-            FilteredLookupInDetailForm.formKey = 'BasicSamples.FilteredLookupInDetail';
-            return FilteredLookupInDetailForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
-        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return BasicSamples.FilteredLookupDetailEditor; }]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var HardcodedValuesForm = (function (_super) {
-            __extends(HardcodedValuesForm, _super);
-            function HardcodedValuesForm() {
-                _super.apply(this, arguments);
-            }
-            HardcodedValuesForm.formKey = 'BasicSamples.HarcodedValues';
-            return HardcodedValuesForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.HardcodedValuesForm = HardcodedValuesForm;
-        [['SomeValue', function () { return BasicSamples.HardcodedValuesEditor; }]].forEach(function (x) { return Object.defineProperty(HardcodedValuesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var LookupFilterByMultipleForm = (function (_super) {
-            __extends(LookupFilterByMultipleForm, _super);
-            function LookupFilterByMultipleForm() {
-                _super.apply(this, arguments);
-            }
-            LookupFilterByMultipleForm.formKey = 'BasicSamples.LookupFilterByMultiple';
-            return LookupFilterByMultipleForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
-        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return BasicSamples.ProduceSeafoodCategoryEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var PopulateLinkedDataForm = (function (_super) {
-            __extends(PopulateLinkedDataForm, _super);
-            function PopulateLinkedDataForm() {
-                _super.apply(this, arguments);
-            }
-            PopulateLinkedDataForm.formKey = 'BasicSamples.PopulateLinkedData';
-            return PopulateLinkedDataForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.PopulateLinkedDataForm = PopulateLinkedDataForm;
-        [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['CustomerContactName', function () { return Serenity.StringEditor; }], ['CustomerContactTitle', function () { return Serenity.StringEditor; }], ['CustomerCity', function () { return Serenity.StringEditor; }], ['CustomerRegion', function () { return Serenity.StringEditor; }], ['CustomerCountry', function () { return Serenity.StringEditor; }], ['CustomerPhone', function () { return Serenity.StringEditor; }], ['CustomerFax', function () { return Serenity.StringEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Serene.Northwind.OrderDetailsEditor; }]].forEach(function (x) { return Object.defineProperty(PopulateLinkedDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var ProductExcelImportForm = (function (_super) {
-            __extends(ProductExcelImportForm, _super);
-            function ProductExcelImportForm() {
-                _super.apply(this, arguments);
-            }
-            ProductExcelImportForm.formKey = 'BasicSamples.ProductExcelImport';
-            return ProductExcelImportForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.ProductExcelImportForm = ProductExcelImportForm;
-        [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(ProductExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var ProductExcelImportService;
-        (function (ProductExcelImportService) {
-            ProductExcelImportService.baseUrl = 'BasicSamples/ProductExcelImport';
-            var Methods;
-            (function (Methods) {
-            })(Methods = ProductExcelImportService.Methods || (ProductExcelImportService.Methods = {}));
-            ['ExcelImport'].forEach(function (x) {
-                ProductExcelImportService[x] = function (r, s, o) { return Q.serviceRequest(ProductExcelImportService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = ProductExcelImportService.baseUrl + '/' + x;
-            });
-        })(ProductExcelImportService = BasicSamples.ProductExcelImportService || (BasicSamples.ProductExcelImportService = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var StaticTextBlockForm = (function (_super) {
-            __extends(StaticTextBlockForm, _super);
-            function StaticTextBlockForm() {
-                _super.apply(this, arguments);
-            }
-            StaticTextBlockForm.formKey = 'BasicSamples.StaticTextBlock';
-            return StaticTextBlockForm;
-        }(Serenity.PrefixedContext));
-        BasicSamples.StaticTextBlockForm = StaticTextBlockForm;
-        [['StaticText', function () { return Serene.StaticTextBlock; }], ['SomeInput', function () { return Serenity.StringEditor; }], ['HtmlList', function () { return Serene.StaticTextBlock; }], ['FromLocalText', function () { return Serene.StaticTextBlock; }], ['DisplayFieldValue', function () { return Serene.StaticTextBlock; }]].forEach(function (x) { return Object.defineProperty(StaticTextBlockForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var VSGalleryQAService;
-        (function (VSGalleryQAService) {
-            VSGalleryQAService.baseUrl = 'BasicSamples/VSGalleryQA';
-            var Methods;
-            (function (Methods) {
-            })(Methods = VSGalleryQAService.Methods || (VSGalleryQAService.Methods = {}));
-            ['List'].forEach(function (x) {
-                VSGalleryQAService[x] = function (r, s, o) { return Q.serviceRequest(VSGalleryQAService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = VSGalleryQAService.baseUrl + '/' + x;
-            });
-        })(VSGalleryQAService = BasicSamples.VSGalleryQAService || (BasicSamples.VSGalleryQAService = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var UserPreferenceRow;
-        (function (UserPreferenceRow) {
-            UserPreferenceRow.idProperty = 'UserPreferenceId';
-            UserPreferenceRow.nameProperty = 'Name';
-            UserPreferenceRow.localTextPrefix = 'Common.UserPreference';
-            var Fields;
-            (function (Fields) {
-            })(Fields = UserPreferenceRow.Fields || (UserPreferenceRow.Fields = {}));
-            ['UserPreferenceId', 'UserId', 'PreferenceType', 'Name', 'Value'].forEach(function (x) { return Fields[x] = x; });
-        })(UserPreferenceRow = Common.UserPreferenceRow || (Common.UserPreferenceRow = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var UserPreferenceService;
-        (function (UserPreferenceService) {
-            UserPreferenceService.baseUrl = 'Common/UserPreference';
-            var Methods;
-            (function (Methods) {
-            })(Methods = UserPreferenceService.Methods || (UserPreferenceService.Methods = {}));
-            ['Update', 'Retrieve'].forEach(function (x) {
-                UserPreferenceService[x] = function (r, s, o) { return Q.serviceRequest(UserPreferenceService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = UserPreferenceService.baseUrl + '/' + x;
-            });
-        })(UserPreferenceService = Common.UserPreferenceService || (Common.UserPreferenceService = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaForm = (function (_super) {
-            __extends(MeetingAgendaForm, _super);
-            function MeetingAgendaForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingAgendaForm.formKey = 'Meeting.MeetingAgenda';
-            return MeetingAgendaForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingAgendaForm = MeetingAgendaForm;
-        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaNumber', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['AgendaTypeId', function () { return Serenity.IntegerEditor; }], ['RequestedByContactId', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.StringEditor; }], ['Attachments', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaRelevantForm = (function (_super) {
-            __extends(MeetingAgendaRelevantForm, _super);
-            function MeetingAgendaRelevantForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingAgendaRelevantForm.formKey = 'Meeting.MeetingAgendaRelevant';
-            return MeetingAgendaRelevantForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingAgendaRelevantForm = MeetingAgendaRelevantForm;
-        [['AgendaId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaRelevantRow;
-        (function (MeetingAgendaRelevantRow) {
-            MeetingAgendaRelevantRow.idProperty = 'AgendaRelevantId';
-            MeetingAgendaRelevantRow.localTextPrefix = 'Meeting.MeetingAgendaRelevant';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingAgendaRelevantRow.Fields || (MeetingAgendaRelevantRow.Fields = {}));
-            ['AgendaRelevantId', 'AgendaId', 'ContactId', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingAgendaRelevantRow = Meeting.MeetingAgendaRelevantRow || (Meeting.MeetingAgendaRelevantRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaRelevantService;
-        (function (MeetingAgendaRelevantService) {
-            MeetingAgendaRelevantService.baseUrl = 'Meeting/MeetingAgendaRelevant';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingAgendaRelevantService.Methods || (MeetingAgendaRelevantService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaRelevantService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingAgendaRelevantService.baseUrl + '/' + x;
-            });
-        })(MeetingAgendaRelevantService = Meeting.MeetingAgendaRelevantService || (Meeting.MeetingAgendaRelevantService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaRow;
-        (function (MeetingAgendaRow) {
-            MeetingAgendaRow.idProperty = 'AgendaId';
-            MeetingAgendaRow.nameProperty = 'Title';
-            MeetingAgendaRow.localTextPrefix = 'Meeting.MeetingAgenda';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingAgendaRow.Fields || (MeetingAgendaRow.Fields = {}));
-            ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingAgendaRow = Meeting.MeetingAgendaRow || (Meeting.MeetingAgendaRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaService;
-        (function (MeetingAgendaService) {
-            MeetingAgendaService.baseUrl = 'Meeting/MeetingAgenda';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingAgendaService.Methods || (MeetingAgendaService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingAgendaService.baseUrl + '/' + x;
-            });
-        })(MeetingAgendaService = Meeting.MeetingAgendaService || (Meeting.MeetingAgendaService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaTypeForm = (function (_super) {
-            __extends(MeetingAgendaTypeForm, _super);
-            function MeetingAgendaTypeForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingAgendaTypeForm.formKey = 'Meeting.MeetingAgendaType';
-            return MeetingAgendaTypeForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingAgendaTypeForm = MeetingAgendaTypeForm;
-        [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaTypeRow;
-        (function (MeetingAgendaTypeRow) {
-            MeetingAgendaTypeRow.idProperty = 'AgendaTypeId';
-            MeetingAgendaTypeRow.nameProperty = 'Name';
-            MeetingAgendaTypeRow.localTextPrefix = 'Meeting.MeetingAgendaType';
-            MeetingAgendaTypeRow.lookupKey = 'Meeting.MeetingAgendaType';
-            function getLookup() {
-                return Q.getLookup('Meeting.MeetingAgendaType');
-            }
-            MeetingAgendaTypeRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingAgendaTypeRow.Fields || (MeetingAgendaTypeRow.Fields = {}));
-            ['AgendaTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingAgendaTypeRow = Meeting.MeetingAgendaTypeRow || (Meeting.MeetingAgendaTypeRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAgendaTypeService;
-        (function (MeetingAgendaTypeService) {
-            MeetingAgendaTypeService.baseUrl = 'Meeting/MeetingAgendaType';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingAgendaTypeService.Methods || (MeetingAgendaTypeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaTypeService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingAgendaTypeService.baseUrl + '/' + x;
-            });
-        })(MeetingAgendaTypeService = Meeting.MeetingAgendaTypeService || (Meeting.MeetingAgendaTypeService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        (function (MeetingAttendanceStatus) {
-            MeetingAttendanceStatus[MeetingAttendanceStatus["NotSet"] = 0] = "NotSet";
-            MeetingAttendanceStatus[MeetingAttendanceStatus["Attended"] = 1] = "Attended";
-            MeetingAttendanceStatus[MeetingAttendanceStatus["Absent"] = 2] = "Absent";
-            MeetingAttendanceStatus[MeetingAttendanceStatus["AbsentWithPermission"] = 3] = "AbsentWithPermission";
-        })(Meeting.MeetingAttendanceStatus || (Meeting.MeetingAttendanceStatus = {}));
-        var MeetingAttendanceStatus = Meeting.MeetingAttendanceStatus;
-        Serenity.Decorators.registerEnum(MeetingAttendanceStatus, 'Meeting.MeetingAttendanceStatus');
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAttendeeForm = (function (_super) {
-            __extends(MeetingAttendeeForm, _super);
-            function MeetingAttendeeForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingAttendeeForm.formKey = 'Meeting.MeetingAttendee';
-            return MeetingAttendeeForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingAttendeeForm = MeetingAttendeeForm;
-        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }], ['AttendeeType', function () { return Serenity.EnumEditor; }], ['AttendanceStatus', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAttendeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingAttendeeRow;
-        (function (MeetingAttendeeRow) {
-            MeetingAttendeeRow.idProperty = 'AttendeeId';
-            MeetingAttendeeRow.localTextPrefix = 'Meeting.MeetingAttendee';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingAttendeeRow.Fields || (MeetingAttendeeRow.Fields = {}));
-            ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactFullName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingAttendeeRow = Meeting.MeetingAttendeeRow || (Meeting.MeetingAttendeeRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        (function (MeetingAttendeeType) {
-            MeetingAttendeeType[MeetingAttendeeType["Attendee"] = 1] = "Attendee";
-            MeetingAttendeeType[MeetingAttendeeType["Guest"] = 2] = "Guest";
-        })(Meeting.MeetingAttendeeType || (Meeting.MeetingAttendeeType = {}));
-        var MeetingAttendeeType = Meeting.MeetingAttendeeType;
-        Serenity.Decorators.registerEnum(MeetingAttendeeType, 'Meeting.MeetingAttendeeType');
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionForm = (function (_super) {
-            __extends(MeetingDecisionForm, _super);
-            function MeetingDecisionForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingDecisionForm.formKey = 'Meeting.MeetingDecision';
-            return MeetingDecisionForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingDecisionForm = MeetingDecisionForm;
-        [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaId', function () { return Serenity.IntegerEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['DecisionNumber', function () { return Serenity.IntegerEditor; }], ['ResponsibleContactId', function () { return Serenity.IntegerEditor; }], ['DueDate', function () { return Serenity.DateEditor; }], ['ResolutionStatus', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.StringEditor; }], ['Attachments', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionRelevantForm = (function (_super) {
-            __extends(MeetingDecisionRelevantForm, _super);
-            function MeetingDecisionRelevantForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingDecisionRelevantForm.formKey = 'Meeting.MeetingDecisionRelevant';
-            return MeetingDecisionRelevantForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingDecisionRelevantForm = MeetingDecisionRelevantForm;
-        [['DecisionId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionRelevantRow;
-        (function (MeetingDecisionRelevantRow) {
-            MeetingDecisionRelevantRow.idProperty = 'DecisionRelevantId';
-            MeetingDecisionRelevantRow.localTextPrefix = 'Meeting.MeetingDecisionRelevant';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingDecisionRelevantRow.Fields || (MeetingDecisionRelevantRow.Fields = {}));
-            ['DecisionRelevantId', 'DecisionId', 'ContactId', 'DecisionMeetingId', 'DecisionAgendaId', 'DecisionDescription', 'DecisionDecisionNumber', 'DecisionResponsibleContactId', 'DecisionDueDate', 'DecisionResolutionStatus', 'DecisionImages', 'DecisionAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingDecisionRelevantRow = Meeting.MeetingDecisionRelevantRow || (Meeting.MeetingDecisionRelevantRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionRelevantService;
-        (function (MeetingDecisionRelevantService) {
-            MeetingDecisionRelevantService.baseUrl = 'Meeting/MeetingDecisionRelevant';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingDecisionRelevantService.Methods || (MeetingDecisionRelevantService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingDecisionRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionRelevantService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingDecisionRelevantService.baseUrl + '/' + x;
-            });
-        })(MeetingDecisionRelevantService = Meeting.MeetingDecisionRelevantService || (Meeting.MeetingDecisionRelevantService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionRow;
-        (function (MeetingDecisionRow) {
-            MeetingDecisionRow.idProperty = 'DecisionId';
-            MeetingDecisionRow.nameProperty = 'Description';
-            MeetingDecisionRow.localTextPrefix = 'Meeting.MeetingDecision';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingDecisionRow.Fields || (MeetingDecisionRow.Fields = {}));
-            ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingDecisionRow = Meeting.MeetingDecisionRow || (Meeting.MeetingDecisionRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingDecisionService;
-        (function (MeetingDecisionService) {
-            MeetingDecisionService.baseUrl = 'Meeting/MeetingDecision';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingDecisionService.Methods || (MeetingDecisionService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingDecisionService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingDecisionService.baseUrl + '/' + x;
-            });
-        })(MeetingDecisionService = Meeting.MeetingDecisionService || (Meeting.MeetingDecisionService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingForm = (function (_super) {
-            __extends(MeetingForm, _super);
-            function MeetingForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingForm.formKey = 'Meeting.Meeting';
-            return MeetingForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingForm = MeetingForm;
-        [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }], ['AttendeeList', function () { return Meeting.MeetingAttendeeEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingLocationForm = (function (_super) {
-            __extends(MeetingLocationForm, _super);
-            function MeetingLocationForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingLocationForm.formKey = 'Meeting.MeetingLocation';
-            return MeetingLocationForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingLocationForm = MeetingLocationForm;
-        [['Name', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Latitude', function () { return Serenity.DecimalEditor; }], ['Longitude', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingLocationForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingLocationRow;
-        (function (MeetingLocationRow) {
-            MeetingLocationRow.idProperty = 'LocationId';
-            MeetingLocationRow.nameProperty = 'Name';
-            MeetingLocationRow.localTextPrefix = 'Meeting.MeetingLocation';
-            MeetingLocationRow.lookupKey = 'Meeting.MeetingLocation';
-            function getLookup() {
-                return Q.getLookup('Meeting.MeetingLocation');
-            }
-            MeetingLocationRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingLocationRow.Fields || (MeetingLocationRow.Fields = {}));
-            ['LocationId', 'Name', 'Address', 'Latitude', 'Longitude'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingLocationRow = Meeting.MeetingLocationRow || (Meeting.MeetingLocationRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingLocationService;
-        (function (MeetingLocationService) {
-            MeetingLocationService.baseUrl = 'Meeting/MeetingLocation';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingLocationService.Methods || (MeetingLocationService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingLocationService[x] = function (r, s, o) { return Q.serviceRequest(MeetingLocationService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingLocationService.baseUrl + '/' + x;
-            });
-        })(MeetingLocationService = Meeting.MeetingLocationService || (Meeting.MeetingLocationService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingRow;
-        (function (MeetingRow) {
-            MeetingRow.idProperty = 'MeetingId';
-            MeetingRow.nameProperty = 'MeetingName';
-            MeetingRow.localTextPrefix = 'Meeting.Meeting';
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingRow.Fields || (MeetingRow.Fields = {}));
-            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'AttendeeList', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingRow = Meeting.MeetingRow || (Meeting.MeetingRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingService;
-        (function (MeetingService) {
-            MeetingService.baseUrl = 'Meeting/Meeting';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingService.Methods || (MeetingService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingService[x] = function (r, s, o) { return Q.serviceRequest(MeetingService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingService.baseUrl + '/' + x;
-            });
-        })(MeetingService = Meeting.MeetingService || (Meeting.MeetingService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingTypeForm = (function (_super) {
-            __extends(MeetingTypeForm, _super);
-            function MeetingTypeForm() {
-                _super.apply(this, arguments);
-            }
-            MeetingTypeForm.formKey = 'Meeting.MeetingType';
-            return MeetingTypeForm;
-        }(Serenity.PrefixedContext));
-        Meeting.MeetingTypeForm = MeetingTypeForm;
-        [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingTypeRow;
-        (function (MeetingTypeRow) {
-            MeetingTypeRow.idProperty = 'MeetingTypeId';
-            MeetingTypeRow.nameProperty = 'Name';
-            MeetingTypeRow.localTextPrefix = 'Meeting.MeetingType';
-            MeetingTypeRow.lookupKey = 'Meeting.MeetingType';
-            function getLookup() {
-                return Q.getLookup('Meeting.MeetingType');
-            }
-            MeetingTypeRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = MeetingTypeRow.Fields || (MeetingTypeRow.Fields = {}));
-            ['MeetingTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
-        })(MeetingTypeRow = Meeting.MeetingTypeRow || (Meeting.MeetingTypeRow = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Meeting;
-    (function (Meeting) {
-        var MeetingTypeService;
-        (function (MeetingTypeService) {
-            MeetingTypeService.baseUrl = 'Meeting/MeetingType';
-            var Methods;
-            (function (Methods) {
-            })(Methods = MeetingTypeService.Methods || (MeetingTypeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingTypeService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = MeetingTypeService.baseUrl + '/' + x;
-            });
-        })(MeetingTypeService = Meeting.MeetingTypeService || (Meeting.MeetingTypeService = {}));
-    })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var ChangePasswordForm = (function (_super) {
-            __extends(ChangePasswordForm, _super);
-            function ChangePasswordForm() {
-                _super.apply(this, arguments);
-            }
-            ChangePasswordForm.formKey = 'Membership.ChangePassword';
-            return ChangePasswordForm;
-        }(Serenity.PrefixedContext));
-        Membership.ChangePasswordForm = ChangePasswordForm;
-        [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var ForgotPasswordForm = (function (_super) {
-            __extends(ForgotPasswordForm, _super);
-            function ForgotPasswordForm() {
-                _super.apply(this, arguments);
-            }
-            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
-            return ForgotPasswordForm;
-        }(Serenity.PrefixedContext));
-        Membership.ForgotPasswordForm = ForgotPasswordForm;
-        [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var LoginForm = (function (_super) {
-            __extends(LoginForm, _super);
-            function LoginForm() {
-                _super.apply(this, arguments);
-            }
-            LoginForm.formKey = 'Membership.Login';
-            return LoginForm;
-        }(Serenity.PrefixedContext));
-        Membership.LoginForm = LoginForm;
-        [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var ResetPasswordForm = (function (_super) {
-            __extends(ResetPasswordForm, _super);
-            function ResetPasswordForm() {
-                _super.apply(this, arguments);
-            }
-            ResetPasswordForm.formKey = 'Membership.ResetPassword';
-            return ResetPasswordForm;
-        }(Serenity.PrefixedContext));
-        Membership.ResetPasswordForm = ResetPasswordForm;
-        [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var SignUpForm = (function (_super) {
-            __extends(SignUpForm, _super);
-            function SignUpForm() {
-                _super.apply(this, arguments);
-            }
-            SignUpForm.formKey = 'Membership.SignUp';
-            return SignUpForm;
-        }(Serenity.PrefixedContext));
-        Membership.SignUpForm = SignUpForm;
-        [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryForm = (function (_super) {
-            __extends(CategoryForm, _super);
-            function CategoryForm() {
-                _super.apply(this, arguments);
-            }
-            CategoryForm.formKey = 'Northwind.Category';
-            return CategoryForm;
-        }(Serenity.PrefixedContext));
-        Northwind.CategoryForm = CategoryForm;
-        [['CategoryName', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryLangRow;
-        (function (CategoryLangRow) {
-            CategoryLangRow.idProperty = 'Id';
-            CategoryLangRow.nameProperty = 'CategoryName';
-            CategoryLangRow.localTextPrefix = 'Northwind.CategoryLang';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CategoryLangRow.Fields || (CategoryLangRow.Fields = {}));
-            ['Id', 'CategoryId', 'LanguageId', 'CategoryName', 'Description'].forEach(function (x) { return Fields[x] = x; });
-        })(CategoryLangRow = Northwind.CategoryLangRow || (Northwind.CategoryLangRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryLangService;
-        (function (CategoryLangService) {
-            CategoryLangService.baseUrl = 'Northwind/CategoryLang';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CategoryLangService.Methods || (CategoryLangService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                CategoryLangService[x] = function (r, s, o) { return Q.serviceRequest(CategoryLangService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CategoryLangService.baseUrl + '/' + x;
-            });
-        })(CategoryLangService = Northwind.CategoryLangService || (Northwind.CategoryLangService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryRow;
-        (function (CategoryRow) {
-            CategoryRow.idProperty = 'CategoryID';
-            CategoryRow.nameProperty = 'CategoryName';
-            CategoryRow.localTextPrefix = 'Northwind.Category';
-            CategoryRow.lookupKey = 'Northwind.Category';
-            function getLookup() {
-                return Q.getLookup('Northwind.Category');
-            }
-            CategoryRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = CategoryRow.Fields || (CategoryRow.Fields = {}));
-            ['CategoryID', 'CategoryName', 'Description', 'Picture'].forEach(function (x) { return Fields[x] = x; });
-        })(CategoryRow = Northwind.CategoryRow || (Northwind.CategoryRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryService;
-        (function (CategoryService) {
-            CategoryService.baseUrl = 'Northwind/Category';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CategoryService.Methods || (CategoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'RetrieveLocalization', 'Retrieve', 'List'].forEach(function (x) {
-                CategoryService[x] = function (r, s, o) { return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CategoryService.baseUrl + '/' + x;
-            });
-        })(CategoryService = Northwind.CategoryService || (Northwind.CategoryService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerCustomerDemoRow;
-        (function (CustomerCustomerDemoRow) {
-            CustomerCustomerDemoRow.idProperty = 'ID';
-            CustomerCustomerDemoRow.nameProperty = 'CustomerID';
-            CustomerCustomerDemoRow.localTextPrefix = 'Northwind.CustomerCustomerDemo';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerCustomerDemoRow.Fields || (CustomerCustomerDemoRow.Fields = {}));
-            ['ID', 'CustomerID', 'CustomerTypeID', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerAddress', 'CustomerCity', 'CustomerRegion', 'CustomerPostalCode', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'CustomerTypeCustomerDesc'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerCustomerDemoRow = Northwind.CustomerCustomerDemoRow || (Northwind.CustomerCustomerDemoRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerDemographicRow;
-        (function (CustomerDemographicRow) {
-            CustomerDemographicRow.idProperty = 'ID';
-            CustomerDemographicRow.nameProperty = 'CustomerTypeID';
-            CustomerDemographicRow.localTextPrefix = 'Northwind.CustomerDemographic';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerDemographicRow.Fields || (CustomerDemographicRow.Fields = {}));
-            ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerDemographicRow = Northwind.CustomerDemographicRow || (Northwind.CustomerDemographicRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerDetailsRow;
-        (function (CustomerDetailsRow) {
-            CustomerDetailsRow.idProperty = 'Id';
-            CustomerDetailsRow.nameProperty = 'Email';
-            CustomerDetailsRow.localTextPrefix = 'Northwind.CustomerDetails';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerDetailsRow.Fields || (CustomerDetailsRow.Fields = {}));
-            ['Id', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin', 'LastContactedByLastName', 'LastContactedByFirstName', 'LastContactedByTitle', 'LastContactedByTitleOfCourtesy', 'LastContactedByBirthDate', 'LastContactedByHireDate', 'LastContactedByAddress', 'LastContactedByCity', 'LastContactedByRegion', 'LastContactedByPostalCode', 'LastContactedByCountry', 'LastContactedByHomePhone', 'LastContactedByExtension', 'LastContactedByPhoto', 'LastContactedByNotes', 'LastContactedByReportsTo', 'LastContactedByPhotoPath'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerDetailsRow = Northwind.CustomerDetailsRow || (Northwind.CustomerDetailsRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerForm = (function (_super) {
-            __extends(CustomerForm, _super);
-            function CustomerForm() {
-                _super.apply(this, arguments);
-            }
-            CustomerForm.formKey = 'Northwind.Customer';
-            return CustomerForm;
-        }(Serenity.PrefixedContext));
-        Northwind.CustomerForm = CustomerForm;
-        [['CustomerID', function () { return Serenity.StringEditor; }], ['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Representatives', function () { return Serenity.LookupEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['NoteList', function () { return Northwind.NotesEditor; }], ['LastContactDate', function () { return Serenity.DateEditor; }], ['LastContactedBy', function () { return Serenity.LookupEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['SendBulletin', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerRepresentativesRow;
-        (function (CustomerRepresentativesRow) {
-            CustomerRepresentativesRow.idProperty = 'RepresentativeId';
-            CustomerRepresentativesRow.localTextPrefix = 'CustomerRepresentatives';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerRepresentativesRow.Fields || (CustomerRepresentativesRow.Fields = {}));
-            ['RepresentativeId', 'CustomerId', 'EmployeeId'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerRepresentativesRow = Northwind.CustomerRepresentativesRow || (Northwind.CustomerRepresentativesRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerRow;
-        (function (CustomerRow) {
-            CustomerRow.idProperty = 'ID';
-            CustomerRow.nameProperty = 'CompanyName';
-            CustomerRow.localTextPrefix = 'Northwind.Customer';
-            CustomerRow.lookupKey = 'Northwind.Customer';
-            function getLookup() {
-                return Q.getLookup('Northwind.Customer');
-            }
-            CustomerRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerRow.Fields || (CustomerRow.Fields = {}));
-            ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerRow = Northwind.CustomerRow || (Northwind.CustomerRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerService;
-        (function (CustomerService) {
-            CustomerService.baseUrl = 'Northwind/Customer';
-            var Methods;
-            (function (Methods) {
-            })(Methods = CustomerService.Methods || (CustomerService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'GetNextNumber', 'Retrieve', 'List'].forEach(function (x) {
-                CustomerService[x] = function (r, s, o) { return Q.serviceRequest(CustomerService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = CustomerService.baseUrl + '/' + x;
-            });
-        })(CustomerService = Northwind.CustomerService || (Northwind.CustomerService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeRow;
-        (function (EmployeeRow) {
-            EmployeeRow.idProperty = 'EmployeeID';
-            EmployeeRow.nameProperty = 'FullName';
-            EmployeeRow.localTextPrefix = 'Northwind.Employee';
-            EmployeeRow.lookupKey = 'Northwind.Employee';
-            function getLookup() {
-                return Q.getLookup('Northwind.Employee');
-            }
-            EmployeeRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = EmployeeRow.Fields || (EmployeeRow.Fields = {}));
-            ['EmployeeID', 'LastName', 'FirstName', 'FullName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath', 'ReportsToFullName', 'ReportsToLastName', 'ReportsToFirstName', 'ReportsToTitle', 'ReportsToTitleOfCourtesy', 'ReportsToBirthDate', 'ReportsToHireDate', 'ReportsToAddress', 'ReportsToCity', 'ReportsToRegion', 'ReportsToPostalCode', 'ReportsToCountry', 'ReportsToHomePhone', 'ReportsToExtension', 'ReportsToPhoto', 'ReportsToNotes', 'ReportsToReportsTo', 'ReportsToPhotoPath', 'Gender'].forEach(function (x) { return Fields[x] = x; });
-        })(EmployeeRow = Northwind.EmployeeRow || (Northwind.EmployeeRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeTerritoryRow;
-        (function (EmployeeTerritoryRow) {
-            EmployeeTerritoryRow.idProperty = 'EmployeeID';
-            EmployeeTerritoryRow.nameProperty = 'TerritoryID';
-            EmployeeTerritoryRow.localTextPrefix = 'Northwind.EmployeeTerritory';
-            var Fields;
-            (function (Fields) {
-            })(Fields = EmployeeTerritoryRow.Fields || (EmployeeTerritoryRow.Fields = {}));
-            ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(function (x) { return Fields[x] = x; });
-        })(EmployeeTerritoryRow = Northwind.EmployeeTerritoryRow || (Northwind.EmployeeTerritoryRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        (function (Gender) {
-            Gender[Gender["Male"] = 1] = "Male";
-            Gender[Gender["Female"] = 2] = "Female";
-        })(Northwind.Gender || (Northwind.Gender = {}));
-        var Gender = Northwind.Gender;
-        Serenity.Decorators.registerEnum(Gender, 'Serene.Northwind.Entities.Gender');
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var NoteRow;
-        (function (NoteRow) {
-            NoteRow.idProperty = 'NoteId';
-            NoteRow.nameProperty = 'EntityType';
-            NoteRow.localTextPrefix = 'Northwind.Note';
-            var Fields;
-            (function (Fields) {
-            })(Fields = NoteRow.Fields || (NoteRow.Fields = {}));
-            ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(function (x) { return Fields[x] = x; });
-        })(NoteRow = Northwind.NoteRow || (Northwind.NoteRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailForm = (function (_super) {
-            __extends(OrderDetailForm, _super);
-            function OrderDetailForm() {
-                _super.apply(this, arguments);
-            }
-            OrderDetailForm.formKey = 'Northwind.OrderDetail';
-            return OrderDetailForm;
-        }(Serenity.PrefixedContext));
-        Northwind.OrderDetailForm = OrderDetailForm;
-        [['ProductID', function () { return Serenity.LookupEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailRow;
-        (function (OrderDetailRow) {
-            OrderDetailRow.idProperty = 'DetailID';
-            OrderDetailRow.localTextPrefix = 'Northwind.OrderDetail';
-            var Fields;
-            (function (Fields) {
-            })(Fields = OrderDetailRow.Fields || (OrderDetailRow.Fields = {}));
-            ['DetailID', 'OrderID', 'ProductID', 'UnitPrice', 'Quantity', 'Discount', 'OrderCustomerID', 'OrderEmployeeID', 'OrderDate', 'OrderShippedDate', 'OrderShipVia', 'OrderShipCity', 'OrderShipCountry', 'ProductName', 'ProductDiscontinued', 'ProductSupplierID', 'ProductQuantityPerUnit', 'ProductUnitPrice', 'LineTotal'].forEach(function (x) { return Fields[x] = x; });
-        })(OrderDetailRow = Northwind.OrderDetailRow || (Northwind.OrderDetailRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailService;
-        (function (OrderDetailService) {
-            OrderDetailService.baseUrl = 'Northwind/OrderDetail';
-            var Methods;
-            (function (Methods) {
-            })(Methods = OrderDetailService.Methods || (OrderDetailService.Methods = {}));
-            ['Retrieve', 'List'].forEach(function (x) {
-                OrderDetailService[x] = function (r, s, o) { return Q.serviceRequest(OrderDetailService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = OrderDetailService.baseUrl + '/' + x;
-            });
-        })(OrderDetailService = Northwind.OrderDetailService || (Northwind.OrderDetailService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderForm = (function (_super) {
-            __extends(OrderForm, _super);
-            function OrderForm() {
-                _super.apply(this, arguments);
-            }
-            OrderForm.formKey = 'Northwind.Order';
-            return OrderForm;
-        }(Serenity.PrefixedContext));
-        Northwind.OrderForm = OrderForm;
-        [['CustomerID', function () { return Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Northwind.OrderDetailsEditor; }], ['ShippedDate', function () { return Serenity.DateEditor; }], ['ShipVia', function () { return Serenity.LookupEditor; }], ['Freight', function () { return Serenity.DecimalEditor; }], ['ShipName', function () { return Serenity.StringEditor; }], ['ShipAddress', function () { return Serenity.StringEditor; }], ['ShipCity', function () { return Serenity.StringEditor; }], ['ShipRegion', function () { return Serenity.StringEditor; }], ['ShipPostalCode', function () { return Serenity.StringEditor; }], ['ShipCountry', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderRow;
-        (function (OrderRow) {
-            OrderRow.idProperty = 'OrderID';
-            OrderRow.nameProperty = 'CustomerID';
-            OrderRow.localTextPrefix = 'Northwind.Order';
-            OrderRow.lookupKey = 'Northwind.OrderShipCity';
-            function getLookup() {
-                return Q.getLookup('Northwind.OrderShipCity');
-            }
-            OrderRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
-            ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(function (x) { return Fields[x] = x; });
-        })(OrderRow = Northwind.OrderRow || (Northwind.OrderRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderService;
-        (function (OrderService) {
-            OrderService.baseUrl = 'Northwind/Order';
-            var Methods;
-            (function (Methods) {
-            })(Methods = OrderService.Methods || (OrderService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                OrderService[x] = function (r, s, o) { return Q.serviceRequest(OrderService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = OrderService.baseUrl + '/' + x;
-            });
-        })(OrderService = Northwind.OrderService || (Northwind.OrderService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        (function (OrderShippingState) {
-            OrderShippingState[OrderShippingState["NotShipped"] = 0] = "NotShipped";
-            OrderShippingState[OrderShippingState["Shipped"] = 1] = "Shipped";
-        })(Northwind.OrderShippingState || (Northwind.OrderShippingState = {}));
-        var OrderShippingState = Northwind.OrderShippingState;
-        Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductForm = (function (_super) {
-            __extends(ProductForm, _super);
-            function ProductForm() {
-                _super.apply(this, arguments);
-            }
-            ProductForm.formKey = 'Northwind.Product';
-            return ProductForm;
-        }(Serenity.PrefixedContext));
-        Northwind.ProductForm = ProductForm;
-        [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductLangRow;
-        (function (ProductLangRow) {
-            ProductLangRow.idProperty = 'Id';
-            ProductLangRow.nameProperty = 'ProductName';
-            ProductLangRow.localTextPrefix = 'Northwind.ProductLang';
-            var Fields;
-            (function (Fields) {
-            })(Fields = ProductLangRow.Fields || (ProductLangRow.Fields = {}));
-            ['Id', 'ProductId', 'LanguageId', 'ProductName'].forEach(function (x) { return Fields[x] = x; });
-        })(ProductLangRow = Northwind.ProductLangRow || (Northwind.ProductLangRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductLangService;
-        (function (ProductLangService) {
-            ProductLangService.baseUrl = 'Northwind/ProductLang';
-            var Methods;
-            (function (Methods) {
-            })(Methods = ProductLangService.Methods || (ProductLangService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ProductLangService[x] = function (r, s, o) { return Q.serviceRequest(ProductLangService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = ProductLangService.baseUrl + '/' + x;
-            });
-        })(ProductLangService = Northwind.ProductLangService || (Northwind.ProductLangService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductLogRow;
-        (function (ProductLogRow) {
-            ProductLogRow.idProperty = 'ProductLogID';
-            ProductLogRow.localTextPrefix = 'Northwind.ProductLog';
-            var Fields;
-            (function (Fields) {
-            })(Fields = ProductLogRow.Fields || (ProductLogRow.Fields = {}));
-            ['ProductLogID', 'OperationType', 'ChangingUserId', 'ValidFrom', 'ValidUntil', 'ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel'].forEach(function (x) { return Fields[x] = x; });
-        })(ProductLogRow = Northwind.ProductLogRow || (Northwind.ProductLogRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductRow;
-        (function (ProductRow) {
-            ProductRow.idProperty = 'ProductID';
-            ProductRow.nameProperty = 'ProductName';
-            ProductRow.localTextPrefix = 'Northwind.Product';
-            ProductRow.lookupKey = 'Northwind.Product';
-            function getLookup() {
-                return Q.getLookup('Northwind.Product');
-            }
-            ProductRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = ProductRow.Fields || (ProductRow.Fields = {}));
-            ['ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel', 'SupplierCompanyName', 'SupplierContactName', 'SupplierContactTitle', 'SupplierAddress', 'SupplierCity', 'SupplierRegion', 'SupplierPostalCode', 'SupplierCountry', 'SupplierPhone', 'SupplierFax', 'SupplierHomePage', 'CategoryName', 'CategoryDescription', 'CategoryPicture'].forEach(function (x) { return Fields[x] = x; });
-        })(ProductRow = Northwind.ProductRow || (Northwind.ProductRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ProductService;
-        (function (ProductService) {
-            ProductService.baseUrl = 'Northwind/Product';
-            var Methods;
-            (function (Methods) {
-            })(Methods = ProductService.Methods || (ProductService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'RetrieveLocalization', 'List'].forEach(function (x) {
-                ProductService[x] = function (r, s, o) { return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = ProductService.baseUrl + '/' + x;
-            });
-        })(ProductService = Northwind.ProductService || (Northwind.ProductService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var RegionForm = (function (_super) {
-            __extends(RegionForm, _super);
-            function RegionForm() {
-                _super.apply(this, arguments);
-            }
-            RegionForm.formKey = 'Northwind.Region';
-            return RegionForm;
-        }(Serenity.PrefixedContext));
-        Northwind.RegionForm = RegionForm;
-        [['RegionID', function () { return Serenity.IntegerEditor; }], ['RegionDescription', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var RegionRow;
-        (function (RegionRow) {
-            RegionRow.idProperty = 'RegionID';
-            RegionRow.nameProperty = 'RegionDescription';
-            RegionRow.localTextPrefix = 'Northwind.Region';
-            RegionRow.lookupKey = 'Northwind.Region';
-            function getLookup() {
-                return Q.getLookup('Northwind.Region');
-            }
-            RegionRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = RegionRow.Fields || (RegionRow.Fields = {}));
-            ['RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
-        })(RegionRow = Northwind.RegionRow || (Northwind.RegionRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var RegionService;
-        (function (RegionService) {
-            RegionService.baseUrl = 'Northwind/Region';
-            var Methods;
-            (function (Methods) {
-            })(Methods = RegionService.Methods || (RegionService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                RegionService[x] = function (r, s, o) { return Q.serviceRequest(RegionService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = RegionService.baseUrl + '/' + x;
-            });
-        })(RegionService = Northwind.RegionService || (Northwind.RegionService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SalesByCategoryRow;
-        (function (SalesByCategoryRow) {
-            SalesByCategoryRow.nameProperty = 'CategoryName';
-            SalesByCategoryRow.localTextPrefix = 'Northwind.SalesByCategory';
-            var Fields;
-            (function (Fields) {
-            })(Fields = SalesByCategoryRow.Fields || (SalesByCategoryRow.Fields = {}));
-            ['CategoryId', 'CategoryName', 'ProductName', 'ProductSales'].forEach(function (x) { return Fields[x] = x; });
-        })(SalesByCategoryRow = Northwind.SalesByCategoryRow || (Northwind.SalesByCategoryRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SalesByCategoryService;
-        (function (SalesByCategoryService) {
-            SalesByCategoryService.baseUrl = 'Northwind/SalesByCategory';
-            var Methods;
-            (function (Methods) {
-            })(Methods = SalesByCategoryService.Methods || (SalesByCategoryService.Methods = {}));
-            ['List'].forEach(function (x) {
-                SalesByCategoryService[x] = function (r, s, o) { return Q.serviceRequest(SalesByCategoryService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = SalesByCategoryService.baseUrl + '/' + x;
-            });
-        })(SalesByCategoryService = Northwind.SalesByCategoryService || (Northwind.SalesByCategoryService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperForm = (function (_super) {
-            __extends(ShipperForm, _super);
-            function ShipperForm() {
-                _super.apply(this, arguments);
-            }
-            ShipperForm.formKey = 'Northwind.Shipper';
-            return ShipperForm;
-        }(Serenity.PrefixedContext));
-        Northwind.ShipperForm = ShipperForm;
-        [['CompanyName', function () { return Serenity.StringEditor; }], ['Phone', function () { return Northwind.PhoneEditor; }]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperRow;
-        (function (ShipperRow) {
-            ShipperRow.idProperty = 'ShipperID';
-            ShipperRow.nameProperty = 'CompanyName';
-            ShipperRow.localTextPrefix = 'Northwind.Shipper';
-            ShipperRow.lookupKey = 'Northwind.Shipper';
-            function getLookup() {
-                return Q.getLookup('Northwind.Shipper');
-            }
-            ShipperRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = ShipperRow.Fields || (ShipperRow.Fields = {}));
-            ['ShipperID', 'CompanyName', 'Phone'].forEach(function (x) { return Fields[x] = x; });
-        })(ShipperRow = Northwind.ShipperRow || (Northwind.ShipperRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperService;
-        (function (ShipperService) {
-            ShipperService.baseUrl = 'Northwind/Shipper';
-            var Methods;
-            (function (Methods) {
-            })(Methods = ShipperService.Methods || (ShipperService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ShipperService[x] = function (r, s, o) { return Q.serviceRequest(ShipperService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = ShipperService.baseUrl + '/' + x;
-            });
-        })(ShipperService = Northwind.ShipperService || (Northwind.ShipperService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SupplierForm = (function (_super) {
-            __extends(SupplierForm, _super);
-            function SupplierForm() {
-                _super.apply(this, arguments);
-            }
-            SupplierForm.formKey = 'Northwind.Supplier';
-            return SupplierForm;
-        }(Serenity.PrefixedContext));
-        Northwind.SupplierForm = SupplierForm;
-        [['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['HomePage', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SupplierRow;
-        (function (SupplierRow) {
-            SupplierRow.idProperty = 'SupplierID';
-            SupplierRow.nameProperty = 'CompanyName';
-            SupplierRow.localTextPrefix = 'Northwind.Supplier';
-            SupplierRow.lookupKey = 'Northwind.Supplier';
-            function getLookup() {
-                return Q.getLookup('Northwind.Supplier');
-            }
-            SupplierRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = SupplierRow.Fields || (SupplierRow.Fields = {}));
-            ['SupplierID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'HomePage'].forEach(function (x) { return Fields[x] = x; });
-        })(SupplierRow = Northwind.SupplierRow || (Northwind.SupplierRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SupplierService;
-        (function (SupplierService) {
-            SupplierService.baseUrl = 'Northwind/Supplier';
-            var Methods;
-            (function (Methods) {
-            })(Methods = SupplierService.Methods || (SupplierService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                SupplierService[x] = function (r, s, o) { return Q.serviceRequest(SupplierService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = SupplierService.baseUrl + '/' + x;
-            });
-        })(SupplierService = Northwind.SupplierService || (Northwind.SupplierService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var TerritoryForm = (function (_super) {
-            __extends(TerritoryForm, _super);
-            function TerritoryForm() {
-                _super.apply(this, arguments);
-            }
-            TerritoryForm.formKey = 'Northwind.Territory';
-            return TerritoryForm;
-        }(Serenity.PrefixedContext));
-        Northwind.TerritoryForm = TerritoryForm;
-        [['TerritoryID', function () { return Serenity.StringEditor; }], ['TerritoryDescription', function () { return Serenity.StringEditor; }], ['RegionID', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var TerritoryRow;
-        (function (TerritoryRow) {
-            TerritoryRow.idProperty = 'ID';
-            TerritoryRow.nameProperty = 'TerritoryID';
-            TerritoryRow.localTextPrefix = 'Northwind.Territory';
-            TerritoryRow.lookupKey = 'Northwind.Territory';
-            function getLookup() {
-                return Q.getLookup('Northwind.Territory');
-            }
-            TerritoryRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = TerritoryRow.Fields || (TerritoryRow.Fields = {}));
-            ['ID', 'TerritoryID', 'TerritoryDescription', 'RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
-        })(TerritoryRow = Northwind.TerritoryRow || (Northwind.TerritoryRow = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var TerritoryService;
-        (function (TerritoryService) {
-            TerritoryService.baseUrl = 'Northwind/Territory';
-            var Methods;
-            (function (Methods) {
-            })(Methods = TerritoryService.Methods || (TerritoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                TerritoryService[x] = function (r, s, o) { return Q.serviceRequest(TerritoryService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = TerritoryService.baseUrl + '/' + x;
-            });
-        })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitForm = (function (_super) {
-            __extends(BusinessUnitForm, _super);
-            function BusinessUnitForm() {
-                _super.apply(this, arguments);
-            }
-            BusinessUnitForm.formKey = 'Organization.BusinessUnit';
-            return BusinessUnitForm;
-        }(Serenity.PrefixedContext));
-        Organization.BusinessUnitForm = BusinessUnitForm;
-        [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Organization.BusinessUnitEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitRow;
-        (function (BusinessUnitRow) {
-            BusinessUnitRow.idProperty = 'UnitId';
-            BusinessUnitRow.nameProperty = 'Name';
-            BusinessUnitRow.localTextPrefix = 'Organization.BusinessUnit';
-            BusinessUnitRow.lookupKey = 'Organization.BusinessUnit';
-            function getLookup() {
-                return Q.getLookup('Organization.BusinessUnit');
-            }
-            BusinessUnitRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = BusinessUnitRow.Fields || (BusinessUnitRow.Fields = {}));
-            ['UnitId', 'Name', 'ParentUnitId', 'ParentUnitName', 'ParentUnitParentUnitId'].forEach(function (x) { return Fields[x] = x; });
-        })(BusinessUnitRow = Organization.BusinessUnitRow || (Organization.BusinessUnitRow = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitService;
-        (function (BusinessUnitService) {
-            BusinessUnitService.baseUrl = 'Organization/BusinessUnit';
-            var Methods;
-            (function (Methods) {
-            })(Methods = BusinessUnitService.Methods || (BusinessUnitService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                BusinessUnitService[x] = function (r, s, o) { return Q.serviceRequest(BusinessUnitService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = BusinessUnitService.baseUrl + '/' + x;
-            });
-        })(BusinessUnitService = Organization.BusinessUnitService || (Organization.BusinessUnitService = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitsForm = (function (_super) {
-            __extends(BusinessUnitsForm, _super);
-            function BusinessUnitsForm() {
-                _super.apply(this, arguments);
-            }
-            BusinessUnitsForm.formKey = 'Organization.BusinessUnits';
-            return BusinessUnitsForm;
-        }(Serenity.PrefixedContext));
-        Organization.BusinessUnitsForm = BusinessUnitsForm;
-        [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitsRow;
-        (function (BusinessUnitsRow) {
-            BusinessUnitsRow.idProperty = 'UnitId';
-            BusinessUnitsRow.nameProperty = 'Name';
-            BusinessUnitsRow.localTextPrefix = 'Organization.BusinessUnits';
-            var Fields;
-            (function (Fields) {
-            })(Fields = BusinessUnitsRow.Fields || (BusinessUnitsRow.Fields = {}));
-            ['UnitId', 'Name', 'ParentUnitId', 'ParentUnitName', 'ParentUnitParentUnitId'].forEach(function (x) { return Fields[x] = x; });
-        })(BusinessUnitsRow = Organization.BusinessUnitsRow || (Organization.BusinessUnitsRow = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var BusinessUnitsService;
-        (function (BusinessUnitsService) {
-            BusinessUnitsService.baseUrl = 'Organization/BusinessUnits';
-            var Methods;
-            (function (Methods) {
-            })(Methods = BusinessUnitsService.Methods || (BusinessUnitsService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                BusinessUnitsService[x] = function (r, s, o) { return Q.serviceRequest(BusinessUnitsService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = BusinessUnitsService.baseUrl + '/' + x;
-            });
-        })(BusinessUnitsService = Organization.BusinessUnitsService || (Organization.BusinessUnitsService = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var ContactForm = (function (_super) {
-            __extends(ContactForm, _super);
-            function ContactForm() {
-                _super.apply(this, arguments);
-            }
-            ContactForm.formKey = 'Organization.Contact';
-            return ContactForm;
-        }(Serenity.PrefixedContext));
-        Organization.ContactForm = ContactForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['IdentityNo', function () { return Serenity.StringEditor; }], ['UserId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(ContactForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var ContactRow;
-        (function (ContactRow) {
-            ContactRow.idProperty = 'ContactId';
-            ContactRow.nameProperty = 'FullName';
-            ContactRow.localTextPrefix = 'Organization.Contact';
-            ContactRow.lookupKey = 'Organization.Contact';
-            function getLookup() {
-                return Q.getLookup('Organization.Contact');
-            }
-            ContactRow.getLookup = getLookup;
-            var Fields;
-            (function (Fields) {
-            })(Fields = ContactRow.Fields || (ContactRow.Fields = {}));
-            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
-        })(ContactRow = Organization.ContactRow || (Organization.ContactRow = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Organization;
-    (function (Organization) {
-        var ContactService;
-        (function (ContactService) {
-            ContactService.baseUrl = 'Organization/Contact';
-            var Methods;
-            (function (Methods) {
-            })(Methods = ContactService.Methods || (ContactService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ContactService[x] = function (r, s, o) { return Q.serviceRequest(ContactService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = ContactService.baseUrl + '/' + x;
-            });
-        })(ContactService = Organization.ContactService || (Organization.ContactService = {}));
-    })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
