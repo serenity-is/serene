@@ -19,7 +19,6 @@
     "EPPlus.Core": "1.1.0",
     "FastMember": "1.1.0",
     "MailKit": "1.10.1",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Serenity.Core": "2.8.0",
     "Serenity.Data.Entity": "2.8.0",
     "Serenity.Data": "2.8.0",
@@ -33,7 +32,6 @@
   },
 
   "tools": {
-    "BundlerMinifier.Core": "2.2.306",
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
     "Serenity.CodeGenerator": "2.8.0"
@@ -75,7 +73,7 @@
   },
 
   "scripts": {
-    "prepublish": [ "bower install", "dotnet bundle" ],
+    "prepublish": [ ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
