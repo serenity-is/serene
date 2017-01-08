@@ -87,10 +87,5 @@ namespace Serene.BasicSamples.Pages
         {
             return View(Views.ViewWithoutID.Index);
         }
-
-        public ActionResult VSGalleryQA()
-        {
-            return View(Views.VSGalleryQA.Index);
-        }
     }
 }
