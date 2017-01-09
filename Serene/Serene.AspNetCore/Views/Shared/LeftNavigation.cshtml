@@ -20,8 +20,8 @@
         var target = item.Target; if (target != null) { target += " target=" + target; }
 
         var sb = new System.Text.StringBuilder();
-        sb.Append("<li class='" + klass + "'><a href='" + sectionUrl + "' " + target + ">" +
-        "<i class='fa " + icon + "'></i><span>" + title + "</span>" + (!item.Children.IsEmptyOrNull() ? "<i class='fa fa-angle-left pull-right'></i>" : "") + "</a>");
+        sb.Append("<li class='" + klass + "'><a href='" + HtmlEncoder.Encode(sectionUrl) + "' " + target + ">" +
+        "<i class='fa " + icon + "'></i><span>" + HtmlEncoder.Encode(title) + "</span>" + (!item.Children.IsEmptyOrNull() ? "<i class='fa fa-angle-left pull-right'></i>" : "") + "</a>");
 
         if (item.Children.Count > 0) {
             sb.Append("<ul class='treeview-menu'>");

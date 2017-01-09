@@ -5,42 +5,61 @@
 }
 
 
-@helper RenderItems(Serene.ReportTree.Category category)
+@functions 
 {
-    if (category.Reports != null)
+    public HtmlString renderMenu(Serene.ReportTree.Category category)
     {
-        int i = 0;
-        foreach (var x in category.Reports)
+        var sb = new StringBuilder();
+        renderItems(sb, category);
+        return new HtmlString(sb.ToString());
+    }
+
+    public void renderItems(System.Text.StringBuilder sb, Serene.ReportTree.Category category)
+    {
+        if (category.Reports != null)
         {
-            <li class="report-item @(i++ % 2 == 0 ? "odd" : "even")">
-                <a href="#" class="report-link" data-key="@x.Key">
-                    @x.Title
-                </a>
-            </li>
+            int i = 0;
+            foreach (var x in category.Reports)
+            {
+                sb.Append("<li class='report-item ");
+                sb.Append(i++ % 2 == 0 ? "odd" : "even");
+                sb.Append("'>");
+                sb.Append("<a href='#' class='report-link' data-key='");
+                sb.Append(x.Key);
+                sb.Append("'>");
+                sb.Append(HtmlEncoder.Encode(x.Title));
+                sb.Append("</a></li>");
+            }
+        }
+
+        if (category.SubCategories != null)
+        {
+            foreach (var x in category.SubCategories)
+            {
+                renderTree(sb, x);
+            }
         }
     }
-    if (category.SubCategories != null)
+
+
+    public void renderTree(System.Text.StringBuilder sb, Serene.ReportTree.Category category)
     {
-        foreach (var x in category.SubCategories)
-        {
-            @RenderTree(x)
-        }
-    }    
-}
+        sb.AppendLine("<li class='category expanded'>");
+        sb.AppendLine("<div class='line'><span class='toggle'></span><span class='caption'>");
+        sb.AppendLine(HtmlEncoder.Encode(category.Title));
+        sb.AppendLine("</span></div>");
 
-@helper RenderTree(Serene.ReportTree.Category category)
-{
-    <li class="category expanded">
-        <div class="line"><span class="toggle"></span><span class="caption">@category.Title</span></div>
-
-        @if (category.SubCategories != null && category.SubCategories.Count() > 0 ||
-        category.Reports != null && category.Reports.Count() > 0)
+        if (category.SubCategories != null &&
+            category.SubCategories.Count() > 0 ||
+            category.Reports != null && category.Reports.Count() > 0)
         {
-        <ul class="@(category.Reports != null ? "has-reports" : "")" style="display: block;">
-            @RenderItems(category)
-        </ul>
+            sb.AppendLine("<ul class='" + (category.Reports != null ? "has-reports" : "") +
+                "' style='display: block;'>");
+            renderItems(sb, category);
+            sb.AppendLine("</ul>");
         }
-    </li>
+        sb.AppendLine("</li>");
+    }
 }
 
 
@@ -54,7 +73,7 @@
     <div class="report-box">
         <div class="report-list center">
             <ul>
-            @RenderItems(Model.Root)
+            @renderMenu(Model.Root)
             </ul>
         </div>
     </div>
