@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Serenity.Reporting
 {
@@ -133,7 +134,16 @@ namespace Serenity.Reporting
                     worksheet.Column(i).Style.Numberformat.Format = FixFormatSpecifier(column.Format, column.DataType);
             }
 
-            worksheet.Cells[1, 1, Math.Min(endRow, 250), endCol].AutoFitColumns(1, 100);
+            bool gdiErrors = false;
+
+            try
+            {
+                worksheet.Cells[1, 1, Math.Min(endRow, 250), endCol].AutoFitColumns(1, 100);
+            }
+            catch (TypeInitializationException)
+            {
+                gdiErrors = true;
+            }
 
             for (var colNum = 1; colNum <= endCol; colNum++)
             {
@@ -174,16 +184,19 @@ namespace Serenity.Reporting
                         {
                             var cell = worksheet.Cells[rowNum, colNum];
 
-                            if (!string.IsNullOrEmpty(decorator.Background))
+                            if (!gdiErrors)
                             {
-                                cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                cell.Style.Fill.BackgroundColor.SetColor(
-                                    ColorTranslator.FromHtml(decorator.Background));
-                            }
+                                if (!string.IsNullOrEmpty(decorator.Background))
+                                {
+                                    cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                    cell.Style.Fill.BackgroundColor.SetColor(
+                                        ColorTranslator.FromHtml(decorator.Background));
+                                }
 
-                            if (!string.IsNullOrEmpty(decorator.Foreground))
-                                cell.Style.Font.Color.SetColor(
-                                    ColorTranslator.FromHtml(decorator.Foreground));
+                                if (!string.IsNullOrEmpty(decorator.Foreground))
+                                    cell.Style.Font.Color.SetColor(
+                                        ColorTranslator.FromHtml(decorator.Foreground));
+                            }
 
                             if (decorator.Format != null)
                                 cell.Style.Numberformat.Format = FixFormatSpecifier(decorator.Format, col.DataType);
