@@ -1,8 +1,11 @@
-﻿{
+{
   "RootNamespace": "Serene",
   "ServerTypings": {
     "Assemblies": [
       "bin/Debug/netcoreapp1.1/Serene.AspNetCore.dll"
     ]
-  }
+  },
+  "Connections": [],
+  "BaseRowClasses": [],
+  "RemoveForeignFields": []
 }
