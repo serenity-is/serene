@@ -25,3 +25,4 @@ Template/Serene.Template.log
 project.lock.json
 .vs/restore.dg
 Serene/Serene.AspNetCore/wwwroot/App_Data/upload/
+node_modules/
