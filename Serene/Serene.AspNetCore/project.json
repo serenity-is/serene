@@ -28,7 +28,9 @@
     "System.Data.Common": "4.3.0",
     "System.Data.SqlClient": "4.3.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
-    "Newtonsoft.Json": "9.0.1"
+    "Newtonsoft.Json": "9.0.1",
+    "Serenity.FluentMigrator": "1.6.901",
+    "Serenity.FluentMigrator.Runner": "1.6.901"
   },
 
   "tools": {
@@ -53,7 +55,9 @@
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
     "compile": {
-        "exclude": "Migrations/**/*.cs"
+    },
+    "embed": {
+      "include": "Migrations/**/*.sql"
     }
   },
 

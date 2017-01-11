@@ -108,6 +108,8 @@ namespace Serene
             app.UseMvc(routes =>
             {
             });
+
+            MigrationRunner.Initialize();
         }
     }
 }
