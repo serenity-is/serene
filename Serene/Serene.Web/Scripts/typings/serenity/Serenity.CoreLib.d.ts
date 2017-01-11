@@ -1,4 +1,8 @@
-﻿declare class RSVP<TResult> {
+﻿/// <reference types="toastr" />
+/// <reference types="jquery" />
+/// <reference types="jquery.validation" />
+/// <reference types="jqueryui" />
+declare class RSVP<TResult> {
     constructor(constructor: (p1: (p1: any) => void, p2: any) => void);
 }
 declare module RSVP {
