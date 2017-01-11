@@ -265,7 +265,8 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Requested By")]
-        [Expression("CONCAT(CONCAT(jResponsibleContact.FirstName, ' '), jResponsibleContact.LastName)")]
+        [Expression("CONCAT(CONCAT(jResponsibleContact.[FirstName], ' '), jResponsibleContact.[LastName])")]
+        [Expression("(jResponsibleContact.FirstName || ' ' || jResponsibleContact.LastName)", Dialect = "Sqlite")]
         public String ResponsibleContactFullName
         {
             get { return Fields.ResponsibleContactFullName[this]; }

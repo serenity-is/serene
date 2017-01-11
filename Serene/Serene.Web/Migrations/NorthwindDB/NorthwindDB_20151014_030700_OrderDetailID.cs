@@ -20,7 +20,7 @@ namespace Serene.Migrations.NorthwindDB
             IfDatabase("Oracle")
                 .Execute.Sql("UPDATE \"ORDER DETAILS\" SET DetailID = Order_Details_SEQ.nextval");
 
-            IfDatabase("oracle")
+            IfDatabase("Oracle")
                 .Alter.Column("DetailID").OnTable("\"ORDER DETAILS\"")
                     .AsInt32().NotNullable();
         }

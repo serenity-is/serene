@@ -26,3 +26,4 @@ project.lock.json
 .vs/restore.dg
 Serene/Serene.AspNetCore/wwwroot/App_Data/upload/
 node_modules/
+Serene/Serene.Test/Scripts/typings/serenity/Serenity.CoreLib.d.ts

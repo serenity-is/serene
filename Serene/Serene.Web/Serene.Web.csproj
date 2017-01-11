@@ -510,6 +510,7 @@
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Fonts\ionicons.svg" />
     <Content Include="Fonts\Simple-Line-Icons.svg" />
+    <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_Sqlite.sql" />
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
     <Content Include="Modules\Meeting\Meeting\Meeting.MeetingDialog.Template.html" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
@@ -2333,7 +2334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\typings\site\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

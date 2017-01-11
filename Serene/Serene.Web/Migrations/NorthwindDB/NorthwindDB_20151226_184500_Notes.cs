@@ -20,7 +20,7 @@ namespace Serene.Migrations.NorthwindDB
                 .Create.Table("Notes")
                     .WithColumn("NoteID").AsInt64().PrimaryKey().Identity().NotNullable());
 
-            addCols(IfDatabase("oracle")
+            addCols(IfDatabase("Oracle")
                 .Create.Table("Notes")
                     .WithColumn("NoteID").AsInt64().PrimaryKey().NotNullable());
 

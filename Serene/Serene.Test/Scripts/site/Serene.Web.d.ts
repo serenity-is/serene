@@ -1,4 +1,8 @@
-﻿declare namespace Serene.Administration {
+﻿/// <reference types="jquery" />
+/// <reference types="jquery.blockui" />
+/// <reference types="jquery.validation" />
+/// <reference types="jqueryui" />
+declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
     class LanguageForm extends Serenity.PrefixedContext {

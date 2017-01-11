@@ -35,7 +35,9 @@ namespace Serene.Northwind.Entities
             set { Fields.FirstName[this] = value; }
         }
 
-        [DisplayName("FullName"), Expression("CONCAT(T0.[FirstName], CONCAT(' ', T0.[LastName]))"), QuickSearch]
+        [DisplayName("FullName"), QuickSearch]
+        [Expression("CONCAT(T0.[FirstName], CONCAT(' ', T0.[LastName]))")]
+        [Expression("(T0.FirstName || ' ' || T0.LastName)", Dialect = "Sqlite")]
         public String FullName
         {
             get { return Fields.FullName[this]; }
@@ -168,7 +170,9 @@ namespace Serene.Northwind.Entities
             set { Fields.ReportsToFirstName[this] = value; }
         }
 
-        [DisplayName("Reports To"), Expression("CONCAT(jReportsTo.[FirstName], CONCAT(' ', jReportsTo.[LastName]))")]
+        [DisplayName("Reports To")]
+        [Expression("CONCAT(jReportsTo.[FirstName], CONCAT(' ', jReportsTo.[LastName]))")]
+        [Expression("(jReportsTo.FirstName || ' ' || jReportsTo.LastName)", Dialect = "Sqlite")]
         public String ReportsToFullName
         {
             get { return Fields.ReportsToFullName[this]; }

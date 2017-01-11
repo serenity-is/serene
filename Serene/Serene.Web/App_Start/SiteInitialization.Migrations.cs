@@ -7,6 +7,7 @@
     using System.Data.SqlClient;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Web.Hosting;
 
     public static partial class SiteInitialization
@@ -30,13 +31,40 @@
             bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             bool isPostgres = !isSql & serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
             bool isMySql = !isSql && !isPostgres && serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
-            if (!isSql && !isPostgres && !isMySql)
+            bool isSqlite = !isSql && !isPostgres && !isMySql && serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
+            if (!isSql && !isPostgres && !isMySql && !isSqlite)
                 return;
 
             var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
             cb.ConnectionString = cs.ConnectionString;
-
             string catalogKey = "?";
+
+            if (isSqlite)
+            {
+                catalogKey = "Data Source";
+                if (!cb.ContainsKey(catalogKey))
+                    return;
+
+                var dataFile = cb[catalogKey] as string;
+                if (string.IsNullOrEmpty(dataFile))
+                    return;
+
+                dataFile = dataFile.Replace("|DataDirectory|", HostingEnvironment.MapPath("~/App_Data/"));
+                if (File.Exists(dataFile))
+                    return;
+
+                Directory.CreateDirectory(Path.GetDirectoryName(dataFile));
+                using (var sqliteConn = SqlConnections.New(cb.ConnectionString, cs.ProviderName))
+                {
+                    var createFile = ((WrappedConnection)sqliteConn).ActualConnection.GetType().GetMethod("CreateFile", BindingFlags.Static);
+                    if (createFile != null)
+                        createFile.Invoke(null, new object[] { dataFile });
+                }
+                    
+                SqlConnection.ClearAllPools();
+                return;
+            }
+            
             foreach (var ck in new[] { "Initial Catalog", "Database", "AttachDBFilename" })
                 if (cb.ContainsKey(ck))
                 {
@@ -123,6 +151,7 @@
             string serverType = cs.Dialect.ServerType;
             bool isSqlServer = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             bool isOracle = !isSqlServer && serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
+            bool isSqlite = !isSqlServer && !isOracle && serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.
@@ -134,6 +163,9 @@
             }
 
             string databaseType = isOracle ? "OracleManaged" : serverType;
+            var connectionString = cs.ConnectionString;
+            if (isSqlite)
+                connectionString = connectionString.Replace("|DataDirectory|", HostingEnvironment.MapPath("~/App_Data/"));
 
             using (var sw = new StringWriter())
             {
@@ -144,7 +176,7 @@
                 var runner = new RunnerContext(announcer)
                 {
                     Database = databaseType,
-                    Connection = cs.ConnectionString,
+                    Connection = connectionString,
                     Targets = new string[] { typeof(SiteInitialization).Assembly.Location },
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(SiteInitialization).Assembly.Location),

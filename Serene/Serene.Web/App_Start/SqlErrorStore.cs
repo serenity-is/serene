@@ -229,17 +229,19 @@ Update Exceptions
                     {
                         var count = new SqlUpdate("Exceptions")
                             .Set("DuplicateCount", "DuplicateCount + @DuplicateCount")
-                            .Where(new Criteria("[Id]").In(
+                            .Where(new Criteria("[Id]").In(new Criteria("(" + 
                                 new SqlQuery()
+                                    .Dialect(c.GetDialect())
                                     .From("Exceptions")
                                     .Take(1)
-                                    .Where(hashMatch)))
+                                    .Where(hashMatch)) + ")"))
                                 .Execute(c, ExpectedRows.Ignore);
 
                         // if we found an exception that's a duplicate, jump out
                         if (count > 0)
                         {
                             error.GUID = c.Query<Guid>(new SqlQuery()
+                                .Dialect(c.GetDialect())
                                 .From("Exceptions")
                                 .Select("GUID")
                                 .Take(1)
@@ -314,6 +316,7 @@ Select *
             {
                 errors.AddRange(c.Query<Error>(
                     new SqlQuery()
+                        .Dialect(c.GetDialect())
                         .From("Exceptions")
                         .Take(displayCount)
                         .Select("*")
@@ -335,6 +338,7 @@ Select *
             {
                 return c.Query<int>(
                     new SqlQuery()
+                        .Dialect(c.GetDialect())
                         .From("Exceptions")
                         .Select("Count(*)")
                         .Where(
