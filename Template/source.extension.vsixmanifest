@@ -17,7 +17,6 @@
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
   </Dependencies>
   <Assets>
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\BasicApplication.Template.zip" />
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="RootProjectWizard" Path="|RootProjectWizard|" AssemblyName="|RootProjectWizard;AssemblyName|" />
   </Assets>
 </PackageManifest>

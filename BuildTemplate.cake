@@ -1,41 +1,139 @@
-﻿using System.Xml.Linq;
+﻿#addin "nuget:https://www.nuget.org/api/v2?package=Newtonsoft.Json&version=9.0.1"
+
+using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 var target = Argument("target", "PrepareVSIX");
 var configuration = Argument("configuration", "Release");
+
 var r = System.IO.Path.GetFullPath(@".\");
+
 var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
 var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
+var sereneCoreWebProj = r + @"Serene\Serene.AspNetCore\project.json";
 
-Func<string, XElement> loadProject = (csproj) => {
+Func<string, XElement> loadCsProj = (csproj) => {
         return XElement.Parse(System.IO.File.ReadAllText(csproj));
 };
 
-
-Func<XElement, IEnumerable<XElement>> getProjectItems = (csprojElement) => {
-	XNamespace ns1 = "http://schemas.microsoft.com/developer/msbuild/2003";
-	return csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
-			x.Name == ns1 + "Content" ||
-			x.Name == ns1 + "Compile" ||
-			x.Name == ns1 + "TypeScriptCompile" ||
-			x.Name == ns1 + "EmbeddedResource" ||
-			x.Name == ns1 + "Folder" ||
-			x.Name == ns1 + "None"));
+Func<XElement, IEnumerable<XElement>> getCsProjItems = (csprojElement) => {
+    XNamespace ns1 = "http://schemas.microsoft.com/developer/msbuild/2003";
+    return csprojElement.Descendants(ns1 + "ItemGroup").Elements().Where(x => (
+            x.Name == ns1 + "Content" ||
+            x.Name == ns1 + "Compile" ||
+            x.Name == ns1 + "TypeScriptCompile" ||
+            x.Name == ns1 + "EmbeddedResource" ||
+            x.Name == ns1 + "Folder" ||
+            x.Name == ns1 + "None"));
 };
 
 Func<XElement, string> itemToFile = (x) => {
-	return (x.Attribute("Include").Value ?? "").Replace("%40", "@");
+    return (x.Attribute("Include").Value ?? "").Replace("%40", "@");
+};
+
+Func<string, Regex> wildcardToRegex = wildcard => {
+    var pattern = Regex.Escape(wildcard);
+    if (System.IO.Path.DirectorySeparatorChar == '/')
+    {
+        // regex wildcard adjustments for *nix-style file systems
+        pattern = pattern
+            .Replace(@"\.\*\*", @"\.[^/.]*") // .** should not match on ../file or ./file but will match .file
+            .Replace(@"\*\*/", "(.+/)*") //For recursive wildcards /**/, include the current directory.
+            .Replace(@"\*\*", ".*") // For recursive wildcards that don't end in a slash e.g. **.txt would be treated as a .txt file at any depth
+            .Replace(@"\*", @"[^/]*(/)?") // For non recursive searches, limit it any character that is not a directory separator
+            .Replace(@"\?", "."); // ? translates to a single any character
+    }
+    else
+    {
+        // regex wildcard adjustments for Windows-style file systems
+        pattern = pattern
+            .Replace("/", @"\\") // On Windows, / is treated the same as \.
+            .Replace(@"\.\*\*", @"\.[^\\.]*") // .** should not match on ../file or ./file but will match .file
+            .Replace(@"\*\*\\", @"(.+\\)*") //For recursive wildcards \**\, include the current directory.
+            .Replace(@"\*\*", ".*") // For recursive wildcards that don't end in a slash e.g. **.txt would be treated as a .txt file at any depth
+            .Replace(@"\*", @"[^\\]*(\\)?") // For non recursive searches, limit it any character that is not a directory separator
+            .Replace(@"\?", "."); // ? translates to a single any character
+    }
+
+    return new Regex('^' + pattern + '$', RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+};
+
+Func<string, string, string> getPackageVersion = (project, package) => 
+{
+    var node = loadXml(@".\" + project + @"\packages.config").SelectSingleNode("//package[@id='" + package + "']/@version");
+    if (node == null || node.Value == null)
+        throw new InvalidOperationException("Couldn't find version for " + package + " in project " + project);
+    return node.Value;
+};
+
+IEnumerable<Regex> sereneCoreIncludes = null;
+IEnumerable<Regex> sereneCoreExcludes = null;
+
+Func<IEnumerable<Regex>, IEnumerable<Regex>, string, bool> isMatchingPath = (includes, excludes, path) => {
+    if (excludes.Any(x => x.IsMatch(path)))
+        return false;
+
+    return includes.Any(x => x.IsMatch(path));
+};
+
+Func<string, JObject> loadJson = path => {
+    var content = System.IO.File.ReadAllText(path, Encoding.UTF8);
+    return JObject.Parse(content);
+};
+
+
+Action<string, string> patchProjectRefs = (projectjson, version) => {
+    var changed = false;
+
+    var deps = node["dependencies"] as JObject;
+    if (deps != null) {
+        foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
+            if (pair.Key.StartsWith("Serenity.") &&
+                pair.Key != "Serenity.Web.Assets" &&
+                pair.Key != "Serenity.Web.Tooling")
+            {
+                var v = pair.Value as JValue;
+                if (v != null && (v.Value ?? "").ToString() != version)
+                {
+                    deps[pair.Key].Replace(version);
+                    changed = true;
+                }
+            }
+        }
+    }
+
+    var deps = node["tools"] as JObject;
+    if (deps != null) {
+        foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
+            if (pair.Key.StartsWith("Serenity.") &&
+                pair.Key != "Serenity.Web.Assets" &&
+                pair.Key != "Serenity.Web.Tooling")
+            {
+                var v = pair.Value as JValue;
+                if (v != null && (v.Value ?? "").ToString() != version)
+                {
+                    deps[pair.Key].Replace(version);
+                    changed = true;
+                }
+            }
+        }
+    }
+    
+    if (changed)
+        System.IO.File.WriteAllText(projectjson, node.ToString(), Encoding.UTF8);
 };
 
 Action ensureDevProjSync = () => {
-	var devFiles = getProjectItems(loadProject(devSereneWebProj)).Select(itemToFile);
-	var sereneFiles = getProjectItems(loadProject(sereneWebProj)).ToLookup(itemToFile);
-	var missingFiles = devFiles.Where(x => !sereneFiles[x].Any());
-	if (missingFiles.Any()) {
-		System.Console.WriteLine("Serene.Web.csproj missing following files in Dev.Serene.Web.csproj:");
-		foreach (var f in missingFiles)
-			System.Console.WriteLine(f);
-		System.Console.ReadLine();
-	}
+    var devFiles = getCsProjItems(loadCsProj(devSereneWebProj)).Select(itemToFile);
+    var sereneFiles = getCsProjItems(loadCsProj(sereneWebProj)).ToLookup(itemToFile);
+    var missingFiles = devFiles.Where(x => !sereneFiles[x].Any());
+    if (missingFiles.Any()) {
+        System.Console.WriteLine("Serene.Web.csproj missing following files in Dev.Serene.Web.csproj:");
+        foreach (var f in missingFiles)
+            System.Console.WriteLine(f);
+        System.Console.ReadLine();
+    }
 };
 
 Task("PrepareVSIX")
@@ -49,13 +147,15 @@ Task("PrepareVSIX")
     CleanDirectory("./Template/RootProjectWizard/obj/Debug");
     CleanDirectory("./Template/RootProjectWizard/obj/Release");
     
-
-
-    NuGetRestore(System.IO.Path.Combine(r, @"Serene.sln"), new NuGetRestoreSettings {
+    NuGetRestore(System.IO.Path.Combine(r, @"Serene.Web.sln"), new NuGetRestoreSettings {
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         Source = new List<string> { "https://api.nuget.org/v3/index.json" }
     });
     
+    var exitCode = StartProcess("dotnet", "restore");
+    if (exitCode > 0)
+        throw new Exception("Error while restoring: " + exitCode);    
+
     NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
         Id = new List<string> {
             "Serenity.Web"
@@ -72,7 +172,7 @@ Task("PrepareVSIX")
         ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
     });
 
-    MSBuild("./Serene.sln", s => {
+    MSBuild("./Serene.Web.sln", s => {
         s.SetConfiguration(configuration);
     });
 
@@ -127,9 +227,9 @@ Task("PrepareVSIX")
     
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
-		{ @"wkhtmltopdf.exe", true },
-		{ @"..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe", true },
-		{ @"Scripts\jquery-3.1.1.intellisense.js", true }
+        { @"wkhtmltopdf.exe", true },
+        { @"..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe", true },
+        { @"Scripts\jquery-3.1.1.intellisense.js", true }
     };
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
@@ -146,8 +246,8 @@ Task("PrepareVSIX")
         }
     
         var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
-        var csprojElement = loadProject(csproj);
-        var itemList = getProjectItems(csprojElement);       
+        var csprojElement = loadCsProj(csproj);
+        var itemList = getCsProjItems(csprojElement);       
         var byName = itemList.ToDictionary(itemToFile);
         var fileList = itemList.Select(itemToFile).ToList();
                        
