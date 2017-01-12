@@ -151,7 +151,6 @@
             string serverType = cs.Dialect.ServerType;
             bool isSqlServer = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             bool isOracle = !isSqlServer && serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
-            bool isSqlite = !isSqlServer && !isOracle && serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.
@@ -164,8 +163,6 @@
 
             string databaseType = isOracle ? "OracleManaged" : serverType;
             var connectionString = cs.ConnectionString;
-            if (isSqlite)
-                connectionString = connectionString.Replace("|DataDirectory|", HostingEnvironment.MapPath("~/App_Data/"));
 
             using (var sw = new StringWriter())
             {
