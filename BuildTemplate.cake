@@ -11,7 +11,16 @@ var r = System.IO.Path.GetFullPath(@".\");
 
 var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
 var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
-var sereneCoreWebProj = r + @"Serene\Serene.AspNetCore\project.json";
+var sereneCoreWebProj = r + @"Serene\Serene.AspNetCore\Serene.AspNetCore.xproj";
+var sereneCoreProJson = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneCoreWebProj), "project.json");
+string serenityVersion = null;
+
+Func<string, System.Xml.XmlDocument> loadXml = path => 
+{
+    var xml = new System.Xml.XmlDocument();
+    xml.LoadXml(System.IO.File.ReadAllText(path));
+    return xml;
+};
 
 Func<string, XElement> loadCsProj = (csproj) => {
         return XElement.Parse(System.IO.File.ReadAllText(csproj));
@@ -67,8 +76,38 @@ Func<string, string, string> getPackageVersion = (project, package) =>
     return node.Value;
 };
 
-IEnumerable<Regex> sereneCoreIncludes = null;
-IEnumerable<Regex> sereneCoreExcludes = null;
+IEnumerable<Regex> sereneCoreIncludes = new string[] {
+	@"**\*"
+}.Select(wildcardToRegex);
+
+IEnumerable<Regex> sereneCoreExcludes = new string[] {
+	@"node_modules\**\*",
+	@"bin\**\*",
+	@".git\**\*",
+	@".vs\**\*",
+	@".vscode\**\*",
+	@"obj\**\*",
+	@"*.bak",
+	@"*.orig",
+	@"*.sqlite",
+	@"*.suo",
+	@"*.DotSettings*",
+	@"*.user",
+	@"Thumbs.db",
+	@"ErrorLog.db",
+	@"StyleCop.Cache",
+	@"TestResults\**\*",
+	@"*.mdf",
+	@"*.log",
+	@"*.zip",
+	@"packages\**\*",
+	@"*.log",
+	@"*.dg",
+	@"*.lock.json",
+	@"*.vstemplate",
+	@"upload\**\*",
+	@"App_Data\**\*"
+}.Select(wildcardToRegex);
 
 Func<IEnumerable<Regex>, IEnumerable<Regex>, string, bool> isMatchingPath = (includes, excludes, path) => {
     if (excludes.Any(x => x.IsMatch(path)))
@@ -85,11 +124,13 @@ Func<string, JObject> loadJson = path => {
 
 Action<string, string> patchProjectRefs = (projectjson, version) => {
     var changed = false;
+    var node = loadJson(projectjson);
 
     var deps = node["dependencies"] as JObject;
     if (deps != null) {
         foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
             if (pair.Key.StartsWith("Serenity.") &&
+				!pair.Key.StartsWith("Serenity.FluentMigrator") &&
                 pair.Key != "Serenity.Web.Assets" &&
                 pair.Key != "Serenity.Web.Tooling")
             {
@@ -103,11 +144,12 @@ Action<string, string> patchProjectRefs = (projectjson, version) => {
         }
     }
 
-    var deps = node["tools"] as JObject;
+    deps = node["tools"] as JObject;
     if (deps != null) {
         foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
             if (pair.Key.StartsWith("Serenity.") &&
-                pair.Key != "Serenity.Web.Assets" &&
+                !pair.Key.StartsWith("Serenity.FluentMigrator") &&
+				pair.Key != "Serenity.Web.Assets" &&
                 pair.Key != "Serenity.Web.Tooling")
             {
                 var v = pair.Value as JValue;
@@ -150,12 +192,8 @@ Task("PrepareVSIX")
     NuGetRestore(System.IO.Path.Combine(r, @"Serene.Web.sln"), new NuGetRestoreSettings {
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         Source = new List<string> { "https://api.nuget.org/v3/index.json" }
-    });
-    
-    var exitCode = StartProcess("dotnet", "restore");
-    if (exitCode > 0)
-        throw new Exception("Error while restoring: " + exitCode);    
-
+    });	
+	
     NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
         Id = new List<string> {
             "Serenity.Web"
@@ -164,25 +202,22 @@ Task("PrepareVSIX")
         ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
     });
 
-    NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
-        Id = new List<string> {
-            "Serenity.CodeGenerator"
-        },
-        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
-        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
-    });
-
     MSBuild("./Serene.Web.sln", s => {
         s.SetConfiguration(configuration);
     });
-
+    
     var serenePackagesFolder = r + @"packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
-    var templateFolder = r + @"Template\obj\Serene.Template";
-    CleanDirectory(templateFolder);
-    CreateDirectory(templateFolder);
+	var webTemplateFolder = r + @"Template\obj\Serene.Template";
+    CleanDirectory(webTemplateFolder);
+    CreateDirectory(webTemplateFolder);
 
+    var coreTemplateFolder = r + @"Template\obj\SereneCore.Template";
+    CleanDirectory(coreTemplateFolder);
+    CreateDirectory(coreTemplateFolder);
+
+	
     Func<string, List<Tuple<string, string>>> parsePackages = path => {
         var xml = XElement.Parse(System.IO.File.ReadAllText(path));
         var pkg = new List<Tuple<string, string>>();
@@ -201,7 +236,8 @@ Task("PrepareVSIX")
     
         var xm = XElement.Parse(System.IO.File.ReadAllText(vsixManifestFile));
         var ver = allPackages.First(x => x.Item1.StartsWith("Serenity.Core")).Item2;
-        var identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
+        serenityVersion = ver;
+		var identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
         var old = identity.Attribute("Version").Value;
         if (old != null && old.StartsWith(ver + ".")) 
             ver = ver + "." + (Int32.Parse(old.Substring(ver.Length + 1)) + 1);
@@ -234,22 +270,39 @@ Task("PrepareVSIX")
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
     
-        foreach (var package in packages) {
-            var contentFolder = System.IO.Path.Combine(serenePackagesFolder, 
-               package.Item1 + "." + package.Item2 + @"\content");
-            if (System.IO.Directory.Exists(contentFolder)) {
-                foreach (var f in System.IO.Directory.GetFiles(contentFolder, 
-                    "*.*", System.IO.SearchOption.AllDirectories)) {
-                    skipFiles[f.Substring(contentFolder.Length + 1)] = true;
-                }
-            }
-        }
-    
-        var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
-        var csprojElement = loadCsProj(csproj);
-        var itemList = getCsProjItems(csprojElement);       
-        var byName = itemList.ToDictionary(itemToFile);
-        var fileList = itemList.Select(itemToFile).ToList();
+		List<string> fileList;
+		Dictionary<string, XElement> byName = null;
+		var csprojElement = loadCsProj(csproj);
+
+		var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
+		bool isXProj = System.IO.Path.GetExtension(csproj) == ".xproj";
+		
+	    if (isXProj)
+		{
+			var rootDir = System.IO.Path.GetDirectoryName(csproj);
+			fileList = System.IO.Directory.GetFiles(rootDir, "*.*", System.IO.SearchOption.AllDirectories)
+				.Select(x => x.Substring(rootDir.Length + 1))
+				.Where(x => isMatchingPath(sereneCoreIncludes, sereneCoreExcludes, x))
+				.ToList();			
+		}
+		else
+		{
+			foreach (var package in packages) {
+				var contentFolder = System.IO.Path.Combine(serenePackagesFolder, 
+				   package.Item1 + "." + package.Item2 + @"\content");
+				if (System.IO.Directory.Exists(contentFolder)) {
+					foreach (var f in System.IO.Directory.GetFiles(contentFolder, 
+						"*.*", System.IO.SearchOption.AllDirectories)) {
+						skipFiles[f.Substring(contentFolder.Length + 1)] = true;
+					}
+				}
+			}
+		
+			var itemList = getCsProjItems(csprojElement);
+			byName = itemList.ToDictionary(itemToFile);
+			fileList = itemList.Select(itemToFile).ToList();
+		}
+        
                        
         fileList.Sort(delegate(string x, string y) {
             var px = System.IO.Path.GetDirectoryName(x);
@@ -272,14 +325,15 @@ Task("PrepareVSIX")
         Dictionary<string, XElement> byFolder = new Dictionary<string, XElement>();
         
         var copySourceRoot = System.IO.Path.GetDirectoryName(csproj);
+		var templateFolder = isXProj ? coreTemplateFolder : webTemplateFolder;
         var copyTargetRoot = System.IO.Path.Combine(templateFolder, System.IO.Path.GetFileNameWithoutExtension(csproj));
         
         foreach (var file in fileList)
         {
-            if (skipFiles.ContainsKey(file))
+            if (skipFiles != null && skipFiles.ContainsKey(file))
             {
                 XElement xe;
-                if (byName.TryGetValue(file, out xe))
+                if (byName != null && byName.TryGetValue(file, out xe))
                 {
                     byName.Remove(file);
                     xe.Remove();
@@ -342,6 +396,8 @@ Task("PrepareVSIX")
             folder.Add(item);
             
             var targetFile = System.IO.Path.Combine(copyTargetRoot, file);
+			if (isXProj)
+				Console.WriteLine(System.IO.Path.Combine(copySourceRoot, file));
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
             System.IO.File.Copy(System.IO.Path.Combine(copySourceRoot, file), targetFile);
             
@@ -349,19 +405,23 @@ Task("PrepareVSIX")
                 replaceParams(targetFile);
             }
         }
-        
-        var pkg = xv.Descendants(ns + "packagesToInstall").Single();
-        pkg.Elements().Remove();
-        foreach (var p in packages)
-        {
-            var pk = new XElement(ns + "installPackage");
-            pk.SetAttributeValue("id", p.Item1);
-            pk.SetAttributeValue("version", p.Item2);
-            pkg.Add(pk);
-        }
+
+		if (!isXProj)
+		{
+			var pkg = xv.Descendants(ns + "packagesToInstall").Single();
+			pkg.Elements().Remove();
+			foreach (var p in packages)
+			{
+				var pk = new XElement(ns + "installPackage");
+				pk.SetAttributeValue("id", p.Item1);
+				pk.SetAttributeValue("version", p.Item2);
+				pkg.Add(pk);
+			}
+		}
         
         System.IO.File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
         System.IO.File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
+		
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
         System.IO.File.WriteAllText(targetProj, 
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
@@ -373,21 +433,44 @@ Task("PrepareVSIX")
 
     var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneWebProj), "packages.config"));  
     updateVsixProj(webPackages);
-    
-    if (System.IO.Directory.Exists(templateFolder)) 
-        System.IO.Directory.Delete(templateFolder, true);
-        
-    System.IO.Directory.CreateDirectory(templateFolder);
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Web"));
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(templateFolder, "Serene.Script"));   
-    
+	
+    if (System.IO.Directory.Exists(webTemplateFolder)) 
+        System.IO.Directory.Delete(webTemplateFolder, true);	
+    System.IO.Directory.CreateDirectory(webTemplateFolder);
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(webTemplateFolder, "Serene.Web"));
+
     replaceTemplateFileList(sereneWebProj, webPackages, webSkipFiles);
+	
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
-        System.IO.Path.Combine(templateFolder, "SerenityLogo.ico")); 
+        System.IO.Path.Combine(webTemplateFolder, "SerenityLogo.ico")); 
     System.IO.File.Copy(r + @"Serene\Serene.vstemplate", 
-        System.IO.Path.Combine(templateFolder, "Serene.vstemplate")); 
-        
-    Zip(templateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
+        System.IO.Path.Combine(webTemplateFolder, "Serene.vstemplate")); 
+       
+    Zip(webTemplateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
+
+	patchProjectRefs(sereneCoreProJson, serenityVersion);
+	
+    var exitCode = StartProcess("dotnet", "restore");
+    if (exitCode > 0)
+        throw new Exception("Error while restoring " + sereneCoreWebProj);	
+	
+	exitCode = StartProcess("dotnet", "build " + sereneCoreProJson + " -c " + configuration);
+	if (exitCode > 0)
+		throw new Exception("Error while building " + sereneCoreProJson);
+	
+    if (System.IO.Directory.Exists(coreTemplateFolder))
+        System.IO.Directory.Delete(coreTemplateFolder, true);	       
+    System.IO.Directory.CreateDirectory(coreTemplateFolder);
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(coreTemplateFolder, "Serene.AspNetCore"));	
+
+	replaceTemplateFileList(sereneCoreWebProj, null, new Dictionary<string, bool>());
+	
+    System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
+        System.IO.Path.Combine(coreTemplateFolder, "SerenityLogo.ico")); 
+    System.IO.File.Copy(r + @"Serene\SereneCore.vstemplate", 
+        System.IO.Path.Combine(coreTemplateFolder, "SereneCore.vstemplate")); 
+    Zip(coreTemplateFolder, r + @"Template\ProjectTemplates\SereneCore.Template.zip");
+    
 });
 
 RunTarget(target);
