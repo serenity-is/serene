@@ -79,6 +79,7 @@
     </Content>
     <Content Include="ProjectTemplates\SereneCore.Template.zip">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>

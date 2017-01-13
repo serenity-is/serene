@@ -9,7 +9,7 @@
   </TemplateData>
   <TemplateContent>
     <ProjectCollection>
-      <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
+      <ProjectTemplateLink ProjectName="$projectname$.AspNetCore" CopyParameters="true">
         Serene.AspNetCore\Serene.AspNetCore.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
