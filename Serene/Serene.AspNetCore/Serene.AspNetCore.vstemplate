@@ -216,8 +216,8 @@
         </Folder>
       </Folder>
       <Folder Name="Initialization" TargetFolderName="Initialization">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DataMigrations.cs">DataMigrations.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="DependencyResolver.cs">DependencyResolver.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="MigrationRunner.cs">MigrationRunner.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
       </Folder>
@@ -246,6 +246,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Oracle.sql">NorthwindDBScript_Oracle.sql</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Sqlite.sql">NorthwindDBScript_Sqlite.sql</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
         </Folder>
       </Folder>

@@ -42,7 +42,8 @@ namespace Serene.Organization.Entities
             set { Fields.LastName[this] = value; }
         }
 
-        [Expression("CONCAT(CONCAT(t0.FirstName, ' '), t0.LastName)")]
+        [Expression("CONCAT(CONCAT(t0.[FirstName], ' '), t0.[LastName])")]
+        [Expression("(t0.FirstName || ' ' || t0.LastName)", Dialect = "Sqlite")]
         public String FullName
         {
             get { return Fields.FullName[this]; }

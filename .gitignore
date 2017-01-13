@@ -28,3 +28,5 @@ Serene/Serene.AspNetCore/wwwroot/App_Data/upload/
 node_modules/
 Serene/Serene.Test/Scripts/typings/serenity/Serenity.CoreLib.d.ts
 Template/ProjectTemplates/SereneCore.Template.zip
+Serene/Serene.AspNetCore/App_Data/
+Serene/Serene.AspNetCore/wwwroot/Scripts/site/Serene.Web.js.map

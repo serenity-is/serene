@@ -105,8 +105,8 @@ IEnumerable<Regex> sereneCoreExcludes = new string[] {
 	@"*.dg",
 	@"*.lock.json",
 	@"*.vstemplate",
-	@"upload\**\*",
-	@"App_Data\**\*"
+	@"App_Data\**\*",
+	@"wwwroot\App_Data\**\*",
 }.Select(wildcardToRegex);
 
 Func<IEnumerable<Regex>, IEnumerable<Regex>, string, bool> isMatchingPath = (includes, excludes, path) => {
