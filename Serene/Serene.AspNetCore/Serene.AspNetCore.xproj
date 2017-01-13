@@ -30,4 +30,10 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Target Name="BeforeBuild">
+    <Exec Command="npm install" ContinueOnError="true" />
+  </Target>
+  <Target Name="AfterBuild">
+    <Exec Command="npm run build" ContinueOnError="true" />
+  </Target>
 </Project>

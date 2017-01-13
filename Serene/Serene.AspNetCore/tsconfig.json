@@ -12,7 +12,9 @@
   },
   "exclude": [
     ".vs/",
-    "wwwroot/",
-    "Views/"
+    "App_Data/",
+    "Views/",
+    "node_modules/",
+    "wwwroot/"
   ]
 }
