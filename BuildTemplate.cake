@@ -301,8 +301,7 @@ Task("PrepareVSIX")
 			var itemList = getCsProjItems(csprojElement);
 			byName = itemList.ToDictionary(itemToFile);
 			fileList = itemList.Select(itemToFile).ToList();
-		}
-        
+		}        
                        
         fileList.Sort(delegate(string x, string y) {
             var px = System.IO.Path.GetDirectoryName(x);
@@ -328,6 +327,9 @@ Task("PrepareVSIX")
 		var templateFolder = isXProj ? coreTemplateFolder : webTemplateFolder;
         var copyTargetRoot = System.IO.Path.Combine(templateFolder, System.IO.Path.GetFileNameWithoutExtension(csproj));
         
+		if (isXProj)
+			fileList.Add("global.json");
+			
         foreach (var file in fileList)
         {
             if (skipFiles != null && skipFiles.ContainsKey(file))
@@ -396,10 +398,13 @@ Task("PrepareVSIX")
             folder.Add(item);
             
             var targetFile = System.IO.Path.Combine(copyTargetRoot, file);
-			if (isXProj)
-				Console.WriteLine(System.IO.Path.Combine(copySourceRoot, file));
-            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
-            System.IO.File.Copy(System.IO.Path.Combine(copySourceRoot, file), targetFile);
+			System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
+
+			string sourcePath = file;
+			if (isXProj && file == "global.json")
+				sourcePath = @"..\__global.json";
+			sourcePath = System.IO.Path.Combine(copySourceRoot, sourcePath);
+			System.IO.File.Copy(sourcePath, targetFile);
             
             if (replaceParameters) {
                 replaceParams(targetFile);
@@ -440,6 +445,9 @@ Task("PrepareVSIX")
     System.IO.Directory.CreateDirectory(System.IO.Path.Combine(webTemplateFolder, "Serene.Web"));
 
     replaceTemplateFileList(sereneWebProj, webPackages, webSkipFiles);
+	var coreSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+	foreach (var p in webSkipFiles.Keys)
+		coreSkipFiles[@"wwwroot\" + p] = true;
 	
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(webTemplateFolder, "SerenityLogo.ico")); 
@@ -463,7 +471,7 @@ Task("PrepareVSIX")
     System.IO.Directory.CreateDirectory(coreTemplateFolder);
     System.IO.Directory.CreateDirectory(System.IO.Path.Combine(coreTemplateFolder, "Serene.AspNetCore"));	
 
-	replaceTemplateFileList(sereneCoreWebProj, null, new Dictionary<string, bool>());
+	replaceTemplateFileList(sereneCoreWebProj, null, coreSkipFiles);
 	
     System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
         System.IO.Path.Combine(coreTemplateFolder, "SerenityLogo.ico")); 
