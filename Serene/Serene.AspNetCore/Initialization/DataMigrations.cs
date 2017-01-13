@@ -2,14 +2,14 @@
 {
     using FluentMigrator.Runner.Announcers;
     using FluentMigrator.Runner.Initialization;
+    using Microsoft.AspNetCore.Hosting;
     using Serenity.Data;
     using System;
     using System.Data.SqlClient;
     using System.IO;
     using System.Linq;
-    using System.Web.Hosting;
 
-    public static class MigrationRunner
+    public static class DataMigrations
     { 
         private static string[] databaseKeys = new[] {
             "Default"
@@ -39,13 +39,14 @@
             bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             bool isPostgres = !isSql & serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
             bool isMySql = !isSql && !isPostgres && serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
+
             if (!isSql && !isPostgres && !isMySql)
                 return;
 
             var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
             cb.ConnectionString = cs.ConnectionString;
-
             string catalogKey = "?";
+
             foreach (var ck in new[] { "Initial Catalog", "Database", "AttachDBFilename" })
                 if (cb.ContainsKey(ck))
                 {
@@ -105,7 +106,14 @@
                 string command;
                 if (isLocalServer)
                 {
-                    var filename = Path.Combine(AppContext.BaseDirectory, "App_Data/".Replace('/', Path.DirectorySeparatorChar), catalog);
+                    string baseDirectory;
+                    var hostingEnvironment = Serenity.Dependency.TryResolve<IHostingEnvironment>();
+                    if (hostingEnvironment != null)
+                        baseDirectory = hostingEnvironment.ContentRootPath;
+                    else
+                        baseDirectory = AppContext.BaseDirectory;
+
+                    var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data/".Replace('/', Path.DirectorySeparatorChar)), catalog);
                     Directory.CreateDirectory(Path.GetDirectoryName(filename));
                     command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
                         catalog, filename);
@@ -136,7 +144,7 @@
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.
-            if (!isOracle && cs.ConnectionString.IndexOf(typeof(MigrationRunner).Namespace +
+            if (!isOracle && cs.ConnectionString.IndexOf(typeof(DataMigrations).Namespace +
                     @"_" + databaseKey + "_v1", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 SkippedMigrations = true;
@@ -155,9 +163,9 @@
                 {
                     Database = databaseType,
                     Connection = cs.ConnectionString,
-                    TargetAssemblies = new[] { typeof(MigrationRunner).GetAssembly() },
+                    TargetAssemblies = new[] { typeof(DataMigrations).GetAssembly() },
                     Task = "migrate:up",
-                    WorkingDirectory = Path.GetDirectoryName(typeof(MigrationRunner).GetAssembly().Location),
+                    WorkingDirectory = Path.GetDirectoryName(typeof(DataMigrations).GetAssembly().Location),
                     Namespace = "Serene.Migrations." + databaseKey + "DB",
                     Timeout = 90
                 };

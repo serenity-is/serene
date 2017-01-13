@@ -14,6 +14,7 @@ using Serenity.Services;
 using System;
 using System.Data.SqlClient;
 using Newtonsoft.Json.Serialization;
+using System.IO;
 
 namespace Serene
 {
@@ -68,6 +69,8 @@ namespace Serene
                 typeof(Startup).GetAssembly()
             };
 
+            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+
             Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
 
             var textRegistry = app.ApplicationServices.GetRequiredService<ILocalTextRegistry>();
@@ -75,11 +78,9 @@ namespace Serene
             textRegistry.AddEnumTexts();
             textRegistry.AddRowTexts();
             var contentRoot = env.ContentRootPath;
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/serenity/texts"));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/site/texts"));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "App_Data/texts"));
-
-            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/serenity/texts".Replace('/', Path.DirectorySeparatorChar)));
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/site/texts".Replace('/', Path.DirectorySeparatorChar)));
+            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "App_Data/texts".Replace('/', Path.DirectorySeparatorChar)));
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -109,7 +110,7 @@ namespace Serene
             {
             });
 
-            MigrationRunner.Initialize();
+            DataMigrations.Initialize();
         }
     }
 }

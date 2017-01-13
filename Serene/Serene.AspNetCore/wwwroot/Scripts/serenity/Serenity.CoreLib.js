@@ -9,10 +9,6 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
-/// <reference path="ServiceError.ts" />
-/// <reference path="../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../Imports/SS.ts" />
 var Q;
 (function (Q) {
     function coalesce(a, b) {
@@ -79,8 +75,6 @@ var Q;
     }
     Q.deepClone = deepClone;
 })(Q || (Q = {}));
-/// <reference path="../Imports/SS.ts" />
-/// <reference path="Q.CommonTypes.ts" />
 var Q;
 (function (Q) {
     /**
@@ -197,7 +191,6 @@ var Q;
     }
     Q.tryFirst = tryFirst;
 })(Q || (Q = {}));
-/// <reference path="../Imports/SS.ts" />
 var Q;
 (function (Q) {
     function endsWith(s, search) {
@@ -306,7 +299,6 @@ var Q;
     }
     Q.zeroPad = zeroPad;
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
 var Q;
 (function (Q) {
     var Culture;
@@ -337,8 +329,6 @@ var Q;
         }
     })(Culture = Q.Culture || (Q.Culture = {}));
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Culture.ts" />
 var Q;
 (function (Q) {
     function formatNumber(n, fmt, dec, grp) {
@@ -496,9 +486,6 @@ var Q;
     }
     Q.toId = toId;
 })(Q || (Q = {}));
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Culture.ts" />
-/// <reference path="Q.Number.ts" />
 var Q;
 (function (Q) {
     function formatDate(d, format) {
@@ -775,7 +762,6 @@ var Q;
     }
     Q.splitDateString = splitDateString;
 })(Q || (Q = {}));
-/// <reference path="Q.ArrayUtils.ts" />
 var Q;
 (function (Q) {
     function text(key) {
@@ -825,33 +811,33 @@ var Q;
             }
             return t;
         };
-        LT.$table = {};
-        LT.empty = new LT('');
-        LT.initializeTextClass = function (type, prefix) {
-            var $t1 = Object.keys(type).slice();
-            for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-                var member = $t1[$t2];
-                var value = type[member];
-                if (value instanceof LT) {
-                    var lt = value;
-                    var key = prefix + member;
-                    LT.$table[key] = lt.key;
-                    type[member] = new LT(key);
-                }
-            }
-        };
-        LT.getDefault = function (key, defaultText) {
-            var t = LT.$table[key];
-            if (t == null) {
-                t = defaultText;
-                if (t == null) {
-                    t = key || '';
-                }
-            }
-            return t;
-        };
         return LT;
     }());
+    LT.$table = {};
+    LT.empty = new LT('');
+    LT.initializeTextClass = function (type, prefix) {
+        var $t1 = Object.keys(type).slice();
+        for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+            var member = $t1[$t2];
+            var value = type[member];
+            if (value instanceof LT) {
+                var lt = value;
+                var key = prefix + member;
+                LT.$table[key] = lt.key;
+                type[member] = new LT(key);
+            }
+        }
+    };
+    LT.getDefault = function (key, defaultText) {
+        var t = LT.$table[key];
+        if (t == null) {
+            t = defaultText;
+            if (t == null) {
+                t = key || '';
+            }
+        }
+        return t;
+    };
     Q.LT = LT;
 })(Q || (Q = {}));
 var Q;
@@ -911,8 +897,6 @@ var Q;
     }());
     Q.Lookup = Lookup;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/jquery.blockUI/jquery.blockUI.d.ts" />
-/// <reference path="../Imports/JQBlockUI.ts" />
 var Q;
 (function (Q) {
     var blockUICount = 0;
@@ -1050,10 +1034,6 @@ var Q;
     }
     Q.outerHtml = outerHtml;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../typings/jqueryui/jqueryui.d.ts" />
-/// <reference path="Q.LocalText.ts" />
-/// <reference path="Q.Html.ts" />
 var Q;
 (function (Q) {
     function alert(message, options) {
@@ -1214,7 +1194,6 @@ var Q;
     }
     Q.warning = warning;
 })(Q || (Q = {}));
-/// <reference path="../../../typings/toastr/toastr.d.ts" />
 var Q;
 (function (Q) {
     Q.defaultNotifyOptions = {
@@ -1268,6 +1247,26 @@ var Q;
         }
     }
     Q.positionToastContainer = positionToastContainer;
+})(Q || (Q = {}));
+var Q;
+(function (Q) {
+    var ErrorHandling;
+    (function (ErrorHandling) {
+        function showServiceError(error) {
+            var msg;
+            if (error == null) {
+                msg = '??ERROR??';
+            }
+            else {
+                msg = error.Message;
+                if (msg == null) {
+                    msg = error.Code;
+                }
+            }
+            Q.alert(msg);
+        }
+        ErrorHandling.showServiceError = showServiceError;
+    })(ErrorHandling = Q.ErrorHandling || (Q.ErrorHandling = {}));
 })(Q || (Q = {}));
 var Q;
 (function (Q) {
@@ -1372,33 +1371,6 @@ var Q;
     }
     Q.resolveUrl = resolveUrl;
 })(Q || (Q = {}));
-/// <reference path="../Services/ServiceError.ts" />
-/// <reference path="Q.Dialogs.ts" />
-var Q;
-(function (Q) {
-    var ErrorHandling;
-    (function (ErrorHandling) {
-        function showServiceError(error) {
-            var msg;
-            if (error == null) {
-                msg = '??ERROR??';
-            }
-            else {
-                msg = error.Message;
-                if (msg == null) {
-                    msg = error.Code;
-                }
-            }
-            Q.alert(msg);
-        }
-        ErrorHandling.showServiceError = showServiceError;
-    })(ErrorHandling = Q.ErrorHandling || (Q.ErrorHandling = {}));
-})(Q || (Q = {}));
-/// <reference path="Q.BlockUI.ts" />
-/// <reference path="Q.Config.ts" />
-/// <reference path="Q.ErrorHandling.ts" />
-/// <reference path="Q.Url.ts" />
-/// <reference path="../Services/ServiceResponse.ts" />
 var Q;
 (function (Q) {
     function serviceCall(options) {
@@ -1585,10 +1557,6 @@ var Q;
     }
     Q.centerDialog = centerDialog;
 })(Q || (Q = {}));
-/// <reference path="Q.BlockUI.ts" />
-/// <reference path="Q.StringHelpers.ts" />
-/// <reference path="Q.Url.ts" />
-/// <reference path="../../../typings/rsvp/rsvp.d.ts" />
 var Q;
 (function (Q) {
     var ScriptData;
@@ -1757,9 +1725,6 @@ var Q;
     }
     Q.canLoadScriptData = canLoadScriptData;
 })(Q || (Q = {}));
-/// <reference path="Q.Layout.ts" />
-/// <reference path="Q.Lookup.ts" />
-/// <reference path="Q.ScriptData.ts" />
 var Q;
 (function (Q) {
     function prop(type, name, getter, setter) {
@@ -2098,7 +2063,6 @@ var Serenity;
     }());
     Serenity.ServiceAttribute = ServiceAttribute;
 })(Serenity || (Serenity = {}));
-/// <reference path="Attributes.ts" />
 var Serenity;
 (function (Serenity) {
     var Decorators;
@@ -2317,7 +2281,6 @@ var Serenity;
         return [field];
     }
     Serenity.Criteria = Criteria;
-    var Criteria;
     (function (Criteria) {
         var C = Criteria;
         function isEmpty(c) {
@@ -2526,17 +2489,15 @@ var Serenity;
         TabsExtensions.selectTab = selectTab;
     })(TabsExtensions = Serenity.TabsExtensions || (Serenity.TabsExtensions = {}));
 })(Serenity || (Serenity = {}));
-/// <reference path="../../../../typings/jquery/jquery.d.ts" />
-/// <reference path="../../../../typings/jquery.validation/jquery.validation.d.ts" />
 var Serenity;
 (function (Serenity) {
-    var Widget = (function () {
+    var Widget = Widget_1 = (function () {
         function Widget(element, options) {
             var _this = this;
             this.element = element;
             this.options = options || {};
-            this.widgetName = Widget.getWidgetName(ss.getInstanceType(this));
-            this.uniqueName = this.widgetName + (Widget.nextWidgetNumber++).toString();
+            this.widgetName = Widget_1.getWidgetName(ss.getInstanceType(this));
+            this.uniqueName = this.widgetName + (Widget_1.nextWidgetNumber++).toString();
             if (element.data(this.widgetName)) {
                 throw new ss.Exception(Q.format("The element already has widget '{0}'!", this.widgetName));
             }
@@ -2605,7 +2566,7 @@ var Serenity;
                 params.element && params.element(widget.element);
             }
             else {
-                var e = Widget.elementFor(params.type);
+                var e = Widget_1.elementFor(params.type);
                 if (params.container)
                     e.appendTo(params.container);
                 params.element && params.element(e);
@@ -2631,24 +2592,26 @@ var Serenity;
             }
             return this.asyncPromise;
         };
-        Widget.nextWidgetNumber = 0;
-        Widget = __decorate([
-            Serenity.Decorators.registerClass()
-        ], Widget);
         return Widget;
     }());
+    Widget.nextWidgetNumber = 0;
+    Widget = Widget_1 = __decorate([
+        Serenity.Decorators.registerClass()
+    ], Widget);
     Serenity.Widget = Widget;
+    var Widget_1;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
-    var TemplatedWidget = (function (_super) {
+    var TemplatedWidget = TemplatedWidget_1 = (function (_super) {
         __extends(TemplatedWidget, _super);
         function TemplatedWidget(container, options) {
-            _super.call(this, container, options);
-            this.idPrefix = this.uniqueName + '_';
-            var widgetMarkup = this.getTemplate().replace(new RegExp('~_', 'g'), this.idPrefix);
+            var _this = _super.call(this, container, options) || this;
+            _this.idPrefix = _this.uniqueName + '_';
+            var widgetMarkup = _this.getTemplate().replace(new RegExp('~_', 'g'), _this.idPrefix);
             widgetMarkup = Q.jsRender(widgetMarkup);
-            this.element.html(widgetMarkup);
+            _this.element.html(widgetMarkup);
+            return _this;
         }
         TemplatedWidget.prototype.byId = function (id) {
             return $('#' + this.idPrefix + id);
@@ -2666,8 +2629,8 @@ var Serenity;
             };
             var type = ss.getInstanceType(this);
             var fullName = ss.getTypeFullName(type);
-            var templateNames = TemplatedWidget.templateNames;
-            var cachedName = TemplatedWidget.templateNames[fullName];
+            var templateNames = TemplatedWidget_1.templateNames;
+            var cachedName = TemplatedWidget_1.templateNames[fullName];
             if (cachedName != null) {
                 return cachedName;
             }
@@ -2693,7 +2656,7 @@ var Serenity;
                 name = noGeneric(ss.getTypeName(type));
                 if (Q.canLoadScriptData('Template.' + name) ||
                     $('script#Template_' + name).length > 0) {
-                    TemplatedWidget.templateNames[fullName] = name;
+                    TemplatedWidget_1.templateNames[fullName] = name;
                     return name;
                 }
                 type = ss.getBaseType(type);
@@ -2713,13 +2676,14 @@ var Serenity;
             }
             return template;
         };
-        TemplatedWidget.templateNames = {};
-        TemplatedWidget = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TemplatedWidget);
         return TemplatedWidget;
     }(Serenity.Widget));
+    TemplatedWidget.templateNames = {};
+    TemplatedWidget = TemplatedWidget_1 = __decorate([
+        Serenity.Decorators.registerClass()
+    ], TemplatedWidget);
     Serenity.TemplatedWidget = TemplatedWidget;
+    var TemplatedWidget_1;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
@@ -2747,17 +2711,18 @@ var Serenity;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
-    var TemplatedDialog = (function (_super) {
+    var TemplatedDialog = TemplatedDialog_1 = (function (_super) {
         __extends(TemplatedDialog, _super);
         function TemplatedDialog(options) {
-            _super.call(this, Q.newBodyDiv(), options);
-            this.isPanel = ss.getAttributes(ss.getInstanceType(this), Serenity.PanelAttribute, true).length > 0;
-            if (!this.isPanel) {
-                this.initDialog();
+            var _this = _super.call(this, Q.newBodyDiv(), options) || this;
+            _this.isPanel = ss.getAttributes(ss.getInstanceType(_this), Serenity.PanelAttribute, true).length > 0;
+            if (!_this.isPanel) {
+                _this.initDialog();
             }
-            this.initValidator();
-            this.initTabs();
-            this.initToolbar();
+            _this.initValidator();
+            _this.initTabs();
+            _this.initToolbar();
+            return _this;
         }
         TemplatedDialog.getCssSize = function (element, name) {
             var cssSize = element.css(name);
@@ -2778,16 +2743,16 @@ var Serenity;
             var dialog = $('<div/>').hide().addClass(dialogClass).appendTo(document.body);
             try {
                 var sizeHelper = $('<div/>').addClass('size').appendTo(dialog);
-                size = TemplatedDialog.getCssSize(sizeHelper, 'minWidth');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'minWidth');
                 if (size != null)
                     opt.minWidth = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'width');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'width');
                 if (size != null)
                     opt.width = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'height');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'height');
                 if (size != null)
                     opt.height = size;
-                size = TemplatedDialog.getCssSize(sizeHelper, 'minHeight');
+                size = TemplatedDialog_1.getCssSize(sizeHelper, 'minHeight');
                 if (size != null)
                     opt.minHeight = size;
             }
@@ -2918,7 +2883,7 @@ var Serenity;
             var dialogClass = 's-Dialog ' + this.getCssClass();
             opt.dialogClass = dialogClass;
             opt.width = 920;
-            TemplatedDialog.applyCssSizes(opt, dialogClass);
+            TemplatedDialog_1.applyCssSizes(opt, dialogClass);
             opt.autoOpen = false;
             var type = ss.getInstanceType(this);
             opt.resizable = ss.getAttributes(type, Serenity.ResizableAttribute, true).length > 0;
@@ -2996,22 +2961,21 @@ var Serenity;
                 }
             }
         };
-        TemplatedDialog = __decorate([
-            Serenity.Decorators.registerClass([Serenity.IDialog])
-        ], TemplatedDialog);
         return TemplatedDialog;
     }(Serenity.TemplatedWidget));
+    TemplatedDialog = TemplatedDialog_1 = __decorate([
+        Serenity.Decorators.registerClass([Serenity.IDialog])
+    ], TemplatedDialog);
     Serenity.TemplatedDialog = TemplatedDialog;
+    var TemplatedDialog_1;
 })(Serenity || (Serenity = {}));
-/// <reference path="../../../../typings/sortablejs/sortablejs.d.ts" />
 var Serenity;
 (function (Serenity) {
     var ColumnPickerDialog = (function (_super) {
         __extends(ColumnPickerDialog, _super);
         function ColumnPickerDialog() {
-            var _this = this;
-            _super.call(this);
-            new Serenity.QuickSearchInput(this.byId("Search"), {
+            var _this = _super.call(this) || this;
+            new Serenity.QuickSearchInput(_this.byId("Search"), {
                 onSearch: function (fld, txt, done) {
                     txt = Q.trimToNull(txt);
                     if (txt != null)
@@ -3021,8 +2985,9 @@ var Serenity;
                     });
                 }
             });
-            this.ulVisible = this.byId("VisibleCols");
-            this.ulHidden = this.byId("HiddenCols");
+            _this.ulVisible = _this.byId("VisibleCols");
+            _this.ulHidden = _this.byId("HiddenCols");
+            return _this;
         }
         ColumnPickerDialog.createToolButton = function (grid) {
             return {
@@ -3200,13 +3165,13 @@ var Serenity;
         ColumnPickerDialog.prototype.getTemplate = function () {
             return "\n<div class=\"search\"><input id=\"~_Search\" type=\"text\" disabled /></div>\n<div class=\"columns-container\">\n<div class=\"column-list visible-list bg-success\">\n  <h5><i class=\"icon-eye\"></i> " + Q.text("Controls.ColumnPickerDialog.VisibleColumns") + "</h5>\n  <ul id=\"~_VisibleCols\"></ul>\n</div>\n<div class=\"column-list hidden-list bg-info\">\n  <h5><i class=\"icon-list\"></i> " + Q.text("Controls.ColumnPickerDialog.HiddenColumns") + "</h5>\n  <ul id=\"~_HiddenCols\"></ul>\n</div>\n</div>";
         };
-        ColumnPickerDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.resizable(),
-            Serenity.Decorators.responsive()
-        ], ColumnPickerDialog);
         return ColumnPickerDialog;
     }(Serenity.TemplatedDialog));
+    ColumnPickerDialog = __decorate([
+        Serenity.Decorators.registerClass(),
+        Serenity.Decorators.resizable(),
+        Serenity.Decorators.responsive()
+    ], ColumnPickerDialog);
     Serenity.ColumnPickerDialog = ColumnPickerDialog;
 })(Serenity || (Serenity = {}));
 var Serenity;
@@ -3319,7 +3284,6 @@ if ($.fn.button && $.fn.button.noConflict) {
     var btn = $.fn.button.noConflict();
     $.fn.btn = btn;
 }
-/// <reference path="../../typings/jquery/jquery.d.ts" />
 // PAGER -----
 (function ($) {
     $.widget("ui.slickPager", {
@@ -3470,7 +3434,6 @@ var Slick;
         var GroupItemMetadataProvider;
     })(Data = Slick.Data || (Slick.Data = {}));
 })(Slick || (Slick = {}));
-var Slick;
 (function (Slick) {
     var RemoteView = (function () {
         function RemoteView(options) {
@@ -4520,7 +4483,6 @@ var Slick;
     }());
     Slick.RemoteView = RemoteView;
 })(Slick || (Slick = {}));
-var Slick;
 (function (Slick) {
     var Aggregators;
     (function (Aggregators) {
@@ -4640,11 +4602,6 @@ var Slick;
         Aggregators.Sum = Sum;
     })(Aggregators = Slick.Aggregators || (Slick.Aggregators = {}));
 })(Slick || (Slick = {}));
-/// <reference path = "Q/Q.Config.ts" />
-/// <reference path = "Q/Q.Culture.ts" />
-/// <reference path = "Q/Q.LocalText.ts" />
-/// <reference path = "Q/Q.Notify.ts" />
-/// <reference path = "Q/Q.Url.ts" />
 var Q;
 (function (Q) {
     var oldShowLabel;

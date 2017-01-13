@@ -42,7 +42,9 @@ namespace Serene.Northwind.Entities
             set { Fields.EmployeeID[this] = value; }
         }
 
-        [DisplayName("Employee"), Expression("CONCAT(e.[FirstName], CONCAT(' ', e.[LastName]))")]
+        [DisplayName("Employee")]
+        [Expression("CONCAT(e.[FirstName], CONCAT(' ', e.[LastName]))")]
+        [Expression("(e.FirstName || ' ' || e.LastName)", Dialect = "Sqlite")]
         public String EmployeeFullName
         {
             get { return Fields.EmployeeFullName[this]; }

@@ -98,7 +98,8 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Organized By")]
-        [Expression("CONCAT(CONCAT(jOrganizerContact.FirstName, ' '), jOrganizerContact.LastName)")]
+        [Expression("CONCAT(CONCAT(jOrganizerContact.[FirstName], ' '), jOrganizerContact.[LastName])")]
+        [Expression("(jOrganizerContact.FirstName || ' ' || jOrganizerContact.LastName)", Dialect = "Sqlite")]
         public String OrganizerContactFullName
         {
             get { return Fields.OrganizerContactFullName[this]; }
@@ -114,7 +115,8 @@ namespace Serene.Meeting.Entities
         }
 
         [DisplayName("Reporter")]
-        [Expression("CONCAT(CONCAT(jReporterContact.FirstName, ' '), jReporterContact.LastName)")]
+        [Expression("CONCAT(CONCAT(jReporterContact.[FirstName], ' '), jReporterContact.[LastName])")]
+        [Expression("(jReporterContact.FirstName || ' ' || jReporterContact.LastName)", Dialect = "Sqlite")]
         public String ReporterContactFullName
         {
             get { return Fields.ReporterContactFullName[this]; }

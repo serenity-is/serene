@@ -1,4 +1,6 @@
-﻿namespace Serene.Common {
+﻿declare var jsPDF;
+
+namespace Serene.Common {
     export class ReportPage extends Serenity.Widget<any> {
 
         private reportKey: string;

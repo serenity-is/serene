@@ -1,4 +1,6 @@
-﻿namespace Serene.Common {
+﻿declare var jsPDF;
+
+namespace Serene.Common {
     export class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
 
         private report: Serenity.Reporting.ReportRetrieveResponse;

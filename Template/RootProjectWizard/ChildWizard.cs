@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text;
+using System.Diagnostics;
 
 namespace RootProjectWizard
 {
@@ -110,6 +111,30 @@ namespace RootProjectWizard
                         project.DTE.StatusBar.Text = "Installing NuGet Package: " + id + " " + ver;
                         packageInstaller.InstallPackage((string)null, project, id, ver, false);
                     }
+                }
+            }
+
+            if (project.FullName.IndexOf("AspNetCore") >= 0)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "dotnet",
+                        Arguments = "restore",
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                    }).WaitForExit(120000);
+
+                    System.Diagnostics.Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "dotnet",
+                        Arguments = "sergen restore",
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                    }).WaitForExit(120000);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
                 }
             }
         }
