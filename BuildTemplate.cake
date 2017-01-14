@@ -202,6 +202,14 @@ Task("PrepareVSIX")
         ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
     });
 
+    NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
+        Id = new List<string> {
+            "Serenity.CodeGenerator"
+        },
+        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
+        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
+    });
+	
     MSBuild("./Serene.Web.sln", s => {
         s.SetConfiguration(configuration);
     });
