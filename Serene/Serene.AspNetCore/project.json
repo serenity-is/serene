@@ -1,4 +1,4 @@
-{
+﻿{
   "dependencies": {
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Mvc": "1.1.0",
@@ -19,14 +19,14 @@
     "EPPlus.Core": "1.1.0",
     "FastMember": "1.1.0",
     "MailKit": "1.10.1",
-    "Serenity.Web": "2.8.1",
+    "Serenity.Web": "2.8.5",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Serenity.FluentMigrator.Runner": "1.6.901"
   },
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-    "Serenity.CodeGenerator": "2.8.1"
+    "Serenity.CodeGenerator": "2.8.5"
   },
   "frameworks": {
     "netcoreapp1.1": {
