@@ -994,7 +994,6 @@
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="false" TargetFileName="$ext_projectname$.AspNetCore.xproj">Serene.AspNetCore.xproj</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="sergen.json">sergen.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>

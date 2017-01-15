@@ -1,0 +1,34 @@
+{
+  "name": "serin",
+  "version": "1.0.0",
+  "description": "Initializes a new Serenity project using Serene VSIX from VSGallery",
+  "preferGlobal": true,
+  "dependencies": {
+    "xml2js": "~0.4.17"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volkanceylan/serenity.git"
+  },
+  "keywords": [
+    "Serene",
+    "Serenity",
+    "DotNet",
+    "Template",
+    "CoreFX"
+  ],
+  "author": "Volkan Ceylan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/volkanceylan/serenity/issues"
+  },
+  "homepage": "https://github.com/volkanceylan/serenity#readme",
+  "bin": {
+    "serin": "index.js"
+  },
+  "files": [
+    "template/"
+  ]
+}
