@@ -13,7 +13,19 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
-var templateDir = path.resolve(__dirname, 'template/');
+function replaceAll(s, oldValue, newValue) {
+	newValue = newValue || '';
+	return s.split(oldValue).join(newValue);
+};
+
+function toPath(s) {
+    if (path.sep == '/')
+	    return replaceAll(s, '\\', '/');
+
+    return replaceAll(s, '/', '\\');
+};
+
+var templateDir = path.resolve(__dirname, toPath('template/'));
 var vsTemplatePath = path.resolve(templateDir, 'SereneCore.vstemplate');
 
 if (fs.readdirSync('./').length) {
@@ -22,11 +34,6 @@ if (fs.readdirSync('./').length) {
 }
 
 var replacements = {
-};
-
-function replaceAll(s, oldValue, newValue) {
-	newValue = newValue || '';
-	return s.split(oldValue).join(newValue);
 };
 
 function replaceParams(s) {
@@ -63,7 +70,7 @@ parseXml(fs.readFileSync(vsTemplatePath, "utf8"), function(err, result) {
         for (var i = 0; i < projectTemplateLinks.length; i++) {
             var templateLink = projectTemplateLinks[i];
             var projectName = replaceParams(templateLink.$.ProjectName.replace('$projectname$', solutionName));
-            var templatePath = templateLink._.trim();
+            var templatePath = toPath(templateLink._.trim());
             createProject(solutionName, projectName, templatePath);
         }
 
