@@ -1573,7 +1573,7 @@
       </feature>
     </features>
     <conditionals>
-      <files include="Initialization\MigrationRunner.cs" />
+      <files include="Initialization\DataMigrations.cs" />
       <files include="wwwroot\Content\site\site.less" />
       <files include="Modules\Common\Dashboard\DashboardIndex.cshtml" />
       <files include="Modules\Common\Dashboard\DashboardPage.cs" />

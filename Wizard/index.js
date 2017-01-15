@@ -81,16 +81,22 @@ function createProject(solutionName, projectName, vsTemplatePath) {
     replacements["$safeprojectname$"] = projectName.replace(/\W/g, '');
 
     function copyFile(source, target, replace) {
-        var content = fs.readFileSync(source, "utf8");
-        if (replace)
-            content = replaceParams(content);
-        
+
         var targetFolder = path.dirname(target);
         if (!fs.existsSync(targetFolder))
             fs.mkdirSync(targetFolder);
-        fs.writeFileSync(target, "\ufeff" + content, {
-            encoding: "utf8"
-        });
+
+        if (replace) {
+            var content = fs.readFileSync(source, "utf8");
+            content = replaceParams(content);       
+
+            fs.writeFileSync(target, content, {
+                encoding: "utf8"
+            });
+        }
+        else {
+            fs.writeFileSync(target, fs.readFileSync(source));
+        }
     }
 
     function traverse(container, sourceRoot, targetRoot) {
@@ -121,10 +127,39 @@ function createProject(solutionName, projectName, vsTemplatePath) {
         var prj = vst.TemplateContent[0].Project[0];
         
         var sourceRoot = path.resolve(templateDir, path.dirname(vsTemplatePath));
-        var targetRoot = path.resolve('./', projectName);      
+        var targetRoot = path.resolve('./', projectName);
         var xprojSource = path.resolve(sourceRoot, prj.$.File);
         var xprojTarget = path.resolve(targetRoot, replaceParams(prj.$.TargetFileName));
         copyFile(xprojSource, xprojTarget, true);
         traverse(prj, sourceRoot, targetRoot);
+
+        var exec = require('child_process').exec;
+        console.log("Restoring packages for " + projectName);
+        var child1 = exec('dotnet restore', {
+            cwd: targetRoot
+        });
+        child1.stdout.pipe(process.stdout);
+        child1.stderr.pipe(process.stdin);
+        child1.on('close', function() {
+            console.log("Running Sergen to restore content for " + projectName);
+            var child2 = exec('dotnet sergen restore', {
+                cwd: targetRoot
+            });
+            child2.stdout.pipe(process.stdout);
+            child2.stderr.pipe(process.stderr);
+            child2.on('close', function() {
+                console.log("Installing node modules for " + projectName);
+                var child3 = exec('npm install', {
+                    cwd: targetRoot
+                });
+
+                child3.stdout.pipe(process.stdout);
+                child3.stderr.pipe(process.stderr);
+                child3.on('close', function() {
+                    console.log('Your project is generated.');
+                    process.exit(0);
+                });
+            });
+        });
     });
 }
