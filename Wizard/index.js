@@ -71,7 +71,45 @@ parseXml(fs.readFileSync(vsTemplatePath, "utf8"), function(err, result) {
     });
 });
 
+function PathMatcher(includesStr, excludesStr) {
 
+    function wildcardToRegex(wildcard) {
+        var pattern = wildcard.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+        if (path.sep == '/') {
+            // regex wildcard adjustments for *nix-style file systems
+            pattern = replaceAll(pattern, "\\.\\*\\*", "\\.[^/.]*");
+            pattern = replaceAll(pattern, "\\*\\*/", "(.+/)*");
+            pattern = replaceAll(pattern, "\\*\\*", ".*");
+            pattern = replaceAll(pattern, "\\*", "[^/]*(/)?");
+            pattern = replaceAll("\\?", ".");
+        } else {
+            // regex wildcard adjustments for Windows-style file systems
+            pattern = replaceAll(pattern, "/", "\\\\");
+            pattern = replaceAll(pattern, "\\.\\*\\*", "\\.[^\\\\.]*")
+            pattern = replaceAll(pattern, "\\*\\*\\\\", "(.+\\\\)*")
+            pattern = replaceAll(pattern, "\\*\\*", ".*")
+            pattern = replaceAll(pattern, "\\*", "[^\\\\]*(\\\\)?");
+            pattern = replaceAll("\\?", ".");
+        }
+
+        return new RegExp('^' + pattern + '$', /ig/);
+    }
+
+    includes = includesStr.map(wildcardToRegex);
+    excludes = excludesStr.map(wildcardToRegex);   
+
+    this.isMatch = function(p) {
+        for (var i = 0; i < excludes.length; i++)
+            if (p.match(excludes[i]))
+                return false;
+
+        for (var i = 0; i < includes.length; i++)
+            if (p.match(includes[i]))
+                return true;
+
+        return false;
+    }
+}
 
 function createProject(solutionName, projectName, vsTemplatePath) {
     
