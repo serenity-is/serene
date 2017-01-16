@@ -60,8 +60,7 @@ namespace Serene.Membership.Pages
 
         public ActionResult Signout()
         {
-            //Session.Abandon();
-            //FormsAuthentication.SignOut();
+            WebSecurityHelper.LogOut();
             return new RedirectResult("~/");
         }
     }
