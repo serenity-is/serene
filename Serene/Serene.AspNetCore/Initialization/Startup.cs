@@ -15,6 +15,9 @@ using System;
 using System.Data.SqlClient;
 using Newtonsoft.Json.Serialization;
 using System.IO;
+using Serene.AppServices;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace Serene
 {
@@ -84,6 +87,13 @@ namespace Serene
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var reqLocOpt = new RequestLocalizationOptions();
+            reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
+            reqLocOpt.SupportedCultures = UserCultureProvider.SupportedCultures;
+            reqLocOpt.RequestCultureProviders.Clear();
+            reqLocOpt.RequestCultureProviders.Add(new UserCultureProvider());
+            app.UseRequestLocalization(reqLocOpt);
 
             if (env.IsDevelopment())
             {
