@@ -648,6 +648,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceStorage.ts">UserPreferenceStorage.ts</ProjectItem>
           </Folder>
         </Folder>
+        <Folder Name="Default" TargetFolderName="Default">
+          <Folder Name="BusinessUnits" TargetFolderName="BusinessUnits">
+            <ProjectItem ReplaceParameters="false" TargetFileName="BusinessUnitsGrid.ts.20170117_023157.bak">BusinessUnitsGrid.ts.20170117_023157.bak</ProjectItem>
+          </Folder>
+        </Folder>
         <Folder Name="Meeting" TargetFolderName="Meeting">
           <Folder Name="Meeting" TargetFolderName="Meeting">
             <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDialog.Template.html">Meeting.MeetingDialog.Template.html</ProjectItem>
