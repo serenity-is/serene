@@ -8,6 +8,7 @@ var path = require('path');
 var parseXml = require('xml2js').parseString;
 var util = require('util');
 var readline = require('readline');
+var https = require('https');
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -45,6 +46,80 @@ function replaceParams(s) {
     return s;
 }
 
+function getUserHome() {
+  return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+}
+
+function downloadHttps(url, dest, cb) {
+    var file = fs.createWriteStream(dest);
+    var request = https.get(url, function(response) {
+        response.pipe(file);
+        file.on('finish', function() {
+            file.close(cb);
+        });
+    });
+}
+
+console.log('Reading template version from VSGallery...');
+
+https.get({
+    host: 'marketplace.visualstudio.com',
+    path: '/items?itemName=VolkanCeylan.SereneSerenityApplicationTemplate',
+    port: 443,
+    headers: { 'user-agent': 'Mozilla/5.0' }
+}, function(res) {
+    if (!(res.statusCode >= 200 && res.statusCode <= 300)) {
+        console.error("Couldn't read template page from VSGallery. Got status code " + res.statusCode);
+        process.exit();
+    }
+
+    var str = "";
+    res.on('data', function(d) { str += d; });
+    res.on('end', function() {
+        var idx = str.lastIndexOf('/Serene.Template.vsix"');
+        if (idx <= 0) {
+            console.error("Couldn't read template version from VSGallery.");
+            process.exit();
+        }
+
+        var idx2 = str.lastIndexOf('/', idx - 1);
+        if (idx2 <= 0 || (idx - idx2 >= 5))  {
+            console.error("Couldn't read template version from VSGallery.");
+            process.exit();
+        }
+
+        var dirver = parseInt(str.substr(idx2 + 1, idx - idx2 - 1));
+        var cacheDir = path.resolve(getUserHome(), '.serene');
+        var cacheFile = path.resolve(cacheDir, 'Serene.Template.' + dirver + '.vsix');
+        if (!fs.existsSync(cacheDir))
+            fs.mkdirSync(cacheDir);
+        if (fs.existsSync(cacheFile)) {
+            
+        }
+        else {
+            var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
+                return x.toLowerCase().startsWith('serene.template.') && x.toLowerCase().endsWith('.vsix');
+            });
+            console.log('Downloading latest Serene template...');
+            downloadHttps("https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/file/219776/" + 
+                dirver + "/Serene.Template.vsix", cacheFile,
+                function() {
+                    console.log('Download complete.');
+                    for (var i = 0; i < oldFiles.length; i++) {
+                        fs.unlinkSync(path.resolve(cacheDir, oldFiles[i]));
+                    }
+                });
+        }     
+    });
+
+}).on('error', function(e) {
+  console.log("Error while downloading template information: " + e.message);
+});
+
+
+
+//process.exit(0);
+/*
 parseXml(fs.readFileSync(vsTemplatePath, "utf8"), function(err, result) {
     var vst = result.VSTemplate;
     var solutionName = vst.TemplateData[0].DefaultName[0];
@@ -76,7 +151,7 @@ parseXml(fs.readFileSync(vsTemplatePath, "utf8"), function(err, result) {
 
         rl.close();
     });
-});
+});*/
 
 function PathMatcher(includesStr, excludesStr) {
 
