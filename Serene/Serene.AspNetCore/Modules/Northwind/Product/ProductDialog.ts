@@ -10,9 +10,5 @@
         protected getService() { return ProductService.baseUrl; }
 
         protected form = new ProductForm(this.idPrefix);
-
-        protected getLanguages(): string[][] {
-            return LanguageList.getValue();
-        }
     }
 }

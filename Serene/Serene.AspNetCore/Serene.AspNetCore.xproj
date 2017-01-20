@@ -3,7 +3,7 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptCharset>utf-8</TypeScriptCharset>
@@ -34,6 +34,6 @@
     <Exec Command="npm install" ContinueOnError="true" />
   </Target>
   <Target Name="AfterBuild">
-    <Exec Command="npm run build" ContinueOnError="true" />
+    <Exec Command="npm run tsc" ContinueOnError="true" />
   </Target>
 </Project>

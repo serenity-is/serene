@@ -12,12 +12,12 @@ namespace Serene.Northwind.Repositories
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
-        public SaveResponse Create(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
         }
 
-        public SaveResponse Update(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
         }
@@ -37,17 +37,12 @@ namespace Serene.Northwind.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
-        public RetrieveLocalizationResponse<MyRow> RetrieveLocalization(IDbConnection connection, RetrieveLocalizationRequest request)
-        {
-            return new LocalizationRowHandler<MyRow>().Retrieve(connection, request);
-        }
-
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
 
-        private class MySaveHandler : SaveRequestHandler<MyRow, SaveWithLocalizationRequest<MyRow>, SaveResponse>
+        private class MySaveHandler : SaveRequestHandler<MyRow, SaveRequest<MyRow>, SaveResponse>
         {
             protected override void AfterSave()
             {

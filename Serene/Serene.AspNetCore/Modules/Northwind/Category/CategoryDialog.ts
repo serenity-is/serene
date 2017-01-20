@@ -9,9 +9,5 @@
         protected getService() { return CategoryService.baseUrl; }
 
         protected form = new CategoryForm(this.idPrefix);
-
-        protected getLanguages() {
-            return LanguageList.getValue();
-        }
     }
 }

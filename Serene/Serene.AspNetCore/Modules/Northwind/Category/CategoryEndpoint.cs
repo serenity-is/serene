@@ -13,13 +13,13 @@ namespace Serene.Northwind.Endpoints
     public class CategoryController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveWithLocalizationRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
             return new MyRepository().Update(uow, request);
         }
@@ -28,11 +28,6 @@ namespace Serene.Northwind.Endpoints
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
             return new MyRepository().Delete(uow, request);
-        }
-
-        public RetrieveLocalizationResponse<MyRow> RetrieveLocalization(IDbConnection connection, RetrieveLocalizationRequest request)
-        {
-            return new MyRepository().RetrieveLocalization(connection, request);
         }
 
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)

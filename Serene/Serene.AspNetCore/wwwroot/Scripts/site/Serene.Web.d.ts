@@ -2894,7 +2894,6 @@ declare namespace Serene.Northwind {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: ProductForm;
-        protected getLanguages(): string[][];
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3006,7 +3005,6 @@ declare namespace Serene.Northwind {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: CategoryForm;
-        protected getLanguages(): string[][];
     }
 }
 declare namespace Serene.BasicSamples {

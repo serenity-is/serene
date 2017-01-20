@@ -7560,6 +7560,7 @@
 			var items = [];
 			for (var $t2 = 0; $t2 < pgOptions.items.length; $t2++) {
 				var item1 = pgOptions.items[$t2];
+				var langs = null;
 				if (item1.localizable === true) {
 					var copy = $.extend({}, item1);
 					copy.oneWay = true;
@@ -7567,32 +7568,28 @@
 					copy.required = false;
 					copy.defaultValue = null;
 					items.push(copy);
-					var langs = this.getLanguages();
-					var langsArr = ss.safeCast(langs, Array);
-					if (ss.isValue(langsArr) && langsArr.length > 0 && ss.isValue(langsArr[0]) && ss.isArray(langsArr[0])) {
-						langs = Enumerable.from(langsArr).select(function(x) {
-							return { item1: x[0], item2: x[1] };
-						});
-					}
-					var $t3 = ss.getEnumerator(langs);
-					try {
-						while ($t3.moveNext()) {
-							var lang = $t3.current();
-							copy = $.extend({}, item1);
-							copy.name = lang.item1 + '$' + copy.name;
-							copy.title = lang.item2;
-							copy.cssClass = [copy.cssClass, 'translation'].join(' ');
-							copy.insertable = true;
-							copy.updatable = true;
-							copy.oneWay = false;
-							copy.required = false;
-							copy.localizable = false;
-							copy.defaultValue = null;
-							items.push(copy);
+					if (ss.isNullOrUndefined(langs)) {
+						var langsTuple = this.getLanguages();
+						langs = ss.safeCast(langsTuple, Array);
+						if (ss.isNullOrUndefined(langs) || langs.length === 0 || ss.isNullOrUndefined(langs[0]) || !ss.isArray(langs[0])) {
+							langs = Enumerable.from(langsTuple).select(function(x) {
+								return [x.item1, x.item2];
+							}).toArray();
 						}
 					}
-					finally {
-						$t3.dispose();
+					for (var $t3 = 0; $t3 < langs.length; $t3++) {
+						var lang = langs[$t3];
+						copy = $.extend({}, item1);
+						copy.name = lang[0] + '$' + copy.name;
+						copy.title = lang[1];
+						copy.cssClass = [copy.cssClass, 'translation'].join(' ');
+						copy.insertable = true;
+						copy.updatable = true;
+						copy.oneWay = false;
+						copy.required = false;
+						copy.localizable = false;
+						copy.defaultValue = null;
+						items.push(copy);
 					}
 				}
 			}
@@ -7627,6 +7624,9 @@
 			}
 		},
 		getLanguages: function() {
+			if (!ss.staticEquals($Serenity_EntityDialog.defaultLanguageList, null)) {
+				return $Serenity_EntityDialog.defaultLanguageList() || [];
+			}
 			return [];
 		},
 		$loadLocalization: function() {
@@ -7643,30 +7643,33 @@
 			}
 			var self = this;
 			var opt = {};
-			opt.service = this.getService() + '/RetrieveLocalization';
+			opt.service = this.getService() + '/Retrieve';
 			opt.blockUI = true;
-			opt.request = { EntityId: this.get_entityId() };
+			var $t2 = this.get_entityId();
+			var $t1 = [];
+			$t1.push('Localizations');
+			opt.request = { EntityId: $t2, ColumnSelection: 'keyOnly', IncludeColumns: $t1 };
 			opt.onSuccess = ss.mkdel(this, function(response) {
 				var copy = $.extend(new Object(), self.get_entity());
-				var $t1 = ss.getEnumerator(Object.keys(response.Entities));
+				var $t3 = ss.getEnumerator(Object.keys(response.Localizations));
 				try {
-					while ($t1.moveNext()) {
-						var language = $t1.current();
-						var entity = response.Entities[language];
-						var $t2 = ss.getEnumerator(Object.keys(entity));
+					while ($t3.moveNext()) {
+						var language = $t3.current();
+						var entity = response.Localizations[language];
+						var $t4 = ss.getEnumerator(Object.keys(entity));
 						try {
-							while ($t2.moveNext()) {
-								var key = $t2.current();
+							while ($t4.moveNext()) {
+								var key = $t4.current();
 								copy[language + '$' + key] = entity[key];
 							}
 						}
 						finally {
-							$t2.dispose();
+							$t4.dispose();
 						}
 					}
 				}
 				finally {
-					$t1.dispose();
+					$t3.dispose();
 				}
 				self.localizationGrid.load(copy);
 				this.$setLocalizationGridCurrentValues();
@@ -7716,40 +7719,34 @@
 			}
 			var result = {};
 			var idField = this.getIdProperty();
-			var langs = this.getLanguages();
-			var langsArr = ss.safeCast(langs, Array);
-			if (ss.isValue(langsArr) && langsArr.length > 0 && ss.isValue(langsArr[0]) && ss.isArray(langsArr[0])) {
-				langs = Enumerable.from(langsArr).select(function(x) {
-					return { item1: x[0], item2: x[1] };
-				});
+			var langsTuple = this.getLanguages();
+			var langs = ss.safeCast(langsTuple, Array);
+			if (ss.isNullOrUndefined(langs) || langs.length === 0 || ss.isNullOrUndefined(langs[0]) || !ss.isArray(langs[0])) {
+				langs = Enumerable.from(langsTuple).select(function(x) {
+					return [x.item1, x.item2];
+				}).toArray();
 			}
-			var $t1 = ss.getEnumerator(langs);
-			try {
-				while ($t1.moveNext()) {
-					var pair = $t1.current();
-					var language = pair.item1;
-					var entity = {};
-					if (ss.isValue(idField)) {
-						entity[idField] = this.get_entityId();
-					}
-					var prefix = language + '$';
-					var $t2 = ss.getEnumerator(Object.keys(this.localizationPendingValue));
-					try {
-						while ($t2.moveNext()) {
-							var k = $t2.current();
-							if (ss.startsWithString(k, prefix)) {
-								entity[k.substr(prefix.length)] = this.localizationPendingValue[k];
-							}
+			for (var $t1 = 0; $t1 < langs.length; $t1++) {
+				var pair = langs[$t1];
+				var language = pair[0];
+				var entity = {};
+				if (ss.isValue(idField)) {
+					entity[idField] = this.get_entityId();
+				}
+				var prefix = language + '$';
+				var $t2 = ss.getEnumerator(Object.keys(this.localizationPendingValue));
+				try {
+					while ($t2.moveNext()) {
+						var k = $t2.current();
+						if (ss.startsWithString(k, prefix)) {
+							entity[k.substr(prefix.length)] = this.localizationPendingValue[k];
 						}
 					}
-					finally {
-						$t2.dispose();
-					}
-					result[language] = entity;
 				}
-			}
-			finally {
-				$t1.dispose();
+				finally {
+					$t2.dispose();
+				}
+				result[language] = entity;
 			}
 			return result;
 		},
@@ -10738,6 +10735,9 @@
 	(function() {
 		$Serenity_PropertyGrid.$knownEditorTypes = null;
 		$Serenity_PropertyGrid.$knownEditorTypes = {};
+	})();
+	(function() {
+		$Serenity_EntityDialog.defaultLanguageList = null;
 	})();
 	(function() {
 		Q.prop($Serenity_HtmlContentEditor, 'value');

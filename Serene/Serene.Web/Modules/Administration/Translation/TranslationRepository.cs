@@ -137,7 +137,7 @@ namespace Serene.Administration.Repositories
                 if (!pair.Value.IsEmptyOrNull())
                     result.Add(pair.Key, pair.Value);
 
-            string json = JSON.StringifyIndented(result);
+            string json = JSON.StringifyIndented(result, indentation: 2);
 
             var textsFilePath = GetUserTextsFilePath(request.TargetLanguageID);
             Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));

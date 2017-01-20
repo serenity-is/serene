@@ -2908,9 +2908,6 @@ var Serene;
             ProductDialog.prototype.getLocalTextPrefix = function () { return Northwind.ProductRow.localTextPrefix; };
             ProductDialog.prototype.getNameProperty = function () { return Northwind.ProductRow.nameProperty; };
             ProductDialog.prototype.getService = function () { return Northwind.ProductService.baseUrl; };
-            ProductDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
             return ProductDialog;
         }(Serenity.EntityDialog));
         ProductDialog = __decorate([
@@ -3558,9 +3555,6 @@ var Serene;
             CategoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
             CategoryDialog.prototype.getNameProperty = function () { return Northwind.CategoryRow.nameProperty; };
             CategoryDialog.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
-            CategoryDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
             return CategoryDialog;
         }(Serenity.EntityDialog));
         CategoryDialog = __decorate([
@@ -7261,6 +7255,7 @@ var Serene;
     (function (ScriptInitialization) {
         Q.Config.responsiveDialogs = true;
         Q.Config.rootNamespaces.push('Serene');
+        Serenity.EntityDialog.defaultLanguageList = Serene.LanguageList.getValue;
     })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
 })(Serene || (Serene = {}));
 var Serene;

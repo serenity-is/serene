@@ -1,8 +1,12 @@
 {
   "name": "serene.aspnetcore",
   "version": "1.0.0",
-  "description": "Serene",
+  "description": "Serene ASP.NET Core",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/volkanceylan/serene"
+  },
   "dependencies": {
     "@types/jquery": "^2.0.39",
     "@types/jquery.blockui": "0.0.27",
@@ -16,7 +20,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "tsc -p ./tsconfig.json"
+    "tsc": "tsc -p ./tsconfig.json"
   },
   "author": "",
   "license": "ISC"
