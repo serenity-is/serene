@@ -1,11 +1,24 @@
 ﻿{
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true,
+    "compile": {},
+    "embed": {
+      "include": "Migrations/**/*.sql"
+    }
+  },
   "dependencies": {
+    "EPPlus.Core": "1.1.0",
+    "FastMember": "1.1.0",
+    "MailKit": "1.10.1",
+    "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Mvc": "1.1.0",
     "Microsoft.AspNetCore.Routing": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0",
+    "Microsoft.Data.Sqlite": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
     "Microsoft.Extensions.Logging": "1.1.0",
@@ -16,17 +29,8 @@
       "version": "1.1.0",
       "type": "platform"
     },
-    "EPPlus.Core": "1.1.0",
-    "FastMember": "1.1.0",
-    "MailKit": "1.10.1",
-    "Serenity.Web": "2.8.10",
-    "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
-    "Serenity.FluentMigrator.Runner": "1.6.903"
-  },
-  "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
-    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-    "Serenity.CodeGenerator": "2.8.10"
+    "Serenity.FluentMigrator.Runner": "1.6.904",
+    "Serenity.Web": "2.8.10"
   },
   "frameworks": {
     "netcoreapp1.1": {
@@ -42,19 +46,6 @@
       }
     }
   },
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "compile": {},
-    "embed": {
-      "include": "Migrations/**/*.sql"
-    }
-  },
-  "runtimeOptions": {
-    "configProperties": {
-      "System.GC.Server": true
-    }
-  },
   "publishOptions": {
     "include": [
       "wwwroot",
@@ -63,10 +54,20 @@
       "web.config"
     ]
   },
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
   "scripts": {
     "prepublish": [],
     "postpublish": [
       "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
     ]
+  },
+  "tools": {
+    "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
+    "Serenity.CodeGenerator": "2.8.10"
   }
 }

@@ -31,3 +31,6 @@ Template/ProjectTemplates/SereneCore.Template.zip
 Serene/Serene.AspNetCore/App_Data/
 Serene/Serene.AspNetCore/wwwroot/Scripts/site/Serene.Web.js.map
 Wizard/template/
+Serene/Serene.AspNetCore/db/
+Serene/Serene.AspNetCore/bin/
+Serene/Serene.AspNetCore/Data/
