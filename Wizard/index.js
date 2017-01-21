@@ -27,14 +27,6 @@ function toPath(s) {
     return replaceAll(s, '/', '\\');
 };
 
-var templateDir = path.resolve(__dirname, toPath('template/'));
-var vsTemplatePath = path.resolve(templateDir, 'SereneCore.vstemplate');
-
-if (fs.readdirSync('./').length) {
-    console.log('Please run this application in an empty directory!');
-    process.exit(1);
-}
-
 var replacements = {
 };
 
@@ -68,7 +60,63 @@ function downloadHttps(url, cb) {
     });
 }
 
-console.log('Reading template version from VSGallery...');
+var cacheDir = path.resolve(getUserHome(), '.serene');
+var sourceFileByPath = {};
+
+function createSolution() {
+    parseXml(sourceFileByPath['SereneCore.vstemplate'].toString('utf8'), function(err, result) {
+        var vst = result.VSTemplate;
+        var solutionName = vst.TemplateData[0].DefaultName[0];
+        
+        rl.question('Enter a project name (press enter for ' + solutionName + '1)? ', (answer) => {
+            solutionName = answer || (solutionName + '1');
+            console.log('Creating solution ' + solutionName);
+            var projectTemplateLinks = vst.TemplateContent[0].ProjectCollection[0].ProjectTemplateLink;
+            
+            var features = vst.WizardData[0].features[0].feature.map(x => {
+                return {
+                    key: x.$.key,
+                    title: x.$.title,
+                    dependencies: (x.dependency || []).map(y => y.$.feature)
+                }
+            });
+
+            replacements["$ext_projectname$"] = solutionName;
+            var safeName = solutionName.replace(/\W/g, '');
+            safeName = safeName.substr(0, 1).toUpperCase() + safeName.substr(1);
+            replacements["$ext_safeprojectname$"] = safeName;
+
+            for (var i = 0; i < projectTemplateLinks.length; i++) {
+                var templateLink = projectTemplateLinks[i];
+                var projectName = replaceParams(templateLink.$.ProjectName.replace('$projectname$', solutionName));
+                var templatePath = toPath(templateLink._.trim());
+                createProject(solutionName, projectName, templatePath);
+            }
+
+            rl.close();
+        });
+    });  
+}
+
+function useCacheZip(cacheZip) {
+    decompress(fs.readFileSync(cacheZip), null, {
+    }).then(files => {
+        for (var i = 0; i < files.length; i++) {
+            sourceFileByPath[toPath(files[i].path)] = files[i].data;
+        }
+        createSolution();
+    });
+}
+
+if (fs.readdirSync('./').length) {
+    console.log('Please run this application in an empty directory!');
+    process.exit(1);
+}
+
+if (!fs.existsSync(cacheDir))
+    fs.mkdirSync(cacheDir);
+
+console.log('Reading latest template version from VSGallery...');
 
 https.get({
     host: 'marketplace.visualstudio.com',
@@ -97,12 +145,11 @@ https.get({
         }
 
         var dirver = parseInt(str.substr(idx2 + 1, idx - idx2 - 1));
-        var cacheDir = path.resolve(getUserHome(), '.serene');
-        var cacheFile = path.resolve(cacheDir, 'SereneCore.Template.' + dirver + '.zip');
-        if (!fs.existsSync(cacheDir))
-            fs.mkdirSync(cacheDir);
-        if (fs.existsSync(cacheFile)) {
-            
+        var cacheZip = path.resolve(cacheDir, 'SereneCore.Template.' + dirver + '.zip');           
+        if (fs.existsSync(cacheZip)) {
+            console.log('You already have a cached copy of latest version.')
+            console.log('');
+            useCacheZip(cacheZip);
         }
         else {
             var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
@@ -116,7 +163,7 @@ https.get({
                         filter: function(file) { return file.path.toLowerCase() == 'projecttemplates/serenecore.template.zip'; },
                         map: function(file) { file.path = file.path.replace(/projecttemplates\//i, '').replace('.zip', '.' + dirver + '.zip'); return file; }
                     }).then(files => {
-                        console.dir(files);
+                        useCacheZip(cacheZip);
                     });
 
                     for (var i = 0; i < oldFiles.length; i++) {
@@ -127,45 +174,8 @@ https.get({
     });
 
 }).on('error', function(e) {
-  console.log("Error while downloading template information: " + e.message);
+    console.log("Error while downloading template information: " + e.message);
 });
-
-
-
-//process.exit(0);
-/*
-parseXml(fs.readFileSync(vsTemplatePath, "utf8"), function(err, result) {
-    var vst = result.VSTemplate;
-    var solutionName = vst.TemplateData[0].DefaultName[0];
-    
-    rl.question('Enter a project name (press enter for ' + solutionName + '1)? ', (answer) => {
-        solutionName = answer || (solutionName + '1');
-        console.log('Creating solution ' + solutionName);
-        var projectTemplateLinks = vst.TemplateContent[0].ProjectCollection[0].ProjectTemplateLink;
-        
-        var features = vst.WizardData[0].features[0].feature.map(x => {
-            return {
-                key: x.$.key,
-                title: x.$.title,
-                dependencies: (x.dependency || []).map(y => y.$.feature)
-            }
-        });
-
-        replacements["$ext_projectname$"] = solutionName;
-        var safeName = solutionName.replace(/\W/g, '');
-        safeName = safeName.substr(0, 1).toUpperCase() + safeName.substr(1);
-        replacements["$ext_safeprojectname$"] = safeName;
-
-        for (var i = 0; i < projectTemplateLinks.length; i++) {
-            var templateLink = projectTemplateLinks[i];
-            var projectName = replaceParams(templateLink.$.ProjectName.replace('$projectname$', solutionName));
-            var templatePath = toPath(templateLink._.trim());
-            createProject(solutionName, projectName, templatePath);
-        }
-
-        rl.close();
-    });
-});*/
 
 function PathMatcher(includesStr, excludesStr) {
 
@@ -221,7 +231,7 @@ function createProject(solutionName, projectName, vsTemplatePath) {
             fs.mkdirSync(targetFolder);
 
         if (replace) {
-            var content = fs.readFileSync(source, "utf8");
+            var content = sourceFileByPath[source].toString("utf8");
             content = replaceParams(content);       
 
             fs.writeFileSync(target, content, {
@@ -229,7 +239,7 @@ function createProject(solutionName, projectName, vsTemplatePath) {
             });
         }
         else {
-            fs.writeFileSync(target, fs.readFileSync(source));
+            fs.writeFileSync(target, sourceFileByPath[source]);
         }
     }
 
@@ -242,27 +252,27 @@ function createProject(solutionName, projectName, vsTemplatePath) {
                 var targetPath = path.resolve(targetRoot, targetFolderName);
                 if (!fs.existsSync(targetPath))
                     fs.mkdirSync(targetPath);
-                traverse(folder, path.resolve(sourceRoot, sourceFolderName), targetPath);
+                traverse(folder, sourceRoot + path.sep + sourceFolderName, targetPath);
             }
         }
 
         if (container.ProjectItem) {
             for (var i = 0; i < container.ProjectItem.length; i++) {
                 var item = container.ProjectItem[i];
-                var sourceFile = path.resolve(sourceRoot, item._.trim());
+                var sourceFile = sourceRoot + path.sep + item._.trim();
                 var targetFile = path.resolve(targetRoot, replaceParams(item.$.TargetFileName));
                 copyFile(sourceFile, targetFile, item.$.ReplaceParameters == 'true' || item.$.ReplaceParameters == 'True');
             }
         }
     }
 
-    parseXml(fs.readFileSync(path.resolve(templateDir, vsTemplatePath), "utf8"), function(err, result) {
+    parseXml(sourceFileByPath[vsTemplatePath].toString("utf8"), function(err, result) {
         var vst = result.VSTemplate;
         var prj = vst.TemplateContent[0].Project[0];
         
-        var sourceRoot = path.resolve(templateDir, path.dirname(vsTemplatePath));
+        var sourceRoot = path.dirname(vsTemplatePath);
         var targetRoot = path.resolve('./', projectName);
-        var xprojSource = path.resolve(sourceRoot, prj.$.File);
+        var xprojSource = sourceRoot + path.sep + prj.$.File;
         var xprojTarget = path.resolve(targetRoot, replaceParams(prj.$.TargetFileName));
         copyFile(xprojSource, xprojTarget, true);
         traverse(prj, sourceRoot, targetRoot);

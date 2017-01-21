@@ -1,6 +1,6 @@
 {
   "name": "serin",
-  "version": "2.8.1000",
+  "version": "2.8.1001",
   "description": "Initializes a new Serenity project using Serene ASP.NET Core template",
   "preferGlobal": true,
   "dependencies": {
@@ -15,9 +15,12 @@
   "keywords": [
     "Serene",
     "Serenity",
+    "Business Application",
+    "ASP.NET",
+    "ASP.NET Core",
+    "CoreFX",
     "DotNet",
-    "Template",
-    "CoreFX"
+    "Template"
   ],
   "author": "Volkan Ceylan",
   "license": "MIT",
@@ -29,7 +32,6 @@
     "serin": "./index.js"
   },
   "files": [
-    "index.js",
-    "template/"
+    "index.js"
   ]
 }

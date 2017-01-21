@@ -490,17 +490,6 @@ Task("PrepareVSIX")
     System.IO.File.Copy(r + @"Serene\SereneCore.vstemplate", 
         System.IO.Path.Combine(coreTemplateFolder, "SereneCore.vstemplate")); 
     Zip(coreTemplateFolder, r + @"Template\ProjectTemplates\SereneCore.Template.zip");
-	
-	CleanDirectory("./Wizard/template");
-    CreateDirectory("./Wizard/template");
-	
-	foreach (var file in System.IO.Directory.GetFiles(coreTemplateFolder, "*.*", SearchOption.AllDirectories))
-	{
-		var target = r + @"Wizard\template" + file.Substring(coreTemplateFolder.Length);
-		System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(target));
-		System.IO.File.Copy(file, target);
-	}
-    
 });
 
 RunTarget(target);
