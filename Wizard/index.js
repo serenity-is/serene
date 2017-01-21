@@ -9,6 +9,7 @@ var parseXml = require('xml2js').parseString;
 var util = require('util');
 var readline = require('readline');
 var https = require('https');
+var decompress = require('decompress');
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -50,12 +51,19 @@ function getUserHome() {
   return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 }
 
-function downloadHttps(url, dest, cb) {
-    var file = fs.createWriteStream(dest);
-    var request = https.get(url, function(response) {
-        response.pipe(file);
-        file.on('finish', function() {
-            file.close(cb);
+function downloadHttps(url, cb) {
+    var data = [], dataLen = 0; 
+    https.get(url, function(res) {
+        res.on('data', function(chunk) {
+            data.push(chunk);
+            dataLen += chunk.length;
+        }).on('end', function() {
+            var buf = new Buffer(dataLen);
+            for (var i=0, len = data.length, pos = 0; i < len; i++) { 
+                data[i].copy(buf, pos); 
+                pos += data[i].length; 
+            }
+            cb(buf);
         });
     });
 }
@@ -90,7 +98,7 @@ https.get({
 
         var dirver = parseInt(str.substr(idx2 + 1, idx - idx2 - 1));
         var cacheDir = path.resolve(getUserHome(), '.serene');
-        var cacheFile = path.resolve(cacheDir, 'Serene.Template.' + dirver + '.vsix');
+        var cacheFile = path.resolve(cacheDir, 'SereneCore.Template.' + dirver + '.zip');
         if (!fs.existsSync(cacheDir))
             fs.mkdirSync(cacheDir);
         if (fs.existsSync(cacheFile)) {
@@ -98,13 +106,19 @@ https.get({
         }
         else {
             var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
-                return x.toLowerCase().startsWith('serene.template.') && x.toLowerCase().endsWith('.vsix');
+                return x.toLowerCase().startsWith('serenecore.template.') && x.toLowerCase().endsWith('.zip');
             });
             console.log('Downloading latest Serene template...');
             downloadHttps("https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/file/219776/" + 
-                dirver + "/Serene.Template.vsix", cacheFile,
-                function() {
+                dirver + "/Serene.Template.vsix", function(buffer) {
                     console.log('Download complete.');
+                    decompress(buffer, cacheDir, {
+                        filter: function(file) { return file.path.toLowerCase() == 'projecttemplates/serenecore.template.zip'; },
+                        map: function(file) { file.path = file.path.replace(/projecttemplates\//i, '').replace('.zip', '.' + dirver + '.zip'); return file; }
+                    }).then(files => {
+                        console.dir(files);
+                    });
+
                     for (var i = 0; i < oldFiles.length; i++) {
                         fs.unlinkSync(path.resolve(cacheDir, oldFiles[i]));
                     }

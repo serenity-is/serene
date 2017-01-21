@@ -4,7 +4,8 @@
   "description": "Initializes a new Serenity project using Serene ASP.NET Core template",
   "preferGlobal": true,
   "dependencies": {
-    "xml2js": "~0.4.17"
+    "xml2js": "~0.4.17",
+    "decompress": "^4.0.0"
   },
   "scripts": {},
   "repository": {
