@@ -277,6 +277,23 @@ function createProject(solutionName, projectName, vsTemplatePath) {
         copyFile(xprojSource, xprojTarget, true);
         traverse(prj, sourceRoot, targetRoot);
 
+        if (path.sep == '/') {
+            var appSettingsPath = path.resolve(targetRoot, 'appsettings.json');
+            var appSettings = JSON.parse(fs.readFileSync(appSettingsPath, 'utf8').replace(/^\uFEFF/, ''));
+            if (appSettings.Data) {
+                var keys = Object.keys(appSettings.Data);
+                for (var i = 0; i < keys.length; i++) {
+                    var k = keys[i];
+                    if (appSettings.Data.hasOwnProperty(k)) {
+                        var d = appSettings.Data[k];
+                        d.ConnectionString = "Filename=../../../App_Data/" + solutionName + "_" + k + "_v1.sqlite";
+                        d.ProviderName = "Microsoft.Data.Sqlite";
+                    }
+                }
+                fs.writeFileSync(appSettingsPath, JSON.stringify(appSettings, null, '  '), 'utf8');
+            }
+        }
+
         var exec = require('child_process').exec;
         console.log("Restoring packages for " + projectName);
         var child1 = exec('dotnet restore', {
