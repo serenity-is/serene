@@ -109,6 +109,7 @@ IEnumerable<Regex> sereneCoreExcludes = new string[] {
 	@"*.csproj",
 	@"*.vstemplate",
 	@"App_Data\**\*",
+	@"Data\**\*",
 	@"wwwroot\App_Data\**\*",
 }.Select(wildcardToRegex);
 
