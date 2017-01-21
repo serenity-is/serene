@@ -44,7 +44,7 @@
             if (isSqlite)
             {
                 var contentRoot = Serenity.Dependency.Resolve<IHostingEnvironment>().ContentRootPath;
-                Directory.CreateDirectory(Path.Combine(contentRoot, "Data"));
+                Directory.CreateDirectory(Path.Combine(contentRoot, "App_Data"));
                 return;
             }
 
