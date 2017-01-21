@@ -3,7 +3,7 @@ using FluentMigrator;
 namespace Serene.Migrations.NorthwindDB
 {
     [Migration(20141123155100)]
-    public class DefaultDB_20141123_155100_ProductImage : Migration
+    public class DefaultDB_20141123_155100_Initial : Migration
     {
         public override void Up()
         {
@@ -21,6 +21,8 @@ namespace Serene.Migrations.NorthwindDB
 
             IfDatabase("Oracle")
                 .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql");
+            IfDatabase("Sqlite")
+                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_Sqlite.sql");
 
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Customers")

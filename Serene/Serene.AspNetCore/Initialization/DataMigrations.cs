@@ -37,8 +37,16 @@
 
             var serverType = cs.Dialect.ServerType;
             bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
-            bool isPostgres = !isSql & serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
-            bool isMySql = !isSql && !isPostgres && serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
+            bool isPostgres = serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
+            bool isMySql = serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
+            bool isSqlite = serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
+
+            if (isSqlite)
+            {
+                var contentRoot = Serenity.Dependency.Resolve<IHostingEnvironment>().ContentRootPath;
+                Directory.CreateDirectory(Path.Combine(contentRoot, "Data"));
+                return;
+            }
 
             if (!isSql && !isPostgres && !isMySql)
                 return;
