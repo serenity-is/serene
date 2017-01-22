@@ -76,8 +76,11 @@ namespace Serene
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
 
-            // add Npgsql reference, set connections, and uncomment line below to enable Postgres
+            // to enable POSTGRES: add Npgsql reference, set connections, and uncomment line below
             // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
+
+            // to enable FIREBIRD: add FirebirdSql.Data.FirebirdClient reference, set connections, and uncomment line below
+            // DbProviderFactories.RegisterFactory("FirebirdSql.Data.FirebirdClient", FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
 
             Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
 

@@ -77,6 +77,7 @@ namespace Serene.Migrations
             "SqlServerCe",
             "Postgres",
             "MySql",
+            "Firebird",
             "Jet",
             "Sqlite",
             "SAP HANA"

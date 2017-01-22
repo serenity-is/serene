@@ -343,7 +343,7 @@
 		var self = this;
 		this.element.addClass('s-DataGrid').html('');
 		this.element.addClass('s-' + ss.getTypeName(ss.getInstanceType(this)));
-		this.element.addClass('require-layout').bind('layout', function() {
+		this.element.addClass('require-layout').bind('layout.' + this.uniqueName, function() {
 			self.layout();
 		});
 		this.setTitle(this.getInitialTitle());

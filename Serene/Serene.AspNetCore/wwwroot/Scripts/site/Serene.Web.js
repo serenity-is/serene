@@ -1169,7 +1169,7 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CategoryService.Methods || (CategoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'RetrieveLocalization', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
                 CategoryService[x] = function (r, s, o) { return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = CategoryService.baseUrl + '/' + x;
             });
@@ -1567,7 +1567,7 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ProductService.Methods || (ProductService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'RetrieveLocalization', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
                 ProductService[x] = function (r, s, o) { return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = ProductService.baseUrl + '/' + x;
             });

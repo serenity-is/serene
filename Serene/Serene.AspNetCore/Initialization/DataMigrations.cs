@@ -6,8 +6,10 @@
     using Serenity.Data;
     using System;
     using System.Data.SqlClient;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
 
     public static class DataMigrations
     { 
@@ -40,6 +42,7 @@
             bool isPostgres = serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
             bool isMySql = serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
             bool isSqlite = serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
+            bool isFirebird = serverType.StartsWith("Firebird", StringComparison.OrdinalIgnoreCase);
 
             if (isSqlite)
             {
@@ -48,11 +51,37 @@
                 return;
             }
 
+            var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
+            cb.ConnectionString = cs.ConnectionString;
+
+            if (isFirebird)
+            {
+                if (cb.ConnectionString.IndexOf(@"localhost") < 0 &&
+                    cb.ConnectionString.IndexOf(@"127.0.0.1") < 0)
+                    return;
+
+                var database = cb["Database"] as string;
+                if (string.IsNullOrEmpty(database))
+                    return;
+
+                database = Path.GetFullPath(database);
+                if (File.Exists(database))
+                    return;
+                Directory.CreateDirectory(Path.GetDirectoryName(database));
+
+                using (var fbConnection = SqlConnections.New(cb.ConnectionString, cs.ProviderName))
+                {
+                    ((WrappedConnection)fbConnection).ActualConnection.GetType()
+                        .GetMethod("CreateDatabase", new Type[] { typeof(string), typeof(bool) }) 
+                        .Invoke(null, new object[] { fbConnection.ConnectionString, false });
+                }
+
+                return;
+            }
+
             if (!isSql && !isPostgres && !isMySql)
                 return;
 
-            var cb = cs.ProviderFactory.CreateConnectionStringBuilder();
-            cb.ConnectionString = cs.ConnectionString;
             string catalogKey = "?";
 
             foreach (var ck in new[] { "Initial Catalog", "Database", "AttachDBFilename" })
@@ -107,9 +136,11 @@
                 if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
                     return;
 
-                var isLocalServer = isSql && 
+                var isLocalServer = isSql &&
                     serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                    serverConnection.ConnectionString.IndexOf(@".\") >= 0;
+                    serverConnection.ConnectionString.IndexOf(@".\") >= 0 ||
+                    serverConnection.ConnectionString.IndexOf(@"localhost") >= 0 ||
+                    serverConnection.ConnectionString.IndexOf(@"127.0.0.1") >= 0;
 
                 string command;
                 if (isLocalServer)
@@ -123,6 +154,7 @@
 
                     var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data/".Replace('/', Path.DirectorySeparatorChar)), catalog);
                     Directory.CreateDirectory(Path.GetDirectoryName(filename));
+
                     command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
                         catalog, filename);
 
@@ -148,7 +180,8 @@
 
             string serverType = cs.Dialect.ServerType;
             bool isSqlServer = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
-            bool isOracle = !isSqlServer && serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
+            bool isOracle = serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
+            bool isFirebird = serverType.StartsWith("Firebird", StringComparison.OrdinalIgnoreCase);
 
             // safety check to ensure that we are not modifying an arbitrary database.
             // remove these lines if you want Serene migrations to run on your DB.
@@ -163,7 +196,7 @@
 
             using (var sw = new StringWriter())
             {
-                Announcer announcer = isOracle ?
+                Announcer announcer = isOracle || isFirebird ?
                     new TextWriterAnnouncer(sw) { ShowSql = true } :
                     new TextWriterWithGoAnnouncer(sw) { ShowSql = true };
 
@@ -178,8 +211,12 @@
                     Timeout = 90
                 };
 
+                var culture = CultureInfo.CurrentCulture;
                 try
                 {
+                    if (isFirebird)
+                        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
                     new TaskExecutor(runner)
                     {
                         ConnectionString = cs.ConnectionString
@@ -189,6 +226,11 @@
                 {
                     throw new Exception("Error executing migration:\r\n" +
                         sw.ToString(), ex);
+                }
+                finally
+                {
+                    if (isFirebird)
+                        CultureInfo.CurrentCulture = culture;
                 }
             }
         }
