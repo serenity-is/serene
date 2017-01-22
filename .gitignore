@@ -34,3 +34,4 @@ Wizard/template/
 Serene/Serene.AspNetCore/db/
 Serene/Serene.AspNetCore/bin/
 Serene/Serene.AspNetCore/Data/
+Serene/Serene.AspNetCore/appsettings.*.machine.json

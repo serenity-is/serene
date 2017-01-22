@@ -72,8 +72,12 @@ namespace Serene
                 typeof(Startup).GetAssembly()
             };
 
+            SqlSettings.AutoQuotedIdentifiers = true;
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
+
+            // add Npgsql reference, set connections, and uncomment line below to enable Postgres
+            // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
 
             Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
 
