@@ -12,7 +12,7 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(PermissionKeys.General)]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
     {
-        [DisplayName("Note Id"), Identity]
+        [DisplayName("Note Id"), Identity, Column("NoteID")]
         public Int64? NoteId
         {
             get { return Fields.NoteId[this]; }
