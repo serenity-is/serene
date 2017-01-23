@@ -4,20 +4,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
+using Serene.AppServices;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
-using Serenity.Web.Middleware;
 using Serenity.Services;
+using Serenity.Web.Middleware;
 using System;
 using System.Data.SqlClient;
-using Newtonsoft.Json.Serialization;
 using System.IO;
-using Serene.AppServices;
-using System.Globalization;
-using System.Collections.Generic;
 
 namespace Serene
 {
@@ -73,14 +71,7 @@ namespace Serene
             };
 
             SqlSettings.AutoQuotedIdentifiers = true;
-            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
-            DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
-
-            // to enable POSTGRES: add Npgsql reference, set connections, and uncomment line below
-            // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
-
-            // to enable FIREBIRD: add FirebirdSql.Data.FirebirdClient reference, set connections, and uncomment line below
-            // DbProviderFactories.RegisterFactory("FirebirdSql.Data.FirebirdClient", FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
+            RegisterDataProviders();
 
             Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
 
@@ -129,6 +120,21 @@ namespace Serene
             });
 
             DataMigrations.Initialize();
+        }
+
+        public static void RegisterDataProviders()
+        {
+            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
+
+            // to enable FIREBIRD: add FirebirdSql.Data.FirebirdClient reference, set connections, and uncomment line below
+            // DbProviderFactories.RegisterFactory("FirebirdSql.Data.FirebirdClient", FirebirdSql.Data.FirebirdClient.FirebirdClientFactory.Instance);
+
+            // to enable MYSQL: add MySql.Data reference, set connections, and uncomment line below
+            // DbProviderFactories.RegisterFactory("MySql.Data.MySqlClient", MySql.Data.MySqlClient.MySqlClientFactory.Instance);
+
+            // to enable POSTGRES: add Npgsql reference, set connections, and uncomment line below
+            // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
         }
     }
 }
