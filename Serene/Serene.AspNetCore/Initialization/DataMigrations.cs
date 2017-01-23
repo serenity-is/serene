@@ -136,11 +136,11 @@
                 if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
                     return;
 
-                var isLocalServer = isSql &&
+                var isLocalServer = isSql && (
                     serverConnection.ConnectionString.IndexOf(@"(localdb)\", StringComparison.OrdinalIgnoreCase) >= 0 ||
                     serverConnection.ConnectionString.IndexOf(@".\") >= 0 ||
                     serverConnection.ConnectionString.IndexOf(@"localhost") >= 0 ||
-                    serverConnection.ConnectionString.IndexOf(@"127.0.0.1") >= 0;
+                    serverConnection.ConnectionString.IndexOf(@"127.0.0.1") >= 0);
 
                 string command;
                 if (isLocalServer)
