@@ -232,6 +232,7 @@ Update Exceptions
                             .Where(new Criteria("[Id]").In(new Criteria("(" + 
                                 new SqlQuery()
                                     .Dialect(c.GetDialect())
+                                    .Select("[Id]")
                                     .From("Exceptions")
                                     .Take(1)
                                     .Where(hashMatch)) + ")"))
