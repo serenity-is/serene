@@ -77,8 +77,8 @@
             public Int32Field UpdateUserId;
             public DateTimeField UpdateDate;
 
-            public LoggingRowFields(string tableName)
-                : base(tableName)
+            public LoggingRowFields(string tableName = null, string fieldPrefix = null)
+                : base(tableName, fieldPrefix)
             {
             }
         }

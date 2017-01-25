@@ -12,7 +12,7 @@ namespace Serene.Northwind.Entities
     [ReadPermission(PermissionKeys.Customer.View)]
     [ModifyPermission(PermissionKeys.Customer.Modify)]
     [DeletePermission(PermissionKeys.Customer.Delete)]
-    [LeftJoin("cd", "CustomerDetails", "cd.ID = t0.ID")]
+    [LeftJoin("cd", "CustomerDetails", "cd.[ID] = t0.[ID]")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {

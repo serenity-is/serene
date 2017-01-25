@@ -13,7 +13,7 @@ namespace Serene.Migrations.NorthwindDB
                 .WithColumn("LastContactedBy").AsInt32().Nullable()
                     .ForeignKey("FK_CustomerDetails_LastContactedBy", "Employees", "EmployeeID")
                 .WithColumn("Email").AsString(100).Nullable()
-                .WithColumn("SendBulletin").AsBoolean().NotNullable().WithDefaultValue(0);
+                .WithColumn("SendBulletin").AsBoolean().NotNullable().WithDefaultValue(true);
         }
     }
 }
