@@ -101,6 +101,7 @@ IEnumerable<Regex> sereneCoreExcludes = new string[] {
 	@"**\*.log",
 	@"**\*.zip",
 	@"**\appsettings.machine.json",
+	@"**\appsettings.*.machine.json",
 	@"**\packages\**\*",
 	@"**\*.log",
 	@"**\*.dg",

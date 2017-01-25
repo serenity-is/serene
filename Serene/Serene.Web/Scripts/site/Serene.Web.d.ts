@@ -3975,7 +3975,6 @@ declare var jsPDF: any;
 declare namespace Serene.Common {
     class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
         private report;
-        private propertyItems;
         private propertyGrid;
         constructor(options: ReportDialogOptions);
         protected getDialogButtons(): any;
