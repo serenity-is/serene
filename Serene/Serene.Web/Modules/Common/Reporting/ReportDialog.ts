@@ -23,7 +23,7 @@ namespace Serene.Common {
             this.propertyGrid = new Serenity.PropertyGrid(this.byId('PropertyGrid'), {
                 idPrefix: this.idPrefix,
                 useCategories: true,
-                items: this.propertyItems
+                items: this.report.Properties
             }).init(null);
         }
 
