@@ -4,7 +4,6 @@ namespace Serene.Common {
     export class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
 
         private report: Serenity.Reporting.ReportRetrieveResponse;
-        private propertyItems: Serenity.PropertyItem[];
         private propertyGrid: Serenity.PropertyGrid;
 
         constructor(options: ReportDialogOptions) {
@@ -23,7 +22,7 @@ namespace Serene.Common {
             this.propertyGrid = new Serenity.PropertyGrid(this.byId('PropertyGrid'), {
                 idPrefix: this.idPrefix,
                 useCategories: true,
-                items: this.propertyItems
+                items: this.report.Properties
             }).init(null);
         }
 

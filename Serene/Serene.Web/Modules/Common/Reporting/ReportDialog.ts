@@ -4,7 +4,6 @@ namespace Serene.Common {
     export class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
 
         private report: Serenity.Reporting.ReportRetrieveResponse;
-        private propertyItems: Serenity.PropertyItem[];
         private propertyGrid: Serenity.PropertyGrid;
 
         constructor(options: ReportDialogOptions) {
