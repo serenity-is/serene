@@ -7,7 +7,7 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("[Order Details]"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class OrderDetailRow : Row, IIdRow
@@ -19,14 +19,14 @@ namespace Serene.Northwind.Entities
             set { Fields.DetailID[this] = value; }
         }
 
-        [DisplayName("Order Id"), PrimaryKey, ForeignKey("Orders", "OrderID"), LeftJoin("o"), Updatable(false)]
+        [DisplayName("Order Id"), PrimaryKey, ForeignKey(typeof(OrderRow)), LeftJoin("o"), Updatable(false)]
         public Int32? OrderID
         {
             get { return Fields.OrderID[this]; }
             set { Fields.OrderID[this] = value; }
         }
 
-        [DisplayName("Product"), PrimaryKey, ForeignKey("Products", "ProductID"), LeftJoin("p")]
+        [DisplayName("Product"), PrimaryKey, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
         [LookupEditor(typeof(ProductRow))]
         public Int32? ProductID
         {
@@ -55,91 +55,92 @@ namespace Serene.Northwind.Entities
             set { Fields.Discount[this] = value; }
         }
 
-        [DisplayName("Line Total"), Expression("(t0.[UnitPrice] * t0.[Quantity] - t0.[Discount])"), AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
+        [DisplayName("Line Total"), Expression("(t0.[UnitPrice] * t0.[Quantity] - t0.[Discount])")]
+        [AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
         public Decimal? LineTotal
         {
             get { return Fields.LineTotal[this]; }
             set { Fields.LineTotal[this] = value; }
         }
 
-        [DisplayName("Order Customer Id"), Expression("o.[CustomerID]")]
+        [Origin("o")]
         public String OrderCustomerID
         {
             get { return Fields.OrderCustomerID[this]; }
             set { Fields.OrderCustomerID[this] = value; }
         }
 
-        [DisplayName("Order Employee Id"), Expression("o.[EmployeeID]")]
+        [Origin("o")]
         public Int32? OrderEmployeeID
         {
             get { return Fields.OrderEmployeeID[this]; }
             set { Fields.OrderEmployeeID[this] = value; }
         }
 
-        [DisplayName("Order Date"), Expression("o.[OrderDate]")]
+        [Origin("o")]
         public DateTime? OrderDate
         {
             get { return Fields.OrderDate[this]; }
             set { Fields.OrderDate[this] = value; }
         }
 
-        [DisplayName("Order Shipped Date"), Expression("o.[ShippedDate]")]
+        [Origin("o")]
         public DateTime? OrderShippedDate
         {
             get { return Fields.OrderShippedDate[this]; }
             set { Fields.OrderShippedDate[this] = value; }
         }
 
-        [DisplayName("Order Ship Via"), Expression("o.[ShipVia]")]
+        [Origin("o")]
         public Int32? OrderShipVia
         {
             get { return Fields.OrderShipVia[this]; }
             set { Fields.OrderShipVia[this] = value; }
         }
 
-        [DisplayName("Order Ship City"), Expression("o.[ShipCity]")]
+        [Origin("o")]
         public String OrderShipCity
         {
             get { return Fields.OrderShipCity[this]; }
             set { Fields.OrderShipCity[this] = value; }
         }
 
-        [DisplayName("Order Ship Country"), Expression("o.[ShipCountry]")]
+        [Origin("o")]
         public String OrderShipCountry
         {
             get { return Fields.OrderShipCountry[this]; }
             set { Fields.OrderShipCountry[this] = value; }
         }
 
-        [DisplayName("Product Name"), Expression("p.[ProductName]"), MinSelectLevel(SelectLevel.List)]
+        [Origin("p"), MinSelectLevel(SelectLevel.List)]
         public String ProductName
         {
             get { return Fields.ProductName[this]; }
             set { Fields.ProductName[this] = value; }
         }
 
-        [DisplayName("Product Discontinued"), Expression("p.[Discontinued]")]
+        [Origin("p")]
         public Boolean? ProductDiscontinued
         {
             get { return Fields.ProductDiscontinued[this]; }
             set { Fields.ProductDiscontinued[this] = value; }
         }
 
-        [DisplayName("Product Supplier Id"), Expression("p.[SupplierID]")]
+        [Origin("p")]
         public Int32? ProductSupplierID
         {
             get { return Fields.ProductSupplierID[this]; }
             set { Fields.ProductSupplierID[this] = value; }
         }
 
-        [DisplayName("Product Quantity Per Unit"), Expression("p.QuantityPerUnit")]
+        [Origin("p")]
         public String ProductQuantityPerUnit
         {
             get { return Fields.ProductQuantityPerUnit[this]; }
             set { Fields.ProductQuantityPerUnit[this] = value; }
         }
 
-        [DisplayName("Product Unit Price"), Expression("p.UnitPrice")]
+        [Origin("p")]
         public Decimal? ProductUnitPrice
         {
             get { return Fields.ProductUnitPrice[this]; }
@@ -185,7 +186,6 @@ namespace Serene.Northwind.Entities
             public DecimalField LineTotal;
 
             public RowFields()
-                : base("[Order Details]")
             {
                 LocalTextPrefix = "Northwind.OrderDetail";
             }

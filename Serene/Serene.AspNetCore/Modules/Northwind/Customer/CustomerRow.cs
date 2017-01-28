@@ -8,11 +8,11 @@ namespace Serene.Northwind.Entities
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Customers"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Customer.View)]
     [ModifyPermission(PermissionKeys.Customer.Modify)]
     [DeletePermission(PermissionKeys.Customer.Delete)]
-    [LeftJoin("cd", "CustomerDetails", "cd.[ID] = t0.[ID]")]
+    [LeftJoin("cd", "CustomerDetails", "cd.[ID] = t0.[ID]", RowType = typeof(CustomerDetailsRow), TitlePrefix = "")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
@@ -100,29 +100,28 @@ namespace Serene.Northwind.Entities
             set { Fields.Fax[this] = value; }
         }
 
-        [DisplayName("Last Contact Date"), Expression("cd.[LastContactDate]")]
+        [Origin("cd")]
         public DateTime? LastContactDate
         {
             get { return Fields.LastContactDate[this]; }
             set { Fields.LastContactDate[this] = value; }
         }
 
-        [DisplayName("Last Contacted By"), Expression("cd.[LastContactedBy]"), ForeignKey("Employees", "EmployeeID"), LeftJoin("lcb")]
-        [LookupEditor(typeof(EmployeeRow))]
+        [Origin("cd"), LookupEditor(typeof(EmployeeRow))]
         public Int32? LastContactedBy
         {
             get { return Fields.LastContactedBy[this]; }
             set { Fields.LastContactedBy[this] = value; }
         }
 
-        [DisplayName("Email"), Size(100), Expression("cd.[Email]"), EmailEditor]
+        [Origin("cd"), EmailEditor]
         public String Email
         {
             get { return Fields.Email[this]; }
             set { Fields.Email[this] = value; }
         }
 
-        [DisplayName("Send Bulletin"), NotNull, Expression("cd.[SendBulletin]"), DefaultValue(false)]
+        [Origin("cd"), DefaultValue(false)]
         public Boolean? SendBulletin
         {
             get { return Fields.SendBulletin[this]; }
@@ -135,7 +134,7 @@ namespace Serene.Northwind.Entities
             get { return Fields.NoteList[this]; }
             set { Fields.NoteList[this] = value; }
         }
-
+        
         [LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
         [MinSelectLevel(SelectLevel.Details), QuickFilter]
@@ -184,7 +183,6 @@ namespace Serene.Northwind.Entities
             public BooleanField SendBulletin;
 
             public RowFields()
-                : base("Customers")
             {
                 LocalTextPrefix = "Northwind.Customer";
             }

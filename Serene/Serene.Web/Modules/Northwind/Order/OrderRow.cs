@@ -8,7 +8,7 @@ namespace Serene.Northwind.Entities
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Orders"), InstanceName("Order"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Orders"), DisplayName("Orders"), InstanceName("Order"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class OrderRow : Row, IIdRow, INameRow
@@ -271,7 +271,6 @@ namespace Serene.Northwind.Entities
             public RowListField<OrderDetailRow> DetailList;
 
             public RowFields()
-                : base("Orders")
             {
                 LocalTextPrefix = "Northwind.Order";
             }

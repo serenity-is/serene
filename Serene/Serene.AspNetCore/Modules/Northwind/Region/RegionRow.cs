@@ -7,7 +7,7 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Region"), InstanceName("Region"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Region"), DisplayName("Region"), InstanceName("Region"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Region")]
@@ -49,7 +49,6 @@ namespace Serene.Northwind.Entities
             public Int32Field RegionID;
             public StringField RegionDescription;
             public RowFields()
-                : base("Region")
             {
                 LocalTextPrefix = "Northwind.Region";
             }

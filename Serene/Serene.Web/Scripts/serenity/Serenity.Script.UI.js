@@ -1301,6 +1301,7 @@
 		var $this = {};
 		$this.enumKey = null;
 		$this.enumType = null;
+		$this.allowClear = null;
 		return $this;
 	};
 	$Serenity_EnumEditorOptions.isInstanceOfType = function() {
@@ -8282,6 +8283,11 @@
 				var name = ss.Enum.toString(enumType, x);
 				this.addOption(ss.unbox(ss.cast(x, ss.Int32)).toString(), ss.coalesce(Q.tryGetText('Enums.' + enumKey + '.' + name), name), null, false);
 			}
+		},
+		getSelect2Options: function() {
+			var opt = $Serenity_Select2Editor.prototype.getSelect2Options.call(this);
+			opt.allowClear = ss.coalesce(this.options.allowClear, true);
+			return opt;
 		}
 	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_EnumEditorOptions, $asm, {});
@@ -10531,7 +10537,7 @@
 	ss.setMetadata($Serenity_EmailEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('E-posta'), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_EmailEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Etki Alanı')], name: 'Domain', type: 16, returnType: String, getter: { name: 'get_Domain', type: 8, params: [], returnType: String, fget: 'domain' }, setter: { name: 'set_Domain', type: 8, params: [String], returnType: Object, fset: 'domain' }, fname: 'domain' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Etki Alanı Salt Okunur')], name: 'ReadOnlyDomain', type: 16, returnType: Boolean, getter: { name: 'get_ReadOnlyDomain', type: 8, params: [], returnType: Boolean, fget: 'readOnlyDomain' }, setter: { name: 'set_ReadOnlyDomain', type: 8, params: [Boolean], returnType: Object, fset: 'readOnlyDomain' }, fname: 'readOnlyDomain' }] });
 	ss.setMetadata($Serenity_EnumEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Enumeration'), new Serenity.OptionsTypeAttribute($Serenity_EnumEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });
-	ss.setMetadata($Serenity_EnumEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Enum Type Key')], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, params: [], returnType: String, fget: 'enumKey' }, setter: { name: 'set_EnumKey', type: 8, params: [String], returnType: Object, fset: 'enumKey' }, fname: 'enumKey' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Enum Type Key'), new $Serenity_HiddenAttribute()], name: 'EnumType', type: 16, returnType: Function, getter: { name: 'get_EnumType', type: 8, params: [], returnType: Function, fget: 'enumType' }, setter: { name: 'set_EnumType', type: 8, params: [Function], returnType: Object, fset: 'enumType' }, fname: 'enumType' }] });
+	ss.setMetadata($Serenity_EnumEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Allow Clear'), new $Serenity_EditorTypeAttribute('Boolean')], name: 'AllowClear', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), getter: { name: 'get_AllowClear', type: 8, params: [], returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), fget: 'allowClear' }, setter: { name: 'set_AllowClear', type: 8, params: [ss.makeGenericType(ss.Nullable$1, [Boolean])], returnType: Object, fset: 'allowClear' }, fname: 'allowClear' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Enum Type Key')], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, params: [], returnType: String, fget: 'enumKey' }, setter: { name: 'set_EnumKey', type: 8, params: [String], returnType: Object, fset: 'enumKey' }, fname: 'enumKey' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Enum Type Key'), new $Serenity_HiddenAttribute()], name: 'EnumType', type: 16, returnType: Function, getter: { name: 'get_EnumType', type: 8, params: [], returnType: Function, fget: 'enumType' }, setter: { name: 'set_EnumType', type: 8, params: [Function], returnType: Object, fset: 'enumType' }, fname: 'enumType' }] });
 	ss.setMetadata($Serenity_EnumFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'EnumKey', type: 16, returnType: String, getter: { name: 'get_EnumKey', type: 8, sname: 'get_enumKey', returnType: String, params: [] }, setter: { name: 'set_EnumKey', type: 8, sname: 'set_enumKey', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_FileDownloadFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'OriginalNameProperty', type: 16, returnType: String, getter: { name: 'get_OriginalNameProperty', type: 8, sname: 'get_originalNameProperty', returnType: String, params: [] }, setter: { name: 'set_OriginalNameProperty', type: 8, sname: 'set_originalNameProperty', returnType: Object, params: [String] } }] });
 	ss.setMetadata($Serenity_GoogleMap, { attr: [new Serenity.ElementAttribute('<div/>')] });

@@ -7,7 +7,7 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Territories"), InstanceName("Territory"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Territories"), DisplayName("Territories"), InstanceName("Territory"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Territory")]
@@ -34,14 +34,14 @@ namespace Serene.Northwind.Entities
             set { Fields.TerritoryDescription[this] = value; }
         }
 
-        [DisplayName("Region"), NotNull, ForeignKey("Region", "RegionID"), LeftJoin("jRegion")]
+        [DisplayName("Region"), NotNull, ForeignKey(typeof(RegionRow)), LeftJoin("jRegion")]
         public Int32? RegionID
         {
             get { return Fields.RegionID[this]; }
             set { Fields.RegionID[this] = value; }
         }
 
-        [DisplayName("Region"), Expression("jRegion.[RegionDescription]"), QuickSearch, LookupInclude]
+        [Origin("jRegion"), DisplayName("Region"), QuickSearch, LookupInclude]
         public String RegionDescription
         {
             get { return Fields.RegionDescription[this]; }
@@ -75,7 +75,6 @@ namespace Serene.Northwind.Entities
             public StringField RegionDescription;
 
             public RowFields()
-                : base("Territories")
             {
                 LocalTextPrefix = "Northwind.Territory";
             }

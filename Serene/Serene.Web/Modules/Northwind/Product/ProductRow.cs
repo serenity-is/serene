@@ -8,7 +8,7 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Products"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Product")]
@@ -242,7 +242,6 @@ namespace Serene.Northwind.Entities
             public StreamField CategoryPicture;
 
             public RowFields()
-                : base("Products")
             {
                 LocalTextPrefix = "Northwind.Product";
             }
