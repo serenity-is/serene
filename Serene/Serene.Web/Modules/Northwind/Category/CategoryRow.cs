@@ -5,11 +5,10 @@ namespace Serene.Northwind.Entities
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), DisplayName("Categories"), InstanceName("Category"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Categories"), DisplayName("Categories"), InstanceName("Category"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Category")]
@@ -67,8 +66,8 @@ namespace Serene.Northwind.Entities
             public StringField CategoryName;
             public StringField Description;
             public StreamField Picture;
+
             public RowFields()
-                : base("Categories")
             {
                 LocalTextPrefix = "Northwind.Category";
             }

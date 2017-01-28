@@ -20,21 +20,21 @@ namespace Serene.Northwind.Entities
             set { Fields.OrderID[this] = value; }
         }
 
-        [DisplayName("Customer"), Size(5), NotNull, ForeignKey("Customers", "CustomerID"), LeftJoin("c"), CustomerEditor]
+        [DisplayName("Customer"), Size(5), NotNull, ForeignKey(typeof(CustomerRow), "CustomerID"), LeftJoin("c"), CustomerEditor]
         public String CustomerID
         {
             get { return Fields.CustomerID[this]; }
             set { Fields.CustomerID[this] = value; }
         }
 
-        [DisplayName("Customer"), Expression("c.[CompanyName]"), QuickSearch]
+        [Origin("c"), DisplayName("Customer"), QuickSearch]
         public String CustomerCompanyName
         {
             get { return Fields.CustomerCompanyName[this]; }
             set { Fields.CustomerCompanyName[this] = value; }
         }
 
-        [DisplayName("Employee"), ForeignKey("Employees", "EmployeeID"), LeftJoin("e")]
+        [DisplayName("Employee"), ForeignKey(typeof(EmployeeRow)), LeftJoin("e")]
         [LookupEditor(typeof(EmployeeRow)), TextualField("EmployeeFullName")]
         public Int32? EmployeeID
         {
@@ -42,21 +42,26 @@ namespace Serene.Northwind.Entities
             set { Fields.EmployeeID[this] = value; }
         }
 
-        [DisplayName("Employee")]
-        [Expression("CONCAT(e.[FirstName], CONCAT(' ', e.[LastName]))")]
-        [Expression("(e.FirstName || ' ' || e.LastName)", Dialect = "Sqlite")]
+        [Origin("e"), DisplayName("Employee")]
         public String EmployeeFullName
         {
             get { return Fields.EmployeeFullName[this]; }
             set { Fields.EmployeeFullName[this] = value; }
         }
 
-        [DisplayName("Employee Gender"), Expression("(CASE WHEN e.[TitleOfCourtesy] LIKE '%s%' THEN 2 WHEN e.[TitleOfCourtesy] LIKE '%Mr%' THEN 1 END)")]
+        [Origin("e")]
         public Gender? EmployeeGender
         {
             get { return (Gender?)Fields.EmployeeGender[this]; }
             set { Fields.EmployeeGender[this] = (Int32?)value; }
-        } 
+        }
+
+        [Origin("e")]
+        public String EmployeeReportsToFullName
+        {
+            get { return Fields.EmployeeReportsToFullName[this]; }
+            set { Fields.EmployeeReportsToFullName[this] = value; }
+        }
 
         [DisplayName("Order Date"), NotNull]
         public DateTime? OrderDate
@@ -86,7 +91,7 @@ namespace Serene.Northwind.Entities
             set { Fields.ShippingState[this] = (Int32?)value; }
         }
 
-        [DisplayName("Ship Via"), ForeignKey("Shippers", "ShipperID"), LeftJoin("via"), LookupEditor(typeof(ShipperRow))]
+        [DisplayName("Ship Via"), ForeignKey(typeof(ShipperRow)), LeftJoin("via"), LookupEditor(typeof(ShipperRow))]
         public Int32? ShipVia
         {
             get { return Fields.ShipVia[this]; }
@@ -142,63 +147,63 @@ namespace Serene.Northwind.Entities
             set { Fields.ShipCountry[this] = value; }
         }
 
-        [DisplayName("Customer Contact Name"), Expression("c.[ContactName]")]
+        [Origin("c")]
         public String CustomerContactName
         {
             get { return Fields.CustomerContactName[this]; }
             set { Fields.CustomerContactName[this] = value; }
         }
 
-        [DisplayName("Customer Contact Title"), Expression("c.[ContactTitle]")]
+        [Origin("c")]
         public String CustomerContactTitle
         {
             get { return Fields.CustomerContactTitle[this]; }
             set { Fields.CustomerContactTitle[this] = value; }
         }
 
-        [DisplayName("Customer City"), Expression("c.[City]")]
+        [Origin("c")]
         public String CustomerCity
         {
             get { return Fields.CustomerCity[this]; }
             set { Fields.CustomerCity[this] = value; }
         }
 
-        [DisplayName("Customer Region"), Expression("c.[Region]")]
+        [Origin("c")]
         public String CustomerRegion
         {
             get { return Fields.CustomerRegion[this]; }
             set { Fields.CustomerRegion[this] = value; }
         }
 
-        [DisplayName("Customer Country"), Expression("c.[Country]")]
+        [Origin("c")]
         public String CustomerCountry
         {
             get { return Fields.CustomerCountry[this]; }
             set { Fields.CustomerCountry[this] = value; }
         }
 
-        [DisplayName("Customer Phone"), Expression("c.[Phone]")]
+        [Origin("c")]
         public String CustomerPhone
         {
             get { return Fields.CustomerPhone[this]; }
             set { Fields.CustomerPhone[this] = value; }
         }
 
-        [DisplayName("Customer Fax"), Expression("c.[Fax]")]
+        [Origin("c")]
         public String CustomerFax
         {
             get { return Fields.CustomerFax[this]; }
             set { Fields.CustomerFax[this] = value; }
         }
 
-        [DisplayName("Ship Via"), Expression("via.[CompanyName]")]
+        [Origin("via"), DisplayName("Ship Via")]
         public String ShipViaCompanyName
         {
             get { return Fields.ShipViaCompanyName[this]; }
             set { Fields.ShipViaCompanyName[this] = value; }
         }
 
-        [DisplayName("Ship Via Phone"), Expression("via.[Phone]")]
+        [Origin("via")]
         public String ShipViaPhone
         {
             get { return Fields.ShipViaPhone[this]; }
@@ -257,6 +262,7 @@ namespace Serene.Northwind.Entities
 
             public StringField EmployeeFullName;
             public Int32Field EmployeeGender;
+            public StringField EmployeeReportsToFullName;
 
             public StringField ShipViaCompanyName;
             public StringField ShipViaPhone;

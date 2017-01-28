@@ -7,7 +7,7 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Suppliers"), InstanceName("Supplier"), TwoLevelCached]
+    [ConnectionKey("Northwind"), TableName("Suppliers"), DisplayName("Suppliers"), InstanceName("Supplier"), TwoLevelCached]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript("Northwind.Supplier")]
@@ -130,7 +130,6 @@ namespace Serene.Northwind.Entities
             public StringField HomePage;
 
             public RowFields()
-                : base("Suppliers")
             {
                 LocalTextPrefix = "Northwind.Supplier";
             }

@@ -39,5 +39,7 @@ namespace Serene.Northwind.Columns
 
         [FreightFormatter]
         public Decimal? Freight { get; set; }
+
+        public string EmployeeReportsToFullName { get; set; }
     }
 }
