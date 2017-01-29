@@ -5,12 +5,12 @@ using NuGet.VisualStudio;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlLocalDb;
-using System.Runtime.InteropServices;
-using System.Xml.Linq;
-using System.Linq;
-using System.Windows.Forms;
-using System.Text;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace RootProjectWizard
 {
@@ -52,19 +52,27 @@ namespace RootProjectWizard
             replacementsDictionary["$ext_safeprojectname$"] = RootWizard.GlobalDictionary["$ext_safeprojectname$"];
             replacementsDictionary["$ext_projectname$"] = RootWizard.GlobalDictionary["$ext_projectname$"];
 
-            string localDBInstance = "v11.0";
-            var localDBInstances = SqlLocalDbApi.GetInstanceNames();
-            if (localDBInstances.IndexOf("MSSqlLocalDB") >= 0)
-                localDBInstance = "MSSqlLocalDB";
-            else if (localDBInstances.IndexOf("v12.0") >= 0)
-                localDBInstance = "v12.0";
-            else if (localDBInstances.IndexOf("v11.0") >= 0)
-                localDBInstance = "v11.0";
-            else if (localDBInstances.Count > 0)
-                localDBInstance = localDBInstances[0];
+            try
+            {
+                string localDBInstance = "v11.0";
+                var localDBInstances = SqlLocalDbApi.GetInstanceNames();
+                if (localDBInstances.IndexOf("MSSqlLocalDB") >= 0)
+                    localDBInstance = "MSSqlLocalDB";
+                else if (localDBInstances.IndexOf("v12.0") >= 0)
+                    localDBInstance = "v12.0";
+                else if (localDBInstances.IndexOf("v11.0") >= 0)
+                    localDBInstance = "v11.0";
+                else if (localDBInstances.Count > 0)
+                    localDBInstance = localDBInstances[0];
 
-            replacementsDictionary["connectionString=\"Data Source=(LocalDb)\\v11.0;"] =
-                "connectionString=\"Data Source=(LocalDb)\\" + localDBInstance + ";";
+                replacementsDictionary["connectionString=\"Data Source=(LocalDb)\\v11.0;"] =
+                    "connectionString=\"Data Source=(LocalDb)\\" + localDBInstance + ";";
+                replacementsDictionary["connectionString=\"Data Source=(LocalDb)\\MsSqlLocalDB;"] =
+                    "connectionString=\"Data Source=(LocalDb)\\" + localDBInstance + ";";
+            }
+            catch 
+            {
+            }
 
             if (!replacementsDictionary.TryGetValue("$wizarddata$", out wizardData))
                 wizardData = null;
@@ -97,19 +105,35 @@ namespace RootProjectWizard
             {
                 var data = XElement.Parse("<data>" + wizardData + "</data>");
 
-                RemoveExcludedFiles(project, data);
-                PreprocessConditionals(project, data);
+                try
+                {
+                    RemoveExcludedFiles(project, data);
+                    PreprocessConditionals(project, data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occured while configuring features\r\n\r\n" +
+                        ex.ToString());
+                }
 
                 var packageInstaller = componentModel.GetService<IVsPackageInstaller>();
                 var packageQuery = componentModel.GetService<IVsPackageInstallerServices>();
                 foreach (var el in data.Descendants(ns + "installPackage"))
                 {
                     var id = el.Attribute("id").Value;
-                    if (!packageQuery.IsPackageInstalled(project, id))
+                    try
                     {
-                        var ver = el.Attribute("version").Value;
-                        project.DTE.StatusBar.Text = "Installing NuGet Package: " + id + " " + ver;
-                        packageInstaller.InstallPackage((string)null, project, id, ver, false);
+                        if (!packageQuery.IsPackageInstalled(project, id))
+                        {
+                            var ver = el.Attribute("version").Value;
+                            project.DTE.StatusBar.Text = "Installing NuGet Package: " + id + " " + ver;
+                            packageInstaller.InstallPackage((string)null, project, id, ver, false);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured while installing package: " + id + "\r\n" + 
+                            "Your project might be incomplete.\r\n\r\n", ex.ToString());
                     }
                 }
             }

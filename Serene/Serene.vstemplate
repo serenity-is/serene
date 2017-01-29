@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
-    <Name>SERENE (ASP.NET MVC)</Name>
+    <Name>SERENE</Name>
+	<SortOrder>100</SortOrder>
     <Description>Contains project template for Serenity Application Platform.</Description>
     <Icon>SerenityLogo.ico</Icon>
     <DefaultName>Serene</DefaultName>
