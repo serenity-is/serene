@@ -441,9 +441,9 @@
             </Folder>
             <Folder Name="OtherFormInTabOneBar" TargetFolderName="OtherFormInTabOneBar">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.Template.html">OtherFormInTabOneBarDialog.Template.html</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.ts">OtherFormInTabOneBarDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarGrid.ts">OtherFormInTabOneBarGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.Template.html">OtherFormOneBarDialog.Template.html</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.ts">OtherFormOneBarDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarGrid.ts">OtherFormOneBarGrid.ts</ProjectItem>
             </Folder>
             <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -479,12 +479,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextForm.cs">ChangingLookupTextForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
-            <Folder Name="FilteredLookupInDetailDialog" TargetFolderName="FilteredLookupInDetailDialog">
+            <Folder Name="FilteredLookupInDetail" TargetFolderName="FilteredLookupInDetail">
+              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailDialog.ts">FilteredLookupDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailEditor.ts">FilteredLookupDetailEditor.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.ts">FilteredLookupInDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailForm.cs">FilteredLookupInDetailForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailGrid.ts">FilteredLookupInDetailGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupOrderDetailDialog.ts">FilteredLookupOrderDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
             <Folder Name="LookupFilterByMultipleValues" TargetFolderName="LookupFilterByMultipleValues">
@@ -996,6 +996,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="sergen.json">sergen.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="test.txt">test.txt</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
       <Folder Name="typings" TargetFolderName="typings">
@@ -1469,6 +1470,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="meeting" TargetFolderName="meeting">
                 <ProjectItem ReplaceParameters="true" TargetFileName="meeting.vi-VN.json">meeting.vi-VN.json</ProjectItem>
