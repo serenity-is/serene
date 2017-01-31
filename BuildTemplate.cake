@@ -1,4 +1,4 @@
-﻿#addin "nuget:https://www.nuget.org/api/v2?package=Newtonsoft.Json&version=9.0.1"
+#addin "nuget:https://www.nuget.org/api/v2?package=Newtonsoft.Json&version=9.0.1"
 
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
@@ -264,10 +264,11 @@ Task("PrepareVSIX")
         var content = System.IO.File.ReadAllText(path);
         if (content.IndexOf("Serene") >= 0)
         {
-            content = content.Replace(@"\Serene", @"\$ext_projectname$");
+            content = content.Replace(@"Serene.AspNetCore\", @"$ext_projectname$.Web\");
             content = content.Replace(@"Serene.Web\", @"$ext_projectname$.Web\");
-			content = content.Replace(@"Serene.AspNetCore\", @"$ext_projectname$.AspNetCore\");
+            content = content.Replace(@"\Serene", @"\$ext_projectname$");
             content = content.Replace(@"Serene\", @"$ext_projectname$\");
+            content = content.Replace(@"Serene.AspNetCore", @"$ext_safeprojectname$.Web");
             content = content.Replace("Serene", "$ext_safeprojectname$");
             System.IO.File.WriteAllText(path, content, utf8Bom);
         }   
