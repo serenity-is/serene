@@ -8,21 +8,21 @@ namespace Serene.Migrations.NorthwindDB
         public override void Up()
         {
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_SqlServer.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_SqlServer.sql");
 
             IfDatabase("Postgres")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_Postgres.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Postgres.sql");
 
             IfDatabase("Postgres")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql");
 
             IfDatabase("MySql")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql");
 
             IfDatabase("Oracle")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql");
             IfDatabase("Sqlite")
-                .Execute.EmbeddedScript("Serene.AspNetCore.Migrations.NorthwindDB.NorthwindDBScript_Sqlite.sql");
+                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Sqlite.sql");
 
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Customers")

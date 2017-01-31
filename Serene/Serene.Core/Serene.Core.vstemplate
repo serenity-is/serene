@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Serene.AspNetCore</Name>
+    <Name>Serene.Core</Name>
     <Description>SERENE Web Project (Serenity Application Template)</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
@@ -14,7 +14,7 @@
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$projectname$.xproj" File="Serene.AspNetCore.xproj" ReplaceParameters="true">
+    <Project TargetFileName="$projectname$.xproj" File="Serene.Core.xproj" ReplaceParameters="true">
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
       <Folder Name="Imports" TargetFolderName="Imports">
         <Folder Name="ClientTypes" TargetFolderName="ClientTypes">
@@ -996,7 +996,6 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="sergen.json">sergen.json</ProjectItem>
-      <ProjectItem ReplaceParameters="true" TargetFileName="test.txt">test.txt</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
       <Folder Name="typings" TargetFolderName="typings">

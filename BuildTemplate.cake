@@ -11,7 +11,7 @@ var r = System.IO.Path.GetFullPath(@".\");
 
 var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
 var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
-var sereneCoreWebProj = r + @"Serene\Serene.AspNetCore\Serene.AspNetCore.xproj";
+var sereneCoreWebProj = r + @"Serene\Serene.Core\Serene.Core.xproj";
 var sereneCoreProJson = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneCoreWebProj), "project.json");
 string serenityVersion = null;
 
@@ -264,11 +264,11 @@ Task("PrepareVSIX")
         var content = System.IO.File.ReadAllText(path);
         if (content.IndexOf("Serene") >= 0)
         {
-            content = content.Replace(@"Serene.AspNetCore\", @"$ext_projectname$.Web\");
+            content = content.Replace(@"Serene.Core\", @"$ext_projectname$.Web\");
             content = content.Replace(@"Serene.Web\", @"$ext_projectname$.Web\");
             content = content.Replace(@"\Serene", @"\$ext_projectname$");
             content = content.Replace(@"Serene\", @"$ext_projectname$\");
-            content = content.Replace(@"Serene.AspNetCore", @"$ext_safeprojectname$.Web");
+            content = content.Replace(@"Serene.Core", @"$ext_safeprojectname$.Web");
             content = content.Replace("Serene", "$ext_safeprojectname$");
             System.IO.File.WriteAllText(path, content, utf8Bom);
         }   
@@ -482,7 +482,7 @@ Task("PrepareVSIX")
     if (System.IO.Directory.Exists(coreTemplateFolder))
         System.IO.Directory.Delete(coreTemplateFolder, true);	       
     System.IO.Directory.CreateDirectory(coreTemplateFolder);
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(coreTemplateFolder, "Serene.AspNetCore"));	
+    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(coreTemplateFolder, "Serene.Core"));	
 
 	replaceTemplateFileList(sereneCoreWebProj, null, coreSkipFiles);
 	
