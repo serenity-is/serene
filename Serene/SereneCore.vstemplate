@@ -11,7 +11,7 @@
   <TemplateContent>
     <ProjectCollection>
       <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
-        Serene.AspNetCore\Serene.AspNetCore.vstemplate
+        Serene.Core\Serene.Core.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
   </TemplateContent>
