@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlLocalDb;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -138,7 +139,7 @@ namespace RootProjectWizard
                 }
             }
 
-            if (project.FullName.IndexOf("AspNetCore") >= 0)
+            if (File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "project.json")))
             {
                 try
                 {
