@@ -2054,6 +2054,7 @@ declare namespace Serene.Northwind {
         CustomerFax?: string;
         EmployeeFullName?: string;
         EmployeeGender?: Gender;
+        EmployeeReportsToFullName?: string;
         ShipViaCompanyName?: string;
         ShipViaPhone?: string;
         ShippingState?: OrderShippingState;
@@ -2090,6 +2091,7 @@ declare namespace Serene.Northwind {
             const CustomerFax: string;
             const EmployeeFullName: string;
             const EmployeeGender: string;
+            const EmployeeReportsToFullName: string;
             const ShipViaCompanyName: string;
             const ShipViaPhone: string;
             const ShippingState: string;

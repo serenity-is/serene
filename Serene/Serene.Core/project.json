@@ -30,7 +30,7 @@
       "type": "platform"
     },
     "Serenity.FluentMigrator.Runner": "1.6.904",
-    "Serenity.Web": "2.9.1"
+    "Serenity.Web": "2.9.2"
   },
   "frameworks": {
     "netcoreapp1.1": {
@@ -60,6 +60,13 @@
     }
   },
   "scripts": {
+    "precompile": [
+      "dotnet sergen mvc",
+      "dotnet sergen clienttypes"
+    ],
+    "postcompile": [
+      "dotnet sergen servertypings"
+    ],
     "prepublish": [],
     "postpublish": [
       "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
@@ -68,6 +75,6 @@
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-    "Serenity.CodeGenerator": "2.9.1"
+    "Serenity.CodeGenerator": "2.9.2"
   }
 }

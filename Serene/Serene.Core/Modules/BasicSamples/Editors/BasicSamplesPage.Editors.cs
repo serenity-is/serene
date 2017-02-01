@@ -13,7 +13,7 @@ namespace Serene.BasicSamples.Pages
 
         public ActionResult FilteredLookupInDetailDialog()
         {
-            return View(Views.FilteredLookupInDetailDialog.Index);
+            return View(Views.FilteredLookupInDetail.Index);
         }
 
         public ActionResult LookupFilterByMultipleValues()

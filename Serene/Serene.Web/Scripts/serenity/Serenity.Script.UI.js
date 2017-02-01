@@ -4721,6 +4721,12 @@
 			});
 		},
 		initNewEntity: function(entity) {
+			if (!ss.isNullOrEmptyString(this.get_cascadeField())) {
+				entity[this.get_cascadeField()] = this.get_cascadeValue();
+			}
+			if (!ss.isNullOrEmptyString(this.get_filterField())) {
+				entity[this.get_filterField()] = this.get_filterValue();
+			}
 			if (!ss.staticEquals(this.onInitNewEntity, null)) {
 				this.onInitNewEntity(entity);
 			}
@@ -4742,9 +4748,7 @@
 				if (Q.isEmptyOrNull(this.get_value())) {
 					var entity = new Object();
 					entity[this.getLookup().textField] = Q.trimToEmpty(this.lastCreateTerm);
-					if (!ss.staticEquals(this.onInitNewEntity, null)) {
-						this.onInitNewEntity(entity);
-					}
+					this.initNewEntity(entity);
 					dialog.load(entity, function() {
 						dialog.dialogOpen();
 					}, null);
