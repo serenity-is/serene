@@ -1,0 +1,30 @@
+﻿<div style="background-color: white; padding: 15px; min-height: 400px;">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Connection:</label>
+            <div class="col-md-10">
+                <select class="form-control" v-model="connection">
+                    <option value="">--select a connection--</option>
+                    <option v-for="item in connections" :value="item.Key">{{item.Key}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Table Name</th>
+                <th>Identifier</th>
+                <th>Module</th>
+                <th>Permission Key</th>
+            </tr>
+            <tr v-for="item in tables">
+                <td>{{item.Tablename}}</td>
+                <td><input v-model="item.Identifier" /></td>
+                <td><input v-model="item.Module" /></td>
+                <td><input v-model="item.PermissionKey" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
