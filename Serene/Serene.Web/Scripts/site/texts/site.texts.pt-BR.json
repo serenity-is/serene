@@ -45,8 +45,6 @@
     "Db.Administration.UserRole.UserId": "Id do usuário",
     "Db.Administration.UserRole.Username": "Nome do usuário",
     "Db.Administration.UserRole.UserRoleId": "Id do perfil do usuário",
-    "Db.CustomerRepresentatives.CustomerId": "Id do cliente",
-    "Db.CustomerRepresentatives.EmployeeId": "Id do empregado",
     "Forms.Membership.ChangePassword.ConfirmPassword": "Confirme a senha",
     "Forms.Membership.ChangePassword.FormTitle": "Alterar senha",
     "Forms.Membership.ChangePassword.NewPassword": "Nova senha",
