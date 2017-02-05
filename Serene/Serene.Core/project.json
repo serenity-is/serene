@@ -65,6 +65,7 @@
       "dotnet sergen clienttypes"
     ],
     "postcompile": [
+      "npm run less"
     ],
     "prepublish": [],
     "postpublish": [

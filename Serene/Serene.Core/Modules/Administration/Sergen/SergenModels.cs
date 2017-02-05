@@ -27,4 +27,11 @@ namespace Serene.Administration
         public bool Service { get; set; }
         public bool UI { get; set; }
     }
+
+    public class SergenGenerateRequest : ServiceRequest
+    {
+        public string ConnectionKey { get; set; }
+        public SergenTable Table { get; set; }
+        public SergenGenerateOptions GenerateOptions { get; set; }
+    }
 }

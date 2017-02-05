@@ -154,6 +154,23 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
+        var SergenService;
+        (function (SergenService) {
+            SergenService.baseUrl = 'Administration/Sergen';
+            var Methods;
+            (function (Methods) {
+            })(Methods = SergenService.Methods || (SergenService.Methods = {}));
+            ['ListConnections', 'ListTables', 'Generate'].forEach(function (x) {
+                SergenService[x] = function (r, s, o) { return Q.serviceRequest(SergenService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = SergenService.baseUrl + '/' + x;
+            });
+        })(SergenService = Administration.SergenService || (Administration.SergenService = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
         var TranslationService;
         (function (TranslationService) {
             TranslationService.baseUrl = 'Administration/Translation';
@@ -2102,6 +2119,65 @@ var Serene;
             Serenity.Decorators.registerClass()
         ], RolePermissionDialog);
         Administration.RolePermissionDialog = RolePermissionDialog;
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var SergenPanel = (function (_super) {
+            __extends(SergenPanel, _super);
+            function SergenPanel(container) {
+                var _this = _super.call(this, container) || this;
+                var vm = new Vue({
+                    el: $('<div/>').appendTo(_this.element)[0],
+                    data: {
+                        connection: "",
+                        connections: [],
+                        tables: [],
+                        generate: {
+                            Row: true,
+                            Service: true,
+                            UI: true
+                        }
+                    },
+                    methods: {
+                        generateCode: function (table) {
+                            if (!table.Identifier) {
+                                Q.notifyError("Identifier cannot be empty!");
+                                return;
+                            }
+                            if (!table.Module) {
+                                Q.notifyError("Module cannot be empty!");
+                                return;
+                            }
+                            Administration.SergenService.Generate({
+                                ConnectionKey: this.connection,
+                                Table: table,
+                                GenerateOptions: this.generate
+                            }, function (r) {
+                                Q.notifySuccess("Code for selected table is generated. You'll need to rebuild your project.");
+                            });
+                        }
+                    },
+                    watch: {
+                        connection: function (val) {
+                            if (!val || !val.length)
+                                vm.tables = [];
+                            else
+                                Administration.SergenService.ListTables({
+                                    ConnectionKey: val
+                                }, function (response) { return vm.tables = response.Entities; });
+                        }
+                    },
+                    template: Q.getTemplate('Administration.SergenPanel')
+                });
+                Administration.SergenService.ListConnections({}, function (response) { return vm.connections = response.Entities; });
+                return _this;
+            }
+            return SergenPanel;
+        }(Serenity.Widget));
+        Administration.SergenPanel = SergenPanel;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
 var Serene;

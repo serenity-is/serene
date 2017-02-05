@@ -18,6 +18,7 @@ namespace MVC
 
             public static class Sergen
             {
+                public const string SergenError = "~/Modules/Administration/Sergen/SergenError.cshtml";
                 public const string SergenIndex = "~/Modules/Administration/Sergen/SergenIndex.cshtml";
             }
 

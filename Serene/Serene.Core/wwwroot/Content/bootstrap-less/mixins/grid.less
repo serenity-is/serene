@@ -8,14 +8,12 @@
   margin-left: auto;
   padding-left: (@gutter / 2);
   padding-right: (@gutter / 2);
-  &:extend(.clearfix all);
 }
 
 // Creates a wrapper for a series of columns
 .make-row(@gutter: @grid-gutter-width) {
   margin-left: ceil((@gutter / -2));
   margin-right: floor((@gutter / -2));
-  &:extend(.clearfix all);
 }
 
 // Generate the extra small columns

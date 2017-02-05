@@ -20,7 +20,14 @@ namespace Serene.Administration.Endpoints
             this.hostingEnvironment = hostingEnvironment;
         }
 
-        private void RunSergen(string[] arguments)
+        private void CheckAccess()
+        {
+            if (!Pages.SergenController.IsLocal(HttpContext.Request) ||
+                Repositories.UserRepository.isPublicDemo)
+                throw new System.Exception("Sergen can only run for local requests!");
+        }
+
+        private void RunSergen(params string[] arguments)
         {
             var process = Process.Start(new ProcessStartInfo
             {
@@ -28,6 +35,20 @@ namespace Serene.Administration.Endpoints
                 CreateNoWindow = true,
                 Arguments = "sergen " + string.Join(" ", arguments)
             });
+
+            if (!process.WaitForExit(90000) || process.ExitCode != 0)
+                throw new ValidationError("Error while running Sergen!");
+        }
+
+        private string Escape(string value)
+        {
+            if (value.IsEmptyOrNull())
+                return "\"\"";
+
+            if (value.IndexOf(' ') > 0)
+                return "\"" + value + "\"";
+
+            return value;
         }
 
         private TOut RunSergen<TOut>(params string[] arguments)
@@ -40,7 +61,7 @@ namespace Serene.Administration.Endpoints
                     FileName = "dotnet",
                     CreateNoWindow = true,
                     WorkingDirectory = hostingEnvironment.ContentRootPath,
-                    Arguments = "sergen " + string.Join(" ", arguments) + " -o:" + tempFile
+                    Arguments = "sergen " + string.Join(" ", arguments) + " -o " + Escape(tempFile)
                 });
 
                 if (!process.WaitForExit(90000) || process.ExitCode != 0)
@@ -68,6 +89,8 @@ namespace Serene.Administration.Endpoints
         [HttpPost]
         public ListResponse<SergenConnection> ListConnections(ServiceRequest request)
         {
+            CheckAccess();
+
             var response = new ListResponse<SergenConnection>();
             response.Entities = RunSergen<List<string>>("g").Select(x => new SergenConnection
             {
@@ -80,18 +103,48 @@ namespace Serene.Administration.Endpoints
         [HttpPost]
         public ListResponse<SergenTable> ListTables(SergenListTablesRequest request)
         {
+            CheckAccess();
+
             request.CheckNotNull();
             Check.NotNullOrEmpty(request.ConnectionKey, "connectionKey");
 
             var response = new ListResponse<SergenTable>();
-            response.Entities = RunSergen<List<dynamic>>("g", "-c:" + request.ConnectionKey).Select(x => new SergenTable
-            {
-                Tablename = x.name,
-                Identifier = x.identifier,
-                Module = x.module,
-                PermissionKey = x.permission
-            }).ToList();
+            response.Entities = RunSergen<List<dynamic>>("g", "-c", Escape(request.ConnectionKey))
+                .Select(x => new SergenTable
+                {
+                    Tablename = x.name,
+                    Identifier = x.identifier,
+                    Module = x.module,
+                    PermissionKey = x.permission
+                }).ToList();
+
             return response;
+        }
+
+        public ServiceResponse Generate(SergenGenerateRequest request)
+        {
+            CheckAccess();
+
+            request.CheckNotNull();
+            Check.NotNullOrEmpty(request.ConnectionKey, "connectionKey");
+            Check.NotNull(request.Table, "table");
+            Check.NotNull(request.GenerateOptions, "table");
+            Check.NotNullOrWhiteSpace(request.Table.Tablename, "tableName");
+            Check.NotNullOrWhiteSpace(request.Table.Identifier, "identifier");
+            Check.NotNullOrWhiteSpace(request.Table.Module, "module");
+
+            RunSergen("g",
+                "-c", Escape(request.ConnectionKey),
+                "-t", Escape(request.Table.Tablename),
+                "-m", Escape(request.Table.Module),
+                "-i", Escape(request.Table.Identifier),
+                "-p", Escape(request.Table.PermissionKey),
+                "-w", Escape(
+                    (request.GenerateOptions.Row ? "R" : "") +
+                    (request.GenerateOptions.Service ? "S" : "") +
+                    (request.GenerateOptions.UI ? "U" : "")));
+
+            return new ServiceResponse();
         }
     }
 }

@@ -333,3 +333,4 @@
 /// <reference path="scripts/timepicker/bootstrap-timepicker.js" />
 /// <reference path="scripts/toastr.js" />
 /// <reference path="scripts/vegas/vegas.js" />
+/// <reference path="scripts/vue.js" />

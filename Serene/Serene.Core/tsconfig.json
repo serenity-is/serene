@@ -6,6 +6,7 @@
     "declaration": true,
     "emitBOM": true,
     "sourceMap": true,
+    "inlineSources": true,
     "outFile": "wwwroot/Scripts/site/Serene.Web.js",
     "target": "es5",
     "allowJs": false

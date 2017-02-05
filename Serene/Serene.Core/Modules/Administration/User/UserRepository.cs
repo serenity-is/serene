@@ -15,7 +15,7 @@ namespace Serene.Administration.Repositories
     public partial class UserRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
-        private static bool isPublicDemo;
+        public static readonly bool isPublicDemo;
 
         static UserRepository()
         {
