@@ -1,7 +1,4 @@
 
-
-//[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "Northwind/OrderDetail", url: "~/Northwind/OrderDetail", permission: "Northwind/" + R.ActionIndex)]
-
 namespace Serene.Northwind.Pages
 {
     using Serenity.Web;

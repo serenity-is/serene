@@ -474,7 +474,15 @@ Task("PrepareVSIX")
     var exitCode = StartProcess("dotnet", "restore");
     if (exitCode > 0)
         throw new Exception("Error while restoring " + sereneCoreWebProj);	
-	
+
+	exitCode = StartProcess("dotnet", new ProcessSettings
+	{
+		Arguments = "sergen restore",
+		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreProJson)
+	});
+    if (exitCode > 0)
+        throw new Exception("Error while sergen restoring " + sereneCoreWebProj);	
+
 	exitCode = StartProcess("dotnet", "build " + sereneCoreProJson + " -c " + configuration);
 	if (exitCode > 0)
 		throw new Exception("Error while building " + sereneCoreProJson);

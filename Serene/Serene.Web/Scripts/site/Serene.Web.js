@@ -1186,7 +1186,7 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CategoryService.Methods || (CategoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'RetrieveLocalization', 'Retrieve', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
                 CategoryService[x] = function (r, s, o) { return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = CategoryService.baseUrl + '/' + x;
             });
@@ -1456,7 +1456,7 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
-            ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(function (x) { return Fields[x] = x; });
+            ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'EmployeeReportsToFullName', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(function (x) { return Fields[x] = x; });
         })(OrderRow = Northwind.OrderRow || (Northwind.OrderRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1584,7 +1584,7 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ProductService.Methods || (ProductService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'RetrieveLocalization', 'List'].forEach(function (x) {
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
                 ProductService[x] = function (r, s, o) { return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o); };
                 Methods[x] = ProductService.baseUrl + '/' + x;
             });
@@ -3887,9 +3887,9 @@ var Serene;
          * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
          * With single toolbar for all forms
          */
-        var OtherFormInTabOneBarDialog = (function (_super) {
-            __extends(OtherFormInTabOneBarDialog, _super);
-            function OtherFormInTabOneBarDialog() {
+        var OtherFormOneBarDialog = (function (_super) {
+            __extends(OtherFormOneBarDialog, _super);
+            function OtherFormOneBarDialog() {
                 var _this = _super.call(this) || this;
                 _this.selfChange = 0;
                 // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
@@ -3921,7 +3921,7 @@ var Serene;
                 });
                 return _this;
             }
-            OtherFormInTabOneBarDialog.prototype.getCustomerID = function () {
+            OtherFormOneBarDialog.prototype.getCustomerID = function () {
                 var customerID = this.form.CustomerID.value;
                 if (Q.isEmptyOrNull(customerID))
                     return null;
@@ -3931,12 +3931,12 @@ var Serene;
                 // you'll probably won't need this step.
                 return Q.first(Serene.Northwind.CustomerRow.getLookup().items, function (x) { return x.CustomerID == customerID; }).ID;
             };
-            OtherFormInTabOneBarDialog.prototype.loadEntity = function (entity) {
+            OtherFormOneBarDialog.prototype.loadEntity = function (entity) {
                 _super.prototype.loadEntity.call(this, entity);
                 Serenity.TabsExtensions.setDisabled(this.tabs, 'Customer', !this.getCustomerID());
             };
             // Save the customer and the order 
-            OtherFormInTabOneBarDialog.prototype.saveCustomer = function (callback, onSuccess) {
+            OtherFormOneBarDialog.prototype.saveCustomer = function (callback, onSuccess) {
                 var _this = this;
                 var id = this.getCustomerID();
                 if (!id) {
@@ -3979,25 +3979,25 @@ var Serene;
                 return true;
             };
             // Call super.save to save Order entity
-            OtherFormInTabOneBarDialog.prototype.saveOrder = function (callback) {
+            OtherFormOneBarDialog.prototype.saveOrder = function (callback) {
                 _super.prototype.save.call(this, callback);
             };
-            OtherFormInTabOneBarDialog.prototype.saveAll = function (callback) {
+            OtherFormOneBarDialog.prototype.saveAll = function (callback) {
                 var _this = this;
                 this.saveCustomer(callback, 
                 // If customer successa, save Order entity
                 function (resp) { return _this.saveOrder(callback); });
             };
             // This is called when save/update button is pressed
-            OtherFormInTabOneBarDialog.prototype.save = function (callback) {
+            OtherFormOneBarDialog.prototype.save = function (callback) {
                 this.saveAll(callback);
             };
-            return OtherFormInTabOneBarDialog;
+            return OtherFormOneBarDialog;
         }(Serene.Northwind.OrderDialog));
-        OtherFormInTabOneBarDialog = __decorate([
+        OtherFormOneBarDialog = __decorate([
             Serenity.Decorators.registerClass()
-        ], OtherFormInTabOneBarDialog);
-        BasicSamples.OtherFormInTabOneBarDialog = OtherFormInTabOneBarDialog;
+        ], OtherFormOneBarDialog);
+        BasicSamples.OtherFormOneBarDialog = OtherFormOneBarDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
@@ -4013,7 +4013,7 @@ var Serene;
             function OtherFormInTabOneBarGrid(container) {
                 return _super.call(this, container) || this;
             }
-            OtherFormInTabOneBarGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormInTabOneBarDialog; };
+            OtherFormInTabOneBarGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormOneBarDialog; };
             return OtherFormInTabOneBarGrid;
         }(Serene.Northwind.OrderGrid));
         OtherFormInTabOneBarGrid = __decorate([
@@ -4600,6 +4600,85 @@ var Serene;
         BasicSamples.ChangingLookupTextEditor = ChangingLookupTextEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailDialog = (function (_super) {
+            __extends(OrderDetailDialog, _super);
+            function OrderDetailDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Northwind.OrderDetailForm(_this.idPrefix);
+                _this.form.ProductID.changeSelect2(function (e) {
+                    var productID = Q.toId(_this.form.ProductID.value);
+                    if (productID != null) {
+                        _this.form.UnitPrice.value = Northwind.ProductRow.getLookup().itemById[productID].UnitPrice;
+                    }
+                });
+                _this.form.Discount.addValidationRule(_this.uniqueName, function (e) {
+                    var price = _this.form.UnitPrice.value;
+                    var quantity = _this.form.Quantity.value;
+                    var discount = _this.form.Discount.value;
+                    if (price != null && quantity != null && discount != null &&
+                        discount > 0 && discount >= price * quantity) {
+                        return "Discount can't be higher than total price!";
+                    }
+                });
+                return _this;
+            }
+            OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
+            OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            return OrderDetailDialog;
+        }(Serene.Common.GridEditorDialog));
+        OrderDetailDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], OrderDetailDialog);
+        Northwind.OrderDetailDialog = OrderDetailDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/OrderDetail/OrderDetailDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        /**
+         * Our subclass of order detail dialog with a CategoryID property
+         * that will be used to set CascadeValue of product editor
+         */
+        var FilteredLookupOrderDetailDialog = (function (_super) {
+            __extends(FilteredLookupOrderDetailDialog, _super);
+            function FilteredLookupOrderDetailDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Serene.Northwind.OrderDetailForm(_this.idPrefix);
+                // we can set cascade field in constructor
+                // we could also use FilterField but in this case, when CategoryID is null
+                // lookup editor would show all products in any category
+                _this.form.ProductID.cascadeField = Serene.Northwind.ProductRow.Fields.CategoryID;
+                return _this;
+                // but CategoryID value is not yet available here as detail editor will set it 
+                // after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
+            }
+            /**
+             * This method is called just before an entity is loaded to dialog
+             * This is also called for new record mode with an empty entity
+             */
+            FilteredLookupOrderDetailDialog.prototype.beforeLoadEntity = function (entity) {
+                _super.prototype.beforeLoadEntity.call(this, entity);
+                // setting cascade value here
+                // make sure you have [LookupInclude] on CategoryID property of ProductRow
+                // otherwise this field won't be available in lookup script (will always be null),
+                // so can't be filtered and you'll end up with an empty product list.
+                this.form.ProductID.cascadeValue = this.categoryID;
+            };
+            return FilteredLookupOrderDetailDialog;
+        }(Serene.Northwind.OrderDetailDialog));
+        FilteredLookupOrderDetailDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], FilteredLookupOrderDetailDialog);
+        BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var Common;
@@ -4852,85 +4931,6 @@ var Serene;
             Serenity.Decorators.registerClass()
         ], FilteredLookupInDetailGrid);
         BasicSamples.FilteredLookupInDetailGrid = FilteredLookupInDetailGrid;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailDialog = (function (_super) {
-            __extends(OrderDetailDialog, _super);
-            function OrderDetailDialog() {
-                var _this = _super.call(this) || this;
-                _this.form = new Northwind.OrderDetailForm(_this.idPrefix);
-                _this.form.ProductID.changeSelect2(function (e) {
-                    var productID = Q.toId(_this.form.ProductID.value);
-                    if (productID != null) {
-                        _this.form.UnitPrice.value = Northwind.ProductRow.getLookup().itemById[productID].UnitPrice;
-                    }
-                });
-                _this.form.Discount.addValidationRule(_this.uniqueName, function (e) {
-                    var price = _this.form.UnitPrice.value;
-                    var quantity = _this.form.Quantity.value;
-                    var discount = _this.form.Discount.value;
-                    if (price != null && quantity != null && discount != null &&
-                        discount > 0 && discount >= price * quantity) {
-                        return "Discount can't be higher than total price!";
-                    }
-                });
-                return _this;
-            }
-            OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
-            OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
-            return OrderDetailDialog;
-        }(Serene.Common.GridEditorDialog));
-        OrderDetailDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OrderDetailDialog);
-        Northwind.OrderDetailDialog = OrderDetailDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../../Northwind/OrderDetail/OrderDetailDialog.ts" />
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        /**
-         * Our subclass of order detail dialog with a CategoryID property
-         * that will be used to set CascadeValue of product editor
-         */
-        var FilteredLookupOrderDetailDialog = (function (_super) {
-            __extends(FilteredLookupOrderDetailDialog, _super);
-            function FilteredLookupOrderDetailDialog() {
-                var _this = _super.call(this) || this;
-                _this.form = new Serene.Northwind.OrderDetailForm(_this.idPrefix);
-                // we can set cascade field in constructor
-                // we could also use FilterField but in this case, when CategoryID is null
-                // lookup editor would show all products in any category
-                _this.form.ProductID.cascadeField = Serene.Northwind.ProductRow.Fields.CategoryID;
-                return _this;
-                // but CategoryID value is not yet available here as detail editor will set it 
-                // after calling constructor (creating a detail dialog) so we'll use BeforeLoadEntity
-            }
-            /**
-             * This method is called just before an entity is loaded to dialog
-             * This is also called for new record mode with an empty entity
-             */
-            FilteredLookupOrderDetailDialog.prototype.beforeLoadEntity = function (entity) {
-                _super.prototype.beforeLoadEntity.call(this, entity);
-                // setting cascade value here
-                // make sure you have [LookupInclude] on CategoryID property of ProductRow
-                // otherwise this field won't be available in lookup script (will always be null),
-                // so can't be filtered and you'll end up with an empty product list.
-                this.form.ProductID.cascadeValue = this.categoryID;
-            };
-            return FilteredLookupOrderDetailDialog;
-        }(Serene.Northwind.OrderDetailDialog));
-        FilteredLookupOrderDetailDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], FilteredLookupOrderDetailDialog);
-        BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Product/ProductDialog.ts" />

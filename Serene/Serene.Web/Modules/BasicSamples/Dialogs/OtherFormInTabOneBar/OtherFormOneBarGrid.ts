@@ -8,7 +8,7 @@ namespace Serene.BasicSamples {
     @Serenity.Decorators.registerClass()
     export class OtherFormInTabOneBarGrid extends Northwind.OrderGrid {
 
-        protected getDialogType() { return OtherFormInTabOneBarDialog; }
+        protected getDialogType() { return OtherFormOneBarDialog; }
 
         constructor(container: JQuery) {
             super(container);

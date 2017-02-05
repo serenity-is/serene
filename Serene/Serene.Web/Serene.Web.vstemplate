@@ -732,9 +732,9 @@
             </Folder>
             <Folder Name="OtherFormInTabOneBar" TargetFolderName="OtherFormInTabOneBar">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.Template.html">OtherFormInTabOneBarDialog.Template.html</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarDialog.ts">OtherFormInTabOneBarDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabOneBarGrid.ts">OtherFormInTabOneBarGrid.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.Template.html">OtherFormOneBarDialog.Template.html</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.ts">OtherFormOneBarDialog.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarGrid.ts">OtherFormOneBarGrid.ts</ProjectItem>
             </Folder>
             <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -770,12 +770,12 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextForm.cs">ChangingLookupTextForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
-            <Folder Name="FilteredLookupInDetailDialog" TargetFolderName="FilteredLookupInDetailDialog">
+            <Folder Name="FilteredLookupInDetail" TargetFolderName="FilteredLookupInDetail">
+              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailDialog.ts">FilteredLookupDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailEditor.ts">FilteredLookupDetailEditor.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.ts">FilteredLookupInDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailForm.cs">FilteredLookupInDetailForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailGrid.ts">FilteredLookupInDetailGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupOrderDetailDialog.ts">FilteredLookupOrderDetailDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
             <Folder Name="LookupFilterByMultipleValues" TargetFolderName="LookupFilterByMultipleValues">

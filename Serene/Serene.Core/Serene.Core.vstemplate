@@ -1488,6 +1488,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="meeting" TargetFolderName="meeting">
+                <ProjectItem ReplaceParameters="true" TargetFileName="meeting.ru.json">meeting.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="meeting.vi-VN.json">meeting.vi-VN.json</ProjectItem>
               </Folder>
               <Folder Name="northwind" TargetFolderName="northwind">
@@ -1497,10 +1498,12 @@
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.invariant.json">northwind.invariant.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt-BR.json">northwind.pt-BR.json</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.ru.json">northwind.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
               </Folder>
               <Folder Name="organization" TargetFolderName="organization">
+                <ProjectItem ReplaceParameters="true" TargetFileName="organization.ru.json">organization.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="organization.vi-VN.json">organization.vi-VN.json</ProjectItem>
               </Folder>
               <Folder Name="samples" TargetFolderName="samples">
@@ -1509,6 +1512,7 @@
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.fa.json">samples.fa.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt-BR.json">samples.pt-BR.json</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="samples.ru.json">samples.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
               </Folder>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
@@ -1518,6 +1522,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.it.json">site.texts.it.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.ru.json">site.texts.ru.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>

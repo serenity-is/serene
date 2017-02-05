@@ -16,6 +16,12 @@ namespace MVC
                 public const string RoleIndex = "~/Modules/Administration/Role/RoleIndex.cshtml";
             }
 
+            public static class Sergen
+            {
+                public const string SergenError = "~/Modules/Administration/Sergen/SergenError.cshtml";
+                public const string SergenIndex = "~/Modules/Administration/Sergen/SergenIndex.cshtml";
+            }
+
             public static class Translation
             {
                 public const string TranslationIndex = "~/Modules/Administration/Translation/TranslationIndex.cshtml";
@@ -161,9 +167,9 @@ namespace MVC
                     public const string Index = "~/Modules/BasicSamples/Editors/ChangingLookupText/Index.cshtml";
                 }
 
-                public static class FilteredLookupInDetailDialog
+                public static class FilteredLookupInDetail
                 {
-                    public const string Index = "~/Modules/BasicSamples/Editors/FilteredLookupInDetailDialog/Index.cshtml";
+                    public const string Index = "~/Modules/BasicSamples/Editors/FilteredLookupInDetail/Index.cshtml";
                 }
 
                 public static class LookupFilterByMultipleValues

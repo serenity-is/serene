@@ -1552,17 +1552,15 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
     namespace CategoryService {
         const baseUrl = "Northwind/Category";
-        function Create(request: Serenity.SaveWithLocalizationRequest<CategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveWithLocalizationRequest<CategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<CategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<CategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function RetrieveLocalization(request: Serenity.RetrieveLocalizationRequest, onSuccess?: (response: Serenity.RetrieveLocalizationResponse<CategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
-            const RetrieveLocalization: string;
             const Retrieve: string;
             const List: string;
         }
@@ -2088,6 +2086,7 @@ declare namespace Serene.Northwind {
         CustomerFax?: string;
         EmployeeFullName?: string;
         EmployeeGender?: Gender;
+        EmployeeReportsToFullName?: string;
         ShipViaCompanyName?: string;
         ShipViaPhone?: string;
         ShippingState?: OrderShippingState;
@@ -2124,6 +2123,7 @@ declare namespace Serene.Northwind {
             const CustomerFax: string;
             const EmployeeFullName: string;
             const EmployeeGender: string;
+            const EmployeeReportsToFullName: string;
             const ShipViaCompanyName: string;
             const ShipViaPhone: string;
             const ShippingState: string;
@@ -2317,18 +2317,16 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
     namespace ProductService {
         const baseUrl = "Northwind/Product";
-        function Create(request: Serenity.SaveWithLocalizationRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveWithLocalizationRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Create(request: Serenity.SaveRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function RetrieveLocalization(request: Serenity.RetrieveLocalizationRequest, onSuccess?: (response: Serenity.RetrieveLocalizationResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const Create: string;
             const Update: string;
             const Delete: string;
             const Retrieve: string;
-            const RetrieveLocalization: string;
             const List: string;
         }
     }
@@ -3162,7 +3160,7 @@ declare namespace Serene.BasicSamples {
      * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
      * With single toolbar for all forms
      */
-    class OtherFormInTabOneBarDialog extends Northwind.OrderDialog {
+    class OtherFormOneBarDialog extends Northwind.OrderDialog {
         private customerPropertyGrid;
         private customerForm;
         private customerValidator;
@@ -3181,7 +3179,7 @@ declare namespace Serene.BasicSamples {
      * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
      */
     class OtherFormInTabOneBarGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof OtherFormInTabOneBarDialog;
+        protected getDialogType(): typeof OtherFormOneBarDialog;
         constructor(container: JQuery);
     }
 }
@@ -3374,6 +3372,29 @@ declare namespace Serene.BasicSamples {
         protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>): string;
     }
 }
+declare namespace Serene.Northwind {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: OrderDetailForm;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our subclass of order detail dialog with a CategoryID property
+     * that will be used to set CascadeValue of product editor
+     */
+    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
+        constructor();
+        /**
+         * This method is called just before an entity is loaded to dialog
+         * This is also called for new record mode with an empty entity
+         */
+        protected beforeLoadEntity(entity: any): void;
+        categoryID: number;
+    }
+}
 declare namespace Serene.Common {
     class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
         protected getIdProperty(): string;
@@ -3444,29 +3465,6 @@ declare namespace Serene.BasicSamples {
     class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
         protected getDialogType(): typeof FilteredLookupInDetailDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: OrderDetailForm;
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our subclass of order detail dialog with a CategoryID property
-     * that will be used to set CascadeValue of product editor
-     */
-    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
-        constructor();
-        /**
-         * This method is called just before an entity is loaded to dialog
-         * This is also called for new record mode with an empty entity
-         */
-        protected beforeLoadEntity(entity: any): void;
-        categoryID: number;
     }
 }
 declare namespace Serene.BasicSamples {

@@ -515,7 +515,7 @@
     <Content Include="Fonts\ionicons.svg" />
     <Content Include="Fonts\Simple-Line-Icons.svg" />
     <EmbeddedResource Include="Migrations\NorthwindDB\NorthwindDBScript_Sqlite.sql" />
-    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.Template.html" />
+    <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarDialog.Template.html" />
     <Content Include="Modules\Meeting\Meeting\Meeting.MeetingDialog.Template.html" />
     <Content Include="Modules\Membership\Account\SignUp\AccountSignUp.AdminLTE.cshtml" />
     <Content Include="Readme.CodeGenerator.txt" />
@@ -1262,7 +1262,7 @@
     <Content Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\Index.cshtml" />
+    <Content Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\GroupingAndSummariesInGrid\Index.cshtml" />
     <Content Include="Imports\CodeGenerationHelpers.ttinclude" />
     <Content Include="Imports\ClientTypes\ClientTypes.log">
@@ -1345,8 +1345,8 @@
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormInTabOneBarGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DialogBoxes\DialogBoxes.ts" />
@@ -1786,10 +1786,10 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveGrid.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupOrderDetailDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupDetailEditor.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupInDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupDetailEditor.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupInDetailGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\ProduceSeafoodCategoryEditor.ts" />
@@ -2000,7 +2000,7 @@
     <Compile Include="Modules\BasicSamples\Editors\StaticTextBlock\StaticTextBlockForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\HardcodedValuesForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextForm.cs" />
-    <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetailDialog\FilteredLookupInDetailForm.cs" />
+    <Compile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupInDetailForm.cs" />
     <Compile Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\LookupFilterByMultipleForm.cs" />
     <Compile Include="Modules\BasicSamples\Grids\BasicSamplesNavigation.Grids.cs" />
     <Compile Include="Modules\BasicSamples\Grids\BasicSamplesPage.Grids.cs" />
