@@ -1,7 +1,11 @@
 {
-  "name": "serene.web",
+  "name": "serene",
   "version": "1.0.0",
   "description": "Serene",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/volkanceylan/serenity"
+  },
   "main": "index.js",
   "dependencies": {
     "@types/jquery": "^2.0.39",
