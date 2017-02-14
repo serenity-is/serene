@@ -42,7 +42,7 @@ namespace Serene.Membership.Pages
                         UserRow.Fields.Username == request.Email |
                         UserRow.Fields.Email == request.Email))
                 {
-                    throw new ValidationError("EmailInUse", Texts.Validation.CantFindUserWithEmail);
+                    throw new ValidationError("EmailInUse", Texts.Validation.EmailInUse);
                 }
 
                 using (var uow = new UnitOfWork(connection))
@@ -114,7 +114,7 @@ namespace Serene.Membership.Pages
                 int userId;
                 try
                 {
-                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "Activate");
+                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
                     using (var ms = new MemoryStream(bytes))
                     using (var br = new BinaryReader(ms))
                     {
