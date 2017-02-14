@@ -30,7 +30,7 @@
       "type": "platform"
     },
     "Serenity.FluentMigrator.Runner": "1.6.904",
-    "Serenity.Web": "2.9.4"
+    "Serenity.Web": "2.9.5"
   },
   "frameworks": {
     "netcoreapp1.1": {
@@ -75,6 +75,6 @@
   "tools": {
     "Microsoft.AspNetCore.Razor.Tools": "1.1.0-preview4-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.1.0-preview4-final",
-    "Serenity.CodeGenerator": "2.9.4"
+    "Serenity.CodeGenerator": "2.9.5"
   }
 }
