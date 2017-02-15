@@ -544,6 +544,7 @@
       <Folder Name="Modules" TargetFolderName="Modules">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Administration" TargetFolderName="Administration">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AdministrationNavigation.cs">AdministrationNavigation.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="AdministrationPermissionKeys.cs">AdministrationPermissionKeys.cs</ProjectItem>
           <Folder Name="Language" TargetFolderName="Language">
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageColumns.cs">LanguageColumns.cs</ProjectItem>
