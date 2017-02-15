@@ -54,7 +54,11 @@
 		finally {
 			$t1.dispose();
 		}
-		var first = Enumerable.from(source).firstOrDefault(null, ss.getDefaultValue(Object));
+		var first = null;
+		var enumerator = ss.getEnumerator(source);
+		if (enumerator.moveNext()) {
+			first = enumerator.current();
+		}
 		if (ss.isValue(first)) {
 			this.set_value(first.key);
 		}
@@ -986,7 +990,7 @@
 	};
 	$Serenity_EditorTypeRegistry.$setTypeKeysWithoutEditorSuffix = function() {
 		var suffix = 'editor';
-		var $t1 = Enumerable.from(Object.keys($Serenity_EditorTypeRegistry.$knownTypes)).toArray();
+		var $t1 = Object.keys($Serenity_EditorTypeRegistry.$knownTypes);
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var k = $t1[$t2];
 			if (!ss.endsWithString(k, suffix)) {
@@ -1146,7 +1150,7 @@
 			widget.element.toggleClass('required', !!isRequired);
 		}
 		var gridField = $Serenity_WX.getGridField(widget);
-		var hasSupItem = Enumerable.from(gridField.find('sup').get()).any();
+		var hasSupItem = gridField.find('sup').get().length > 0;
 		if (isRequired && !hasSupItem) {
 			$('<sup>*</sup>').attr('title', Q.text('Controls.PropertyGrid.RequiredHint')).prependTo(gridField.find('.caption')[0]);
 		}
@@ -1510,7 +1514,7 @@
 	};
 	$Serenity_FilteringTypeRegistry.$setTypeKeysWithoutFilterHandlerSuffix = function() {
 		var suffix = 'filtering';
-		var $t1 = Enumerable.from(Object.keys($Serenity_FilteringTypeRegistry.$knownTypes)).toArray();
+		var $t1 = Object.keys($Serenity_FilteringTypeRegistry.$knownTypes);
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var k = $t1[$t2];
 			if (!ss.endsWithString(k, suffix)) {
@@ -1560,7 +1564,7 @@
 		if (ss.isNullOrUndefined(fields)) {
 			throw new ss.ArgumentNullException('source');
 		}
-		this.set_fields(Enumerable.from(fields).toArray());
+		this.set_fields(ss.arrayClone(fields));
 		this.get_fields().sort(function(x, y) {
 			var $t2 = Q.tryGetText(x.title);
 			if (ss.isNullOrUndefined($t2)) {
@@ -1581,15 +1585,9 @@
 			return Q.turkishLocaleCompare($t2, $t4);
 		});
 		this.set_fieldByName({});
-		var $t5 = ss.getEnumerator(fields);
-		try {
-			while ($t5.moveNext()) {
-				var field = $t5.current();
-				this.get_fieldByName()[field.name] = field;
-			}
-		}
-		finally {
-			$t5.dispose();
+		for (var $t5 = 0; $t5 < fields.length; $t5++) {
+			var field = fields[$t5];
+			this.get_fieldByName()[field.name] = field;
 		}
 	};
 	$Serenity_FilterStore.__typeName = 'Serenity.FilterStore';
@@ -1705,7 +1703,7 @@
 	};
 	$Serenity_FormatterTypeRegistry.$setTypeKeysWithoutFormatterSuffix = function() {
 		var suffix = 'formatter';
-		var $t1 = Enumerable.from(Object.keys($Serenity_FormatterTypeRegistry.$knownTypes)).toArray();
+		var $t1 = Object.keys($Serenity_FormatterTypeRegistry.$knownTypes);
 		for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 			var k = $t1[$t2];
 			if (!ss.endsWithString(k, suffix)) {
@@ -2891,7 +2889,7 @@
 		this.$editors = [];
 		var categoryIndexes = {};
 		var categoriesDiv = div;
-		var useCategories = this.options.useCategories && Enumerable.from(this.$items).any(function(x) {
+		var useCategories = this.options.useCategories && Q.any(this.$items, function(x) {
 			return !ss.isNullOrEmptyString(x.category);
 		});
 		if (this.options.useCategories) {
@@ -3483,7 +3481,7 @@
 		var fieldByName = type.__fieldByName;
 		if (ss.isNullOrUndefined(propByName)) {
 			var props = ss.getMembers(type, 16, 20);
-			var propList = Enumerable.from(props).where(function(x) {
+			var propList = props.filter(function(x) {
 				return !!x.setter && ((x.attr || []).filter(function(a) {
 					return ss.isInstanceOfType(a, Serenity.OptionAttribute);
 				}).length > 0 || (x.attr || []).filter(function(a) {
@@ -3491,21 +3489,15 @@
 				}).length > 0);
 			});
 			propByName = {};
-			var $t1 = propList.getEnumerator();
-			try {
-				while ($t1.moveNext()) {
-					var k = $t1.current();
-					propByName[$Serenity_ReflectionUtils.makeCamelCase(k.name)] = k;
-				}
-			}
-			finally {
-				$t1.dispose();
+			for (var $t1 = 0; $t1 < propList.length; $t1++) {
+				var k = propList[$t1];
+				propByName[$Serenity_ReflectionUtils.makeCamelCase(k.name)] = k;
 			}
 			type.__propByName = propByName;
 		}
 		if (ss.isNullOrUndefined(fieldByName)) {
 			var fields = ss.getMembers(type, 4, 20);
-			var fieldList = Enumerable.from(fields).where(function(x1) {
+			var fieldList = fields.filter(function(x1) {
 				return (x1.attr || []).filter(function(a) {
 					return ss.isInstanceOfType(a, Serenity.OptionAttribute);
 				}).length > 0 || (x1.attr || []).filter(function(a) {
@@ -3513,15 +3505,9 @@
 				}).length > 0;
 			});
 			fieldByName = {};
-			var $t2 = fieldList.getEnumerator();
-			try {
-				while ($t2.moveNext()) {
-					var k1 = $t2.current();
-					fieldByName[$Serenity_ReflectionUtils.makeCamelCase(k1.name)] = k1;
-				}
-			}
-			finally {
-				$t2.dispose();
+			for (var $t2 = 0; $t2 < fieldList.length; $t2++) {
+				var k1 = fieldList[$t2];
+				fieldByName[$Serenity_ReflectionUtils.makeCamelCase(k1.name)] = k1;
 			}
 			type.__fieldByName = fieldByName;
 		}
@@ -4496,13 +4482,13 @@
 				if (Q.isTrimmedEmpty(s)) {
 					return null;
 				}
-				if (Enumerable.from(this.get_items()).any(function(x) {
+				if (Q.any(this.get_items(), function(x) {
 					var text = (!ss.staticEquals(getName, null) ? getName(x.source) : x.text);
 					return ss.referenceEquals(Select2.util.stripDiacritics(ss.coalesce(text, '')).toLowerCase(), s);
 				})) {
 					return null;
 				}
-				if (!Enumerable.from(this.get_items()).any(function(x1) {
+				if (!Q.any(this.get_items(), function(x1) {
 					return ss.coalesce(Select2.util.stripDiacritics(x1.text), '').toLowerCase().indexOf(s) !== -1;
 				})) {
 					return { id: (-2147483648).toString(), text: Q.text('Controls.SelectEditor.NoResultsClickToDefine') };
@@ -4547,11 +4533,11 @@
 			if (!ss.referenceEquals(value, this.get_value())) {
 				var val = value;
 				if (!ss.isNullOrEmptyString(value) && this.$multiple) {
-					val = Enumerable.from(value.split(String.fromCharCode(44))).select(function(x) {
+					val = value.split(String.fromCharCode(44)).map(function(x) {
 						return Q.trimToNull(x);
-					}).where(function(x1) {
+					}).filter(function(x1) {
 						return ss.isValue(x1);
-					}).toArray();
+					});
 				}
 				this.element.select2('val', val).triggerHandler('change', [true]);
 			}
@@ -4654,7 +4640,7 @@
 			}), null);
 		},
 		getItems: function(lookup) {
-			return Enumerable.from(this.filterItems(this.cascadeItems(lookup.items))).toArray();
+			return this.filterItems(this.cascadeItems(lookup.items));
 		},
 		getItemText: function(item, lookup) {
 			var textValue = (!ss.staticEquals(lookup.textFormatter, null) ? lookup.textFormatter(item) : item[lookup.textField]);
@@ -4667,38 +4653,26 @@
 			var lookup = this.getLookup();
 			this.clearItems();
 			var items = this.getItems(lookup);
-			var $t1 = ss.getEnumerator(items);
-			try {
-				while ($t1.moveNext()) {
-					var item = $t1.current();
-					var text = this.getItemText(item, lookup);
-					var disabled = this.getItemDisabled(item, lookup);
-					var idValue = item[lookup.idField];
-					var id = (ss.isNullOrUndefined(idValue) ? '' : idValue.toString());
-					this.addItem({ id: id, text: text, source: item, disabled: disabled });
-				}
-			}
-			finally {
-				$t1.dispose();
+			for (var $t1 = 0; $t1 < items.length; $t1++) {
+				var item = items[$t1];
+				var text = this.getItemText(item, lookup);
+				var disabled = this.getItemDisabled(item, lookup);
+				var idValue = item[lookup.idField];
+				var id = (ss.isNullOrUndefined(idValue) ? '' : idValue.toString());
+				this.addItem({ id: id, text: text, source: item, disabled: disabled });
 			}
 		},
 		updateItemsAsync: function() {
 			return this.getLookupAsync().then(ss.mkdel(this, function(lookup) {
 				this.clearItems();
 				var items = this.getItems(lookup);
-				var $t1 = ss.getEnumerator(items);
-				try {
-					while ($t1.moveNext()) {
-						var item = $t1.current();
-						var text = this.getItemText(item, lookup);
-						var disabled = this.getItemDisabled(item, lookup);
-						var idValue = item[lookup.idField];
-						var id = (ss.isNullOrUndefined(idValue) ? '' : idValue.toString());
-						this.addItem({ id: id, text: text, source: item, disabled: disabled });
-					}
-				}
-				finally {
-					$t1.dispose();
+				for (var $t1 = 0; $t1 < items.length; $t1++) {
+					var item = items[$t1];
+					var text = this.getItemText(item, lookup);
+					var disabled = this.getItemDisabled(item, lookup);
+					var idValue = item[lookup.idField];
+					var id = (ss.isNullOrUndefined(idValue) ? '' : idValue.toString());
+					this.addItem({ id: id, text: text, source: item, disabled: disabled });
 				}
 			}), null);
 		},
@@ -4768,28 +4742,28 @@
 				return items;
 			}
 			var key = this.get_cascadeValue().toString();
-			return Enumerable.from(items).where(ss.mkdel(this, function(x) {
+			return items.filter(ss.mkdel(this, function(x) {
 				var $t1 = x[this.get_cascadeField()];
 				if (ss.isNullOrUndefined($t1)) {
 					$t1 = $Serenity_ReflectionUtils.getPropertyValue(x, this.get_cascadeField());
 				}
 				var itemKey = $t1;
 				return !!(ss.isValue(itemKey) && ss.referenceEquals(itemKey.toString(), key));
-			})).toArray();
+			}));
 		},
 		filterItems: function(items) {
 			if (ss.isNullOrUndefined(this.get_filterValue()) || ss.safeCast(this.get_filterValue(), String) === '') {
 				return items;
 			}
 			var key = this.get_filterValue().toString();
-			return Enumerable.from(items).where(ss.mkdel(this, function(x) {
+			return items.filter(ss.mkdel(this, function(x) {
 				var $t1 = x[this.get_filterField()];
 				if (ss.isNullOrUndefined($t1)) {
 					$t1 = $Serenity_ReflectionUtils.getPropertyValue(x, this.get_filterField());
 				}
 				var itemKey = $t1;
 				return !!(ss.isValue(itemKey) && ss.referenceEquals(itemKey.toString(), key));
-			})).toArray();
+			}));
 		},
 		getCascadeFromValue: function(parent) {
 			return $Serenity_EditorUtils.getValue(parent);
@@ -5228,83 +5202,78 @@
 		},
 		getQuickFilters: function() {
 			var list = [];
-			var $t1 = Enumerable.from(this.allColumns).where(function(x) {
+			var $t1 = this.allColumns.filter(function(x) {
 				return ss.isValue(x.sourceItem) && x.sourceItem.quickFilter === true;
-			}).getEnumerator();
-			try {
-				while ($t1.moveNext()) {
-					var column = $t1.current();
-					var item = column.sourceItem;
-					var quick = {};
-					var filteringType = $Serenity_FilteringTypeRegistry.get(ss.coalesce(item.filteringType, 'String'));
-					if (ss.referenceEquals(filteringType, $Serenity_DateFiltering)) {
-						var $t4 = item.name;
-						var $t3 = Q.tryGetText(item.title);
+			});
+			for (var $t2 = 0; $t2 < $t1.length; $t2++) {
+				var column = $t1[$t2];
+				var item = column.sourceItem;
+				var quick = {};
+				var filteringType = $Serenity_FilteringTypeRegistry.get(ss.coalesce(item.filteringType, 'String'));
+				if (ss.referenceEquals(filteringType, $Serenity_DateFiltering)) {
+					var $t5 = item.name;
+					var $t4 = Q.tryGetText(item.title);
+					if (ss.isNullOrUndefined($t4)) {
+						var $t3 = item.title;
 						if (ss.isNullOrUndefined($t3)) {
-							var $t2 = item.title;
-							if (ss.isNullOrUndefined($t2)) {
-								$t2 = item.name;
-							}
-							$t3 = $t2;
+							$t3 = item.name;
 						}
-						quick = this.dateRangeQuickFilter($t4, $t3);
+						$t4 = $t3;
 					}
-					else if (ss.referenceEquals(filteringType, $Serenity_DateTimeFiltering)) {
-						var $t7 = item.name;
-						var $t6 = Q.tryGetText(item.title);
+					quick = this.dateRangeQuickFilter($t5, $t4);
+				}
+				else if (ss.referenceEquals(filteringType, $Serenity_DateTimeFiltering)) {
+					var $t8 = item.name;
+					var $t7 = Q.tryGetText(item.title);
+					if (ss.isNullOrUndefined($t7)) {
+						var $t6 = item.title;
 						if (ss.isNullOrUndefined($t6)) {
-							var $t5 = item.title;
-							if (ss.isNullOrUndefined($t5)) {
-								$t5 = item.name;
-							}
-							$t6 = $t5;
+							$t6 = item.name;
 						}
-						quick = this.dateTimeRangeQuickFilter($t7, $t6);
+						$t7 = $t6;
 					}
-					else if (ss.referenceEquals(filteringType, $Serenity_BooleanFiltering)) {
-						var q = item.quickFilterParams || {};
-						var f = item.filteringParams || {};
-						var $t10 = item.name;
-						var $t9 = Q.tryGetText(item.title);
+					quick = this.dateTimeRangeQuickFilter($t8, $t7);
+				}
+				else if (ss.referenceEquals(filteringType, $Serenity_BooleanFiltering)) {
+					var q = item.quickFilterParams || {};
+					var f = item.filteringParams || {};
+					var $t11 = item.name;
+					var $t10 = Q.tryGetText(item.title);
+					if (ss.isNullOrUndefined($t10)) {
+						var $t9 = item.title;
 						if (ss.isNullOrUndefined($t9)) {
-							var $t8 = item.title;
-							if (ss.isNullOrUndefined($t8)) {
-								$t8 = item.name;
-							}
-							$t9 = $t8;
+							$t9 = item.name;
 						}
-						var $t11 = q['trueText'];
-						if (ss.isNullOrUndefined($t11)) {
-							$t11 = f['trueText'];
-						}
-						var $t12 = q['falseText'];
-						if (ss.isNullOrUndefined($t12)) {
-							$t12 = f['falseText'];
-						}
-						quick = this.booleanQuickFilter($t10, $t9, $t11, $t12);
+						$t10 = $t9;
+					}
+					var $t12 = q['trueText'];
+					if (ss.isNullOrUndefined($t12)) {
+						$t12 = f['trueText'];
+					}
+					var $t13 = q['falseText'];
+					if (ss.isNullOrUndefined($t13)) {
+						$t13 = f['falseText'];
+					}
+					quick = this.booleanQuickFilter($t11, $t10, $t12, $t13);
+				}
+				else {
+					var filtering = ss.cast(ss.createInstance(filteringType), $Serenity_IFiltering);
+					if (ss.isValue(filtering) && ss.isInstanceOfType(filtering, $Serenity_IQuickFiltering)) {
+						$Serenity_ReflectionOptionsSetter.set(filtering, item.filteringParams);
+						filtering.set_field(item);
+						filtering.set_operator({ key: $Serenity_FilterOperators.EQ });
+						ss.cast(filtering, $Serenity_IQuickFiltering).initQuickFilter(quick);
+						quick.options = Q.deepClone(quick.options, item.quickFilterParams);
 					}
 					else {
-						var filtering = ss.cast(ss.createInstance(filteringType), $Serenity_IFiltering);
-						if (ss.isValue(filtering) && ss.isInstanceOfType(filtering, $Serenity_IQuickFiltering)) {
-							$Serenity_ReflectionOptionsSetter.set(filtering, item.filteringParams);
-							filtering.set_field(item);
-							filtering.set_operator({ key: $Serenity_FilterOperators.EQ });
-							ss.cast(filtering, $Serenity_IQuickFiltering).initQuickFilter(quick);
-							quick.options = Q.deepClone(quick.options, item.quickFilterParams);
-						}
-						else {
-							continue;
-						}
+						continue;
 					}
-					if (item.quickFilterSeparator === true) {
-						quick.seperator = true;
-					}
-					quick.cssClass = item.quickFilterCssClass;
-					list.push(quick);
 				}
-			}
-			finally {
-				$t1.dispose();
+				if (item.quickFilterSeparator === true) {
+					quick.seperator = true;
+				}
+				quick.cssClass = item.quickFilterCssClass;
+				list.push(quick);
 			}
 			return list;
 		},
@@ -5400,9 +5369,9 @@
 				this.postProcessColumns(this.allColumns);
 				var self = this;
 				if (ss.isValue(this.filterBar)) {
-					this.filterBar.set_store(new $Serenity_FilterStore(Enumerable.from(this.allColumns).where(function(x) {
+					this.filterBar.set_store(new $Serenity_FilterStore(this.allColumns.filter(function(x) {
 						return ss.isValue(x.sourceItem) && x.sourceItem.notFilterable !== true;
-					}).select(function(x1) {
+					}).map(function(x1) {
 						return x1.sourceItem;
 					})));
 					this.filterBar.get_store().add_changed(ss.mkdel(this, function(s, e) {
@@ -5412,9 +5381,9 @@
 						}
 					}));
 				}
-				var visibleColumns = Enumerable.from(this.allColumns).where(function(x2) {
+				var visibleColumns = this.allColumns.filter(function(x2) {
 					return x2.visible !== false;
-				}).toArray();
+				});
 				if (ss.isValue(this.slickGrid)) {
 					this.slickGrid.setColumns(visibleColumns);
 				}
@@ -5431,9 +5400,9 @@
 			}
 			else {
 				this.allColumns = this.getColumns();
-				visibleColumns = Enumerable.from(this.postProcessColumns(this.allColumns)).where(function(x) {
+				visibleColumns = this.postProcessColumns(this.allColumns).filter(function(x) {
 					return x.visible !== false;
-				}).toArray();
+				});
 			}
 			var slickOptions = this.getSlickOptions();
 			var grid = new Slick.Grid(this.slickContainer, this.view, visibleColumns, slickOptions);
@@ -5640,9 +5609,9 @@
 		},
 		getDefaultSortBy: function() {
 			if (ss.isValue(this.slickGrid) && this.slickGrid.getColumns().length > 0) {
-				var columns = Enumerable.from(this.slickGrid.getColumns()).where(function(x) {
+				var columns = this.slickGrid.getColumns().filter(function(x) {
 					return ss.isValue(x.sortOrder) && x.sortOrder !== 0;
-				}).toArray();
+				});
 				if (columns.length > 0) {
 					columns.sort(function(x1, y) {
 						return ss.compare(Math.abs(x1.sortOrder), Math.abs(y.sortOrder));
@@ -5672,9 +5641,9 @@
 			var self = this;
 			this.filterBar = new $Serenity_FilterDisplayBar(filterBarDiv);
 			if (!this.isAsyncWidget()) {
-				this.filterBar.set_store(new $Serenity_FilterStore(Enumerable.from(this.allColumns).where(function(x) {
+				this.filterBar.set_store(new $Serenity_FilterStore(this.allColumns.filter(function(x) {
 					return ss.isValue(x.sourceItem) && x.sourceItem.notFilterable !== true;
-				}).select(function(x1) {
+				}).map(function(x1) {
 					return x1.sourceItem;
 				})));
 				this.filterBar.get_store().add_changed(ss.mkdel(this, function(s, e) {
@@ -6128,7 +6097,7 @@
 			var key = 'GridSettings:';
 			var path = window.location.pathname;
 			if (!ss.isNullOrEmptyString(path)) {
-				key += Enumerable.from(path.substr(1).split(String.fromCharCode(47))).take(2).toArray().join('/') + ':';
+				key += path.substr(1).split(String.fromCharCode(47)).slice(0, 2).join('/') + ':';
 			}
 			key += ss.getTypeFullName(ss.getInstanceType(this));
 			return key;
@@ -6206,9 +6175,9 @@
 							}
 						}
 						this.allColumns = newColumns;
-						columns = Enumerable.from(this.allColumns).where(function(x1) {
+						columns = this.allColumns.filter(function(x1) {
 							return x1.visible === true;
-						}).toArray();
+						});
 					}
 					if (flags.columnWidths !== false) {
 						updateColById(columns);
@@ -6225,26 +6194,22 @@
 					if (flags.sortColumns !== false) {
 						updateColById(columns);
 						var list = [];
-						var $t5 = Enumerable.from(settings.columns).where(function(x4) {
-							return ss.isValue(x4.id) && ss.coalesce(x4.sort, 0) !== 0;
-						}).orderBy(function(z) {
-							return Math.abs(ss.unbox(z.sort));
-						}).getEnumerator();
-						try {
-							while ($t5.moveNext()) {
-								var x3 = $t5.current();
-								var column2 = colById[x3.id];
-								if (ss.isValue(column2)) {
-									list.push({ columnId: x3.id, sortAsc: ss.Nullable$1.gt(x3.sort, 0) });
-								}
+						var sortColumns = settings.columns.filter(function(x3) {
+							return ss.isValue(x3.id) && ss.coalesce(x3.sort, 0) !== 0;
+						});
+						sortColumns.sort(function(a, b) {
+							return ss.unbox(a.sort) - ss.unbox(b.sort);
+						});
+						for (var $t5 = 0; $t5 < sortColumns.length; $t5++) {
+							var x4 = sortColumns[$t5];
+							var column2 = colById[x4.id];
+							if (ss.isValue(column2)) {
+								list.push({ columnId: x4.id, sortAsc: ss.Nullable$1.gt(x4.sort, 0) });
 							}
 						}
-						finally {
-							$t5.dispose();
-						}
-						this.view.sortBy = Enumerable.from(list).select(function(x5) {
+						this.view.sortBy = list.map(function(x5) {
 							return x5.columnId + ((x5.sortAsc === false) ? ' DESC' : '');
-						}).toArray();
+						});
 						this.slickGrid.setSortColumns(list);
 					}
 					this.slickGrid.setColumns(columns);
@@ -6293,7 +6258,7 @@
 						p.width = column.$.width;
 					}
 					if (flags.sortColumns !== false) {
-						var sort = Enumerable.from(sortColumns).indexOf(ss.mkdel({ column: column }, function(x) {
+						var sort = Q.indexOf(sortColumns, ss.mkdel({ column: column }, function(x) {
 							return ss.referenceEquals(x.columnId, this.column.$.id);
 						}));
 						p.sort = ((sort >= 0) ? ((sortColumns[sort].sortAsc !== false) ? (sort + 1) : (-sort - 1)) : 0);
@@ -6305,7 +6270,7 @@
 				settings.includeDeleted = this.element.find('.s-IncludeDeletedToggle').hasClass('pressed');
 			}
 			if (flags.filterItems !== false && ss.isValue(this.filterBar) && ss.isValue(this.filterBar.get_store())) {
-				settings.filterItems = Enumerable.from(this.filterBar.get_store().get_items()).toArray();
+				settings.filterItems = ss.arrayClone(this.filterBar.get_store().get_items());
 			}
 			return settings;
 		},
@@ -7577,9 +7542,9 @@
 						var langsTuple = this.getLanguages();
 						langs = ss.safeCast(langsTuple, Array);
 						if (ss.isNullOrUndefined(langs) || langs.length === 0 || ss.isNullOrUndefined(langs[0]) || !ss.isArray(langs[0])) {
-							langs = Enumerable.from(langsTuple).select(function(x) {
+							langs = Array.prototype.slice.call(langsTuple.map(function(x) {
 								return [x.item1, x.item2];
-							}).toArray();
+							}));
 						}
 					}
 					for (var $t3 = 0; $t3 < langs.length; $t3++) {
@@ -7727,9 +7692,9 @@
 			var langsTuple = this.getLanguages();
 			var langs = ss.safeCast(langsTuple, Array);
 			if (ss.isNullOrUndefined(langs) || langs.length === 0 || ss.isNullOrUndefined(langs[0]) || !ss.isArray(langs[0])) {
-				langs = Enumerable.from(langsTuple).select(function(x) {
+				langs = Array.prototype.slice.call(langsTuple.map(function(x) {
 					return [x.item1, x.item2];
-				}).toArray();
+				}));
 			}
 			for (var $t1 = 0; $t1 < langs.length; $t1++) {
 				var pair = langs[$t1];
@@ -8668,9 +8633,10 @@
 			if (Q.isEmptyOrNull(operatorSelect.get_value())) {
 				return;
 			}
-			var op = Enumerable.from(filtering.getOperators()).firstOrDefault(function(x) {
+			var ops = filtering.getOperators().filter(function(x) {
 				return ss.referenceEquals(x.key, operatorSelect.get_value());
-			}, ss.getDefaultValue(Object));
+			});
+			var op = ((ops.length > 0) ? ops[0] : null);
 			if (ss.isNullOrUndefined(op)) {
 				return;
 			}
@@ -8972,17 +8938,17 @@
 			}
 		},
 		getSelectedKeys: function() {
-			return Enumerable.from(Object.keys(this.$include)).toArray();
+			return Object.keys(this.$include);
 		},
 		getSelectedAsInt32: function() {
-			return Enumerable.from(Object.keys(this.$include)).select(function(x) {
+			return Object.keys(this.$include).map(function(x) {
 				return parseInt(x);
-			}).toArray();
+			});
 		},
 		getSelectedAsInt64: function() {
-			return Enumerable.from(Object.keys(this.$include)).select(function(x) {
+			return Object.keys(this.$include).map(function(x) {
 				return parseInt(x);
-			}).toArray();
+			});
 		},
 		setSelectedKeys: function(keys) {
 			this.clear();
@@ -9282,14 +9248,14 @@
 			}
 		},
 		get_value: function() {
-			return Enumerable.from(this.entities).select(function(x) {
+			return this.entities.map(function(x) {
 				return $.extend({}, x);
-			}).toArray();
+			});
 		},
 		set_value: function(value) {
-			this.entities = Enumerable.from(value || []).select(function(x) {
+			this.entities = (value || []).map(function(x) {
 				return $.extend({}, x);
-			}).toArray();
+			});
 			this.populate();
 			this.updateInterface();
 		},
@@ -10196,9 +10162,9 @@
 				}
 				queryTimeout = window.setTimeout(ss.mkdel(this, function() {
 					this.query(request, ss.mkdel(this, function(response) {
-						query.callback({ results: Enumerable.from(response.Entities).take(this.pageSize).select(ss.mkdel(this, function(x) {
+						query.callback({ results: response.Entities.slice(0, this.pageSize).map(ss.mkdel(this, function(x) {
 							return { id: this.getItemKey(x), text: this.getItemText(x), source: x };
-						})).toArray(), more: response.Entities.length >= this.pageSize });
+						})), more: response.Entities.length >= this.pageSize });
 					}));
 				}), this.getTypeDelay());
 			}), initSelection: ss.mkdel(this, function(element, callback) {

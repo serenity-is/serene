@@ -27,7 +27,6 @@
         "~/Scripts/SlickGrid/Plugins/slick.rowmovemanager.js",
         "~/Scripts/bootstrap.js",
         "~/Scripts/Saltarelle/mscorlib.js",
-        "~/Scripts/Saltarelle/linq.js",
         "~/Scripts/Serenity/Serenity.CoreLib.js",
         "~/Scripts/Serenity/Serenity.Script.UI.js",
         "~/Scripts/jquery.cropzoom.js",
