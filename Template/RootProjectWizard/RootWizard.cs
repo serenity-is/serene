@@ -1,5 +1,9 @@
 ﻿using Microsoft.VisualStudio.TemplateWizard;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -31,6 +35,92 @@ namespace RootProjectWizard
             SelectedFeatures.Clear();
             foreach (FeatureCheckItem item in dlg.featureList.CheckedItems)
                 SelectedFeatures.Add(item.Key);
+
+            CheckNodeNpmVersion();
+        }
+
+        private void CheckNodeNpmVersion()
+        {
+            var npmProcess = new System.Diagnostics.Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "cmd",
+                    Arguments = "/c npm.cmd version",
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false
+                }
+            };
+
+            string npmOutput = null;
+            try
+            {
+                npmProcess.Start();
+                npmOutput = npmProcess.StandardOutput.ReadToEnd();
+                if (!npmProcess.WaitForExit(50000))
+                    npmOutput = null;
+            }
+            catch (Exception)
+            {
+                npmOutput = null;
+            }
+
+            bool noNPM = npmOutput == null || !npmOutput.Trim().StartsWith("{") || !npmOutput.Trim().EndsWith("}");
+            if (!noNPM)
+            {
+                int i;
+                var parts = npmOutput.Split(new char[] { '{', ' ', ':', ',', '"', '\'', '}' }, StringSplitOptions.RemoveEmptyEntries);
+                var idx = Array.IndexOf(parts, "node");
+                if (idx < 0 || idx + 1 >= parts.Length || !int.TryParse(parts[idx + 1].Split('.')[0], out i) || i < 6)
+                    noNPM = true;
+                else
+                {
+                    idx = Array.IndexOf(parts, "npm");
+                    if (idx < 0 || idx + 1 >= parts.Length || !int.TryParse(parts[idx + 1].Split('.')[0], out i) || i < 3)
+                        noNPM = true;
+                }
+            }
+
+            if (noNPM)
+            {
+                if (MessageBox.Show("You don't seem to have a recent version of NodeJS/NPM installed!\r\n\r\n" +
+                    "It is required for TypeScript compilation and some script packages.\r\n\r\n" +
+                    "Latest version can be downloaded from https://nodejs.org/en/download/\r\n\r\n" +
+                    "Would you like to download and install it now?", "NodeJS/NPM Warning",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    WebClient client = new WebClient();
+                    var npmBytes = client.DownloadData("https://nodejs.org/dist/v6.9.5/node-v6.9.5-" +
+                        (Environment.Is64BitOperatingSystem ? "x64" : "x86") + ".msi");
+                    var tmp = Path.GetTempFileName() + ".msi";
+                    File.WriteAllBytes(tmp, npmBytes);
+                    try
+                    {
+                        var msiProcess = new System.Diagnostics.Process
+                        {
+                            StartInfo = new ProcessStartInfo
+                            {
+                                FileName = "msiexec",
+                                Arguments = "/l* \"" + Path.GetFileName(tmp) + ".log\" /i \"" + Path.GetFileName(tmp) + "\"",
+                                WorkingDirectory = Path.GetDirectoryName(tmp)
+                            }
+                        };
+
+                        msiProcess.Start();
+                        if (!msiProcess.WaitForExit(1000000) ||
+                            msiProcess.ExitCode != 0)
+                        {
+                            MessageBox.Show("Error code " + msiProcess.ExitCode + " occured while installing NodeJS!");
+                        }
+                        else
+                            MessageBox.Show("Please restart Visual Studio after project creation, so that Node/NPM will be in your PATH");
+                    }
+                    finally
+                    {
+                        File.Delete(tmp);
+                    }
+                }
+            }
         }
 
         private void PopulateFeatureList(CheckedListBox featureList, XElement data)

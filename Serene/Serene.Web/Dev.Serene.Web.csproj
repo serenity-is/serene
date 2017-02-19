@@ -2123,6 +2123,7 @@
     <Compile Include="Modules\Northwind\CategoryLang\CategoryLangRow.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
+    <Compile Include="Modules\Northwind\Customer\EmployeeListDecorator.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerLookup.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerCity.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerRepresentativesRow.cs" />
@@ -2690,8 +2691,6 @@
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   <Target Name="AfterBuild">
   </Target>
   -->
