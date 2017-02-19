@@ -2,6 +2,7 @@
 namespace Serene.Northwind.Columns
 {
     using Serenity.ComponentModel;
+    using Serenity.Reporting;
     using System;
     using System.ComponentModel;
 
@@ -30,7 +31,7 @@ namespace Serene.Northwind.Columns
         public String Phone { get; set; }
         [Width(120)]
         public String Fax { get; set; }
-        [Width(250), EmployeeListFormatter]
+        [Width(250), EmployeeListFormatter, CellDecorator(typeof(EmployeeListDecorator))]
         public String Representatives { get; set; }
     }
 }
