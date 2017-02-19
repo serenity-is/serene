@@ -15,7 +15,10 @@ namespace Serene.Northwind
         {
             var idList = this.Value as IEnumerable<int>;
             if (idList == null || !idList.Any())
+            {
                 this.Value = "";
+                return;
+            }
 
             var byId = TwoLevelCache.GetLocalStoreOnly("EmployeeListDecorator:EmployeeById", 
                 TimeSpan.Zero, EmployeeRow.Fields.GenerationKey, () =>
