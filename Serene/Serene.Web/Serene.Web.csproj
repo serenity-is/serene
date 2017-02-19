@@ -2675,9 +2675,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <NpmPath Condition="'$(NpmCmd)' == '' AND Exists('$(PROGRAMFILES)nodejs\npm.cmd')">$(PROGRAMFILES)nodejs\</NpmPath>
+  </PropertyGroup>
   <Target Name="BeforeBuild">
-    <Exec Command="npm install">
-    </Exec>
+    <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install"></Exec>
   </Target>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;">
