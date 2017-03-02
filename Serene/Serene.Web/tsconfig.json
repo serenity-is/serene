@@ -1,16 +1,17 @@
 ﻿{
-    "compileOnSave": true,
-    "compilerOptions": {
-        "preserveConstEnums": true,
-        "experimentalDecorators": true,
-        "declaration": true,
-        "emitBOM": true,
-        "sourceMap": true,
-        "outFile": "Scripts/site/Serene.Web.js",
-        "target": "es5"
-    },
-    "exclude": [
-        "Scripts/site/Serene.Web.d.ts",
-        "node_modules/"
-    ]
+  "compileOnSave": true,
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "emitBOM": true,
+    "sourceMap": true,
+    "outFile": "Scripts/site/Serene.Web.js",
+    "target": "es5"
+  },
+  "include": [
+    "Imports/",
+    "Modules/",
+    "Scripts/typings/"
+  ]
 }
