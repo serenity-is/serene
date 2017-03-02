@@ -10,6 +10,7 @@
         "target": "es5"
     },
     "exclude": [
-        "Scripts/site/Serene.Web.d.ts"
+        "Scripts/site/Serene.Web.d.ts",
+        "node_modules/"
     ]
 }
