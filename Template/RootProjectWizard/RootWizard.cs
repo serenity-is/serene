@@ -39,14 +39,14 @@ namespace RootProjectWizard
             CheckNodeNpmVersion();
         }
 
-        private void CheckNodeNpmVersion()
+        private string GetNodeNpmVersion(bool npm)
         {
             var npmProcess = new System.Diagnostics.Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "cmd",
-                    Arguments = "/c npm.cmd version",
+                    Arguments = "/c " + (npm ? "npm.cmd" : "node") + " --version",
                     RedirectStandardOutput = true,
                     UseShellExecute = false
                 }
@@ -65,23 +65,24 @@ namespace RootProjectWizard
                 npmOutput = null;
             }
 
-            bool noNPM = npmOutput == null || !npmOutput.Trim().StartsWith("{") || !npmOutput.Trim().EndsWith("}");
-            if (!noNPM)
-            {
-                int i;
-                var parts = npmOutput.Split(new char[] { '{', ' ', ':', ',', '"', '\'', '}' }, StringSplitOptions.RemoveEmptyEntries);
-                var idx = Array.IndexOf(parts, "node");
-                if (idx < 0 || idx + 1 >= parts.Length || !int.TryParse(parts[idx + 1].Split('.')[0], out i) || i < 6)
-                    noNPM = true;
-                else
-                {
-                    idx = Array.IndexOf(parts, "npm");
-                    if (idx < 0 || idx + 1 >= parts.Length || !int.TryParse(parts[idx + 1].Split('.')[0], out i) || i < 3)
-                        noNPM = true;
-                }
-            }
+            npmOutput = (npmOutput ?? "").Trim();
 
-            if (noNPM)
+            if (npmOutput.StartsWith("v", StringComparison.OrdinalIgnoreCase))
+                npmOutput = npmOutput.Substring(1);
+
+            return npmOutput;
+        }
+
+        private void CheckNodeNpmVersion()
+        {
+            var nodeVersion = GetNodeNpmVersion(false);
+            var nodeParts = nodeVersion.Split('.');
+            var npmVersion = GetNodeNpmVersion(true);
+            var npmParts = npmVersion.Split('.');
+
+            int i;
+            if (nodeParts.Length < 2 || !int.TryParse(nodeParts[0], out i) || i < 6 ||
+                npmParts.Length < 2 || !int.TryParse(npmParts[0], out i) || i < 3)
             {
                 if (MessageBox.Show("You don't seem to have a recent version of NodeJS/NPM installed!\r\n\r\n" +
                     "It is required for TypeScript compilation and some script packages.\r\n\r\n" +
