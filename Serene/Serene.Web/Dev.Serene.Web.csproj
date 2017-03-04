@@ -699,6 +699,7 @@
     <Content Include="Scripts\jquery.slimscroll.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Imports\Web.config" />
+    <Content Include="Migrations\Web.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -718,6 +719,8 @@
     <Content Include="Scripts\saltarelle\mscorlib.min.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.js" />
     <Content Include="Scripts\serenity\Serenity.CoreLib.min.js" />
+    <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
+    <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -1588,8 +1591,6 @@
     <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.UI.js" />
-    <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\vegas\overlays\01.png" />
@@ -1609,16 +1610,6 @@
     <Content Include="Scripts\jquery.icheck.min.js.map" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <Content Include="Scripts\site\ScriptBundles.json" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
@@ -1648,6 +1639,16 @@
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="package.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
     <None Include="tsconfig.json" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
@@ -1795,7 +1796,6 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Organization\BusinessUnit\BusinessUnitEditor.ts" />
-    <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\DragDropInTreeGrid\DragDropSampleDialog.ts" />
     <Content Include="Modules\Organization\Contact\ContactIndex.cshtml" />
@@ -1924,6 +1924,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Meeting\MeetingType\MeetingTypeGrid.ts" />
     <TypeScriptCompile Include="Modules\Meeting\MeetingType\MeetingTypeDialog.ts" />
+    <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -2682,7 +2683,8 @@
     <NpmPath Condition="'$(NpmCmd)' == '' AND Exists('$(PROGRAMFILES)nodejs\npm.cmd')">$(PROGRAMFILES)nodejs\</NpmPath>
   </PropertyGroup>
   <Target Name="BeforeBuild">
-    <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install"></Exec>
+    <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install">
+    </Exec>
   </Target>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)..\..\Serenity\Serenity.Web\Style\serenity.less&quot; &gt; &quot;$(ProjectDir)Content\serenity\serenity.css&quot;">
