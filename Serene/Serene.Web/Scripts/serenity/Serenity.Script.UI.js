@@ -2331,12 +2331,6 @@
 	$Serenity_IValidateRequired.__typeName = 'Serenity.IValidateRequired';
 	global.Serenity.IValidateRequired = $Serenity_IValidateRequired;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.JsRender
-	var $Serenity_JsRender = function() {
-	};
-	$Serenity_JsRender.__typeName = 'Serenity.JsRender';
-	global.Serenity.JsRender = $Serenity_JsRender;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.LookupEditor
 	var $Serenity_LookupEditor = function(hidden, opt) {
 		$Serenity_LookupEditorBase.call(this, hidden, opt);
@@ -9163,7 +9157,6 @@
 		}
 	}, ss.makeGenericType($Serenity_BaseEditorFiltering$1, [$Serenity_IntegerEditor]), [$Serenity_IFiltering, $Serenity_IQuickFiltering]);
 	ss.initInterface($Serenity_IValidateRequired, $asm, { get_required: null, set_required: null });
-	ss.initClass($Serenity_JsRender, $asm, {});
 	ss.initClass($Serenity_LookupEditor, $asm, {}, $Serenity_LookupEditorBase, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_LookupFiltering, $asm, {
 		getOperators: function() {
