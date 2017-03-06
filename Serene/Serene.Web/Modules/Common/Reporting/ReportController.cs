@@ -126,6 +126,10 @@ namespace Serene
             if (formsCookie != null)
                 converter.Cookies[FormsAuthentication.FormsCookieName] = formsCookie.Value;
 
+            var languageCookie = Request.Cookies["LanguagePreference"];
+            if (languageCookie != null)
+                converter.Cookies["LanguagePreference"] = languageCookie.Value;
+
             var icustomize = report as ICustomizeHtmlToPdf;
             if (icustomize != null)
                 icustomize.Customize(converter);
