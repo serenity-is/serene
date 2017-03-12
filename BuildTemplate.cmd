@@ -1,7 +1,6 @@
 @echo off
-"Serenity\Tools\Cake\Cake.exe" BuildTemplate.cake %*
-set VSREGKEY=HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0
-for /f "skip=2 tokens=2,*" %%A in ('reg query "%VSREGKEY%" /v InstallDir') do SET VSINSTALLDIR=%%B
+#"Serenity\Tools\Cake\Cake.exe" BuildTemplate.cake %*
+SET VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\
 Serenity\Tools\NuGet\NuGet Restore Template\Serene.Template.sln
 "%VSINSTALLDIR%devenv.exe" "Template\Serene.Template.sln" /build Debug /out "Template\Serene.Template.log"
 type Template\Serene.Template.log

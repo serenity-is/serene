@@ -540,6 +540,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Sqlite.sql">NorthwindDBScript_Sqlite.sql</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
       </Folder>
       <Folder Name="Modules" TargetFolderName="Modules">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
