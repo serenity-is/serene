@@ -11,8 +11,7 @@ var r = System.IO.Path.GetFullPath(@".\");
 
 var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
 var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
-var sereneCoreWebProj = r + @"Serene\Serene.Core\Serene.Core.xproj";
-var sereneCoreProJson = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneCoreWebProj), "project.json");
+var sereneCoreWebProj = r + @"Serene\Serene.Core\Serene.Core.csproj";
 string serenityVersion = null;
 
 Func<string, System.Xml.XmlDocument> loadXml = path => 
@@ -125,48 +124,30 @@ Func<string, JObject> loadJson = path => {
 };
 
 
-Action<string, string> patchProjectRefs = (projectjson, version) => {
+Action<string, string> patchProjectRefs = (csproj, version) => {
     var changed = false;
-    var node = loadJson(projectjson);
-
-    var deps = node["dependencies"] as JObject;
-    if (deps != null) {
-        foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
-            if (pair.Key.StartsWith("Serenity.") &&
-				!pair.Key.StartsWith("Serenity.FluentMigrator") &&
-                pair.Key != "Serenity.Web.Assets" &&
-                pair.Key != "Serenity.Web.Tooling")
-            {
-                var v = pair.Value as JValue;
-                if (v != null && (v.Value ?? "").ToString() != version)
-                {
-                    deps[pair.Key].Replace(version);
-                    changed = true;
-                }
-            }
-        }
-    }
-
-    deps = node["tools"] as JObject;
-    if (deps != null) {
-        foreach (var pair in (deps as IEnumerable<KeyValuePair<string, JToken>>).ToList()) {
-            if (pair.Key.StartsWith("Serenity.") &&
-                !pair.Key.StartsWith("Serenity.FluentMigrator") &&
-				pair.Key != "Serenity.Web.Assets" &&
-                pair.Key != "Serenity.Web.Tooling")
-            {
-                var v = pair.Value as JValue;
-                if (v != null && (v.Value ?? "").ToString() != version)
-                {
-                    deps[pair.Key].Replace(version);
-                    changed = true;
-                }
-            }
-        }
-    }
-    
-    if (changed)
-        System.IO.File.WriteAllText(projectjson, node.ToString(), Encoding.UTF8);
+	
+	var csprojElement = loadCsProj(csproj);
+	foreach (XElement x in csprojElement.Descendants("PackageReference").Concat(csprojElement.Descendants("DotNetCliToolReference")))
+	{
+		var include = x.Attribute("Include");
+		if (include != null && 
+			include.Value != null && 
+			include.Value.StartsWith("Serenity.") &&
+			!include.Value.StartsWith("Serenity.FluentMigrator") &&
+			include.Value != "Serenity.Web.Assets" &&
+			include.Value != "Serenity.Web.Tooling") {
+			var versionAttr = x.Attribute("Version");
+			if (versionAttr != null && versionAttr.Value != version)
+			{
+				versionAttr.Value = version;
+				changed = true;
+			}
+		}
+	}
+	
+	if (changed)
+		System.IO.File.WriteAllText(csproj, csprojElement.ToString(SaveOptions.OmitDuplicateNamespaces), Encoding.UTF8);
 };
 
 Action ensureDevProjSync = () => {
@@ -288,7 +269,7 @@ Task("PrepareVSIX")
 		var csprojElement = loadCsProj(csproj);
 
 		var vsTemplate = System.IO.Path.ChangeExtension(csproj, ".vstemplate");
-		bool isXProj = System.IO.Path.GetExtension(csproj) == ".xproj";
+		bool isXProj = csproj.IndexOf(".Core.csproj", StringComparison.OrdinalIgnoreCase) >= 0;
 		
 	    if (isXProj)
 		{
@@ -340,9 +321,7 @@ Task("PrepareVSIX")
 		var templateFolder = isXProj ? coreTemplateFolder : webTemplateFolder;
         var copyTargetRoot = System.IO.Path.Combine(templateFolder, System.IO.Path.GetFileNameWithoutExtension(csproj));
         
-		if (isXProj)
-			fileList.Add("global.json");
-			
+		
         foreach (var file in fileList)
         {
             if (skipFiles != null && skipFiles.ContainsKey(file))
@@ -414,8 +393,6 @@ Task("PrepareVSIX")
 			System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(targetFile));
 
 			string sourcePath = file;
-			if (isXProj && file == "global.json")
-				sourcePath = @"..\__global.json";
 			sourcePath = System.IO.Path.Combine(copySourceRoot, sourcePath);
 			System.IO.File.Copy(sourcePath, targetFile);
             
@@ -442,7 +419,7 @@ Task("PrepareVSIX")
 		
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
         System.IO.File.WriteAllText(targetProj, 
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n" +
+            (isXProj ? "" : "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n") +
             csprojElement.ToString(SaveOptions.OmitDuplicateNamespaces)
                 .Replace("http://localhost:55555/", "")
                 .Replace("<DevelopmentServerPort>55556</DevelopmentServerPort>", "<DevelopmentServerPort></DevelopmentServerPort>"));
@@ -469,23 +446,23 @@ Task("PrepareVSIX")
        
     Zip(webTemplateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
 
-	patchProjectRefs(sereneCoreProJson, serenityVersion);
+	patchProjectRefs(sereneCoreWebProj, serenityVersion);
 	
-    var exitCode = StartProcess("dotnet", "restore");
+    var exitCode = StartProcess("dotnet", "restore " + sereneCoreWebProj);
     if (exitCode > 0)
         throw new Exception("Error while restoring " + sereneCoreWebProj);	
 
 	exitCode = StartProcess("dotnet", new ProcessSettings
 	{
 		Arguments = "sergen restore",
-		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreProJson)
+		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreWebProj)
 	});
     if (exitCode > 0)
         throw new Exception("Error while sergen restoring " + sereneCoreWebProj);	
 
-	exitCode = StartProcess("dotnet", "build " + sereneCoreProJson + " -c " + configuration);
+	exitCode = StartProcess("dotnet", "build " + sereneCoreWebProj + " -c " + configuration);
 	if (exitCode > 0)
-		throw new Exception("Error while building " + sereneCoreProJson);
+		throw new Exception("Error while building " + sereneCoreWebProj);
 	
     if (System.IO.Directory.Exists(coreTemplateFolder))
         System.IO.Directory.Delete(coreTemplateFolder, true);	       

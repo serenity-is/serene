@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
@@ -9,14 +8,12 @@
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="EPPlus.Core" Version="1.1.0" />
     <PackageReference Include="FastMember" Version="1.1.0" />
@@ -36,24 +33,20 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Web" Version="2.9.12" />
+    <PackageReference Include="Serenity.Web" Version="2.9.17" />
   </ItemGroup>
-
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
     <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
   </PropertyGroup>
-
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet sergen mvc" ContinueOnError="true" />
     <Exec Command="dotnet sergen clienttypes" ContinueOnError="true" />
   </Target>
-
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="npm run less" ContinueOnError="true" />
+    <Exec Command="dotnet sergen servertypings" ContinueOnError="true" />
   </Target>
-
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.12" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.17" />
   </ItemGroup>
-
 </Project>
