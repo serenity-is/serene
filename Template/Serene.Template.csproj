@@ -85,6 +85,8 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\vsix-compress.props" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
@@ -129,6 +131,10 @@
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Label="VsixCompress">
+    <VsixCompressTargets Condition=" '$(VsixCompressTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\VsixCompress.1.0.1\tools\vsix-compress.targets ))</VsixCompressTargets>
+  </PropertyGroup>
+  <Import Project="$(VsixCompressTargets)" Condition="Exists('$(VsixCompressTargets)')" Label="VsixCompress" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

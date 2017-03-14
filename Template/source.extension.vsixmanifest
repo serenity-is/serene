@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="Serene_SerenityApplicationTemplate" Version="2.9.17.2" Language="en-US" Publisher="Volkan Ceylan" />
+    <Identity Id="Serene_SerenityApplicationTemplate" Version="2.9.17.11" Language="en-US" Publisher="Volkan Ceylan" />
     <DisplayName>Serene</DisplayName>
     <Description xml:space="preserve">Serenity is an ASP.NET MVC / TypeScript application platform designed to simplify and shorten development of data-centric business applications with a service based architecture. 
     Serene is a starter template to build Serenity applications.</Description>
@@ -18,10 +17,9 @@
   </Installation>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="RootProjectWizard" Path="|RootProjectWizard|" AssemblyName="|RootProjectWizard;AssemblyName|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Serene.Template.zip" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\SereneCore.Template.zip" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" />
   </Assets>
   <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[11.0,16.0]" DisplayName="Visual Studio core editor" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0.26004.1,16.0)" DisplayName="Visual Studio core editor" />
   </Prerequisites>
 </PackageManifest>

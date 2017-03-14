@@ -11,6 +11,7 @@
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>favicon.ico</Icon>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="$projectname$.csproj" File="Serene.Web.csproj" ReplaceParameters="true">
