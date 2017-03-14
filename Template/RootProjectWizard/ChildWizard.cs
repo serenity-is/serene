@@ -141,7 +141,7 @@ namespace RootProjectWizard
                 }
             }
 
-            if (File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "project.json")))
+            if (File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "appsettings.json")))
             {
                 try
                 {
