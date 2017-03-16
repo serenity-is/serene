@@ -25,9 +25,9 @@
         "~/Scripts/SlickGrid/Plugins/slick.rowselectionmodel.js",
         "~/Scripts/SlickGrid/Plugins/slick.rowmovemanager.js",
         "~/Scripts/bootstrap.js",
-        "~/Scripts/Saltarelle/mscorlib.js",
-        "~/Scripts/Serenity/Serenity.CoreLib.js",
-        "~/Scripts/Serenity/Serenity.Script.UI.js",
+        "~/Scripts/saltarelle/mscorlib.js",
+        "~/Scripts/serenity/Serenity.CoreLib.js",
+        "~/Scripts/serenity/Serenity.Script.UI.js",
         "~/Scripts/jquery.cropzoom.js",
         "~/Scripts/jquery.fileupload.js",
         "~/Scripts/jquery.iframe-transport.js",
@@ -37,6 +37,6 @@
     ],
     "Site": [
         "~/Scripts/adminlte/app.js",
-        "~/Scripts/Site/Serene.Web.js"
+        "~/Scripts/site/Serene.Web.js"
     ]
 }

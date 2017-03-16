@@ -4820,7 +4820,10 @@ var Q;
                 $(validator.errorList.map(function (x) { return x.element; }))
                     .closest('.category.collapsed')
                     .children('.category-title')
-                    .each(function (i, x) { return $(x).click(); });
+                    .each(function (i, x) {
+                    $(x).click();
+                    return true;
+                });
             },
             success: function (label) {
                 label.addClass('checked');
@@ -4853,7 +4856,7 @@ var Q;
             dateFormat: (order == 'mdy' ? 'mm' + s + 'dd' + s + 'yy' :
                 (order == 'ymd' ? 'yy' + s + 'mm' + s + 'dd' :
                     'dd' + s + 'mm' + s + 'yy')),
-            buttonImage: Q.resolveUrl('~/content/serenity/images/datepicker.png'),
+            buttonImage: Q.resolveUrl('~/Content/serenity/images/datepicker.png'),
             buttonImageOnly: true,
             showOn: 'both',
             showButtonPanel: true,

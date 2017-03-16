@@ -8065,13 +8065,13 @@ var Serene;
                     $('body').vegas({
                         delay: 10000,
                         cover: true,
-                        overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
+                        overlay: Q.resolveUrl("~/Scripts/vegas/overlays/01.png"),
                         slides: [
-                            { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide3.jpg'), transition: 'zoomOut' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide4.jpg'), transition: 'blur' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
+                            { src: Q.resolveUrl('~/Content/site/slides/slide1.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/Content/site/slides/slide2.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/Content/site/slides/slide3.jpg'), transition: 'zoomOut' },
+                            { src: Q.resolveUrl('~/Content/site/slides/slide4.jpg'), transition: 'blur' },
+                            { src: Q.resolveUrl('~/Content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
                         ]
                     });
                 });
