@@ -1042,6 +1042,7 @@
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Welcome.htm" OpenInWebBrowser="true">Welcome.htm</ProjectItem>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
         <ProjectItem ReplaceParameters="true" TargetFileName="_references.js">_references.js</ProjectItem>
         <Folder Name="Content" TargetFolderName="Content">
