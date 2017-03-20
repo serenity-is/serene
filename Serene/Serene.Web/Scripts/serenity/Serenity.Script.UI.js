@@ -9016,8 +9016,25 @@
 			if (this.$instanceReady && ss.isValue(instance)) {
 				instance.setData(value);
 			}
+		},
+		get_readOnly: function() {
+			return !ss.isNullOrEmptyString(this.element.attr('disabled'));
+		},
+		set_readOnly: function(value) {
+			if (this.get_readOnly() !== value) {
+				if (value) {
+					this.element.attr('disabled', 'disabled');
+				}
+				else {
+					this.element.removeAttr('disabled');
+				}
+				var instance = this.$getEditorInstance();
+				if (this.$instanceReady && ss.isValue(instance)) {
+					instance.setReadOnly(value);
+				}
+			}
 		}
-	}, Serenity.Widget, [$Serenity_IStringValue]);
+	}, Serenity.Widget, [$Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_HtmlContentEditorOptions, $asm, {});
 	ss.initClass($Serenity_HtmlNoteContentEditor, $asm, {
 		getConfig: function() {
@@ -9026,14 +9043,14 @@
 			config.removePlugins += ',elementspath';
 			return config;
 		}
-	}, $Serenity_HtmlContentEditor, [$Serenity_IStringValue]);
+	}, $Serenity_HtmlContentEditor, [$Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_HtmlReportContentEditor, $asm, {
 		getConfig: function() {
 			var config = $Serenity_HtmlContentEditor.prototype.getConfig.call(this);
 			config.removeButtons += ',Image,Table,HorizontalRule,Anchor,Blockquote,CreatePlaceholder,BGColor,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Superscript';
 			return config;
 		}
-	}, $Serenity_HtmlContentEditor, [$Serenity_IStringValue]);
+	}, $Serenity_HtmlContentEditor, [$Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initClass($Serenity_ImageUploadEditor, $asm, {
 		addFileButtonText: function() {
 			return Q.text('Controls.ImageUpload.AddFileButton');

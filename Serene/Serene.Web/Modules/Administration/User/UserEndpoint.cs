@@ -61,7 +61,7 @@ namespace Serene.Administration.Endpoints
         /// We don't cache it at dynamic script manager, because dynamic scripts are cached globally,
         /// similar to static variables, not per user.
         /// </summary>
-        [NonAction, DataScript("UserData", CacheDuration = -1)]
+        [NonAction, DataScript("UserData", CacheDuration = -1), ServiceAuthorize]
         public ScriptUserDefinition GetUserData()
         {
             var result = new ScriptUserDefinition();

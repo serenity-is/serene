@@ -40,10 +40,10 @@
             // 
             this.featureList.CheckOnClick = true;
             this.featureList.FormattingEnabled = true;
-            this.featureList.Location = new System.Drawing.Point(7, 91);
+            this.featureList.Location = new System.Drawing.Point(13, 167);
             this.featureList.Margin = new System.Windows.Forms.Padding(4);
             this.featureList.Name = "featureList";
-            this.featureList.Size = new System.Drawing.Size(585, 204);
+            this.featureList.Size = new System.Drawing.Size(787, 207);
             this.featureList.TabIndex = 0;
             this.featureList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.featureList_ItemCheck);
             // 
@@ -55,28 +55,31 @@
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5);
-            this.label1.Size = new System.Drawing.Size(517, 54);
+            this.label1.Size = new System.Drawing.Size(715, 141);
             this.label1.TabIndex = 1;
             this.label1.Text = "Please select features and modules that your application should include. \r\nIf you" +
     " are not sure, leave them as checked for now and click OK.";
             // 
             // btnOK
             // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(456, 302);
+            this.btnOK.Location = new System.Drawing.Point(594, 388);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(64, 34);
+            this.btnOK.Size = new System.Drawing.Size(97, 47);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.CausesValidation = false;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(526, 302);
+            this.btnCancel.Location = new System.Drawing.Point(708, 388);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(64, 34);
+            this.btnCancel.Size = new System.Drawing.Size(92, 47);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -84,7 +87,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::RootProjectWizard.Properties.Resources.serenity_logo_64;
-            this.pictureBox1.Location = new System.Drawing.Point(524, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(736, 22);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.TabIndex = 4;
@@ -93,11 +96,11 @@
             // FeatureSelection
             // 
             this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(600, 344);
+            this.ClientSize = new System.Drawing.Size(823, 447);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);

@@ -417,6 +417,25 @@ Task("PrepareVSIX")
         System.IO.File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
         System.IO.File.Copy(vsTemplate, System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(vsTemplate)));
 		
+		if (isXProj)
+		{
+			foreach (var z in csprojElement.Descendants("PackageReference")
+				.Where(x => x.Attribute("Condition") != null && 
+							x.Attribute("Condition").Value != null && 
+							x.Attribute("Condition").Value.IndexOf("Serenity.Core.csproj") >= 0).ToList())
+			{
+				z.Attribute("Condition").Remove();
+			}
+			
+			foreach (var z in csprojElement.Descendants("ItemGroup")
+				.Where(x => x.Attribute("Condition") != null && 
+							x.Attribute("Condition").Value != null &&
+							x.Attribute("Condition").Value.IndexOf("Serenity.Core.csproj") >= 0).ToList())
+			{
+				z.Remove();
+			}
+		}
+		
         var targetProj = System.IO.Path.Combine(copyTargetRoot, System.IO.Path.GetFileName(csproj));
         System.IO.File.WriteAllText(targetProj, 
             (isXProj ? "" : "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n") +

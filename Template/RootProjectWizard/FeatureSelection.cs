@@ -86,5 +86,10 @@ namespace RootProjectWizard
                 Check(checks, e.Index);
             }
         }
+
+        private void btnOK_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
