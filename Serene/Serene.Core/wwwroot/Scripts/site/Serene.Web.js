@@ -7325,6 +7325,7 @@ var Serene;
         Common.ReportPage = ReportPage;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../Common/Helpers/LanguageList.ts" />
 var Serene;
 (function (Serene) {
     var ScriptInitialization;
