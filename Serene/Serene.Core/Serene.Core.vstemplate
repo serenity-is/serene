@@ -7,7 +7,6 @@
     <SortOrder>1001</SortOrder>
     <CreateInPlace>true</CreateInPlace>
     <CreateNewFolder>true</CreateNewFolder>
-    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
     <DefaultName>$ext_projectname$.Web</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <LocationField>Enabled</LocationField>

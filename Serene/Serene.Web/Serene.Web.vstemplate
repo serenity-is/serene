@@ -4,7 +4,7 @@
     <Description>SERENE Web Project (Serenity Application Template)</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
-    <SortOrder>1000</SortOrder>
+    <SortOrder>11</SortOrder>
     <CreateInPlace>true</CreateInPlace>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>$ext_projectname$.Web</DefaultName>

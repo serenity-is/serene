@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
     <Name>SERENE (ASP.NET Core - Beta)</Name>
-	<SortOrder>101</SortOrder>
+	<SortOrder>11</SortOrder>
     <Description>Contains project template for Serenity Application Platform.</Description>
     <Icon>SerenityLogo.ico</Icon>
     <DefaultName>Serene</DefaultName>
-    <ProjectType>CSharp</ProjectType>
+	<ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Web</ProjectSubType>	
+	<Hidden>false</Hidden>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>	
   </TemplateData>
   <TemplateContent>
     <ProjectCollection>
