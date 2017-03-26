@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
@@ -48,9 +48,11 @@
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet sergen mvc" ContinueOnError="true" />
     <Exec Command="dotnet sergen clienttypes" ContinueOnError="true" />
+    <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install" />
   </Target>
   <Target Name="PostcompileScript" AfterTargets="Build">
-    <Exec Command="npm run less" ContinueOnError="true" />
+    <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css" ContinueOnError="true" />
+    <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
     <Exec Command="dotnet sergen servertypings" ContinueOnError="true" />
   </Target>
   <ItemGroup>
