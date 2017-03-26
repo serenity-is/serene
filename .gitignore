@@ -35,3 +35,4 @@ Serene/Serene.Core/db/
 Serene/Serene.Core/bin/
 Serene/Serene.Core/Data/
 Serene/Serene.Core/appsettings.*.machine.json
+.syncache.sqlite

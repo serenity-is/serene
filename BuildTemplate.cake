@@ -107,6 +107,7 @@ IEnumerable<Regex> sereneCoreExcludes = new string[] {
 	@"**\*.lock.json",
 	@"**\*.xproj",
 	@"**\*.csproj",
+	@"**\.syncache.sqlite",
 	@"**\*.vstemplate",
 	@"**\App_Data\**\*"
 }.Select(wildcardToRegex);
