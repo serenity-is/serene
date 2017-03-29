@@ -246,7 +246,6 @@
 /// <reference path="Scripts/jquery-ui-i18n.js" />
 /// <reference path="Scripts/jspdf.js" />
 /// <reference path="Scripts/jspdf.plugin.autotable.js" />
-/// <reference path="Scripts/jsrender.js" />
 /// <reference path="Scripts/jvectormap/jquery-jvectormap-1.2.2.min.js" />
 /// <reference path="Scripts/jvectormap/jquery-jvectormap-world-mill-en.js" />
 /// <reference path="Scripts/knob/jquery.knob.js" />
