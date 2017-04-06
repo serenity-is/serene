@@ -99,10 +99,15 @@ function createSolution() {
 }
 
 function useCacheZip(cacheZip) {
+    var prefix = 'projecttemplates/serenecore.template/';
     decompress(fs.readFileSync(cacheZip), null, {
     }).then(files => {
         for (var i = 0; i < files.length; i++) {
-            sourceFileByPath[toPath(files[i].path)] = files[i].data;
+            var path = files[i].path;
+            if (!path.toLowerCase().startsWith(prefix))
+                continue;
+            path = toPath(path.substr(prefix.length));
+            sourceFileByPath[path] = files[i].data;
         }
         createSolution();
     });
@@ -145,7 +150,7 @@ https.get({
         }
 
         var dirver = parseInt(str.substr(idx2 + 1, idx - idx2 - 1));
-        var cacheZip = path.resolve(cacheDir, 'SereneCore.Template.' + dirver + '.zip');           
+        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + dirver + '.vsix');
         if (fs.existsSync(cacheZip)) {
             console.log('You already have a cached copy of latest version.')
             console.log('');
@@ -153,24 +158,20 @@ https.get({
         }
         else {
             var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
-                return x.toLowerCase().startsWith('serenecore.template.') && x.toLowerCase().endsWith('.zip');
+                return x.toLowerCase().startsWith('Serene.Template.') && x.toLowerCase().endsWith('.vsix');
             });
             console.log('Downloading latest Serene template...');
             downloadHttps("https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/file/219776/" + 
                 dirver + "/Serene.Template.vsix", function(buffer) {
                     console.log('Download complete.');
-                    decompress(buffer, cacheDir, {
-                        filter: function(file) { return file.path.toLowerCase() == 'projecttemplates/serenecore.template.zip'; },
-                        map: function(file) { file.path = file.path.replace(/projecttemplates\//i, '').replace('.zip', '.' + dirver + '.zip'); return file; }
-                    }).then(files => {
-                        useCacheZip(cacheZip);
-                    });
+                    fs.writeFileSync(cacheZip, buffer);
+                    useCacheZip(cacheZip);
 
                     for (var i = 0; i < oldFiles.length; i++) {
                         fs.unlinkSync(path.resolve(cacheDir, oldFiles[i]));
                     }
                 });
-        }     
+        }
     });
 
 }).on('error', function(e) {
