@@ -16,6 +16,7 @@ namespace Serene.Common {
         tableOptions?: jsPDF.AutoTableOptions;
         output?: string;
         autoPrint?: boolean;
+        printHeader?: boolean;
     }
 
     export namespace PdfExportHelper {
@@ -157,6 +158,22 @@ namespace Serene.Common {
                                 });
                         };
                         autoOptions.afterPageContent = footer;
+                    }
+                    
+                    // Print header of page
+                    if (options.printHeader == null || options.printHeader) {
+                        var beforePage = function (data) {
+                            doc.setFontStyle('normal');
+                            doc.setFontSize(8);
+
+                            // Date and time of the report
+                            doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"), 
+                                doc.internal.pageSize.width - autoOptions.margin.right, 13, 
+                                {
+                                    halign: 'right'
+                                });
+                        };
+                        autoOptions.beforePageContent = beforePage;
                     }
 
                     doc.autoTable(columns, data, autoOptions);
