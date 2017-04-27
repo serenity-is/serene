@@ -16,7 +16,7 @@ namespace Serene.Common {
         tableOptions?: jsPDF.AutoTableOptions;
         output?: string;
         autoPrint?: boolean;
-        printHeader?: boolean;
+        printDateTimeHeader?: boolean;
     }
 
     export namespace PdfExportHelper {
@@ -161,7 +161,7 @@ namespace Serene.Common {
                     }
                     
                     // Print header of page
-                    if (options.printHeader == null || options.printHeader) {
+                    if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
                         var beforePage = function (data) {
                             doc.setFontStyle('normal');
                             doc.setFontSize(8);
