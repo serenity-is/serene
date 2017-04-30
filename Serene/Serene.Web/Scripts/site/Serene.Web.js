@@ -5183,7 +5183,55 @@ var Serene;
         BasicSamples.StaticTextBlockDialog = StaticTextBlockDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/BulkServiceAction.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var OrderBulkAction = (function (_super) {
+            __extends(OrderBulkAction, _super);
+            function OrderBulkAction() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            /**
+             * This controls how many service requests will be used in parallel.
+             * Determine this number based on how many requests your server
+             * might be able to handle, and amount of wait on external resources.
+             */
+            OrderBulkAction.prototype.getParallelRequests = function () {
+                return 10;
+            };
+            /**
+             * These number of records IDs will be sent to your service in one
+             * service call. If your service is designed to handle one record only,
+             * set it to 1. But note that, if you have 5000 records, this will
+             * result in 5000 service calls / requests.
+             */
+            OrderBulkAction.prototype.getBatchSize = function () {
+                return 5;
+            };
+            /**
+             * This is where you should call your service.
+             * Batch parameter contains the selected order IDs
+             * that should be processed in this service call.
+             */
+            OrderBulkAction.prototype.executeForBatch = function (batch) {
+                var _this = this;
+                BasicSamples.BasicSamplesService.OrderBulkAction({
+                    OrderIDs: batch.map(function (x) { return Q.parseInteger(x); })
+                }, function (response) { return _this.set_successCount(_this.get_successCount() + batch.length); }, {
+                    blockUI: false,
+                    onError: function (response) { return _this.set_errorCount(_this.get_errorCount() + batch.length); },
+                    onCleanup: function () { return _this.serviceCallCleanup(); }
+                });
+            };
+            return OrderBulkAction;
+        }(Serene.Common.BulkServiceAction));
+        BasicSamples.OrderBulkAction = OrderBulkAction;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+/// <reference path="OrderBulkAction.ts" />
 var Serene;
 (function (Serene) {
     var BasicSamples;
@@ -8557,53 +8605,6 @@ var Serene;
         ], FreightFormatter);
         Northwind.FreightFormatter = FreightFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../Common/Helpers/BulkServiceAction.ts" />
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var OrderBulkAction = (function (_super) {
-            __extends(OrderBulkAction, _super);
-            function OrderBulkAction() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            /**
-             * This controls how many service requests will be used in parallel.
-             * Determine this number based on how many requests your server
-             * might be able to handle, and amount of wait on external resources.
-             */
-            OrderBulkAction.prototype.getParallelRequests = function () {
-                return 10;
-            };
-            /**
-             * These number of records IDs will be sent to your service in one
-             * service call. If your service is designed to handle one record only,
-             * set it to 1. But note that, if you have 5000 records, this will
-             * result in 5000 service calls / requests.
-             */
-            OrderBulkAction.prototype.getBatchSize = function () {
-                return 5;
-            };
-            /**
-             * This is where you should call your service.
-             * Batch parameter contains the selected order IDs
-             * that should be processed in this service call.
-             */
-            OrderBulkAction.prototype.executeForBatch = function (batch) {
-                var _this = this;
-                BasicSamples.BasicSamplesService.OrderBulkAction({
-                    OrderIDs: batch.map(function (x) { return Q.parseInteger(x); })
-                }, function (response) { return _this.set_successCount(_this.get_successCount() + batch.length); }, {
-                    blockUI: false,
-                    onError: function (response) { return _this.set_errorCount(_this.get_errorCount() + batch.length); },
-                    onCleanup: function () { return _this.serviceCallCleanup(); }
-                });
-            };
-            return OrderBulkAction;
-        }(Serene.Common.BulkServiceAction));
-        BasicSamples.OrderBulkAction = OrderBulkAction;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
