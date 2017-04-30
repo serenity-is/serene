@@ -2,7 +2,7 @@
     export namespace CustomerGrossSalesService {
         export const baseUrl = 'BasicSamples/CustomerGrossSales';
 
-        export declare function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        export declare function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<Northwind.CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
         export namespace Methods {
             export declare const List: string;

@@ -429,29 +429,9 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
-    interface CustomerGrossSalesRow {
-        CustomerId?: string;
-        ContactName?: string;
-        ProductId?: number;
-        ProductName?: string;
-        GrossAmount?: number;
-    }
-    namespace CustomerGrossSalesRow {
-        const nameProperty = "ContactName";
-        const localTextPrefix = "BasicSamples.GrossSales";
-        namespace Fields {
-            const CustomerId: string;
-            const ContactName: string;
-            const ProductId: string;
-            const ProductName: string;
-            const GrossAmount: string;
-        }
-    }
-}
-declare namespace Serene.BasicSamples {
     namespace CustomerGrossSalesService {
         const baseUrl = "BasicSamples/CustomerGrossSales";
-        function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<Northwind.CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         namespace Methods {
             const List: string;
         }
@@ -1714,6 +1694,26 @@ declare namespace Serene.Northwind {
         LastContactedBy: Serenity.LookupEditor;
         Email: Serenity.EmailEditor;
         SendBulletin: Serenity.BooleanEditor;
+    }
+}
+declare namespace Serene.Northwind {
+    interface CustomerGrossSalesRow {
+        CustomerId?: string;
+        ContactName?: string;
+        ProductId?: number;
+        ProductName?: string;
+        GrossAmount?: number;
+    }
+    namespace CustomerGrossSalesRow {
+        const nameProperty = "ContactName";
+        const localTextPrefix = "BasicSamples.GrossSales";
+        namespace Fields {
+            const CustomerId: string;
+            const ContactName: string;
+            const ProductId: string;
+            const ProductName: string;
+            const GrossAmount: string;
+        }
     }
 }
 declare namespace Serene.Northwind {
@@ -3765,7 +3765,7 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
-    class CustomerGrossSalesGrid extends Serenity.EntityGrid<CustomerGrossSalesRow, any> {
+    class CustomerGrossSalesGrid extends Serenity.EntityGrid<Northwind.CustomerGrossSalesRow, any> {
         protected getColumnsKey(): string;
         protected getIdProperty(): string;
         protected getNameProperty(): string;

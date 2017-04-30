@@ -1,7 +1,7 @@
 ﻿
 namespace Serene.Northwind
 {
-    using BasicSamples.Entities;
+    using Entities;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Reporting;

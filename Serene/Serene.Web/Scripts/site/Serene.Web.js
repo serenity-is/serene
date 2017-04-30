@@ -324,21 +324,6 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var CustomerGrossSalesRow;
-        (function (CustomerGrossSalesRow) {
-            CustomerGrossSalesRow.nameProperty = 'ContactName';
-            CustomerGrossSalesRow.localTextPrefix = 'BasicSamples.GrossSales';
-            var Fields;
-            (function (Fields) {
-            })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
-            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
-        })(CustomerGrossSalesRow = BasicSamples.CustomerGrossSalesRow || (BasicSamples.CustomerGrossSalesRow = {}));
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
         var CustomerGrossSalesService;
         (function (CustomerGrossSalesService) {
             CustomerGrossSalesService.baseUrl = 'BasicSamples/CustomerGrossSales';
@@ -1255,6 +1240,21 @@ var Serene;
         CustomerForm.formKey = 'Northwind.Customer';
         Northwind.CustomerForm = CustomerForm;
         [['CustomerID', function () { return Serenity.StringEditor; }], ['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Representatives', function () { return Serenity.LookupEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['NoteList', function () { return Northwind.NotesEditor; }], ['LastContactDate', function () { return Serenity.DateEditor; }], ['LastContactedBy', function () { return Serenity.LookupEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['SendBulletin', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerGrossSalesRow;
+        (function (CustomerGrossSalesRow) {
+            CustomerGrossSalesRow.nameProperty = 'ContactName';
+            CustomerGrossSalesRow.localTextPrefix = 'BasicSamples.GrossSales';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
+            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
+        })(CustomerGrossSalesRow = Northwind.CustomerGrossSalesRow || (Northwind.CustomerGrossSalesRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -6279,8 +6279,8 @@ var Serene;
             }
             CustomerGrossSalesGrid.prototype.getColumnsKey = function () { return "BasicSamples.CustomerGrossSales"; };
             CustomerGrossSalesGrid.prototype.getIdProperty = function () { return "__id"; };
-            CustomerGrossSalesGrid.prototype.getNameProperty = function () { return BasicSamples.CustomerGrossSalesRow.nameProperty; };
-            CustomerGrossSalesGrid.prototype.getLocalTextPrefix = function () { return BasicSamples.CustomerGrossSalesRow.localTextPrefix; };
+            CustomerGrossSalesGrid.prototype.getNameProperty = function () { return CustomerGrossSalesRow.nameProperty; };
+            CustomerGrossSalesGrid.prototype.getLocalTextPrefix = function () { return CustomerGrossSalesRow.localTextPrefix; };
             CustomerGrossSalesGrid.prototype.getService = function () { return BasicSamples.CustomerGrossSalesService.baseUrl; };
             /**
              * This method is called to preprocess data returned from the list service

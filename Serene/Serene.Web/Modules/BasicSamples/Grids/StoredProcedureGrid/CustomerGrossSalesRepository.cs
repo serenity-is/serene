@@ -4,7 +4,7 @@
     using Serenity.Services;
     using System.Collections.Generic;
     using System.Data;
-    using MyRow = Entities.CustomerGrossSalesRow;
+    using MyRow = Northwind.Entities.CustomerGrossSalesRow;
 
     public class CustomerGrossSalesRepository
     {

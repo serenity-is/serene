@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+﻿namespace Serene.Northwind {
     export interface CustomerGrossSalesRow {
         CustomerId?: string;
         ContactName?: string;

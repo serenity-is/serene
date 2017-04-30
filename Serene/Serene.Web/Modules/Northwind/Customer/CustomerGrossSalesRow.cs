@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples.Entities
+﻿namespace Serene.Northwind.Entities
 {
     using Serenity.Data;
     using Serenity.Data.Mapping;

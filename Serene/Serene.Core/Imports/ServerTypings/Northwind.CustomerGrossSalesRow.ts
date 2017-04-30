@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+﻿namespace Serene.Northwind {
     export interface CustomerGrossSalesRow {
         CustomerId?: string;
         ContactName?: string;
@@ -22,4 +22,3 @@
         ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

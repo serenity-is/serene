@@ -4,7 +4,7 @@
     using System;
 
     [ColumnsScript("BasicSamples.CustomerGrossSales")]
-    [BasedOnRow(typeof(Entities.CustomerGrossSalesRow))]
+    [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow))]
     public class CustomerGrossSalesColumns
     {
         [Width(150), SortOrder(1)]
