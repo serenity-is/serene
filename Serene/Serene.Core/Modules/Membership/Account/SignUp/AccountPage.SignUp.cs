@@ -49,7 +49,7 @@ namespace Serene.Membership.Pages
                         UserRow.Fields.Username == request.Email |
                         UserRow.Fields.Email == request.Email))
                 {
-                    throw new ValidationError("EmailInUse", Texts.Validation.CantFindUserWithEmail);
+                    throw new ValidationError("EmailInUse", Texts.Validation.EmailInUse);
                 }
 
                 using (var uow = new UnitOfWork(connection))
