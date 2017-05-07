@@ -38,12 +38,15 @@ namespace Serenity.Reporting
                 return list;
 
             IDictionary<string, PropertyItem> propertyItems = null;
+            IDictionary<string, PropertyInfo> propertyInfos = null;
             Row basedOnRow = null;
 
             if (ColumnsType != null)
             {
                 propertyItems = LocalCache.Get("DynamicDataReport:Columns:" + ColumnsType.FullName, TimeSpan.Zero,
                     () => PropertyItemHelper.GetPropertyItemsFor(ColumnsType).ToDictionary(x => x.Name));
+
+                propertyInfos = ColumnsType.GetProperties().ToDictionary(x => x.Name);
 
                 var basedOnAttr = ColumnsType.GetCustomAttribute<BasedOnRowAttribute>();
                 if (basedOnAttr != null && 
@@ -63,13 +66,17 @@ namespace Serenity.Reporting
                 var basedOnField = basedOnRow == null ? (Field)null :
                     (basedOnRow.FindField(columnName) ?? basedOnRow.FindFieldByPropertyName(columnName));
 
-                list.Add(FromPropertyItem(item, basedOnField));
+                PropertyInfo p;
+                if (propertyInfos == null || !propertyInfos.TryGetValue(columnName, out p))
+                    p = null;
+
+                list.Add(FromPropertyItem(item, basedOnField, p));
             }
 
             return list;
         }
 
-        private ReportColumn FromPropertyItem(PropertyItem item, Field field)
+        private ReportColumn FromPropertyItem(PropertyItem item, Field field, PropertyInfo property)
         {
             var result = new ReportColumn();
             result.Name = item.Name;
@@ -100,6 +107,13 @@ namespace Serenity.Reporting
             if (enumField != null && enumField.EnumType != null)
             {
                 result.Decorator = new EnumDecorator(enumField.EnumType);
+            }
+
+            if (property != null)
+            {
+                var decorator = property.GetCustomAttribute<CellDecoratorAttribute>();
+                if (decorator != null && decorator.DecoratorType != null)
+                    result.Decorator = (ICellDecorator)Activator.CreateInstance(decorator.DecoratorType);
             }
 
             if (!ReferenceEquals(null, field))

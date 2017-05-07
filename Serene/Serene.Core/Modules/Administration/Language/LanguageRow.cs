@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.Administration.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
@@ -9,6 +10,7 @@ namespace Serene.Administration.Entities
     [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Translation)]
     [ModifyPermission(PermissionKeys.Translation)]
+    [LookupScript(typeof(LanguageLookup))]
     public sealed class LanguageRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]

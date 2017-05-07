@@ -83,7 +83,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextForm.ts">BasicSamples.ChangingLookupTextForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesColumns.ts">BasicSamples.CustomerGrossSalesColumns.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesListRequest.ts">BasicSamples.CustomerGrossSalesListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesRow.ts">BasicSamples.CustomerGrossSalesRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesService.ts">BasicSamples.CustomerGrossSalesService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleColumns.ts">BasicSamples.DragDropSampleColumns.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleForm.ts">BasicSamples.DragDropSampleForm.ts</ProjectItem>
@@ -168,6 +167,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicRow.ts">Northwind.CustomerDemographicRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDetailsRow.ts">Northwind.CustomerDetailsRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerForm.ts">Northwind.CustomerForm.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerGrossSalesRow.ts">Northwind.CustomerGrossSalesRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRepresentativesRow.ts">Northwind.CustomerRepresentativesRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRow.ts">Northwind.CustomerRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerService.ts">Northwind.CustomerService.ts</ProjectItem>
@@ -530,6 +530,7 @@
             <Folder Name="CancellableBulkAction" TargetFolderName="CancellableBulkAction">
               <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.ts">CancellableBulkActionGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.ts">OrderBulkAction.ts</ProjectItem>
             </Folder>
             <Folder Name="ConditionalFormatting" TargetFolderName="ConditionalFormatting">
               <ProjectItem ReplaceParameters="true" TargetFileName="ConditionalFormattingGrid.ts">ConditionalFormattingGrid.ts</ProjectItem>
@@ -598,7 +599,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesGrid.ts">CustomerGrossSalesGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesListRequest.cs">CustomerGrossSalesListRequest.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRepository.cs">CustomerGrossSalesRepository.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRow.cs">CustomerGrossSalesRow.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
             <Folder Name="TreeGrid" TargetFolderName="TreeGrid">
@@ -832,6 +832,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEndpoint.cs">CustomerEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerForm.cs">CustomerForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrid.ts">CustomerGrid.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRow.cs">CustomerGrossSalesRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerIndex.cshtml">CustomerIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerLookup.cs">CustomerLookup.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerOrderDialog.ts">CustomerOrderDialog.ts</ProjectItem>
@@ -840,6 +841,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepository.cs">CustomerRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepresentativesRow.cs">CustomerRepresentativesRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRow.cs">CustomerRow.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeListDecorator.cs">EmployeeListDecorator.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeListFormatter.ts">EmployeeListFormatter.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDialog.Template.html">Northwind.CustomerDialog.Template.html</ProjectItem>
           </Folder>
@@ -872,7 +874,6 @@
           </Folder>
           <Folder Name="Order" TargetFolderName="Order">
             <ProjectItem ReplaceParameters="true" TargetFileName="FreightFormatter.ts">FreightFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.ts">OrderBulkAction.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderColumns.cs">OrderColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailReport.cs">OrderDetailReport.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailReport.cshtml">OrderDetailReport.cshtml</ProjectItem>

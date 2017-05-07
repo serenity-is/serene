@@ -39,7 +39,7 @@ namespace Serene.Northwind
             return ReportColumnConverter.ObjectTypeToList(typeof(Item));
         }
 
-        [BasedOnRow(typeof(CustomerGrossSalesRow))]
+        [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow))]
         public class Item
         {
             public string CustomerId { get; set; }

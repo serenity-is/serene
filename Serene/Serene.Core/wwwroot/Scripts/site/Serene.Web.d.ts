@@ -1757,7 +1757,7 @@ declare namespace Serene.Northwind {
         const idProperty = "ID";
         const nameProperty = "CompanyName";
         const localTextPrefix = "Northwind.Customer";
-        const lookupKey = "Northwind.CustomerCity";
+        const lookupKey = "Northwind.Customer";
         function getLookup(): Q.Lookup<CustomerRow>;
         namespace Fields {
             const ID: string;

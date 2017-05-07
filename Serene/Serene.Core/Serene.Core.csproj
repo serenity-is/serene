@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Web" Version="2.9.21" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web" Version="2.9.22" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
@@ -46,16 +46,13 @@
     <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
   </PropertyGroup>
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-    <Exec Command="dotnet sergen mvc" ContinueOnError="true" />
-    <Exec Command="dotnet sergen clienttypes" ContinueOnError="true" />
     <Exec Command="npm install" />
   </Target>
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css" ContinueOnError="true" />
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
-    <Exec Command="dotnet sergen servertypings" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.21" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.22" />
   </ItemGroup>
 </Project>

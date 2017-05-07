@@ -1281,9 +1281,9 @@ var Serene;
             CustomerRow.idProperty = 'ID';
             CustomerRow.nameProperty = 'CompanyName';
             CustomerRow.localTextPrefix = 'Northwind.Customer';
-            CustomerRow.lookupKey = 'Northwind.CustomerCity';
+            CustomerRow.lookupKey = 'Northwind.Customer';
             function getLookup() {
-                return Q.getLookup('Northwind.CustomerCity');
+                return Q.getLookup('Northwind.Customer');
             }
             CustomerRow.getLookup = getLookup;
             var Fields;

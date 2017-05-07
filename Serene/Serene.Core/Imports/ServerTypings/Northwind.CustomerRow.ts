@@ -24,10 +24,10 @@
         export const idProperty = 'ID';
         export const nameProperty = 'CompanyName';
         export const localTextPrefix = 'Northwind.Customer';
-        export const lookupKey = 'Northwind.CustomerCity';
+        export const lookupKey = 'Northwind.Customer';
 
         export function getLookup(): Q.Lookup<CustomerRow> {
-            return Q.getLookup<CustomerRow>('Northwind.CustomerCity');
+            return Q.getLookup<CustomerRow>('Northwind.Customer');
         }
 
         export namespace Fields {

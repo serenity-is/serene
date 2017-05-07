@@ -1,12 +1,12 @@
 ﻿namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerClass()
-    export class CustomerGrossSalesGrid extends Serenity.EntityGrid<CustomerGrossSalesRow, any> {
+    export class CustomerGrossSalesGrid extends Serenity.EntityGrid<Northwind.CustomerGrossSalesRow, any> {
 
         protected getColumnsKey() { return "BasicSamples.CustomerGrossSales"; }
         protected getIdProperty() { return "__id"; }
-        protected getNameProperty() { return CustomerGrossSalesRow.nameProperty; }
-        protected getLocalTextPrefix() { return CustomerGrossSalesRow.localTextPrefix; }
+        protected getNameProperty() { return Northwind.CustomerGrossSalesRow.nameProperty; }
+        protected getLocalTextPrefix() { return Northwind.CustomerGrossSalesRow.localTextPrefix; }
         protected getService() { return CustomerGrossSalesService.baseUrl; }
 
         private nextId = 1;

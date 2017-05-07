@@ -14,6 +14,7 @@ namespace Serene.Northwind.Entities
     [DeletePermission(PermissionKeys.Customer.Delete)]
     [LeftJoin("cd", "CustomerDetails", "cd.[ID] = t0.[ID]", RowType = typeof(CustomerDetailsRow), TitlePrefix = "")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
+    [LookupScript(typeof(Scripts.CustomerLookup))]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]
