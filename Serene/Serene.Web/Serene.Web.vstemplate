@@ -1587,12 +1587,12 @@
       <installPackage id="Newtonsoft.Json" version="9.0.1" />
       <installPackage id="NUglify" version="1.5.4" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="2.9.22" />
-      <installPackage id="Serenity.Core" version="2.9.22" />
-      <installPackage id="Serenity.Data" version="2.9.22" />
-      <installPackage id="Serenity.Data.Entity" version="2.9.22" />
-      <installPackage id="Serenity.Services" version="2.9.22" />
-      <installPackage id="Serenity.Web" version="2.9.22" />
+      <installPackage id="Serenity.CodeGenerator" version="2.9.23" />
+      <installPackage id="Serenity.Core" version="2.9.23" />
+      <installPackage id="Serenity.Data" version="2.9.23" />
+      <installPackage id="Serenity.Data.Entity" version="2.9.23" />
+      <installPackage id="Serenity.Services" version="2.9.23" />
+      <installPackage id="Serenity.Web" version="2.9.23" />
       <installPackage id="Serenity.Web.Assets" version="2.7.2" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="StackExchange.Exceptional" version="1.0.122" />
