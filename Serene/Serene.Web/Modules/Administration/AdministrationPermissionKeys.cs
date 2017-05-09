@@ -1,25 +1,17 @@
 ﻿
+using Serenity.Extensibility;
+using System.ComponentModel;
+
 namespace Serene.Administration
 {
-    /// <summary>
-    /// This class contains some permission key constants solely for
-    /// easy access and intellisense purposes.
-    /// 
-    /// Please note that adding a permission here won't show it
-    /// in user permissions dialog. In fact, Serenity doesn't
-    /// care about this class at all.
-    /// 
-    /// To show a new permission in user/role permission dialog, just use
-    /// its string key with ReadPermission / ModifyPermission / 
-    /// DeletePermission / PageAuthorize / ServiceAuthorize etc. attributes 
-    /// and Serenity will auto discover them at application start.
-    /// 
-    /// Permission tree hierarchy in dialog is determined by colons (:)
-    /// in permission keys.
-    /// </summary>
+    [NestedPermissionKeys]
+    [DisplayName("Administration")]
     public class PermissionKeys
     {
+        [Description("User, Role Management and Permissions")]
         public const string Security = "Administration:Security";
+
+        [Description("Languages and Translations")]
         public const string Translation = "Administration:Translation";
     }
 }

@@ -1,31 +1,23 @@
 ﻿
+using Serenity.Extensibility;
+using System.ComponentModel;
+
 namespace Serene.Northwind
 {
-    /// <summary>
-    /// This class contains some permission key constants solely for
-    /// easy access and intellisense purposes.
-    /// 
-    /// Please note that adding a permission here won't show it
-    /// in user permissions dialog. In fact, Serenity doesn't
-    /// care about this class at all.
-    /// 
-    /// To show a new permission in user/role permission dialog, just use
-    /// its string key with ReadPermission / ModifyPermission / 
-    /// DeletePermission / PageAuthorize / ServiceAuthorize etc. attributes 
-    /// and Serenity will auto discover them at application start.
-    /// 
-    /// Permission tree hierarchy in dialog is determined by colons (:)
-    /// in permission keys.
-    /// </summary>
+    [NestedPermissionKeys]
+    [DisplayName("Northwind")]
     public class PermissionKeys
     {
+        [DisplayName("Customers")]
         public class Customer
         {
             public const string Delete = "Northwind:Customer:Delete";
+            [Description("Create/Update")]
             public const string Modify = "Northwind:Customer:Modify";
             public const string View = "Northwind:Customer:View";
         }
 
+        [Description("[General]")]
         public const string General = "Northwind:General";
     }
 }

@@ -77,6 +77,7 @@ namespace Serene
 
             var textRegistry = app.ApplicationServices.GetRequiredService<ILocalTextRegistry>();
             textRegistry.AddNestedTexts();
+            textRegistry.AddNestedPermissions();
             textRegistry.AddEnumTexts();
             textRegistry.AddRowTexts();
             var contentRoot = env.ContentRootPath;

@@ -5,6 +5,7 @@ namespace Serene.Administration.Repositories
     using Serenity;
     using Serenity.Data;
     using Serenity.Extensibility;
+    using Serenity.Localization;
     using Serenity.Services;
     using Serenity.Web;
     using System;
@@ -193,6 +194,8 @@ namespace Serene.Administration.Repositories
             return LocalCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
             {
                 var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                result.AddRange(NestedPermissionKeyRegistration.AddNestedPermissions(registry: null));
 
                 foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
                 {
