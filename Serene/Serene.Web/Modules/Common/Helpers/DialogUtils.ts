@@ -15,4 +15,17 @@
                 });
         });
     }
+    
+    export function readonlyOnChange(masterField: Serenity.Widget<any>, cascadeField: Serenity.Widget<any>, valueEnable: any): void {
+        DialogUtils.conditionalReadOnly(masterField, cascadeField, valueEnable);
+        masterField.change(e => { DialogUtils.conditionalReadOnly(masterField, cascadeField, valueEnable); });
+    }
+
+    export function conditionalReadOnly(masterField: Serenity.Widget<any>, cascadeField: Serenity.Widget<any>, valueEnable: any): void {
+        if (Serenity.EditorUtils.getValue(masterField) == valueEnable)
+            Serenity.EditorUtils.setReadOnly(cascadeField, false);
+        else
+            Serenity.EditorUtils.setReadOnly(cascadeField, true);
+    }
+
 }
