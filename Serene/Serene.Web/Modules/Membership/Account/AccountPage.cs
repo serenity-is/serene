@@ -13,8 +13,12 @@ namespace Serene.Membership.Pages
         public static bool UseAdminLTELoginBox = false;
 
         [HttpGet]
-        public ActionResult Login(string activated)
+        public ActionResult Login(int? denied, string activated, string returnUrl)
         {
+            if (denied == 1)
+                return View(MVC.Views.Errors.AccessDenied,
+                    (object)(FormsAuthentication.LoginUrl + "?returnUrl=" + Uri.EscapeDataString(returnUrl)));
+
             ViewData["Activated"] = activated;
             ViewData["HideLeftNavigation"] = true;
 

@@ -288,6 +288,7 @@ namespace MVC
 
         public static class Errors
         {
+            public const string AccessDenied = "~/Views/Errors/AccessDenied.cshtml";
             public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
         }
 
