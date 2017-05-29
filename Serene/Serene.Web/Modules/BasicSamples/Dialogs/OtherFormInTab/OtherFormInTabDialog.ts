@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
+/// <reference path="../../../Northwind/Order/OrderDialog.ts" />
 
 namespace Serene.BasicSamples {
 
@@ -11,6 +11,7 @@ namespace Serene.BasicSamples {
         private customerPropertyGrid: Serenity.PropertyGrid;
         private customerForm: Northwind.CustomerForm;
         private customerValidator: JQueryValidation.Validator;
+        private selfChange = 0;
 
         constructor() {
             super();
@@ -28,53 +29,8 @@ namespace Serene.BasicSamples {
             // initialize validator for customer form
             this.customerValidator = this.byId("CustomerForm").validate(Q.validateOptions({}));
 
-            var selfChange = 0;
-
-            // creating another toolbar for customer tab that will only save Customer
-            new Serenity.Toolbar(this.byId("CustomerToolbar"), {
-                buttons: [{
-                    cssClass: "apply-changes-button",
-                    title: Q.text("Controls.EntityDialog.SaveButton"),
-                    onClick: () => {
-                        var id = this.getCustomerID();
-                        if (!id)
-                            return;
-
-                        if (!this.customerValidator.form())
-                            return;
-
-                        // prepare an empty entity to serialize customer details into
-                        var c = <Northwind.CustomerRow>{};
-                        this.customerPropertyGrid.save(c);
-
-                        Northwind.CustomerService.Update({
-                            EntityId: id,
-                            Entity: c
-                        }, response => {
-                            // reload customer list just in case
-                            Q.reloadLookup(Northwind.CustomerRow.lookupKey);
-
-                            // set flag that we are triggering customer select change event
-                            // otherwise active tab will change to first one
-                            selfChange++;
-                            try {
-                                // trigger change so that customer select updates its text
-                                // in case if Company Name is changed
-                                this.form.CustomerID.element.change();
-                            }
-                            finally {
-                                selfChange--;
-                            }
-
-                            Q.notifySuccess("Saved customer details");
-                        });
-
-                    }
-                }]
-            });
-
             this.form.CustomerID.change(e => {
-                if (selfChange)
+                if (this.selfChange)
                     return;
 
                 var customerID = this.getCustomerID();
@@ -116,6 +72,61 @@ namespace Serene.BasicSamples {
 
             Serenity.TabsExtensions.setDisabled(this.tabs, 'Customer',
                 !this.getCustomerID());
+        }
+
+        protected saveCustomer(): boolean {
+            var id = this.getCustomerID();
+            if (!id)
+                return true;
+
+            // Get current tab
+            var currTab = Serenity.TabsExtensions.activeTabKey(this.tabs);
+
+            // Select the correct tab and validate to see the error message in tab
+            Serenity.TabsExtensions.selectTab(this.tabs, "Customer")
+            if (!this.customerValidator.form()) {
+                return false;
+            }
+
+            // Re-select initial tab
+            Serenity.TabsExtensions.selectTab(this.tabs, currTab)
+
+            // prepare an empty entity to serialize customer details into
+            var c = <Northwind.CustomerRow>{};
+            this.customerPropertyGrid.save(c);
+
+            Northwind.CustomerService.Update({
+                EntityId: id,
+                Entity: c
+            }, response => {
+                // reload customer list just in case
+                Q.reloadLookup(Northwind.CustomerRow.lookupKey);
+
+                // set flag that we are triggering customer select change event
+                // otherwise active tab will change to first one
+                this.selfChange++;
+                try {
+                    // trigger change so that customer select updates its text
+                    // in case if Company Name is changed
+                    this.form.CustomerID.element.change();
+                }
+                finally {
+                    this.selfChange--;
+                }
+                });
+
+            return true;
+        }
+
+        protected saveAll(): boolean {
+            return this.saveCustomer();
+        }
+
+        protected save(callback: (response: Serenity.SaveResponse) => void) {
+            if (!this.saveAll())
+                return;
+
+            super.save(callback);
         }
     }
 }
