@@ -114,7 +114,7 @@ namespace Serene.Membership.Pages
                 int userId;
                 try
                 {
-                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "Activate");
+                    var bytes = MachineKey.Unprotect(Convert.FromBase64String(t), "ResetPassword");
                     using (var ms = new MemoryStream(bytes))
                     using (var br = new BinaryReader(ms))
                     {
