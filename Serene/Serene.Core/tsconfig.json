@@ -13,6 +13,7 @@
   },
   "exclude": [
     ".vs/",
+    "obj/",
     "App_Data/",
     "Views/",
     "node_modules/",
