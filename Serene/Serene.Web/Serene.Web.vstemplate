@@ -896,6 +896,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAPost.cs">VSGalleryQAPost.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="VSGalleryQAThread.cs">VSGalleryQAThread.cs</ProjectItem>
             </Folder>
+            <Folder Name="WrappedHeaders" TargetFolderName="WrappedHeaders">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="WrappedHeadersGrid.ts">WrappedHeadersGrid.ts</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">

@@ -609,6 +609,10 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
             </Folder>
+            <Folder Name="WrappedHeaders" TargetFolderName="WrappedHeaders">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="WrappedHeadersGrid.ts">WrappedHeadersGrid.ts</ProjectItem>
+            </Folder>
           </Folder>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
