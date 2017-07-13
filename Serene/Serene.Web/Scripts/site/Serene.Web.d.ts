@@ -3908,6 +3908,11 @@ declare namespace Serene.BasicSamples {
         protected getInitialTitle(): any;
     }
 }
+declare namespace Serene.BasicSamples {
+    class WrappedHeadersGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+    }
+}
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();

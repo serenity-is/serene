@@ -87,5 +87,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(Views.ViewWithoutID.Index);
         }
+
+        public ActionResult WrappedHeaders()
+        {
+            return View(Views.WrappedHeaders.Index);
+        }
     }
 }

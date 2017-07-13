@@ -17,7 +17,7 @@ namespace Serene
                     // using syntax below to prevent replace of S E R E N E in URL
                     "https://github.com/volkanceylan/S" + "erene/blob/master/S" + "erene/S" + "erene.Web/")) +
                 "\">" + 
-                helper.Encode(file) +
+                helper.Encode(Path.GetFileName(file)) +
                 "</a>");
         }
     }

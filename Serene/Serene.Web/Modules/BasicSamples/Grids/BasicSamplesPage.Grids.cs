@@ -91,5 +91,10 @@ namespace Serene.BasicSamples.Pages
         {
             return View(Views.VSGalleryQA.Index);
         }
+
+        public ActionResult WrappedHeaders()
+        {
+            return View(Views.WrappedHeaders.Index);
+        }
     }
 }

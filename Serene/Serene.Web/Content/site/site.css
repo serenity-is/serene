@@ -7353,6 +7353,14 @@ section.content > .s-DataGrid {
 .drag-helper.reject {
   background-image: url(../serenity/images/slash.png);
 }
+.s-BasicSamples-WrappedHeadersGrid .slick-header-columns {
+  white-space: normal;
+  height: 45px;
+  border-bottom: 2px solid #ccc;
+}
+.s-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
+  height: 100%;
+}
 .s-Meeting-MeetingDialog > .size {
   width: 850px;
   height: 550px;

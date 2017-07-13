@@ -19,3 +19,4 @@ using Serenity.Navigation;
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Tree Grid", typeof(BasicSamplesController), action: "TreeGrid")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/View Without ID", typeof(BasicSamplesController), action: "ViewWithoutID")]
 [assembly: NavigationLink(7950, "Basic Samples/Grids/Visual Studio Gallery Q & A", typeof(BasicSamplesController), action: "VSGalleryQA")]
+[assembly: NavigationLink(7950, "Basic Samples/Grids/Wrapped Headers", typeof(BasicSamplesController), action: "WrappedHeaders")]

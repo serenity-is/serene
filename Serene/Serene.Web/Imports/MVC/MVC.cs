@@ -269,6 +269,11 @@ namespace MVC
                 {
                     public const string Index = "~/Modules/BasicSamples/Grids/VSGalleryQA/Index.cshtml";
                 }
+
+                public static class WrappedHeaders
+                {
+                    public const string Index = "~/Modules/BasicSamples/Grids/WrappedHeaders/Index.cshtml";
+                }
             }
 
         }

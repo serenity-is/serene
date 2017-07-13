@@ -6658,6 +6658,24 @@ var Serene;
         BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var WrappedHeadersGrid = (function (_super) {
+            __extends(WrappedHeadersGrid, _super);
+            function WrappedHeadersGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            return WrappedHeadersGrid;
+        }(Serene.Northwind.OrderGrid));
+        WrappedHeadersGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], WrappedHeadersGrid);
+        BasicSamples.WrappedHeadersGrid = WrappedHeadersGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var BasicProgressDialog = (function (_super) {

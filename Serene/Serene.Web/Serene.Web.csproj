@@ -720,6 +720,7 @@
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Imports\Web.config" />
     <Content Include="Migrations\Web.config" />
+    <Content Include="Modules\BasicSamples\Grids\WrappedHeaders\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1372,6 +1373,7 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\InlineActionButtons\InlineActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\ProductExcelImport\ProductExcelImportGrid.ts" />
+    <TypeScriptCompile Include="Modules\BasicSamples\Grids\WrappedHeaders\WrappedHeadersGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\RemovingAddButton\RemovingAddButton.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\GetInsertedRecordId\GetInsertedRecordIdGrid.ts" />

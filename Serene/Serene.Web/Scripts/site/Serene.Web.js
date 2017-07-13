@@ -3647,7 +3647,7 @@ var Serene;
              */
             GetInsertedRecordIdDialog.prototype.onSaveSuccess = function (response) {
                 // check that this is an insert
-                if (this.isNew) {
+                if (this.isNew()) {
                     Q.notifySuccess("Just inserted a category with ID: " + response.EntityId);
                     // you could also open a new dialog
                     // new Northwind.CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
@@ -6699,6 +6699,24 @@ var Serene;
             Serenity.Decorators.registerClass()
         ], VSGalleryQAGrid);
         BasicSamples.VSGalleryQAGrid = VSGalleryQAGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var WrappedHeadersGrid = (function (_super) {
+            __extends(WrappedHeadersGrid, _super);
+            function WrappedHeadersGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            return WrappedHeadersGrid;
+        }(Serene.Northwind.OrderGrid));
+        WrappedHeadersGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], WrappedHeadersGrid);
+        BasicSamples.WrappedHeadersGrid = WrappedHeadersGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
