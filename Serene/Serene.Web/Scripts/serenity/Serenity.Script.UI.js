@@ -3950,7 +3950,7 @@
 		dialog.element.triggerHandler('ondatachange');
 		return dialog;
 	};
-	$Serenity_SubDialogHelper.triggerDataChange$1 = function(element) {
+	$Serenity_SubDialogHelper.triggerDataChanged = function(element) {
 		element.triggerHandler('ondatachange');
 		return element;
 	};
@@ -4471,8 +4471,8 @@
 		},
 		getCreateSearchChoice: function(getName) {
 			return ss.mkdel(this, function(s) {
-				s = ss.coalesce(Select2.util.stripDiacritics(s), '').toLowerCase();
 				this.lastCreateTerm = s;
+				s = ss.coalesce(Select2.util.stripDiacritics(s), '').toLowerCase();
 				if (Q.isTrimmedEmpty(s)) {
 					return null;
 				}

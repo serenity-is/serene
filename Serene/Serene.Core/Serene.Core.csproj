@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Web" Version="2.9.23" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web" Version="2.9.25" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
@@ -53,6 +53,6 @@
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.23" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.9.25" />
   </ItemGroup>
 </Project>

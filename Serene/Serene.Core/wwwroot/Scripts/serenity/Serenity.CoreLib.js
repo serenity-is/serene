@@ -594,9 +594,6 @@ var Q;
     function parseISODateTime(s) {
         if (!s || !s.length)
             return null;
-        var timestamp = Date.parse(s);
-        if (!isNaN(timestamp) && typeof timestamp == "Date")
-            return timestamp;
         s = s + "";
         if (typeof (s) != "string" || s.length === 0) {
             return null;
@@ -1676,8 +1673,9 @@ var Q;
         ScriptData.canLoad = canLoad;
         function setRegisteredScripts(scripts) {
             registered = {};
+            var t = new Date().getTime();
             for (var k in scripts) {
-                registered[k] = scripts[k].toString();
+                registered[k] = scripts[k] || t;
             }
         }
         ScriptData.setRegisteredScripts = setRegisteredScripts;
