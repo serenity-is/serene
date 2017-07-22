@@ -657,6 +657,9 @@
 			}
 			this.set_valueAsDate(new Date());
 		}));
+		this.$time.on('change', function(e3) {
+			input.triggerHandler('change');
+		});
 	};
 	$Serenity_DateTimeEditor.__typeName = 'Serenity.DateTimeEditor';
 	$Serenity_DateTimeEditor.$getTimeOptions = function(fromHour, fromMin, toHour, toMin, stepMins) {
@@ -1282,6 +1285,31 @@
 		this.$service = null;
 		this.$dialogType = null;
 		$Serenity_DataGrid.call(this, container, opt);
+		this.element.addClass('route-handler').bind('handleroute.' + this.uniqueName, ss.mkdel(this, function(e, arg) {
+			if (!!arg.handled) {
+				return;
+			}
+			if (!!(arg.route === 'new')) {
+				arg.handled = true;
+				this.addButtonClick();
+				return;
+			}
+			var parts = arg.route.split('/');
+			if (!!(ss.referenceEquals(parts.length, 2) && parts[0] === 'edit')) {
+				arg.handled = true;
+				this.editItem(parts[1]);
+				return;
+			}
+			if (!!(ss.referenceEquals(parts.length, 2) && parts[1] === 'new')) {
+				arg.handled = true;
+				this.editItemOfType(ss.cast(parts[0], String), null);
+				return;
+			}
+			if (!!(ss.referenceEquals(parts.length, 3) && parts[1] === 'edit')) {
+				arg.handled = true;
+				this.editItemOfType(ss.cast(parts[0], String), parts[2]);
+			}
+		}));
 	};
 	$Serenity_EntityGrid.__typeName = 'Serenity.EntityGrid';
 	global.Serenity.EntityGrid = $Serenity_EntityGrid;
@@ -8175,11 +8203,27 @@
 		getItemType: function() {
 			return this.getEntityType();
 		},
+		routeDialog: function(itemType, dialog) {
+			Q.Router.dialog(this.element, dialog.element, ss.mkdel(this, function() {
+				var hash = '';
+				if (!ss.referenceEquals(itemType, this.getItemType())) {
+					hash = itemType + '/';
+				}
+				if (!!(ss.isValue(dialog) && ss.isValue(dialog.entityId))) {
+					hash += 'edit/' + dialog.entityId.toString();
+				}
+				else {
+					hash += 'new';
+				}
+				return hash;
+			}));
+		},
 		initDialog: function(dialog) {
 			var self = this;
 			$Serenity_SubDialogHelper.bindToDataChange(dialog, this, function(e, dci) {
 				self.subDialogDataChange();
 			}, true);
+			this.routeDialog(this.getItemType(), dialog);
 		},
 		initEntityDialog: function(itemType, dialog) {
 			if (ss.referenceEquals(itemType, this.getItemType())) {
@@ -8190,6 +8234,7 @@
 			$Serenity_SubDialogHelper.bindToDataChange(dialog, this, function(e, dci) {
 				self.subDialogDataChange();
 			}, true);
+			this.routeDialog(this.getItemType(), dialog);
 		},
 		createEntityDialog: function(itemType, callback) {
 			var dialogClass = this.getDialogTypeFor(itemType);
