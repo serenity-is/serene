@@ -3657,7 +3657,7 @@ var Serene;
              */
             GetInsertedRecordIdDialog.prototype.onSaveSuccess = function (response) {
                 // check that this is an insert
-                if (this.isNew) {
+                if (this.isNew()) {
                     Q.notifySuccess("Just inserted a category with ID: " + response.EntityId);
                     // you could also open a new dialog
                     // new Northwind.CategoryDialog().loadByIdAndOpenDialog(response.EntityId);
@@ -7137,6 +7137,18 @@ var Serene;
                                 });
                             };
                             autoOptions.afterPageContent = footer;
+                        }
+                        // Print header of page
+                        if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
+                            var beforePage = function (data) {
+                                doc.setFontStyle('normal');
+                                doc.setFontSize(8);
+                                // Date and time of the report
+                                doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"), doc.internal.pageSize.width - autoOptions.margin.right, 13, {
+                                    halign: 'right'
+                                });
+                            };
+                            autoOptions.beforePageContent = beforePage;
                         }
                         doc.autoTable(columns, data, autoOptions);
                         if (typeof doc.putTotalPages === 'function') {

@@ -14,7 +14,7 @@ namespace Serene.BasicSamples {
         protected onSaveSuccess(response: Serenity.SaveResponse): void {
 
             // check that this is an insert
-            if (this.isNew) {
+            if (this.isNew()) {
                 Q.notifySuccess("Just inserted a category with ID: " + response.EntityId);
 
                 // you could also open a new dialog

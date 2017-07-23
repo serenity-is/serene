@@ -7,7 +7,7 @@ namespace Serene.Administration.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
+    [ConnectionKey("Default"), TableName("Users"), DisplayName("Users"), InstanceName("User"), TwoLevelCached]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript("Administration.User", Permission = PermissionKeys.Security)]
@@ -137,7 +137,6 @@ namespace Serene.Administration.Entities
             public StringField PasswordConfirm;
 
             public RowFields()
-                : base("Users")
             {
                 LocalTextPrefix = "Administration.User";
             }
