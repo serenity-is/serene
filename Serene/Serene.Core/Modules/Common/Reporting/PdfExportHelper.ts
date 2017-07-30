@@ -183,13 +183,35 @@ namespace Serene.Common {
                     }
 
 
-                    if (!options.output || options.output == "file") {
-                        var fileName = options.reportTitle || "{0}_{1}.pdf";
-                        fileName = Q.format(fileName, g.getTitle() || "report",
-                            Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
+                        if (!options.output || options.output == "file") {
+                        let fileName = '';
+                        // *** Check if there has been given a fileName within the pdfExportOptions ***
+                        if (options.fileName) {
+                            // *** Yes, filename has been given, use this ***
+                            fileName = options.fileName;
+                        }
+                        else
+                        {
+                            // *** No fileName given with pdfExportOptions, calculate filename ***
+                            // *** Check if the reportTitle already contains the ".pdf" extension ***
+                            if (options.reportTitle.lastIndexOf(".pdf") == options.reportTitle.length-4) {
+                                // *** ReportTitle contains already the .pdf extension, so just use the reportTitle for fileName ***
+                                fileName = options.reportTitle;
+                            }
+                            else {
+                            // *** Add the ".pdf" extension to the fileName ***
+                                fileName = options.reportTitle + ".pdf";
+                            }
+                            
+                            // *** This seems to have no effect so I commented this out ***
+                            //fileName = Q.format(fileName, g.getTitle() || "report",
+                            //    Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
+                        }
+                        
                         doc.save(fileName);
                         return;
                     }
+
 
                     if (options.autoPrint)
                         doc.autoPrint();
