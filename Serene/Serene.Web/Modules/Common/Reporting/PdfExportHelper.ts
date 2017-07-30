@@ -184,7 +184,7 @@ namespace Serene.Common {
 
 
                     if (!options.output || options.output == "file") {
-                        var fileName = options.reportTitle || "{0}_{1}.pdf";
+                        var fileName = options.fileName || options.reportTitle || "{0}_{1}.pdf";
                         fileName = Q.format(fileName, g.getTitle() || "report",
                             Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
                         doc.save(fileName);

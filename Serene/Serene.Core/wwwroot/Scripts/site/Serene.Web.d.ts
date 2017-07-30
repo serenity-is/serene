@@ -3951,6 +3951,7 @@ declare namespace Serene.Common {
         tableOptions?: jsPDF.AutoTableOptions;
         output?: string;
         autoPrint?: boolean;
+        printDateTimeHeader?: boolean;
     }
     namespace PdfExportHelper {
         function exportToPdf(options: PdfExportOptions): void;
