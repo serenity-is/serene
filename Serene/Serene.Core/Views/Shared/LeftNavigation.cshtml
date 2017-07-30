@@ -14,6 +14,10 @@
         }
 
         var klass = (isactive ? "active" : "") + (item.Children.IsEmptyOrNull() ? "" : " treeview");
+        if (!string.IsNullOrEmpty(item.ItemClass))
+        {
+            klass = (klass + " " + item.ItemClass).Trim();
+        }
         var icon = (item.IconClass ?? (item.Children.Count > 0 ? "icon-layers" : (depth == 0 ? "icon-link" : "fa-circle-o")));
         var title = (LocalText.TryGet("Navigation." + item.FullPath) ?? item.Title);
         var sectionUrl = (item.Url ?? "javascript:;");

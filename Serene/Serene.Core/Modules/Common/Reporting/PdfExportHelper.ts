@@ -159,7 +159,7 @@ namespace Serene.Common {
                         };
                         autoOptions.afterPageContent = footer;
                     }
-
+                    
                     // Print header of page
                     if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
                         var beforePage = function (data) {
@@ -167,8 +167,8 @@ namespace Serene.Common {
                             doc.setFontSize(8);
 
                             // Date and time of the report
-                            doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"),
-                                doc.internal.pageSize.width - autoOptions.margin.right, 13,
+                            doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"), 
+                                doc.internal.pageSize.width - autoOptions.margin.right, 13, 
                                 {
                                     halign: 'right'
                                 });
