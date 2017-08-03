@@ -2,13 +2,13 @@
 namespace Serene.Administration.Repositories
 {
     using Serenity;
+    using Serenity.Abstractions;
     using Serenity.Data;
     using Serenity.Services;
     using Serenity.Web.Providers;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Configuration;
     using System.Data;
     using MyRow = Entities.UserRow;
 
@@ -19,7 +19,8 @@ namespace Serene.Administration.Repositories
 
         static UserRepository()
         {
-            isPublicDemo = ConfigurationManager.AppSettings["IsPublicDemo"] == "1";
+            isPublicDemo = Dependency.Resolve<IConfigurationManager>()
+                .AppSetting("IsPublicDemo", typeof(string)) as string == "1";
         }
 
         public static void CheckPublicDemo(int? userID)
