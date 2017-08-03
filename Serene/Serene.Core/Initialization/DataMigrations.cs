@@ -10,6 +10,7 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
 
     public static class DataMigrations
     { 
@@ -150,7 +151,7 @@
                     if (hostingEnvironment != null)
                         baseDirectory = hostingEnvironment.ContentRootPath;
                     else
-                        baseDirectory = AppContext.BaseDirectory;
+                        baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
                     var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data/".Replace('/', Path.DirectorySeparatorChar)), catalog);
                     Directory.CreateDirectory(Path.GetDirectoryName(filename));
@@ -204,8 +205,8 @@
                 {
                     Database = databaseType,
                     Connection = cs.ConnectionString,
-                    TargetAssemblies = new[] { typeof(DataMigrations).GetAssembly() },
                     Task = "migrate:up",
+                    Targets = new string[] { typeof(DataMigrations).Assembly.Location },
                     WorkingDirectory = Path.GetDirectoryName(typeof(DataMigrations).GetAssembly().Location),
                     Namespace = "Serene.Migrations." + databaseKey + "DB",
                     Timeout = 90
@@ -215,11 +216,10 @@
                 try
                 {
                     if (isFirebird)
-                        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
                     new TaskExecutor(runner)
                     {
-                        ConnectionString = cs.ConnectionString
                     }.Execute();
                 }
                 catch (Exception ex)
@@ -230,7 +230,7 @@
                 finally
                 {
                     if (isFirebird)
-                        CultureInfo.CurrentCulture = culture;
+                        Thread.CurrentThread.CurrentCulture = culture;
                 }
             }
         }

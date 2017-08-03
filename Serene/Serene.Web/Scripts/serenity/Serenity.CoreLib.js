@@ -968,11 +968,11 @@ var Q;
         if (Q.isEmptyOrNull(elementId)) {
             return $('#' + relativeId);
         }
-        var result = $(elementId + relativeId);
+        var result = $('#' + elementId + relativeId);
         if (result.length > 0) {
             return result;
         }
-        result = $(elementId + '_' + relativeId);
+        result = $('#' + elementId + '_' + relativeId);
         if (result.length > 0) {
             return result;
         }
@@ -1933,6 +1933,8 @@ var Q;
         var resolving = 0;
         var autoinc = 0;
         var listenerTimeout;
+        var ignoreHash = 0;
+        var ignoreTime = 0;
         Router.enabled = true;
         function navigate(hash, tryBack, silent) {
             if (!Router.enabled || resolving > 0)
@@ -2095,14 +2097,20 @@ var Q;
         Router.resolve = resolve;
         function hashChange(e, o) {
             oldURL = (e && e.oldURL) || o;
+            if (ignoreHash > 0) {
+                if (new Date().getTime() - ignoreTime > 1000) {
+                    ignoreHash = 0;
+                }
+                else {
+                    ignoreHash--;
+                    return;
+                }
+            }
             resolve();
         }
         function ignoreChange() {
-            window.clearTimeout(listenerTimeout);
-            window.removeEventListener("hashchange", hashChange);
-            setTimeout(function () {
-                window.addEventListener("hashchange", hashChange, false);
-            }, 1);
+            ignoreHash++;
+            ignoreTime = new Date().getTime();
         }
         window.addEventListener("hashchange", hashChange, false);
         $(document).on("dialogopen", ".ui-dialog-content", function (event, ui) {

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>net451</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <OutputType>Exe</OutputType>
@@ -33,14 +33,14 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Web" Version="2.10.0" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web.AspNetCore" Version="2.10.999" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
     <ProjectReference Include="..\..\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.csproj" />
     <ProjectReference Include="..\..\Serenity\Serenity.Data\Serenity.Data.csproj" />
     <ProjectReference Include="..\..\Serenity\Serenity.Services\Serenity.Services.csproj" />
-    <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.csproj" />
+    <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.AspNetCore.csproj" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.1' ">
     <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
@@ -53,6 +53,6 @@
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.10.0" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.10.999" />
   </ItemGroup>
 </Project>

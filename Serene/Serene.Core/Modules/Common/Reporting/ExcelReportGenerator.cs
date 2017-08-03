@@ -159,8 +159,8 @@ namespace Serenity.Reporting
                         decorator.Item = obj;
                         decorator.Name = col.Name;
                         decorator.Format = null;
-                        decorator.Background = null;
-                        decorator.Foreground = null;
+                        decorator.Background = Color.Empty;
+                        decorator.Foreground = Color.Empty;
 
                         object value;
                         if (row != null)
@@ -177,8 +177,8 @@ namespace Serenity.Reporting
                         decorator.Value = value;
                         decorator.Decorate();
 
-                        if (!string.IsNullOrEmpty(decorator.Background) ||
-                            !string.IsNullOrEmpty(decorator.Foreground) ||
+                        if (decorator.Background != Color.Empty ||
+                            decorator.Foreground != Color.Empty ||
                             !Object.Equals(decorator.Value, value) ||
                             decorator.Format != null)
                         {
@@ -186,16 +186,14 @@ namespace Serenity.Reporting
 
                             if (!gdiErrors)
                             {
-                                if (!string.IsNullOrEmpty(decorator.Background))
+                                if (decorator.Background != Color.Empty)
                                 {
                                     cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cell.Style.Fill.BackgroundColor.SetColor(
-                                        ColorTranslator.FromHtml(decorator.Background));
+                                    cell.Style.Fill.BackgroundColor.SetColor(decorator.Background);
                                 }
 
-                                if (!string.IsNullOrEmpty(decorator.Foreground))
-                                    cell.Style.Font.Color.SetColor(
-                                        ColorTranslator.FromHtml(decorator.Foreground));
+                                if (decorator.Foreground != Color.Empty)
+                                    cell.Style.Font.Color.SetColor(decorator.Foreground);
                             }
 
                             if (decorator.Format != null)

@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serenity.TypeScript.CodeGen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serene.Core", "Serene\Serene.Core\Serene.Core.csproj", "{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Web.AspNetCore", "Serenity\Serenity.Web\Serenity.Web.AspNetCore.csproj", "{225B1721-3C35-4491-9590-C923B831D1F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Configuration", "Serenity\Serenity.Configuration\Serenity.Configuration.csproj", "{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +105,22 @@ Global
 		{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}.Release|x86.ActiveCfg = Release|Any CPU
 		{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}.Release|x86.Build.0 = Release|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{225B1721-3C35-4491-9590-C923B831D1F1}.Release|x86.Build.0 = Release|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BECCBAC-9A7D-4B4E-A9EE-E8732DBE43BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
