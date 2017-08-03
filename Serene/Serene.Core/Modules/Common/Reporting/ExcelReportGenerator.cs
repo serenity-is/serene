@@ -159,8 +159,13 @@ namespace Serenity.Reporting
                         decorator.Item = obj;
                         decorator.Name = col.Name;
                         decorator.Format = null;
+#if COREFX
                         decorator.Background = null;
                         decorator.Foreground = null;
+#else
+                        decorator.Background = Color.Empty;
+                        decorator.Foreground = Color.Empty;
+#endif
 
                         object value;
                         if (row != null)
@@ -177,6 +182,7 @@ namespace Serenity.Reporting
                         decorator.Value = value;
                         decorator.Decorate();
 
+#if COREFX
                         if (!string.IsNullOrEmpty(decorator.Background) ||
                             !string.IsNullOrEmpty(decorator.Foreground) ||
                             !Object.Equals(decorator.Value, value) ||
@@ -204,6 +210,34 @@ namespace Serenity.Reporting
                             if (!Object.Equals(decorator.Value, value))
                                 cell.Value = decorator.Value;
                         }
+
+#else
+                        if (decorator.Background != Color.Empty ||
+                            decorator.Foreground != Color.Empty ||
+                            !Object.Equals(decorator.Value, value) ||
+                            decorator.Format != null)
+                        {
+                            var cell = worksheet.Cells[rowNum, colNum];
+
+                            if (!gdiErrors)
+                            {
+                                if (decorator.Background != Color.Empty)
+                                {
+                                        cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                    cell.Style.Fill.BackgroundColor.SetColor(decorator.Background);
+                                }
+
+                                if (decorator.Foreground != Color.Empty)
+                                    cell.Style.Font.Color.SetColor(decorator.Foreground);
+                            }
+
+                            if (decorator.Format != null)
+                                cell.Style.Numberformat.Format = FixFormatSpecifier(decorator.Format, col.DataType);
+
+                            if (!Object.Equals(decorator.Value, value))
+                                cell.Value = decorator.Value;
+                        }
+#endif
                     }
                 }
             }

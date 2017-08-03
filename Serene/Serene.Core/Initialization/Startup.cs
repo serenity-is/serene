@@ -124,6 +124,7 @@ namespace Serene
 
         public static void RegisterDataProviders()
         {
+#if COREFX
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
 
@@ -135,6 +136,7 @@ namespace Serene
 
             // to enable POSTGRES: add Npgsql reference, set connections, and uncomment line below
             // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
+#endif
         }
     }
 }

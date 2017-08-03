@@ -2111,6 +2111,7 @@ var Q;
                     return;
                 }
             }
+            }
             resolve();
         }
         function ignoreChange() {

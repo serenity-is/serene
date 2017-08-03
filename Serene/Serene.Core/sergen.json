@@ -2,7 +2,7 @@
   "RootNamespace": "Serene",
   "ServerTypings": {
     "Assemblies": [
-      "bin/Debug/netcoreapp1.1/Serene.Core.dll"
+      "bin/Debug/netcoreapp2.0/Serene.Core.dll"
     ]
   },
   "Connections": [],
