@@ -37,3 +37,4 @@ Serene/Serene.Core/Data/
 Serene/Serene.Core/appsettings.*.machine.json
 .syncache.sqlite
 /Serene/Serene.Web/Scripts/site/Serene.Web.js.map
+/.axoCover/
