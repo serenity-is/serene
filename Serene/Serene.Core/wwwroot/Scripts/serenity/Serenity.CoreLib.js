@@ -968,11 +968,11 @@ var Q;
         if (Q.isEmptyOrNull(elementId)) {
             return $('#' + relativeId);
         }
-        var result = $(elementId + relativeId);
+        var result = $('#' + elementId + relativeId);
         if (result.length > 0) {
             return result;
         }
-        result = $(elementId + '_' + relativeId);
+        result = $('#' + elementId + '_' + relativeId);
         if (result.length > 0) {
             return result;
         }
@@ -1933,7 +1933,12 @@ var Q;
         var resolving = 0;
         var autoinc = 0;
         var listenerTimeout;
+        var ignoreHash = 0;
+        var ignoreTime = 0;
         Router.enabled = true;
+        function isEqual(url1, url2) {
+            return url1 == url2 || url1 == url2 + '#' || url2 == url1 + '#';
+        }
         function navigate(hash, tryBack, silent) {
             if (!Router.enabled || resolving > 0)
                 return;
@@ -1943,17 +1948,17 @@ var Q;
             var newURL = window.location.href.replace(/#$/, '')
                 .replace(/#.*$/, '') + hash;
             if (newURL != window.location.href) {
-                if (tryBack && (oldURL == newURL ||
-                    oldURL == newURL + '#' ||
-                    oldURL + '#' == newURL)) {
+                if (tryBack && oldURL != null && isEqual(oldURL, newURL)) {
                     if (silent)
                         ignoreChange();
+                    var prior = window.location.href;
+                    oldURL = null;
                     window.history.back();
-                    if (window.location.href == oldURL)
-                        return;
+                    return;
                 }
                 if (silent)
                     ignoreChange();
+                oldURL = window.location.href;
                 window.location.hash = hash;
             }
         }
@@ -2020,10 +2025,13 @@ var Q;
                 element.data("qroute", null);
                 element.unbind(".qrouter");
                 var prhash = element.data("qprhash");
-                if (prhash)
-                    replace(prhash, true);
+                var tryBack = e && e.originalEvent &&
+                    ((e.originalEvent.type == "keydown" && e.originalEvent.keyCode == 27) ||
+                        $(e.originalEvent.target).hasClass("ui-dialog-titlebar-close"));
+                if (prhash != null)
+                    replace(prhash, tryBack);
                 else
-                    replaceLast('', true);
+                    replaceLast('', tryBack);
             });
         }
         function dialog(owner, element, hash) {
@@ -2094,15 +2102,20 @@ var Q;
         }
         Router.resolve = resolve;
         function hashChange(e, o) {
-            oldURL = (e && e.oldURL) || o;
+            if (ignoreHash > 0) {
+                if (new Date().getTime() - ignoreTime > 1000) {
+                    ignoreHash = 0;
+                }
+                else {
+                    ignoreHash--;
+                    return;
+                }
+            }
             resolve();
         }
         function ignoreChange() {
-            window.clearTimeout(listenerTimeout);
-            window.removeEventListener("hashchange", hashChange);
-            setTimeout(function () {
-                window.addEventListener("hashchange", hashChange, false);
-            }, 1);
+            ignoreHash++;
+            ignoreTime = new Date().getTime();
         }
         window.addEventListener("hashchange", hashChange, false);
         $(document).on("dialogopen", ".ui-dialog-content", function (event, ui) {
@@ -5122,5 +5135,94 @@ var Q;
                 ssExceptionInitialization();
         });
     }
+    function vueInitialization() {
+        Vue.component('editor', {
+            props: {
+                type: {
+                    type: String,
+                    required: true,
+                },
+                id: {
+                    type: String,
+                    required: false
+                },
+                name: {
+                    type: String,
+                    required: false
+                },
+                placeholder: {
+                    type: String,
+                    required: false
+                },
+                value: {
+                    required: false
+                },
+                options: {
+                    required: false
+                },
+                maxLength: {
+                    required: false
+                }
+            },
+            render: function (createElement) {
+                var editorType = Serenity.EditorTypeRegistry.get(this.type);
+                var elementAttr = ss.getAttributes(editorType, Serenity.ElementAttribute, true);
+                var elementHtml = ((elementAttr.length > 0) ? elementAttr[0].value : '<input/>');
+                var domProps = {};
+                var element = $(elementHtml)[0];
+                var attrs = element.attributes;
+                for (var i = 0; i < attrs.length; i++) {
+                    var attr = attrs.item(i);
+                    domProps[attr.name] = attr.value;
+                }
+                if (this.id != null)
+                    domProps.id = this.id;
+                if (this.name != null)
+                    domProps.name = this.name;
+                if (this.placeholder != null)
+                    domProps.placeholder = this.placeholder;
+                var editorParams = this.options;
+                var optionsType = null;
+                var self = this;
+                var el = createElement(element.tagName, {
+                    domProps: domProps
+                });
+                this.$editorType = editorType;
+                return el;
+            },
+            watch: {
+                value: function (v) {
+                    Serenity.EditorUtils.setValue(this.$widget, v);
+                }
+            },
+            mounted: function () {
+                var self = this;
+                this.$widget = new this.$editorType($(this.$el), this.options);
+                this.$widget.initialize();
+                if (this.maxLength) {
+                    Serenity.PropertyGrid.$setMaxLength(this.$widget, this.maxLength);
+                }
+                if (this.options)
+                    Serenity.ReflectionOptionsSetter.set(this.$widget, this.options);
+                if (this.value != null)
+                    Serenity.EditorUtils.setValue(this.$widget, this.value);
+                if ($(this.$el).data('select2'))
+                    Serenity.WX.changeSelect2(this.$widget, function () {
+                        self.$emit('input', Serenity.EditorUtils.getValue(self.$widget));
+                    });
+                else
+                    Serenity.WX.change(this.$widget, function () {
+                        self.$emit('input', Serenity.EditorUtils.getValue(self.$widget));
+                    });
+            },
+            destroyed: function () {
+                if (this.$widget) {
+                    this.$widget.destroy();
+                    this.$widget = null;
+                }
+            }
+        });
+    }
+    window['Vue'] ? vueInitialization() : $(function () { window['Vue'] && vueInitialization(); });
 })(Q || (Q = {}));
 //# sourceMappingURL=Serenity.CoreLib.js.map

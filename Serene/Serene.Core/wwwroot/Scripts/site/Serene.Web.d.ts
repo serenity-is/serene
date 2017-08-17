@@ -2823,10 +2823,6 @@ declare namespace Serene.Administration {
         protected usePager(): boolean;
     }
 }
-declare namespace Serene.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
-}
 declare namespace Serene.Administration {
     class UserDialog extends Serenity.EntityDialog<UserRow, any> {
         protected getFormKey(): string;
@@ -2853,6 +2849,10 @@ declare namespace Serene.Administration {
         constructor(container: JQuery);
         protected getDefaultSortBy(): string[];
     }
+}
+declare namespace Serene.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
 }
 declare namespace Serene.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
@@ -3873,6 +3873,11 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
+declare namespace Serene.LanguageList {
+    function getValue(): string[][];
+}
+declare namespace Serene.ScriptInitialization {
+}
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();
@@ -3910,9 +3915,6 @@ declare namespace Serene.Common {
     namespace ExcelExportHelper {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
     }
-}
-declare namespace Serene.LanguageList {
-    function getValue(): string[][];
 }
 declare namespace Serene.Common {
     class LanguageSelection extends Serenity.Widget<any> {
@@ -4011,8 +4013,6 @@ declare namespace Serene.Common {
         protected categoryClick(e: any): void;
         protected reportLinkClick(e: any): void;
     }
-}
-declare namespace Serene.ScriptInitialization {
 }
 declare namespace Serene.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
@@ -4214,6 +4214,13 @@ declare namespace Serene.Meeting {
     }
 }
 declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         protected getFormKey(): string;
         private form;
@@ -4222,13 +4229,6 @@ declare namespace Serene.Membership {
 }
 declare namespace Serene.Membership {
     class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);
