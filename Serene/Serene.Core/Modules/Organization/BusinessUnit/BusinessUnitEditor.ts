@@ -1,7 +1,7 @@
 ﻿namespace Serene.Organization {
 
     @Serenity.Decorators.registerEditor()
-    export class BusinessUnitEditor extends Serenity.LookupEditorBase<BusinessUnitRow, any> {
+    export class BusinessUnitEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, BusinessUnitRow> {
 
         constructor(hidden: JQuery) {
             super(hidden);

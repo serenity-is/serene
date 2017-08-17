@@ -1,14 +1,14 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerEditor()
-    export class CustomerEditor extends Serenity.LookupEditorBase<CustomerRow, any> {
+    export class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
 
         constructor(hidden: JQuery) {
             super(hidden);
         }
 
         protected getLookupKey() {
-            return 'Northwind.Customer';
+            return CustomerRow.lookupKey;
         }
 
         protected getItemText(item, lookup) {

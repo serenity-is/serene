@@ -1,8 +1,13 @@
-﻿var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+﻿var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,9 +23,9 @@ var Serene;
             function LanguageForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            LanguageForm.formKey = 'Administration.Language';
             return LanguageForm;
         }(Serenity.PrefixedContext));
-        LanguageForm.formKey = 'Administration.Language';
         Administration.LanguageForm = LanguageForm;
         [['LanguageId', function () { return Serenity.StringEditor; }], ['LanguageName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(LanguageForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
@@ -72,9 +77,9 @@ var Serene;
             function RoleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            RoleForm.formKey = 'Administration.Role';
             return RoleForm;
         }(Serenity.PrefixedContext));
-        RoleForm.formKey = 'Administration.Role';
         Administration.RoleForm = RoleForm;
         [['RoleName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RoleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
@@ -176,9 +181,9 @@ var Serene;
             function UserForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            UserForm.formKey = 'Administration.User';
             return UserForm;
         }(Serenity.PrefixedContext));
-        UserForm.formKey = 'Administration.User';
         Administration.UserForm = UserForm;
         [['Username', function () { return Serenity.StringEditor; }], ['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['UserImage', function () { return Serenity.ImageUploadEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['PasswordConfirm', function () { return Serenity.PasswordEditor; }], ['Source', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(UserForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Administration = Serene.Administration || (Serene.Administration = {}));
@@ -313,9 +318,9 @@ var Serene;
             function ChangingLookupTextForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ChangingLookupTextForm.formKey = 'BasicSamples.ChangingLookupText';
             return ChangingLookupTextForm;
         }(Serenity.PrefixedContext));
-        ChangingLookupTextForm.formKey = 'BasicSamples.ChangingLookupText';
         BasicSamples.ChangingLookupTextForm = ChangingLookupTextForm;
         [['ProductID', function () { return BasicSamples.ChangingLookupTextEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(ChangingLookupTextForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -346,9 +351,9 @@ var Serene;
             function DragDropSampleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            DragDropSampleForm.formKey = 'BasicSamples.DragDropSample';
             return DragDropSampleForm;
         }(Serenity.PrefixedContext));
-        DragDropSampleForm.formKey = 'BasicSamples.DragDropSample';
         BasicSamples.DragDropSampleForm = DragDropSampleForm;
         [['Title', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(DragDropSampleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -395,9 +400,9 @@ var Serene;
             function FilteredLookupInDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            FilteredLookupInDetailForm.formKey = 'BasicSamples.FilteredLookupInDetail';
             return FilteredLookupInDetailForm;
         }(Serenity.PrefixedContext));
-        FilteredLookupInDetailForm.formKey = 'BasicSamples.FilteredLookupInDetail';
         BasicSamples.FilteredLookupInDetailForm = FilteredLookupInDetailForm;
         [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return BasicSamples.FilteredLookupDetailEditor; }]].forEach(function (x) { return Object.defineProperty(FilteredLookupInDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -411,9 +416,9 @@ var Serene;
             function HardcodedValuesForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            HardcodedValuesForm.formKey = 'BasicSamples.HarcodedValues';
             return HardcodedValuesForm;
         }(Serenity.PrefixedContext));
-        HardcodedValuesForm.formKey = 'BasicSamples.HarcodedValues';
         BasicSamples.HardcodedValuesForm = HardcodedValuesForm;
         [['SomeValue', function () { return BasicSamples.HardcodedValuesEditor; }]].forEach(function (x) { return Object.defineProperty(HardcodedValuesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -427,9 +432,9 @@ var Serene;
             function LookupFilterByMultipleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            LookupFilterByMultipleForm.formKey = 'BasicSamples.LookupFilterByMultiple';
             return LookupFilterByMultipleForm;
         }(Serenity.PrefixedContext));
-        LookupFilterByMultipleForm.formKey = 'BasicSamples.LookupFilterByMultiple';
         BasicSamples.LookupFilterByMultipleForm = LookupFilterByMultipleForm;
         [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return BasicSamples.ProduceSeafoodCategoryEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(LookupFilterByMultipleForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -443,9 +448,9 @@ var Serene;
             function PopulateLinkedDataForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            PopulateLinkedDataForm.formKey = 'BasicSamples.PopulateLinkedData';
             return PopulateLinkedDataForm;
         }(Serenity.PrefixedContext));
-        PopulateLinkedDataForm.formKey = 'BasicSamples.PopulateLinkedData';
         BasicSamples.PopulateLinkedDataForm = PopulateLinkedDataForm;
         [['CustomerID', function () { return Serene.Northwind.CustomerEditor; }], ['CustomerContactName', function () { return Serenity.StringEditor; }], ['CustomerContactTitle', function () { return Serenity.StringEditor; }], ['CustomerCity', function () { return Serenity.StringEditor; }], ['CustomerRegion', function () { return Serenity.StringEditor; }], ['CustomerCountry', function () { return Serenity.StringEditor; }], ['CustomerPhone', function () { return Serenity.StringEditor; }], ['CustomerFax', function () { return Serenity.StringEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Serene.Northwind.OrderDetailsEditor; }]].forEach(function (x) { return Object.defineProperty(PopulateLinkedDataForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -459,9 +464,9 @@ var Serene;
             function ProductExcelImportForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ProductExcelImportForm.formKey = 'BasicSamples.ProductExcelImport';
             return ProductExcelImportForm;
         }(Serenity.PrefixedContext));
-        ProductExcelImportForm.formKey = 'BasicSamples.ProductExcelImport';
         BasicSamples.ProductExcelImportForm = ProductExcelImportForm;
         [['FileName', function () { return Serenity.ImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(ProductExcelImportForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -492,9 +497,9 @@ var Serene;
             function StaticTextBlockForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            StaticTextBlockForm.formKey = 'BasicSamples.StaticTextBlock';
             return StaticTextBlockForm;
         }(Serenity.PrefixedContext));
-        StaticTextBlockForm.formKey = 'BasicSamples.StaticTextBlock';
         BasicSamples.StaticTextBlockForm = StaticTextBlockForm;
         [['StaticText', function () { return Serene.StaticTextBlock; }], ['SomeInput', function () { return Serenity.StringEditor; }], ['HtmlList', function () { return Serene.StaticTextBlock; }], ['FromLocalText', function () { return Serene.StaticTextBlock; }], ['DisplayFieldValue', function () { return Serene.StaticTextBlock; }]].forEach(function (x) { return Object.defineProperty(StaticTextBlockForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
@@ -558,9 +563,9 @@ var Serene;
             function MeetingAgendaForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingAgendaForm.formKey = 'Meeting.MeetingAgenda';
             return MeetingAgendaForm;
         }(Serenity.PrefixedContext));
-        MeetingAgendaForm.formKey = 'Meeting.MeetingAgenda';
         Meeting.MeetingAgendaForm = MeetingAgendaForm;
         [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaNumber', function () { return Serenity.IntegerEditor; }], ['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['AgendaTypeId', function () { return Serenity.IntegerEditor; }], ['RequestedByContactId', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.MultipleImageUploadEditor; }], ['Attachments', function () { return Serenity.MultipleImageUploadEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -574,9 +579,9 @@ var Serene;
             function MeetingAgendaRelevantForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingAgendaRelevantForm.formKey = 'Meeting.MeetingAgendaRelevant';
             return MeetingAgendaRelevantForm;
         }(Serenity.PrefixedContext));
-        MeetingAgendaRelevantForm.formKey = 'Meeting.MeetingAgendaRelevant';
         Meeting.MeetingAgendaRelevantForm = MeetingAgendaRelevantForm;
         [['AgendaId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -655,9 +660,9 @@ var Serene;
             function MeetingAgendaTypeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingAgendaTypeForm.formKey = 'Meeting.MeetingAgendaType';
             return MeetingAgendaTypeForm;
         }(Serenity.PrefixedContext));
-        MeetingAgendaTypeForm.formKey = 'Meeting.MeetingAgendaType';
         Meeting.MeetingAgendaTypeForm = MeetingAgendaTypeForm;
         [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAgendaTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -723,9 +728,9 @@ var Serene;
             function MeetingAttendeeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingAttendeeForm.formKey = 'Meeting.MeetingAttendee';
             return MeetingAttendeeForm;
         }(Serenity.PrefixedContext));
-        MeetingAttendeeForm.formKey = 'Meeting.MeetingAttendee';
         Meeting.MeetingAttendeeForm = MeetingAttendeeForm;
         [['MeetingId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }], ['AttendeeType', function () { return Serenity.EnumEditor; }], ['AttendanceStatus', function () { return Serenity.EnumEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingAttendeeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -766,9 +771,9 @@ var Serene;
             function MeetingDecisionForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingDecisionForm.formKey = 'Meeting.MeetingDecision';
             return MeetingDecisionForm;
         }(Serenity.PrefixedContext));
-        MeetingDecisionForm.formKey = 'Meeting.MeetingDecision';
         Meeting.MeetingDecisionForm = MeetingDecisionForm;
         [['MeetingId', function () { return Serenity.IntegerEditor; }], ['AgendaId', function () { return Serenity.IntegerEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['DecisionNumber', function () { return Serenity.IntegerEditor; }], ['ResponsibleContactId', function () { return Serenity.IntegerEditor; }], ['DueDate', function () { return Serenity.DateEditor; }], ['ResolutionStatus', function () { return Serenity.IntegerEditor; }], ['Images', function () { return Serenity.StringEditor; }], ['Attachments', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -782,9 +787,9 @@ var Serene;
             function MeetingDecisionRelevantForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingDecisionRelevantForm.formKey = 'Meeting.MeetingDecisionRelevant';
             return MeetingDecisionRelevantForm;
         }(Serenity.PrefixedContext));
-        MeetingDecisionRelevantForm.formKey = 'Meeting.MeetingDecisionRelevant';
         Meeting.MeetingDecisionRelevantForm = MeetingDecisionRelevantForm;
         [['DecisionId', function () { return Serenity.IntegerEditor; }], ['ContactId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingDecisionRelevantForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -863,9 +868,9 @@ var Serene;
             function MeetingForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingForm.formKey = 'Meeting.Meeting';
             return MeetingForm;
         }(Serenity.PrefixedContext));
-        MeetingForm.formKey = 'Meeting.Meeting';
         Meeting.MeetingForm = MeetingForm;
         [['MeetingName', function () { return Serenity.StringEditor; }], ['MeetingTypeId', function () { return Serenity.LookupEditor; }], ['MeetingNumber', function () { return Serenity.StringEditor; }], ['StartDate', function () { return Serenity.DateTimeEditor; }], ['EndDate', function () { return Serenity.DateTimeEditor; }], ['LocationId', function () { return Serenity.LookupEditor; }], ['UnitId', function () { return Serene.Organization.BusinessUnitEditor; }], ['OrganizerContactId', function () { return Serenity.LookupEditor; }], ['ReporterContactId', function () { return Serenity.LookupEditor; }], ['AttendeeList', function () { return Meeting.MeetingAttendeeEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -879,9 +884,9 @@ var Serene;
             function MeetingLocationForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingLocationForm.formKey = 'Meeting.MeetingLocation';
             return MeetingLocationForm;
         }(Serenity.PrefixedContext));
-        MeetingLocationForm.formKey = 'Meeting.MeetingLocation';
         Meeting.MeetingLocationForm = MeetingLocationForm;
         [['Name', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Latitude', function () { return Serenity.DecimalEditor; }], ['Longitude', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingLocationForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -966,9 +971,9 @@ var Serene;
             function MeetingTypeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            MeetingTypeForm.formKey = 'Meeting.MeetingType';
             return MeetingTypeForm;
         }(Serenity.PrefixedContext));
-        MeetingTypeForm.formKey = 'Meeting.MeetingType';
         Meeting.MeetingTypeForm = MeetingTypeForm;
         [['Name', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(MeetingTypeForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
@@ -1020,9 +1025,9 @@ var Serene;
             function ChangePasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ChangePasswordForm.formKey = 'Membership.ChangePassword';
             return ChangePasswordForm;
         }(Serenity.PrefixedContext));
-        ChangePasswordForm.formKey = 'Membership.ChangePassword';
         Membership.ChangePasswordForm = ChangePasswordForm;
         [['OldPassword', function () { return Serenity.PasswordEditor; }], ['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ChangePasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
@@ -1036,9 +1041,9 @@ var Serene;
             function ForgotPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
             return ForgotPasswordForm;
         }(Serenity.PrefixedContext));
-        ForgotPasswordForm.formKey = 'Membership.ForgotPassword';
         Membership.ForgotPasswordForm = ForgotPasswordForm;
         [['Email', function () { return Serenity.EmailEditor; }]].forEach(function (x) { return Object.defineProperty(ForgotPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
@@ -1052,9 +1057,9 @@ var Serene;
             function LoginForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            LoginForm.formKey = 'Membership.Login';
             return LoginForm;
         }(Serenity.PrefixedContext));
-        LoginForm.formKey = 'Membership.Login';
         Membership.LoginForm = LoginForm;
         [['Username', function () { return Serenity.StringEditor; }], ['Password', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(LoginForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
@@ -1068,9 +1073,9 @@ var Serene;
             function ResetPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ResetPasswordForm.formKey = 'Membership.ResetPassword';
             return ResetPasswordForm;
         }(Serenity.PrefixedContext));
-        ResetPasswordForm.formKey = 'Membership.ResetPassword';
         Membership.ResetPasswordForm = ResetPasswordForm;
         [['NewPassword', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(ResetPasswordForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
@@ -1084,9 +1089,9 @@ var Serene;
             function SignUpForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            SignUpForm.formKey = 'Membership.SignUp';
             return SignUpForm;
         }(Serenity.PrefixedContext));
-        SignUpForm.formKey = 'Membership.SignUp';
         Membership.SignUpForm = SignUpForm;
         [['DisplayName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['ConfirmEmail', function () { return Serenity.EmailEditor; }], ['Password', function () { return Serenity.PasswordEditor; }], ['ConfirmPassword', function () { return Serenity.PasswordEditor; }]].forEach(function (x) { return Object.defineProperty(SignUpForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Membership = Serene.Membership || (Serene.Membership = {}));
@@ -1100,9 +1105,9 @@ var Serene;
             function CategoryForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            CategoryForm.formKey = 'Northwind.Category';
             return CategoryForm;
         }(Serenity.PrefixedContext));
-        CategoryForm.formKey = 'Northwind.Category';
         Northwind.CategoryForm = CategoryForm;
         [['CategoryName', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1235,9 +1240,9 @@ var Serene;
             function CustomerForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            CustomerForm.formKey = 'Northwind.Customer';
             return CustomerForm;
         }(Serenity.PrefixedContext));
-        CustomerForm.formKey = 'Northwind.Customer';
         Northwind.CustomerForm = CustomerForm;
         [['CustomerID', function () { return Serenity.StringEditor; }], ['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Representatives', function () { return Serenity.LookupEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['NoteList', function () { return Northwind.NotesEditor; }], ['LastContactDate', function () { return Serenity.DateEditor; }], ['LastContactedBy', function () { return Serenity.LookupEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['SendBulletin', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(CustomerForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1384,9 +1389,9 @@ var Serene;
             function OrderDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            OrderDetailForm.formKey = 'Northwind.OrderDetail';
             return OrderDetailForm;
         }(Serenity.PrefixedContext));
-        OrderDetailForm.formKey = 'Northwind.OrderDetail';
         Northwind.OrderDetailForm = OrderDetailForm;
         [['ProductID', function () { return Serenity.LookupEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['Quantity', function () { return Serenity.IntegerEditor; }], ['Discount', function () { return Serenity.DecimalEditor; }]].forEach(function (x) { return Object.defineProperty(OrderDetailForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1432,9 +1437,9 @@ var Serene;
             function OrderForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            OrderForm.formKey = 'Northwind.Order';
             return OrderForm;
         }(Serenity.PrefixedContext));
-        OrderForm.formKey = 'Northwind.Order';
         Northwind.OrderForm = OrderForm;
         [['CustomerID', function () { return Northwind.CustomerEditor; }], ['OrderDate', function () { return Serenity.DateEditor; }], ['RequiredDate', function () { return Serenity.DateEditor; }], ['EmployeeID', function () { return Serenity.LookupEditor; }], ['DetailList', function () { return Northwind.OrderDetailsEditor; }], ['ShippedDate', function () { return Serenity.DateEditor; }], ['ShipVia', function () { return Serenity.LookupEditor; }], ['Freight', function () { return Serenity.DecimalEditor; }], ['ShipName', function () { return Serenity.StringEditor; }], ['ShipAddress', function () { return Serenity.StringEditor; }], ['ShipCity', function () { return Serenity.StringEditor; }], ['ShipRegion', function () { return Serenity.StringEditor; }], ['ShipPostalCode', function () { return Serenity.StringEditor; }], ['ShipCountry', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(OrderForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1498,9 +1503,9 @@ var Serene;
             function ProductForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ProductForm.formKey = 'Northwind.Product';
             return ProductForm;
         }(Serenity.PrefixedContext));
-        ProductForm.formKey = 'Northwind.Product';
         Northwind.ProductForm = ProductForm;
         [['ProductName', function () { return Serenity.StringEditor; }], ['ProductImage', function () { return Serenity.ImageUploadEditor; }], ['Discontinued', function () { return Serenity.BooleanEditor; }], ['SupplierID', function () { return Serenity.LookupEditor; }], ['CategoryID', function () { return Serenity.LookupEditor; }], ['QuantityPerUnit', function () { return Serenity.StringEditor; }], ['UnitPrice', function () { return Serenity.DecimalEditor; }], ['UnitsInStock', function () { return Serenity.IntegerEditor; }], ['UnitsOnOrder', function () { return Serenity.IntegerEditor; }], ['ReorderLevel', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1600,9 +1605,9 @@ var Serene;
             function RegionForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            RegionForm.formKey = 'Northwind.Region';
             return RegionForm;
         }(Serenity.PrefixedContext));
-        RegionForm.formKey = 'Northwind.Region';
         Northwind.RegionForm = RegionForm;
         [['RegionID', function () { return Serenity.IntegerEditor; }], ['RegionDescription', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(RegionForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1686,9 +1691,9 @@ var Serene;
             function ShipperForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ShipperForm.formKey = 'Northwind.Shipper';
             return ShipperForm;
         }(Serenity.PrefixedContext));
-        ShipperForm.formKey = 'Northwind.Shipper';
         Northwind.ShipperForm = ShipperForm;
         [['CompanyName', function () { return Serenity.StringEditor; }], ['Phone', function () { return Northwind.PhoneEditor; }]].forEach(function (x) { return Object.defineProperty(ShipperForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1740,9 +1745,9 @@ var Serene;
             function SupplierForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            SupplierForm.formKey = 'Northwind.Supplier';
             return SupplierForm;
         }(Serenity.PrefixedContext));
-        SupplierForm.formKey = 'Northwind.Supplier';
         Northwind.SupplierForm = SupplierForm;
         [['CompanyName', function () { return Serenity.StringEditor; }], ['ContactName', function () { return Serenity.StringEditor; }], ['ContactTitle', function () { return Serenity.StringEditor; }], ['Address', function () { return Serenity.StringEditor; }], ['Region', function () { return Serenity.StringEditor; }], ['PostalCode', function () { return Serenity.StringEditor; }], ['Country', function () { return Serenity.StringEditor; }], ['City', function () { return Serenity.StringEditor; }], ['Phone', function () { return Serenity.StringEditor; }], ['Fax', function () { return Serenity.StringEditor; }], ['HomePage', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(SupplierForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1794,9 +1799,9 @@ var Serene;
             function TerritoryForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            TerritoryForm.formKey = 'Northwind.Territory';
             return TerritoryForm;
         }(Serenity.PrefixedContext));
-        TerritoryForm.formKey = 'Northwind.Territory';
         Northwind.TerritoryForm = TerritoryForm;
         [['TerritoryID', function () { return Serenity.StringEditor; }], ['TerritoryDescription', function () { return Serenity.StringEditor; }], ['RegionID', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(TerritoryForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
@@ -1848,9 +1853,9 @@ var Serene;
             function BusinessUnitForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            BusinessUnitForm.formKey = 'Organization.BusinessUnit';
             return BusinessUnitForm;
         }(Serenity.PrefixedContext));
-        BusinessUnitForm.formKey = 'Organization.BusinessUnit';
         Organization.BusinessUnitForm = BusinessUnitForm;
         [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Organization.BusinessUnitEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Organization = Serene.Organization || (Serene.Organization = {}));
@@ -1902,9 +1907,9 @@ var Serene;
             function BusinessUnitsForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            BusinessUnitsForm.formKey = 'Organization.BusinessUnits';
             return BusinessUnitsForm;
         }(Serenity.PrefixedContext));
-        BusinessUnitsForm.formKey = 'Organization.BusinessUnits';
         Organization.BusinessUnitsForm = BusinessUnitsForm;
         [['Name', function () { return Serenity.StringEditor; }], ['ParentUnitId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(BusinessUnitsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Organization = Serene.Organization || (Serene.Organization = {}));
@@ -1951,9 +1956,9 @@ var Serene;
             function ContactForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ContactForm.formKey = 'Organization.Contact';
             return ContactForm;
         }(Serenity.PrefixedContext));
-        ContactForm.formKey = 'Organization.Contact';
         Organization.ContactForm = ContactForm;
         [['Title', function () { return Serenity.StringEditor; }], ['FirstName', function () { return Serenity.StringEditor; }], ['LastName', function () { return Serenity.StringEditor; }], ['Email', function () { return Serenity.EmailEditor; }], ['IdentityNo', function () { return Serenity.StringEditor; }], ['UserId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(ContactForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(Organization = Serene.Organization || (Serene.Organization = {}));
@@ -2012,11 +2017,11 @@ var Serene;
             LanguageDialog.prototype.getLocalTextPrefix = function () { return Administration.LanguageRow.localTextPrefix; };
             LanguageDialog.prototype.getNameProperty = function () { return Administration.LanguageRow.nameProperty; };
             LanguageDialog.prototype.getService = function () { return Administration.LanguageService.baseUrl; };
+            LanguageDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LanguageDialog);
             return LanguageDialog;
         }(Serenity.EntityDialog));
-        LanguageDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], LanguageDialog);
         Administration.LanguageDialog = LanguageDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2037,11 +2042,11 @@ var Serene;
             LanguageGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.LanguageRow.Fields.LanguageName];
             };
+            LanguageGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LanguageGrid);
             return LanguageGrid;
         }(Serenity.EntityGrid));
-        LanguageGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], LanguageGrid);
         Administration.LanguageGrid = LanguageGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2081,11 +2086,11 @@ var Serene;
                 _super.prototype.updateInterface.call(this);
                 this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
             };
+            RoleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RoleDialog);
             return RoleDialog;
         }(Serenity.EntityDialog));
-        RoleDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RoleDialog);
         Administration.RoleDialog = RoleDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2106,11 +2111,11 @@ var Serene;
             RoleGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.RoleRow.Fields.RoleName];
             };
+            RoleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RoleGrid);
             return RoleGrid;
         }(Serenity.EntityGrid));
-        RoleGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RoleGrid);
         Administration.RoleGrid = RoleGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2162,11 +2167,11 @@ var Serene;
             RolePermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
+            RolePermissionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RolePermissionDialog);
             return RolePermissionDialog;
         }(Serenity.TemplatedDialog));
-        RolePermissionDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RolePermissionDialog);
         Administration.RolePermissionDialog = RolePermissionDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2359,29 +2364,13 @@ var Serene;
             TranslationGrid.prototype.usePager = function () {
                 return false;
             };
+            TranslationGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TranslationGrid);
             return TranslationGrid;
         }(Serenity.EntityGrid));
-        TranslationGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TranslationGrid);
         Administration.TranslationGrid = TranslationGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Authorization;
-    (function (Authorization) {
-        Object.defineProperty(Authorization, 'userDefinition', {
-            get: function () {
-                return Q.getRemoteData('UserData');
-            }
-        });
-        function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
-        }
-        Authorization.hasPermission = hasPermission;
-    })(Authorization = Serene.Authorization || (Serene.Authorization = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2448,11 +2437,11 @@ var Serene;
                 this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
                     .closest('.field').find('sup').toggle(this.isNew());
             };
+            UserDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserDialog);
             return UserDialog;
         }(Serenity.EntityDialog));
-        UserDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], UserDialog);
         Administration.UserDialog = UserDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2474,13 +2463,29 @@ var Serene;
             UserGrid.prototype.getDefaultSortBy = function () {
                 return [Administration.UserRow.Fields.Username];
             };
+            UserGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserGrid);
             return UserGrid;
         }(Serenity.EntityGrid));
-        UserGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], UserGrid);
         Administration.UserGrid = UserGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Authorization;
+    (function (Authorization) {
+        Object.defineProperty(Authorization, 'userDefinition', {
+            get: function () {
+                return Q.getRemoteData('UserData');
+            }
+        });
+        function hasPermission(permissionKey) {
+            var ud = Authorization.userDefinition;
+            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        }
+        Authorization.hasPermission = hasPermission;
+    })(Authorization = Serene.Authorization || (Serene.Authorization = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2746,11 +2751,11 @@ var Serene;
                 }
                 this.setItems(this.getItems());
             };
+            PermissionCheckEditor = __decorate([
+                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
+            ], PermissionCheckEditor);
             return PermissionCheckEditor;
         }(Serenity.DataGrid));
-        PermissionCheckEditor = __decorate([
-            Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
-        ], PermissionCheckEditor);
         Administration.PermissionCheckEditor = PermissionCheckEditor;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2809,11 +2814,11 @@ var Serene;
             UserPermissionDialog.prototype.getTemplate = function () {
                 return '<div id="~_Permissions"></div>';
             };
+            UserPermissionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserPermissionDialog);
             return UserPermissionDialog;
         }(Serenity.TemplatedDialog));
-        UserPermissionDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], UserPermissionDialog);
         Administration.UserPermissionDialog = UserPermissionDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2849,11 +2854,11 @@ var Serene;
                         Select2.util.stripDiacritics(item.text || '')
                             .toUpperCase().indexOf(this.searchText) >= 0);
             };
+            RoleCheckEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], RoleCheckEditor);
             return RoleCheckEditor;
         }(Serenity.CheckTreeEditor));
-        RoleCheckEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], RoleCheckEditor);
         Administration.RoleCheckEditor = RoleCheckEditor;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2897,11 +2902,11 @@ var Serene;
             UserRoleDialog.prototype.getTemplate = function () {
                 return "<div id='~_Roles'></div>";
             };
+            UserRoleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], UserRoleDialog);
             return UserRoleDialog;
         }(Serenity.TemplatedDialog));
-        UserRoleDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], UserRoleDialog);
         Administration.UserRoleDialog = UserRoleDialog;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -2909,11 +2914,12 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ChartInDialog = ChartInDialog_1 = (function (_super) {
+        var ChartInDialog = (function (_super) {
             __extends(ChartInDialog, _super);
             function ChartInDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
+            ChartInDialog_1 = ChartInDialog;
             ChartInDialog.initializePage = function () {
                 $(function () {
                     $('#LaunchDialogButton').click(function (e) {
@@ -2947,15 +2953,15 @@ var Serene;
                 opt.title = 'Orders by Shipper';
                 return opt;
             };
+            ChartInDialog = ChartInDialog_1 = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.resizable(),
+                Serenity.Decorators.maximizable()
+            ], ChartInDialog);
             return ChartInDialog;
+            var ChartInDialog_1;
         }(Serenity.TemplatedDialog));
-        ChartInDialog = ChartInDialog_1 = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.resizable(),
-            Serenity.Decorators.maximizable()
-        ], ChartInDialog);
         BasicSamples.ChartInDialog = ChartInDialog;
-        var ChartInDialog_1;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -2974,12 +2980,12 @@ var Serene;
             ProductDialog.prototype.getLocalTextPrefix = function () { return Northwind.ProductRow.localTextPrefix; };
             ProductDialog.prototype.getNameProperty = function () { return Northwind.ProductRow.nameProperty; };
             ProductDialog.prototype.getService = function () { return Northwind.ProductService.baseUrl; };
+            ProductDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.maximizable()
+            ], ProductDialog);
             return ProductDialog;
         }(Serenity.EntityDialog));
-        ProductDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.maximizable()
-        ], ProductDialog);
         Northwind.ProductDialog = ProductDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3018,12 +3024,12 @@ var Serene;
                 clone.UnitsOnOrder = 0;
                 return clone;
             };
+            CloneableEntityDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.maximizable()
+            ], CloneableEntityDialog);
             return CloneableEntityDialog;
         }(Serene.Northwind.ProductDialog));
-        CloneableEntityDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.maximizable()
-        ], CloneableEntityDialog);
         BasicSamples.CloneableEntityDialog = CloneableEntityDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3261,12 +3267,12 @@ var Serene;
                 }
                 return flt;
             };
+            ProductGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], ProductGrid);
             return ProductGrid;
         }(Serenity.EntityGrid));
-        ProductGrid = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.filterable()
-        ], ProductGrid);
         Northwind.ProductGrid = ProductGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3284,11 +3290,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             CloneableEntityGrid.prototype.getDialogType = function () { return BasicSamples.CloneableEntityDialog; };
+            CloneableEntityGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CloneableEntityGrid);
             return CloneableEntityGrid;
         }(Serene.Northwind.ProductGrid));
-        CloneableEntityGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CloneableEntityGrid);
         BasicSamples.CloneableEntityGrid = CloneableEntityGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3379,12 +3385,12 @@ var Serene;
             OrderGrid.prototype.set_shippingState = function (value) {
                 this.shippingStateFilter.value = value == null ? '' : value.toString();
             };
+            OrderGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], OrderGrid);
             return OrderGrid;
         }(Serenity.EntityGrid));
-        OrderGrid = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.filterable()
-        ], OrderGrid);
         Northwind.OrderGrid = OrderGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3463,11 +3469,11 @@ var Serene;
                 });
                 return buttons;
             };
+            DefaultValuesInNewGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DefaultValuesInNewGrid);
             return DefaultValuesInNewGrid;
         }(Serene.Northwind.OrderGrid));
-        DefaultValuesInNewGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], DefaultValuesInNewGrid);
         BasicSamples.DefaultValuesInNewGrid = DefaultValuesInNewGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3574,11 +3580,11 @@ var Serene;
                 _super.prototype.updateInterface.call(this);
                 this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
             };
+            OrderDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDialog);
             return OrderDialog;
         }(Serenity.EntityDialog));
-        OrderDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OrderDialog);
         Northwind.OrderDialog = OrderDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3597,11 +3603,11 @@ var Serene;
                 _this.element.addClass('flex-layout');
                 return _this;
             }
+            EntityDialogAsPanel = __decorate([
+                Serenity.Decorators.panel()
+            ], EntityDialogAsPanel);
             return EntityDialogAsPanel;
         }(Serene.Northwind.OrderDialog));
-        EntityDialogAsPanel = __decorate([
-            Serenity.Decorators.panel()
-        ], EntityDialogAsPanel);
         BasicSamples.EntityDialogAsPanel = EntityDialogAsPanel;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3621,11 +3627,11 @@ var Serene;
             CategoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
             CategoryDialog.prototype.getNameProperty = function () { return Northwind.CategoryRow.nameProperty; };
             CategoryDialog.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
+            CategoryDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoryDialog);
             return CategoryDialog;
         }(Serenity.EntityDialog));
-        CategoryDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CategoryDialog);
         Northwind.CategoryDialog = CategoryDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3659,11 +3665,11 @@ var Serene;
                     });
                 }
             };
+            GetInsertedRecordIdDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GetInsertedRecordIdDialog);
             return GetInsertedRecordIdDialog;
         }(Serene.Northwind.CategoryDialog));
-        GetInsertedRecordIdDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GetInsertedRecordIdDialog);
         BasicSamples.GetInsertedRecordIdDialog = GetInsertedRecordIdDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3681,11 +3687,11 @@ var Serene;
             CategoryGrid.prototype.getIdProperty = function () { return Northwind.CategoryRow.idProperty; };
             CategoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
             CategoryGrid.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
+            CategoryGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoryGrid);
             return CategoryGrid;
         }(Serenity.EntityGrid));
-        CategoryGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CategoryGrid);
         Northwind.CategoryGrid = CategoryGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -3703,11 +3709,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             GetInsertedRecordIdGrid.prototype.getDialogType = function () { return BasicSamples.GetInsertedRecordIdDialog; };
+            GetInsertedRecordIdGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GetInsertedRecordIdGrid);
             return GetInsertedRecordIdGrid;
         }(Serene.Northwind.CategoryGrid));
-        GetInsertedRecordIdGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GetInsertedRecordIdGrid);
         BasicSamples.GetInsertedRecordIdGrid = GetInsertedRecordIdGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3726,11 +3732,11 @@ var Serene;
             function MultiColumnResponsiveDialog() {
                 return _super.call(this) || this;
             }
+            MultiColumnResponsiveDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MultiColumnResponsiveDialog);
             return MultiColumnResponsiveDialog;
         }(Serene.Northwind.OrderDialog));
-        MultiColumnResponsiveDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MultiColumnResponsiveDialog);
         BasicSamples.MultiColumnResponsiveDialog = MultiColumnResponsiveDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3748,11 +3754,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             MultiColumnResponsiveGrid.prototype.getDialogType = function () { return BasicSamples.MultiColumnResponsiveDialog; };
+            MultiColumnResponsiveGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MultiColumnResponsiveGrid);
             return MultiColumnResponsiveGrid;
         }(Serene.Northwind.OrderGrid));
-        MultiColumnResponsiveGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MultiColumnResponsiveGrid);
         BasicSamples.MultiColumnResponsiveGrid = MultiColumnResponsiveGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3848,11 +3854,11 @@ var Serene;
                 _super.prototype.loadEntity.call(this, entity);
                 Serenity.TabsExtensions.setDisabled(this.tabs, 'Customer', !this.getCustomerID());
             };
+            OtherFormInTabDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormInTabDialog);
             return OtherFormInTabDialog;
         }(Serene.Northwind.OrderDialog));
-        OtherFormInTabDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OtherFormInTabDialog);
         BasicSamples.OtherFormInTabDialog = OtherFormInTabDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3870,11 +3876,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             OtherFormInTabGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormInTabDialog; };
+            OtherFormInTabGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormInTabGrid);
             return OtherFormInTabGrid;
         }(Serene.Northwind.OrderGrid));
-        OtherFormInTabGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OtherFormInTabGrid);
         BasicSamples.OtherFormInTabGrid = OtherFormInTabGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -3992,11 +3998,11 @@ var Serene;
             OtherFormOneBarDialog.prototype.save = function (callback) {
                 this.saveAll(callback);
             };
+            OtherFormOneBarDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormOneBarDialog);
             return OtherFormOneBarDialog;
         }(Serene.Northwind.OrderDialog));
-        OtherFormOneBarDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OtherFormOneBarDialog);
         BasicSamples.OtherFormOneBarDialog = OtherFormOneBarDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4014,11 +4020,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             OtherFormInTabOneBarGrid.prototype.getDialogType = function () { return BasicSamples.OtherFormOneBarDialog; };
+            OtherFormInTabOneBarGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OtherFormInTabOneBarGrid);
             return OtherFormInTabOneBarGrid;
         }(Serene.Northwind.OrderGrid));
-        OtherFormInTabOneBarGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OtherFormInTabOneBarGrid);
         BasicSamples.OtherFormInTabOneBarGrid = OtherFormInTabOneBarGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4076,11 +4082,11 @@ var Serene;
             PopulateLinkedDataDialog.prototype.getCssClass = function () {
                 return _super.prototype.getCssClass.call(this) + " s-OrderDialog s-Northwind-OrderDialog";
             };
+            PopulateLinkedDataDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PopulateLinkedDataDialog);
             return PopulateLinkedDataDialog;
         }(Serenity.EntityDialog));
-        PopulateLinkedDataDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], PopulateLinkedDataDialog);
         BasicSamples.PopulateLinkedDataDialog = PopulateLinkedDataDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4098,11 +4104,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             PopulateLinkedDataGrid.prototype.getDialogType = function () { return BasicSamples.PopulateLinkedDataDialog; };
+            PopulateLinkedDataGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PopulateLinkedDataGrid);
             return PopulateLinkedDataGrid;
         }(Serene.Northwind.OrderGrid));
-        PopulateLinkedDataGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], PopulateLinkedDataGrid);
         BasicSamples.PopulateLinkedDataGrid = PopulateLinkedDataGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4125,11 +4131,11 @@ var Serene;
             SupplierDialog.prototype.getLanguages = function () {
                 return Serene.LanguageList.getValue();
             };
+            SupplierDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SupplierDialog);
             return SupplierDialog;
         }(Serenity.EntityDialog));
-        SupplierDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], SupplierDialog);
         Northwind.SupplierDialog = SupplierDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4225,11 +4231,11 @@ var Serene;
                 // 
                 // this.dialogTitle = 'View Supplier (' + this.getEntityNameFieldValue() + ')';
             };
+            ReadOnlyDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ReadOnlyDialog);
             return ReadOnlyDialog;
         }(Serene.Northwind.SupplierDialog));
-        ReadOnlyDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ReadOnlyDialog);
         BasicSamples.ReadOnlyDialog = ReadOnlyDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4247,11 +4253,11 @@ var Serene;
             SupplierGrid.prototype.getIdProperty = function () { return Northwind.SupplierRow.idProperty; };
             SupplierGrid.prototype.getLocalTextPrefix = function () { return Northwind.SupplierRow.localTextPrefix; };
             SupplierGrid.prototype.getService = function () { return Northwind.SupplierService.baseUrl; };
+            SupplierGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SupplierGrid);
             return SupplierGrid;
         }(Serenity.EntityGrid));
-        SupplierGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], SupplierGrid);
         Northwind.SupplierGrid = SupplierGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4277,11 +4283,11 @@ var Serene;
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
                 return buttons;
             };
+            ReadOnlyGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ReadOnlyGrid);
             return ReadOnlyGrid;
         }(Serene.Northwind.SupplierGrid));
-        ReadOnlyGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ReadOnlyGrid);
         BasicSamples.ReadOnlyGrid = ReadOnlyGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4302,13 +4308,13 @@ var Serene;
             ResponsiveDialog.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
             ResponsiveDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
             ResponsiveDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            ResponsiveDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive(),
+                Serenity.Decorators.maximizable()
+            ], ResponsiveDialog);
             return ResponsiveDialog;
         }(Serenity.EntityDialog));
-        ResponsiveDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive(),
-            Serenity.Decorators.maximizable()
-        ], ResponsiveDialog);
         BasicSamples.ResponsiveDialog = ResponsiveDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4326,11 +4332,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             ResponsiveGrid.prototype.getDialogType = function () { return BasicSamples.ResponsiveDialog; };
+            ResponsiveGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ResponsiveGrid);
             return ResponsiveGrid;
         }(Serene.Northwind.OrderGrid));
-        ResponsiveGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ResponsiveGrid);
         BasicSamples.ResponsiveGrid = ResponsiveGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4375,11 +4381,11 @@ var Serene;
                 _super.prototype.onSaveSuccess.call(this, response);
                 Q.reloadLookup('Northwind.Customer');
             };
+            CustomerDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerDialog);
             return CustomerDialog;
         }(Serenity.EntityDialog));
-        CustomerDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CustomerDialog);
         Northwind.CustomerDialog = CustomerDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4423,11 +4429,11 @@ var Serene;
                     });
                 }
             };
+            SerialAutoNumberDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SerialAutoNumberDialog);
             return SerialAutoNumberDialog;
         }(Serene.Northwind.CustomerDialog));
-        SerialAutoNumberDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], SerialAutoNumberDialog);
         BasicSamples.SerialAutoNumberDialog = SerialAutoNumberDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4460,12 +4466,12 @@ var Serene;
                 }));
                 return buttons;
             };
+            CustomerGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], CustomerGrid);
             return CustomerGrid;
         }(Serenity.EntityGrid));
-        CustomerGrid = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.filterable()
-        ], CustomerGrid);
         Northwind.CustomerGrid = CustomerGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4483,11 +4489,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             SerialAutoNumberGrid.prototype.getDialogType = function () { return BasicSamples.SerialAutoNumberDialog; };
+            SerialAutoNumberGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SerialAutoNumberGrid);
             return SerialAutoNumberGrid;
         }(Serene.Northwind.CustomerGrid));
-        SerialAutoNumberGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], SerialAutoNumberGrid);
         BasicSamples.SerialAutoNumberGrid = SerialAutoNumberGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4519,11 +4525,11 @@ var Serene;
             GridEditorDialog.prototype.deleteHandler = function (options, callback) {
                 this.onDelete && this.onDelete(options, callback);
             };
+            GridEditorDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridEditorDialog);
             return GridEditorDialog;
         }(Serenity.EntityDialog));
-        GridEditorDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GridEditorDialog);
         Common.GridEditorDialog = GridEditorDialog;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
@@ -4561,11 +4567,11 @@ var Serene;
                 this.toolbar.findButton('apply-changes-button').hide();
                 this.toolbar.findButton('save-and-close-button').hide();
             };
+            ChangingLookupTextDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ChangingLookupTextDialog);
             return ChangingLookupTextDialog;
         }(Serene.Common.GridEditorDialog));
-        ChangingLookupTextDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ChangingLookupTextDialog);
         BasicSamples.ChangingLookupTextDialog = ChangingLookupTextDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4592,11 +4598,11 @@ var Serene;
                     ', ' + (item.SupplierCompanyName || 'Unknown') +
                     ')';
             };
+            ChangingLookupTextEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], ChangingLookupTextEditor);
             return ChangingLookupTextEditor;
         }(Serenity.LookupEditorBase));
-        ChangingLookupTextEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], ChangingLookupTextEditor);
         BasicSamples.ChangingLookupTextEditor = ChangingLookupTextEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4629,11 +4635,11 @@ var Serene;
             }
             OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
             OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            OrderDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailDialog);
             return OrderDetailDialog;
         }(Serene.Common.GridEditorDialog));
-        OrderDetailDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OrderDetailDialog);
         Northwind.OrderDetailDialog = OrderDetailDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4671,11 +4677,11 @@ var Serene;
                 // so can't be filtered and you'll end up with an empty product list.
                 this.form.ProductID.cascadeValue = this.categoryID;
             };
+            FilteredLookupOrderDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], FilteredLookupOrderDetailDialog);
             return FilteredLookupOrderDetailDialog;
         }(Serene.Northwind.OrderDetailDialog));
-        FilteredLookupOrderDetailDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], FilteredLookupOrderDetailDialog);
         BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4807,13 +4813,13 @@ var Serene;
             };
             GridEditorBase.prototype.createQuickSearchInput = function () {
             };
+            GridEditorBase = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.element("<div/>")
+            ], GridEditorBase);
             return GridEditorBase;
         }(Serenity.EntityGrid));
-        GridEditorBase = __decorate([
-            Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-            Serenity.Decorators.editor(),
-            Serenity.Decorators.element("<div/>")
-        ], GridEditorBase);
         Common.GridEditorBase = GridEditorBase;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
@@ -4841,11 +4847,11 @@ var Serene;
                 row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
                 return true;
             };
+            OrderDetailsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailsEditor);
             return OrderDetailsEditor;
         }(Serene.Common.GridEditorBase));
-        OrderDetailsEditor = __decorate([
-            Serenity.Decorators.registerClass()
-        ], OrderDetailsEditor);
         Northwind.OrderDetailsEditor = OrderDetailsEditor;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -4873,11 +4879,11 @@ var Serene;
                 // passing category ID from grid editor to detail dialog
                 dialog.categoryID = this.categoryID;
             };
+            FilteredLookupDetailEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], FilteredLookupDetailEditor);
             return FilteredLookupDetailEditor;
         }(Serene.Northwind.OrderDetailsEditor));
-        FilteredLookupDetailEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], FilteredLookupDetailEditor);
         BasicSamples.FilteredLookupDetailEditor = FilteredLookupDetailEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4903,11 +4909,11 @@ var Serene;
             FilteredLookupInDetailDialog.prototype.getLocalTextPrefix = function () { return Serene.Northwind.OrderRow.localTextPrefix; };
             FilteredLookupInDetailDialog.prototype.getNameProperty = function () { return Serene.Northwind.OrderRow.nameProperty; };
             FilteredLookupInDetailDialog.prototype.getService = function () { return Serene.Northwind.OrderService.baseUrl; };
+            FilteredLookupInDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], FilteredLookupInDetailDialog);
             return FilteredLookupInDetailDialog;
         }(Serenity.EntityDialog));
-        FilteredLookupInDetailDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], FilteredLookupInDetailDialog);
         BasicSamples.FilteredLookupInDetailDialog = FilteredLookupInDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4925,11 +4931,11 @@ var Serene;
                 return _super.call(this, container) || this;
             }
             FilteredLookupInDetailGrid.prototype.getDialogType = function () { return BasicSamples.FilteredLookupInDetailDialog; };
+            FilteredLookupInDetailGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], FilteredLookupInDetailGrid);
             return FilteredLookupInDetailGrid;
         }(Serene.Northwind.OrderGrid));
-        FilteredLookupInDetailGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], FilteredLookupInDetailGrid);
         BasicSamples.FilteredLookupInDetailGrid = FilteredLookupInDetailGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4948,11 +4954,11 @@ var Serene;
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             LookupFilterByMultipleDialog.prototype.getFormKey = function () { return BasicSamples.LookupFilterByMultipleForm.formKey; };
+            LookupFilterByMultipleDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LookupFilterByMultipleDialog);
             return LookupFilterByMultipleDialog;
         }(Serene.Northwind.ProductDialog));
-        LookupFilterByMultipleDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], LookupFilterByMultipleDialog);
         BasicSamples.LookupFilterByMultipleDialog = LookupFilterByMultipleDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -4987,11 +4993,11 @@ var Serene;
                 // brackets used are important above, NOT ['CategoryName', 'in', ['Produce', 'Seafood']]
                 return true;
             };
+            LookupFilterByMultipleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LookupFilterByMultipleGrid);
             return LookupFilterByMultipleGrid;
         }(Serene.Northwind.ProductGrid));
-        LookupFilterByMultipleGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], LookupFilterByMultipleGrid);
         BasicSamples.LookupFilterByMultipleGrid = LookupFilterByMultipleGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5032,11 +5038,11 @@ var Serene;
                     return x.CategoryName === 'Produce' || x.CategoryName === 'Seafood';
                 });
             };
+            ProduceSeafoodCategoryEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], ProduceSeafoodCategoryEditor);
             return ProduceSeafoodCategoryEditor;
         }(Serenity.LookupEditorBase));
-        ProduceSeafoodCategoryEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], ProduceSeafoodCategoryEditor);
         BasicSamples.ProduceSeafoodCategoryEditor = ProduceSeafoodCategoryEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5056,11 +5062,11 @@ var Serene;
                 return _this;
             }
             HardcodedValuesDialog.prototype.getFormKey = function () { return BasicSamples.HardcodedValuesForm.formKey; };
+            HardcodedValuesDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], HardcodedValuesDialog);
             return HardcodedValuesDialog;
         }(Serenity.PropertyDialog));
-        HardcodedValuesDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], HardcodedValuesDialog);
         BasicSamples.HardcodedValuesDialog = HardcodedValuesDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5095,11 +5101,11 @@ var Serene;
                 });
                 return _this;
             }
+            HardcodedValuesEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], HardcodedValuesEditor);
             return HardcodedValuesEditor;
         }(Serenity.Select2Editor));
-        HardcodedValuesEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], HardcodedValuesEditor);
         BasicSamples.HardcodedValuesEditor = HardcodedValuesEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5140,12 +5146,12 @@ var Serene;
                 this.updateElementContent();
             }
         };
+        StaticTextBlock = __decorate([
+            Serenity.Decorators.element("<div/>"),
+            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
+        ], StaticTextBlock);
         return StaticTextBlock;
     }(Serenity.Widget));
-    StaticTextBlock = __decorate([
-        Serenity.Decorators.element("<div/>"),
-        Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
-    ], StaticTextBlock);
     Serene.StaticTextBlock = StaticTextBlock;
 })(Serene || (Serene = {}));
 var Serene;
@@ -5175,11 +5181,11 @@ var Serene;
                 opt.width = 650;
                 return opt;
             };
+            StaticTextBlockDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], StaticTextBlockDialog);
             return StaticTextBlockDialog;
         }(Serenity.PropertyDialog));
-        StaticTextBlockDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], StaticTextBlockDialog);
         BasicSamples.StaticTextBlockDialog = StaticTextBlockDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5427,11 +5433,11 @@ var Serene;
                 opt.rowsPerPage = 2500;
                 return opt;
             };
+            CancellableBulkActionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CancellableBulkActionGrid);
             return CancellableBulkActionGrid;
         }(Serene.Northwind.OrderGrid));
-        CancellableBulkActionGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CancellableBulkActionGrid);
         BasicSamples.CancellableBulkActionGrid = CancellableBulkActionGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5485,11 +5491,11 @@ var Serene;
                     klass += " low-price";
                 return Q.trimToNull(klass);
             };
+            ConditionalFormattingGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ConditionalFormattingGrid);
             return ConditionalFormattingGrid;
         }(Serenity.EntityGrid));
-        ConditionalFormattingGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ConditionalFormattingGrid);
         BasicSamples.ConditionalFormattingGrid = ConditionalFormattingGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5599,11 +5605,11 @@ var Serene;
                     _super.prototype.editItem.call(this, entityOrId);
                 }
             };
+            CustomLinksInGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomLinksInGrid);
             return CustomLinksInGrid;
         }(Serene.Northwind.OrderGrid));
-        CustomLinksInGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CustomLinksInGrid);
         BasicSamples.CustomLinksInGrid = CustomLinksInGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5623,12 +5629,12 @@ var Serene;
             DragDropSampleDialog.prototype.getLocalTextPrefix = function () { return BasicSamples.DragDropSampleRow.localTextPrefix; };
             DragDropSampleDialog.prototype.getNameProperty = function () { return BasicSamples.DragDropSampleRow.nameProperty; };
             DragDropSampleDialog.prototype.getService = function () { return BasicSamples.DragDropSampleService.baseUrl; };
+            DragDropSampleDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], DragDropSampleDialog);
             return DragDropSampleDialog;
         }(Serenity.EntityDialog));
-        DragDropSampleDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], DragDropSampleDialog);
         BasicSamples.DragDropSampleDialog = DragDropSampleDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5819,11 +5825,11 @@ var Serene;
             DragDropSampleGrid.prototype.usePager = function () {
                 return false;
             };
+            DragDropSampleGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], DragDropSampleGrid);
             return DragDropSampleGrid;
         }(Serenity.EntityGrid));
-        DragDropSampleGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], DragDropSampleGrid);
         BasicSamples.DragDropSampleGrid = DragDropSampleGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5846,11 +5852,11 @@ var Serene;
             grid.setSelectionModel(new Slick.RowSelectionModel());
             return grid;
         };
+        SelectableEntityGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], SelectableEntityGrid);
         return SelectableEntityGrid;
     }(Serenity.EntityGrid));
-    SelectableEntityGrid = __decorate([
-        Serenity.Decorators.registerClass()
-    ], SelectableEntityGrid);
     Serene.SelectableEntityGrid = SelectableEntityGrid;
 })(Serene || (Serene = {}));
 /// <reference path="SelectableEntityGrid.ts" />
@@ -5868,11 +5874,11 @@ var Serene;
             RowSelectionGrid.prototype.getIdProperty = function () { return Serene.Northwind.SupplierRow.idProperty; };
             RowSelectionGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.SupplierRow.localTextPrefix; };
             RowSelectionGrid.prototype.getService = function () { return Serene.Northwind.SupplierService.baseUrl; };
+            RowSelectionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RowSelectionGrid);
             return RowSelectionGrid;
         }(Serene.SelectableEntityGrid));
-        RowSelectionGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RowSelectionGrid);
         BasicSamples.RowSelectionGrid = RowSelectionGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5907,11 +5913,11 @@ var Serene;
                 // ['A', '>', 10] (which means string 'A' is greater than 10
                 return true;
             };
+            GridFilteredByCriteria = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridFilteredByCriteria);
             return GridFilteredByCriteria;
         }(Serene.Northwind.ProductGrid));
-        GridFilteredByCriteria = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GridFilteredByCriteria);
         BasicSamples.GridFilteredByCriteria = GridFilteredByCriteria;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -5984,11 +5990,11 @@ var Serene;
                         onClick: function () { return _this.view.setGrouping([]); }
                     }];
             };
+            GroupingAndSummariesInGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GroupingAndSummariesInGrid);
             return GroupingAndSummariesInGrid;
         }(Serene.Northwind.ProductGrid));
-        GroupingAndSummariesInGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], GroupingAndSummariesInGrid);
         BasicSamples.GroupingAndSummariesInGrid = GroupingAndSummariesInGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6050,11 +6056,11 @@ var Serene;
                 // find a quick filter widget by its field name
                 this.findQuickFilter(Serenity.LookupEditor, fld.ShipVia).values = ["1", "2"];
             };
+            InitialValuesForQuickFilters = __decorate([
+                Serenity.Decorators.registerClass()
+            ], InitialValuesForQuickFilters);
             return InitialValuesForQuickFilters;
         }(Serene.Northwind.OrderGrid));
-        InitialValuesForQuickFilters = __decorate([
-            Serenity.Decorators.registerClass()
-        ], InitialValuesForQuickFilters);
         BasicSamples.InitialValuesForQuickFilters = InitialValuesForQuickFilters;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6130,11 +6136,11 @@ var Serene;
                     }
                 }
             };
+            InlineActionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], InlineActionGrid);
             return InlineActionGrid;
         }(Serene.Northwind.CustomerGrid));
-        InlineActionGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], InlineActionGrid);
         BasicSamples.InlineActionGrid = InlineActionGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6164,17 +6170,17 @@ var Serene;
                     column.referencedFields.push(this.fileProperty);
                 }
             };
+            __decorate([
+                Serenity.Decorators.option()
+            ], InlineImageFormatter.prototype, "fileProperty", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], InlineImageFormatter.prototype, "thumb", void 0);
+            InlineImageFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], InlineImageFormatter);
             return InlineImageFormatter;
         }());
-        __decorate([
-            Serenity.Decorators.option()
-        ], InlineImageFormatter.prototype, "fileProperty", void 0);
-        __decorate([
-            Serenity.Decorators.option()
-        ], InlineImageFormatter.prototype, "thumb", void 0);
-        InlineImageFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], InlineImageFormatter);
         BasicSamples.InlineImageFormatter = InlineImageFormatter;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6198,11 +6204,11 @@ var Serene;
                 opt.rowHeight = 150;
                 return opt;
             };
+            InlineImageInGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], InlineImageInGrid);
             return InlineImageInGrid;
         }(Serenity.EntityGrid));
-        InlineImageInGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], InlineImageInGrid);
         BasicSamples.InlineImageInGrid = InlineImageInGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6251,11 +6257,11 @@ var Serene;
                     }
                 ];
             };
+            ProductExcelImportDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ProductExcelImportDialog);
             return ProductExcelImportDialog;
         }(Serenity.PropertyDialog));
-        ProductExcelImportDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ProductExcelImportDialog);
         BasicSamples.ProductExcelImportDialog = ProductExcelImportDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6292,11 +6298,11 @@ var Serene;
                 });
                 return buttons;
             };
+            ProductExcelImportGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ProductExcelImportGrid);
             return ProductExcelImportGrid;
         }(Serene.Northwind.ProductGrid));
-        ProductExcelImportGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ProductExcelImportGrid);
         BasicSamples.ProductExcelImportGrid = ProductExcelImportGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6420,11 +6426,11 @@ var Serene;
                 });
                 return filters;
             };
+            QuickFilterCustomization = __decorate([
+                Serenity.Decorators.registerClass()
+            ], QuickFilterCustomization);
             return QuickFilterCustomization;
         }(Serenity.EntityGrid));
-        QuickFilterCustomization = __decorate([
-            Serenity.Decorators.registerClass()
-        ], QuickFilterCustomization);
         BasicSamples.QuickFilterCustomization = QuickFilterCustomization;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6462,11 +6468,11 @@ var Serene;
                 buttons.splice(Q.indexOf(buttons, function (x) { return x.cssClass == "add-button"; }), 1);
                 return buttons;
             };
+            RemovingAddButton = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RemovingAddButton);
             return RemovingAddButton;
         }(Serene.Northwind.SupplierGrid));
-        RemovingAddButton = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RemovingAddButton);
         BasicSamples.RemovingAddButton = RemovingAddButton;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6557,11 +6563,11 @@ var Serene;
                 filters.push(orderDate);
                 return filters;
             };
+            CustomerGrossSalesGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerGrossSalesGrid);
             return CustomerGrossSalesGrid;
         }(Serenity.EntityGrid));
-        CustomerGrossSalesGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CustomerGrossSalesGrid);
         BasicSamples.CustomerGrossSalesGrid = CustomerGrossSalesGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6599,11 +6605,11 @@ var Serene;
             TreeGrid.prototype.usePager = function () {
                 return false;
             };
+            TreeGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TreeGrid);
             return TreeGrid;
         }(Serene.Northwind.OrderGrid));
-        TreeGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TreeGrid);
         BasicSamples.TreeGrid = TreeGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6640,11 +6646,11 @@ var Serene;
             ViewWithoutIDGrid.prototype.getButtons = function () {
                 return [];
             };
+            ViewWithoutIDGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ViewWithoutIDGrid);
             return ViewWithoutIDGrid;
         }(Serenity.EntityGrid));
-        ViewWithoutIDGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ViewWithoutIDGrid);
         BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6693,11 +6699,11 @@ var Serene;
             VSGalleryQAGrid.prototype.getInitialTitle = function () {
                 return null;
             };
+            VSGalleryQAGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], VSGalleryQAGrid);
             return VSGalleryQAGrid;
         }(Serenity.EntityGrid));
-        VSGalleryQAGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], VSGalleryQAGrid);
         BasicSamples.VSGalleryQAGrid = VSGalleryQAGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -6711,13 +6717,40 @@ var Serene;
             function WrappedHeadersGrid(container) {
                 return _super.call(this, container) || this;
             }
+            WrappedHeadersGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], WrappedHeadersGrid);
             return WrappedHeadersGrid;
         }(Serene.Northwind.OrderGrid));
-        WrappedHeadersGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], WrappedHeadersGrid);
         BasicSamples.WrappedHeadersGrid = WrappedHeadersGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var LanguageList;
+    (function (LanguageList) {
+        function getValue() {
+            var result = [];
+            for (var _i = 0, _a = Serene.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
+                var k = _a[_i];
+                if (k.LanguageId !== 'en') {
+                    result.push([k.Id.toString(), k.LanguageName]);
+                }
+            }
+            return result;
+        }
+        LanguageList.getValue = getValue;
+    })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../Common/Helpers/LanguageList.ts" />
+var Serene;
+(function (Serene) {
+    var ScriptInitialization;
+    (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
+        Q.Config.rootNamespaces.push('Serene');
+        Serenity.EntityDialog.defaultLanguageList = Serene.LanguageList.getValue;
+    })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -6848,20 +6881,20 @@ var Serene;
                 sb += "</select>";
                 return sb;
             };
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "enumKey", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "allowClear", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
+            EnumSelectFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EnumSelectFormatter);
             return EnumSelectFormatter;
         }());
-        __decorate([
-            Serenity.Decorators.option()
-        ], EnumSelectFormatter.prototype, "enumKey", void 0);
-        __decorate([
-            Serenity.Decorators.option()
-        ], EnumSelectFormatter.prototype, "allowClear", void 0);
-        __decorate([
-            Serenity.Decorators.option()
-        ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
-        EnumSelectFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], EnumSelectFormatter);
         Common.EnumSelectFormatter = EnumSelectFormatter;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
@@ -6902,23 +6935,6 @@ var Serene;
             ExcelExportHelper.createToolButton = createToolButton;
         })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var LanguageList;
-    (function (LanguageList) {
-        function getValue() {
-            var result = [];
-            for (var _i = 0, _a = Serene.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
-                var k = _a[_i];
-                if (k.LanguageId !== 'en') {
-                    result.push([k.Id.toString(), k.LanguageName]);
-                }
-            }
-            return result;
-        }
-        LanguageList.getValue = getValue;
-    })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -7446,16 +7462,6 @@ var Serene;
         Common.ReportPage = ReportPage;
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
-/// <reference path="../Common/Helpers/LanguageList.ts" />
-var Serene;
-(function (Serene) {
-    var ScriptInitialization;
-    (function (ScriptInitialization) {
-        Q.Config.responsiveDialogs = true;
-        Q.Config.rootNamespaces.push('Serene');
-        Serenity.EntityDialog.defaultLanguageList = Serene.LanguageList.getValue;
-    })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
-})(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
     var Common;
@@ -7524,13 +7530,13 @@ var Serene;
                 Serenity.TabsExtensions.setDisabled(this.tabs, 'Decision', this.isNewOrDeleted());
                 //this.agendaGrid.customerID = entity.CustomerID;
             };
+            MeetingDialog = __decorate([
+                Serenity.Decorators.maximizable(),
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingDialog);
             return MeetingDialog;
         }(Serenity.EntityDialog));
-        MeetingDialog = __decorate([
-            Serenity.Decorators.maximizable(),
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingDialog);
         Meeting.MeetingDialog = MeetingDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7548,11 +7554,11 @@ var Serene;
             MeetingGrid.prototype.getIdProperty = function () { return Meeting.MeetingRow.idProperty; };
             MeetingGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingRow.localTextPrefix; };
             MeetingGrid.prototype.getService = function () { return Meeting.MeetingService.baseUrl; };
+            MeetingGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingGrid);
             return MeetingGrid;
         }(Serenity.EntityGrid));
-        MeetingGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingGrid);
         Meeting.MeetingGrid = MeetingGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7572,12 +7578,12 @@ var Serene;
             MeetingAgendaDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaRow.localTextPrefix; };
             MeetingAgendaDialog.prototype.getNameProperty = function () { return Meeting.MeetingAgendaRow.nameProperty; };
             MeetingAgendaDialog.prototype.getService = function () { return Meeting.MeetingAgendaService.baseUrl; };
+            MeetingAgendaDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingAgendaDialog);
             return MeetingAgendaDialog;
         }(Serenity.EntityDialog));
-        MeetingAgendaDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingAgendaDialog);
         Meeting.MeetingAgendaDialog = MeetingAgendaDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7618,11 +7624,11 @@ var Serene;
                 enumerable: true,
                 configurable: true
             });
+            MeetingAgendaGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingAgendaGrid);
             return MeetingAgendaGrid;
         }(Serenity.EntityGrid));
-        MeetingAgendaGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingAgendaGrid);
         Meeting.MeetingAgendaGrid = MeetingAgendaGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7641,12 +7647,12 @@ var Serene;
             MeetingAgendaRelevantDialog.prototype.getIdProperty = function () { return Meeting.MeetingAgendaRelevantRow.idProperty; };
             MeetingAgendaRelevantDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaRelevantRow.localTextPrefix; };
             MeetingAgendaRelevantDialog.prototype.getService = function () { return Meeting.MeetingAgendaRelevantService.baseUrl; };
+            MeetingAgendaRelevantDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingAgendaRelevantDialog);
             return MeetingAgendaRelevantDialog;
         }(Serenity.EntityDialog));
-        MeetingAgendaRelevantDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingAgendaRelevantDialog);
         Meeting.MeetingAgendaRelevantDialog = MeetingAgendaRelevantDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7664,11 +7670,11 @@ var Serene;
             MeetingAgendaRelevantGrid.prototype.getIdProperty = function () { return Meeting.MeetingAgendaRelevantRow.idProperty; };
             MeetingAgendaRelevantGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaRelevantRow.localTextPrefix; };
             MeetingAgendaRelevantGrid.prototype.getService = function () { return Meeting.MeetingAgendaRelevantService.baseUrl; };
+            MeetingAgendaRelevantGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingAgendaRelevantGrid);
             return MeetingAgendaRelevantGrid;
         }(Serenity.EntityGrid));
-        MeetingAgendaRelevantGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingAgendaRelevantGrid);
         Meeting.MeetingAgendaRelevantGrid = MeetingAgendaRelevantGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7688,12 +7694,12 @@ var Serene;
             MeetingAgendaTypeDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaTypeRow.localTextPrefix; };
             MeetingAgendaTypeDialog.prototype.getNameProperty = function () { return Meeting.MeetingAgendaTypeRow.nameProperty; };
             MeetingAgendaTypeDialog.prototype.getService = function () { return Meeting.MeetingAgendaTypeService.baseUrl; };
+            MeetingAgendaTypeDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingAgendaTypeDialog);
             return MeetingAgendaTypeDialog;
         }(Serenity.EntityDialog));
-        MeetingAgendaTypeDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingAgendaTypeDialog);
         Meeting.MeetingAgendaTypeDialog = MeetingAgendaTypeDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7711,11 +7717,11 @@ var Serene;
             MeetingAgendaTypeGrid.prototype.getIdProperty = function () { return Meeting.MeetingAgendaTypeRow.idProperty; };
             MeetingAgendaTypeGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAgendaTypeRow.localTextPrefix; };
             MeetingAgendaTypeGrid.prototype.getService = function () { return Meeting.MeetingAgendaTypeService.baseUrl; };
+            MeetingAgendaTypeGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingAgendaTypeGrid);
             return MeetingAgendaTypeGrid;
         }(Serenity.EntityGrid));
-        MeetingAgendaTypeGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingAgendaTypeGrid);
         Meeting.MeetingAgendaTypeGrid = MeetingAgendaTypeGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7733,12 +7739,12 @@ var Serene;
             MeetingAttendeeDialog.prototype.getFormKey = function () { return Meeting.MeetingAttendeeForm.formKey; };
             MeetingAttendeeDialog.prototype.getIdProperty = function () { return Meeting.MeetingAttendeeRow.idProperty; };
             MeetingAttendeeDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingAttendeeRow.localTextPrefix; };
+            MeetingAttendeeDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingAttendeeDialog);
             return MeetingAttendeeDialog;
         }(Serene.Common.GridEditorDialog));
-        MeetingAttendeeDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingAttendeeDialog);
         Meeting.MeetingAttendeeDialog = MeetingAttendeeDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7832,11 +7838,11 @@ var Serene;
                     }
                 }
             };
+            MeetingAttendeeEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingAttendeeEditor);
             return MeetingAttendeeEditor;
         }(Serene.Common.GridEditorBase));
-        MeetingAttendeeEditor = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingAttendeeEditor);
         Meeting.MeetingAttendeeEditor = MeetingAttendeeEditor;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7856,12 +7862,12 @@ var Serene;
             MeetingDecisionDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingDecisionRow.localTextPrefix; };
             MeetingDecisionDialog.prototype.getNameProperty = function () { return Meeting.MeetingDecisionRow.nameProperty; };
             MeetingDecisionDialog.prototype.getService = function () { return Meeting.MeetingDecisionService.baseUrl; };
+            MeetingDecisionDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingDecisionDialog);
             return MeetingDecisionDialog;
         }(Serenity.EntityDialog));
-        MeetingDecisionDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingDecisionDialog);
         Meeting.MeetingDecisionDialog = MeetingDecisionDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7902,11 +7908,11 @@ var Serene;
                 enumerable: true,
                 configurable: true
             });
+            MeetingDecisionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingDecisionGrid);
             return MeetingDecisionGrid;
         }(Serenity.EntityGrid));
-        MeetingDecisionGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingDecisionGrid);
         Meeting.MeetingDecisionGrid = MeetingDecisionGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7925,12 +7931,12 @@ var Serene;
             MeetingDecisionRelevantDialog.prototype.getIdProperty = function () { return Meeting.MeetingDecisionRelevantRow.idProperty; };
             MeetingDecisionRelevantDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingDecisionRelevantRow.localTextPrefix; };
             MeetingDecisionRelevantDialog.prototype.getService = function () { return Meeting.MeetingDecisionRelevantService.baseUrl; };
+            MeetingDecisionRelevantDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingDecisionRelevantDialog);
             return MeetingDecisionRelevantDialog;
         }(Serenity.EntityDialog));
-        MeetingDecisionRelevantDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingDecisionRelevantDialog);
         Meeting.MeetingDecisionRelevantDialog = MeetingDecisionRelevantDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7948,11 +7954,11 @@ var Serene;
             MeetingDecisionRelevantGrid.prototype.getIdProperty = function () { return Meeting.MeetingDecisionRelevantRow.idProperty; };
             MeetingDecisionRelevantGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingDecisionRelevantRow.localTextPrefix; };
             MeetingDecisionRelevantGrid.prototype.getService = function () { return Meeting.MeetingDecisionRelevantService.baseUrl; };
+            MeetingDecisionRelevantGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingDecisionRelevantGrid);
             return MeetingDecisionRelevantGrid;
         }(Serenity.EntityGrid));
-        MeetingDecisionRelevantGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingDecisionRelevantGrid);
         Meeting.MeetingDecisionRelevantGrid = MeetingDecisionRelevantGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7972,12 +7978,12 @@ var Serene;
             MeetingLocationDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingLocationRow.localTextPrefix; };
             MeetingLocationDialog.prototype.getNameProperty = function () { return Meeting.MeetingLocationRow.nameProperty; };
             MeetingLocationDialog.prototype.getService = function () { return Meeting.MeetingLocationService.baseUrl; };
+            MeetingLocationDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingLocationDialog);
             return MeetingLocationDialog;
         }(Serenity.EntityDialog));
-        MeetingLocationDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingLocationDialog);
         Meeting.MeetingLocationDialog = MeetingLocationDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7995,11 +8001,11 @@ var Serene;
             MeetingLocationGrid.prototype.getIdProperty = function () { return Meeting.MeetingLocationRow.idProperty; };
             MeetingLocationGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingLocationRow.localTextPrefix; };
             MeetingLocationGrid.prototype.getService = function () { return Meeting.MeetingLocationService.baseUrl; };
+            MeetingLocationGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingLocationGrid);
             return MeetingLocationGrid;
         }(Serenity.EntityGrid));
-        MeetingLocationGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingLocationGrid);
         Meeting.MeetingLocationGrid = MeetingLocationGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8019,12 +8025,12 @@ var Serene;
             MeetingTypeDialog.prototype.getLocalTextPrefix = function () { return Meeting.MeetingTypeRow.localTextPrefix; };
             MeetingTypeDialog.prototype.getNameProperty = function () { return Meeting.MeetingTypeRow.nameProperty; };
             MeetingTypeDialog.prototype.getService = function () { return Meeting.MeetingTypeService.baseUrl; };
+            MeetingTypeDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], MeetingTypeDialog);
             return MeetingTypeDialog;
         }(Serenity.EntityDialog));
-        MeetingTypeDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], MeetingTypeDialog);
         Meeting.MeetingTypeDialog = MeetingTypeDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8042,95 +8048,13 @@ var Serene;
             MeetingTypeGrid.prototype.getIdProperty = function () { return Meeting.MeetingTypeRow.idProperty; };
             MeetingTypeGrid.prototype.getLocalTextPrefix = function () { return Meeting.MeetingTypeRow.localTextPrefix; };
             MeetingTypeGrid.prototype.getService = function () { return Meeting.MeetingTypeService.baseUrl; };
+            MeetingTypeGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], MeetingTypeGrid);
             return MeetingTypeGrid;
         }(Serenity.EntityGrid));
-        MeetingTypeGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], MeetingTypeGrid);
         Meeting.MeetingTypeGrid = MeetingTypeGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var ChangePasswordPanel = (function (_super) {
-            __extends(ChangePasswordPanel, _super);
-            function ChangePasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
-                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
-                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
-                    }
-                });
-                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
-                        return Q.text('Validation.PasswordConfirm');
-                    }
-                });
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ChangePassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
-            return ChangePasswordPanel;
-        }(Serenity.PropertyPanel));
-        ChangePasswordPanel = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ChangePasswordPanel);
-        Membership.ChangePasswordPanel = ChangePasswordPanel;
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
-        var ForgotPasswordPanel = (function (_super) {
-            __extends(ForgotPasswordPanel, _super);
-            function ForgotPasswordPanel(container) {
-                var _this = _super.call(this, container) || this;
-                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
-                _this.byId('SubmitButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/ForgotPassword'),
-                        request: request,
-                        onSuccess: function (response) {
-                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
-                                window.location.href = Q.resolveUrl('~/');
-                            });
-                        }
-                    });
-                });
-                return _this;
-            }
-            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
-            return ForgotPasswordPanel;
-        }(Serenity.PropertyPanel));
-        ForgotPasswordPanel = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ForgotPasswordPanel);
-        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -8179,12 +8103,94 @@ var Serene;
                 return _this;
             }
             LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
+            LoginPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LoginPanel);
             return LoginPanel;
         }(Serenity.PropertyPanel));
-        LoginPanel = __decorate([
-            Serenity.Decorators.registerClass()
-        ], LoginPanel);
         Membership.LoginPanel = LoginPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ChangePasswordPanel = (function (_super) {
+            __extends(ChangePasswordPanel, _super);
+            function ChangePasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
+                _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                        return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
+                    }
+                });
+                _this.form.ConfirmPassword.addValidationRule(_this.uniqueName, function (e) {
+                    if (_this.form.ConfirmPassword.value !== _this.form.NewPassword.value) {
+                        return Q.text('Validation.PasswordConfirm');
+                    }
+                });
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ChangePassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ChangePassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ChangePasswordPanel.prototype.getFormKey = function () { return Membership.ChangePasswordForm.formKey; };
+            ChangePasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ChangePasswordPanel);
+            return ChangePasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ChangePasswordPanel = ChangePasswordPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
+        var ForgotPasswordPanel = (function (_super) {
+            __extends(ForgotPasswordPanel, _super);
+            function ForgotPasswordPanel(container) {
+                var _this = _super.call(this, container) || this;
+                _this.form = new Membership.ForgotPasswordForm(_this.idPrefix);
+                _this.byId('SubmitButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/ForgotPassword'),
+                        request: request,
+                        onSuccess: function (response) {
+                            Q.information(Q.text('Forms.Membership.ForgotPassword.Success'), function () {
+                                window.location.href = Q.resolveUrl('~/');
+                            });
+                        }
+                    });
+                });
+                return _this;
+            }
+            ForgotPasswordPanel.prototype.getFormKey = function () { return Membership.ForgotPasswordForm.formKey; };
+            ForgotPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ForgotPasswordPanel);
+            return ForgotPasswordPanel;
+        }(Serenity.PropertyPanel));
+        Membership.ForgotPasswordPanel = ForgotPasswordPanel;
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -8226,11 +8232,11 @@ var Serene;
                 return _this;
             }
             ResetPasswordPanel.prototype.getFormKey = function () { return Membership.ResetPasswordForm.formKey; };
+            ResetPasswordPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ResetPasswordPanel);
             return ResetPasswordPanel;
         }(Serenity.PropertyPanel));
-        ResetPasswordPanel = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ResetPasswordPanel);
         Membership.ResetPasswordPanel = ResetPasswordPanel;
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
@@ -8275,11 +8281,11 @@ var Serene;
                 return _this;
             }
             SignUpPanel.prototype.getFormKey = function () { return Membership.SignUpForm.formKey; };
+            SignUpPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SignUpPanel);
             return SignUpPanel;
         }(Serenity.PropertyPanel));
-        SignUpPanel = __decorate([
-            Serenity.Decorators.registerClass()
-        ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Serene.Membership || (Serene.Membership = {}));
 })(Serene || (Serene = {}));
@@ -8293,16 +8299,16 @@ var Serene;
                 return _super.call(this, hidden) || this;
             }
             CustomerEditor.prototype.getLookupKey = function () {
-                return 'Northwind.Customer';
+                return Northwind.CustomerRow.lookupKey;
             };
             CustomerEditor.prototype.getItemText = function (item, lookup) {
                 return _super.prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
             };
+            CustomerEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], CustomerEditor);
             return CustomerEditor;
         }(Serenity.LookupEditorBase));
-        CustomerEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], CustomerEditor);
         Northwind.CustomerEditor = CustomerEditor;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8320,11 +8326,11 @@ var Serene;
                 _super.prototype.updateInterface.call(this);
                 Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
             };
+            CustomerOrderDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerOrderDialog);
             return CustomerOrderDialog;
         }(Northwind.OrderDialog));
-        CustomerOrderDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CustomerOrderDialog);
         Northwind.CustomerOrderDialog = CustomerOrderDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8370,11 +8376,11 @@ var Serene;
                 enumerable: true,
                 configurable: true
             });
+            CustomerOrdersGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerOrdersGrid);
             return CustomerOrdersGrid;
         }(Northwind.OrderGrid));
-        CustomerOrdersGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], CustomerOrdersGrid);
         Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8393,11 +8399,11 @@ var Serene;
                 var z;
                 return idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", ");
             };
+            EmployeeListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EmployeeListFormatter);
             return EmployeeListFormatter;
         }());
-        EmployeeListFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], EmployeeListFormatter);
         Northwind.EmployeeListFormatter = EmployeeListFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8423,14 +8429,14 @@ var Serene;
                 if (this.genderProperty)
                     column.referencedFields.push(this.genderProperty);
             };
+            __decorate([
+                Serenity.Decorators.option()
+            ], EmployeeFormatter.prototype, "genderProperty", void 0);
+            EmployeeFormatter = __decorate([
+                Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
+            ], EmployeeFormatter);
             return EmployeeFormatter;
         }());
-        __decorate([
-            Serenity.Decorators.option()
-        ], EmployeeFormatter.prototype, "genderProperty", void 0);
-        EmployeeFormatter = __decorate([
-            Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
-        ], EmployeeFormatter);
         Northwind.EmployeeFormatter = EmployeeFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8478,11 +8484,11 @@ var Serene;
                 enumerable: true,
                 configurable: true
             });
+            NoteDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], NoteDialog);
             return NoteDialog;
         }(Serenity.TemplatedDialog));
-        NoteDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], NoteDialog);
         Northwind.NoteDialog = NoteDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8609,12 +8615,12 @@ var Serene;
             NotesEditor.prototype.set_isDirty = function (value) {
                 this.isDirty = value;
             };
+            NotesEditor = __decorate([
+                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.element("<div/>")
+            ], NotesEditor);
             return NotesEditor;
         }(Serenity.TemplatedWidget));
-        NotesEditor = __decorate([
-            Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-            Serenity.Decorators.element("<div/>")
-        ], NotesEditor);
         Northwind.NotesEditor = NotesEditor;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8628,11 +8634,11 @@ var Serene;
             FreightFormatter.prototype.format = function (ctx) {
                 return "<span class='freight-symbol'>" + Q.htmlEncode(ctx.value) + '</span>';
             };
+            FreightFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], FreightFormatter);
             return FreightFormatter;
         }());
-        FreightFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], FreightFormatter);
         Northwind.FreightFormatter = FreightFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8655,11 +8661,11 @@ var Serene;
             RegionDialog.prototype.getLanguages = function () {
                 return Serene.LanguageList.getValue();
             };
+            RegionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RegionDialog);
             return RegionDialog;
         }(Serenity.EntityDialog));
-        RegionDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RegionDialog);
         Northwind.RegionDialog = RegionDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8677,11 +8683,11 @@ var Serene;
             RegionGrid.prototype.getIdProperty = function () { return Northwind.RegionRow.idProperty; };
             RegionGrid.prototype.getLocalTextPrefix = function () { return Northwind.RegionRow.localTextPrefix; };
             RegionGrid.prototype.getService = function () { return Northwind.RegionService.baseUrl; };
+            RegionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RegionGrid);
             return RegionGrid;
         }(Serenity.EntityGrid));
-        RegionGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], RegionGrid);
         Northwind.RegionGrid = RegionGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8689,7 +8695,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var PhoneEditor = PhoneEditor_1 = (function (_super) {
+        var PhoneEditor = (function (_super) {
             __extends(PhoneEditor, _super);
             function PhoneEditor(input) {
                 var _this = _super.call(this, input) || this;
@@ -8713,6 +8719,7 @@ var Serene;
                 });
                 return _this;
             }
+            PhoneEditor_1 = PhoneEditor;
             PhoneEditor.prototype.formatValue = function () {
                 this.element.val(this.getFormattedValue());
             };
@@ -8813,16 +8820,16 @@ var Serene;
                 }
                 return true;
             };
+            __decorate([
+                Serenity.Decorators.option()
+            ], PhoneEditor.prototype, "multiple", void 0);
+            PhoneEditor = PhoneEditor_1 = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], PhoneEditor);
             return PhoneEditor;
+            var PhoneEditor_1;
         }(Serenity.StringEditor));
-        __decorate([
-            Serenity.Decorators.option()
-        ], PhoneEditor.prototype, "multiple", void 0);
-        PhoneEditor = PhoneEditor_1 = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], PhoneEditor);
         Northwind.PhoneEditor = PhoneEditor;
-        var PhoneEditor_1;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
@@ -8844,11 +8851,11 @@ var Serene;
             ShipperDialog.prototype.getLanguages = function () {
                 return Serene.LanguageList.getValue();
             };
+            ShipperDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ShipperDialog);
             return ShipperDialog;
         }(Serenity.EntityDialog));
-        ShipperDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ShipperDialog);
         Northwind.ShipperDialog = ShipperDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8864,11 +8871,11 @@ var Serene;
                     Q.replaceAll((ctx.value || '').toString(), ' ', '') +
                     "'>" + Q.htmlEncode(ctx.value) + '</span>';
             };
+            ShipperFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], ShipperFormatter);
             return ShipperFormatter;
         }());
-        ShipperFormatter = __decorate([
-            Serenity.Decorators.registerFormatter()
-        ], ShipperFormatter);
         Northwind.ShipperFormatter = ShipperFormatter;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8886,11 +8893,11 @@ var Serene;
             ShipperGrid.prototype.getIdProperty = function () { return Northwind.ShipperRow.idProperty; };
             ShipperGrid.prototype.getLocalTextPrefix = function () { return Northwind.ShipperRow.localTextPrefix; };
             ShipperGrid.prototype.getService = function () { return Northwind.ShipperService.baseUrl; };
+            ShipperGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ShipperGrid);
             return ShipperGrid;
         }(Serenity.EntityGrid));
-        ShipperGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ShipperGrid);
         Northwind.ShipperGrid = ShipperGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8913,11 +8920,11 @@ var Serene;
             TerritoryDialog.prototype.getLanguages = function () {
                 return Serene.LanguageList.getValue();
             };
+            TerritoryDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TerritoryDialog);
             return TerritoryDialog;
         }(Serenity.EntityDialog));
-        TerritoryDialog = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TerritoryDialog);
         Northwind.TerritoryDialog = TerritoryDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8935,11 +8942,11 @@ var Serene;
             TerritoryGrid.prototype.getIdProperty = function () { return Northwind.TerritoryRow.idProperty; };
             TerritoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.TerritoryRow.localTextPrefix; };
             TerritoryGrid.prototype.getService = function () { return Northwind.TerritoryService.baseUrl; };
+            TerritoryGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TerritoryGrid);
             return TerritoryGrid;
         }(Serenity.EntityGrid));
-        TerritoryGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], TerritoryGrid);
         Northwind.TerritoryGrid = TerritoryGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8959,12 +8966,12 @@ var Serene;
             BusinessUnitDialog.prototype.getLocalTextPrefix = function () { return Organization.BusinessUnitRow.localTextPrefix; };
             BusinessUnitDialog.prototype.getNameProperty = function () { return Organization.BusinessUnitRow.nameProperty; };
             BusinessUnitDialog.prototype.getService = function () { return Organization.BusinessUnitService.baseUrl; };
+            BusinessUnitDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], BusinessUnitDialog);
             return BusinessUnitDialog;
         }(Serenity.EntityDialog));
-        BusinessUnitDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], BusinessUnitDialog);
         Organization.BusinessUnitDialog = BusinessUnitDialog;
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -8992,11 +8999,11 @@ var Serene;
                 }
                 return text;
             };
+            BusinessUnitEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], BusinessUnitEditor);
             return BusinessUnitEditor;
         }(Serenity.LookupEditorBase));
-        BusinessUnitEditor = __decorate([
-            Serenity.Decorators.registerEditor()
-        ], BusinessUnitEditor);
         Organization.BusinessUnitEditor = BusinessUnitEditor;
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -9059,11 +9066,11 @@ var Serene;
                     }
                 }
             };
+            BusinessUnitGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], BusinessUnitGrid);
             return BusinessUnitGrid;
         }(Serenity.EntityGrid));
-        BusinessUnitGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], BusinessUnitGrid);
         Organization.BusinessUnitGrid = BusinessUnitGrid;
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -9083,12 +9090,12 @@ var Serene;
             ContactDialog.prototype.getLocalTextPrefix = function () { return Organization.ContactRow.localTextPrefix; };
             ContactDialog.prototype.getNameProperty = function () { return Organization.ContactRow.nameProperty; };
             ContactDialog.prototype.getService = function () { return Organization.ContactService.baseUrl; };
+            ContactDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], ContactDialog);
             return ContactDialog;
         }(Serenity.EntityDialog));
-        ContactDialog = __decorate([
-            Serenity.Decorators.registerClass(),
-            Serenity.Decorators.responsive()
-        ], ContactDialog);
         Organization.ContactDialog = ContactDialog;
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -9106,11 +9113,11 @@ var Serene;
             ContactGrid.prototype.getIdProperty = function () { return Organization.ContactRow.idProperty; };
             ContactGrid.prototype.getLocalTextPrefix = function () { return Organization.ContactRow.localTextPrefix; };
             ContactGrid.prototype.getService = function () { return Organization.ContactService.baseUrl; };
+            ContactGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ContactGrid);
             return ContactGrid;
         }(Serenity.EntityGrid));
-        ContactGrid = __decorate([
-            Serenity.Decorators.registerClass()
-        ], ContactGrid);
         Organization.ContactGrid = ContactGrid;
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));

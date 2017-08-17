@@ -4249,7 +4249,7 @@ declare namespace Serene.Membership {
     }
 }
 declare namespace Serene.Northwind {
-    class CustomerEditor extends Serenity.LookupEditorBase<CustomerRow, any> {
+    class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
         constructor(hidden: JQuery);
         protected getLookupKey(): string;
         protected getItemText(item: any, lookup: any): string;
@@ -4413,7 +4413,7 @@ declare namespace Serene.Organization {
     }
 }
 declare namespace Serene.Organization {
-    class BusinessUnitEditor extends Serenity.LookupEditorBase<BusinessUnitRow, any> {
+    class BusinessUnitEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, BusinessUnitRow> {
         constructor(hidden: JQuery);
         protected getLookupKey(): string;
         protected getItemText(item: BusinessUnitRow, lookup: Q.Lookup<BusinessUnitRow>): string;
