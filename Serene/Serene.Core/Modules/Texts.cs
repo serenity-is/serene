@@ -97,6 +97,15 @@ namespace Serene
 
         public static class Site
         {
+            public static class AccessDenied
+            {
+                public static LocalText PageTitle = "Unauthorized Access";
+                public static LocalText LackPermissions = "You don't have required permissions to access this page!";
+                public static LocalText NotLoggedIn = "You need to be logged in to access this page!";
+                public static LocalText ClickToChangeUser = "click here to login with another user...";
+                public static LocalText ClickToLogin = "clik here to return to login page...";
+            }
+
             public static class Dashboard
             {
                 public static LocalText ContentDescription =

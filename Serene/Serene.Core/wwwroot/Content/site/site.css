@@ -8456,6 +8456,62 @@ section.content > .s-DataGrid {
   width: 45%;
   float: right;
 }
+#s-AccessDeniedPage div.message,
+#s-ApplicationErrorPage div.message,
+#s-NotFoundPage div.message,
+#s-GenericErrorPage div.message {
+  background: #fff;
+  padding: 40px;
+  margin: 100px auto;
+  min-height: 170px;
+  max-width: 70%;
+  min-width: 400px;
+  border-radius: 8px;
+  border: 2px solid #ECC2C2;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+#s-AccessDeniedPage div.message table,
+#s-ApplicationErrorPage div.message table,
+#s-NotFoundPage div.message table,
+#s-GenericErrorPage div.message table {
+  width: 100%;
+}
+#s-AccessDeniedPage div.message h1,
+#s-ApplicationErrorPage div.message h1,
+#s-NotFoundPage div.message h1,
+#s-GenericErrorPage div.message h1 {
+  color: red;
+  font-size: 30px;
+}
+#s-AccessDeniedPage div.message h3,
+#s-ApplicationErrorPage div.message h3,
+#s-NotFoundPage div.message h3,
+#s-GenericErrorPage div.message h3 {
+  font-size: 18px;
+  color: maroon;
+  margin-top: 16px;
+  line-height: 26px;
+}
+#s-AccessDeniedPage div.message a.redirect,
+#s-ApplicationErrorPage div.message a.redirect,
+#s-NotFoundPage div.message a.redirect,
+#s-GenericErrorPage div.message a.redirect {
+  display: block;
+  float: left;
+  margin-top: 40px;
+  font-size: 16px;
+  font-weight: bold;
+}
+#s-AccessDeniedPage div.message div.date-time,
+#s-ApplicationErrorPage div.message div.date-time,
+#s-NotFoundPage div.message div.date-time,
+#s-GenericErrorPage div.message div.date-time {
+  float: right;
+  margin-top: 40px;
+  font-weight: bold;
+  font-style: italic;
+  color: #966;
+}
 .s-Northwind-ProductDialog > .size {
   width: 650px;
 }

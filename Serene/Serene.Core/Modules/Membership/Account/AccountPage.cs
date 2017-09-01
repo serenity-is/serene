@@ -24,14 +24,11 @@ namespace Serene.Membership.Pages
         }
 
         [HttpGet]
-        public ActionResult AccessDenied()
+        public ActionResult AccessDenied(string returnURL)
         {
-            ViewData["HideLeftNavigation"] = true;
+            ViewData["HideLeftNavigation"] = !Authorization.IsLoggedIn;
 
-            if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
-            else
-                return View(MVC.Views.Membership.Account.AccountLogin);
+            return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
         }
 
         [HttpPost, JsonFilter]

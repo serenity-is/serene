@@ -1,0 +1,39 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = Texts.Site.AccessDenied.PageTitle;
+    ViewData["PageId"] = "AccessDenied";
+    Layout = Serenity.Authorization.IsLoggedIn ?
+        "~/Views/Shared/_Layout.cshtml" :
+        "~/Views/Shared/_LayoutNoNavigation.cshtml";
+}
+
+<div class="page-content">
+    <div class="message">
+        <table>
+            <tr>
+                <td style="width: 200px;">
+                    <i class="fa fa-times-circle text-red" style="font-size: 180px;"></i>
+                </td>
+                <td>
+                    <h1>@Texts.Site.AccessDenied.PageTitle</h1>
+                    <h3>@(Serenity.Authorization.IsLoggedIn ? Texts.Site.AccessDenied.LackPermissions : Texts.Site.AccessDenied.NotLoggedIn)</h3>
+                    @if (Model != null)
+                    {
+                        <a class="redirect" href="/Account/Login?returnURL=@Model">@(Serenity.Authorization.IsLoggedIn ? 
+                            Texts.Site.AccessDenied.ClickToChangeUser : Texts.Site.AccessDenied.ClickToLogin)</a>
+                    }
+                    else
+                    {
+                        <a class="redirect" href="/Account/Login">@Texts.Site.AccessDenied.ClickToLogin</a>
+                    }
+                    <div class="date-time">
+                        @(!Serenity.Authorization.IsLoggedIn ? "" : (Serenity.Authorization.Username + " - "))@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                    </div>
+                    <div class="clear"></div>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+</div>
