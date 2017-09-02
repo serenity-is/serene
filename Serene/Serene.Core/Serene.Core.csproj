@@ -19,20 +19,8 @@
     <PackageReference Include="EPPlus.Core" Version="1.5.2" />
     <PackageReference Include="FastMember" Version="1.1.0" />
     <PackageReference Include="MailKit" Version="1.18.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
     <PackageReference Include="Serenity.Web" Version="2.10.3" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
