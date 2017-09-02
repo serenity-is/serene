@@ -6,7 +6,7 @@
     <OutputType>Exe</OutputType>
     <PackageId>Serene.Core</PackageId>
     <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <AssetTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
