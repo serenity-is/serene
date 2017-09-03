@@ -224,6 +224,9 @@
 
                     new TaskExecutor(runner)
                     {
+#if COREFX
+                        ConnectionString = cs.ConnectionString
+#endif
                     }.Execute();
                 }
                 catch (Exception ex)

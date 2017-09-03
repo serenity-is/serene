@@ -1031,6 +1031,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
         <Folder Name="Errors" TargetFolderName="Errors">
+          <ProjectItem ReplaceParameters="true" TargetFileName="AccessDenied.cshtml">AccessDenied.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ValidationError.cshtml">ValidationError.cshtml</ProjectItem>
         </Folder>
         <Folder Name="Shared" TargetFolderName="Shared">

@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="ProjectGroup">
   <TemplateData>
-    <Name>SERENE (ASP.NET Core - Beta)</Name>
+    <Name>SERENE (AspNetCore)</Name>
 	<SortOrder>11</SortOrder>
     <Description>Contains project template for Serenity Application Platform.</Description>
     <Icon>SerenityLogo.ico</Icon>

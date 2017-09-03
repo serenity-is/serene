@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MailKit" Version="1.18.0" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Web" Version="2.10.3" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web" Version="3.0.1" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
@@ -60,6 +60,6 @@
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="2.10.3" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.0.1" />
   </ItemGroup>
 </Project>
