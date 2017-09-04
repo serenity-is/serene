@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+
 namespace Serene.Meeting {
 
     @Serenity.Decorators.registerClass()

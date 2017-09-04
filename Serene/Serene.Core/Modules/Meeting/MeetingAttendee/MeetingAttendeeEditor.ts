@@ -1,4 +1,4 @@
-﻿/// <reference path="../../common/helpers/grideditorbase.ts" />
+﻿/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
 
 namespace Serene.Meeting {
     
