@@ -9013,6 +9013,7 @@
 			this.element.addClass('select2-offscreen').css('display', 'block');
 			// validasyonun çalışması için
 			x.editor.setData(this.element.val());
+			x.editor.setReadOnly(this.get_readOnly());
 		},
 		getLanguage: function() {
 			var lang = ss.coalesce(Q.trimToNull($('html').attr('lang')), 'en');
