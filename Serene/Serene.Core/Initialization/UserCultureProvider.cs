@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Serene.AppServices
@@ -36,20 +37,43 @@ namespace Serene.AppServices
             return Task.FromResult(new ProviderCultureResult(culture ?? "en-US", culture ?? "en-US"));
         }
 
-        public static readonly List<CultureInfo> SupportedCultures = new List<CultureInfo>
-        {
-            new CultureInfo("de-DE"),
-            new CultureInfo("en-US"),
-            new CultureInfo("en-UK"),
-            new CultureInfo("es-ES"),
-            new CultureInfo("fa-FA"),
-            new CultureInfo("it-it"),
-            new CultureInfo("pt-PT"),
-            new CultureInfo("pt-BR"),
-            new CultureInfo("ru-RU"),
-            new CultureInfo("tr-TR"),
-            new CultureInfo("vi-VN"),
-            new CultureInfo("zh-CN")
+        private static List<CultureInfo> supportedCultures;
+        private static readonly string[] supportedCultureIndentifiers = new string[] {
+            "de-DE",
+            "en-US",
+            "en-GB",
+            "es-ES",
+            "fa-IR",
+            "it-IT",
+            "pt-PT",
+            "pt-BR",
+            "ru-RU",
+            "tr-TR",
+            "vi-VN",
+            "zh-CN"
         };
+
+
+        public static IList<CultureInfo> SupportedCultures
+        {
+            get
+            {
+                if (supportedCultures == null)
+                    supportedCultures = supportedCultureIndentifiers.Select(x =>
+                    {
+                        try
+                        {
+                            return new CultureInfo(x);
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    }).Where(x => x != null).ToList();
+
+                return supportedCultures;
+            }
+        }
     }
+
 }
