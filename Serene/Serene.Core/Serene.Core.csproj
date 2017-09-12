@@ -55,10 +55,13 @@
     <DefineConstants>$(DefineConstants);ASPNETCORE</DefineConstants>
   </PropertyGroup>
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
+    <Exec Command="dotnet sergen mvc" ContinueOnError="true" />
+    <Exec Command="dotnet sergen clienttypes" ContinueOnError="true" />
     <Exec Command="npm install" />
   </Target>
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css" ContinueOnError="true" />
+    <Exec Command="dotnet sergen servertypings" ContinueOnError="true" />
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
