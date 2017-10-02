@@ -2383,7 +2383,7 @@
 				self.updateItems();
 			});
 		}
-		if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
+		if (!this.options.autoComplete && this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
 			this.addInplaceCreate(Q.text('Controls.SelectEditor.InplaceAdd'), null);
 		}
 	};
@@ -4501,7 +4501,7 @@
 		},
 		inplaceCreateClick: function(e) {
 		},
-		getCreateSearchChoice: function(getName) {
+		getCreateSearchChoice: function(getName, autoComplete) {
 			return ss.mkdel(this, function(s) {
 				this.lastCreateTerm = s;
 				s = ss.coalesce(Select2.util.stripDiacritics(s), '').toLowerCase();
@@ -4517,7 +4517,13 @@
 				if (!Q.any(this.get_items(), function(x1) {
 					return ss.coalesce(Select2.util.stripDiacritics(x1.text), '').toLowerCase().indexOf(s) !== -1;
 				})) {
+					if (autoComplete) {
+						return { id: this.lastCreateTerm, text: this.lastCreateTerm };
+					}
 					return { id: (-2147483648).toString(), text: Q.text('Controls.SelectEditor.NoResultsClickToDefine') };
+				}
+				if (autoComplete) {
+					return { id: this.lastCreateTerm, text: this.lastCreateTerm };
 				}
 				return { id: (-2147483648).toString(), text: Q.text('Controls.SelectEditor.ClickToDefine') };
 			});
@@ -4814,8 +4820,11 @@
 			if (ss.isValue(this.options.minimumResultsForSearch)) {
 				opt.minimumResultsForSearch = ss.unbox(this.options.minimumResultsForSearch);
 			}
-			if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
-				opt.createSearchChoice = this.getCreateSearchChoice(null);
+			if (this.options.autoComplete) {
+				opt.createSearchChoice = this.getCreateSearchChoice(null, true);
+			}
+			else if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
+				opt.createSearchChoice = this.getCreateSearchChoice(null, false);
 			}
 			if (this.options.multiple) {
 				opt.multiple = true;

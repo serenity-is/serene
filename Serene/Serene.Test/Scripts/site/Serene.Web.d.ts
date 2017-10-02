@@ -1670,10 +1670,10 @@ declare namespace Serene.Northwind {
         ContactTitle: Serenity.StringEditor;
         Representatives: Serenity.LookupEditor;
         Address: Serenity.StringEditor;
-        City: Serenity.StringEditor;
+        Country: Serenity.LookupEditor;
+        City: Serenity.LookupEditor;
         Region: Serenity.StringEditor;
         PostalCode: Serenity.StringEditor;
-        Country: Serenity.StringEditor;
         Phone: Serenity.StringEditor;
         Fax: Serenity.StringEditor;
         NoteList: NotesEditor;
