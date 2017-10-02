@@ -59,7 +59,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Address[this] = value; }
         }
 
-        [DisplayName("City"), Size(15)]
+        [DisplayName("City"), Size(15), LookupEditor(typeof(Scripts.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
         public String City
         {
             get { return Fields.City[this]; }
@@ -80,7 +80,7 @@ namespace Serene.Northwind.Entities
             set { Fields.PostalCode[this] = value; }
         }
 
-        [DisplayName("Country"), Size(15), LookupFiltering("Northwind.CustomerCountry")]
+        [DisplayName("Country"), Size(15), LookupEditor(typeof(Scripts.CustomerCountryLookup), AutoComplete = true)]
         public String Country
         {
             get { return Fields.Country[this]; }
