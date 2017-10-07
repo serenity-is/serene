@@ -2910,50 +2910,44 @@
 		if (!ss.isValue(opt.mode)) {
 			opt.mode = 0;
 		}
-		this.$items = this.options.items || [];
 		div.addClass('s-PropertyGrid');
 		this.$editors = [];
-		var categoryIndexes = {};
-		var categoriesDiv = div;
-		var useCategories = this.options.useCategories && Q.any(this.$items, function(x) {
-			return !ss.isNullOrEmptyString(x.category);
+		this.$items = this.options.items || [];
+		var useTabs = Q.any(this.$items, function(x) {
+			return !ss.isNullOrEmptyString(x.tab);
 		});
-		if (this.options.useCategories) {
-			var linkContainer = $('<div/>').addClass('category-links');
-			categoryIndexes = this.$createCategoryLinks(linkContainer, this.$items);
-			if (ss.getKeyCount(categoryIndexes) > 1) {
-				linkContainer.appendTo(div);
+		if (useTabs) {
+			var ul = $("<ul class='nav nav-tabs property-tabs' role='tablist'></ul>").appendTo(this.element);
+			var tc = $("<div class='tab-content property-panes'></div>").appendTo(this.element);
+			var tabIndex = 0;
+			var i = 0;
+			while (i < this.$items.length) {
+				var tab = { $: Q.trimToEmpty(this.$items[i].tab) };
+				var tabItems = [];
+				var j = i;
+				do {
+					tabItems.push(this.$items[j]);
+				} while (++j < this.$items.length && ss.referenceEquals(Q.trimToEmpty(this.$items[j].tab), tab.$));
+				i = j;
+				var li = $("<li><a data-toggle='tab' role='tab'></a></li>").appendTo(ul);
+				if (tabIndex === 0) {
+					li.addClass('active');
+				}
+				var tabID = this.uniqueName + '_Tab' + tabIndex;
+				li.children('a').attr('href', '#' + tabID).text(this.$determineText(tab.$, ss.mkdel({ tab: tab }, function(prefix) {
+					return prefix + 'Tabs.' + this.tab.$;
+				})));
+				var pane = $("<div class='tab-pane fade' role='tabpanel'>").appendTo(tc);
+				if (tabIndex === 0) {
+					pane.addClass('in active');
+				}
+				pane.attr('id', tabID);
+				this.$createItems(pane, tabItems);
+				tabIndex++;
 			}
-			else {
-				linkContainer.find('a.category-link').unbind('click', $Serenity_PropertyGrid.$categoryLinkClick).remove();
-			}
-		}
-		categoriesDiv = $('<div/>').addClass('categories').appendTo(div);
-		var fieldContainer;
-		if (useCategories) {
-			fieldContainer = categoriesDiv;
 		}
 		else {
-			fieldContainer = $('<div/>').addClass('category').appendTo(categoriesDiv);
-		}
-		var priorCategory = null;
-		for (var i = 0; i < this.$items.length; i++) {
-			var item = this.$items[i];
-			var $t1 = item.category;
-			if (ss.isNullOrUndefined($t1)) {
-				$t1 = ss.coalesce(this.options.defaultCategory, '');
-			}
-			var category = $t1;
-			if (useCategories && !ss.referenceEquals(priorCategory, category)) {
-				var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, category, ((item.collapsible !== true) ? null : ss.coalesce(item.collapsed, false)));
-				if (ss.isNullOrUndefined(priorCategory)) {
-					categoryDiv.addClass('first-category');
-				}
-				priorCategory = category;
-				fieldContainer = categoryDiv;
-			}
-			var editor = this.$createField(fieldContainer, item);
-			this.$editors[i] = editor;
+			this.$createItems(this.element, this.$items);
 		}
 		this.$updateInterface();
 	};
@@ -9646,6 +9640,50 @@
 	ss.initClass($Serenity_PropertyItemHelper, $asm, {});
 	ss.initClass($Serenity_PropertyEditorHelper, $asm, {}, $Serenity_PropertyItemHelper);
 	ss.initClass($Serenity_PropertyGrid, $asm, {
+		$createItems: function(container, items) {
+			var categoryIndexes = {};
+			var categoriesDiv = container;
+			var useCategories = this.options.useCategories && Q.any(items, function(x) {
+				return !ss.isNullOrEmptyString(x.category);
+			});
+			if (this.options.useCategories) {
+				var linkContainer = $('<div/>').addClass('category-links');
+				categoryIndexes = this.$createCategoryLinks(linkContainer, items);
+				if (ss.getKeyCount(categoryIndexes) > 1) {
+					linkContainer.appendTo(container);
+				}
+				else {
+					linkContainer.find('a.category-link').unbind('click', $Serenity_PropertyGrid.$categoryLinkClick).remove();
+				}
+			}
+			categoriesDiv = $('<div/>').addClass('categories').appendTo(container);
+			var fieldContainer;
+			if (useCategories) {
+				fieldContainer = categoriesDiv;
+			}
+			else {
+				fieldContainer = $('<div/>').addClass('category').appendTo(categoriesDiv);
+			}
+			var priorCategory = null;
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i];
+				var $t1 = item.category;
+				if (ss.isNullOrUndefined($t1)) {
+					$t1 = ss.coalesce(this.options.defaultCategory, '');
+				}
+				var category = $t1;
+				if (useCategories && !ss.referenceEquals(priorCategory, category)) {
+					var categoryDiv = this.$createCategoryDiv(categoriesDiv, categoryIndexes, category, ((item.collapsible !== true) ? null : ss.coalesce(item.collapsed, false)));
+					if (ss.isNullOrUndefined(priorCategory)) {
+						categoryDiv.addClass('first-category');
+					}
+					priorCategory = category;
+					fieldContainer = categoryDiv;
+				}
+				var editor = this.$createField(fieldContainer, item);
+				this.$editors.push(editor);
+			}
+		},
 		destroy: function() {
 			if (ss.isValue(this.$editors)) {
 				for (var i = 0; i < this.$editors.length; i++) {

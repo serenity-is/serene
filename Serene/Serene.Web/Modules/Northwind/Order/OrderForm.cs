@@ -10,6 +10,7 @@ namespace Serene.Northwind.Forms
     [BasedOnRow(typeof(Entities.OrderRow))]
     public class OrderForm
     {
+        [Tab("General")]
         [Category("Order")]
         public String CustomerID { get; set; }
         [DefaultValue("now")]
@@ -21,7 +22,8 @@ namespace Serene.Northwind.Forms
         [OrderDetailsEditor]
         public List<Entities.OrderDetailRow> DetailList { get; set; } 
 
-        [Category("Shipping")]
+        [Tab("Shipping")]
+        [Category("Info")]
         public DateTime ShippedDate { get; set; }
         public Int32 ShipVia { get; set; }
         public Decimal Freight { get; set; }

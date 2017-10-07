@@ -7912,7 +7912,7 @@ section.content > .s-DataGrid {
   width: 415px;
 }
 .s-Northwind-CustomerDialog .categories {
-  height: 400px;
+  height: 380px;
 }
 .s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
   height: 296px;
@@ -7944,7 +7944,7 @@ section.content > .s-DataGrid {
 }
 .s-Northwind-OrderDialog .s-PropertyGrid .categories,
 .s-CustomerOrderDialog .s-PropertyGrid .categories {
-  height: 550px;
+  height: 450px;
 }
 .s-Northwind-OrderDetailDialog > .size {
   min-width: 450px;
