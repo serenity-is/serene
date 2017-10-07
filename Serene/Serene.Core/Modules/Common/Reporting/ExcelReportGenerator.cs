@@ -24,7 +24,7 @@ namespace Serenity.Reporting
                 return package.GetAsByteArray();
         }
 
-        public static ExcelPackage GeneratePackage(List<ReportColumn> columns, IList rows, 
+        public static ExcelPackage GeneratePackage(List<ReportColumn> columns, IList rows,
             string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
         {
             var package = new ExcelPackage();
@@ -67,6 +67,7 @@ namespace Serenity.Reporting
 
             Field[] fields = null;
             TypeAccessor accessor = null;
+            bool[] invalidProperty = null;
 
             var colCount = columns.Count;
 
@@ -98,19 +99,54 @@ namespace Serenity.Reporting
                 }
                 else if (obj != null)
                 {
-                    if (accessor == null)
+                    if (obj is IDictionary || obj is IDictionary<string, object>)
+                    {
+                    }
+                    else if (accessor == null)
+                    {
                         accessor = TypeAccessor.Create(obj.GetType());
+                        invalidProperty = new bool[colCount];
+                        for (var c = 0; c < colCount; c++)
+                            try
+                            {
+                                if (accessor[obj, columns[c].Name] != null)
+                                {
+                                }
+                            }
+                            catch
+                            {
+                                invalidProperty[c] = true;
+                            }
+                    }
                 }
 
                 for (var c = 0; c < colCount; c++)
                 {
                     if (row != null)
                     {
-                        data[c] = fields[c].AsObject(row);
+                        var field = fields[c];
+                        if (!ReferenceEquals(null, field))
+                            data[c] = field.AsObject(row);
+                    }
+                    else if (obj is IDictionary<string, object>)
+                    {
+                        var n = columns[c].Name;
+                        var dict = obj as IDictionary<string, object>;
+                        object v;
+                        if (dict.TryGetValue(n, out v))
+                            data[c] = v;
+                    }
+                    else if (obj is IDictionary)
+                    {
+                        var n = columns[c].Name;
+                        var dict = obj as IDictionary;
+                        if (dict.Contains(n))
+                            data[c] = dict[n];
                     }
                     else if (obj != null)
                     {
-                        data[c] = accessor[obj, columns[c].Name];
+                        if (!invalidProperty[c])
+                            data[c] = accessor[obj, columns[c].Name];
                     }
                 }
 
@@ -167,14 +203,31 @@ namespace Serenity.Reporting
                         decorator.Foreground = Color.Empty;
 #endif
 
-                        object value;
+                        object value = null;
                         if (row != null)
                         {
-                            value = fields[colNum - 1].AsObject(row);
+                            var field = fields[colNum - 1];
+                            if (!ReferenceEquals(null, field))
+                                value = field.AsObject(row);
+                        }
+                        else if (obj is IDictionary<string, object>)
+                        {
+                            var n = col.Name;
+                            var dict = obj as IDictionary<string, object>;
+                            if (!dict.TryGetValue(n, out value))
+                                value = null;
+                        }
+                        else if (obj is IDictionary)
+                        {
+                            var n = col.Name;
+                            var dict = obj as IDictionary;
+                            if (dict.Contains(n))
+                                value = dict[n];
                         }
                         else if (obj != null)
                         {
-                            value = accessor[obj, col.Name];
+                            if (!invalidProperty[colNum - 1])
+                                value = accessor[obj, col.Name];
                         }
                         else
                             continue;
@@ -243,4 +296,4 @@ namespace Serenity.Reporting
             }
         }
     }
-}
+}
