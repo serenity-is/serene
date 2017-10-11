@@ -4,6 +4,7 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DotNetSergen>dotnet sergen</DotNetSergen>
     <DotNetSergen Condition=" '$(TargetFramework)' == 'net461' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe</DotNetSergen>
     <DotNetSergen Condition=" '$(TargetFramework)' == 'netcoreapp2.0' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll')">dotnet ..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll</DotNetSergen>
@@ -57,14 +58,26 @@
     <PlatformTarget>x64</PlatformTarget>
     <DefineConstants>$(DefineConstants);ASPNETCORE</DefineConstants>
   </PropertyGroup>
+  <ItemGroup>
+    <SiteLessSources Include="wwwroot\content\**\*.less"></SiteLessSources>
+    <TSCSources Include="Modules\**\*.ts;Imports\**\*.ts"></TSCSources>
+    <TSCOutputs Include="wwwroot\Scripts\site\*.js"></TSCOutputs>
+  </ItemGroup>
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
     <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) clienttypes" ContinueOnError="true" />
+    <Message Text="Installing NPM packages..." Importance="high"></Message>
     <Exec Command="npm install" />
   </Target>
-  <Target Name="PostcompileScript" AfterTargets="Build">
+  <Target Name="CompileSiteLess" AfterTargets="Build" Inputs="@(SiteLessSources)" Outputs="wwwroot\content\site\site.css">
+    <Message Text="Compiling site.less..." Importance="high"></Message>
     <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css" ContinueOnError="true" />
+  </Target>
+  <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
+  </Target>
+  <Target Name="CompileTSC" AfterTargets="Build" Inputs="@(TSCSources)" Outputs="@(TSCOutputs)">
+    <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
