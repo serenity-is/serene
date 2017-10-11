@@ -17,8 +17,10 @@
                 Module: null,
                 Submodule: null
             }, response => {
-                this.permissions.set_value(response.Entities.map(x => (<UserPermissionRow>{ PermissionKey: x })));
+                this.permissions.value = response.Entities.map(x => (<UserPermissionRow>{ PermissionKey: x }));
             });
+
+            this.permissions.implicitPermissions = Q.getRemoteData('Administration.ImplicitPermissions');
         }
 
         protected getDialogOptions(): JQueryUI.DialogOptions {
@@ -30,7 +32,7 @@
                     click: e => {
                         RolePermissionService.Update({
                             RoleID: this.options.roleID,
-                            Permissions: this.permissions.get_value().map(x => x.PermissionKey),
+                            Permissions: this.permissions.value.map(x => x.PermissionKey),
                             Module: null,
                             Submodule: null
                         }, response => {

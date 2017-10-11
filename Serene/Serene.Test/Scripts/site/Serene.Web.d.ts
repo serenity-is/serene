@@ -2887,7 +2887,6 @@ declare namespace Serene.Administration {
         protected getIdProperty(): string;
         private searchText;
         private byParentKey;
-        private rolePermissions;
         constructor(container: JQuery, opt: PermissionCheckEditorOptions);
         private getItemGrantRevokeClass(item, grant);
         private getItemEffectiveClass(item);
@@ -2902,10 +2901,11 @@ declare namespace Serene.Administration {
         protected getButtons(): Serenity.ToolButton[];
         protected createToolbarExtensions(): void;
         private getSortedGroupAndPermissionKeys(titleByKey);
-        get_value(): UserPermissionRow[];
-        set_value(value: UserPermissionRow[]): void;
-        get_rolePermissions(): string[];
-        set_rolePermissions(value: string[]): void;
+        value: UserPermissionRow[];
+        private _rolePermissions;
+        rolePermissions: string[];
+        private _implicitPermissions;
+        implicitPermissions: Q.Dictionary<string[]>;
     }
     interface PermissionCheckEditorOptions {
         showRevoke?: boolean;

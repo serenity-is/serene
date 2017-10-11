@@ -11,8 +11,9 @@ namespace Serene.Northwind
         [DisplayName("Customers")]
         public class Customer
         {
+            [ImplicitPermission(General), ImplicitPermission(View)]
             public const string Delete = "Northwind:Customer:Delete";
-            [Description("Create/Update")]
+            [Description("Create/Update"), ImplicitPermission(General), ImplicitPermission(View)]
             public const string Modify = "Northwind:Customer:Modify";
             public const string View = "Northwind:Customer:View";
         }

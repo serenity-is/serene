@@ -7041,8 +7041,8 @@ section.content > .s-DataGrid {
 .s-UserPermissionDialog > .size,
 .s-RolePermissionDialog > .size,
 .s-UserRoleDialog > .size {
-  min-width: 650px;
-  width: 650px;
+  min-width: 670px;
+  width: 670px;
   min-height: 450px;
   height: 450px;
 }

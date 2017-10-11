@@ -4,6 +4,7 @@ namespace Serene.Administration.Endpoints
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Services;
+    using System.Collections.Generic;
     using System.Data;
     using System.Web.Mvc;
     using MyRepository = Repositories.UserPermissionRepository;
@@ -33,6 +34,12 @@ namespace Serene.Administration.Endpoints
         public ListResponse<string> ListPermissionKeys()
         {
             return new MyRepository().ListPermissionKeys();
+        }
+
+        [DataScript("Administration.ImplicitPermissions"), NonAction]
+        public Dictionary<string, HashSet<string>> ListImplicitPermissions()
+        {
+            return new MyRepository().ImplicitPermissions;
         }
     }
 }

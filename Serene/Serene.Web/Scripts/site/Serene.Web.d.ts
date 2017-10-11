@@ -2851,6 +2851,10 @@ declare namespace Serene.Administration {
         protected usePager(): boolean;
     }
 }
+declare namespace Serene.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
 declare namespace Serene.Administration {
     class UserDialog extends Serenity.EntityDialog<UserRow, any> {
         protected getFormKey(): string;
@@ -2878,18 +2882,14 @@ declare namespace Serene.Administration {
         protected getDefaultSortBy(): string[];
     }
 }
-declare namespace Serene.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
-}
 declare namespace Serene.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
         protected getIdProperty(): string;
         private searchText;
         private byParentKey;
-        private rolePermissions;
         constructor(container: JQuery, opt: PermissionCheckEditorOptions);
         private getItemGrantRevokeClass(item, grant);
+        private roleOrImplicit(key);
         private getItemEffectiveClass(item);
         protected getColumns(): Slick.Column[];
         setItems(items: PermissionCheckItem[]): void;
@@ -2902,10 +2902,11 @@ declare namespace Serene.Administration {
         protected getButtons(): Serenity.ToolButton[];
         protected createToolbarExtensions(): void;
         private getSortedGroupAndPermissionKeys(titleByKey);
-        get_value(): UserPermissionRow[];
-        set_value(value: UserPermissionRow[]): void;
-        get_rolePermissions(): string[];
-        set_rolePermissions(value: string[]): void;
+        value: UserPermissionRow[];
+        private _rolePermissions;
+        rolePermissions: string[];
+        private _implicitPermissions;
+        implicitPermissions: Q.Dictionary<string[]>;
     }
     interface PermissionCheckEditorOptions {
         showRevoke?: boolean;
@@ -3913,11 +3914,6 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
-declare namespace Serene.LanguageList {
-    function getValue(): string[][];
-}
-declare namespace Serene.ScriptInitialization {
-}
 declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();
@@ -3955,6 +3951,9 @@ declare namespace Serene.Common {
     namespace ExcelExportHelper {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
     }
+}
+declare namespace Serene.LanguageList {
+    function getValue(): string[][];
 }
 declare namespace Serene.Common {
     class LanguageSelection extends Serenity.Widget<any> {
@@ -4053,6 +4052,8 @@ declare namespace Serene.Common {
         protected categoryClick(e: any): void;
         protected reportLinkClick(e: any): void;
     }
+}
+declare namespace Serene.ScriptInitialization {
 }
 declare namespace Serene.Common {
     class UserPreferenceStorage implements Serenity.SettingStorage {
@@ -4254,13 +4255,6 @@ declare namespace Serene.Meeting {
     }
 }
 declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         protected getFormKey(): string;
         private form;
@@ -4269,6 +4263,13 @@ declare namespace Serene.Membership {
 }
 declare namespace Serene.Membership {
     class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);

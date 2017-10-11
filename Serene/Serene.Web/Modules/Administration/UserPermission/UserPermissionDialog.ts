@@ -17,7 +17,7 @@
                 Module: null,
                 Submodule: null
             }, response => {
-                this.permissions.set_value(response.Entities);
+                this.permissions.value = response.Entities;
             });
 
             UserPermissionService.ListRolePermissions({
@@ -25,8 +25,10 @@
                 Module: null,
                 Submodule: null,
             }, response => {
-                this.permissions.set_rolePermissions(response.Entities);
+                this.permissions.rolePermissions = response.Entities;
             });
+
+            this.permissions.implicitPermissions = Q.getRemoteData('Administration.ImplicitPermissions');
         }
 
         protected getDialogOptions(): JQueryUI.DialogOptions {
@@ -38,7 +40,7 @@
                     click: e => {
                         UserPermissionService.Update({
                             UserID: this.options.userID,
-                            Permissions: this.permissions.get_value(),
+                            Permissions: this.permissions.value,
                             Module: null,
                             Submodule: null
                         }, response => {
