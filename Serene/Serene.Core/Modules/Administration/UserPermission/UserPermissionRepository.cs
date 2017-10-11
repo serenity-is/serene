@@ -5,7 +5,7 @@ namespace Serene.Administration.Repositories
     using Serenity;
     using Serenity.Data;
     using Serenity.Extensibility;
-	using Serenity.Localization;
+    using Serenity.Localization;
     using Serenity.Services;
     using Serenity.Web;
     using System;
@@ -250,6 +250,59 @@ namespace Serene.Administration.Repositories
                     Entities = new List<string>(result)
                 };
             });
+        }
+
+        public Dictionary<string, HashSet<string>> ImplicitPermissions
+        {
+            get
+            {
+                return LocalCache.Get("ImplicitPermissions", TimeSpan.Zero, () =>
+                {
+                    var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+                    Action<Type> addFrom = null;
+                    addFrom = (type) =>
+                    {
+                        foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
+                            BindingFlags.Public | BindingFlags.NonPublic))
+                        {
+                            if (member.FieldType != typeof(String))
+                                continue;
+
+                            var key = member.GetValue(null) as string;
+                            if (key == null)
+                                continue;
+
+                            foreach (var attr in member.GetCustomAttributes<ImplicitPermissionAttribute>())
+                            {
+                                HashSet<string> list;
+                                if (!result.TryGetValue(key, out list))
+                                {
+                                    list = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                                    result[key] = list;
+                                }
+
+                                list.Add(attr.Value);
+                            }
+                        }
+
+                        foreach (var nested in type.GetNestedTypes(BindingFlags.Public | BindingFlags.DeclaredOnly))
+                            addFrom(nested);
+                    };
+
+                    foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
+                    {
+                        foreach (var type in assembly.GetTypes())
+                        {
+                            var attr = type.GetCustomAttribute<NestedPermissionKeysAttribute>();
+                            if (attr != null)
+                                addFrom(type);
+                        }
+                    }
+
+                    return result;
+                });
+            }
         }
     }
 }

@@ -7721,8 +7721,8 @@ section.content > .s-DataGrid {
 .s-UserPermissionDialog > .size,
 .s-RolePermissionDialog > .size,
 .s-UserRoleDialog > .size {
-  min-width: 650px;
-  width: 650px;
+  min-width: 670px;
+  width: 670px;
   min-height: 450px;
   height: 450px;
 }
@@ -8568,39 +8568,11 @@ section.content > .s-DataGrid {
 .s-Northwind-CustomerDialog .ui-dialog-content {
   overflow: hidden;
 }
-.s-Northwind-CustomerDialog .tab-pane {
-  height: auto;
-}
 .s-Northwind-CustomerDialog .caption {
-  width: 150px;
-}
-.s-Northwind-CustomerDialog .editor {
-  width: 600px;
-}
-.s-Northwind-CustomerDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.dateQ {
-  width: 576px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 481px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.has-inplace-button {
-  width: 574px;
-}
-.s-Northwind-CustomerDialog .s-Form .emaildomain {
-  width: 415px;
+  width: 130px;
 }
 .s-Northwind-CustomerDialog .categories {
-  height: 400px;
+  height: 380px;
 }
 .s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
   height: 296px;
@@ -8632,7 +8604,7 @@ section.content > .s-DataGrid {
 }
 .s-Northwind-OrderDialog .s-PropertyGrid .categories,
 .s-CustomerOrderDialog .s-PropertyGrid .categories {
-  height: 550px;
+  height: 450px;
 }
 .s-Northwind-OrderDetailDialog > .size {
   min-width: 450px;

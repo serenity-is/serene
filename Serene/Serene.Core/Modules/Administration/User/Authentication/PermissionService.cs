@@ -6,6 +6,7 @@
     using Serenity.Data;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class PermissionService : IPermissionService
     {
@@ -47,6 +48,15 @@
                             .Where(new Criteria(fld.UserId) == userId))
                         .ForEach(x => result[x.PermissionKey] = x.Granted ?? true);
 
+                    var implicitPermissions = new Repositories.UserPermissionRepository().ImplicitPermissions;
+                    foreach (var pair in result.ToArray())
+                    {
+                        HashSet<string> list;
+                        if (pair.Value && implicitPermissions.TryGetValue(pair.Key, out list))
+                            foreach (var x in list)
+                                result.Add(x, true);
+                    }
+
                     return result;
                 }
             });
@@ -66,6 +76,15 @@
                             .Select(fld.PermissionKey)
                             .Where(new Criteria(fld.RoleId) == userId))
                         .ForEach(x => result.Add(x.PermissionKey));
+
+                    var implicitPermissions = new Repositories.UserPermissionRepository().ImplicitPermissions;
+                    foreach (var key in result.ToArray())
+                    {
+                        HashSet<string> list;
+                        if (implicitPermissions.TryGetValue(key, out list))
+                            foreach (var x in list)
+                                result.Add(x);
+                    }
 
                     return result;
                 }

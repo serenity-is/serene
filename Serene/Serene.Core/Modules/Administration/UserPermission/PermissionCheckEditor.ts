@@ -7,7 +7,6 @@
 
         private searchText: string;
         private byParentKey: Q.Grouping<PermissionCheckItem>;
-        private rolePermissions: Q.Dictionary<boolean> = {};
 
         constructor(container: JQuery, opt: PermissionCheckEditorOptions) {
             super(container, opt);
@@ -45,12 +44,32 @@
             return 'checked partial';
         }
 
+        private roleOrImplicit(key): boolean {
+            if (this._rolePermissions[key])
+                return true;
+
+            for (var k of Object.keys(this._rolePermissions)) {
+                var d = this._implicitPermissions[k];
+                if (d && d[key])
+                    return true;
+            }
+
+            for (var i of Object.keys(this._implicitPermissions)) {
+                var item = this.view.getItemById(i);
+                if (item && item.GrantRevoke == true) {
+                    var d = this._implicitPermissions[i];
+                    if (d && d[key])
+                        return true;
+                }
+            }
+        }
+
         private getItemEffectiveClass(item: PermissionCheckItem): string {
 
             if (item.IsGroup) {
                 let desc = this.getDescendants(item, true);
                 let grantCount = Q.count(desc, x => x.GrantRevoke === true ||
-                    (x.GrantRevoke == null && this.rolePermissions[x.Key]));
+                    (x.GrantRevoke == null && this.roleOrImplicit(x.Key)));
 
                 if (grantCount === desc.length || desc.length === 0) {
                     return 'allow';
@@ -64,7 +83,7 @@
             }
 
             let granted = item.GrantRevoke === true ||
-                (item.GrantRevoke == null && this.rolePermissions[item.Key]);
+                (item.GrantRevoke == null && this.roleOrImplicit(item.Key));
 
             return (granted ? ' allow' : ' deny');
         }
@@ -268,7 +287,7 @@
             return keys;
         }
 
-        get_value(): UserPermissionRow[] {
+        get value(): UserPermissionRow[] {
 
             let result: UserPermissionRow[] = [];
 
@@ -281,7 +300,7 @@
             return result;
         }
 
-        set_value(value: UserPermissionRow[]) {
+        set value(value: UserPermissionRow[]) {
 
             for (let item of this.view.getItems()) {
                 item.GrantRevoke = null;
@@ -299,20 +318,39 @@
             this.setItems(this.getItems());
         }
 
-        get_rolePermissions(): string[] {
-            return Object.keys(this.rolePermissions);
+        private _rolePermissions: Q.Dictionary<boolean> = {};
+
+        get rolePermissions(): string[] {
+            return Object.keys(this._rolePermissions);
         }
 
-        set_rolePermissions(value: string[]) {
-            this.rolePermissions = {};
+        set rolePermissions(value: string[]) {
+            this._rolePermissions = {};
 
             if (value) {
                 for (let k of value) {
-                    this.rolePermissions[k] = true;
+                    this._rolePermissions[k] = true;
                 }
             }
 
             this.setItems(this.getItems());
+        }
+
+        private _implicitPermissions: Q.Dictionary<Q.Dictionary<boolean>> = {};
+
+        set implicitPermissions(value: Q.Dictionary<string[]>) {
+            this._implicitPermissions = {};
+
+            if (value) {
+                for (var k of Object.keys(value)) {
+                    this._implicitPermissions[k] = this._implicitPermissions[k] || {};
+                    var l = value[k];
+                    if (l) {
+                        for (var s of l)
+                            this._implicitPermissions[k][s] = true;
+                    }
+                }
+            }
         }
     }
 

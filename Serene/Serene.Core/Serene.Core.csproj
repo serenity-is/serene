@@ -4,6 +4,9 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <DotNetSergen>dotnet sergen</DotNetSergen>
+    <DotNetSergen Condition=" '$(TargetFramework)' == 'net461' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe</DotNetSergen>
+    <DotNetSergen Condition=" '$(TargetFramework)' == 'netcoreapp2.0' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll')">dotnet ..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll</DotNetSergen>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
@@ -55,13 +58,13 @@
     <DefineConstants>$(DefineConstants);ASPNETCORE</DefineConstants>
   </PropertyGroup>
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-    <Exec Command="dotnet sergen mvc" ContinueOnError="true" />
-    <Exec Command="dotnet sergen clienttypes" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) clienttypes" ContinueOnError="true" />
     <Exec Command="npm install" />
   </Target>
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css" ContinueOnError="true" />
-    <Exec Command="dotnet sergen servertypings" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
