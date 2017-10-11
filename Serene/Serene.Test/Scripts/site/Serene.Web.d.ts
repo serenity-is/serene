@@ -2889,6 +2889,7 @@ declare namespace Serene.Administration {
         private byParentKey;
         constructor(container: JQuery, opt: PermissionCheckEditorOptions);
         private getItemGrantRevokeClass(item, grant);
+        private roleOrImplicit(key);
         private getItemEffectiveClass(item);
         protected getColumns(): Slick.Column[];
         setItems(items: PermissionCheckItem[]): void;

@@ -1362,6 +1362,76 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     margin: 12px 10px 8px 0;
   }
 }
+.flex-layout .col-xs-1.field,
+.flex-layout .col-xs-2.field,
+.flex-layout .col-xs-3.field,
+.flex-layout .col-xs-4.field,
+.flex-layout .col-xs-5.field,
+.flex-layout .col-xs-6.field,
+.flex-layout .col-xs-7.field,
+.flex-layout .col-xs-8.field,
+.flex-layout .col-xs-9.field,
+.flex-layout .col-xs-10.field,
+.flex-layout .col-xs-11.field,
+.flex-layout .col-xs-12.field {
+  -webkit-box-flex: 0;
+  -moz-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+  -moz-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -ms-flex-positive: 0;
+  -ms-flex-negative: 1;
+  -ms-flex-preferred-size: auto;
+}
+@media (min-width: 768px) {
+  .flex-layout .col-sm-1.field,
+  .flex-layout .col-sm-2.field,
+  .flex-layout .col-sm-3.field,
+  .flex-layout .col-sm-4.field,
+  .flex-layout .col-sm-5.field,
+  .flex-layout .col-sm-6.field,
+  .flex-layout .col-sm-7.field,
+  .flex-layout .col-sm-8.field,
+  .flex-layout .col-sm-9.field,
+  .flex-layout .col-sm-10.field,
+  .flex-layout .col-sm-11.field,
+  .flex-layout .col-sm-12.field {
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -moz-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-positive: 0;
+    -ms-flex-negative: 1;
+    -ms-flex-preferred-size: auto;
+  }
+}
+@media (min-width: 1200px) {
+  .flex-layout .col-lg-1.field,
+  .flex-layout .col-lg-2.field,
+  .flex-layout .col-lg-3.field,
+  .flex-layout .col-lg-4.field,
+  .flex-layout .col-lg-5.field,
+  .flex-layout .col-lg-6.field,
+  .flex-layout .col-lg-7.field,
+  .flex-layout .col-lg-8.field,
+  .flex-layout .col-lg-9.field,
+  .flex-layout .col-lg-10.field,
+  .flex-layout .col-lg-11.field,
+  .flex-layout .col-lg-12.field {
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -moz-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-positive: 0;
+    -ms-flex-negative: 1;
+    -ms-flex-preferred-size: auto;
+  }
+}
 body.mobile-device.modal-dialog-open {
   overflow-y: hidden;
 }

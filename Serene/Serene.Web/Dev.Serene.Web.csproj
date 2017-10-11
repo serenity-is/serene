@@ -1948,6 +1948,7 @@
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListResponse.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionListRequest.cs" />
     <Compile Include="Modules\Administration\AdministrationPermissionKeys.cs" />
+    <Compile Include="Modules\Administration\UserPermission\ImplicitPermissionAttribute.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionListRequest.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionUpdateRequest.cs" />
     <Compile Include="Modules\Administration\UserRole\UserRoleUpdateRequest.cs" />

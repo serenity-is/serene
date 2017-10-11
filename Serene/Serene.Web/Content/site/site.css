@@ -7880,36 +7880,8 @@ section.content > .s-DataGrid {
 .s-Northwind-CustomerDialog .ui-dialog-content {
   overflow: hidden;
 }
-.s-Northwind-CustomerDialog .tab-pane {
-  height: auto;
-}
 .s-Northwind-CustomerDialog .caption {
-  width: 150px;
-}
-.s-Northwind-CustomerDialog .editor {
-  width: 600px;
-}
-.s-Northwind-CustomerDialog input.editor[type=checkbox] {
-  width: auto;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.dateQ {
-  width: 576px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.emailuser {
-  width: 170px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.dateQ.s-DateTimeEditor {
-  width: 481px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
-  width: 64px;
-  margin-left: 4px;
-}
-.s-Northwind-CustomerDialog .s-Form .editor.has-inplace-button {
-  width: 574px;
-}
-.s-Northwind-CustomerDialog .s-Form .emaildomain {
-  width: 415px;
+  width: 130px;
 }
 .s-Northwind-CustomerDialog .categories {
   height: 380px;
