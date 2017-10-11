@@ -184,7 +184,10 @@ Task("PrepareVSIX")
             "Serenity.Web"
         },
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
-        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
+        ArgumentCustomization = args => {
+			return args.Append("-FileConflictAction Overwrite")
+				.Append(@"-MsBuildPath ""C:\Program Files (x86)\MsBuild\14.0\Bin""");
+		}
     });
 
     NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
@@ -192,7 +195,10 @@ Task("PrepareVSIX")
             "Serenity.CodeGenerator"
         },
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
-        ArgumentCustomization = args => args.Append("-FileConflictAction Overwrite")
+        ArgumentCustomization = args => {
+			return args.Append("-FileConflictAction Overwrite")
+				.Append(@"-MsBuildPath ""C:\Program Files (x86)\MsBuild\14.0\Bin""");
+		}
     });
 	
     MSBuild("./Serene.Web.sln", s => {

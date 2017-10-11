@@ -1429,7 +1429,7 @@
 			}
 		}
 		if (!ss.keyExists($Serenity_EnumTypeRegistry.$knownTypes, key)) {
-			throw new ss.Exception(ss.formatString("Can't find {0} enum type!", key));
+			throw new ss.Exception(ss.formatString("Can't find {0} enum type! If you have recently defined this enum type in server side code, make sure your project builds successfully and transform T4 templates. Also make sure that enum is under your project root namespace, and your namespace parts starts with capital letters, e.g. MyProject.Pascal.Cased namespace", key));
 		}
 		return $Serenity_EnumTypeRegistry.$knownTypes[key];
 	};
@@ -5215,6 +5215,7 @@
 			}
 			if (ss.isValue(this.slickGrid)) {
 				this.slickGrid.resizeCanvas();
+				this.slickGrid.invalidate();
 			}
 		},
 		getInitialTitle: function() {
@@ -9732,6 +9733,9 @@
 			if (!ss.isNullOrEmptyString(item.cssClass)) {
 				fieldDiv.addClass(item.cssClass);
 			}
+			if (!ss.isNullOrEmptyString(item.formCssClass)) {
+				fieldDiv.addClass(item.formCssClass);
+			}
 			var editorId = this.options.idPrefix + item.name;
 			var title = this.$determineText(item.title, function(prefix) {
 				return prefix + item.name;
@@ -9748,6 +9752,14 @@
 				$t1 = ss.coalesce(title, '');
 			}
 			var label = $t2.attr('title', $t1).html(ss.coalesce(title, '')).appendTo(fieldDiv);
+			if (!ss.isNullOrEmptyString(item.labelWidth)) {
+				if (item.labelWidth === '0') {
+					label.hide();
+				}
+				else {
+					label.css('width', item.labelWidth);
+				}
+			}
 			if (item.required === true) {
 				$('<sup>*</sup>').attr('title', Q.text('Controls.PropertyGrid.RequiredHint')).prependTo(label);
 			}

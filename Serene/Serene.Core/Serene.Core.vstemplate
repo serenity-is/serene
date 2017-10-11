@@ -339,6 +339,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRow.cs">UserRow.cs</ProjectItem>
           </Folder>
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ImplicitPermissionAttribute.cs">ImplicitPermissionAttribute.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PermissionCheckEditor.ts">PermissionCheckEditor.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionDialog.ts">UserPermissionDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionEndpoint.cs">UserPermissionEndpoint.cs</ProjectItem>
