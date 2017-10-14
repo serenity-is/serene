@@ -19,7 +19,9 @@
             export declare const RegionDescription: string;
         }
 
-        ['RegionID', 'RegionDescription'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'RegionID', 
+            'RegionDescription'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

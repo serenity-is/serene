@@ -18,7 +18,11 @@
             export declare const ProductName: string;
         }
 
-        ['Id', 'ProductId', 'LanguageId', 'ProductName'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'Id', 
+            'ProductId', 
+            'LanguageId', 
+            'ProductName'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

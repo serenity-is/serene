@@ -43,7 +43,24 @@
             export declare const ContactUserId: string;
         }
 
-        ['AgendaRelevantId', 'AgendaId', 'ContactId', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'AgendaRelevantId', 
+            'AgendaId', 
+            'ContactId', 
+            'AgendaMeetingId', 
+            'AgendaAgendaNumber', 
+            'AgendaTitle', 
+            'AgendaDescription', 
+            'AgendaAgendaTypeId', 
+            'AgendaRequestedByContactId', 
+            'AgendaImages', 
+            'AgendaAttachments', 
+            'ContactTitle', 
+            'ContactFirstName', 
+            'ContactLastName', 
+            'ContactEmail', 
+            'ContactIdentityNo', 
+            'ContactUserId'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

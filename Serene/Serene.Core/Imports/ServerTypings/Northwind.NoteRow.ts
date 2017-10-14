@@ -24,7 +24,14 @@
             export declare const InsertUserDisplayName: string;
         }
 
-        ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'NoteId', 
+            'EntityType', 
+            'EntityId', 
+            'Text', 
+            'InsertUserId', 
+            'InsertDate', 
+            'InsertUserDisplayName'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

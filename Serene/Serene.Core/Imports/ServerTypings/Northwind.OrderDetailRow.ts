@@ -47,7 +47,26 @@
             export declare const LineTotal: string;
         }
 
-        ['DetailID', 'OrderID', 'ProductID', 'UnitPrice', 'Quantity', 'Discount', 'OrderCustomerID', 'OrderEmployeeID', 'OrderDate', 'OrderShippedDate', 'OrderShipVia', 'OrderShipCity', 'OrderShipCountry', 'ProductName', 'ProductDiscontinued', 'ProductSupplierID', 'ProductQuantityPerUnit', 'ProductUnitPrice', 'LineTotal'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'DetailID', 
+            'OrderID', 
+            'ProductID', 
+            'UnitPrice', 
+            'Quantity', 
+            'Discount', 
+            'OrderCustomerID', 
+            'OrderEmployeeID', 
+            'OrderDate', 
+            'OrderShippedDate', 
+            'OrderShipVia', 
+            'OrderShipCity', 
+            'OrderShipCountry', 
+            'ProductName', 
+            'ProductDiscontinued', 
+            'ProductSupplierID', 
+            'ProductQuantityPerUnit', 
+            'ProductUnitPrice', 
+            'LineTotal'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

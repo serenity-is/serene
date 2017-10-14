@@ -19,6 +19,12 @@
             export declare const GrossAmount: string;
         }
 
-        ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'CustomerId', 
+            'ContactName', 
+            'ProductId', 
+            'ProductName', 
+            'GrossAmount'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

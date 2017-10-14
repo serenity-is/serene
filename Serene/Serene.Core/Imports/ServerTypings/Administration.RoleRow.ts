@@ -19,7 +19,9 @@
             export declare const RoleName: string;
         }
 
-        ['RoleId', 'RoleName'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'RoleId', 
+            'RoleName'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

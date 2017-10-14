@@ -22,7 +22,13 @@
             export declare const User: string;
         }
 
-        ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'UserPermissionId', 
+            'UserId', 
+            'PermissionKey', 
+            'Granted', 
+            'Username', 
+            'User'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

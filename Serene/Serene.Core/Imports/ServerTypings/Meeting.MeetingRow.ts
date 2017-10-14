@@ -78,7 +78,41 @@
             export declare const UpdateDate: string;
         }
 
-        ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'AttendeeList', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'MeetingId', 
+            'MeetingName', 
+            'MeetingNumber', 
+            'MeetingGuid', 
+            'MeetingTypeId', 
+            'StartDate', 
+            'EndDate', 
+            'LocationId', 
+            'UnitId', 
+            'OrganizerContactId', 
+            'ReporterContactId', 
+            'MeetingTypeName', 
+            'LocationName', 
+            'UnitName', 
+            'UnitParentUnitId', 
+            'OrganizerContactTitle', 
+            'OrganizerContactFirstName', 
+            'OrganizerContactLastName', 
+            'OrganizerContactFullName', 
+            'OrganizerContactEmail', 
+            'OrganizerContactIdentityNo', 
+            'OrganizerContactUserId', 
+            'ReporterContactTitle', 
+            'ReporterContactFirstName', 
+            'ReporterContactLastName', 
+            'ReporterContactFullName', 
+            'ReporterContactEmail', 
+            'ReporterContactIdentityNo', 
+            'ReporterContactUserId', 
+            'AttendeeList', 
+            'InsertUserId', 
+            'InsertDate', 
+            'UpdateUserId', 
+            'UpdateDate'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

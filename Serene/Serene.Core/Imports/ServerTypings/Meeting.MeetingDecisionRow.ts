@@ -90,6 +90,47 @@
             export declare const ResponsibleContactUserId: string;
         }
 
-        ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactFullName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'DecisionId', 
+            'MeetingId', 
+            'AgendaId', 
+            'Description', 
+            'DecisionNumber', 
+            'ResponsibleContactId', 
+            'DueDate', 
+            'ResolutionStatus', 
+            'Images', 
+            'Attachments', 
+            'MeetingMeetingName', 
+            'MeetingMeetingNumber', 
+            'MeetingMeetingGuid', 
+            'MeetingMeetingTypeId', 
+            'MeetingStartDate', 
+            'MeetingEndDate', 
+            'MeetingLocationId', 
+            'MeetingUnitId', 
+            'MeetingOrganizerContactId', 
+            'MeetingReporterContactId', 
+            'MeetingInsertUserId', 
+            'MeetingInsertDate', 
+            'MeetingUpdateUserId', 
+            'MeetingUpdateDate', 
+            'AgendaMeetingId', 
+            'AgendaNumber', 
+            'AgendaTitle', 
+            'AgendaDescription', 
+            'AgendaAgendaTypeId', 
+            'AgendaRequestedByContactId', 
+            'AgendaImages', 
+            'AgendaAttachments', 
+            'DecisionNumberName', 
+            'ResponsibleContactTitle', 
+            'ResponsibleContactFirstName', 
+            'ResponsibleContactLastName', 
+            'ResponsibleContactFullName', 
+            'ResponsibleContactEmail', 
+            'ResponsibleContactIdentityNo', 
+            'ResponsibleContactUserId'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

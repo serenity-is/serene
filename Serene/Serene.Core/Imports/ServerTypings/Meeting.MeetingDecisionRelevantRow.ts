@@ -45,7 +45,25 @@
             export declare const ContactUserId: string;
         }
 
-        ['DecisionRelevantId', 'DecisionId', 'ContactId', 'DecisionMeetingId', 'DecisionAgendaId', 'DecisionDescription', 'DecisionDecisionNumber', 'DecisionResponsibleContactId', 'DecisionDueDate', 'DecisionResolutionStatus', 'DecisionImages', 'DecisionAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'DecisionRelevantId', 
+            'DecisionId', 
+            'ContactId', 
+            'DecisionMeetingId', 
+            'DecisionAgendaId', 
+            'DecisionDescription', 
+            'DecisionDecisionNumber', 
+            'DecisionResponsibleContactId', 
+            'DecisionDueDate', 
+            'DecisionResolutionStatus', 
+            'DecisionImages', 
+            'DecisionAttachments', 
+            'ContactTitle', 
+            'ContactFirstName', 
+            'ContactLastName', 
+            'ContactEmail', 
+            'ContactIdentityNo', 
+            'ContactUserId'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

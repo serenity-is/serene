@@ -18,10 +18,18 @@
             export declare const List: string;
         }
 
-        ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(x => {
-            (<any>UserService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'Create', 
+            'Update', 
+            'Delete', 
+            'Undelete', 
+            'Retrieve', 
+            'List'
+        ].forEach(x => {
+            (<any>UserService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }
-

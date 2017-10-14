@@ -72,6 +72,38 @@
             export declare const RequestedByContactUserId: string;
         }
 
-        ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactFullName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'AgendaId', 
+            'MeetingId', 
+            'AgendaNumber', 
+            'Title', 
+            'Description', 
+            'AgendaTypeId', 
+            'RequestedByContactId', 
+            'Images', 
+            'Attachments', 
+            'MeetingMeetingName', 
+            'MeetingMeetingNumber', 
+            'MeetingMeetingGuid', 
+            'MeetingMeetingTypeId', 
+            'MeetingStartDate', 
+            'MeetingEndDate', 
+            'MeetingLocationId', 
+            'MeetingUnitId', 
+            'MeetingOrganizerContactId', 
+            'MeetingReporterContactId', 
+            'MeetingInsertUserId', 
+            'MeetingInsertDate', 
+            'MeetingUpdateUserId', 
+            'MeetingUpdateDate', 
+            'AgendaTypeName', 
+            'RequestedByContactTitle', 
+            'RequestedByContactFirstName', 
+            'RequestedByContactLastName', 
+            'RequestedByContactFullName', 
+            'RequestedByContactEmail', 
+            'RequestedByContactIdentityNo', 
+            'RequestedByContactUserId'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

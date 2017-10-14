@@ -19,7 +19,9 @@
             export declare const Name: string;
         }
 
-        ['MeetingTypeId', 'Name'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'MeetingTypeId', 
+            'Name'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

@@ -54,7 +54,29 @@
             export declare const LastContactedByPhotoPath: string;
         }
 
-        ['Id', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin', 'LastContactedByLastName', 'LastContactedByFirstName', 'LastContactedByTitle', 'LastContactedByTitleOfCourtesy', 'LastContactedByBirthDate', 'LastContactedByHireDate', 'LastContactedByAddress', 'LastContactedByCity', 'LastContactedByRegion', 'LastContactedByPostalCode', 'LastContactedByCountry', 'LastContactedByHomePhone', 'LastContactedByExtension', 'LastContactedByPhoto', 'LastContactedByNotes', 'LastContactedByReportsTo', 'LastContactedByPhotoPath'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'Id', 
+            'LastContactDate', 
+            'LastContactedBy', 
+            'Email', 
+            'SendBulletin', 
+            'LastContactedByLastName', 
+            'LastContactedByFirstName', 
+            'LastContactedByTitle', 
+            'LastContactedByTitleOfCourtesy', 
+            'LastContactedByBirthDate', 
+            'LastContactedByHireDate', 
+            'LastContactedByAddress', 
+            'LastContactedByCity', 
+            'LastContactedByRegion', 
+            'LastContactedByPostalCode', 
+            'LastContactedByCountry', 
+            'LastContactedByHomePhone', 
+            'LastContactedByExtension', 
+            'LastContactedByPhoto', 
+            'LastContactedByNotes', 
+            'LastContactedByReportsTo', 
+            'LastContactedByPhotoPath'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

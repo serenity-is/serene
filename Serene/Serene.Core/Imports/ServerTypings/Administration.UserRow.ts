@@ -48,7 +48,23 @@
             export declare const UpdateDate: string;
         }
 
-        ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'UserId', 
+            'Username', 
+            'Source', 
+            'PasswordHash', 
+            'PasswordSalt', 
+            'DisplayName', 
+            'Email', 
+            'UserImage', 
+            'LastDirectoryUpdate', 
+            'IsActive', 
+            'Password', 
+            'PasswordConfirm', 
+            'InsertUserId', 
+            'InsertDate', 
+            'UpdateUserId', 
+            'UpdateDate'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
-

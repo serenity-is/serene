@@ -12,8 +12,14 @@
             export declare const Generate: string;
         }
 
-        ['ListConnections', 'ListTables', 'Generate'].forEach(x => {
-            (<any>SergenService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'ListConnections', 
+            'ListTables', 
+            'Generate'
+        ].forEach(x => {
+            (<any>SergenService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }

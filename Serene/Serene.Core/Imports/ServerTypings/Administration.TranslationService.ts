@@ -10,10 +10,14 @@
             export declare const Update: string;
         }
 
-        ['List', 'Update'].forEach(x => {
-            (<any>TranslationService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'List', 
+            'Update'
+        ].forEach(x => {
+            (<any>TranslationService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }
-
