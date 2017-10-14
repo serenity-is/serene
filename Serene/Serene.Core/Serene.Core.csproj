@@ -67,8 +67,7 @@
     <TSCOutputs Include="wwwroot\Scripts\site\*.js"></TSCOutputs>
   </ItemGroup>
   <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-    <Exec Command="$(DotNetSergen) mvc" ContinueOnError="true" />
-    <Exec Command="$(DotNetSergen) clienttypes" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
     <Message Text="Installing NPM packages..." Importance="high"></Message>
     <Exec Command="npm install" />
   </Target>
