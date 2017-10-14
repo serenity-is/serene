@@ -41,3 +41,4 @@ Serene/Serene.Core/appsettings.*.machine.json
 .vs/
 /Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.d.ts
 /Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.js
+Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
