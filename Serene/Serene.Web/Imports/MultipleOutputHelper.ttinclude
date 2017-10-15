@@ -36,6 +36,7 @@ class Manager {
     private ITextTemplatingEngineHost host;
     private StringBuilder template;
     protected List<String> generatedFileNames = new List<String>();
+	public bool AnyChanges;
 
     public static Manager Create(ITextTemplatingEngineHost host, StringBuilder template) {
         return (host is IServiceProvider) ? new VSManager(host, template) : new Manager(host, template);
@@ -88,8 +89,10 @@ class Manager {
     }
 
     protected virtual void CreateFile(String fileName, String content) {
-        if (IsFileContentDifferent(fileName, content))
+        if (IsFileContentDifferent(fileName, content)) {
             File.WriteAllText(fileName, content, utf8);
+            AnyChanges = true;
+        }
     }
 
     public virtual String GetCustomToolNamespace(String fileName) {
@@ -101,7 +104,11 @@ class Manager {
     }
 
     protected bool IsFileContentDifferent(String fileName, String newContent) {
-        return !(File.Exists(fileName) && File.ReadAllText(fileName) == newContent);
+        if (!File.Exists(fileName))
+            return true;
+
+        var oldContent = File.ReadAllText(fileName, utf8);
+        return oldContent.Trim().Replace("\r", "") != newContent.Trim().Replace("\r", "");
     }
 
     private Manager(ITextTemplatingEngineHost host, StringBuilder template) {
@@ -148,6 +155,7 @@ class Manager {
             if (IsFileContentDifferent(fileName, content)) {
                 //CheckoutFileIfRequired(fileName);
                 File.WriteAllText(fileName, content, utf8);
+				AnyChanges = true;
             }
         }
 
