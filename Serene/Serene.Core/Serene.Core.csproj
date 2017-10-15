@@ -3,7 +3,6 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DotNetSergen>dotnet sergen</DotNetSergen>
     <DotNetSergen Condition=" '$(TargetFramework)' == 'net461' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe</DotNetSergen>
@@ -20,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MailKit" Version="1.18.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="2.5.3" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
   </ItemGroup>
@@ -63,13 +63,13 @@
   </PropertyGroup>
   <ItemGroup>
     <SiteLessSources Include="wwwroot\content\**\*.less"></SiteLessSources>
-    <TSCSources Include="Modules\**\*.ts;Imports\**\*.ts"></TSCSources>
-    <TSCOutputs Include="wwwroot\Scripts\site\*.js"></TSCOutputs>
   </ItemGroup>
-  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
-    <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
+  <Target Name="NpmInstall" BeforeTargets="BeforeRebuild">
     <Message Text="Installing NPM packages..." Importance="high"></Message>
     <Exec Command="npm install" />
+  </Target>
+  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
+    <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
   </Target>
   <Target Name="CompileSiteLess" AfterTargets="Build" Inputs="@(SiteLessSources)" Outputs="wwwroot\content\site\site.css">
     <Message Text="Compiling site.less..." Importance="high"></Message>
@@ -78,9 +78,9 @@
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="Build" Inputs="@(TSCSources)" Outputs="@(TSCOutputs)">
+  <Target Name="CompileTSC" AfterTargets="Build" Inputs="Modules\**\*.ts;Imports\**\*.ts" Outputs="wwwroot\Scripts\site\*.js">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
     <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.0.8" />
