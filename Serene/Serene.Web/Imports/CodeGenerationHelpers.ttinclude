@@ -289,7 +289,7 @@ public class TSTypeLister
             try
             {
                 Directory.CreateDirectory(cacheDir);
-                Serenity.IO.TemporaryFileHelper.PurgeDirectory(cacheDir, TimeSpan.Zero, 9, null);
+                Serenity.IO.TemporaryFileHelper.PurgeDirectory(cacheDir, TimeSpan.Zero, 99, null);
                 File.WriteAllText(cacheFile, json);
             }
             catch
