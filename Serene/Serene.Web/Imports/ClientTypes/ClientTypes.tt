@@ -45,4 +45,3 @@
 
     manager.Process(true);
 #>
-Executed on <#=DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")#>

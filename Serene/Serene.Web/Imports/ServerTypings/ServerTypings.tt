@@ -49,4 +49,3 @@
     if (manager.AnyChanges)
         new TypeScriptCompiler().Compile(webDir + @"Scripts\", "");
 #>
-Executed on <#=DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")#>
