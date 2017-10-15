@@ -216,7 +216,7 @@ public class TSTypeLister
 
     public TSTypeLister(string projectDir)
     {
-        this.projectDir = projectDir;
+        this.projectDir = System.IO.Path.GetFullPath(projectDir);
     }
 
     private MsieJsEngine SetupJsEngine()
@@ -232,17 +232,6 @@ public class TSTypeLister
         }
         try
         {
-            var json2 = File.ReadAllText(projectDir + @"tools\JsEngine\json2.min.js");
-            jsEngine.Evaluate(json2);
-            var tsServices = File.ReadAllText(projectDir + @"tools\JsEngine\typeScriptServices.js");
-            jsEngine.Evaluate(tsServices);
-            using (var sr = new StreamReader(
-                typeof(Serenity.CodeGeneration.DtoGenerator).Assembly.GetManifestResourceStream(
-                    "Serenity.Web.Scripts.tsservices.Serenity.CodeGeneration.js")))
-            {
-                jsEngine.Evaluate(sr.ReadToEnd());
-            }
-
             return jsEngine;
         }
         catch
@@ -255,28 +244,64 @@ public class TSTypeLister
     public List<ExternalType> List()
     {
         var files = Directory.GetFiles(projectDir + @"Modules", "*.ts", SearchOption.AllDirectories)
-			.Concat(Directory.GetFiles(projectDir + @"Imports", "*.ts", SearchOption.AllDirectories))
+            .Concat(Directory.GetFiles(projectDir + @"Imports", "*.ts", SearchOption.AllDirectories))
             .Concat(Directory.GetFiles(projectDir + @"Scripts", "*.ts", SearchOption.AllDirectories))
-            .Where(x => !x.EndsWith(".d.ts") || x.IndexOf("Serenity") >= 0);
+            .Where(x => !x.EndsWith(".d.ts") || x.IndexOf("Serenity") >= 0).OrderBy(x => x);
+
+        var json2 = File.ReadAllText(projectDir + @"tools\JsEngine\json2.min.js");
+        var tsServices = File.ReadAllText(projectDir + @"tools\JsEngine\typeScriptServices.js");
+        string codeGeneration;
+        using (var sr = new StreamReader(
+            typeof(Serenity.CodeGeneration.DtoGenerator).Assembly.GetManifestResourceStream(
+                "Serenity.Web.Scripts.tsservices.Serenity.CodeGeneration.js")))
+        {
+            codeGeneration = sr.ReadToEnd();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine(json2);
+        sb.AppendLine(tsServices);
+        sb.AppendLine(codeGeneration);
+        foreach (var file in files)
+            sb.AppendLine("Serenity.CodeGeneration.addSourceFile(" +
+                file.Replace('\\', '/').ToJson() + ", " +
+                File.ReadAllText(file).ToJson() + ");");
+
+        var cacheDir = Path.Combine(Path.GetTempPath(), ".tstypecache");
+
+        var md5 = System.Security.Cryptography.MD5.Create();
+        var hash = BitConverter.ToString(md5.ComputeHash(Encoding.Unicode.GetBytes(sb.ToString())));
+        var cacheFile = Path.Combine(cacheDir, hash + ".json");
+
+        if (File.Exists(cacheFile))
+        {
+            try
+            {
+                return JSON.Parse<List<ExternalType>>(File.ReadAllText(cacheFile));
+            }
+            catch
+            {
+            }
+        }
+
+        Action<string> writeCache = (json) =>
+        {
+            try
+            {
+                Directory.CreateDirectory(cacheDir);
+                Serenity.IO.TemporaryFileHelper.PurgeDirectory(cacheDir, TimeSpan.Zero, 9, null);
+                File.WriteAllText(cacheFile, json);
+            }
+            catch
+            {
+            }
+        };
 
         using (var jsEngine = SetupJsEngine())
         {
-            jsEngine.SetVariableValue("fileName", "/lib.d.ts");
-            jsEngine.SetVariableValue("sourceText", File.ReadAllText(projectDir + @"tools\JsEngine\lib.d.ts_"));
-            jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
-
-            foreach (var file in files)
-            {
-                var name = file.Substring(projectDir.Length - 1).Replace("\\", "/");
-                jsEngine.SetVariableValue("fileName", name);
-                jsEngine.SetVariableValue("sourceText", File.ReadAllText(file));
-                jsEngine.Evaluate("Serenity.CodeGeneration.addSourceFile(fileName, sourceText)");
-            }
-
-                
-            var json = jsEngine.Evaluate<string>(
-                "JSON.stringify(Serenity.CodeGeneration.parseTypes(sourceText))");
-
+			jsEngine.Execute(sb.ToString());
+            var json = jsEngine.Evaluate<string>("JSON.stringify(Serenity.CodeGeneration.parseTypes())");
+            writeCache(json);
             return JSON.Parse<List<ExternalType>>(json);
         }
     }
