@@ -2683,7 +2683,7 @@
   <PropertyGroup>
     <NpmPath Condition="'$(NpmCmd)' == '' AND Exists('$(PROGRAMFILES)nodejs\npm.cmd')">$(PROGRAMFILES)nodejs\</NpmPath>
   </PropertyGroup>
-  <Target Name="BeforeBuild">
+  <Target Name="BeforeRebuild">
     <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install">
     </Exec>
   </Target>
