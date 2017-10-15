@@ -2682,12 +2682,25 @@
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <Exec Command="cmd /c &quot;$(NpmPath)npm&quot; install" />
+    <CreateItem Include="Content\**\*.less">
+      <Output TaskParameter="Include" ItemName="SiteLessSources" />
+    </CreateItem>
+    <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts">
+      <Output TaskParameter="Include" ItemName="TSCSources" />
+    </CreateItem>
+    <CreateItem Include="Scripts\site\*.js">
+      <Output TaskParameter="Include" ItemName="TSCOutputs" />
+    </CreateItem>
   </Target>
-  <Target Name="CompileSiteLess" AfterTargets="AfterBuild">
+  <Target Name="CompileSiteLess" AfterTargets="AfterBuild" Inputs="@(SiteLessSources)" Outputs="Content\site\site.css">
+    <Message Text="Compiling site.less..." Importance="high"></Message>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;" />
+  </Target>
+  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(TSCSources)" Outputs="@(TSCOutputs)">
+    <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="node_modules/.bin/tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="AfterBuild">
   </Target>
