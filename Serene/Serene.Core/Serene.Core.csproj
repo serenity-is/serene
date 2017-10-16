@@ -72,7 +72,7 @@
       <Output TaskParameter="Include" ItemName="CompileSiteLessInputs" />
     </CreateItem>
   </Target>
-  <Target Name="NpmInstall" BeforeTargets="BeforeRebuild">
+  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
     <Message Text="Installing NPM packages..." Importance="high"></Message>
     <Exec Command="npm install" />
   </Target>
