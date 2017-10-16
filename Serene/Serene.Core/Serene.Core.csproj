@@ -65,10 +65,7 @@
     <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
     </CreateItem>
-    <CreateItem Include="wwwroot\Scripts\site\*.js">
-      <Output TaskParameter="Include" ItemName="CompileTSCOutputs" />
-    </CreateItem>
-    <CreateItem Include="wwwroot\content\**\*.less">
+    <CreateItem Include="wwwroot\Content\**\*.less">
       <Output TaskParameter="Include" ItemName="CompileSiteLessInputs" />
     </CreateItem>
   </Target>
@@ -86,7 +83,7 @@
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="@(CompileTSCOutputs)">
+  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
     <Exec Command="$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
