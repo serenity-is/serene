@@ -2914,7 +2914,7 @@
 		this.$items = null;
 		Serenity.Widget.call(this, div, opt);
 		if (!ss.isValue(opt.mode)) {
-			opt.mode = 0;
+			opt.mode = 1;
 		}
 		div.addClass('s-PropertyGrid');
 		this.$editors = [];
@@ -7527,7 +7527,7 @@
 			}
 			this.set_entity(entity);
 			if (ss.isValue(this.propertyGrid)) {
-				this.propertyGrid.set_mode((this.isEditMode() ? 1 : 0));
+				this.propertyGrid.set_mode((this.isEditMode() ? 2 : 1));
 				this.propertyGrid.load(entity);
 			}
 		},
@@ -7853,7 +7853,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
 		},
@@ -7862,7 +7862,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;
 			}), null);
@@ -9680,7 +9680,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.useCategories = false;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
@@ -9690,7 +9690,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.useCategories = false;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;
@@ -9986,7 +9986,7 @@
 			for (var i = 0; i < this.$editors.length; i++) {
 				var item = this.$items[i];
 				var editor = this.$editors[i];
-				if (!!(this.get_mode() === 0 && !ss.isNullOrUndefined(item.defaultValue) && typeof(source[item.name]) === 'undefined')) {
+				if (!!(this.get_mode() === 1 && !ss.isNullOrUndefined(item.defaultValue) && typeof(source[item.name]) === 'undefined')) {
 					source[item.name] = item.defaultValue;
 				}
 				$Serenity_EditorUtils.loadValue(editor, item, source);
@@ -10002,7 +10002,7 @@
 			}
 		},
 		$canModifyItem: function(item) {
-			if (this.get_mode() === 0) {
+			if (this.get_mode() === 1) {
 				if (item.insertable === false) {
 					return false;
 				}
@@ -10011,7 +10011,7 @@
 				}
 				return Q.Authorization.hasPermission(item.insertPermission);
 			}
-			else if (this.get_mode() === 1) {
+			else if (this.get_mode() === 2) {
 				if (item.updatable === false) {
 					return false;
 				}
@@ -10030,7 +10030,7 @@
 				$Serenity_EditorUtils.setReadOnly(editor, readOnly);
 				$Serenity_EditorUtils.setRequired(editor, !readOnly && !!item.required && item.editorType !== 'Boolean');
 				if (item.visible === false || ss.isValue(item.readPermission) || ss.isValue(item.insertPermission) || ss.isValue(item.updatePermission) || item.hideOnInsert === true || item.hideOnUpdate === true) {
-					var hidden = ss.isValue(item.readPermission) && !Q.Authorization.hasPermission(item.readPermission) || item.visible === false || this.get_mode() === 0 && item.hideOnInsert === true || this.get_mode() === 1 && item.hideOnUpdate === true;
+					var hidden = ss.isValue(item.readPermission) && !Q.Authorization.hasPermission(item.readPermission) || item.visible === false || this.get_mode() === 1 && item.hideOnInsert === true || this.get_mode() === 2 && item.hideOnUpdate === true;
 					$Serenity_WX.getGridField(editor).toggle(!hidden);
 				}
 			}
@@ -10043,7 +10043,7 @@
 			}
 		}
 	}, Serenity.Widget);
-	ss.initEnum($Serenity_PropertyGridMode, $asm, { insert: 0, update: 1 });
+	ss.initEnum($Serenity_PropertyGridMode, $asm, { insert: 1, update: 2 });
 	ss.initClass($Serenity_PropertyGridOptions, $asm, {});
 	ss.initClass($Serenity_PropertyItemSlickConverter, $asm, {});
 	ss.initClass($Serenity_TemplatedPanel, $asm, {
@@ -10195,7 +10195,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.useCategories = false;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
@@ -10205,7 +10205,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.useCategories = false;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;

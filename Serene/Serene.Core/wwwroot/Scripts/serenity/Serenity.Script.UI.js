@@ -396,7 +396,10 @@
 		});
 		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
 			if (e.which === 32 && !this.get_readOnly()) {
-				this.set_valueAsDate(new Date());
+				if (!ss.staticEquals(this.get_valueAsDate(), ss.today())) {
+					this.set_valueAsDate(ss.today());
+					this.element.trigger('change');
+				}
 			}
 			else {
 				$Serenity_DateEditor.dateInputKeyup(e);
@@ -614,7 +617,10 @@
 		});
 		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
 			if (e.which === 32 && !this.get_readOnly()) {
-				this.set_valueAsDate(new Date());
+				if (!ss.staticEquals(this.get_valueAsDate(), new Date())) {
+					this.set_valueAsDate(new Date());
+					this.element.trigger('change');
+				}
 			}
 			else {
 				$Serenity_DateEditor.dateInputKeyup(e);
@@ -2908,7 +2914,7 @@
 		this.$items = null;
 		Serenity.Widget.call(this, div, opt);
 		if (!ss.isValue(opt.mode)) {
-			opt.mode = 0;
+			opt.mode = 1;
 		}
 		div.addClass('s-PropertyGrid');
 		this.$editors = [];
@@ -5931,7 +5937,7 @@
 			if (opt.seperator) {
 				this.addFilterSeparator();
 			}
-			var $t3 = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).children();
+			var $t3 = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).data('qffield', opt.field).children();
 			var $t2 = opt.title;
 			if (ss.isNullOrUndefined($t2)) {
 				var $t1 = this.determineText(function(pre) {
@@ -5943,6 +5949,12 @@
 				$t2 = $t1;
 			}
 			var quickFilter = $t3.text($t2).parent();
+			if (!ss.staticEquals(opt.saveState, null)) {
+				quickFilter.data('qfsavestate', opt.saveState);
+			}
+			if (!ss.staticEquals(opt.loadState, null)) {
+				quickFilter.data('qfloadstate', opt.loadState);
+			}
 			if (!ss.isNullOrEmptyString(opt.cssClass)) {
 				quickFilter.addClass(opt.cssClass);
 			}
@@ -6031,6 +6043,16 @@
 						next.setDate(next.getDate() + 1);
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<', Q.formatDate(next, 'yyyy-MM-dd')]);
 					}
+				},
+				saveState: function(w) {
+					return [$Serenity_EditorUtils.getValue(w), $Serenity_EditorUtils.getValue(end)];
+				},
+				loadState: function(w1, state) {
+					if (ss.isNullOrUndefined(state) || !ss.isArray(state) || state.length !== 2) {
+						state = [null, null];
+					}
+					$Serenity_EditorUtils.setValue(w1, state[0]);
+					$Serenity_EditorUtils.setValue(end, state[1]);
 				}
 			};
 		},
@@ -6082,6 +6104,16 @@
 					if (active2) {
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<=', end.get_value()]);
 					}
+				},
+				saveState: function(w) {
+					return [$Serenity_EditorUtils.getValue(w), $Serenity_EditorUtils.getValue(end)];
+				},
+				loadState: function(w1, state) {
+					if (ss.isNullOrUndefined(state) || !ss.isArray(state) || state.length !== 2) {
+						state = [null, null];
+					}
+					$Serenity_EditorUtils.setValue(w1, state[0]);
+					$Serenity_EditorUtils.setValue(end, state[1]);
 				}
 			};
 		},
@@ -6118,6 +6150,7 @@
 			}
 		},
 		quickFilterChange: function(e) {
+			this.persistSettings(null);
 			this.refresh();
 		},
 		getPersistanceStorage: function() {
@@ -6256,6 +6289,26 @@
 						includeDeletedToggle.children('a').click();
 					}
 				}
+				if (ss.isValue(settings.quickFilters) && flags.quickFilters !== false && ss.isValue(this.quickFiltersDiv) && this.quickFiltersDiv.length > 0) {
+					this.quickFiltersDiv.find('.quick-filter-item').each(ss.mkdel(this, function(i, e) {
+						var field = ss.safeCast($(e).data('qffield'), String);
+						if (ss.isNullOrEmptyString(field)) {
+							return;
+						}
+						var widget = $('#' + this.uniqueName + '_QuickFilter_' + field).tryGetWidget(Object);
+						if (ss.isNullOrUndefined(widget)) {
+							return;
+						}
+						var state = settings.quickFilters[field];
+						var loadState = ss.safeCast($(e).data('qfloadstate'), Function);
+						if (!ss.staticEquals(loadState, null)) {
+							loadState(widget, state);
+						}
+						else {
+							$Serenity_EditorUtils.setValue(widget, state);
+						}
+					}));
+				}
 			}
 			finally {
 				this.restoringSettings--;
@@ -6301,6 +6354,22 @@
 			}
 			if (flags.filterItems !== false && ss.isValue(this.filterBar) && ss.isValue(this.filterBar.get_store())) {
 				settings.filterItems = ss.arrayClone(this.filterBar.get_store().get_items());
+			}
+			if (flags.quickFilters !== false && ss.isValue(this.quickFiltersDiv) && this.quickFiltersDiv.length > 0) {
+				settings.quickFilters = {};
+				this.quickFiltersDiv.find('.quick-filter-item').each(ss.mkdel(this, function(i, e) {
+					var field = ss.safeCast($(e).data('qffield'), String);
+					if (ss.isNullOrEmptyString(field)) {
+						return;
+					}
+					var widget = $('#' + this.uniqueName + '_QuickFilter_' + field).tryGetWidget(Object);
+					if (ss.isNullOrUndefined(widget)) {
+						return;
+					}
+					var saveState = ss.safeCast($(e).data('qfsavestate'), Function);
+					var state = (!ss.staticEquals(saveState, null) ? saveState(widget) : $Serenity_EditorUtils.getValue(widget));
+					settings.quickFilters[field] = state;
+				}));
 			}
 			return settings;
 		},
@@ -7458,7 +7527,7 @@
 			}
 			this.set_entity(entity);
 			if (ss.isValue(this.propertyGrid)) {
-				this.propertyGrid.set_mode((this.isEditMode() ? 1 : 0));
+				this.propertyGrid.set_mode((this.isEditMode() ? 2 : 1));
 				this.propertyGrid.load(entity);
 			}
 		},
@@ -7784,7 +7853,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
 		},
@@ -7793,7 +7862,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;
 			}), null);
@@ -9611,7 +9680,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.useCategories = false;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
@@ -9621,7 +9690,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.useCategories = false;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;
@@ -9917,7 +9986,7 @@
 			for (var i = 0; i < this.$editors.length; i++) {
 				var item = this.$items[i];
 				var editor = this.$editors[i];
-				if (!!(this.get_mode() === 0 && !ss.isNullOrUndefined(item.defaultValue) && typeof(source[item.name]) === 'undefined')) {
+				if (!!(this.get_mode() === 1 && !ss.isNullOrUndefined(item.defaultValue) && typeof(source[item.name]) === 'undefined')) {
 					source[item.name] = item.defaultValue;
 				}
 				$Serenity_EditorUtils.loadValue(editor, item, source);
@@ -9933,7 +10002,7 @@
 			}
 		},
 		$canModifyItem: function(item) {
-			if (this.get_mode() === 0) {
+			if (this.get_mode() === 1) {
 				if (item.insertable === false) {
 					return false;
 				}
@@ -9942,7 +10011,7 @@
 				}
 				return Q.Authorization.hasPermission(item.insertPermission);
 			}
-			else if (this.get_mode() === 1) {
+			else if (this.get_mode() === 2) {
 				if (item.updatable === false) {
 					return false;
 				}
@@ -9961,7 +10030,7 @@
 				$Serenity_EditorUtils.setReadOnly(editor, readOnly);
 				$Serenity_EditorUtils.setRequired(editor, !readOnly && !!item.required && item.editorType !== 'Boolean');
 				if (item.visible === false || ss.isValue(item.readPermission) || ss.isValue(item.insertPermission) || ss.isValue(item.updatePermission) || item.hideOnInsert === true || item.hideOnUpdate === true) {
-					var hidden = ss.isValue(item.readPermission) && !Q.Authorization.hasPermission(item.readPermission) || item.visible === false || this.get_mode() === 0 && item.hideOnInsert === true || this.get_mode() === 1 && item.hideOnUpdate === true;
+					var hidden = ss.isValue(item.readPermission) && !Q.Authorization.hasPermission(item.readPermission) || item.visible === false || this.get_mode() === 1 && item.hideOnInsert === true || this.get_mode() === 2 && item.hideOnUpdate === true;
 					$Serenity_WX.getGridField(editor).toggle(!hidden);
 				}
 			}
@@ -9974,7 +10043,7 @@
 			}
 		}
 	}, Serenity.Widget);
-	ss.initEnum($Serenity_PropertyGridMode, $asm, { insert: 0, update: 1 });
+	ss.initEnum($Serenity_PropertyGridMode, $asm, { insert: 1, update: 2 });
 	ss.initClass($Serenity_PropertyGridOptions, $asm, {});
 	ss.initClass($Serenity_PropertyItemSlickConverter, $asm, {});
 	ss.initClass($Serenity_TemplatedPanel, $asm, {
@@ -10126,7 +10195,7 @@
 			var $t1 = $Serenity_PropertyGridOptions.$ctor();
 			$t1.idPrefix = this.idPrefix;
 			$t1.items = this.getPropertyItems();
-			$t1.mode = 0;
+			$t1.mode = 1;
 			$t1.useCategories = false;
 			$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 			return $t1;
@@ -10136,7 +10205,7 @@
 				var $t1 = $Serenity_PropertyGridOptions.$ctor();
 				$t1.idPrefix = this.idPrefix;
 				$t1.items = propertyItems;
-				$t1.mode = 0;
+				$t1.mode = 1;
 				$t1.useCategories = false;
 				$t1.localTextPrefix = 'Forms.' + this.getFormKey() + '.';
 				return $t1;
