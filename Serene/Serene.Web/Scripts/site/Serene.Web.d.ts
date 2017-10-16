@@ -2630,53 +2630,6 @@ declare namespace Serene.Organization {
     }
 }
 declare namespace Serene.Organization {
-    class BusinessUnitsForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface BusinessUnitsForm {
-        Name: Serenity.StringEditor;
-        ParentUnitId: Serenity.IntegerEditor;
-    }
-}
-declare namespace Serene.Organization {
-    interface BusinessUnitsRow {
-        UnitId?: number;
-        Name?: string;
-        ParentUnitId?: number;
-        ParentUnitName?: string;
-        ParentUnitParentUnitId?: number;
-    }
-    namespace BusinessUnitsRow {
-        const idProperty = "UnitId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Organization.BusinessUnits";
-        namespace Fields {
-            const UnitId: any;
-            const Name: any;
-            const ParentUnitId: any;
-            const ParentUnitName: string;
-            const ParentUnitParentUnitId: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
-    namespace BusinessUnitsService {
-        const baseUrl = "Organization/BusinessUnits";
-        function Create(request: Serenity.SaveRequest<BusinessUnitsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<BusinessUnitsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<BusinessUnitsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<BusinessUnitsRow>) => void, opt?: Serenity.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
 }
 declare namespace Serene.Organization {
     class ContactForm extends Serenity.PrefixedContext {

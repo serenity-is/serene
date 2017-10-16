@@ -1408,6 +1408,30 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     -ms-flex-preferred-size: auto;
   }
 }
+@media (min-width: 992px) {
+  .flex-layout .col-md-1.field,
+  .flex-layout .col-md-2.field,
+  .flex-layout .col-md-3.field,
+  .flex-layout .col-md-4.field,
+  .flex-layout .col-md-5.field,
+  .flex-layout .col-md-6.field,
+  .flex-layout .col-md-7.field,
+  .flex-layout .col-md-8.field,
+  .flex-layout .col-md-9.field,
+  .flex-layout .col-md-10.field,
+  .flex-layout .col-md-11.field,
+  .flex-layout .col-md-12.field {
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -moz-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-positive: 0;
+    -ms-flex-negative: 1;
+    -ms-flex-preferred-size: auto;
+  }
+}
 @media (min-width: 1200px) {
   .flex-layout .col-lg-1.field,
   .flex-layout .col-lg-2.field,

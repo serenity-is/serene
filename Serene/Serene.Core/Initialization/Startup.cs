@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,6 @@ using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
 using Serenity.Services;
 using Serenity.Web.Middleware;
-using System;
 using System.Data.SqlClient;
 using System.IO;
 
@@ -31,8 +31,11 @@ namespace Serene
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
             services.AddMvc(options =>
             {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                options.Filters.Add(typeof(AntiforgeryCookieResultFilterAttribute));
                 options.ModelBinderProviders.Insert(0, new ServiceEndpointModelBinderProvider());
                 options.Conventions.Add(new ServiceEndpointActionModelConvention());
             })

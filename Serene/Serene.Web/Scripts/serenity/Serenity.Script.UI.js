@@ -396,7 +396,10 @@
 		});
 		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
 			if (e.which === 32 && !this.get_readOnly()) {
-				this.set_valueAsDate(new Date());
+				if (!ss.staticEquals(this.get_valueAsDate(), ss.today())) {
+					this.set_valueAsDate(ss.today());
+					this.element.trigger('change');
+				}
 			}
 			else {
 				$Serenity_DateEditor.dateInputKeyup(e);
@@ -614,7 +617,10 @@
 		});
 		input.bind('keyup.' + this.uniqueName, ss.mkdel(this, function(e) {
 			if (e.which === 32 && !this.get_readOnly()) {
-				this.set_valueAsDate(new Date());
+				if (!ss.staticEquals(this.get_valueAsDate(), new Date())) {
+					this.set_valueAsDate(new Date());
+					this.element.trigger('change');
+				}
 			}
 			else {
 				$Serenity_DateEditor.dateInputKeyup(e);
@@ -1429,7 +1435,7 @@
 			}
 		}
 		if (!ss.keyExists($Serenity_EnumTypeRegistry.$knownTypes, key)) {
-			throw new ss.Exception(ss.formatString("Can't find {0} enum type!", key));
+			throw new ss.Exception(ss.formatString("Can't find {0} enum type! If you have recently defined this enum type in server side code, make sure your project builds successfully and transform T4 templates. Also make sure that enum is under your project root namespace, and your namespace parts starts with capital letters, e.g. MyProject.Pascal.Cased namespace", key));
 		}
 		return $Serenity_EnumTypeRegistry.$knownTypes[key];
 	};
@@ -5215,6 +5221,7 @@
 			}
 			if (ss.isValue(this.slickGrid)) {
 				this.slickGrid.resizeCanvas();
+				this.slickGrid.invalidate();
 			}
 		},
 		getInitialTitle: function() {
@@ -5930,7 +5937,7 @@
 			if (opt.seperator) {
 				this.addFilterSeparator();
 			}
-			var $t3 = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).children();
+			var $t3 = $("<div class='quick-filter-item'><span class='quick-filter-label'></span></div>").appendTo(this.quickFiltersDiv).data('qffield', opt.field).children();
 			var $t2 = opt.title;
 			if (ss.isNullOrUndefined($t2)) {
 				var $t1 = this.determineText(function(pre) {
@@ -5942,6 +5949,12 @@
 				$t2 = $t1;
 			}
 			var quickFilter = $t3.text($t2).parent();
+			if (!ss.staticEquals(opt.saveState, null)) {
+				quickFilter.data('qfsavestate', opt.saveState);
+			}
+			if (!ss.staticEquals(opt.loadState, null)) {
+				quickFilter.data('qfloadstate', opt.loadState);
+			}
 			if (!ss.isNullOrEmptyString(opt.cssClass)) {
 				quickFilter.addClass(opt.cssClass);
 			}
@@ -6030,6 +6043,16 @@
 						next.setDate(next.getDate() + 1);
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<', Q.formatDate(next, 'yyyy-MM-dd')]);
 					}
+				},
+				saveState: function(w) {
+					return [$Serenity_EditorUtils.getValue(w), $Serenity_EditorUtils.getValue(end)];
+				},
+				loadState: function(w1, state) {
+					if (ss.isNullOrUndefined(state) || !ss.isArray(state) || state.length !== 2) {
+						state = [null, null];
+					}
+					$Serenity_EditorUtils.setValue(w1, state[0]);
+					$Serenity_EditorUtils.setValue(end, state[1]);
 				}
 			};
 		},
@@ -6081,6 +6104,16 @@
 					if (active2) {
 						args.request.Criteria = Serenity.Criteria.join(args.request.Criteria, 'and', [[args.field], '<=', end.get_value()]);
 					}
+				},
+				saveState: function(w) {
+					return [$Serenity_EditorUtils.getValue(w), $Serenity_EditorUtils.getValue(end)];
+				},
+				loadState: function(w1, state) {
+					if (ss.isNullOrUndefined(state) || !ss.isArray(state) || state.length !== 2) {
+						state = [null, null];
+					}
+					$Serenity_EditorUtils.setValue(w1, state[0]);
+					$Serenity_EditorUtils.setValue(end, state[1]);
 				}
 			};
 		},
@@ -6117,6 +6150,7 @@
 			}
 		},
 		quickFilterChange: function(e) {
+			this.persistSettings(null);
 			this.refresh();
 		},
 		getPersistanceStorage: function() {
@@ -6255,6 +6289,26 @@
 						includeDeletedToggle.children('a').click();
 					}
 				}
+				if (ss.isValue(settings.quickFilters) && flags.quickFilters !== false && ss.isValue(this.quickFiltersDiv) && this.quickFiltersDiv.length > 0) {
+					this.quickFiltersDiv.find('.quick-filter-item').each(ss.mkdel(this, function(i, e) {
+						var field = ss.safeCast($(e).data('qffield'), String);
+						if (ss.isNullOrEmptyString(field)) {
+							return;
+						}
+						var widget = $('#' + this.uniqueName + '_QuickFilter_' + field).tryGetWidget(Object);
+						if (ss.isNullOrUndefined(widget)) {
+							return;
+						}
+						var state = settings.quickFilters[field];
+						var loadState = ss.safeCast($(e).data('qfloadstate'), Function);
+						if (!ss.staticEquals(loadState, null)) {
+							loadState(widget, state);
+						}
+						else {
+							$Serenity_EditorUtils.setValue(widget, state);
+						}
+					}));
+				}
 			}
 			finally {
 				this.restoringSettings--;
@@ -6300,6 +6354,22 @@
 			}
 			if (flags.filterItems !== false && ss.isValue(this.filterBar) && ss.isValue(this.filterBar.get_store())) {
 				settings.filterItems = ss.arrayClone(this.filterBar.get_store().get_items());
+			}
+			if (flags.quickFilters !== false && ss.isValue(this.quickFiltersDiv) && this.quickFiltersDiv.length > 0) {
+				settings.quickFilters = {};
+				this.quickFiltersDiv.find('.quick-filter-item').each(ss.mkdel(this, function(i, e) {
+					var field = ss.safeCast($(e).data('qffield'), String);
+					if (ss.isNullOrEmptyString(field)) {
+						return;
+					}
+					var widget = $('#' + this.uniqueName + '_QuickFilter_' + field).tryGetWidget(Object);
+					if (ss.isNullOrUndefined(widget)) {
+						return;
+					}
+					var saveState = ss.safeCast($(e).data('qfsavestate'), Function);
+					var state = (!ss.staticEquals(saveState, null) ? saveState(widget) : $Serenity_EditorUtils.getValue(widget));
+					settings.quickFilters[field] = state;
+				}));
 			}
 			return settings;
 		},
@@ -9732,6 +9802,9 @@
 			if (!ss.isNullOrEmptyString(item.cssClass)) {
 				fieldDiv.addClass(item.cssClass);
 			}
+			if (!ss.isNullOrEmptyString(item.formCssClass)) {
+				fieldDiv.addClass(item.formCssClass);
+			}
 			var editorId = this.options.idPrefix + item.name;
 			var title = this.$determineText(item.title, function(prefix) {
 				return prefix + item.name;
@@ -9748,6 +9821,14 @@
 				$t1 = ss.coalesce(title, '');
 			}
 			var label = $t2.attr('title', $t1).html(ss.coalesce(title, '')).appendTo(fieldDiv);
+			if (!ss.isNullOrEmptyString(item.labelWidth)) {
+				if (item.labelWidth === '0') {
+					label.hide();
+				}
+				else {
+					label.css('width', item.labelWidth);
+				}
+			}
 			if (item.required === true) {
 				$('<sup>*</sup>').attr('title', Q.text('Controls.PropertyGrid.RequiredHint')).prependTo(label);
 			}
