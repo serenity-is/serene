@@ -65,7 +65,33 @@
             export declare const CategoryPicture: string;
         }
 
-        ['ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel', 'SupplierCompanyName', 'SupplierContactName', 'SupplierContactTitle', 'SupplierAddress', 'SupplierCity', 'SupplierRegion', 'SupplierPostalCode', 'SupplierCountry', 'SupplierPhone', 'SupplierFax', 'SupplierHomePage', 'CategoryName', 'CategoryDescription', 'CategoryPicture'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'ProductID', 
+            'ProductName', 
+            'ProductImage', 
+            'Discontinued', 
+            'SupplierID', 
+            'CategoryID', 
+            'QuantityPerUnit', 
+            'UnitPrice', 
+            'UnitsInStock', 
+            'UnitsOnOrder', 
+            'ReorderLevel', 
+            'SupplierCompanyName', 
+            'SupplierContactName', 
+            'SupplierContactTitle', 
+            'SupplierAddress', 
+            'SupplierCity', 
+            'SupplierRegion', 
+            'SupplierPostalCode', 
+            'SupplierCountry', 
+            'SupplierPhone', 
+            'SupplierFax', 
+            'SupplierHomePage', 
+            'CategoryName', 
+            'CategoryDescription', 
+            'CategoryPicture'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

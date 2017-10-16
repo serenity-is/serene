@@ -16,7 +16,11 @@
             export declare const Title: string;
         }
 
-        ['Id', 'ParentId', 'Title'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'Id', 
+            'ParentId', 
+            'Title'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -57,7 +57,29 @@
             export declare const UserIsActive: string;
         }
 
-        ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'ContactId', 
+            'Title', 
+            'FirstName', 
+            'LastName', 
+            'FullName', 
+            'Email', 
+            'IdentityNo', 
+            'UserId', 
+            'Username', 
+            'UserDisplayName', 
+            'UserEmail', 
+            'UserSource', 
+            'UserPasswordHash', 
+            'UserPasswordSalt', 
+            'UserLastDirectoryUpdate', 
+            'UserUserImage', 
+            'UserInsertDate', 
+            'UserInsertUserId', 
+            'UserUpdateDate', 
+            'UserUpdateUserId', 
+            'UserIsActive'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -10,8 +10,13 @@
             export declare const List: string;
         }
 
-        ['Update', 'List'].forEach(x => {
-            (<any>UserRoleService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'Update', 
+            'List'
+        ].forEach(x => {
+            (<any>UserRoleService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }

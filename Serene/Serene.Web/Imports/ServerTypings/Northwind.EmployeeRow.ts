@@ -91,7 +91,46 @@
             export declare const Gender: string;
         }
 
-        ['EmployeeID', 'LastName', 'FirstName', 'FullName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath', 'ReportsToFullName', 'ReportsToLastName', 'ReportsToFirstName', 'ReportsToTitle', 'ReportsToTitleOfCourtesy', 'ReportsToBirthDate', 'ReportsToHireDate', 'ReportsToAddress', 'ReportsToCity', 'ReportsToRegion', 'ReportsToPostalCode', 'ReportsToCountry', 'ReportsToHomePhone', 'ReportsToExtension', 'ReportsToPhoto', 'ReportsToNotes', 'ReportsToReportsTo', 'ReportsToPhotoPath', 'Gender'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'EmployeeID', 
+            'LastName', 
+            'FirstName', 
+            'FullName', 
+            'Title', 
+            'TitleOfCourtesy', 
+            'BirthDate', 
+            'HireDate', 
+            'Address', 
+            'City', 
+            'Region', 
+            'PostalCode', 
+            'Country', 
+            'HomePhone', 
+            'Extension', 
+            'Photo', 
+            'Notes', 
+            'ReportsTo', 
+            'PhotoPath', 
+            'ReportsToFullName', 
+            'ReportsToLastName', 
+            'ReportsToFirstName', 
+            'ReportsToTitle', 
+            'ReportsToTitleOfCourtesy', 
+            'ReportsToBirthDate', 
+            'ReportsToHireDate', 
+            'ReportsToAddress', 
+            'ReportsToCity', 
+            'ReportsToRegion', 
+            'ReportsToPostalCode', 
+            'ReportsToCountry', 
+            'ReportsToHomePhone', 
+            'ReportsToExtension', 
+            'ReportsToPhoto', 
+            'ReportsToNotes', 
+            'ReportsToReportsTo', 
+            'ReportsToPhotoPath', 
+            'Gender'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

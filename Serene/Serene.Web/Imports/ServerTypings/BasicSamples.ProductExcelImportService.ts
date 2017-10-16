@@ -8,8 +8,12 @@
             export declare const ExcelImport: string;
         }
 
-        ['ExcelImport'].forEach(x => {
-            (<any>ProductExcelImportService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'ExcelImport'
+        ].forEach(x => {
+            (<any>ProductExcelImportService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }

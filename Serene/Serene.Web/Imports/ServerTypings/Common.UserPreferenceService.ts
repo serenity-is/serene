@@ -10,8 +10,13 @@
             export declare const Retrieve: string;
         }
 
-        ['Update', 'Retrieve'].forEach(x => {
-            (<any>UserPreferenceService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'Update', 
+            'Retrieve'
+        ].forEach(x => {
+            (<any>UserPreferenceService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }

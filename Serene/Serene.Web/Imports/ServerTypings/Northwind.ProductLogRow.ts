@@ -41,7 +41,24 @@
             export declare const ReorderLevel: string;
         }
 
-        ['ProductLogID', 'OperationType', 'ChangingUserId', 'ValidFrom', 'ValidUntil', 'ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'ProductLogID', 
+            'OperationType', 
+            'ChangingUserId', 
+            'ValidFrom', 
+            'ValidUntil', 
+            'ProductID', 
+            'ProductName', 
+            'ProductImage', 
+            'Discontinued', 
+            'SupplierID', 
+            'CategoryID', 
+            'QuantityPerUnit', 
+            'UnitPrice', 
+            'UnitsInStock', 
+            'UnitsOnOrder', 
+            'ReorderLevel'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

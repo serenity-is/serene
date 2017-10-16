@@ -20,7 +20,13 @@
             export declare const Value: string;
         }
 
-        ['UserPreferenceId', 'UserId', 'PreferenceType', 'Name', 'Value'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'UserPreferenceId', 
+            'UserId', 
+            'PreferenceType', 
+            'Name', 
+            'Value'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -25,7 +25,13 @@
             export declare const Longitude: string;
         }
 
-        ['LocationId', 'Name', 'Address', 'Latitude', 'Longitude'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'LocationId', 
+            'Name', 
+            'Address', 
+            'Latitude', 
+            'Longitude'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

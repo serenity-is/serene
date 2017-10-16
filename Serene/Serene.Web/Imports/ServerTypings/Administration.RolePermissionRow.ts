@@ -18,7 +18,12 @@
             export declare const RoleRoleName: string;
         }
 
-        ['RolePermissionId', 'RoleId', 'PermissionKey', 'RoleRoleName'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'RolePermissionId', 
+            'RoleId', 
+            'PermissionKey', 
+            'RoleRoleName'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

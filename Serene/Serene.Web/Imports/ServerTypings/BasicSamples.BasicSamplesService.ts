@@ -10,8 +10,13 @@
             export declare const OrderBulkAction: string;
         }
 
-        ['OrdersByShipper', 'OrderBulkAction'].forEach(x => {
-            (<any>BasicSamplesService)[x] = function (r, s, o) { return Q.serviceRequest(baseUrl + '/' + x, r, s, o); };
+        [
+            'OrdersByShipper', 
+            'OrderBulkAction'
+        ].forEach(x => {
+            (<any>BasicSamplesService)[x] = function (r, s, o) {
+                return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
+            };
             (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }

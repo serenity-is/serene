@@ -23,7 +23,12 @@
             export declare const Picture: string;
         }
 
-        ['CategoryID', 'CategoryName', 'Description', 'Picture'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'CategoryID', 
+            'CategoryName', 
+            'Description', 
+            'Picture'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

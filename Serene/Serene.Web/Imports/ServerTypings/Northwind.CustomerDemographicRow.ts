@@ -16,7 +16,11 @@
             export declare const CustomerDesc: string;
         }
 
-        ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'ID', 
+            'CustomerTypeID', 
+            'CustomerDesc'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

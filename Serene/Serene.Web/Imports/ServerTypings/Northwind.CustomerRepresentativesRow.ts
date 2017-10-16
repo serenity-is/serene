@@ -15,7 +15,11 @@
             export declare const EmployeeId: string;
         }
 
-        ['RepresentativeId', 'CustomerId', 'EmployeeId'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'RepresentativeId', 
+            'CustomerId', 
+            'EmployeeId'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

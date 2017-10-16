@@ -21,7 +21,11 @@
             export declare const Phone: string;
         }
 
-        ['ShipperID', 'CompanyName', 'Phone'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'ShipperID', 
+            'CompanyName', 
+            'Phone'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

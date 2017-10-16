@@ -52,7 +52,29 @@
             export declare const TerritoryRegionID: string;
         }
 
-        ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(x => (<any>Fields)[x] = x);
+        [
+            'EmployeeID', 
+            'TerritoryID', 
+            'EmployeeLastName', 
+            'EmployeeFirstName', 
+            'EmployeeTitle', 
+            'EmployeeTitleOfCourtesy', 
+            'EmployeeBirthDate', 
+            'EmployeeHireDate', 
+            'EmployeeAddress', 
+            'EmployeeCity', 
+            'EmployeeRegion', 
+            'EmployeePostalCode', 
+            'EmployeeCountry', 
+            'EmployeeHomePhone', 
+            'EmployeeExtension', 
+            'EmployeePhoto', 
+            'EmployeeNotes', 
+            'EmployeeReportsTo', 
+            'EmployeePhotoPath', 
+            'TerritoryTerritoryDescription', 
+            'TerritoryRegionID'
+        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

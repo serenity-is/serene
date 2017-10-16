@@ -18,7 +18,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var ContactDialog = /** @class */ (function (_super) {
+        var ContactDialog = (function (_super) {
             __extends(ContactDialog, _super);
             function ContactDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -43,7 +43,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var ContactGrid = /** @class */ (function (_super) {
+        var ContactGrid = (function (_super) {
             __extends(ContactGrid, _super);
             function ContactGrid(container) {
                 return _super.call(this, container) || this;
@@ -65,7 +65,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var BusinessUnitDialog = /** @class */ (function (_super) {
+        var BusinessUnitDialog = (function (_super) {
             __extends(BusinessUnitDialog, _super);
             function BusinessUnitDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -90,7 +90,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var BusinessUnitEditor = /** @class */ (function (_super) {
+        var BusinessUnitEditor = (function (_super) {
             __extends(BusinessUnitEditor, _super);
             function BusinessUnitEditor(hidden) {
                 return _super.call(this, hidden) || this;
@@ -122,7 +122,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var BusinessUnitGrid = /** @class */ (function (_super) {
+        var BusinessUnitGrid = (function (_super) {
             __extends(BusinessUnitGrid, _super);
             function BusinessUnitGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -189,7 +189,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var TerritoryDialog = /** @class */ (function (_super) {
+        var TerritoryDialog = (function (_super) {
             __extends(TerritoryDialog, _super);
             function TerritoryDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -216,7 +216,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var TerritoryGrid = /** @class */ (function (_super) {
+        var TerritoryGrid = (function (_super) {
             __extends(TerritoryGrid, _super);
             function TerritoryGrid(container) {
                 return _super.call(this, container) || this;
@@ -238,7 +238,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var SupplierDialog = /** @class */ (function (_super) {
+        var SupplierDialog = (function (_super) {
             __extends(SupplierDialog, _super);
             function SupplierDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -265,7 +265,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var SupplierGrid = /** @class */ (function (_super) {
+        var SupplierGrid = (function (_super) {
             __extends(SupplierGrid, _super);
             function SupplierGrid(container) {
                 return _super.call(this, container) || this;
@@ -287,7 +287,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ShipperDialog = /** @class */ (function (_super) {
+        var ShipperDialog = (function (_super) {
             __extends(ShipperDialog, _super);
             function ShipperDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -314,7 +314,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ShipperFormatter = /** @class */ (function () {
+        var ShipperFormatter = (function () {
             function ShipperFormatter() {
             }
             ShipperFormatter.prototype.format = function (ctx) {
@@ -334,7 +334,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ShipperGrid = /** @class */ (function (_super) {
+        var ShipperGrid = (function (_super) {
             __extends(ShipperGrid, _super);
             function ShipperGrid(container) {
                 return _super.call(this, container) || this;
@@ -356,7 +356,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var PhoneEditor = /** @class */ (function (_super) {
+        var PhoneEditor = (function (_super) {
             __extends(PhoneEditor, _super);
             function PhoneEditor(input) {
                 var _this = _super.call(this, input) || this;
@@ -497,7 +497,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var RegionDialog = /** @class */ (function (_super) {
+        var RegionDialog = (function (_super) {
             __extends(RegionDialog, _super);
             function RegionDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -524,7 +524,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var RegionGrid = /** @class */ (function (_super) {
+        var RegionGrid = (function (_super) {
             __extends(RegionGrid, _super);
             function RegionGrid(container) {
                 return _super.call(this, container) || this;
@@ -546,7 +546,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ProductDialog = /** @class */ (function (_super) {
+        var ProductDialog = (function (_super) {
             __extends(ProductDialog, _super);
             function ProductDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -571,7 +571,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ProductGrid = /** @class */ (function (_super) {
+        var ProductGrid = (function (_super) {
             __extends(ProductGrid, _super);
             function ProductGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -814,7 +814,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var GridEditorDialog = /** @class */ (function (_super) {
+        var GridEditorDialog = (function (_super) {
             __extends(GridEditorDialog, _super);
             function GridEditorDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -851,7 +851,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderDetailDialog = /** @class */ (function (_super) {
+        var OrderDetailDialog = (function (_super) {
             __extends(OrderDetailDialog, _super);
             function OrderDetailDialog() {
                 var _this = _super.call(this) || this;
@@ -887,7 +887,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var GridEditorBase = /** @class */ (function (_super) {
+        var GridEditorBase = (function (_super) {
             __extends(GridEditorBase, _super);
             function GridEditorBase(container) {
                 var _this = _super.call(this, container) || this;
@@ -1026,7 +1026,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderDetailsEditor = /** @class */ (function (_super) {
+        var OrderDetailsEditor = (function (_super) {
             __extends(OrderDetailsEditor, _super);
             function OrderDetailsEditor(container) {
                 return _super.call(this, container) || this;
@@ -1057,7 +1057,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var FreightFormatter = /** @class */ (function () {
+        var FreightFormatter = (function () {
             function FreightFormatter() {
             }
             FreightFormatter.prototype.format = function (ctx) {
@@ -1075,7 +1075,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderDialog = /** @class */ (function (_super) {
+        var OrderDialog = (function (_super) {
             __extends(OrderDialog, _super);
             function OrderDialog() {
                 var _this = _super.call(this) || this;
@@ -1116,7 +1116,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderGrid = /** @class */ (function (_super) {
+        var OrderGrid = (function (_super) {
             __extends(OrderGrid, _super);
             function OrderGrid(container) {
                 return _super.call(this, container) || this;
@@ -1212,7 +1212,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var NoteDialog = /** @class */ (function (_super) {
+        var NoteDialog = (function (_super) {
             __extends(NoteDialog, _super);
             function NoteDialog() {
                 var _this = _super.call(this) || this;
@@ -1264,7 +1264,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var NotesEditor = /** @class */ (function (_super) {
+        var NotesEditor = (function (_super) {
             __extends(NotesEditor, _super);
             function NotesEditor(div) {
                 var _this = _super.call(this, div) || this;
@@ -1396,7 +1396,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var EmployeeFormatter = /** @class */ (function () {
+        var EmployeeFormatter = (function () {
             function EmployeeFormatter() {
             }
             EmployeeFormatter.prototype.format = function (ctx) {
@@ -1429,7 +1429,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerDialog = /** @class */ (function (_super) {
+        var CustomerDialog = (function (_super) {
             __extends(CustomerDialog, _super);
             function CustomerDialog() {
                 var _this = _super.call(this) || this;
@@ -1478,7 +1478,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerEditor = /** @class */ (function (_super) {
+        var CustomerEditor = (function (_super) {
             __extends(CustomerEditor, _super);
             function CustomerEditor(hidden) {
                 return _super.call(this, hidden) || this;
@@ -1501,7 +1501,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerGrid = /** @class */ (function (_super) {
+        var CustomerGrid = (function (_super) {
             __extends(CustomerGrid, _super);
             function CustomerGrid(container) {
                 return _super.call(this, container) || this;
@@ -1540,7 +1540,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerOrderDialog = /** @class */ (function (_super) {
+        var CustomerOrderDialog = (function (_super) {
             __extends(CustomerOrderDialog, _super);
             function CustomerOrderDialog() {
                 return _super.call(this) || this;
@@ -1562,7 +1562,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerOrdersGrid = /** @class */ (function (_super) {
+        var CustomerOrdersGrid = (function (_super) {
             __extends(CustomerOrdersGrid, _super);
             function CustomerOrdersGrid(container) {
                 return _super.call(this, container) || this;
@@ -1611,7 +1611,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var EmployeeListFormatter = /** @class */ (function () {
+        var EmployeeListFormatter = (function () {
             function EmployeeListFormatter() {
             }
             EmployeeListFormatter.prototype.format = function (ctx) {
@@ -1634,7 +1634,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CategoryDialog = /** @class */ (function (_super) {
+        var CategoryDialog = (function (_super) {
             __extends(CategoryDialog, _super);
             function CategoryDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1658,7 +1658,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CategoryGrid = /** @class */ (function (_super) {
+        var CategoryGrid = (function (_super) {
             __extends(CategoryGrid, _super);
             function CategoryGrid(container) {
                 return _super.call(this, container) || this;
@@ -1680,7 +1680,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var LoginPanel = /** @class */ (function (_super) {
+        var LoginPanel = (function (_super) {
             __extends(LoginPanel, _super);
             function LoginPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -1735,7 +1735,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var SignUpPanel = /** @class */ (function (_super) {
+        var SignUpPanel = (function (_super) {
             __extends(SignUpPanel, _super);
             function SignUpPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -1784,7 +1784,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ResetPasswordPanel = /** @class */ (function (_super) {
+        var ResetPasswordPanel = (function (_super) {
             __extends(ResetPasswordPanel, _super);
             function ResetPasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -1831,7 +1831,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ForgotPasswordPanel = /** @class */ (function (_super) {
+        var ForgotPasswordPanel = (function (_super) {
             __extends(ForgotPasswordPanel, _super);
             function ForgotPasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -1867,7 +1867,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordPanel = /** @class */ (function (_super) {
+        var ChangePasswordPanel = (function (_super) {
             __extends(ChangePasswordPanel, _super);
             function ChangePasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
@@ -1913,7 +1913,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingTypeDialog = /** @class */ (function (_super) {
+        var MeetingTypeDialog = (function (_super) {
             __extends(MeetingTypeDialog, _super);
             function MeetingTypeDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1938,7 +1938,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingTypeGrid = /** @class */ (function (_super) {
+        var MeetingTypeGrid = (function (_super) {
             __extends(MeetingTypeGrid, _super);
             function MeetingTypeGrid(container) {
                 return _super.call(this, container) || this;
@@ -1960,7 +1960,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingLocationDialog = /** @class */ (function (_super) {
+        var MeetingLocationDialog = (function (_super) {
             __extends(MeetingLocationDialog, _super);
             function MeetingLocationDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -1985,7 +1985,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingLocationGrid = /** @class */ (function (_super) {
+        var MeetingLocationGrid = (function (_super) {
             __extends(MeetingLocationGrid, _super);
             function MeetingLocationGrid(container) {
                 return _super.call(this, container) || this;
@@ -2007,7 +2007,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionRelevantDialog = /** @class */ (function (_super) {
+        var MeetingDecisionRelevantDialog = (function (_super) {
             __extends(MeetingDecisionRelevantDialog, _super);
             function MeetingDecisionRelevantDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2031,7 +2031,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionRelevantGrid = /** @class */ (function (_super) {
+        var MeetingDecisionRelevantGrid = (function (_super) {
             __extends(MeetingDecisionRelevantGrid, _super);
             function MeetingDecisionRelevantGrid(container) {
                 return _super.call(this, container) || this;
@@ -2053,7 +2053,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionDialog = /** @class */ (function (_super) {
+        var MeetingDecisionDialog = (function (_super) {
             __extends(MeetingDecisionDialog, _super);
             function MeetingDecisionDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2078,7 +2078,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionGrid = /** @class */ (function (_super) {
+        var MeetingDecisionGrid = (function (_super) {
             __extends(MeetingDecisionGrid, _super);
             function MeetingDecisionGrid(container) {
                 return _super.call(this, container) || this;
@@ -2123,7 +2123,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAttendeeDialog = /** @class */ (function (_super) {
+        var MeetingAttendeeDialog = (function (_super) {
             __extends(MeetingAttendeeDialog, _super);
             function MeetingAttendeeDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2147,7 +2147,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAttendeeEditor = /** @class */ (function (_super) {
+        var MeetingAttendeeEditor = (function (_super) {
             __extends(MeetingAttendeeEditor, _super);
             function MeetingAttendeeEditor(container) {
                 var _this = _super.call(this, container) || this;
@@ -2244,7 +2244,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaTypeDialog = /** @class */ (function (_super) {
+        var MeetingAgendaTypeDialog = (function (_super) {
             __extends(MeetingAgendaTypeDialog, _super);
             function MeetingAgendaTypeDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2269,7 +2269,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaTypeGrid = /** @class */ (function (_super) {
+        var MeetingAgendaTypeGrid = (function (_super) {
             __extends(MeetingAgendaTypeGrid, _super);
             function MeetingAgendaTypeGrid(container) {
                 return _super.call(this, container) || this;
@@ -2291,7 +2291,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaRelevantDialog = /** @class */ (function (_super) {
+        var MeetingAgendaRelevantDialog = (function (_super) {
             __extends(MeetingAgendaRelevantDialog, _super);
             function MeetingAgendaRelevantDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2315,7 +2315,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaRelevantGrid = /** @class */ (function (_super) {
+        var MeetingAgendaRelevantGrid = (function (_super) {
             __extends(MeetingAgendaRelevantGrid, _super);
             function MeetingAgendaRelevantGrid(container) {
                 return _super.call(this, container) || this;
@@ -2337,7 +2337,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaDialog = /** @class */ (function (_super) {
+        var MeetingAgendaDialog = (function (_super) {
             __extends(MeetingAgendaDialog, _super);
             function MeetingAgendaDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2362,7 +2362,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaGrid = /** @class */ (function (_super) {
+        var MeetingAgendaGrid = (function (_super) {
             __extends(MeetingAgendaGrid, _super);
             function MeetingAgendaGrid(container) {
                 return _super.call(this, container) || this;
@@ -2407,7 +2407,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDialog = /** @class */ (function (_super) {
+        var MeetingDialog = (function (_super) {
             __extends(MeetingDialog, _super);
             function MeetingDialog() {
                 var _this = _super.call(this) || this;
@@ -2456,7 +2456,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingGrid = /** @class */ (function (_super) {
+        var MeetingGrid = (function (_super) {
             __extends(MeetingGrid, _super);
             function MeetingGrid(container) {
                 return _super.call(this, container) || this;
@@ -2505,7 +2505,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var UserPreferenceStorage = /** @class */ (function () {
+        var UserPreferenceStorage = (function () {
             function UserPreferenceStorage() {
             }
             UserPreferenceStorage.prototype.getItem = function (key) {
@@ -2731,7 +2731,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var ReportDialog = /** @class */ (function (_super) {
+        var ReportDialog = (function (_super) {
             __extends(ReportDialog, _super);
             function ReportDialog(options) {
                 var _this = _super.call(this, options) || this;
@@ -2851,7 +2851,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var ReportPage = /** @class */ (function (_super) {
+        var ReportPage = (function (_super) {
             __extends(ReportPage, _super);
             function ReportPage(element) {
                 var _this = _super.call(this, element) || this;
@@ -2922,7 +2922,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var LanguageSelection = /** @class */ (function (_super) {
+        var LanguageSelection = (function (_super) {
             __extends(LanguageSelection, _super);
             function LanguageSelection(select, currentLanguage) {
                 var _this = _super.call(this, select) || this;
@@ -2964,7 +2964,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var SidebarSearch = /** @class */ (function (_super) {
+        var SidebarSearch = (function (_super) {
             __extends(SidebarSearch, _super);
             function SidebarSearch(input, menuUL) {
                 var _this = _super.call(this, input) || this;
@@ -3017,7 +3017,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var ThemeSelection = /** @class */ (function (_super) {
+        var ThemeSelection = (function (_super) {
             __extends(ThemeSelection, _super);
             function ThemeSelection(select) {
                 var _this = _super.call(this, select) || this;
@@ -3058,7 +3058,7 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var BasicProgressDialog = /** @class */ (function (_super) {
+    var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
             var _this = _super.call(this) || this;
@@ -3140,7 +3140,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var BulkServiceAction = /** @class */ (function () {
+        var BulkServiceAction = (function () {
             function BulkServiceAction() {
             }
             BulkServiceAction.prototype.createProgressDialog = function () {
@@ -3316,7 +3316,7 @@ var Serene;
 (function (Serene) {
     var Common;
     (function (Common) {
-        var EnumSelectFormatter = /** @class */ (function () {
+        var EnumSelectFormatter = (function () {
             function EnumSelectFormatter() {
                 this.allowClear = true;
             }
@@ -3401,7 +3401,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var WrappedHeadersGrid = /** @class */ (function (_super) {
+        var WrappedHeadersGrid = (function (_super) {
             __extends(WrappedHeadersGrid, _super);
             function WrappedHeadersGrid(container) {
                 return _super.call(this, container) || this;
@@ -3418,7 +3418,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var VSGalleryQAGrid = /** @class */ (function (_super) {
+        var VSGalleryQAGrid = (function (_super) {
             __extends(VSGalleryQAGrid, _super);
             function VSGalleryQAGrid(container) {
                 return _super.call(this, container) || this;
@@ -3471,7 +3471,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ViewWithoutIDGrid = /** @class */ (function (_super) {
+        var ViewWithoutIDGrid = (function (_super) {
             __extends(ViewWithoutIDGrid, _super);
             function ViewWithoutIDGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -3513,7 +3513,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var TreeGrid = /** @class */ (function (_super) {
+        var TreeGrid = (function (_super) {
             __extends(TreeGrid, _super);
             function TreeGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -3554,7 +3554,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var CustomerGrossSalesGrid = /** @class */ (function (_super) {
+        var CustomerGrossSalesGrid = (function (_super) {
             __extends(CustomerGrossSalesGrid, _super);
             function CustomerGrossSalesGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -3650,7 +3650,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var RemovingAddButton = /** @class */ (function (_super) {
+        var RemovingAddButton = (function (_super) {
             __extends(RemovingAddButton, _super);
             function RemovingAddButton(container) {
                 return _super.call(this, container) || this;
@@ -3692,7 +3692,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var QuickFilterCustomization = /** @class */ (function (_super) {
+        var QuickFilterCustomization = (function (_super) {
             __extends(QuickFilterCustomization, _super);
             function QuickFilterCustomization(container) {
                 return _super.call(this, container) || this;
@@ -3819,7 +3819,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ProductExcelImportDialog = /** @class */ (function (_super) {
+        var ProductExcelImportDialog = (function (_super) {
             __extends(ProductExcelImportDialog, _super);
             function ProductExcelImportDialog() {
                 var _this = _super.call(this) || this;
@@ -3873,7 +3873,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ProductExcelImportGrid = /** @class */ (function (_super) {
+        var ProductExcelImportGrid = (function (_super) {
             __extends(ProductExcelImportGrid, _super);
             function ProductExcelImportGrid(container) {
                 return _super.call(this, container) || this;
@@ -3913,7 +3913,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var InlineImageFormatter = /** @class */ (function () {
+        var InlineImageFormatter = (function () {
             function InlineImageFormatter() {
             }
             InlineImageFormatter.prototype.format = function (ctx) {
@@ -3954,7 +3954,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var InlineImageInGrid = /** @class */ (function (_super) {
+        var InlineImageInGrid = (function (_super) {
             __extends(InlineImageInGrid, _super);
             function InlineImageInGrid(container) {
                 return _super.call(this, container) || this;
@@ -3982,7 +3982,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var InlineActionGrid = /** @class */ (function (_super) {
+        var InlineActionGrid = (function (_super) {
             __extends(InlineActionGrid, _super);
             function InlineActionGrid(container) {
                 return _super.call(this, container) || this;
@@ -4062,7 +4062,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var InitialValuesForQuickFilters = /** @class */ (function (_super) {
+        var InitialValuesForQuickFilters = (function (_super) {
             __extends(InitialValuesForQuickFilters, _super);
             function InitialValuesForQuickFilters(container) {
                 return _super.call(this, container) || this;
@@ -4128,7 +4128,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var GroupingAndSummariesInGrid = /** @class */ (function (_super) {
+        var GroupingAndSummariesInGrid = (function (_super) {
             __extends(GroupingAndSummariesInGrid, _super);
             function GroupingAndSummariesInGrid(container) {
                 return _super.call(this, container) || this;
@@ -4205,7 +4205,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var GridFilteredByCriteria = /** @class */ (function (_super) {
+        var GridFilteredByCriteria = (function (_super) {
             __extends(GridFilteredByCriteria, _super);
             function GridFilteredByCriteria(container) {
                 return _super.call(this, container) || this;
@@ -4241,7 +4241,7 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var SelectableEntityGrid = /** @class */ (function (_super) {
+    var SelectableEntityGrid = (function (_super) {
         __extends(SelectableEntityGrid, _super);
         function SelectableEntityGrid() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -4270,7 +4270,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var RowSelectionGrid = /** @class */ (function (_super) {
+        var RowSelectionGrid = (function (_super) {
             __extends(RowSelectionGrid, _super);
             function RowSelectionGrid(container) {
                 return _super.call(this, container) || this;
@@ -4292,7 +4292,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var DragDropSampleDialog = /** @class */ (function (_super) {
+        var DragDropSampleDialog = (function (_super) {
             __extends(DragDropSampleDialog, _super);
             function DragDropSampleDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -4317,7 +4317,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var DragDropSampleGrid = /** @class */ (function (_super) {
+        var DragDropSampleGrid = (function (_super) {
             __extends(DragDropSampleGrid, _super);
             function DragDropSampleGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -4513,7 +4513,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var CustomLinksInGrid = /** @class */ (function (_super) {
+        var CustomLinksInGrid = (function (_super) {
             __extends(CustomLinksInGrid, _super);
             function CustomLinksInGrid(container) {
                 return _super.call(this, container) || this;
@@ -4626,7 +4626,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ConditionalFormattingGrid = /** @class */ (function (_super) {
+        var ConditionalFormattingGrid = (function (_super) {
             __extends(ConditionalFormattingGrid, _super);
             function ConditionalFormattingGrid(container) {
                 return _super.call(this, container) || this;
@@ -4685,7 +4685,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var OrderBulkAction = /** @class */ (function (_super) {
+        var OrderBulkAction = (function (_super) {
             __extends(OrderBulkAction, _super);
             function OrderBulkAction() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -4733,7 +4733,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var CancellableBulkActionGrid = /** @class */ (function (_super) {
+        var CancellableBulkActionGrid = (function (_super) {
             __extends(CancellableBulkActionGrid, _super);
             function CancellableBulkActionGrid(container) {
                 return _super.call(this, container) || this;
@@ -4782,7 +4782,7 @@ var Serene;
      * This is an editor widget but it only displays a text, not edits it.
      *
      */
-    var StaticTextBlock = /** @class */ (function (_super) {
+    var StaticTextBlock = (function (_super) {
         __extends(StaticTextBlock, _super);
         function StaticTextBlock(container, options) {
             var _this = _super.call(this, container, options) || this;
@@ -4825,7 +4825,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var StaticTextBlockDialog = /** @class */ (function (_super) {
+        var StaticTextBlockDialog = (function (_super) {
             __extends(StaticTextBlockDialog, _super);
             function StaticTextBlockDialog() {
                 var _this = _super.call(this) || this;
@@ -4860,7 +4860,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var HardcodedValuesDialog = /** @class */ (function (_super) {
+        var HardcodedValuesDialog = (function (_super) {
             __extends(HardcodedValuesDialog, _super);
             function HardcodedValuesDialog() {
                 var _this = _super.call(this) || this;
@@ -4891,7 +4891,7 @@ var Serene;
          * and transform templates for it to be available
          * in server side forms, e.g. [HardCodedValuesEditor]
          */
-        var HardcodedValuesEditor = /** @class */ (function (_super) {
+        var HardcodedValuesEditor = (function (_super) {
             __extends(HardcodedValuesEditor, _super);
             function HardcodedValuesEditor(container) {
                 var _this = _super.call(this, container, null) || this;
@@ -4928,7 +4928,7 @@ var Serene;
          * This is our custom product dialog that uses a different product form
          * (LookupFilterByMultipleForm) with our special category editor.
          */
-        var LookupFilterByMultipleDialog = /** @class */ (function (_super) {
+        var LookupFilterByMultipleDialog = (function (_super) {
             __extends(LookupFilterByMultipleDialog, _super);
             function LookupFilterByMultipleDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -4950,7 +4950,7 @@ var Serene;
         /**
          * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
          */
-        var LookupFilterByMultipleGrid = /** @class */ (function (_super) {
+        var LookupFilterByMultipleGrid = (function (_super) {
             __extends(LookupFilterByMultipleGrid, _super);
             function LookupFilterByMultipleGrid(container) {
                 return _super.call(this, container) || this;
@@ -4994,7 +4994,7 @@ var Serene;
          * available in server side to use in our LookupFilterByMultipleForm,
          * which is a version of ProductForm that uses our custom editor.
          */
-        var ProduceSeafoodCategoryEditor = /** @class */ (function (_super) {
+        var ProduceSeafoodCategoryEditor = (function (_super) {
             __extends(ProduceSeafoodCategoryEditor, _super);
             function ProduceSeafoodCategoryEditor(container, opt) {
                 return _super.call(this, container, opt) || this;
@@ -5035,7 +5035,7 @@ var Serene;
          * Our subclass of order detail dialog with a CategoryID property
          * that will be used to set CascadeValue of product editor
          */
-        var FilteredLookupOrderDetailDialog = /** @class */ (function (_super) {
+        var FilteredLookupOrderDetailDialog = (function (_super) {
             __extends(FilteredLookupOrderDetailDialog, _super);
             function FilteredLookupOrderDetailDialog() {
                 var _this = _super.call(this) || this;
@@ -5076,7 +5076,7 @@ var Serene;
         /**
          * Our subclass of Order Details editor with a CategoryID property
          */
-        var FilteredLookupDetailEditor = /** @class */ (function (_super) {
+        var FilteredLookupDetailEditor = (function (_super) {
             __extends(FilteredLookupDetailEditor, _super);
             function FilteredLookupDetailEditor(container) {
                 return _super.call(this, container) || this;
@@ -5107,7 +5107,7 @@ var Serene;
         /**
          * Basic order dialog with a category selection
          */
-        var FilteredLookupInDetailDialog = /** @class */ (function (_super) {
+        var FilteredLookupInDetailDialog = (function (_super) {
             __extends(FilteredLookupInDetailDialog, _super);
             function FilteredLookupInDetailDialog() {
                 var _this = _super.call(this) || this;
@@ -5138,7 +5138,7 @@ var Serene;
         /**
          * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
          */
-        var FilteredLookupInDetailGrid = /** @class */ (function (_super) {
+        var FilteredLookupInDetailGrid = (function (_super) {
             __extends(FilteredLookupInDetailGrid, _super);
             function FilteredLookupInDetailGrid(container) {
                 return _super.call(this, container) || this;
@@ -5157,7 +5157,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ChangingLookupTextDialog = /** @class */ (function (_super) {
+        var ChangingLookupTextDialog = (function (_super) {
             __extends(ChangingLookupTextDialog, _super);
             function ChangingLookupTextDialog() {
                 var _this = _super.call(this) || this;
@@ -5201,7 +5201,7 @@ var Serene;
         /**
          * Our custom product editor type
          */
-        var ChangingLookupTextEditor = /** @class */ (function (_super) {
+        var ChangingLookupTextEditor = (function (_super) {
             __extends(ChangingLookupTextEditor, _super);
             function ChangingLookupTextEditor(container, options) {
                 return _super.call(this, container, options) || this;
@@ -5230,7 +5230,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var SerialAutoNumberDialog = /** @class */ (function (_super) {
+        var SerialAutoNumberDialog = (function (_super) {
             __extends(SerialAutoNumberDialog, _super);
             function SerialAutoNumberDialog() {
                 var _this = _super.call(this) || this;
@@ -5281,7 +5281,7 @@ var Serene;
         /**
          * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
          */
-        var SerialAutoNumberGrid = /** @class */ (function (_super) {
+        var SerialAutoNumberGrid = (function (_super) {
             __extends(SerialAutoNumberGrid, _super);
             function SerialAutoNumberGrid(container) {
                 return _super.call(this, container) || this;
@@ -5302,7 +5302,7 @@ var Serene;
         /**
          * Adding Responsive attribute makes this dialog use full screen in mobile devices.
          */
-        var ResponsiveDialog = /** @class */ (function (_super) {
+        var ResponsiveDialog = (function (_super) {
             __extends(ResponsiveDialog, _super);
             function ResponsiveDialog() {
                 return _super.call(this) || this;
@@ -5330,7 +5330,7 @@ var Serene;
         /**
          * Subclass of OrderGrid to override dialog type to ResponsiveDialog
          */
-        var ResponsiveGrid = /** @class */ (function (_super) {
+        var ResponsiveGrid = (function (_super) {
             __extends(ResponsiveGrid, _super);
             function ResponsiveGrid(container) {
                 return _super.call(this, container) || this;
@@ -5349,7 +5349,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ReadOnlyDialog = /** @class */ (function (_super) {
+        var ReadOnlyDialog = (function (_super) {
             __extends(ReadOnlyDialog, _super);
             function ReadOnlyDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -5452,7 +5452,7 @@ var Serene;
         /**
          * A readonly grid that launches ReadOnlyDialog
          */
-        var ReadOnlyGrid = /** @class */ (function (_super) {
+        var ReadOnlyGrid = (function (_super) {
             __extends(ReadOnlyGrid, _super);
             function ReadOnlyGrid(container) {
                 return _super.call(this, container) || this;
@@ -5478,7 +5478,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var PopulateLinkedDataDialog = /** @class */ (function (_super) {
+        var PopulateLinkedDataDialog = (function (_super) {
             __extends(PopulateLinkedDataDialog, _super);
             function PopulateLinkedDataDialog() {
                 var _this = _super.call(this) || this;
@@ -5544,7 +5544,7 @@ var Serene;
         /**
          * A subclass of OrderGrid that launches PopulateLinkedDataDialog
          */
-        var PopulateLinkedDataGrid = /** @class */ (function (_super) {
+        var PopulateLinkedDataGrid = (function (_super) {
             __extends(PopulateLinkedDataGrid, _super);
             function PopulateLinkedDataGrid(container) {
                 return _super.call(this, container) || this;
@@ -5567,7 +5567,7 @@ var Serene;
          * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
          * With single toolbar for all forms
          */
-        var OtherFormOneBarDialog = /** @class */ (function (_super) {
+        var OtherFormOneBarDialog = (function (_super) {
             __extends(OtherFormOneBarDialog, _super);
             function OtherFormOneBarDialog() {
                 var _this = _super.call(this) || this;
@@ -5688,7 +5688,7 @@ var Serene;
         /**
          * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
          */
-        var OtherFormInTabOneBarGrid = /** @class */ (function (_super) {
+        var OtherFormInTabOneBarGrid = (function (_super) {
             __extends(OtherFormInTabOneBarGrid, _super);
             function OtherFormInTabOneBarGrid(container) {
                 return _super.call(this, container) || this;
@@ -5710,7 +5710,7 @@ var Serene;
         /**
          * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
          */
-        var OtherFormInTabDialog = /** @class */ (function (_super) {
+        var OtherFormInTabDialog = (function (_super) {
             __extends(OtherFormInTabDialog, _super);
             function OtherFormInTabDialog() {
                 var _this = _super.call(this) || this;
@@ -5810,7 +5810,7 @@ var Serene;
         /**
          * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
          */
-        var OtherFormInTabGrid = /** @class */ (function (_super) {
+        var OtherFormInTabGrid = (function (_super) {
             __extends(OtherFormInTabGrid, _super);
             function OtherFormInTabGrid(container) {
                 return _super.call(this, container) || this;
@@ -5834,7 +5834,7 @@ var Serene;
          * When comparing this to MultiColumnDialog sample, you may notice that
          * this version requires much less JS and CSS code.
          */
-        var MultiColumnResponsiveDialog = /** @class */ (function (_super) {
+        var MultiColumnResponsiveDialog = (function (_super) {
             __extends(MultiColumnResponsiveDialog, _super);
             function MultiColumnResponsiveDialog() {
                 return _super.call(this) || this;
@@ -5855,7 +5855,7 @@ var Serene;
         /**
          * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
          */
-        var MultiColumnResponsiveGrid = /** @class */ (function (_super) {
+        var MultiColumnResponsiveGrid = (function (_super) {
             __extends(MultiColumnResponsiveGrid, _super);
             function MultiColumnResponsiveGrid(container) {
                 return _super.call(this, container) || this;
@@ -5874,7 +5874,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var GetInsertedRecordIdDialog = /** @class */ (function (_super) {
+        var GetInsertedRecordIdDialog = (function (_super) {
             __extends(GetInsertedRecordIdDialog, _super);
             function GetInsertedRecordIdDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -5915,7 +5915,7 @@ var Serene;
         /**
          * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
          */
-        var GetInsertedRecordIdGrid = /** @class */ (function (_super) {
+        var GetInsertedRecordIdGrid = (function (_super) {
             __extends(GetInsertedRecordIdGrid, _super);
             function GetInsertedRecordIdGrid(container) {
                 return _super.call(this, container) || this;
@@ -5937,7 +5937,7 @@ var Serene;
         /**
          * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
          */
-        var EntityDialogAsPanel = /** @class */ (function (_super) {
+        var EntityDialogAsPanel = (function (_super) {
             __extends(EntityDialogAsPanel, _super);
             function EntityDialogAsPanel() {
                 var _this = _super.call(this) || this;
@@ -6027,7 +6027,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var DefaultValuesInNewGrid = /** @class */ (function (_super) {
+        var DefaultValuesInNewGrid = (function (_super) {
             __extends(DefaultValuesInNewGrid, _super);
             function DefaultValuesInNewGrid(container) {
                 return _super.call(this, container) || this;
@@ -6110,7 +6110,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var CloneableEntityDialog = /** @class */ (function (_super) {
+        var CloneableEntityDialog = (function (_super) {
             __extends(CloneableEntityDialog, _super);
             function CloneableEntityDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -6157,7 +6157,7 @@ var Serene;
         /**
          * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
          */
-        var CloneableEntityGrid = /** @class */ (function (_super) {
+        var CloneableEntityGrid = (function (_super) {
             __extends(CloneableEntityGrid, _super);
             function CloneableEntityGrid(container) {
                 return _super.call(this, container) || this;
@@ -6175,7 +6175,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ChartInDialog = /** @class */ (function (_super) {
+        var ChartInDialog = (function (_super) {
             __extends(ChartInDialog, _super);
             function ChartInDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -6229,7 +6229,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var RoleCheckEditor = /** @class */ (function (_super) {
+        var RoleCheckEditor = (function (_super) {
             __extends(RoleCheckEditor, _super);
             function RoleCheckEditor(div) {
                 return _super.call(this, div) || this;
@@ -6269,7 +6269,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var UserRoleDialog = /** @class */ (function (_super) {
+        var UserRoleDialog = (function (_super) {
             __extends(UserRoleDialog, _super);
             function UserRoleDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -6317,7 +6317,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var PermissionCheckEditor = /** @class */ (function (_super) {
+        var PermissionCheckEditor = (function (_super) {
             __extends(PermissionCheckEditor, _super);
             function PermissionCheckEditor(container, opt) {
                 var _this = _super.call(this, container, opt) || this;
@@ -6637,7 +6637,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var UserPermissionDialog = /** @class */ (function (_super) {
+        var UserPermissionDialog = (function (_super) {
             __extends(UserPermissionDialog, _super);
             function UserPermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -6701,7 +6701,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var UserDialog = /** @class */ (function (_super) {
+        var UserDialog = (function (_super) {
             __extends(UserDialog, _super);
             function UserDialog() {
                 var _this = _super.call(this) || this;
@@ -6774,7 +6774,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var UserGrid = /** @class */ (function (_super) {
+        var UserGrid = (function (_super) {
             __extends(UserGrid, _super);
             function UserGrid(container) {
                 return _super.call(this, container) || this;
@@ -6816,7 +6816,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var TranslationGrid = /** @class */ (function (_super) {
+        var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
                 var _this = _super.call(this, container) || this;
@@ -7013,7 +7013,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var RolePermissionDialog = /** @class */ (function (_super) {
+        var RolePermissionDialog = (function (_super) {
             __extends(RolePermissionDialog, _super);
             function RolePermissionDialog(opt) {
                 var _this = _super.call(this, opt) || this;
@@ -7070,7 +7070,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var RoleDialog = /** @class */ (function (_super) {
+        var RoleDialog = (function (_super) {
             __extends(RoleDialog, _super);
             function RoleDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -7114,7 +7114,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var RoleGrid = /** @class */ (function (_super) {
+        var RoleGrid = (function (_super) {
             __extends(RoleGrid, _super);
             function RoleGrid(container) {
                 return _super.call(this, container) || this;
@@ -7139,7 +7139,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var LanguageDialog = /** @class */ (function (_super) {
+        var LanguageDialog = (function (_super) {
             __extends(LanguageDialog, _super);
             function LanguageDialog() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -7163,7 +7163,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var LanguageGrid = /** @class */ (function (_super) {
+        var LanguageGrid = (function (_super) {
             __extends(LanguageGrid, _super);
             function LanguageGrid(container) {
                 return _super.call(this, container) || this;
@@ -7188,7 +7188,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var LanguageForm = /** @class */ (function (_super) {
+        var LanguageForm = (function (_super) {
             __extends(LanguageForm, _super);
             function LanguageForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7217,7 +7217,11 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = LanguageRow.Fields || (LanguageRow.Fields = {}));
-            ['Id', 'LanguageId', 'LanguageName'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'Id',
+                'LanguageId',
+                'LanguageName'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(LanguageRow = Administration.LanguageRow || (Administration.LanguageRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7231,8 +7235,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = LanguageService.Methods || (LanguageService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                LanguageService[x] = function (r, s, o) { return Q.serviceRequest(LanguageService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                LanguageService[x] = function (r, s, o) {
+                    return Q.serviceRequest(LanguageService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = LanguageService.baseUrl + '/' + x;
             });
         })(LanguageService = Administration.LanguageService || (Administration.LanguageService = {}));
@@ -7242,7 +7254,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var RoleForm = /** @class */ (function (_super) {
+        var RoleForm = (function (_super) {
             __extends(RoleForm, _super);
             function RoleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7266,7 +7278,12 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = RolePermissionRow.Fields || (RolePermissionRow.Fields = {}));
-            ['RolePermissionId', 'RoleId', 'PermissionKey', 'RoleRoleName'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'RolePermissionId',
+                'RoleId',
+                'PermissionKey',
+                'RoleRoleName'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(RolePermissionRow = Administration.RolePermissionRow || (Administration.RolePermissionRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7280,8 +7297,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = RolePermissionService.Methods || (RolePermissionService.Methods = {}));
-            ['Update', 'List'].forEach(function (x) {
-                RolePermissionService[x] = function (r, s, o) { return Q.serviceRequest(RolePermissionService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Update',
+                'List'
+            ].forEach(function (x) {
+                RolePermissionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(RolePermissionService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = RolePermissionService.baseUrl + '/' + x;
             });
         })(RolePermissionService = Administration.RolePermissionService || (Administration.RolePermissionService = {}));
@@ -7304,7 +7326,10 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = RoleRow.Fields || (RoleRow.Fields = {}));
-            ['RoleId', 'RoleName'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'RoleId',
+                'RoleName'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7318,8 +7343,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = RoleService.Methods || (RoleService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                RoleService[x] = function (r, s, o) { return Q.serviceRequest(RoleService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                RoleService[x] = function (r, s, o) {
+                    return Q.serviceRequest(RoleService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = RoleService.baseUrl + '/' + x;
             });
         })(RoleService = Administration.RoleService || (Administration.RoleService = {}));
@@ -7335,8 +7368,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = TranslationService.Methods || (TranslationService.Methods = {}));
-            ['List', 'Update'].forEach(function (x) {
-                TranslationService[x] = function (r, s, o) { return Q.serviceRequest(TranslationService.baseUrl + '/' + x, r, s, o); };
+            [
+                'List',
+                'Update'
+            ].forEach(function (x) {
+                TranslationService[x] = function (r, s, o) {
+                    return Q.serviceRequest(TranslationService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = TranslationService.baseUrl + '/' + x;
             });
         })(TranslationService = Administration.TranslationService || (Administration.TranslationService = {}));
@@ -7346,7 +7384,7 @@ var Serene;
 (function (Serene) {
     var Administration;
     (function (Administration) {
-        var UserForm = /** @class */ (function (_super) {
+        var UserForm = (function (_super) {
             __extends(UserForm, _super);
             function UserForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7370,7 +7408,14 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserPermissionRow.Fields || (UserPermissionRow.Fields = {}));
-            ['UserPermissionId', 'UserId', 'PermissionKey', 'Granted', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'UserPermissionId',
+                'UserId',
+                'PermissionKey',
+                'Granted',
+                'Username',
+                'User'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(UserPermissionRow = Administration.UserPermissionRow || (Administration.UserPermissionRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7384,8 +7429,15 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = UserPermissionService.Methods || (UserPermissionService.Methods = {}));
-            ['Update', 'List', 'ListRolePermissions', 'ListPermissionKeys'].forEach(function (x) {
-                UserPermissionService[x] = function (r, s, o) { return Q.serviceRequest(UserPermissionService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Update',
+                'List',
+                'ListRolePermissions',
+                'ListPermissionKeys'
+            ].forEach(function (x) {
+                UserPermissionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(UserPermissionService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = UserPermissionService.baseUrl + '/' + x;
             });
         })(UserPermissionService = Administration.UserPermissionService || (Administration.UserPermissionService = {}));
@@ -7402,7 +7454,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserRoleRow.Fields || (UserRoleRow.Fields = {}));
-            ['UserRoleId', 'UserId', 'RoleId', 'Username', 'User'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'UserRoleId',
+                'UserId',
+                'RoleId',
+                'Username',
+                'User'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(UserRoleRow = Administration.UserRoleRow || (Administration.UserRoleRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7416,8 +7474,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = UserRoleService.Methods || (UserRoleService.Methods = {}));
-            ['Update', 'List'].forEach(function (x) {
-                UserRoleService[x] = function (r, s, o) { return Q.serviceRequest(UserRoleService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Update',
+                'List'
+            ].forEach(function (x) {
+                UserRoleService[x] = function (r, s, o) {
+                    return Q.serviceRequest(UserRoleService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = UserRoleService.baseUrl + '/' + x;
             });
         })(UserRoleService = Administration.UserRoleService || (Administration.UserRoleService = {}));
@@ -7441,7 +7504,24 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserRow.Fields || (UserRow.Fields = {}));
-            ['UserId', 'Username', 'Source', 'PasswordHash', 'PasswordSalt', 'DisplayName', 'Email', 'UserImage', 'LastDirectoryUpdate', 'IsActive', 'Password', 'PasswordConfirm', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'UserId',
+                'Username',
+                'Source',
+                'PasswordHash',
+                'PasswordSalt',
+                'DisplayName',
+                'Email',
+                'UserImage',
+                'LastDirectoryUpdate',
+                'IsActive',
+                'Password',
+                'PasswordConfirm',
+                'InsertUserId',
+                'InsertDate',
+                'UpdateUserId',
+                'UpdateDate'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(UserRow = Administration.UserRow || (Administration.UserRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -7455,8 +7535,17 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = UserService.Methods || (UserService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Undelete', 'Retrieve', 'List'].forEach(function (x) {
-                UserService[x] = function (r, s, o) { return Q.serviceRequest(UserService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Undelete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                UserService[x] = function (r, s, o) {
+                    return Q.serviceRequest(UserService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = UserService.baseUrl + '/' + x;
             });
         })(UserService = Administration.UserService || (Administration.UserService = {}));
@@ -7472,8 +7561,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = BasicSamplesService.Methods || (BasicSamplesService.Methods = {}));
-            ['OrdersByShipper', 'OrderBulkAction'].forEach(function (x) {
-                BasicSamplesService[x] = function (r, s, o) { return Q.serviceRequest(BasicSamplesService.baseUrl + '/' + x, r, s, o); };
+            [
+                'OrdersByShipper',
+                'OrderBulkAction'
+            ].forEach(function (x) {
+                BasicSamplesService[x] = function (r, s, o) {
+                    return Q.serviceRequest(BasicSamplesService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = BasicSamplesService.baseUrl + '/' + x;
             });
         })(BasicSamplesService = BasicSamples.BasicSamplesService || (BasicSamples.BasicSamplesService = {}));
@@ -7483,7 +7577,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ChangingLookupTextForm = /** @class */ (function (_super) {
+        var ChangingLookupTextForm = (function (_super) {
             __extends(ChangingLookupTextForm, _super);
             function ChangingLookupTextForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7505,8 +7599,12 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CustomerGrossSalesService.Methods || (CustomerGrossSalesService.Methods = {}));
-            ['List'].forEach(function (x) {
-                CustomerGrossSalesService[x] = function (r, s, o) { return Q.serviceRequest(CustomerGrossSalesService.baseUrl + '/' + x, r, s, o); };
+            [
+                'List'
+            ].forEach(function (x) {
+                CustomerGrossSalesService[x] = function (r, s, o) {
+                    return Q.serviceRequest(CustomerGrossSalesService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = CustomerGrossSalesService.baseUrl + '/' + x;
             });
         })(CustomerGrossSalesService = BasicSamples.CustomerGrossSalesService || (BasicSamples.CustomerGrossSalesService = {}));
@@ -7516,7 +7614,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var DragDropSampleForm = /** @class */ (function (_super) {
+        var DragDropSampleForm = (function (_super) {
             __extends(DragDropSampleForm, _super);
             function DragDropSampleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7540,7 +7638,11 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = DragDropSampleRow.Fields || (DragDropSampleRow.Fields = {}));
-            ['Id', 'ParentId', 'Title'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'Id',
+                'ParentId',
+                'Title'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(DragDropSampleRow = BasicSamples.DragDropSampleRow || (BasicSamples.DragDropSampleRow = {}));
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -7554,8 +7656,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = DragDropSampleService.Methods || (DragDropSampleService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                DragDropSampleService[x] = function (r, s, o) { return Q.serviceRequest(DragDropSampleService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                DragDropSampleService[x] = function (r, s, o) {
+                    return Q.serviceRequest(DragDropSampleService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = DragDropSampleService.baseUrl + '/' + x;
             });
         })(DragDropSampleService = BasicSamples.DragDropSampleService || (BasicSamples.DragDropSampleService = {}));
@@ -7565,7 +7675,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var FilteredLookupInDetailForm = /** @class */ (function (_super) {
+        var FilteredLookupInDetailForm = (function (_super) {
             __extends(FilteredLookupInDetailForm, _super);
             function FilteredLookupInDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7581,7 +7691,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var HardcodedValuesForm = /** @class */ (function (_super) {
+        var HardcodedValuesForm = (function (_super) {
             __extends(HardcodedValuesForm, _super);
             function HardcodedValuesForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7597,7 +7707,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var LookupFilterByMultipleForm = /** @class */ (function (_super) {
+        var LookupFilterByMultipleForm = (function (_super) {
             __extends(LookupFilterByMultipleForm, _super);
             function LookupFilterByMultipleForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7613,7 +7723,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var PopulateLinkedDataForm = /** @class */ (function (_super) {
+        var PopulateLinkedDataForm = (function (_super) {
             __extends(PopulateLinkedDataForm, _super);
             function PopulateLinkedDataForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7629,7 +7739,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var ProductExcelImportForm = /** @class */ (function (_super) {
+        var ProductExcelImportForm = (function (_super) {
             __extends(ProductExcelImportForm, _super);
             function ProductExcelImportForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7651,8 +7761,12 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ProductExcelImportService.Methods || (ProductExcelImportService.Methods = {}));
-            ['ExcelImport'].forEach(function (x) {
-                ProductExcelImportService[x] = function (r, s, o) { return Q.serviceRequest(ProductExcelImportService.baseUrl + '/' + x, r, s, o); };
+            [
+                'ExcelImport'
+            ].forEach(function (x) {
+                ProductExcelImportService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ProductExcelImportService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = ProductExcelImportService.baseUrl + '/' + x;
             });
         })(ProductExcelImportService = BasicSamples.ProductExcelImportService || (BasicSamples.ProductExcelImportService = {}));
@@ -7662,7 +7776,7 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
-        var StaticTextBlockForm = /** @class */ (function (_super) {
+        var StaticTextBlockForm = (function (_super) {
             __extends(StaticTextBlockForm, _super);
             function StaticTextBlockForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7684,8 +7798,12 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = VSGalleryQAService.Methods || (VSGalleryQAService.Methods = {}));
-            ['List'].forEach(function (x) {
-                VSGalleryQAService[x] = function (r, s, o) { return Q.serviceRequest(VSGalleryQAService.baseUrl + '/' + x, r, s, o); };
+            [
+                'List'
+            ].forEach(function (x) {
+                VSGalleryQAService[x] = function (r, s, o) {
+                    return Q.serviceRequest(VSGalleryQAService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = VSGalleryQAService.baseUrl + '/' + x;
             });
         })(VSGalleryQAService = BasicSamples.VSGalleryQAService || (BasicSamples.VSGalleryQAService = {}));
@@ -7703,7 +7821,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = UserPreferenceRow.Fields || (UserPreferenceRow.Fields = {}));
-            ['UserPreferenceId', 'UserId', 'PreferenceType', 'Name', 'Value'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'UserPreferenceId',
+                'UserId',
+                'PreferenceType',
+                'Name',
+                'Value'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(UserPreferenceRow = Common.UserPreferenceRow || (Common.UserPreferenceRow = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
@@ -7717,8 +7841,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = UserPreferenceService.Methods || (UserPreferenceService.Methods = {}));
-            ['Update', 'Retrieve'].forEach(function (x) {
-                UserPreferenceService[x] = function (r, s, o) { return Q.serviceRequest(UserPreferenceService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Update',
+                'Retrieve'
+            ].forEach(function (x) {
+                UserPreferenceService[x] = function (r, s, o) {
+                    return Q.serviceRequest(UserPreferenceService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = UserPreferenceService.baseUrl + '/' + x;
             });
         })(UserPreferenceService = Common.UserPreferenceService || (Common.UserPreferenceService = {}));
@@ -7728,7 +7857,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaForm = /** @class */ (function (_super) {
+        var MeetingAgendaForm = (function (_super) {
             __extends(MeetingAgendaForm, _super);
             function MeetingAgendaForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7744,7 +7873,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaRelevantForm = /** @class */ (function (_super) {
+        var MeetingAgendaRelevantForm = (function (_super) {
             __extends(MeetingAgendaRelevantForm, _super);
             function MeetingAgendaRelevantForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7767,7 +7896,25 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAgendaRelevantRow.Fields || (MeetingAgendaRelevantRow.Fields = {}));
-            ['AgendaRelevantId', 'AgendaId', 'ContactId', 'AgendaMeetingId', 'AgendaAgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'AgendaRelevantId',
+                'AgendaId',
+                'ContactId',
+                'AgendaMeetingId',
+                'AgendaAgendaNumber',
+                'AgendaTitle',
+                'AgendaDescription',
+                'AgendaAgendaTypeId',
+                'AgendaRequestedByContactId',
+                'AgendaImages',
+                'AgendaAttachments',
+                'ContactTitle',
+                'ContactFirstName',
+                'ContactLastName',
+                'ContactEmail',
+                'ContactIdentityNo',
+                'ContactUserId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingAgendaRelevantRow = Meeting.MeetingAgendaRelevantRow || (Meeting.MeetingAgendaRelevantRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7781,8 +7928,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingAgendaRelevantService.Methods || (MeetingAgendaRelevantService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaRelevantService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingAgendaRelevantService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingAgendaRelevantService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingAgendaRelevantService.baseUrl + '/' + x;
             });
         })(MeetingAgendaRelevantService = Meeting.MeetingAgendaRelevantService || (Meeting.MeetingAgendaRelevantService = {}));
@@ -7800,7 +7955,39 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAgendaRow.Fields || (MeetingAgendaRow.Fields = {}));
-            ['AgendaId', 'MeetingId', 'AgendaNumber', 'Title', 'Description', 'AgendaTypeId', 'RequestedByContactId', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaTypeName', 'RequestedByContactTitle', 'RequestedByContactFirstName', 'RequestedByContactLastName', 'RequestedByContactFullName', 'RequestedByContactEmail', 'RequestedByContactIdentityNo', 'RequestedByContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'AgendaId',
+                'MeetingId',
+                'AgendaNumber',
+                'Title',
+                'Description',
+                'AgendaTypeId',
+                'RequestedByContactId',
+                'Images',
+                'Attachments',
+                'MeetingMeetingName',
+                'MeetingMeetingNumber',
+                'MeetingMeetingGuid',
+                'MeetingMeetingTypeId',
+                'MeetingStartDate',
+                'MeetingEndDate',
+                'MeetingLocationId',
+                'MeetingUnitId',
+                'MeetingOrganizerContactId',
+                'MeetingReporterContactId',
+                'MeetingInsertUserId',
+                'MeetingInsertDate',
+                'MeetingUpdateUserId',
+                'MeetingUpdateDate',
+                'AgendaTypeName',
+                'RequestedByContactTitle',
+                'RequestedByContactFirstName',
+                'RequestedByContactLastName',
+                'RequestedByContactFullName',
+                'RequestedByContactEmail',
+                'RequestedByContactIdentityNo',
+                'RequestedByContactUserId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingAgendaRow = Meeting.MeetingAgendaRow || (Meeting.MeetingAgendaRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7814,8 +8001,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingAgendaService.Methods || (MeetingAgendaService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingAgendaService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingAgendaService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingAgendaService.baseUrl + '/' + x;
             });
         })(MeetingAgendaService = Meeting.MeetingAgendaService || (Meeting.MeetingAgendaService = {}));
@@ -7825,7 +8020,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAgendaTypeForm = /** @class */ (function (_super) {
+        var MeetingAgendaTypeForm = (function (_super) {
             __extends(MeetingAgendaTypeForm, _super);
             function MeetingAgendaTypeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7854,7 +8049,10 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAgendaTypeRow.Fields || (MeetingAgendaTypeRow.Fields = {}));
-            ['AgendaTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'AgendaTypeId',
+                'Name'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingAgendaTypeRow = Meeting.MeetingAgendaTypeRow || (Meeting.MeetingAgendaTypeRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7868,8 +8066,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingAgendaTypeService.Methods || (MeetingAgendaTypeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingAgendaTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingAgendaTypeService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingAgendaTypeService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingAgendaTypeService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingAgendaTypeService.baseUrl + '/' + x;
             });
         })(MeetingAgendaTypeService = Meeting.MeetingAgendaTypeService || (Meeting.MeetingAgendaTypeService = {}));
@@ -7893,7 +8099,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingAttendeeForm = /** @class */ (function (_super) {
+        var MeetingAttendeeForm = (function (_super) {
             __extends(MeetingAttendeeForm, _super);
             function MeetingAttendeeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7916,7 +8122,34 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingAttendeeRow.Fields || (MeetingAttendeeRow.Fields = {}));
-            ['AttendeeId', 'MeetingId', 'ContactId', 'AttendeeType', 'AttendanceStatus', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactFullName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'AttendeeId',
+                'MeetingId',
+                'ContactId',
+                'AttendeeType',
+                'AttendanceStatus',
+                'MeetingMeetingName',
+                'MeetingMeetingNumber',
+                'MeetingMeetingGuid',
+                'MeetingMeetingTypeId',
+                'MeetingStartDate',
+                'MeetingEndDate',
+                'MeetingLocationId',
+                'MeetingUnitId',
+                'MeetingOrganizerContactId',
+                'MeetingReporterContactId',
+                'MeetingInsertUserId',
+                'MeetingInsertDate',
+                'MeetingUpdateUserId',
+                'MeetingUpdateDate',
+                'ContactTitle',
+                'ContactFirstName',
+                'ContactLastName',
+                'ContactFullName',
+                'ContactEmail',
+                'ContactIdentityNo',
+                'ContactUserId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingAttendeeRow = Meeting.MeetingAttendeeRow || (Meeting.MeetingAttendeeRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7936,7 +8169,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionForm = /** @class */ (function (_super) {
+        var MeetingDecisionForm = (function (_super) {
             __extends(MeetingDecisionForm, _super);
             function MeetingDecisionForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7952,7 +8185,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingDecisionRelevantForm = /** @class */ (function (_super) {
+        var MeetingDecisionRelevantForm = (function (_super) {
             __extends(MeetingDecisionRelevantForm, _super);
             function MeetingDecisionRelevantForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7975,7 +8208,26 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingDecisionRelevantRow.Fields || (MeetingDecisionRelevantRow.Fields = {}));
-            ['DecisionRelevantId', 'DecisionId', 'ContactId', 'DecisionMeetingId', 'DecisionAgendaId', 'DecisionDescription', 'DecisionDecisionNumber', 'DecisionResponsibleContactId', 'DecisionDueDate', 'DecisionResolutionStatus', 'DecisionImages', 'DecisionAttachments', 'ContactTitle', 'ContactFirstName', 'ContactLastName', 'ContactEmail', 'ContactIdentityNo', 'ContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'DecisionRelevantId',
+                'DecisionId',
+                'ContactId',
+                'DecisionMeetingId',
+                'DecisionAgendaId',
+                'DecisionDescription',
+                'DecisionDecisionNumber',
+                'DecisionResponsibleContactId',
+                'DecisionDueDate',
+                'DecisionResolutionStatus',
+                'DecisionImages',
+                'DecisionAttachments',
+                'ContactTitle',
+                'ContactFirstName',
+                'ContactLastName',
+                'ContactEmail',
+                'ContactIdentityNo',
+                'ContactUserId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingDecisionRelevantRow = Meeting.MeetingDecisionRelevantRow || (Meeting.MeetingDecisionRelevantRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -7989,8 +8241,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingDecisionRelevantService.Methods || (MeetingDecisionRelevantService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingDecisionRelevantService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionRelevantService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingDecisionRelevantService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingDecisionRelevantService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingDecisionRelevantService.baseUrl + '/' + x;
             });
         })(MeetingDecisionRelevantService = Meeting.MeetingDecisionRelevantService || (Meeting.MeetingDecisionRelevantService = {}));
@@ -8008,7 +8268,48 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingDecisionRow.Fields || (MeetingDecisionRow.Fields = {}));
-            ['DecisionId', 'MeetingId', 'AgendaId', 'Description', 'DecisionNumber', 'ResponsibleContactId', 'DueDate', 'ResolutionStatus', 'Images', 'Attachments', 'MeetingMeetingName', 'MeetingMeetingNumber', 'MeetingMeetingGuid', 'MeetingMeetingTypeId', 'MeetingStartDate', 'MeetingEndDate', 'MeetingLocationId', 'MeetingUnitId', 'MeetingOrganizerContactId', 'MeetingReporterContactId', 'MeetingInsertUserId', 'MeetingInsertDate', 'MeetingUpdateUserId', 'MeetingUpdateDate', 'AgendaMeetingId', 'AgendaNumber', 'AgendaTitle', 'AgendaDescription', 'AgendaAgendaTypeId', 'AgendaRequestedByContactId', 'AgendaImages', 'AgendaAttachments', 'DecisionNumberName', 'ResponsibleContactTitle', 'ResponsibleContactFirstName', 'ResponsibleContactLastName', 'ResponsibleContactFullName', 'ResponsibleContactEmail', 'ResponsibleContactIdentityNo', 'ResponsibleContactUserId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'DecisionId',
+                'MeetingId',
+                'AgendaId',
+                'Description',
+                'DecisionNumber',
+                'ResponsibleContactId',
+                'DueDate',
+                'ResolutionStatus',
+                'Images',
+                'Attachments',
+                'MeetingMeetingName',
+                'MeetingMeetingNumber',
+                'MeetingMeetingGuid',
+                'MeetingMeetingTypeId',
+                'MeetingStartDate',
+                'MeetingEndDate',
+                'MeetingLocationId',
+                'MeetingUnitId',
+                'MeetingOrganizerContactId',
+                'MeetingReporterContactId',
+                'MeetingInsertUserId',
+                'MeetingInsertDate',
+                'MeetingUpdateUserId',
+                'MeetingUpdateDate',
+                'AgendaMeetingId',
+                'AgendaNumber',
+                'AgendaTitle',
+                'AgendaDescription',
+                'AgendaAgendaTypeId',
+                'AgendaRequestedByContactId',
+                'AgendaImages',
+                'AgendaAttachments',
+                'DecisionNumberName',
+                'ResponsibleContactTitle',
+                'ResponsibleContactFirstName',
+                'ResponsibleContactLastName',
+                'ResponsibleContactFullName',
+                'ResponsibleContactEmail',
+                'ResponsibleContactIdentityNo',
+                'ResponsibleContactUserId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingDecisionRow = Meeting.MeetingDecisionRow || (Meeting.MeetingDecisionRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8022,8 +8323,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingDecisionService.Methods || (MeetingDecisionService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingDecisionService[x] = function (r, s, o) { return Q.serviceRequest(MeetingDecisionService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingDecisionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingDecisionService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingDecisionService.baseUrl + '/' + x;
             });
         })(MeetingDecisionService = Meeting.MeetingDecisionService || (Meeting.MeetingDecisionService = {}));
@@ -8033,7 +8342,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingForm = /** @class */ (function (_super) {
+        var MeetingForm = (function (_super) {
             __extends(MeetingForm, _super);
             function MeetingForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8049,7 +8358,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingLocationForm = /** @class */ (function (_super) {
+        var MeetingLocationForm = (function (_super) {
             __extends(MeetingLocationForm, _super);
             function MeetingLocationForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8078,7 +8387,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingLocationRow.Fields || (MeetingLocationRow.Fields = {}));
-            ['LocationId', 'Name', 'Address', 'Latitude', 'Longitude'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'LocationId',
+                'Name',
+                'Address',
+                'Latitude',
+                'Longitude'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingLocationRow = Meeting.MeetingLocationRow || (Meeting.MeetingLocationRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8092,8 +8407,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingLocationService.Methods || (MeetingLocationService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingLocationService[x] = function (r, s, o) { return Q.serviceRequest(MeetingLocationService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingLocationService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingLocationService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingLocationService.baseUrl + '/' + x;
             });
         })(MeetingLocationService = Meeting.MeetingLocationService || (Meeting.MeetingLocationService = {}));
@@ -8111,7 +8434,42 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingRow.Fields || (MeetingRow.Fields = {}));
-            ['MeetingId', 'MeetingName', 'MeetingNumber', 'MeetingGuid', 'MeetingTypeId', 'StartDate', 'EndDate', 'LocationId', 'UnitId', 'OrganizerContactId', 'ReporterContactId', 'MeetingTypeName', 'LocationName', 'UnitName', 'UnitParentUnitId', 'OrganizerContactTitle', 'OrganizerContactFirstName', 'OrganizerContactLastName', 'OrganizerContactFullName', 'OrganizerContactEmail', 'OrganizerContactIdentityNo', 'OrganizerContactUserId', 'ReporterContactTitle', 'ReporterContactFirstName', 'ReporterContactLastName', 'ReporterContactFullName', 'ReporterContactEmail', 'ReporterContactIdentityNo', 'ReporterContactUserId', 'AttendeeList', 'InsertUserId', 'InsertDate', 'UpdateUserId', 'UpdateDate'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'MeetingId',
+                'MeetingName',
+                'MeetingNumber',
+                'MeetingGuid',
+                'MeetingTypeId',
+                'StartDate',
+                'EndDate',
+                'LocationId',
+                'UnitId',
+                'OrganizerContactId',
+                'ReporterContactId',
+                'MeetingTypeName',
+                'LocationName',
+                'UnitName',
+                'UnitParentUnitId',
+                'OrganizerContactTitle',
+                'OrganizerContactFirstName',
+                'OrganizerContactLastName',
+                'OrganizerContactFullName',
+                'OrganizerContactEmail',
+                'OrganizerContactIdentityNo',
+                'OrganizerContactUserId',
+                'ReporterContactTitle',
+                'ReporterContactFirstName',
+                'ReporterContactLastName',
+                'ReporterContactFullName',
+                'ReporterContactEmail',
+                'ReporterContactIdentityNo',
+                'ReporterContactUserId',
+                'AttendeeList',
+                'InsertUserId',
+                'InsertDate',
+                'UpdateUserId',
+                'UpdateDate'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingRow = Meeting.MeetingRow || (Meeting.MeetingRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8125,8 +8483,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingService.Methods || (MeetingService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingService[x] = function (r, s, o) { return Q.serviceRequest(MeetingService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingService.baseUrl + '/' + x;
             });
         })(MeetingService = Meeting.MeetingService || (Meeting.MeetingService = {}));
@@ -8136,7 +8502,7 @@ var Serene;
 (function (Serene) {
     var Meeting;
     (function (Meeting) {
-        var MeetingTypeForm = /** @class */ (function (_super) {
+        var MeetingTypeForm = (function (_super) {
             __extends(MeetingTypeForm, _super);
             function MeetingTypeForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8165,7 +8531,10 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = MeetingTypeRow.Fields || (MeetingTypeRow.Fields = {}));
-            ['MeetingTypeId', 'Name'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'MeetingTypeId',
+                'Name'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(MeetingTypeRow = Meeting.MeetingTypeRow || (Meeting.MeetingTypeRow = {}));
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
@@ -8179,8 +8548,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = MeetingTypeService.Methods || (MeetingTypeService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                MeetingTypeService[x] = function (r, s, o) { return Q.serviceRequest(MeetingTypeService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                MeetingTypeService[x] = function (r, s, o) {
+                    return Q.serviceRequest(MeetingTypeService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = MeetingTypeService.baseUrl + '/' + x;
             });
         })(MeetingTypeService = Meeting.MeetingTypeService || (Meeting.MeetingTypeService = {}));
@@ -8190,7 +8567,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ChangePasswordForm = /** @class */ (function (_super) {
+        var ChangePasswordForm = (function (_super) {
             __extends(ChangePasswordForm, _super);
             function ChangePasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8206,7 +8583,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ForgotPasswordForm = /** @class */ (function (_super) {
+        var ForgotPasswordForm = (function (_super) {
             __extends(ForgotPasswordForm, _super);
             function ForgotPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8222,7 +8599,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var LoginForm = /** @class */ (function (_super) {
+        var LoginForm = (function (_super) {
             __extends(LoginForm, _super);
             function LoginForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8238,7 +8615,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var ResetPasswordForm = /** @class */ (function (_super) {
+        var ResetPasswordForm = (function (_super) {
             __extends(ResetPasswordForm, _super);
             function ResetPasswordForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8254,7 +8631,7 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var SignUpForm = /** @class */ (function (_super) {
+        var SignUpForm = (function (_super) {
             __extends(SignUpForm, _super);
             function SignUpForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8270,7 +8647,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CategoryForm = /** @class */ (function (_super) {
+        var CategoryForm = (function (_super) {
             __extends(CategoryForm, _super);
             function CategoryForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8294,7 +8671,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CategoryLangRow.Fields || (CategoryLangRow.Fields = {}));
-            ['Id', 'CategoryId', 'LanguageId', 'CategoryName', 'Description'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'Id',
+                'CategoryId',
+                'LanguageId',
+                'CategoryName',
+                'Description'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CategoryLangRow = Northwind.CategoryLangRow || (Northwind.CategoryLangRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8308,8 +8691,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CategoryLangService.Methods || (CategoryLangService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                CategoryLangService[x] = function (r, s, o) { return Q.serviceRequest(CategoryLangService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                CategoryLangService[x] = function (r, s, o) {
+                    return Q.serviceRequest(CategoryLangService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = CategoryLangService.baseUrl + '/' + x;
             });
         })(CategoryLangService = Northwind.CategoryLangService || (Northwind.CategoryLangService = {}));
@@ -8332,7 +8723,12 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CategoryRow.Fields || (CategoryRow.Fields = {}));
-            ['CategoryID', 'CategoryName', 'Description', 'Picture'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'CategoryID',
+                'CategoryName',
+                'Description',
+                'Picture'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CategoryRow = Northwind.CategoryRow || (Northwind.CategoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8346,8 +8742,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CategoryService.Methods || (CategoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                CategoryService[x] = function (r, s, o) { return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                CategoryService[x] = function (r, s, o) {
+                    return Q.serviceRequest(CategoryService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = CategoryService.baseUrl + '/' + x;
             });
         })(CategoryService = Northwind.CategoryService || (Northwind.CategoryService = {}));
@@ -8365,7 +8769,22 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerCustomerDemoRow.Fields || (CustomerCustomerDemoRow.Fields = {}));
-            ['ID', 'CustomerID', 'CustomerTypeID', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerAddress', 'CustomerCity', 'CustomerRegion', 'CustomerPostalCode', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'CustomerTypeCustomerDesc'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ID',
+                'CustomerID',
+                'CustomerTypeID',
+                'CustomerCompanyName',
+                'CustomerContactName',
+                'CustomerContactTitle',
+                'CustomerAddress',
+                'CustomerCity',
+                'CustomerRegion',
+                'CustomerPostalCode',
+                'CustomerCountry',
+                'CustomerPhone',
+                'CustomerFax',
+                'CustomerTypeCustomerDesc'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerCustomerDemoRow = Northwind.CustomerCustomerDemoRow || (Northwind.CustomerCustomerDemoRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8381,7 +8800,11 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerDemographicRow.Fields || (CustomerDemographicRow.Fields = {}));
-            ['ID', 'CustomerTypeID', 'CustomerDesc'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ID',
+                'CustomerTypeID',
+                'CustomerDesc'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerDemographicRow = Northwind.CustomerDemographicRow || (Northwind.CustomerDemographicRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8397,7 +8820,30 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerDetailsRow.Fields || (CustomerDetailsRow.Fields = {}));
-            ['Id', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin', 'LastContactedByLastName', 'LastContactedByFirstName', 'LastContactedByTitle', 'LastContactedByTitleOfCourtesy', 'LastContactedByBirthDate', 'LastContactedByHireDate', 'LastContactedByAddress', 'LastContactedByCity', 'LastContactedByRegion', 'LastContactedByPostalCode', 'LastContactedByCountry', 'LastContactedByHomePhone', 'LastContactedByExtension', 'LastContactedByPhoto', 'LastContactedByNotes', 'LastContactedByReportsTo', 'LastContactedByPhotoPath'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'Id',
+                'LastContactDate',
+                'LastContactedBy',
+                'Email',
+                'SendBulletin',
+                'LastContactedByLastName',
+                'LastContactedByFirstName',
+                'LastContactedByTitle',
+                'LastContactedByTitleOfCourtesy',
+                'LastContactedByBirthDate',
+                'LastContactedByHireDate',
+                'LastContactedByAddress',
+                'LastContactedByCity',
+                'LastContactedByRegion',
+                'LastContactedByPostalCode',
+                'LastContactedByCountry',
+                'LastContactedByHomePhone',
+                'LastContactedByExtension',
+                'LastContactedByPhoto',
+                'LastContactedByNotes',
+                'LastContactedByReportsTo',
+                'LastContactedByPhotoPath'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerDetailsRow = Northwind.CustomerDetailsRow || (Northwind.CustomerDetailsRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8405,7 +8851,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var CustomerForm = /** @class */ (function (_super) {
+        var CustomerForm = (function (_super) {
             __extends(CustomerForm, _super);
             function CustomerForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8428,7 +8874,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerGrossSalesRow.Fields || (CustomerGrossSalesRow.Fields = {}));
-            ['CustomerId', 'ContactName', 'ProductId', 'ProductName', 'GrossAmount'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'CustomerId',
+                'ContactName',
+                'ProductId',
+                'ProductName',
+                'GrossAmount'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerGrossSalesRow = Northwind.CustomerGrossSalesRow || (Northwind.CustomerGrossSalesRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8443,7 +8895,11 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerRepresentativesRow.Fields || (CustomerRepresentativesRow.Fields = {}));
-            ['RepresentativeId', 'CustomerId', 'EmployeeId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'RepresentativeId',
+                'CustomerId',
+                'EmployeeId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerRepresentativesRow = Northwind.CustomerRepresentativesRow || (Northwind.CustomerRepresentativesRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8464,7 +8920,26 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = CustomerRow.Fields || (CustomerRow.Fields = {}));
-            ['ID', 'CustomerID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'NoteList', 'Representatives', 'LastContactDate', 'LastContactedBy', 'Email', 'SendBulletin'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ID',
+                'CustomerID',
+                'CompanyName',
+                'ContactName',
+                'ContactTitle',
+                'Address',
+                'City',
+                'Region',
+                'PostalCode',
+                'Country',
+                'Phone',
+                'Fax',
+                'NoteList',
+                'Representatives',
+                'LastContactDate',
+                'LastContactedBy',
+                'Email',
+                'SendBulletin'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(CustomerRow = Northwind.CustomerRow || (Northwind.CustomerRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8478,8 +8953,17 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = CustomerService.Methods || (CustomerService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'GetNextNumber', 'Retrieve', 'List'].forEach(function (x) {
-                CustomerService[x] = function (r, s, o) { return Q.serviceRequest(CustomerService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'GetNextNumber',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                CustomerService[x] = function (r, s, o) {
+                    return Q.serviceRequest(CustomerService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = CustomerService.baseUrl + '/' + x;
             });
         })(CustomerService = Northwind.CustomerService || (Northwind.CustomerService = {}));
@@ -8502,7 +8986,46 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = EmployeeRow.Fields || (EmployeeRow.Fields = {}));
-            ['EmployeeID', 'LastName', 'FirstName', 'FullName', 'Title', 'TitleOfCourtesy', 'BirthDate', 'HireDate', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'HomePhone', 'Extension', 'Photo', 'Notes', 'ReportsTo', 'PhotoPath', 'ReportsToFullName', 'ReportsToLastName', 'ReportsToFirstName', 'ReportsToTitle', 'ReportsToTitleOfCourtesy', 'ReportsToBirthDate', 'ReportsToHireDate', 'ReportsToAddress', 'ReportsToCity', 'ReportsToRegion', 'ReportsToPostalCode', 'ReportsToCountry', 'ReportsToHomePhone', 'ReportsToExtension', 'ReportsToPhoto', 'ReportsToNotes', 'ReportsToReportsTo', 'ReportsToPhotoPath', 'Gender'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'EmployeeID',
+                'LastName',
+                'FirstName',
+                'FullName',
+                'Title',
+                'TitleOfCourtesy',
+                'BirthDate',
+                'HireDate',
+                'Address',
+                'City',
+                'Region',
+                'PostalCode',
+                'Country',
+                'HomePhone',
+                'Extension',
+                'Photo',
+                'Notes',
+                'ReportsTo',
+                'PhotoPath',
+                'ReportsToFullName',
+                'ReportsToLastName',
+                'ReportsToFirstName',
+                'ReportsToTitle',
+                'ReportsToTitleOfCourtesy',
+                'ReportsToBirthDate',
+                'ReportsToHireDate',
+                'ReportsToAddress',
+                'ReportsToCity',
+                'ReportsToRegion',
+                'ReportsToPostalCode',
+                'ReportsToCountry',
+                'ReportsToHomePhone',
+                'ReportsToExtension',
+                'ReportsToPhoto',
+                'ReportsToNotes',
+                'ReportsToReportsTo',
+                'ReportsToPhotoPath',
+                'Gender'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(EmployeeRow = Northwind.EmployeeRow || (Northwind.EmployeeRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8518,7 +9041,29 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = EmployeeTerritoryRow.Fields || (EmployeeTerritoryRow.Fields = {}));
-            ['EmployeeID', 'TerritoryID', 'EmployeeLastName', 'EmployeeFirstName', 'EmployeeTitle', 'EmployeeTitleOfCourtesy', 'EmployeeBirthDate', 'EmployeeHireDate', 'EmployeeAddress', 'EmployeeCity', 'EmployeeRegion', 'EmployeePostalCode', 'EmployeeCountry', 'EmployeeHomePhone', 'EmployeeExtension', 'EmployeePhoto', 'EmployeeNotes', 'EmployeeReportsTo', 'EmployeePhotoPath', 'TerritoryTerritoryDescription', 'TerritoryRegionID'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'EmployeeID',
+                'TerritoryID',
+                'EmployeeLastName',
+                'EmployeeFirstName',
+                'EmployeeTitle',
+                'EmployeeTitleOfCourtesy',
+                'EmployeeBirthDate',
+                'EmployeeHireDate',
+                'EmployeeAddress',
+                'EmployeeCity',
+                'EmployeeRegion',
+                'EmployeePostalCode',
+                'EmployeeCountry',
+                'EmployeeHomePhone',
+                'EmployeeExtension',
+                'EmployeePhoto',
+                'EmployeeNotes',
+                'EmployeeReportsTo',
+                'EmployeePhotoPath',
+                'TerritoryTerritoryDescription',
+                'TerritoryRegionID'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(EmployeeTerritoryRow = Northwind.EmployeeTerritoryRow || (Northwind.EmployeeTerritoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8546,7 +9091,15 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = NoteRow.Fields || (NoteRow.Fields = {}));
-            ['NoteId', 'EntityType', 'EntityId', 'Text', 'InsertUserId', 'InsertDate', 'InsertUserDisplayName'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'NoteId',
+                'EntityType',
+                'EntityId',
+                'Text',
+                'InsertUserId',
+                'InsertDate',
+                'InsertUserDisplayName'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(NoteRow = Northwind.NoteRow || (Northwind.NoteRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8554,7 +9107,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderDetailForm = /** @class */ (function (_super) {
+        var OrderDetailForm = (function (_super) {
             __extends(OrderDetailForm, _super);
             function OrderDetailForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8577,7 +9130,27 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = OrderDetailRow.Fields || (OrderDetailRow.Fields = {}));
-            ['DetailID', 'OrderID', 'ProductID', 'UnitPrice', 'Quantity', 'Discount', 'OrderCustomerID', 'OrderEmployeeID', 'OrderDate', 'OrderShippedDate', 'OrderShipVia', 'OrderShipCity', 'OrderShipCountry', 'ProductName', 'ProductDiscontinued', 'ProductSupplierID', 'ProductQuantityPerUnit', 'ProductUnitPrice', 'LineTotal'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'DetailID',
+                'OrderID',
+                'ProductID',
+                'UnitPrice',
+                'Quantity',
+                'Discount',
+                'OrderCustomerID',
+                'OrderEmployeeID',
+                'OrderDate',
+                'OrderShippedDate',
+                'OrderShipVia',
+                'OrderShipCity',
+                'OrderShipCountry',
+                'ProductName',
+                'ProductDiscontinued',
+                'ProductSupplierID',
+                'ProductQuantityPerUnit',
+                'ProductUnitPrice',
+                'LineTotal'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(OrderDetailRow = Northwind.OrderDetailRow || (Northwind.OrderDetailRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8591,8 +9164,13 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = OrderDetailService.Methods || (OrderDetailService.Methods = {}));
-            ['Retrieve', 'List'].forEach(function (x) {
-                OrderDetailService[x] = function (r, s, o) { return Q.serviceRequest(OrderDetailService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                OrderDetailService[x] = function (r, s, o) {
+                    return Q.serviceRequest(OrderDetailService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = OrderDetailService.baseUrl + '/' + x;
             });
         })(OrderDetailService = Northwind.OrderDetailService || (Northwind.OrderDetailService = {}));
@@ -8602,7 +9180,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var OrderForm = /** @class */ (function (_super) {
+        var OrderForm = (function (_super) {
             __extends(OrderForm, _super);
             function OrderForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8631,7 +9209,37 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = OrderRow.Fields || (OrderRow.Fields = {}));
-            ['OrderID', 'CustomerID', 'EmployeeID', 'OrderDate', 'RequiredDate', 'ShippedDate', 'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode', 'ShipCountry', 'CustomerCompanyName', 'CustomerContactName', 'CustomerContactTitle', 'CustomerCity', 'CustomerRegion', 'CustomerCountry', 'CustomerPhone', 'CustomerFax', 'EmployeeFullName', 'EmployeeGender', 'EmployeeReportsToFullName', 'ShipViaCompanyName', 'ShipViaPhone', 'ShippingState', 'DetailList'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'OrderID',
+                'CustomerID',
+                'EmployeeID',
+                'OrderDate',
+                'RequiredDate',
+                'ShippedDate',
+                'ShipVia',
+                'Freight',
+                'ShipName',
+                'ShipAddress',
+                'ShipCity',
+                'ShipRegion',
+                'ShipPostalCode',
+                'ShipCountry',
+                'CustomerCompanyName',
+                'CustomerContactName',
+                'CustomerContactTitle',
+                'CustomerCity',
+                'CustomerRegion',
+                'CustomerCountry',
+                'CustomerPhone',
+                'CustomerFax',
+                'EmployeeFullName',
+                'EmployeeGender',
+                'EmployeeReportsToFullName',
+                'ShipViaCompanyName',
+                'ShipViaPhone',
+                'ShippingState',
+                'DetailList'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(OrderRow = Northwind.OrderRow || (Northwind.OrderRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8645,8 +9253,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = OrderService.Methods || (OrderService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                OrderService[x] = function (r, s, o) { return Q.serviceRequest(OrderService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                OrderService[x] = function (r, s, o) {
+                    return Q.serviceRequest(OrderService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = OrderService.baseUrl + '/' + x;
             });
         })(OrderService = Northwind.OrderService || (Northwind.OrderService = {}));
@@ -8668,7 +9284,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ProductForm = /** @class */ (function (_super) {
+        var ProductForm = (function (_super) {
             __extends(ProductForm, _super);
             function ProductForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8692,7 +9308,12 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ProductLangRow.Fields || (ProductLangRow.Fields = {}));
-            ['Id', 'ProductId', 'LanguageId', 'ProductName'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'Id',
+                'ProductId',
+                'LanguageId',
+                'ProductName'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(ProductLangRow = Northwind.ProductLangRow || (Northwind.ProductLangRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8706,8 +9327,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ProductLangService.Methods || (ProductLangService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ProductLangService[x] = function (r, s, o) { return Q.serviceRequest(ProductLangService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ProductLangService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ProductLangService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = ProductLangService.baseUrl + '/' + x;
             });
         })(ProductLangService = Northwind.ProductLangService || (Northwind.ProductLangService = {}));
@@ -8724,7 +9353,24 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ProductLogRow.Fields || (ProductLogRow.Fields = {}));
-            ['ProductLogID', 'OperationType', 'ChangingUserId', 'ValidFrom', 'ValidUntil', 'ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ProductLogID',
+                'OperationType',
+                'ChangingUserId',
+                'ValidFrom',
+                'ValidUntil',
+                'ProductID',
+                'ProductName',
+                'ProductImage',
+                'Discontinued',
+                'SupplierID',
+                'CategoryID',
+                'QuantityPerUnit',
+                'UnitPrice',
+                'UnitsInStock',
+                'UnitsOnOrder',
+                'ReorderLevel'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(ProductLogRow = Northwind.ProductLogRow || (Northwind.ProductLogRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8745,7 +9391,33 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ProductRow.Fields || (ProductRow.Fields = {}));
-            ['ProductID', 'ProductName', 'ProductImage', 'Discontinued', 'SupplierID', 'CategoryID', 'QuantityPerUnit', 'UnitPrice', 'UnitsInStock', 'UnitsOnOrder', 'ReorderLevel', 'SupplierCompanyName', 'SupplierContactName', 'SupplierContactTitle', 'SupplierAddress', 'SupplierCity', 'SupplierRegion', 'SupplierPostalCode', 'SupplierCountry', 'SupplierPhone', 'SupplierFax', 'SupplierHomePage', 'CategoryName', 'CategoryDescription', 'CategoryPicture'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ProductID',
+                'ProductName',
+                'ProductImage',
+                'Discontinued',
+                'SupplierID',
+                'CategoryID',
+                'QuantityPerUnit',
+                'UnitPrice',
+                'UnitsInStock',
+                'UnitsOnOrder',
+                'ReorderLevel',
+                'SupplierCompanyName',
+                'SupplierContactName',
+                'SupplierContactTitle',
+                'SupplierAddress',
+                'SupplierCity',
+                'SupplierRegion',
+                'SupplierPostalCode',
+                'SupplierCountry',
+                'SupplierPhone',
+                'SupplierFax',
+                'SupplierHomePage',
+                'CategoryName',
+                'CategoryDescription',
+                'CategoryPicture'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(ProductRow = Northwind.ProductRow || (Northwind.ProductRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8759,8 +9431,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ProductService.Methods || (ProductService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ProductService[x] = function (r, s, o) { return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ProductService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = ProductService.baseUrl + '/' + x;
             });
         })(ProductService = Northwind.ProductService || (Northwind.ProductService = {}));
@@ -8770,7 +9450,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var RegionForm = /** @class */ (function (_super) {
+        var RegionForm = (function (_super) {
             __extends(RegionForm, _super);
             function RegionForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8799,7 +9479,10 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = RegionRow.Fields || (RegionRow.Fields = {}));
-            ['RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'RegionID',
+                'RegionDescription'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(RegionRow = Northwind.RegionRow || (Northwind.RegionRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8813,8 +9496,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = RegionService.Methods || (RegionService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                RegionService[x] = function (r, s, o) { return Q.serviceRequest(RegionService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                RegionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(RegionService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = RegionService.baseUrl + '/' + x;
             });
         })(RegionService = Northwind.RegionService || (Northwind.RegionService = {}));
@@ -8831,7 +9522,12 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = SalesByCategoryRow.Fields || (SalesByCategoryRow.Fields = {}));
-            ['CategoryId', 'CategoryName', 'ProductName', 'ProductSales'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'CategoryId',
+                'CategoryName',
+                'ProductName',
+                'ProductSales'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(SalesByCategoryRow = Northwind.SalesByCategoryRow || (Northwind.SalesByCategoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8845,8 +9541,12 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = SalesByCategoryService.Methods || (SalesByCategoryService.Methods = {}));
-            ['List'].forEach(function (x) {
-                SalesByCategoryService[x] = function (r, s, o) { return Q.serviceRequest(SalesByCategoryService.baseUrl + '/' + x, r, s, o); };
+            [
+                'List'
+            ].forEach(function (x) {
+                SalesByCategoryService[x] = function (r, s, o) {
+                    return Q.serviceRequest(SalesByCategoryService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = SalesByCategoryService.baseUrl + '/' + x;
             });
         })(SalesByCategoryService = Northwind.SalesByCategoryService || (Northwind.SalesByCategoryService = {}));
@@ -8856,7 +9556,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var ShipperForm = /** @class */ (function (_super) {
+        var ShipperForm = (function (_super) {
             __extends(ShipperForm, _super);
             function ShipperForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8885,7 +9585,11 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ShipperRow.Fields || (ShipperRow.Fields = {}));
-            ['ShipperID', 'CompanyName', 'Phone'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ShipperID',
+                'CompanyName',
+                'Phone'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(ShipperRow = Northwind.ShipperRow || (Northwind.ShipperRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8899,8 +9603,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ShipperService.Methods || (ShipperService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ShipperService[x] = function (r, s, o) { return Q.serviceRequest(ShipperService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ShipperService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ShipperService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = ShipperService.baseUrl + '/' + x;
             });
         })(ShipperService = Northwind.ShipperService || (Northwind.ShipperService = {}));
@@ -8910,7 +9622,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var SupplierForm = /** @class */ (function (_super) {
+        var SupplierForm = (function (_super) {
             __extends(SupplierForm, _super);
             function SupplierForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8939,7 +9651,20 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = SupplierRow.Fields || (SupplierRow.Fields = {}));
-            ['SupplierID', 'CompanyName', 'ContactName', 'ContactTitle', 'Address', 'City', 'Region', 'PostalCode', 'Country', 'Phone', 'Fax', 'HomePage'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'SupplierID',
+                'CompanyName',
+                'ContactName',
+                'ContactTitle',
+                'Address',
+                'City',
+                'Region',
+                'PostalCode',
+                'Country',
+                'Phone',
+                'Fax',
+                'HomePage'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(SupplierRow = Northwind.SupplierRow || (Northwind.SupplierRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -8953,8 +9678,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = SupplierService.Methods || (SupplierService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                SupplierService[x] = function (r, s, o) { return Q.serviceRequest(SupplierService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                SupplierService[x] = function (r, s, o) {
+                    return Q.serviceRequest(SupplierService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = SupplierService.baseUrl + '/' + x;
             });
         })(SupplierService = Northwind.SupplierService || (Northwind.SupplierService = {}));
@@ -8964,7 +9697,7 @@ var Serene;
 (function (Serene) {
     var Northwind;
     (function (Northwind) {
-        var TerritoryForm = /** @class */ (function (_super) {
+        var TerritoryForm = (function (_super) {
             __extends(TerritoryForm, _super);
             function TerritoryForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8993,7 +9726,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = TerritoryRow.Fields || (TerritoryRow.Fields = {}));
-            ['ID', 'TerritoryID', 'TerritoryDescription', 'RegionID', 'RegionDescription'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ID',
+                'TerritoryID',
+                'TerritoryDescription',
+                'RegionID',
+                'RegionDescription'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(TerritoryRow = Northwind.TerritoryRow || (Northwind.TerritoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -9007,8 +9746,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = TerritoryService.Methods || (TerritoryService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                TerritoryService[x] = function (r, s, o) { return Q.serviceRequest(TerritoryService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                TerritoryService[x] = function (r, s, o) {
+                    return Q.serviceRequest(TerritoryService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = TerritoryService.baseUrl + '/' + x;
             });
         })(TerritoryService = Northwind.TerritoryService || (Northwind.TerritoryService = {}));
@@ -9018,7 +9765,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var BusinessUnitForm = /** @class */ (function (_super) {
+        var BusinessUnitForm = (function (_super) {
             __extends(BusinessUnitForm, _super);
             function BusinessUnitForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9047,7 +9794,13 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = BusinessUnitRow.Fields || (BusinessUnitRow.Fields = {}));
-            ['UnitId', 'Name', 'ParentUnitId', 'ParentUnitName', 'ParentUnitParentUnitId'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'UnitId',
+                'Name',
+                'ParentUnitId',
+                'ParentUnitName',
+                'ParentUnitParentUnitId'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(BusinessUnitRow = Organization.BusinessUnitRow || (Organization.BusinessUnitRow = {}));
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -9061,8 +9814,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = BusinessUnitService.Methods || (BusinessUnitService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                BusinessUnitService[x] = function (r, s, o) { return Q.serviceRequest(BusinessUnitService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                BusinessUnitService[x] = function (r, s, o) {
+                    return Q.serviceRequest(BusinessUnitService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = BusinessUnitService.baseUrl + '/' + x;
             });
         })(BusinessUnitService = Organization.BusinessUnitService || (Organization.BusinessUnitService = {}));
@@ -9072,7 +9833,7 @@ var Serene;
 (function (Serene) {
     var Organization;
     (function (Organization) {
-        var ContactForm = /** @class */ (function (_super) {
+        var ContactForm = (function (_super) {
             __extends(ContactForm, _super);
             function ContactForm() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9101,7 +9862,29 @@ var Serene;
             var Fields;
             (function (Fields) {
             })(Fields = ContactRow.Fields || (ContactRow.Fields = {}));
-            ['ContactId', 'Title', 'FirstName', 'LastName', 'FullName', 'Email', 'IdentityNo', 'UserId', 'Username', 'UserDisplayName', 'UserEmail', 'UserSource', 'UserPasswordHash', 'UserPasswordSalt', 'UserLastDirectoryUpdate', 'UserUserImage', 'UserInsertDate', 'UserInsertUserId', 'UserUpdateDate', 'UserUpdateUserId', 'UserIsActive'].forEach(function (x) { return Fields[x] = x; });
+            [
+                'ContactId',
+                'Title',
+                'FirstName',
+                'LastName',
+                'FullName',
+                'Email',
+                'IdentityNo',
+                'UserId',
+                'Username',
+                'UserDisplayName',
+                'UserEmail',
+                'UserSource',
+                'UserPasswordHash',
+                'UserPasswordSalt',
+                'UserLastDirectoryUpdate',
+                'UserUserImage',
+                'UserInsertDate',
+                'UserInsertUserId',
+                'UserUpdateDate',
+                'UserUpdateUserId',
+                'UserIsActive'
+            ].forEach(function (x) { return Fields[x] = x; });
         })(ContactRow = Organization.ContactRow || (Organization.ContactRow = {}));
     })(Organization = Serene.Organization || (Serene.Organization = {}));
 })(Serene || (Serene = {}));
@@ -9115,8 +9898,16 @@ var Serene;
             var Methods;
             (function (Methods) {
             })(Methods = ContactService.Methods || (ContactService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                ContactService[x] = function (r, s, o) { return Q.serviceRequest(ContactService.baseUrl + '/' + x, r, s, o); };
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ContactService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ContactService.baseUrl + '/' + x, r, s, o);
+                };
                 Methods[x] = ContactService.baseUrl + '/' + x;
             });
         })(ContactService = Organization.ContactService || (Organization.ContactService = {}));
