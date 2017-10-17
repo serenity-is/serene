@@ -1495,6 +1495,8 @@ declare namespace Serene.BasicSamples {
      */
     class EntityDialogAsPanel extends Northwind.OrderDialog {
         constructor();
+        protected updateInterface(): void;
+        protected onSaveSuccess(response: any): void;
     }
 }
 declare namespace Serene.BasicSamples.DialogBoxes {

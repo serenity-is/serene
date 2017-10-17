@@ -7886,37 +7886,40 @@ section.content > .s-DataGrid {
 .s-Northwind-CustomerDialog .categories {
   height: 380px;
 }
-.s-Northwind-CustomerDialog .s-CustomerOrdersGrid > .grid-container {
-  height: 296px;
-}
 .s-Northwind-CustomerDialog .s-NotesEditor {
-  height: 100%;
   margin: 6px;
   width: initial !important;
   min-width: 100%;
 }
-.s-Northwind-CustomerDialog .grid-toolbar {
-  -webkit-box-flex: 0;
-  -moz-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -moz-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  -ms-flex-positive: 0;
-  -ms-flex-negative: 0;
-  -ms-flex-preferred-size: auto;
+.s-Northwind-CustomerDialog.s-Panel {
+  min-height: 750px;
+}
+.s-Northwind-CustomerDialog.s-Panel .categories {
+  height: auto;
 }
 .s-Northwind-OrderDialog > .size,
-.s-CustomerOrderDialog > .size {
+.s-Northwind-CustomerOrderDialog > .size {
   width: 850px;
 }
 .s-Northwind-OrderDialog .caption,
-.s-CustomerOrderDialog .caption {
+.s-Northwind-CustomerOrderDialog .caption {
   width: 130px;
 }
 .s-Northwind-OrderDialog .s-PropertyGrid .categories,
-.s-CustomerOrderDialog .s-PropertyGrid .categories {
+.s-Northwind-CustomerOrderDialog .s-PropertyGrid .categories {
   height: 450px;
+}
+.s-Northwind-OrderDialog.s-Panel,
+.s-Northwind-CustomerOrderDialog.s-Panel {
+  min-height: 750px;
+}
+.s-Northwind-OrderDialog.s-Panel .categories,
+.s-Northwind-CustomerOrderDialog.s-Panel .categories {
+  height: auto;
+}
+.s-Northwind-OrderDialog.s-Panel .grid-container,
+.s-Northwind-CustomerOrderDialog.s-Panel .grid-container {
+  min-height: 300px;
 }
 .s-Northwind-OrderDetailDialog > .size {
   min-width: 450px;

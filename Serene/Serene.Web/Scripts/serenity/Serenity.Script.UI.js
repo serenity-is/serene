@@ -1486,7 +1486,7 @@
 			e.preventDefault();
 			var dialog = new $Serenity_FilterDialog();
 			dialog.get_filterPanel().set_store(this.get_store());
-			dialog.dialogOpen();
+			dialog.dialogOpen(null);
 		});
 		this.element.find('.edit').click(openFilterDialog);
 		this.element.find('.txt').click(openFilterDialog);
@@ -3992,7 +3992,9 @@
 		}, useTimeout);
 	};
 	$Serenity_SubDialogHelper.cascade = function(cascadedDialog, ofElement) {
-		cascadedDialog.element.dialog().dialog('option', 'position', $Serenity_SubDialogHelper.cascadedDialogOffset(ofElement));
+		cascadedDialog.element.one('dialogopen', function(e) {
+			cascadedDialog.element.dialog().dialog('option', 'position', $Serenity_SubDialogHelper.cascadedDialogOffset(ofElement));
+		});
 		return cascadedDialog;
 	};
 	$Serenity_SubDialogHelper.cascadedDialogOffset = function(element) {
@@ -4756,12 +4758,12 @@
 					entity[this.getLookup().textField] = Q.trimToEmpty(this.lastCreateTerm);
 					this.initNewEntity(entity);
 					dialog.load(entity, function() {
-						dialog.dialogOpen();
+						dialog.dialogOpen(null);
 					}, null);
 				}
 				else {
 					dialog.load(this.get_value(), function() {
-						dialog.dialogOpen();
+						dialog.dialogOpen(null);
 					}, null);
 				}
 			}));
@@ -7292,9 +7294,7 @@
 			}
 		},
 		updateTitle: function() {
-			if (!this.isPanel) {
-				this.element.dialog().dialog('option', 'title', this.getEntityTitle());
-			}
+			this.dialogTitle = this.getEntityTitle();
 		},
 		isCloneMode: function() {
 			return false;
@@ -7499,17 +7499,13 @@
 				fail(ex);
 			}
 		},
-		loadNewAndOpenDialog: function() {
+		loadNewAndOpenDialog: function(asPanel) {
 			this.loadResponse({});
-			if (!this.isPanel) {
-				this.element.dialog().dialog('open');
-			}
+			this.dialogOpen(asPanel);
 		},
-		loadEntityAndOpenDialog: function(entity) {
+		loadEntityAndOpenDialog: function(entity, asPanel) {
 			this.loadResponse({ Entity: entity });
-			if (!this.isPanel) {
-				this.element.dialog().dialog('open');
-			}
+			this.dialogOpen(asPanel);
 		},
 		loadResponse: function(data) {
 			data = data || {};
@@ -7539,19 +7535,17 @@
 			this.updateInterface();
 			this.updateTitle();
 		},
-		loadByIdAndOpenDialog: function(entityId) {
+		loadByIdAndOpenDialog: function(entityId, asPanel) {
 			var self = this;
 			this.loadById(entityId, ss.mkdel(this, function(response) {
 				window.setTimeout(ss.mkdel(this, function() {
-					if (!this.isPanel) {
-						self.element.dialog().dialog('open');
-					}
+					this.dialogOpen(asPanel);
 				}), 0);
-			}), ss.mkdel(this, function() {
-				if (!this.isPanel && !self.element.is(':visible')) {
+			}), function() {
+				if (!self.element.is(':visible')) {
 					self.element.remove();
 				}
-			}));
+			});
 		},
 		onLoadingData: function(data) {
 		},
@@ -7976,19 +7970,17 @@
 		getToolbarButtons: function() {
 			var list = [];
 			var self = this;
-			if (!this.isPanel) {
-				list.push({
-					title: Q.text('Controls.EntityDialog.SaveButton'),
-					cssClass: 'save-and-close-button',
-					hotkey: 'alt+s',
-					onClick: function() {
-						self.save(function(response) {
-							self.element.dialog().dialog('close');
-						});
-					}
-				});
-			}
-			list.push({ title: (this.isPanel ? Q.text('Controls.EntityDialog.SaveButton') : ''), hint: (this.isPanel ? Q.text('Controls.EntityDialog.SaveButton') : Q.text('Controls.EntityDialog.ApplyChangesButton')), cssClass: 'apply-changes-button', hotkey: 'alt+a', onClick: ss.mkdel(this, function() {
+			list.push({
+				title: Q.text('Controls.EntityDialog.SaveButton'),
+				cssClass: 'save-and-close-button',
+				hotkey: 'alt+s',
+				onClick: function() {
+					self.save(function(response) {
+						self.dialogClose();
+					});
+				}
+			});
+			list.push({ title: '', hint: Q.text('Controls.EntityDialog.ApplyChangesButton'), cssClass: 'apply-changes-button', hotkey: 'alt+a', onClick: ss.mkdel(this, function() {
 				self.save(ss.mkdel(this, function(response1) {
 					if (self.isEditMode()) {
 						var $t1 = response1.EntityId;
@@ -8003,45 +7995,43 @@
 					this.showSaveSuccessMessage(response1);
 				}));
 			}) });
-			if (!this.isPanel) {
-				list.push({
-					title: Q.text('Controls.EntityDialog.DeleteButton'),
-					cssClass: 'delete-button',
-					hotkey: 'alt+x',
-					onClick: function() {
-						Q.confirm(Q.text('Controls.EntityDialog.DeleteConfirmation'), function() {
-							self.doDelete(function() {
-								self.element.dialog().dialog('close');
+			list.push({
+				title: Q.text('Controls.EntityDialog.DeleteButton'),
+				cssClass: 'delete-button',
+				hotkey: 'alt+x',
+				onClick: function() {
+					Q.confirm(Q.text('Controls.EntityDialog.DeleteConfirmation'), function() {
+						self.doDelete(function() {
+							self.dialogClose();
+						});
+					});
+				}
+			});
+			list.push({
+				title: Q.text('Controls.EntityDialog.UndeleteButton'),
+				cssClass: 'undo-delete-button',
+				onClick: function() {
+					if (self.isDeleted()) {
+						Q.confirm(Q.text('Controls.EntityDialog.UndeleteConfirmation'), function() {
+							self.undelete(function() {
+								self.loadById(self.get_entityId(), null, null);
 							});
 						});
 					}
-				});
-				list.push({
-					title: Q.text('Controls.EntityDialog.UndeleteButton'),
-					cssClass: 'undo-delete-button',
-					onClick: function() {
-						if (self.isDeleted()) {
-							Q.confirm(Q.text('Controls.EntityDialog.UndeleteConfirmation'), function() {
-								self.undelete(function() {
-									self.loadById(self.get_entityId(), null, null);
-								});
-							});
-						}
-					}
-				});
-				list.push({ title: Q.text('Controls.EntityDialog.LocalizationButton'), cssClass: 'localization-button', onClick: ss.mkdel(this, function() {
-					this.$localizationButtonClick();
+				}
+			});
+			list.push({ title: Q.text('Controls.EntityDialog.LocalizationButton'), cssClass: 'localization-button', onClick: ss.mkdel(this, function() {
+				this.$localizationButtonClick();
+			}) });
+			list.push({ title: Q.text('Controls.EntityDialog.CloneButton'), cssClass: 'clone-button', onClick: ss.mkdel(this, function() {
+				if (!self.isEditMode()) {
+					return;
+				}
+				var cloneEntity = this.getCloningEntity();
+				Serenity.Widget.create({ type: ss.getInstanceType(this), element: null, options: new Object(), init: ss.mkdel(this, function(w) {
+					$Serenity_SubDialogHelper.bubbleDataChange($Serenity_SubDialogHelper.cascade(w, this.element), this, true).loadEntityAndOpenDialog(cloneEntity, null);
 				}) });
-				list.push({ title: Q.text('Controls.EntityDialog.CloneButton'), cssClass: 'clone-button', onClick: ss.mkdel(this, function() {
-					if (!self.isEditMode()) {
-						return;
-					}
-					var cloneEntity = this.getCloningEntity();
-					Serenity.Widget.create({ type: ss.getInstanceType(this), element: null, options: new Object(), init: ss.mkdel(this, function(w) {
-						$Serenity_SubDialogHelper.bubbleDataChange($Serenity_SubDialogHelper.cascade(w, this.element), this, true).loadEntityAndOpenDialog(cloneEntity);
-					}) });
-				}) });
-			}
+			}) });
 			return list;
 		},
 		getCloningEntity: function() {
@@ -8237,7 +8227,7 @@
 				var dialog = ss.safeCast(dlg, $Serenity_IEditDialog);
 				if (ss.isValue(dialog)) {
 					dialog.load(entityOrId, function() {
-						dialog.dialogOpen();
+						dialog.dialogOpen(null);
 					}, null);
 					return;
 				}
@@ -8253,7 +8243,7 @@
 				var dialog = ss.safeCast(dlg, $Serenity_IEditDialog);
 				if (ss.isValue(dialog)) {
 					dialog.load(entityOrId, function() {
-						dialog.dialogOpen();
+						dialog.dialogOpen(null);
 					}, null);
 					return;
 				}
@@ -10605,7 +10595,7 @@
 				this.toolbar.findButton('print-preview-button').toggle(!response.IsDataOnlyReport);
 				this.toolbar.findButton('export-pdf-button').toggle(!response.IsDataOnlyReport);
 				this.toolbar.findButton('export-docx-button').toggle(!response.IsDataOnlyReport);
-				this.dialogOpen();
+				this.dialogOpen(null);
 			}) });
 		},
 		executeReport: function(targetFrame, exportType) {

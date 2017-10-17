@@ -1487,9 +1487,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
           </Folder>
-          <Folder Name="serenity" TargetFolderName="serenity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.js.map">Serenity.CoreLib.js.map</ProjectItem>
-          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
