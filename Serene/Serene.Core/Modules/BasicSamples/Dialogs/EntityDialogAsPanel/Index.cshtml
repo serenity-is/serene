@@ -38,7 +38,7 @@
         // here we use done event in second parameter, to be sure operation succeeded before showing the panel
         myDialogAsPanel.load(@Html.Raw(Model.ToJson()) || {}, function() {
             // if we didn't reach here, probably there is no order with specified ID in url
-            myDialogAsPanel.element.appendTo('#DialogDiv');
+            myDialogAsPanel.element.removeClass('hidden').appendTo('#DialogDiv');
         });
     });
 </script>
