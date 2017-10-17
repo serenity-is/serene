@@ -10,9 +10,17 @@ namespace Serene.BasicSamples {
 
         constructor() {
             super();
+        }
 
-            this.element.addClass('flex-layout');
+        protected updateInterface() {
+            super.updateInterface();
 
+            this.deleteButton.hide();
+            this.applyChangesButton.hide();
+        }
+
+        protected onSaveSuccess(response) {
+            this.showSaveSuccessMessage(response);
         }
     }
 }

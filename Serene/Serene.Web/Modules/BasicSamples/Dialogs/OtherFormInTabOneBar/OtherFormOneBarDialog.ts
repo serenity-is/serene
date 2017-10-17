@@ -21,6 +21,7 @@ namespace Serene.BasicSamples {
             // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
             this.customerPropertyGrid = new Serenity.PropertyGrid(this.byId("CustomerPropertyGrid"), {
                 items: Q.getForm(Northwind.CustomerForm.formKey).filter(x => x.name != 'CustomerID'),
+                idPrefix: this.idPrefix + "_Customer_",
                 useCategories: true
             });
 
