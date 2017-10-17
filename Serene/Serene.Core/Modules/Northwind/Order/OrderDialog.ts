@@ -1,6 +1,7 @@
 ﻿namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
+    @Serenity.Decorators.panel()
     export class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
         protected getFormKey() { return OrderForm.formKey; }
         protected getIdProperty() { return OrderRow.idProperty; }
