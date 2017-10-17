@@ -8586,27 +8586,27 @@ section.content > .s-DataGrid {
   height: auto;
 }
 .s-Northwind-OrderDialog > .size,
-.s-CustomerOrderDialog > .size {
+.s-Northwind-CustomerOrderDialog > .size {
   width: 850px;
 }
 .s-Northwind-OrderDialog .caption,
-.s-CustomerOrderDialog .caption {
+.s-Northwind-CustomerOrderDialog .caption {
   width: 130px;
 }
 .s-Northwind-OrderDialog .s-PropertyGrid .categories,
-.s-CustomerOrderDialog .s-PropertyGrid .categories {
+.s-Northwind-CustomerOrderDialog .s-PropertyGrid .categories {
   height: 450px;
 }
 .s-Northwind-OrderDialog.s-Panel,
-.s-CustomOrderDialog.s-Panel {
+.s-Northwind-CustomerOrderDialog.s-Panel {
   min-height: 750px;
 }
 .s-Northwind-OrderDialog.s-Panel .categories,
-.s-CustomOrderDialog.s-Panel .categories {
+.s-Northwind-CustomerOrderDialog.s-Panel .categories {
   height: auto;
 }
 .s-Northwind-OrderDialog.s-Panel .grid-container,
-.s-CustomOrderDialog.s-Panel .grid-container {
+.s-Northwind-CustomerOrderDialog.s-Panel .grid-container {
   min-height: 300px;
 }
 .s-Northwind-OrderDetailDialog > .size {

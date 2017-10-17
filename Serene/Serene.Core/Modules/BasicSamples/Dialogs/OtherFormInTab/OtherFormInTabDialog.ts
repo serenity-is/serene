@@ -18,6 +18,7 @@ namespace Serene.BasicSamples {
             // entity dialogs by default creates a property grid on element with ID "PropertyGrid".
             // here we explicitly create another, the customer property grid (vertical form) on element with ID "CustomerPropertyGrid".
             this.customerPropertyGrid = new Serenity.PropertyGrid(this.byId("CustomerPropertyGrid"), {
+                idPrefix: this.idPrefix + "_Customer_",
                 items: Q.getForm(Northwind.CustomerForm.formKey).filter(x => x.name != 'CustomerID'),
                 useCategories: true
             });
