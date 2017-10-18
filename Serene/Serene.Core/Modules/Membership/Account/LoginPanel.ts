@@ -42,6 +42,9 @@
                         var q = Q.parseQueryString();
                         var returnUrl = q['returnUrl'] || q['ReturnUrl'];
                         if (returnUrl) {
+                            var hash = window.location.hash;
+                            if (hash != null && hash != '#')
+                                returnUrl += hash;
                             window.location.href = returnUrl;
                         }
                         else {
