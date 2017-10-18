@@ -1,1728 +1,5 @@
 ﻿/// <reference types="jquery" />
 /// <reference types="jqueryui" />
-declare namespace Serene.Organization {
-    class ContactDialog extends Serenity.EntityDialog<ContactRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ContactForm;
-    }
-}
-declare namespace Serene.Organization {
-    class ContactGrid extends Serenity.EntityGrid<ContactRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ContactDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitDialog extends Serenity.EntityDialog<BusinessUnitRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: BusinessUnitForm;
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, BusinessUnitRow> {
-        constructor(hidden: JQuery);
-        protected getLookupKey(): string;
-        protected getItemText(item: BusinessUnitRow, lookup: Q.Lookup<BusinessUnitRow>): string;
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitGrid extends Serenity.EntityGrid<BusinessUnitRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof BusinessUnitDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected subDialogDataChange(): void;
-        protected usePager(): boolean;
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: TerritoryForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: SupplierForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class SupplierGrid extends Serenity.EntityGrid<SupplierRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ShipperForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class PhoneEditor extends Serenity.StringEditor {
-        constructor(input: JQuery);
-        protected formatValue(): void;
-        protected getFormattedValue(): string;
-        multiple: boolean;
-        get_value(): string;
-        set_value(value: string): void;
-        static validate(phone: string, isMultiple: boolean): string;
-        static isValidPhone(phone: string): boolean;
-        static formatPhone(phone: any): any;
-        static formatMulti(phone: string, format: (s: string) => string): string;
-        static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
-    }
-}
-declare namespace Serene.Northwind {
-    class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: RegionForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ProductForm;
-    }
-}
-declare namespace Serene.Northwind {
-    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private pendingChanges;
-        constructor(container: JQuery);
-        protected getButtons(): Serenity.ToolButton[];
-        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
-        /**
-         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
-         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
-         * no event handlers to rendered cell contents
-         */
-        private numericInputFormatter(ctx);
-        private stringInputFormatter(ctx);
-        /**
-         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
-         */
-        private selectFormatter(ctx, idField, lookup);
-        private getEffectiveValue(item, field);
-        protected getColumns(): Slick.Column[];
-        private inputsChange(e);
-        private setSaveButtonState();
-        private saveClick();
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-    }
-}
-declare namespace Serene.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        protected getIdProperty(): string;
-        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
-        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        destroy(): void;
-        protected updateInterface(): void;
-        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
-        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: OrderDetailForm;
-        constructor();
-    }
-}
-declare namespace Serene.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        protected getIdProperty(): string;
-        protected nextId: number;
-        constructor(container: JQuery);
-        protected id(entity: TEntity): any;
-        protected getNextId(): string;
-        protected setNewId(entity: TEntity): void;
-        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
-        protected deleteEntity(id: number): boolean;
-        protected validateEntity(row: TEntity, id: number): boolean;
-        protected setEntities(items: TEntity[]): void;
-        protected getNewEntity(): TEntity;
-        protected getButtons(): Serenity.ToolButton[];
-        protected editItem(entityOrId: any): void;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
-        value: TEntity[];
-        protected getGridCanLoad(): boolean;
-        protected usePager(): boolean;
-        protected getInitialTitle(): any;
-        protected createQuickSearchInput(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof OrderDetailDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-        validateEntity(row: any, id: any): boolean;
-    }
-}
-declare namespace Serene.Northwind {
-    class FreightFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected shippingStateFilter: Serenity.EnumEditor;
-        constructor(container: JQuery);
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-        protected createQuickFilters(): void;
-        protected getButtons(): Serenity.ToolButton[];
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-        set_shippingState(value: number): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class NoteDialog extends Serenity.TemplatedDialog<any> {
-        private textEditor;
-        constructor();
-        protected getTemplate(): string;
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        text: string;
-        okClick: () => void;
-    }
-}
-declare namespace Serene.Northwind {
-    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        private isDirty;
-        private items;
-        constructor(div: JQuery);
-        protected getTemplate(): string;
-        protected updateContent(): void;
-        protected addClick(): void;
-        protected editClick(e: any): void;
-        deleteClick(e: any): void;
-        value: NoteRow[];
-        getEditValue(prop: Serenity.PropertyItem, target: any): void;
-        setEditValue(source: any, prop: Serenity.PropertyItem): void;
-        get_isDirty(): boolean;
-        set_isDirty(value: any): void;
-        onChange: () => void;
-    }
-}
-declare namespace Serene.Northwind {
-    class EmployeeFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-        genderProperty: string;
-        initializeColumn(column: Slick.Column): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerDialog extends Serenity.EntityDialog<CustomerRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: CustomerForm;
-        private ordersGrid;
-        private loadedState;
-        constructor();
-        getSaveState(): string;
-        loadResponse(data: any): void;
-        loadEntity(entity: CustomerRow): void;
-        onSaveSuccess(response: any): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
-        constructor(hidden: JQuery);
-        protected getLookupKey(): string;
-        protected getItemText(item: any, lookup: any): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        getButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerOrderDialog extends OrderDialog {
-        constructor();
-        updateInterface(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerOrdersGrid extends OrderGrid {
-        protected getDialogType(): typeof CustomerOrderDialog;
-        constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
-        protected initEntityDialog(itemType: any, dialog: any): void;
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _customerID;
-        customerID: string;
-    }
-}
-declare namespace Serene.Northwind {
-    class EmployeeListFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: CategoryForm;
-    }
-}
-declare namespace Serene.Northwind {
-    class CategoryGrid extends Serenity.EntityGrid<CategoryRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
-    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingTypeDialog extends Serenity.EntityDialog<MeetingTypeRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingTypeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingTypeGrid extends Serenity.EntityGrid<MeetingTypeRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingTypeDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingLocationDialog extends Serenity.EntityDialog<MeetingLocationRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingLocationForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingLocationGrid extends Serenity.EntityGrid<MeetingLocationRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingLocationDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionRelevantDialog extends Serenity.EntityDialog<MeetingDecisionRelevantRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: MeetingDecisionRelevantForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionRelevantGrid extends Serenity.EntityGrid<MeetingDecisionRelevantRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDecisionRelevantDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionDialog extends Serenity.EntityDialog<MeetingDecisionRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingDecisionForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionGrid extends Serenity.EntityGrid<MeetingDecisionRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDecisionDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _meetingId;
-        meetingId: string;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAttendeeDialog extends Common.GridEditorDialog<MeetingAttendeeRow> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: MeetingAttendeeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAttendeeEditor extends Common.GridEditorBase<MeetingAttendeeRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAttendeeDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-        protected getButtons(): any[];
-        protected createToolbarExtensions(): void;
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaTypeDialog extends Serenity.EntityDialog<MeetingAgendaTypeRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaTypeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaTypeGrid extends Serenity.EntityGrid<MeetingAgendaTypeRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaTypeDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaRelevantDialog extends Serenity.EntityDialog<MeetingAgendaRelevantRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaRelevantForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaRelevantGrid extends Serenity.EntityGrid<MeetingAgendaRelevantRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaRelevantDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaDialog extends Serenity.EntityDialog<MeetingAgendaRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaGrid extends Serenity.EntityGrid<MeetingAgendaRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _meetingId;
-        meetingId: string;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDialog extends Serenity.EntityDialog<MeetingRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingForm;
-        private agendaGrid;
-        private decisionGrid;
-        constructor();
-        protected arrange(): void;
-        loadEntity(entity: MeetingRow): void;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingGrid extends Serenity.EntityGrid<MeetingRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.LanguageList {
-    function getValue(): string[][];
-}
-declare namespace Serene.ScriptInitialization {
-}
-declare namespace Serene.Common {
-    class UserPreferenceStorage implements Serenity.SettingStorage {
-        getItem(key: string): string;
-        setItem(key: string, data: string): void;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    interface PdfExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-        reportTitle?: string;
-        titleTop?: number;
-        titleFontSize?: number;
-        fileName?: string;
-        pageNumbers?: boolean;
-        columnTitles?: {
-            [key: string]: string;
-        };
-        tableOptions?: jsPDF.AutoTableOptions;
-        output?: string;
-        autoPrint?: boolean;
-        printDateTimeHeader?: boolean;
-    }
-    namespace PdfExportHelper {
-        function exportToPdf(options: PdfExportOptions): void;
-        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
-        private report;
-        private propertyGrid;
-        constructor(options: ReportDialogOptions);
-        protected getDialogButtons(): any;
-        protected createPropertyGrid(): void;
-        protected loadReport(reportKey: string): void;
-        protected updateInterface(): void;
-        executeReport(target: string, ext: string, download: boolean): void;
-        getToolbarButtons(): {
-            title: string;
-            cssClass: string;
-            onClick: () => void;
-        }[];
-    }
-    interface ReportDialogOptions {
-        reportKey: string;
-    }
-}
-declare namespace Serene.Common {
-    interface ReportExecuteOptions {
-        reportKey: string;
-        download?: boolean;
-        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
-        getParams?: () => any;
-        params?: {
-            [key: string]: any;
-        };
-        target?: string;
-    }
-    interface ReportButtonOptions extends ReportExecuteOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-        function execute(options: ReportExecuteOptions): void;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    class ReportPage extends Serenity.Widget<any> {
-        private reportKey;
-        private propertyItems;
-        private propertyGrid;
-        constructor(element: JQuery);
-        protected updateMatchFlags(text: string): void;
-        protected categoryClick(e: any): void;
-        protected reportLinkClick(e: any): void;
-    }
-}
-declare namespace Serene.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-}
-declare namespace Serene.Common {
-    class SidebarSearch extends Serenity.Widget<any> {
-        private menuUL;
-        constructor(input: JQuery, menuUL: JQuery);
-        protected updateMatchFlags(text: string): void;
-    }
-}
-declare namespace Serene.Common {
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-        protected getCurrentTheme(): string;
-    }
-}
-declare namespace Serene {
-    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        constructor();
-        cancelled: boolean;
-        max: number;
-        value: number;
-        title: string;
-        cancelTitle: string;
-        getDialogOptions(): JQueryUI.DialogOptions;
-        initDialog(): void;
-        getTemplate(): string;
-    }
-}
-declare namespace Serene.Common {
-    class BulkServiceAction {
-        protected keys: string[];
-        protected queue: string[];
-        protected queueIndex: number;
-        protected progressDialog: BasicProgressDialog;
-        protected pendingRequests: number;
-        protected completedRequests: number;
-        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
-        private successCount;
-        private errorCount;
-        done: () => void;
-        protected createProgressDialog(): void;
-        protected getConfirmationFormat(): string;
-        protected getConfirmationMessage(targetCount: any): string;
-        protected confirm(targetCount: any, action: any): void;
-        protected getNothingToProcessMessage(): string;
-        protected nothingToProcess(): void;
-        protected getParallelRequests(): number;
-        protected getBatchSize(): number;
-        protected startParallelExecution(): void;
-        protected serviceCallCleanup(): void;
-        protected executeForBatch(batch: string[]): void;
-        protected executeNextBatch(): void;
-        protected getAllHadErrorsFormat(): string;
-        protected showAllHadErrors(): void;
-        protected getSomeHadErrorsFormat(): string;
-        protected showSomeHadErrors(): void;
-        protected getAllSuccessFormat(): string;
-        protected showAllSuccess(): void;
-        protected showResults(): void;
-        execute(keys: string[]): void;
-        get_successCount(): any;
-        set_successCount(value: number): void;
-        get_errorCount(): any;
-        set_errorCount(value: number): void;
-    }
-}
-declare namespace Serene.DialogUtils {
-    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
-}
-declare namespace Serene.Common {
-    class EnumSelectFormatter implements Slick.Formatter {
-        constructor();
-        format(ctx: Slick.FormatterContext): string;
-        enumKey: string;
-        allowClear: boolean;
-        emptyItemText: string;
-    }
-}
-declare namespace Serene.Common {
-    interface ExcelExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        service: string;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-    }
-    namespace ExcelExportHelper {
-        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class WrappedHeadersGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    class VSGalleryQAGrid extends Serenity.EntityGrid<BasicSamples.VSGalleryQAThread, any> {
-        protected getColumnsKey(): string;
-        protected getIdProperty(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getButtons(): any[];
-        protected getSlickOptions(): Slick.GridOptions;
-        protected getColumns(): Slick.Column[];
-        protected getInitialTitle(): any;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
-        protected getColumnsKey(): string;
-        protected getIdProperty(): string;
-        protected getNameProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private nextId;
-        constructor(container: JQuery);
-        /**
-         * This method is called to preprocess data returned from the list service
-         */
-        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
-        protected getButtons(): any[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class TreeGrid extends Northwind.OrderGrid {
-        private treeMixin;
-        constructor(container: JQuery);
-        protected usePager(): boolean;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class CustomerGrossSalesGrid extends Serenity.EntityGrid<Northwind.CustomerGrossSalesRow, any> {
-        protected getColumnsKey(): string;
-        protected getIdProperty(): string;
-        protected getNameProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private nextId;
-        constructor(container: JQuery);
-        /**
-         * This method is called to preprocess data returned from the list service
-         */
-        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
-        protected getButtons(): any[];
-        protected createSlickGrid(): Slick.Grid;
-        protected getSlickOptions(): Slick.GridOptions;
-        protected usePager(): boolean;
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class RemovingAddButton extends Northwind.SupplierGrid {
-        constructor(container: JQuery);
-        /**
-         * This method is called to get list of buttons to be created.
-         */
-        protected getButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class QuickFilterCustomization extends Serenity.EntityGrid<Northwind.OrderRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof Northwind.OrderDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        /**
-         * This method is called to get list of quick filters to be created for this grid.
-         * By default, it returns quick filter objects corresponding to properties that
-         * have a [QuickFilter] attribute at server side OrderColumns.cs
-         */
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ProductExcelImportDialog extends Serenity.PropertyDialog<any, any> {
-        private form;
-        constructor();
-        protected getDialogTitle(): string;
-        protected getDialogButtons(): Serenity.DialogButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ProductExcelImportGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-        /**
-         * This method is called to get list of buttons to be created.
-         */
-        protected getButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
-        format(ctx: Slick.FormatterContext): string;
-        initializeColumn(column: Slick.Column): void;
-        fileProperty: string;
-        thumb: boolean;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class InlineImageInGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getSlickOptions(): Slick.GridOptions;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class InlineActionGrid extends Northwind.CustomerGrid {
-        constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class InitialValuesForQuickFilters extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-        /**
-         * This method is called to get list of quick filters to be created for this grid.
-         * By default, it returns quick filter objects corresponding to properties that
-         * have a [QuickFilter] attribute at server side OrderColumns.cs
-         */
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-        /**
-         * This method is another possible place to modify quick filter widgets.
-         * It is where the quick filter widgets are actually created.
-         *
-         * By default, it calls getQuickFilters() then renders UI for these
-         * quick filters.
-         *
-         * We could use getQuickFilters() method for ShipVia too,
-         * but this is for demonstration purposes
-         */
-        protected createQuickFilters(): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-        protected createSlickGrid(): Slick.Grid;
-        protected getColumns(): Slick.Column[];
-        protected getSlickOptions(): Slick.GridOptions;
-        protected usePager(): boolean;
-        protected getButtons(): {
-            title: string;
-            cssClass: string;
-            onClick: () => void;
-        }[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class GridFilteredByCriteria extends Northwind.ProductGrid {
-        constructor(container: JQuery);
-        protected onViewSubmit(): boolean;
-    }
-}
-declare namespace Serene {
-    class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {
-        protected getSlickOptions(): Slick.GridOptions;
-        protected createSlickGrid(): Slick.Grid;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class RowSelectionGrid extends SelectableEntityGrid<Northwind.SupplierRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    class DragDropSampleDialog extends Serenity.EntityDialog<DragDropSampleRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: DragDropSampleForm;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class DragDropSampleGrid extends Serenity.EntityGrid<DragDropSampleRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof DragDropSampleDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private dragging;
-        constructor(container: JQuery);
-        /**
-         * This method will determine if item can be moved under a given target
-         * An item can't be moved under itself, under one of its children
-         */
-        private canMoveUnder(item, target);
-        /**
-         * Gets children list of an item
-         */
-        private getChildren(item);
-        /**
-         * Gets all parents of an item
-         */
-        private getParents(item);
-        protected getButtons(): any[];
-        protected usePager(): boolean;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class CustomLinksInGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-        /**
-         * We override getColumns() to change format functions for some columns.
-         * You could also write them as formatter classes, and use them at server side
-         */
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-        /**
-         * This method is called for columns with [EditLink] attribute,
-         * but only for edit links of this grid's own item type.
-         * It is also called by Add Product button with a NULL entityOrId
-         * parameter so we should check that entityOrId is a string
-         * to be sure it is originating from a link.
-         *
-         * As we changed format for other columns, this will only be called
-         * for links in remaining OrderID column
-         */
-        protected editItem(entityOrId: any): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ConditionalFormattingGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        /**
-         * We override getColumns() to be able to add a custom CSS class to UnitPrice
-         * We could also add this class in ProductColumns.cs but didn't want to modify
-         * it solely for this sample.
-         */
-        protected getColumns(): Slick.Column[];
-        /**
-         * This method is called for all rows
-         * @param item Data item for current row
-         * @param index Index of the row in grid
-         */
-        protected getItemCssClass(item: Northwind.ProductRow, index: number): string;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class OrderBulkAction extends Common.BulkServiceAction {
-        /**
-         * This controls how many service requests will be used in parallel.
-         * Determine this number based on how many requests your server
-         * might be able to handle, and amount of wait on external resources.
-         */
-        protected getParallelRequests(): number;
-        /**
-         * These number of records IDs will be sent to your service in one
-         * service call. If your service is designed to handle one record only,
-         * set it to 1. But note that, if you have 5000 records, this will
-         * result in 5000 service calls / requests.
-         */
-        protected getBatchSize(): number;
-        /**
-         * This is where you should call your service.
-         * Batch parameter contains the selected order IDs
-         * that should be processed in this service call.
-         */
-        protected executeForBatch(batch: any): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class CancellableBulkActionGrid extends Northwind.OrderGrid {
-        private rowSelection;
-        constructor(container: JQuery);
-        protected createToolbarExtensions(): void;
-        protected getButtons(): {
-            title: string;
-            cssClass: string;
-            onClick: () => void;
-        }[];
-        protected getColumns(): Slick.Column[];
-        protected getViewOptions(): Slick.RemoteViewOptions;
-    }
-}
-declare namespace Serene {
-    /**
-     * This is an editor widget but it only displays a text, not edits it.
-     *
-     */
-    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
-        private value;
-        constructor(container: JQuery, options: StaticTextBlockOptions);
-        private updateElementContent();
-        /**
-         * By implementing ISetEditValue interface, we allow this editor to display its field value.
-         * But only do this when our text content is not explicitly set in options
-         */
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-    }
-    interface StaticTextBlockOptions {
-        text: string;
-        isHtml: boolean;
-        isLocalText: boolean;
-        hideLabel: boolean;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class StaticTextBlockDialog extends Serenity.PropertyDialog<any, any> {
-        protected getFormKey(): string;
-        protected form: StaticTextBlockForm;
-        constructor();
-        /**
-         * Here we override loadInitialEntity method to set value for "DisplayFieldValue" field.
-         * If this was an EntityDialog, your field value would be originating from server side entity.
-         */
-        protected loadInitialEntity(): void;
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class HardcodedValuesDialog extends Serenity.PropertyDialog<any, any> {
-        protected getFormKey(): string;
-        protected form: HardcodedValuesForm;
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our select editor with hardcoded values.
-     *
-     * When you define a new editor type, make sure you build
-     * and transform templates for it to be available
-     * in server side forms, e.g. [HardCodedValuesEditor]
-     */
-    class HardcodedValuesEditor extends Serenity.Select2Editor<any, any> {
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * This is our custom product dialog that uses a different product form
-     * (LookupFilterByMultipleForm) with our special category editor.
-     */
-    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
-        protected getFormKey(): string;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
-     */
-    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
-        protected getDialogType(): typeof LookupFilterByMultipleDialog;
-        constructor(container: JQuery);
-        /**
-         * This method is called just before List request is sent to service.
-         * You have an opportunity here to cancel request or modify it.
-         * Here we'll add a custom criteria to list request.
-         */
-        protected onViewSubmit(): boolean;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * This is our category editor that will show only categories of Produce and
-     * Seafood. We are subclassing LookupEditorBase which also LookupEditor
-     * derives from.
-     *
-     * After compiling and transforming templates, this editor type will be
-     * available in server side to use in our LookupFilterByMultipleForm,
-     * which is a version of ProductForm that uses our custom editor.
-     */
-    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.CategoryRow> {
-        constructor(container: JQuery, opt: Serenity.LookupEditorOptions);
-        /**
-         * Normally LookupEditor requires a lookup key to determine which set of
-         * lookup data to show in editor. As our editor will only show category
-         * data, we lock it to category lookup key.
-         */
-        protected getLookupKey(): string;
-        /**
-         * Here we are filtering by category name but you could filter by any field.
-         * Just make sure the fields you filter on has [LookupInclude] attribute on them,
-         * otherwise their value will be null in client side as they are not sent back
-         * from server in lookup script.
-         */
-        protected getItems(lookup: Q.Lookup<Northwind.CategoryRow>): Northwind.CategoryRow[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our subclass of order detail dialog with a CategoryID property
-     * that will be used to set CascadeValue of product editor
-     */
-    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
-        constructor();
-        /**
-         * This method is called just before an entity is loaded to dialog
-         * This is also called for new record mode with an empty entity
-         */
-        protected beforeLoadEntity(entity: any): void;
-        categoryID: number;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our subclass of Order Details editor with a CategoryID property
-     */
-    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
-        protected getDialogType(): typeof FilteredLookupOrderDetailDialog;
-        constructor(container: JQuery);
-        categoryID: number;
-        /**
-         * This method is called to initialize an edit dialog created by
-         * grid editor when Add button or an edit link is clicked
-         * We have an opportunity here to pass CategoryID to edit dialog
-         */
-        protected initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Basic order dialog with a category selection
-     */
-    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        private form;
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
-     */
-    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof FilteredLookupInDetailDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ChangingLookupTextDialog extends Common.GridEditorDialog<Northwind.OrderDetailRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: ChangingLookupTextForm;
-        constructor();
-        protected updateInterface(): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our custom product editor type
-     */
-    class ChangingLookupTextEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.ProductRow> {
-        constructor(container: JQuery, options: Serenity.LookupEditorOptions);
-        protected getLookupKey(): string;
-        protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>): string;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class SerialAutoNumberDialog extends Northwind.CustomerDialog {
-        constructor();
-        protected afterLoadEntity(): void;
-        private getNextNumber();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
-     */
-    class SerialAutoNumberGrid extends Northwind.CustomerGrid {
-        protected getDialogType(): typeof SerialAutoNumberDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Adding Responsive attribute makes this dialog use full screen in mobile devices.
-     */
-    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to ResponsiveDialog
-     */
-    class ResponsiveGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof ResponsiveDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    class ReadOnlyDialog extends Northwind.SupplierDialog {
-        /**
-         * This is the method that gets list of tool
-         * buttons to be created in a dialog.
-         *
-         * Here we'll remove save and close button, and
-         * apply changes buttons.
-         */
-        protected getToolbarButtons(): Serenity.ToolButton[];
-        /**
-         * This method is a good place to update states of
-         * interface elements. It is called after dialog
-         * is initialized and an entity is loaded into dialog.
-         * This is also called in new item mode.
-         */
-        protected updateInterface(): void;
-        /**
-         * This method is called when dialog title needs to be updated.
-         * Base class returns something like 'Edit xyz' for edit mode,
-         * and 'New xyz' for new record mode.
-         *
-         * But our dialog is readonly, so we should change it to 'View xyz'
-         */
-        protected getEntityTitle(): string;
-        /**
-         * This method is actually the one that calls getEntityTitle()
-         * and updates the dialog title. We could do it here too...
-         */
-        protected updateTitle(): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * A readonly grid that launches ReadOnlyDialog
-     */
-    class ReadOnlyGrid extends Northwind.SupplierGrid {
-        protected getDialogType(): typeof ReadOnlyDialog;
-        constructor(container: JQuery);
-        /**
-         * Removing add button from grid using its css class
-         */
-        protected getButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class PopulateLinkedDataDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: PopulateLinkedDataForm;
-        constructor();
-        private setCustomerDetails(details);
-        /**
-         * This dialog will have CSS class "s-PopulateLinkedDataDialog"
-         * We are changing it here to "s-OrderDialog", to make it use default OrderDialog styles
-         * This has no effect other than looks on populate linked data demonstration
-         */
-        protected getCssClass(): string;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * A subclass of OrderGrid that launches PopulateLinkedDataDialog
-     */
-    class PopulateLinkedDataGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof PopulateLinkedDataDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
-     * With single toolbar for all forms
-     */
-    class OtherFormOneBarDialog extends Northwind.OrderDialog {
-        private customerPropertyGrid;
-        private customerForm;
-        private customerValidator;
-        private selfChange;
-        constructor();
-        getCustomerID(): number;
-        loadEntity(entity: Northwind.OrderRow): void;
-        protected saveCustomer(callback: (response: Serenity.SaveResponse) => void, onSuccess?: (response: Serenity.SaveResponse) => void): boolean;
-        protected saveOrder(callback: (response: Serenity.SaveResponse) => void): void;
-        protected saveAll(callback: (response: Serenity.SaveResponse) => void): void;
-        protected save(callback: (response: Serenity.SaveResponse) => void): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
-     */
-    class OtherFormInTabOneBarGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof OtherFormOneBarDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
-     */
-    class OtherFormInTabDialog extends Northwind.OrderDialog {
-        private customerPropertyGrid;
-        private customerForm;
-        private customerValidator;
-        constructor();
-        getCustomerID(): number;
-        loadEntity(entity: Northwind.OrderRow): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
-     */
-    class OtherFormInTabGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof OtherFormInTabDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Styling for columns is done with CSS in site.basicsamples.less file.
-     * When comparing this to MultiColumnDialog sample, you may notice that
-     * this version requires much less JS and CSS code.
-     */
-    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
-        constructor();
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
-     */
-    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
-        protected getDialogType(): typeof MultiColumnResponsiveDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    class GetInsertedRecordIdDialog extends Northwind.CategoryDialog {
-        /**
-         * This method is called after the save request to service
-         * is completed succesfully. This can be an insert or update.
-         *
-         * @param response Response that is returned from server
-         */
-        protected onSaveSuccess(response: Serenity.SaveResponse): void;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
-     */
-    class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
-        protected getDialogType(): typeof GetInsertedRecordIdDialog;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
-     */
-    class EntityDialogAsPanel extends Northwind.OrderDialog {
-        constructor();
-        protected updateInterface(): void;
-        protected onSaveSuccess(response: any): void;
-    }
-}
-declare namespace Serene.BasicSamples.DialogBoxes {
-    function initializePage(): void;
-}
-declare namespace Serene.BasicSamples {
-    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
-        constructor(container: JQuery);
-        /**
-         * This method is called when New Item button is clicked.
-         * By default, it calls EditItem with an empty entity.
-         * This is a good place to fill in default values for New Item button.
-         */
-        protected addButtonClick(): void;
-        protected getButtons(): Serenity.ToolButton[];
-    }
-}
-declare namespace Serene.BasicSamples {
-    class CloneableEntityDialog extends Northwind.ProductDialog {
-        protected updateInterface(): void;
-        /**
-         * Overriding this method is optional to customize cloned entity
-         */
-        protected getCloningEntity(): Northwind.ProductRow;
-    }
-}
-declare namespace Serene.BasicSamples {
-    /**
-     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
-     */
-    class CloneableEntityGrid extends Northwind.ProductGrid {
-        protected getDialogType(): typeof CloneableEntityDialog;
-        constructor(container: JQuery);
-    }
-}
-declare var Morris: any;
-declare namespace Serene.BasicSamples {
-    class ChartInDialog extends Serenity.TemplatedDialog<any> {
-        private areaChart;
-        static initializePage(): void;
-        protected onDialogOpen(): void;
-        protected arrange(): void;
-        protected getTemplate(): string;
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-    }
-}
-declare namespace Serene.Administration {
-    class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
-        private searchText;
-        constructor(div: JQuery);
-        protected createToolbarExtensions(): void;
-        protected getButtons(): any[];
-        protected getTreeItems(): Serenity.CheckTreeItem<any>[];
-        protected onViewFilter(item: any): boolean;
-    }
-}
-declare namespace Serene.Administration {
-    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
-        private permissions;
-        constructor(opt: UserRoleDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface UserRoleDialogOptions {
-        userID: number;
-        username: string;
-    }
-}
-declare namespace Serene.Administration {
-    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
-        protected getIdProperty(): string;
-        private searchText;
-        private byParentKey;
-        constructor(container: JQuery, opt: PermissionCheckEditorOptions);
-        private getItemGrantRevokeClass(item, grant);
-        private roleOrImplicit(key);
-        private getItemEffectiveClass(item);
-        protected getColumns(): Slick.Column[];
-        setItems(items: PermissionCheckItem[]): void;
-        protected onViewSubmit(): boolean;
-        protected onViewFilter(item: PermissionCheckItem): boolean;
-        private matchContains(item);
-        private getDescendants(item, excludeGroups);
-        protected onClick(e: any, row: any, cell: any): void;
-        private getParentKey(key);
-        protected getButtons(): Serenity.ToolButton[];
-        protected createToolbarExtensions(): void;
-        private getSortedGroupAndPermissionKeys(titleByKey);
-        value: UserPermissionRow[];
-        private _rolePermissions;
-        rolePermissions: string[];
-        private _implicitPermissions;
-        implicitPermissions: Q.Dictionary<string[]>;
-    }
-    interface PermissionCheckEditorOptions {
-        showRevoke?: boolean;
-    }
-    interface PermissionCheckItem {
-        ParentKey?: string;
-        Key?: string;
-        Title?: string;
-        IsGroup?: boolean;
-        GrantRevoke?: boolean;
-    }
-}
-declare namespace Serene.Administration {
-    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
-        private permissions;
-        constructor(opt: UserPermissionDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface UserPermissionDialogOptions {
-        userID?: number;
-        username?: string;
-    }
-}
-declare namespace Serene.Administration {
-    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getIsActiveProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: UserForm;
-        constructor();
-        protected getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-        protected afterLoadEntity(): void;
-    }
-}
-declare namespace Serene.Administration {
-    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof UserDialog;
-        protected getIdProperty(): string;
-        protected getIsActiveProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
-declare namespace Serene.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
-}
-declare namespace Serene.Administration {
-    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        private hasChanges;
-        private searchText;
-        private sourceLanguage;
-        private targetLanguage;
-        private targetLanguageKey;
-        constructor(container: JQuery);
-        protected onClick(e: JQueryEventObject, row: number, cell: number): any;
-        protected getColumns(): Slick.Column[];
-        protected createToolbarExtensions(): void;
-        protected saveChanges(language: string): RSVP.Promise<any>;
-        protected onViewSubmit(): boolean;
-        protected getButtons(): Serenity.ToolButton[];
-        protected createQuickSearchInput(): void;
-        protected onViewFilter(item: TranslationItem): boolean;
-        protected usePager(): boolean;
-    }
-}
-declare namespace Serene.Administration {
-    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
-        private permissions;
-        constructor(opt: RolePermissionDialogOptions);
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getTemplate(): string;
-    }
-    interface RolePermissionDialogOptions {
-        roleID?: number;
-        title?: string;
-    }
-}
-declare namespace Serene.Administration {
-    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: RoleForm;
-        protected getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-    }
-}
-declare namespace Serene.Administration {
-    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof RoleDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
-declare namespace Serene.Administration {
-    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: LanguageForm;
-    }
-}
-declare namespace Serene.Administration {
-    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof LanguageDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
-    }
-}
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
@@ -4447,5 +2724,1728 @@ declare namespace Serene {
         Permissions?: {
             [key: string]: boolean;
         };
+    }
+}
+declare namespace Serene.Administration {
+    class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: LanguageForm;
+    }
+}
+declare namespace Serene.Administration {
+    class LanguageGrid extends Serenity.EntityGrid<LanguageRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof LanguageDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
+    class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RoleForm;
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.Administration {
+    class RoleGrid extends Serenity.EntityGrid<RoleRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof RoleDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
+    class RolePermissionDialog extends Serenity.TemplatedDialog<RolePermissionDialogOptions> {
+        private permissions;
+        constructor(opt: RolePermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface RolePermissionDialogOptions {
+        roleID?: number;
+        title?: string;
+    }
+}
+declare namespace Serene.Administration {
+    class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private hasChanges;
+        private searchText;
+        private sourceLanguage;
+        private targetLanguage;
+        private targetLanguageKey;
+        constructor(container: JQuery);
+        protected onClick(e: JQueryEventObject, row: number, cell: number): any;
+        protected getColumns(): Slick.Column[];
+        protected createToolbarExtensions(): void;
+        protected saveChanges(language: string): RSVP.Promise<any>;
+        protected onViewSubmit(): boolean;
+        protected getButtons(): Serenity.ToolButton[];
+        protected createQuickSearchInput(): void;
+        protected onViewFilter(item: TranslationItem): boolean;
+        protected usePager(): boolean;
+    }
+}
+declare namespace Serene.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
+declare namespace Serene.Administration {
+    class UserDialog extends Serenity.EntityDialog<UserRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getIsActiveProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: UserForm;
+        constructor();
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+        protected afterLoadEntity(): void;
+    }
+}
+declare namespace Serene.Administration {
+    class UserGrid extends Serenity.EntityGrid<UserRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof UserDialog;
+        protected getIdProperty(): string;
+        protected getIsActiveProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getDefaultSortBy(): string[];
+    }
+}
+declare namespace Serene.Administration {
+    class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
+        protected getIdProperty(): string;
+        private searchText;
+        private byParentKey;
+        constructor(container: JQuery, opt: PermissionCheckEditorOptions);
+        private getItemGrantRevokeClass(item, grant);
+        private roleOrImplicit(key);
+        private getItemEffectiveClass(item);
+        protected getColumns(): Slick.Column[];
+        setItems(items: PermissionCheckItem[]): void;
+        protected onViewSubmit(): boolean;
+        protected onViewFilter(item: PermissionCheckItem): boolean;
+        private matchContains(item);
+        private getDescendants(item, excludeGroups);
+        protected onClick(e: any, row: any, cell: any): void;
+        private getParentKey(key);
+        protected getButtons(): Serenity.ToolButton[];
+        protected createToolbarExtensions(): void;
+        private getSortedGroupAndPermissionKeys(titleByKey);
+        value: UserPermissionRow[];
+        private _rolePermissions;
+        rolePermissions: string[];
+        private _implicitPermissions;
+        implicitPermissions: Q.Dictionary<string[]>;
+    }
+    interface PermissionCheckEditorOptions {
+        showRevoke?: boolean;
+    }
+    interface PermissionCheckItem {
+        ParentKey?: string;
+        Key?: string;
+        Title?: string;
+        IsGroup?: boolean;
+        GrantRevoke?: boolean;
+    }
+}
+declare namespace Serene.Administration {
+    class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {
+        private permissions;
+        constructor(opt: UserPermissionDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserPermissionDialogOptions {
+        userID?: number;
+        username?: string;
+    }
+}
+declare namespace Serene.Administration {
+    class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
+        private searchText;
+        constructor(div: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): any[];
+        protected getTreeItems(): Serenity.CheckTreeItem<any>[];
+        protected onViewFilter(item: any): boolean;
+    }
+}
+declare namespace Serene.Administration {
+    class UserRoleDialog extends Serenity.TemplatedDialog<UserRoleDialogOptions> {
+        private permissions;
+        constructor(opt: UserRoleDialogOptions);
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        protected getTemplate(): string;
+    }
+    interface UserRoleDialogOptions {
+        userID: number;
+        username: string;
+    }
+}
+declare var Morris: any;
+declare namespace Serene.BasicSamples {
+    class ChartInDialog extends Serenity.TemplatedDialog<any> {
+        private areaChart;
+        static initializePage(): void;
+        protected onDialogOpen(): void;
+        protected arrange(): void;
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.Northwind {
+    class ProductDialog extends Serenity.EntityDialog<ProductRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ProductForm;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CloneableEntityDialog extends Northwind.ProductDialog {
+        protected updateInterface(): void;
+        /**
+         * Overriding this method is optional to customize cloned entity
+         */
+        protected getCloningEntity(): Northwind.ProductRow;
+    }
+}
+declare namespace Serene.Northwind {
+    class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private pendingChanges;
+        constructor(container: JQuery);
+        protected getButtons(): Serenity.ToolButton[];
+        protected onViewProcessData(response: any): Serenity.ListResponse<ProductRow>;
+        /**
+         * It would be nice if we could use autonumeric, Serenity editors etc. here, to control input validation,
+         * but it's not supported by SlickGrid as we are only allowed to return a string, and should attach
+         * no event handlers to rendered cell contents
+         */
+        private numericInputFormatter(ctx);
+        private stringInputFormatter(ctx);
+        /**
+         * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
+         */
+        private selectFormatter(ctx, idField, lookup);
+        private getEffectiveValue(item, field);
+        protected getColumns(): Slick.Column[];
+        private inputsChange(e);
+        private setSaveButtonState();
+        private saveClick();
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+     */
+    class CloneableEntityGrid extends Northwind.ProductGrid {
+        protected getDialogType(): typeof CloneableEntityDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected shippingStateFilter: Serenity.EnumEditor;
+        constructor(container: JQuery);
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+        protected createQuickFilters(): void;
+        protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+        set_shippingState(value: number): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DefaultValuesInNewGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called when New Item button is clicked.
+         * By default, it calls EditItem with an empty entity.
+         * This is a good place to fill in default values for New Item button.
+         */
+        protected addButtonClick(): void;
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples.DialogBoxes {
+    function initializePage(): void;
+}
+declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
+     */
+    class EntityDialogAsPanel extends Northwind.OrderDialog {
+        constructor();
+        protected updateInterface(): void;
+        protected onSaveSuccess(response: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: CategoryForm;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class GetInsertedRecordIdDialog extends Northwind.CategoryDialog {
+        /**
+         * This method is called after the save request to service
+         * is completed succesfully. This can be an insert or update.
+         *
+         * @param response Response that is returned from server
+         */
+        protected onSaveSuccess(response: Serenity.SaveResponse): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CategoryGrid extends Serenity.EntityGrid<CategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CategoryGrid to override dialog type to GetInsertedRecordIdDialog
+     */
+    class GetInsertedRecordIdGrid extends Northwind.CategoryGrid {
+        protected getDialogType(): typeof GetInsertedRecordIdDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Styling for columns is done with CSS in site.basicsamples.less file.
+     * When comparing this to MultiColumnDialog sample, you may notice that
+     * this version requires much less JS and CSS code.
+     */
+    class MultiColumnResponsiveDialog extends Northwind.OrderDialog {
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to MultiColumnResponsiveDialog
+     */
+    class MultiColumnResponsiveGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof MultiColumnResponsiveDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+     */
+    class OtherFormInTabDialog extends Northwind.OrderDialog {
+        private customerPropertyGrid;
+        private customerForm;
+        private customerValidator;
+        constructor();
+        getCustomerID(): number;
+        loadEntity(entity: Northwind.OrderRow): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabDialog
+     */
+    class OtherFormInTabGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormInTabDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our custom order dialog subclass that will have a tab to display and edit selected customer details.
+     * With single toolbar for all forms
+     */
+    class OtherFormOneBarDialog extends Northwind.OrderDialog {
+        private customerPropertyGrid;
+        private customerForm;
+        private customerValidator;
+        private selfChange;
+        constructor();
+        getCustomerID(): number;
+        loadEntity(entity: Northwind.OrderRow): void;
+        protected saveCustomer(callback: (response: Serenity.SaveResponse) => void, onSuccess?: (response: Serenity.SaveResponse) => void): boolean;
+        protected saveOrder(callback: (response: Serenity.SaveResponse) => void): void;
+        protected saveAll(callback: (response: Serenity.SaveResponse) => void): void;
+        protected save(callback: (response: Serenity.SaveResponse) => void): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to OtherFormInTabOneBarDialog
+     */
+    class OtherFormInTabOneBarGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof OtherFormOneBarDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    class PopulateLinkedDataDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PopulateLinkedDataForm;
+        constructor();
+        private setCustomerDetails(details);
+        /**
+         * This dialog will have CSS class "s-PopulateLinkedDataDialog"
+         * We are changing it here to "s-OrderDialog", to make it use default OrderDialog styles
+         * This has no effect other than looks on populate linked data demonstration
+         */
+        protected getCssClass(): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A subclass of OrderGrid that launches PopulateLinkedDataDialog
+     */
+    class PopulateLinkedDataGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof PopulateLinkedDataDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: SupplierForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ReadOnlyDialog extends Northwind.SupplierDialog {
+        /**
+         * This is the method that gets list of tool
+         * buttons to be created in a dialog.
+         *
+         * Here we'll remove save and close button, and
+         * apply changes buttons.
+         */
+        protected getToolbarButtons(): Serenity.ToolButton[];
+        /**
+         * This method is a good place to update states of
+         * interface elements. It is called after dialog
+         * is initialized and an entity is loaded into dialog.
+         * This is also called in new item mode.
+         */
+        protected updateInterface(): void;
+        /**
+         * This method is called when dialog title needs to be updated.
+         * Base class returns something like 'Edit xyz' for edit mode,
+         * and 'New xyz' for new record mode.
+         *
+         * But our dialog is readonly, so we should change it to 'View xyz'
+         */
+        protected getEntityTitle(): string;
+        /**
+         * This method is actually the one that calls getEntityTitle()
+         * and updates the dialog title. We could do it here too...
+         */
+        protected updateTitle(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class SupplierGrid extends Serenity.EntityGrid<SupplierRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * A readonly grid that launches ReadOnlyDialog
+     */
+    class ReadOnlyGrid extends Northwind.SupplierGrid {
+        protected getDialogType(): typeof ReadOnlyDialog;
+        constructor(container: JQuery);
+        /**
+         * Removing add button from grid using its css class
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Adding Responsive attribute makes this dialog use full screen in mobile devices.
+     */
+    class ResponsiveDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to ResponsiveDialog
+     */
+    class ResponsiveGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof ResponsiveDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerDialog extends Serenity.EntityDialog<CustomerRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: CustomerForm;
+        private ordersGrid;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
+        loadEntity(entity: CustomerRow): void;
+        onSaveSuccess(response: any): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class SerialAutoNumberDialog extends Northwind.CustomerDialog {
+        constructor();
+        protected afterLoadEntity(): void;
+        private getNextNumber();
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of CustomerGrid to override dialog type to SerialAutoNumberDialog
+     */
+    class SerialAutoNumberGrid extends Northwind.CustomerGrid {
+        protected getDialogType(): typeof SerialAutoNumberDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ChangingLookupTextDialog extends Common.GridEditorDialog<Northwind.OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: ChangingLookupTextForm;
+        constructor();
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our custom product editor type
+     */
+    class ChangingLookupTextEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.ProductRow> {
+        constructor(container: JQuery, options: Serenity.LookupEditorOptions);
+        protected getLookupKey(): string;
+        protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: OrderDetailForm;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our subclass of order detail dialog with a CategoryID property
+     * that will be used to set CascadeValue of product editor
+     */
+    class FilteredLookupOrderDetailDialog extends Northwind.OrderDetailDialog {
+        constructor();
+        /**
+         * This method is called just before an entity is loaded to dialog
+         * This is also called for new record mode with an empty entity
+         */
+        protected beforeLoadEntity(entity: any): void;
+        categoryID: number;
+    }
+}
+declare namespace Serene.Common {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getIdProperty(): string;
+        protected nextId: number;
+        constructor(container: JQuery);
+        protected id(entity: TEntity): any;
+        protected getNextId(): string;
+        protected setNewId(entity: TEntity): void;
+        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
+        protected deleteEntity(id: number): boolean;
+        protected validateEntity(row: TEntity, id: number): boolean;
+        protected setEntities(items: TEntity[]): void;
+        protected getNewEntity(): TEntity;
+        protected getButtons(): Serenity.ToolButton[];
+        protected editItem(entityOrId: any): void;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        value: TEntity[];
+        protected getGridCanLoad(): boolean;
+        protected usePager(): boolean;
+        protected getInitialTitle(): any;
+        protected createQuickSearchInput(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof OrderDetailDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        validateEntity(row: any, id: any): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our subclass of Order Details editor with a CategoryID property
+     */
+    class FilteredLookupDetailEditor extends Northwind.OrderDetailsEditor {
+        protected getDialogType(): typeof FilteredLookupOrderDetailDialog;
+        constructor(container: JQuery);
+        categoryID: number;
+        /**
+         * This method is called to initialize an edit dialog created by
+         * grid editor when Add button or an edit link is clicked
+         * We have an opportunity here to pass CategoryID to edit dialog
+         */
+        protected initEntityDialog(itemType: string, dialog: Serenity.Widget<any>): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Basic order dialog with a category selection
+     */
+    class FilteredLookupInDetailDialog extends Serenity.EntityDialog<Northwind.OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        private form;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of OrderGrid to override dialog type to FilteredLookupInDetailDialog
+     */
+    class FilteredLookupInDetailGrid extends Northwind.OrderGrid {
+        protected getDialogType(): typeof FilteredLookupInDetailDialog;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * This is our custom product dialog that uses a different product form
+     * (LookupFilterByMultipleForm) with our special category editor.
+     */
+    class LookupFilterByMultipleDialog extends Northwind.ProductDialog {
+        protected getFormKey(): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
+     */
+    class LookupFilterByMultipleGrid extends Northwind.ProductGrid {
+        protected getDialogType(): typeof LookupFilterByMultipleDialog;
+        constructor(container: JQuery);
+        /**
+         * This method is called just before List request is sent to service.
+         * You have an opportunity here to cancel request or modify it.
+         * Here we'll add a custom criteria to list request.
+         */
+        protected onViewSubmit(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * This is our category editor that will show only categories of Produce and
+     * Seafood. We are subclassing LookupEditorBase which also LookupEditor
+     * derives from.
+     *
+     * After compiling and transforming templates, this editor type will be
+     * available in server side to use in our LookupFilterByMultipleForm,
+     * which is a version of ProductForm that uses our custom editor.
+     */
+    class ProduceSeafoodCategoryEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, Northwind.CategoryRow> {
+        constructor(container: JQuery, opt: Serenity.LookupEditorOptions);
+        /**
+         * Normally LookupEditor requires a lookup key to determine which set of
+         * lookup data to show in editor. As our editor will only show category
+         * data, we lock it to category lookup key.
+         */
+        protected getLookupKey(): string;
+        /**
+         * Here we are filtering by category name but you could filter by any field.
+         * Just make sure the fields you filter on has [LookupInclude] attribute on them,
+         * otherwise their value will be null in client side as they are not sent back
+         * from server in lookup script.
+         */
+        protected getItems(lookup: Q.Lookup<Northwind.CategoryRow>): Northwind.CategoryRow[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class HardcodedValuesDialog extends Serenity.PropertyDialog<any, any> {
+        protected getFormKey(): string;
+        protected form: HardcodedValuesForm;
+        constructor();
+    }
+}
+declare namespace Serene.BasicSamples {
+    /**
+     * Our select editor with hardcoded values.
+     *
+     * When you define a new editor type, make sure you build
+     * and transform templates for it to be available
+     * in server side forms, e.g. [HardCodedValuesEditor]
+     */
+    class HardcodedValuesEditor extends Serenity.Select2Editor<any, any> {
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
+        private value;
+        constructor(container: JQuery, options: StaticTextBlockOptions);
+        private updateElementContent();
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+    interface StaticTextBlockOptions {
+        text: string;
+        isHtml: boolean;
+        isLocalText: boolean;
+        hideLabel: boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class StaticTextBlockDialog extends Serenity.PropertyDialog<any, any> {
+        protected getFormKey(): string;
+        protected form: StaticTextBlockForm;
+        constructor();
+        /**
+         * Here we override loadInitialEntity method to set value for "DisplayFieldValue" field.
+         * If this was an EntityDialog, your field value would be originating from server side entity.
+         */
+        protected loadInitialEntity(): void;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.Common {
+    class BulkServiceAction {
+        protected keys: string[];
+        protected queue: string[];
+        protected queueIndex: number;
+        protected progressDialog: BasicProgressDialog;
+        protected pendingRequests: number;
+        protected completedRequests: number;
+        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
+        private successCount;
+        private errorCount;
+        done: () => void;
+        protected createProgressDialog(): void;
+        protected getConfirmationFormat(): string;
+        protected getConfirmationMessage(targetCount: any): string;
+        protected confirm(targetCount: any, action: any): void;
+        protected getNothingToProcessMessage(): string;
+        protected nothingToProcess(): void;
+        protected getParallelRequests(): number;
+        protected getBatchSize(): number;
+        protected startParallelExecution(): void;
+        protected serviceCallCleanup(): void;
+        protected executeForBatch(batch: string[]): void;
+        protected executeNextBatch(): void;
+        protected getAllHadErrorsFormat(): string;
+        protected showAllHadErrors(): void;
+        protected getSomeHadErrorsFormat(): string;
+        protected showSomeHadErrors(): void;
+        protected getAllSuccessFormat(): string;
+        protected showAllSuccess(): void;
+        protected showResults(): void;
+        execute(keys: string[]): void;
+        get_successCount(): any;
+        set_successCount(value: number): void;
+        get_errorCount(): any;
+        set_errorCount(value: number): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class OrderBulkAction extends Common.BulkServiceAction {
+        /**
+         * This controls how many service requests will be used in parallel.
+         * Determine this number based on how many requests your server
+         * might be able to handle, and amount of wait on external resources.
+         */
+        protected getParallelRequests(): number;
+        /**
+         * These number of records IDs will be sent to your service in one
+         * service call. If your service is designed to handle one record only,
+         * set it to 1. But note that, if you have 5000 records, this will
+         * result in 5000 service calls / requests.
+         */
+        protected getBatchSize(): number;
+        /**
+         * This is where you should call your service.
+         * Batch parameter contains the selected order IDs
+         * that should be processed in this service call.
+         */
+        protected executeForBatch(batch: any): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CancellableBulkActionGrid extends Northwind.OrderGrid {
+        private rowSelection;
+        constructor(container: JQuery);
+        protected createToolbarExtensions(): void;
+        protected getButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+        protected getColumns(): Slick.Column[];
+        protected getViewOptions(): Slick.RemoteViewOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ConditionalFormattingGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * We override getColumns() to be able to add a custom CSS class to UnitPrice
+         * We could also add this class in ProductColumns.cs but didn't want to modify
+         * it solely for this sample.
+         */
+        protected getColumns(): Slick.Column[];
+        /**
+         * This method is called for all rows
+         * @param item Data item for current row
+         * @param index Index of the row in grid
+         */
+        protected getItemCssClass(item: Northwind.ProductRow, index: number): string;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CustomLinksInGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+        /**
+         * We override getColumns() to change format functions for some columns.
+         * You could also write them as formatter classes, and use them at server side
+         */
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+        /**
+         * This method is called for columns with [EditLink] attribute,
+         * but only for edit links of this grid's own item type.
+         * It is also called by Add Product button with a NULL entityOrId
+         * parameter so we should check that entityOrId is a string
+         * to be sure it is originating from a link.
+         *
+         * As we changed format for other columns, this will only be called
+         * for links in remaining OrderID column
+         */
+        protected editItem(entityOrId: any): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DragDropSampleDialog extends Serenity.EntityDialog<DragDropSampleRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: DragDropSampleForm;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class DragDropSampleGrid extends Serenity.EntityGrid<DragDropSampleRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof DragDropSampleDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private dragging;
+        constructor(container: JQuery);
+        /**
+         * This method will determine if item can be moved under a given target
+         * An item can't be moved under itself, under one of its children
+         */
+        private canMoveUnder(item, target);
+        /**
+         * Gets children list of an item
+         */
+        private getChildren(item);
+        /**
+         * Gets all parents of an item
+         */
+        private getParents(item);
+        protected getButtons(): any[];
+        protected usePager(): boolean;
+    }
+}
+declare namespace Serene {
+    class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {
+        protected getSlickOptions(): Slick.GridOptions;
+        protected createSlickGrid(): Slick.Grid;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class RowSelectionGrid extends SelectableEntityGrid<Northwind.SupplierRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.BasicSamples {
+    class GridFilteredByCriteria extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        protected onViewSubmit(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        protected createSlickGrid(): Slick.Grid;
+        protected getColumns(): Slick.Column[];
+        protected getSlickOptions(): Slick.GridOptions;
+        protected usePager(): boolean;
+        protected getButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InitialValuesForQuickFilters extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of quick filters to be created for this grid.
+         * By default, it returns quick filter objects corresponding to properties that
+         * have a [QuickFilter] attribute at server side OrderColumns.cs
+         */
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+        /**
+         * This method is another possible place to modify quick filter widgets.
+         * It is where the quick filter widgets are actually created.
+         *
+         * By default, it calls getQuickFilters() then renders UI for these
+         * quick filters.
+         *
+         * We could use getQuickFilters() method for ShipVia too,
+         * but this is for demonstration purposes
+         */
+        protected createQuickFilters(): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineActionGrid extends Northwind.CustomerGrid {
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineImageFormatter implements Slick.Formatter, Serenity.IInitializeColumn {
+        format(ctx: Slick.FormatterContext): string;
+        initializeColumn(column: Slick.Column): void;
+        fileProperty: string;
+        thumb: boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class InlineImageInGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getSlickOptions(): Slick.GridOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ProductExcelImportDialog extends Serenity.PropertyDialog<any, any> {
+        private form;
+        constructor();
+        protected getDialogTitle(): string;
+        protected getDialogButtons(): Serenity.DialogButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ProductExcelImportGrid extends Northwind.ProductGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of buttons to be created.
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class QuickFilterCustomization extends Serenity.EntityGrid<Northwind.OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof Northwind.OrderDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of quick filters to be created for this grid.
+         * By default, it returns quick filter objects corresponding to properties that
+         * have a [QuickFilter] attribute at server side OrderColumns.cs
+         */
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class RemovingAddButton extends Northwind.SupplierGrid {
+        constructor(container: JQuery);
+        /**
+         * This method is called to get list of buttons to be created.
+         */
+        protected getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CustomerGrossSalesGrid extends Serenity.EntityGrid<Northwind.CustomerGrossSalesRow, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private nextId;
+        constructor(container: JQuery);
+        /**
+         * This method is called to preprocess data returned from the list service
+         */
+        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
+        protected getButtons(): any[];
+        protected createSlickGrid(): Slick.Grid;
+        protected getSlickOptions(): Slick.GridOptions;
+        protected usePager(): boolean;
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class TreeGrid extends Northwind.OrderGrid {
+        private treeMixin;
+        constructor(container: JQuery);
+        protected usePager(): boolean;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class ViewWithoutIDGrid extends Serenity.EntityGrid<Northwind.SalesByCategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getNameProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        private nextId;
+        constructor(container: JQuery);
+        /**
+         * This method is called to preprocess data returned from the list service
+         */
+        protected onViewProcessData(response: Serenity.ListResponse<Northwind.SalesByCategoryRow>): Serenity.ListResponse<Northwind.SalesByCategoryRow>;
+        protected getButtons(): any[];
+    }
+}
+declare namespace Serene.BasicSamples {
+    class VSGalleryQAGrid extends Serenity.EntityGrid<BasicSamples.VSGalleryQAThread, any> {
+        protected getColumnsKey(): string;
+        protected getIdProperty(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected getButtons(): any[];
+        protected getSlickOptions(): Slick.GridOptions;
+        protected getColumns(): Slick.Column[];
+        protected getInitialTitle(): any;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class WrappedHeadersGrid extends Northwind.OrderGrid {
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene {
+    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
+        constructor();
+        cancelled: boolean;
+        max: number;
+        value: number;
+        title: string;
+        cancelTitle: string;
+        getDialogOptions(): JQueryUI.DialogOptions;
+        initDialog(): void;
+        getTemplate(): string;
+    }
+}
+declare namespace Serene.DialogUtils {
+    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
+declare namespace Serene.Common {
+    class EnumSelectFormatter implements Slick.Formatter {
+        constructor();
+        format(ctx: Slick.FormatterContext): string;
+        enumKey: string;
+        allowClear: boolean;
+        emptyItemText: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ExcelExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        service: string;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+    }
+    namespace ExcelExportHelper {
+        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.LanguageList {
+    function getValue(): string[][];
+}
+declare namespace Serene.Common {
+    class LanguageSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery, currentLanguage: string);
+    }
+}
+declare namespace Serene.Common {
+    class SidebarSearch extends Serenity.Widget<any> {
+        private menuUL;
+        constructor(input: JQuery, menuUL: JQuery);
+        protected updateMatchFlags(text: string): void;
+    }
+}
+declare namespace Serene.Common {
+    class ThemeSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery);
+        protected getCurrentTheme(): string;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    interface PdfExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+        reportTitle?: string;
+        titleTop?: number;
+        titleFontSize?: number;
+        fileName?: string;
+        pageNumbers?: boolean;
+        columnTitles?: {
+            [key: string]: string;
+        };
+        tableOptions?: jsPDF.AutoTableOptions;
+        output?: string;
+        autoPrint?: boolean;
+        printDateTimeHeader?: boolean;
+    }
+    namespace PdfExportHelper {
+        function exportToPdf(options: PdfExportOptions): void;
+        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
+        private report;
+        private propertyGrid;
+        constructor(options: ReportDialogOptions);
+        protected getDialogButtons(): any;
+        protected createPropertyGrid(): void;
+        protected loadReport(reportKey: string): void;
+        protected updateInterface(): void;
+        executeReport(target: string, ext: string, download: boolean): void;
+        getToolbarButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+    interface ReportDialogOptions {
+        reportKey: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ReportExecuteOptions {
+        reportKey: string;
+        download?: boolean;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        getParams?: () => any;
+        params?: {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportPage extends Serenity.Widget<any> {
+        private reportKey;
+        private propertyItems;
+        private propertyGrid;
+        constructor(element: JQuery);
+        protected updateMatchFlags(text: string): void;
+        protected categoryClick(e: any): void;
+        protected reportLinkClick(e: any): void;
+    }
+}
+declare namespace Serene.ScriptInitialization {
+}
+declare namespace Serene.Common {
+    class UserPreferenceStorage implements Serenity.SettingStorage {
+        getItem(key: string): string;
+        setItem(key: string, data: string): void;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDialog extends Serenity.EntityDialog<MeetingRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingForm;
+        private agendaGrid;
+        private decisionGrid;
+        constructor();
+        protected arrange(): void;
+        loadEntity(entity: MeetingRow): void;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingGrid extends Serenity.EntityGrid<MeetingRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaDialog extends Serenity.EntityDialog<MeetingAgendaRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaGrid extends Serenity.EntityGrid<MeetingAgendaRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _meetingId;
+        meetingId: string;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaRelevantDialog extends Serenity.EntityDialog<MeetingAgendaRelevantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaRelevantForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaRelevantGrid extends Serenity.EntityGrid<MeetingAgendaRelevantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaRelevantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaTypeDialog extends Serenity.EntityDialog<MeetingAgendaTypeRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingAgendaTypeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAgendaTypeGrid extends Serenity.EntityGrid<MeetingAgendaTypeRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAgendaTypeDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAttendeeDialog extends Common.GridEditorDialog<MeetingAttendeeRow> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: MeetingAttendeeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingAttendeeEditor extends Common.GridEditorBase<MeetingAttendeeRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingAttendeeDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        protected getButtons(): any[];
+        protected createToolbarExtensions(): void;
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionDialog extends Serenity.EntityDialog<MeetingDecisionRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingDecisionForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionGrid extends Serenity.EntityGrid<MeetingDecisionRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDecisionDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _meetingId;
+        meetingId: string;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionRelevantDialog extends Serenity.EntityDialog<MeetingDecisionRelevantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: MeetingDecisionRelevantForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingDecisionRelevantGrid extends Serenity.EntityGrid<MeetingDecisionRelevantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingDecisionRelevantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingLocationDialog extends Serenity.EntityDialog<MeetingLocationRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingLocationForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingLocationGrid extends Serenity.EntityGrid<MeetingLocationRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingLocationDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingTypeDialog extends Serenity.EntityDialog<MeetingTypeRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: MeetingTypeForm;
+    }
+}
+declare namespace Serene.Meeting {
+    class MeetingTypeGrid extends Serenity.EntityGrid<MeetingTypeRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof MeetingTypeDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class ForgotPasswordPanel extends Serenity.PropertyPanel<ForgotPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class ResetPasswordPanel extends Serenity.PropertyPanel<ResetPasswordRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Membership {
+    class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
+        protected getFormKey(): string;
+        private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
+        constructor(hidden: JQuery);
+        protected getLookupKey(): string;
+        protected getItemText(item: any, lookup: any): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerOrderDialog extends OrderDialog {
+        constructor();
+        updateInterface(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerOrdersGrid extends OrderGrid {
+        protected getDialogType(): typeof CustomerOrderDialog;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected initEntityDialog(itemType: any, dialog: any): void;
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _customerID;
+        customerID: string;
+    }
+}
+declare namespace Serene.Northwind {
+    class EmployeeListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class EmployeeFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+        genderProperty: string;
+        initializeColumn(column: Slick.Column): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class NoteDialog extends Serenity.TemplatedDialog<any> {
+        private textEditor;
+        constructor();
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+        text: string;
+        okClick: () => void;
+    }
+}
+declare namespace Serene.Northwind {
+    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        private isDirty;
+        private items;
+        constructor(div: JQuery);
+        protected getTemplate(): string;
+        protected updateContent(): void;
+        protected addClick(): void;
+        protected editClick(e: any): void;
+        deleteClick(e: any): void;
+        value: NoteRow[];
+        getEditValue(prop: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, prop: Serenity.PropertyItem): void;
+        get_isDirty(): boolean;
+        set_isDirty(value: any): void;
+        onChange: () => void;
+    }
+}
+declare namespace Serene.Northwind {
+    class FreightFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RegionForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class PhoneEditor extends Serenity.StringEditor {
+        constructor(input: JQuery);
+        protected formatValue(): void;
+        protected getFormattedValue(): string;
+        multiple: boolean;
+        get_value(): string;
+        set_value(value: string): void;
+        static validate(phone: string, isMultiple: boolean): string;
+        static isValidPhone(phone: string): boolean;
+        static formatPhone(phone: any): any;
+        static formatMulti(phone: string, format: (s: string) => string): string;
+        static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ShipperForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TerritoryForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitDialog extends Serenity.EntityDialog<BusinessUnitRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: BusinessUnitForm;
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, BusinessUnitRow> {
+        constructor(hidden: JQuery);
+        protected getLookupKey(): string;
+        protected getItemText(item: BusinessUnitRow, lookup: Q.Lookup<BusinessUnitRow>): string;
+    }
+}
+declare namespace Serene.Organization {
+    class BusinessUnitGrid extends Serenity.EntityGrid<BusinessUnitRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof BusinessUnitDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        protected subDialogDataChange(): void;
+        protected usePager(): boolean;
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+    }
+}
+declare namespace Serene.Organization {
+    class ContactDialog extends Serenity.EntityDialog<ContactRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ContactForm;
+    }
+}
+declare namespace Serene.Organization {
+    class ContactGrid extends Serenity.EntityGrid<ContactRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ContactDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
     }
 }

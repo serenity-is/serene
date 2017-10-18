@@ -343,6 +343,7 @@
 		this.rows = null;
 		this.$slickGridOnSort = null;
 		this.$slickGridOnClick = null;
+		this.openDialogsAsPanel = null;
 		Serenity.Widget.call(this, container, opt);
 		var self = this;
 		this.element.addClass('s-DataGrid').html('');
@@ -2380,6 +2381,7 @@
 	var $Serenity_LookupEditorBase = function(hidden, opt) {
 		this.$cascadeLink = null;
 		this.onInitNewEntity = null;
+		this.$5$OpenDialogAsPanelField = null;
 		$Serenity_Select2Editor.call(this, hidden, opt);
 		this.$setCascadeFrom(this.options.cascadeFrom);
 		var self = this;
@@ -4757,14 +4759,14 @@
 					var entity = new Object();
 					entity[this.getLookup().textField] = Q.trimToEmpty(this.lastCreateTerm);
 					this.initNewEntity(entity);
-					dialog.load(entity, function() {
-						dialog.dialogOpen(null);
-					}, null);
+					dialog.load(entity, ss.mkdel(this, function() {
+						dialog.dialogOpen(this.get_openDialogAsPanel());
+					}), null);
 				}
 				else {
-					dialog.load(this.get_value(), function() {
-						dialog.dialogOpen(null);
-					}, null);
+					dialog.load(this.get_value(), ss.mkdel(this, function() {
+						dialog.dialogOpen(this.get_openDialogAsPanel());
+					}), null);
 				}
 			}));
 		},
@@ -4878,6 +4880,12 @@
 				this.set_value(null);
 				this.updateItems();
 			}
+		},
+		get_openDialogAsPanel: function() {
+			return this.$5$OpenDialogAsPanelField;
+		},
+		set_openDialogAsPanel: function(value) {
+			this.$5$OpenDialogAsPanelField = value;
 		}
 	}, $Serenity_Select2Editor, [$Serenity_ISetEditValue, $Serenity_IGetEditValue, $Serenity_IStringValue, $Serenity_IReadOnly]);
 	ss.initInterface($Serenity_IAsyncInit, $asm, {});
@@ -8223,32 +8231,32 @@
 			this.editItem(new Object());
 		},
 		editItem: function(entityOrId) {
-			this.createEntityDialog(this.getItemType(), function(dlg) {
+			this.createEntityDialog(this.getItemType(), ss.mkdel(this, function(dlg) {
 				var dialog = ss.safeCast(dlg, $Serenity_IEditDialog);
 				if (ss.isValue(dialog)) {
-					dialog.load(entityOrId, function() {
-						dialog.dialogOpen(null);
-					}, null);
+					dialog.load(entityOrId, ss.mkdel(this, function() {
+						dialog.dialogOpen(this.openDialogsAsPanel);
+					}), null);
 					return;
 				}
 				throw new ss.InvalidOperationException(ss.formatString("{0} doesn't implement IEditDialog!", ss.getTypeFullName(ss.getInstanceType(dlg))));
-			});
+			}));
 		},
 		editItemOfType: function(itemType, entityOrId) {
 			if (ss.referenceEquals(itemType, this.getItemType())) {
 				this.editItem(entityOrId);
 				return;
 			}
-			this.createEntityDialog(itemType, function(dlg) {
+			this.createEntityDialog(itemType, ss.mkdel(this, function(dlg) {
 				var dialog = ss.safeCast(dlg, $Serenity_IEditDialog);
 				if (ss.isValue(dialog)) {
-					dialog.load(entityOrId, function() {
-						dialog.dialogOpen(null);
-					}, null);
+					dialog.load(entityOrId, ss.mkdel(this, function() {
+						dialog.dialogOpen(this.openDialogsAsPanel);
+					}), null);
 					return;
 				}
 				throw new ss.InvalidOperationException(ss.formatString("{0} doesn't implement IEditDialog!", ss.getTypeFullName(ss.getInstanceType(dlg))));
-			});
+			}));
 		},
 		getService: function() {
 			if (ss.isNullOrUndefined(this.$service)) {
@@ -10711,7 +10719,7 @@
 	ss.setMetadata($Serenity_ImageUploadEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Allow Non Image Files')], name: 'AllowNonImage', type: 16, returnType: Boolean, getter: { name: 'get_AllowNonImage', type: 8, params: [], returnType: Boolean, fget: 'allowNonImage' }, setter: { name: 'set_AllowNonImage', type: 8, params: [Boolean], returnType: Object, fset: 'allowNonImage' }, fname: 'allowNonImage' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Display File Name')], name: 'DisplayFileName', type: 16, returnType: Boolean, getter: { name: 'get_DisplayFileName', type: 8, params: [], returnType: Boolean, fget: 'displayFileName' }, setter: { name: 'set_DisplayFileName', type: 8, params: [Boolean], returnType: Object, fset: 'displayFileName' }, fname: 'displayFileName' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Height')], name: 'MaxHeight', type: 16, returnType: ss.Int32, getter: { name: 'get_MaxHeight', type: 8, params: [], returnType: ss.Int32, fget: 'maxHeight' }, setter: { name: 'set_MaxHeight', type: 8, params: [ss.Int32], returnType: Object, fset: 'maxHeight' }, fname: 'maxHeight' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Size')], name: 'MaxSize', type: 16, returnType: ss.Int32, getter: { name: 'get_MaxSize', type: 8, params: [], returnType: ss.Int32, fget: 'maxSize' }, setter: { name: 'set_MaxSize', type: 8, params: [ss.Int32], returnType: Object, fset: 'maxSize' }, fname: 'maxSize' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Width')], name: 'MaxWidth', type: 16, returnType: ss.Int32, getter: { name: 'get_MaxWidth', type: 8, params: [], returnType: ss.Int32, fget: 'maxWidth' }, setter: { name: 'set_MaxWidth', type: 8, params: [ss.Int32], returnType: Object, fset: 'maxWidth' }, fname: 'maxWidth' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Max Height')], name: 'MinHeight', type: 16, returnType: ss.Int32, getter: { name: 'get_MinHeight', type: 8, params: [], returnType: ss.Int32, fget: 'minHeight' }, setter: { name: 'set_MinHeight', type: 8, params: [ss.Int32], returnType: Object, fset: 'minHeight' }, fname: 'minHeight' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Size')], name: 'MinSize', type: 16, returnType: ss.Int32, getter: { name: 'get_MinSize', type: 8, params: [], returnType: ss.Int32, fget: 'minSize' }, setter: { name: 'set_MinSize', type: 8, params: [ss.Int32], returnType: Object, fset: 'minSize' }, fname: 'minSize' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Min Width')], name: 'MinWidth', type: 16, returnType: ss.Int32, getter: { name: 'get_MinWidth', type: 8, params: [], returnType: ss.Int32, fget: 'minWidth' }, setter: { name: 'set_MinWidth', type: 8, params: [ss.Int32], returnType: Object, fset: 'minWidth' }, fname: 'minWidth' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Original Name Property')], name: 'OriginalNameProperty', type: 16, returnType: String, getter: { name: 'get_OriginalNameProperty', type: 8, params: [], returnType: String, fget: 'originalNameProperty' }, setter: { name: 'set_OriginalNameProperty', type: 8, params: [String], returnType: Object, fset: 'originalNameProperty' }, fname: 'originalNameProperty' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('UrlPrefix')], name: 'UrlPrefix', type: 16, returnType: String, getter: { name: 'get_UrlPrefix', type: 8, params: [], returnType: String, fget: 'urlPrefix' }, setter: { name: 'set_UrlPrefix', type: 8, params: [String], returnType: Object, fset: 'urlPrefix' }, fname: 'urlPrefix' }] });
 	ss.setMetadata($Serenity_IntegerEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Tamsayı'), new Serenity.OptionsTypeAttribute($Serenity_IntegerEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_LookupEditor, { attr: [new Serenity.EditorAttribute(), new Serenity.OptionsTypeAttribute(Object)] });
-	ss.setMetadata($Serenity_LookupEditorBase, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')], members: [{ attr: [new Serenity.OptionAttribute()], name: 'CascadeField', type: 16, returnType: String, getter: { name: 'get_CascadeField', type: 8, sname: 'get_cascadeField', returnType: String, params: [] }, setter: { name: 'set_CascadeField', type: 8, sname: 'set_cascadeField', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'CascadeFrom', type: 16, returnType: String, getter: { name: 'get_CascadeFrom', type: 8, sname: 'get_cascadeFrom', returnType: String, params: [] }, setter: { name: 'set_CascadeFrom', type: 8, sname: 'set_cascadeFrom', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'CascadeValue', type: 16, returnType: Object, getter: { name: 'get_CascadeValue', type: 8, sname: 'get_cascadeValue', returnType: Object, params: [] }, setter: { name: 'set_CascadeValue', type: 8, sname: 'set_cascadeValue', returnType: Object, params: [Object] } }, { attr: [new Serenity.OptionAttribute()], name: 'FilterField', type: 16, returnType: String, getter: { name: 'get_FilterField', type: 8, sname: 'get_filterField', returnType: String, params: [] }, setter: { name: 'set_FilterField', type: 8, sname: 'set_filterField', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'FilterValue', type: 16, returnType: Object, getter: { name: 'get_FilterValue', type: 8, sname: 'get_filterValue', returnType: Object, params: [] }, setter: { name: 'set_FilterValue', type: 8, sname: 'set_filterValue', returnType: Object, params: [Object] } }] });
+	ss.setMetadata($Serenity_LookupEditorBase, { attr: [new Serenity.ElementAttribute('<input type="hidden"/>')], members: [{ attr: [new Serenity.OptionAttribute()], name: 'CascadeField', type: 16, returnType: String, getter: { name: 'get_CascadeField', type: 8, sname: 'get_cascadeField', returnType: String, params: [] }, setter: { name: 'set_CascadeField', type: 8, sname: 'set_cascadeField', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'CascadeFrom', type: 16, returnType: String, getter: { name: 'get_CascadeFrom', type: 8, sname: 'get_cascadeFrom', returnType: String, params: [] }, setter: { name: 'set_CascadeFrom', type: 8, sname: 'set_cascadeFrom', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'CascadeValue', type: 16, returnType: Object, getter: { name: 'get_CascadeValue', type: 8, sname: 'get_cascadeValue', returnType: Object, params: [] }, setter: { name: 'set_CascadeValue', type: 8, sname: 'set_cascadeValue', returnType: Object, params: [Object] } }, { attr: [new Serenity.OptionAttribute()], name: 'FilterField', type: 16, returnType: String, getter: { name: 'get_FilterField', type: 8, sname: 'get_filterField', returnType: String, params: [] }, setter: { name: 'set_FilterField', type: 8, sname: 'set_filterField', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'FilterValue', type: 16, returnType: Object, getter: { name: 'get_FilterValue', type: 8, sname: 'get_filterValue', returnType: Object, params: [] }, setter: { name: 'set_FilterValue', type: 8, sname: 'set_filterValue', returnType: Object, params: [Object] } }, { attr: [new Serenity.OptionAttribute()], name: 'OpenDialogAsPanel', type: 16, returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), getter: { name: 'get_OpenDialogAsPanel', type: 8, sname: 'get_openDialogAsPanel', returnType: ss.makeGenericType(ss.Nullable$1, [Boolean]), params: [] }, setter: { name: 'set_OpenDialogAsPanel', type: 8, sname: 'set_openDialogAsPanel', returnType: Object, params: [ss.makeGenericType(ss.Nullable$1, [Boolean])] } }] });
 	ss.setMetadata($Serenity_MaskedEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Maskeli Giriş'), new Serenity.OptionsTypeAttribute($Serenity_MaskedEditorOptions), new Serenity.ElementAttribute('<input type="text"/>')] });
 	ss.setMetadata($Serenity_MaskedEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Giriş Maskesi')], name: 'Mask', type: 16, returnType: String, getter: { name: 'get_Mask', type: 8, params: [], returnType: String, fget: 'mask' }, setter: { name: 'set_Mask', type: 8, params: [String], returnType: Object, fset: 'mask' }, fname: 'mask' }, { attr: [new $System_ComponentModel_DisplayNameAttribute('Yer Tutucu Karakter')], name: 'Placeholder', type: 16, returnType: String, getter: { name: 'get_Placeholder', type: 8, params: [], returnType: String, fget: 'placeholder' }, setter: { name: 'set_Placeholder', type: 8, params: [String], returnType: Object, fset: 'placeholder' }, fname: 'placeholder' }] });
 	ss.setMetadata($Serenity_MultipleImageUploadEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('MultipleImage Upload'), new Serenity.OptionsTypeAttribute($Serenity_ImageUploadEditorOptions), new Serenity.ElementAttribute('<div/>')], members: [{ attr: [new Serenity.OptionAttribute()], name: 'JsonEncodeValue', type: 16, returnType: Boolean, getter: { name: 'get_JsonEncodeValue', type: 8, sname: 'get_jsonEncodeValue', returnType: Boolean, params: [] }, setter: { name: 'set_JsonEncodeValue', type: 8, sname: 'set_jsonEncodeValue', returnType: Object, params: [Boolean] } }] });
