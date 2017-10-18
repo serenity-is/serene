@@ -20,7 +20,6 @@
             font-weight: 300;
             font-size: 16px;
             color: #555;
-            padding-top: 50px;
 
             -webkit-font-smoothing: antialiased;
             -webkit-overflow-scrolling: touch;
@@ -172,26 +171,6 @@
 
   <body data-spy="scroll" data-offset="0" data-target="#navigation">
 
-    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><b>Serenity</b></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="#home" class="smothscroll">Home</a></li>
-            <li><a href="#resources" class="smothscroll">Resources</a></li>
-            </ul>
-        </div>
-        </div>
-    </div>
-
-
     <section id="home" name="home"></section>
     <div id="headerwrap">
         <div class="container">
@@ -200,7 +179,9 @@
                     <h1>Welcome To <b>Serenity</b></h1>
                     <h3>This is a starter template to build Serenity applications.</h3>
                     <br />
-                    <br />
+                    <div class="alert alert-danger" style="color: white; background-color: indianred">
+                        <b><i class="fa fa-exclamation-circle"></i> Please read <a style="color: yellow; margin: 0 6px 0 6px" href="https://github.com/volkanceylan/Serenity/blob/master/INSTALL.md" target="_blank">INSTALLATION INSTRUCTIONS&nbsp;<sup><i class="fa fa-external-link-square"></i></sup></a> for latest requirements and troubleshooting.</b>
+                    </div>
                 </div>
                 
                 <div class="col-lg-5">
@@ -214,8 +195,8 @@
                 </div>
                 <div class="col-lg-5">
                     <h4>Visual Studio Requirements</h4>
-                    <p><b>Please check your TypeScript version from VS Extensions dialog (v2.4.0+ is required). Download latest version for VS from <a href="http://www.typescriptlang.org/#download-links">http://www.typescriptlang.org/#download-links</a> </b></p>
-                    <p><b>NodeJS v6.9.4+ with NPM v3.10+ is also required for typings and other static content. Get it from <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></p>
+                    <p><b>Please check your TypeScript version from VS Extensions dialog (v2.5.0+ is required). Download latest version for VS from <a href="http://www.typescriptlang.org/#download-links">http://www.typescriptlang.org/#download-links</a> </b></p>
+                    <p><b>NodeJS v8.7.0+ with NPM v5.4.2+ is also required for typings and other static content. Get it from <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></b></p>
                     <p><b>Also make sure that you have <em style="color: lightgreen">C:\Program Files\nodejs</em> on top of folder list at <i>Tools <i class="fa fa-arrow-right"></i> Options <i class="fa fa-arrow-right"></i> Projects and Solutions <i class="fa fa-arrow-right"></i> External Web Tools.</i></b></p>
                 </div>
             </div>

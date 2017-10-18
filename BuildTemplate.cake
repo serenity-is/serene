@@ -81,6 +81,7 @@ IEnumerable<Regex> sereneCoreIncludes = new string[] {
 
 IEnumerable<Regex> sereneCoreExcludes = new string[] {
 	@"**\node_modules\**\*",
+	@"**\PublishProfiles\**\*",
 	@"**\bin\**\*",
 	@"**\.git\**\*",
 	@"**\.vs\**\*",
