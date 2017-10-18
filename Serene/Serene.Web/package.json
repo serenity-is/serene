@@ -18,10 +18,8 @@
     "@types/toastr": "^2.1.33"
   },
   "devDependencies": {
-    "typescript": "2.4.2"
   },
   "scripts": {
-    "tsc": "tsc -p ./tsconfig.json"
   },
   "author": "",
   "license": "ISC"
