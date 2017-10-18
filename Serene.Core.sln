@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serenity.Core", "Serenity\Serenity.Core\Serenity.Core.csproj", "{6F13B7F5-3F1E-4A7F-962D-59EBD3118E83}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serenity.TypeScript.CodeGeneration", "Serenity\Serenity.TypeScript.CodeGeneration\Serenity.TypeScript.CodeGeneration.csproj", "{6AC1B628-C759-4B5B-ACD7-75C202C65DFB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serene.Core", "Serene\Serene.Core\Serene.Core.csproj", "{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2C18F028-3783-4BFA-9F2E-AC17591278EC} = {2C18F028-3783-4BFA-9F2E-AC17591278EC}
+		{7B2CED35-AD39-42D5-AF64-5AC73D11EEF9} = {7B2CED35-AD39-42D5-AF64-5AC73D11EEF9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,5 +108,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3D6F321-A8ED-4CE2-B6B5-3ADB9B858898}
 	EndGlobalSection
 EndGlobal
