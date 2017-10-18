@@ -7,11 +7,14 @@
     "emitBOM": true,
     "sourceMap": true,
     "outFile": "Scripts/site/Serene.Web.js",
-    "target": "es5"
+    "target": "es5",
+    "typeRoots": [
+      "./node_modules/@types/"
+    ]
   },
   "include": [
-    "Imports/",
-    "Modules/",
-    "Scripts/typings/"
+    "./Imports/",
+    "./Modules/",
+    "./Scripts/typings/"
   ]
 }

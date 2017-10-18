@@ -6,10 +6,11 @@
     "declaration": true,
     "emitBOM": true,
     "sourceMap": true,
-    "inlineSources": true,
     "outFile": "wwwroot/Scripts/site/Serene.Web.js",
     "target": "es5",
-    "allowJs": false
+    "typeRoots": [
+      "./node_modules/@types/"
+    ]
   },
   "exclude": [
     ".vs/",
@@ -20,4 +21,4 @@
     "node_modules/",
     "wwwroot/"
   ]
-}
+}
