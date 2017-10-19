@@ -86,7 +86,7 @@
   </Target>
   <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
     <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.2.2" />
