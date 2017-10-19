@@ -10,7 +10,6 @@ var configuration = Argument("configuration", "Release");
 var r = System.IO.Path.GetFullPath(@".\");
 
 var sereneWebProj = r + @"Serene\Serene.Web\Serene.Web.csproj";
-var devSereneWebProj = r + @"Serene\Serene.Web\Dev.Serene.Web.csproj";
 var sereneCoreWebProj = r + @"Serene\Serene.Core\Serene.Core.csproj";
 string serenityVersion = null;
 
@@ -152,22 +151,9 @@ Action<string, string> patchProjectRefs = (csproj, version) => {
 		System.IO.File.WriteAllText(csproj, csprojElement.ToString(SaveOptions.OmitDuplicateNamespaces), Encoding.UTF8);
 };
 
-Action ensureDevProjSync = () => {
-    var devFiles = getCsProjItems(loadCsProj(devSereneWebProj)).Select(itemToFile);
-    var sereneFiles = getCsProjItems(loadCsProj(sereneWebProj)).ToLookup(itemToFile);
-    var missingFiles = devFiles.Where(x => !sereneFiles[x].Any());
-    if (missingFiles.Any()) {
-        System.Console.WriteLine("Serene.Web.csproj missing following files in Dev.Serene.Web.csproj:");
-        foreach (var f in missingFiles)
-            System.Console.WriteLine(f);
-        System.Console.ReadLine();
-    }
-};
-
 Task("PrepareVSIX")
   .Does(() => 
 {
-    ensureDevProjSync();
     CleanDirectory("./Template/ProjectTemplates");
     CreateDirectory("./Template/ProjectTemplates");
     CleanDirectory("./Template/bin/Debug");

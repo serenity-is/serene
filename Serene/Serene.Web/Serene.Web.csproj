@@ -154,6 +154,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
+  <Import Project="..\..\Serenity\tools\Submodule\Serenity.Submodule.Web.targets" Condition=" Exists('..\..\Serenity\Serenity.Core\Serenity.Core.Net45.csproj') " />
   <ItemGroup>
     <Content Include="..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe">
       <Link>wkhtmltopdf.exe</Link>
@@ -2710,7 +2711,7 @@
   <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high">
     </Message>
-    <Exec Command="$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

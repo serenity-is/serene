@@ -1538,6 +1538,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="vegas.min.js">vegas.min.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="vegas.min.js.map">vegas.min.js.map</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="vue.js">vue.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="vue.min.js">vue.min.js</ProjectItem>
       </Folder>
       <Folder Name="tools" TargetFolderName="tools">
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
