@@ -35,14 +35,14 @@ namespace Serene.Meeting.Entities
             set { Fields.Address[this] = value; }
         }
 
-        [DisplayName("Latitude"), NotNull]
+        [DisplayName("Latitude"), NotNull, Scale(6), DecimalEditor(MinValue = "-999.999999", MaxValue = "999.999999")]
         public Double? Latitude
         {
             get { return Fields.Latitude[this]; }
             set { Fields.Latitude[this] = value; }
         }
 
-        [DisplayName("Longitude"), NotNull]
+        [DisplayName("Longitude"), NotNull, Scale(6), DecimalEditor(MinValue = "-999.999999", MaxValue = "999.999999")]
         public Double? Longitude
         {
             get { return Fields.Longitude[this]; }
