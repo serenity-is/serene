@@ -20,7 +20,7 @@ namespace Serene.Northwind.Forms
 
         [Category("Order Details")]
         [OrderDetailsEditor]
-        public List<Entities.OrderDetailRow> DetailList { get; set; } 
+        public List<Entities.OrderDetailRow> DetailList { get; set; }
 
         [Tab("Shipping")]
         [Category("Info")]

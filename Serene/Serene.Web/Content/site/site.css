@@ -7772,7 +7772,7 @@ section.content > .s-DataGrid {
 #s-ApplicationErrorPage div.message,
 #s-NotFoundPage div.message,
 #s-GenericErrorPage div.message {
-  background: #fff2f2;
+  background: #fff;
   padding: 40px;
   margin: 100px auto;
   min-height: 170px;

@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Membership.Pages
 {
     using Serenity;
@@ -13,12 +13,8 @@ namespace Serene.Membership.Pages
         public static bool UseAdminLTELoginBox = false;
 
         [HttpGet]
-        public ActionResult Login(int? denied, string activated, string returnUrl)
+        public ActionResult Login(string activated)
         {
-            if (denied == 1)
-                return View(MVC.Views.Errors.AccessDenied,
-                    (object)(FormsAuthentication.LoginUrl + "?returnUrl=" + Uri.EscapeDataString(returnUrl)));
-
             ViewData["Activated"] = activated;
             ViewData["HideLeftNavigation"] = true;
 
@@ -26,6 +22,14 @@ namespace Serene.Membership.Pages
                 return View(MVC.Views.Membership.Account.AccountLogin_AdminLTE);
             else
                 return View(MVC.Views.Membership.Account.AccountLogin);
+        }
+
+        [HttpGet]
+        public ActionResult AccessDenied(string returnURL)
+        {
+            ViewData["HideLeftNavigation"] = !Authorization.IsLoggedIn;
+
+            return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
         }
 
         [HttpPost, JsonFilter]

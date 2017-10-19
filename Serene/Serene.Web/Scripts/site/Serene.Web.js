@@ -1716,6 +1716,9 @@ var Serene;
                             var q = Q.parseQueryString();
                             var returnUrl = q['returnUrl'] || q['ReturnUrl'];
                             if (returnUrl) {
+                                var hash = window.location.hash;
+                                if (hash != null && hash != '#')
+                                    returnUrl += hash;
                                 window.location.href = returnUrl;
                             }
                             else {
@@ -2123,6 +2126,7 @@ var Serene;
         Meeting.MeetingDecisionGrid = MeetingDecisionGrid;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
 var Serene;
 (function (Serene) {
     var Meeting;
@@ -2146,7 +2150,7 @@ var Serene;
         Meeting.MeetingAttendeeDialog = MeetingAttendeeDialog;
     })(Meeting = Serene.Meeting || (Serene.Meeting = {}));
 })(Serene || (Serene = {}));
-/// <reference path="../../common/helpers/grideditorbase.ts" />
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
 var Serene;
 (function (Serene) {
     var Meeting;
