@@ -8,7 +8,7 @@ namespace Serene.ServiceTesting {
 
             var self = this;
             this.handlers = {};
-            $.ajax = (settings: JQueryAjaxSettings) => {
+            ($ as any).ajax = (settings: JQueryAjaxSettings) => {
 
                 var url = settings.url;
                 var handler = self.handlers[url];

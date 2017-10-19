@@ -507,56 +507,6 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
-            QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.RoleDialog();
-                var uiDialog = dialog.element.closest(".ui-dialog");
-                dialog.loadEntityAndOpenDialog({
-                    RoleId: 789,
-                    RoleName: 'some.thing',
-                });
-                try {
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
-                    var rolePermissionListCalls = 0;
-                    ajax_3.addServiceHandler("~/services/Administration/RolePermission/List", function (s) {
-                        rolePermissionListCalls++;
-                        assert.deepEqual(s.request, { RoleID: 789, Module: null, Submodule: null }, 'role permission list request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
-                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
-                    window.setTimeout(function () {
-                        try {
-                            var permissionDialog = $('.ui-dialog:visible').last();
-                            assert.ok(permissionDialog.hasClass('s-Administration-RolePermissionDialog'), 'role permissions dialog is shown on edit permissions button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit Role Permissions (some.thing)', 'dialog title');
-                            assert.equal(1, rolePermissionListCalls, 'RolePermission/List should be called once');
-                            permissionDialog.find('.ui-dialog-content').dialog('close');
-                        }
-                        finally {
-                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
-                            ajax_3.dispose();
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
             QUnit.test('RoleDialog Edit LoadById, Apply Changes Button', function (assert) {
                 var asyncDone = assert.async();
                 var dialog = new Administration.RoleDialog();
@@ -850,6 +800,56 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.RoleDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadEntityAndOpenDialog({
+                    RoleId: 789,
+                    RoleName: 'some.thing',
+                });
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
+                    var rolePermissionListCalls = 0;
+                    ajax_3.addServiceHandler("~/services/Administration/RolePermission/List", function (s) {
+                        rolePermissionListCalls++;
+                        assert.deepEqual(s.request, { RoleID: 789, Module: null, Submodule: null }, 'role permission list request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
+                    window.setTimeout(function () {
+                        try {
+                            var permissionDialog = $('.ui-dialog:visible').last();
+                            assert.ok(permissionDialog.hasClass('s-Administration-RolePermissionDialog'), 'role permissions dialog is shown on edit permissions button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit Role Permissions (some.thing)', 'dialog title');
+                            assert.equal(1, rolePermissionListCalls, 'RolePermission/List should be called once');
+                            permissionDialog.find('.ui-dialog-content').dialog('close');
+                        }
+                        finally {
+                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
+                            ajax_3.dispose();
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
             QUnit.test('RoleDialog General', function (assert) {
                 assert.notEqual(null, new Administration.RoleDialog(), 'create a new instance');
                 var dialog = new Administration.RoleDialog();
@@ -1011,128 +1011,6 @@ var Serene;
                         return { EntityId: 9876 };
                     });
                     Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog Edit Permissions Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.UserDialog();
-                var uiDialog = dialog.element.closest(".ui-dialog");
-                dialog.loadEntityAndOpenDialog({
-                    UserId: 789,
-                    Username: 'some.thing',
-                    DisplayName: 'Some Thing',
-                    Email: 'some_thing@somedomain.com',
-                    Source: 'some'
-                });
-                try {
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    var ajax_6 = new Serene.ServiceTesting.FakeAjax();
-                    var userPermissionListCalls = 0;
-                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
-                        userPermissionListCalls++;
-                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    var listRolePermissionsCalls = 0;
-                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
-                        listRolePermissionsCalls++;
-                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
-                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
-                    window.setTimeout(function () {
-                        try {
-                            var permissionDialog = $('.ui-dialog:visible').last();
-                            assert.ok(permissionDialog.hasClass('s-Administration-UserPermissionDialog'), 'user permissions dialog is shown on edit permissions button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit User Permissions (some.thing)', 'dialog title');
-                            assert.equal(1, userPermissionListCalls, 'UserPermission/List should be called once');
-                            assert.equal(1, listRolePermissionsCalls, 'UserPermission/ListRolePermissions should be called once');
-                            permissionDialog.find('.ui-dialog-content').dialog('close');
-                        }
-                        finally {
-                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
-                            ajax_6.dispose();
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog Edit Roles Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.UserDialog();
-                var uiDialog = dialog.element.closest(".ui-dialog");
-                dialog.loadEntityAndOpenDialog({
-                    UserId: 789,
-                    Username: 'some.thing',
-                    DisplayName: 'Some Thing',
-                    Email: 'some_thing@somedomain.com',
-                    Source: 'some'
-                });
-                try {
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    Q.ScriptData.set('Lookup.Administration.Role', new Q.Lookup({
-                        idField: 'RoleId',
-                        textField: 'RoleName'
-                    }, [{
-                            RoleId: 13579,
-                            RoleName: 'SomeRole'
-                        }, {
-                            RoleId: 24680,
-                            RoleName: 'OtherRole'
-                        }]));
-                    var ajax_7 = new Serene.ServiceTesting.FakeAjax();
-                    var userRoleListCalls = 0;
-                    ajax_7.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
-                        userRoleListCalls++;
-                        assert.deepEqual(s.request, { UserID: 789 });
-                        return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Serene.DialogTesting.clickButton(dialog, '.edit-roles-button');
-                    window.setTimeout(function () {
-                        try {
-                            var roleDialog = $('.ui-dialog:visible').last();
-                            assert.ok(roleDialog.hasClass('s-Administration-UserRoleDialog'), 'user roles dialog is shown on edit roles button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(roleDialog), 'Edit User Roles (some.thing)');
-                            roleDialog.find('.ui-dialog-content').dialog('close');
-                            assert.equal(1, userRoleListCalls, 'user role list should be called once');
-                        }
-                        finally {
-                            ajax_7.dispose();
-                            Q.ScriptData.set('Lookup.Administration.Role', null);
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
                 }
                 catch (e) {
                     dialog.dialogClose();
@@ -1566,6 +1444,128 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit Permissions Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.UserDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadEntityAndOpenDialog({
+                    UserId: 789,
+                    Username: 'some.thing',
+                    DisplayName: 'Some Thing',
+                    Email: 'some_thing@somedomain.com',
+                    Source: 'some'
+                });
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    var ajax_6 = new Serene.ServiceTesting.FakeAjax();
+                    var userPermissionListCalls = 0;
+                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
+                        userPermissionListCalls++;
+                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    var listRolePermissionsCalls = 0;
+                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
+                        listRolePermissionsCalls++;
+                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
+                    window.setTimeout(function () {
+                        try {
+                            var permissionDialog = $('.ui-dialog:visible').last();
+                            assert.ok(permissionDialog.hasClass('s-Administration-UserPermissionDialog'), 'user permissions dialog is shown on edit permissions button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit User Permissions (some.thing)', 'dialog title');
+                            assert.equal(1, userPermissionListCalls, 'UserPermission/List should be called once');
+                            assert.equal(1, listRolePermissionsCalls, 'UserPermission/ListRolePermissions should be called once');
+                            permissionDialog.find('.ui-dialog-content').dialog('close');
+                        }
+                        finally {
+                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
+                            ajax_6.dispose();
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit Roles Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.UserDialog();
+                var uiDialog = dialog.element.closest(".ui-dialog");
+                dialog.loadEntityAndOpenDialog({
+                    UserId: 789,
+                    Username: 'some.thing',
+                    DisplayName: 'Some Thing',
+                    Email: 'some_thing@somedomain.com',
+                    Source: 'some'
+                });
+                try {
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    Q.ScriptData.set('Lookup.Administration.Role', new Q.Lookup({
+                        idField: 'RoleId',
+                        textField: 'RoleName'
+                    }, [{
+                            RoleId: 13579,
+                            RoleName: 'SomeRole'
+                        }, {
+                            RoleId: 24680,
+                            RoleName: 'OtherRole'
+                        }]));
+                    var ajax_7 = new Serene.ServiceTesting.FakeAjax();
+                    var userRoleListCalls = 0;
+                    ajax_7.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
+                        userRoleListCalls++;
+                        assert.deepEqual(s.request, { UserID: 789 });
+                        return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, '.edit-roles-button');
+                    window.setTimeout(function () {
+                        try {
+                            var roleDialog = $('.ui-dialog:visible').last();
+                            assert.ok(roleDialog.hasClass('s-Administration-UserRoleDialog'), 'user roles dialog is shown on edit roles button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(roleDialog), 'Edit User Roles (some.thing)');
+                            roleDialog.find('.ui-dialog-content').dialog('close');
+                            assert.equal(1, userRoleListCalls, 'user role list should be called once');
+                        }
+                        finally {
+                            ajax_7.dispose();
+                            Q.ScriptData.set('Lookup.Administration.Role', null);
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
             QUnit.test('UserDialog General', function (assert) {
                 assert.notEqual(null, new Administration.UserDialog(), 'create a new instance');
                 var dialog = new Administration.UserDialog();
@@ -1813,7 +1813,7 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var ButtonTesting = (function () {
+    var ButtonTesting = /** @class */ (function () {
         function ButtonTesting(assert) {
             this.assert = assert;
         }
@@ -1886,7 +1886,7 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var FormTesting = (function () {
+    var FormTesting = /** @class */ (function () {
         function FormTesting(assert) {
             this.assert = assert;
         }
@@ -1956,7 +1956,7 @@ var Serene;
 (function (Serene) {
     var ServiceTesting;
     (function (ServiceTesting) {
-        var FakeAjax = (function () {
+        var FakeAjax = /** @class */ (function () {
             function FakeAjax() {
                 this.oldAjax = $.ajax;
                 var self = this;
