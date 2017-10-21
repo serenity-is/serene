@@ -1168,7 +1168,6 @@
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="variables.less">variables.less</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="font-open-sans-base64.css">font-open-sans-base64.css</ProjectItem>
           <Folder Name="iCheck" TargetFolderName="iCheck">
             <ProjectItem ReplaceParameters="true" TargetFileName="all.css">all.css</ProjectItem>
             <Folder Name="flat" TargetFolderName="flat">
@@ -1474,8 +1473,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.js">jquery-ui.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.min.js">jquery-ui.min.js</ProjectItem>
           <Folder Name="jvectormap" TargetFolderName="jvectormap">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
