@@ -295,8 +295,6 @@
             <ProjectItem ReplaceParameters="false" TargetFileName="slide1.jpg">slide1.jpg</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="slide2.jpg">slide2.jpg</ProjectItem>
             <ProjectItem ReplaceParameters="false" TargetFileName="slide3.jpg">slide3.jpg</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="slide4.jpg">slide4.jpg</ProjectItem>
-            <ProjectItem ReplaceParameters="false" TargetFileName="slide5.jpg">slide5.jpg</ProjectItem>
           </Folder>
         </Folder>
       </Folder>
@@ -1074,7 +1072,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.ts">ForgotPasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.ts">LoginPanel.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ResetPassword.cs">AccountPage.ResetPassword.cs</ProjectItem>
@@ -1300,6 +1297,34 @@
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+      </Folder>
+      <Folder Name="node_modules" TargetFolderName="node_modules">
+        <Folder Name="@types" TargetFolderName="@types">
+          <Folder Name="jquery.blockui" TargetFolderName="jquery.blockui">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="jquery.cookie" TargetFolderName="jquery.cookie">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="jquery.validation" TargetFolderName="jquery.validation">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="jquery" TargetFolderName="jquery">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="jqueryui" TargetFolderName="jqueryui">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="jspdf" TargetFolderName="jspdf">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="sortablejs" TargetFolderName="sortablejs">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+          <Folder Name="toastr" TargetFolderName="toastr">
+            <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+          </Folder>
+        </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">
@@ -1556,6 +1581,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutHead.cshtml">_LayoutHead.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutNoNavigation.cshtml">_LayoutNoNavigation.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutSlim.cshtml">_LayoutSlim.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutSlimHead.cshtml">_LayoutSlimHead.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LeftNavigation.cshtml">LeftNavigation.cshtml</ProjectItem>
         </Folder>
@@ -1596,12 +1623,12 @@
       <installPackage id="Newtonsoft.Json" version="10.0.3" />
       <installPackage id="NUglify" version="1.5.8" />
       <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="3.2.2" />
-      <installPackage id="Serenity.Core" version="3.2.2" />
-      <installPackage id="Serenity.Data" version="3.2.2" />
-      <installPackage id="Serenity.Data.Entity" version="3.2.2" />
-      <installPackage id="Serenity.Services" version="3.2.2" />
-      <installPackage id="Serenity.Web" version="3.2.2" />
+      <installPackage id="Serenity.CodeGenerator" version="3.3.0" />
+      <installPackage id="Serenity.Core" version="3.3.0" />
+      <installPackage id="Serenity.Data" version="3.3.0" />
+      <installPackage id="Serenity.Data.Entity" version="3.3.0" />
+      <installPackage id="Serenity.Services" version="3.3.0" />
+      <installPackage id="Serenity.Web" version="3.3.0" />
       <installPackage id="Serenity.Web.Assets" version="2.7.2" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />

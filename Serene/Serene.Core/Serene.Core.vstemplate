@@ -787,7 +787,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.ts">ForgotPasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.ts">LoginPanel.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ResetPassword.cs">AccountPage.ResetPassword.cs</ProjectItem>
@@ -1040,6 +1039,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutHead.cshtml">_LayoutHead.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutNoNavigation.cshtml">_LayoutNoNavigation.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutSlim.cshtml">_LayoutSlim.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutSlimHead.cshtml">_LayoutSlimHead.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LeftNavigation.cshtml">LeftNavigation.cshtml</ProjectItem>
         </Folder>
@@ -1167,6 +1168,7 @@
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="variables.less">variables.less</ProjectItem>
           </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="font-open-sans-base64.css">font-open-sans-base64.css</ProjectItem>
           <Folder Name="iCheck" TargetFolderName="iCheck">
             <ProjectItem ReplaceParameters="true" TargetFileName="all.css">all.css</ProjectItem>
             <Folder Name="flat" TargetFolderName="flat">
@@ -1295,7 +1297,13 @@
             </Folder>
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="pace.min.css">pace.min.css</ProjectItem>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <Folder Name="images" TargetFolderName="images">
+              <ProjectItem ReplaceParameters="false" TargetFileName="pager-refresh.png">pager-refresh.png</ProjectItem>
+            </Folder>
+          </Folder>
           <Folder Name="site" TargetFolderName="site">
+            <ProjectItem ReplaceParameters="true" TargetFileName="CssBundles.json">CssBundles.json</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
               <ProjectItem ReplaceParameters="false" TargetFileName="accordion-arrows.png">accordion-arrows.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
@@ -1322,8 +1330,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="slide1.jpg">slide1.jpg</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="slide2.jpg">slide2.jpg</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="slide3.jpg">slide3.jpg</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="slide4.jpg">slide4.jpg</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="slide5.jpg">slide5.jpg</ProjectItem>
             </Folder>
           </Folder>
         </Folder>
@@ -1468,6 +1474,8 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.js">jquery-ui.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.min.js">jquery-ui.min.js</ProjectItem>
           <Folder Name="jvectormap" TargetFolderName="jvectormap">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
