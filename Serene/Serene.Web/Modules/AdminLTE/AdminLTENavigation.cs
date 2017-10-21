@@ -1,8 +1,8 @@
 ﻿using Serenity.Navigation;
 
-[assembly: NavigationMenu(8000, "Theme Samples", icon: "icon-diamond")]
+[assembly: NavigationMenu(8000, "Theme Samples", icon: "fa-diamond")]
 
-[assembly: NavigationLink(8100, "Theme Samples/Dashboard v2", url: "~/AdminLTE/DashboardV2", permission: "", icon: "icon-speedometer")]
+[assembly: NavigationLink(8100, "Theme Samples/Dashboard v2", url: "~/AdminLTE/DashboardV2", permission: "", icon: "fa-tachometer")]
 [assembly: NavigationLink(8200, "Theme Samples/Widgets", url: "~/AdminLTE/Widgets", permission: "", icon: "fa-th")]
 
 [assembly: NavigationMenu(8300, "Theme Samples/Charts", icon: "fa-pie-chart")]

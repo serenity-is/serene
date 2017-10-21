@@ -1684,64 +1684,6 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
-        var LoginPanel = /** @class */ (function (_super) {
-            __extends(LoginPanel, _super);
-            function LoginPanel(container) {
-                var _this = _super.call(this, container) || this;
-                $(function () {
-                    $('body').vegas({
-                        delay: 10000,
-                        cover: true,
-                        overlay: Q.resolveUrl("~/Scripts/vegas/overlays/01.png"),
-                        slides: [
-                            { src: Q.resolveUrl('~/Content/site/slides/slide1.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/Content/site/slides/slide2.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/Content/site/slides/slide3.jpg'), transition: 'zoomOut' },
-                            { src: Q.resolveUrl('~/Content/site/slides/slide4.jpg'), transition: 'blur' },
-                            { src: Q.resolveUrl('~/Content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
-                        ]
-                    });
-                });
-                _this.form = new Membership.LoginForm(_this.idPrefix);
-                _this.byId('LoginButton').click(function (e) {
-                    e.preventDefault();
-                    if (!_this.validateForm()) {
-                        return;
-                    }
-                    var request = _this.getSaveEntity();
-                    Q.serviceCall({
-                        url: Q.resolveUrl('~/Account/Login'),
-                        request: request,
-                        onSuccess: function (response) {
-                            var q = Q.parseQueryString();
-                            var returnUrl = q['returnUrl'] || q['ReturnUrl'];
-                            if (returnUrl) {
-                                var hash = window.location.hash;
-                                if (hash != null && hash != '#')
-                                    returnUrl += hash;
-                                window.location.href = returnUrl;
-                            }
-                            else {
-                                window.location.href = Q.resolveUrl('~/');
-                            }
-                        }
-                    });
-                });
-                return _this;
-            }
-            LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
-            LoginPanel = __decorate([
-                Serenity.Decorators.registerClass()
-            ], LoginPanel);
-            return LoginPanel;
-        }(Serenity.PropertyPanel));
-        Membership.LoginPanel = LoginPanel;
-    })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Membership;
-    (function (Membership) {
         var SignUpPanel = /** @class */ (function (_super) {
             __extends(SignUpPanel, _super);
             function SignUpPanel(container) {
@@ -6966,7 +6908,7 @@ var Serene;
                     var item = _a[_i];
                     translations[item.Key] = item.CustomText;
                 }
-                return RSVP.resolve(Administration.TranslationService.Update({
+                return Promise.resolve(Administration.TranslationService.Update({
                     TargetLanguageID: language,
                     Translations: translations
                 })).then(function () {

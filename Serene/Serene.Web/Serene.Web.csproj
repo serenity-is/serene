@@ -730,8 +730,6 @@
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\pace.js" />
     <Content Include="Scripts\pace.min.js" />
-    <Content Include="Scripts\rsvp.js" />
-    <Content Include="Scripts\rsvp.min.js" />
     <Content Include="Scripts\saltarelle\linq.js" />
     <Content Include="Scripts\saltarelle\linq.min.js" />
     <Content Include="Scripts\saltarelle\mscorlib.js" />
@@ -1523,7 +1521,6 @@
     <TypeScriptCompile Include="Modules\Membership\Account\ChangePassword\ChangePasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ForgotPassword\ForgotPasswordPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\ResetPassword\ResetPasswordPanel.ts" />
-    <TypeScriptCompile Include="Modules\Membership\Account\LoginPanel.ts" />
     <TypeScriptCompile Include="Modules\Membership\Account\SignUp\SignUpPanel.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryDialog.ts" />
     <TypeScriptCompile Include="Modules\Northwind\Category\CategoryGrid.ts" />

@@ -9,6 +9,9 @@ $(function () {
 
   "use strict";
 
+  if (!$('#s-DashboardPage').length)
+      return;
+
   //Make the dashboard widgets sortable Using jquery UI
   $(".connectedSortable").sortable({
     placeholder: "sort-highlight",

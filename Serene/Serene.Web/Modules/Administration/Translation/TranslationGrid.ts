@@ -155,13 +155,13 @@
             });
         }
 
-        protected saveChanges(language: string): RSVP.Promise<any> {
+        protected saveChanges(language: string): PromiseLike<any> {
             var translations: { [key: string]: string } = {};
             for (let item of this.getItems()) {
                 translations[item.Key] = item.CustomText;
             }
 
-            return RSVP.resolve(TranslationService.Update({
+            return Promise.resolve(TranslationService.Update({
                 TargetLanguageID: language,
                 Translations: translations
             })).then(() => {

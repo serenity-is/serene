@@ -3,6 +3,12 @@
     ViewData["Title"] = Serenity.LocalText.Get("Db.Northwind.Customer.EntityPlural");
 }
 
+@section Head {
+@Html.Script("dynamic://Lookup.Northwind.CustomerCountry")
+@Html.Script("dynamic://Lookup.Northwind.CustomerCity")
+@Html.Script("dynamic://Lookup.Northwind.Employee")
+}
+
 <div id="GridDiv"></div>
 
 <script type="text/javascript">

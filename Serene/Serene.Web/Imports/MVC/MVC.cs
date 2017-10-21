@@ -433,6 +433,8 @@ namespace MVC
             public const string _Layout = "~/Views/Shared/_Layout.cshtml";
             public const string _LayoutHead = "~/Views/Shared/_LayoutHead.cshtml";
             public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
+            public const string _LayoutSlim = "~/Views/Shared/_LayoutSlim.cshtml";
+            public const string _LayoutSlimHead = "~/Views/Shared/_LayoutSlimHead.cshtml";
             public const string Error = "~/Views/Shared/Error.cshtml";
             public const string LeftNavigation = "~/Views/Shared/LeftNavigation.cshtml";
         }

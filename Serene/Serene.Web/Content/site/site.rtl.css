@@ -2683,24 +2683,6 @@ a.quick-search-field {
     margin-right: 4px;
 }
 
-/*SlickGrid.Pager*/
-
-.slick-pg-last {
-    background: url(../serenity/images/sprites.png) no-repeat 2px -140px !important;
-}
-
-.slick-pg-next {
-    background: url(../serenity/images/sprites.png) no-repeat -70px -140px !important;
-}
-
-.slick-pg-prev {
-    background: url(../serenity/images/sprites.png) no-repeat -46px -140px !important;
-}
-
-.slick-pg-first {
-    background: url(../serenity/images/sprites.png) no-repeat -22px -140px !important;
-}
-
 /*SlickGrid command box*/
 .command-box {
     margin: 0 3px 0 3px;

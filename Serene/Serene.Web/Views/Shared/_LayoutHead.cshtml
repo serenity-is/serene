@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="home" id="ApplicationPath" href="~/" />
 <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
-@Html.Stylesheet("~/Content/font-open-sans.css")
+@Html.Stylesheet("~/Content/font-open-sans-base64.css")
 @Html.Stylesheet("~/Content/font-awesome.css")
-@Html.Stylesheet("~/Content/simple-line-icons.css")
-@Html.Stylesheet("~/Content/ionicons.css")
 @Html.Stylesheet("~/Content/aristo/aristo.css")
 @Html.Stylesheet("~/Content/bootstrap.css")
 @Html.Stylesheet("~/Content/colorbox/jquery.colorbox.css")
@@ -27,7 +25,8 @@
 <script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
 <script type="text/javascript">window.paceOptions = { minTime: 250, ghostTime: 250, restartOnRequestAfter: 250, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: true, ignoreURLs: [] } };</script>
 @Html.Script("~/Scripts/pace.js")
-@foreach (var x in CommonIncludes.Scripts) { @Html.Script(x) }
+@foreach (var x in CommonIncludes.Scripts)
+{ @Html.Script(x) }
 @Html.Script("~/Scripts/jquery.cropzoom.js")
 @Html.Script("~/Scripts/jquery.fileupload.js")
 @Html.Script("~/Scripts/jquery.iframe-transport.js")
@@ -37,10 +36,14 @@
 @Html.Script("~/Scripts/mousetrap.js")
 @Html.Script("~/Scripts/fastclick/fastclick.js")
 @Html.Script("~/Scripts/adminlte/app.js")
-@Html.Script("~/Scripts/Site/Serene.Web.js")
+@Html.Script("~/Scripts/site/Serene.Web.js")
+@Html.Script("dynamic://ColumnsBundle")
+@Html.Script("dynamic://FormBundle")
+@Html.Script("dynamic://TemplateBundle")
 
 <script src="~/DynJS.axd/@HtmlScriptExtensions.GetLocalTextInclude(this.Html, "Site")"></script>
-<script src="~/DynJS.axd/@DynamicScriptManager.GetScriptInclude("ColumnsBundle")"></script>
-<script src="~/DynJS.axd/@DynamicScriptManager.GetScriptInclude("FormBundle")"></script>
-<script src="~/DynJS.axd/@DynamicScriptManager.GetScriptInclude("TemplateBundle")"></script>
-<script src="~/DynJS.axd/@DynamicScriptManager.GetScriptInclude("RegisteredScripts")"></script>
+
+<script type="text/javascript">
+    @Html.Raw(DynamicScriptManager.GetScriptText("Lookup.Administration.Language"))
+    @Html.Raw(DynamicScriptManager.GetScriptText("RegisteredScripts"))
+</script>

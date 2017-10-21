@@ -397,13 +397,6 @@ declare namespace Serene.Northwind {
     }
 }
 declare namespace Serene.Membership {
-    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
-        protected getFormKey(): string;
-        private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Membership {
     class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         protected getFormKey(): string;
         private form;
@@ -1659,7 +1652,7 @@ declare namespace Serene.Administration {
         protected onClick(e: JQueryEventObject, row: number, cell: number): any;
         protected getColumns(): Slick.Column[];
         protected createToolbarExtensions(): void;
-        protected saveChanges(language: string): RSVP.Promise<any>;
+        protected saveChanges(language: string): PromiseLike<any>;
         protected onViewSubmit(): boolean;
         protected getButtons(): Serenity.ToolButton[];
         protected createQuickSearchInput(): void;

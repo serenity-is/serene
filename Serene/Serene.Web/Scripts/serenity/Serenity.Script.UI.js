@@ -4670,7 +4670,7 @@
 			return Q.getLookup(this.getLookupKey());
 		},
 		getLookupAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var key = this.getLookupKey();
 				return Q.getLookupAsync(key);
 			}), null);
@@ -5773,12 +5773,12 @@
 			return null;
 		},
 		getPropertyItemsAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var columnsKey = this.getColumnsKey();
 				if (!ss.isNullOrEmptyString(columnsKey)) {
 					return Q.getColumnsAsync(columnsKey);
 				}
-				return RSVP.resolve([]);
+				return Promise['Promise.resolve({value})']([]);
 			}), null);
 		},
 		getPropertyItems: function() {
@@ -7604,10 +7604,10 @@
 			this.$initLocalizationGridCommon(pgOptions);
 		},
 		$initLocalizationGridAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var pgDiv = this.byId('PropertyGrid');
 				if (pgDiv.length <= 0) {
-					return RSVP.resolve();
+					return Promise.resolve();
 				}
 				return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 					this.$initLocalizationGridCommon(pgOptions);
@@ -7833,10 +7833,10 @@
 			}
 		},
 		$initPropertyGridAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var pgDiv = this.byId('PropertyGrid');
 				if (pgDiv.length <= 0) {
-					return RSVP.resolve();
+					return Promise.resolve();
 				}
 				return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 					this.propertyGrid = new $Serenity_PropertyGrid(pgDiv, pgOptions);
@@ -7870,7 +7870,7 @@
 			}), null);
 		},
 		getPropertyItemsAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var formKey = this.getFormKey();
 				return Q.getFormAsync(formKey);
 			}), null);
@@ -9630,10 +9630,10 @@
 			}
 		},
 		$initPropertyGridAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var pgDiv = this.byId('PropertyGrid');
 				if (pgDiv.length <= 0) {
-					return RSVP.resolve();
+					return Promise.resolve();
 				}
 				return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 					this.propertyGrid = new $Serenity_PropertyGrid(pgDiv, pgOptions);
@@ -9669,7 +9669,7 @@
 			return Q.getForm(formKey);
 		},
 		getPropertyItemsAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var formKey = this.getFormKey();
 				return Q.getFormAsync(formKey);
 			}), null);
@@ -10147,10 +10147,10 @@
 			}
 		},
 		$initPropertyGridAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var pgDiv = this.byId('PropertyGrid');
 				if (pgDiv.length <= 0) {
-					return RSVP.resolve();
+					return Promise.resolve();
 				}
 				return this.getPropertyGridOptionsAsync().then(ss.mkdel(this, function(pgOptions) {
 					this.propertyGrid = new $Serenity_PropertyGrid(pgDiv, pgOptions);
@@ -10184,7 +10184,7 @@
 			return Q.getForm(formKey);
 		},
 		getPropertyItemsAsync: function() {
-			return RSVP.resolve().then(ss.mkdel(this, function() {
+			return Promise.resolve().then(ss.mkdel(this, function() {
 				var formKey = this.getFormKey();
 				return Q.getFormAsync(formKey);
 			}), null);
