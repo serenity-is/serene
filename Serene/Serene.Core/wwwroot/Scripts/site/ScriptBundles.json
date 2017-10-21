@@ -1,23 +1,29 @@
 ﻿{
-  "Libs": [
+  "Base": [
     "~/Scripts/pace.js",
-    "~/Scripts/rsvp.js",
     "~/Scripts/jquery-{version}.js",
-    "~/Scripts/jquery-ui-{version}.js",
+    "~/Scripts/jquery-ui.js",
     "~/Scripts/jquery-ui-i18n.js",
     "~/Scripts/jquery.validate.js",
     "~/Scripts/jquery.blockUI.js",
     "~/Scripts/jquery.cookie.js",
     "~/Scripts/jquery.json.js",
+    "~/Scripts/bootstrap.js",
+    "~/Scripts/select2.js",
+    "~/Scripts/toastr.js",
+    "~/Scripts/vegas/vegas.js",
+    "~/Scripts/saltarelle/mscorlib.js",
+    "~/Scripts/serenity/Serenity.CoreLib.js",
+    "~/Scripts/serenity/Serenity.Script.UI.js"
+  ],
+  "Site": [
     "~/Scripts/jquery.autoNumeric.js",
     "~/Scripts/jquery.colorbox.js",
     "~/Scripts/jquery.dialogextendQ.js",
     "~/Scripts/jquery.event.drag.js",
     "~/Scripts/jquery.maskedInput.js",
     "~/Scripts/jquery.scrollintoview.js",
-    "~/Scripts/select2.js",
     "~/Scripts/sortable.js",
-    "~/Scripts/toastr.js",
     "~/Scripts/SlickGrid/slick.core.js",
     "~/Scripts/SlickGrid/slick.grid.js",
     "~/Scripts/SlickGrid/slick.groupitemmetadataprovider.js",
@@ -25,19 +31,44 @@
     "~/Scripts/SlickGrid/Plugins/slick.headerbuttons.js",
     "~/Scripts/SlickGrid/Plugins/slick.rowselectionmodel.js",
     "~/Scripts/SlickGrid/Plugins/slick.rowmovemanager.js",
-    "~/Scripts/bootstrap.js",
-    "~/Scripts/saltarelle/mscorlib.js",
-    "~/Scripts/serenity/Serenity.CoreLib.js",
-    "~/Scripts/serenity/Serenity.Script.UI.js",
     "~/Scripts/jquery.cropzoom.js",
     "~/Scripts/jquery.fileupload.js",
     "~/Scripts/jquery.iframe-transport.js",
     "~/Scripts/jquery.slimscroll.js",
     "~/Scripts/mousetrap.js",
-    "~/Scripts/fastclick/fastclick.js"
+    "~/Scripts/fastclick/fastclick.js",
+    "~/Scripts/adminlte/app.js",
+    "~/Scripts/site/Serene.Web.js",
+    "dynamic://ColumnsBundle",
+    "dynamic://FormBundle",
+    "dynamic://TemplateBundle"
   ],
-    "Site": [
-        "~/Scripts/adminlte/app.js",
-        "~/Scripts/site/Serene.Web.js"
-    ]
+  "NorthwindLookups": [
+    "dynamic://Lookup.Northwind.Category",
+    "dynamic://Lookup.Northwind.Customer",
+    "dynamic://Lookup.Northwind.CustomerCountry",
+    "dynamic://Lookup.Northwind.CustomerCity",
+    "dynamic://Lookup.Northwind.Employee",
+    "dynamic://Lookup.Northwind.Shipper",
+    "dynamic://Lookup.Northwind.OrderShipCountry",
+    "dynamic://Lookup.Northwind.OrderShipCity",
+    "dynamic://Lookup.Northwind.Product",
+    "dynamic://Lookup.Northwind.Region",
+    "dynamic://Lookup.Northwind.Supplier",
+    "dynamic://Lookup.Northwind.Territory"
+  ],
+  "Dashboard": [
+    "~/Scripts/raphael/raphael-min.js",
+    "~/Scripts/morris/morris.min.js",
+    "~/Scripts/sparkline/jquery.sparkline.min.js",
+    "~/Scripts/jvectormap/jquery-jvectormap-1.2.2.min.js",
+    "~/Scripts/jvectormap/jquery-jvectormap-world-mill-en.js",
+    "~/Scripts/knob/jquery.knob.js",
+    "~/Scripts/daterangepicker/moment.min.js",
+    "~/Scripts/daterangepicker/daterangepicker.js",
+    "~/Scripts/datepicker/bootstrap-datepicker.js",
+    "~/Scripts/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
+    "~/Scripts/adminlte/pages/dashboard.js",
+    "~/Scripts/adminlte/demo.js"
+  ]
 }
