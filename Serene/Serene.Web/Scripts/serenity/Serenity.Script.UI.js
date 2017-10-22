@@ -4052,6 +4052,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.Toolbar
 	var $Serenity_Toolbar = function(div, options) {
+		this.$mouseTrap = null;
 		Serenity.Widget.call(this, div, options);
 		this.element.addClass('s-Toolbar clearfix').html('<div class="tool-buttons"><div class="buttons-outer"><div class="buttons-inner"></div></div></div>');
 		var container = $('div.buttons-inner', this.element);
@@ -10495,7 +10496,8 @@
 				btn.find('span').html(text);
 			}
 			if (!!(!ss.isNullOrEmptyString(b.hotkey) && ss.isValue(window.window.Mousetrap))) {
-				Mousetrap(this.options.hotkeyContext || window.document.documentElement).bind(b.hotkey, function(e1, action) {
+				this.$mouseTrap = this.$mouseTrap || Mousetrap(this.options.hotkeyContext || window.document.documentElement);
+				this.$mouseTrap.bind(b.hotkey, function(e1, action) {
 					if (btn.is(':visible')) {
 						btn.triggerHandler('click');
 					}
@@ -10505,6 +10507,9 @@
 		},
 		destroy: function() {
 			this.element.find('div.tool-button').unbind('click');
+			if (!!(ss.isValue(this.$mouseTrap) && this.$mouseTrap.destroy)) {
+				this.$mouseTrap.destroy();
+			}
 			Serenity.Widget.prototype.destroy.call(this);
 		},
 		findButton: function(className) {

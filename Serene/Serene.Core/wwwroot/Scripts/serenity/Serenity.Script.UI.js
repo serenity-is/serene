@@ -4052,6 +4052,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.Toolbar
 	var $Serenity_Toolbar = function(div, options) {
+		this.$mouseTrap = null;
 		Serenity.Widget.call(this, div, options);
 		this.element.addClass('s-Toolbar clearfix').html('<div class="tool-buttons"><div class="buttons-outer"><div class="buttons-inner"></div></div></div>');
 		var container = $('div.buttons-inner', this.element);
@@ -4426,6 +4427,12 @@
 	ss.initInterface($Serenity_IStringValue, $asm, { get_value: null, set_value: null });
 	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_Select2Editor, $asm, {
+		destroy: function() {
+			if (ss.isValue(this.element)) {
+				this.element.select2('destroy');
+			}
+			Serenity.Widget.prototype.destroy.call(this);
+		},
 		emptyItemText: function() {
 			var $t1 = this.element.attr('placeholder');
 			if (ss.isNullOrUndefined($t1)) {
@@ -4649,8 +4656,7 @@
 		},
 		destroy: function() {
 			Q.ScriptData.unbindFromChange(this.uniqueName);
-			this.element.select2('destroy');
-			Serenity.Widget.prototype.destroy.call(this);
+			$Serenity_Select2Editor.prototype.destroy.call(this);
 		},
 		getLookupKey: function() {
 			if (ss.isValue(this.options.lookupKey)) {
@@ -5401,11 +5407,11 @@
 				Serenity.LazyLoadHelper.executeEverytimeWhenShown(this.element, function() {
 					self.$refreshIfNeeded();
 				}, false);
-				if (this.element.is(':visible')) {
+				if (this.element.is(':visible') && ss.isValue(this.view)) {
 					this.view.populate();
 				}
 			}
-			else {
+			else if (ss.isValue(this.view)) {
 				this.view.populate();
 			}
 		},
@@ -10495,7 +10501,8 @@
 				btn.find('span').html(text);
 			}
 			if (!!(!ss.isNullOrEmptyString(b.hotkey) && ss.isValue(window.window.Mousetrap))) {
-				Mousetrap(this.options.hotkeyContext || window.document.documentElement).bind(b.hotkey, function(e1, action) {
+				this.$mouseTrap = this.$mouseTrap || Mousetrap(this.options.hotkeyContext || window.document.documentElement);
+				this.$mouseTrap.bind(b.hotkey, function(e1, action) {
 					if (btn.is(':visible')) {
 						btn.triggerHandler('click');
 					}
@@ -10505,6 +10512,15 @@
 		},
 		destroy: function() {
 			this.element.find('div.tool-button').unbind('click');
+			if (ss.isValue(this.$mouseTrap)) {
+				if (!!this.$mouseTrap.destroy) {
+					this.$mouseTrap.destroy();
+				}
+				else {
+					this.$mouseTrap.reset();
+				}
+				this.$mouseTrap = null;
+			}
 			Serenity.Widget.prototype.destroy.call(this);
 		},
 		findButton: function(className) {
