@@ -23,7 +23,7 @@
 }
 @{var cookie = Request.Cookies["ThemePreference"]; var theme = cookie != null && !cookie.Value.IsEmptyOrNull() ? cookie.Value : "default"; }
 <script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
-<script type="text/javascript">window.paceOptions = { minTime: 250, ghostTime: 250, restartOnRequestAfter: 250, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: true, ignoreURLs: [] } };</script>
+<script type="text/javascript">window.paceOptions = { startOnPageLoad: false, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: false, ignoreURLs: [] } };</script>
 @Html.Script("~/Scripts/pace.js")
 @foreach (var x in CommonIncludes.Scripts)
 { @Html.Script(x) }
