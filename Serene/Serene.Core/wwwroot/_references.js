@@ -228,7 +228,6 @@
 /// <reference path="Scripts/jquery.blockUI.js" />
 /// <reference path="Scripts/jquery.colorbox.js" />
 /// <reference path="Scripts/jquery.cookie.js" />
-/// <reference path="Scripts/jquery.cropzoom.js" />
 /// <reference path="Scripts/jquery.dialogextendQ.js" />
 /// <reference path="Scripts/jquery.event.drag.js" />
 /// <reference path="Scripts/jquery.fileupload.js" />

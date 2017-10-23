@@ -701,8 +701,6 @@
     <Content Include="Scripts\jquery.colorbox.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.cookie.min.js" />
-    <Content Include="Scripts\jquery.cropzoom.js" />
-    <Content Include="Scripts\jquery.cropzoom.min.js" />
     <Content Include="Scripts\jquery.dialogextendQ.js" />
     <Content Include="Scripts\jquery.dialogextendQ.min.js" />
     <Content Include="Scripts\jquery.event.drag.js" />
