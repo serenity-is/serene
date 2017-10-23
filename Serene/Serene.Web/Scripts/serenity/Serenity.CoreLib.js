@@ -3219,7 +3219,8 @@ var Serenity;
             element.trigger(e);
         };
         TemplatedDialog.prototype.onDialogOpen = function () {
-            $(':input:eq(0)', this.element).focus();
+            if (!$(document.body).hasClass('mobile-device'))
+                $(':input:eq(0)', this.element).focus();
             this.arrange();
             this.tabs && this.tabs.tabs('option', 'active', 0);
         };
@@ -5305,15 +5306,35 @@ var Q;
         };
     }
     ;
-    if (window['jQuery'] && window['jQuery']['ui']) {
+    if (jQuery.ui) {
         jQuerySelect2Initialization();
     }
     else {
-        jQuery(function ($) {
-            if (window['jQuery']['ui'])
+        jQuery(function () {
+            if (jQuery.ui)
                 jQuerySelect2Initialization();
         });
     }
+    jQuery.cleanData = (function (orig) {
+        return function (elems) {
+            var events, elem, i, e;
+            var cloned = elems;
+            for (i = 0; (elem = cloned[i]) != null; i++) {
+                try {
+                    events = $._data(elem, "events");
+                    if (events && events.remove) {
+                        // html collection might change during remove event, so clone it!
+                        if (cloned === elems)
+                            cloned = Array.prototype.slice.call(elems);
+                        $(elem).triggerHandler("remove");
+                        delete events.remove;
+                    }
+                }
+                catch (e) { }
+            }
+            orig(elems);
+        };
+    })(jQuery.cleanData);
     function ssExceptionInitialization() {
         ss.Exception.prototype.toString = function () {
             return this.get_message();
