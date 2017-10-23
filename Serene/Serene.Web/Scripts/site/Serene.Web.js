@@ -1139,7 +1139,8 @@ var Serene;
                     title: 'Contains Product in Details',
                     handler: function (w) {
                         _this.view.params.ProductID = Q.toId(w.value);
-                    }
+                    },
+                    cssClass: 'hidden-xs'
                 });
                 return filters;
             };
