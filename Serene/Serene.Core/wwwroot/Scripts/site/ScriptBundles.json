@@ -36,7 +36,6 @@
     "~/Scripts/jquery.iframe-transport.js",
     "~/Scripts/jquery.slimscroll.js",
     "~/Scripts/mousetrap.js",
-    "~/Scripts/fastclick/fastclick.js",
     "~/Scripts/adminlte/app.js",
     "~/Scripts/site/Serene.Web.js",
     "dynamic://ColumnsBundle",

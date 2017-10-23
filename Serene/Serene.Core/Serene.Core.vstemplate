@@ -1436,10 +1436,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="moment.js">moment.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="moment.min.js">moment.min.js</ProjectItem>
           </Folder>
-          <Folder Name="fastclick" TargetFolderName="fastclick">
-            <ProjectItem ReplaceParameters="true" TargetFileName="fastclick.js">fastclick.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="fastclick.min.js">fastclick.min.js</ProjectItem>
-          </Folder>
           <Folder Name="fullcalendar" TargetFolderName="fullcalendar">
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.css">fullcalendar.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.js">fullcalendar.js</ProjectItem>

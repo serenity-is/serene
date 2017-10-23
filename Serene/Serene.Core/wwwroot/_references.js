@@ -199,7 +199,6 @@
 /// <reference path="Scripts/datepicker/locales/bootstrap-datepicker.zh-TW.js" />
 /// <reference path="Scripts/daterangepicker/daterangepicker.js" />
 /// <reference path="Scripts/daterangepicker/moment.js" />
-/// <reference path="Scripts/fastclick/fastclick.js" />
 /// <reference path="Scripts/flot/excanvas.js" />
 /// <reference path="Scripts/flot/jquery.colorhelpers.js" />
 /// <reference path="Scripts/flot/jquery.flot.canvas.js" />

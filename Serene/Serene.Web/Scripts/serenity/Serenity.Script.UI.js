@@ -4427,6 +4427,12 @@
 	ss.initInterface($Serenity_IStringValue, $asm, { get_value: null, set_value: null });
 	ss.initInterface($Serenity_IReadOnly, $asm, { get_readOnly: null, set_readOnly: null });
 	ss.initClass($Serenity_Select2Editor, $asm, {
+		destroy: function() {
+			if (ss.isValue(this.element)) {
+				this.element.select2('destroy');
+			}
+			Serenity.Widget.prototype.destroy.call(this);
+		},
 		emptyItemText: function() {
 			var $t1 = this.element.attr('placeholder');
 			if (ss.isNullOrUndefined($t1)) {
@@ -4650,8 +4656,7 @@
 		},
 		destroy: function() {
 			Q.ScriptData.unbindFromChange(this.uniqueName);
-			this.element.select2('destroy');
-			Serenity.Widget.prototype.destroy.call(this);
+			$Serenity_Select2Editor.prototype.destroy.call(this);
 		},
 		getLookupKey: function() {
 			if (ss.isValue(this.options.lookupKey)) {
@@ -5402,11 +5407,11 @@
 				Serenity.LazyLoadHelper.executeEverytimeWhenShown(this.element, function() {
 					self.$refreshIfNeeded();
 				}, false);
-				if (this.element.is(':visible')) {
+				if (this.element.is(':visible') && ss.isValue(this.view)) {
 					this.view.populate();
 				}
 			}
-			else {
+			else if (ss.isValue(this.view)) {
 				this.view.populate();
 			}
 		},
@@ -10507,8 +10512,14 @@
 		},
 		destroy: function() {
 			this.element.find('div.tool-button').unbind('click');
-			if (!!(ss.isValue(this.$mouseTrap) && this.$mouseTrap.destroy)) {
-				this.$mouseTrap.destroy();
+			if (ss.isValue(this.$mouseTrap)) {
+				if (!!this.$mouseTrap.destroy) {
+					this.$mouseTrap.destroy();
+				}
+				else {
+					this.$mouseTrap.reset();
+				}
+				this.$mouseTrap = null;
 			}
 			Serenity.Widget.prototype.destroy.call(this);
 		},
