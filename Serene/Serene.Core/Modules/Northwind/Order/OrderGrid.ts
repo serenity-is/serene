@@ -27,7 +27,8 @@
                 title: 'Contains Product in Details',
                 handler: w => {
                     (this.view.params as OrderListRequest).ProductID = Q.toId(w.value);
-                }
+                },
+                cssClass: 'hidden-xs'
             });
 
             return filters;

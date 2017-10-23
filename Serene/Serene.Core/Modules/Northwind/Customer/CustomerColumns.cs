@@ -22,10 +22,10 @@ namespace Serene.Northwind.Columns
         public String Region { get; set; }
         [Width(100)]
         public String PostalCode { get; set; }
-        [Width(130), LookupEditor(typeof(Scripts.CustomerCountryLookup)), QuickFilter]
+        [Width(130), LookupEditor(typeof(Scripts.CustomerCountryLookup)), QuickFilter(CssClass = "hidden-xs")]
         public String Country { get; set; }
         [Width(120), LookupEditor(typeof(Scripts.CustomerCityLookup))]
-        [QuickFilter, QuickFilterOption("cascadeFrom", "Country")]
+        [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "Country")]
         public String City { get; set; }
         [Width(120)]
         public String Phone { get; set; }

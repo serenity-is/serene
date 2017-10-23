@@ -138,7 +138,7 @@ namespace Serene.Northwind.Entities
         
         [LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
-        [MinSelectLevel(SelectLevel.Details), QuickFilter]
+        [MinSelectLevel(SelectLevel.Details), QuickFilter(CssClass = "hidden-xs")]
         public List<Int32> Representatives
         {
             get { return Fields.Representatives[this]; }
