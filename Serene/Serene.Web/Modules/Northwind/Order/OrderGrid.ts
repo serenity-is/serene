@@ -103,9 +103,15 @@
             }
         }
 
-
         public set_shippingState(value: number): void {
             this.shippingStateFilter.value = value == null ? '' : value.toString();
+        }
+
+        protected addButtonClick() {
+            var eq = this.view.params.EqualityFilter;
+            this.editItem(<OrderRow>{
+                CustomerID: eq ? eq.CustomerID : null
+            });
         }
     }
 }
