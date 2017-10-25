@@ -200,9 +200,9 @@ var LoginPanel = (function (_super) {
                     "/gAAAABlBMVEX///8AAABVwtN+AAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAAAsQAAALEAVuRnQsAAAAWdEVYdENyZWF0" +
                     "aW9uIFRpbWUAMDQvMTMvMTGrW0T6AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAAAxJREFUCJljaGBgAAABhACBrONIPgAAAABJRU5ErkJggg==",
                 slides: [
-                    { src: Q.resolveUrl('~/Content/site/slides/slide1.jpg'), transition: 'fade' },
-                    { src: Q.resolveUrl('~/Content/site/slides/slide2.jpg'), transition: 'zoomOut' },
-                    { src: Q.resolveUrl('~/Content/site/slides/slide3.jpg'), transition: 'swirlLeft' }
+                    { src: @Html.Raw(ContentHashCache.ResolveWithHash("~/Content/site/slides/slide1.jpg").ToJson()), transition: 'fade' },
+                    { src: @Html.Raw(ContentHashCache.ResolveWithHash("~/Content/site/slides/slide2.jpg").ToJson()), transition: 'zoomOut' },
+                    { src: @Html.Raw(ContentHashCache.ResolveWithHash("~/Content/site/slides/slide3.jpg").ToJson()), transition: 'swirlLeft' }
                 ]
             });
             $('#LoginButton').click(function (e) {

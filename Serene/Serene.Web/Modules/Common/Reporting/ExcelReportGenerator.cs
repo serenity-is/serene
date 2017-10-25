@@ -19,7 +19,7 @@ namespace Serenity.Reporting
                 return package.GetAsByteArray();
         }
 
-        public static ExcelPackage GeneratePackage(List<ReportColumn> columns, IList rows, 
+        public static ExcelPackage GeneratePackage(List<ReportColumn> columns, IList rows,
             string sheetName = "Page1", string tableName = "Table1", TableStyles tableStyle = TableStyles.Medium2)
         {
             var package = new ExcelPackage();
