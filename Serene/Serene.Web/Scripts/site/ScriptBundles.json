@@ -55,7 +55,7 @@
     "dynamic://Lookup.Northwind.Supplier",
     "dynamic://Lookup.Northwind.Territory"
   ],
-  "Dashboard": [
+  "Pages/Dashboard": [
     "~/Scripts/raphael/raphael-min.js",
     "~/Scripts/morris/morris.min.js",
     "~/Scripts/sparkline/jquery.sparkline.min.js",

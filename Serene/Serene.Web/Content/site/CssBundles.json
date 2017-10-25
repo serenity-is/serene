@@ -16,7 +16,7 @@
     "~/Content/colorbox/jquery.colorbox.css",
     "~/Content/site/site.css"
   ],
-  "Dashboard": [
+  "Pages/Dashboard": [
     "~/Content/iCheck/flat/blue.css",
     "~/Scripts/morris/morris.css",
     "~/Scripts/jvectormap/jquery-jvectormap-1.2.2.css",

@@ -5,12 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="home" id="ApplicationPath" href="~/" />
 <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
-@Html.Stylesheet("~/Content/font-open-sans-base64.css")
-@Html.Stylesheet("~/Content/font-awesome.css")
-@Html.Stylesheet("~/Content/aristo/aristo.css")
-@Html.Stylesheet("~/Content/bootstrap.css")
-@Html.Stylesheet("~/Content/toastr.css")
-@Html.Stylesheet("~/Content/serenity/serenity.css")
+@Html.StyleBundle("Base")
 @if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
 {
     @Html.Stylesheet("~/Content/site/site.rtl.css")
@@ -19,15 +14,4 @@
 <script type="application/json" id="ScriptCulture">
     @Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))
 </script>
-@Html.Script("~/Scripts/jquery-{version}.js")
-@Html.Script("~/Scripts/jquery-ui.js")
-@Html.Script("~/Scripts/jquery-ui-i18n.js")
-@Html.Script("~/Scripts/jquery.validate.js")
-@Html.Script("~/Scripts/jquery.blockUI.js")
-@Html.Script("~/Scripts/jquery.cookie.js")
-@Html.Script("~/Scripts/jquery.json.js")
-@Html.Script("~/Scripts/toastr.js")
-@Html.Script("~/Scripts/bootstrap.js")
-@Html.Script("~/Scripts/saltarelle/mscorlib.js")
-@Html.Script("~/Scripts/serenity/Serenity.CoreLib.js")
-@Html.Script("~/Scripts/serenity/Serenity.Script.UI.js")
+@Html.ScriptBundle("Base")
