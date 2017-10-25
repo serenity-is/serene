@@ -1891,8 +1891,12 @@
 		}));
 	};
 	$Serenity_GridSelectAllButtonHelper.define = function(getGrid, getId, getSelected, setSelected, text, onClick) {
+		var $t1 = text;
+		if (ss.isNullOrUndefined($t1)) {
+			$t1 = ss.coalesce(Q.tryGetText('Controls.CheckTreeEditor.SelectAll'), 'Select All');
+		}
 		return {
-			title: ss.coalesce(text, 'Tümünü Seç'),
+			title: $t1,
 			cssClass: 'select-all-button',
 			onClick: function() {
 				var grid = getGrid();
@@ -1901,9 +1905,9 @@
 				var makeSelected = !btn.hasClass('checked');
 				view.beginUpdate();
 				try {
-					var $t1 = view.getItems();
-					for (var $t2 = 0; $t2 < $t1.length; $t2++) {
-						var item = $t1[$t2];
+					var $t2 = view.getItems();
+					for (var $t3 = 0; $t3 < $t2.length; $t3++) {
+						var item = $t2[$t3];
 						setSelected(item, makeSelected);
 						view.updateItem(getId(item), item);
 					}
@@ -4117,11 +4121,11 @@
 			return false;
 		}
 		if (opt.minSize > 0 && file.Size < opt.minSize) {
-			Q.alert(ss.formatString(Q.text('Controls.ImageUpload.UploadFileTooSmall'), opt.minSize));
+			Q.alert(ss.formatString(Q.text('Controls.ImageUpload.UploadFileTooSmall'), $Serenity_UploadHelper.fileSizeDisplay(opt.minSize)));
 			return false;
 		}
 		if (opt.maxSize > 0 && file.Size > opt.maxSize) {
-			Q.alert(ss.formatString(Q.text('Controls.ImageUpload.UploadFileTooBig'), opt.maxSize));
+			Q.alert(ss.formatString(Q.text('Controls.ImageUpload.UploadFileTooBig'), $Serenity_UploadHelper.fileSizeDisplay(opt.maxSize)));
 			return false;
 		}
 		if (!file.IsImage) {
@@ -6461,7 +6465,7 @@
 		itemSelectedChanged: function(item) {
 		},
 		getSelectAllText: function() {
-			return 'Tümünü Seç';
+			return ss.coalesce(Q.tryGetText('Controls.CheckTreeEditor.SelectAll'), 'Select All');
 		},
 		isThreeStateHierarchy: function() {
 			return false;
@@ -8315,7 +8319,7 @@
 			$Serenity_SubDialogHelper.bindToDataChange(dialog, this, function(e, dci) {
 				self.subDialogDataChange();
 			}, true);
-			this.routeDialog(this.getItemType(), dialog);
+			this.routeDialog(itemType, dialog);
 		},
 		createEntityDialog: function(itemType, callback) {
 			var dialogClass = this.getDialogTypeFor(itemType);
