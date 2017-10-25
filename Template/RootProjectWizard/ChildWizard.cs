@@ -24,6 +24,7 @@ namespace RootProjectWizard
         private static Guid IUnknownGuid = new Guid("{00000000-0000-0000-C000-000000000046}");
         private IComponentModel componentModel;
         private string wizardData;
+        private bool isDotNetCore;
 
         private static object GetObjectFromNativeUnknown(IntPtr nativeUnknown)
         {
@@ -104,13 +105,18 @@ namespace RootProjectWizard
 
         public void ProjectFinishedGenerating(EnvDTE.Project project)
         {
+            isDotNetCore = File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "appsettings.json"));
+            project.DTE.StatusBar.Text = isDotNetCore ? "ASP.NET Core Project" : "ASP.NET MVC Project";
+
             if (!string.IsNullOrEmpty(wizardData))
             {
                 var data = XElement.Parse("<data>" + wizardData + "</data>");
 
                 try
                 {
+                    project.DTE.StatusBar.Text = "Removing excluded feature files";
                     RemoveExcludedFiles(project, data);
+                    project.DTE.StatusBar.Text = "Processing feature conditionals";
                     PreprocessConditionals(project, data);
                 }
                 catch (Exception ex)
@@ -141,10 +147,11 @@ namespace RootProjectWizard
                 }
             }
 
-            if (File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "appsettings.json")))
+            if (isDotNetCore)
             {
                 try
                 {
+                    project.DTE.StatusBar.Text = "Running DotNet Restore...";
                     System.Diagnostics.Process.Start(new ProcessStartInfo
                     {
                         FileName = "dotnet",
@@ -152,6 +159,7 @@ namespace RootProjectWizard
                         WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
                     }).WaitForExit(120000);
 
+                    project.DTE.StatusBar.Text = "Running DotNet Sergen Restore...";
                     System.Diagnostics.Process.Start(new ProcessStartInfo
                     {
                         FileName = "dotnet",
@@ -179,16 +187,17 @@ namespace RootProjectWizard
 
                 if (conditionals.IsMatch(path))
                 {
-                    PreprocessConditional((string)item.Item2.Properties.Item("FullPath").Value);
+                    PreprocessConditional(project, (string)item.Item2.Properties.Item("FullPath").Value);
                 }
             }
         }
 
-        private void PreprocessConditional(string fullPath)
+        private void PreprocessConditional(EnvDTE.Project project, string fullPath)
         {
             if (!System.IO.File.Exists(fullPath))
                 return;
 
+            project.DTE.StatusBar.Text = "Processing Conditionals in File: " + fullPath;
             var lines = new List<string>(System.IO.File.ReadAllLines(fullPath));
             var ifCSStart = "//<if:";
             var ifCSElse = "//<else>";
@@ -331,7 +340,19 @@ namespace RootProjectWizard
                 if (unselectedMatchers.Any(x => x.IsMatch(path)))
                 {
                     if (!selectedMatchers.Any(x => x.IsMatch(path)))
-                        item.Item2.Delete();
+                    {
+                        project.DTE.StatusBar.Text = "Deleting Excluded Feature File: " + path;
+                        if (isDotNetCore)
+                        {
+                            var fullPath = item.Item2.Properties.Item("FullPath").Value;
+                            if (File.Exists(fullPath))
+                                File.Delete(fullPath);
+                        }
+                        else
+                        {
+                            item.Item2.Delete();
+                        }
+                    }
                 }
             }
         }

@@ -90,24 +90,24 @@
     <Reference Include="NUglify, Version=1.5.8.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUglify.1.5.8\lib\net40\NUglify.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=3.3.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Core.3.3.2\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=3.3.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Core.3.3.5\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=3.3.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.3.3.2\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=3.3.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.3.3.5\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=3.3.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.Entity.3.3.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=3.3.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.Entity.3.3.5\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=3.3.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Services.3.3.2\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=3.3.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Services.3.3.5\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=3.3.2.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Web.3.3.2\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=3.3.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Web.3.3.5\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">

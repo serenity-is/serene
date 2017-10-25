@@ -18,7 +18,7 @@
     </ProjectCollection>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>RootProjectWizard, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
+    <Assembly>SereneProjectWizard_v2, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
     <FullClassName>RootProjectWizard.RootWizard</FullClassName>
   </WizardExtension>
   <WizardData>
