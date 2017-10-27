@@ -331,6 +331,7 @@ namespace RootProjectWizard
                     unselectedMatchers.Add(matcher);
             }
 
+            var deleteList = new List<string>();
             foreach (var item in Recurse("", project.ProjectItems).ToList())
             {
                 var path = item.Item1;
@@ -344,15 +345,28 @@ namespace RootProjectWizard
                         project.DTE.StatusBar.Text = "Deleting Excluded Feature File: " + path;
                         if (isDotNetCore)
                         {
-                            var fullPath = item.Item2.Properties.Item("FullPath").Value;
-                            if (File.Exists(fullPath))
-                                File.Delete(fullPath);
+                            deleteList.Add(item.Item2.Properties.Item("FullPath").Value);
                         }
                         else
                         {
                             item.Item2.Delete();
                         }
                     }
+                }
+            }
+
+            foreach (var name in deleteList)
+            {
+                try
+                {
+                    if (File.Exists(name))
+                        File.Delete(name);
+                    else if (Directory.Exists(name))
+                        Directory.Delete(name, true);
+                }
+                catch
+                {
+                    project.DTE.StatusBar.Text = "Error deleting: " + name;
                 }
             }
         }
