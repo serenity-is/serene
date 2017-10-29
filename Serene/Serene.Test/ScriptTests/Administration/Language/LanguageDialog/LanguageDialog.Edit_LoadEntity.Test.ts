@@ -1,9 +1,8 @@
-namespace Serene.Administration.Test {
+﻿namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
 
     QUnit.test('LanguageDialog Edit With LoadEntity', function (assert) {
         let dialog = new LanguageDialog();
-        let uiDialog = dialog.element.closest(".ui-dialog");
 
         dialog.loadEntityAndOpenDialog(<LanguageRow>{
             Id: 789,
@@ -12,6 +11,7 @@ namespace Serene.Administration.Test {
         });
 
         try {
+            let uiDialog = dialog.element.closest(".ui-dialog");
             assert.ok(uiDialog.is(":visible"),
                 'open edit entity dialog');
 

@@ -1,4 +1,4 @@
-namespace Serene.Administration.Test {
+﻿namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
 
     QUnit.test('LanguageDialog General', function (assert) {
@@ -9,6 +9,10 @@ namespace Serene.Administration.Test {
         assert.notEqual(null, dialog.element,
             'has element');
 
+        assert.ok(!dialog.element.is(':visible'),
+            'initially invisible');
+
+        dialog.dialogOpen();
         var uiDialog = dialog.element.closest('.ui-dialog');
         assert.equal(1, uiDialog.length,
             'element under .ui-dialog');
@@ -22,10 +26,6 @@ namespace Serene.Administration.Test {
         assert.ok(uiDialog.hasClass("s-Administration-LanguageDialog"),
             'has module prefixed css class');
 
-        assert.ok(!uiDialog.is(':visible'),
-            'initially invisible');
-
-        dialog.dialogOpen();
         assert.ok(uiDialog.is(':visible'),
             'visible after dialogOpen');
 
@@ -34,9 +34,9 @@ namespace Serene.Administration.Test {
             'hidden after dialogClose');
 
         dialog = new LanguageDialog();
-        uiDialog = dialog.element.closest('.ui-dialog');
 
         dialog.loadNewAndOpenDialog();
+        uiDialog = dialog.element.closest('.ui-dialog');
         assert.ok(uiDialog.is(':visible'),
             'open in new entity mode');
 

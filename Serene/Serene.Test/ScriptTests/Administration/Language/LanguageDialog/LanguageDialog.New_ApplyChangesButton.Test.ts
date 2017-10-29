@@ -1,13 +1,13 @@
-namespace Serene.Administration.Test {
+﻿namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
     
     QUnit.test('LanguageDialog New Entity, Apply Changes Button', function (assert) {
         let done = assert.async();
         let dialog = new LanguageDialog();
-        let uiDialog = dialog.element.closest(".ui-dialog");
 
         dialog.loadNewAndOpenDialog();
         try {
+            let uiDialog = dialog.element.closest(".ui-dialog");
             assert.ok(uiDialog.is(":visible"),
                 'open a new entity dialog');
 

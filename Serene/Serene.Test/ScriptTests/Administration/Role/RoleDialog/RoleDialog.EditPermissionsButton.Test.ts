@@ -1,11 +1,10 @@
-namespace Serene.Administration.Test {
+﻿namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
 
     QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
         let done = assert.async();
 
         let dialog = new RoleDialog();
-        let uiDialog = dialog.element.closest(".ui-dialog");
 
         dialog.loadEntityAndOpenDialog(<RoleRow>{
             RoleId: 789,
@@ -13,6 +12,7 @@ namespace Serene.Administration.Test {
         });
 
         try {
+            let uiDialog = dialog.element.closest(".ui-dialog");
 
             assert.ok(uiDialog.is(":visible"),
                 'open edit entity dialog');
@@ -27,6 +27,7 @@ namespace Serene.Administration.Test {
             });
 
             Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+            Q.ScriptData.set('RemoteData.Administration.ImplicitPermissions', { });
 
             DialogTesting.clickButton(dialog, '.edit-permissions-button');
 

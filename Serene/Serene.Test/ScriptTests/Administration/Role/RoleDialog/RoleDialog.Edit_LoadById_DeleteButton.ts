@@ -1,10 +1,9 @@
-namespace Serene.Administration.Test {
+﻿namespace Serene.Administration.Test {
     QUnit.module('Serene.Administration');
     
     QUnit.test('RoleDialog Edit LoadById, Delete Button', function (assert) {
         let asyncDone = assert.async();
         let dialog = new RoleDialog();
-        let uiDialog = dialog.element.closest(".ui-dialog");
 
         let ajax = new ServiceTesting.FakeAjax();
         var retrieveCalls = 0;
@@ -13,6 +12,7 @@ namespace Serene.Administration.Test {
             assert.deepEqual(s.request, { EntityId: 789 });
 
             dialog.element.on('dialogopen', function () {
+                let uiDialog = dialog.element.closest(".ui-dialog");
                 window.setTimeout(function () {
                     var datachangeTriggers = 0;
                     dialog.element.on('ondatachange', function () {
