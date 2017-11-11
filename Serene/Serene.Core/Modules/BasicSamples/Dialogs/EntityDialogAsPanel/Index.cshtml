@@ -39,6 +39,7 @@
         myDialogAsPanel.load(@Html.Raw(Model.ToJson()) || {}, function() {
             // if we didn't reach here, probably there is no order with specified ID in url
             myDialogAsPanel.element.removeClass('hidden').appendTo('#DialogDiv');
+            myDialogAsPanel.arrange();
         });
     });
 </script>

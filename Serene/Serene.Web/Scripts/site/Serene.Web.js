@@ -3356,6 +3356,51 @@ var Serene;
         })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    var StaticTextBlock = /** @class */ (function (_super) {
+        __extends(StaticTextBlock, _super);
+        function StaticTextBlock(container, options) {
+            var _this = _super.call(this, container, options) || this;
+            // hide the caption label for this editor if in a form. ugly hack
+            if (_this.options.hideLabel)
+                _this.element.closest('.field').find('.caption').hide();
+            _this.updateElementContent();
+            return _this;
+        }
+        StaticTextBlock.prototype.updateElementContent = function () {
+            var text = Q.coalesce(this.options.text, this.value);
+            // if isLocalText is set, text is actually a local text key
+            if (this.options.isLocalText)
+                text = Q.text(text);
+            // don't html encode if isHtml option is true
+            if (this.options.isHtml)
+                this.element.html(text);
+            else
+                this.element.text(text);
+        };
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        StaticTextBlock.prototype.setEditValue = function (source, property) {
+            if (this.options.text == null) {
+                this.value = Q.coalesce(this.options.text, source[property.name]);
+                this.updateElementContent();
+            }
+        };
+        StaticTextBlock = __decorate([
+            Serenity.Decorators.element("<div/>"),
+            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
+        ], StaticTextBlock);
+        return StaticTextBlock;
+    }(Serenity.Widget));
+    Serene.StaticTextBlock = StaticTextBlock;
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -4735,51 +4780,6 @@ var Serene;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.CancellableBulkActionGrid = CancellableBulkActionGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    /**
-     * This is an editor widget but it only displays a text, not edits it.
-     *
-     */
-    var StaticTextBlock = /** @class */ (function (_super) {
-        __extends(StaticTextBlock, _super);
-        function StaticTextBlock(container, options) {
-            var _this = _super.call(this, container, options) || this;
-            // hide the caption label for this editor if in a form. ugly hack
-            if (_this.options.hideLabel)
-                _this.element.closest('.field').find('.caption').hide();
-            _this.updateElementContent();
-            return _this;
-        }
-        StaticTextBlock.prototype.updateElementContent = function () {
-            var text = Q.coalesce(this.options.text, this.value);
-            // if isLocalText is set, text is actually a local text key
-            if (this.options.isLocalText)
-                text = Q.text(text);
-            // don't html encode if isHtml option is true
-            if (this.options.isHtml)
-                this.element.html(text);
-            else
-                this.element.text(text);
-        };
-        /**
-         * By implementing ISetEditValue interface, we allow this editor to display its field value.
-         * But only do this when our text content is not explicitly set in options
-         */
-        StaticTextBlock.prototype.setEditValue = function (source, property) {
-            if (this.options.text == null) {
-                this.value = Q.coalesce(this.options.text, source[property.name]);
-                this.updateElementContent();
-            }
-        };
-        StaticTextBlock = __decorate([
-            Serenity.Decorators.element("<div/>"),
-            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
-        ], StaticTextBlock);
-        return StaticTextBlock;
-    }(Serenity.Widget));
-    Serene.StaticTextBlock = StaticTextBlock;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {

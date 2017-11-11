@@ -803,6 +803,28 @@ declare namespace Serene.Common {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
     }
 }
+declare namespace Serene {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
+        private value;
+        constructor(container: JQuery, options: StaticTextBlockOptions);
+        private updateElementContent();
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+    interface StaticTextBlockOptions {
+        text: string;
+        isHtml: boolean;
+        isLocalText: boolean;
+        hideLabel: boolean;
+    }
+}
 declare namespace Serene.BasicSamples {
     class WrappedHeadersGrid extends Northwind.OrderGrid {
         constructor(container: JQuery);
@@ -1104,28 +1126,6 @@ declare namespace Serene.BasicSamples {
         }[];
         protected getColumns(): Slick.Column[];
         protected getViewOptions(): Slick.RemoteViewOptions;
-    }
-}
-declare namespace Serene {
-    /**
-     * This is an editor widget but it only displays a text, not edits it.
-     *
-     */
-    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
-        private value;
-        constructor(container: JQuery, options: StaticTextBlockOptions);
-        private updateElementContent();
-        /**
-         * By implementing ISetEditValue interface, we allow this editor to display its field value.
-         * But only do this when our text content is not explicitly set in options
-         */
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-    }
-    interface StaticTextBlockOptions {
-        text: string;
-        isHtml: boolean;
-        isLocalText: boolean;
-        hideLabel: boolean;
     }
 }
 declare namespace Serene.BasicSamples {

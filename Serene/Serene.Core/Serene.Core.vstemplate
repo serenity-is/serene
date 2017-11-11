@@ -520,7 +520,6 @@
             </Folder>
             <Folder Name="StaticTextBlock" TargetFolderName="StaticTextBlock">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlock.ts">StaticTextBlock.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockDialog.ts">StaticTextBlockDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockForm.cs">StaticTextBlockForm.cs</ProjectItem>
             </Folder>
@@ -640,6 +639,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.ts">GridEditorDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlock.ts">StaticTextBlock.ts</ProjectItem>
           </Folder>
           <Folder Name="Navigation" TargetFolderName="Navigation">
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageSelection.ts">LanguageSelection.ts</ProjectItem>
