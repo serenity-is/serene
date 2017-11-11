@@ -1273,6 +1273,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="Modules\Common\Helpers\StaticTextBlock.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
@@ -1371,7 +1372,6 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ReadOnlyDialog\ReadOnlyGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\StaticTextBlock\StaticTextBlockDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Editors\StaticTextBlock\StaticTextBlock.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\HardcodedValuesDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\SelectWithHardcodedValues\HardcodedValuesEditor.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\ChangingLookupText\ChangingLookupTextDialog.ts" />
