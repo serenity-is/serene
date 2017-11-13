@@ -12,7 +12,7 @@ namespace Serene.Membership
         public string OldPassword { get; set; }
         [PasswordEditor, Required(true), DisplayName("New Password")]
         public string NewPassword { get; set; }
-        [PasswordEditor, Required(true), DisplayName("Confirm Password")]
+        [Required(true), DisplayName("Confirm Password"), HtmlContentEditor]
         public string ConfirmPassword { get; set; }
     }
 }

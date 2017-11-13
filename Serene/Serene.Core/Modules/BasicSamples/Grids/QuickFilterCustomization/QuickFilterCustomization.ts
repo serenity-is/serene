@@ -53,6 +53,10 @@ namespace Serene.BasicSamples {
                     h.request.EqualityFilter[fld.OrderDate] = null;
                 }
             };
+            // reset these as they also expect range editors
+            filter.loadState = null;
+            filter.saveState = null;
+            filter.displayText = null;
 
             // make employee filter a textbox, instead of lookup, and search by starts with
             filter = Q.first(filters, x => x.field == fld.EmployeeID);
