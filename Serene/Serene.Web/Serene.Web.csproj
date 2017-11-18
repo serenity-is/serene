@@ -112,6 +112,7 @@
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Exceptional.1.0.130\lib\net40\StackExchange.Exceptional.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
@@ -1285,6 +1286,9 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerGrossSalesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Reporting.ReportRetrieveResult.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageDialog.ts" />
     <TypeScriptCompile Include="Modules\Administration\Language\LanguageGrid.ts" />
     <TypeScriptCompile Include="Modules\Administration\RolePermission\RolePermissionDialog.ts" />
@@ -1359,6 +1363,17 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataConnectionEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataExplorerGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataTableEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDetailsEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductCheckGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductPickerDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Grids\LongRunningAction\LongRunningActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarGrid.ts" />
@@ -1394,6 +1409,8 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\GridMixins\FavoriteViewsMixin.ts" />
+    <TypeScriptCompile Include="Modules\Common\GridMixins\CardViewMixin.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
@@ -1520,6 +1537,10 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Organization.ContactColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Helpers\PromptDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Helpers\ServiceEditorBase.ts" />
+    <TypeScriptCompile Include="Modules\Common\Mail\MailDialog.ts" />
+    <TypeScriptCompile Include="Modules\Common\Mail\MailGrid.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
@@ -2025,6 +2046,26 @@
     <Compile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesListRequest.cs" />
     <Compile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesEndpoint.cs" />
     <Compile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesRepository.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskManager.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskRow.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\BackgroundTaskStatus.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\DailyBackgroundTask.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\IBackgroundTask.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\PeriodicBackgroundTask.cs" />
+    <Compile Include="Modules\Common\BackgroundTasks\SqlApplicationLock.cs" />
+    <Compile Include="Modules\Common\Mail\MailColumns.cs" />
+    <Compile Include="Modules\Common\Mail\MailEndpoint.cs" />
+    <Compile Include="Modules\Common\Mail\MailForm.cs" />
+    <Compile Include="Modules\Common\Mail\MailingBackgroundTask.cs" />
+    <Compile Include="Modules\Common\Mail\MailingService.cs" />
+    <Compile Include="Modules\Common\Mail\MailingServiceSettings.cs" />
+    <Compile Include="Modules\Common\Mail\MailPage.cs" />
+    <Compile Include="Modules\Common\Mail\MailQueuePriority.cs" />
+    <Compile Include="Modules\Common\Mail\MailRepository.cs" />
+    <Compile Include="Modules\Common\Mail\MailRow.cs" />
+    <Compile Include="Modules\Common\Mail\MailStatus.cs" />
+    <Compile Include="Modules\Common\Reporting\ReportRetrieveResult.cs" />
+    <Compile Include="Modules\Common\Reporting\IExternalReport.cs" />
     <Compile Include="Modules\Northwind\Customer\CustomerGrossSalesRow.cs" />
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAColumns.cs" />
     <Compile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAParser.cs" />
@@ -2716,7 +2757,7 @@
     </Message>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js">
+  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js;Scripts\site\Serene.Web.d.ts">
     <Message Text="Executing TypeScript compiler..." Importance="high">
     </Message>
     <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />

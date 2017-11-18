@@ -14,7 +14,7 @@
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Update="Modules\**\*.Template.html;Modules\**\*.ts.html">
+    <None Update="Modules\**\*.Template.html;Modules\**\*.ts.html;Views\Templates\*.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
