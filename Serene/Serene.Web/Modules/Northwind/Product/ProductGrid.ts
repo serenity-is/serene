@@ -105,8 +105,8 @@
             var value = this.getEffectiveValue(item, column.field) as string;
 
             return "<input type='text' class='" + klass +
-                "' data-field='" + column.field + 
-                "' value='" + Q.htmlEncode(value) + 
+                "' data-field='" + column.field +
+                "' value='" + Q.attrEncode(value) + 
                 "' maxlength='" + column.sourceItem.maxLength + "'/>";
         }
 
@@ -130,7 +130,7 @@
                 "' style='width: 100%; max-width: 100%'>";
             for (var c of lookup.items) {
                 let id = c[lookup.idField];
-                markup += "<option value='" + id + "'"
+                markup += "<option value='" + Q.attrEncode(id) + "'"
                 if (id == value) {
                     markup += " selected";
                 }

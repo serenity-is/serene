@@ -1630,6 +1630,78 @@
 		}
 	};
 	$Serenity_FilterStore.__typeName = 'Serenity.FilterStore';
+	$Serenity_FilterStore.getCriteriaFor = function(items) {
+		if (ss.isNullOrUndefined(items)) {
+			return [''];
+		}
+		var inParens = false;
+		var currentBlock = [''];
+		var isBlockOr = false;
+		var criteria = [''];
+		for (var i = 0; i < items.length; i++) {
+			var line = items[i];
+			if (line.leftParen || inParens && line.rightParen) {
+				if (!Serenity.Criteria.isEmpty(currentBlock)) {
+					if (inParens) {
+						currentBlock = Serenity.Criteria.paren(currentBlock);
+					}
+					if (isBlockOr) {
+						criteria = Serenity.Criteria.join(criteria, 'or', currentBlock);
+					}
+					else {
+						criteria = Serenity.Criteria.join(criteria, 'and', currentBlock);
+					}
+					currentBlock = [''];
+				}
+				inParens = false;
+			}
+			if (line.leftParen) {
+				isBlockOr = line.isOr;
+				inParens = true;
+			}
+			if (line.isOr) {
+				currentBlock = Serenity.Criteria.join(currentBlock, 'or', line.criteria);
+			}
+			else {
+				currentBlock = Serenity.Criteria.join(currentBlock, 'and', line.criteria);
+			}
+		}
+		if (!Serenity.Criteria.isEmpty(currentBlock)) {
+			if (isBlockOr) {
+				criteria = Serenity.Criteria.join(criteria, 'or', Serenity.Criteria.paren(currentBlock));
+			}
+			else {
+				criteria = Serenity.Criteria.join(criteria, 'and', Serenity.Criteria.paren(currentBlock));
+			}
+		}
+		return criteria;
+	};
+	$Serenity_FilterStore.getDisplayTextFor = function(items) {
+		var inParens = false;
+		var displayText = '';
+		if (ss.isNullOrUndefined(items)) {
+			return displayText;
+		}
+		for (var i = 0; i < items.length; i++) {
+			var line = items[i];
+			if (inParens && (line.rightParen || line.leftParen)) {
+				displayText += ')';
+				inParens = false;
+			}
+			if (displayText.length > 0) {
+				displayText += ' ' + Q.text('Controls.FilterPanel.' + (line.isOr ? 'Or' : 'And')) + ' ';
+			}
+			if (line.leftParen) {
+				displayText += '(';
+				inParens = true;
+			}
+			displayText += line.displayText;
+		}
+		if (inParens) {
+			displayText += ')';
+		}
+		return displayText;
+	};
 	global.Serenity.FilterStore = $Serenity_FilterStore;
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.FilterWidgetBase
@@ -3737,7 +3809,7 @@
 		return (ss.isNullOrUndefined(value) ? null : value.toString());
 	};
 	$Serenity_SlickFormatting.itemLinkText = function(itemType, id, text, extraClass, encode) {
-		return '<a' + (ss.isValue(id) ? (' href="#' + ss.replaceAllString(itemType, '.', '-') + '/' + id + '"') : '') + ' data-item-type="' + itemType + '"' + ' data-item-id="' + id + '"' + ' class="s-EditLink s-' + ss.replaceAllString(itemType, '.', '-') + 'Link' + (Q.isEmptyOrNull(extraClass) ? '' : (' ' + extraClass)) + '">' + (encode ? Q.htmlEncode(ss.coalesce(text, '')) : ss.coalesce(text, '')) + '</a>';
+		return '<a' + (ss.isValue(id) ? (' href="#' + ss.replaceAllString(itemType, '.', '-') + '/' + id + '"') : '') + ' data-item-type="' + Q.attrEncode(itemType) + '"' + ' data-item-id="' + Q.attrEncode(id) + '"' + ' class="s-EditLink s-' + ss.replaceAllString(itemType, '.', '-') + 'Link' + (Q.isEmptyOrNull(extraClass) ? '' : (' ' + extraClass)) + '">' + (encode ? Q.htmlEncode(ss.coalesce(text, '')) : ss.coalesce(text, '')) + '</a>';
 	};
 	$Serenity_SlickFormatting.itemLink = function(itemType, idField, getText, cssClass, encode) {
 		return function(ctx) {
@@ -4135,32 +4207,6 @@
 	};
 	global.Serenity.UploadHelper = $Serenity_UploadHelper;
 	////////////////////////////////////////////////////////////////////////////////
-	// Serenity.URLEditor
-	var $Serenity_URLEditor = function(input) {
-		Serenity.StringEditor.call(this, input);
-		input.addClass('url').attr('title', "URL 'http://www.site.com/sayfa' formatında girilmelidir.");
-		input.bind('blur.' + this.uniqueName, function() {
-			var validator = input.closest('form').data('validator');
-			if (ss.isNullOrUndefined(validator)) {
-				return;
-			}
-			if (!input.hasClass('error')) {
-				return;
-			}
-			var value = Q.trimToNull(input.val());
-			if (ss.isNullOrUndefined(value)) {
-				return;
-			}
-			value = 'http://' + value;
-			if (!!ss.referenceEquals($.validator.methods['url'].apply(validator, [value, input[0]]), true)) {
-				input.val(value);
-				validator.element(input[0]);
-			}
-		});
-	};
-	$Serenity_URLEditor.__typeName = 'Serenity.URLEditor';
-	global.Serenity.URLEditor = $Serenity_URLEditor;
-	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.UrlFormatter
 	var $Serenity_UrlFormatter = function() {
 		this.$1$DisplayPropertyField = null;
@@ -4362,12 +4408,17 @@
 				query.callback({ results: results.slice((query.page - 1) * this.pageSize, query.page * this.pageSize), more: results.length >= query.page * this.pageSize });
 			}), initSelection: ss.mkdel(this, function(element, callback) {
 				var val = element.val();
+				var isAutoComplete = this.isAutoComplete();
 				if (this.$multiple) {
 					var list = [];
 					var $t1 = val.split(',');
 					for (var $t2 = 0; $t2 < $t1.length; $t2++) {
 						var z = $t1[$t2];
 						var item2 = this.itemById[z];
+						if (ss.isNullOrUndefined(item2) && isAutoComplete) {
+							item2 = { id: z, text: z };
+							this.addItem(item2);
+						}
 						if (ss.isValue(item2)) {
 							list.push(item2);
 						}
@@ -4375,7 +4426,12 @@
 					callback(list);
 					return;
 				}
-				callback(this.itemById[val]);
+				var it = this.itemById[val];
+				if (ss.isNullOrUndefined(it) && isAutoComplete) {
+					it = { id: val, text: val };
+					this.addItem(it);
+				}
+				callback(it);
 			}) };
 		},
 		get_delimited: function() {
@@ -4421,7 +4477,10 @@
 		},
 		inplaceCreateClick: function(e) {
 		},
-		getCreateSearchChoice: function(getName, autoComplete) {
+		isAutoComplete: function() {
+			return false;
+		},
+		getCreateSearchChoice: function(getName) {
 			return ss.mkdel(this, function(s) {
 				this.lastCreateTerm = s;
 				s = ss.coalesce(Select2.util.stripDiacritics(s), '').toLowerCase();
@@ -4437,12 +4496,12 @@
 				if (!Q.any(this.get_items(), function(x1) {
 					return ss.coalesce(Select2.util.stripDiacritics(x1.text), '').toLowerCase().indexOf(s) !== -1;
 				})) {
-					if (autoComplete) {
+					if (this.isAutoComplete()) {
 						return { id: this.lastCreateTerm, text: this.lastCreateTerm };
 					}
 					return { id: (-2147483648).toString(), text: Q.text('Controls.SelectEditor.NoResultsClickToDefine') };
 				}
-				if (autoComplete) {
+				if (this.isAutoComplete()) {
 					return { id: this.lastCreateTerm, text: this.lastCreateTerm };
 				}
 				return { id: (-2147483648).toString(), text: Q.text('Controls.SelectEditor.ClickToDefine') };
@@ -4734,16 +4793,19 @@
 			this.$cascadeLink.set_parentID(value);
 			this.options.cascadeFrom = value;
 		},
+		isAutoComplete: function() {
+			return ss.isValue(this.options) && this.options.autoComplete;
+		},
 		getSelect2Options: function() {
 			var opt = $Serenity_Select2Editor.prototype.getSelect2Options.call(this);
 			if (ss.isValue(this.options.minimumResultsForSearch)) {
 				opt.minimumResultsForSearch = ss.unbox(this.options.minimumResultsForSearch);
 			}
 			if (this.options.autoComplete) {
-				opt.createSearchChoice = this.getCreateSearchChoice(null, true);
+				opt.createSearchChoice = this.getCreateSearchChoice(null);
 			}
 			else if (this.options.inplaceAdd && (ss.isNullOrUndefined(this.options.inplaceAddPermission) || Q.Authorization.hasPermission(this.options.inplaceAddPermission))) {
-				opt.createSearchChoice = this.getCreateSearchChoice(null, false);
+				opt.createSearchChoice = this.getCreateSearchChoice(null);
 			}
 			if (this.options.multiple) {
 				opt.multiple = true;
@@ -8367,7 +8429,7 @@
 			var originalName = (!ss.isNullOrEmptyString(this.get_originalNameProperty()) ? ss.safeCast(ctx.item[this.get_originalNameProperty()], String) : null);
 			originalName = ss.coalesce(originalName, '');
 			var text = ss.formatString(ss.coalesce(this.get_displayFormat(), '{0}'), originalName, dbFile, downloadUrl);
-			return "<a class='file-download-link' target='_blank' href='" + Q.htmlEncode(downloadUrl) + "'>" + Q.htmlEncode(text) + '</a>';
+			return "<a class='file-download-link' target='_blank' href='" + Q.attrEncode(downloadUrl) + "'>" + Q.htmlEncode(text) + '</a>';
 		},
 		get_displayFormat: function() {
 			return this.$1$DisplayFormatField;
@@ -8809,70 +8871,11 @@
 			this.$changed = ss.delegateRemove(this.$changed, value);
 		},
 		get_activeCriteria: function() {
-			var inParens = false;
-			var currentBlock = [''];
-			var isBlockOr = false;
-			var activeCriteria = [''];
-			for (var i = 0; i < this.get_items().length; i++) {
-				var line = this.get_items()[i];
-				if (line.leftParen || inParens && line.rightParen) {
-					if (!Serenity.Criteria.isEmpty(currentBlock)) {
-						if (inParens) {
-							currentBlock = Serenity.Criteria.paren(currentBlock);
-						}
-						if (isBlockOr) {
-							activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', currentBlock);
-						}
-						else {
-							activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', currentBlock);
-						}
-						currentBlock = [''];
-					}
-					inParens = false;
-				}
-				if (line.leftParen) {
-					isBlockOr = line.isOr;
-					inParens = true;
-				}
-				if (line.isOr) {
-					currentBlock = Serenity.Criteria.join(currentBlock, 'or', line.criteria);
-				}
-				else {
-					currentBlock = Serenity.Criteria.join(currentBlock, 'and', line.criteria);
-				}
-			}
-			if (!Serenity.Criteria.isEmpty(currentBlock)) {
-				if (isBlockOr) {
-					activeCriteria = Serenity.Criteria.join(activeCriteria, 'or', Serenity.Criteria.paren(currentBlock));
-				}
-				else {
-					activeCriteria = Serenity.Criteria.join(activeCriteria, 'and', Serenity.Criteria.paren(currentBlock));
-				}
-			}
-			return activeCriteria;
+			return $Serenity_FilterStore.getCriteriaFor(this.get_items());
 		},
 		get_displayText: function() {
 			if (ss.isNullOrUndefined(this.$displayText)) {
-				var inParens = false;
-				this.$displayText = '';
-				for (var i = 0; i < this.get_items().length; i++) {
-					var line = this.get_items()[i];
-					if (inParens && (line.rightParen || line.leftParen)) {
-						this.$displayText += ')';
-						inParens = false;
-					}
-					if (this.$displayText.length > 0) {
-						this.$displayText += ' ' + Q.text('Controls.FilterPanel.' + (line.isOr ? 'Or' : 'And')) + ' ';
-					}
-					if (line.leftParen) {
-						this.$displayText += '(';
-						inParens = true;
-					}
-					this.$displayText += line.displayText;
-				}
-				if (inParens) {
-					this.$displayText += ')';
-				}
+				this.$displayText = $Serenity_FilterStore.getDisplayTextFor(this.get_items());
 			}
 			return this.$displayText;
 		}
@@ -9742,6 +9745,21 @@
 			}
 			if (!ss.isNullOrEmptyString(item.formCssClass)) {
 				fieldDiv.addClass(item.formCssClass);
+				if (item.formCssClass.indexOf('line-break-') >= 0) {
+					var splitted = item.formCssClass.split(String.fromCharCode(32));
+					if (ss.indexOf(splitted, 'line-break-xs') >= 0) {
+						$("<div class='line-break' style='width: 100%' />").insertBefore(fieldDiv);
+					}
+					else if (ss.indexOf(splitted, 'line-break-sm') >= 0) {
+						$("<div class='line-break hidden-xs' style='width: 100%' />").insertBefore(fieldDiv);
+					}
+					else if (ss.indexOf(splitted, 'line-break-md') >= 0) {
+						$("<div class='line-break hidden-sm' style='width: 100%' />").insertBefore(fieldDiv);
+					}
+					else if (ss.indexOf(splitted, 'line-break-lg') >= 0) {
+						$("<div class='line-break hidden-md' style='width: 100%' />").insertBefore(fieldDiv);
+					}
+				}
 			}
 			var editorId = this.options.idPrefix + item.name;
 			var title = this.$determineText(item.title, function(prefix) {
@@ -10438,7 +10456,6 @@
 	}, Serenity.Widget);
 	ss.initClass($Serenity_UpdatableAttribute, $asm, {});
 	ss.initClass($Serenity_UploadHelper, $asm, {});
-	ss.initClass($Serenity_URLEditor, $asm, {}, Serenity.StringEditor);
 	ss.initClass($Serenity_UrlFormatter, $asm, {
 		format: function(ctx) {
 			var url = (!ss.isNullOrEmptyString(this.get_urlProperty()) ? ss.coalesce(ctx.item[this.get_urlProperty()], '').toString() : ss.coalesce(ctx.value, '').toString());
@@ -10455,7 +10472,7 @@
 			if (!ss.isNullOrEmptyString(this.get_displayFormat())) {
 				display = ss.formatString(this.get_displayFormat(), display);
 			}
-			var s = "<a href='" + Q.htmlEncode(url) + "'";
+			var s = "<a href='" + Q.attrEncode(url) + "'";
 			if (!ss.isNullOrEmptyString(this.get_target())) {
 				s += " target='" + this.get_target() + "'";
 			}
@@ -10652,7 +10669,6 @@
 	ss.setMetadata($Serenity_SelectEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('Açılır Liste'), new Serenity.OptionsTypeAttribute($Serenity_SelectEditorOptions), new Serenity.ElementAttribute('<input type="hidden"/>')] });
 	ss.setMetadata($Serenity_SelectEditorOptions, { members: [{ attr: [new $System_ComponentModel_DisplayNameAttribute('Boş Eleman Metni')], name: 'EmptyOptionText', type: 16, returnType: String, getter: { name: 'get_EmptyOptionText', type: 8, params: [], returnType: String, fget: 'emptyOptionText' }, setter: { name: 'set_EmptyOptionText', type: 8, params: [String], returnType: Object, fset: 'emptyOptionText' }, fname: 'emptyOptionText' }, { attr: [new $Serenity_HiddenAttribute()], name: 'Items', type: 16, returnType: Array, getter: { name: 'get_Items', type: 8, params: [], returnType: Array, fget: 'items' }, setter: { name: 'set_Items', type: 8, params: [Array], returnType: Object, fset: 'items' }, fname: 'items' }] });
 	ss.setMetadata($Serenity_TemplatedPanel, { attr: [new Serenity.ElementAttribute('<div/>')] });
-	ss.setMetadata($Serenity_URLEditor, { attr: [new Serenity.EditorAttribute(), new $System_ComponentModel_DisplayNameAttribute('URL')] });
 	ss.setMetadata($Serenity_UrlFormatter, { members: [{ attr: [new Serenity.OptionAttribute()], name: 'DisplayFormat', type: 16, returnType: String, getter: { name: 'get_DisplayFormat', type: 8, sname: 'get_displayFormat', returnType: String, params: [] }, setter: { name: 'set_DisplayFormat', type: 8, sname: 'set_displayFormat', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'DisplayProperty', type: 16, returnType: String, getter: { name: 'get_DisplayProperty', type: 8, sname: 'get_displayProperty', returnType: String, params: [] }, setter: { name: 'set_DisplayProperty', type: 8, sname: 'set_displayProperty', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'Target', type: 16, returnType: String, getter: { name: 'get_Target', type: 8, sname: 'get_target', returnType: String, params: [] }, setter: { name: 'set_Target', type: 8, sname: 'set_target', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlFormat', type: 16, returnType: String, getter: { name: 'get_UrlFormat', type: 8, sname: 'get_urlFormat', returnType: String, params: [] }, setter: { name: 'set_UrlFormat', type: 8, sname: 'set_urlFormat', returnType: Object, params: [String] } }, { attr: [new Serenity.OptionAttribute()], name: 'UrlProperty', type: 16, returnType: String, getter: { name: 'get_UrlProperty', type: 8, sname: 'get_urlProperty', returnType: String, params: [] }, setter: { name: 'set_UrlProperty', type: 8, sname: 'set_urlProperty', returnType: Object, params: [String] } }] });
 	(function() {
 		Serenity.Widget.prototype['changeSelect2'] = function(handler) {

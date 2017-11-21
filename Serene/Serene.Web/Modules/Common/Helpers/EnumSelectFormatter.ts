@@ -17,7 +17,7 @@
             }
 
             for (var x of Object.keys(enumType).filter(v => !isNaN(parseInt(v, 10)))) {
-                sb += '<option value="' + x + '"';
+                sb += '<option value="' + Q.attrEncode(x) + '"';
                 if (x == ctx.value)
                     sb += " selected";
                 var name = enumType[x];

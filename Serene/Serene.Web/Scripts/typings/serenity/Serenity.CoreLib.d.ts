@@ -578,6 +578,11 @@ declare namespace Q {
     function clearOptions(select: JQuery): void;
     function findElementWithRelativeId(element: JQuery, relativeId: string): JQuery;
     /**
+     * Html attribute encodes a string (encodes quotes in addition to &, > and <)
+     * @param s String to be HTML attribute encoded
+     */
+    function attrEncode(s: any): string;
+    /**
      * Html encodes a string
      * @param s String to be HTML encoded
      */
@@ -1403,6 +1408,11 @@ declare namespace Serenity {
     }
 }
 declare namespace Serenity {
+    class URLEditor extends StringEditor {
+        constructor(input: JQuery);
+    }
+}
+declare namespace Serenity {
     namespace EditorUtils {
         function getValue(editor: Serenity.Widget<any>): any;
         function saveValue(editor: Serenity.Widget<any>, item: PropertyItem, target: any): void;
@@ -1536,9 +1546,6 @@ declare namespace Serenity {
         get_select2Container(): JQuery;
         value: string;
     }
-    class URLEditor extends StringEditor {
-        constructor(input: JQuery);
-    }
     class Recaptcha extends Widget<RecaptchaOptions> {
         constructor(div: JQuery, opt: RecaptchaOptions);
         get_value(): string;
@@ -1616,6 +1623,8 @@ declare namespace Serenity {
         get_items(): FilterLine[];
         get_activeCriteria(): any[];
         get_displayText(): string;
+        static getCriteriaFor(items: FilterLine[]): any[];
+        static getDisplayTextFor(items: FilterLine[]): string;
     }
 }
 declare namespace Serenity {
@@ -1975,6 +1984,8 @@ declare namespace Serenity {
         sortColumns?: boolean;
         filterItems?: boolean;
         quickFilters?: boolean;
+        quickFilterText?: boolean;
+        quickSearch?: boolean;
         includeDeleted?: boolean;
     }
     interface PersistedGridColumn {
@@ -1987,6 +1998,9 @@ declare namespace Serenity {
         columns?: PersistedGridColumn[];
         filterItems?: FilterLine[];
         quickFilters?: Q.Dictionary<any>;
+        quickFilterText?: string;
+        quickSearchField: QuickSearchField;
+        quickSearchText?: string;
         includeDeleted?: boolean;
     }
     interface SettingStorage {

@@ -173,7 +173,7 @@ Task("PrepareVSIX")
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         ArgumentCustomization = args => {
 			return args.Append("-FileConflictAction Overwrite")
-				.Append(@"-MsBuildPath ""C:\Program Files (x86)\MsBuild\14.0\Bin""");
+				.Append(@"-MsBuildPath ""C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin""");
 		}
     });
 
@@ -184,7 +184,7 @@ Task("PrepareVSIX")
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         ArgumentCustomization = args => {
 			return args.Append("-FileConflictAction Overwrite")
-				.Append(@"-MsBuildPath ""C:\Program Files (x86)\MsBuild\14.0\Bin""");
+				.Append(@"-MsBuildPath ""C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin""");
 		}
     });
 	

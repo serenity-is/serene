@@ -1003,6 +1003,29 @@ var Q;
         }
     }
     Q.findElementWithRelativeId = findElementWithRelativeId;
+    function attrEncoder(a) {
+        switch (a) {
+            case '&': return '&amp;';
+            case '>': return '&gt;';
+            case '<': return '&lt;';
+            case '\'': return '&apos;';
+            case '\"': return '&quot;';
+        }
+        return a;
+    }
+    var attrRegex = /[><&'"]/g;
+    /**
+     * Html attribute encodes a string (encodes quotes in addition to &, > and <)
+     * @param s String to be HTML attribute encoded
+     */
+    function attrEncode(s) {
+        var text = (s == null ? '' : s.toString());
+        if (attrRegex.test(text)) {
+            return text.replace(attrRegex, attrEncoder);
+        }
+        return text;
+    }
+    Q.attrEncode = attrEncode;
     function htmlEncoder(a) {
         switch (a) {
             case '&': return '&amp;';
@@ -2998,11 +3021,13 @@ var Serenity;
                 return script.html();
             }
             var template;
-            if (!Q.canLoadScriptData(templateName) &&
-                this.getDefaultTemplateName() == templateName)
+            if (!Q.canLoadScriptData('Template.' + templateName) &&
+                this.getDefaultTemplateName() == templateName) {
                 template = this.getFallbackTemplate();
-            else
-                template = Q.getTemplate(templateName);
+                if (template != null)
+                    return template;
+            }
+            template = Q.getTemplate(templateName);
             if (template == null) {
                 throw new Error(Q.format("Can't locate template for widget '{0}' with name '{1}'!", ss.getTypeName(ss.getInstanceType(this)), templateName));
             }
@@ -3276,6 +3301,37 @@ var Serenity;
         return TimeEditor;
     }(Serenity.Widget));
     Serenity.TimeEditor = TimeEditor;
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    var URLEditor = /** @class */ (function (_super) {
+        __extends(URLEditor, _super);
+        function URLEditor(input) {
+            var _this = _super.call(this, input) || this;
+            input.addClass("url").attr("title", "URL should be entered in format: 'http://www.site.com/page'.");
+            input.on("blur." + _this.uniqueName, function (e) {
+                var validator = input.closest("form").data("validator");
+                if (validator == null)
+                    return;
+                if (!input.hasClass("error"))
+                    return;
+                var value = Q.trimToNull(input.val());
+                if (!value)
+                    return;
+                value = "http://" + value;
+                if ($.validator.methods['url'].call(validator, value, input[0]) == true) {
+                    input.val(value);
+                    validator.element(input);
+                }
+            });
+            return _this;
+        }
+        URLEditor = __decorate([
+            Serenity.Decorators.registerEditor([Serenity.IStringValue])
+        ], URLEditor);
+        return URLEditor;
+    }(Serenity.StringEditor));
+    Serenity.URLEditor = URLEditor;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
