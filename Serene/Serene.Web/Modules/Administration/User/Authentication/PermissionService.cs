@@ -54,7 +54,7 @@
                         HashSet<string> list;
                         if (pair.Value && implicitPermissions.TryGetValue(pair.Key, out list))
                             foreach (var x in list)
-                                result.Add(x, true);
+                                result[x] = true;
                     }
 
                     return result;
