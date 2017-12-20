@@ -133,6 +133,7 @@ namespace Serene.Administration.Repositories
                     IsDigit(c) ||
                     c == '.' ||
                     c == '_' ||
+                    c == '-' ||
                     c == '@';
             }
 
