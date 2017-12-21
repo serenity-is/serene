@@ -200,7 +200,26 @@ namespace Serene.Common {
                     else if (output == 'window')
                         output = 'datauri';
 
-                    doc.output(output);
+                    if (output == 'datauri')
+                        doc.output(output);
+                    else {
+                        var tmpOut = doc.output('datauristring');
+
+                        if (output == 'dataurlnewwindow') {
+                            var fileTmpName = options.reportTitle || g.getTitle();
+                            
+                            var url_with_name = tmpOut.replace("data:application/pdf;", "data:application/pdf;name=" + fileTmpName + ".pdf;");
+                            var html = '<html>' +
+                                '<style>html, body { padding: 0; margin: 0; } iframe { width: 100%; height: 100%; border: 0;}  </style>' +
+                                '<body>' +
+                                '<p></p>' +
+                                '<iframe type="application/pdf" src="' + url_with_name + '"></iframe>' +
+                                '</body></html>';
+                            var a = window.open("about:blank", "_blank");
+                            a.document.write(html);
+                            a.document.close();
+                        }
+                    }
                 }
             }); 
         }
