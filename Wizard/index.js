@@ -287,7 +287,7 @@ function createProject(solutionName, projectName, vsTemplatePath) {
                     var k = keys[i];
                     if (appSettings.Data.hasOwnProperty(k)) {
                         var d = appSettings.Data[k];
-                        d.ConnectionString = "Filename=../../../App_Data/" + solutionName + "_" + k + "_v1.sqlite";
+                        d.ConnectionString = "Filename=./App_Data/" + solutionName + "_" + k + "_v1.sqlite";
                         d.ProviderName = "Microsoft.Data.Sqlite";
                     }
                 }
