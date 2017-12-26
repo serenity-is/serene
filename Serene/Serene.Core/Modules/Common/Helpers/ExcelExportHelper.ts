@@ -14,8 +14,8 @@
         export function createToolButton(options: ExcelExportOptions): Serenity.ToolButton {
 
             return {
-                hint: Q.coalesce(options.title, 'Excel'),
-                title: Q.coalesce(options.hint, ''),
+                hint: Q.coalesce(options.hint, 'Excel'),
+                title: Q.coalesce(options.title, ''),
                 cssClass: 'export-xlsx-button',
                 onClick: function () {
                     if (!options.onViewSubmit()) {
