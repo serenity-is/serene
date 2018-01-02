@@ -68,7 +68,7 @@ function createSolution() {
         var vst = result.VSTemplate;
         var solutionName = vst.TemplateData[0].DefaultName[0];
         
-        rl.question('Enter a project name (press enter for ' + solutionName + '1)? ', (answer) => {
+        function withProjectName(answer) {
             solutionName = answer || (solutionName + '1');
             console.log('Creating solution ' + solutionName);
             var projectTemplateLinks = vst.TemplateContent[0].ProjectCollection[0].ProjectTemplateLink;
@@ -94,8 +94,13 @@ function createSolution() {
             }
 
             rl.close();
-        });
-    });  
+        }
+
+        if (!process.argv[2])
+            rl.question('Enter a project name (press enter for ' + solutionName + '1)? ', withProjectName); 
+        else 
+            withProjectName(process.argv[2]);
+    });
 }
 
 function useCacheZip(cacheZip) {
@@ -137,32 +142,64 @@ https.get({
     var str = "";
     res.on('data', function(d) { str += d; });
     res.on('end', function() {
-        var idx = str.lastIndexOf('/Serene.Template.vsix"');
+        var searchStart = '<script class="vss-extension" defer="defer" type="application/json">';
+        var searchEnd = '</script>';
+        var idx = str.indexOf(searchStart);
         if (idx <= 0) {
             console.error("Couldn't read template version from VSGallery.");
             process.exit();
         }
 
-        var idx2 = str.lastIndexOf('/', idx - 1);
-        if (idx2 <= 0 || (idx - idx2 >= 5))  {
+        var idx2 = str.indexOf(searchEnd, idx);
+        if (idx2 <= 0 || (idx2 - idx <= 20)) {
             console.error("Couldn't read template version from VSGallery.");
             process.exit();
         }
 
-        var dirver = parseInt(str.substr(idx2 + 1, idx - idx2 - 1));
-        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + dirver + '.vsix');
+        var json = str.substring(idx + searchStart.length, idx2).trim();
+        if (!json.startsWith('{') || !json.endsWith('}')) {
+            console.error("Couldn't read template version from VSGallery.");
+            process.exit();
+        }
+
+        var data = JSON.parse(json);
+        if (!data.versions) {
+            console.error("Couldn't read template version from VSGallery.");
+            process.exit();            
+        }
+
+        var version = data.versions[data.versions.length - 1];
+        if (!version.version || !version.files) {
+            console.error("Couldn't read template version from VSGallery.");
+            process.exit();            
+        }
+
+        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + version.version + '.vsix');
         if (fs.existsSync(cacheZip)) {
             console.log('You already have a cached copy of latest version.')
             console.log('');
             useCacheZip(cacheZip);
         }
         else {
+            var assetSource = null;
+            for (var i = 0; i < version.files.length; i++) {
+                var f = version.files[i];
+                if (f && f.assetType && f.assetType.endsWith('/Serene.Template.vsix')) {
+                    assetSource = f.source;
+                    break;
+                }
+            }
+    
+            if (!assetSource) {
+                console.error("Couldn't read template source URL from VSGallery.");
+                process.exit();
+            }
+
             var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
                 return x.toLowerCase().startsWith('Serene.Template.') && x.toLowerCase().endsWith('.vsix');
             });
             console.log('Downloading latest Serene template...');
-            downloadHttps("https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/file/219776/" + 
-                dirver + "/Serene.Template.vsix", function(buffer) {
+            downloadHttps(assetSource, function(buffer) {
                     console.log('Download complete.');
                     fs.writeFileSync(cacheZip, buffer);
                     useCacheZip(cacheZip);
