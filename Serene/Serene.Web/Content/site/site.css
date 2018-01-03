@@ -7365,69 +7365,6 @@ section.content > .s-DataGrid {
 .s-BasicSamples-WrappedHeadersGrid .slick-header-column.ui-state-default {
   height: 100%;
 }
-.s-Meeting-MeetingDialog > .size {
-  width: 850px;
-  height: 550px;
-}
-.s-Meeting-MeetingDialog .caption {
-  width: 120px;
-}
-@media (min-width: 768px) {
-  .s-Meeting-MeetingDialog .field.MeetingTypeId,
-  .s-Meeting-MeetingDialog .field.MeetingNumber,
-  .s-Meeting-MeetingDialog .field.StartDate,
-  .s-Meeting-MeetingDialog .field.EndDate,
-  .s-Meeting-MeetingDialog .field.OrganizerContactId,
-  .s-Meeting-MeetingDialog .field.ReporterContactId {
-    max-width: 50%;
-  }
-}
-.s-Meeting-MeetingAttendeeEditor .slick-cell select {
-  padding: 0;
-  width: 100%;
-}
-.s-Meeting-MeetingAgendaDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingAgendaDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingAgendaRelevantDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingAgendaRelevantDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingAgendaTypeDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingAgendaTypeDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingDecisionDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingDecisionDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingDecisionRelevantDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingDecisionRelevantDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingLocationDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingLocationDialog .caption {
-  width: 150px;
-}
-.s-Meeting-MeetingTypeDialog > .size {
-  width: 650px;
-}
-.s-Meeting-MeetingTypeDialog .caption {
-  width: 150px;
-}
 /*Default styles for login/register pages*/
 .page-content .s-ChangePasswordPanel {
   width: 550px;
@@ -8139,19 +8076,4 @@ section.content > .s-DataGrid {
 }
 .s-NoteDialog .ui-dialog-content {
   padding-bottom: 10px;
-}
-.s-Organization-BusinessUnitDialog > .size {
-  width: 650px;
-}
-.s-Organization-BusinessUnitDialog .caption {
-  width: 150px;
-}
-.s-Organization-ContactDialog > .size {
-  width: 650px;
-}
-.s-Organization-ContactDialog .caption {
-  width: 150px;
-}
-.inline-action.add-child-unit {
-  background-image: url(../serenity/images/node-insert-next.png);
 }

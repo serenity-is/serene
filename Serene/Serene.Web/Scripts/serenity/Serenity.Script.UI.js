@@ -2216,7 +2216,7 @@
 		if (!!ss.isValue(window2.CKEDITOR)) {
 			return;
 		}
-		var script = $('CKEditorScript');
+		var script = $('#CKEditorScript');
 		if (script.length > 0) {
 			return;
 		}
@@ -3681,7 +3681,7 @@
 	////////////////////////////////////////////////////////////////////////////////
 	// Serenity.Select2Editor
 	var $Serenity_Select2Editor = function(hidden, opt) {
-		this.$multiple = false;
+		this.multiple = false;
 		this.items = null;
 		this.itemById = null;
 		this.pageSize = 100;
@@ -3694,7 +3694,7 @@
 			hidden.attr('placeholder', emptyItemText);
 		}
 		var select2Options = this.getSelect2Options();
-		this.$multiple = !!select2Options.multiple;
+		this.multiple = !!select2Options.multiple;
 		hidden.select2(select2Options);
 		hidden.attr('type', 'text');
 		// jquery validate to work
@@ -4409,7 +4409,7 @@
 			}), initSelection: ss.mkdel(this, function(element, callback) {
 				var val = element.val();
 				var isAutoComplete = this.isAutoComplete();
-				if (this.$multiple) {
+				if (this.multiple) {
 					var list = [];
 					var $t1 = val.split(',');
 					for (var $t2 = 0; $t2 < $t1.length; $t2++) {
@@ -4465,15 +4465,37 @@
 			});
 			this.get_select2Container().add(this.element).addClass('has-inplace-button');
 			$Serenity_WX.change(this, ss.mkdel(this, function(e1) {
-				var isNew = Q.isEmptyOrNull(this.get_value());
+				var isNew = this.multiple || Q.isEmptyOrNull(this.get_value());
 				inplaceButton.attr('title', (isNew ? addTitle : editTitle)).toggleClass('edit', !isNew);
 			}));
 			$Serenity_WX.changeSelect2(this, ss.mkdel(this, function(e2) {
-				if (ss.referenceEquals(this.get_value(), (-2147483648).toString())) {
+				if (this.multiple) {
+					var values = this.get_values();
+					if (values.length > 0 && ss.referenceEquals(values[values.length - 1], (-2147483648).toString())) {
+						this.set_values(values.slice(0, values.length - 1));
+						this.inplaceCreateClick(e2);
+					}
+				}
+				else if (ss.referenceEquals(this.get_value(), (-2147483648).toString())) {
 					this.set_value(null);
-					this.inplaceCreateClick(null);
+					this.inplaceCreateClick(e2);
 				}
 			}));
+			if (this.multiple) {
+				this.get_select2Container().on('dblclick.' + this.uniqueName, '.select2-search-choice', ss.mkdel(this, function(e3) {
+					var q = $(e3.target);
+					if (!q.hasClass('select2-search-choice')) {
+						q = q.closest('.select2-search-choice');
+					}
+					var index = q.index();
+					var values1 = this.get_values();
+					if (index < 0 || index >= this.get_values().length) {
+						return;
+					}
+					e3['editItem'] = values1[index];
+					this.inplaceCreateClick(e3);
+				}));
+			}
 		},
 		inplaceCreateClick: function(e) {
 		},
@@ -4517,7 +4539,7 @@
 			}
 		},
 		getEditValue: function(property, target) {
-			if (!this.$multiple || this.get_delimited()) {
+			if (!this.multiple || this.get_delimited()) {
 				target[property.name] = this.get_value();
 			}
 			else {
@@ -4543,7 +4565,7 @@
 		set_value: function(value) {
 			if (!ss.referenceEquals(value, this.get_value())) {
 				var val = value;
-				if (!ss.isNullOrEmptyString(value) && this.$multiple) {
+				if (!ss.isNullOrEmptyString(value) && this.multiple) {
 					val = value.split(String.fromCharCode(44)).map(function(x) {
 						return Q.trimToNull(x);
 					}).filter(function(x1) {
@@ -4724,12 +4746,39 @@
 				$Serenity_SubDialogHelper.bindToDataChange(dialog, this, ss.mkdel(this, function(x, dci) {
 					Q.reloadLookup(this.getLookupKey());
 					self.updateItems();
-					self.set_value(null);
+					this.lastCreateTerm = null;
 					if ((dci.type === 'create' || dci.type === 'update') && ss.isValue(dci.entityId)) {
-						self.set_value(dci.entityId.toString());
+						var id = dci.entityId.toString();
+						if (this.multiple) {
+							var values = ss.arrayClone(self.get_values());
+							if (!ss.contains(values, id)) {
+								values.push(id);
+							}
+							self.set_values(null);
+							self.set_values(Array.prototype.slice.call(values));
+						}
+						else {
+							self.set_value(null);
+							self.set_value(id);
+						}
+					}
+					else if (this.multiple && dci.type === 'delete' && ss.isValue(dci.entityId)) {
+						var id1 = dci.entityId.toString();
+						var values1 = ss.arrayClone(self.get_values());
+						ss.remove(values1, id1);
+						self.set_values(Array.prototype.slice.call(values1));
+					}
+					else if (!this.multiple) {
+						self.set_value(null);
 					}
 				}), true);
-				if (Q.isEmptyOrNull(this.get_value())) {
+				var editItem = e['editItem'];
+				if (ss.isValue(editItem)) {
+					dialog.load(editItem, ss.mkdel(this, function() {
+						dialog.dialogOpen(this.get_openDialogAsPanel());
+					}), null);
+				}
+				else if (this.multiple || Q.isEmptyOrNull(this.get_value())) {
 					var entity = new Object();
 					entity[this.getLookup().textField] = Q.trimToEmpty(this.lastCreateTerm);
 					this.initNewEntity(entity);
@@ -6305,11 +6354,24 @@
 					if (qsInput.length > 0) {
 						var qsWidget = qsInput.tryGetWidget($Serenity_QuickSearchInput);
 						if (ss.isValue(qsWidget)) {
-							if (ss.isValue(settings.quickSearchField)) {
-								qsWidget.set_field(settings.quickSearchField);
+							this.view.populateLock();
+							try {
+								qsWidget.element.addClass('ignore-change');
+								try {
+									if (ss.isValue(settings.quickSearchField)) {
+										qsWidget.set_field(settings.quickSearchField);
+									}
+									if (ss.isValue(settings.quickSearchText) && !ss.referenceEquals(Q.trimToNull(settings.quickSearchText), Q.trimToNull(qsWidget.element.val()))) {
+										qsWidget.element.val(settings.quickSearchText);
+									}
+								}
+								finally {
+									qsWidget.element.removeClass('ignore-change');
+									qsWidget.element.triggerHandler('execute-search');
+								}
 							}
-							if (ss.isValue(settings.quickSearchText) && !ss.referenceEquals(Q.trimToNull(settings.quickSearchText), Q.trimToNull(qsWidget.element.val()))) {
-								qsWidget.element.val(settings.quickSearchText).triggerHandler('change');
+							finally {
+								this.view.populateUnlock();
 							}
 						}
 					}
@@ -6868,7 +6930,11 @@
 			}
 			var datePart = Q.formatDate(value, 'yyyy-MM-dd');
 			var timePart = this.$time.val();
-			return datePart + 'T' + timePart + ':00.000';
+			var result = datePart + 'T' + timePart + ':00.000';
+			if (this.options.useUtc) {
+				result = Q.formatISODateTimeUTC(Q.parseISODateTime(result));
+			}
+			return result;
 		},
 		set_value: function(value) {
 			if (ss.isNullOrEmptyString(value)) {
@@ -10190,6 +10256,9 @@
 			}
 		},
 		checkIfValueChanged: function() {
+			if (this.element.hasClass('ignore-change')) {
+				return;
+			}
 			var value = Q.trim(ss.coalesce(this.element.val(), ''));
 			if (ss.referenceEquals(value, this.$lastValue) && (!this.$fieldChanged || Q.isEmptyOrNull(value))) {
 				this.$fieldChanged = false;

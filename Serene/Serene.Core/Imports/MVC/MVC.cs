@@ -298,40 +298,6 @@ namespace MVC
             public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
         }
 
-        public static class Meeting
-        {
-            public static class Meeting_
-            {
-                public const string MeetingIndex = "~/Modules/Meeting/Meeting/MeetingIndex.cshtml";
-            }
-
-            public static class MeetingAgendaRelevant
-            {
-                public const string MeetingAgendaRelevantIndex = "~/Modules/Meeting/MeetingAgendaRelevant/MeetingAgendaRelevantIndex.cshtml";
-            }
-
-            public static class MeetingAgendaType
-            {
-                public const string MeetingAgendaTypeIndex = "~/Modules/Meeting/MeetingAgendaType/MeetingAgendaTypeIndex.cshtml";
-            }
-
-            public static class MeetingDecisionRelevant
-            {
-                public const string MeetingDecisionRelevantIndex = "~/Modules/Meeting/MeetingDecisionRelevant/MeetingDecisionRelevantIndex.cshtml";
-            }
-
-            public static class MeetingLocation
-            {
-                public const string MeetingLocationIndex = "~/Modules/Meeting/MeetingLocation/MeetingLocationIndex.cshtml";
-            }
-
-            public static class MeetingType
-            {
-                public const string MeetingTypeIndex = "~/Modules/Meeting/MeetingType/MeetingTypeIndex.cshtml";
-            }
-
-        }
-
         public static class Membership
         {
             public static class Account
@@ -412,20 +378,6 @@ namespace MVC
             public static class Territory
             {
                 public const string TerritoryIndex = "~/Modules/Northwind/Territory/TerritoryIndex.cshtml";
-            }
-
-        }
-
-        public static class Organization
-        {
-            public static class BusinessUnit
-            {
-                public const string BusinessUnitIndex = "~/Modules/Organization/BusinessUnit/BusinessUnitIndex.cshtml";
-            }
-
-            public static class Contact
-            {
-                public const string ContactIndex = "~/Modules/Organization/Contact/ContactIndex.cshtml";
             }
         }
 

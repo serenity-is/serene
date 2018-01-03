@@ -1582,24 +1582,12 @@
         <files include="Imports\ServerTypings\**\BasicSamples.*" />
         <files include="wwwroot\Scripts\site\texts\samples" />
       </feature>
-      <feature key="Meeting">
-        <files include="Imports\ServerTypings\**\Meeting.*" />
-        <files include="Migrations\DefaultDB\**\*00_*Meeting*.cs" />
-        <files include="Modules\Meeting" />
-        <files include="wwwroot\Content\site\site.meeting.less" />
-      </feature>
       <feature key="Northwind">
         <files include="wwwroot\Content\site\site.northwind.less" />
         <files include="Imports\ServerTypings\**\Northwind.*" />
         <files include="Modules\Northwind" />
         <files include="Migrations\NorthwindDB" />
         <files include="wwwroot\Scripts\site\texts\northwind" />
-      </feature>
-      <feature key="Organization">
-        <files include="Imports\ServerTypings\**\Organization.*" />
-        <files include="Migrations\DefaultDB\**\*00_*Organization*.cs" />
-        <files include="Modules\Organization" />
-        <files include="wwwroot\Content\site\site.organization.less" />
       </feature>
       <feature key="ThemeSamples">
         <files include="Modules\AdminLTE" />

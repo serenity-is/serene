@@ -1444,7 +1444,7 @@ declare namespace Serenity {
         lookupKey?: string;
     }
     class RadioButtonEditor extends Widget<RadioButtonEditorOptions> {
-        constructor(input: JQuery);
+        constructor(input: JQuery, opt: RadioButtonEditorOptions);
         value: string;
     }
     interface EnumEditorOptions {
@@ -2464,7 +2464,7 @@ declare namespace Serenity {
         protected getCloningEntity(): TItem;
         protected getDeleteOptions(callback: (response: DeleteResponse) => void): ServiceOptions<DeleteResponse>;
         protected getEntityIdField(): string;
-        protected getEntityIsActiveField(): string;
+        protected getIsActiveProperty(): string;
         protected getEntityNameField(): string;
         protected getEntityNameFieldValue(): any;
         protected getEntitySingular(): string;

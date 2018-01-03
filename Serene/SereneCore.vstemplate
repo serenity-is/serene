@@ -26,12 +26,7 @@
 	  <feature key="BasicSamples" title="Basic Samples">
 		<dependency feature="Northwind" />
 	  </feature>
-	  <feature key="Meeting" title="Meeting">
-		<dependency feature="Organization" />
-	  </feature>
 	  <feature key="Northwind" title="Northwind">
-	  </feature>
-	  <feature key="Organization" title="Organization">
 	  </feature>
 	  <feature key="ThemeSamples" title="Theme Samples (AdminLTE)">
 	  </feature>
