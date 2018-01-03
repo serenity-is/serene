@@ -27,7 +27,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageFormatterAttribute.cs">BasicSamples.InlineImageFormatterAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.EnumSelectFormatterAttribute.cs">Common.EnumSelectFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeEditorAttribute.cs">Meeting.MeetingAttendeeEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerEditorAttribute.cs">Northwind.CustomerEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeFormatterAttribute.cs">Northwind.EmployeeFormatterAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeListFormatterAttribute.cs">Northwind.EmployeeListFormatterAttribute.cs</ProjectItem>
@@ -36,7 +35,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailsEditorAttribute.cs">Northwind.OrderDetailsEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PhoneEditorAttribute.cs">Northwind.PhoneEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperFormatterAttribute.cs">Northwind.ShipperFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.BusinessUnitEditorAttribute.cs">Organization.BusinessUnitEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockAttribute.cs">StaticTextBlockAttribute.cs</ProjectItem>
         </Folder>
         <Folder Name="MVC" TargetFolderName="MVC">
@@ -109,43 +107,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportResponse.ts">ExcelImportResponse.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.ts">GetNextNumberRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberResponse.ts">GetNextNumberResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaColumns.ts">Meeting.MeetingAgendaColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaForm.ts">Meeting.MeetingAgendaForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaRelevantColumns.ts">Meeting.MeetingAgendaRelevantColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaRelevantForm.ts">Meeting.MeetingAgendaRelevantForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaRelevantRow.ts">Meeting.MeetingAgendaRelevantRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaRelevantService.ts">Meeting.MeetingAgendaRelevantService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaRow.ts">Meeting.MeetingAgendaRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaService.ts">Meeting.MeetingAgendaService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeColumns.ts">Meeting.MeetingAgendaTypeColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeForm.ts">Meeting.MeetingAgendaTypeForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeRow.ts">Meeting.MeetingAgendaTypeRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAgendaTypeService.ts">Meeting.MeetingAgendaTypeService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendanceStatus.ts">Meeting.MeetingAttendanceStatus.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeColumns.ts">Meeting.MeetingAttendeeColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeForm.ts">Meeting.MeetingAttendeeForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeRow.ts">Meeting.MeetingAttendeeRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingAttendeeType.ts">Meeting.MeetingAttendeeType.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingColumns.ts">Meeting.MeetingColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionColumns.ts">Meeting.MeetingDecisionColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionForm.ts">Meeting.MeetingDecisionForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionRelevantColumns.ts">Meeting.MeetingDecisionRelevantColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionRelevantForm.ts">Meeting.MeetingDecisionRelevantForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionRelevantRow.ts">Meeting.MeetingDecisionRelevantRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionRelevantService.ts">Meeting.MeetingDecisionRelevantService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionRow.ts">Meeting.MeetingDecisionRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDecisionService.ts">Meeting.MeetingDecisionService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingForm.ts">Meeting.MeetingForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingLocationColumns.ts">Meeting.MeetingLocationColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingLocationForm.ts">Meeting.MeetingLocationForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingLocationRow.ts">Meeting.MeetingLocationRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingLocationService.ts">Meeting.MeetingLocationService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingRow.ts">Meeting.MeetingRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingService.ts">Meeting.MeetingService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingTypeColumns.ts">Meeting.MeetingTypeColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingTypeForm.ts">Meeting.MeetingTypeForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingTypeRow.ts">Meeting.MeetingTypeRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingTypeService.ts">Meeting.MeetingTypeService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
@@ -211,14 +172,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryForm.ts">Northwind.TerritoryForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryRow.ts">Northwind.TerritoryRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryService.ts">Northwind.TerritoryService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.BusinessUnitColumns.ts">Organization.BusinessUnitColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.BusinessUnitForm.ts">Organization.BusinessUnitForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.BusinessUnitRow.ts">Organization.BusinessUnitRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.BusinessUnitService.ts">Organization.BusinessUnitService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.ContactColumns.ts">Organization.ContactColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.ContactForm.ts">Organization.ContactForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.ContactRow.ts">Organization.ContactRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Organization.ContactService.ts">Organization.ContactService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
         </Folder>
       </Folder>
@@ -235,8 +188,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_130000_ExceptionLog.cs">DefaultDB_20161029_130000_ExceptionLog.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161126_200000_Organization.cs">DefaultDB_20161126_200000_Organization.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161126_210000_Meeting.cs">DefaultDB_20161126_210000_Meeting.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="MigrationUtils.cs">MigrationUtils.cs</ProjectItem>
         <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
@@ -670,103 +621,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceStorage.ts">UserPreferenceStorage.ts</ProjectItem>
           </Folder>
         </Folder>
-        <Folder Name="Meeting" TargetFolderName="Meeting">
-          <Folder Name="Meeting" TargetFolderName="Meeting">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Meeting.MeetingDialog.Template.html">Meeting.MeetingDialog.Template.html</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingColumns.cs">MeetingColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDialog.ts">MeetingDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingEndpoint.cs">MeetingEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingForm.cs">MeetingForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingGrid.ts">MeetingGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingIndex.cshtml">MeetingIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingPage.cs">MeetingPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingRepository.cs">MeetingRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingRow.cs">MeetingRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingAgenda" TargetFolderName="MeetingAgenda">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaColumns.cs">MeetingAgendaColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaDialog.ts">MeetingAgendaDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaEndpoint.cs">MeetingAgendaEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaForm.cs">MeetingAgendaForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaGrid.ts">MeetingAgendaGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRepository.cs">MeetingAgendaRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRow.cs">MeetingAgendaRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingAgendaRelevant" TargetFolderName="MeetingAgendaRelevant">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantColumns.cs">MeetingAgendaRelevantColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantDialog.ts">MeetingAgendaRelevantDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantEndpoint.cs">MeetingAgendaRelevantEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantForm.cs">MeetingAgendaRelevantForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantGrid.ts">MeetingAgendaRelevantGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantIndex.cshtml">MeetingAgendaRelevantIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantRepository.cs">MeetingAgendaRelevantRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaRelevantRow.cs">MeetingAgendaRelevantRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingAgendaType" TargetFolderName="MeetingAgendaType">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeColumns.cs">MeetingAgendaTypeColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeDialog.ts">MeetingAgendaTypeDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeEndpoint.cs">MeetingAgendaTypeEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeForm.cs">MeetingAgendaTypeForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeGrid.ts">MeetingAgendaTypeGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeIndex.cshtml">MeetingAgendaTypeIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypePage.cs">MeetingAgendaTypePage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeRepository.cs">MeetingAgendaTypeRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAgendaTypeRow.cs">MeetingAgendaTypeRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingAttendee" TargetFolderName="MeetingAttendee">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendanceStatus.cs">MeetingAttendanceStatus.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeColumns.cs">MeetingAttendeeColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeDialog.ts">MeetingAttendeeDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeEditor.ts">MeetingAttendeeEditor.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeForm.cs">MeetingAttendeeForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeRepository.cs">MeetingAttendeeRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeRow.cs">MeetingAttendeeRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingAttendeeType.cs">MeetingAttendeeType.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingDecision" TargetFolderName="MeetingDecision">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionColumns.cs">MeetingDecisionColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionDialog.ts">MeetingDecisionDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionEndpoint.cs">MeetingDecisionEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionForm.cs">MeetingDecisionForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionGrid.ts">MeetingDecisionGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRepository.cs">MeetingDecisionRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRow.cs">MeetingDecisionRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingDecisionRelevant" TargetFolderName="MeetingDecisionRelevant">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantColumns.cs">MeetingDecisionRelevantColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantDialog.ts">MeetingDecisionRelevantDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantEndpoint.cs">MeetingDecisionRelevantEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantForm.cs">MeetingDecisionRelevantForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantGrid.ts">MeetingDecisionRelevantGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantIndex.cshtml">MeetingDecisionRelevantIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantRepository.cs">MeetingDecisionRelevantRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingDecisionRelevantRow.cs">MeetingDecisionRelevantRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="MeetingLocation" TargetFolderName="MeetingLocation">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationColumns.cs">MeetingLocationColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationDialog.ts">MeetingLocationDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationEndpoint.cs">MeetingLocationEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationForm.cs">MeetingLocationForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationGrid.ts">MeetingLocationGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationIndex.cshtml">MeetingLocationIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationPage.cs">MeetingLocationPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationRepository.cs">MeetingLocationRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingLocationRow.cs">MeetingLocationRow.cs</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="MeetingNavigation.cs">MeetingNavigation.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="MeetingPermissionKeys.cs">MeetingPermissionKeys.cs</ProjectItem>
-          <Folder Name="MeetingType" TargetFolderName="MeetingType">
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeColumns.cs">MeetingTypeColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeDialog.ts">MeetingTypeDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeEndpoint.cs">MeetingTypeEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeForm.cs">MeetingTypeForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeGrid.ts">MeetingTypeGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeIndex.cshtml">MeetingTypeIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypePage.cs">MeetingTypePage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeRepository.cs">MeetingTypeRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MeetingTypeRow.cs">MeetingTypeRow.cs</ProjectItem>
-          </Folder>
-        </Folder>
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
@@ -982,33 +836,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryRepository.cs">TerritoryRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryRow.cs">TerritoryRow.cs</ProjectItem>
           </Folder>
-        </Folder>
-        <Folder Name="Organization" TargetFolderName="Organization">
-          <Folder Name="BusinessUnit" TargetFolderName="BusinessUnit">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitColumns.cs">BusinessUnitColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitDialog.ts">BusinessUnitDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitEditor.ts">BusinessUnitEditor.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitEndpoint.cs">BusinessUnitEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitForm.cs">BusinessUnitForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitGrid.ts">BusinessUnitGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitIndex.cshtml">BusinessUnitIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitPage.cs">BusinessUnitPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitRepository.cs">BusinessUnitRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BusinessUnitRow.cs">BusinessUnitRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Contact" TargetFolderName="Contact">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactColumns.cs">ContactColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactDialog.ts">ContactDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactEndpoint.cs">ContactEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactForm.cs">ContactForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactGrid.ts">ContactGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactIndex.cshtml">ContactIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactPage.cs">ContactPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactRepository.cs">ContactRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ContactRow.cs">ContactRow.cs</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="OrganizationNavigation.cs">OrganizationNavigation.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="OrganizationPermissionKeys.cs">OrganizationPermissionKeys.cs</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
       </Folder>
@@ -1318,11 +1145,9 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.htmlcontent.css">site.htmlcontent.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.less">site.less</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="site.meeting.less">site.meeting.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.membership.less">site.membership.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.mixins.less">site.mixins.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.northwind.less">site.northwind.less</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="site.organization.less">site.organization.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.rtl.css">site.rtl.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.theme.less">site.theme.less</ProjectItem>
             <Folder Name="slides" TargetFolderName="slides">
@@ -1494,10 +1319,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
-              <Folder Name="meeting" TargetFolderName="meeting">
-                <ProjectItem ReplaceParameters="true" TargetFileName="meeting.ru.json">meeting.ru.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="meeting.vi-VN.json">meeting.vi-VN.json</ProjectItem>
-              </Folder>
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.es.json">northwind.es.json</ProjectItem>
@@ -1508,10 +1329,6 @@
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.ru.json">northwind.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
-              </Folder>
-              <Folder Name="organization" TargetFolderName="organization">
-                <ProjectItem ReplaceParameters="true" TargetFileName="organization.ru.json">organization.ru.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="organization.vi-VN.json">organization.vi-VN.json</ProjectItem>
               </Folder>
               <Folder Name="samples" TargetFolderName="samples">
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.de.json">samples.de.json</ProjectItem>
