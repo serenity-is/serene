@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Supplier")]
-    [BasedOnRow(typeof(Entities.SupplierRow))]
+    [BasedOnRow(typeof(Entities.SupplierRow), CheckNames = true)]
     public class SupplierColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
@@ -22,7 +22,7 @@ namespace Serene.Northwind.Forms
         [Width(80)]
         public String Region { get; set; }
         [Width(130)]
-        [LookupEditor(typeof(Scripts.SupplierCountryLookup)), QuickFilter]
+        [LookupEditor(typeof(Lookups.SupplierCountryLookup)), QuickFilter]
         public String Country { get; set; }
         [Width(130)]
         public String City { get; set; }

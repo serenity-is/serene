@@ -28,7 +28,7 @@ namespace Serene.Northwind
             return ReportColumnConverter.ObjectTypeToList(typeof(Item));
         }
 
-        [BasedOnRow(typeof(Entities.SalesByCategoryRow))]
+        [BasedOnRow(typeof(Entities.SalesByCategoryRow), CheckNames = true)]
         public class Item
         {
             public String CategoryName { get; set; }

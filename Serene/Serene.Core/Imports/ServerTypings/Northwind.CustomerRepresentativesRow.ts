@@ -7,18 +7,12 @@
 
     export namespace CustomerRepresentativesRow {
         export const idProperty = 'RepresentativeId';
-        export const localTextPrefix = 'CustomerRepresentatives';
+        export const localTextPrefix = 'Northwind.CustomerRepresentatives';
 
-        export namespace Fields {
-            export declare const RepresentativeId: string;
-            export declare const CustomerId: string;
-            export declare const EmployeeId: string;
+        export declare const enum Fields {
+            RepresentativeId = "RepresentativeId",
+            CustomerId = "CustomerId",
+            EmployeeId = "EmployeeId"
         }
-
-        [
-            'RepresentativeId', 
-            'CustomerId', 
-            'EmployeeId'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

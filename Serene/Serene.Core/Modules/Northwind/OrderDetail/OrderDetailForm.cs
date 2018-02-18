@@ -5,7 +5,7 @@ namespace Serene.Northwind.Forms
     using System;
 
     [FormScript("Northwind.OrderDetail")]
-    [BasedOnRow(typeof(Entities.OrderDetailRow))]
+    [BasedOnRow(typeof(Entities.OrderDetailRow), CheckNames = true)]
     public class OrderDetailForm
     {
         public Int32 ProductID { get; set; }

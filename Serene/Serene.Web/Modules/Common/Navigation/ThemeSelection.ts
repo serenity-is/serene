@@ -1,15 +1,24 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
     export class ThemeSelection extends Serenity.Widget<any> {
         constructor(select: JQuery) {
             super(select);
 
             this.change(e => {
+                var path = Q.Config.applicationPath;
+                if (path && path != '/' && Q.endsWith(path, '/'))
+                    path = path.substr(0, path.length - 1);
+
                 $.cookie('ThemePreference', select.val(), {
-                    path: Q.Config.applicationPath,
+                    path: path,
                     expires: 365
                 });
+
+                var theme = select.val() || '';
+                var darkSidebar = theme.indexOf('light') < 0;
                 $('body').removeClass('skin-' + this.getCurrentTheme());
-                $('body').addClass('skin-' + select.val());
+                $('body').addClass('skin-' + theme)
+                    .toggleClass('dark-sidebar', darkSidebar)
+                    .toggleClass('light-sidebar', !darkSidebar);
             });
 
             Q.addOption(select, 'blue', Q.text('Site.Layout.ThemeBlue'));

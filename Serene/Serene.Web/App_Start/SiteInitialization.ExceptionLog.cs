@@ -37,8 +37,10 @@
             {
                 if (args.Error.Exception != null && args.Error is INotLoggedException)
                     args.Abort = true;
+                
+                if (args.Error.Cookies != null)
+                    args.Error.Cookies.Remove(FormsAuthentication.FormsCookieName);
 
-                args.Error.Cookies.Remove(FormsAuthentication.FormsCookieName);
                 ReplaceKey(args.Error.Form, "Password");
                 ReplaceKey(args.Error.Form, "PasswordConfirm");
             };
@@ -48,6 +50,9 @@
 
         private static void ReplaceKey(NameValueCollection collection, string key)
         {
+            if (collection == null)
+                return;
+
             var item = collection[key];
             if (item != null)
                 collection[item] = "***";

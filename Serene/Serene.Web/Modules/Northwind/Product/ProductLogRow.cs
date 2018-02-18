@@ -2,11 +2,12 @@
 namespace Serene.Northwind.Entities
 {
     using Serenity;
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
 
-    [ConnectionKey("Northwind")]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLog")]
     public sealed class ProductLogRow : Row, ICaptureLogRow
     {
         [Identity]
@@ -161,12 +162,6 @@ namespace Serene.Northwind.Entities
             public Int16Field UnitsInStock;
             public Int16Field UnitsOnOrder;
             public Int16Field ReorderLevel;
-
-            public RowFields()
-                : base("ProductLog")
-            {
-                LocalTextPrefix = "Northwind.ProductLog";
-            }
         }
     }
 }

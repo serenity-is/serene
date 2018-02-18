@@ -22,43 +22,24 @@
         export const idProperty = 'ProductLogID';
         export const localTextPrefix = 'Northwind.ProductLog';
 
-        export namespace Fields {
-            export declare const ProductLogID: string;
-            export declare const OperationType: string;
-            export declare const ChangingUserId: string;
-            export declare const ValidFrom: string;
-            export declare const ValidUntil: string;
-            export declare const ProductID: string;
-            export declare const ProductName: string;
-            export declare const ProductImage: string;
-            export declare const Discontinued: string;
-            export declare const SupplierID: string;
-            export declare const CategoryID: string;
-            export declare const QuantityPerUnit: string;
-            export declare const UnitPrice: string;
-            export declare const UnitsInStock: string;
-            export declare const UnitsOnOrder: string;
-            export declare const ReorderLevel: string;
+        export declare const enum Fields {
+            ProductLogID = "ProductLogID",
+            OperationType = "OperationType",
+            ChangingUserId = "ChangingUserId",
+            ValidFrom = "ValidFrom",
+            ValidUntil = "ValidUntil",
+            ProductID = "ProductID",
+            ProductName = "ProductName",
+            ProductImage = "ProductImage",
+            Discontinued = "Discontinued",
+            SupplierID = "SupplierID",
+            CategoryID = "CategoryID",
+            QuantityPerUnit = "QuantityPerUnit",
+            UnitPrice = "UnitPrice",
+            UnitsInStock = "UnitsInStock",
+            UnitsOnOrder = "UnitsOnOrder",
+            ReorderLevel = "ReorderLevel"
         }
-
-        [
-            'ProductLogID', 
-            'OperationType', 
-            'ChangingUserId', 
-            'ValidFrom', 
-            'ValidUntil', 
-            'ProductID', 
-            'ProductName', 
-            'ProductImage', 
-            'Discontinued', 
-            'SupplierID', 
-            'CategoryID', 
-            'QuantityPerUnit', 
-            'UnitPrice', 
-            'UnitsInStock', 
-            'UnitsOnOrder', 
-            'ReorderLevel'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

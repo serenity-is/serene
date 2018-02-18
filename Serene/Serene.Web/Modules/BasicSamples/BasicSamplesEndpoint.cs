@@ -19,7 +19,7 @@ namespace Serene.BasicSamples.Endpoints
         {
             var fld = OrderRow.Fields;
             var year = DateTime.Today.Year;
-            var startOfMonth = new DateTime(year, DateTime.Today.Month, 1);
+            var startOfMonth = new DateTime(2016, 10, 1);
             var startingFrom = startOfMonth.AddMonths(-11);
 
             var response = new OrdersByShipperResponse();

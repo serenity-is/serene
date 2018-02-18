@@ -5,7 +5,7 @@ namespace Serene.Northwind.Columns
     using System;
 
     [ColumnsScript("Northwind.Order")]
-    [BasedOnRow(typeof(Entities.OrderRow))]
+    [BasedOnRow(typeof(Entities.OrderRow), CheckNames = true)]
     public class OrderColumns
     {
         [EditLink, AlignRight, SortOrder(1, descending: true), Width(70)]
@@ -30,10 +30,10 @@ namespace Serene.Northwind.Columns
         [Width(140), ShipperFormatter, QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("multiple", true)]
         public String ShipViaCompanyName { get; set; }
 
-        [Width(100), QuickFilter(CssClass = "hidden-xs"), LookupEditor(typeof(Scripts.OrderShipCountryLookup))]
+        [Width(100), QuickFilter(CssClass = "hidden-xs"), LookupEditor(typeof(Lookups.OrderShipCountryLookup))]
         public String ShipCountry { get; set; }
 
-        [Width(100), LookupEditor(typeof(Scripts.OrderShipCityLookup))]
+        [Width(100), LookupEditor(typeof(Lookups.OrderShipCityLookup))]
         [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("CascadeFrom", "ShipCountry")]
         public String ShipCity { get; set; }
 

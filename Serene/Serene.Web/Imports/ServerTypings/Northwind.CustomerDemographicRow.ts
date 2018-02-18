@@ -10,17 +10,11 @@
         export const nameProperty = 'CustomerTypeID';
         export const localTextPrefix = 'Northwind.CustomerDemographic';
 
-        export namespace Fields {
-            export declare const ID: string;
-            export declare const CustomerTypeID: string;
-            export declare const CustomerDesc: string;
+        export declare const enum Fields {
+            ID = "ID",
+            CustomerTypeID = "CustomerTypeID",
+            CustomerDesc = "CustomerDesc"
         }
-
-        [
-            'ID', 
-            'CustomerTypeID', 
-            'CustomerDesc'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

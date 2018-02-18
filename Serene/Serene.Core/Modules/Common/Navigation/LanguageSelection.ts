@@ -6,8 +6,11 @@
             currentLanguage = Q.coalesce(currentLanguage, 'en');
 
             this.change(e => {
+                var path = Q.Config.applicationPath;
+                if (path && path != '/' && Q.endsWith(path, '/'))
+                    path = path.substr(0, path.length - 1);
                 $.cookie('LanguagePreference', select.val(), {
-                    path: Q.Config.applicationPath,
+                    path: path,
                     expires: 365
                 });
                 window.location.reload(true);

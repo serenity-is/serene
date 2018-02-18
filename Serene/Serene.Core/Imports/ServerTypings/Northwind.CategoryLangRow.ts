@@ -12,20 +12,12 @@
         export const nameProperty = 'CategoryName';
         export const localTextPrefix = 'Northwind.CategoryLang';
 
-        export namespace Fields {
-            export declare const Id: string;
-            export declare const CategoryId: string;
-            export declare const LanguageId: string;
-            export declare const CategoryName: string;
-            export declare const Description: string;
+        export declare const enum Fields {
+            Id = "Id",
+            CategoryId = "CategoryId",
+            LanguageId = "LanguageId",
+            CategoryName = "CategoryName",
+            Description = "Description"
         }
-
-        [
-            'Id', 
-            'CategoryId', 
-            'LanguageId', 
-            'CategoryName', 
-            'Description'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

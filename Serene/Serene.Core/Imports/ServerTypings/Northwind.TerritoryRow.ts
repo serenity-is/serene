@@ -17,20 +17,12 @@
             return Q.getLookup<TerritoryRow>('Northwind.Territory');
         }
 
-        export namespace Fields {
-            export declare const ID: string;
-            export declare const TerritoryID: string;
-            export declare const TerritoryDescription: string;
-            export declare const RegionID: string;
-            export declare const RegionDescription: string;
+        export declare const enum Fields {
+            ID = "ID",
+            TerritoryID = "TerritoryID",
+            TerritoryDescription = "TerritoryDescription",
+            RegionID = "RegionID",
+            RegionDescription = "RegionDescription"
         }
-
-        [
-            'ID', 
-            'TerritoryID', 
-            'TerritoryDescription', 
-            'RegionID', 
-            'RegionDescription'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

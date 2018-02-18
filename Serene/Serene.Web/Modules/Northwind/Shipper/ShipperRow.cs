@@ -7,10 +7,11 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), TableName("Shippers"), DisplayName("Shippers"), InstanceName("Shipper"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Shippers")]
+    [DisplayName("Shippers"), InstanceName("Shipper")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Northwind.Shipper")]
+    [LookupScript]
     public sealed class ShipperRow : Row, IIdRow, INameRow
     {
         [DisplayName("Shipper Id"), Identity]
@@ -56,10 +57,6 @@ namespace Serene.Northwind.Entities
             public Int32Field ShipperID;
             public StringField CompanyName;
             public StringField Phone;
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Shipper";
-            }
         }
     }
 }

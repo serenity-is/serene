@@ -1,11 +1,11 @@
 ﻿
-namespace Serene.Northwind.Scripts
+namespace Serene.Northwind.Lookups
 {
     using Entities;
     using Serenity.ComponentModel;
     using Serenity.Web;
 
-    [LookupScript("Northwind.Customer")]
+    [LookupScript]
     public class CustomerLookup : RowLookupScript<CustomerRow>
     {
         public CustomerLookup()

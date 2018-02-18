@@ -1598,7 +1598,9 @@ button.ui-state-hover .ui-button-text {
   display: inline-block;
   width: 15px;
   height: 15px;
-  margin: 2px 3px 0 0;
+  margin-right: 4px;
+  position: relative;
+  top: 3px;
   cursor: pointer;
 }
 .s-Form .check-box.readonly {
@@ -1628,6 +1630,15 @@ button.ui-state-hover .ui-button-text {
 }
 .check-box.readonly {
   cursor: default;
+}
+.s-CheckLookupEditor .grid-container {
+  margin: 2px;
+}
+.s-CheckTreeEditor.s-CheckLookupEditor.s-DataGrid .s-TreeToggle {
+  display: none;
+}
+.s-PermissionCheckEditor .check-box {
+  top: -1px;
 }
 .s-CheckTreeEditor.s-DataGrid .grid-container {
   height: 130px;
@@ -1949,7 +1960,7 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   padding: 0;
 }
 .s-AlertDialog .ui-dialog-content:before {
-  content: "\f165";
+  content: "\f06a";
   color: #dd4b39;
 }
 .s-AlertDialog .ui-dialog-titlebar {

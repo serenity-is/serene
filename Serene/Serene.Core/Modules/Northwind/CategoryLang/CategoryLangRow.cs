@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("CategoryLang"), InstanceName("CategoryLang"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("CategoryLang")]
+    [DisplayName("CategoryLang"), InstanceName("CategoryLang")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
     public sealed class CategoryLangRow : Row, IIdRow, INameRow, ILocalizationRow
@@ -75,12 +77,6 @@ namespace Serene.Northwind.Entities
             public Int32Field LanguageId;
             public StringField CategoryName;
             public StringField Description;
-
-            public RowFields()
-                : base("CategoryLang")
-            {
-                LocalTextPrefix = "Northwind.CategoryLang";
-            }
         }
     }
 }

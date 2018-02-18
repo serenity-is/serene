@@ -5,7 +5,7 @@ namespace Serene.Northwind.Forms
     using System;
 
     [ColumnsScript("Northwind.OrderDetail")]
-    [BasedOnRow(typeof(Entities.OrderDetailRow))]
+    [BasedOnRow(typeof(Entities.OrderDetailRow), CheckNames = true)]
     public class OrderDetailColumns
     {
         [EditLink, Width(200)]

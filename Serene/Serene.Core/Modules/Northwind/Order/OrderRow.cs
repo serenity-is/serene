@@ -8,7 +8,8 @@ namespace Serene.Northwind.Entities
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), TableName("Orders"), DisplayName("Orders"), InstanceName("Order"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Orders")]
+    [DisplayName("Orders"), InstanceName("Order")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class OrderRow : Row, IIdRow, INameRow
@@ -269,11 +270,6 @@ namespace Serene.Northwind.Entities
 
             public Int32Field ShippingState;
             public RowListField<OrderDetailRow> DetailList;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Order";
-            }
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Common.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("User Preferences"), InstanceName("UserPreference"), TwoLevelCached]
+    [ConnectionKey("Default"), Module("Common"), TableName("UserPreferences")]
+    [DisplayName("User Preferences"), InstanceName("UserPreference")]
     [ReadPermission("")]
     [ModifyPermission("")]
     public sealed class UserPreferenceRow : Row, IIdRow, INameRow
@@ -70,12 +72,6 @@ namespace Serene.Common.Entities
             public readonly StringField PreferenceType;
             public readonly StringField Name;
             public readonly StringField Value;
-
-            public RowFields()
-                : base("UserPreferences")
-            {
-                LocalTextPrefix = "Common.UserPreference";
-            }
         }
     }
 }

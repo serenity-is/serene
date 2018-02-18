@@ -25,7 +25,7 @@
 
         var sb = new System.Text.StringBuilder();
         sb.Append("<li class='" + klass + "'><a href='" + HtmlEncoder.Encode(sectionUrl) + "' " + target + ">" +
-        "<i class='fa " + icon + "'></i><span>" + HtmlEncoder.Encode(title) + "</span>" + (!item.Children.IsEmptyOrNull() ? "<i class='fa fa-angle-left pull-right'></i>" : "") + "</a>");
+        "<i class='nav-icon fa " + icon + "'></i><span>" + HtmlEncoder.Encode(title) + "</span>" + (!item.Children.IsEmptyOrNull() ? "<i class='fa fa-angle-left pull-right'></i>" : "") + "</a>");
 
         if (item.Children.Count > 0) {
             sb.Append("<ul class='treeview-menu'>");
@@ -55,7 +55,7 @@
         width = width || (screen.availWidth - 10);
         var x = (screen.availWidth - width) / 2 - 5; if (x < 0) x = 0;
         var y = (screen.availHeight - height) / 2 - 25; if (y < 0) y = 0;
-        var winPopup = window.open(url, "", "status=0, toolbar=0, width=" + width + ", height=" + height +
+        var winPopup = window.open(url, "", "status=0, toolbar=0, width=" + width + ", height=" + height + 
             ", scrollbars=1, resizable=yes, left=" + x + ", top=" + y);
     }
 </script>

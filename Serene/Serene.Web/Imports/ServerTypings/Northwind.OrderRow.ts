@@ -35,75 +35,38 @@
         export const idProperty = 'OrderID';
         export const nameProperty = 'CustomerID';
         export const localTextPrefix = 'Northwind.Order';
-        export const lookupKey = 'Northwind.OrderShipCity';
 
-        export function getLookup(): Q.Lookup<OrderRow> {
-            return Q.getLookup<OrderRow>('Northwind.OrderShipCity');
+        export declare const enum Fields {
+            OrderID = "OrderID",
+            CustomerID = "CustomerID",
+            EmployeeID = "EmployeeID",
+            OrderDate = "OrderDate",
+            RequiredDate = "RequiredDate",
+            ShippedDate = "ShippedDate",
+            ShipVia = "ShipVia",
+            Freight = "Freight",
+            ShipName = "ShipName",
+            ShipAddress = "ShipAddress",
+            ShipCity = "ShipCity",
+            ShipRegion = "ShipRegion",
+            ShipPostalCode = "ShipPostalCode",
+            ShipCountry = "ShipCountry",
+            CustomerCompanyName = "CustomerCompanyName",
+            CustomerContactName = "CustomerContactName",
+            CustomerContactTitle = "CustomerContactTitle",
+            CustomerCity = "CustomerCity",
+            CustomerRegion = "CustomerRegion",
+            CustomerCountry = "CustomerCountry",
+            CustomerPhone = "CustomerPhone",
+            CustomerFax = "CustomerFax",
+            EmployeeFullName = "EmployeeFullName",
+            EmployeeGender = "EmployeeGender",
+            EmployeeReportsToFullName = "EmployeeReportsToFullName",
+            ShipViaCompanyName = "ShipViaCompanyName",
+            ShipViaPhone = "ShipViaPhone",
+            ShippingState = "ShippingState",
+            DetailList = "DetailList"
         }
-
-        export namespace Fields {
-            export declare const OrderID: string;
-            export declare const CustomerID: string;
-            export declare const EmployeeID: string;
-            export declare const OrderDate: string;
-            export declare const RequiredDate: string;
-            export declare const ShippedDate: string;
-            export declare const ShipVia: string;
-            export declare const Freight: string;
-            export declare const ShipName: string;
-            export declare const ShipAddress: string;
-            export declare const ShipCity: string;
-            export declare const ShipRegion: string;
-            export declare const ShipPostalCode: string;
-            export declare const ShipCountry: string;
-            export declare const CustomerCompanyName: string;
-            export declare const CustomerContactName: string;
-            export declare const CustomerContactTitle: string;
-            export declare const CustomerCity: string;
-            export declare const CustomerRegion: string;
-            export declare const CustomerCountry: string;
-            export declare const CustomerPhone: string;
-            export declare const CustomerFax: string;
-            export declare const EmployeeFullName: string;
-            export declare const EmployeeGender: string;
-            export declare const EmployeeReportsToFullName: string;
-            export declare const ShipViaCompanyName: string;
-            export declare const ShipViaPhone: string;
-            export declare const ShippingState: string;
-            export declare const DetailList: string;
-        }
-
-        [
-            'OrderID', 
-            'CustomerID', 
-            'EmployeeID', 
-            'OrderDate', 
-            'RequiredDate', 
-            'ShippedDate', 
-            'ShipVia', 
-            'Freight', 
-            'ShipName', 
-            'ShipAddress', 
-            'ShipCity', 
-            'ShipRegion', 
-            'ShipPostalCode', 
-            'ShipCountry', 
-            'CustomerCompanyName', 
-            'CustomerContactName', 
-            'CustomerContactTitle', 
-            'CustomerCity', 
-            'CustomerRegion', 
-            'CustomerCountry', 
-            'CustomerPhone', 
-            'CustomerFax', 
-            'EmployeeFullName', 
-            'EmployeeGender', 
-            'EmployeeReportsToFullName', 
-            'ShipViaCompanyName', 
-            'ShipViaPhone', 
-            'ShippingState', 
-            'DetailList'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

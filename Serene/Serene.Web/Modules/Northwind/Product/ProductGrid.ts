@@ -1,5 +1,7 @@
 ﻿namespace Serene.Northwind {
 
+    import fld = ProductRow.Fields;
+
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.filterable()
     export class ProductGrid extends Serenity.EntityGrid<ProductRow, any> {
@@ -114,7 +116,6 @@
          * Sorry but you cannot use LookupEditor, e.g. Select2 here, only possible is a SELECT element
          */
         private selectFormatter(ctx: Slick.FormatterContext, idField: string, lookup: Q.Lookup<any>) {
-            var fld = ProductRow.Fields;
             var klass = 'edit';
             var item = ctx.item as ProductRow;
             var pending = this.pendingChanges[item.ProductID];
@@ -152,7 +153,6 @@
             var columns = super.getColumns();
             var num = ctx => this.numericInputFormatter(ctx);
             var str = ctx => this.stringInputFormatter(ctx);
-            var fld = ProductRow.Fields;
 
             Q.first(columns, x => x.field === 'QuantityPerUnit').format = str;
 

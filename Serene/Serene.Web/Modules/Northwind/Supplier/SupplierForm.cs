@@ -5,7 +5,7 @@ namespace Serene.Northwind.Forms
     using System;
 
     [FormScript("Northwind.Supplier")]
-    [BasedOnRow(typeof(Entities.SupplierRow))]
+    [BasedOnRow(typeof(Entities.SupplierRow), CheckNames = true)]
     public class SupplierForm
     {
         public String CompanyName { get; set; }

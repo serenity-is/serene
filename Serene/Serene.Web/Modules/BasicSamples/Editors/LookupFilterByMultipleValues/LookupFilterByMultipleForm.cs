@@ -6,7 +6,7 @@ namespace Serene.BasicSamples.Forms
     using System.ComponentModel;
 
     [FormScript("BasicSamples.LookupFilterByMultiple")]
-    [BasedOnRow(typeof(Northwind.Entities.ProductRow))]
+    [BasedOnRow(typeof(Northwind.Entities.ProductRow), CheckNames = true)]
     public class LookupFilterByMultipleForm
     {
         [Category("General")]

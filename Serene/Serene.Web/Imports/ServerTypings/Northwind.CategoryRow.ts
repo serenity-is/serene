@@ -16,19 +16,12 @@
             return Q.getLookup<CategoryRow>('Northwind.Category');
         }
 
-        export namespace Fields {
-            export declare const CategoryID: string;
-            export declare const CategoryName: string;
-            export declare const Description: string;
-            export declare const Picture: string;
+        export declare const enum Fields {
+            CategoryID = "CategoryID",
+            CategoryName = "CategoryName",
+            Description = "Description",
+            Picture = "Picture"
         }
-
-        [
-            'CategoryID', 
-            'CategoryName', 
-            'Description', 
-            'Picture'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

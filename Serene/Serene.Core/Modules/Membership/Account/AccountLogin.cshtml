@@ -58,13 +58,13 @@
                 font-weight: 700;
         }
 
-       #LoginPanel .caption {
+        #LoginPanel .caption {
             color: #ececec;
             font-weight: 700;
             text-shadow: 0 1px 1px #333;
         }
 
-       #LoginPanel .actions {
+        #LoginPanel .actions {
             padding-right: 28px;
         }
 
@@ -188,6 +188,8 @@
 
 <script type="text/javascript">
 
+var loginPanel;
+
 var LoginPanel = (function (_super) {
     __extends(LoginPanel, _super);
     function LoginPanel(container) {
@@ -215,17 +217,17 @@ var LoginPanel = (function (_super) {
                     url: Q.resolveUrl('~/Account/Login'),
                     request: request,
                     onSuccess: function (response) {
-                        var q = Q.parseQueryString();
-                        var returnUrl = q['returnUrl'] || q['ReturnUrl'];
-                        if (returnUrl) {
-                            var hash = window.location.hash;
-                            if (hash != null && hash != '#')
-                                returnUrl += hash;
-                            window.location.href = returnUrl;
+                        _this.redirectToReturnUrl();
+                    },
+                    onError: function (response) {
+                        if (response != null && response.Error != null && !Q.isEmptyOrNull(response.Error.Message)) {
+                            Q.notifyError(response.Error.Message);
+                            loginPanel.byId('Password').focus();
+
+                            return;
                         }
-                        else {
-                            window.location.href = Q.resolveUrl('~/');
-                        }
+
+                        Q.ErrorHandling.showServiceError(response.Error);
                     }
                 });
             });
@@ -234,18 +236,31 @@ var LoginPanel = (function (_super) {
     }
     LoginPanel.prototype.getTemplateName = function () { return 'LoginPanel'; };
     LoginPanel.prototype.getFormKey = function () { return "Membership.Login"; };
+    LoginPanel.prototype.redirectToReturnUrl = function () {
+        var q = Q.parseQueryString();
+        var returnUrl = q['returnUrl'] || q['ReturnUrl'];
+        if (returnUrl) {
+            var hash = window.location.hash;
+            if (hash != null && hash != '#')
+                returnUrl += hash;
+            window.location.href = returnUrl;
+        }
+        else {
+            window.location.href = Q.resolveUrl('~/');
+        }
+    };
     return LoginPanel;
 }(Serenity.PropertyPanel));
 
 jQuery(function() {
-    new LoginPanel($('#LoginPanel')).init();
+    loginPanel = new LoginPanel($('#LoginPanel')).init();
 
 @if (ViewData["Activated"] != null)
 {
     <text>
     $(function() { 
-        $('#Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
-        $('#Password').focus();
+        loginPanel.byId('Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
+        loginPanel.byId('Password').focus();
     });
     </text>
 }

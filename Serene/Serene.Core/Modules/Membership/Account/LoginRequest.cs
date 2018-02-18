@@ -5,7 +5,7 @@ namespace Serene.Membership
     using Serenity.Services;
 
     [FormScript("Membership.Login")]
-    [BasedOnRow(typeof(Administration.Entities.UserRow))]
+    [BasedOnRow(typeof(Administration.Entities.UserRow), CheckNames = true)]
     public class LoginRequest : ServiceRequest
     {
         [Placeholder("default username is 'admin'")]

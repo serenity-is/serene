@@ -8,10 +8,11 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), TableName("Employees"), DisplayName("Employees"), InstanceName("Employee"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Employees")]
+    [DisplayName("Employees"), InstanceName("Employee")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Northwind.Employee")]
+    [LookupScript]
     public sealed class EmployeeRow : Row, IIdRow, INameRow
     {
         [DisplayName("Employee Id"), Identity]
@@ -341,11 +342,6 @@ namespace Serene.Northwind.Entities
             public StringField ReportsToPhotoPath;
 
             public Int32Field Gender;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Employee";
-            }
         }
     }
 }

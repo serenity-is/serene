@@ -5,7 +5,7 @@ namespace Serene.Northwind.Forms
     using System;
 
     [FormScript("Northwind.Category")]
-    [BasedOnRow(typeof(Entities.CategoryRow))]
+    [BasedOnRow(typeof(Entities.CategoryRow), CheckNames = true)]
     public class CategoryForm
     {
         public String CategoryName { get; set; }

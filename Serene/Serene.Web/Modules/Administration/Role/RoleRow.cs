@@ -7,10 +7,11 @@ namespace Serene.Administration.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Roles"), InstanceName("Role"), TwoLevelCached]
+    [ConnectionKey("Default"), Module("Administration"), TableName("Roles")]
+    [DisplayName("Roles"), InstanceName("Role")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    [LookupScript("Administration.Role")]
+    [LookupScript]
     public sealed class RoleRow : Row, IIdRow, INameRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
@@ -49,12 +50,6 @@ namespace Serene.Administration.Entities
         {
             public Int32Field RoleId;
             public StringField RoleName;
-
-            public RowFields()
-                : base("Roles")
-            {
-                LocalTextPrefix = "Administration.Role";
-            }
         }
     }
 }

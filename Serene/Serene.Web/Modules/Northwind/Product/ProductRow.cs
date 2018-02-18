@@ -8,10 +8,11 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), TableName("Products"), DisplayName("Products"), InstanceName("Product"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Products")]
+    [DisplayName("Products"), InstanceName("Product")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Northwind.Product")]
+    [LookupScript]
     [CaptureLog(typeof(ProductLogRow))]
     [LocalizationRow(typeof(ProductLangRow))]
     public sealed class ProductRow : Row, IIdRow, INameRow
@@ -240,11 +241,6 @@ namespace Serene.Northwind.Entities
             public StringField CategoryName;
             public StringField CategoryDescription;
             public StreamField CategoryPicture;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Product";
-            }
         }
     }
 }

@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Sales by Category"), InstanceName("Sales by Category"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("[Sales by Category]")]
+    [DisplayName("Sales by Category"), InstanceName("Sales by Category")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
     public sealed class SalesByCategoryRow : Row, INameRow
@@ -57,12 +59,6 @@ namespace Serene.Northwind.Entities
             public StringField CategoryName;
             public StringField ProductName;
             public DecimalField ProductSales;
-
-            public RowFields()
-                : base("[Sales by Category]")
-            {
-                LocalTextPrefix = "Northwind.SalesByCategory";
-            }
         }
     }
 }

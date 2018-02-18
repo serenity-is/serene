@@ -5,7 +5,7 @@ namespace Serene.Administration.Forms
     using System;
 
     [FormScript("Administration.Language")]
-    [BasedOnRow(typeof(Entities.LanguageRow))]
+    [BasedOnRow(typeof(Entities.LanguageRow), CheckNames = true)]
     public class LanguageForm
     {
         public String LanguageId { get; set; }

@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Territory")]
-    [BasedOnRow(typeof(Entities.TerritoryRow))]
+    [BasedOnRow(typeof(Entities.TerritoryRow), CheckNames = true)]
     public class TerritoryColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Width(100)]

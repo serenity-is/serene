@@ -2,6 +2,8 @@
 
 namespace Serene.BasicSamples {
 
+    import fld = Northwind.OrderRow.Fields;
+
     @Serenity.Decorators.registerClass()
     export class CustomLinksInGrid extends Northwind.OrderGrid {
 
@@ -16,7 +18,6 @@ namespace Serene.BasicSamples {
         protected getColumns(): Slick.Column[] {
             var columns = super.getColumns();
 
-            var fld = Northwind.OrderRow.Fields;
 
             Q.first(columns, x => x.field == fld.CustomerCompanyName).format =
                 ctx => `<a href="javascript:;" class="customer-link">${Q.htmlEncode(ctx.value)}</a>`;

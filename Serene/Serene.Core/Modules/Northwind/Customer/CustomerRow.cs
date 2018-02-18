@@ -8,13 +8,14 @@ namespace Serene.Northwind.Entities
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), TableName("Customers"), DisplayName("Customers"), InstanceName("Customer"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Customers")]
+    [DisplayName("Customers"), InstanceName("Customer")]
     [ReadPermission(PermissionKeys.Customer.View)]
     [ModifyPermission(PermissionKeys.Customer.Modify)]
     [DeletePermission(PermissionKeys.Customer.Delete)]
     [LeftJoin("cd", "CustomerDetails", "cd.[ID] = t0.[ID]", RowType = typeof(CustomerDetailsRow), TitlePrefix = "")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
-    [LookupScript(typeof(Scripts.CustomerLookup))]
+    [LookupScript(typeof(Lookups.CustomerLookup))]
     public sealed class CustomerRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]
@@ -59,7 +60,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Address[this] = value; }
         }
 
-        [DisplayName("City"), Size(15), LookupEditor(typeof(Scripts.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
+        [DisplayName("City"), Size(15), LookupEditor(typeof(Lookups.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
         public String City
         {
             get { return Fields.City[this]; }
@@ -80,7 +81,7 @@ namespace Serene.Northwind.Entities
             set { Fields.PostalCode[this] = value; }
         }
 
-        [DisplayName("Country"), Size(15), LookupEditor(typeof(Scripts.CustomerCountryLookup), AutoComplete = true)]
+        [DisplayName("Country"), Size(15), LookupEditor(typeof(Lookups.CustomerCountryLookup), AutoComplete = true)]
         public String Country
         {
             get { return Fields.Country[this]; }
@@ -182,11 +183,6 @@ namespace Serene.Northwind.Entities
             public Int32Field LastContactedBy;
             public StringField Email;
             public BooleanField SendBulletin;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Customer";
-            }
         }
     }
 }

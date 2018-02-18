@@ -15,17 +15,11 @@
             return Q.getLookup<LanguageRow>('Administration.Language');
         }
 
-        export namespace Fields {
-            export declare const Id: string;
-            export declare const LanguageId: string;
-            export declare const LanguageName: string;
+        export declare const enum Fields {
+            Id = "Id",
+            LanguageId = "LanguageId",
+            LanguageName = "LanguageName"
         }
-
-        [
-            'Id', 
-            'LanguageId', 
-            'LanguageName'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

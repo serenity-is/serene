@@ -15,17 +15,11 @@
             return Q.getLookup<ShipperRow>('Northwind.Shipper');
         }
 
-        export namespace Fields {
-            export declare const ShipperID: string;
-            export declare const CompanyName: string;
-            export declare const Phone: string;
+        export declare const enum Fields {
+            ShipperID = "ShipperID",
+            CompanyName = "CompanyName",
+            Phone = "Phone"
         }
-
-        [
-            'ShipperID', 
-            'CompanyName', 
-            'Phone'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -54,7 +54,7 @@ body {
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 230px;
+  margin-left: 250px;
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
@@ -80,10 +80,10 @@ body {
   .sidebar-open .content-wrapper,
   .sidebar-open .right-side,
   .sidebar-open .main-footer {
-    -webkit-transform: translate(230px, 0);
-    -ms-transform: translate(230px, 0);
-    -o-transform: translate(230px, 0);
-    transform: translate(230px, 0);
+    -webkit-transform: translate(250px, 0);
+    -ms-transform: translate(250px, 0);
+    -o-transform: translate(250px, 0);
+    transform: translate(250px, 0);
   }
 }
 .content-wrapper,
@@ -193,7 +193,7 @@ a:focus {
   -o-transition: margin-left 0.3s ease-in-out;
   transition: margin-left 0.3s ease-in-out;
   margin-bottom: 0;
-  margin-left: 230px;
+  margin-left: 250px;
   border: none;
   min-height: 50px;
   border-radius: 0;
@@ -287,7 +287,7 @@ a:focus {
   font-size: 20px;
   line-height: 50px;
   text-align: center;
-  width: 230px;
+  width: 250px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
   font-weight: 300;
@@ -413,7 +413,7 @@ a:focus {
   left: 0;
   padding-top: 50px;
   min-height: 100%;
-  width: 230px;
+  width: 250px;
   z-index: 810;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
   -moz-transition: -moz-transform 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -429,19 +429,19 @@ a:focus {
 @media (max-width: 767px) {
   .main-sidebar,
   .left-side {
-    -webkit-transform: translate(-230px, 0);
-    -ms-transform: translate(-230px, 0);
-    -o-transform: translate(-230px, 0);
-    transform: translate(-230px, 0);
+    -webkit-transform: translate(-250px, 0);
+    -ms-transform: translate(-250px, 0);
+    -o-transform: translate(-250px, 0);
+    transform: translate(-250px, 0);
   }
 }
 @media (min-width: 768px) {
   .sidebar-collapse .main-sidebar,
   .sidebar-collapse .left-side {
-    -webkit-transform: translate(-230px, 0);
-    -ms-transform: translate(-230px, 0);
-    -o-transform: translate(-230px, 0);
-    transform: translate(-230px, 0);
+    -webkit-transform: translate(-250px, 0);
+    -ms-transform: translate(-250px, 0);
+    -o-transform: translate(-250px, 0);
+    transform: translate(-250px, 0);
   }
 }
 @media (max-width: 767px) {
@@ -620,7 +620,7 @@ a:focus {
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu {
     display: block!important;
     position: absolute;
-    width: 180px;
+    width: 200px;
     left: 50px;
   }
   .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span {
@@ -701,8 +701,8 @@ a:focus {
 .control-sidebar-bg,
 .control-sidebar {
   top: 0;
-  right: -230px;
-  width: 230px;
+  right: -250px;
+  width: 250px;
   -webkit-transition: right 0.3s ease-in-out;
   -o-transition: right 0.3s ease-in-out;
   transition: right 0.3s ease-in-out;
@@ -732,7 +732,7 @@ a:focus {
   .control-sidebar-open .content-wrapper,
   .control-sidebar-open .right-side,
   .control-sidebar-open .main-footer {
-    margin-right: 230px;
+    margin-right: 250px;
   }
 }
 .nav-tabs.control-sidebar-tabs > li:first-of-type > a,
@@ -7530,10 +7530,6 @@ section.content > .s-DataGrid {
     animation: fa-spin 5s infinite linear reverse;
   }
 }
-.main-header .logo b {
-  float: left;
-  margin-left: 4px;
-}
 .skin-black .main-header .logo i,
 .skin-black-light .main-header .logo i {
   background: url(images/serenity-logo-g-40.png) no-repeat center center;
@@ -7687,6 +7683,13 @@ section.content > .s-DataGrid {
 .s-ReportPage ul ul {
   display: none;
 }
+.inplace-button b {
+  text-align: center;
+  font-size: 17px;
+}
+.ui-dialog-buttonpane .ui-button:hover {
+  background-color: #b7b7b7;
+}
 .reset-box-sizing,
 .reset-box-sizing *,
 .reset-box-sizing *:before,
@@ -7797,44 +7800,6 @@ section.content > .s-DataGrid {
   width: 700px;
   min-height: 400px;
   height: 400px;
-}
-.s-BasicSamples-ResponsiveDialog > .size {
-  width: 750px;
-  height: 550px;
-}
-.s-BasicSamples-ResponsiveDialog .caption {
-  width: 120px;
-}
-.s-BasicSamples-MultiColumnResponsiveDialog > .size {
-  width: 850px;
-  height: 650px;
-}
-.s-BasicSamples-MultiColumnResponsiveDialog .caption {
-  width: 130px;
-}
-@media (min-width: 768px) {
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.OrderDate,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.RequiredDate,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipName,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipAddress,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipCity,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipRegion,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipPostalCode,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipCountry {
-    flex: auto;
-    min-width: 50%;
-  }
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShippedDate,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipVia,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.Freight {
-    flex: auto;
-    min-width: 33%;
-  }
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShippedDate .caption,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.ShipVia .caption,
-  .s-BasicSamples-MultiColumnResponsiveDialog .field.Freight .caption {
-    width: 90px;
-  }
 }
 .s-BasicSamples-CloneableEntityDialog > .size {
   width: 850px;
@@ -8694,7 +8659,7 @@ section.content > .s-DataGrid {
 }
 .employee-symbol {
   padding: 2px 0px 2px 20px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BOAVTJAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC42/Ixj3wAAAd9JREFUOE9joDmQYmDgAuIkIJ4HxSA2F1SaeCDJwJDupK19riI9/VtRYuI3KxWVcyAxqDTxQJyBYXO4m9vP9LCw//F+fv99LC1/gsSg0sQDMQaGK6eWNfz/dmYmGIPYIDGoNHFghjdTozwf3/tfVxb+/3p6BhiD2CAxkBxUGWEwzYepudKW/QjIgI9HJoIxiA0SA8lBlREHJnoyzXu8ue7bq90d/0EYxAaJQaWJB32uDG4bi02vPN7cADSk4T+IDRKDSpMAorYItjozHNtQ6/UfhEFskBhUlkgQu8uEKWFfVXeW17MH66r/gzCIDRIDyUFV4QHh25SZYndlM8Xt6J155sf/rsV7/7890AvGnYv3/J9x+sd/kBxIDUgtVBcaiNpoJ5W9a4Fn/4UTEw5/BGuqWvvg/6pVq8AYxJ5x+vv//kMf/3v1XzwBUgvSA9WNAEzhKyaXrb7/tX7T0/9tO9+ADSpdcfv/nz9/wLhk+S2wQa07Xv8HqSlf++ArSA9UOwIw+83cWL3uwf+6jU/gBuUvuvr/xYsXf0E4b+EVuEEgNTXrH/4H6YFqRwBmj554IN7D7DVpG6PfjHUMAfOXMoQsnaerq5sKwgxBS+czBCxYBpIDqQGrBeqBah90gIEBAPJoJowtMqatAAAAAElFTkSuQmCC) no-repeat -217px 2px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BOAVTJAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC42/Ixj3wAAAd9JREFUOE9joDmQYmDgAuIkIJ4HxSA2F1SaeCDJwJDupK19riI9/VtRYuI3KxWVcyAxqDTxQJyBYXO4m9vP9LCw//F+fv99LC1/gsSg0sQDMQaGK6eWNfz/dmYmGIPYIDGoNHFghjdTozwf3/tfVxb+/3p6BhiD2CAxkBxUGWEwzYepudKW/QjIgI9HJoIxiA0SA8lBlREHJnoyzXu8ue7bq90d/0EYxAaJQaWJB32uDG4bi02vPN7cADSk4T+IDRKDSpMAorYItjozHNtQ6/UfhEFskBhUlkgQu8uEKWFfVXeW17MH66r/gzCIDRIDyUFV4QHh25SZYndlM8Xt6J155sf/rsV7/7890AvGnYv3/J9x+sd/kBxIDUgtVBcaiNpoJ5W9a4Fn/4UTEw5/BGuqWvvg/6pVq8AYxJ5x+vv//kMf/3v1XzwBUgvSA9WNAEzhKyaXrb7/tX7T0/9tO9+ADSpdcfv/nz9/wLhk+S2wQa07Xv8HqSlf++ArSA9UOwIw+83cWL3uwf+6jU/gBuUvuvr/xYsXf0E4b+EVuEEgNTXrH/4H6YFqRwBmj554IN7D7DVpG6PfjHUMAfOXMoQsnaerq5sKwgxBS+czBCxYBpIDqQGrBeqBah90gIEBAPJoJowtMqatAAAAAElFTkSuQmCC) no-repeat;
 }
 .employee-symbol.female {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BOAVTJAAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC42/Ixj3wAAAfxJREFUOE+1k0FIFHEYxd/ByEohTxGBgYcKcw/lKV00OkRpJCvkMq7iumAH7RILXdxCg6IVOmyiFYQiZNQQ20IRtXWo8OYcLSMTxF1kkxIVFnZz4uv/Zv9tdIhRqAc/+Pjeex/DDIP/roHDKLvlRXi4AUnCmTttb17XahEeb62cf9t/Kp+8dCI/embPF+60vTnVAfvDh5BMXDiWf9RzVO6eq5L4xQbhjp6Oues4EAjuhRU7u0+eR07L8uuopJ4NCnf0dMxdJ0sQa9kFaz7eL9npOw7fZyaEO3o65i7fdsRbSmHxwNpUzIEzd/R0zF1GGd61l6snenwlv/zqhhDO3NHTMXeFdsMiI621C6mnA0I4/9rrmLuul+PA/R3wDzZiLnG5SQhn7ujpmLtSQGMauD3ZXrO0oF44mTRqlrijp2N/13ug+hNwdQ4w7aEh+XjekG9vbjpwtqNRoccMs7r2p6aBppmKihfp+vrZXCQiG+rQot8vpmk6LLa1yYY6RC/t9c4yy46u/5b6FOZXw8itd3dLtq/POfTZ5xPbth0481C2t1fWQyFZ6ejIsaPrRe18CEytBgKy1tVVPPShuVkymcwPwrl4KBiU1c5OYYfdwomCjoTUfzoKWPcUDxQJxUuFx+PpIZyfaG9MwSw77BZOFLRNUaU4uEXYYfdfCfgJeO8lYCagTZ8AAAAASUVORK5CYII=);

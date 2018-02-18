@@ -1,13 +1,26 @@
 ﻿namespace Serene.BasicSamples {
-    export class DragDropSampleForm extends Serenity.PrefixedContext {
-        static formKey = 'BasicSamples.DragDropSample';
-
-    }
-
     export interface DragDropSampleForm {
         Title: Serenity.StringEditor;
     }
 
-    [['Title', () => Serenity.StringEditor]].forEach(x => Object.defineProperty(DragDropSampleForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    export class DragDropSampleForm extends Serenity.PrefixedContext {
+        static formKey = 'BasicSamples.DragDropSample';
+        private static init: boolean;
+
+        constructor(prefix: string) {
+            super(prefix);
+
+            if (!DragDropSampleForm.init)  {
+                DragDropSampleForm.init = true;
+
+                var s = Serenity;
+                var w0 = s.StringEditor;
+
+                Q.initFormType(DragDropSampleForm, [
+                    'Title', w0
+                ]);
+            }
+        }
+    }
 }
 

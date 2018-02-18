@@ -38,7 +38,7 @@ namespace Serene.Northwind
             return ReportColumnConverter.ObjectTypeToList(typeof(Item));
         }
 
-        [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow))]
+        [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow), CheckNames = true)]
         public class Item
         {
             public string CustomerId { get; set; }

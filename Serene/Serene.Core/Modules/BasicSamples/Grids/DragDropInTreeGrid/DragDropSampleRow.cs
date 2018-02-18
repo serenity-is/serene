@@ -2,12 +2,14 @@
 
 namespace Serene.BasicSamples.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Tree Items"), InstanceName("Tree Item"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("DragDropSample")]
+    [DisplayName("Tree Items"), InstanceName("Tree Item")]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
     public sealed class DragDropSampleRow : Row, IIdRow, INameRow
@@ -55,12 +57,6 @@ namespace Serene.BasicSamples.Entities
             public Int32Field Id;
             public Int32Field ParentId;
             public StringField Title;
-
-            public RowFields()
-                : base("DragDropSample")
-            {
-                LocalTextPrefix = "BasicSamples.DragDropSample";
-            }
         }
     }
 }

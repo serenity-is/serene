@@ -7,7 +7,8 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Notes"), InstanceName("Note"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Notes")]
+    [DisplayName("Notes"), InstanceName("Note")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class NoteRow : Row, IIdRow, INameRow, IInsertLogRow
@@ -103,12 +104,6 @@ namespace Serene.Northwind.Entities
             public Int32Field InsertUserId;
             public DateTimeField InsertDate;
             public StringField InsertUserDisplayName;
-
-            public RowFields()
-                : base("Notes")
-            {
-                LocalTextPrefix = "Northwind.Note";
-            }
         }
     }
 }

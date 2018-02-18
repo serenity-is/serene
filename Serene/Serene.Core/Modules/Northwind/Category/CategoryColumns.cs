@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Category")]
-    [BasedOnRow(typeof(Entities.CategoryRow))]
+    [BasedOnRow(typeof(Entities.CategoryRow), CheckNames = true)]
     public class CategoryColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

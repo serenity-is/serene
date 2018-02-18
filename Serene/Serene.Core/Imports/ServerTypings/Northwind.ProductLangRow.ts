@@ -11,18 +11,11 @@
         export const nameProperty = 'ProductName';
         export const localTextPrefix = 'Northwind.ProductLang';
 
-        export namespace Fields {
-            export declare const Id: string;
-            export declare const ProductId: string;
-            export declare const LanguageId: string;
-            export declare const ProductName: string;
+        export declare const enum Fields {
+            Id = "Id",
+            ProductId = "ProductId",
+            LanguageId = "LanguageId",
+            ProductName = "ProductName"
         }
-
-        [
-            'Id', 
-            'ProductId', 
-            'LanguageId', 
-            'ProductName'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

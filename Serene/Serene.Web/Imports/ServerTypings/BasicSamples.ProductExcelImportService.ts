@@ -4,8 +4,8 @@
 
         export declare function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
-        export namespace Methods {
-            export declare const ExcelImport: string;
+        export declare const enum Methods {
+            ExcelImport = "BasicSamples/ProductExcelImport/ExcelImport"
         }
 
         [
@@ -14,7 +14,6 @@
             (<any>ProductExcelImportService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
             };
-            (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }

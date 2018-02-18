@@ -7,7 +7,7 @@ namespace Serene.Northwind.Columns
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Customer")]
-    [BasedOnRow(typeof(Entities.CustomerRow))]
+    [BasedOnRow(typeof(Entities.CustomerRow), CheckNames = true)]
     public class CustomerColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Width(100)]
@@ -22,9 +22,9 @@ namespace Serene.Northwind.Columns
         public String Region { get; set; }
         [Width(100)]
         public String PostalCode { get; set; }
-        [Width(130), LookupEditor(typeof(Scripts.CustomerCountryLookup)), QuickFilter(CssClass = "hidden-xs")]
+        [Width(130), LookupEditor(typeof(Lookups.CustomerCountryLookup)), QuickFilter(CssClass = "hidden-xs")]
         public String Country { get; set; }
-        [Width(120), LookupEditor(typeof(Scripts.CustomerCityLookup))]
+        [Width(120), LookupEditor(typeof(Lookups.CustomerCityLookup))]
         [QuickFilter(CssClass = "hidden-xs"), QuickFilterOption("cascadeFrom", "Country")]
         public String City { get; set; }
         [Width(120)]

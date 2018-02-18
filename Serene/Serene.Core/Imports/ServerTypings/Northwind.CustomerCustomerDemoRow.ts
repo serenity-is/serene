@@ -21,38 +21,21 @@
         export const nameProperty = 'CustomerID';
         export const localTextPrefix = 'Northwind.CustomerCustomerDemo';
 
-        export namespace Fields {
-            export declare const ID: string;
-            export declare const CustomerID: string;
-            export declare const CustomerTypeID: string;
-            export declare const CustomerCompanyName: string;
-            export declare const CustomerContactName: string;
-            export declare const CustomerContactTitle: string;
-            export declare const CustomerAddress: string;
-            export declare const CustomerCity: string;
-            export declare const CustomerRegion: string;
-            export declare const CustomerPostalCode: string;
-            export declare const CustomerCountry: string;
-            export declare const CustomerPhone: string;
-            export declare const CustomerFax: string;
-            export declare const CustomerTypeCustomerDesc: string;
+        export declare const enum Fields {
+            ID = "ID",
+            CustomerID = "CustomerID",
+            CustomerTypeID = "CustomerTypeID",
+            CustomerCompanyName = "CustomerCompanyName",
+            CustomerContactName = "CustomerContactName",
+            CustomerContactTitle = "CustomerContactTitle",
+            CustomerAddress = "CustomerAddress",
+            CustomerCity = "CustomerCity",
+            CustomerRegion = "CustomerRegion",
+            CustomerPostalCode = "CustomerPostalCode",
+            CustomerCountry = "CustomerCountry",
+            CustomerPhone = "CustomerPhone",
+            CustomerFax = "CustomerFax",
+            CustomerTypeCustomerDesc = "CustomerTypeCustomerDesc"
         }
-
-        [
-            'ID', 
-            'CustomerID', 
-            'CustomerTypeID', 
-            'CustomerCompanyName', 
-            'CustomerContactName', 
-            'CustomerContactTitle', 
-            'CustomerAddress', 
-            'CustomerCity', 
-            'CustomerRegion', 
-            'CustomerPostalCode', 
-            'CustomerCountry', 
-            'CustomerPhone', 
-            'CustomerFax', 
-            'CustomerTypeCustomerDesc'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

@@ -1,4 +1,4 @@
-#addin "nuget:https://www.nuget.org/api/v2?package=Newtonsoft.Json&version=9.0.1"
+﻿#addin "nuget:https://www.nuget.org/api/v2?package=Newtonsoft.Json&version=9.0.1"
 
 using System.Xml.Linq;
 using Newtonsoft.Json.Linq;
@@ -245,11 +245,34 @@ Task("PrepareVSIX")
         }   
     };
     
+	var webSkipPackages = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
+		"bootstrap",
+		"Dapper",
+		"FluentMigrator",
+		"Newtonsoft.Json",
+		"Microsoft.AspNet.Mvc",
+		"Microsoft.AspNet.Razor",
+		"Microsoft.AspNet.WebPages",
+		"Microsoft.Web.Infrastructure",
+		"Nuglify",
+		"jQuery",
+		"jQuery.UI.Combined",
+		"jQuery.Validation",
+		"PagedList",
+		"Select2.js",
+		"Serenity.Core",
+		"Serenity.Data",
+		"Serenity.Data.Entity",
+		"Serenity.Services",
+		"Serenity.Web.Assets",
+		"toastr"
+	};
+	
     var webSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase) {
         { @"packages.config", true },
         { @"wkhtmltopdf.exe", true },
         { @"..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe", true },
-        { @"Scripts\jquery-3.1.1.intellisense.js", true }
+        { @"Scripts\jquery-3.3.1.intellisense.js", true }
     };
 
     Action<string, List<Tuple<string, string>>, Dictionary<string, bool>> replaceTemplateFileList = (csproj, packages, skipFiles) => {
@@ -397,6 +420,8 @@ Task("PrepareVSIX")
 			pkg.Elements().Remove();
 			foreach (var p in packages)
 			{
+				if (webSkipPackages.Contains(p.Item1))
+					continue;
 				var pk = new XElement(ns + "installPackage");
 				pk.SetAttributeValue("id", p.Item1);
 				pk.SetAttributeValue("version", p.Item2);

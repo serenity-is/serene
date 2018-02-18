@@ -5,7 +5,7 @@ namespace Serene.Northwind.Columns
     using System;
 
     [ColumnsScript("Northwind.SalesByCategory")]
-    [BasedOnRow(typeof(Entities.SalesByCategoryRow))]
+    [BasedOnRow(typeof(Entities.SalesByCategoryRow), CheckNames = true)]
     public class SalesByCategoryColumns
     {
         [Width(150), SortOrder(1)]

@@ -2,6 +2,9 @@
 
 namespace Serene.BasicSamples {
 
+    // get a reference to order row field names
+    import fld = Northwind.OrderRow.Fields;
+
     @Serenity.Decorators.registerClass()
     export class QuickFilterCustomization extends Serenity.EntityGrid<Northwind.OrderRow, any> {
 
@@ -24,9 +27,6 @@ namespace Serene.BasicSamples {
 
             // get quick filter list from base class, e.g. columns
             let filters = super.getQuickFilters();
-
-            // get a reference to order row field names
-            let fld = Northwind.OrderRow.Fields;
 
             // we start by turning CustomerID filter to a Not Equal one
             let filter = Q.first(filters, x => x.field == fld.CustomerID);

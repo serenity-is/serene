@@ -3,12 +3,14 @@
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
-    class LanguageForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface LanguageForm {
         LanguageId: Serenity.StringEditor;
         LanguageName: Serenity.StringEditor;
+    }
+    class LanguageForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Administration {
@@ -23,10 +25,10 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.Language";
         const lookupKey = "Administration.Language";
         function getLookup(): Q.Lookup<LanguageRow>;
-        namespace Fields {
-            const Id: string;
-            const LanguageId: string;
-            const LanguageName: string;
+        const enum Fields {
+            Id = "Id",
+            LanguageId = "LanguageId",
+            LanguageName = "LanguageName",
         }
     }
 }
@@ -38,23 +40,25 @@ declare namespace Serene.Administration {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<LanguageRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Administration/Language/Create",
+            Update = "Administration/Language/Update",
+            Delete = "Administration/Language/Delete",
+            Retrieve = "Administration/Language/Retrieve",
+            List = "Administration/Language/List",
         }
     }
 }
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
-    class RoleForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface RoleForm {
         RoleName: Serenity.StringEditor;
+    }
+    class RoleForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Administration {
@@ -79,11 +83,11 @@ declare namespace Serene.Administration {
         const idProperty = "RolePermissionId";
         const nameProperty = "PermissionKey";
         const localTextPrefix = "Administration.RolePermission";
-        namespace Fields {
-            const RolePermissionId: string;
-            const RoleId: string;
-            const PermissionKey: string;
-            const RoleRoleName: string;
+        const enum Fields {
+            RolePermissionId = "RolePermissionId",
+            RoleId = "RoleId",
+            PermissionKey = "PermissionKey",
+            RoleRoleName = "RoleRoleName",
         }
     }
 }
@@ -92,9 +96,9 @@ declare namespace Serene.Administration {
         const baseUrl = "Administration/RolePermission";
         function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
+        const enum Methods {
+            Update = "Administration/RolePermission/Update",
+            List = "Administration/RolePermission/List",
         }
     }
 }
@@ -117,9 +121,9 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.Role";
         const lookupKey = "Administration.Role";
         function getLookup(): Q.Lookup<RoleRow>;
-        namespace Fields {
-            const RoleId: string;
-            const RoleName: string;
+        const enum Fields {
+            RoleId = "RoleId",
+            RoleName = "RoleName",
         }
     }
 }
@@ -131,12 +135,12 @@ declare namespace Serene.Administration {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RoleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Administration/Role/Create",
+            Update = "Administration/Role/Update",
+            Delete = "Administration/Role/Delete",
+            Retrieve = "Administration/Role/Retrieve",
+            List = "Administration/Role/List",
         }
     }
 }
@@ -159,9 +163,9 @@ declare namespace Serene.Administration {
         const baseUrl = "Administration/Translation";
         function List(request: TranslationListRequest, onSuccess?: (response: Serenity.ListResponse<TranslationItem>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Update(request: TranslationUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const List: string;
-            const Update: string;
+        const enum Methods {
+            List = "Administration/Translation/List",
+            Update = "Administration/Translation/Update",
         }
     }
 }
@@ -176,9 +180,6 @@ declare namespace Serene.Administration {
 declare namespace Serene.Administration {
 }
 declare namespace Serene.Administration {
-    class UserForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface UserForm {
         Username: Serenity.StringEditor;
         DisplayName: Serenity.StringEditor;
@@ -187,6 +188,11 @@ declare namespace Serene.Administration {
         Password: Serenity.PasswordEditor;
         PasswordConfirm: Serenity.PasswordEditor;
         Source: Serenity.StringEditor;
+    }
+    class UserForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Administration {
@@ -209,13 +215,13 @@ declare namespace Serene.Administration {
         const idProperty = "UserPermissionId";
         const nameProperty = "PermissionKey";
         const localTextPrefix = "Administration.UserPermission";
-        namespace Fields {
-            const UserPermissionId: string;
-            const UserId: string;
-            const PermissionKey: string;
-            const Granted: string;
-            const Username: string;
-            const User: string;
+        const enum Fields {
+            UserPermissionId = "UserPermissionId",
+            UserId = "UserId",
+            PermissionKey = "PermissionKey",
+            Granted = "Granted",
+            Username = "Username",
+            User = "User",
         }
     }
 }
@@ -226,11 +232,11 @@ declare namespace Serene.Administration {
         function List(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<UserPermissionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function ListRolePermissions(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function ListPermissionKeys(request: Serenity.ServiceRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
-            const ListRolePermissions: string;
-            const ListPermissionKeys: string;
+        const enum Methods {
+            Update = "Administration/UserPermission/Update",
+            List = "Administration/UserPermission/List",
+            ListRolePermissions = "Administration/UserPermission/ListRolePermissions",
+            ListPermissionKeys = "Administration/UserPermission/ListPermissionKeys",
         }
     }
 }
@@ -262,12 +268,12 @@ declare namespace Serene.Administration {
     namespace UserRoleRow {
         const idProperty = "UserRoleId";
         const localTextPrefix = "Administration.UserRole";
-        namespace Fields {
-            const UserRoleId: string;
-            const UserId: string;
-            const RoleId: string;
-            const Username: string;
-            const User: string;
+        const enum Fields {
+            UserRoleId = "UserRoleId",
+            UserId = "UserId",
+            RoleId = "RoleId",
+            Username = "Username",
+            User = "User",
         }
     }
 }
@@ -276,9 +282,9 @@ declare namespace Serene.Administration {
         const baseUrl = "Administration/UserRole";
         function Update(request: UserRoleUpdateRequest, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const List: string;
+        const enum Methods {
+            Update = "Administration/UserRole/Update",
+            List = "Administration/UserRole/List",
         }
     }
 }
@@ -314,23 +320,23 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.User";
         const lookupKey = "Administration.User";
         function getLookup(): Q.Lookup<UserRow>;
-        namespace Fields {
-            const UserId: string;
-            const Username: string;
-            const Source: string;
-            const PasswordHash: string;
-            const PasswordSalt: string;
-            const DisplayName: string;
-            const Email: string;
-            const UserImage: string;
-            const LastDirectoryUpdate: string;
-            const IsActive: string;
-            const Password: string;
-            const PasswordConfirm: string;
-            const InsertUserId: string;
-            const InsertDate: string;
-            const UpdateUserId: string;
-            const UpdateDate: string;
+        const enum Fields {
+            UserId = "UserId",
+            Username = "Username",
+            Source = "Source",
+            PasswordHash = "PasswordHash",
+            PasswordSalt = "PasswordSalt",
+            DisplayName = "DisplayName",
+            Email = "Email",
+            UserImage = "UserImage",
+            LastDirectoryUpdate = "LastDirectoryUpdate",
+            IsActive = "IsActive",
+            Password = "Password",
+            PasswordConfirm = "PasswordConfirm",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            UpdateUserId = "UpdateUserId",
+            UpdateDate = "UpdateDate",
         }
     }
 }
@@ -343,13 +349,13 @@ declare namespace Serene.Administration {
         function Undelete(request: Serenity.UndeleteRequest, onSuccess?: (response: Serenity.UndeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<UserRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Undelete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Administration/User/Create",
+            Update = "Administration/User/Update",
+            Delete = "Administration/User/Delete",
+            Undelete = "Administration/User/Undelete",
+            Retrieve = "Administration/User/Retrieve",
+            List = "Administration/User/List",
         }
     }
 }
@@ -358,21 +364,23 @@ declare namespace Serene.BasicSamples {
         const baseUrl = "BasicSamples/BasicSamples";
         function OrdersByShipper(request: OrdersByShipperRequest, onSuccess?: (response: OrdersByShipperResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function OrderBulkAction(request: OrderBulkActionRequest, onSuccess?: (response: Serenity.ServiceResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const OrdersByShipper: string;
-            const OrderBulkAction: string;
+        const enum Methods {
+            OrdersByShipper = "BasicSamples/BasicSamples/OrdersByShipper",
+            OrderBulkAction = "BasicSamples/BasicSamples/OrderBulkAction",
         }
     }
 }
 declare namespace Serene.BasicSamples {
-    class ChangingLookupTextForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ChangingLookupTextForm {
         ProductID: ChangingLookupTextEditor;
         UnitPrice: Serenity.DecimalEditor;
         Quantity: Serenity.IntegerEditor;
         Discount: Serenity.DecimalEditor;
+    }
+    class ChangingLookupTextForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -387,19 +395,21 @@ declare namespace Serene.BasicSamples {
     namespace CustomerGrossSalesService {
         const baseUrl = "BasicSamples/CustomerGrossSales";
         function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<Northwind.CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const List: string;
+        const enum Methods {
+            List = "BasicSamples/CustomerGrossSales/List",
         }
     }
 }
 declare namespace Serene.BasicSamples {
 }
 declare namespace Serene.BasicSamples {
-    class DragDropSampleForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface DragDropSampleForm {
         Title: Serenity.StringEditor;
+    }
+    class DragDropSampleForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -411,11 +421,11 @@ declare namespace Serene.BasicSamples {
     namespace DragDropSampleRow {
         const idProperty = "Id";
         const nameProperty = "Title";
-        const localTextPrefix = "BasicSamples.DragDropSample";
-        namespace Fields {
-            const Id: string;
-            const ParentId: string;
-            const Title: string;
+        const localTextPrefix = "Northwind.DragDropSample";
+        const enum Fields {
+            Id = "Id",
+            ParentId = "ParentId",
+            Title = "Title",
         }
     }
 }
@@ -427,40 +437,41 @@ declare namespace Serene.BasicSamples {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<DragDropSampleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<DragDropSampleRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "BasicSamples/DragDropSample/Create",
+            Update = "BasicSamples/DragDropSample/Update",
+            Delete = "BasicSamples/DragDropSample/Delete",
+            Retrieve = "BasicSamples/DragDropSample/Retrieve",
+            List = "BasicSamples/DragDropSample/List",
         }
     }
 }
 declare namespace Serene.BasicSamples {
-    class FilteredLookupInDetailForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface FilteredLookupInDetailForm {
         CustomerID: Northwind.CustomerEditor;
         OrderDate: Serenity.DateEditor;
         CategoryID: Serenity.LookupEditor;
         DetailList: FilteredLookupDetailEditor;
     }
+    class FilteredLookupInDetailForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
 }
 declare namespace Serene.BasicSamples {
-    class HardcodedValuesForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface HardcodedValuesForm {
         SomeValue: HardcodedValuesEditor;
     }
-}
-declare namespace Serene.BasicSamples {
-}
-declare namespace Serene.BasicSamples {
-    class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
+    class HardcodedValuesForm extends Serenity.PrefixedContext {
         static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
+}
+declare namespace Serene.BasicSamples {
+}
+declare namespace Serene.BasicSamples {
     interface LookupFilterByMultipleForm {
         ProductName: Serenity.StringEditor;
         ProductImage: Serenity.ImageUploadEditor;
@@ -472,6 +483,11 @@ declare namespace Serene.BasicSamples {
         UnitsInStock: Serenity.IntegerEditor;
         UnitsOnOrder: Serenity.IntegerEditor;
         ReorderLevel: Serenity.IntegerEditor;
+    }
+    class LookupFilterByMultipleForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -493,9 +509,6 @@ declare namespace Serene.BasicSamples {
     }
 }
 declare namespace Serene.BasicSamples {
-    class PopulateLinkedDataForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface PopulateLinkedDataForm {
         CustomerID: Northwind.CustomerEditor;
         CustomerContactName: Serenity.StringEditor;
@@ -510,34 +523,43 @@ declare namespace Serene.BasicSamples {
         EmployeeID: Serenity.LookupEditor;
         DetailList: Northwind.OrderDetailsEditor;
     }
+    class PopulateLinkedDataForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
 }
 declare namespace Serene.BasicSamples {
-    class ProductExcelImportForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ProductExcelImportForm {
         FileName: Serenity.ImageUploadEditor;
+    }
+    class ProductExcelImportForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.BasicSamples {
     namespace ProductExcelImportService {
         const baseUrl = "BasicSamples/ProductExcelImport";
         function ExcelImport(request: ExcelImportRequest, onSuccess?: (response: ExcelImportResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const ExcelImport: string;
+        const enum Methods {
+            ExcelImport = "BasicSamples/ProductExcelImport/ExcelImport",
         }
     }
 }
 declare namespace Serene.BasicSamples {
-    class StaticTextBlockForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface StaticTextBlockForm {
         StaticText: StaticTextBlock;
         SomeInput: Serenity.StringEditor;
         HtmlList: StaticTextBlock;
         FromLocalText: StaticTextBlock;
         DisplayFieldValue: StaticTextBlock;
+    }
+    class StaticTextBlockForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -555,8 +577,8 @@ declare namespace Serene.BasicSamples {
     namespace VSGalleryQAService {
         const baseUrl = "BasicSamples/VSGalleryQA";
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<VSGalleryQAThread>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const List: string;
+        const enum Methods {
+            List = "BasicSamples/VSGalleryQA/List",
         }
     }
 }
@@ -604,12 +626,12 @@ declare namespace Serene.Common {
         const idProperty = "UserPreferenceId";
         const nameProperty = "Name";
         const localTextPrefix = "Common.UserPreference";
-        namespace Fields {
-            const UserPreferenceId: string;
-            const UserId: string;
-            const PreferenceType: string;
-            const Name: string;
-            const Value: string;
+        const enum Fields {
+            UserPreferenceId = "UserPreferenceId",
+            UserId = "UserId",
+            PreferenceType = "PreferenceType",
+            Name = "Name",
+            Value = "Value",
         }
     }
 }
@@ -618,9 +640,9 @@ declare namespace Serene.Common {
         const baseUrl = "Common/UserPreference";
         function Update(request: UserPreferenceUpdateRequest, onSuccess?: (response: Serenity.ServiceResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: UserPreferenceRetrieveRequest, onSuccess?: (response: UserPreferenceRetrieveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Update: string;
-            const Retrieve: string;
+        const enum Methods {
+            Update = "Common/UserPreference/Update",
+            Retrieve = "Common/UserPreference/Retrieve",
         }
     }
 }
@@ -655,738 +677,16 @@ declare namespace Serene {
         Serial?: string;
     }
 }
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingAgendaForm {
-        MeetingId: Serenity.IntegerEditor;
-        AgendaNumber: Serenity.IntegerEditor;
-        Title: Serenity.StringEditor;
-        Description: Serenity.StringEditor;
-        AgendaTypeId: Serenity.IntegerEditor;
-        RequestedByContactId: Serenity.IntegerEditor;
-        Images: Serenity.MultipleImageUploadEditor;
-        Attachments: Serenity.MultipleImageUploadEditor;
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaRelevantForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingAgendaRelevantForm {
-        AgendaId: Serenity.IntegerEditor;
-        ContactId: Serenity.IntegerEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingAgendaRelevantRow {
-        AgendaRelevantId?: number;
-        AgendaId?: number;
-        ContactId?: number;
-        AgendaMeetingId?: number;
-        AgendaAgendaNumber?: number;
-        AgendaTitle?: string;
-        AgendaDescription?: string;
-        AgendaAgendaTypeId?: number;
-        AgendaRequestedByContactId?: number;
-        AgendaImages?: string;
-        AgendaAttachments?: string;
-        ContactTitle?: string;
-        ContactFirstName?: string;
-        ContactLastName?: string;
-        ContactEmail?: string;
-        ContactIdentityNo?: string;
-        ContactUserId?: number;
-    }
-    namespace MeetingAgendaRelevantRow {
-        const idProperty = "AgendaRelevantId";
-        const localTextPrefix = "Meeting.MeetingAgendaRelevant";
-        namespace Fields {
-            const AgendaRelevantId: string;
-            const AgendaId: string;
-            const ContactId: string;
-            const AgendaMeetingId: string;
-            const AgendaAgendaNumber: string;
-            const AgendaTitle: string;
-            const AgendaDescription: string;
-            const AgendaAgendaTypeId: string;
-            const AgendaRequestedByContactId: string;
-            const AgendaImages: string;
-            const AgendaAttachments: string;
-            const ContactTitle: string;
-            const ContactFirstName: string;
-            const ContactLastName: string;
-            const ContactEmail: string;
-            const ContactIdentityNo: string;
-            const ContactUserId: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingAgendaRelevantService {
-        const baseUrl = "Meeting/MeetingAgendaRelevant";
-        function Create(request: Serenity.SaveRequest<MeetingAgendaRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingAgendaRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingAgendaRow {
-        AgendaId?: number;
-        MeetingId?: number;
-        AgendaNumber?: number;
-        Title?: string;
-        Description?: string;
-        AgendaTypeId?: number;
-        RequestedByContactId?: number;
-        Images?: string;
-        Attachments?: string;
-        MeetingMeetingName?: string;
-        MeetingMeetingNumber?: string;
-        MeetingMeetingGuid?: string;
-        MeetingMeetingTypeId?: number;
-        MeetingStartDate?: string;
-        MeetingEndDate?: string;
-        MeetingLocationId?: number;
-        MeetingUnitId?: number;
-        MeetingOrganizerContactId?: number;
-        MeetingReporterContactId?: number;
-        MeetingInsertUserId?: number;
-        MeetingInsertDate?: string;
-        MeetingUpdateUserId?: number;
-        MeetingUpdateDate?: string;
-        AgendaTypeName?: string;
-        RequestedByContactTitle?: string;
-        RequestedByContactFirstName?: string;
-        RequestedByContactLastName?: string;
-        RequestedByContactFullName?: string;
-        RequestedByContactEmail?: string;
-        RequestedByContactIdentityNo?: string;
-        RequestedByContactUserId?: number;
-    }
-    namespace MeetingAgendaRow {
-        const idProperty = "AgendaId";
-        const nameProperty = "Title";
-        const localTextPrefix = "Meeting.MeetingAgenda";
-        namespace Fields {
-            const AgendaId: string;
-            const MeetingId: string;
-            const AgendaNumber: string;
-            const Title: string;
-            const Description: string;
-            const AgendaTypeId: string;
-            const RequestedByContactId: string;
-            const Images: string;
-            const Attachments: string;
-            const MeetingMeetingName: string;
-            const MeetingMeetingNumber: string;
-            const MeetingMeetingGuid: string;
-            const MeetingMeetingTypeId: string;
-            const MeetingStartDate: string;
-            const MeetingEndDate: string;
-            const MeetingLocationId: string;
-            const MeetingUnitId: string;
-            const MeetingOrganizerContactId: string;
-            const MeetingReporterContactId: string;
-            const MeetingInsertUserId: string;
-            const MeetingInsertDate: string;
-            const MeetingUpdateUserId: string;
-            const MeetingUpdateDate: string;
-            const AgendaTypeName: string;
-            const RequestedByContactTitle: string;
-            const RequestedByContactFirstName: string;
-            const RequestedByContactLastName: string;
-            const RequestedByContactFullName: string;
-            const RequestedByContactEmail: string;
-            const RequestedByContactIdentityNo: string;
-            const RequestedByContactUserId: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingAgendaService {
-        const baseUrl = "Meeting/MeetingAgenda";
-        function Create(request: Serenity.SaveRequest<MeetingAgendaRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingAgendaRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaTypeForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingAgendaTypeForm {
-        Name: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingAgendaTypeRow {
-        AgendaTypeId?: number;
-        Name?: string;
-    }
-    namespace MeetingAgendaTypeRow {
-        const idProperty = "AgendaTypeId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Meeting.MeetingAgendaType";
-        const lookupKey = "Meeting.MeetingAgendaType";
-        function getLookup(): Q.Lookup<MeetingAgendaTypeRow>;
-        namespace Fields {
-            const AgendaTypeId: string;
-            const Name: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingAgendaTypeService {
-        const baseUrl = "Meeting/MeetingAgendaType";
-        function Create(request: Serenity.SaveRequest<MeetingAgendaTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingAgendaTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingAgendaTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingAgendaTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    enum MeetingAttendanceStatus {
-        NotSet = 0,
-        Attended = 1,
-        Absent = 2,
-        AbsentWithPermission = 3,
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingAttendeeForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingAttendeeForm {
-        MeetingId: Serenity.IntegerEditor;
-        ContactId: Serenity.IntegerEditor;
-        AttendeeType: Serenity.EnumEditor;
-        AttendanceStatus: Serenity.EnumEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingAttendeeRow {
-        AttendeeId?: number;
-        MeetingId?: number;
-        ContactId?: number;
-        AttendeeType?: MeetingAttendeeType;
-        AttendanceStatus?: MeetingAttendanceStatus;
-        MeetingMeetingName?: string;
-        MeetingMeetingNumber?: string;
-        MeetingMeetingGuid?: string;
-        MeetingMeetingTypeId?: number;
-        MeetingStartDate?: string;
-        MeetingEndDate?: string;
-        MeetingLocationId?: number;
-        MeetingUnitId?: number;
-        MeetingOrganizerContactId?: number;
-        MeetingReporterContactId?: number;
-        MeetingInsertUserId?: number;
-        MeetingInsertDate?: string;
-        MeetingUpdateUserId?: number;
-        MeetingUpdateDate?: string;
-        ContactTitle?: string;
-        ContactFirstName?: string;
-        ContactLastName?: string;
-        ContactFullName?: string;
-        ContactEmail?: string;
-        ContactIdentityNo?: string;
-        ContactUserId?: number;
-    }
-    namespace MeetingAttendeeRow {
-        const idProperty = "AttendeeId";
-        const localTextPrefix = "Meeting.MeetingAttendee";
-        namespace Fields {
-            const AttendeeId: string;
-            const MeetingId: string;
-            const ContactId: string;
-            const AttendeeType: string;
-            const AttendanceStatus: string;
-            const MeetingMeetingName: string;
-            const MeetingMeetingNumber: string;
-            const MeetingMeetingGuid: string;
-            const MeetingMeetingTypeId: string;
-            const MeetingStartDate: string;
-            const MeetingEndDate: string;
-            const MeetingLocationId: string;
-            const MeetingUnitId: string;
-            const MeetingOrganizerContactId: string;
-            const MeetingReporterContactId: string;
-            const MeetingInsertUserId: string;
-            const MeetingInsertDate: string;
-            const MeetingUpdateUserId: string;
-            const MeetingUpdateDate: string;
-            const ContactTitle: string;
-            const ContactFirstName: string;
-            const ContactLastName: string;
-            const ContactFullName: string;
-            const ContactEmail: string;
-            const ContactIdentityNo: string;
-            const ContactUserId: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    enum MeetingAttendeeType {
-        Attendee = 1,
-        Guest = 2,
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingDecisionForm {
-        MeetingId: Serenity.IntegerEditor;
-        AgendaId: Serenity.IntegerEditor;
-        Description: Serenity.StringEditor;
-        DecisionNumber: Serenity.IntegerEditor;
-        ResponsibleContactId: Serenity.IntegerEditor;
-        DueDate: Serenity.DateEditor;
-        ResolutionStatus: Serenity.IntegerEditor;
-        Images: Serenity.StringEditor;
-        Attachments: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionRelevantForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingDecisionRelevantForm {
-        DecisionId: Serenity.IntegerEditor;
-        ContactId: Serenity.IntegerEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingDecisionRelevantRow {
-        DecisionRelevantId?: number;
-        DecisionId?: number;
-        ContactId?: number;
-        DecisionMeetingId?: number;
-        DecisionAgendaId?: number;
-        DecisionDescription?: string;
-        DecisionDecisionNumber?: number;
-        DecisionResponsibleContactId?: number;
-        DecisionDueDate?: string;
-        DecisionResolutionStatus?: number;
-        DecisionImages?: string;
-        DecisionAttachments?: string;
-        ContactTitle?: string;
-        ContactFirstName?: string;
-        ContactLastName?: string;
-        ContactEmail?: string;
-        ContactIdentityNo?: string;
-        ContactUserId?: number;
-    }
-    namespace MeetingDecisionRelevantRow {
-        const idProperty = "DecisionRelevantId";
-        const localTextPrefix = "Meeting.MeetingDecisionRelevant";
-        namespace Fields {
-            const DecisionRelevantId: string;
-            const DecisionId: string;
-            const ContactId: string;
-            const DecisionMeetingId: string;
-            const DecisionAgendaId: string;
-            const DecisionDescription: string;
-            const DecisionDecisionNumber: string;
-            const DecisionResponsibleContactId: string;
-            const DecisionDueDate: string;
-            const DecisionResolutionStatus: string;
-            const DecisionImages: string;
-            const DecisionAttachments: string;
-            const ContactTitle: string;
-            const ContactFirstName: string;
-            const ContactLastName: string;
-            const ContactEmail: string;
-            const ContactIdentityNo: string;
-            const ContactUserId: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingDecisionRelevantService {
-        const baseUrl = "Meeting/MeetingDecisionRelevant";
-        function Create(request: Serenity.SaveRequest<MeetingDecisionRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingDecisionRelevantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingDecisionRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingDecisionRelevantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingDecisionRow {
-        DecisionId?: number;
-        MeetingId?: number;
-        AgendaId?: number;
-        Description?: string;
-        DecisionNumber?: number;
-        ResponsibleContactId?: number;
-        DueDate?: string;
-        ResolutionStatus?: number;
-        Images?: string;
-        Attachments?: string;
-        MeetingMeetingName?: string;
-        MeetingMeetingNumber?: string;
-        MeetingMeetingGuid?: string;
-        MeetingMeetingTypeId?: number;
-        MeetingStartDate?: string;
-        MeetingEndDate?: string;
-        MeetingLocationId?: number;
-        MeetingUnitId?: number;
-        MeetingOrganizerContactId?: number;
-        MeetingReporterContactId?: number;
-        MeetingInsertUserId?: number;
-        MeetingInsertDate?: string;
-        MeetingUpdateUserId?: number;
-        MeetingUpdateDate?: string;
-        AgendaMeetingId?: number;
-        AgendaNumber?: number;
-        AgendaTitle?: string;
-        AgendaDescription?: string;
-        AgendaAgendaTypeId?: number;
-        AgendaRequestedByContactId?: number;
-        AgendaImages?: string;
-        AgendaAttachments?: string;
-        DecisionNumberName?: string;
-        ResponsibleContactTitle?: string;
-        ResponsibleContactFirstName?: string;
-        ResponsibleContactLastName?: string;
-        ResponsibleContactFullName?: string;
-        ResponsibleContactEmail?: string;
-        ResponsibleContactIdentityNo?: string;
-        ResponsibleContactUserId?: number;
-    }
-    namespace MeetingDecisionRow {
-        const idProperty = "DecisionId";
-        const nameProperty = "Description";
-        const localTextPrefix = "Meeting.MeetingDecision";
-        namespace Fields {
-            const DecisionId: string;
-            const MeetingId: string;
-            const AgendaId: string;
-            const Description: string;
-            const DecisionNumber: string;
-            const ResponsibleContactId: string;
-            const DueDate: string;
-            const ResolutionStatus: string;
-            const Images: string;
-            const Attachments: string;
-            const MeetingMeetingName: string;
-            const MeetingMeetingNumber: string;
-            const MeetingMeetingGuid: string;
-            const MeetingMeetingTypeId: string;
-            const MeetingStartDate: string;
-            const MeetingEndDate: string;
-            const MeetingLocationId: string;
-            const MeetingUnitId: string;
-            const MeetingOrganizerContactId: string;
-            const MeetingReporterContactId: string;
-            const MeetingInsertUserId: string;
-            const MeetingInsertDate: string;
-            const MeetingUpdateUserId: string;
-            const MeetingUpdateDate: string;
-            const AgendaMeetingId: string;
-            const AgendaNumber: string;
-            const AgendaTitle: string;
-            const AgendaDescription: string;
-            const AgendaAgendaTypeId: string;
-            const AgendaRequestedByContactId: string;
-            const AgendaImages: string;
-            const AgendaAttachments: string;
-            const DecisionNumberName: string;
-            const ResponsibleContactTitle: string;
-            const ResponsibleContactFirstName: string;
-            const ResponsibleContactLastName: string;
-            const ResponsibleContactFullName: string;
-            const ResponsibleContactEmail: string;
-            const ResponsibleContactIdentityNo: string;
-            const ResponsibleContactUserId: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingDecisionService {
-        const baseUrl = "Meeting/MeetingDecision";
-        function Create(request: Serenity.SaveRequest<MeetingDecisionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingDecisionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingDecisionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingDecisionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingForm {
-        MeetingName: Serenity.StringEditor;
-        MeetingTypeId: Serenity.LookupEditor;
-        MeetingNumber: Serenity.StringEditor;
-        StartDate: Serenity.DateTimeEditor;
-        EndDate: Serenity.DateTimeEditor;
-        LocationId: Serenity.LookupEditor;
-        UnitId: Organization.BusinessUnitEditor;
-        OrganizerContactId: Serenity.LookupEditor;
-        ReporterContactId: Serenity.LookupEditor;
-        AttendeeList: MeetingAttendeeEditor;
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingLocationForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingLocationForm {
-        Name: Serenity.StringEditor;
-        Address: Serenity.StringEditor;
-        Latitude: Serenity.DecimalEditor;
-        Longitude: Serenity.DecimalEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingLocationRow {
-        LocationId?: number;
-        Name?: string;
-        Address?: string;
-        Latitude?: number;
-        Longitude?: number;
-    }
-    namespace MeetingLocationRow {
-        const idProperty = "LocationId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Meeting.MeetingLocation";
-        const lookupKey = "Meeting.MeetingLocation";
-        function getLookup(): Q.Lookup<MeetingLocationRow>;
-        namespace Fields {
-            const LocationId: string;
-            const Name: string;
-            const Address: string;
-            const Latitude: string;
-            const Longitude: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingLocationService {
-        const baseUrl = "Meeting/MeetingLocation";
-        function Create(request: Serenity.SaveRequest<MeetingLocationRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingLocationRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingLocationRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingLocationRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingRow {
-        MeetingId?: number;
-        MeetingName?: string;
-        MeetingNumber?: string;
-        MeetingGuid?: string;
-        MeetingTypeId?: number;
-        StartDate?: string;
-        EndDate?: string;
-        LocationId?: number;
-        UnitId?: number;
-        OrganizerContactId?: number;
-        ReporterContactId?: number;
-        MeetingTypeName?: string;
-        LocationName?: string;
-        UnitName?: string;
-        UnitParentUnitId?: number;
-        OrganizerContactTitle?: string;
-        OrganizerContactFirstName?: string;
-        OrganizerContactLastName?: string;
-        OrganizerContactFullName?: string;
-        OrganizerContactEmail?: string;
-        OrganizerContactIdentityNo?: string;
-        OrganizerContactUserId?: number;
-        ReporterContactTitle?: string;
-        ReporterContactFirstName?: string;
-        ReporterContactLastName?: string;
-        ReporterContactFullName?: string;
-        ReporterContactEmail?: string;
-        ReporterContactIdentityNo?: string;
-        ReporterContactUserId?: number;
-        AttendeeList?: MeetingAttendeeRow[];
-        InsertUserId?: number;
-        InsertDate?: string;
-        UpdateUserId?: number;
-        UpdateDate?: string;
-    }
-    namespace MeetingRow {
-        const idProperty = "MeetingId";
-        const nameProperty = "MeetingName";
-        const localTextPrefix = "Meeting.Meeting";
-        namespace Fields {
-            const MeetingId: string;
-            const MeetingName: string;
-            const MeetingNumber: string;
-            const MeetingGuid: string;
-            const MeetingTypeId: string;
-            const StartDate: string;
-            const EndDate: string;
-            const LocationId: string;
-            const UnitId: string;
-            const OrganizerContactId: string;
-            const ReporterContactId: string;
-            const MeetingTypeName: string;
-            const LocationName: string;
-            const UnitName: string;
-            const UnitParentUnitId: string;
-            const OrganizerContactTitle: string;
-            const OrganizerContactFirstName: string;
-            const OrganizerContactLastName: string;
-            const OrganizerContactFullName: string;
-            const OrganizerContactEmail: string;
-            const OrganizerContactIdentityNo: string;
-            const OrganizerContactUserId: string;
-            const ReporterContactTitle: string;
-            const ReporterContactFirstName: string;
-            const ReporterContactLastName: string;
-            const ReporterContactFullName: string;
-            const ReporterContactEmail: string;
-            const ReporterContactIdentityNo: string;
-            const ReporterContactUserId: string;
-            const AttendeeList: string;
-            const InsertUserId: string;
-            const InsertDate: string;
-            const UpdateUserId: string;
-            const UpdateDate: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingService {
-        const baseUrl = "Meeting/Meeting";
-        function Create(request: Serenity.SaveRequest<MeetingRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-}
-declare namespace Serene.Meeting {
-    class MeetingTypeForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface MeetingTypeForm {
-        Name: Serenity.StringEditor;
-    }
-}
-declare namespace Serene.Meeting {
-    interface MeetingTypeRow {
-        MeetingTypeId?: number;
-        Name?: string;
-    }
-    namespace MeetingTypeRow {
-        const idProperty = "MeetingTypeId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Meeting.MeetingType";
-        const lookupKey = "Meeting.MeetingType";
-        function getLookup(): Q.Lookup<MeetingTypeRow>;
-        namespace Fields {
-            const MeetingTypeId: string;
-            const Name: string;
-        }
-    }
-}
-declare namespace Serene.Meeting {
-    namespace MeetingTypeService {
-        const baseUrl = "Meeting/MeetingType";
-        function Create(request: Serenity.SaveRequest<MeetingTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<MeetingTypeRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<MeetingTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<MeetingTypeRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
 declare namespace Serene.Membership {
-    class ChangePasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ChangePasswordForm {
         OldPassword: Serenity.PasswordEditor;
         NewPassword: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
+    }
+    class ChangePasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Membership {
@@ -1397,11 +697,13 @@ declare namespace Serene.Membership {
     }
 }
 declare namespace Serene.Membership {
-    class ForgotPasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ForgotPasswordForm {
         Email: Serenity.EmailEditor;
+    }
+    class ForgotPasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Membership {
@@ -1410,12 +712,14 @@ declare namespace Serene.Membership {
     }
 }
 declare namespace Serene.Membership {
-    class LoginForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface LoginForm {
         Username: Serenity.StringEditor;
         Password: Serenity.PasswordEditor;
+    }
+    class LoginForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Membership {
@@ -1425,12 +729,14 @@ declare namespace Serene.Membership {
     }
 }
 declare namespace Serene.Membership {
-    class ResetPasswordForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ResetPasswordForm {
         NewPassword: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
+    }
+    class ResetPasswordForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Membership {
@@ -1441,15 +747,17 @@ declare namespace Serene.Membership {
     }
 }
 declare namespace Serene.Membership {
-    class SignUpForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface SignUpForm {
         DisplayName: Serenity.StringEditor;
         Email: Serenity.EmailEditor;
         ConfirmEmail: Serenity.EmailEditor;
         Password: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
+    }
+    class SignUpForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Membership {
@@ -1462,12 +770,14 @@ declare namespace Serene.Membership {
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class CategoryForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface CategoryForm {
         CategoryName: Serenity.StringEditor;
         Description: Serenity.StringEditor;
+    }
+    class CategoryForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -1482,12 +792,12 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "CategoryName";
         const localTextPrefix = "Northwind.CategoryLang";
-        namespace Fields {
-            const Id: string;
-            const CategoryId: string;
-            const LanguageId: string;
-            const CategoryName: string;
-            const Description: string;
+        const enum Fields {
+            Id = "Id",
+            CategoryId = "CategoryId",
+            LanguageId = "LanguageId",
+            CategoryName = "CategoryName",
+            Description = "Description",
         }
     }
 }
@@ -1499,12 +809,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CategoryLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CategoryLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/CategoryLang/Create",
+            Update = "Northwind/CategoryLang/Update",
+            Delete = "Northwind/CategoryLang/Delete",
+            Retrieve = "Northwind/CategoryLang/Retrieve",
+            List = "Northwind/CategoryLang/List",
         }
     }
 }
@@ -1521,11 +831,11 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Category";
         const lookupKey = "Northwind.Category";
         function getLookup(): Q.Lookup<CategoryRow>;
-        namespace Fields {
-            const CategoryID: string;
-            const CategoryName: string;
-            const Description: string;
-            const Picture: string;
+        const enum Fields {
+            CategoryID = "CategoryID",
+            CategoryName = "CategoryName",
+            Description = "Description",
+            Picture = "Picture",
         }
     }
 }
@@ -1537,12 +847,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Category/Create",
+            Update = "Northwind/Category/Update",
+            Delete = "Northwind/Category/Delete",
+            Retrieve = "Northwind/Category/Retrieve",
+            List = "Northwind/Category/List",
         }
     }
 }
@@ -1569,21 +879,21 @@ declare namespace Serene.Northwind {
         const idProperty = "ID";
         const nameProperty = "CustomerID";
         const localTextPrefix = "Northwind.CustomerCustomerDemo";
-        namespace Fields {
-            const ID: string;
-            const CustomerID: string;
-            const CustomerTypeID: string;
-            const CustomerCompanyName: string;
-            const CustomerContactName: string;
-            const CustomerContactTitle: string;
-            const CustomerAddress: string;
-            const CustomerCity: string;
-            const CustomerRegion: string;
-            const CustomerPostalCode: string;
-            const CustomerCountry: string;
-            const CustomerPhone: string;
-            const CustomerFax: string;
-            const CustomerTypeCustomerDesc: string;
+        const enum Fields {
+            ID = "ID",
+            CustomerID = "CustomerID",
+            CustomerTypeID = "CustomerTypeID",
+            CustomerCompanyName = "CustomerCompanyName",
+            CustomerContactName = "CustomerContactName",
+            CustomerContactTitle = "CustomerContactTitle",
+            CustomerAddress = "CustomerAddress",
+            CustomerCity = "CustomerCity",
+            CustomerRegion = "CustomerRegion",
+            CustomerPostalCode = "CustomerPostalCode",
+            CustomerCountry = "CustomerCountry",
+            CustomerPhone = "CustomerPhone",
+            CustomerFax = "CustomerFax",
+            CustomerTypeCustomerDesc = "CustomerTypeCustomerDesc",
         }
     }
 }
@@ -1597,10 +907,10 @@ declare namespace Serene.Northwind {
         const idProperty = "ID";
         const nameProperty = "CustomerTypeID";
         const localTextPrefix = "Northwind.CustomerDemographic";
-        namespace Fields {
-            const ID: string;
-            const CustomerTypeID: string;
-            const CustomerDesc: string;
+        const enum Fields {
+            ID = "ID",
+            CustomerTypeID = "CustomerTypeID",
+            CustomerDesc = "CustomerDesc",
         }
     }
 }
@@ -1633,36 +943,33 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "Email";
         const localTextPrefix = "Northwind.CustomerDetails";
-        namespace Fields {
-            const Id: string;
-            const LastContactDate: string;
-            const LastContactedBy: string;
-            const Email: string;
-            const SendBulletin: string;
-            const LastContactedByLastName: string;
-            const LastContactedByFirstName: string;
-            const LastContactedByTitle: string;
-            const LastContactedByTitleOfCourtesy: string;
-            const LastContactedByBirthDate: string;
-            const LastContactedByHireDate: string;
-            const LastContactedByAddress: string;
-            const LastContactedByCity: string;
-            const LastContactedByRegion: string;
-            const LastContactedByPostalCode: string;
-            const LastContactedByCountry: string;
-            const LastContactedByHomePhone: string;
-            const LastContactedByExtension: string;
-            const LastContactedByPhoto: string;
-            const LastContactedByNotes: string;
-            const LastContactedByReportsTo: string;
-            const LastContactedByPhotoPath: string;
+        const enum Fields {
+            Id = "Id",
+            LastContactDate = "LastContactDate",
+            LastContactedBy = "LastContactedBy",
+            Email = "Email",
+            SendBulletin = "SendBulletin",
+            LastContactedByLastName = "LastContactedByLastName",
+            LastContactedByFirstName = "LastContactedByFirstName",
+            LastContactedByTitle = "LastContactedByTitle",
+            LastContactedByTitleOfCourtesy = "LastContactedByTitleOfCourtesy",
+            LastContactedByBirthDate = "LastContactedByBirthDate",
+            LastContactedByHireDate = "LastContactedByHireDate",
+            LastContactedByAddress = "LastContactedByAddress",
+            LastContactedByCity = "LastContactedByCity",
+            LastContactedByRegion = "LastContactedByRegion",
+            LastContactedByPostalCode = "LastContactedByPostalCode",
+            LastContactedByCountry = "LastContactedByCountry",
+            LastContactedByHomePhone = "LastContactedByHomePhone",
+            LastContactedByExtension = "LastContactedByExtension",
+            LastContactedByPhoto = "LastContactedByPhoto",
+            LastContactedByNotes = "LastContactedByNotes",
+            LastContactedByReportsTo = "LastContactedByReportsTo",
+            LastContactedByPhotoPath = "LastContactedByPhotoPath",
         }
     }
 }
 declare namespace Serene.Northwind {
-    class CustomerForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface CustomerForm {
         CustomerID: Serenity.StringEditor;
         CompanyName: Serenity.StringEditor;
@@ -1682,6 +989,11 @@ declare namespace Serene.Northwind {
         Email: Serenity.EmailEditor;
         SendBulletin: Serenity.BooleanEditor;
     }
+    class CustomerForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
 }
 declare namespace Serene.Northwind {
     interface CustomerGrossSalesRow {
@@ -1693,13 +1005,13 @@ declare namespace Serene.Northwind {
     }
     namespace CustomerGrossSalesRow {
         const nameProperty = "ContactName";
-        const localTextPrefix = "BasicSamples.GrossSales";
-        namespace Fields {
-            const CustomerId: string;
-            const ContactName: string;
-            const ProductId: string;
-            const ProductName: string;
-            const GrossAmount: string;
+        const localTextPrefix = "Northwind.CustomerGrossSales";
+        const enum Fields {
+            CustomerId = "CustomerId",
+            ContactName = "ContactName",
+            ProductId = "ProductId",
+            ProductName = "ProductName",
+            GrossAmount = "GrossAmount",
         }
     }
 }
@@ -1711,11 +1023,11 @@ declare namespace Serene.Northwind {
     }
     namespace CustomerRepresentativesRow {
         const idProperty = "RepresentativeId";
-        const localTextPrefix = "CustomerRepresentatives";
-        namespace Fields {
-            const RepresentativeId: string;
-            const CustomerId: string;
-            const EmployeeId: string;
+        const localTextPrefix = "Northwind.CustomerRepresentatives";
+        const enum Fields {
+            RepresentativeId = "RepresentativeId",
+            CustomerId = "CustomerId",
+            EmployeeId = "EmployeeId",
         }
     }
 }
@@ -1746,25 +1058,25 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Customer";
         const lookupKey = "Northwind.Customer";
         function getLookup(): Q.Lookup<CustomerRow>;
-        namespace Fields {
-            const ID: string;
-            const CustomerID: string;
-            const CompanyName: string;
-            const ContactName: string;
-            const ContactTitle: string;
-            const Address: string;
-            const City: string;
-            const Region: string;
-            const PostalCode: string;
-            const Country: string;
-            const Phone: string;
-            const Fax: string;
-            const NoteList: string;
-            const Representatives: string;
-            const LastContactDate: string;
-            const LastContactedBy: string;
-            const Email: string;
-            const SendBulletin: string;
+        const enum Fields {
+            ID = "ID",
+            CustomerID = "CustomerID",
+            CompanyName = "CompanyName",
+            ContactName = "ContactName",
+            ContactTitle = "ContactTitle",
+            Address = "Address",
+            City = "City",
+            Region = "Region",
+            PostalCode = "PostalCode",
+            Country = "Country",
+            Phone = "Phone",
+            Fax = "Fax",
+            NoteList = "NoteList",
+            Representatives = "Representatives",
+            LastContactDate = "LastContactDate",
+            LastContactedBy = "LastContactedBy",
+            Email = "Email",
+            SendBulletin = "SendBulletin",
         }
     }
 }
@@ -1777,13 +1089,13 @@ declare namespace Serene.Northwind {
         function GetNextNumber(request: GetNextNumberRequest, onSuccess?: (response: GetNextNumberResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CustomerRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const GetNextNumber: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Customer/Create",
+            Update = "Northwind/Customer/Update",
+            Delete = "Northwind/Customer/Delete",
+            GetNextNumber = "Northwind/Customer/GetNextNumber",
+            Retrieve = "Northwind/Customer/Retrieve",
+            List = "Northwind/Customer/List",
         }
     }
 }
@@ -1834,45 +1146,45 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Employee";
         const lookupKey = "Northwind.Employee";
         function getLookup(): Q.Lookup<EmployeeRow>;
-        namespace Fields {
-            const EmployeeID: string;
-            const LastName: string;
-            const FirstName: string;
-            const FullName: string;
-            const Title: string;
-            const TitleOfCourtesy: string;
-            const BirthDate: string;
-            const HireDate: string;
-            const Address: string;
-            const City: string;
-            const Region: string;
-            const PostalCode: string;
-            const Country: string;
-            const HomePhone: string;
-            const Extension: string;
-            const Photo: string;
-            const Notes: string;
-            const ReportsTo: string;
-            const PhotoPath: string;
-            const ReportsToFullName: string;
-            const ReportsToLastName: string;
-            const ReportsToFirstName: string;
-            const ReportsToTitle: string;
-            const ReportsToTitleOfCourtesy: string;
-            const ReportsToBirthDate: string;
-            const ReportsToHireDate: string;
-            const ReportsToAddress: string;
-            const ReportsToCity: string;
-            const ReportsToRegion: string;
-            const ReportsToPostalCode: string;
-            const ReportsToCountry: string;
-            const ReportsToHomePhone: string;
-            const ReportsToExtension: string;
-            const ReportsToPhoto: string;
-            const ReportsToNotes: string;
-            const ReportsToReportsTo: string;
-            const ReportsToPhotoPath: string;
-            const Gender: string;
+        const enum Fields {
+            EmployeeID = "EmployeeID",
+            LastName = "LastName",
+            FirstName = "FirstName",
+            FullName = "FullName",
+            Title = "Title",
+            TitleOfCourtesy = "TitleOfCourtesy",
+            BirthDate = "BirthDate",
+            HireDate = "HireDate",
+            Address = "Address",
+            City = "City",
+            Region = "Region",
+            PostalCode = "PostalCode",
+            Country = "Country",
+            HomePhone = "HomePhone",
+            Extension = "Extension",
+            Photo = "Photo",
+            Notes = "Notes",
+            ReportsTo = "ReportsTo",
+            PhotoPath = "PhotoPath",
+            ReportsToFullName = "ReportsToFullName",
+            ReportsToLastName = "ReportsToLastName",
+            ReportsToFirstName = "ReportsToFirstName",
+            ReportsToTitle = "ReportsToTitle",
+            ReportsToTitleOfCourtesy = "ReportsToTitleOfCourtesy",
+            ReportsToBirthDate = "ReportsToBirthDate",
+            ReportsToHireDate = "ReportsToHireDate",
+            ReportsToAddress = "ReportsToAddress",
+            ReportsToCity = "ReportsToCity",
+            ReportsToRegion = "ReportsToRegion",
+            ReportsToPostalCode = "ReportsToPostalCode",
+            ReportsToCountry = "ReportsToCountry",
+            ReportsToHomePhone = "ReportsToHomePhone",
+            ReportsToExtension = "ReportsToExtension",
+            ReportsToPhoto = "ReportsToPhoto",
+            ReportsToNotes = "ReportsToNotes",
+            ReportsToReportsTo = "ReportsToReportsTo",
+            ReportsToPhotoPath = "ReportsToPhotoPath",
+            Gender = "Gender",
         }
     }
 }
@@ -1904,28 +1216,28 @@ declare namespace Serene.Northwind {
         const idProperty = "EmployeeID";
         const nameProperty = "TerritoryID";
         const localTextPrefix = "Northwind.EmployeeTerritory";
-        namespace Fields {
-            const EmployeeID: string;
-            const TerritoryID: string;
-            const EmployeeLastName: string;
-            const EmployeeFirstName: string;
-            const EmployeeTitle: string;
-            const EmployeeTitleOfCourtesy: string;
-            const EmployeeBirthDate: string;
-            const EmployeeHireDate: string;
-            const EmployeeAddress: string;
-            const EmployeeCity: string;
-            const EmployeeRegion: string;
-            const EmployeePostalCode: string;
-            const EmployeeCountry: string;
-            const EmployeeHomePhone: string;
-            const EmployeeExtension: string;
-            const EmployeePhoto: string;
-            const EmployeeNotes: string;
-            const EmployeeReportsTo: string;
-            const EmployeePhotoPath: string;
-            const TerritoryTerritoryDescription: string;
-            const TerritoryRegionID: string;
+        const enum Fields {
+            EmployeeID = "EmployeeID",
+            TerritoryID = "TerritoryID",
+            EmployeeLastName = "EmployeeLastName",
+            EmployeeFirstName = "EmployeeFirstName",
+            EmployeeTitle = "EmployeeTitle",
+            EmployeeTitleOfCourtesy = "EmployeeTitleOfCourtesy",
+            EmployeeBirthDate = "EmployeeBirthDate",
+            EmployeeHireDate = "EmployeeHireDate",
+            EmployeeAddress = "EmployeeAddress",
+            EmployeeCity = "EmployeeCity",
+            EmployeeRegion = "EmployeeRegion",
+            EmployeePostalCode = "EmployeePostalCode",
+            EmployeeCountry = "EmployeeCountry",
+            EmployeeHomePhone = "EmployeeHomePhone",
+            EmployeeExtension = "EmployeeExtension",
+            EmployeePhoto = "EmployeePhoto",
+            EmployeeNotes = "EmployeeNotes",
+            EmployeeReportsTo = "EmployeeReportsTo",
+            EmployeePhotoPath = "EmployeePhotoPath",
+            TerritoryTerritoryDescription = "TerritoryTerritoryDescription",
+            TerritoryRegionID = "TerritoryRegionID",
         }
     }
 }
@@ -1949,14 +1261,14 @@ declare namespace Serene.Northwind {
         const idProperty = "NoteId";
         const nameProperty = "EntityType";
         const localTextPrefix = "Northwind.Note";
-        namespace Fields {
-            const NoteId: string;
-            const EntityType: string;
-            const EntityId: string;
-            const Text: string;
-            const InsertUserId: string;
-            const InsertDate: string;
-            const InsertUserDisplayName: string;
+        const enum Fields {
+            NoteId = "NoteId",
+            EntityType = "EntityType",
+            EntityId = "EntityId",
+            Text = "Text",
+            InsertUserId = "InsertUserId",
+            InsertDate = "InsertDate",
+            InsertUserDisplayName = "InsertUserDisplayName",
         }
     }
 }
@@ -1965,14 +1277,16 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class OrderDetailForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface OrderDetailForm {
         ProductID: Serenity.LookupEditor;
         UnitPrice: Serenity.DecimalEditor;
         Quantity: Serenity.IntegerEditor;
         Discount: Serenity.DecimalEditor;
+    }
+    class OrderDetailForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2000,26 +1314,26 @@ declare namespace Serene.Northwind {
     namespace OrderDetailRow {
         const idProperty = "DetailID";
         const localTextPrefix = "Northwind.OrderDetail";
-        namespace Fields {
-            const DetailID: string;
-            const OrderID: string;
-            const ProductID: string;
-            const UnitPrice: string;
-            const Quantity: string;
-            const Discount: string;
-            const OrderCustomerID: string;
-            const OrderEmployeeID: string;
-            const OrderDate: string;
-            const OrderShippedDate: string;
-            const OrderShipVia: string;
-            const OrderShipCity: string;
-            const OrderShipCountry: string;
-            const ProductName: string;
-            const ProductDiscontinued: string;
-            const ProductSupplierID: string;
-            const ProductQuantityPerUnit: string;
-            const ProductUnitPrice: string;
-            const LineTotal: string;
+        const enum Fields {
+            DetailID = "DetailID",
+            OrderID = "OrderID",
+            ProductID = "ProductID",
+            UnitPrice = "UnitPrice",
+            Quantity = "Quantity",
+            Discount = "Discount",
+            OrderCustomerID = "OrderCustomerID",
+            OrderEmployeeID = "OrderEmployeeID",
+            OrderDate = "OrderDate",
+            OrderShippedDate = "OrderShippedDate",
+            OrderShipVia = "OrderShipVia",
+            OrderShipCity = "OrderShipCity",
+            OrderShipCountry = "OrderShipCountry",
+            ProductName = "ProductName",
+            ProductDiscontinued = "ProductDiscontinued",
+            ProductSupplierID = "ProductSupplierID",
+            ProductQuantityPerUnit = "ProductQuantityPerUnit",
+            ProductUnitPrice = "ProductUnitPrice",
+            LineTotal = "LineTotal",
         }
     }
 }
@@ -2028,16 +1342,13 @@ declare namespace Serene.Northwind {
         const baseUrl = "Northwind/OrderDetail";
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<OrderDetailRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<OrderDetailRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Retrieve = "Northwind/OrderDetail/Retrieve",
+            List = "Northwind/OrderDetail/List",
         }
     }
 }
 declare namespace Serene.Northwind {
-    class OrderForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface OrderForm {
         CustomerID: CustomerEditor;
         OrderDate: Serenity.DateEditor;
@@ -2053,6 +1364,11 @@ declare namespace Serene.Northwind {
         ShipRegion: Serenity.StringEditor;
         ShipPostalCode: Serenity.StringEditor;
         ShipCountry: Serenity.StringEditor;
+    }
+    class OrderForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2096,38 +1412,36 @@ declare namespace Serene.Northwind {
         const idProperty = "OrderID";
         const nameProperty = "CustomerID";
         const localTextPrefix = "Northwind.Order";
-        const lookupKey = "Northwind.OrderShipCity";
-        function getLookup(): Q.Lookup<OrderRow>;
-        namespace Fields {
-            const OrderID: string;
-            const CustomerID: string;
-            const EmployeeID: string;
-            const OrderDate: string;
-            const RequiredDate: string;
-            const ShippedDate: string;
-            const ShipVia: string;
-            const Freight: string;
-            const ShipName: string;
-            const ShipAddress: string;
-            const ShipCity: string;
-            const ShipRegion: string;
-            const ShipPostalCode: string;
-            const ShipCountry: string;
-            const CustomerCompanyName: string;
-            const CustomerContactName: string;
-            const CustomerContactTitle: string;
-            const CustomerCity: string;
-            const CustomerRegion: string;
-            const CustomerCountry: string;
-            const CustomerPhone: string;
-            const CustomerFax: string;
-            const EmployeeFullName: string;
-            const EmployeeGender: string;
-            const EmployeeReportsToFullName: string;
-            const ShipViaCompanyName: string;
-            const ShipViaPhone: string;
-            const ShippingState: string;
-            const DetailList: string;
+        const enum Fields {
+            OrderID = "OrderID",
+            CustomerID = "CustomerID",
+            EmployeeID = "EmployeeID",
+            OrderDate = "OrderDate",
+            RequiredDate = "RequiredDate",
+            ShippedDate = "ShippedDate",
+            ShipVia = "ShipVia",
+            Freight = "Freight",
+            ShipName = "ShipName",
+            ShipAddress = "ShipAddress",
+            ShipCity = "ShipCity",
+            ShipRegion = "ShipRegion",
+            ShipPostalCode = "ShipPostalCode",
+            ShipCountry = "ShipCountry",
+            CustomerCompanyName = "CustomerCompanyName",
+            CustomerContactName = "CustomerContactName",
+            CustomerContactTitle = "CustomerContactTitle",
+            CustomerCity = "CustomerCity",
+            CustomerRegion = "CustomerRegion",
+            CustomerCountry = "CustomerCountry",
+            CustomerPhone = "CustomerPhone",
+            CustomerFax = "CustomerFax",
+            EmployeeFullName = "EmployeeFullName",
+            EmployeeGender = "EmployeeGender",
+            EmployeeReportsToFullName = "EmployeeReportsToFullName",
+            ShipViaCompanyName = "ShipViaCompanyName",
+            ShipViaPhone = "ShipViaPhone",
+            ShippingState = "ShippingState",
+            DetailList = "DetailList",
         }
     }
 }
@@ -2139,12 +1453,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<OrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: OrderListRequest, onSuccess?: (response: Serenity.ListResponse<OrderRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Order/Create",
+            Update = "Northwind/Order/Update",
+            Delete = "Northwind/Order/Delete",
+            Retrieve = "Northwind/Order/Retrieve",
+            List = "Northwind/Order/List",
         }
     }
 }
@@ -2157,9 +1471,6 @@ declare namespace Serene.Northwind {
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class ProductForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ProductForm {
         ProductName: Serenity.StringEditor;
         ProductImage: Serenity.ImageUploadEditor;
@@ -2171,6 +1482,11 @@ declare namespace Serene.Northwind {
         UnitsInStock: Serenity.IntegerEditor;
         UnitsOnOrder: Serenity.IntegerEditor;
         ReorderLevel: Serenity.IntegerEditor;
+    }
+    class ProductForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2184,11 +1500,11 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "ProductName";
         const localTextPrefix = "Northwind.ProductLang";
-        namespace Fields {
-            const Id: string;
-            const ProductId: string;
-            const LanguageId: string;
-            const ProductName: string;
+        const enum Fields {
+            Id = "Id",
+            ProductId = "ProductId",
+            LanguageId = "LanguageId",
+            ProductName = "ProductName",
         }
     }
 }
@@ -2200,12 +1516,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/ProductLang/Create",
+            Update = "Northwind/ProductLang/Update",
+            Delete = "Northwind/ProductLang/Delete",
+            Retrieve = "Northwind/ProductLang/Retrieve",
+            List = "Northwind/ProductLang/List",
         }
     }
 }
@@ -2231,23 +1547,23 @@ declare namespace Serene.Northwind {
     namespace ProductLogRow {
         const idProperty = "ProductLogID";
         const localTextPrefix = "Northwind.ProductLog";
-        namespace Fields {
-            const ProductLogID: string;
-            const OperationType: string;
-            const ChangingUserId: string;
-            const ValidFrom: string;
-            const ValidUntil: string;
-            const ProductID: string;
-            const ProductName: string;
-            const ProductImage: string;
-            const Discontinued: string;
-            const SupplierID: string;
-            const CategoryID: string;
-            const QuantityPerUnit: string;
-            const UnitPrice: string;
-            const UnitsInStock: string;
-            const UnitsOnOrder: string;
-            const ReorderLevel: string;
+        const enum Fields {
+            ProductLogID = "ProductLogID",
+            OperationType = "OperationType",
+            ChangingUserId = "ChangingUserId",
+            ValidFrom = "ValidFrom",
+            ValidUntil = "ValidUntil",
+            ProductID = "ProductID",
+            ProductName = "ProductName",
+            ProductImage = "ProductImage",
+            Discontinued = "Discontinued",
+            SupplierID = "SupplierID",
+            CategoryID = "CategoryID",
+            QuantityPerUnit = "QuantityPerUnit",
+            UnitPrice = "UnitPrice",
+            UnitsInStock = "UnitsInStock",
+            UnitsOnOrder = "UnitsOnOrder",
+            ReorderLevel = "ReorderLevel",
         }
     }
 }
@@ -2285,32 +1601,32 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Product";
         const lookupKey = "Northwind.Product";
         function getLookup(): Q.Lookup<ProductRow>;
-        namespace Fields {
-            const ProductID: string;
-            const ProductName: string;
-            const ProductImage: string;
-            const Discontinued: string;
-            const SupplierID: string;
-            const CategoryID: string;
-            const QuantityPerUnit: string;
-            const UnitPrice: string;
-            const UnitsInStock: string;
-            const UnitsOnOrder: string;
-            const ReorderLevel: string;
-            const SupplierCompanyName: string;
-            const SupplierContactName: string;
-            const SupplierContactTitle: string;
-            const SupplierAddress: string;
-            const SupplierCity: string;
-            const SupplierRegion: string;
-            const SupplierPostalCode: string;
-            const SupplierCountry: string;
-            const SupplierPhone: string;
-            const SupplierFax: string;
-            const SupplierHomePage: string;
-            const CategoryName: string;
-            const CategoryDescription: string;
-            const CategoryPicture: string;
+        const enum Fields {
+            ProductID = "ProductID",
+            ProductName = "ProductName",
+            ProductImage = "ProductImage",
+            Discontinued = "Discontinued",
+            SupplierID = "SupplierID",
+            CategoryID = "CategoryID",
+            QuantityPerUnit = "QuantityPerUnit",
+            UnitPrice = "UnitPrice",
+            UnitsInStock = "UnitsInStock",
+            UnitsOnOrder = "UnitsOnOrder",
+            ReorderLevel = "ReorderLevel",
+            SupplierCompanyName = "SupplierCompanyName",
+            SupplierContactName = "SupplierContactName",
+            SupplierContactTitle = "SupplierContactTitle",
+            SupplierAddress = "SupplierAddress",
+            SupplierCity = "SupplierCity",
+            SupplierRegion = "SupplierRegion",
+            SupplierPostalCode = "SupplierPostalCode",
+            SupplierCountry = "SupplierCountry",
+            SupplierPhone = "SupplierPhone",
+            SupplierFax = "SupplierFax",
+            SupplierHomePage = "SupplierHomePage",
+            CategoryName = "CategoryName",
+            CategoryDescription = "CategoryDescription",
+            CategoryPicture = "CategoryPicture",
         }
     }
 }
@@ -2322,24 +1638,26 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Product/Create",
+            Update = "Northwind/Product/Update",
+            Delete = "Northwind/Product/Delete",
+            Retrieve = "Northwind/Product/Retrieve",
+            List = "Northwind/Product/List",
         }
     }
 }
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class RegionForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface RegionForm {
         RegionID: Serenity.IntegerEditor;
         RegionDescription: Serenity.StringEditor;
+    }
+    class RegionForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2353,9 +1671,9 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Region";
         const lookupKey = "Northwind.Region";
         function getLookup(): Q.Lookup<RegionRow>;
-        namespace Fields {
-            const RegionID: string;
-            const RegionDescription: string;
+        const enum Fields {
+            RegionID = "RegionID",
+            RegionDescription = "RegionDescription",
         }
     }
 }
@@ -2367,12 +1685,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<RegionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<RegionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Region/Create",
+            Update = "Northwind/Region/Update",
+            Delete = "Northwind/Region/Delete",
+            Retrieve = "Northwind/Region/Retrieve",
+            List = "Northwind/Region/List",
         }
     }
 }
@@ -2388,11 +1706,11 @@ declare namespace Serene.Northwind {
     namespace SalesByCategoryRow {
         const nameProperty = "CategoryName";
         const localTextPrefix = "Northwind.SalesByCategory";
-        namespace Fields {
-            const CategoryId: string;
-            const CategoryName: string;
-            const ProductName: string;
-            const ProductSales: string;
+        const enum Fields {
+            CategoryId = "CategoryId",
+            CategoryName = "CategoryName",
+            ProductName = "ProductName",
+            ProductSales = "ProductSales",
         }
     }
 }
@@ -2400,20 +1718,22 @@ declare namespace Serene.Northwind {
     namespace SalesByCategoryService {
         const baseUrl = "Northwind/SalesByCategory";
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SalesByCategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const List: string;
+        const enum Methods {
+            List = "Northwind/SalesByCategory/List",
         }
     }
 }
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class ShipperForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface ShipperForm {
         CompanyName: Serenity.StringEditor;
         Phone: PhoneEditor;
+    }
+    class ShipperForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2428,10 +1748,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Shipper";
         const lookupKey = "Northwind.Shipper";
         function getLookup(): Q.Lookup<ShipperRow>;
-        namespace Fields {
-            const ShipperID: string;
-            const CompanyName: string;
-            const Phone: string;
+        const enum Fields {
+            ShipperID = "ShipperID",
+            CompanyName = "CompanyName",
+            Phone = "Phone",
         }
     }
 }
@@ -2443,21 +1763,18 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ShipperRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ShipperRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Shipper/Create",
+            Update = "Northwind/Shipper/Update",
+            Delete = "Northwind/Shipper/Delete",
+            Retrieve = "Northwind/Shipper/Retrieve",
+            List = "Northwind/Shipper/List",
         }
     }
 }
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class SupplierForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface SupplierForm {
         CompanyName: Serenity.StringEditor;
         ContactName: Serenity.StringEditor;
@@ -2470,6 +1787,11 @@ declare namespace Serene.Northwind {
         Phone: Serenity.StringEditor;
         Fax: Serenity.StringEditor;
         HomePage: Serenity.StringEditor;
+    }
+    class SupplierForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2493,19 +1815,19 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Supplier";
         const lookupKey = "Northwind.Supplier";
         function getLookup(): Q.Lookup<SupplierRow>;
-        namespace Fields {
-            const SupplierID: string;
-            const CompanyName: string;
-            const ContactName: string;
-            const ContactTitle: string;
-            const Address: string;
-            const City: string;
-            const Region: string;
-            const PostalCode: string;
-            const Country: string;
-            const Phone: string;
-            const Fax: string;
-            const HomePage: string;
+        const enum Fields {
+            SupplierID = "SupplierID",
+            CompanyName = "CompanyName",
+            ContactName = "ContactName",
+            ContactTitle = "ContactTitle",
+            Address = "Address",
+            City = "City",
+            Region = "Region",
+            PostalCode = "PostalCode",
+            Country = "Country",
+            Phone = "Phone",
+            Fax = "Fax",
+            HomePage = "HomePage",
         }
     }
 }
@@ -2517,25 +1839,27 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<SupplierRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<SupplierRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Supplier/Create",
+            Update = "Northwind/Supplier/Update",
+            Delete = "Northwind/Supplier/Delete",
+            Retrieve = "Northwind/Supplier/Retrieve",
+            List = "Northwind/Supplier/List",
         }
     }
 }
 declare namespace Serene.Northwind {
 }
 declare namespace Serene.Northwind {
-    class TerritoryForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
     interface TerritoryForm {
         TerritoryID: Serenity.StringEditor;
         TerritoryDescription: Serenity.StringEditor;
         RegionID: Serenity.LookupEditor;
+    }
+    class TerritoryForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -2552,12 +1876,12 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Territory";
         const lookupKey = "Northwind.Territory";
         function getLookup(): Q.Lookup<TerritoryRow>;
-        namespace Fields {
-            const ID: string;
-            const TerritoryID: string;
-            const TerritoryDescription: string;
-            const RegionID: string;
-            const RegionDescription: string;
+        const enum Fields {
+            ID = "ID",
+            TerritoryID = "TerritoryID",
+            TerritoryDescription = "TerritoryDescription",
+            RegionID = "RegionID",
+            RegionDescription = "RegionDescription",
         }
     }
 }
@@ -2569,150 +1893,12 @@ declare namespace Serene.Northwind {
         function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TerritoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TerritoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
-}
-declare namespace Serene.Organization {
-    class BusinessUnitForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface BusinessUnitForm {
-        Name: Serenity.StringEditor;
-        ParentUnitId: BusinessUnitEditor;
-    }
-}
-declare namespace Serene.Organization {
-    interface BusinessUnitRow {
-        UnitId?: number;
-        Name?: string;
-        ParentUnitId?: number;
-        ParentUnitName?: string;
-        ParentUnitParentUnitId?: number;
-    }
-    namespace BusinessUnitRow {
-        const idProperty = "UnitId";
-        const nameProperty = "Name";
-        const localTextPrefix = "Organization.BusinessUnit";
-        const lookupKey = "Organization.BusinessUnit";
-        function getLookup(): Q.Lookup<BusinessUnitRow>;
-        namespace Fields {
-            const UnitId: string;
-            const Name: string;
-            const ParentUnitId: string;
-            const ParentUnitName: string;
-            const ParentUnitParentUnitId: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
-    namespace BusinessUnitService {
-        const baseUrl = "Organization/BusinessUnit";
-        function Create(request: Serenity.SaveRequest<BusinessUnitRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<BusinessUnitRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<BusinessUnitRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<BusinessUnitRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
-}
-declare namespace Serene.Organization {
-    class ContactForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface ContactForm {
-        Title: Serenity.StringEditor;
-        FirstName: Serenity.StringEditor;
-        LastName: Serenity.StringEditor;
-        Email: Serenity.EmailEditor;
-        IdentityNo: Serenity.StringEditor;
-        UserId: Serenity.LookupEditor;
-    }
-}
-declare namespace Serene.Organization {
-    interface ContactRow {
-        ContactId?: number;
-        Title?: string;
-        FirstName?: string;
-        LastName?: string;
-        FullName?: string;
-        Email?: string;
-        IdentityNo?: string;
-        UserId?: number;
-        Username?: string;
-        UserDisplayName?: string;
-        UserEmail?: string;
-        UserSource?: string;
-        UserPasswordHash?: string;
-        UserPasswordSalt?: string;
-        UserLastDirectoryUpdate?: string;
-        UserUserImage?: string;
-        UserInsertDate?: string;
-        UserInsertUserId?: number;
-        UserUpdateDate?: string;
-        UserUpdateUserId?: number;
-        UserIsActive?: number;
-    }
-    namespace ContactRow {
-        const idProperty = "ContactId";
-        const nameProperty = "FullName";
-        const localTextPrefix = "Organization.Contact";
-        const lookupKey = "Organization.Contact";
-        function getLookup(): Q.Lookup<ContactRow>;
-        namespace Fields {
-            const ContactId: string;
-            const Title: string;
-            const FirstName: string;
-            const LastName: string;
-            const FullName: string;
-            const Email: string;
-            const IdentityNo: string;
-            const UserId: string;
-            const Username: string;
-            const UserDisplayName: string;
-            const UserEmail: string;
-            const UserSource: string;
-            const UserPasswordHash: string;
-            const UserPasswordSalt: string;
-            const UserLastDirectoryUpdate: string;
-            const UserUserImage: string;
-            const UserInsertDate: string;
-            const UserInsertUserId: string;
-            const UserUpdateDate: string;
-            const UserUpdateUserId: string;
-            const UserIsActive: string;
-        }
-    }
-}
-declare namespace Serene.Organization {
-    namespace ContactService {
-        const baseUrl = "Organization/Contact";
-        function Create(request: Serenity.SaveRequest<ContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<ContactRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ContactRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
+        const enum Methods {
+            Create = "Northwind/Territory/Create",
+            Update = "Northwind/Territory/Update",
+            Delete = "Northwind/Territory/Delete",
+            Retrieve = "Northwind/Territory/Retrieve",
+            List = "Northwind/Territory/List",
         }
     }
 }
@@ -2725,6 +1911,11 @@ declare namespace Serene {
             [key: string]: boolean;
         };
     }
+}
+declare namespace Serene.LanguageList {
+    function getValue(): string[][];
+}
+declare namespace Serene.ScriptInitialization {
 }
 declare namespace Serene.Administration {
     class LanguageDialog extends Serenity.EntityDialog<LanguageRow, any> {
@@ -2744,7 +1935,7 @@ declare namespace Serene.Administration {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
+        protected getDefaultSortBy(): LanguageRow.Fields[];
     }
 }
 declare namespace Serene.Administration {
@@ -2767,7 +1958,7 @@ declare namespace Serene.Administration {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
+        protected getDefaultSortBy(): RoleRow.Fields[];
     }
 }
 declare namespace Serene.Administration {
@@ -2828,12 +2019,8 @@ declare namespace Serene.Administration {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
-        protected getDefaultSortBy(): string[];
+        protected getDefaultSortBy(): UserRow.Fields[];
     }
-}
-declare namespace Serene.Authorization {
-    let userDefinition: ScriptUserDefinition;
-    function hasPermission(permissionKey: string): boolean;
 }
 declare namespace Serene.Administration {
     class PermissionCheckEditor extends Serenity.DataGrid<PermissionCheckItem, PermissionCheckEditorOptions> {
@@ -2906,15 +2093,408 @@ declare namespace Serene.Administration {
         username: string;
     }
 }
-declare var Morris: any;
-declare namespace Serene.BasicSamples {
-    class ChartInDialog extends Serenity.TemplatedDialog<any> {
-        private areaChart;
-        static initializePage(): void;
-        protected onDialogOpen(): void;
-        protected arrange(): void;
+declare namespace Serene {
+    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
+        constructor();
+        cancelled: boolean;
+        max: number;
+        value: number;
+        title: string;
+        cancelTitle: string;
+        getDialogOptions(): JQueryUI.DialogOptions;
+        initDialog(): void;
+        getTemplate(): string;
+    }
+}
+declare namespace Serene.Common {
+    class BulkServiceAction {
+        protected keys: string[];
+        protected queue: string[];
+        protected queueIndex: number;
+        protected progressDialog: BasicProgressDialog;
+        protected pendingRequests: number;
+        protected completedRequests: number;
+        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
+        private successCount;
+        private errorCount;
+        done: () => void;
+        protected createProgressDialog(): void;
+        protected getConfirmationFormat(): string;
+        protected getConfirmationMessage(targetCount: any): string;
+        protected confirm(targetCount: any, action: any): void;
+        protected getNothingToProcessMessage(): string;
+        protected nothingToProcess(): void;
+        protected getParallelRequests(): number;
+        protected getBatchSize(): number;
+        protected startParallelExecution(): void;
+        protected serviceCallCleanup(): void;
+        protected executeForBatch(batch: string[]): void;
+        protected executeNextBatch(): void;
+        protected getAllHadErrorsFormat(): string;
+        protected showAllHadErrors(): void;
+        protected getSomeHadErrorsFormat(): string;
+        protected showSomeHadErrors(): void;
+        protected getAllSuccessFormat(): string;
+        protected showAllSuccess(): void;
+        protected showResults(): void;
+        execute(keys: string[]): void;
+        get_successCount(): any;
+        set_successCount(value: number): void;
+        get_errorCount(): any;
+        set_errorCount(value: number): void;
+    }
+}
+declare namespace Serene.DialogUtils {
+    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
+declare namespace Serene.Common {
+    class EnumSelectFormatter implements Slick.Formatter {
+        constructor();
+        format(ctx: Slick.FormatterContext): string;
+        enumKey: string;
+        allowClear: boolean;
+        emptyItemText: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ExcelExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        service: string;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+    }
+    namespace ExcelExportHelper {
+        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
+    }
+}
+declare namespace Serene.Common {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getIdProperty(): string;
+        protected nextId: number;
+        constructor(container: JQuery);
+        protected id(entity: TEntity): any;
+        protected getNextId(): string;
+        protected setNewId(entity: TEntity): void;
+        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
+        protected deleteEntity(id: number): boolean;
+        protected validateEntity(row: TEntity, id: number): boolean;
+        protected setEntities(items: TEntity[]): void;
+        protected getNewEntity(): TEntity;
+        protected getButtons(): Serenity.ToolButton[];
+        protected editItem(entityOrId: any): void;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        value: TEntity[];
+        protected getGridCanLoad(): boolean;
+        protected usePager(): boolean;
+        protected getInitialTitle(): any;
+        protected createQuickSearchInput(): void;
+    }
+}
+declare namespace Serene.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace Serene {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
+        private value;
+        constructor(container: JQuery, options: StaticTextBlockOptions);
+        private updateElementContent();
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        setEditValue(source: any, property: Serenity.PropertyItem): void;
+    }
+    interface StaticTextBlockOptions {
+        text: string;
+        isHtml: boolean;
+        isLocalText: boolean;
+        hideLabel: boolean;
+    }
+}
+declare namespace Serene.Common {
+    class LanguageSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery, currentLanguage: string);
+    }
+}
+declare namespace Serene.Common {
+    class SidebarSearch extends Serenity.Widget<any> {
+        private menuUL;
+        constructor(input: JQuery, menuUL: JQuery);
+        protected updateMatchFlags(text: string): void;
+    }
+}
+declare namespace Serene.Common {
+    class ThemeSelection extends Serenity.Widget<any> {
+        constructor(select: JQuery);
+        protected getCurrentTheme(): string;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    interface PdfExportOptions {
+        grid: Serenity.DataGrid<any, any>;
+        onViewSubmit: () => boolean;
+        title?: string;
+        hint?: string;
+        separator?: boolean;
+        reportTitle?: string;
+        titleTop?: number;
+        titleFontSize?: number;
+        fileName?: string;
+        pageNumbers?: boolean;
+        columnTitles?: {
+            [key: string]: string;
+        };
+        tableOptions?: jsPDF.AutoTableOptions;
+        output?: string;
+        autoPrint?: boolean;
+        printDateTimeHeader?: boolean;
+    }
+    namespace PdfExportHelper {
+        function exportToPdf(options: PdfExportOptions): void;
+        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
+        private report;
+        private propertyGrid;
+        constructor(options: ReportDialogOptions);
+        protected getDialogButtons(): any;
+        protected createPropertyGrid(): void;
+        protected loadReport(reportKey: string): void;
+        protected updateInterface(): void;
+        executeReport(target: string, ext: string, download: boolean): void;
+        getToolbarButtons(): {
+            title: string;
+            cssClass: string;
+            onClick: () => void;
+        }[];
+    }
+    interface ReportDialogOptions {
+        reportKey: string;
+    }
+}
+declare namespace Serene.Common {
+    interface ReportExecuteOptions {
+        reportKey: string;
+        download?: boolean;
+        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
+        getParams?: () => any;
+        params?: {
+            [key: string]: any;
+        };
+        target?: string;
+    }
+    interface ReportButtonOptions extends ReportExecuteOptions {
+        title?: string;
+        cssClass?: string;
+        icon?: string;
+    }
+    namespace ReportHelper {
+        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
+        function execute(options: ReportExecuteOptions): void;
+    }
+}
+declare var jsPDF: any;
+declare namespace Serene.Common {
+    class ReportPage extends Serenity.Widget<any> {
+        private reportKey;
+        private propertyItems;
+        private propertyGrid;
+        constructor(element: JQuery);
+        protected updateMatchFlags(text: string): void;
+        protected categoryClick(e: any): void;
+        protected reportLinkClick(e: any): void;
+    }
+}
+declare namespace Serene.Common {
+    class UserPreferenceStorage implements Serenity.SettingStorage {
+        getItem(key: string): string;
+        setItem(key: string, data: string): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: CategoryForm;
+    }
+}
+declare namespace Serene.Northwind {
+    class CategoryGrid extends Serenity.EntityGrid<CategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerDialog extends Serenity.EntityDialog<CustomerRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: CustomerForm;
+        private ordersGrid;
+        private loadedState;
+        constructor();
+        getSaveState(): string;
+        loadResponse(data: any): void;
+        loadEntity(entity: CustomerRow): void;
+        onSaveSuccess(response: any): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
+        constructor(hidden: JQuery);
+        protected getLookupKey(): string;
+        protected getItemText(item: any, lookup: any): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+        getButtons(): Serenity.ToolButton[];
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: OrderForm;
+        constructor();
+        getToolbarButtons(): Serenity.ToolButton[];
+        protected updateInterface(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerOrderDialog extends OrderDialog {
+        constructor();
+        updateInterface(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected shippingStateFilter: Serenity.EnumEditor;
+        constructor(container: JQuery);
+        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
+        protected createQuickFilters(): void;
+        protected getButtons(): Serenity.ToolButton[];
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
+        set_shippingState(value: number): void;
+        protected addButtonClick(): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class CustomerOrdersGrid extends OrderGrid {
+        protected getDialogType(): typeof CustomerOrderDialog;
+        constructor(container: JQuery);
+        protected getColumns(): Slick.Column[];
+        protected initEntityDialog(itemType: any, dialog: any): void;
+        protected addButtonClick(): void;
+        protected getInitialTitle(): any;
+        protected getGridCanLoad(): boolean;
+        private _customerID;
+        customerID: string;
+    }
+}
+declare namespace Serene.Northwind {
+    class EmployeeListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class EmployeeFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+        genderProperty: string;
+        initializeColumn(column: Slick.Column): void;
+    }
+}
+declare namespace Serene.Northwind {
+    class NoteDialog extends Serenity.TemplatedDialog<any> {
+        private textEditor;
+        constructor();
         protected getTemplate(): string;
         protected getDialogOptions(): JQueryUI.DialogOptions;
+        text: string;
+        okClick: () => void;
+    }
+}
+declare namespace Serene.Northwind {
+    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        private isDirty;
+        private items;
+        constructor(div: JQuery);
+        protected getTemplate(): string;
+        protected updateContent(): void;
+        protected addClick(): void;
+        protected editClick(e: any): void;
+        deleteClick(e: any): void;
+        value: NoteRow[];
+        getEditValue(prop: Serenity.PropertyItem, target: any): void;
+        setEditValue(source: any, prop: Serenity.PropertyItem): void;
+        get_isDirty(): boolean;
+        set_isDirty(value: any): void;
+        onChange: () => void;
+    }
+}
+declare namespace Serene.Northwind {
+    class FreightFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected form: OrderDetailForm;
+        constructor();
+    }
+}
+declare namespace Serene.Northwind {
+    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof OrderDetailDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+        validateEntity(row: any, id: any): boolean;
     }
 }
 declare namespace Serene.Northwind {
@@ -2925,15 +2505,6 @@ declare namespace Serene.Northwind {
         protected getNameProperty(): string;
         protected getService(): string;
         protected form: ProductForm;
-    }
-}
-declare namespace Serene.BasicSamples {
-    class CloneableEntityDialog extends Northwind.ProductDialog {
-        protected updateInterface(): void;
-        /**
-         * Overriding this method is optional to customize cloned entity
-         */
-        protected getCloningEntity(): Northwind.ProductRow;
     }
 }
 declare namespace Serene.Northwind {
@@ -2966,6 +2537,134 @@ declare namespace Serene.Northwind {
         protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
     }
 }
+declare namespace Serene.Northwind {
+    class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: RegionForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class PhoneEditor extends Serenity.StringEditor {
+        constructor(input: JQuery);
+        protected formatValue(): void;
+        protected getFormattedValue(): string;
+        multiple: boolean;
+        get_value(): string;
+        set_value(value: string): void;
+        static validate(phone: string, isMultiple: boolean): string;
+        static isValidPhone(phone: string): boolean;
+        static formatPhone(phone: any): any;
+        static formatMulti(phone: string, format: (s: string) => string): string;
+        static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ShipperForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace Serene.Northwind {
+    class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: SupplierForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class SupplierGrid extends Serenity.EntityGrid<SupplierRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Northwind {
+    class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TerritoryForm;
+        protected getLanguages(): string[][];
+    }
+}
+declare namespace Serene.Northwind {
+    class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): any;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace Serene.Authorization {
+    let userDefinition: ScriptUserDefinition;
+    function hasPermission(permissionKey: string): boolean;
+}
+declare var Morris: any;
+declare namespace Serene.BasicSamples {
+    class ChartInDialog extends Serenity.TemplatedDialog<any> {
+        private areaChart;
+        static initializePage(): void;
+        protected onDialogOpen(): void;
+        protected arrange(): void;
+        protected getTemplate(): string;
+        protected getDialogOptions(): JQueryUI.DialogOptions;
+    }
+}
+declare namespace Serene.BasicSamples {
+    class CloneableEntityDialog extends Northwind.ProductDialog {
+        protected updateInterface(): void;
+        /**
+         * Overriding this method is optional to customize cloned entity
+         */
+        protected getCloningEntity(): Northwind.ProductRow;
+    }
+}
 declare namespace Serene.BasicSamples {
     /**
      * Subclass of ProductGrid to override dialog type to CloneableEntityDialog
@@ -2973,24 +2672,6 @@ declare namespace Serene.BasicSamples {
     class CloneableEntityGrid extends Northwind.ProductGrid {
         protected getDialogType(): typeof CloneableEntityDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected shippingStateFilter: Serenity.EnumEditor;
-        constructor(container: JQuery);
-        protected getQuickFilters(): Serenity.QuickFilter<Serenity.Widget<any>, any>[];
-        protected createQuickFilters(): void;
-        protected getButtons(): Serenity.ToolButton[];
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-        set_shippingState(value: number): void;
-        protected addButtonClick(): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3008,19 +2689,6 @@ declare namespace Serene.BasicSamples {
 declare namespace Serene.BasicSamples.DialogBoxes {
     function initializePage(): void;
 }
-declare namespace Serene.Northwind {
-    class OrderDialog extends Serenity.EntityDialog<OrderRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: OrderForm;
-        constructor();
-        getToolbarButtons(): Serenity.ToolButton[];
-        protected updateInterface(): void;
-    }
-}
 declare namespace Serene.BasicSamples {
     /**
      * A version of order dialog converted to a panel by adding Serenity.Decorators.panel decorator.
@@ -3029,16 +2697,6 @@ declare namespace Serene.BasicSamples {
         constructor();
         protected updateInterface(): void;
         protected onSaveSuccess(response: any): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: CategoryForm;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3050,16 +2708,6 @@ declare namespace Serene.BasicSamples {
          * @param response Response that is returned from server
          */
         protected onSaveSuccess(response: Serenity.SaveResponse): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CategoryGrid extends Serenity.EntityGrid<CategoryRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3167,17 +2815,6 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
-declare namespace Serene.Northwind {
-    class SupplierDialog extends Serenity.EntityDialog<SupplierRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: SupplierForm;
-        protected getLanguages(): string[][];
-    }
-}
 declare namespace Serene.BasicSamples {
     class ReadOnlyDialog extends Northwind.SupplierDialog {
         /**
@@ -3208,16 +2845,6 @@ declare namespace Serene.BasicSamples {
          * and updates the dialog title. We could do it here too...
          */
         protected updateTitle(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class SupplierGrid extends Serenity.EntityGrid<SupplierRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3255,39 +2882,11 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
-declare namespace Serene.Northwind {
-    class CustomerDialog extends Serenity.EntityDialog<CustomerRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: CustomerForm;
-        private ordersGrid;
-        private loadedState;
-        constructor();
-        getSaveState(): string;
-        loadResponse(data: any): void;
-        loadEntity(entity: CustomerRow): void;
-        onSaveSuccess(response: any): void;
-    }
-}
 declare namespace Serene.BasicSamples {
     class SerialAutoNumberDialog extends Northwind.CustomerDialog {
         constructor();
         protected afterLoadEntity(): void;
         private getNextNumber();
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerGrid extends Serenity.EntityGrid<CustomerRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        getButtons(): Serenity.ToolButton[];
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3297,17 +2896,6 @@ declare namespace Serene.BasicSamples {
     class SerialAutoNumberGrid extends Northwind.CustomerGrid {
         protected getDialogType(): typeof SerialAutoNumberDialog;
         constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        protected getIdProperty(): string;
-        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
-        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        destroy(): void;
-        protected updateInterface(): void;
-        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
-        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3329,14 +2917,6 @@ declare namespace Serene.BasicSamples {
         protected getItemText(item: Northwind.ProductRow, lookup: Q.Lookup<Northwind.ProductRow>): string;
     }
 }
-declare namespace Serene.Northwind {
-    class OrderDetailDialog extends Common.GridEditorDialog<OrderDetailRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: OrderDetailForm;
-        constructor();
-    }
-}
 declare namespace Serene.BasicSamples {
     /**
      * Our subclass of order detail dialog with a CategoryID property
@@ -3350,39 +2930,6 @@ declare namespace Serene.BasicSamples {
          */
         protected beforeLoadEntity(entity: any): void;
         categoryID: number;
-    }
-}
-declare namespace Serene.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        protected getIdProperty(): string;
-        protected nextId: number;
-        constructor(container: JQuery);
-        protected id(entity: TEntity): any;
-        protected getNextId(): string;
-        protected setNewId(entity: TEntity): void;
-        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
-        protected deleteEntity(id: number): boolean;
-        protected validateEntity(row: TEntity, id: number): boolean;
-        protected setEntities(items: TEntity[]): void;
-        protected getNewEntity(): TEntity;
-        protected getButtons(): Serenity.ToolButton[];
-        protected editItem(entityOrId: any): void;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
-        value: TEntity[];
-        protected getGridCanLoad(): boolean;
-        protected usePager(): boolean;
-        protected getInitialTitle(): any;
-        protected createQuickSearchInput(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class OrderDetailsEditor extends Common.GridEditorBase<OrderDetailRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof OrderDetailDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-        validateEntity(row: any, id: any): boolean;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3505,44 +3052,6 @@ declare namespace Serene.BasicSamples {
          */
         protected loadInitialEntity(): void;
         protected getDialogOptions(): JQueryUI.DialogOptions;
-    }
-}
-declare namespace Serene.Common {
-    class BulkServiceAction {
-        protected keys: string[];
-        protected queue: string[];
-        protected queueIndex: number;
-        protected progressDialog: BasicProgressDialog;
-        protected pendingRequests: number;
-        protected completedRequests: number;
-        protected errorByKey: Q.Dictionary<Serenity.ServiceError>;
-        private successCount;
-        private errorCount;
-        done: () => void;
-        protected createProgressDialog(): void;
-        protected getConfirmationFormat(): string;
-        protected getConfirmationMessage(targetCount: any): string;
-        protected confirm(targetCount: any, action: any): void;
-        protected getNothingToProcessMessage(): string;
-        protected nothingToProcess(): void;
-        protected getParallelRequests(): number;
-        protected getBatchSize(): number;
-        protected startParallelExecution(): void;
-        protected serviceCallCleanup(): void;
-        protected executeForBatch(batch: string[]): void;
-        protected executeNextBatch(): void;
-        protected getAllHadErrorsFormat(): string;
-        protected showAllHadErrors(): void;
-        protected getSomeHadErrorsFormat(): string;
-        protected showSomeHadErrors(): void;
-        protected getAllSuccessFormat(): string;
-        protected showAllSuccess(): void;
-        protected showResults(): void;
-        execute(keys: string[]): void;
-        get_successCount(): any;
-        set_successCount(value: number): void;
-        get_errorCount(): any;
-        set_errorCount(value: number): void;
     }
 }
 declare namespace Serene.BasicSamples {
@@ -3848,368 +3357,6 @@ declare namespace Serene.BasicSamples {
         constructor(container: JQuery);
     }
 }
-declare namespace Serene.LanguageList {
-    function getValue(): string[][];
-}
-declare namespace Serene.ScriptInitialization {
-}
-declare namespace Serene {
-    class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
-        constructor();
-        cancelled: boolean;
-        max: number;
-        value: number;
-        title: string;
-        cancelTitle: string;
-        getDialogOptions(): JQueryUI.DialogOptions;
-        initDialog(): void;
-        getTemplate(): string;
-    }
-}
-declare namespace Serene.DialogUtils {
-    function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
-}
-declare namespace Serene.Common {
-    class EnumSelectFormatter implements Slick.Formatter {
-        constructor();
-        format(ctx: Slick.FormatterContext): string;
-        enumKey: string;
-        allowClear: boolean;
-        emptyItemText: string;
-    }
-}
-declare namespace Serene.Common {
-    interface ExcelExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        service: string;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-    }
-    namespace ExcelExportHelper {
-        function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
-    }
-}
-declare namespace Serene {
-    /**
-     * This is an editor widget but it only displays a text, not edits it.
-     *
-     */
-    class StaticTextBlock extends Serenity.Widget<StaticTextBlockOptions> implements Serenity.ISetEditValue {
-        private value;
-        constructor(container: JQuery, options: StaticTextBlockOptions);
-        private updateElementContent();
-        /**
-         * By implementing ISetEditValue interface, we allow this editor to display its field value.
-         * But only do this when our text content is not explicitly set in options
-         */
-        setEditValue(source: any, property: Serenity.PropertyItem): void;
-    }
-    interface StaticTextBlockOptions {
-        text: string;
-        isHtml: boolean;
-        isLocalText: boolean;
-        hideLabel: boolean;
-    }
-}
-declare namespace Serene.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-}
-declare namespace Serene.Common {
-    class SidebarSearch extends Serenity.Widget<any> {
-        private menuUL;
-        constructor(input: JQuery, menuUL: JQuery);
-        protected updateMatchFlags(text: string): void;
-    }
-}
-declare namespace Serene.Common {
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-        protected getCurrentTheme(): string;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    interface PdfExportOptions {
-        grid: Serenity.DataGrid<any, any>;
-        onViewSubmit: () => boolean;
-        title?: string;
-        hint?: string;
-        separator?: boolean;
-        reportTitle?: string;
-        titleTop?: number;
-        titleFontSize?: number;
-        fileName?: string;
-        pageNumbers?: boolean;
-        columnTitles?: {
-            [key: string]: string;
-        };
-        tableOptions?: jsPDF.AutoTableOptions;
-        output?: string;
-        autoPrint?: boolean;
-        printDateTimeHeader?: boolean;
-    }
-    namespace PdfExportHelper {
-        function exportToPdf(options: PdfExportOptions): void;
-        function createToolButton(options: PdfExportOptions): Serenity.ToolButton;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    class ReportDialog extends Serenity.TemplatedDialog<ReportDialogOptions> {
-        private report;
-        private propertyGrid;
-        constructor(options: ReportDialogOptions);
-        protected getDialogButtons(): any;
-        protected createPropertyGrid(): void;
-        protected loadReport(reportKey: string): void;
-        protected updateInterface(): void;
-        executeReport(target: string, ext: string, download: boolean): void;
-        getToolbarButtons(): {
-            title: string;
-            cssClass: string;
-            onClick: () => void;
-        }[];
-    }
-    interface ReportDialogOptions {
-        reportKey: string;
-    }
-}
-declare namespace Serene.Common {
-    interface ReportExecuteOptions {
-        reportKey: string;
-        download?: boolean;
-        extension?: 'pdf' | 'htm' | 'html' | 'xlsx' | 'docx';
-        getParams?: () => any;
-        params?: {
-            [key: string]: any;
-        };
-        target?: string;
-    }
-    interface ReportButtonOptions extends ReportExecuteOptions {
-        title?: string;
-        cssClass?: string;
-        icon?: string;
-    }
-    namespace ReportHelper {
-        function createToolButton(options: ReportButtonOptions): Serenity.ToolButton;
-        function execute(options: ReportExecuteOptions): void;
-    }
-}
-declare var jsPDF: any;
-declare namespace Serene.Common {
-    class ReportPage extends Serenity.Widget<any> {
-        private reportKey;
-        private propertyItems;
-        private propertyGrid;
-        constructor(element: JQuery);
-        protected updateMatchFlags(text: string): void;
-        protected categoryClick(e: any): void;
-        protected reportLinkClick(e: any): void;
-    }
-}
-declare namespace Serene.Common {
-    class UserPreferenceStorage implements Serenity.SettingStorage {
-        getItem(key: string): string;
-        setItem(key: string, data: string): void;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDialog extends Serenity.EntityDialog<MeetingRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingForm;
-        private agendaGrid;
-        private decisionGrid;
-        constructor();
-        protected arrange(): void;
-        loadEntity(entity: MeetingRow): void;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingGrid extends Serenity.EntityGrid<MeetingRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaDialog extends Serenity.EntityDialog<MeetingAgendaRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaGrid extends Serenity.EntityGrid<MeetingAgendaRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _meetingId;
-        meetingId: string;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaRelevantDialog extends Serenity.EntityDialog<MeetingAgendaRelevantRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaRelevantForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaRelevantGrid extends Serenity.EntityGrid<MeetingAgendaRelevantRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaRelevantDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaTypeDialog extends Serenity.EntityDialog<MeetingAgendaTypeRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingAgendaTypeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAgendaTypeGrid extends Serenity.EntityGrid<MeetingAgendaTypeRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAgendaTypeDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAttendeeDialog extends Common.GridEditorDialog<MeetingAttendeeRow> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: MeetingAttendeeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingAttendeeEditor extends Common.GridEditorBase<MeetingAttendeeRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingAttendeeDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-        protected getButtons(): any[];
-        protected createToolbarExtensions(): void;
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionDialog extends Serenity.EntityDialog<MeetingDecisionRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingDecisionForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionGrid extends Serenity.EntityGrid<MeetingDecisionRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDecisionDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _meetingId;
-        meetingId: string;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionRelevantDialog extends Serenity.EntityDialog<MeetingDecisionRelevantRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: MeetingDecisionRelevantForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingDecisionRelevantGrid extends Serenity.EntityGrid<MeetingDecisionRelevantRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingDecisionRelevantDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingLocationDialog extends Serenity.EntityDialog<MeetingLocationRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingLocationForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingLocationGrid extends Serenity.EntityGrid<MeetingLocationRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingLocationDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingTypeDialog extends Serenity.EntityDialog<MeetingTypeRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: MeetingTypeForm;
-    }
-}
-declare namespace Serene.Meeting {
-    class MeetingTypeGrid extends Serenity.EntityGrid<MeetingTypeRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof MeetingTypeDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
 declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         protected getFormKey(): string;
@@ -4235,211 +3382,6 @@ declare namespace Serene.Membership {
     class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         protected getFormKey(): string;
         private form;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, CustomerRow> {
-        constructor(hidden: JQuery);
-        protected getLookupKey(): string;
-        protected getItemText(item: any, lookup: any): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerOrderDialog extends OrderDialog {
-        constructor();
-        updateInterface(): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class CustomerOrdersGrid extends OrderGrid {
-        protected getDialogType(): typeof CustomerOrderDialog;
-        constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
-        protected initEntityDialog(itemType: any, dialog: any): void;
-        protected addButtonClick(): void;
-        protected getInitialTitle(): any;
-        protected getGridCanLoad(): boolean;
-        private _customerID;
-        customerID: string;
-    }
-}
-declare namespace Serene.Northwind {
-    class EmployeeListFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class EmployeeFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-        genderProperty: string;
-        initializeColumn(column: Slick.Column): void;
-    }
-}
-declare namespace Serene.Northwind {
-    class NoteDialog extends Serenity.TemplatedDialog<any> {
-        private textEditor;
-        constructor();
-        protected getTemplate(): string;
-        protected getDialogOptions(): JQueryUI.DialogOptions;
-        text: string;
-        okClick: () => void;
-    }
-}
-declare namespace Serene.Northwind {
-    class NotesEditor extends Serenity.TemplatedWidget<any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        private isDirty;
-        private items;
-        constructor(div: JQuery);
-        protected getTemplate(): string;
-        protected updateContent(): void;
-        protected addClick(): void;
-        protected editClick(e: any): void;
-        deleteClick(e: any): void;
-        value: NoteRow[];
-        getEditValue(prop: Serenity.PropertyItem, target: any): void;
-        setEditValue(source: any, prop: Serenity.PropertyItem): void;
-        get_isDirty(): boolean;
-        set_isDirty(value: any): void;
-        onChange: () => void;
-    }
-}
-declare namespace Serene.Northwind {
-    class FreightFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class RegionDialog extends Serenity.EntityDialog<RegionRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: RegionForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class RegionGrid extends Serenity.EntityGrid<RegionRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class PhoneEditor extends Serenity.StringEditor {
-        constructor(input: JQuery);
-        protected formatValue(): void;
-        protected getFormattedValue(): string;
-        multiple: boolean;
-        get_value(): string;
-        set_value(value: string): void;
-        static validate(phone: string, isMultiple: boolean): string;
-        static isValidPhone(phone: string): boolean;
-        static formatPhone(phone: any): any;
-        static formatMulti(phone: string, format: (s: string) => string): string;
-        static isValidMulti(phone: string, check: (s: string) => boolean): boolean;
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperDialog extends Serenity.EntityDialog<ShipperRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ShipperForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperFormatter implements Slick.Formatter {
-        format(ctx: Slick.FormatterContext): string;
-    }
-}
-declare namespace Serene.Northwind {
-    class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Northwind {
-    class TerritoryDialog extends Serenity.EntityDialog<TerritoryRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: TerritoryForm;
-        protected getLanguages(): string[][];
-    }
-}
-declare namespace Serene.Northwind {
-    class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): any;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitDialog extends Serenity.EntityDialog<BusinessUnitRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: BusinessUnitForm;
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitEditor extends Serenity.LookupEditorBase<Serenity.LookupEditorOptions, BusinessUnitRow> {
-        constructor(hidden: JQuery);
-        protected getLookupKey(): string;
-        protected getItemText(item: BusinessUnitRow, lookup: Q.Lookup<BusinessUnitRow>): string;
-    }
-}
-declare namespace Serene.Organization {
-    class BusinessUnitGrid extends Serenity.EntityGrid<BusinessUnitRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof BusinessUnitDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-        protected subDialogDataChange(): void;
-        protected usePager(): boolean;
-        protected getColumns(): Slick.Column[];
-        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
-    }
-}
-declare namespace Serene.Organization {
-    class ContactDialog extends Serenity.EntityDialog<ContactRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getNameProperty(): string;
-        protected getService(): string;
-        protected form: ContactForm;
-    }
-}
-declare namespace Serene.Organization {
-    class ContactGrid extends Serenity.EntityGrid<ContactRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof ContactDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
         constructor(container: JQuery);
     }
 }

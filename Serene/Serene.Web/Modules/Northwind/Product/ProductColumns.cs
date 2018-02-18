@@ -6,7 +6,7 @@ namespace Serene.Northwind.Columns
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Product")]
-    [BasedOnRow(typeof(Entities.ProductRow))]
+    [BasedOnRow(typeof(Entities.ProductRow), CheckNames = true)]
     public class ProductColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

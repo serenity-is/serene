@@ -7,7 +7,8 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), TableName("[Order Details]"), DisplayName("Order Details"), InstanceName("Order Detail"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("[Order Details]")]
+    [DisplayName("Order Details"), InstanceName("Order Detail")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class OrderDetailRow : Row, IIdRow
@@ -184,11 +185,6 @@ namespace Serene.Northwind.Entities
             public DecimalField ProductUnitPrice;
 
             public DecimalField LineTotal;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.OrderDetail";
-            }
         }
     }
 }

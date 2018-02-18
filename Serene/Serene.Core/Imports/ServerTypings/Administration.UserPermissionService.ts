@@ -7,11 +7,11 @@
         export declare function ListRolePermissions(request: UserPermissionListRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function ListPermissionKeys(request: Serenity.ServiceRequest, onSuccess?: (response: Serenity.ListResponse<string>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
-        export namespace Methods {
-            export declare const Update: string;
-            export declare const List: string;
-            export declare const ListRolePermissions: string;
-            export declare const ListPermissionKeys: string;
+        export declare const enum Methods {
+            Update = "Administration/UserPermission/Update",
+            List = "Administration/UserPermission/List",
+            ListRolePermissions = "Administration/UserPermission/ListRolePermissions",
+            ListPermissionKeys = "Administration/UserPermission/ListPermissionKeys"
         }
 
         [
@@ -23,7 +23,6 @@
             (<any>UserPermissionService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
             };
-            (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }

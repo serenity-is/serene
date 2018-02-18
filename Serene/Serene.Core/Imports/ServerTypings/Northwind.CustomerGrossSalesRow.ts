@@ -9,22 +9,14 @@
 
     export namespace CustomerGrossSalesRow {
         export const nameProperty = 'ContactName';
-        export const localTextPrefix = 'BasicSamples.GrossSales';
+        export const localTextPrefix = 'Northwind.CustomerGrossSales';
 
-        export namespace Fields {
-            export declare const CustomerId: string;
-            export declare const ContactName: string;
-            export declare const ProductId: string;
-            export declare const ProductName: string;
-            export declare const GrossAmount: string;
+        export declare const enum Fields {
+            CustomerId = "CustomerId",
+            ContactName = "ContactName",
+            ProductId = "ProductId",
+            ProductName = "ProductName",
+            GrossAmount = "GrossAmount"
         }
-
-        [
-            'CustomerId', 
-            'ContactName', 
-            'ProductId', 
-            'ProductName', 
-            'GrossAmount'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

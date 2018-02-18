@@ -11,20 +11,12 @@
         export const idProperty = 'UserRoleId';
         export const localTextPrefix = 'Administration.UserRole';
 
-        export namespace Fields {
-            export declare const UserRoleId: string;
-            export declare const UserId: string;
-            export declare const RoleId: string;
-            export declare const Username: string;
-            export declare const User: string;
+        export declare const enum Fields {
+            UserRoleId = "UserRoleId",
+            UserId = "UserId",
+            RoleId = "RoleId",
+            Username = "Username",
+            User = "User"
         }
-
-        [
-            'UserRoleId', 
-            'UserId', 
-            'RoleId', 
-            'Username', 
-            'User'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

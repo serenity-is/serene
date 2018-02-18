@@ -14,15 +14,10 @@
             return Q.getLookup<RegionRow>('Northwind.Region');
         }
 
-        export namespace Fields {
-            export declare const RegionID: string;
-            export declare const RegionDescription: string;
+        export declare const enum Fields {
+            RegionID = "RegionID",
+            RegionDescription = "RegionDescription"
         }
-
-        [
-            'RegionID', 
-            'RegionDescription'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [FormScript("Northwind.Product")]
-    [BasedOnRow(typeof(Entities.ProductRow))]
+    [BasedOnRow(typeof(Entities.ProductRow), CheckNames = true)]
     public class ProductForm
     {
         [Category("General")]

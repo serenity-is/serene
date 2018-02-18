@@ -7,10 +7,11 @@ namespace Serene.Administration.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Languages"), InstanceName("Language"), TwoLevelCached]
+    [ConnectionKey("Default"), Module("Administration"), TableName("Languages")]
+    [DisplayName("Languages"), InstanceName("Language")]
     [ReadPermission(PermissionKeys.Translation)]
     [ModifyPermission(PermissionKeys.Translation)]
-    [LookupScript(typeof(LanguageLookup))]
+    [LookupScript(typeof(Lookups.LanguageLookup))]
     public sealed class LanguageRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity]
@@ -56,12 +57,6 @@ namespace Serene.Administration.Entities
             public Int32Field Id;
             public StringField LanguageId;
             public StringField LanguageName;
-
-            public RowFields()
-                : base("Languages")
-            {
-                LocalTextPrefix = "Administration.Language";
-            }
         }
     }
 }

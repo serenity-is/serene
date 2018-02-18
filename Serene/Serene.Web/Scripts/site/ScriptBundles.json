@@ -42,6 +42,11 @@
     "dynamic://FormBundle",
     "dynamic://TemplateBundle"
   ],
+  "CKEditor": [
+    "~/Scripts/ckeditor/ckeditor.js",
+    "~/Scripts/ckeditor/lang/en.js",
+    "~/Scripts/ckeditor/styles.js"
+  ],
   "NorthwindLookups": [
     "dynamic://Lookup.Northwind.Category",
     "dynamic://Lookup.Northwind.Customer",

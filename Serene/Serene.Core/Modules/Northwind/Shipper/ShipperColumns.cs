@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Shipper")]
-    [BasedOnRow(typeof(Entities.ShipperRow))]
+    [BasedOnRow(typeof(Entities.ShipperRow), CheckNames = true)]
     public class ShipperColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

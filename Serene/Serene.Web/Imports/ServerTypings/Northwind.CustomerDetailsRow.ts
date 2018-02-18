@@ -29,55 +29,30 @@
         export const nameProperty = 'Email';
         export const localTextPrefix = 'Northwind.CustomerDetails';
 
-        export namespace Fields {
-            export declare const Id: string;
-            export declare const LastContactDate: string;
-            export declare const LastContactedBy: string;
-            export declare const Email: string;
-            export declare const SendBulletin: string;
-            export declare const LastContactedByLastName: string;
-            export declare const LastContactedByFirstName: string;
-            export declare const LastContactedByTitle: string;
-            export declare const LastContactedByTitleOfCourtesy: string;
-            export declare const LastContactedByBirthDate: string;
-            export declare const LastContactedByHireDate: string;
-            export declare const LastContactedByAddress: string;
-            export declare const LastContactedByCity: string;
-            export declare const LastContactedByRegion: string;
-            export declare const LastContactedByPostalCode: string;
-            export declare const LastContactedByCountry: string;
-            export declare const LastContactedByHomePhone: string;
-            export declare const LastContactedByExtension: string;
-            export declare const LastContactedByPhoto: string;
-            export declare const LastContactedByNotes: string;
-            export declare const LastContactedByReportsTo: string;
-            export declare const LastContactedByPhotoPath: string;
+        export declare const enum Fields {
+            Id = "Id",
+            LastContactDate = "LastContactDate",
+            LastContactedBy = "LastContactedBy",
+            Email = "Email",
+            SendBulletin = "SendBulletin",
+            LastContactedByLastName = "LastContactedByLastName",
+            LastContactedByFirstName = "LastContactedByFirstName",
+            LastContactedByTitle = "LastContactedByTitle",
+            LastContactedByTitleOfCourtesy = "LastContactedByTitleOfCourtesy",
+            LastContactedByBirthDate = "LastContactedByBirthDate",
+            LastContactedByHireDate = "LastContactedByHireDate",
+            LastContactedByAddress = "LastContactedByAddress",
+            LastContactedByCity = "LastContactedByCity",
+            LastContactedByRegion = "LastContactedByRegion",
+            LastContactedByPostalCode = "LastContactedByPostalCode",
+            LastContactedByCountry = "LastContactedByCountry",
+            LastContactedByHomePhone = "LastContactedByHomePhone",
+            LastContactedByExtension = "LastContactedByExtension",
+            LastContactedByPhoto = "LastContactedByPhoto",
+            LastContactedByNotes = "LastContactedByNotes",
+            LastContactedByReportsTo = "LastContactedByReportsTo",
+            LastContactedByPhotoPath = "LastContactedByPhotoPath"
         }
-
-        [
-            'Id', 
-            'LastContactDate', 
-            'LastContactedBy', 
-            'Email', 
-            'SendBulletin', 
-            'LastContactedByLastName', 
-            'LastContactedByFirstName', 
-            'LastContactedByTitle', 
-            'LastContactedByTitleOfCourtesy', 
-            'LastContactedByBirthDate', 
-            'LastContactedByHireDate', 
-            'LastContactedByAddress', 
-            'LastContactedByCity', 
-            'LastContactedByRegion', 
-            'LastContactedByPostalCode', 
-            'LastContactedByCountry', 
-            'LastContactedByHomePhone', 
-            'LastContactedByExtension', 
-            'LastContactedByPhoto', 
-            'LastContactedByNotes', 
-            'LastContactedByReportsTo', 
-            'LastContactedByPhotoPath'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

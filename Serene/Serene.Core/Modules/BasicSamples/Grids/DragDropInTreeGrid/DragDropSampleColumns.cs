@@ -5,7 +5,7 @@ namespace Serene.BasicSamples.Columns
     using System;
 
     [ColumnsScript("BasicSamples.DragDropSample")]
-    [BasedOnRow(typeof(Entities.DragDropSampleRow))]
+    [BasedOnRow(typeof(Entities.DragDropSampleRow), CheckNames = true)]
     public class DragDropSampleColumns
     {
         [EditLink, Width(300)]

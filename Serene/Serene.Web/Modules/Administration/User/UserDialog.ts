@@ -32,7 +32,7 @@
             buttons.push({
                 title: Q.text('Site.UserDialog.EditRolesButton'),
                 cssClass: 'edit-roles-button',
-                icon: 'icon-people text-blue',
+                icon: 'fa-users text-blue',
                 onClick: () =>
                 {
                     new UserRoleDialog({
@@ -45,7 +45,7 @@
             buttons.push({
                 title: Q.text('Site.UserDialog.EditPermissionsButton'),
                 cssClass: 'edit-permissions-button',
-                icon: 'icon-lock-open text-green',
+                icon: 'fa-lock text-green',
                 onClick: () =>
                 {
                     new UserPermissionDialog({

@@ -1,5 +1,7 @@
 ﻿namespace Serene.Northwind {
 
+    import fld = OrderRow.Fields;
+
     @Serenity.Decorators.registerClass()
     @Serenity.Decorators.filterable()
     export class OrderGrid extends Serenity.EntityGrid<OrderRow, any> {
@@ -37,7 +39,6 @@
         protected createQuickFilters() {
             super.createQuickFilters();
 
-            let fld = OrderRow.Fields;
             this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, fld.ShippingState);
         }
 

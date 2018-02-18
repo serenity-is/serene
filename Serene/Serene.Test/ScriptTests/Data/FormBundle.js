@@ -82,7 +82,7 @@ Q.ScriptData.set('Form.BasicSamples.ProductExcelImport', [{"name":"FileName","ti
 
 ;
 
-Q.ScriptData.set('Form.BasicSamples.DragDropSample', [{"name":"Title","title":"Db.BasicSamples.DragDropSample.Title","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150}]);
+Q.ScriptData.set('Form.BasicSamples.DragDropSample', [{"name":"Title","title":"Db.Northwind.DragDropSample.Title","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":150}]);
 
 ;
 

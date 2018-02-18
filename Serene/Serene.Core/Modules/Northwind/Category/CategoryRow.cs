@@ -8,10 +8,11 @@ namespace Serene.Northwind.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), TableName("Categories"), DisplayName("Categories"), InstanceName("Category"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Categories")]
+    [DisplayName("Categories"), InstanceName("Category")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Northwind.Category")]
+    [LookupScript]
     [LocalizationRow(typeof(CategoryLangRow))]
     public sealed class CategoryRow : Row, IIdRow, INameRow
     {
@@ -66,11 +67,6 @@ namespace Serene.Northwind.Entities
             public StringField CategoryName;
             public StringField Description;
             public StreamField Picture;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Category";
-            }
         }
     }
 }

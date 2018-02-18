@@ -2,6 +2,9 @@
 
 namespace Serene.BasicSamples {
 
+    // get a reference to order row field names
+    import fld = Northwind.OrderRow.Fields;
+
     @Serenity.Decorators.registerClass()
     export class InitialValuesForQuickFilters extends Northwind.OrderGrid {
 
@@ -18,9 +21,6 @@ namespace Serene.BasicSamples {
 
             // get quick filter list from base class
             let filters = super.getQuickFilters();
-
-            // get a reference to order row field names
-            let fld = Northwind.OrderRow.Fields;
 
             // quick filter init method is a good place to set initial
             // value for a quick filter editor, just after it is created
@@ -61,9 +61,6 @@ namespace Serene.BasicSamples {
 
             // let base class to create quick filters first
             super.createQuickFilters();
-
-            // get a reference to order row field names
-            let fld = Northwind.OrderRow.Fields;
 
             // find a quick filter widget by its field name
             this.findQuickFilter(Serenity.LookupEditor, fld.ShipVia).values = ["1", "2"];

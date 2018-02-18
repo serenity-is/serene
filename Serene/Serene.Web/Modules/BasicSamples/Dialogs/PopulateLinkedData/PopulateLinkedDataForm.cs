@@ -12,7 +12,7 @@ namespace Serene.BasicSamples.Forms
     /// A custom order form that contains read-only details about customer
     /// </summary>
     [FormScript("BasicSamples.PopulateLinkedData")]
-    [BasedOnRow(typeof(Northwind.Entities.OrderRow))]
+    [BasedOnRow(typeof(Northwind.Entities.OrderRow), CheckNames = true)]
     public class PopulateLinkedDataForm
     {
         [Category("Order")]

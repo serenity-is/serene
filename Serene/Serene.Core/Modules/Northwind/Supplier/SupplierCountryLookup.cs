@@ -1,11 +1,11 @@
 ﻿
-namespace Serene.Northwind.Scripts
+namespace Serene.Northwind.Lookups
 {
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Web;
 
-    [LookupScript("Northwind.SupplierCountry")]
+    [LookupScript]
     public class SupplierCountryLookup : RowLookupScript<Entities.SupplierRow>
     {
         public SupplierCountryLookup()

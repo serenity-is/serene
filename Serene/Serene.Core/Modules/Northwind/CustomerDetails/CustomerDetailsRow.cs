@@ -2,13 +2,15 @@
 
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), DisplayName("CustomerDetails"), InstanceName("CustomerDetails"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("CustomerDetails")]
+    [DisplayName("CustomerDetails"), InstanceName("CustomerDetails")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
     public sealed class CustomerDetailsRow : Row, IIdRow, INameRow
@@ -209,12 +211,6 @@ namespace Serene.Northwind.Entities
             public StringField LastContactedByNotes;
             public Int32Field LastContactedByReportsTo;
             public StringField LastContactedByPhotoPath;
-
-            public RowFields()
-                : base("CustomerDetails")
-            {
-                LocalTextPrefix = "Northwind.CustomerDetails";
-            }
         }
     }
 }

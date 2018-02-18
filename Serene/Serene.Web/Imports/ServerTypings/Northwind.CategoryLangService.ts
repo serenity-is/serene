@@ -8,12 +8,12 @@
         export declare function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CategoryLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
         export declare function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CategoryLangRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
-        export namespace Methods {
-            export declare const Create: string;
-            export declare const Update: string;
-            export declare const Delete: string;
-            export declare const Retrieve: string;
-            export declare const List: string;
+        export declare const enum Methods {
+            Create = "Northwind/CategoryLang/Create",
+            Update = "Northwind/CategoryLang/Update",
+            Delete = "Northwind/CategoryLang/Delete",
+            Retrieve = "Northwind/CategoryLang/Retrieve",
+            List = "Northwind/CategoryLang/List"
         }
 
         [
@@ -26,7 +26,6 @@
             (<any>CategoryLangService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
             };
-            (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }

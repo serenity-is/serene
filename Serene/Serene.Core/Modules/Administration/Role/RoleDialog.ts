@@ -17,7 +17,7 @@
             buttons.push({
                 title: Q.text('Site.RolePermissionDialog.EditButton'),
                 cssClass: 'edit-permissions-button',
-                icon: 'icon-lock-open text-green',
+                icon: 'fa-lock text-green',
                 onClick: () =>
                 {
                     new RolePermissionDialog({

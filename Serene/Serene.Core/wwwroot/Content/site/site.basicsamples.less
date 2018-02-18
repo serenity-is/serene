@@ -12,30 +12,6 @@
     > .size { .widthAndMin(700px); .heightAndMin(400px); }
 }
 
-.s-BasicSamples-ResponsiveDialog {
-    > .size { width: 750px; height: 550px; }
-    .caption { width: 120px; }
-}
-
-.s-BasicSamples-MultiColumnResponsiveDialog {
-    > .size { width: 850px; height: 650px; }
-    .caption { width: 130px; }
-
-    @media (min-width: 768px) {
-        .field.OrderDate, .field.RequiredDate, .field.ShipName, .field.ShipAddress, 
-        .field.ShipCity, .field.ShipRegion, .field.ShipPostalCode, .field.ShipCountry {
-            flex: auto;
-            min-width: 50%;
-        }
-        
-        .field.ShippedDate, .field.ShipVia, .field.Freight { 
-            flex: auto;
-            min-width: 33%;
-            .caption { width: 90px; } 
-        }
-    }
-}
-
 .s-BasicSamples-CloneableEntityDialog {
     > .size { width: 850px; height: 500px; }
     .caption { width: 150px; }

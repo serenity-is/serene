@@ -2,6 +2,8 @@
 
 namespace Serene.Northwind {
 
+    import fld = OrderRow.Fields;
+
     @Serenity.Decorators.registerClass()
     export class CustomerOrdersGrid extends OrderGrid {
         protected getDialogType() { return CustomerOrderDialog; }
@@ -11,7 +13,6 @@ namespace Serene.Northwind {
         }
 
         protected getColumns(): Slick.Column[] {
-            let fld = OrderRow.Fields;
             return super.getColumns().filter(x => x.field !== fld.CustomerCompanyName);
         }
 

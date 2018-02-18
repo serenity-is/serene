@@ -5,7 +5,7 @@ namespace Serene.BasicSamples.Forms
     using System;
 
     [FormScript("BasicSamples.ChangingLookupText")]
-    [BasedOnRow(typeof(Northwind.Entities.OrderDetailRow))]
+    [BasedOnRow(typeof(Northwind.Entities.OrderDetailRow), CheckNames = true)]
     public class ChangingLookupTextForm
     {
         [ChangingLookupTextEditor]

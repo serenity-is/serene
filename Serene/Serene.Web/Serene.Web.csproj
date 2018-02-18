@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,9 +21,11 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
     <Use64BitIISExpress />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
     <TypeScriptTarget>ES5</TypeScriptTarget>
@@ -60,11 +62,9 @@
     </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FluentMigrator, Version=1.6.2.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentMigrator.1.6.2\lib\40\FluentMigrator.dll</HintPath>
@@ -79,35 +79,39 @@
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MsieJavaScriptEngine, Version=2.2.3.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+    <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
+      <HintPath>..\..\packages\Serenity.Web.3.5.2\lib\net45\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MsieJavaScriptEngine, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MsieJavaScriptEngine.2.2.3\lib\net45\MsieJavaScriptEngine.dll</HintPath>
+      <HintPath>..\..\packages\MsieJavaScriptEngine.2.2.5\lib\net45\MsieJavaScriptEngine.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NUglify, Version=1.5.8.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUglify.1.5.8\lib\net40\NUglify.dll</HintPath>
+    <Reference Include="NUglify, Version=1.5.9.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUglify.1.5.9\lib\net40\NUglify.dll</HintPath>
     </Reference>
-    <Reference Include="Serenity.Core, Version=3.3.15.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Core.3.3.15\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=3.5.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Core.3.5.2\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=3.3.15.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.3.3.15\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=3.5.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.3.5.2\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=3.3.15.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.Entity.3.3.15\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=3.5.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.Entity.3.5.2\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=3.3.15.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Services.3.3.15\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=3.5.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Services.3.5.2\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=3.3.15.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Web.3.3.15\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=3.5.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Web.3.5.2\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">
@@ -126,28 +130,22 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -158,6 +156,15 @@
   </ItemGroup>
   <Import Project="..\..\Serenity\tools\Submodule\Serenity.Submodule.Web.targets" Condition=" Exists('..\..\Serenity\Serenity.Core\Serenity.Core.Net45.csproj') " />
   <ItemGroup>
+    <None Include="tsconfig.json" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery.cookie\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery.validation\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jspdf\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\sortablejs\index.d.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\toastr\index.d.ts" />
     <Content Include="..\..\packages\wkhtmltopdf-x86-win32.0.12.3.6\tools\wkhtmltopdf\wkhtmltopdf.exe">
       <Link>wkhtmltopdf.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -189,6 +196,7 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\pace.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\serenity\images\32px.png" />
     <Content Include="Content\serenity\images\accessright.png" />
     <Content Include="Content\serenity\images\accordion-down.png" />
@@ -690,6 +698,11 @@
     <Content Include="Scripts\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Scripts\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="Scripts\ckeditor\styles.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-i18n.js" />
     <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
@@ -702,6 +715,8 @@
     <Content Include="Scripts\jquery.colorbox.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.cropzoom.js" />
+    <Content Include="Scripts\jquery.cropzoom.min.js" />
     <Content Include="Scripts\jquery.dialogextendQ.js" />
     <Content Include="Scripts\jquery.dialogextendQ.min.js" />
     <Content Include="Scripts\jquery.event.drag.js" />
@@ -725,6 +740,8 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jspdf.js" />
     <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
@@ -1259,8 +1276,6 @@
     <Content Include="Modules\BasicSamples\Dialogs\ChartInDialog\Index.cshtml" />
     <Content Include="Content\site\site.basicsamples.less" />
     <Content Include="Modules\BasicSamples\Grids\ViewWithoutID\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\Index.cshtml" />
-    <Content Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Editors\LookupFilterByMultipleValues\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\GridFilteredByCriteria\Index.cshtml" />
@@ -1274,14 +1289,9 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Modules\Common\Helpers\StaticTextBlock.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jquery.cookie\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jquery.validation\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\jspdf\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\sortablejs\index.d.ts" />
-    <TypeScriptCompile Include="node_modules\%40types\toastr\index.d.ts" />
+    <TypeScriptCompile Include="Modules\Common\Premium\SingleLineTextFormatter.ts" />
+    <TypeScriptCompile Include="Modules\Common\Premium\WizardDialog.ts" />
+    <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaEditor.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerGrossSalesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1330,6 +1340,8 @@
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
+    <Content Include="Content\site\site.meeting.less" />
+    <Content Include="Content\site\site.organization.less" />
     <Content Include="Fonts\Simple-Line-Icons.woff2" />
     <Content Include="Fonts\Simple-Line-Icons.woff" />
     <Content Include="Fonts\Simple-Line-Icons.ttf" />
@@ -1357,6 +1369,17 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataConnectionEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataExplorerGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataTableEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDetailsEditor.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductCheckGrid.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductPickerDialog.ts" />
+    <TypeScriptCompile Include="Modules\AdvancedSamples\Grids\LongRunningAction\LongRunningActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarGrid.ts" />
@@ -1392,6 +1415,8 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
+    <TypeScriptCompile Include="Modules\Common\GridMixins\FavoriteViewsMixin.ts" />
+    <TypeScriptCompile Include="Modules\Common\GridMixins\CardViewMixin.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
@@ -1519,11 +1544,6 @@
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.event.drag.live.js" />
@@ -1595,8 +1615,6 @@
     <Content Include="Scripts\vegas\vegas.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery.icheck.min.js.map" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Scripts\site\ScriptBundles.json" />
     <Content Include="Scripts\site\texts\site.texts.zh-CN.json" />
     <Content Include="Scripts\site\texts\site.texts.it.json" />
@@ -1620,6 +1638,7 @@
     <Content Include="Scripts\site\texts\site.texts.vi-VN.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
     <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
+    <Content Include="Scripts\site\texts\meeting\meeting.vi-VN.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
@@ -1634,7 +1653,9 @@
     <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
     <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <None Include="tsconfig.json" />
+    <Content Include="Scripts\site\texts\site.texts.ru.json" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.css" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-1.2.2.min.js" />
     <Content Include="Scripts\jvectormap\jquery-jvectormap-world-mill-en.js" />
@@ -1751,10 +1772,6 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\CloneableEntityDialog\CloneableEntityGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\DefaultValuesInNewDialog\DefaultValuesInNewGrid.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\MultiColumnResponsiveDialog\MultiColumnResponsiveGrid.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveDialog.ts" />
-    <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\ResponsiveDialog\ResponsiveGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupDetailDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupInDetailDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Editors\FilteredLookupInDetail\FilteredLookupDetailEditor.ts" />
@@ -2443,14 +2460,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
-  </Target>
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.5.3\build\Microsoft.TypeScript.MSBuild.targets')" />
   <PropertyGroup>
     <NpmPath Condition="'$(NpmCmd)' == '' AND Exists('$(PROGRAMFILES)nodejs\npm.cmd')">$(PROGRAMFILES)nodejs\</NpmPath>
   </PropertyGroup>
@@ -2472,11 +2481,19 @@
     </Message>
     <Exec Command="&quot;$(ProjectDir)tools\node\lessc.cmd&quot; &quot;$(ProjectDir)Content\site\site.less&quot; &gt; &quot;$(ProjectDir)Content\site\site.css&quot;" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js;Scripts\site\Serene.Web.d.ts">
+  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high">
     </Message>
     <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.7.2\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="AfterBuild">

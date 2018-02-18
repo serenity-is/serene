@@ -1,13 +1,25 @@
 ﻿namespace Serene.BasicSamples {
-    export class HardcodedValuesForm extends Serenity.PrefixedContext {
-        static formKey = 'BasicSamples.HarcodedValues';
-
-    }
-
     export interface HardcodedValuesForm {
         SomeValue: HardcodedValuesEditor;
     }
 
-    [['SomeValue', () => HardcodedValuesEditor]].forEach(x => Object.defineProperty(HardcodedValuesForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
-}
+    export class HardcodedValuesForm extends Serenity.PrefixedContext {
+        static formKey = 'BasicSamples.HarcodedValues';
+        private static init: boolean;
 
+        constructor(prefix: string) {
+            super(prefix);
+
+            if (!HardcodedValuesForm.init)  {
+                HardcodedValuesForm.init = true;
+
+                var s = Serenity;
+                var w0 = HardcodedValuesEditor;
+
+                Q.initFormType(HardcodedValuesForm, [
+                    'SomeValue', w0
+                ]);
+            }
+        }
+    }
+}

@@ -1,12 +1,12 @@
 ﻿
-namespace Serene.Administration
+namespace Serene.Administration.Lookups
 {
     using Serene.Administration.Entities;
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Web;
 
-    [LookupScript("Administration.Language")]
+    [LookupScript]
     public sealed class LanguageLookup : RowLookupScript<LanguageRow>
     {
         public LanguageLookup()

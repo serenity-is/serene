@@ -1,5 +1,7 @@
 ﻿namespace Serene.BasicSamples {
 
+    import fld = Northwind.ProductRow.Fields;
+
     @Serenity.Decorators.registerClass()
     export class ConditionalFormattingGrid extends Serenity.EntityGrid<Northwind.ProductRow, any> {
 
@@ -21,7 +23,6 @@
         protected getColumns(): Slick.Column[] {
             var columns = super.getColumns();
 
-            var fld = Northwind.ProductRow.Fields;
 
             // adding a specific css class to UnitPrice column, 
             // to be able to format cell with a different background

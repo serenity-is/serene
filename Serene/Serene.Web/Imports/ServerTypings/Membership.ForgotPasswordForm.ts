@@ -1,13 +1,26 @@
 ﻿namespace Serene.Membership {
-    export class ForgotPasswordForm extends Serenity.PrefixedContext {
-        static formKey = 'Membership.ForgotPassword';
-
-    }
-
     export interface ForgotPasswordForm {
         Email: Serenity.EmailEditor;
     }
 
-    [['Email', () => Serenity.EmailEditor]].forEach(x => Object.defineProperty(ForgotPasswordForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    export class ForgotPasswordForm extends Serenity.PrefixedContext {
+        static formKey = 'Membership.ForgotPassword';
+        private static init: boolean;
+
+        constructor(prefix: string) {
+            super(prefix);
+
+            if (!ForgotPasswordForm.init)  {
+                ForgotPasswordForm.init = true;
+
+                var s = Serenity;
+                var w0 = s.EmailEditor;
+
+                Q.initFormType(ForgotPasswordForm, [
+                    'Email', w0
+                ]);
+            }
+        }
+    }
 }
 

@@ -1,13 +1,15 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Northwind"), DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("EmployeeTerritories")]
+    [DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class EmployeeTerritoryRow : Row, IIdRow, INameRow
@@ -202,12 +204,6 @@ namespace Serene.Northwind.Entities
 
             public StringField TerritoryTerritoryDescription;
             public Int32Field TerritoryRegionID;
-
-            public RowFields()
-                : base("EmployeeTerritories")
-            {
-                LocalTextPrefix = "Northwind.EmployeeTerritory";
-            }
         }
     }
 }

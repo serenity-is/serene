@@ -37,11 +37,6 @@ namespace Serene.BasicSamples.Pages
             return View(Views.GetInsertedRecordId.Index);
         }
 
-        public ActionResult MultiColumnResponsiveDialog()
-        {
-            return View(Views.MultiColumnResponsiveDialog.Index);
-        }
-
         public ActionResult PopulateLinkedData()
         {
             return View(Views.PopulateLinkedData.Index);
@@ -50,11 +45,6 @@ namespace Serene.BasicSamples.Pages
         public ActionResult ReadOnlyDialog()
         {
             return View(Views.ReadOnlyDialog.Index);
-        }
-
-        public ActionResult ResponsiveDialog()
-        {
-            return View(Views.ResponsiveDialog.Index);
         }
 
         public ActionResult OtherFormInTab()

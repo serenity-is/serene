@@ -7,10 +7,11 @@ namespace Serene.Northwind.Entities
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), TableName("Territories"), DisplayName("Territories"), InstanceName("Territory"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("Territories")]
+    [DisplayName("Territories"), InstanceName("Territory")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    [LookupScript("Northwind.Territory")]
+    [LookupScript]
     public sealed class TerritoryRow : Row, IIdRow, INameRow
     {
         [DisplayName("ID"), Identity]
@@ -73,11 +74,6 @@ namespace Serene.Northwind.Entities
             public Int32Field RegionID;
 
             public StringField RegionDescription;
-
-            public RowFields()
-            {
-                LocalTextPrefix = "Northwind.Territory";
-            }
         }
     }
 }

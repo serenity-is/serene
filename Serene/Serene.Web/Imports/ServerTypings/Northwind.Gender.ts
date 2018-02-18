@@ -3,6 +3,6 @@
         Male = 1,
         Female = 2
     }
-    Serenity.Decorators.registerEnum(Gender, 'Serene.Northwind.Entities.Gender');
+    Serenity.Decorators.registerEnumType(Gender, 'Serene.Northwind.Gender', 'Serene.Northwind.Entities.Gender');
 }
 

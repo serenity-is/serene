@@ -3,6 +3,5 @@
         NotShipped = 0,
         Shipped = 1
     }
-    Serenity.Decorators.registerEnum(OrderShippingState, 'Northwind.OrderShippingState');
+    Serenity.Decorators.registerEnumType(OrderShippingState, 'Serene.Northwind.OrderShippingState', 'Northwind.OrderShippingState');
 }
-

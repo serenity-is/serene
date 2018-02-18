@@ -11,19 +11,12 @@
         export const nameProperty = 'PermissionKey';
         export const localTextPrefix = 'Administration.RolePermission';
 
-        export namespace Fields {
-            export declare const RolePermissionId: string;
-            export declare const RoleId: string;
-            export declare const PermissionKey: string;
-            export declare const RoleRoleName: string;
+        export declare const enum Fields {
+            RolePermissionId = "RolePermissionId",
+            RoleId = "RoleId",
+            PermissionKey = "PermissionKey",
+            RoleRoleName = "RoleRoleName"
         }
-
-        [
-            'RolePermissionId', 
-            'RoleId', 
-            'PermissionKey', 
-            'RoleRoleName'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -1,14 +1,27 @@
 ﻿namespace Serene.Administration {
-    export class LanguageForm extends Serenity.PrefixedContext {
-        static formKey = 'Administration.Language';
-
-    }
-
     export interface LanguageForm {
         LanguageId: Serenity.StringEditor;
         LanguageName: Serenity.StringEditor;
     }
 
-    [['LanguageId', () => Serenity.StringEditor], ['LanguageName', () => Serenity.StringEditor]].forEach(x => Object.defineProperty(LanguageForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
-}
+    export class LanguageForm extends Serenity.PrefixedContext {
+        static formKey = 'Administration.Language';
+        private static init: boolean;
 
+        constructor(prefix: string) {
+            super(prefix);
+
+            if (!LanguageForm.init)  {
+                LanguageForm.init = true;
+
+                var s = Serenity;
+                var w0 = s.StringEditor;
+
+                Q.initFormType(LanguageForm, [
+                    'LanguageId', w0,
+                    'LanguageName', w0
+                ]);
+            }
+        }
+    }
+}

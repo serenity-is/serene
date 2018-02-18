@@ -1,11 +1,13 @@
 ﻿namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("Customer Gross Sales"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("[dbo].[GrossSales]")]
+    [DisplayName("Customer Gross Sales")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
     public sealed class CustomerGrossSalesRow : Row, INameRow
@@ -64,12 +66,6 @@
             public Int32Field ProductId;
             public StringField ProductName;
             public DecimalField GrossAmount;
-
-            public RowFields()
-                : base("[dbo].[GrossSales]")
-            {
-                LocalTextPrefix = "BasicSamples.GrossSales";
-            }
         }
     }
 }

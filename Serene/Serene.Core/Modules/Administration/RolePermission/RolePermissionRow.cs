@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Administration.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Default"), DisplayName("Role Permissions"), InstanceName("Role Permission"), TwoLevelCached]
+    [ConnectionKey("Default"), Module("Administration"), TableName("RolePermissions")]
+    [DisplayName("Role Permissions"), InstanceName("Role Permission")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     public sealed class RolePermissionRow : Row, IIdRow, INameRow
@@ -63,13 +65,6 @@ namespace Serene.Administration.Entities
             public StringField PermissionKey;
 
             public StringField RoleRoleName;
-
-
-            public RowFields()
-                : base("RolePermissions")
-            {
-                LocalTextPrefix = "Administration.RolePermission";
-            }
         }
     }
 }

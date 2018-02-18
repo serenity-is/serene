@@ -4,8 +4,8 @@
 
         export declare function List(request: CustomerGrossSalesListRequest, onSuccess?: (response: Serenity.ListResponse<Northwind.CustomerGrossSalesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
 
-        export namespace Methods {
-            export declare const List: string;
+        export declare const enum Methods {
+            List = "BasicSamples/CustomerGrossSales/List"
         }
 
         [
@@ -14,7 +14,6 @@
             (<any>CustomerGrossSalesService)[x] = function (r, s, o) {
                 return Q.serviceRequest(baseUrl + '/' + x, r, s, o);
             };
-            (<any>Methods)[x] = baseUrl + '/' + x;
         });
     }
 }

@@ -7,7 +7,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [FormScript("Northwind.Order")]
-    [BasedOnRow(typeof(Entities.OrderRow))]
+    [BasedOnRow(typeof(Entities.OrderRow), CheckNames = true)]
     public class OrderForm
     {
         [Tab("General")]

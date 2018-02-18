@@ -6,7 +6,7 @@ namespace Serene.Northwind.Forms
     using System.ComponentModel;
 
     [ColumnsScript("Northwind.Region")]
-    [BasedOnRow(typeof(Entities.RegionRow))]
+    [BasedOnRow(typeof(Entities.RegionRow), CheckNames = true)]
     public class RegionColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

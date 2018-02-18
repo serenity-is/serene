@@ -30,47 +30,26 @@
             return Q.getLookup<CustomerRow>('Northwind.Customer');
         }
 
-        export namespace Fields {
-            export declare const ID: string;
-            export declare const CustomerID: string;
-            export declare const CompanyName: string;
-            export declare const ContactName: string;
-            export declare const ContactTitle: string;
-            export declare const Address: string;
-            export declare const City: string;
-            export declare const Region: string;
-            export declare const PostalCode: string;
-            export declare const Country: string;
-            export declare const Phone: string;
-            export declare const Fax: string;
-            export declare const NoteList: string;
-            export declare const Representatives: string;
-            export declare const LastContactDate: string;
-            export declare const LastContactedBy: string;
-            export declare const Email: string;
-            export declare const SendBulletin: string;
+        export declare const enum Fields {
+            ID = "ID",
+            CustomerID = "CustomerID",
+            CompanyName = "CompanyName",
+            ContactName = "ContactName",
+            ContactTitle = "ContactTitle",
+            Address = "Address",
+            City = "City",
+            Region = "Region",
+            PostalCode = "PostalCode",
+            Country = "Country",
+            Phone = "Phone",
+            Fax = "Fax",
+            NoteList = "NoteList",
+            Representatives = "Representatives",
+            LastContactDate = "LastContactDate",
+            LastContactedBy = "LastContactedBy",
+            Email = "Email",
+            SendBulletin = "SendBulletin"
         }
-
-        [
-            'ID', 
-            'CustomerID', 
-            'CompanyName', 
-            'ContactName', 
-            'ContactTitle', 
-            'Address', 
-            'City', 
-            'Region', 
-            'PostalCode', 
-            'Country', 
-            'Phone', 
-            'Fax', 
-            'NoteList', 
-            'Representatives', 
-            'LastContactDate', 
-            'LastContactedBy', 
-            'Email', 
-            'SendBulletin'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

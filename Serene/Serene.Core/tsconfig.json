@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "declaration": true,
     "emitBOM": true,
+    "noEmitHelpers": true,
     "sourceMap": true,
     "outFile": "wwwroot/Scripts/site/Serene.Web.js",
     "target": "es5",
@@ -21,4 +22,4 @@
     "node_modules/",
     "wwwroot/"
   ]
-}
+}

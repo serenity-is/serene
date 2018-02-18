@@ -42,7 +42,7 @@ Q.ScriptData.set('Columns.BasicSamples.InlineImageInGrid', [{"name":"ProductID",
 
 ;
 
-Q.ScriptData.set('Columns.BasicSamples.CustomerGrossSales', [{"name":"ContactName","title":"Db.BasicSamples.GrossSales.ContactName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":150,"sortOrder":1},{"name":"ProductName","title":"Db.BasicSamples.GrossSales.ProductName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":250},{"name":"GrossAmount","title":"Db.BasicSamples.GrossSales.GrossAmount","editorType":"Decimal","editorParams":{"minValue":"00000000000000000.00","maxValue":"99999999999999999.99"},"formatterType":"Number","formatterParams":{"displayFormat":"#,##0.00"},"displayFormat":"#,##0.00","alignment":"right","width":150,"sortOrder":-2,"filteringType":"Decimal","filteringParams":{"displayFormat":"#,##0.00"}}]);
+Q.ScriptData.set('Columns.BasicSamples.CustomerGrossSales', [{"name":"ContactName","title":"Db.Northwind.CustomerGrossSales.ContactName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":150,"sortOrder":1},{"name":"ProductName","title":"Db.Northwind.CustomerGrossSales.ProductName","editorParams":{"maxLength":40},"maxLength":40,"required":true,"width":250},{"name":"GrossAmount","title":"Db.Northwind.CustomerGrossSales.GrossAmount","editorType":"Decimal","editorParams":{"minValue":"00000000000000000.00","maxValue":"99999999999999999.99"},"formatterType":"Number","formatterParams":{"displayFormat":"#,##0.00"},"displayFormat":"#,##0.00","alignment":"right","width":150,"sortOrder":-2,"filteringType":"Decimal","filteringParams":{"displayFormat":"#,##0.00"}}]);
 
 ;
 
@@ -50,7 +50,7 @@ Q.ScriptData.set('Columns.BasicSamples.VSGalleryQA', [{"name":"ThreadId","title"
 
 ;
 
-Q.ScriptData.set('Columns.BasicSamples.DragDropSample', [{"name":"Title","title":"Db.BasicSamples.DragDropSample.Title","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":300,"editLink":true}]);
+Q.ScriptData.set('Columns.BasicSamples.DragDropSample', [{"name":"Title","title":"Db.Northwind.DragDropSample.Title","editorParams":{"maxLength":100},"maxLength":100,"required":true,"width":300,"editLink":true}]);
 
 ;
 

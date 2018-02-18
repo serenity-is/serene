@@ -8,18 +8,13 @@
     export namespace DragDropSampleRow {
         export const idProperty = 'Id';
         export const nameProperty = 'Title';
-        export const localTextPrefix = 'BasicSamples.DragDropSample';
+        export const localTextPrefix = 'Northwind.DragDropSample';
 
-        export namespace Fields {
-            export declare const Id: string;
-            export declare const ParentId: string;
-            export declare const Title: string;
+        export declare const enum Fields {
+            Id = "Id",
+            ParentId = "ParentId",
+            Title = "Title"
         }
-
-        [
-            'Id', 
-            'ParentId', 
-            'Title'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }
+

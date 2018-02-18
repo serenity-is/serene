@@ -4,7 +4,7 @@
     using System;
 
     [FormScript("Administration.User")]
-    [BasedOnRow(typeof(Entities.UserRow))]
+    [BasedOnRow(typeof(Entities.UserRow), CheckNames = true)]
     public class UserForm
     {
         public String Username { get; set; }

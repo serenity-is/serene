@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("ProductLang"), InstanceName("ProductLang"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLang")]
+    [DisplayName("ProductLang"), InstanceName("ProductLang")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
     public sealed class ProductLangRow : Row, IIdRow, INameRow, ILocalizationRow
@@ -67,12 +69,6 @@ namespace Serene.Northwind.Entities
             public Int32Field ProductId;
             public Int32Field LanguageId;
             public StringField ProductName;
-
-            public RowFields()
-                : base("ProductLang")
-            {
-                LocalTextPrefix = "Northwind.ProductLang";
-            }
         }
     }
 }

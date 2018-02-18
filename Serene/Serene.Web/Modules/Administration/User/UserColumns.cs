@@ -5,7 +5,7 @@ namespace Serene.Administration.Columns
     using System;
 
     [ColumnsScript("Administration.User")]
-    [BasedOnRow(typeof(Entities.UserRow))]
+    [BasedOnRow(typeof(Entities.UserRow), CheckNames = true)]
     public class UserColumns
     {
         [EditLink, AlignRight, Width(55)]

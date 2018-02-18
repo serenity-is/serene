@@ -12,20 +12,12 @@
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Common.UserPreference';
 
-        export namespace Fields {
-            export declare const UserPreferenceId: string;
-            export declare const UserId: string;
-            export declare const PreferenceType: string;
-            export declare const Name: string;
-            export declare const Value: string;
+        export declare const enum Fields {
+            UserPreferenceId = "UserPreferenceId",
+            UserId = "UserId",
+            PreferenceType = "PreferenceType",
+            Name = "Name",
+            Value = "Value"
         }
-
-        [
-            'UserPreferenceId', 
-            'UserId', 
-            'PreferenceType', 
-            'Name', 
-            'Value'
-        ].forEach(x => (<any>Fields)[x] = x);
     }
 }

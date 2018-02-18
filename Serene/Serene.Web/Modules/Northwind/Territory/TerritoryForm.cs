@@ -5,7 +5,7 @@ namespace Serene.Northwind.Forms
     using System;
 
     [FormScript("Northwind.Territory")]
-    [BasedOnRow(typeof(Entities.TerritoryRow))]
+    [BasedOnRow(typeof(Entities.TerritoryRow), CheckNames = true)]
     public class TerritoryForm
     {
         public String TerritoryID { get; set; }

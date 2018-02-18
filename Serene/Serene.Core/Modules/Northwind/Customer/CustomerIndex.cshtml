@@ -7,6 +7,8 @@
 @Html.Script("dynamic://Lookup.Northwind.CustomerCountry")
 @Html.Script("dynamic://Lookup.Northwind.CustomerCity")
 @Html.Script("dynamic://Lookup.Northwind.Employee")
+<script>var CKEDITOR_BASEPATH = '@ContentHashCache.ResolvePath("~/Scripts/ckeditor/")';</script>
+@Html.ScriptBundle("CKEditor")
 }
 
 <div id="GridDiv"></div>

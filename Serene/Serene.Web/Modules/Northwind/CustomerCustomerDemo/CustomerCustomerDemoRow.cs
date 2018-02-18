@@ -1,12 +1,14 @@
 ﻿
 namespace Serene.Northwind.Entities
 {
+    using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
 
-    [ConnectionKey("Northwind"), DisplayName("CustomerCustomerDemo"), InstanceName("CustomerCustomerDemo"), TwoLevelCached]
+    [ConnectionKey("Northwind"), Module("Northwind"), TableName("CustomerCustomerDemo")]
+    [DisplayName("CustomerCustomerDemo"), InstanceName("CustomerCustomerDemo")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     public sealed class CustomerCustomerDemoRow : Row, IIdRow, INameRow
@@ -144,12 +146,6 @@ namespace Serene.Northwind.Entities
             public StringField CustomerFax;
 
             public StringField CustomerTypeCustomerDesc;
-
-            public RowFields()
-                : base("CustomerCustomerDemo")
-            {
-                LocalTextPrefix = "Northwind.CustomerCustomerDemo";
-            }
         }
     }
 }
