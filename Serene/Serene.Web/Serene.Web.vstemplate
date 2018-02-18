@@ -672,11 +672,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdGrid.ts">GetInsertedRecordIdGrid.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
             </Folder>
-            <Folder Name="MultiColumnResponsiveDialog" TargetFolderName="MultiColumnResponsiveDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.ts">MultiColumnResponsiveDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveGrid.ts">MultiColumnResponsiveGrid.ts</ProjectItem>
-            </Folder>
             <Folder Name="OtherFormInTab" TargetFolderName="OtherFormInTab">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.Template.html">OtherFormInTabDialog.Template.html</ProjectItem>
@@ -699,11 +694,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ReadOnlyDialog.ts">ReadOnlyDialog.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ReadOnlyGrid.ts">ReadOnlyGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="ResponsiveDialog" TargetFolderName="ResponsiveDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveDialog.ts">ResponsiveDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveGrid.ts">ResponsiveGrid.ts</ProjectItem>
             </Folder>
             <Folder Name="SerialAutoNumber" TargetFolderName="SerialAutoNumber">
               <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
@@ -1327,6 +1317,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.invariant.json">northwind.invariant.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt-BR.json">northwind.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="northwind.ru.json">northwind.ru.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
             </Folder>
@@ -1336,6 +1327,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.fa.json">samples.fa.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt-BR.json">samples.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="samples.ru.json">samples.ru.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
@@ -1345,6 +1337,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.it.json">site.texts.it.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.ru.json">site.texts.ru.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>
@@ -1424,35 +1417,16 @@
   </WizardExtension>
   <WizardData>
     <packagesToInstall>
-      <installPackage id="bootstrap" version="3.3.7" />
       <installPackage id="CsQuery" version="1.3.4" />
-      <installPackage id="Dapper" version="1.50.2" />
-      <installPackage id="EPPlus" version="4.1.0" />
+      <installPackage id="EPPlus" version="4.1.1" />
       <installPackage id="flot" version="0.8.3" />
-      <installPackage id="FluentMigrator" version="1.6.2" />
       <installPackage id="FluentMigrator.Runner" version="1.6.2" />
-      <installPackage id="jQuery" version="3.1.1" />
-      <installPackage id="jQuery.UI.Combined" version="1.12.1" />
-      <installPackage id="jQuery.Validation" version="1.16.0" />
-      <installPackage id="Microsoft.AspNet.Mvc" version="5.2.3" />
-      <installPackage id="Microsoft.AspNet.Razor" version="3.2.3" />
-      <installPackage id="Microsoft.AspNet.WebPages" version="3.2.3" />
-      <installPackage id="Microsoft.TypeScript.MSBuild" version="2.5.3" />
-      <installPackage id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <installPackage id="MsieJavaScriptEngine" version="2.2.3" />
-      <installPackage id="Newtonsoft.Json" version="10.0.3" />
-      <installPackage id="NUglify" version="1.5.8" />
-      <installPackage id="Select2.js" version="3.5.1" />
-      <installPackage id="Serenity.CodeGenerator" version="3.3.15" />
-      <installPackage id="Serenity.Core" version="3.3.15" />
-      <installPackage id="Serenity.Data" version="3.3.15" />
-      <installPackage id="Serenity.Data.Entity" version="3.3.15" />
-      <installPackage id="Serenity.Services" version="3.3.15" />
-      <installPackage id="Serenity.Web" version="3.3.15" />
-      <installPackage id="Serenity.Web.Assets" version="3.3.10" />
+      <installPackage id="Microsoft.TypeScript.MSBuild" version="2.7.2" />
+      <installPackage id="MsieJavaScriptEngine" version="2.2.5" />
+      <installPackage id="Serenity.CodeGenerator" version="3.5.2" />
+      <installPackage id="Serenity.Web" version="3.5.2" />
       <installPackage id="Serenity.Web.Tooling" version="2.6.6" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
-      <installPackage id="toastr" version="2.1.1" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />
     </packagesToInstall>
     <features>

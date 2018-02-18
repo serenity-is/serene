@@ -156,6 +156,8 @@
   </ItemGroup>
   <Import Project="..\..\Serenity\tools\Submodule\Serenity.Submodule.Web.targets" Condition=" Exists('..\..\Serenity\Serenity.Core\Serenity.Core.Net45.csproj') " />
   <ItemGroup>
+    <Content Include="Scripts\site\texts\northwind\northwind.ru.json" />
+    <Content Include="Scripts\site\texts\samples\samples.ru.json" />
     <None Include="tsconfig.json" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
@@ -196,7 +198,6 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\pace.css" />
-    <Content Include="Content\PagedList.css" />
     <Content Include="Content\serenity\images\32px.png" />
     <Content Include="Content\serenity\images\accessright.png" />
     <Content Include="Content\serenity\images\accordion-down.png" />
@@ -740,8 +741,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jspdf.js" />
     <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\jspdf.plugin.autotable.js" />
@@ -1289,9 +1288,6 @@
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Content>
     <TypeScriptCompile Include="Modules\Common\Helpers\StaticTextBlock.ts" />
-    <TypeScriptCompile Include="Modules\Common\Premium\SingleLineTextFormatter.ts" />
-    <TypeScriptCompile Include="Modules\Common\Premium\WizardDialog.ts" />
-    <TypeScriptCompile Include="Modules\Meeting\MeetingAgenda\MeetingAgendaEditor.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Northwind.CustomerGrossSalesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1340,8 +1336,6 @@
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Grids\QuickFilterCustomization\Index.cshtml" />
     <Content Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\Index.cshtml" />
-    <Content Include="Content\site\site.meeting.less" />
-    <Content Include="Content\site\site.organization.less" />
     <Content Include="Fonts\Simple-Line-Icons.woff2" />
     <Content Include="Fonts\Simple-Line-Icons.woff" />
     <Content Include="Fonts\Simple-Line-Icons.ttf" />
@@ -1369,17 +1363,6 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </None>
     <Content Include="Modules\BasicSamples\Dialogs\OtherFormInTab\OtherFormInTabDialog.Template.html" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataConnectionEditor.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataExplorerGrid.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Misc\DataExplorer\DataTableEditor.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsDialog.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\InputWithInlineButtons\InlineButtonsEditor.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDetailsEditor.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderDialog.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\PickerOrderGrid.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductCheckGrid.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Editors\ProductPicker\ProductPickerDialog.ts" />
-    <TypeScriptCompile Include="Modules\AdvancedSamples\Grids\LongRunningAction\LongRunningActionGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\EntityDialogAsPanel\EntityDialogAsPanel.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarDialog.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Dialogs\OtherFormInTabOneBar\OtherFormOneBarGrid.ts" />
@@ -1415,8 +1398,6 @@
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\StoredProcedureGrid\CustomerGrossSalesGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\TreeGrid\TreeGrid.ts" />
     <TypeScriptCompile Include="Modules\BasicSamples\Grids\VSGalleryQA\VSGalleryQAGrid.ts" />
-    <TypeScriptCompile Include="Modules\Common\GridMixins\FavoriteViewsMixin.ts" />
-    <TypeScriptCompile Include="Modules\Common\GridMixins\CardViewMixin.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\EnumSelectFormatter.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\LanguageList.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\DialogUtils.ts" />
@@ -1638,7 +1619,6 @@
     <Content Include="Scripts\site\texts\site.texts.vi-VN.json" />
     <Content Include="Scripts\site\texts\northwind\northwind.vi-VN.json" />
     <Content Include="Scripts\site\texts\samples\samples.vi-VN.json" />
-    <Content Include="Scripts\site\texts\meeting\meeting.vi-VN.json" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
