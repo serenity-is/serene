@@ -184,7 +184,7 @@ https.get({
             var assetSource = null;
             for (var i = 0; i < version.files.length; i++) {
                 var f = version.files[i];
-                if (f && f.assetType && f.assetType.endsWith('/Serene.Template.vsix')) {
+                if (f && f.assetType && f.assetType.endsWith('.vsix')) {
                     assetSource = f.source;
                     break;
                 }
