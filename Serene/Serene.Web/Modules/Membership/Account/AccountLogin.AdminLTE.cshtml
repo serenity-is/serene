@@ -6,13 +6,19 @@
 }
 
 @section Head {
+    <script type="text/javascript">@Html.Raw(DynamicScriptManager.GetScriptText("Form.Membership.Login"))</script>
+    <script type="text/javascript">@Html.Raw(Html.GetLocalTextContent("Login"))</script>
     <link rel="stylesheet" href="~/Content/iCheck/square/blue.css" />
     <script src="~/Scripts/jquery.icheck.min.js"></script>
+    <style type="text/css">
+        .s-LoginPanel .s-PropertyGrid .categories {
+            overflow-y: initial;
+        }
+    </style>
 }
-
-<script id="Template_Membership_LoginPanel" type="text/template">
+<script id="Template_LoginPanel" type="text/template">
     <div class="s-Form">
-        <form id="~_Form" action="">            
+        <form id="~_Form" action="">
             <div id="~_PropertyGrid"></div>
             <div class="row">
                 <div class="col-xs-7">
@@ -23,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-xs-5">
-                    <button id="~_LoginButton" type="submit" class="btn btn-primary btn-block btn-flat">@Texts.Forms.Membership.Login.SignInButton</button>
+                    <button id="LoginButton" type="submit" class="btn btn-primary btn-block btn-flat">@Texts.Forms.Membership.Login.SignInButton</button>
                 </div>
             </div>
         </form>
@@ -32,22 +38,22 @@
 
 @if (SiteInitialization.SkippedMigrations)
 {
-<div class="alert alert-error alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-warning"></i> Warning!</h4>
-    Serene skipped running migrations to avoid modifying an arbitrary database.
-    If you'd like to run migrations on this database, remove the safety check 
-    in SiteInitialization.RunMigrations method.
-</div>
+    <div class="alert alert-error alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+        Serene skipped running migrations to avoid modifying an arbitrary database.
+        If you'd like to run migrations on this database, remove the safety check
+        in SiteInitialization.RunMigrations method.
+    </div>
 }
 
 @if (ViewData["Activated"] != null)
 {
-<div class="alert alert-info alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
-    @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
-</div>
+    <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
+        @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
+    </div>
 }
 
 <div class="login-box">
@@ -73,8 +79,55 @@
 </div>
 
 <script type="text/javascript">
+
+var LoginPanel = (function (_super) {
+    __extends(LoginPanel, _super);
+    function LoginPanel(container) {
+        var _this = _super.call(this, container) || this;
+        $(function () {
+            $('#LoginButton').click(function (e) {
+                e.preventDefault();
+                if (!_this.validateForm()) {
+                    return;
+                }
+                var request = _this.getSaveEntity();
+                Q.serviceCall({
+                    url: Q.resolveUrl('~/Account/Login'),
+                    request: request,
+                    onSuccess: function (response) {
+                        var q = Q.parseQueryString();
+                        var returnUrl = q['returnUrl'] || q['ReturnUrl'];
+                        if (returnUrl) {
+                            var hash = window.location.hash;
+                            if (hash != null && hash != '#')
+                                returnUrl += hash;
+                            window.location.href = returnUrl;
+                        }
+                        else {
+                            window.location.href = Q.resolveUrl('~/');
+                        }
+                    }
+                });
+            });
+        });
+        return _this;
+    }
+    LoginPanel.prototype.getTemplateName = function () { return 'LoginPanel'; };
+    LoginPanel.prototype.getFormKey = function () { return "Membership.Login"; };
+    return LoginPanel;
+}(Serenity.PropertyPanel));
+
 jQuery(function() {
-    new Serene.Membership.LoginPanel($('#LoginPanel')).init();
+    new LoginPanel($('#LoginPanel')).init();
+@if (ViewData["Activated"] != null)
+{
+    <text>
+    $(function() {
+        $('#Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
+        $('#Password').focus();
+    });
+    </text>
+}
     $('.field.Username,.field.Password').addClass("has-icon");
     $('.field.Username input').after("<span class='glyphicon glyphicon-user form-control-feedback'></span>");
     $('.field.Password input').after("<span class='glyphicon glyphicon-lock form-control-feedback'></span>");
@@ -83,14 +136,5 @@ jQuery(function() {
         radioClass: 'iradio_square-blue',
         increaseArea: '20%'
     });
-@if (ViewData["Activated"] != null)
-{
-    <text>
-    $(function() { 
-        $('#Serene_Membership_LoginPanel0_Username').val(@Html.Raw(Serenity.JSON.Stringify(ViewData["Activated"])));
-        $('#Serene_Membership_LoginPanel0_Password').focus();
-    });
-    </text>
-}
 });
 </script>
