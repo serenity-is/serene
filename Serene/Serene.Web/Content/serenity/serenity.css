@@ -1925,6 +1925,9 @@ s.-Panel .tab-pane {
 div.s-Toolbar .tool-button.no-text span.button-inner {
   padding: 5px 3px 19px 13px;
 }
+div.s-Toolbar .tool-button.icon-tool-button.no-text span.button-inner {
+  padding: 3px 2px;
+}
 div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   margin-top: 2px;
 }
@@ -1991,7 +1994,8 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .translation > label.caption {
   color: darkviolet;
 }
-.flex-layout .s-Form .editor {
+.flex-layout .s-Form .editor,
+.flex-layout .s-Form .widget-wrapper {
   float: initial;
 }
 .flex-layout .s-Form .caption {
@@ -2042,7 +2046,8 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-negative: 0;
   -ms-flex-preferred-size: auto;
 }
-.flex-layout .editor {
+.flex-layout .editor,
+.flex-layout .widget-wrapper {
   float: initial;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -2054,6 +2059,14 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
   -ms-flex-negative: 1;
   -ms-flex-preferred-size: 80%;
   min-width: 0;
+}
+.flex-layout .widget-wrapper {
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
 }
 .flex-layout input.editor[type=checkbox] {
   -webkit-box-flex: 0;
@@ -2814,7 +2827,8 @@ body.mobile-device.modal-dialog-open {
   vertical-align: top;
 }
 .s-Form .caption,
-.s-Form .editor {
+.s-Form .editor,
+s.Form .widget-wrapper {
   float: left;
 }
 .s-Form .ui-datepicker-trigger {
@@ -3330,6 +3344,9 @@ a.quick-search-field {
 }
 .s-Toolbar .no-text .button-inner {
   padding: 3px 3px 16px 13px;
+}
+.s-Toolbar .no-text.icon-tool-button .button-inner {
+  padding: 0;
 }
 .s-Toolbar .select2-container {
   margin-top: 2px;

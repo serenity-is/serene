@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Chrome;
 using Serenity;
 using System;
 using System.ComponentModel;
@@ -72,7 +72,7 @@ namespace Serene.Test
 
             private SeleniumDriverManager()
             {
-                driver = new PhantomJSDriver();
+                driver = new ChromeDriver();
                 driver.Manage().Window.Size = new System.Drawing.Size(1366, 768);
             }
 
