@@ -1,6 +1,7 @@
 ﻿using FluentMigrator;
 using FluentMigrator.Builders.Create.Table;
 using System;
+using System.Collections.Generic;
 
 namespace Serene.Migrations
 {
@@ -106,6 +107,22 @@ END;", table, id, seq));
 
             migration.IfDatabase("Oracle")
                 .Execute.Sql(@"ALTER TRIGGER " + seq + "_TRG ENABLE");
+        }
+    }
+
+    public class MigrationAttribute : FluentMigrator.MigrationAttribute
+    {
+        public MigrationAttribute(long version)
+            : base(version)
+        {
+            if (version < 20000101000000 ||
+                version > 99990101000000)
+                throw new Exception("Migration versions must be in yyyyMMddHHmmss format! Version " + version + " is incorrect.");
+        }
+
+        public MigrationAttribute(int year, int month, int day, int hour, int minute, int second = 0)
+            : this(year * 10000000000 + month * 100000000 + day * 1000000 + hour * 10000 + minute * 100 + second)
+        {
         }
     }
 }

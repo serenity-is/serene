@@ -1,4 +1,4 @@
-﻿{
+{
   "Base": [
     "~/Scripts/pace.js",
     "~/Scripts/jquery-{version}.js",
@@ -13,8 +13,7 @@
     "~/Scripts/toastr.js",
     "~/Scripts/vegas/vegas.js",
     "~/Scripts/saltarelle/mscorlib.js",
-    "~/Scripts/serenity/Serenity.CoreLib.js",
-    "~/Scripts/serenity/Serenity.Script.UI.js"
+    "~/Scripts/serenity/Serenity.CoreLib.js"
   ],
   "Site": [
     "~/Scripts/jquery.autoNumeric.js",

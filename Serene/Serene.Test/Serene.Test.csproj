@@ -198,7 +198,9 @@
     <Content Include="ScriptTests\qunit\qunit.css" />
     <Content Include="ScriptTests\qunit\qunit.js" />
     <Content Include="ScriptTests\Runner.html" />
+    <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.autotable.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\qunit\qunit.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\site\Serene.Web.d.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\Language\LanguageDialog\LanguageDialog.Edit_LoadById_ApplyChangesButton.ts" />
     <TypeScriptCompile Include="ScriptTests\Administration\Language\LanguageDialog\LanguageDialog.Edit_LoadById_DeleteButton.ts" />

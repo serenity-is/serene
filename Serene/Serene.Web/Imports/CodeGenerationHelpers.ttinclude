@@ -164,7 +164,7 @@ public class SSTypeLister
             externalType.Attributes.Add(ToExternalAttribute(attr));
 
         foreach (var intf in type.Interfaces)
-            externalType.Interfaces.Add(intf.FullName);
+            externalType.Interfaces.Add(intf.InterfaceType.FullName);
 
         foreach (var method in type.Methods)
             if (!method.IsPrivate)

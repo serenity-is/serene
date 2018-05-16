@@ -125,7 +125,7 @@ Func<string, JObject> loadJson = path => {
 };
 
 
-Action<string, string> patchProjectRefs = (csproj, version) => {
+Action<string, string, List<Tuple<string, string>>> patchProjectRefs = (csproj, version, webPackages) => {
     var changed = false;
 	
 	var csprojElement = loadCsProj(csproj);
@@ -306,6 +306,8 @@ Task("PrepareVSIX")
 			}
 		
 			var itemList = getCsProjItems(csprojElement);
+            foreach (var dup in itemList.Select(itemToFile).ToLookup(x => x).Where(x => x.Count() > 1))
+                Console.WriteLine("Duplicate: " + dup.Key);
 			byName = itemList.ToDictionary(itemToFile);
 			fileList = itemList.Select(itemToFile).ToList();
 		}        
@@ -380,6 +382,7 @@ Task("PrepareVSIX")
             bool replaceParameters = extension == ".cs" ||
                 extension == ".ts" ||
                 extension == ".d.ts" ||
+                extension == ".tsx" ||
                 extension == ".config" ||
                 extension == ".tt" ||
                 extension == ".css" ||
@@ -467,7 +470,7 @@ Task("PrepareVSIX")
     
     var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneWebProj), "packages.config"));  
     updateVsixProj(webPackages);
-	patchProjectRefs(sereneCoreWebProj, serenityVersion);
+	patchProjectRefs(sereneCoreWebProj, serenityVersion, webPackages);
 	
     var exitCode = StartProcess("dotnet", "restore " + sereneCoreWebProj);
     if (exitCode > 0)
