@@ -6,6 +6,15 @@
     export class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any>
         implements Serenity.IGetEditValue, Serenity.ISetEditValue {
 
+        protected entidade: Object;
+        public setEntidade(entity: Object) {
+            this.entidade = entity;
+        }
+
+        public getEntidade() {
+            return this.entidade;
+        }    
+            
         protected getIdProperty() { return "__id"; }
 
         protected nextId = 1;
