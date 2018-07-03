@@ -1,6 +1,7 @@
-﻿/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
+/// <reference path="../../../Northwind/Product/ProductGrid.ts" />
 
-namespace Serene.BasicSamples {
+namespace SerExtra.BasicSamples {
+    import fld = Northwind.ProductRow.Fields
 
     @Serenity.Decorators.registerClass()
     export class GroupingAndSummariesInGrid extends Northwind.ProductGrid {
@@ -17,10 +18,10 @@ namespace Serene.BasicSamples {
 
             this.view.setSummaryOptions({
                 aggregators: [
-                    new Slick.Aggregators.Avg('UnitPrice'),
-                    new Slick.Aggregators.Sum('UnitsInStock'),
-                    new Slick.Aggregators.Max('UnitsOnOrder'),
-                    new Slick.Aggregators.Avg('ReorderLevel')
+                    new Slick.Aggregators.Avg(fld.UnitPrice),
+                    new Slick.Aggregators.Sum(fld.UnitsInStock),
+                    new Slick.Aggregators.Max(fld.UnitsOnOrder),
+                    new Slick.Aggregators.Avg(fld.ReorderLevel)
                 ]
             });
 
@@ -30,11 +31,11 @@ namespace Serene.BasicSamples {
         protected getColumns() {
             var columns = super.getColumns();
 
-            Q.first(columns, x => x.field === 'UnitsOnOrder')
+            Q.first(columns, x => x.field === fld.UnitsOnOrder)
                 .groupTotalsFormatter = (totals, col) =>
                     (totals.max ? ('max: ' + Q.coalesce(totals.max[col.field], '')) : '');
 
-            Q.first(columns, x => x.field === 'ReorderLevel')
+            Q.first(columns, x => x.field === fld.ReorderLevel)
                 .groupTotalsFormatter = (totals, col) =>
                     (totals.avg ? ('avg: ' + Q.coalesce(Q.formatNumber(totals.avg[col.field], '0.'), '')) : '');
 
@@ -57,7 +58,7 @@ namespace Serene.BasicSamples {
                 cssClass: 'expand-all-button',
                 onClick: () => this.view.setGrouping(
                     [{
-                        getter: 'CategoryName'
+                        getter: fld.CategoryName
                     }])
             },
             {
@@ -66,10 +67,10 @@ namespace Serene.BasicSamples {
                 onClick: () => this.view.setGrouping(
                     [{
                         formatter: x => 'Category: ' + x.value + ' (' + x.count + ' items)',
-                        getter: 'CategoryName'
+                        getter: fld.CategoryName
                     }, {
                         formatter: x => 'Supplier: ' + x.value + ' (' + x.count + ' items)',
-                        getter: 'SupplierCompanyName'
+                        getter: fld.SupplierCompanyName
                     }])
             }, {
                 title: 'No Grouping',
