@@ -5,7 +5,16 @@
     @Serenity.Decorators.element("<div/>")
     export class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any>
         implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+            
+        protected ownerEntity: Object;
+        public setOwnerEntity(entity: Object) {
+            this.ownerEntity = entity;
+        }
 
+        public getOwnerEntity() {
+            return this.ownerEntity;
+        }    
+            
         protected getIdProperty() { return "__id"; }
 
         protected nextId = 1;
