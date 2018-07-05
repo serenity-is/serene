@@ -4284,7 +4284,12 @@ var Serenity;
                 params.element && params.element(e);
                 widget = new params.type(e, params.options);
             }
-            widget.init(params.init);
+            if (widget.isAsyncWidget())
+                widget.init(params.init);
+            else {
+                widget.init(null);
+                params.init && params.init(widget);
+            }
             return widget;
         };
         Widget.prototype.init = function (action) {
@@ -7871,6 +7876,7 @@ var Serenity;
                     text = this.getEditorText();
                     result.displayText = this.displayText(this.get_operator(), [text]);
                     result.criteria = [[this.getCriteriaField()], 'like', '%' + text + '%'];
+                    return result;
                 }
                 case 'startswith': {
                     text = this.getEditorText();
@@ -8295,8 +8301,12 @@ var Serenity;
             return _super !== null && _super.apply(this, arguments) || this;
         }
         StringFiltering.prototype.getOperators = function () {
-            var ops = [{ key: Operators.contains }, { key: Operators.startsWith }, { key: Operators.EQ },
-                { key: Operators.NE }, { key: Operators.BW }];
+            var ops = [
+                { key: Operators.contains },
+                { key: Operators.startsWith },
+                { key: Operators.EQ },
+                { key: Operators.NE }
+            ];
             return this.appendNullableOperators(ops);
         };
         StringFiltering.prototype.validateEditorValue = function (value) {
