@@ -1,6 +1,6 @@
 /// <reference path="../../../Northwind/Product/ProductGrid.ts" />
 
-namespace SerExtra.BasicSamples {
+namespace Serene.BasicSamples {
     import fld = Northwind.ProductRow.Fields
 
     @Serenity.Decorators.registerClass()

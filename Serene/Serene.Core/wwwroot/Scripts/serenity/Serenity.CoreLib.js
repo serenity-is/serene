@@ -11205,7 +11205,10 @@ var Serenity;
         DataGrid.prototype.getQuickFilters = function () {
             var list = [];
             var columns = this.allColumns.filter(function (x) {
-                return x.sourceItem && x.sourceItem.quickFilter === true;
+                return x.sourceItem &&
+                    x.sourceItem.quickFilter === true &&
+                    (x.sourceItem.readPermission == null ||
+                        Q.Authorization.hasPermission(x.sourceItem.readPermission));
             });
             for (var _i = 0, columns_2 = columns; _i < columns_2.length; _i++) {
                 var column = columns_2[_i];
@@ -11359,6 +11362,25 @@ var Serenity;
                 this.view.populate();
             }
         };
+        DataGrid.prototype.canFilterColumn = function (column) {
+            return (column.sourceItem != null &&
+                column.sourceItem.notFilterable !== true &&
+                (column.sourceItem.readPermission == null ||
+                    Q.Authorization.hasPermission(column.sourceItem.readPermission)));
+        };
+        DataGrid.prototype.initializeFilterBar = function () {
+            var _this = this;
+            this.filterBar.set_store(new Serenity.FilterStore(this.allColumns
+                .filter(function (c) { return _this.canFilterColumn(c); })
+                .map(function (x) { return x.sourceItem; })));
+            this.filterBar.get_store().add_changed(function (s, e) {
+                if (_this.restoringSettings <= 0) {
+                    _this.persistSettings(null);
+                    _this.view && (_this.view.seekToPage = 1);
+                    _this.refresh();
+                }
+            });
+        };
         DataGrid.prototype.initializeAsync = function () {
             var _this = this;
             return _super.prototype.initializeAsync.call(this)
@@ -11366,21 +11388,7 @@ var Serenity;
                 .then(function (columns) {
                 _this.allColumns = columns;
                 _this.postProcessColumns(_this.allColumns);
-                var self = _this;
-                if (_this.filterBar) {
-                    _this.filterBar.set_store(new Serenity.FilterStore(_this.allColumns.filter(function (x) {
-                        return x.sourceItem && x.sourceItem.notFilterable !== true;
-                    }).map(function (x1) {
-                        return x1.sourceItem;
-                    })));
-                    _this.filterBar.get_store().add_changed(function (s, e) {
-                        if (_this.restoringSettings <= 0) {
-                            self.persistSettings(null);
-                            self.view && (self.view.seekToPage = 1);
-                            self.refresh();
-                        }
-                    });
-                }
+                _this.filterBar && _this.initializeFilterBar();
                 var visibleColumns = _this.allColumns.filter(function (x2) {
                     return x2.visible !== false;
                 });
@@ -11631,24 +11639,11 @@ var Serenity;
             return false;
         };
         DataGrid.prototype.createFilterBar = function () {
-            var _this = this;
             var filterBarDiv = $('<div/>').appendTo(this.element);
             var self = this;
             this.filterBar = new Serenity.FilterDisplayBar(filterBarDiv);
-            if (!this.isAsyncWidget()) {
-                this.filterBar.set_store(new Serenity.FilterStore(this.allColumns.filter(function (x) {
-                    return (x.sourceItem != null) && x.sourceItem.notFilterable !== true;
-                }).map(function (x1) {
-                    return x1.sourceItem;
-                })));
-                this.filterBar.get_store().add_changed(function (s, e) {
-                    if (_this.restoringSettings <= 0) {
-                        self.persistSettings(null);
-                        self.view && (self.view.seekToPage = 1);
-                        self.refresh();
-                    }
-                });
-            }
+            if (!this.isAsyncWidget())
+                this.initializeFilterBar();
         };
         DataGrid.prototype.getPagerOptions = function () {
             return {
@@ -14672,8 +14667,12 @@ var Serenity;
                 return "[x]";
             return col.name || col.toolTip || col.id;
         };
+        ColumnPickerDialog.prototype.allowHide = function (col) {
+            return col.sourceItem == null || col.sourceItem.allowHide == null || col.sourceItem.allowHide;
+        };
         ColumnPickerDialog.prototype.createLI = function (col) {
-            return $("\n<li data-key=\"" + col.id + "\">\n  <span class=\"drag-handle\">\u2630</span>\n  " + Q.htmlEncode(this.getTitle(col)) + "\n  <i class=\"js-hide\" title=\"" + Q.text("Controls.ColumnPickerDialog.HideHint") + "\">\u2716</i>\n  <i class=\"js-show fa fa-eye\" title=\"" + Q.text("Controls.ColumnPickerDialog.ShowHint") + "\"></i>\n</li>");
+            var allowHide = this.allowHide(col);
+            return $("\n<li data-key=\"" + col.id + "\" class=\"" + (allowHide ? "" : "cant-hide") + "\">\n  <span class=\"drag-handle\">\u2630</span>\n  " + Q.htmlEncode(this.getTitle(col)) + "\n  " + (allowHide ? "<i class=\"js-hide\" title=\"" + Q.text("Controls.ColumnPickerDialog.HideHint") + "\">\u2716</i>" : '') + "\n  <i class=\"js-show fa fa-eye\" title=\"" + Q.text("Controls.ColumnPickerDialog.ShowHint") + "\"></i>\n</li>");
         };
         ColumnPickerDialog.prototype.updateListStates = function () {
             this.ulVisible.children().removeClass("bg-info").addClass("bg-success");
@@ -14725,6 +14724,13 @@ var Serenity;
                     onFilter: function (evt) {
                         $(evt.item).appendTo(_this.ulHidden);
                         _this.updateListStates();
+                    },
+                    onMove: function (x) {
+                        if ($(x.dragged).hasClass('cant-hide') &&
+                            x.from == _this.ulVisible[0] &&
+                            x.to !== x.from)
+                            return false;
+                        return true;
                     },
                     onEnd: function (evt) { return _this.updateListStates(); }
                 });
@@ -14805,6 +14811,14 @@ var Serenity;
          */
         TreeGridMixin.prototype.toggleAll = function () {
             Serenity.SlickTreeHelper.setCollapsed(this.dataGrid.view.getItems(), !this.dataGrid.view.getItems().every(function (x) { return x._collapsed == true; }));
+            this.dataGrid.view.setItems(this.dataGrid.view.getItems(), true);
+        };
+        TreeGridMixin.prototype.collapseAll = function () {
+            Serenity.SlickTreeHelper.setCollapsed(this.dataGrid.view.getItems(), true);
+            this.dataGrid.view.setItems(this.dataGrid.view.getItems(), true);
+        };
+        TreeGridMixin.prototype.expandAll = function () {
+            Serenity.SlickTreeHelper.setCollapsed(this.dataGrid.view.getItems(), false);
             this.dataGrid.view.setItems(this.dataGrid.view.getItems(), true);
         };
         /**
