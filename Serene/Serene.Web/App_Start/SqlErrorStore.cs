@@ -197,16 +197,16 @@ namespace Serene
             {
                 if (RollupThreshold.HasValue && error.ErrorHash.HasValue)
                 {
-                    var queryParams = new Serenity.Data.DynamicParameters(new
-                    {
-                        error.DuplicateCount,
-                        error.ErrorHash,
-                        ApplicationName = error.ApplicationName.Truncate(50),
-                        minDate = DateTime.UtcNow.Add(RollupThreshold.Value.Negate())
-                    });
-
                     if (isSqlServer)
                     {
+                        var queryParams = new Serenity.Data.DynamicParameters(new
+                        {
+                            error.DuplicateCount,
+                            error.ErrorHash,
+                            ApplicationName = error.ApplicationName.Truncate(50),
+                            minDate = DateTime.UtcNow.Add(RollupThreshold.Value.Negate())
+                        });
+
                         queryParams.Add("@newGUID", dbType: DbType.Guid, direction: ParameterDirection.Output);
                         var count = c.Execute(@"
 Update Exceptions 
@@ -227,26 +227,39 @@ Update Exceptions
                     }
                     else
                     {
-                        var count = new SqlUpdate("Exceptions")
-                            .Set("DuplicateCount", "DuplicateCount + @DuplicateCount")
-                            .Where(new Criteria("[Id]").In(new Criteria("(" + 
+                        var update = new SqlUpdate("Exceptions")
+                            .SetTo("DuplicateCount", "[DuplicateCount] + @DuplicateCount")
+                            .Where(new Criteria("[Id]").In(new Criteria("(" +
                                 new SqlQuery()
                                     .Dialect(c.GetDialect())
                                     .Select("[Id]")
                                     .From("Exceptions")
                                     .Take(1)
-                                    .Where(hashMatch)) + ")"))
-                                .Execute(c, ExpectedRows.Ignore);
+                                    .Where(hashMatch))) + ")");
+
+
+                        update.SetParam("@DuplicateCount", error.DuplicateCount);
+                        update.SetParam("@ErrorHash", error.ErrorHash);
+                        update.SetParam("@ApplicationName", error.ApplicationName.Truncate(50));
+                        update.SetParam("@minDate", DateTime.UtcNow.Add(RollupThreshold.Value.Negate()));
+
+                        var count = update.Execute(c, ExpectedRows.Ignore);
 
                         // if we found an exception that's a duplicate, jump out
                         if (count > 0)
                         {
-                            error.GUID = c.Query<Guid>(new SqlQuery()
+                            var q = new SqlQuery()
                                 .Dialect(c.GetDialect())
                                 .From("Exceptions")
                                 .Select("GUID")
                                 .Take(1)
-                                .Where(hashMatch)).First();
+                                .Where(hashMatch);
+
+                            q.SetParam("@ErrorHash", error.ErrorHash);
+                            q.SetParam("@ApplicationName", error.ApplicationName.Truncate(50));
+                            q.SetParam("@minDate", DateTime.UtcNow.Add(RollupThreshold.Value.Negate()));
+
+                            error.GUID = c.Query<Guid>(q).First();
 
                             return;
                         }

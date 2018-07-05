@@ -12,6 +12,7 @@ namespace Serene.Administration.Repositories
     using System.Data;
     using System.Web.Security;
     using MyRow = Entities.UserRow;
+    using UserPreferenceRow = Common.Entities.UserPreferenceRow;
 
     public partial class UserRepository
     {
@@ -249,6 +250,23 @@ namespace Serene.Administration.Repositories
                 base.ValidateRequest();
 
                 CheckPublicDemo(Row.UserId);
+            }
+
+            protected override void OnBeforeDelete()
+            {
+                base.OnBeforeDelete();
+
+                new SqlDelete(UserPreferenceRow.Fields.TableName)
+                    .Where(UserPreferenceRow.Fields.UserId == Row.UserId.Value)
+                    .Execute(Connection, ExpectedRows.Ignore);
+
+                new SqlDelete(Entities.UserRoleRow.Fields.TableName)
+                    .Where(Entities.UserRoleRow.Fields.UserId == Row.UserId.Value)
+                    .Execute(Connection, ExpectedRows.Ignore);
+
+                new SqlDelete(Entities.UserPermissionRow.Fields.TableName)
+                    .Where(Entities.UserPermissionRow.Fields.UserId == Row.UserId.Value)
+                    .Execute(Connection, ExpectedRows.Ignore);
             }
         }
 

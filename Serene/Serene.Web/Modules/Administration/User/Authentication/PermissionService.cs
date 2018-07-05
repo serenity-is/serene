@@ -62,11 +62,11 @@
             });
         }
 
-        private HashSet<string> GetRolePermissions(int userId)
+        private HashSet<string> GetRolePermissions(int roleId)
         {
             var fld = RolePermissionRow.Fields;
 
-            return TwoLevelCache.GetLocalStoreOnly("RolePermissions:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
+            return TwoLevelCache.GetLocalStoreOnly("RolePermissions:" + roleId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                 {
@@ -74,7 +74,7 @@
 
                     connection.List<RolePermissionRow>(q => q
                             .Select(fld.PermissionKey)
-                            .Where(new Criteria(fld.RoleId) == userId))
+                            .Where(new Criteria(fld.RoleId) == roleId))
                         .ForEach(x => result.Add(x.PermissionKey));
 
                     var implicitPermissions = new Repositories.UserPermissionRepository().ImplicitPermissions;
