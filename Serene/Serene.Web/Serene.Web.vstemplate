@@ -1423,8 +1423,8 @@
       <installPackage id="FluentMigrator.Runner" version="1.6.2" />
       <installPackage id="Microsoft.TypeScript.MSBuild" version="2.8.3" />
       <installPackage id="MsieJavaScriptEngine" version="2.2.7" />
-      <installPackage id="Serenity.CodeGenerator" version="3.7.1" />
-      <installPackage id="Serenity.Web" version="3.7.1" />
+      <installPackage id="Serenity.CodeGenerator" version="3.7.3" />
+      <installPackage id="Serenity.Web" version="3.7.3" />
       <installPackage id="Serenity.Web.Tooling" version="3.5.1" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />
@@ -1433,11 +1433,13 @@
       <feature key="BasicSamples">
         <files include="Content\site\site.basicsamples.less" />
         <files include="Modules\BasicSamples" />
+        <files include="Imports\ClientTypes\**\BasicSamples.*" />
         <files include="Imports\ServerTypings\**\BasicSamples.*" />
         <files include="Scripts\site\texts\samples" />
       </feature>
       <feature key="Northwind">
         <files include="Content\site\site.northwind.less" />
+        <files include="Imports\ClientTypes\**\Northwind.*" />
         <files include="Imports\ServerTypings\**\Northwind.*" />
         <files include="Modules\Northwind" />
         <files include="Migrations\NorthwindDB" />

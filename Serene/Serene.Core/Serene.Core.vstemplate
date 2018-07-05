@@ -1396,11 +1396,13 @@
       <feature key="BasicSamples">
         <files include="wwwroot\Content\site\site.basicsamples.less" />
         <files include="Modules\BasicSamples" />
+        <files include="Imports\ClientTypes\**\BasicSamples.*" />
         <files include="Imports\ServerTypings\**\BasicSamples.*" />
         <files include="wwwroot\Scripts\site\texts\samples" />
       </feature>
       <feature key="Northwind">
         <files include="wwwroot\Content\site\site.northwind.less" />
+        <files include="Imports\ClientTypes\**\Northwind.*" />
         <files include="Imports\ServerTypings\**\Northwind.*" />
         <files include="Modules\Northwind" />
         <files include="Migrations\NorthwindDB" />
