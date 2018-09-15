@@ -1278,12 +1278,15 @@ declare namespace Serenity {
         displayFormat?: string;
         alignment?: string;
         width?: number;
+        widthSet?: boolean;
         minWidth?: number;
         maxWidth?: number;
         labelWidth?: string;
         resizable?: boolean;
         sortable?: boolean;
         sortOrder?: number;
+        groupOrder?: number;
+        summaryType?: SummaryType;
         editLink?: boolean;
         editLinkItemType?: string;
         editLinkIdField?: string;
@@ -1297,6 +1300,14 @@ declare namespace Serenity {
         quickFilterParams?: any;
         quickFilterSeparator?: boolean;
         quickFilterCssClass?: string;
+    }
+    enum SummaryType {
+        Disabled = -1,
+        None = 0,
+        Sum = 1,
+        Avg = 2,
+        Min = 3,
+        Max = 4,
     }
 }
 declare namespace Serenity {
@@ -1529,6 +1540,7 @@ declare namespace Serenity {
     interface IntegerEditorOptions {
         minValue?: number;
         maxValue?: number;
+        allowNegatives?: boolean;
     }
     class IntegerEditor extends Widget<IntegerEditorOptions> implements IDoubleValue {
         constructor(input: JQuery, opt?: IntegerEditorOptions);
@@ -1542,6 +1554,7 @@ declare namespace Serenity {
         maxValue?: string;
         decimals?: any;
         padDecimals?: any;
+        allowNegatives?: boolean;
     }
     interface EmailEditorOptions {
         domain?: string;
@@ -1686,12 +1699,14 @@ declare namespace Serenity {
         enumType?: any;
         lookupKey?: string;
     }
-    class RadioButtonEditor extends Widget<RadioButtonEditorOptions> {
+    class RadioButtonEditor extends Widget<RadioButtonEditorOptions> implements IReadOnly {
         constructor(input: JQuery, opt: RadioButtonEditorOptions);
         protected addRadio(value: string, text: string): void;
         get_value(): string;
         value: string;
         set_value(value: string): void;
+        get_readOnly(): boolean;
+        set_readOnly(value: boolean): void;
     }
     interface RecaptchaOptions {
         siteKey?: string;
@@ -2558,6 +2573,7 @@ declare namespace Serenity {
         protected getPersistanceKey(): string;
         protected gridPersistanceFlags(): GridPersistanceFlags;
         protected canShowColumn(column: Slick.Column): boolean;
+        protected getPersistedSettings(): PersistedGridSettings;
         protected restoreSettings(settings?: PersistedGridSettings, flags?: GridPersistanceFlags): void;
         protected persistSettings(flags?: GridPersistanceFlags): void;
         protected getCurrentSettings(flags?: GridPersistanceFlags): PersistedGridSettings;
@@ -3112,6 +3128,9 @@ declare namespace Slick {
         cellFlashingCssClass?: string;
         cellHighlightCssClass?: string;
         dataItemColumnValueExtractor?: () => void;
+        groupingPanel?: boolean;
+        groupingPanelHeight?: number;
+        setGroupingPanelVisibility?: (value: boolean) => void;
         defaultColumnWidth?: number;
         defaultFormatter?: () => void;
         editable?: boolean;
@@ -3230,6 +3249,7 @@ declare namespace Slick {
         autoSizeColumns(): void;
         getColumnIndex(id: string): number;
         getColumns(): Column[];
+        getUID(): string;
         setColumns(columns: Column[]): void;
         setSortColumn(columnId: string, ascending: boolean): void;
         setSortColumns(cols: Slick.ColumnSort[]): void;
@@ -3277,7 +3297,10 @@ declare namespace Slick {
         updateCell(row: number, cell: number): void;
         updateRow(row: number): void;
         updateRowCount(): void;
+        updateColumnHeader(columnId: string, title?: string, toolTip?: string): void;
+        getGroupingPanel(): HTMLDivElement;
         getHeaderRow(): any;
+        getEditorLock(): any;
         getHeaderRowColumn(columnId: string): any;
         getSortColumns(): any;
         getTopPanel(): any;

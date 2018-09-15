@@ -1,5 +1,182 @@
 ﻿var Serene;
 (function (Serene) {
+    var ButtonTesting = /** @class */ (function () {
+        function ButtonTesting(assert) {
+            this.assert = assert;
+        }
+        ButtonTesting.prototype.assertEnabled = function (button, klass) {
+            this.assert.ok(button.hasClass(klass) &&
+                !button.hasClass('disabled'), 'button with class ' + klass + ' is enabled.');
+        };
+        ButtonTesting.prototype.assertDisabled = function (button, klass) {
+            this.assert.ok(button.hasClass(klass) &&
+                button.hasClass('disabled'), 'button with class ' + klass + ' is disabled.');
+        };
+        return ButtonTesting;
+    }());
+    Serene.ButtonTesting = ButtonTesting;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var DialogTesting;
+    (function (DialogTesting) {
+        function getDialogTitle(element) {
+            if (element.hasClass(".ui-dialog-content"))
+                element = element.closest(".ui-dialog");
+            return element.find(".ui-dialog-title").text();
+        }
+        DialogTesting.getDialogTitle = getDialogTitle;
+        function getVisibleButtons(dialog) {
+            return $('#' + dialog.idPrefix + 'Toolbar').find('.tool-button:visible');
+        }
+        DialogTesting.getVisibleButtons = getVisibleButtons;
+        function clickButton(dialog, klass) {
+            var button = $('#' + dialog.idPrefix + 'Toolbar').find(klass + '.tool-button:visible');
+            QUnit.assert.ok(button.length == 1, 'clicking "' + klass + '" button');
+            button.click();
+        }
+        DialogTesting.clickButton = clickButton;
+        function getVisibleFields(dialog) {
+            return $('#' + dialog.idPrefix + 'PropertyGrid').find('div.field:visible');
+        }
+        DialogTesting.getVisibleFields = getVisibleFields;
+    })(DialogTesting = Serene.DialogTesting || (Serene.DialogTesting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var EditorTesting;
+    (function (EditorTesting) {
+        function isEditable(editor) {
+            return !editor.hasClass('readonly') &&
+                !editor.hasClass('disabled') &&
+                !editor.is('[readonly]') &&
+                !editor.is(':disabled');
+        }
+        EditorTesting.isEditable = isEditable;
+        function getValue(editor) {
+            var widget = editor.tryGetWidget(Serenity.Widget);
+            if (widget != null)
+                return Serenity.EditorUtils.getValue(widget);
+            return editor.val();
+        }
+        EditorTesting.getValue = getValue;
+        function setValue(editor, value) {
+            var widget = editor.tryGetWidget(Serenity.Widget);
+            if (widget != null) {
+                Serenity.EditorUtils.setValue(widget, value);
+                return;
+            }
+            editor.val(value);
+        }
+        EditorTesting.setValue = setValue;
+    })(EditorTesting = Serene.EditorTesting || (Serene.EditorTesting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var FormTesting = /** @class */ (function () {
+        function FormTesting(assert) {
+            this.assert = assert;
+        }
+        FormTesting.prototype.getTitle = function (field) {
+            var lbl = field.children("label.caption");
+            var text = lbl.text();
+            var pref = lbl.children("sup").text();
+            if (pref && text.substr(0, pref.length) == pref)
+                return text.substr(pref.length);
+            return text;
+        };
+        FormTesting.prototype.assertTitle = function (field, title) {
+            QUnit.assert.strictEqual(this.getTitle(field), title, '[Field has title ' + title + ']');
+        };
+        FormTesting.prototype.setValue = function (field, value) {
+            var edit = field.find('.editor').first();
+            Serene.EditorTesting.setValue(edit, value);
+        };
+        FormTesting.prototype.assertValue = function (field, expected) {
+            var edit = field.find('.editor').first();
+            var value = Serene.EditorTesting.getValue(edit);
+            QUnit.assert.strictEqual(value, expected, this.getTitle(field) + ' has value ' + JSON.stringify(expected));
+        };
+        FormTesting.prototype.isEditable = function (field) {
+            var edit = field.find('.editor').first();
+            return Serene.EditorTesting.isEditable(edit);
+        };
+        FormTesting.prototype.getEditor = function (field) {
+            return field.find('.editor').first();
+        };
+        FormTesting.prototype.assertEditorIs = function (field, selector) {
+            QUnit.assert.ok(this.getEditor(field).is(selector), this.getTitle(field) + ' is ' + selector);
+        };
+        FormTesting.prototype.assertEditable = function (field) {
+            QUnit.assert.ok(this.isEditable(field), this.getTitle(field) + ' is editable.');
+        };
+        FormTesting.prototype.assertNotEditable = function (field) {
+            QUnit.assert.ok(!this.isEditable(field), this.getTitle(field) + ' is not editable.');
+        };
+        FormTesting.prototype.assertHasClass = function (field, klass) {
+            QUnit.assert.ok(field.find('.editor').first().hasClass(klass), this.getTitle(field) + ' has class ' + klass);
+        };
+        FormTesting.prototype.assertMaxLength = function (field, maxLength) {
+            QUnit.assert.strictEqual(field.find('.editor').first().attr('maxlength'), maxLength.toString(), this.getTitle(field) + ' has maxlength ' + maxLength);
+        };
+        FormTesting.prototype.isRequired = function (field) {
+            return this.hasRequiredMark(field) && this.hasRequiredEditor(field);
+        };
+        FormTesting.prototype.assertRequired = function (field) {
+            QUnit.assert.ok(this.isRequired(field), this.getTitle(field) + ' is required.');
+        };
+        FormTesting.prototype.assertNotRequired = function (field) {
+            QUnit.assert.ok(!this.isRequired(field), this.getTitle(field) + ' is not required.');
+        };
+        FormTesting.prototype.hasRequiredMark = function (field) {
+            var lbl = field.children("label.caption");
+            return lbl.children("sup:visible").length > 0;
+        };
+        FormTesting.prototype.hasRequiredEditor = function (field) {
+            return field.find(".editor").first().hasClass("required");
+        };
+        return FormTesting;
+    }());
+    Serene.FormTesting = FormTesting;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var ServiceTesting;
+    (function (ServiceTesting) {
+        var FakeAjax = /** @class */ (function () {
+            function FakeAjax() {
+                this.oldAjax = $.ajax;
+                var self = this;
+                this.handlers = {};
+                $.ajax = function (settings) {
+                    var url = settings.url;
+                    var handler = self.handlers[url];
+                    if (!handler) {
+                        throw new Error("No fake handler registered for ajax URL: " + url + ", request: " +
+                            JSON.stringify(settings, null, "    "));
+                    }
+                    var xhr = {
+                        fail: function () {
+                        }
+                    };
+                    var result = handler(settings);
+                    settings.success(result, '200', xhr);
+                    return xhr;
+                };
+            }
+            FakeAjax.prototype.addServiceHandler = function (service, handler) {
+                this.handlers[Q.resolveUrl(service)] = handler;
+            };
+            FakeAjax.prototype.dispose = function () {
+                $.ajax = this.oldAjax;
+            };
+            return FakeAjax;
+        }());
+        ServiceTesting.FakeAjax = FakeAjax;
+    })(ServiceTesting = Serene.ServiceTesting || (Serene.ServiceTesting = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Administration;
     (function (Administration) {
         var Test;
@@ -507,6 +684,57 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
+            QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.RoleDialog();
+                dialog.loadEntityAndOpenDialog({
+                    RoleId: 789,
+                    RoleName: 'some.thing',
+                });
+                try {
+                    var uiDialog = dialog.element.closest(".ui-dialog");
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
+                    var rolePermissionListCalls = 0;
+                    ajax_3.addServiceHandler("~/services/Administration/RolePermission/List", function (s) {
+                        rolePermissionListCalls++;
+                        assert.deepEqual(s.request, { RoleID: 789, Module: null, Submodule: null }, 'role permission list request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+                    Q.ScriptData.set('RemoteData.Administration.ImplicitPermissions', {});
+                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
+                    window.setTimeout(function () {
+                        try {
+                            var permissionDialog = $('.ui-dialog:visible').last();
+                            assert.ok(permissionDialog.hasClass('s-Administration-RolePermissionDialog'), 'role permissions dialog is shown on edit permissions button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit Role Permissions (some.thing)', 'dialog title');
+                            assert.equal(1, rolePermissionListCalls, 'RolePermission/List should be called once');
+                            permissionDialog.find('.ui-dialog-content').dialog('close');
+                        }
+                        finally {
+                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
+                            ajax_3.dispose();
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
             QUnit.test('RoleDialog Edit LoadById, Apply Changes Button', function (assert) {
                 var asyncDone = assert.async();
                 var dialog = new Administration.RoleDialog();
@@ -800,57 +1028,6 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
-            QUnit.test('RoleDialog Edit Permissions Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.RoleDialog();
-                dialog.loadEntityAndOpenDialog({
-                    RoleId: 789,
-                    RoleName: 'some.thing',
-                });
-                try {
-                    var uiDialog = dialog.element.closest(".ui-dialog");
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    var ajax_3 = new Serene.ServiceTesting.FakeAjax();
-                    var rolePermissionListCalls = 0;
-                    ajax_3.addServiceHandler("~/services/Administration/RolePermission/List", function (s) {
-                        rolePermissionListCalls++;
-                        assert.deepEqual(s.request, { RoleID: 789, Module: null, Submodule: null }, 'role permission list request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
-                    Q.ScriptData.set('RemoteData.Administration.ImplicitPermissions', {});
-                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
-                    window.setTimeout(function () {
-                        try {
-                            var permissionDialog = $('.ui-dialog:visible').last();
-                            assert.ok(permissionDialog.hasClass('s-Administration-RolePermissionDialog'), 'role permissions dialog is shown on edit permissions button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit Role Permissions (some.thing)', 'dialog title');
-                            assert.equal(1, rolePermissionListCalls, 'RolePermission/List should be called once');
-                            permissionDialog.find('.ui-dialog-content').dialog('close');
-                        }
-                        finally {
-                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
-                            ajax_3.dispose();
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
             QUnit.test('RoleDialog General', function (assert) {
                 assert.notEqual(null, new Administration.RoleDialog(), 'create a new instance');
                 var dialog = new Administration.RoleDialog();
@@ -1012,6 +1189,129 @@ var Serene;
                         return { EntityId: 9876 };
                     });
                     Serene.DialogTesting.clickButton(dialog, ".save-and-close-button");
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit Permissions Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.UserDialog();
+                dialog.loadEntityAndOpenDialog({
+                    UserId: 789,
+                    Username: 'some.thing',
+                    DisplayName: 'Some Thing',
+                    Email: 'some_thing@somedomain.com',
+                    Source: 'some'
+                });
+                try {
+                    var uiDialog = dialog.element.closest(".ui-dialog");
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    var ajax_6 = new Serene.ServiceTesting.FakeAjax();
+                    var userPermissionListCalls = 0;
+                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
+                        userPermissionListCalls++;
+                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    var listRolePermissionsCalls = 0;
+                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
+                        listRolePermissionsCalls++;
+                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
+                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
+                    Q.ScriptData.set('RemoteData.Administration.ImplicitPermissions', {});
+                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
+                    window.setTimeout(function () {
+                        try {
+                            var permissionDialog = $('.ui-dialog:visible').last();
+                            assert.ok(permissionDialog.hasClass('s-Administration-UserPermissionDialog'), 'user permissions dialog is shown on edit permissions button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit User Permissions (some.thing)', 'dialog title');
+                            assert.equal(1, userPermissionListCalls, 'UserPermission/List should be called once');
+                            assert.equal(1, listRolePermissionsCalls, 'UserPermission/ListRolePermissions should be called once');
+                            permissionDialog.find('.ui-dialog-content').dialog('close');
+                        }
+                        finally {
+                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
+                            ajax_6.dispose();
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
+                }
+                catch (e) {
+                    dialog.dialogClose();
+                    throw e;
+                }
+            });
+        })(Test = Administration.Test || (Administration.Test = {}));
+    })(Administration = Serene.Administration || (Serene.Administration = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Administration;
+    (function (Administration) {
+        var Test;
+        (function (Test) {
+            QUnit.module('Serene.Administration');
+            QUnit.test('UserDialog Edit Roles Button', function (assert) {
+                var done = assert.async();
+                var dialog = new Administration.UserDialog();
+                dialog.loadEntityAndOpenDialog({
+                    UserId: 789,
+                    Username: 'some.thing',
+                    DisplayName: 'Some Thing',
+                    Email: 'some_thing@somedomain.com',
+                    Source: 'some'
+                });
+                try {
+                    var uiDialog = dialog.element.closest(".ui-dialog");
+                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
+                    Q.ScriptData.set('Lookup.Administration.Role', new Q.Lookup({
+                        idField: 'RoleId',
+                        textField: 'RoleName'
+                    }, [{
+                            RoleId: 13579,
+                            RoleName: 'SomeRole'
+                        }, {
+                            RoleId: 24680,
+                            RoleName: 'OtherRole'
+                        }]));
+                    var ajax_7 = new Serene.ServiceTesting.FakeAjax();
+                    var userRoleListCalls = 0;
+                    ajax_7.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
+                        userRoleListCalls++;
+                        assert.deepEqual(s.request, { UserID: 789 });
+                        return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
+                    });
+                    Serene.DialogTesting.clickButton(dialog, '.edit-roles-button');
+                    window.setTimeout(function () {
+                        try {
+                            var roleDialog = $('.ui-dialog:visible').last();
+                            assert.ok(roleDialog.hasClass('s-Administration-UserRoleDialog'), 'user roles dialog is shown on edit roles button click');
+                            assert.equal(Serene.DialogTesting.getDialogTitle(roleDialog), 'Edit User Roles (some.thing)');
+                            roleDialog.find('.ui-dialog-content').dialog('close');
+                            assert.equal(1, userRoleListCalls, 'user role list should be called once');
+                        }
+                        finally {
+                            ajax_7.dispose();
+                            Q.ScriptData.set('Lookup.Administration.Role', null);
+                            dialog.dialogClose();
+                            done();
+                        }
+                    }, 0);
                 }
                 catch (e) {
                     dialog.dialogClose();
@@ -1445,129 +1745,6 @@ var Serene;
         var Test;
         (function (Test) {
             QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog Edit Permissions Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.UserDialog();
-                dialog.loadEntityAndOpenDialog({
-                    UserId: 789,
-                    Username: 'some.thing',
-                    DisplayName: 'Some Thing',
-                    Email: 'some_thing@somedomain.com',
-                    Source: 'some'
-                });
-                try {
-                    var uiDialog = dialog.element.closest(".ui-dialog");
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    var ajax_6 = new Serene.ServiceTesting.FakeAjax();
-                    var userPermissionListCalls = 0;
-                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/List", function (s) {
-                        userPermissionListCalls++;
-                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'user permission list request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    var listRolePermissionsCalls = 0;
-                    ajax_6.addServiceHandler("~/services/Administration/UserPermission/ListRolePermissions", function (s) {
-                        listRolePermissionsCalls++;
-                        assert.deepEqual(s.request, { UserID: 789, Module: null, Submodule: null }, 'list role permissions request');
-                        return { "Entities": [], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Q.ScriptData.set('RemoteData.Administration.PermissionKeys', { "Entities": ["A", "B", "C"], "TotalCount": 0, "Skip": 0, "Take": 0 });
-                    Q.ScriptData.set('RemoteData.Administration.ImplicitPermissions', {});
-                    Serene.DialogTesting.clickButton(dialog, '.edit-permissions-button');
-                    window.setTimeout(function () {
-                        try {
-                            var permissionDialog = $('.ui-dialog:visible').last();
-                            assert.ok(permissionDialog.hasClass('s-Administration-UserPermissionDialog'), 'user permissions dialog is shown on edit permissions button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(permissionDialog), 'Edit User Permissions (some.thing)', 'dialog title');
-                            assert.equal(1, userPermissionListCalls, 'UserPermission/List should be called once');
-                            assert.equal(1, listRolePermissionsCalls, 'UserPermission/ListRolePermissions should be called once');
-                            permissionDialog.find('.ui-dialog-content').dialog('close');
-                        }
-                        finally {
-                            Q.ScriptData.set('RemoteData.Administration.PermissionKeys', null);
-                            ajax_6.dispose();
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
-            QUnit.test('UserDialog Edit Roles Button', function (assert) {
-                var done = assert.async();
-                var dialog = new Administration.UserDialog();
-                dialog.loadEntityAndOpenDialog({
-                    UserId: 789,
-                    Username: 'some.thing',
-                    DisplayName: 'Some Thing',
-                    Email: 'some_thing@somedomain.com',
-                    Source: 'some'
-                });
-                try {
-                    var uiDialog = dialog.element.closest(".ui-dialog");
-                    assert.ok(uiDialog.is(":visible"), 'open edit entity dialog');
-                    Q.ScriptData.set('Lookup.Administration.Role', new Q.Lookup({
-                        idField: 'RoleId',
-                        textField: 'RoleName'
-                    }, [{
-                            RoleId: 13579,
-                            RoleName: 'SomeRole'
-                        }, {
-                            RoleId: 24680,
-                            RoleName: 'OtherRole'
-                        }]));
-                    var ajax_7 = new Serene.ServiceTesting.FakeAjax();
-                    var userRoleListCalls = 0;
-                    ajax_7.addServiceHandler("~/services/Administration/UserRole/List", function (s) {
-                        userRoleListCalls++;
-                        assert.deepEqual(s.request, { UserID: 789 });
-                        return { "Entities": [13579], "TotalCount": 0, "Skip": 0, "Take": 0 };
-                    });
-                    Serene.DialogTesting.clickButton(dialog, '.edit-roles-button');
-                    window.setTimeout(function () {
-                        try {
-                            var roleDialog = $('.ui-dialog:visible').last();
-                            assert.ok(roleDialog.hasClass('s-Administration-UserRoleDialog'), 'user roles dialog is shown on edit roles button click');
-                            assert.equal(Serene.DialogTesting.getDialogTitle(roleDialog), 'Edit User Roles (some.thing)');
-                            roleDialog.find('.ui-dialog-content').dialog('close');
-                            assert.equal(1, userRoleListCalls, 'user role list should be called once');
-                        }
-                        finally {
-                            ajax_7.dispose();
-                            Q.ScriptData.set('Lookup.Administration.Role', null);
-                            dialog.dialogClose();
-                            done();
-                        }
-                    }, 0);
-                }
-                catch (e) {
-                    dialog.dialogClose();
-                    throw e;
-                }
-            });
-        })(Test = Administration.Test || (Administration.Test = {}));
-    })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Administration;
-    (function (Administration) {
-        var Test;
-        (function (Test) {
-            QUnit.module('Serene.Administration');
             QUnit.test('UserDialog General', function (assert) {
                 assert.notEqual(null, new Administration.UserDialog(), 'create a new instance');
                 var dialog = new Administration.UserDialog();
@@ -1812,182 +1989,5 @@ var Serene;
             });
         })(Test = Administration.Test || (Administration.Test = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var ButtonTesting = /** @class */ (function () {
-        function ButtonTesting(assert) {
-            this.assert = assert;
-        }
-        ButtonTesting.prototype.assertEnabled = function (button, klass) {
-            this.assert.ok(button.hasClass(klass) &&
-                !button.hasClass('disabled'), 'button with class ' + klass + ' is enabled.');
-        };
-        ButtonTesting.prototype.assertDisabled = function (button, klass) {
-            this.assert.ok(button.hasClass(klass) &&
-                button.hasClass('disabled'), 'button with class ' + klass + ' is disabled.');
-        };
-        return ButtonTesting;
-    }());
-    Serene.ButtonTesting = ButtonTesting;
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var DialogTesting;
-    (function (DialogTesting) {
-        function getDialogTitle(element) {
-            if (element.hasClass(".ui-dialog-content"))
-                element = element.closest(".ui-dialog");
-            return element.find(".ui-dialog-title").text();
-        }
-        DialogTesting.getDialogTitle = getDialogTitle;
-        function getVisibleButtons(dialog) {
-            return $('#' + dialog.idPrefix + 'Toolbar').find('.tool-button:visible');
-        }
-        DialogTesting.getVisibleButtons = getVisibleButtons;
-        function clickButton(dialog, klass) {
-            var button = $('#' + dialog.idPrefix + 'Toolbar').find(klass + '.tool-button:visible');
-            QUnit.assert.ok(button.length == 1, 'clicking "' + klass + '" button');
-            button.click();
-        }
-        DialogTesting.clickButton = clickButton;
-        function getVisibleFields(dialog) {
-            return $('#' + dialog.idPrefix + 'PropertyGrid').find('div.field:visible');
-        }
-        DialogTesting.getVisibleFields = getVisibleFields;
-    })(DialogTesting = Serene.DialogTesting || (Serene.DialogTesting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var EditorTesting;
-    (function (EditorTesting) {
-        function isEditable(editor) {
-            return !editor.hasClass('readonly') &&
-                !editor.hasClass('disabled') &&
-                !editor.is('[readonly]') &&
-                !editor.is(':disabled');
-        }
-        EditorTesting.isEditable = isEditable;
-        function getValue(editor) {
-            var widget = editor.tryGetWidget(Serenity.Widget);
-            if (widget != null)
-                return Serenity.EditorUtils.getValue(widget);
-            return editor.val();
-        }
-        EditorTesting.getValue = getValue;
-        function setValue(editor, value) {
-            var widget = editor.tryGetWidget(Serenity.Widget);
-            if (widget != null) {
-                Serenity.EditorUtils.setValue(widget, value);
-                return;
-            }
-            editor.val(value);
-        }
-        EditorTesting.setValue = setValue;
-    })(EditorTesting = Serene.EditorTesting || (Serene.EditorTesting = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var FormTesting = /** @class */ (function () {
-        function FormTesting(assert) {
-            this.assert = assert;
-        }
-        FormTesting.prototype.getTitle = function (field) {
-            var lbl = field.children("label.caption");
-            var text = lbl.text();
-            var pref = lbl.children("sup").text();
-            if (pref && text.substr(0, pref.length) == pref)
-                return text.substr(pref.length);
-            return text;
-        };
-        FormTesting.prototype.assertTitle = function (field, title) {
-            QUnit.assert.strictEqual(this.getTitle(field), title, '[Field has title ' + title + ']');
-        };
-        FormTesting.prototype.setValue = function (field, value) {
-            var edit = field.find('.editor').first();
-            Serene.EditorTesting.setValue(edit, value);
-        };
-        FormTesting.prototype.assertValue = function (field, expected) {
-            var edit = field.find('.editor').first();
-            var value = Serene.EditorTesting.getValue(edit);
-            QUnit.assert.strictEqual(value, expected, this.getTitle(field) + ' has value ' + JSON.stringify(expected));
-        };
-        FormTesting.prototype.isEditable = function (field) {
-            var edit = field.find('.editor').first();
-            return Serene.EditorTesting.isEditable(edit);
-        };
-        FormTesting.prototype.getEditor = function (field) {
-            return field.find('.editor').first();
-        };
-        FormTesting.prototype.assertEditorIs = function (field, selector) {
-            QUnit.assert.ok(this.getEditor(field).is(selector), this.getTitle(field) + ' is ' + selector);
-        };
-        FormTesting.prototype.assertEditable = function (field) {
-            QUnit.assert.ok(this.isEditable(field), this.getTitle(field) + ' is editable.');
-        };
-        FormTesting.prototype.assertNotEditable = function (field) {
-            QUnit.assert.ok(!this.isEditable(field), this.getTitle(field) + ' is not editable.');
-        };
-        FormTesting.prototype.assertHasClass = function (field, klass) {
-            QUnit.assert.ok(field.find('.editor').first().hasClass(klass), this.getTitle(field) + ' has class ' + klass);
-        };
-        FormTesting.prototype.assertMaxLength = function (field, maxLength) {
-            QUnit.assert.strictEqual(field.find('.editor').first().attr('maxlength'), maxLength.toString(), this.getTitle(field) + ' has maxlength ' + maxLength);
-        };
-        FormTesting.prototype.isRequired = function (field) {
-            return this.hasRequiredMark(field) && this.hasRequiredEditor(field);
-        };
-        FormTesting.prototype.assertRequired = function (field) {
-            QUnit.assert.ok(this.isRequired(field), this.getTitle(field) + ' is required.');
-        };
-        FormTesting.prototype.assertNotRequired = function (field) {
-            QUnit.assert.ok(!this.isRequired(field), this.getTitle(field) + ' is not required.');
-        };
-        FormTesting.prototype.hasRequiredMark = function (field) {
-            var lbl = field.children("label.caption");
-            return lbl.children("sup:visible").length > 0;
-        };
-        FormTesting.prototype.hasRequiredEditor = function (field) {
-            return field.find(".editor").first().hasClass("required");
-        };
-        return FormTesting;
-    }());
-    Serene.FormTesting = FormTesting;
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var ServiceTesting;
-    (function (ServiceTesting) {
-        var FakeAjax = /** @class */ (function () {
-            function FakeAjax() {
-                this.oldAjax = $.ajax;
-                var self = this;
-                this.handlers = {};
-                $.ajax = function (settings) {
-                    var url = settings.url;
-                    var handler = self.handlers[url];
-                    if (!handler) {
-                        throw new Error("No fake handler registered for ajax URL: " + url + ", request: " +
-                            JSON.stringify(settings, null, "    "));
-                    }
-                    var xhr = {
-                        fail: function () {
-                        }
-                    };
-                    var result = handler(settings);
-                    settings.success(result, '200', xhr);
-                    return xhr;
-                };
-            }
-            FakeAjax.prototype.addServiceHandler = function (service, handler) {
-                this.handlers[Q.resolveUrl(service)] = handler;
-            };
-            FakeAjax.prototype.dispose = function () {
-                $.ajax = this.oldAjax;
-            };
-            return FakeAjax;
-        }());
-        ServiceTesting.FakeAjax = FakeAjax;
-    })(ServiceTesting = Serene.ServiceTesting || (Serene.ServiceTesting = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Test.js.map

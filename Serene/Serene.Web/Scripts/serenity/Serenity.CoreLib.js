@@ -4582,6 +4582,19 @@ var Serenity;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {
+    var SummaryType;
+    (function (SummaryType) {
+        SummaryType[SummaryType["Disabled"] = -1] = "Disabled";
+        SummaryType[SummaryType["None"] = 0] = "None";
+        SummaryType[SummaryType["Sum"] = 1] = "Sum";
+        SummaryType[SummaryType["Avg"] = 2] = "Avg";
+        SummaryType[SummaryType["Min"] = 3] = "Min";
+        SummaryType[SummaryType["Max"] = 4] = "Max";
+    })(SummaryType = Serenity.SummaryType || (Serenity.SummaryType = {}));
+    Serenity.Decorators.registerEnum(SummaryType, "Serenity.SummaryType");
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
     var Option = Serenity.Decorators.option;
     var DateEditor = /** @class */ (function (_super) {
         __extends(DateEditor, _super);
@@ -5092,10 +5105,12 @@ var Serenity;
                 if (value) {
                     this.element.addClass('readonly').attr('readonly', 'readonly');
                     this.element.nextAll('.ui-datepicker-trigger').css('opacity', '0.1');
+                    this.element.nextAll('.inplace-now').css('opacity', '0.1');
                 }
                 else {
                     this.element.removeClass('readonly').removeAttr('readonly');
                     this.element.nextAll('.ui-datepicker-trigger').css('opacity', '1');
+                    this.element.nextAll('.inplace-now').css('opacity', '1');
                 }
                 Serenity.EditorUtils.setReadonly(this.time, value);
             }
@@ -6249,7 +6264,7 @@ var Serenity;
             var _this = _super.call(this, input, opt) || this;
             input.addClass('decimalQ');
             var numericOptions = $.extend(Serenity.DecimalEditor.defaultAutoNumericOptions(), {
-                vMin: Q.coalesce(_this.options.minValue, '0.00'),
+                vMin: Q.coalesce(_this.options.minValue, _this.options.allowNegatives ? (_this.options.maxValue != null ? ("-" + _this.options.maxValue) : '999999999999.99') : '0.00'),
                 vMax: Q.coalesce(_this.options.maxValue, '999999999999.99')
             });
             if (_this.options.decimals != null) {
@@ -6309,7 +6324,7 @@ var Serenity;
             var _this = _super.call(this, input, opt) || this;
             input.addClass('integerQ');
             var numericOptions = $.extend(Serenity.DecimalEditor.defaultAutoNumericOptions(), {
-                vMin: Q.coalesce(_this.options.minValue, 0),
+                vMin: Q.coalesce(_this.options.minValue, _this.options.allowNegatives ? (_this.options.maxValue != null ? ("-" + _this.options.maxValue) : '-2147483647') : '0'),
                 vMax: Q.coalesce(_this.options.maxValue, 2147483647),
                 aSep: null
             });
@@ -6687,6 +6702,7 @@ var Serenity;
                 removeButtons: 'SpecialChar,Anchor,Subscript,Styles',
                 format_tags: 'p;h1;h2;h3;pre',
                 removeDialogTabs: 'image:advanced;link:advanced',
+                removePlugins: 'uploadimage,image2',
                 contentsCss: Q.resolveUrl('~/Content/site/site.htmlcontent.css'),
                 entities: false,
                 entities_latin: false,
@@ -6783,7 +6799,7 @@ var Serenity;
                 'HorizontalRule,Source,Maximize,Format,Font,FontSize,Anchor,Blockquote,' +
                 'CreatePlaceholder,BGColor,JustifyLeft,JustifyCenter,' +
                 'JustifyRight,JustifyBlock,Superscript,RemoveFormat';
-            config.removePlugins += ',elementspath';
+            config.removePlugins = 'elementspath,uploadimage,image2';
             return config;
         };
         HtmlNoteContentEditor = __decorate([
@@ -6805,7 +6821,7 @@ var Serenity;
                 'Image,Table,HorizontalRule,Source,Maximize,Format,Font,FontSize,' +
                 'Anchor,Blockquote,CreatePlaceholder,BGColor,JustifyLeft,JustifyCenter,' +
                 'JustifyRight,JustifyBlock,Superscript,RemoveFormat';
-            config.removePlugins += ',elementspath';
+            config.removePlugins = 'elementspath,uploadimage,image2';
             return config;
         };
         HtmlReportContentEditor = __decorate([
@@ -7266,8 +7282,23 @@ var Serenity;
                 }
             }
         };
+        RadioButtonEditor.prototype.get_readOnly = function () {
+            return this.element.attr('disabled') != null;
+        };
+        RadioButtonEditor.prototype.set_readOnly = function (value) {
+            if (this.get_readOnly() !== value) {
+                if (value) {
+                    this.element.attr('disabled', 'disabled')
+                        .find('input').attr('disabled', 'disabled');
+                }
+                else {
+                    this.element.removeAttr('disabled')
+                        .find('input').removeAttr('disabled');
+                }
+            }
+        };
         RadioButtonEditor = __decorate([
-            Editor('RadioButton', [Serenity.IStringValue]),
+            Editor('RadioButton', [Serenity.IStringValue, Serenity.IReadOnly]),
             Element('<div/>')
         ], RadioButtonEditor);
         return RadioButtonEditor;
@@ -11972,7 +12003,8 @@ var Serenity;
                 }
             };
             Serenity.WX.changeSelect2(widget, function (e1) {
-                _this.quickFilterChange(e1);
+                // use timeout give cascaded dropdowns a chance to update / clear themselves
+                window.setTimeout(function () { return _this.quickFilterChange(e1); }, 0);
             });
             this.add_submitHandlers(submitHandler);
             widget.element.bind('remove.' + this.uniqueName, function (x) {
@@ -12204,23 +12236,23 @@ var Serenity;
             }
             return Q.Authorization.hasPermission(item.readPermission);
         };
+        DataGrid.prototype.getPersistedSettings = function () {
+            var storage = this.getPersistanceStorage();
+            if (storage == null)
+                return null;
+            var json = Q.trimToNull(storage.getItem(this.getPersistanceKey()));
+            if (json != null && Q.startsWith(json, '{') && Q.endsWith(json, '}'))
+                return JSON.parse(json);
+            return null;
+        };
         DataGrid.prototype.restoreSettings = function (settings, flags) {
             var _this = this;
-            if (settings == null) {
-                var storage = this.getPersistanceStorage();
-                if (storage == null) {
-                    return;
-                }
-                var json = Q.trimToNull(storage.getItem(this.getPersistanceKey()));
-                if (json != null && Q.startsWith(json, '{') && Q.endsWith(json, '}')) {
-                    settings = JSON.parse(json);
-                }
-                else {
-                    return;
-                }
-            }
-            if (!this.slickGrid) {
+            if (!this.slickGrid)
                 return;
+            if (settings == null) {
+                settings = this.getPersistedSettings();
+                if (settings == null)
+                    return;
             }
             var columns = this.slickGrid.getColumns();
             var colById = null;
