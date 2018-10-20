@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DotNetSergen>dotnet sergen</DotNetSergen>
     <DotNetSergen Condition=" '$(TargetFramework)' == 'net461' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe</DotNetSergen>
-    <DotNetSergen Condition=" '$(TargetFramework)' == 'netcoreapp2.0' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll')">dotnet ..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll</DotNetSergen>
-    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
+    <DotNetSergen Condition=" '$(TargetFramework)' == 'netcoreapp2.1' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll')">dotnet ..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll</DotNetSergen>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
@@ -19,33 +19,34 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="2.0.3" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="2.8.3" />
+    <PackageReference Include="MailKit" Version="2.0.6" />
+    <PackageReference Include="Mapster" Version="3.2.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.1.1" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
-    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
-    <PackageReference Include="FastMember" Version="1.3.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
+    <PackageReference Include="FastMember" Version="1.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
     <PackageReference Include="Serenity.Web" Version="3.7.7" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <PackageReference Include="EPPlus" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.2" />
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
     <PackageReference Include="Serenity.Web.AspNetCore" Version="3.7.7" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
@@ -55,7 +56,7 @@
     <ProjectReference Include="..\..\Serenity\Serenity.Services\Serenity.Services.csproj" />
     <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.csproj" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
     <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">

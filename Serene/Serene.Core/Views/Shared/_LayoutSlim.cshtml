@@ -5,7 +5,7 @@
 }
 <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="no-js no-navigation">
 <head>
-    @{Html.RenderPartial(MVC.Views.Shared._LayoutSlimHead);}
+    <partial name="@MVC.Views.Shared._LayoutSlimHead" />
     @RenderSection("Head", false)
     <title>@(ViewData["Title"]) - Serene</title>
 </head>

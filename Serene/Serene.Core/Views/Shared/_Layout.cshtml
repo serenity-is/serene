@@ -18,7 +18,7 @@
 <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="no-js@(hideNav ? " no-navigation" : "")">
 <!--<![endif]-->
 <head>
-    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
+    <partial name="@MVC.Views.Shared._LayoutHead" />
     @RenderSection("Head", false)
     <title>@(ViewData["Title"]) - Serene</title>
 </head>
@@ -98,7 +98,7 @@ else
                     </div>
                 </form>
                 <ul class="sidebar-menu" id="SidebarMenu">
-                    @{Html.RenderPartial(MVC.Views.Shared.LeftNavigation, new Serene.Navigation.NavigationModel()); }
+                    <partial name="@MVC.Views.Shared.LeftNavigation" model="new Serene.Navigation.NavigationModel()" />
                 </ul>
             </section>
         </aside>

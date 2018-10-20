@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,8 +64,8 @@
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus, Version=4.5.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPPlus.4.5.1\lib\net40\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FluentMigrator, Version=1.6.2.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentMigrator.1.6.2\lib\40\FluentMigrator.dll</HintPath>
@@ -84,16 +84,14 @@
       <HintPath>..\..\packages\Serenity.Web.3.7.7\lib\net45\Mono.Cecil.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MsieJavaScriptEngine, Version=2.2.7.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\MsieJavaScriptEngine.2.2.7\lib\net45\MsieJavaScriptEngine.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MsieJavaScriptEngine, Version=2.2.9.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MsieJavaScriptEngine.2.2.9\lib\net45\MsieJavaScriptEngine.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NUglify, Version=1.5.11.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUglify.1.5.11\lib\net40\NUglify.dll</HintPath>
+    <Reference Include="NUglify, Version=1.5.12.0, Culture=neutral, PublicKeyToken=15bc7810aec21b5e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUglify.1.5.12\lib\net40\NUglify.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="Serenity.Core, Version=3.7.7.0, Culture=neutral, PublicKeyToken=null">
@@ -752,6 +750,17 @@
     <Content Include="Scripts\serenity\Serenity.Script.UI.min.js" />
     <Content Include="Scripts\site\texts\northwind\northwind.ru.json" />
     <Content Include="Scripts\site\texts\samples\samples.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
+    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
+    <Content Include="Scripts\serenity\Serenity.CoreLib.js.map" />
     <Content Include="Scripts\SlickGrid\Controls\slick.columnpicker.js" />
     <Content Include="Scripts\SlickGrid\Controls\slick.pager.js" />
     <Content Include="Scripts\SlickGrid\MIT-LICENSE.txt" />
@@ -766,6 +775,28 @@
     <Content Include="Scripts\SlickGrid\Plugins\slick.headermenu.js" />
     <Content Include="Scripts\SlickGrid\Plugins\slick.rowmovemanager.js" />
     <Content Include="Scripts\SlickGrid\Plugins\slick.rowselectionmodel.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.js" />
+    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
+    <Content Include="Scripts\SlickGrid\slick.editors.js" />
+    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.js" />
+    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
+    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
+    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
+    <Content Include="Scripts\sortable.js" />
+    <Content Include="Scripts\sortable.min.js" />
+    <Content Include="tools\JsEngine\json2.min.js" />
+    <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
+    <Content Include="tools\JsEngine\typescriptServices.js" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
+    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
+    <Content Include="tools\Node\lessc.cmd" />
+    <Content Include="tools\JsEngine\lib.d.ts_" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
@@ -792,26 +823,6 @@
     <Content Include="Fonts\fontawesome-webfont.woff" />
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.zh-CN.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.vi-VN.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.tr.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.ru.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.pt.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.pt-BR.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.it.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.fa.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.es.json" />
-    <Content Include="Scripts\serenity\texts\serenity.texts.de.json" />
-    <Content Include="Scripts\serenity\Serenity.CoreLib.js.map" />
-    <Content Include="tools\JsEngine\json2.min.js" />
-    <Content Include="tools\JsEngine\MsieJavaScriptEngine.dll" />
-    <Content Include="tools\JsEngine\typescriptServices.js" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Mdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Pdb.dll" />
-    <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
-    <Content Include="tools\Node\lessc.cmd" />
-    <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
@@ -841,19 +852,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.js" />
-    <Content Include="Scripts\SlickGrid\slick.core.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.dataview.js" />
-    <Content Include="Scripts\SlickGrid\slick.editors.js" />
-    <Content Include="Scripts\SlickGrid\slick.formatters.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.js" />
-    <Content Include="Scripts\SlickGrid\slick.grid.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.js" />
-    <Content Include="Scripts\SlickGrid\slick.groupitemmetadataprovider.min.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel-yahoo.js" />
-    <Content Include="Scripts\SlickGrid\slick.remotemodel.js" />
-    <Content Include="Scripts\sortable.js" />
-    <Content Include="Scripts\sortable.min.js" />
     <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\vue.min.js" />
     <Content Include="tools\Node\less\lib\lessc.js" />
@@ -2495,10 +2493,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.8.3\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="AfterBuild">

@@ -4,7 +4,7 @@ var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLe
 }
 <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
 <head>
-    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
+    <partial name="@MVC.Views.Shared._LayoutHead" />
     @RenderSection("Head", false)
     <title>@ViewData["Title"]</title>
 </head>
