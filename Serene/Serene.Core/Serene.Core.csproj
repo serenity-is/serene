@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.0.6" />
-    <PackageReference Include="Mapster" Version="3.2.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.1.1" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.1.1" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
@@ -29,7 +29,7 @@
     <PackageReference Include="EPPlus" Version="4.5.2.1" />
     <PackageReference Include="FastMember" Version="1.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.5" />
-    <PackageReference Include="Serenity.Web" Version="3.7.7" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web" Version="3.8.1" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <PackageReference Include="EPPlus" Version="4.5.2.1" />
@@ -47,7 +47,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
-    <PackageReference Include="Serenity.Web.AspNetCore" Version="3.7.7" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web.AspNetCore" Version="3.8.1" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
@@ -91,6 +91,6 @@
     <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.7.7" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.8.1" />
   </ItemGroup>
 </Project>

@@ -97,7 +97,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportForm.ts">BasicSamples.ProductExcelImportForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportService.ts">BasicSamples.ProductExcelImportService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.StaticTextBlockForm.ts">BasicSamples.StaticTextBlockForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.Pages.UploadResponse.ts">Common.Pages.UploadResponse.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRow.ts">Common.UserPreferenceRow.ts</ProjectItem>
@@ -173,6 +172,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryRow.ts">Northwind.TerritoryRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryService.ts">Northwind.TerritoryService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Initialization" TargetFolderName="Initialization">
@@ -1312,6 +1312,12 @@
           <Folder Name="raphael" TargetFolderName="raphael">
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
+          </Folder>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.d.ts">Serenity.Pro.App.d.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.js">Serenity.Pro.App.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.min.js">Serenity.Pro.App.min.js</ProjectItem>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>

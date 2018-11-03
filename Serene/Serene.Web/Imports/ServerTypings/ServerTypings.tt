@@ -1,31 +1,37 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="$(TargetDir)Newtonsoft.Json.dll" #>
 <#@ assembly name="$(TargetDir)Serenity.Core.dll" #>
 <#@ assembly name="$(TargetDir)Serenity.Web.dll" #>
 <#@ assembly name="$(TargetDir)Serene.Web.dll" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="Serenity" #>
 <#@ import namespace="Serenity.CodeGeneration" #>
+<#@ import namespace="Newtonsoft.Json.Linq" #>
+<#@ import namespace="System.IO" #>
 <#@ include file="..\MultipleOutputHelper.ttinclude" #>
 <#@ include file="..\CodeGenerationHelpers.ttinclude" #>
 <#@ output extension=".log" #>
 <#
     var solutionDir = Host.ResolvePath(@"..\..\..\..\");
     var webDir = Host.ResolvePath(@"..\..\");
-
+    var webConfig = Path.Combine(webDir, "web.config");
+    
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
-
-    if (System.IO.File.Exists(solutionDir + @"Serene\Serene.Script\Serene.Script.csproj"))
-    {
-        var ssDir = solutionDir + @"Serene\Serene.Script\bin\debug\";
-        var ssTypeLister = new SSTypeLister(
-            ssDir + "Serenity.Script.Imports.dll",
-            ssDir + "Serenity.Script.UI.dll",
-            ssDir + "Serene.Script.dll");
-        var ssTypes = ssTypeLister.List();
-        foreach (var type in ssTypes)
-            generator.AddSSType(type);
+    generator.LocalTexts = true;
+    if (generator.LocalTexts && File.Exists(webConfig)) {
+        var pkgEl = XElement.Parse(File.ReadAllText(webConfig)).Element("appSettings").Elements("add").Where(x => 
+            x.Attribute("key") != null && x.Attribute("key").Value == "LocalTextPackages").FirstOrDefault();
+        if (pkgEl != null && !string.IsNullOrWhiteSpace(pkgEl.Attribute("value").Value)) {
+            var packages = JObject.Parse(pkgEl.Attribute("value").Value.Trim());
+            if (packages != null)
+            {
+                foreach (var p in packages.PropertyValues())
+                    foreach (var x in p.Values<string>())
+                        generator.LocalTextFilters.Add(x);
+            }
+        }
     }
 
     var tsTypeLister = new TSTypeLister(webDir);

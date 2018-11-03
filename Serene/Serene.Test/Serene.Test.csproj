@@ -112,32 +112,26 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj">
-      <Project>{6f13b7f5-3f1e-4a7f-962d-59ebd3118e83}</Project>
-      <Name>Serenity.Core</Name>
+      <Project>{f76a7628-d2e9-43cc-a3f4-98f76c33dcdb}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Serenity\Serenity.Data\Serenity.Data.csproj">
-      <Project>{a2b991e8-3e2c-477f-b70a-22355c52a8b8}</Project>
-      <Name>Serenity.Data</Name>
+      <Project>{bf7ac82b-3476-4235-8cc2-58bba1c4804b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.csproj">
-      <Project>{716c65d4-b1b0-49d1-80bd-780659577150}</Project>
-      <Name>Serenity.Data.Entity</Name>
+      <Project>{7d55c2e1-b805-428e-873a-1efb55c37dea}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Serenity\Serenity.Services\Serenity.Services.csproj">
-      <Project>{d0697a40-5bcb-4b2e-b72c-e371afef3bd9}</Project>
-      <Name>Serenity.Services</Name>
+      <Project>{027f4308-30bc-458c-9431-7076fe5c6b64}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Serenity\Serenity.Testing\Serenity.Testing.Net45.csproj">
       <Project>{e5fd07ef-84b5-48c4-8640-46cdc9219ae8}</Project>
-      <Name>Serenity.Testing.Net45</Name>
+      <Name>..\..\Serenity\Serenity.Testing\Serenity.Testing.csproj</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.Net45.csproj">
       <Project>{8632943d-2a88-4c83-8451-69d62f059efc}</Project>
-      <Name>Serenity.Web.Net45</Name>
     </ProjectReference>
     <ProjectReference Include="..\Serene.Web\Serene.Web.csproj">
       <Project>{e298dc33-d240-4585-ac47-775575246780}</Project>
-      <Name>Serene.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

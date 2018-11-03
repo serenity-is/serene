@@ -1657,6 +1657,45 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
+    var Texts;
+    (function (Texts) {
+        Serene['Texts'] = Q.proxyTexts(Texts, '', { Db: { Administration: { DataAuditLog: { FieldName: 1, LogDate: 1, LogId: 1, LogType: 1, NewValue: 1, OldValue: 1, RecordId: 1, Tablename: 1, UserDisplayName: 1, UserId: 1, Username: 1 }, Language: { Id: 1, LanguageId: 1, LanguageName: 1 }, Role: { RoleId: 1, RoleKey: 1, RoleName: 1 }, RolePermission: { PermissionKey: 1, RoleId: 1, RolePermissionId: 1, RoleRoleName: 1 }, Translation: { CustomText: 1, EntityPlural: 1, Key: 1, OverrideConfirmation: 1, SaveChangesButton: 1, SourceLanguage: 1, SourceText: 1, TargetLanguage: 1, TargetText: 1 }, User: { DisplayName: 1, Email: 1, InsertDate: 1, InsertUserId: 1, IsActive: 1, LastDirectoryUpdate: 1, MobilePhoneNumber: 1, MobilePhoneVerified: 1, Password: 1, PasswordConfirm: 1, PasswordHash: 1, PasswordSalt: 1, Source: 1, TwoFactorAuth: 1, UpdateDate: 1, UpdateUserId: 1, UserId: 1, UserImage: 1, Username: 1 }, UserPermission: { Granted: 1, PermissionKey: 1, User: 1, UserId: 1, UserPermissionId: 1, Username: 1 }, UserRole: { RoleId: 1, User: 1, UserId: 1, UserRoleId: 1, Username: 1 } }, Common: { BackgroundTaskLog: { LogId: 1, Message: 1, RunAt: 1, Server: 1, Status: 1, TaskKey: 1 }, Mail: { Bcc: 1, Body: 1, Cc: 1, ErrorMessage: 1, InsertDate: 1, InsertUser: 1, InsertUserId: 1, LockExpiration: 1, MailFrom: 1, MailId: 1, MailTo: 1, Priority: 1, ReplyTo: 1, RetryCount: 1, SentDate: 1, Status: 1, Subject: 1, Uid: 1 }, UserPreference: { Name: 1, PreferenceType: 1, UserId: 1, UserPreferenceId: 1, Value: 1 } }, Meeting: { Meeting: { AttendeeList: 1, EndDate: 1, InsertDate: 1, InsertUserId: 1, LocationId: 1, LocationName: 1, MeetingGuid: 1, MeetingId: 1, MeetingName: 1, MeetingNumber: 1, MeetingTypeId: 1, MeetingTypeName: 1, OrganizerContactEmail: 1, OrganizerContactFirstName: 1, OrganizerContactFullName: 1, OrganizerContactId: 1, OrganizerContactIdentityNo: 1, OrganizerContactLastName: 1, OrganizerContactTitle: 1, OrganizerContactUserId: 1, ReporterContactEmail: 1, ReporterContactFirstName: 1, ReporterContactFullName: 1, ReporterContactId: 1, ReporterContactIdentityNo: 1, ReporterContactLastName: 1, ReporterContactTitle: 1, ReporterContactUserId: 1, StartDate: 1, UnitId: 1, UnitName: 1, UnitParentUnitId: 1, UpdateDate: 1, UpdateUserId: 1 }, MeetingAgenda: { AgendaId: 1, AgendaNumber: 1, AgendaTypeId: 1, AgendaTypeName: 1, Attachments: 1, Description: 1, Images: 1, MeetingEndDate: 1, MeetingId: 1, MeetingInsertDate: 1, MeetingInsertUserId: 1, MeetingLocationId: 1, MeetingMeetingGuid: 1, MeetingMeetingName: 1, MeetingMeetingNumber: 1, MeetingMeetingTypeId: 1, MeetingOrganizerContactId: 1, MeetingReporterContactId: 1, MeetingStartDate: 1, MeetingUnitId: 1, MeetingUpdateDate: 1, MeetingUpdateUserId: 1, RequestedByContactEmail: 1, RequestedByContactFirstName: 1, RequestedByContactFullName: 1, RequestedByContactId: 1, RequestedByContactIdentityNo: 1, RequestedByContactLastName: 1, RequestedByContactTitle: 1, RequestedByContactUserId: 1, Title: 1 }, MeetingAgendaRelevant: { AgendaAgendaNumber: 1, AgendaAgendaTypeId: 1, AgendaAttachments: 1, AgendaDescription: 1, AgendaId: 1, AgendaImages: 1, AgendaMeetingId: 1, AgendaRelevantId: 1, AgendaRequestedByContactId: 1, AgendaTitle: 1, ContactEmail: 1, ContactFirstName: 1, ContactId: 1, ContactIdentityNo: 1, ContactLastName: 1, ContactTitle: 1, ContactUserId: 1 }, MeetingAgendaType: { AgendaTypeId: 1, Name: 1 }, MeetingAttendee: { AttendanceStatus: 1, AttendeeId: 1, AttendeeType: 1, ContactEmail: 1, ContactFirstName: 1, ContactFullName: 1, ContactId: 1, ContactIdentityNo: 1, ContactLastName: 1, ContactTitle: 1, ContactUserId: 1, MeetingEndDate: 1, MeetingId: 1, MeetingInsertDate: 1, MeetingInsertUserId: 1, MeetingLocationId: 1, MeetingMeetingGuid: 1, MeetingMeetingName: 1, MeetingMeetingNumber: 1, MeetingMeetingTypeId: 1, MeetingOrganizerContactId: 1, MeetingReporterContactId: 1, MeetingStartDate: 1, MeetingUnitId: 1, MeetingUpdateDate: 1, MeetingUpdateUserId: 1 }, MeetingDecision: { AgendaAgendaTypeId: 1, AgendaAttachments: 1, AgendaDescription: 1, AgendaId: 1, AgendaImages: 1, AgendaMeetingId: 1, AgendaNumber: 1, AgendaRequestedByContactId: 1, AgendaTitle: 1, Attachments: 1, DecisionId: 1, DecisionNumber: 1, Description: 1, DueDate: 1, Images: 1, MeetingEndDate: 1, MeetingId: 1, MeetingInsertDate: 1, MeetingInsertUserId: 1, MeetingLocationId: 1, MeetingMeetingGuid: 1, MeetingMeetingName: 1, MeetingMeetingNumber: 1, MeetingMeetingTypeId: 1, MeetingOrganizerContactId: 1, MeetingReporterContactId: 1, MeetingStartDate: 1, MeetingUnitId: 1, MeetingUpdateDate: 1, MeetingUpdateUserId: 1, ResolutionStatus: 1, ResponsibleContactEmail: 1, ResponsibleContactFirstName: 1, ResponsibleContactFullName: 1, ResponsibleContactId: 1, ResponsibleContactIdentityNo: 1, ResponsibleContactLastName: 1, ResponsibleContactTitle: 1, ResponsibleContactUserId: 1 }, MeetingDecisionRelevant: { ContactEmail: 1, ContactFirstName: 1, ContactId: 1, ContactIdentityNo: 1, ContactLastName: 1, ContactTitle: 1, ContactUserId: 1, DecisionAgendaId: 1, DecisionAttachments: 1, DecisionDecisionNumber: 1, DecisionDescription: 1, DecisionDueDate: 1, DecisionId: 1, DecisionImages: 1, DecisionMeetingId: 1, DecisionRelevantId: 1, DecisionResolutionStatus: 1, DecisionResponsibleContactId: 1 }, MeetingLocation: { Address: 1, Latitude: 1, LocationId: 1, Longitude: 1, Name: 1 }, MeetingType: { MeetingTypeId: 1, Name: 1 } }, Northwind: { Category: { CategoryID: 1, CategoryName: 1, Description: 1, Picture: 1 }, CategoryLang: { CategoryId: 1, CategoryName: 1, Description: 1, Id: 1, LanguageId: 1 }, Customer: { Address: 1, City: 1, CompanyName: 1, ContactName: 1, ContactTitle: 1, Country: 1, CustomerID: 1, Email: 1, Fax: 1, ID: 1, LastContactDate: 1, LastContactedBy: 1, NoteList: 1, Phone: 1, PostalCode: 1, Region: 1, Representatives: 1, SendBulletin: 1 }, CustomerCustomerDemo: { CustomerAddress: 1, CustomerCity: 1, CustomerCompanyName: 1, CustomerContactName: 1, CustomerContactTitle: 1, CustomerCountry: 1, CustomerFax: 1, CustomerID: 1, CustomerPhone: 1, CustomerPostalCode: 1, CustomerRegion: 1, CustomerTypeCustomerDesc: 1, CustomerTypeID: 1, ID: 1 }, CustomerDemographic: { CustomerDesc: 1, CustomerTypeID: 1, ID: 1 }, CustomerDetails: { Email: 1, Id: 1, LastContactDate: 1, LastContactedBy: 1, LastContactedByAddress: 1, LastContactedByBirthDate: 1, LastContactedByCity: 1, LastContactedByCountry: 1, LastContactedByExtension: 1, LastContactedByFirstName: 1, LastContactedByHireDate: 1, LastContactedByHomePhone: 1, LastContactedByLastName: 1, LastContactedByNotes: 1, LastContactedByPhoto: 1, LastContactedByPhotoPath: 1, LastContactedByPostalCode: 1, LastContactedByRegion: 1, LastContactedByReportsTo: 1, LastContactedByTitle: 1, LastContactedByTitleOfCourtesy: 1, SendBulletin: 1 }, CustomerGrossSales: { ContactName: 1, CustomerId: 1, GrossAmount: 1, ProductId: 1, ProductName: 1 }, CustomerRepresentatives: { CustomerId: 1, EmployeeId: 1, RepresentativeId: 1 }, DragDropSample: { Id: 1, ParentId: 1, Title: 1 }, Employee: { Address: 1, BirthDate: 1, City: 1, Country: 1, EmployeeID: 1, Extension: 1, FirstName: 1, FullName: 1, Gender: 1, HireDate: 1, HomePhone: 1, LastName: 1, Notes: 1, Photo: 1, PhotoPath: 1, PostalCode: 1, Region: 1, ReportsTo: 1, ReportsToAddress: 1, ReportsToBirthDate: 1, ReportsToCity: 1, ReportsToCountry: 1, ReportsToExtension: 1, ReportsToFirstName: 1, ReportsToFullName: 1, ReportsToHireDate: 1, ReportsToHomePhone: 1, ReportsToLastName: 1, ReportsToNotes: 1, ReportsToPhoto: 1, ReportsToPhotoPath: 1, ReportsToPostalCode: 1, ReportsToRegion: 1, ReportsToReportsTo: 1, ReportsToTitle: 1, ReportsToTitleOfCourtesy: 1, Title: 1, TitleOfCourtesy: 1 }, EmployeeTerritory: { EmployeeAddress: 1, EmployeeBirthDate: 1, EmployeeCity: 1, EmployeeCountry: 1, EmployeeExtension: 1, EmployeeFirstName: 1, EmployeeHireDate: 1, EmployeeHomePhone: 1, EmployeeID: 1, EmployeeLastName: 1, EmployeeNotes: 1, EmployeePhoto: 1, EmployeePhotoPath: 1, EmployeePostalCode: 1, EmployeeRegion: 1, EmployeeReportsTo: 1, EmployeeTitle: 1, EmployeeTitleOfCourtesy: 1, TerritoryID: 1, TerritoryRegionID: 1, TerritoryTerritoryDescription: 1 }, Note: { EntityId: 1, EntityType: 1, InsertDate: 1, InsertUserDisplayName: 1, InsertUserId: 1, NoteId: 1, Text: 1 }, Order: { CustomerCity: 1, CustomerCompanyName: 1, CustomerContactName: 1, CustomerContactTitle: 1, CustomerCountry: 1, CustomerFax: 1, CustomerID: 1, CustomerPhone: 1, CustomerRegion: 1, DetailList: 1, EmployeeFullName: 1, EmployeeGender: 1, EmployeeID: 1, EmployeeReportsToFullName: 1, Freight: 1, OrderDate: 1, OrderID: 1, RequiredDate: 1, ShipAddress: 1, ShipCity: 1, ShipCountry: 1, ShipName: 1, ShipPostalCode: 1, ShipRegion: 1, ShipVia: 1, ShipViaCompanyName: 1, ShipViaPhone: 1, ShippedDate: 1, ShippingState: 1 }, OrderDetail: { DetailID: 1, Discount: 1, LineTotal: 1, OrderCustomerID: 1, OrderDate: 1, OrderEmployeeID: 1, OrderID: 1, OrderShipCity: 1, OrderShipCountry: 1, OrderShipVia: 1, OrderShippedDate: 1, ProductDiscontinued: 1, ProductID: 1, ProductName: 1, ProductQuantityPerUnit: 1, ProductSupplierID: 1, ProductUnitPrice: 1, Quantity: 1, UnitPrice: 1 }, Product: { CategoryDescription: 1, CategoryID: 1, CategoryName: 1, CategoryPicture: 1, Discontinued: 1, ProductID: 1, ProductImage: 1, ProductName: 1, QuantityPerUnit: 1, ReorderLevel: 1, SupplierAddress: 1, SupplierCity: 1, SupplierCompanyName: 1, SupplierContactName: 1, SupplierContactTitle: 1, SupplierCountry: 1, SupplierFax: 1, SupplierHomePage: 1, SupplierID: 1, SupplierPhone: 1, SupplierPostalCode: 1, SupplierRegion: 1, UnitPrice: 1, UnitsInStock: 1, UnitsOnOrder: 1 }, ProductLang: { Id: 1, LanguageId: 1, ProductId: 1, ProductName: 1 }, ProductLog: { CategoryID: 1, ChangingUserId: 1, Discontinued: 1, OperationType: 1, ProductID: 1, ProductImage: 1, ProductLogID: 1, ProductName: 1, QuantityPerUnit: 1, ReorderLevel: 1, SupplierID: 1, UnitPrice: 1, UnitsInStock: 1, UnitsOnOrder: 1, ValidFrom: 1, ValidUntil: 1 }, Region: { RegionDescription: 1, RegionID: 1 }, SalesByCategory: { CategoryId: 1, CategoryName: 1, ProductName: 1, ProductSales: 1 }, Shipper: { CompanyName: 1, Phone: 1, ShipperID: 1 }, Supplier: { Address: 1, City: 1, CompanyName: 1, ContactName: 1, ContactTitle: 1, Country: 1, Fax: 1, HomePage: 1, Phone: 1, PostalCode: 1, Region: 1, SupplierID: 1 }, Territory: { ID: 1, RegionDescription: 1, RegionID: 1, TerritoryDescription: 1, TerritoryID: 1 } }, Organization: { BusinessUnit: { Name: 1, ParentUnitId: 1, ParentUnitName: 1, ParentUnitParentUnitId: 1, UnitId: 1 }, Contact: { ContactId: 1, Email: 1, FirstName: 1, FullName: 1, IdentityNo: 1, LastName: 1, Title: 1, UserDisplayName: 1, UserEmail: 1, UserId: 1, UserInsertDate: 1, UserInsertUserId: 1, UserIsActive: 1, UserLastDirectoryUpdate: 1, UserPasswordHash: 1, UserPasswordSalt: 1, UserSource: 1, UserUpdateDate: 1, UserUpdateUserId: 1, UserUserImage: 1, Username: 1 } } }, Forms: { Membership: { ChangePassword: { FormTitle: 1, SubmitButton: 1, Success: 1 }, ForgotPassword: { BackToLogin: 1, FormInfo: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, Login: { FacebookButton: 1, ForgotPassword: 1, FormTitle: 1, GoogleButton: 1, OR: 1, RememberMe: 1, SignInButton: 1, SignUpButton: 1 }, ResetPassword: { BackToLogin: 1, EmailSubject: 1, FormTitle: 1, SubmitButton: 1, Success: 1 }, SignUp: { AcceptTerms: 1, ActivateEmailSubject: 1, ActivationCompleteMessage: 1, BackToLogin: 1, ConfirmEmail: 1, ConfirmPassword: 1, DisplayName: 1, Email: 1, FormInfo: 1, FormTitle: 1, Password: 1, SubmitButton: 1, Success: 1 } } }, Site: { AccessDenied: { ClickToChangeUser: 1, ClickToLogin: 1, LackPermissions: 1, NotLoggedIn: 1, PageTitle: 1 }, BasicProgressDialog: { CancelTitle: 1, PleaseWait: 1 }, BulkServiceAction: { AllHadErrorsFormat: 1, AllSuccessFormat: 1, ConfirmationFormat: 1, ErrorCount: 1, NothingToProcess: 1, SomeHadErrorsFormat: 1, SuccessCount: 1 }, CardViewMixin: { CardView: 1, ListView: 1 }, Dashboard: { ContentDescription: 1 }, Dialogs: { PendingChangesConfirmation: 1 }, DraggableGroupingMixin: { CollapseAllButton: 1, DropPlaceholder: 1, ExpandAllButton: 1 }, EmailClient: { BackButton: 1, CCLabel: 1, CancelButton: 1, ComposeButton: 1, DeleteButton: 1, DeleteMessageConfirmation: 1, DeleteMessageSuccess: 1, DeleteNoSelectionWarning: 1, DeleteSelectedConfirmation: 1, DeleteSelectedSuccess: 1, FolderNames: { drafts: 1, inbox: 1, junk: 1, sent: 1, trash: 1 }, FoldersTitle: 1, ForwardButton: 1, ImapHost: 1, ImapPassword: 1, ImapPort: 1, ImapUsername: 1, LoginButton: 1, LoginTitle: 1, MoveMessageSuccess: 1, MoveNoSelectionWarning: 1, MoveSelectedSuccess: 1, MoveToFolder: 1, NewEmailDialogTitle: 1, PageTitle: 1, QuickSettings: 1, RefreshButton: 1, ReplyAllButton: 1, ReplyButton: 1, ReplyEmailDialogTitle: 1, SearchPlaceholder: 1, SendButton: 1, SignoutButton: 1, SmtpHost: 1, SmtpPassword: 1, SmtpPort: 1, SmtpUsername: 1, ToLabel: 1, ToggleReadButton: 1, ToggleSeenNoSelectionWarning: 1 }, FavoriteViewsMixin: { DeleteButtonHint: 1, DeleteSuccessMessage: 1, EmptyNameError: 1, FavoriteViews: 1, LoadedViewMessage: 1, SaveButton: 1, SaveSuccessMessage: 1, SaveView: 1 }, HeaderFiltersMixin: { CancelButton: 1, ClearButton: 1, OkButton: 1, Search: 1, SelectAll: 1 }, Layout: { FooterCopyright: 1, FooterInfo: 1, FooterRights: 1, GeneralSettings: 1, Language: 1, Theme: 1, ThemeAzure: 1, ThemeAzureLight: 1, ThemeBlack: 1, ThemeBlackLight: 1, ThemeBlue: 1, ThemeBlueLight: 1, ThemeCosmos: 1, ThemeCosmosLight: 1, ThemeGlassy: 1, ThemeGlassyLight: 1, ThemeGreen: 1, ThemeGreenLight: 1, ThemePurple: 1, ThemePurpleLight: 1, ThemeRed: 1, ThemeRedLight: 1, ThemeYellow: 1, ThemeYellowLight: 1 }, RolePermissionDialog: { DialogTitle: 1, EditButton: 1, SaveSuccess: 1 }, UserDialog: { EditPermissionsButton: 1, EditRolesButton: 1 }, UserPermissionDialog: { DialogTitle: 1, Grant: 1, Permission: 1, Revoke: 1, SaveSuccess: 1 }, UserRoleDialog: { DialogTitle: 1, SaveSuccess: 1 }, ValidationError: { Title: 1 }, WizardDialog: { BackButton: 1, CancelMessage: 1, FinishButton: 1, NextButton: 1 } }, Validation: { AuthenticationError: 1, CantFindUserWithEmail: 1, CurrentPasswordMismatch: 1, DeleteForeignKeyError: 1, EmailConfirm: 1, EmailInUse: 1, InvalidActivateToken: 1, InvalidResetToken: 1, MinRequiredPasswordLength: 1, NorthwindPhone: 1, NorthwindPhoneMultiple: 1, SavePrimaryKeyError: 1 } });
+    })(Texts = Serene.Texts || (Serene.Texts = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var LanguageList;
+    (function (LanguageList) {
+        function getValue() {
+            var result = [];
+            for (var _i = 0, _a = Serene.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
+                var k = _a[_i];
+                if (k.LanguageId !== 'en') {
+                    result.push([k.Id.toString(), k.LanguageName]);
+                }
+            }
+            return result;
+        }
+        LanguageList.getValue = getValue;
+    })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../Common/Helpers/LanguageList.ts" />
+var Serene;
+(function (Serene) {
+    var ScriptInitialization;
+    (function (ScriptInitialization) {
+        Q.Config.responsiveDialogs = true;
+        Q.Config.rootNamespaces.push('Serene');
+        Serenity.EntityDialog.defaultLanguageList = Serene.LanguageList.getValue;
+        if ($.fn['colorbox']) {
+            $.fn['colorbox'].settings.maxWidth = "95%";
+            $.fn['colorbox'].settings.maxHeight = "95%";
+        }
+        window.onerror = Q.ErrorHandling.runtimeErrorHandler;
+    })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
     var Administration;
     (function (Administration) {
         var LanguageDialog = /** @class */ (function (_super) {
@@ -2125,22 +2164,6 @@ var Serene;
         }(Serenity.EntityGrid));
         Administration.UserGrid = UserGrid;
     })(Administration = Serene.Administration || (Serene.Administration = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Authorization;
-    (function (Authorization) {
-        Object.defineProperty(Authorization, 'userDefinition', {
-            get: function () {
-                return Q.getRemoteData('UserData');
-            }
-        });
-        function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
-        }
-        Authorization.hasPermission = hasPermission;
-    })(Authorization = Serene.Authorization || (Serene.Authorization = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2616,57 +2639,1845 @@ var Serene;
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var ChartInDialog = /** @class */ (function (_super) {
-            __extends(ChartInDialog, _super);
-            function ChartInDialog() {
+    var BasicProgressDialog = /** @class */ (function (_super) {
+        __extends(BasicProgressDialog, _super);
+        function BasicProgressDialog() {
+            var _this = _super.call(this) || this;
+            _this.byId('ProgressBar').progressbar({
+                max: 100,
+                value: 0,
+                change: function (e, v) {
+                    _this.byId('ProgressLabel').text(_this.value + ' / ' + _this.max);
+                }
+            });
+            return _this;
+        }
+        Object.defineProperty(BasicProgressDialog.prototype, "max", {
+            get: function () {
+                return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
+            },
+            set: function (value) {
+                this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasicProgressDialog.prototype, "value", {
+            get: function () {
+                return this.byId('ProgressBar').progressbar('value');
+            },
+            set: function (value) {
+                this.byId('ProgressBar').progressbar().progressbar('value', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(BasicProgressDialog.prototype, "title", {
+            get: function () {
+                return this.element.dialog().dialog('option', 'title');
+            },
+            set: function (value) {
+                this.element.dialog().dialog('option', 'title', value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        BasicProgressDialog.prototype.getDialogOptions = function () {
+            var _this = this;
+            var opt = _super.prototype.getDialogOptions.call(this);
+            opt.title = Q.text('Site.BasicProgressDialog.PleaseWait');
+            opt.width = 600;
+            opt.buttons = [{
+                    text: Q.text('Dialogs.CancelButton'),
+                    click: function () {
+                        _this.cancelled = true;
+                        _this.element.closest('.ui-dialog')
+                            .find('.ui-dialog-buttonpane .ui-button')
+                            .attr('disabled', 'disabled')
+                            .css('opacity', '0.5');
+                        _this.element.dialog('option', 'title', Q.trimToNull(_this.cancelTitle) ||
+                            Q.text('Site.BasicProgressDialog.CancelTitle'));
+                    }
+                }];
+            return opt;
+        };
+        BasicProgressDialog.prototype.initDialog = function () {
+            _super.prototype.initDialog.call(this);
+            this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
+        };
+        BasicProgressDialog.prototype.getTemplate = function () {
+            return ("<div class='s-DialogContent s-BasicProgressDialogContent'>" +
+                "<div id='~_StatusText' class='status-text' ></div>" +
+                "<div id='~_ProgressBar' class='progress-bar'>" +
+                "<div id='~_ProgressLabel' class='progress-label' ></div>" +
+                "</div>" +
+                "</div>");
+        };
+        return BasicProgressDialog;
+    }(Serenity.TemplatedDialog));
+    Serene.BasicProgressDialog = BasicProgressDialog;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var BulkServiceAction = /** @class */ (function () {
+            function BulkServiceAction() {
+            }
+            BulkServiceAction.prototype.createProgressDialog = function () {
+                this.progressDialog = new Serene.BasicProgressDialog();
+                this.progressDialog.dialogOpen();
+                this.progressDialog.max = this.keys.length;
+                this.progressDialog.value = 0;
+            };
+            BulkServiceAction.prototype.getConfirmationFormat = function () {
+                return Q.text('Site.BulkServiceAction.ConfirmationFormat');
+            };
+            BulkServiceAction.prototype.getConfirmationMessage = function (targetCount) {
+                return Q.format(this.getConfirmationFormat(), targetCount);
+            };
+            BulkServiceAction.prototype.confirm = function (targetCount, action) {
+                Q.confirm(this.getConfirmationMessage(targetCount), action);
+            };
+            BulkServiceAction.prototype.getNothingToProcessMessage = function () {
+                return Q.text('Site.BulkServiceAction.NothingToProcess');
+            };
+            BulkServiceAction.prototype.nothingToProcess = function () {
+                Q.notifyError(this.getNothingToProcessMessage());
+            };
+            BulkServiceAction.prototype.getParallelRequests = function () {
+                return 1;
+            };
+            BulkServiceAction.prototype.getBatchSize = function () {
+                return 1;
+            };
+            BulkServiceAction.prototype.startParallelExecution = function () {
+                this.createProgressDialog();
+                this.successCount = 0;
+                this.errorCount = 0;
+                this.pendingRequests = 0;
+                this.completedRequests = 0;
+                this.errorCount = 0;
+                this.errorByKey = {};
+                this.queue = this.keys.slice();
+                this.queueIndex = 0;
+                var parallelRequests = this.getParallelRequests();
+                while (parallelRequests-- > 0) {
+                    this.executeNextBatch();
+                }
+            };
+            BulkServiceAction.prototype.serviceCallCleanup = function () {
+                this.pendingRequests--;
+                this.completedRequests++;
+                var title = Q.text((this.progressDialog.cancelled ?
+                    'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
+                title += ' (';
+                if (this.successCount > 0) {
+                    title += Q.format(Q.text('Site.BulkServiceAction.SuccessCount'), this.successCount);
+                }
+                if (this.errorCount > 0) {
+                    if (this.successCount > 0) {
+                        title += ', ';
+                    }
+                    title += Q.format(Q.text('Site.BulkServiceAction.ErrorCount'), this.errorCount);
+                }
+                this.progressDialog.title = title + ')';
+                this.progressDialog.value = this.successCount + this.errorCount;
+                if (!this.progressDialog.cancelled && this.progressDialog.value < this.keys.length) {
+                    this.executeNextBatch();
+                }
+                else if (this.pendingRequests === 0) {
+                    this.progressDialog.dialogClose();
+                    this.showResults();
+                    if (this.done) {
+                        this.done();
+                        this.done = null;
+                    }
+                }
+            };
+            BulkServiceAction.prototype.executeForBatch = function (batch) {
+            };
+            BulkServiceAction.prototype.executeNextBatch = function () {
+                var batchSize = this.getBatchSize();
+                var batch = [];
+                while (true) {
+                    if (batch.length >= batchSize) {
+                        break;
+                    }
+                    if (this.queueIndex >= this.queue.length) {
+                        break;
+                    }
+                    batch.push(this.queue[this.queueIndex++]);
+                }
+                if (batch.length > 0) {
+                    this.pendingRequests++;
+                    this.executeForBatch(batch);
+                }
+            };
+            BulkServiceAction.prototype.getAllHadErrorsFormat = function () {
+                return Q.text('Site.BulkServiceAction.AllHadErrorsFormat');
+            };
+            BulkServiceAction.prototype.showAllHadErrors = function () {
+                Q.notifyError(Q.format(this.getAllHadErrorsFormat(), this.errorCount));
+            };
+            BulkServiceAction.prototype.getSomeHadErrorsFormat = function () {
+                return Q.text('Site.BulkServiceAction.SomeHadErrorsFormat');
+            };
+            BulkServiceAction.prototype.showSomeHadErrors = function () {
+                Q.notifyWarning(Q.format(this.getSomeHadErrorsFormat(), this.successCount, this.errorCount));
+            };
+            BulkServiceAction.prototype.getAllSuccessFormat = function () {
+                return Q.text('Site.BulkServiceAction.AllSuccessFormat');
+            };
+            BulkServiceAction.prototype.showAllSuccess = function () {
+                Q.notifySuccess(Q.format(this.getAllSuccessFormat(), this.successCount));
+            };
+            BulkServiceAction.prototype.showResults = function () {
+                if (this.errorCount === 0 && this.successCount === 0) {
+                    this.nothingToProcess();
+                    return;
+                }
+                if (this.errorCount > 0 && this.successCount === 0) {
+                    this.showAllHadErrors();
+                    return;
+                }
+                if (this.errorCount > 0) {
+                    this.showSomeHadErrors();
+                    return;
+                }
+                this.showAllSuccess();
+            };
+            BulkServiceAction.prototype.execute = function (keys) {
+                var _this = this;
+                this.keys = keys;
+                if (this.keys.length === 0) {
+                    this.nothingToProcess();
+                    return;
+                }
+                this.confirm(this.keys.length, function () { return _this.startParallelExecution(); });
+            };
+            BulkServiceAction.prototype.get_successCount = function () {
+                return this.successCount;
+            };
+            BulkServiceAction.prototype.set_successCount = function (value) {
+                this.successCount = value;
+            };
+            BulkServiceAction.prototype.get_errorCount = function () {
+                return this.errorCount;
+            };
+            BulkServiceAction.prototype.set_errorCount = function (value) {
+                this.errorCount = value;
+            };
+            return BulkServiceAction;
+        }());
+        Common.BulkServiceAction = BulkServiceAction;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var DialogUtils;
+    (function (DialogUtils) {
+        function pendingChangesConfirmation(element, hasPendingChanges) {
+            element.on('dialogbeforeclose panelbeforeclose', function (e) {
+                if (!Serenity.WX.hasOriginalEvent(e) || !hasPendingChanges()) {
+                    return;
+                }
+                e.preventDefault();
+                Q.confirm('You have pending changes. Save them?', function () { return element.find('div.save-and-close-button').click(); }, {
+                    onNo: function () {
+                        if (element.hasClass('ui-dialog-content'))
+                            element.dialog('close');
+                        else if (element.hasClass('s-Panel'))
+                            Serenity.TemplatedDialog.closePanel(element);
+                    }
+                });
+            });
+        }
+        DialogUtils.pendingChangesConfirmation = pendingChangesConfirmation;
+    })(DialogUtils = Serene.DialogUtils || (Serene.DialogUtils = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var EnumSelectFormatter = /** @class */ (function () {
+            function EnumSelectFormatter() {
+                this.allowClear = true;
+            }
+            EnumSelectFormatter.prototype.format = function (ctx) {
+                var enumType = Serenity.EnumTypeRegistry.get(this.enumKey);
+                var sb = "<select>";
+                if (this.allowClear) {
+                    sb += '<option value="">';
+                    sb += Q.htmlEncode(this.emptyItemText || Q.text("Controls.SelectEditor.EmptyItemText"));
+                    sb += '</option>';
+                }
+                for (var _i = 0, _a = Object.keys(enumType).filter(function (v) { return !isNaN(parseInt(v, 10)); }); _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    sb += '<option value="' + Q.attrEncode(x) + '"';
+                    if (x == ctx.value)
+                        sb += " selected";
+                    var name = enumType[x];
+                    sb += ">";
+                    sb += Q.htmlEncode(Q.tryGetText("Enums." + this.enumKey + "." + name) || name);
+                    sb += "</option>";
+                }
+                sb += "</select>";
+                return sb;
+            };
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "enumKey", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "allowClear", void 0);
+            __decorate([
+                Serenity.Decorators.option()
+            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
+            EnumSelectFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EnumSelectFormatter);
+            return EnumSelectFormatter;
+        }());
+        Common.EnumSelectFormatter = EnumSelectFormatter;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ExcelExportHelper;
+        (function (ExcelExportHelper) {
+            function createToolButton(options) {
+                return {
+                    hint: Q.coalesce(options.hint, 'Excel'),
+                    title: Q.coalesce(options.title, ''),
+                    cssClass: 'export-xlsx-button',
+                    onClick: function () {
+                        if (!options.onViewSubmit()) {
+                            return;
+                        }
+                        var grid = options.grid;
+                        var request = Q.deepClone(grid.getView().params);
+                        request.Take = 0;
+                        request.Skip = 0;
+                        var sortBy = grid.getView().sortBy;
+                        if (sortBy) {
+                            request.Sort = sortBy;
+                        }
+                        request.IncludeColumns = [];
+                        var columns = grid.getGrid().getColumns();
+                        for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
+                            var column = columns_1[_i];
+                            request.IncludeColumns.push(column.id || column.field);
+                        }
+                        Q.postToService({ service: options.service, request: request, target: '_blank' });
+                    },
+                    separator: options.separator
+                };
+            }
+            ExcelExportHelper.createToolButton = createToolButton;
+        })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var GridEditorBase = /** @class */ (function (_super) {
+            __extends(GridEditorBase, _super);
+            function GridEditorBase(container) {
+                var _this = _super.call(this, container) || this;
+                _this.nextId = 1;
+                return _this;
+            }
+            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorBase.prototype.id = function (entity) {
+                return entity[this.getIdProperty()];
+            };
+            GridEditorBase.prototype.getNextId = function () {
+                return "`" + this.nextId++;
+            };
+            GridEditorBase.prototype.setNewId = function (entity) {
+                entity[this.getIdProperty()] = this.getNextId();
+            };
+            GridEditorBase.prototype.save = function (opt, callback) {
+                var _this = this;
+                var request = opt.request;
+                var row = Q.deepClone(request.Entity);
+                var id = this.id(row);
+                if (id == null) {
+                    row[this.getIdProperty()] = this.getNextId();
+                }
+                if (!this.validateEntity(row, id)) {
+                    return;
+                }
+                var items = this.view.getItems().slice();
+                if (id == null) {
+                    items.push(row);
+                }
+                else {
+                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
+                    items[index] = Q.deepClone({}, items[index], row);
+                }
+                this.setEntities(items);
+                callback({});
+            };
+            GridEditorBase.prototype.deleteEntity = function (id) {
+                this.view.deleteItem(id);
+                return true;
+            };
+            GridEditorBase.prototype.validateEntity = function (row, id) {
+                return true;
+            };
+            GridEditorBase.prototype.setEntities = function (items) {
+                this.view.setItems(items, true);
+            };
+            GridEditorBase.prototype.getNewEntity = function () {
+                return {};
+            };
+            GridEditorBase.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: this.getAddButtonCaption(),
+                        cssClass: 'add-button',
+                        onClick: function () {
+                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
+                                var dialog = dlg;
+                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
+                            });
+                        }
+                    }];
+            };
+            GridEditorBase.prototype.editItem = function (entityOrId) {
+                var _this = this;
+                var id = entityOrId;
+                var item = this.view.getItemById(id);
+                this.createEntityDialog(this.getItemType(), function (dlg) {
+                    var dialog = dlg;
+                    dialog.onDelete = function (opt, callback) {
+                        if (!_this.deleteEntity(id)) {
+                            return;
+                        }
+                        callback({});
+                    };
+                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                    dialog.loadEntityAndOpenDialog(item);
+                });
+                ;
+            };
+            GridEditorBase.prototype.getEditValue = function (property, target) {
+                target[property.name] = this.value;
+            };
+            GridEditorBase.prototype.setEditValue = function (source, property) {
+                this.value = source[property.name];
+            };
+            Object.defineProperty(GridEditorBase.prototype, "value", {
+                get: function () {
+                    var p = this.getIdProperty();
+                    return this.view.getItems().map(function (x) {
+                        var y = Q.deepClone(x);
+                        var id = y[p];
+                        if (id && id.toString().charAt(0) == '`')
+                            delete y[p];
+                        return y;
+                    });
+                },
+                set: function (value) {
+                    var _this = this;
+                    var p = this.getIdProperty();
+                    this.view.setItems((value || []).map(function (x) {
+                        var y = Q.deepClone(x);
+                        if (y[p] == null)
+                            y[p] = "`" + _this.getNextId();
+                        return y;
+                    }), true);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            GridEditorBase.prototype.getGridCanLoad = function () {
+                return false;
+            };
+            GridEditorBase.prototype.usePager = function () {
+                return false;
+            };
+            GridEditorBase.prototype.getInitialTitle = function () {
+                return null;
+            };
+            GridEditorBase.prototype.createQuickSearchInput = function () {
+            };
+            GridEditorBase = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.element("<div/>")
+            ], GridEditorBase);
+            return GridEditorBase;
+        }(Serenity.EntityGrid));
+        Common.GridEditorBase = GridEditorBase;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var GridEditorDialog = /** @class */ (function (_super) {
+            __extends(GridEditorDialog, _super);
+            function GridEditorDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
-            ChartInDialog_1 = ChartInDialog;
-            ChartInDialog.initializePage = function () {
-                $(function () {
-                    $('#LaunchDialogButton').click(function (e) {
-                        (new ChartInDialog_1()).dialogOpen();
-                    });
-                });
+            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorDialog.prototype.destroy = function () {
+                this.onSave = null;
+                this.onDelete = null;
+                _super.prototype.destroy.call(this);
             };
-            ChartInDialog.prototype.onDialogOpen = function () {
+            GridEditorDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                // apply changes button doesn't work properly with in-memory grids yet
+                if (this.applyChangesButton) {
+                    this.applyChangesButton.hide();
+                }
+            };
+            GridEditorDialog.prototype.saveHandler = function (options, callback) {
+                this.onSave && this.onSave(options, callback);
+            };
+            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
+                this.onDelete && this.onDelete(options, callback);
+            };
+            GridEditorDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridEditorDialog);
+            return GridEditorDialog;
+        }(Serenity.EntityDialog));
+        Common.GridEditorDialog = GridEditorDialog;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    /**
+     * This is an editor widget but it only displays a text, not edits it.
+     *
+     */
+    var StaticTextBlock = /** @class */ (function (_super) {
+        __extends(StaticTextBlock, _super);
+        function StaticTextBlock(container, options) {
+            var _this = _super.call(this, container, options) || this;
+            // hide the caption label for this editor if in a form. ugly hack
+            if (_this.options.hideLabel)
+                _this.element.closest('.field').find('.caption').hide();
+            _this.updateElementContent();
+            return _this;
+        }
+        StaticTextBlock.prototype.updateElementContent = function () {
+            var text = Q.coalesce(this.options.text, this.value);
+            // if isLocalText is set, text is actually a local text key
+            if (this.options.isLocalText)
+                text = Q.text(text);
+            // don't html encode if isHtml option is true
+            if (this.options.isHtml)
+                this.element.html(text);
+            else
+                this.element.text(text);
+        };
+        /**
+         * By implementing ISetEditValue interface, we allow this editor to display its field value.
+         * But only do this when our text content is not explicitly set in options
+         */
+        StaticTextBlock.prototype.setEditValue = function (source, property) {
+            if (this.options.text == null) {
+                this.value = Q.coalesce(this.options.text, source[property.name]);
+                this.updateElementContent();
+            }
+        };
+        StaticTextBlock = __decorate([
+            Serenity.Decorators.element("<div/>"),
+            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
+        ], StaticTextBlock);
+        return StaticTextBlock;
+    }(Serenity.Widget));
+    Serene.StaticTextBlock = StaticTextBlock;
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var LanguageSelection = /** @class */ (function (_super) {
+            __extends(LanguageSelection, _super);
+            function LanguageSelection(select, currentLanguage) {
+                var _this = _super.call(this, select) || this;
+                currentLanguage = Q.coalesce(currentLanguage, 'en');
+                _this.change(function (e) {
+                    $.cookie('LanguagePreference', select.val(), {
+                        path: Q.Config.applicationPath,
+                        expires: 365
+                    });
+                    window.location.reload(true);
+                });
+                Q.getLookupAsync('Administration.Language').then(function (x) {
+                    if (!Q.any(x.items, function (z) { return z.LanguageId === currentLanguage; })) {
+                        var idx = currentLanguage.lastIndexOf('-');
+                        if (idx >= 0) {
+                            currentLanguage = currentLanguage.substr(0, idx);
+                            if (!Q.any(x.items, function (y) { return y.LanguageId === currentLanguage; })) {
+                                currentLanguage = 'en';
+                            }
+                        }
+                        else {
+                            currentLanguage = 'en';
+                        }
+                    }
+                    for (var _i = 0, _a = x.items; _i < _a.length; _i++) {
+                        var l = _a[_i];
+                        Q.addOption(select, l.LanguageId, l.LanguageName);
+                    }
+                    select.val(currentLanguage);
+                });
+                return _this;
+            }
+            return LanguageSelection;
+        }(Serenity.Widget));
+        Common.LanguageSelection = LanguageSelection;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var SidebarSearch = /** @class */ (function (_super) {
+            __extends(SidebarSearch, _super);
+            function SidebarSearch(input, menuUL) {
+                var _this = _super.call(this, input) || this;
+                new Serenity.QuickSearchInput(input, {
+                    onSearch: function (field, text, success) {
+                        _this.updateMatchFlags(text);
+                        success(true);
+                    }
+                });
+                _this.menuUL = menuUL;
+                return _this;
+            }
+            SidebarSearch.prototype.updateMatchFlags = function (text) {
+                var liList = this.menuUL.find('li').removeClass('non-match');
+                text = Q.trimToNull(text);
+                if (text == null) {
+                    liList.show();
+                    liList.removeClass('expanded');
+                    return;
+                }
+                var parts = text.replace(',', ' ').split(' ').filter(function (x) { return !Q.isTrimmedEmpty(x); });
+                for (var i = 0; i < parts.length; i++) {
+                    parts[i] = Q.trimToNull(Select2.util.stripDiacritics(parts[i]).toUpperCase());
+                }
+                var items = liList;
+                items.each(function (idx, e) {
+                    var x = $(e);
+                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
+                    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+                        var p = parts_1[_i];
+                        if (p != null && !(title.indexOf(p) !== -1)) {
+                            x.addClass('non-match');
+                            break;
+                        }
+                    }
+                });
+                var matchingItems = items.not('.non-match');
+                var visibles = matchingItems.parents('li').add(matchingItems);
+                var nonVisibles = liList.not(visibles);
+                nonVisibles.hide().addClass('non-match');
+                visibles.show();
+                liList.addClass('expanded');
+            };
+            return SidebarSearch;
+        }(Serenity.Widget));
+        Common.SidebarSearch = SidebarSearch;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ThemeSelection = /** @class */ (function (_super) {
+            __extends(ThemeSelection, _super);
+            function ThemeSelection(select) {
+                var _this = _super.call(this, select) || this;
+                _this.change(function (e) {
+                    var path = Q.Config.applicationPath;
+                    if (path && path != '/' && Q.endsWith(path, '/'))
+                        path = path.substr(0, path.length - 1);
+                    $.cookie('ThemePreference', select.val(), {
+                        path: path,
+                        expires: 365
+                    });
+                    var theme = select.val() || '';
+                    var darkSidebar = theme.indexOf('light') < 0;
+                    $('body').removeClass('skin-' + _this.getCurrentTheme());
+                    $('body').addClass('skin-' + theme)
+                        .toggleClass('dark-sidebar', darkSidebar)
+                        .toggleClass('light-sidebar', !darkSidebar);
+                });
+                Q.addOption(select, 'blue', Q.text('Site.Layout.ThemeBlue'));
+                Q.addOption(select, 'blue-light', Q.text('Site.Layout.ThemeBlueLight'));
+                Q.addOption(select, 'purple', Q.text('Site.Layout.ThemePurple'));
+                Q.addOption(select, 'purple-light', Q.text('Site.Layout.ThemePurpleLight'));
+                Q.addOption(select, 'red', Q.text('Site.Layout.ThemeRed'));
+                Q.addOption(select, 'red-light', Q.text('Site.Layout.ThemeRedLight'));
+                Q.addOption(select, 'green', Q.text('Site.Layout.ThemeGreen'));
+                Q.addOption(select, 'green-light', Q.text('Site.Layout.ThemeGreenLight'));
+                Q.addOption(select, 'yellow', Q.text('Site.Layout.ThemeYellow'));
+                Q.addOption(select, 'yellow-light', Q.text('Site.Layout.ThemeYellowLight'));
+                Q.addOption(select, 'black', Q.text('Site.Layout.ThemeBlack'));
+                Q.addOption(select, 'black-light', Q.text('Site.Layout.ThemeBlackLight'));
+                select.val(_this.getCurrentTheme());
+                return _this;
+            }
+            ThemeSelection.prototype.getCurrentTheme = function () {
+                var skinClass = Q.first(($('body').attr('class') || '').split(' '), function (x) { return Q.startsWith(x, 'skin-'); });
+                if (skinClass) {
+                    return skinClass.substr(5);
+                }
+                return 'blue';
+            };
+            return ThemeSelection;
+        }(Serenity.Widget));
+        Common.ThemeSelection = ThemeSelection;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var PdfExportHelper;
+        (function (PdfExportHelper) {
+            function toAutoTableColumns(srcColumns, columnStyles, columnTitles) {
+                return srcColumns.map(function (src) {
+                    var col = {
+                        dataKey: src.id || src.field,
+                        title: src.name || ''
+                    };
+                    if (columnTitles && columnTitles[col.dataKey] != null)
+                        col.title = columnTitles[col.dataKey];
+                    var style = {};
+                    if ((src.cssClass || '').indexOf("align-right") >= 0)
+                        style.halign = 'right';
+                    else if ((src.cssClass || '').indexOf("align-center") >= 0)
+                        style.halign = 'center';
+                    columnStyles[col.dataKey] = style;
+                    return col;
+                });
+            }
+            function toAutoTableData(entities, keys, srcColumns) {
+                var el = document.createElement('span');
+                var row = 0;
+                return entities.map(function (item) {
+                    var dst = {};
+                    for (var cell = 0; cell < srcColumns.length; cell++) {
+                        var src = srcColumns[cell];
+                        var fld = src.field || '';
+                        var key = keys[cell];
+                        var txt = void 0;
+                        var html = void 0;
+                        if (src.formatter) {
+                            html = src.formatter(row, cell, item[fld], src, item);
+                        }
+                        else if (src.format) {
+                            html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
+                        }
+                        else {
+                            dst[key] = item[fld];
+                            continue;
+                        }
+                        if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
+                            dst[key] = html;
+                        else {
+                            el.innerHTML = html;
+                            if (el.children.length == 1 &&
+                                $(el.children[0]).is(":input")) {
+                                dst[key] = $(el.children[0]).val();
+                            }
+                            else if (el.children.length == 1 &&
+                                $(el.children).is('.check-box')) {
+                                dst[key] = $(el.children).hasClass("checked") ? "X" : "";
+                            }
+                            else
+                                dst[key] = el.textContent || '';
+                        }
+                    }
+                    row++;
+                    return dst;
+                });
+            }
+            function exportToPdf(options) {
+                var g = options.grid;
+                if (!options.onViewSubmit())
+                    return;
+                includeAutoTable();
+                var request = Q.deepClone(g.view.params);
+                request.Take = 0;
+                request.Skip = 0;
+                var sortBy = g.view.sortBy;
+                if (sortBy != null)
+                    request.Sort = sortBy;
+                var gridColumns = g.slickGrid.getColumns();
+                gridColumns = gridColumns.filter(function (x) { return x.id !== "__select__"; });
+                request.IncludeColumns = [];
+                for (var _i = 0, gridColumns_1 = gridColumns; _i < gridColumns_1.length; _i++) {
+                    var column = gridColumns_1[_i];
+                    request.IncludeColumns.push(column.id || column.field);
+                }
+                Q.serviceCall({
+                    url: g.view.url,
+                    request: request,
+                    onSuccess: function (response) {
+                        var doc = new jsPDF('l', 'pt');
+                        var srcColumns = gridColumns;
+                        var columnStyles = {};
+                        var columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
+                        var keys = columns.map(function (x) { return x.dataKey; });
+                        var entities = response.Entities || [];
+                        var data = toAutoTableData(entities, keys, srcColumns);
+                        doc.setFontSize(options.titleFontSize || 10);
+                        doc.setFontStyle('bold');
+                        var reportTitle = options.reportTitle || g.getTitle() || "Report";
+                        doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
+                        var totalPagesExp = "{{T}}";
+                        var pageNumbers = options.pageNumbers == null || options.pageNumbers;
+                        var autoOptions = $.extend({
+                            margin: { top: 25, left: 25, right: 25, bottom: pageNumbers ? 25 : 30 },
+                            startY: 60,
+                            styles: {
+                                fontSize: 8,
+                                overflow: 'linebreak',
+                                cellPadding: 2,
+                                valign: 'middle'
+                            },
+                            columnStyles: columnStyles
+                        }, options.tableOptions);
+                        if (pageNumbers) {
+                            var footer = function (data) {
+                                var str = data.pageCount;
+                                // Total page number plugin only available in jspdf v1.0+
+                                if (typeof doc.putTotalPages === 'function') {
+                                    str = str + " / " + totalPagesExp;
+                                }
+                                doc.autoTableText(str, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - autoOptions.margin.bottom, {
+                                    halign: 'center'
+                                });
+                            };
+                            autoOptions.afterPageContent = footer;
+                        }
+                        // Print header of page
+                        if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
+                            var beforePage = function (data) {
+                                doc.setFontStyle('normal');
+                                doc.setFontSize(8);
+                                // Date and time of the report
+                                doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"), doc.internal.pageSize.width - autoOptions.margin.right, 13, {
+                                    halign: 'right'
+                                });
+                            };
+                            autoOptions.beforePageContent = beforePage;
+                        }
+                        doc.autoTable(columns, data, autoOptions);
+                        if (typeof doc.putTotalPages === 'function') {
+                            doc.putTotalPages(totalPagesExp);
+                        }
+                        if (!options.output || options.output == "file") {
+                            var fileName = options.fileName || options.reportTitle || "{0}_{1}.pdf";
+                            fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
+                            doc.save(fileName);
+                            return;
+                        }
+                        if (options.autoPrint)
+                            doc.autoPrint();
+                        var output = options.output;
+                        if (output == 'newwindow' || '_blank')
+                            output = 'dataurlnewwindow';
+                        else if (output == 'window')
+                            output = 'datauri';
+                        if (output == 'datauri')
+                            doc.output(output);
+                        else {
+                            var tmpOut = doc.output('datauristring');
+                            if (output == 'dataurlnewwindow') {
+                                var fileTmpName = options.reportTitle || g.getTitle();
+                                var url_with_name = tmpOut.replace("data:application/pdf;", "data:application/pdf;name=" + fileTmpName + ".pdf;");
+                                var html = '<html>' +
+                                    '<style>html, body { padding: 0; margin: 0; } iframe { width: 100%; height: 100%; border: 0;}  </style>' +
+                                    '<body>' +
+                                    '<p></p>' +
+                                    '<iframe type="application/pdf" src="' + url_with_name + '"></iframe>' +
+                                    '</body></html>';
+                                var a = window.open("about:blank", "_blank");
+                                a.document.write(html);
+                                a.document.close();
+                            }
+                        }
+                    }
+                });
+            }
+            PdfExportHelper.exportToPdf = exportToPdf;
+            function createToolButton(options) {
+                return {
+                    title: options.title || '',
+                    hint: options.hint || 'PDF',
+                    cssClass: 'export-pdf-button',
+                    onClick: function () { return exportToPdf(options); },
+                    separator: options.separator
+                };
+            }
+            PdfExportHelper.createToolButton = createToolButton;
+            function includeJsPDF() {
+                if (typeof jsPDF !== "undefined")
+                    return;
+                var script = $("jsPDFScript");
+                if (script.length > 0)
+                    return;
+                $("<script/>")
+                    .attr("type", "text/javascript")
+                    .attr("id", "jsPDFScript")
+                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.min.js"))
+                    .appendTo(document.head);
+            }
+            function includeAutoTable() {
+                includeJsPDF();
+                if (typeof jsPDF === "undefined" ||
+                    typeof jsPDF.API == "undefined" ||
+                    typeof jsPDF.API.autoTable !== "undefined")
+                    return;
+                var script = $("jsPDFAutoTableScript");
+                if (script.length > 0)
+                    return;
+                $("<script/>")
+                    .attr("type", "text/javascript")
+                    .attr("id", "jsPDFAutoTableScript")
+                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.plugin.autotable.min.js"))
+                    .appendTo(document.head);
+            }
+        })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportDialog = /** @class */ (function (_super) {
+            __extends(ReportDialog, _super);
+            function ReportDialog(options) {
+                var _this = _super.call(this, options) || this;
+                _this.updateInterface();
+                _this.loadReport(_this.options.reportKey);
+                return _this;
+            }
+            ReportDialog.prototype.getDialogButtons = function () {
+                return null;
+            };
+            ReportDialog.prototype.createPropertyGrid = function () {
+                this.propertyGrid && this.byId('PropertyGrid').html('').attr('class', '');
+                this.propertyGrid = new Serenity.PropertyGrid(this.byId('PropertyGrid'), {
+                    idPrefix: this.idPrefix,
+                    useCategories: true,
+                    items: this.report.Properties
+                }).init(null);
+            };
+            ReportDialog.prototype.loadReport = function (reportKey) {
                 var _this = this;
-                _super.prototype.onDialogOpen.call(this);
-                BasicSamples.BasicSamplesService.OrdersByShipper({}, function (response) {
-                    _this.areaChart = new Morris.Area({
-                        element: _this.idPrefix + 'Chart',
-                        resize: true, parseTime: false,
-                        data: response.Values,
-                        xkey: 'Month',
-                        ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
-                    });
+                Q.serviceCall({
+                    url: Q.resolveUrl('~/Report/Retrieve'),
+                    request: {
+                        ReportKey: reportKey
+                    },
+                    onSuccess: function (response) {
+                        _this.report = response;
+                        _this.element.dialog().dialog('option', 'title', _this.report.Title);
+                        _this.createPropertyGrid();
+                        _this.propertyGrid.load(_this.report.InitialSettings || {});
+                        _this.updateInterface();
+                        _this.dialogOpen();
+                    }
                 });
             };
-            ChartInDialog.prototype.arrange = function () {
-                _super.prototype.arrange.call(this);
-                this.areaChart && this.areaChart.redraw();
+            ReportDialog.prototype.updateInterface = function () {
+                this.toolbar.findButton('print-preview-button')
+                    .toggle(this.report && !this.report.IsDataOnlyReport);
+                this.toolbar.findButton('export-pdf-button')
+                    .toggle(this.report && !this.report.IsDataOnlyReport);
+                this.toolbar.findButton('export-xlsx-button')
+                    .toggle(this.report && this.report.IsDataOnlyReport);
             };
-            ChartInDialog.prototype.getTemplate = function () {
-                // you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
-                return "<div id='~_Chart'></div>";
+            ReportDialog.prototype.executeReport = function (target, ext, download) {
+                if (!this.validateForm()) {
+                    return;
+                }
+                var opt = {};
+                this.propertyGrid.save(opt);
+                Common.ReportHelper.execute({
+                    download: download,
+                    reportKey: this.report.ReportKey,
+                    extension: ext,
+                    target: target,
+                    params: opt
+                });
             };
-            ChartInDialog.prototype.getDialogOptions = function () {
+            ReportDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                return [
+                    {
+                        title: 'Preview',
+                        cssClass: 'print-preview-button',
+                        onClick: function () { return _this.executeReport('_blank', null, false); }
+                    },
+                    {
+                        title: 'PDF',
+                        cssClass: 'export-pdf-button',
+                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
+                    },
+                    {
+                        title: 'Excel',
+                        cssClass: 'export-xlsx-button',
+                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
+                    }
+                ];
+            };
+            return ReportDialog;
+        }(Serenity.TemplatedDialog));
+        Common.ReportDialog = ReportDialog;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportHelper;
+        (function (ReportHelper) {
+            function createToolButton(options) {
+                return {
+                    title: Q.coalesce(options.title, 'Report'),
+                    cssClass: Q.coalesce(options.cssClass, 'print-button'),
+                    icon: options.icon,
+                    onClick: function () {
+                        ReportHelper.execute(options);
+                    }
+                };
+            }
+            ReportHelper.createToolButton = createToolButton;
+            function execute(options) {
+                var opt = options.getParams ? options.getParams() : options.params;
+                Q.postToUrl({
+                    url: '~/Report/' + (options.download ? 'Download' : 'Render'),
+                    params: {
+                        key: options.reportKey,
+                        ext: Q.coalesce(options.extension, 'pdf'),
+                        opt: opt ? $.toJSON(opt) : ''
+                    },
+                    target: Q.coalesce(options.target, '_blank')
+                });
+            }
+            ReportHelper.execute = execute;
+        })(ReportHelper = Common.ReportHelper || (Common.ReportHelper = {}));
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var ReportPage = /** @class */ (function (_super) {
+            __extends(ReportPage, _super);
+            function ReportPage(element) {
+                var _this = _super.call(this, element) || this;
+                $('.report-link', element).click(function (e) { return _this.reportLinkClick(e); });
+                $('div.line', element).click(function (e) { return _this.categoryClick(e); });
+                new Serenity.QuickSearchInput($('.s-QuickSearchBar input', element), {
+                    onSearch: function (field, text, done) {
+                        _this.updateMatchFlags(text);
+                        done(true);
+                    }
+                });
+                return _this;
+            }
+            ReportPage.prototype.updateMatchFlags = function (text) {
+                var liList = $('.report-list', this.element).find('li').removeClass('non-match');
+                text = Q.trimToNull(text);
+                if (!text) {
+                    liList.children('ul').hide();
+                    liList.show().removeClass('expanded');
+                    return;
+                }
+                text = Select2.util.stripDiacritics(text).toUpperCase();
+                var reportItems = liList.filter('.report-item');
+                reportItems.each(function (ix, e) {
+                    var x = $(e);
+                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
+                    if (title.indexOf(text) < 0) {
+                        x.addClass('non-match');
+                    }
+                });
+                var matchingItems = reportItems.not('.non-match');
+                var visibles = matchingItems.parents('li').add(matchingItems);
+                var nonVisibles = liList.not(visibles);
+                nonVisibles.hide().addClass('non-match');
+                visibles.show();
+                if (visibles.length <= 100) {
+                    liList.children('ul').show();
+                    liList.addClass('expanded');
+                }
+            };
+            ReportPage.prototype.categoryClick = function (e) {
+                var li = $(e.target).closest('li');
+                if (li.hasClass('expanded')) {
+                    li.find('ul').hide('fast');
+                    li.removeClass('expanded');
+                    li.find('li').removeClass('expanded');
+                }
+                else {
+                    li.addClass('expanded');
+                    li.children('ul').show('fast');
+                    if (li.children('ul').children('li').length === 1 && !li.children('ul').children('li').hasClass('expanded')) {
+                        li.children('ul').children('li').children('.line').click();
+                    }
+                }
+            };
+            ReportPage.prototype.reportLinkClick = function (e) {
+                e.preventDefault();
+                new Common.ReportDialog({
+                    reportKey: $(e.target).data('key')
+                }).dialogOpen();
+            };
+            return ReportPage;
+        }(Serenity.Widget));
+        Common.ReportPage = ReportPage;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Common;
+    (function (Common) {
+        var UserPreferenceStorage = /** @class */ (function () {
+            function UserPreferenceStorage() {
+            }
+            UserPreferenceStorage.prototype.getItem = function (key) {
+                var value;
+                Common.UserPreferenceService.Retrieve({
+                    PreferenceType: "UserPreferenceStorage",
+                    Name: key
+                }, function (response) { return value = response.Value; }, {
+                    async: false
+                });
+                return value;
+            };
+            UserPreferenceStorage.prototype.setItem = function (key, data) {
+                Common.UserPreferenceService.Update({
+                    PreferenceType: "UserPreferenceStorage",
+                    Name: key,
+                    Value: data
+                });
+            };
+            return UserPreferenceStorage;
+        }());
+        Common.UserPreferenceStorage = UserPreferenceStorage;
+    })(Common = Serene.Common || (Serene.Common = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryDialog = /** @class */ (function (_super) {
+            __extends(CategoryDialog, _super);
+            function CategoryDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Northwind.CategoryForm(_this.idPrefix);
+                return _this;
+            }
+            CategoryDialog.prototype.getFormKey = function () { return Northwind.CategoryForm.formKey; };
+            CategoryDialog.prototype.getIdProperty = function () { return Northwind.CategoryRow.idProperty; };
+            CategoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
+            CategoryDialog.prototype.getNameProperty = function () { return Northwind.CategoryRow.nameProperty; };
+            CategoryDialog.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
+            CategoryDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoryDialog);
+            return CategoryDialog;
+        }(Serenity.EntityDialog));
+        Northwind.CategoryDialog = CategoryDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CategoryGrid = /** @class */ (function (_super) {
+            __extends(CategoryGrid, _super);
+            function CategoryGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            CategoryGrid.prototype.getColumnsKey = function () { return "Northwind.Category"; };
+            CategoryGrid.prototype.getDialogType = function () { return Northwind.CategoryDialog; };
+            CategoryGrid.prototype.getIdProperty = function () { return Northwind.CategoryRow.idProperty; };
+            CategoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
+            CategoryGrid.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
+            CategoryGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoryGrid);
+            return CategoryGrid;
+        }(Serenity.EntityGrid));
+        Northwind.CategoryGrid = CategoryGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerDialog = /** @class */ (function (_super) {
+            __extends(CustomerDialog, _super);
+            function CustomerDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Northwind.CustomerForm(_this.idPrefix);
+                _this.ordersGrid = new Northwind.CustomerOrdersGrid(_this.byId('OrdersGrid'));
+                // force order dialog to open in Dialog mode instead of Panel mode
+                // which is set as default on OrderDialog with @panelAttribute
+                _this.ordersGrid.openDialogsAsPanel = false;
+                _this.byId('NoteList').closest('.field').hide().end().appendTo(_this.byId('TabNotes'));
+                Serene.DialogUtils.pendingChangesConfirmation(_this.element, function () { return _this.getSaveState() != _this.loadedState; });
+                return _this;
+            }
+            CustomerDialog.prototype.getFormKey = function () { return Northwind.CustomerForm.formKey; };
+            CustomerDialog.prototype.getIdProperty = function () { return Northwind.CustomerRow.idProperty; };
+            CustomerDialog.prototype.getLocalTextPrefix = function () { return Northwind.CustomerRow.localTextPrefix; };
+            CustomerDialog.prototype.getNameProperty = function () { return Northwind.CustomerRow.nameProperty; };
+            CustomerDialog.prototype.getService = function () { return Northwind.CustomerService.baseUrl; };
+            CustomerDialog.prototype.getSaveState = function () {
+                try {
+                    return $.toJSON(this.getSaveEntity());
+                }
+                catch (e) {
+                    return null;
+                }
+            };
+            CustomerDialog.prototype.loadResponse = function (data) {
+                _super.prototype.loadResponse.call(this, data);
+                this.loadedState = this.getSaveState();
+            };
+            CustomerDialog.prototype.loadEntity = function (entity) {
+                _super.prototype.loadEntity.call(this, entity);
+                Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.isNewOrDeleted());
+                this.ordersGrid.customerID = entity.CustomerID;
+            };
+            CustomerDialog.prototype.onSaveSuccess = function (response) {
+                _super.prototype.onSaveSuccess.call(this, response);
+                Q.reloadLookup('Northwind.Customer');
+            };
+            CustomerDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.panel()
+            ], CustomerDialog);
+            return CustomerDialog;
+        }(Serenity.EntityDialog));
+        Northwind.CustomerDialog = CustomerDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerEditor = /** @class */ (function (_super) {
+            __extends(CustomerEditor, _super);
+            function CustomerEditor(hidden) {
+                return _super.call(this, hidden) || this;
+            }
+            CustomerEditor.prototype.getLookupKey = function () {
+                return Northwind.CustomerRow.lookupKey;
+            };
+            CustomerEditor.prototype.getItemText = function (item, lookup) {
+                return _super.prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
+            };
+            CustomerEditor = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], CustomerEditor);
+            return CustomerEditor;
+        }(Serenity.LookupEditorBase));
+        Northwind.CustomerEditor = CustomerEditor;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerGrid = /** @class */ (function (_super) {
+            __extends(CustomerGrid, _super);
+            function CustomerGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            CustomerGrid.prototype.getColumnsKey = function () { return "Northwind.Customer"; };
+            CustomerGrid.prototype.getDialogType = function () { return Northwind.CustomerDialog; };
+            CustomerGrid.prototype.getIdProperty = function () { return Northwind.CustomerRow.idProperty; };
+            CustomerGrid.prototype.getLocalTextPrefix = function () { return Northwind.CustomerRow.localTextPrefix; };
+            CustomerGrid.prototype.getService = function () { return Northwind.CustomerService.baseUrl; };
+            CustomerGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    service: 'Northwind/Customer/ListExcel',
+                    separator: true
+                }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                return buttons;
+            };
+            CustomerGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], CustomerGrid);
+            return CustomerGrid;
+        }(Serenity.EntityGrid));
+        Northwind.CustomerGrid = CustomerGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDialog = /** @class */ (function (_super) {
+            __extends(OrderDialog, _super);
+            function OrderDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Northwind.OrderForm(_this.idPrefix);
+                return _this;
+            }
+            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
+            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
+            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderDialog.prototype.getToolbarButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getToolbarButtons.call(this);
+                buttons.push(Serene.Common.ReportHelper.createToolButton({
+                    title: 'Invoice',
+                    cssClass: 'export-pdf-button',
+                    reportKey: 'Northwind.OrderDetail',
+                    getParams: function () { return ({
+                        OrderID: _this.get_entityId()
+                    }); }
+                }));
+                return buttons;
+            };
+            OrderDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
+            };
+            OrderDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.panel()
+            ], OrderDialog);
+            return OrderDialog;
+        }(Serenity.EntityDialog));
+        Northwind.OrderDialog = OrderDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../Order/OrderDialog.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerOrderDialog = /** @class */ (function (_super) {
+            __extends(CustomerOrderDialog, _super);
+            function CustomerOrderDialog() {
+                return _super.call(this) || this;
+            }
+            CustomerOrderDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
+            };
+            CustomerOrderDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerOrderDialog);
+            return CustomerOrderDialog;
+        }(Northwind.OrderDialog));
+        Northwind.CustomerOrderDialog = CustomerOrderDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderGrid = /** @class */ (function (_super) {
+            __extends(OrderGrid, _super);
+            function OrderGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
+            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
+            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
+            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
+            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
+            OrderGrid.prototype.getQuickFilters = function () {
+                var _this = this;
+                var filters = _super.prototype.getQuickFilters.call(this);
+                filters.push({
+                    type: Serenity.LookupEditor,
+                    options: {
+                        lookupKey: Northwind.ProductRow.lookupKey
+                    },
+                    field: 'ProductID',
+                    title: 'Contains Product in Details',
+                    handler: function (w) {
+                        _this.view.params.ProductID = Q.toId(w.value);
+                    },
+                    cssClass: 'hidden-xs'
+                });
+                return filters;
+            };
+            OrderGrid.prototype.createQuickFilters = function () {
+                _super.prototype.createQuickFilters.call(this);
+                this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, "ShippingState" /* ShippingState */);
+            };
+            OrderGrid.prototype.getButtons = function () {
+                var _this = this;
+                var buttons = _super.prototype.getButtons.call(this);
+                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
+                    grid: this,
+                    service: Northwind.OrderService.baseUrl + '/ListExcel',
+                    onViewSubmit: function () { return _this.onViewSubmit(); },
+                    separator: true
+                }));
+                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
+                    grid: this,
+                    onViewSubmit: function () { return _this.onViewSubmit(); }
+                }));
+                return buttons;
+            };
+            OrderGrid.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                columns.splice(1, 0, {
+                    field: 'Print Invoice',
+                    name: '',
+                    format: function (ctx) { return '<a class="inline-action print-invoice" title="invoice">' +
+                        '<i class="fa fa-file-pdf-o text-red"></i></a>'; },
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+                return columns;
+            };
+            OrderGrid.prototype.onClick = function (e, row, cell) {
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (target.hasClass('print-invoice')) {
+                        Serene.Common.ReportHelper.execute({
+                            reportKey: 'Northwind.OrderDetail',
+                            params: {
+                                OrderID: item.OrderID
+                            }
+                        });
+                    }
+                }
+            };
+            OrderGrid.prototype.set_shippingState = function (value) {
+                this.shippingStateFilter.value = value == null ? '' : value.toString();
+            };
+            OrderGrid.prototype.addButtonClick = function () {
+                var eq = this.view.params.EqualityFilter;
+                this.editItem({
+                    CustomerID: eq ? eq.CustomerID : null
+                });
+            };
+            OrderGrid = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.filterable()
+            ], OrderGrid);
+            return OrderGrid;
+        }(Serenity.EntityGrid));
+        Northwind.OrderGrid = OrderGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../Order/OrderGrid.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var CustomerOrdersGrid = /** @class */ (function (_super) {
+            __extends(CustomerOrdersGrid, _super);
+            function CustomerOrdersGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            CustomerOrdersGrid.prototype.getDialogType = function () { return Northwind.CustomerOrderDialog; };
+            CustomerOrdersGrid.prototype.getColumns = function () {
+                return _super.prototype.getColumns.call(this).filter(function (x) { return x.field !== "CustomerCompanyName" /* CustomerCompanyName */; });
+            };
+            CustomerOrdersGrid.prototype.initEntityDialog = function (itemType, dialog) {
+                _super.prototype.initEntityDialog.call(this, itemType, dialog);
+                Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
+            };
+            CustomerOrdersGrid.prototype.addButtonClick = function () {
+                this.editItem({ CustomerID: this.customerID });
+            };
+            CustomerOrdersGrid.prototype.getInitialTitle = function () {
+                return null;
+            };
+            CustomerOrdersGrid.prototype.getGridCanLoad = function () {
+                return _super.prototype.getGridCanLoad.call(this) && !!this.customerID;
+            };
+            Object.defineProperty(CustomerOrdersGrid.prototype, "customerID", {
+                get: function () {
+                    return this._customerID;
+                },
+                set: function (value) {
+                    if (this._customerID !== value) {
+                        this._customerID = value;
+                        this.setEquality('CustomerID', value);
+                        this.refresh();
+                    }
+                },
+                enumerable: true,
+                configurable: true
+            });
+            CustomerOrdersGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CustomerOrdersGrid);
+            return CustomerOrdersGrid;
+        }(Northwind.OrderGrid));
+        Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var EmployeeListFormatter = /** @class */ (function () {
+            function EmployeeListFormatter() {
+            }
+            EmployeeListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = Northwind.EmployeeRow.getLookup().itemById;
+                var z;
+                return idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", ");
+            };
+            EmployeeListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], EmployeeListFormatter);
+            return EmployeeListFormatter;
+        }());
+        Northwind.EmployeeListFormatter = EmployeeListFormatter;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var EmployeeFormatter = /** @class */ (function () {
+            function EmployeeFormatter() {
+            }
+            EmployeeFormatter.prototype.format = function (ctx) {
+                var text = Q.htmlEncode(ctx.value);
+                if (!this.genderProperty) {
+                    return text;
+                }
+                var gender = ctx.item[this.genderProperty];
+                return "<span class='" + ((gender === Northwind.Gender.Female) ?
+                    'employee-symbol female' : 'employee-symbol male') +
+                    "'>" + text + '</span>';
+            };
+            EmployeeFormatter.prototype.initializeColumn = function (column) {
+                column.referencedFields = column.referencedFields || [];
+                if (this.genderProperty)
+                    column.referencedFields.push(this.genderProperty);
+            };
+            __decorate([
+                Serenity.Decorators.option()
+            ], EmployeeFormatter.prototype, "genderProperty", void 0);
+            EmployeeFormatter = __decorate([
+                Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
+            ], EmployeeFormatter);
+            return EmployeeFormatter;
+        }());
+        Northwind.EmployeeFormatter = EmployeeFormatter;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var NoteDialog = /** @class */ (function (_super) {
+            __extends(NoteDialog, _super);
+            function NoteDialog() {
+                var _this = _super.call(this) || this;
+                _this.textEditor = new Serenity.HtmlNoteContentEditor(_this.byId('Text'));
+                return _this;
+            }
+            NoteDialog.prototype.getTemplate = function () {
+                return ("<form id='~_Form' class='s-Form'>" +
+                    "<textarea id='~_Text' class='required'></textarea>" +
+                    "</form>");
+            };
+            NoteDialog.prototype.getDialogOptions = function () {
+                var _this = this;
                 var opt = _super.prototype.getDialogOptions.call(this);
-                opt.title = 'Orders by Shipper';
+                opt.buttons = [{
+                        text: Q.text('Dialogs.OkButton'),
+                        click: function () {
+                            if (!_this.validateForm()) {
+                                return;
+                            }
+                            _this.okClick && _this.okClick();
+                        }
+                    }, {
+                        text: Q.text('Dialogs.CancelButton'),
+                        click: function () { return _this.dialogClose(); }
+                    }
+                ];
                 return opt;
             };
-            var ChartInDialog_1;
-            ChartInDialog = ChartInDialog_1 = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.resizable(),
-                Serenity.Decorators.maximizable()
-            ], ChartInDialog);
-            return ChartInDialog;
+            Object.defineProperty(NoteDialog.prototype, "text", {
+                get: function () {
+                    return this.textEditor.value;
+                },
+                set: function (value) {
+                    this.textEditor.value = value;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            NoteDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], NoteDialog);
+            return NoteDialog;
         }(Serenity.TemplatedDialog));
-        BasicSamples.ChartInDialog = ChartInDialog;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+        Northwind.NoteDialog = NoteDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var NotesEditor = /** @class */ (function (_super) {
+            __extends(NotesEditor, _super);
+            function NotesEditor(div) {
+                var _this = _super.call(this, div) || this;
+                new Serenity.Toolbar(_this.byId('Toolbar'), {
+                    buttons: [{
+                            title: 'Add Note',
+                            cssClass: 'add-button',
+                            onClick: function (e) {
+                                e.preventDefault();
+                                _this.addClick();
+                            }
+                        }]
+                });
+                return _this;
+            }
+            NotesEditor.prototype.getTemplate = function () {
+                return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
+            };
+            NotesEditor.prototype.updateContent = function () {
+                var _this = this;
+                var noteList = this.byId('NoteList');
+                noteList.children().remove();
+                if (this.items) {
+                    var index = 0;
+                    for (var t1 = 0; t1 < this.items.length; t1++) {
+                        var item = this.items[t1];
+                        var li = $('<li/>');
+                        $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
+                        $('<a/>').attr('href', '#').addClass('note-date')
+                            .text(item.InsertUserDisplayName + ' - ' +
+                            Q.formatDate(item.InsertDate, 'g'))
+                            .data('index', index).appendTo(li).click(function (e) { return _this.editClick(e); });
+                        $('<a/>').attr('href', '#').addClass('note-delete')
+                            .attr('title', 'delete note').data('index', index)
+                            .appendTo(li).click(function (e) { return _this.deleteClick(e); });
+                        li.appendTo(noteList);
+                        index++;
+                    }
+                }
+            };
+            NotesEditor.prototype.addClick = function () {
+                var _this = this;
+                var dlg = new Northwind.NoteDialog();
+                dlg.dialogTitle = 'Add Note';
+                dlg.okClick = function () {
+                    var text = Q.trimToNull(dlg.text);
+                    if (text == null) {
+                        return;
+                    }
+                    _this.items = _this.items || [];
+                    Q.insert(_this.items, 0, {
+                        Text: text,
+                        InsertUserDisplayName: Serene.Authorization.userDefinition.DisplayName,
+                        InsertDate: Q.formatISODateTimeUTC(new Date())
+                    });
+                    _this.updateContent();
+                    dlg.dialogClose();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                };
+                dlg.dialogOpen();
+            };
+            NotesEditor.prototype.editClick = function (e) {
+                var _this = this;
+                e.preventDefault();
+                var index = $(e.target).data('index');
+                var old = this.items[index];
+                var dlg = new Northwind.NoteDialog();
+                dlg.dialogTitle = 'Edit Note';
+                dlg.text = old.Text;
+                dlg.okClick = function () {
+                    var text = Q.trimToNull(dlg.text);
+                    if (!text) {
+                        return;
+                    }
+                    _this.items[index].Text = text;
+                    _this.updateContent();
+                    dlg.dialogClose();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                };
+                dlg.dialogOpen();
+            };
+            NotesEditor.prototype.deleteClick = function (e) {
+                var _this = this;
+                e.preventDefault();
+                var index = $(e.target).data('index');
+                Q.confirm('Delete this note?', function () {
+                    _this.items.splice(index, 1);
+                    _this.updateContent();
+                    _this.set_isDirty(true);
+                    _this.onChange && _this.onChange();
+                });
+            };
+            Object.defineProperty(NotesEditor.prototype, "value", {
+                get: function () {
+                    return this.items;
+                },
+                set: function (value) {
+                    this.items = value || [];
+                    this.set_isDirty(false);
+                    this.updateContent();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            NotesEditor.prototype.getEditValue = function (prop, target) {
+                target[prop.name] = this.value;
+            };
+            NotesEditor.prototype.setEditValue = function (source, prop) {
+                this.value = source[prop.name] || [];
+            };
+            NotesEditor.prototype.get_isDirty = function () {
+                return this.isDirty;
+            };
+            NotesEditor.prototype.set_isDirty = function (value) {
+                this.isDirty = value;
+            };
+            NotesEditor = __decorate([
+                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.element("<div/>")
+            ], NotesEditor);
+            return NotesEditor;
+        }(Serenity.TemplatedWidget));
+        Northwind.NotesEditor = NotesEditor;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var FreightFormatter = /** @class */ (function () {
+            function FreightFormatter() {
+            }
+            FreightFormatter.prototype.format = function (ctx) {
+                return "<span class='freight-symbol'>" + Q.htmlEncode(ctx.value) + '</span>';
+            };
+            FreightFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], FreightFormatter);
+            return FreightFormatter;
+        }());
+        Northwind.FreightFormatter = FreightFormatter;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailDialog = /** @class */ (function (_super) {
+            __extends(OrderDetailDialog, _super);
+            function OrderDetailDialog() {
+                var _this = _super.call(this) || this;
+                _this.form = new Northwind.OrderDetailForm(_this.idPrefix);
+                _this.form.ProductID.changeSelect2(function (e) {
+                    var productID = Q.toId(_this.form.ProductID.value);
+                    if (productID != null) {
+                        _this.form.UnitPrice.value = Northwind.ProductRow.getLookup().itemById[productID].UnitPrice;
+                    }
+                });
+                _this.form.Discount.addValidationRule(_this.uniqueName, function (e) {
+                    var price = _this.form.UnitPrice.value;
+                    var quantity = _this.form.Quantity.value;
+                    var discount = _this.form.Discount.value;
+                    if (price != null && quantity != null && discount != null &&
+                        discount > 0 && discount >= price * quantity) {
+                        return "Discount can't be higher than total price!";
+                    }
+                });
+                return _this;
+            }
+            OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
+            OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            OrderDetailDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailDialog);
+            return OrderDetailDialog;
+        }(Serene.Common.GridEditorDialog));
+        Northwind.OrderDetailDialog = OrderDetailDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var OrderDetailsEditor = /** @class */ (function (_super) {
+            __extends(OrderDetailsEditor, _super);
+            function OrderDetailsEditor(container) {
+                return _super.call(this, container) || this;
+            }
+            OrderDetailsEditor.prototype.getColumnsKey = function () { return "Northwind.OrderDetail"; };
+            OrderDetailsEditor.prototype.getDialogType = function () { return Northwind.OrderDetailDialog; };
+            OrderDetailsEditor.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
+            OrderDetailsEditor.prototype.validateEntity = function (row, id) {
+                row.ProductID = Q.toId(row.ProductID);
+                var sameProduct = Q.tryFirst(this.view.getItems(), function (x) { return x.ProductID === row.ProductID; });
+                if (sameProduct && this.id(sameProduct) !== id) {
+                    Q.alert('This product is already in order details!');
+                    return false;
+                }
+                row.ProductName = Northwind.ProductRow.getLookup().itemById[row.ProductID].ProductName;
+                row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
+                return true;
+            };
+            OrderDetailsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], OrderDetailsEditor);
+            return OrderDetailsEditor;
+        }(Serene.Common.GridEditorBase));
+        Northwind.OrderDetailsEditor = OrderDetailsEditor;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2692,50 +4503,6 @@ var Serene;
         }(Serenity.EntityDialog));
         Northwind.ProductDialog = ProductDialog;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../../Northwind/Product/ProductDialog.ts" />
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var CloneableEntityDialog = /** @class */ (function (_super) {
-            __extends(CloneableEntityDialog, _super);
-            function CloneableEntityDialog() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            CloneableEntityDialog.prototype.updateInterface = function () {
-                // by default cloneButton is hidden in base UpdateInterface method
-                _super.prototype.updateInterface.call(this);
-                // here we show it if it is edit mode (not new)
-                this.cloneButton.toggle(this.isEditMode());
-            };
-            /**
-             * Overriding this method is optional to customize cloned entity
-             */
-            CloneableEntityDialog.prototype.getCloningEntity = function () {
-                var clone = _super.prototype.getCloningEntity.call(this);
-                // add (Clone) suffix if it's not already added
-                var suffix = ' (Clone)';
-                if (!Q.endsWith(clone.ProductName || '', suffix)) {
-                    clone.ProductName = (clone.ProductName || '') + suffix;
-                }
-                // it's better to clear image for this sample
-                // otherwise we would have to create a temporary copy of it
-                // and upload
-                clone.ProductImage = null;
-                // let's clear fields not logical to be cloned
-                clone.UnitsInStock = 0;
-                clone.UnitsOnOrder = 0;
-                return clone;
-            };
-            CloneableEntityDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.maximizable()
-            ], CloneableEntityDialog);
-            return CloneableEntityDialog;
-        }(Serene.Northwind.ProductDialog));
-        BasicSamples.CloneableEntityDialog = CloneableEntityDialog;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -2978,6 +4745,477 @@ var Serene;
         Northwind.ProductGrid = ProductGrid;
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var RegionDialog = /** @class */ (function (_super) {
+            __extends(RegionDialog, _super);
+            function RegionDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Northwind.RegionForm(_this.idPrefix);
+                return _this;
+            }
+            RegionDialog.prototype.getFormKey = function () { return Northwind.RegionForm.formKey; };
+            RegionDialog.prototype.getIdProperty = function () { return Northwind.RegionRow.idProperty; };
+            RegionDialog.prototype.getLocalTextPrefix = function () { return Northwind.RegionRow.localTextPrefix; };
+            RegionDialog.prototype.getNameProperty = function () { return Northwind.RegionRow.nameProperty; };
+            RegionDialog.prototype.getService = function () { return Northwind.RegionService.baseUrl; };
+            RegionDialog.prototype.getLanguages = function () {
+                return Serene.LanguageList.getValue();
+            };
+            RegionDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RegionDialog);
+            return RegionDialog;
+        }(Serenity.EntityDialog));
+        Northwind.RegionDialog = RegionDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var RegionGrid = /** @class */ (function (_super) {
+            __extends(RegionGrid, _super);
+            function RegionGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            RegionGrid.prototype.getColumnsKey = function () { return "Northwind.Region"; };
+            RegionGrid.prototype.getDialogType = function () { return Northwind.RegionDialog; };
+            RegionGrid.prototype.getIdProperty = function () { return Northwind.RegionRow.idProperty; };
+            RegionGrid.prototype.getLocalTextPrefix = function () { return Northwind.RegionRow.localTextPrefix; };
+            RegionGrid.prototype.getService = function () { return Northwind.RegionService.baseUrl; };
+            RegionGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], RegionGrid);
+            return RegionGrid;
+        }(Serenity.EntityGrid));
+        Northwind.RegionGrid = RegionGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var PhoneEditor = /** @class */ (function (_super) {
+            __extends(PhoneEditor, _super);
+            function PhoneEditor(input) {
+                var _this = _super.call(this, input) || this;
+                _this.addValidationRule(_this.uniqueName, function (e) {
+                    var value = Q.trimToNull(_this.get_value());
+                    if (value == null) {
+                        return null;
+                    }
+                    return PhoneEditor_1.validate(value, _this.multiple);
+                });
+                input.bind('change', function (e) {
+                    if (!Serenity.WX.hasOriginalEvent(e)) {
+                        return;
+                    }
+                    _this.formatValue();
+                });
+                input.bind('blur', function (e) {
+                    if (_this.element.hasClass('valid')) {
+                        _this.formatValue();
+                    }
+                });
+                return _this;
+            }
+            PhoneEditor_1 = PhoneEditor;
+            PhoneEditor.prototype.formatValue = function () {
+                this.element.val(this.getFormattedValue());
+            };
+            PhoneEditor.prototype.getFormattedValue = function () {
+                var value = this.element.val();
+                if (this.multiple) {
+                    return PhoneEditor_1.formatMulti(value, PhoneEditor_1.formatPhone);
+                }
+                return PhoneEditor_1.formatPhone(value);
+            };
+            PhoneEditor.prototype.get_value = function () {
+                return this.getFormattedValue();
+            };
+            PhoneEditor.prototype.set_value = function (value) {
+                this.element.val(value);
+            };
+            PhoneEditor.validate = function (phone, isMultiple) {
+                var valid = (isMultiple ? PhoneEditor_1.isValidMulti(phone, PhoneEditor_1.isValidPhone) : PhoneEditor_1.isValidPhone(phone));
+                if (valid) {
+                    return null;
+                }
+                return Q.text((isMultiple ? 'Validation.NorthwindPhoneMultiple' : 'Validation.NorthwindPhone'));
+            };
+            PhoneEditor.isValidPhone = function (phone) {
+                if (Q.isEmptyOrNull(phone)) {
+                    return false;
+                }
+                phone = Q.replaceAll(Q.replaceAll(phone, ' ', ''), '-', '');
+                if (phone.length < 10) {
+                    return false;
+                }
+                if (Q.startsWith(phone, '0')) {
+                    phone = phone.substring(1);
+                }
+                if (Q.startsWith(phone, '(') && phone.charAt(4) === ')') {
+                    phone = phone.substr(1, 3) + phone.substring(5);
+                }
+                if (phone.length !== 10) {
+                    return false;
+                }
+                if (Q.startsWith(phone, '0')) {
+                    return false;
+                }
+                for (var i = 0; i < phone.length; i++) {
+                    var c = phone.charAt(i);
+                    if (c < '0' || c > '9') {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            PhoneEditor.formatPhone = function (phone) {
+                if (!PhoneEditor_1.isValidPhone(phone)) {
+                    return phone;
+                }
+                phone = Q.replaceAll(Q.replaceAll(Q.replaceAll(Q.replaceAll(phone, ' ', ''), '-', ''), '(', ''), ')', '');
+                if (Q.startsWith(phone, '0')) {
+                    phone = phone.substring(1);
+                }
+                phone = '(' + phone.substr(0, 3) + ') ' + phone.substr(3, 3) + '-' + phone.substr(6, 2) + phone.substr(8, 2);
+                return phone;
+            };
+            PhoneEditor.formatMulti = function (phone, format) {
+                var phones = Q.replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
+                var result = '';
+                for (var _i = 0, phones_1 = phones; _i < phones_1.length; _i++) {
+                    var x = phones_1[_i];
+                    var s = Q.trimToNull(x);
+                    if (s == null) {
+                        continue;
+                    }
+                    if (result.length > 0) {
+                        result += ', ';
+                    }
+                    result += format(s);
+                }
+                return result;
+            };
+            PhoneEditor.isValidMulti = function (phone, check) {
+                if (Q.isEmptyOrNull(phone)) {
+                    return false;
+                }
+                var phones = Q.replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
+                var anyValid = false;
+                for (var $t1 = 0; $t1 < phones.length; $t1++) {
+                    var x = phones[$t1];
+                    var s = Q.trimToNull(x);
+                    if (s == null) {
+                        continue;
+                    }
+                    if (!check(s)) {
+                        return false;
+                    }
+                    anyValid = true;
+                }
+                if (!anyValid) {
+                    return false;
+                }
+                return true;
+            };
+            var PhoneEditor_1;
+            __decorate([
+                Serenity.Decorators.option()
+            ], PhoneEditor.prototype, "multiple", void 0);
+            PhoneEditor = PhoneEditor_1 = __decorate([
+                Serenity.Decorators.registerEditor()
+            ], PhoneEditor);
+            return PhoneEditor;
+        }(Serenity.StringEditor));
+        Northwind.PhoneEditor = PhoneEditor;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperDialog = /** @class */ (function (_super) {
+            __extends(ShipperDialog, _super);
+            function ShipperDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Northwind.ShipperForm(_this.idPrefix);
+                return _this;
+            }
+            ShipperDialog.prototype.getFormKey = function () { return Northwind.ShipperForm.formKey; };
+            ShipperDialog.prototype.getIdProperty = function () { return Northwind.ShipperRow.idProperty; };
+            ShipperDialog.prototype.getLocalTextPrefix = function () { return Northwind.ShipperRow.localTextPrefix; };
+            ShipperDialog.prototype.getNameProperty = function () { return Northwind.ShipperRow.nameProperty; };
+            ShipperDialog.prototype.getService = function () { return Northwind.ShipperService.baseUrl; };
+            ShipperDialog.prototype.getLanguages = function () {
+                return Serene.LanguageList.getValue();
+            };
+            ShipperDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ShipperDialog);
+            return ShipperDialog;
+        }(Serenity.EntityDialog));
+        Northwind.ShipperDialog = ShipperDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperFormatter = /** @class */ (function () {
+            function ShipperFormatter() {
+            }
+            ShipperFormatter.prototype.format = function (ctx) {
+                return "<span class='shipper-symbol shipper-" +
+                    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
+                    "'>" + Q.htmlEncode(ctx.value) + '</span>';
+            };
+            ShipperFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], ShipperFormatter);
+            return ShipperFormatter;
+        }());
+        Northwind.ShipperFormatter = ShipperFormatter;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var ShipperGrid = /** @class */ (function (_super) {
+            __extends(ShipperGrid, _super);
+            function ShipperGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            ShipperGrid.prototype.getColumnsKey = function () { return "Northwind.Shipper"; };
+            ShipperGrid.prototype.getDialogType = function () { return Northwind.ShipperDialog; };
+            ShipperGrid.prototype.getIdProperty = function () { return Northwind.ShipperRow.idProperty; };
+            ShipperGrid.prototype.getLocalTextPrefix = function () { return Northwind.ShipperRow.localTextPrefix; };
+            ShipperGrid.prototype.getService = function () { return Northwind.ShipperService.baseUrl; };
+            ShipperGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ShipperGrid);
+            return ShipperGrid;
+        }(Serenity.EntityGrid));
+        Northwind.ShipperGrid = ShipperGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SupplierDialog = /** @class */ (function (_super) {
+            __extends(SupplierDialog, _super);
+            function SupplierDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Northwind.SupplierForm(_this.idPrefix);
+                return _this;
+            }
+            SupplierDialog.prototype.getFormKey = function () { return Northwind.SupplierForm.formKey; };
+            SupplierDialog.prototype.getIdProperty = function () { return Northwind.SupplierRow.idProperty; };
+            SupplierDialog.prototype.getLocalTextPrefix = function () { return Northwind.SupplierRow.localTextPrefix; };
+            SupplierDialog.prototype.getNameProperty = function () { return Northwind.SupplierRow.nameProperty; };
+            SupplierDialog.prototype.getService = function () { return Northwind.SupplierService.baseUrl; };
+            SupplierDialog.prototype.getLanguages = function () {
+                return Serene.LanguageList.getValue();
+            };
+            SupplierDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SupplierDialog);
+            return SupplierDialog;
+        }(Serenity.EntityDialog));
+        Northwind.SupplierDialog = SupplierDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var SupplierGrid = /** @class */ (function (_super) {
+            __extends(SupplierGrid, _super);
+            function SupplierGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            SupplierGrid.prototype.getColumnsKey = function () { return "Northwind.Supplier"; };
+            SupplierGrid.prototype.getDialogType = function () { return Northwind.SupplierDialog; };
+            SupplierGrid.prototype.getIdProperty = function () { return Northwind.SupplierRow.idProperty; };
+            SupplierGrid.prototype.getLocalTextPrefix = function () { return Northwind.SupplierRow.localTextPrefix; };
+            SupplierGrid.prototype.getService = function () { return Northwind.SupplierService.baseUrl; };
+            SupplierGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], SupplierGrid);
+            return SupplierGrid;
+        }(Serenity.EntityGrid));
+        Northwind.SupplierGrid = SupplierGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryDialog = /** @class */ (function (_super) {
+            __extends(TerritoryDialog, _super);
+            function TerritoryDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Northwind.TerritoryForm(_this.idPrefix);
+                return _this;
+            }
+            TerritoryDialog.prototype.getFormKey = function () { return Northwind.TerritoryForm.formKey; };
+            TerritoryDialog.prototype.getIdProperty = function () { return Northwind.TerritoryRow.idProperty; };
+            TerritoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.TerritoryRow.localTextPrefix; };
+            TerritoryDialog.prototype.getNameProperty = function () { return Northwind.TerritoryRow.nameProperty; };
+            TerritoryDialog.prototype.getService = function () { return Northwind.TerritoryService.baseUrl; };
+            TerritoryDialog.prototype.getLanguages = function () {
+                return Serene.LanguageList.getValue();
+            };
+            TerritoryDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TerritoryDialog);
+            return TerritoryDialog;
+        }(Serenity.EntityDialog));
+        Northwind.TerritoryDialog = TerritoryDialog;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Northwind;
+    (function (Northwind) {
+        var TerritoryGrid = /** @class */ (function (_super) {
+            __extends(TerritoryGrid, _super);
+            function TerritoryGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            TerritoryGrid.prototype.getColumnsKey = function () { return "Northwind.Territory"; };
+            TerritoryGrid.prototype.getDialogType = function () { return Northwind.TerritoryDialog; };
+            TerritoryGrid.prototype.getIdProperty = function () { return Northwind.TerritoryRow.idProperty; };
+            TerritoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.TerritoryRow.localTextPrefix; };
+            TerritoryGrid.prototype.getService = function () { return Northwind.TerritoryService.baseUrl; };
+            TerritoryGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TerritoryGrid);
+            return TerritoryGrid;
+        }(Serenity.EntityGrid));
+        Northwind.TerritoryGrid = TerritoryGrid;
+    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Authorization;
+    (function (Authorization) {
+        Object.defineProperty(Authorization, 'userDefinition', {
+            get: function () {
+                return Q.getRemoteData('UserData');
+            }
+        });
+        function hasPermission(permissionKey) {
+            var ud = Authorization.userDefinition;
+            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        }
+        Authorization.hasPermission = hasPermission;
+    })(Authorization = Serene.Authorization || (Serene.Authorization = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var ChartInDialog = /** @class */ (function (_super) {
+            __extends(ChartInDialog, _super);
+            function ChartInDialog() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            ChartInDialog_1 = ChartInDialog;
+            ChartInDialog.initializePage = function () {
+                $(function () {
+                    $('#LaunchDialogButton').click(function (e) {
+                        (new ChartInDialog_1()).dialogOpen();
+                    });
+                });
+            };
+            ChartInDialog.prototype.onDialogOpen = function () {
+                var _this = this;
+                _super.prototype.onDialogOpen.call(this);
+                BasicSamples.BasicSamplesService.OrdersByShipper({}, function (response) {
+                    _this.areaChart = new Morris.Area({
+                        element: _this.idPrefix + 'Chart',
+                        resize: true, parseTime: false,
+                        data: response.Values,
+                        xkey: 'Month',
+                        ykeys: response.ShipperKeys, labels: response.ShipperLabels, hideHover: 'auto'
+                    });
+                });
+            };
+            ChartInDialog.prototype.arrange = function () {
+                _super.prototype.arrange.call(this);
+                this.areaChart && this.areaChart.redraw();
+            };
+            ChartInDialog.prototype.getTemplate = function () {
+                // you could also put this in a ChartInDialog.Template.html file. it's here for simplicity.
+                return "<div id='~_Chart'></div>";
+            };
+            ChartInDialog.prototype.getDialogOptions = function () {
+                var opt = _super.prototype.getDialogOptions.call(this);
+                opt.title = 'Orders by Shipper';
+                return opt;
+            };
+            var ChartInDialog_1;
+            ChartInDialog = ChartInDialog_1 = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.resizable(),
+                Serenity.Decorators.maximizable()
+            ], ChartInDialog);
+            return ChartInDialog;
+        }(Serenity.TemplatedDialog));
+        BasicSamples.ChartInDialog = ChartInDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+/// <reference path="../../../Northwind/Product/ProductDialog.ts" />
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
+        var CloneableEntityDialog = /** @class */ (function (_super) {
+            __extends(CloneableEntityDialog, _super);
+            function CloneableEntityDialog() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            CloneableEntityDialog.prototype.updateInterface = function () {
+                // by default cloneButton is hidden in base UpdateInterface method
+                _super.prototype.updateInterface.call(this);
+                // here we show it if it is edit mode (not new)
+                this.cloneButton.toggle(this.isEditMode());
+            };
+            /**
+             * Overriding this method is optional to customize cloned entity
+             */
+            CloneableEntityDialog.prototype.getCloningEntity = function () {
+                var clone = _super.prototype.getCloningEntity.call(this);
+                // add (Clone) suffix if it's not already added
+                var suffix = ' (Clone)';
+                if (!Q.endsWith(clone.ProductName || '', suffix)) {
+                    clone.ProductName = (clone.ProductName || '') + suffix;
+                }
+                // it's better to clear image for this sample
+                // otherwise we would have to create a temporary copy of it
+                // and upload
+                clone.ProductImage = null;
+                // let's clear fields not logical to be cloned
+                clone.UnitsInStock = 0;
+                clone.UnitsOnOrder = 0;
+                return clone;
+            };
+            CloneableEntityDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.maximizable()
+            ], CloneableEntityDialog);
+            return CloneableEntityDialog;
+        }(Serene.Northwind.ProductDialog));
+        BasicSamples.CloneableEntityDialog = CloneableEntityDialog;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Product/ProductGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -2999,108 +5237,6 @@ var Serene;
         }(Serene.Northwind.ProductGrid));
         BasicSamples.CloneableEntityGrid = CloneableEntityGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderGrid = /** @class */ (function (_super) {
-            __extends(OrderGrid, _super);
-            function OrderGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            OrderGrid.prototype.getColumnsKey = function () { return "Northwind.Order"; };
-            OrderGrid.prototype.getDialogType = function () { return Northwind.OrderDialog; };
-            OrderGrid.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderGrid.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderGrid.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderGrid.prototype.getQuickFilters = function () {
-                var _this = this;
-                var filters = _super.prototype.getQuickFilters.call(this);
-                filters.push({
-                    type: Serenity.LookupEditor,
-                    options: {
-                        lookupKey: Northwind.ProductRow.lookupKey
-                    },
-                    field: 'ProductID',
-                    title: 'Contains Product in Details',
-                    handler: function (w) {
-                        _this.view.params.ProductID = Q.toId(w.value);
-                    },
-                    cssClass: 'hidden-xs'
-                });
-                return filters;
-            };
-            OrderGrid.prototype.createQuickFilters = function () {
-                _super.prototype.createQuickFilters.call(this);
-                this.shippingStateFilter = this.findQuickFilter(Serenity.EnumEditor, "ShippingState" /* ShippingState */);
-            };
-            OrderGrid.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
-                    grid: this,
-                    service: Northwind.OrderService.baseUrl + '/ListExcel',
-                    onViewSubmit: function () { return _this.onViewSubmit(); },
-                    separator: true
-                }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
-                    grid: this,
-                    onViewSubmit: function () { return _this.onViewSubmit(); }
-                }));
-                return buttons;
-            };
-            OrderGrid.prototype.getColumns = function () {
-                var columns = _super.prototype.getColumns.call(this);
-                columns.splice(1, 0, {
-                    field: 'Print Invoice',
-                    name: '',
-                    format: function (ctx) { return '<a class="inline-action print-invoice" title="invoice">' +
-                        '<i class="fa fa-file-pdf-o text-red"></i></a>'; },
-                    width: 24,
-                    minWidth: 24,
-                    maxWidth: 24
-                });
-                return columns;
-            };
-            OrderGrid.prototype.onClick = function (e, row, cell) {
-                _super.prototype.onClick.call(this, e, row, cell);
-                if (e.isDefaultPrevented())
-                    return;
-                var item = this.itemAt(row);
-                var target = $(e.target);
-                // if user clicks "i" element, e.g. icon
-                if (target.parent().hasClass('inline-action'))
-                    target = target.parent();
-                if (target.hasClass('inline-action')) {
-                    e.preventDefault();
-                    if (target.hasClass('print-invoice')) {
-                        Serene.Common.ReportHelper.execute({
-                            reportKey: 'Northwind.OrderDetail',
-                            params: {
-                                OrderID: item.OrderID
-                            }
-                        });
-                    }
-                }
-            };
-            OrderGrid.prototype.set_shippingState = function (value) {
-                this.shippingStateFilter.value = value == null ? '' : value.toString();
-            };
-            OrderGrid.prototype.addButtonClick = function () {
-                var eq = this.view.params.EqualityFilter;
-                this.editItem({
-                    CustomerID: eq ? eq.CustomerID : null
-                });
-            };
-            OrderGrid = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.filterable()
-            ], OrderGrid);
-            return OrderGrid;
-        }(Serenity.EntityGrid));
-        Northwind.OrderGrid = OrderGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
@@ -3255,48 +5391,6 @@ var Serene;
         })(DialogBoxes = BasicSamples.DialogBoxes || (BasicSamples.DialogBoxes = {}));
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDialog = /** @class */ (function (_super) {
-            __extends(OrderDialog, _super);
-            function OrderDialog() {
-                var _this = _super.call(this) || this;
-                _this.form = new Northwind.OrderForm(_this.idPrefix);
-                return _this;
-            }
-            OrderDialog.prototype.getFormKey = function () { return Northwind.OrderForm.formKey; };
-            OrderDialog.prototype.getIdProperty = function () { return Northwind.OrderRow.idProperty; };
-            OrderDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderRow.localTextPrefix; };
-            OrderDialog.prototype.getNameProperty = function () { return Northwind.OrderRow.nameProperty; };
-            OrderDialog.prototype.getService = function () { return Northwind.OrderService.baseUrl; };
-            OrderDialog.prototype.getToolbarButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getToolbarButtons.call(this);
-                buttons.push(Serene.Common.ReportHelper.createToolButton({
-                    title: 'Invoice',
-                    cssClass: 'export-pdf-button',
-                    reportKey: 'Northwind.OrderDetail',
-                    getParams: function () { return ({
-                        OrderID: _this.get_entityId()
-                    }); }
-                }));
-                return buttons;
-            };
-            OrderDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                this.toolbar.findButton('export-pdf-button').toggle(this.isEditMode());
-            };
-            OrderDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.panel()
-            ], OrderDialog);
-            return OrderDialog;
-        }(Serenity.EntityDialog));
-        Northwind.OrderDialog = OrderDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderDialog.ts" />
 var Serene;
 (function (Serene) {
@@ -3325,30 +5419,6 @@ var Serene;
         }(Serene.Northwind.OrderDialog));
         BasicSamples.EntityDialogAsPanel = EntityDialogAsPanel;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryDialog = /** @class */ (function (_super) {
-            __extends(CategoryDialog, _super);
-            function CategoryDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Northwind.CategoryForm(_this.idPrefix);
-                return _this;
-            }
-            CategoryDialog.prototype.getFormKey = function () { return Northwind.CategoryForm.formKey; };
-            CategoryDialog.prototype.getIdProperty = function () { return Northwind.CategoryRow.idProperty; };
-            CategoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
-            CategoryDialog.prototype.getNameProperty = function () { return Northwind.CategoryRow.nameProperty; };
-            CategoryDialog.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
-            CategoryDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], CategoryDialog);
-            return CategoryDialog;
-        }(Serenity.EntityDialog));
-        Northwind.CategoryDialog = CategoryDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Category/CategoryDialog.ts" />
 var Serene;
@@ -3387,28 +5457,6 @@ var Serene;
         }(Serene.Northwind.CategoryDialog));
         BasicSamples.GetInsertedRecordIdDialog = GetInsertedRecordIdDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CategoryGrid = /** @class */ (function (_super) {
-            __extends(CategoryGrid, _super);
-            function CategoryGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            CategoryGrid.prototype.getColumnsKey = function () { return "Northwind.Category"; };
-            CategoryGrid.prototype.getDialogType = function () { return Northwind.CategoryDialog; };
-            CategoryGrid.prototype.getIdProperty = function () { return Northwind.CategoryRow.idProperty; };
-            CategoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.CategoryRow.localTextPrefix; };
-            CategoryGrid.prototype.getService = function () { return Northwind.CategoryService.baseUrl; };
-            CategoryGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], CategoryGrid);
-            return CategoryGrid;
-        }(Serenity.EntityGrid));
-        Northwind.CategoryGrid = CategoryGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Category/CategoryGrid.ts" />
 var Serene;
@@ -3829,33 +5877,6 @@ var Serene;
         BasicSamples.PopulateLinkedDataGrid = PopulateLinkedDataGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SupplierDialog = /** @class */ (function (_super) {
-            __extends(SupplierDialog, _super);
-            function SupplierDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Northwind.SupplierForm(_this.idPrefix);
-                return _this;
-            }
-            SupplierDialog.prototype.getFormKey = function () { return Northwind.SupplierForm.formKey; };
-            SupplierDialog.prototype.getIdProperty = function () { return Northwind.SupplierRow.idProperty; };
-            SupplierDialog.prototype.getLocalTextPrefix = function () { return Northwind.SupplierRow.localTextPrefix; };
-            SupplierDialog.prototype.getNameProperty = function () { return Northwind.SupplierRow.nameProperty; };
-            SupplierDialog.prototype.getService = function () { return Northwind.SupplierService.baseUrl; };
-            SupplierDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
-            SupplierDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SupplierDialog);
-            return SupplierDialog;
-        }(Serenity.EntityDialog));
-        Northwind.SupplierDialog = SupplierDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Supplier/SupplierDialog.ts" />
 var Serene;
 (function (Serene) {
@@ -3956,28 +5977,6 @@ var Serene;
         BasicSamples.ReadOnlyDialog = ReadOnlyDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var SupplierGrid = /** @class */ (function (_super) {
-            __extends(SupplierGrid, _super);
-            function SupplierGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            SupplierGrid.prototype.getColumnsKey = function () { return "Northwind.Supplier"; };
-            SupplierGrid.prototype.getDialogType = function () { return Northwind.SupplierDialog; };
-            SupplierGrid.prototype.getIdProperty = function () { return Northwind.SupplierRow.idProperty; };
-            SupplierGrid.prototype.getLocalTextPrefix = function () { return Northwind.SupplierRow.localTextPrefix; };
-            SupplierGrid.prototype.getService = function () { return Northwind.SupplierService.baseUrl; };
-            SupplierGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], SupplierGrid);
-            return SupplierGrid;
-        }(Serenity.EntityGrid));
-        Northwind.SupplierGrid = SupplierGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Supplier/SupplierGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -4057,58 +6056,6 @@ var Serene;
         BasicSamples.ResponsiveGrid = ResponsiveGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerDialog = /** @class */ (function (_super) {
-            __extends(CustomerDialog, _super);
-            function CustomerDialog() {
-                var _this = _super.call(this) || this;
-                _this.form = new Northwind.CustomerForm(_this.idPrefix);
-                _this.ordersGrid = new Northwind.CustomerOrdersGrid(_this.byId('OrdersGrid'));
-                // force order dialog to open in Dialog mode instead of Panel mode
-                // which is set as default on OrderDialog with @panelAttribute
-                _this.ordersGrid.openDialogsAsPanel = false;
-                _this.byId('NoteList').closest('.field').hide().end().appendTo(_this.byId('TabNotes'));
-                Serene.DialogUtils.pendingChangesConfirmation(_this.element, function () { return _this.getSaveState() != _this.loadedState; });
-                return _this;
-            }
-            CustomerDialog.prototype.getFormKey = function () { return Northwind.CustomerForm.formKey; };
-            CustomerDialog.prototype.getIdProperty = function () { return Northwind.CustomerRow.idProperty; };
-            CustomerDialog.prototype.getLocalTextPrefix = function () { return Northwind.CustomerRow.localTextPrefix; };
-            CustomerDialog.prototype.getNameProperty = function () { return Northwind.CustomerRow.nameProperty; };
-            CustomerDialog.prototype.getService = function () { return Northwind.CustomerService.baseUrl; };
-            CustomerDialog.prototype.getSaveState = function () {
-                try {
-                    return $.toJSON(this.getSaveEntity());
-                }
-                catch (e) {
-                    return null;
-                }
-            };
-            CustomerDialog.prototype.loadResponse = function (data) {
-                _super.prototype.loadResponse.call(this, data);
-                this.loadedState = this.getSaveState();
-            };
-            CustomerDialog.prototype.loadEntity = function (entity) {
-                _super.prototype.loadEntity.call(this, entity);
-                Serenity.TabsExtensions.setDisabled(this.tabs, 'Orders', this.isNewOrDeleted());
-                this.ordersGrid.customerID = entity.CustomerID;
-            };
-            CustomerDialog.prototype.onSaveSuccess = function (response) {
-                _super.prototype.onSaveSuccess.call(this, response);
-                Q.reloadLookup('Northwind.Customer');
-            };
-            CustomerDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.panel()
-            ], CustomerDialog);
-            return CustomerDialog;
-        }(Serenity.EntityDialog));
-        Northwind.CustomerDialog = CustomerDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Customer/CustomerDialog.ts" />
 var Serene;
 (function (Serene) {
@@ -4157,44 +6104,6 @@ var Serene;
         BasicSamples.SerialAutoNumberDialog = SerialAutoNumberDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerGrid = /** @class */ (function (_super) {
-            __extends(CustomerGrid, _super);
-            function CustomerGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            CustomerGrid.prototype.getColumnsKey = function () { return "Northwind.Customer"; };
-            CustomerGrid.prototype.getDialogType = function () { return Northwind.CustomerDialog; };
-            CustomerGrid.prototype.getIdProperty = function () { return Northwind.CustomerRow.idProperty; };
-            CustomerGrid.prototype.getLocalTextPrefix = function () { return Northwind.CustomerRow.localTextPrefix; };
-            CustomerGrid.prototype.getService = function () { return Northwind.CustomerService.baseUrl; };
-            CustomerGrid.prototype.getButtons = function () {
-                var _this = this;
-                var buttons = _super.prototype.getButtons.call(this);
-                buttons.push(Serene.Common.ExcelExportHelper.createToolButton({
-                    grid: this,
-                    onViewSubmit: function () { return _this.onViewSubmit(); },
-                    service: 'Northwind/Customer/ListExcel',
-                    separator: true
-                }));
-                buttons.push(Serene.Common.PdfExportHelper.createToolButton({
-                    grid: this,
-                    onViewSubmit: function () { return _this.onViewSubmit(); }
-                }));
-                return buttons;
-            };
-            CustomerGrid = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.filterable()
-            ], CustomerGrid);
-            return CustomerGrid;
-        }(Serenity.EntityGrid));
-        Northwind.CustomerGrid = CustomerGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Customer/CustomerGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -4216,42 +6125,6 @@ var Serene;
         }(Serene.Northwind.CustomerGrid));
         BasicSamples.SerialAutoNumberGrid = SerialAutoNumberGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var GridEditorDialog = /** @class */ (function (_super) {
-            __extends(GridEditorDialog, _super);
-            function GridEditorDialog() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorDialog.prototype.destroy = function () {
-                this.onSave = null;
-                this.onDelete = null;
-                _super.prototype.destroy.call(this);
-            };
-            GridEditorDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                // apply changes button doesn't work properly with in-memory grids yet
-                if (this.applyChangesButton) {
-                    this.applyChangesButton.hide();
-                }
-            };
-            GridEditorDialog.prototype.saveHandler = function (options, callback) {
-                this.onSave && this.onSave(options, callback);
-            };
-            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
-                this.onDelete && this.onDelete(options, callback);
-            };
-            GridEditorDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridEditorDialog);
-            return GridEditorDialog;
-        }(Serenity.EntityDialog));
-        Common.GridEditorDialog = GridEditorDialog;
-    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Common/Helpers/GridEditorDialog.ts" />
 var Serene;
@@ -4326,43 +6199,6 @@ var Serene;
         BasicSamples.ChangingLookupTextEditor = ChangingLookupTextEditor;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailDialog = /** @class */ (function (_super) {
-            __extends(OrderDetailDialog, _super);
-            function OrderDetailDialog() {
-                var _this = _super.call(this) || this;
-                _this.form = new Northwind.OrderDetailForm(_this.idPrefix);
-                _this.form.ProductID.changeSelect2(function (e) {
-                    var productID = Q.toId(_this.form.ProductID.value);
-                    if (productID != null) {
-                        _this.form.UnitPrice.value = Northwind.ProductRow.getLookup().itemById[productID].UnitPrice;
-                    }
-                });
-                _this.form.Discount.addValidationRule(_this.uniqueName, function (e) {
-                    var price = _this.form.UnitPrice.value;
-                    var quantity = _this.form.Quantity.value;
-                    var discount = _this.form.Discount.value;
-                    if (price != null && quantity != null && discount != null &&
-                        discount > 0 && discount >= price * quantity) {
-                        return "Discount can't be higher than total price!";
-                    }
-                });
-                return _this;
-            }
-            OrderDetailDialog.prototype.getFormKey = function () { return Northwind.OrderDetailForm.formKey; };
-            OrderDetailDialog.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
-            OrderDetailDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], OrderDetailDialog);
-            return OrderDetailDialog;
-        }(Serene.Common.GridEditorDialog));
-        Northwind.OrderDetailDialog = OrderDetailDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/OrderDetail/OrderDetailDialog.ts" />
 var Serene;
 (function (Serene) {
@@ -4404,176 +6240,6 @@ var Serene;
         }(Serene.Northwind.OrderDetailDialog));
         BasicSamples.FilteredLookupOrderDetailDialog = FilteredLookupOrderDetailDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var GridEditorBase = /** @class */ (function (_super) {
-            __extends(GridEditorBase, _super);
-            function GridEditorBase(container) {
-                var _this = _super.call(this, container) || this;
-                _this.nextId = 1;
-                return _this;
-            }
-            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorBase.prototype.id = function (entity) {
-                return entity[this.getIdProperty()];
-            };
-            GridEditorBase.prototype.getNextId = function () {
-                return "`" + this.nextId++;
-            };
-            GridEditorBase.prototype.setNewId = function (entity) {
-                entity[this.getIdProperty()] = this.getNextId();
-            };
-            GridEditorBase.prototype.save = function (opt, callback) {
-                var _this = this;
-                var request = opt.request;
-                var row = Q.deepClone(request.Entity);
-                var id = this.id(row);
-                if (id == null) {
-                    row[this.getIdProperty()] = this.getNextId();
-                }
-                if (!this.validateEntity(row, id)) {
-                    return;
-                }
-                var items = this.view.getItems().slice();
-                if (id == null) {
-                    items.push(row);
-                }
-                else {
-                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
-                    items[index] = Q.deepClone({}, items[index], row);
-                }
-                this.setEntities(items);
-                callback({});
-            };
-            GridEditorBase.prototype.deleteEntity = function (id) {
-                this.view.deleteItem(id);
-                return true;
-            };
-            GridEditorBase.prototype.validateEntity = function (row, id) {
-                return true;
-            };
-            GridEditorBase.prototype.setEntities = function (items) {
-                this.view.setItems(items, true);
-            };
-            GridEditorBase.prototype.getNewEntity = function () {
-                return {};
-            };
-            GridEditorBase.prototype.getButtons = function () {
-                var _this = this;
-                return [{
-                        title: this.getAddButtonCaption(),
-                        cssClass: 'add-button',
-                        onClick: function () {
-                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
-                                var dialog = dlg;
-                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
-                            });
-                        }
-                    }];
-            };
-            GridEditorBase.prototype.editItem = function (entityOrId) {
-                var _this = this;
-                var id = entityOrId;
-                var item = this.view.getItemById(id);
-                this.createEntityDialog(this.getItemType(), function (dlg) {
-                    var dialog = dlg;
-                    dialog.onDelete = function (opt, callback) {
-                        if (!_this.deleteEntity(id)) {
-                            return;
-                        }
-                        callback({});
-                    };
-                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                    dialog.loadEntityAndOpenDialog(item);
-                });
-                ;
-            };
-            GridEditorBase.prototype.getEditValue = function (property, target) {
-                target[property.name] = this.value;
-            };
-            GridEditorBase.prototype.setEditValue = function (source, property) {
-                this.value = source[property.name];
-            };
-            Object.defineProperty(GridEditorBase.prototype, "value", {
-                get: function () {
-                    var p = this.getIdProperty();
-                    return this.view.getItems().map(function (x) {
-                        var y = Q.deepClone(x);
-                        var id = y[p];
-                        if (id && id.toString().charAt(0) == '`')
-                            delete y[p];
-                        return y;
-                    });
-                },
-                set: function (value) {
-                    var _this = this;
-                    var p = this.getIdProperty();
-                    this.view.setItems((value || []).map(function (x) {
-                        var y = Q.deepClone(x);
-                        if (y[p] == null)
-                            y[p] = "`" + _this.getNextId();
-                        return y;
-                    }), true);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            GridEditorBase.prototype.getGridCanLoad = function () {
-                return false;
-            };
-            GridEditorBase.prototype.usePager = function () {
-                return false;
-            };
-            GridEditorBase.prototype.getInitialTitle = function () {
-                return null;
-            };
-            GridEditorBase.prototype.createQuickSearchInput = function () {
-            };
-            GridEditorBase = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.element("<div/>")
-            ], GridEditorBase);
-            return GridEditorBase;
-        }(Serenity.EntityGrid));
-        Common.GridEditorBase = GridEditorBase;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var OrderDetailsEditor = /** @class */ (function (_super) {
-            __extends(OrderDetailsEditor, _super);
-            function OrderDetailsEditor(container) {
-                return _super.call(this, container) || this;
-            }
-            OrderDetailsEditor.prototype.getColumnsKey = function () { return "Northwind.OrderDetail"; };
-            OrderDetailsEditor.prototype.getDialogType = function () { return Northwind.OrderDetailDialog; };
-            OrderDetailsEditor.prototype.getLocalTextPrefix = function () { return Northwind.OrderDetailRow.localTextPrefix; };
-            OrderDetailsEditor.prototype.validateEntity = function (row, id) {
-                row.ProductID = Q.toId(row.ProductID);
-                var sameProduct = Q.tryFirst(this.view.getItems(), function (x) { return x.ProductID === row.ProductID; });
-                if (sameProduct && this.id(sameProduct) !== id) {
-                    Q.alert('This product is already in order details!');
-                    return false;
-                }
-                row.ProductName = Northwind.ProductRow.getLookup().itemById[row.ProductID].ProductName;
-                row.LineTotal = (row.Quantity || 0) * (row.UnitPrice || 0) - (row.Discount || 0);
-                return true;
-            };
-            OrderDetailsEditor = __decorate([
-                Serenity.Decorators.registerClass()
-            ], OrderDetailsEditor);
-            return OrderDetailsEditor;
-        }(Serene.Common.GridEditorBase));
-        Northwind.OrderDetailsEditor = OrderDetailsEditor;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/OrderDetail/OrderDetailsEditor.ts" />
 var Serene;
@@ -4863,162 +6529,6 @@ var Serene;
         }(Serenity.PropertyDialog));
         BasicSamples.StaticTextBlockDialog = StaticTextBlockDialog;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var BulkServiceAction = /** @class */ (function () {
-            function BulkServiceAction() {
-            }
-            BulkServiceAction.prototype.createProgressDialog = function () {
-                this.progressDialog = new Serene.BasicProgressDialog();
-                this.progressDialog.dialogOpen();
-                this.progressDialog.max = this.keys.length;
-                this.progressDialog.value = 0;
-            };
-            BulkServiceAction.prototype.getConfirmationFormat = function () {
-                return Q.text('Site.BulkServiceAction.ConfirmationFormat');
-            };
-            BulkServiceAction.prototype.getConfirmationMessage = function (targetCount) {
-                return Q.format(this.getConfirmationFormat(), targetCount);
-            };
-            BulkServiceAction.prototype.confirm = function (targetCount, action) {
-                Q.confirm(this.getConfirmationMessage(targetCount), action);
-            };
-            BulkServiceAction.prototype.getNothingToProcessMessage = function () {
-                return Q.text('Site.BulkServiceAction.NothingToProcess');
-            };
-            BulkServiceAction.prototype.nothingToProcess = function () {
-                Q.notifyError(this.getNothingToProcessMessage());
-            };
-            BulkServiceAction.prototype.getParallelRequests = function () {
-                return 1;
-            };
-            BulkServiceAction.prototype.getBatchSize = function () {
-                return 1;
-            };
-            BulkServiceAction.prototype.startParallelExecution = function () {
-                this.createProgressDialog();
-                this.successCount = 0;
-                this.errorCount = 0;
-                this.pendingRequests = 0;
-                this.completedRequests = 0;
-                this.errorCount = 0;
-                this.errorByKey = {};
-                this.queue = this.keys.slice();
-                this.queueIndex = 0;
-                var parallelRequests = this.getParallelRequests();
-                while (parallelRequests-- > 0) {
-                    this.executeNextBatch();
-                }
-            };
-            BulkServiceAction.prototype.serviceCallCleanup = function () {
-                this.pendingRequests--;
-                this.completedRequests++;
-                var title = Q.text((this.progressDialog.cancelled ?
-                    'Site.BasicProgressDialog.CancelTitle' : 'Site.BasicProgressDialog.PleaseWait'));
-                title += ' (';
-                if (this.successCount > 0) {
-                    title += Q.format(Q.text('Site.BulkServiceAction.SuccessCount'), this.successCount);
-                }
-                if (this.errorCount > 0) {
-                    if (this.successCount > 0) {
-                        title += ', ';
-                    }
-                    title += Q.format(Q.text('Site.BulkServiceAction.ErrorCount'), this.errorCount);
-                }
-                this.progressDialog.title = title + ')';
-                this.progressDialog.value = this.successCount + this.errorCount;
-                if (!this.progressDialog.cancelled && this.progressDialog.value < this.keys.length) {
-                    this.executeNextBatch();
-                }
-                else if (this.pendingRequests === 0) {
-                    this.progressDialog.dialogClose();
-                    this.showResults();
-                    if (this.done) {
-                        this.done();
-                        this.done = null;
-                    }
-                }
-            };
-            BulkServiceAction.prototype.executeForBatch = function (batch) {
-            };
-            BulkServiceAction.prototype.executeNextBatch = function () {
-                var batchSize = this.getBatchSize();
-                var batch = [];
-                while (true) {
-                    if (batch.length >= batchSize) {
-                        break;
-                    }
-                    if (this.queueIndex >= this.queue.length) {
-                        break;
-                    }
-                    batch.push(this.queue[this.queueIndex++]);
-                }
-                if (batch.length > 0) {
-                    this.pendingRequests++;
-                    this.executeForBatch(batch);
-                }
-            };
-            BulkServiceAction.prototype.getAllHadErrorsFormat = function () {
-                return Q.text('Site.BulkServiceAction.AllHadErrorsFormat');
-            };
-            BulkServiceAction.prototype.showAllHadErrors = function () {
-                Q.notifyError(Q.format(this.getAllHadErrorsFormat(), this.errorCount));
-            };
-            BulkServiceAction.prototype.getSomeHadErrorsFormat = function () {
-                return Q.text('Site.BulkServiceAction.SomeHadErrorsFormat');
-            };
-            BulkServiceAction.prototype.showSomeHadErrors = function () {
-                Q.notifyWarning(Q.format(this.getSomeHadErrorsFormat(), this.successCount, this.errorCount));
-            };
-            BulkServiceAction.prototype.getAllSuccessFormat = function () {
-                return Q.text('Site.BulkServiceAction.AllSuccessFormat');
-            };
-            BulkServiceAction.prototype.showAllSuccess = function () {
-                Q.notifySuccess(Q.format(this.getAllSuccessFormat(), this.successCount));
-            };
-            BulkServiceAction.prototype.showResults = function () {
-                if (this.errorCount === 0 && this.successCount === 0) {
-                    this.nothingToProcess();
-                    return;
-                }
-                if (this.errorCount > 0 && this.successCount === 0) {
-                    this.showAllHadErrors();
-                    return;
-                }
-                if (this.errorCount > 0) {
-                    this.showSomeHadErrors();
-                    return;
-                }
-                this.showAllSuccess();
-            };
-            BulkServiceAction.prototype.execute = function (keys) {
-                var _this = this;
-                this.keys = keys;
-                if (this.keys.length === 0) {
-                    this.nothingToProcess();
-                    return;
-                }
-                this.confirm(this.keys.length, function () { return _this.startParallelExecution(); });
-            };
-            BulkServiceAction.prototype.get_successCount = function () {
-                return this.successCount;
-            };
-            BulkServiceAction.prototype.set_successCount = function (value) {
-                this.successCount = value;
-            };
-            BulkServiceAction.prototype.get_errorCount = function () {
-                return this.errorCount;
-            };
-            BulkServiceAction.prototype.set_errorCount = function (value) {
-                this.errorCount = value;
-            };
-            return BulkServiceAction;
-        }());
-        Common.BulkServiceAction = BulkServiceAction;
-    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 /// <reference path="../../../Common/Helpers/BulkServiceAction.ts" />
 var Serene;
@@ -6287,6 +7797,47 @@ var Serene;
 (function (Serene) {
     var BasicSamples;
     (function (BasicSamples) {
+        var ViewWithoutIDGrid = /** @class */ (function (_super) {
+            __extends(ViewWithoutIDGrid, _super);
+            function ViewWithoutIDGrid(container) {
+                var _this = _super.call(this, container) || this;
+                // this is our autoincrementing counter
+                _this.nextId = 1;
+                return _this;
+            }
+            ViewWithoutIDGrid.prototype.getColumnsKey = function () { return "Northwind.SalesByCategory"; };
+            ViewWithoutIDGrid.prototype.getIdProperty = function () { return "__id"; };
+            ViewWithoutIDGrid.prototype.getNameProperty = function () { return Serene.Northwind.SalesByCategoryRow.nameProperty; };
+            ViewWithoutIDGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.SalesByCategoryRow.localTextPrefix; };
+            ViewWithoutIDGrid.prototype.getService = function () { return Serene.Northwind.SalesByCategoryService.baseUrl; };
+            /**
+             * This method is called to preprocess data returned from the list service
+             */
+            ViewWithoutIDGrid.prototype.onViewProcessData = function (response) {
+                response = _super.prototype.onViewProcessData.call(this, response);
+                // there is no __id property in SalesByCategoryRow but 
+                // this is javascript and we can set any property of an object
+                for (var _i = 0, _a = response.Entities; _i < _a.length; _i++) {
+                    var x = _a[_i];
+                    x.__id = this.nextId++;
+                }
+                return response;
+            };
+            ViewWithoutIDGrid.prototype.getButtons = function () {
+                return [];
+            };
+            ViewWithoutIDGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ViewWithoutIDGrid);
+            return ViewWithoutIDGrid;
+        }(Serenity.EntityGrid));
+        BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
+    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var BasicSamples;
+    (function (BasicSamples) {
         var VSGalleryQAGrid = /** @class */ (function (_super) {
             __extends(VSGalleryQAGrid, _super);
             function VSGalleryQAGrid(container) {
@@ -6336,47 +7887,6 @@ var Serene;
         BasicSamples.VSGalleryQAGrid = VSGalleryQAGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicSamples;
-    (function (BasicSamples) {
-        var ViewWithoutIDGrid = /** @class */ (function (_super) {
-            __extends(ViewWithoutIDGrid, _super);
-            function ViewWithoutIDGrid(container) {
-                var _this = _super.call(this, container) || this;
-                // this is our autoincrementing counter
-                _this.nextId = 1;
-                return _this;
-            }
-            ViewWithoutIDGrid.prototype.getColumnsKey = function () { return "Northwind.SalesByCategory"; };
-            ViewWithoutIDGrid.prototype.getIdProperty = function () { return "__id"; };
-            ViewWithoutIDGrid.prototype.getNameProperty = function () { return Serene.Northwind.SalesByCategoryRow.nameProperty; };
-            ViewWithoutIDGrid.prototype.getLocalTextPrefix = function () { return Serene.Northwind.SalesByCategoryRow.localTextPrefix; };
-            ViewWithoutIDGrid.prototype.getService = function () { return Serene.Northwind.SalesByCategoryService.baseUrl; };
-            /**
-             * This method is called to preprocess data returned from the list service
-             */
-            ViewWithoutIDGrid.prototype.onViewProcessData = function (response) {
-                response = _super.prototype.onViewProcessData.call(this, response);
-                // there is no __id property in SalesByCategoryRow but 
-                // this is javascript and we can set any property of an object
-                for (var _i = 0, _a = response.Entities; _i < _a.length; _i++) {
-                    var x = _a[_i];
-                    x.__id = this.nextId++;
-                }
-                return response;
-            };
-            ViewWithoutIDGrid.prototype.getButtons = function () {
-                return [];
-            };
-            ViewWithoutIDGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ViewWithoutIDGrid);
-            return ViewWithoutIDGrid;
-        }(Serenity.EntityGrid));
-        BasicSamples.ViewWithoutIDGrid = ViewWithoutIDGrid;
-    })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
 /// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 var Serene;
 (function (Serene) {
@@ -6394,849 +7904,6 @@ var Serene;
         }(Serene.Northwind.OrderGrid));
         BasicSamples.WrappedHeadersGrid = WrappedHeadersGrid;
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var LanguageList;
-    (function (LanguageList) {
-        function getValue() {
-            var result = [];
-            for (var _i = 0, _a = Serene.Administration.LanguageRow.getLookup().items; _i < _a.length; _i++) {
-                var k = _a[_i];
-                if (k.LanguageId !== 'en') {
-                    result.push([k.Id.toString(), k.LanguageName]);
-                }
-            }
-            return result;
-        }
-        LanguageList.getValue = getValue;
-    })(LanguageList = Serene.LanguageList || (Serene.LanguageList = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../Common/Helpers/LanguageList.ts" />
-var Serene;
-(function (Serene) {
-    var ScriptInitialization;
-    (function (ScriptInitialization) {
-        Q.Config.responsiveDialogs = true;
-        Q.Config.rootNamespaces.push('Serene');
-        Serenity.EntityDialog.defaultLanguageList = Serene.LanguageList.getValue;
-        if ($.fn['colorbox']) {
-            $.fn['colorbox'].settings.maxWidth = "95%";
-            $.fn['colorbox'].settings.maxHeight = "95%";
-        }
-        window.onerror = Q.ErrorHandling.runtimeErrorHandler;
-    })(ScriptInitialization = Serene.ScriptInitialization || (Serene.ScriptInitialization = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var BasicProgressDialog = /** @class */ (function (_super) {
-        __extends(BasicProgressDialog, _super);
-        function BasicProgressDialog() {
-            var _this = _super.call(this) || this;
-            _this.byId('ProgressBar').progressbar({
-                max: 100,
-                value: 0,
-                change: function (e, v) {
-                    _this.byId('ProgressLabel').text(_this.value + ' / ' + _this.max);
-                }
-            });
-            return _this;
-        }
-        Object.defineProperty(BasicProgressDialog.prototype, "max", {
-            get: function () {
-                return this.byId('ProgressBar').progressbar().progressbar('option', 'max');
-            },
-            set: function (value) {
-                this.byId('ProgressBar').progressbar().progressbar('option', 'max', value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(BasicProgressDialog.prototype, "value", {
-            get: function () {
-                return this.byId('ProgressBar').progressbar('value');
-            },
-            set: function (value) {
-                this.byId('ProgressBar').progressbar().progressbar('value', value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(BasicProgressDialog.prototype, "title", {
-            get: function () {
-                return this.element.dialog().dialog('option', 'title');
-            },
-            set: function (value) {
-                this.element.dialog().dialog('option', 'title', value);
-            },
-            enumerable: true,
-            configurable: true
-        });
-        BasicProgressDialog.prototype.getDialogOptions = function () {
-            var _this = this;
-            var opt = _super.prototype.getDialogOptions.call(this);
-            opt.title = Q.text('Site.BasicProgressDialog.PleaseWait');
-            opt.width = 600;
-            opt.buttons = [{
-                    text: Q.text('Dialogs.CancelButton'),
-                    click: function () {
-                        _this.cancelled = true;
-                        _this.element.closest('.ui-dialog')
-                            .find('.ui-dialog-buttonpane .ui-button')
-                            .attr('disabled', 'disabled')
-                            .css('opacity', '0.5');
-                        _this.element.dialog('option', 'title', Q.trimToNull(_this.cancelTitle) ||
-                            Q.text('Site.BasicProgressDialog.CancelTitle'));
-                    }
-                }];
-            return opt;
-        };
-        BasicProgressDialog.prototype.initDialog = function () {
-            _super.prototype.initDialog.call(this);
-            this.element.closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
-        };
-        BasicProgressDialog.prototype.getTemplate = function () {
-            return ("<div class='s-DialogContent s-BasicProgressDialogContent'>" +
-                "<div id='~_StatusText' class='status-text' ></div>" +
-                "<div id='~_ProgressBar' class='progress-bar'>" +
-                "<div id='~_ProgressLabel' class='progress-label' ></div>" +
-                "</div>" +
-                "</div>");
-        };
-        return BasicProgressDialog;
-    }(Serenity.TemplatedDialog));
-    Serene.BasicProgressDialog = BasicProgressDialog;
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var DialogUtils;
-    (function (DialogUtils) {
-        function pendingChangesConfirmation(element, hasPendingChanges) {
-            element.on('dialogbeforeclose panelbeforeclose', function (e) {
-                if (!Serenity.WX.hasOriginalEvent(e) || !hasPendingChanges()) {
-                    return;
-                }
-                e.preventDefault();
-                Q.confirm('You have pending changes. Save them?', function () { return element.find('div.save-and-close-button').click(); }, {
-                    onNo: function () {
-                        if (element.hasClass('ui-dialog-content'))
-                            element.dialog('close');
-                        else if (element.hasClass('s-Panel'))
-                            Serenity.TemplatedDialog.closePanel(element);
-                    }
-                });
-            });
-        }
-        DialogUtils.pendingChangesConfirmation = pendingChangesConfirmation;
-    })(DialogUtils = Serene.DialogUtils || (Serene.DialogUtils = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var EnumSelectFormatter = /** @class */ (function () {
-            function EnumSelectFormatter() {
-                this.allowClear = true;
-            }
-            EnumSelectFormatter.prototype.format = function (ctx) {
-                var enumType = Serenity.EnumTypeRegistry.get(this.enumKey);
-                var sb = "<select>";
-                if (this.allowClear) {
-                    sb += '<option value="">';
-                    sb += Q.htmlEncode(this.emptyItemText || Q.text("Controls.SelectEditor.EmptyItemText"));
-                    sb += '</option>';
-                }
-                for (var _i = 0, _a = Object.keys(enumType).filter(function (v) { return !isNaN(parseInt(v, 10)); }); _i < _a.length; _i++) {
-                    var x = _a[_i];
-                    sb += '<option value="' + Q.attrEncode(x) + '"';
-                    if (x == ctx.value)
-                        sb += " selected";
-                    var name = enumType[x];
-                    sb += ">";
-                    sb += Q.htmlEncode(Q.tryGetText("Enums." + this.enumKey + "." + name) || name);
-                    sb += "</option>";
-                }
-                sb += "</select>";
-                return sb;
-            };
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "enumKey", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "allowClear", void 0);
-            __decorate([
-                Serenity.Decorators.option()
-            ], EnumSelectFormatter.prototype, "emptyItemText", void 0);
-            EnumSelectFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], EnumSelectFormatter);
-            return EnumSelectFormatter;
-        }());
-        Common.EnumSelectFormatter = EnumSelectFormatter;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ExcelExportHelper;
-        (function (ExcelExportHelper) {
-            function createToolButton(options) {
-                return {
-                    hint: Q.coalesce(options.hint, 'Excel'),
-                    title: Q.coalesce(options.title, ''),
-                    cssClass: 'export-xlsx-button',
-                    onClick: function () {
-                        if (!options.onViewSubmit()) {
-                            return;
-                        }
-                        var grid = options.grid;
-                        var request = Q.deepClone(grid.getView().params);
-                        request.Take = 0;
-                        request.Skip = 0;
-                        var sortBy = grid.getView().sortBy;
-                        if (sortBy) {
-                            request.Sort = sortBy;
-                        }
-                        request.IncludeColumns = [];
-                        var columns = grid.getGrid().getColumns();
-                        for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
-                            var column = columns_1[_i];
-                            request.IncludeColumns.push(column.id || column.field);
-                        }
-                        Q.postToService({ service: options.service, request: request, target: '_blank' });
-                    },
-                    separator: options.separator
-                };
-            }
-            ExcelExportHelper.createToolButton = createToolButton;
-        })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    /**
-     * This is an editor widget but it only displays a text, not edits it.
-     *
-     */
-    var StaticTextBlock = /** @class */ (function (_super) {
-        __extends(StaticTextBlock, _super);
-        function StaticTextBlock(container, options) {
-            var _this = _super.call(this, container, options) || this;
-            // hide the caption label for this editor if in a form. ugly hack
-            if (_this.options.hideLabel)
-                _this.element.closest('.field').find('.caption').hide();
-            _this.updateElementContent();
-            return _this;
-        }
-        StaticTextBlock.prototype.updateElementContent = function () {
-            var text = Q.coalesce(this.options.text, this.value);
-            // if isLocalText is set, text is actually a local text key
-            if (this.options.isLocalText)
-                text = Q.text(text);
-            // don't html encode if isHtml option is true
-            if (this.options.isHtml)
-                this.element.html(text);
-            else
-                this.element.text(text);
-        };
-        /**
-         * By implementing ISetEditValue interface, we allow this editor to display its field value.
-         * But only do this when our text content is not explicitly set in options
-         */
-        StaticTextBlock.prototype.setEditValue = function (source, property) {
-            if (this.options.text == null) {
-                this.value = Q.coalesce(this.options.text, source[property.name]);
-                this.updateElementContent();
-            }
-        };
-        StaticTextBlock = __decorate([
-            Serenity.Decorators.element("<div/>"),
-            Serenity.Decorators.registerEditor([Serenity.ISetEditValue])
-        ], StaticTextBlock);
-        return StaticTextBlock;
-    }(Serenity.Widget));
-    Serene.StaticTextBlock = StaticTextBlock;
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var LanguageSelection = /** @class */ (function (_super) {
-            __extends(LanguageSelection, _super);
-            function LanguageSelection(select, currentLanguage) {
-                var _this = _super.call(this, select) || this;
-                currentLanguage = Q.coalesce(currentLanguage, 'en');
-                _this.change(function (e) {
-                    $.cookie('LanguagePreference', select.val(), {
-                        path: Q.Config.applicationPath,
-                        expires: 365
-                    });
-                    window.location.reload(true);
-                });
-                Q.getLookupAsync('Administration.Language').then(function (x) {
-                    if (!Q.any(x.items, function (z) { return z.LanguageId === currentLanguage; })) {
-                        var idx = currentLanguage.lastIndexOf('-');
-                        if (idx >= 0) {
-                            currentLanguage = currentLanguage.substr(0, idx);
-                            if (!Q.any(x.items, function (y) { return y.LanguageId === currentLanguage; })) {
-                                currentLanguage = 'en';
-                            }
-                        }
-                        else {
-                            currentLanguage = 'en';
-                        }
-                    }
-                    for (var _i = 0, _a = x.items; _i < _a.length; _i++) {
-                        var l = _a[_i];
-                        Q.addOption(select, l.LanguageId, l.LanguageName);
-                    }
-                    select.val(currentLanguage);
-                });
-                return _this;
-            }
-            return LanguageSelection;
-        }(Serenity.Widget));
-        Common.LanguageSelection = LanguageSelection;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var SidebarSearch = /** @class */ (function (_super) {
-            __extends(SidebarSearch, _super);
-            function SidebarSearch(input, menuUL) {
-                var _this = _super.call(this, input) || this;
-                new Serenity.QuickSearchInput(input, {
-                    onSearch: function (field, text, success) {
-                        _this.updateMatchFlags(text);
-                        success(true);
-                    }
-                });
-                _this.menuUL = menuUL;
-                return _this;
-            }
-            SidebarSearch.prototype.updateMatchFlags = function (text) {
-                var liList = this.menuUL.find('li').removeClass('non-match');
-                text = Q.trimToNull(text);
-                if (text == null) {
-                    liList.show();
-                    liList.removeClass('expanded');
-                    return;
-                }
-                var parts = text.replace(',', ' ').split(' ').filter(function (x) { return !Q.isTrimmedEmpty(x); });
-                for (var i = 0; i < parts.length; i++) {
-                    parts[i] = Q.trimToNull(Select2.util.stripDiacritics(parts[i]).toUpperCase());
-                }
-                var items = liList;
-                items.each(function (idx, e) {
-                    var x = $(e);
-                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
-                    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
-                        var p = parts_1[_i];
-                        if (p != null && !(title.indexOf(p) !== -1)) {
-                            x.addClass('non-match');
-                            break;
-                        }
-                    }
-                });
-                var matchingItems = items.not('.non-match');
-                var visibles = matchingItems.parents('li').add(matchingItems);
-                var nonVisibles = liList.not(visibles);
-                nonVisibles.hide().addClass('non-match');
-                visibles.show();
-                liList.addClass('expanded');
-            };
-            return SidebarSearch;
-        }(Serenity.Widget));
-        Common.SidebarSearch = SidebarSearch;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ThemeSelection = /** @class */ (function (_super) {
-            __extends(ThemeSelection, _super);
-            function ThemeSelection(select) {
-                var _this = _super.call(this, select) || this;
-                _this.change(function (e) {
-                    var path = Q.Config.applicationPath;
-                    if (path && path != '/' && Q.endsWith(path, '/'))
-                        path = path.substr(0, path.length - 1);
-                    $.cookie('ThemePreference', select.val(), {
-                        path: path,
-                        expires: 365
-                    });
-                    var theme = select.val() || '';
-                    var darkSidebar = theme.indexOf('light') < 0;
-                    $('body').removeClass('skin-' + _this.getCurrentTheme());
-                    $('body').addClass('skin-' + theme)
-                        .toggleClass('dark-sidebar', darkSidebar)
-                        .toggleClass('light-sidebar', !darkSidebar);
-                });
-                Q.addOption(select, 'blue', Q.text('Site.Layout.ThemeBlue'));
-                Q.addOption(select, 'blue-light', Q.text('Site.Layout.ThemeBlueLight'));
-                Q.addOption(select, 'purple', Q.text('Site.Layout.ThemePurple'));
-                Q.addOption(select, 'purple-light', Q.text('Site.Layout.ThemePurpleLight'));
-                Q.addOption(select, 'red', Q.text('Site.Layout.ThemeRed'));
-                Q.addOption(select, 'red-light', Q.text('Site.Layout.ThemeRedLight'));
-                Q.addOption(select, 'green', Q.text('Site.Layout.ThemeGreen'));
-                Q.addOption(select, 'green-light', Q.text('Site.Layout.ThemeGreenLight'));
-                Q.addOption(select, 'yellow', Q.text('Site.Layout.ThemeYellow'));
-                Q.addOption(select, 'yellow-light', Q.text('Site.Layout.ThemeYellowLight'));
-                Q.addOption(select, 'black', Q.text('Site.Layout.ThemeBlack'));
-                Q.addOption(select, 'black-light', Q.text('Site.Layout.ThemeBlackLight'));
-                select.val(_this.getCurrentTheme());
-                return _this;
-            }
-            ThemeSelection.prototype.getCurrentTheme = function () {
-                var skinClass = Q.first(($('body').attr('class') || '').split(' '), function (x) { return Q.startsWith(x, 'skin-'); });
-                if (skinClass) {
-                    return skinClass.substr(5);
-                }
-                return 'blue';
-            };
-            return ThemeSelection;
-        }(Serenity.Widget));
-        Common.ThemeSelection = ThemeSelection;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var PdfExportHelper;
-        (function (PdfExportHelper) {
-            function toAutoTableColumns(srcColumns, columnStyles, columnTitles) {
-                return srcColumns.map(function (src) {
-                    var col = {
-                        dataKey: src.id || src.field,
-                        title: src.name || ''
-                    };
-                    if (columnTitles && columnTitles[col.dataKey] != null)
-                        col.title = columnTitles[col.dataKey];
-                    var style = {};
-                    if ((src.cssClass || '').indexOf("align-right") >= 0)
-                        style.halign = 'right';
-                    else if ((src.cssClass || '').indexOf("align-center") >= 0)
-                        style.halign = 'center';
-                    columnStyles[col.dataKey] = style;
-                    return col;
-                });
-            }
-            function toAutoTableData(entities, keys, srcColumns) {
-                var el = document.createElement('span');
-                var row = 0;
-                return entities.map(function (item) {
-                    var dst = {};
-                    for (var cell = 0; cell < srcColumns.length; cell++) {
-                        var src = srcColumns[cell];
-                        var fld = src.field || '';
-                        var key = keys[cell];
-                        var txt = void 0;
-                        var html = void 0;
-                        if (src.formatter) {
-                            html = src.formatter(row, cell, item[fld], src, item);
-                        }
-                        else if (src.format) {
-                            html = src.format({ row: row, cell: cell, item: item, value: item[fld] });
-                        }
-                        else {
-                            dst[key] = item[fld];
-                            continue;
-                        }
-                        if (!html || (html.indexOf('<') < 0 && html.indexOf('&') < 0))
-                            dst[key] = html;
-                        else {
-                            el.innerHTML = html;
-                            if (el.children.length == 1 &&
-                                $(el.children[0]).is(":input")) {
-                                dst[key] = $(el.children[0]).val();
-                            }
-                            else if (el.children.length == 1 &&
-                                $(el.children).is('.check-box')) {
-                                dst[key] = $(el.children).hasClass("checked") ? "X" : "";
-                            }
-                            else
-                                dst[key] = el.textContent || '';
-                        }
-                    }
-                    row++;
-                    return dst;
-                });
-            }
-            function exportToPdf(options) {
-                var g = options.grid;
-                if (!options.onViewSubmit())
-                    return;
-                includeAutoTable();
-                var request = Q.deepClone(g.view.params);
-                request.Take = 0;
-                request.Skip = 0;
-                var sortBy = g.view.sortBy;
-                if (sortBy != null)
-                    request.Sort = sortBy;
-                var gridColumns = g.slickGrid.getColumns();
-                gridColumns = gridColumns.filter(function (x) { return x.id !== "__select__"; });
-                request.IncludeColumns = [];
-                for (var _i = 0, gridColumns_1 = gridColumns; _i < gridColumns_1.length; _i++) {
-                    var column = gridColumns_1[_i];
-                    request.IncludeColumns.push(column.id || column.field);
-                }
-                Q.serviceCall({
-                    url: g.view.url,
-                    request: request,
-                    onSuccess: function (response) {
-                        var doc = new jsPDF('l', 'pt');
-                        var srcColumns = gridColumns;
-                        var columnStyles = {};
-                        var columns = toAutoTableColumns(srcColumns, columnStyles, options.columnTitles);
-                        var keys = columns.map(function (x) { return x.dataKey; });
-                        var entities = response.Entities || [];
-                        var data = toAutoTableData(entities, keys, srcColumns);
-                        doc.setFontSize(options.titleFontSize || 10);
-                        doc.setFontStyle('bold');
-                        var reportTitle = options.reportTitle || g.getTitle() || "Report";
-                        doc.autoTableText(reportTitle, doc.internal.pageSize.width / 2, options.titleTop || 25, { halign: 'center' });
-                        var totalPagesExp = "{{T}}";
-                        var pageNumbers = options.pageNumbers == null || options.pageNumbers;
-                        var autoOptions = $.extend({
-                            margin: { top: 25, left: 25, right: 25, bottom: pageNumbers ? 25 : 30 },
-                            startY: 60,
-                            styles: {
-                                fontSize: 8,
-                                overflow: 'linebreak',
-                                cellPadding: 2,
-                                valign: 'middle'
-                            },
-                            columnStyles: columnStyles
-                        }, options.tableOptions);
-                        if (pageNumbers) {
-                            var footer = function (data) {
-                                var str = data.pageCount;
-                                // Total page number plugin only available in jspdf v1.0+
-                                if (typeof doc.putTotalPages === 'function') {
-                                    str = str + " / " + totalPagesExp;
-                                }
-                                doc.autoTableText(str, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - autoOptions.margin.bottom, {
-                                    halign: 'center'
-                                });
-                            };
-                            autoOptions.afterPageContent = footer;
-                        }
-                        // Print header of page
-                        if (options.printDateTimeHeader == null || options.printDateTimeHeader) {
-                            var beforePage = function (data) {
-                                doc.setFontStyle('normal');
-                                doc.setFontSize(8);
-                                // Date and time of the report
-                                doc.autoTableText(Q.formatDate(new Date(), "dd-MM-yyyy HH:mm"), doc.internal.pageSize.width - autoOptions.margin.right, 13, {
-                                    halign: 'right'
-                                });
-                            };
-                            autoOptions.beforePageContent = beforePage;
-                        }
-                        doc.autoTable(columns, data, autoOptions);
-                        if (typeof doc.putTotalPages === 'function') {
-                            doc.putTotalPages(totalPagesExp);
-                        }
-                        if (!options.output || options.output == "file") {
-                            var fileName = options.fileName || options.reportTitle || "{0}_{1}.pdf";
-                            fileName = Q.format(fileName, g.getTitle() || "report", Q.formatDate(new Date(), "yyyyMMdd_HHmm"));
-                            doc.save(fileName);
-                            return;
-                        }
-                        if (options.autoPrint)
-                            doc.autoPrint();
-                        var output = options.output;
-                        if (output == 'newwindow' || '_blank')
-                            output = 'dataurlnewwindow';
-                        else if (output == 'window')
-                            output = 'datauri';
-                        if (output == 'datauri')
-                            doc.output(output);
-                        else {
-                            var tmpOut = doc.output('datauristring');
-                            if (output == 'dataurlnewwindow') {
-                                var fileTmpName = options.reportTitle || g.getTitle();
-                                var url_with_name = tmpOut.replace("data:application/pdf;", "data:application/pdf;name=" + fileTmpName + ".pdf;");
-                                var html = '<html>' +
-                                    '<style>html, body { padding: 0; margin: 0; } iframe { width: 100%; height: 100%; border: 0;}  </style>' +
-                                    '<body>' +
-                                    '<p></p>' +
-                                    '<iframe type="application/pdf" src="' + url_with_name + '"></iframe>' +
-                                    '</body></html>';
-                                var a = window.open("about:blank", "_blank");
-                                a.document.write(html);
-                                a.document.close();
-                            }
-                        }
-                    }
-                });
-            }
-            PdfExportHelper.exportToPdf = exportToPdf;
-            function createToolButton(options) {
-                return {
-                    title: options.title || '',
-                    hint: options.hint || 'PDF',
-                    cssClass: 'export-pdf-button',
-                    onClick: function () { return exportToPdf(options); },
-                    separator: options.separator
-                };
-            }
-            PdfExportHelper.createToolButton = createToolButton;
-            function includeJsPDF() {
-                if (typeof jsPDF !== "undefined")
-                    return;
-                var script = $("jsPDFScript");
-                if (script.length > 0)
-                    return;
-                $("<script/>")
-                    .attr("type", "text/javascript")
-                    .attr("id", "jsPDFScript")
-                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.min.js"))
-                    .appendTo(document.head);
-            }
-            function includeAutoTable() {
-                includeJsPDF();
-                if (typeof jsPDF === "undefined" ||
-                    typeof jsPDF.API == "undefined" ||
-                    typeof jsPDF.API.autoTable !== "undefined")
-                    return;
-                var script = $("jsPDFAutoTableScript");
-                if (script.length > 0)
-                    return;
-                $("<script/>")
-                    .attr("type", "text/javascript")
-                    .attr("id", "jsPDFAutoTableScript")
-                    .attr("src", Q.resolveUrl("~/Scripts/jspdf.plugin.autotable.min.js"))
-                    .appendTo(document.head);
-            }
-        })(PdfExportHelper = Common.PdfExportHelper || (Common.PdfExportHelper = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ReportDialog = /** @class */ (function (_super) {
-            __extends(ReportDialog, _super);
-            function ReportDialog(options) {
-                var _this = _super.call(this, options) || this;
-                _this.updateInterface();
-                _this.loadReport(_this.options.reportKey);
-                return _this;
-            }
-            ReportDialog.prototype.getDialogButtons = function () {
-                return null;
-            };
-            ReportDialog.prototype.createPropertyGrid = function () {
-                this.propertyGrid && this.byId('PropertyGrid').html('').attr('class', '');
-                this.propertyGrid = new Serenity.PropertyGrid(this.byId('PropertyGrid'), {
-                    idPrefix: this.idPrefix,
-                    useCategories: true,
-                    items: this.report.Properties
-                }).init(null);
-            };
-            ReportDialog.prototype.loadReport = function (reportKey) {
-                var _this = this;
-                Q.serviceCall({
-                    url: Q.resolveUrl('~/Report/Retrieve'),
-                    request: {
-                        ReportKey: reportKey
-                    },
-                    onSuccess: function (response) {
-                        _this.report = response;
-                        _this.element.dialog().dialog('option', 'title', _this.report.Title);
-                        _this.createPropertyGrid();
-                        _this.propertyGrid.load(_this.report.InitialSettings || {});
-                        _this.updateInterface();
-                        _this.dialogOpen();
-                    }
-                });
-            };
-            ReportDialog.prototype.updateInterface = function () {
-                this.toolbar.findButton('print-preview-button')
-                    .toggle(this.report && !this.report.IsDataOnlyReport);
-                this.toolbar.findButton('export-pdf-button')
-                    .toggle(this.report && !this.report.IsDataOnlyReport);
-                this.toolbar.findButton('export-xlsx-button')
-                    .toggle(this.report && this.report.IsDataOnlyReport);
-            };
-            ReportDialog.prototype.executeReport = function (target, ext, download) {
-                if (!this.validateForm()) {
-                    return;
-                }
-                var opt = {};
-                this.propertyGrid.save(opt);
-                Common.ReportHelper.execute({
-                    download: download,
-                    reportKey: this.report.ReportKey,
-                    extension: ext,
-                    target: target,
-                    params: opt
-                });
-            };
-            ReportDialog.prototype.getToolbarButtons = function () {
-                var _this = this;
-                return [
-                    {
-                        title: 'Preview',
-                        cssClass: 'print-preview-button',
-                        onClick: function () { return _this.executeReport('_blank', null, false); }
-                    },
-                    {
-                        title: 'PDF',
-                        cssClass: 'export-pdf-button',
-                        onClick: function () { return _this.executeReport('_blank', 'pdf', true); }
-                    },
-                    {
-                        title: 'Excel',
-                        cssClass: 'export-xlsx-button',
-                        onClick: function () { return _this.executeReport('_blank', 'xlsx', true); }
-                    }
-                ];
-            };
-            return ReportDialog;
-        }(Serenity.TemplatedDialog));
-        Common.ReportDialog = ReportDialog;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ReportHelper;
-        (function (ReportHelper) {
-            function createToolButton(options) {
-                return {
-                    title: Q.coalesce(options.title, 'Report'),
-                    cssClass: Q.coalesce(options.cssClass, 'print-button'),
-                    icon: options.icon,
-                    onClick: function () {
-                        ReportHelper.execute(options);
-                    }
-                };
-            }
-            ReportHelper.createToolButton = createToolButton;
-            function execute(options) {
-                var opt = options.getParams ? options.getParams() : options.params;
-                Q.postToUrl({
-                    url: '~/Report/' + (options.download ? 'Download' : 'Render'),
-                    params: {
-                        key: options.reportKey,
-                        ext: Q.coalesce(options.extension, 'pdf'),
-                        opt: opt ? $.toJSON(opt) : ''
-                    },
-                    target: Q.coalesce(options.target, '_blank')
-                });
-            }
-            ReportHelper.execute = execute;
-        })(ReportHelper = Common.ReportHelper || (Common.ReportHelper = {}));
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var ReportPage = /** @class */ (function (_super) {
-            __extends(ReportPage, _super);
-            function ReportPage(element) {
-                var _this = _super.call(this, element) || this;
-                $('.report-link', element).click(function (e) { return _this.reportLinkClick(e); });
-                $('div.line', element).click(function (e) { return _this.categoryClick(e); });
-                new Serenity.QuickSearchInput($('.s-QuickSearchBar input', element), {
-                    onSearch: function (field, text, done) {
-                        _this.updateMatchFlags(text);
-                        done(true);
-                    }
-                });
-                return _this;
-            }
-            ReportPage.prototype.updateMatchFlags = function (text) {
-                var liList = $('.report-list', this.element).find('li').removeClass('non-match');
-                text = Q.trimToNull(text);
-                if (!text) {
-                    liList.children('ul').hide();
-                    liList.show().removeClass('expanded');
-                    return;
-                }
-                text = Select2.util.stripDiacritics(text).toUpperCase();
-                var reportItems = liList.filter('.report-item');
-                reportItems.each(function (ix, e) {
-                    var x = $(e);
-                    var title = Select2.util.stripDiacritics(Q.coalesce(x.text(), '').toUpperCase());
-                    if (title.indexOf(text) < 0) {
-                        x.addClass('non-match');
-                    }
-                });
-                var matchingItems = reportItems.not('.non-match');
-                var visibles = matchingItems.parents('li').add(matchingItems);
-                var nonVisibles = liList.not(visibles);
-                nonVisibles.hide().addClass('non-match');
-                visibles.show();
-                if (visibles.length <= 100) {
-                    liList.children('ul').show();
-                    liList.addClass('expanded');
-                }
-            };
-            ReportPage.prototype.categoryClick = function (e) {
-                var li = $(e.target).closest('li');
-                if (li.hasClass('expanded')) {
-                    li.find('ul').hide('fast');
-                    li.removeClass('expanded');
-                    li.find('li').removeClass('expanded');
-                }
-                else {
-                    li.addClass('expanded');
-                    li.children('ul').show('fast');
-                    if (li.children('ul').children('li').length === 1 && !li.children('ul').children('li').hasClass('expanded')) {
-                        li.children('ul').children('li').children('.line').click();
-                    }
-                }
-            };
-            ReportPage.prototype.reportLinkClick = function (e) {
-                e.preventDefault();
-                new Common.ReportDialog({
-                    reportKey: $(e.target).data('key')
-                }).dialogOpen();
-            };
-            return ReportPage;
-        }(Serenity.Widget));
-        Common.ReportPage = ReportPage;
-    })(Common = Serene.Common || (Serene.Common = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Common;
-    (function (Common) {
-        var UserPreferenceStorage = /** @class */ (function () {
-            function UserPreferenceStorage() {
-            }
-            UserPreferenceStorage.prototype.getItem = function (key) {
-                var value;
-                Common.UserPreferenceService.Retrieve({
-                    PreferenceType: "UserPreferenceStorage",
-                    Name: key
-                }, function (response) { return value = response.Value; }, {
-                    async: false
-                });
-                return value;
-            };
-            UserPreferenceStorage.prototype.setItem = function (key, data) {
-                Common.UserPreferenceService.Update({
-                    PreferenceType: "UserPreferenceStorage",
-                    Name: key,
-                    Value: data
-                });
-            };
-            return UserPreferenceStorage;
-        }());
-        Common.UserPreferenceStorage = UserPreferenceStorage;
-    })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
 var Serene;
 (function (Serene) {
@@ -7415,665 +8082,5 @@ var Serene;
         }(Serenity.PropertyPanel));
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = Serene.Membership || (Serene.Membership = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerEditor = /** @class */ (function (_super) {
-            __extends(CustomerEditor, _super);
-            function CustomerEditor(hidden) {
-                return _super.call(this, hidden) || this;
-            }
-            CustomerEditor.prototype.getLookupKey = function () {
-                return Northwind.CustomerRow.lookupKey;
-            };
-            CustomerEditor.prototype.getItemText = function (item, lookup) {
-                return _super.prototype.getItemText.call(this, item, lookup) + ' [' + item.CustomerID + ']';
-            };
-            CustomerEditor = __decorate([
-                Serenity.Decorators.registerEditor()
-            ], CustomerEditor);
-            return CustomerEditor;
-        }(Serenity.LookupEditorBase));
-        Northwind.CustomerEditor = CustomerEditor;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../Order/OrderDialog.ts" />
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerOrderDialog = /** @class */ (function (_super) {
-            __extends(CustomerOrderDialog, _super);
-            function CustomerOrderDialog() {
-                return _super.call(this) || this;
-            }
-            CustomerOrderDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                Serenity.EditorUtils.setReadOnly(this.form.CustomerID, true);
-            };
-            CustomerOrderDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], CustomerOrderDialog);
-            return CustomerOrderDialog;
-        }(Northwind.OrderDialog));
-        Northwind.CustomerOrderDialog = CustomerOrderDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-/// <reference path="../Order/OrderGrid.ts" />
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var CustomerOrdersGrid = /** @class */ (function (_super) {
-            __extends(CustomerOrdersGrid, _super);
-            function CustomerOrdersGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            CustomerOrdersGrid.prototype.getDialogType = function () { return Northwind.CustomerOrderDialog; };
-            CustomerOrdersGrid.prototype.getColumns = function () {
-                return _super.prototype.getColumns.call(this).filter(function (x) { return x.field !== "CustomerCompanyName" /* CustomerCompanyName */; });
-            };
-            CustomerOrdersGrid.prototype.initEntityDialog = function (itemType, dialog) {
-                _super.prototype.initEntityDialog.call(this, itemType, dialog);
-                Serenity.SubDialogHelper.cascade(dialog, this.element.closest('.ui-dialog'));
-            };
-            CustomerOrdersGrid.prototype.addButtonClick = function () {
-                this.editItem({ CustomerID: this.customerID });
-            };
-            CustomerOrdersGrid.prototype.getInitialTitle = function () {
-                return null;
-            };
-            CustomerOrdersGrid.prototype.getGridCanLoad = function () {
-                return _super.prototype.getGridCanLoad.call(this) && !!this.customerID;
-            };
-            Object.defineProperty(CustomerOrdersGrid.prototype, "customerID", {
-                get: function () {
-                    return this._customerID;
-                },
-                set: function (value) {
-                    if (this._customerID !== value) {
-                        this._customerID = value;
-                        this.setEquality('CustomerID', value);
-                        this.refresh();
-                    }
-                },
-                enumerable: true,
-                configurable: true
-            });
-            CustomerOrdersGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], CustomerOrdersGrid);
-            return CustomerOrdersGrid;
-        }(Northwind.OrderGrid));
-        Northwind.CustomerOrdersGrid = CustomerOrdersGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeListFormatter = /** @class */ (function () {
-            function EmployeeListFormatter() {
-            }
-            EmployeeListFormatter.prototype.format = function (ctx) {
-                var idList = ctx.value;
-                if (!idList || !idList.length)
-                    return "";
-                var byId = Northwind.EmployeeRow.getLookup().itemById;
-                var z;
-                return idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", ");
-            };
-            EmployeeListFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], EmployeeListFormatter);
-            return EmployeeListFormatter;
-        }());
-        Northwind.EmployeeListFormatter = EmployeeListFormatter;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var EmployeeFormatter = /** @class */ (function () {
-            function EmployeeFormatter() {
-            }
-            EmployeeFormatter.prototype.format = function (ctx) {
-                var text = Q.htmlEncode(ctx.value);
-                if (!this.genderProperty) {
-                    return text;
-                }
-                var gender = ctx.item[this.genderProperty];
-                return "<span class='" + ((gender === Northwind.Gender.Female) ?
-                    'employee-symbol female' : 'employee-symbol male') +
-                    "'>" + text + '</span>';
-            };
-            EmployeeFormatter.prototype.initializeColumn = function (column) {
-                column.referencedFields = column.referencedFields || [];
-                if (this.genderProperty)
-                    column.referencedFields.push(this.genderProperty);
-            };
-            __decorate([
-                Serenity.Decorators.option()
-            ], EmployeeFormatter.prototype, "genderProperty", void 0);
-            EmployeeFormatter = __decorate([
-                Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
-            ], EmployeeFormatter);
-            return EmployeeFormatter;
-        }());
-        Northwind.EmployeeFormatter = EmployeeFormatter;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var NoteDialog = /** @class */ (function (_super) {
-            __extends(NoteDialog, _super);
-            function NoteDialog() {
-                var _this = _super.call(this) || this;
-                _this.textEditor = new Serenity.HtmlNoteContentEditor(_this.byId('Text'));
-                return _this;
-            }
-            NoteDialog.prototype.getTemplate = function () {
-                return ("<form id='~_Form' class='s-Form'>" +
-                    "<textarea id='~_Text' class='required'></textarea>" +
-                    "</form>");
-            };
-            NoteDialog.prototype.getDialogOptions = function () {
-                var _this = this;
-                var opt = _super.prototype.getDialogOptions.call(this);
-                opt.buttons = [{
-                        text: Q.text('Dialogs.OkButton'),
-                        click: function () {
-                            if (!_this.validateForm()) {
-                                return;
-                            }
-                            _this.okClick && _this.okClick();
-                        }
-                    }, {
-                        text: Q.text('Dialogs.CancelButton'),
-                        click: function () { return _this.dialogClose(); }
-                    }
-                ];
-                return opt;
-            };
-            Object.defineProperty(NoteDialog.prototype, "text", {
-                get: function () {
-                    return this.textEditor.value;
-                },
-                set: function (value) {
-                    this.textEditor.value = value;
-                },
-                enumerable: true,
-                configurable: true
-            });
-            NoteDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], NoteDialog);
-            return NoteDialog;
-        }(Serenity.TemplatedDialog));
-        Northwind.NoteDialog = NoteDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var NotesEditor = /** @class */ (function (_super) {
-            __extends(NotesEditor, _super);
-            function NotesEditor(div) {
-                var _this = _super.call(this, div) || this;
-                new Serenity.Toolbar(_this.byId('Toolbar'), {
-                    buttons: [{
-                            title: 'Add Note',
-                            cssClass: 'add-button',
-                            onClick: function (e) {
-                                e.preventDefault();
-                                _this.addClick();
-                            }
-                        }]
-                });
-                return _this;
-            }
-            NotesEditor.prototype.getTemplate = function () {
-                return "<div><div id='~_Toolbar'></div><ul id='~_NoteList'></ul></div>";
-            };
-            NotesEditor.prototype.updateContent = function () {
-                var _this = this;
-                var noteList = this.byId('NoteList');
-                noteList.children().remove();
-                if (this.items) {
-                    var index = 0;
-                    for (var t1 = 0; t1 < this.items.length; t1++) {
-                        var item = this.items[t1];
-                        var li = $('<li/>');
-                        $('<div/>').addClass('note-text').html(Q.coalesce(item.Text, '')).appendTo(li);
-                        $('<a/>').attr('href', '#').addClass('note-date')
-                            .text(item.InsertUserDisplayName + ' - ' +
-                            Q.formatDate(item.InsertDate, 'g'))
-                            .data('index', index).appendTo(li).click(function (e) { return _this.editClick(e); });
-                        $('<a/>').attr('href', '#').addClass('note-delete')
-                            .attr('title', 'delete note').data('index', index)
-                            .appendTo(li).click(function (e) { return _this.deleteClick(e); });
-                        li.appendTo(noteList);
-                        index++;
-                    }
-                }
-            };
-            NotesEditor.prototype.addClick = function () {
-                var _this = this;
-                var dlg = new Northwind.NoteDialog();
-                dlg.dialogTitle = 'Add Note';
-                dlg.okClick = function () {
-                    var text = Q.trimToNull(dlg.text);
-                    if (text == null) {
-                        return;
-                    }
-                    _this.items = _this.items || [];
-                    Q.insert(_this.items, 0, {
-                        Text: text,
-                        InsertUserDisplayName: Serene.Authorization.userDefinition.DisplayName,
-                        InsertDate: Q.formatISODateTimeUTC(new Date())
-                    });
-                    _this.updateContent();
-                    dlg.dialogClose();
-                    _this.set_isDirty(true);
-                    _this.onChange && _this.onChange();
-                };
-                dlg.dialogOpen();
-            };
-            NotesEditor.prototype.editClick = function (e) {
-                var _this = this;
-                e.preventDefault();
-                var index = $(e.target).data('index');
-                var old = this.items[index];
-                var dlg = new Northwind.NoteDialog();
-                dlg.dialogTitle = 'Edit Note';
-                dlg.text = old.Text;
-                dlg.okClick = function () {
-                    var text = Q.trimToNull(dlg.text);
-                    if (!text) {
-                        return;
-                    }
-                    _this.items[index].Text = text;
-                    _this.updateContent();
-                    dlg.dialogClose();
-                    _this.set_isDirty(true);
-                    _this.onChange && _this.onChange();
-                };
-                dlg.dialogOpen();
-            };
-            NotesEditor.prototype.deleteClick = function (e) {
-                var _this = this;
-                e.preventDefault();
-                var index = $(e.target).data('index');
-                Q.confirm('Delete this note?', function () {
-                    _this.items.splice(index, 1);
-                    _this.updateContent();
-                    _this.set_isDirty(true);
-                    _this.onChange && _this.onChange();
-                });
-            };
-            Object.defineProperty(NotesEditor.prototype, "value", {
-                get: function () {
-                    return this.items;
-                },
-                set: function (value) {
-                    this.items = value || [];
-                    this.set_isDirty(false);
-                    this.updateContent();
-                },
-                enumerable: true,
-                configurable: true
-            });
-            NotesEditor.prototype.getEditValue = function (prop, target) {
-                target[prop.name] = this.value;
-            };
-            NotesEditor.prototype.setEditValue = function (source, prop) {
-                this.value = source[prop.name] || [];
-            };
-            NotesEditor.prototype.get_isDirty = function () {
-                return this.isDirty;
-            };
-            NotesEditor.prototype.set_isDirty = function (value) {
-                this.isDirty = value;
-            };
-            NotesEditor = __decorate([
-                Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.element("<div/>")
-            ], NotesEditor);
-            return NotesEditor;
-        }(Serenity.TemplatedWidget));
-        Northwind.NotesEditor = NotesEditor;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var FreightFormatter = /** @class */ (function () {
-            function FreightFormatter() {
-            }
-            FreightFormatter.prototype.format = function (ctx) {
-                return "<span class='freight-symbol'>" + Q.htmlEncode(ctx.value) + '</span>';
-            };
-            FreightFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], FreightFormatter);
-            return FreightFormatter;
-        }());
-        Northwind.FreightFormatter = FreightFormatter;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var RegionDialog = /** @class */ (function (_super) {
-            __extends(RegionDialog, _super);
-            function RegionDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Northwind.RegionForm(_this.idPrefix);
-                return _this;
-            }
-            RegionDialog.prototype.getFormKey = function () { return Northwind.RegionForm.formKey; };
-            RegionDialog.prototype.getIdProperty = function () { return Northwind.RegionRow.idProperty; };
-            RegionDialog.prototype.getLocalTextPrefix = function () { return Northwind.RegionRow.localTextPrefix; };
-            RegionDialog.prototype.getNameProperty = function () { return Northwind.RegionRow.nameProperty; };
-            RegionDialog.prototype.getService = function () { return Northwind.RegionService.baseUrl; };
-            RegionDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
-            RegionDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RegionDialog);
-            return RegionDialog;
-        }(Serenity.EntityDialog));
-        Northwind.RegionDialog = RegionDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var RegionGrid = /** @class */ (function (_super) {
-            __extends(RegionGrid, _super);
-            function RegionGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            RegionGrid.prototype.getColumnsKey = function () { return "Northwind.Region"; };
-            RegionGrid.prototype.getDialogType = function () { return Northwind.RegionDialog; };
-            RegionGrid.prototype.getIdProperty = function () { return Northwind.RegionRow.idProperty; };
-            RegionGrid.prototype.getLocalTextPrefix = function () { return Northwind.RegionRow.localTextPrefix; };
-            RegionGrid.prototype.getService = function () { return Northwind.RegionService.baseUrl; };
-            RegionGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], RegionGrid);
-            return RegionGrid;
-        }(Serenity.EntityGrid));
-        Northwind.RegionGrid = RegionGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var PhoneEditor = /** @class */ (function (_super) {
-            __extends(PhoneEditor, _super);
-            function PhoneEditor(input) {
-                var _this = _super.call(this, input) || this;
-                _this.addValidationRule(_this.uniqueName, function (e) {
-                    var value = Q.trimToNull(_this.get_value());
-                    if (value == null) {
-                        return null;
-                    }
-                    return PhoneEditor_1.validate(value, _this.multiple);
-                });
-                input.bind('change', function (e) {
-                    if (!Serenity.WX.hasOriginalEvent(e)) {
-                        return;
-                    }
-                    _this.formatValue();
-                });
-                input.bind('blur', function (e) {
-                    if (_this.element.hasClass('valid')) {
-                        _this.formatValue();
-                    }
-                });
-                return _this;
-            }
-            PhoneEditor_1 = PhoneEditor;
-            PhoneEditor.prototype.formatValue = function () {
-                this.element.val(this.getFormattedValue());
-            };
-            PhoneEditor.prototype.getFormattedValue = function () {
-                var value = this.element.val();
-                if (this.multiple) {
-                    return PhoneEditor_1.formatMulti(value, PhoneEditor_1.formatPhone);
-                }
-                return PhoneEditor_1.formatPhone(value);
-            };
-            PhoneEditor.prototype.get_value = function () {
-                return this.getFormattedValue();
-            };
-            PhoneEditor.prototype.set_value = function (value) {
-                this.element.val(value);
-            };
-            PhoneEditor.validate = function (phone, isMultiple) {
-                var valid = (isMultiple ? PhoneEditor_1.isValidMulti(phone, PhoneEditor_1.isValidPhone) : PhoneEditor_1.isValidPhone(phone));
-                if (valid) {
-                    return null;
-                }
-                return Q.text((isMultiple ? 'Validation.NorthwindPhoneMultiple' : 'Validation.NorthwindPhone'));
-            };
-            PhoneEditor.isValidPhone = function (phone) {
-                if (Q.isEmptyOrNull(phone)) {
-                    return false;
-                }
-                phone = Q.replaceAll(Q.replaceAll(phone, ' ', ''), '-', '');
-                if (phone.length < 10) {
-                    return false;
-                }
-                if (Q.startsWith(phone, '0')) {
-                    phone = phone.substring(1);
-                }
-                if (Q.startsWith(phone, '(') && phone.charAt(4) === ')') {
-                    phone = phone.substr(1, 3) + phone.substring(5);
-                }
-                if (phone.length !== 10) {
-                    return false;
-                }
-                if (Q.startsWith(phone, '0')) {
-                    return false;
-                }
-                for (var i = 0; i < phone.length; i++) {
-                    var c = phone.charAt(i);
-                    if (c < '0' || c > '9') {
-                        return false;
-                    }
-                }
-                return true;
-            };
-            PhoneEditor.formatPhone = function (phone) {
-                if (!PhoneEditor_1.isValidPhone(phone)) {
-                    return phone;
-                }
-                phone = Q.replaceAll(Q.replaceAll(Q.replaceAll(Q.replaceAll(phone, ' ', ''), '-', ''), '(', ''), ')', '');
-                if (Q.startsWith(phone, '0')) {
-                    phone = phone.substring(1);
-                }
-                phone = '(' + phone.substr(0, 3) + ') ' + phone.substr(3, 3) + '-' + phone.substr(6, 2) + phone.substr(8, 2);
-                return phone;
-            };
-            PhoneEditor.formatMulti = function (phone, format) {
-                var phones = Q.replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
-                var result = '';
-                for (var _i = 0, phones_1 = phones; _i < phones_1.length; _i++) {
-                    var x = phones_1[_i];
-                    var s = Q.trimToNull(x);
-                    if (s == null) {
-                        continue;
-                    }
-                    if (result.length > 0) {
-                        result += ', ';
-                    }
-                    result += format(s);
-                }
-                return result;
-            };
-            PhoneEditor.isValidMulti = function (phone, check) {
-                if (Q.isEmptyOrNull(phone)) {
-                    return false;
-                }
-                var phones = Q.replaceAll(phone, String.fromCharCode(59), String.fromCharCode(44)).split(String.fromCharCode(44));
-                var anyValid = false;
-                for (var $t1 = 0; $t1 < phones.length; $t1++) {
-                    var x = phones[$t1];
-                    var s = Q.trimToNull(x);
-                    if (s == null) {
-                        continue;
-                    }
-                    if (!check(s)) {
-                        return false;
-                    }
-                    anyValid = true;
-                }
-                if (!anyValid) {
-                    return false;
-                }
-                return true;
-            };
-            var PhoneEditor_1;
-            __decorate([
-                Serenity.Decorators.option()
-            ], PhoneEditor.prototype, "multiple", void 0);
-            PhoneEditor = PhoneEditor_1 = __decorate([
-                Serenity.Decorators.registerEditor()
-            ], PhoneEditor);
-            return PhoneEditor;
-        }(Serenity.StringEditor));
-        Northwind.PhoneEditor = PhoneEditor;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperDialog = /** @class */ (function (_super) {
-            __extends(ShipperDialog, _super);
-            function ShipperDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Northwind.ShipperForm(_this.idPrefix);
-                return _this;
-            }
-            ShipperDialog.prototype.getFormKey = function () { return Northwind.ShipperForm.formKey; };
-            ShipperDialog.prototype.getIdProperty = function () { return Northwind.ShipperRow.idProperty; };
-            ShipperDialog.prototype.getLocalTextPrefix = function () { return Northwind.ShipperRow.localTextPrefix; };
-            ShipperDialog.prototype.getNameProperty = function () { return Northwind.ShipperRow.nameProperty; };
-            ShipperDialog.prototype.getService = function () { return Northwind.ShipperService.baseUrl; };
-            ShipperDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
-            ShipperDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ShipperDialog);
-            return ShipperDialog;
-        }(Serenity.EntityDialog));
-        Northwind.ShipperDialog = ShipperDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperFormatter = /** @class */ (function () {
-            function ShipperFormatter() {
-            }
-            ShipperFormatter.prototype.format = function (ctx) {
-                return "<span class='shipper-symbol shipper-" +
-                    Q.replaceAll((ctx.value || '').toString(), ' ', '') +
-                    "'>" + Q.htmlEncode(ctx.value) + '</span>';
-            };
-            ShipperFormatter = __decorate([
-                Serenity.Decorators.registerFormatter()
-            ], ShipperFormatter);
-            return ShipperFormatter;
-        }());
-        Northwind.ShipperFormatter = ShipperFormatter;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var ShipperGrid = /** @class */ (function (_super) {
-            __extends(ShipperGrid, _super);
-            function ShipperGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            ShipperGrid.prototype.getColumnsKey = function () { return "Northwind.Shipper"; };
-            ShipperGrid.prototype.getDialogType = function () { return Northwind.ShipperDialog; };
-            ShipperGrid.prototype.getIdProperty = function () { return Northwind.ShipperRow.idProperty; };
-            ShipperGrid.prototype.getLocalTextPrefix = function () { return Northwind.ShipperRow.localTextPrefix; };
-            ShipperGrid.prototype.getService = function () { return Northwind.ShipperService.baseUrl; };
-            ShipperGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], ShipperGrid);
-            return ShipperGrid;
-        }(Serenity.EntityGrid));
-        Northwind.ShipperGrid = ShipperGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var TerritoryDialog = /** @class */ (function (_super) {
-            __extends(TerritoryDialog, _super);
-            function TerritoryDialog() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.form = new Northwind.TerritoryForm(_this.idPrefix);
-                return _this;
-            }
-            TerritoryDialog.prototype.getFormKey = function () { return Northwind.TerritoryForm.formKey; };
-            TerritoryDialog.prototype.getIdProperty = function () { return Northwind.TerritoryRow.idProperty; };
-            TerritoryDialog.prototype.getLocalTextPrefix = function () { return Northwind.TerritoryRow.localTextPrefix; };
-            TerritoryDialog.prototype.getNameProperty = function () { return Northwind.TerritoryRow.nameProperty; };
-            TerritoryDialog.prototype.getService = function () { return Northwind.TerritoryService.baseUrl; };
-            TerritoryDialog.prototype.getLanguages = function () {
-                return Serene.LanguageList.getValue();
-            };
-            TerritoryDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], TerritoryDialog);
-            return TerritoryDialog;
-        }(Serenity.EntityDialog));
-        Northwind.TerritoryDialog = TerritoryDialog;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
-})(Serene || (Serene = {}));
-var Serene;
-(function (Serene) {
-    var Northwind;
-    (function (Northwind) {
-        var TerritoryGrid = /** @class */ (function (_super) {
-            __extends(TerritoryGrid, _super);
-            function TerritoryGrid(container) {
-                return _super.call(this, container) || this;
-            }
-            TerritoryGrid.prototype.getColumnsKey = function () { return "Northwind.Territory"; };
-            TerritoryGrid.prototype.getDialogType = function () { return Northwind.TerritoryDialog; };
-            TerritoryGrid.prototype.getIdProperty = function () { return Northwind.TerritoryRow.idProperty; };
-            TerritoryGrid.prototype.getLocalTextPrefix = function () { return Northwind.TerritoryRow.localTextPrefix; };
-            TerritoryGrid.prototype.getService = function () { return Northwind.TerritoryService.baseUrl; };
-            TerritoryGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], TerritoryGrid);
-            return TerritoryGrid;
-        }(Serenity.EntityGrid));
-        Northwind.TerritoryGrid = TerritoryGrid;
-    })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
 //# sourceMappingURL=Serene.Web.js.map

@@ -1418,13 +1418,13 @@
   <WizardData>
     <packagesToInstall>
       <installPackage id="CsQuery" version="1.3.4" />
-      <installPackage id="EPPlus" version="4.5.1" />
+      <installPackage id="EPPlus" version="4.5.2.1" />
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator.Runner" version="1.6.2" />
-      <installPackage id="Microsoft.TypeScript.MSBuild" version="2.8.3" />
-      <installPackage id="MsieJavaScriptEngine" version="2.2.7" />
-      <installPackage id="Serenity.CodeGenerator" version="3.7.7" />
-      <installPackage id="Serenity.Web" version="3.7.7" />
+      <installPackage id="Microsoft.TypeScript.MSBuild" version="3.1.1" />
+      <installPackage id="MsieJavaScriptEngine" version="2.2.9" />
+      <installPackage id="Serenity.CodeGenerator" version="3.8.1" />
+      <installPackage id="Serenity.Web" version="3.8.1" />
       <installPackage id="Serenity.Web.Tooling" version="3.5.1" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />

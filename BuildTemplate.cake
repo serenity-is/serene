@@ -247,14 +247,12 @@ Task("PrepareVSIX")
     
 	var webSkipPackages = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
 		"bootstrap",
-		"Dapper",
 		"FluentMigrator",
 		"Newtonsoft.Json",
 		"Microsoft.AspNet.Mvc",
 		"Microsoft.AspNet.Razor",
 		"Microsoft.AspNet.WebPages",
 		"Microsoft.Web.Infrastructure",
-		"Nuglify",
 		"jQuery",
 		"jQuery.UI.Combined",
 		"jQuery.Validation",

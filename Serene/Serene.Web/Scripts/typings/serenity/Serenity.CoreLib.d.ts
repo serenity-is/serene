@@ -552,6 +552,7 @@ declare namespace Q {
     function prefixedText(prefix: string): (text: string, key: string | ((p?: string) => string)) => string;
     function tryGetText(key: string): string;
     function dbTryText(prefix: string): ((key: string) => string);
+    function proxyTexts(o: Object, p: string, t: Object): Object;
     class LT {
         private key;
         static $table: {
@@ -2622,7 +2623,7 @@ declare namespace Serenity {
     }
 }
 declare namespace Serenity {
-    class CheckTreeEditor<TItem extends CheckTreeItem<any>, TOptions> extends DataGrid<TItem, TOptions> implements IGetEditValue, ISetEditValue {
+    class CheckTreeEditor<TItem extends CheckTreeItem<any>, TOptions> extends DataGrid<TItem, TOptions> implements IGetEditValue, ISetEditValue, IReadOnly {
         private byId;
         constructor(div: JQuery, opt?: TOptions);
         protected getIdProperty(): string;
@@ -2652,6 +2653,9 @@ declare namespace Serenity {
         protected getSlickOptions(): Slick.GridOptions;
         protected sortItems(): void;
         protected moveSelectedUp(): boolean;
+        private _readOnly;
+        get_readOnly(): boolean;
+        set_readOnly(value: boolean): void;
         private get_value();
         value: string[];
         private set_value(value);
