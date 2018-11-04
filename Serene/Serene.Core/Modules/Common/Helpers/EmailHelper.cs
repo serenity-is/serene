@@ -15,13 +15,16 @@ using System.Net.Mail;
 namespace Serene.Common
 {
 
+#if COREFX
     [SettingScope("Application"), SettingKey("MailSettings")]
     public class MailSettings
     {
         public string Host { get; set; }
         public int Port { get; set; }
         public bool UseSsl { get; set; }
+        public string From { get; set; }
     }
+#endif
 
     public class EmailHelper
     {
@@ -29,12 +32,15 @@ namespace Serene.Common
         {
 #if COREFX
             var message = new MimeMessage();
+            var config = Config.Get<MailSettings>();
+            if (!string.IsNullOrEmpty(config.From))
+                message.From.Add(MailboxAddress.Parse(config.From));
             message.To.Add(new MailboxAddress(displayName, address));
             message.Subject = subject;
             var bodyBuilder = new BodyBuilder();
             bodyBuilder.HtmlBody = body;
             message.Body = bodyBuilder.ToMessageBody();
-            var config = Config.Get<MailSettings>();
+           
             if (!string.IsNullOrEmpty(config.Host))
             {
                 var client = new SmtpClient();
@@ -70,5 +76,10 @@ namespace Serene.Common
             client.Send(message);
 #endif
         }
+
+#if !COREFX
+
+#endif
+
     }
 }
