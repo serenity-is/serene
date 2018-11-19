@@ -107,6 +107,11 @@ namespace Serene.Administration.Repositories
                             var category = member.GetCustomAttribute<CategoryAttribute>();
                             if (category != null && !category.Category.IsEmptyOrNull())
                                 result.Add("Forms." + attr.Key + ".Categories." + category.Category);
+
+                            var tab = member.GetCustomAttribute<TabAttribute>();
+                            if (tab != null && !tab.Value.IsEmptyOrNull())
+                                result.Add("Forms." + attr.Key + ".Tabs." + tab.Value);
+
                         }
                     }
                 }
