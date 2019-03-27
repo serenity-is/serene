@@ -1,28 +1,35 @@
 using FluentMigrator;
+using System.IO;
 
 namespace Serene.Migrations.NorthwindDB
 {
     [Migration(20141123155100)]
     public class DefaultDB_20141123_155100_Initial : Migration
     {
+        private string GetScript(string name)
+        {
+            using (var sr = new StreamReader(this.GetType().Assembly.GetManifestResourceStream(name)))
+                return sr.ReadToEnd();
+        }
+
         public override void Up()
         {
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_SqlServer.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_SqlServer.sql"));
 
             IfDatabase("Postgres")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Postgres.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Postgres.sql"));
 
             IfDatabase("Postgres")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_PostgresData.sql"));
 
             IfDatabase("MySql")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_MySql.sql"));
 
             IfDatabase("Oracle")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Oracle.sql"));
             IfDatabase("Sqlite")
-                .Execute.EmbeddedScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Sqlite.sql");
+                .Execute.Sql(GetScript("Serene.Core.Migrations.NorthwindDB.NorthwindDBScript_Sqlite.sql"));
 
             IfDatabase("SqlServer", "SqlServer2000", "SqlServerCe", "Postgres")
                 .Alter.Table("Customers")

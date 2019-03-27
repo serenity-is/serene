@@ -1,16 +1,8 @@
 ﻿namespace Serene
 {
-#if COREFX
-    using FluentMigrator.Runner;
-    using FluentMigrator.Runner.Processors;
-    using Microsoft.Extensions.Logging;
-    using FluentMigrator.Runner.Logging;
-#else
     using FluentMigrator.Runner.Announcers;
-#endif
     using FluentMigrator.Runner.Initialization;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.DependencyInjection;
     using Serenity.Data;
     using System;
     using System.Data.SqlClient;
@@ -201,58 +193,10 @@
                 return;
             }
 
+            string databaseType = isOracle ? "OracleManaged" : serverType;
+
             using (var sw = new StringWriter())
             {
-#if COREFX
-                var serviceProvider = new ServiceCollection()
-                    .AddSingleton<ILoggerProvider>(new SqlScriptFluentMigratorLoggerProvider(sw))
-                    .Configure<SqlScriptFluentMigratorLoggerOptions>(opt => {
-                        opt.ShowSql = true;
-                    })
-                    .AddFluentMigratorCore()
-                    .Configure<TypeFilterOptions>(opt =>
-                    {
-                        opt.Namespace = "Serene.Migrations." + databaseKey + "DB";
-                    })
-                    .Configure<ProcessorOptions>(opt =>
-                    {
-                        opt.Timeout = TimeSpan.FromSeconds(90);
-                    })
-                    .ConfigureRunner(rb => {
-                        if (isSqlServer)
-                            rb.AddSqlServer();
-                        else if (isOracle)
-                            rb.AddOracleManaged();
-                        else if (isFirebird)
-                            rb.AddFirebird();
-                        else
-                        {
-                            switch (serverType.ToLowerInvariant())
-                            {
-                                case "mysql":
-                                    rb.AddMySql5();
-                                    break;
-                                case "sqlite":
-                                    rb.AddSQLite();
-                                    break;
-                                case "postgres":
-                                    rb.AddPostgres();
-                                    break;
-                                default:
-                                    rb.AddSqlServer();
-                                    break;
-                            }
-                        }
-
-                        rb.WithGlobalConnectionString(cs.ConnectionString);
-                        rb.ScanIn(typeof(DataMigrations).Assembly).For.Migrations();
-                    })                   
-                    .BuildServiceProvider(false);
-
-                var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-#else
-                string databaseType = isOracle ? "OracleManaged" : serverType;
-
                 Announcer announcer = isOracle || isFirebird ?
                     new TextWriterAnnouncer(sw) { ShowSql = true } :
                     new TextWriterWithGoAnnouncer(sw) { ShowSql = true };
@@ -261,24 +205,29 @@
                 {
                     Database = databaseType,
                     Connection = cs.ConnectionString,
+#if COREFX
+                    TargetAssemblies = new[] { typeof(DataMigrations).Assembly },
+#else
                     Targets = new string[] { typeof(DataMigrations).Assembly.Location },
+#endif
                     Task = "migrate:up",
                     WorkingDirectory = Path.GetDirectoryName(typeof(DataMigrations).Assembly.Location),
                     Namespace = "Serene.Migrations." + databaseKey + "DB",
                     Timeout = 90
                 };
 
-#endif
                 var culture = CultureInfo.CurrentCulture;
                 try
                 {
                     if (isFirebird)
                         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+                    new TaskExecutor(runner)
+                    {
 #if COREFX
-                    runner.MigrateUp();
-#else
-                    new TaskExecutor(runner).Execute();
+                        ConnectionString = cs.ConnectionString
 #endif
+                    }.Execute();
                 }
                 catch (Exception ex)
                 {
