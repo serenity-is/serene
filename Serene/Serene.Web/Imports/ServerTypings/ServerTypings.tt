@@ -16,6 +16,7 @@
     var solutionDir = Host.ResolvePath(@"..\..\..\..\");
     var webDir = Host.ResolvePath(@"..\..\");
     var webConfig = Path.Combine(webDir, "web.config");
+    AppDomain.CurrentDomain.AssemblyResolve += new TemplateAssemblyResolver(webDir + @"bin\").Resolve;
     
     var generator = new ServerTypingsGenerator(typeof(Serene.SiteInitialization).Assembly);
     generator.RootNamespaces.Add("Serene");
@@ -53,5 +54,5 @@
     manager.Process(true);
 
     if (manager.AnyChanges)
-        new TypeScriptCompiler().Compile(webDir + @"Scripts\", "");
+        new TypeScriptCompiler(webDir).Compile(webDir + @"Scripts\", "");
 #>

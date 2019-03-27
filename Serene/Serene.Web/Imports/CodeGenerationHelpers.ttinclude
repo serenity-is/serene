@@ -102,7 +102,7 @@ public class TSTypeLister
 
         using (var jsEngine = SetupJsEngine())
         {
-			jsEngine.Execute(sb.ToString());
+            jsEngine.Execute(sb.ToString());
             var json = jsEngine.Evaluate<string>("JSON.stringify(Serenity.CodeGeneration.parseTypes())");
             writeCache(json);
             return JSON.Parse<List<ExternalType>>(json);
@@ -112,18 +112,44 @@ public class TSTypeLister
 
 public class TypeScriptCompiler
 {
-    public string DetermineTSCPath() {
-        var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-            @"Microsoft SDKs\TypeScript\");
+    private string projectDir;
 
-        var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
-            @"Microsoft SDKs\TypeScript\");
+    public TypeScriptCompiler(string projectDir)
+    {
+        this.projectDir = System.IO.Path.GetFullPath(projectDir);
+    }
+
+    public string DetermineTSCPath() {
+        var packages = Path.GetFullPath(Path.Combine(this.projectDir, @"..\..\packages"));
 
         var list = new List<string>();
-        if (Directory.Exists(pf86))
-            list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
-        if (Directory.Exists(pf64))
-            list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
+        
+        if (Directory.Exists(packages)) 
+        {
+            foreach (var dir in Directory.GetDirectories(packages, "Microsoft.TypeScript.MSBuild.*")) 
+            {
+                list.AddRange(Directory.GetFiles(Path.Combine(dir, @"tools\tsc"), "tsc.exe"));
+                list.AddRange(Directory.GetFiles(Path.Combine(dir, @"tools\tsc"), "tsc.js"));
+            }
+        }
+
+        if (list.Count == 0)
+        {
+            var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+                @"Microsoft SDKs\TypeScript\");
+
+            var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                @"Microsoft SDKs\TypeScript\");
+
+            if (Directory.Exists(pf86)) {
+                list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
+                list.AddRange(Directory.GetFiles(pf86, "tsc.js", SearchOption.AllDirectories));
+            }
+            if (Directory.Exists(pf64)) {
+                list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
+                list.AddRange(Directory.GetFiles(pf64, "tsc.js", SearchOption.AllDirectories));
+            }
+        }
 
         if (list.Count > 0)
         {
@@ -131,15 +157,86 @@ public class TypeScriptCompiler
                 .FirstOrDefault();
         }
 
-        throw new Exception("Can't determine path of TSC.exe that is required to compile generated TypeScript files!");
+        throw new Exception("Can't determine path of TSC.exe/TSC.js that is required to compile generated TypeScript files!");
+    }
+
+    public string DetermineNodePath() {
+        
+        string fullPath;
+
+        var environmentPath = Environment.GetEnvironmentVariable("PATH");
+        foreach (var path in environmentPath.Split(';'))
+        {
+            fullPath = Path.Combine(path, "node.exe");
+            if (File.Exists(fullPath))
+                return fullPath;
+        }
+
+        fullPath = Path.Combine(projectDir, @"tools\Node\node.exe");
+        if (File.Exists(fullPath))
+            return fullPath;
+
+        fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"NodeJS\node.exe");
+        if (File.Exists(fullPath))
+            return fullPath;
+
+        fullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"NodeJS\node.exe");
+        if (File.Exists(fullPath))
+            return fullPath;
+
+        throw new Exception("Can't determine path of Node.exe that is required to compile generated TypeScript files!");
     }
 
     public void Compile(string workingDirectory, string arguments) {
         var tscPath = DetermineTSCPath();
-
+        if (Path.GetExtension(tscPath).ToLowerInvariant() == ".js") {
+            arguments = '"' + tscPath + '"' + " " + arguments;
+            tscPath = DetermineNodePath();
+        }
+            
         var psi = new System.Diagnostics.ProcessStartInfo(tscPath, arguments);
         psi.WorkingDirectory = workingDirectory;
         System.Diagnostics.Process.Start(psi).WaitForExit(10000);
+    }
+}
+
+public class TemplateAssemblyResolver
+{
+    private List<Tuple<string, AssemblyName>> assemblyNames = new List<Tuple<string, AssemblyName>>();
+
+    public TemplateAssemblyResolver(params string[] folders) {
+        foreach (var folder in folders) {
+            foreach (var file in Directory.GetFiles(folder, "*.dll")) {
+                try {
+                    var name = AssemblyName.GetAssemblyName(file);
+                    if (name != null)
+                        assemblyNames.Add(new Tuple<string, AssemblyName>(file, name));
+                }
+                catch {
+                }
+            }
+        }
+    }
+
+    public Assembly Resolve(object sender, ResolveEventArgs args)
+    {
+        try {
+            var name = new AssemblyName(args.Name).Name;
+            foreach (var tuple in assemblyNames) {
+                if (name == tuple.Item2.Name) {
+                    try {
+                        return Assembly.LoadFrom(tuple.Item1);
+                    }
+                    catch {
+                        return null;
+                    }
+                }
+            }
+        }
+        catch {
+        }
+
+        return null;
     }
 }
 
