@@ -168,7 +168,11 @@ Task("PrepareVSIX")
 	
     NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
         Id = new List<string> {
-            "Serenity.Web"
+            "Serenity.Web",
+            "Serenity.Scripts",
+            "Serenity.CodeGenerator",
+            "Serenity.Web.Tooling",
+            "Serenity.Web.Assets"
         },
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         ArgumentCustomization = args => {
@@ -177,17 +181,6 @@ Task("PrepareVSIX")
 		}
     });
 
-    NuGetUpdate(System.IO.Path.Combine(r, @"Serene\Serene.Web\Serene.Web.csproj"), new NuGetUpdateSettings {
-        Id = new List<string> {
-            "Serenity.CodeGenerator"
-        },
-        ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
-        ArgumentCustomization = args => {
-			return args.Append("-FileConflictAction Overwrite")
-				.Append(@"-MsBuildPath ""C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin""");
-		}
-    });
-	
     var serenePackagesFolder = r + @"packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
@@ -249,7 +242,6 @@ Task("PrepareVSIX")
 		"bootstrap",
 		"FluentMigrator",
 		"Newtonsoft.Json",
-		"Microsoft.AspNet.Mvc",
 		"Microsoft.AspNet.Razor",
 		"Microsoft.AspNet.WebPages",
 		"Microsoft.Web.Infrastructure",
@@ -262,7 +254,6 @@ Task("PrepareVSIX")
 		"Serenity.Data",
 		"Serenity.Data.Entity",
 		"Serenity.Services",
-		"Serenity.Web.Assets",
 		"toastr"
 	};
 	

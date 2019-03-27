@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,8 +65,8 @@
     <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus, Version=4.5.2.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EPPlus.4.5.2.1\lib\net40\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="FluentMigrator, Version=1.6.2.0, Culture=neutral, PublicKeyToken=aacfc7de5acabf05, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentMigrator.1.6.2\lib\40\FluentMigrator.dll</HintPath>
@@ -82,11 +82,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.10.0.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
-      <HintPath>..\..\packages\Serenity.Web.3.8.1\lib\net45\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.3.9.0\lib\net45\Mono.Cecil.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="MsieJavaScriptEngine, Version=2.2.9.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MsieJavaScriptEngine.2.2.9\lib\net45\MsieJavaScriptEngine.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -95,24 +92,24 @@
       <HintPath>..\..\packages\NUglify.1.5.12\lib\net40\NUglify.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="Serenity.Core, Version=3.8.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Core.3.8.1\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Core.3.9.0\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=3.8.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.3.8.1\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.3.9.0\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=3.8.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.Entity.3.8.1\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.Entity.3.9.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=3.8.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Services.3.8.1\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Services.3.9.0\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=3.8.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Web.3.8.1\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=3.9.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Web.3.9.0\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">
@@ -132,22 +129,22 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -510,10 +507,10 @@
     <Content Include="Content\slick.headerbuttons.css" />
     <Content Include="Content\slick.headermenu.css" />
     <Content Include="Content\slick.pager.css" />
-    <Content Include="Fonts\fontawesome-webfont.svg" />
-    <Content Include="Fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Fonts\ionicons.svg" />
-    <Content Include="Fonts\Simple-Line-Icons.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
+    <Content Include="fonts\Simple-Line-Icons.svg" />
     <Content Include="Readme.CodeGenerator.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -804,37 +801,40 @@
     <Content Include="tools\Mono.Cecil\Mono.Cecil.Rocks.dll" />
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\SlickGrid\README.md" />
     <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
     <Content Include="Scripts\ckeditor\README.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Fonts\Simple-Line-Icons.woff2" />
-    <Content Include="Fonts\Simple-Line-Icons.woff" />
-    <Content Include="Fonts\Simple-Line-Icons.ttf" />
-    <Content Include="Fonts\Simple-Line-Icons.eot" />
-    <Content Include="Fonts\OpenSansSemiBold.woff" />
-    <Content Include="Fonts\OpenSansLight.woff" />
-    <Content Include="Fonts\OpenSansItalic.woff" />
-    <Content Include="Fonts\OpenSansBold.woff" />
-    <Content Include="Fonts\OpenSans.woff" />
-    <Content Include="Fonts\ionicons.woff" />
-    <Content Include="Fonts\ionicons.ttf" />
-    <Content Include="Fonts\ionicons.eot" />
-    <Content Include="Fonts\FontAwesome.otf" />
-    <Content Include="Fonts\fontawesome-webfont.woff2" />
-    <Content Include="Fonts\fontawesome-webfont.woff" />
-    <Content Include="Fonts\fontawesome-webfont.ttf" />
-    <Content Include="Fonts\fontawesome-webfont.eot" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="tsconfig.json" />
+    <Content Include="fonts\Simple-Line-Icons.woff2" />
+    <Content Include="fonts\Simple-Line-Icons.woff" />
+    <Content Include="fonts\Simple-Line-Icons.ttf" />
+    <Content Include="fonts\Simple-Line-Icons.eot" />
+    <Content Include="fonts\OpenSansSemiBold.woff" />
+    <Content Include="fonts\OpenSansLight.woff" />
+    <Content Include="fonts\OpenSansItalic.woff" />
+    <Content Include="fonts\OpenSansBold.woff" />
+    <Content Include="fonts\OpenSans.woff" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Texts.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
@@ -2244,9 +2244,6 @@
     <TypeScriptCompile Include="Imports\ServerTypings\BasicSamples.OrdersByShipperResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Imports\ServerTypings\Common.Pages.UploadResponse.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Membership.ChangePasswordForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -2488,16 +2485,16 @@
   <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high">
     </Message>
-    <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="&quot;$(NodePath)\node&quot; &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.1.1\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.3.4.0\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="AfterBuild">

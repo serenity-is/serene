@@ -305,7 +305,11 @@ if (typeof Slick === "undefined") {
 
             columnsById = {};
             for (var i = 0; i < columns.length; i++) {
-                var m = columns[i] = $.extend({}, columnDefaults, columns[i]);
+                var m = columns[i];
+                for (var k in columnDefaults) {
+                    if (m[k] === undefined)
+                        m[k] = columnDefaults[k];
+                }
                 columnsById[m.id] = i;
                 if (m.minWidth && m.width < m.minWidth) {
                     m.width = m.minWidth;
@@ -2199,7 +2203,11 @@ if (typeof Slick === "undefined") {
 
             columnsById = {};
             for (var i = 0; i < columns.length; i++) {
-                var m = columns[i] = $.extend({}, columnDefaults, columns[i]);
+                var m = columns[i];
+                for (var k in columnDefaults) {
+                    if (m[k] === undefined)
+                        m[k] = columnDefaults[k];
+                }
                 columnsById[m.id] = i;
                 if (m.minWidth && m.width < m.minWidth) {
                     m.width = m.minWidth;
@@ -2291,7 +2299,7 @@ if (typeof Slick === "undefined") {
             if (data) {
                 data.onRowCountChanged && data.onRowCountChanged.unsubscribe(viewOnRowCountChanged);
                 data.onRowsChanged && data.onRowsChanged.unsubscribe(viewOnRowsChanged);
-                data.onDataChanged && data.onDataChanged.unsubscribe(viewonDataChanged);
+                data.onDataChanged && data.onDataChanged.unsubscribe(viewOnDataChanged);
             }
         }
 
@@ -4738,8 +4746,8 @@ if (typeof Slick === "undefined") {
                 "next": 1
             };
 
-            tabbingDirection[xLeft] = -1;
-            tabbingDirection[xRight] = 1;
+            tabbingDirections[xLeft] = -1;
+            tabbingDirections[xRight] = 1;
 
             tabbingDirection = tabbingDirections[dir];
 
