@@ -131,24 +131,27 @@ public class TypeScriptCompiler
                 list.AddRange(Directory.GetFiles(Path.Combine(dir, @"tools\tsc"), "tsc.exe"));
                 list.AddRange(Directory.GetFiles(Path.Combine(dir, @"tools\tsc"), "tsc.js"));
             }
+
+            if (list.Count > 0)
+            {
+                return list.OrderByDescending(x => Path.GetDirectoryName(x))
+                    .FirstOrDefault();
+            }
         }
 
-        if (list.Count == 0)
-        {
-            var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-                @"Microsoft SDKs\TypeScript\");
+        var pf86 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+            @"Microsoft SDKs\TypeScript\");
 
-            var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
-                @"Microsoft SDKs\TypeScript\");
+        var pf64 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+            @"Microsoft SDKs\TypeScript\");
 
-            if (Directory.Exists(pf86)) {
-                list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
-                list.AddRange(Directory.GetFiles(pf86, "tsc.js", SearchOption.AllDirectories));
-            }
-            if (Directory.Exists(pf64)) {
-                list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
-                list.AddRange(Directory.GetFiles(pf64, "tsc.js", SearchOption.AllDirectories));
-            }
+        if (Directory.Exists(pf86)) {
+            list.AddRange(Directory.GetFiles(pf86, "tsc.exe", SearchOption.AllDirectories));
+            list.AddRange(Directory.GetFiles(pf86, "tsc.js", SearchOption.AllDirectories));
+        }
+        if (Directory.Exists(pf64)) {
+            list.AddRange(Directory.GetFiles(pf64, "tsc.exe", SearchOption.AllDirectories));
+            list.AddRange(Directory.GetFiles(pf64, "tsc.js", SearchOption.AllDirectories));
         }
 
         if (list.Count > 0)
