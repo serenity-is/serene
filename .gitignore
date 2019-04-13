@@ -43,3 +43,4 @@ Serene/Serene.Core/appsettings.*.machine.json
 /Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.js
 Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
 /Serene/Serene.Core/wwwroot/Scripts/serenity/Serenity.CoreLib.js.map
+/tools/Addins/

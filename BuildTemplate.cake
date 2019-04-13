@@ -136,12 +136,15 @@ Action<string, string, List<Tuple<string, string>>> patchProjectRefs = (csproj, 
 			include.Value != null && 
 			include.Value.StartsWith("Serenity.") &&
 			!include.Value.StartsWith("Serenity.FluentMigrator") &&
-			include.Value != "Serenity.Web.Assets" &&
 			include.Value != "Serenity.Web.Tooling") {
 			var versionAttr = x.Attribute("Version");
+            var v = version;
+            if (include.Value == "Serenity.Web.Assets") {
+				v = webPackages.First(z => z.Item1 == include.Value).Item2;
+			}
 			if (versionAttr != null && versionAttr.Value != version)
 			{
-				versionAttr.Value = version;
+				versionAttr.Value = v;
 				changed = true;
 			}
 		}
