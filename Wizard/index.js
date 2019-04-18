@@ -50,7 +50,7 @@ function downloadHttps(url, cb) {
             data.push(chunk);
             dataLen += chunk.length;
         }).on('end', function() {
-            var buf = new Buffer(dataLen);
+            var buf = Buffer.alloc(dataLen);
             for (var i=0, len = data.length, pos = 0; i < len; i++) { 
                 data[i].copy(buf, pos); 
                 pos += data[i].length; 
@@ -142,11 +142,11 @@ https.get({
     var str = "";
     res.on('data', function(d) { str += d; });
     res.on('end', function() {
-        var searchStart = '<script class="vss-extension" defer="defer" type="application/json">';
+        var searchStart = '<script class="jiContent" defer="defer" type="application/json">';
         var searchEnd = '</script>';
         var idx = str.indexOf(searchStart);
         if (idx <= 0) {
-            console.error("Couldn't read template version from VSGallery.");
+            console.error("Couldn't read template version from VSGallery. Search string start: '" + searchStart + "' not found!");
             process.exit();
         }
 
@@ -158,43 +158,31 @@ https.get({
 
         var json = str.substring(idx + searchStart.length, idx2).trim();
         if (!json.startsWith('{') || !json.endsWith('}')) {
-            console.error("Couldn't read template version from VSGallery.");
+            console.error("Couldn't read template version from VSGallery. Invalid JSON.");
             process.exit();
         }
 
         var data = JSON.parse(json);
-        if (!data.versions) {
-            console.error("Couldn't read template version from VSGallery.");
-            process.exit();            
+        if (!data.Resources || !data.Resources.Version) {
+            console.error("Couldn't read template version from VSGallery. No version data.");
+            process.exit();
         }
 
-        var version = data.versions[data.versions.length - 1];
-        if (!version.version || !version.files) {
-            console.error("Couldn't read template version from VSGallery.");
-            process.exit();            
+        var version = data.Resources.Version;
+
+        if (!data.AssetUri) {
+            console.error("Couldn't read template version from VSGallery. No asset URI.");
+            process.exit();
         }
 
-        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + version.version + '.vsix');
+        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + version + '.vsix');
         if (fs.existsSync(cacheZip)) {
             console.log('You already have a cached copy of latest version.')
             console.log('');
             useCacheZip(cacheZip);
         }
         else {
-            var assetSource = null;
-            for (var i = 0; i < version.files.length; i++) {
-                var f = version.files[i];
-                if (f && f.assetType && f.assetType.endsWith('.vsix')) {
-                    assetSource = f.source;
-                    break;
-                }
-            }
-    
-            if (!assetSource) {
-                console.error("Couldn't read template source URL from VSGallery.");
-                process.exit();
-            }
-
+            var assetSource = data.AssetUri + "/Serene.Template.vsix";
             var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
                 return x.toLowerCase().startsWith('Serene.Template.') && x.toLowerCase().endsWith('.vsix');
             });
@@ -336,6 +324,11 @@ function createProject(solutionName, projectName, vsTemplatePath) {
         console.log("Restoring packages for " + projectName);
         var child1 = exec('dotnet restore', {
             cwd: targetRoot
+        });
+        process.stdin.on('error', (err) => {
+          if (err.code === 'EPIPE')
+            return
+          throw err
         });
         child1.stdout.pipe(process.stdout);
         child1.stderr.pipe(process.stdin);
