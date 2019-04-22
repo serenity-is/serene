@@ -13,6 +13,7 @@ namespace Serene.AppServices
         private static Dictionary<string, string> TwoLetterToFourLetter = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "en", "en-US" },
+            { "fa", "fa-IR" },
             { "zh", "zh-CN" },
             { "vi", "vi-VN" }
         };
