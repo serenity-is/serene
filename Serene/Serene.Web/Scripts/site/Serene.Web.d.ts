@@ -2553,6 +2553,9 @@ declare namespace Serene.Common {
         protected usePager(): boolean;
         protected getInitialTitle(): any;
         protected createQuickSearchInput(): void;
+        protected enableDeleteColumn(): boolean;
+        protected getColumns(): Slick.Column[];
+        protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }
 declare namespace Serene.Northwind {

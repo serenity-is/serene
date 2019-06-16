@@ -144,5 +144,53 @@
 
         protected createQuickSearchInput() {
         }
+
+        protected enableDeleteColumn(): boolean {
+            return false;
+        }
+
+        protected getColumns() {
+            var columns = super.getColumns();
+
+            if (this.enableDeleteColumn()) {
+                columns.unshift({
+                    field: 'Delete Row',
+                    name: '',
+                    format: ctx => '<a class="inline-action delete-row" title="delete">' +
+                        '<i class="fa fa-trash-o text-red"></i></a>',
+                    width: 24,
+                    minWidth: 24,
+                    maxWidth: 24
+                });
+            }
+
+            return columns;
+        }
+
+        protected onClick(e: JQueryEventObject, row: number, cell: number) {
+            super.onClick(e, row, cell);
+
+            if (e.isDefaultPrevented())
+                return;
+
+            var item: TEntity = this.itemAt(row);
+            var target = $(e.target);
+
+            // if user clicks "i" element, e.g. icon
+            if (target.parent().hasClass('inline-action'))
+                target = target.parent();
+
+            if (target.hasClass('inline-action')) {
+                e.preventDefault();
+
+                if (this.enableDeleteColumn()) {
+                    if (target.hasClass('delete-row')) {
+                        Q.confirm('Delete item?', () => {
+                            this.view.deleteItem(item[this.getIdProperty()]);
+                        });
+                    }
+                }
+            }
+        }
     }
 }
