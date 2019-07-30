@@ -222,11 +222,11 @@ var Q;
     }
     Q.isTrimmedEmpty = isTrimmedEmpty;
     function format(msg) {
+        var _a;
         var prm = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             prm[_i - 1] = arguments[_i];
         }
-        var _a;
         return (_a = ss).formatString.apply(_a, [msg].concat(prm));
     }
     Q.format = format;
@@ -4174,6 +4174,22 @@ var Serenity;
             tabs.tabs(isDisabled ? 'disable' : 'enable', index);
         }
         TabsExtensions.setDisabled = setDisabled;
+        function toggle(tabs, tabKey, visible) {
+            if (!tabs)
+                return;
+            var ibk = indexByKey(tabs);
+            if (!ibk)
+                return;
+            var index = ibk[tabKey];
+            if (index == null) {
+                return;
+            }
+            if (!visible && index === tabs.tabs('option', 'active')) {
+                tabs.tabs('option', 'active', 0);
+            }
+            tabs.children('ul').children('li').eq(index).toggle(visible);
+        }
+        TabsExtensions.toggle = toggle;
         function activeTabKey(tabs) {
             var href = tabs.children('ul')
                 .children('li')

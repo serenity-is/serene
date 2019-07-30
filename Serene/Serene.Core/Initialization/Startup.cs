@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,7 @@ using Serenity.Services;
 using Serenity.Web.Middleware;
 using System.Data.SqlClient;
 using System.IO;
+using System;
 
 namespace Serene
 {
@@ -31,7 +33,11 @@ namespace Serene
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
@@ -54,6 +60,15 @@ namespace Serene
                 o.Cookie.Name = ".AspNetAuth";
                 o.LoginPath = new PathString("/Account/Login/");
                 o.AccessDeniedPath = new PathString("/Account/AccessDenied");
+                o.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                o.SlidingExpiration = true;
+            });
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConfiguration(Configuration.GetSection("Logging"));
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -68,7 +83,7 @@ namespace Serene
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
             Serenity.Extensibility.ExtensibilityHelper.SelfAssemblies = new System.Reflection.Assembly[]
             {
@@ -95,9 +110,6 @@ namespace Serene
             textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/site/texts".Replace('/', Path.DirectorySeparatorChar)));
             textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "App_Data/texts".Replace('/', Path.DirectorySeparatorChar)));
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             var reqLocOpt = new RequestLocalizationOptions();
             reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
             reqLocOpt.SupportedCultures = UserCultureProvider.SupportedCultures;
@@ -112,8 +124,10 @@ namespace Serene
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
 
