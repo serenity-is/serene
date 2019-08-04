@@ -186,7 +186,7 @@
                 if (this.enableDeleteColumn()) {
                     if (target.hasClass('delete-row')) {
                         Q.confirm('Delete item?', () => {
-                            this.view.deleteItem(item[this.getIdProperty()]);
+                            this.deleteEntity(item[this.getIdProperty()]);
                         });
                     }
                 }
