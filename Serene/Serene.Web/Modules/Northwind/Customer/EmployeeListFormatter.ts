@@ -9,7 +9,7 @@
 
             var byId = EmployeeRow.getLookup().itemById;
             let z: EmployeeRow;
-            return idList.map(x => ((z = byId[x]) ? z.FullName : x)).join(", ");
+            return Q.htmlEncode(idList.map(x => ((z = byId[x]) ? z.FullName : x)).join(", "));
         }
     }
 }
