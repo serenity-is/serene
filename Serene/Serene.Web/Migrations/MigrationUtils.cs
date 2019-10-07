@@ -112,12 +112,17 @@ END;", table, id, seq));
 
     public class MigrationAttribute : FluentMigrator.MigrationAttribute
     {
-        public MigrationAttribute(long version)
-            : base(version)
+        public MigrationAttribute(long version, string description)
+            : base(version, description)
         {
             if (version < 20000101000000 ||
                 version > 99990101000000)
                 throw new Exception("Migration versions must be in yyyyMMddHHmmss format! Version " + version + " is incorrect.");
+        }
+
+        public MigrationAttribute(long version)
+            : this(version, null)
+        {
         }
 
         public MigrationAttribute(int year, int month, int day, int hour, int minute, int second = 0)
