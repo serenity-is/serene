@@ -28,6 +28,10 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Email';
         export const localTextPrefix = 'Northwind.CustomerDetails';
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             Id = "Id",

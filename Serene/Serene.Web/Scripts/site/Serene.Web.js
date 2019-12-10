@@ -7530,7 +7530,7 @@ var Serene;
                     return "";
                 var byId = Northwind.EmployeeRow.getLookup().itemById;
                 var z;
-                return idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", ");
+                return Q.htmlEncode(idList.map(function (x) { return ((z = byId[x]) ? z.FullName : x); }).join(", "));
             };
             EmployeeListFormatter = __decorate([
                 Serenity.Decorators.registerFormatter()

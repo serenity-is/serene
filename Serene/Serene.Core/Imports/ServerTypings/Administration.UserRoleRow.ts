@@ -10,6 +10,10 @@
     export namespace UserRoleRow {
         export const idProperty = 'UserRoleId';
         export const localTextPrefix = 'Administration.UserRole';
+        export const deletePermission = 'Administration:Security';
+        export const insertPermission = 'Administration:Security';
+        export const readPermission = 'Administration:Security';
+        export const updatePermission = 'Administration:Security';
 
         export declare const enum Fields {
             UserRoleId = "UserRoleId",

@@ -12,6 +12,10 @@
         export const idProperty = 'UserPermissionId';
         export const nameProperty = 'PermissionKey';
         export const localTextPrefix = 'Administration.UserPermission';
+        export const deletePermission = 'Administration:Security';
+        export const insertPermission = 'Administration:Security';
+        export const readPermission = 'Administration:Security';
+        export const updatePermission = 'Administration:Security';
 
         export declare const enum Fields {
             UserPermissionId = "UserPermissionId",

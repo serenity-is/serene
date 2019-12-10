@@ -49,6 +49,10 @@
         export function getLookup(): Q.Lookup<EmployeeRow> {
             return Q.getLookup<EmployeeRow>('Northwind.Employee');
         }
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             EmployeeID = "EmployeeID",

@@ -14,6 +14,10 @@
         export function getLookup(): Q.Lookup<LanguageRow> {
             return Q.getLookup<LanguageRow>('Administration.Language');
         }
+        export const deletePermission = 'Administration:Translation';
+        export const insertPermission = 'Administration:Translation';
+        export const readPermission = 'Administration:Translation';
+        export const updatePermission = 'Administration:Translation';
 
         export declare const enum Fields {
             Id = "Id",

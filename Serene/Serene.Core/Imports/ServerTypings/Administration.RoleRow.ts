@@ -13,6 +13,10 @@
         export function getLookup(): Q.Lookup<RoleRow> {
             return Q.getLookup<RoleRow>('Administration.Role');
         }
+        export const deletePermission = 'Administration:Security';
+        export const insertPermission = 'Administration:Security';
+        export const readPermission = 'Administration:Security';
+        export const updatePermission = 'Administration:Security';
 
         export declare const enum Fields {
             RoleId = "RoleId",

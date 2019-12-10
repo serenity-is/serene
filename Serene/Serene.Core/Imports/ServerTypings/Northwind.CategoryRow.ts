@@ -15,6 +15,10 @@
         export function getLookup(): Q.Lookup<CategoryRow> {
             return Q.getLookup<CategoryRow>('Northwind.Category');
         }
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             CategoryID = "CategoryID",

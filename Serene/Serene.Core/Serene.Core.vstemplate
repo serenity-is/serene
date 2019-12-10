@@ -45,6 +45,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.ts">Administration.LanguageForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageRow.ts">Administration.LanguageRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageService.ts">Administration.LanguageService.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionKeys.ts">Administration.PermissionKeys.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleColumns.ts">Administration.RoleColumns.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.ts">Administration.RoleForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListRequest.ts">Administration.RolePermissionListRequest.ts</ProjectItem>
@@ -145,6 +146,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.ts">Northwind.OrderRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.ts">Northwind.OrderService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.ts">Northwind.OrderShippingState.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PermissionKeys.ts">Northwind.PermissionKeys.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductColumns.ts">Northwind.ProductColumns.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductForm.ts">Northwind.ProductForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangRow.ts">Northwind.ProductLangRow.ts</ProjectItem>
