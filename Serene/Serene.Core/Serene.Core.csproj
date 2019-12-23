@@ -28,9 +28,9 @@
     <PackageReference Include="EPPlus" Version="4.5.2.1" />
     <PackageReference Include="FastMember" Version="1.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Serenity.Web" Version="3.9.13" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web" Version="3.9.14" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
     <PackageReference Include="Serenity.Web.Assets" Version="3.9.2" />
-    <PackageReference Include="Serenity.Scripts" Version="3.9.13" />
+    <PackageReference Include="Serenity.Scripts" Version="3.9.14" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
     <PackageReference Include="EPPlus" Version="4.5.2.1" />
@@ -48,9 +48,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
-    <PackageReference Include="Serenity.Web.AspNetCore" Version="3.9.13" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Web.AspNetCore" Version="3.9.14" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
     <PackageReference Include="Serenity.Web.Assets" Version="3.9.2" />
-    <PackageReference Include="Serenity.Scripts" Version="3.9.13" />
+    <PackageReference Include="Serenity.Scripts" Version="3.9.14" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
@@ -95,6 +95,6 @@
     <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.9.13" />
+    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.9.14" />
   </ItemGroup>
 </Project>

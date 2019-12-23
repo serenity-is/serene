@@ -1425,9 +1425,9 @@
       <installPackage id="Microsoft.AspNet.Mvc" version="5.2.7" />
       <installPackage id="Microsoft.TypeScript.MSBuild" version="3.4.0" />
       <installPackage id="NUglify" version="1.5.12" />
-      <installPackage id="Serenity.CodeGenerator" version="3.9.13" />
-      <installPackage id="Serenity.Scripts" version="3.9.13" />
-      <installPackage id="Serenity.Web" version="3.9.13" />
+      <installPackage id="Serenity.CodeGenerator" version="3.9.14" />
+      <installPackage id="Serenity.Scripts" version="3.9.14" />
+      <installPackage id="Serenity.Web" version="3.9.14" />
       <installPackage id="Serenity.Web.Assets" version="3.9.2" />
       <installPackage id="Serenity.Web.Tooling" version="3.9.10" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
