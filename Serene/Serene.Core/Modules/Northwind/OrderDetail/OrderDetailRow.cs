@@ -56,7 +56,7 @@ namespace Serene.Northwind.Entities
             set { Fields.Discount[this] = value; }
         }
 
-        [DisplayName("Line Total"), Expression("(t0.[UnitPrice] * t0.[Quantity] - t0.[Discount])")]
+        [DisplayName("Line Total"), Expression("(T0.[UnitPrice] * T0.[Quantity] - T0.[Discount])")]
         [AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
         public Decimal? LineTotal
         {
