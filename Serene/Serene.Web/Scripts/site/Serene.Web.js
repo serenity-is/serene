@@ -4540,6 +4540,45 @@ var Serene;
             };
             GridEditorBase.prototype.createQuickSearchInput = function () {
             };
+            GridEditorBase.prototype.enableDeleteColumn = function () {
+                return false;
+            };
+            GridEditorBase.prototype.getColumns = function () {
+                var columns = _super.prototype.getColumns.call(this);
+                if (this.enableDeleteColumn()) {
+                    columns.unshift({
+                        field: 'Delete Row',
+                        name: '',
+                        format: function (ctx) { return '<a class="inline-action delete-row" title="delete">' +
+                            '<i class="fa fa-trash-o text-red"></i></a>'; },
+                        width: 24,
+                        minWidth: 24,
+                        maxWidth: 24
+                    });
+                }
+                return columns;
+            };
+            GridEditorBase.prototype.onClick = function (e, row, cell) {
+                var _this = this;
+                _super.prototype.onClick.call(this, e, row, cell);
+                if (e.isDefaultPrevented())
+                    return;
+                var item = this.itemAt(row);
+                var target = $(e.target);
+                // if user clicks "i" element, e.g. icon
+                if (target.parent().hasClass('inline-action'))
+                    target = target.parent();
+                if (target.hasClass('inline-action')) {
+                    e.preventDefault();
+                    if (this.enableDeleteColumn()) {
+                        if (target.hasClass('delete-row')) {
+                            Q.confirm(Q.text('Controls.EntityDialog.DeleteConfirmation'), function () {
+                                _this.deleteEntity(item[_this.getIdProperty()]);
+                            });
+                        }
+                    }
+                }
+            };
             GridEditorBase = __decorate([
                 Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
                 Serenity.Decorators.editor(),
