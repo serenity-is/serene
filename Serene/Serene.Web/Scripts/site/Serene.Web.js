@@ -4572,8 +4572,8 @@ var Serene;
                     e.preventDefault();
                     if (this.enableDeleteColumn()) {
                         if (target.hasClass('delete-row')) {
-                            Q.confirm('Delete item?', function () {
-                                _this.view.deleteItem(item[_this.getIdProperty()]);
+                            Q.confirm(Q.text('Controls.EntityDialog.DeleteConfirmation'), function () {
+                                _this.deleteEntity(item[_this.getIdProperty()]);
                             });
                         }
                     }

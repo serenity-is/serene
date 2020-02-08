@@ -185,7 +185,7 @@
 
                 if (this.enableDeleteColumn()) {
                     if (target.hasClass('delete-row')) {
-                        Q.confirm('Delete item?', () => {
+                        Q.confirm(Q.text('Controls.EntityDialog.DeleteConfirmation'), () => {
                             this.deleteEntity(item[this.getIdProperty()]);
                         });
                     }
