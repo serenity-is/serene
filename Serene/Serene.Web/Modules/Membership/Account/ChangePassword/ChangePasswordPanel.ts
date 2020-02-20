@@ -12,7 +12,7 @@
 
             this.form = new ChangePasswordForm(this.idPrefix);
             this.form.NewPassword.addValidationRule(this.uniqueName, e => {
-                if (this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                if (this.form.w('NewPassword', Serenity.PasswordEditor).value.length < 7) {
                     return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                 }
             });
