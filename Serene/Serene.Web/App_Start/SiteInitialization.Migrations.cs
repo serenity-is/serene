@@ -187,8 +187,16 @@
                 }
                 catch (Exception ex)
                 {
+                    var output = sw.ToString().Trim();
+
+                    if (output.StartsWith("/*"))
+                    {
+                        var idx = output.IndexOf("*/");
+                        output = output.Substring(idx + 2);
+                    }
+
                     throw new Exception("Error executing migration:\r\n" +
-                        sw.ToString(), ex);
+                        output, ex);
                 }
             }
         }

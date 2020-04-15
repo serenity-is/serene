@@ -1287,6 +1287,12 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.js">jquery-3.3.1.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.min.js">jquery-3.3.1.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.min.map">jquery-3.3.1.min.map</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.js">jquery-3.3.1.slim.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.min.js">jquery-3.3.1.slim.min.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.min.map">jquery-3.3.1.slim.min.map</ProjectItem>
         <Folder Name="jvectormap" TargetFolderName="jvectormap">
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -1417,20 +1423,24 @@
   </WizardExtension>
   <WizardData>
     <packagesToInstall>
+      <installPackage id="BouncyCastle" version="1.8.5" />
       <installPackage id="CsQuery" version="1.3.4" />
-      <installPackage id="Dapper" version="1.42" />
-      <installPackage id="EPPlus" version="4.5.3.1" />
+      <installPackage id="Dapper" version="1.60.6" />
+      <installPackage id="EPPlus" version="4.5.3.2" />
       <installPackage id="flot" version="0.8.3" />
       <installPackage id="FluentMigrator.Runner" version="1.6.2" />
       <installPackage id="Microsoft.AspNet.Mvc" version="5.2.7" />
-      <installPackage id="Microsoft.TypeScript.MSBuild" version="3.4.0" />
-      <installPackage id="NUglify" version="1.5.12" />
-      <installPackage id="Serenity.CodeGenerator" version="3.9.14" />
-      <installPackage id="Serenity.Scripts" version="3.9.14" />
-      <installPackage id="Serenity.Web" version="3.9.14" />
+      <installPackage id="Microsoft.TypeScript.MSBuild" version="3.7.4" />
+      <installPackage id="Mono.Cecil" version="0.11.1" />
+      <installPackage id="NUglify" version="1.5.13" />
+      <installPackage id="PagedList.Mvc" version="4.5.0.0" />
+      <installPackage id="Serenity.CodeGenerator" version="3.12.6" />
+      <installPackage id="Serenity.Scripts" version="3.12.6" />
+      <installPackage id="Serenity.Web" version="3.12.6" />
       <installPackage id="Serenity.Web.Assets" version="3.9.2" />
       <installPackage id="Serenity.Web.Tooling" version="3.9.10" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
+      <installPackage id="TinyMapper" version="3.0.3" />
       <installPackage id="wkhtmltopdf-x86-win32" version="0.12.3.6" />
     </packagesToInstall>
     <features>

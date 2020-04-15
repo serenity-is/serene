@@ -118,7 +118,7 @@ public class TypeScriptCompiler
         this.projectDir = System.IO.Path.GetFullPath(projectDir);
     }
 
-    public string DetermineTSCPath() {
+public string DetermineTSCPath() {
         var packages = Path.GetFullPath(Path.Combine(this.projectDir, @"..\..\packages"));
 
         var list = new List<string>();

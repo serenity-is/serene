@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergen Condition=" '$(TargetFramework)' == 'net461' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.exe</DotNetSergen>
-    <DotNetSergen Condition=" '$(TargetFramework)' == 'netcoreapp2.2' AND Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll')">dotnet ..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\dotnet-sergen.dll</DotNetSergen>
-    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <DotNetSergen Condition="Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe</DotNetSergen>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
@@ -19,38 +18,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="2.0.6" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.1.1" />
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
+    <PackageReference Include="FastMember" Version="1.5.0" />
+    <PackageReference Include="MailKit" Version="2.4.1" />
+    <PackageReference Include="Mapster" Version="4.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.0.0" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2' ">
-    <PackageReference Include="EPPlus" Version="4.5.2.1" />
-    <PackageReference Include="FastMember" Version="1.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Serenity.Web" Version="3.9.14" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Scripts" Version="3.12.6" />
+    <PackageReference Include="Serenity.Web" Version="3.12.6" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
     <PackageReference Include="Serenity.Web.Assets" Version="3.9.2" />
-    <PackageReference Include="Serenity.Scripts" Version="3.9.14" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <PackageReference Include="EPPlus" Version="4.5.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
-    <PackageReference Include="Serenity.Web.AspNetCore" Version="3.9.14" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
-    <PackageReference Include="Serenity.Web.Assets" Version="3.9.2" />
-    <PackageReference Include="Serenity.Scripts" Version="3.9.14" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
     <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
@@ -59,13 +42,8 @@
     <ProjectReference Include="..\..\Serenity\Serenity.Services\Serenity.Services.csproj" />
     <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.csproj" />
   </ItemGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.2' ">
+  <PropertyGroup>
     <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <PlatformTarget>x64</PlatformTarget>
-    <DefineConstants>$(DefineConstants);ASPNETCORE</DefineConstants>
   </PropertyGroup>
   <Import Project="$(SolutionDir)Serenity\tools\Submodule\Serenity.Submodule.AspNetCore.targets" Condition="Exists('$(SolutionDir)Serenity\tools\Submodule\Serenity.Submodule.AspNetCore.targets')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
@@ -81,6 +59,7 @@
     <Exec Command="npm install" />
   </Target>
   <Target Name="TransformMvcClientTypes" BeforeTargets="BeforeBuild">
+    <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
   </Target>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild" Inputs="@(CompileSiteLessInputs)" Outputs="wwwroot\Content\site\site.css">
@@ -92,9 +71,6 @@
   </Target>
   <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\Scripts\site\Serene.Web.js">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="&quot;$(TscToolPath.Replace('build\\..\tools\', 'tools\'))\tsc&quot; -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="&quot;$(NodePath)\node&quot; &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
   </Target>
-  <ItemGroup>
-    <DotNetCliToolReference Include="Serenity.CodeGenerator" Version="3.9.14" />
-  </ItemGroup>
 </Project>

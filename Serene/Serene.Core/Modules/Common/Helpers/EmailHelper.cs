@@ -37,8 +37,10 @@ namespace Serene.Common
                 message.From.Add(MailboxAddress.Parse(config.From));
             message.To.Add(new MailboxAddress(displayName, address));
             message.Subject = subject;
-            var bodyBuilder = new BodyBuilder();
-            bodyBuilder.HtmlBody = body;
+            var bodyBuilder = new BodyBuilder
+            {
+                HtmlBody = body
+            };
             message.Body = bodyBuilder.ToMessageBody();
            
             if (!string.IsNullOrEmpty(config.Host))
@@ -50,7 +52,7 @@ namespace Serene.Common
             }
             else
             {
-                var pickupPath = Path.Combine(Dependency.Resolve<IHostingEnvironment>().ContentRootPath, "App_Data");
+                var pickupPath = Path.Combine(Dependency.Resolve<IWebHostEnvironment>().ContentRootPath, "App_Data");
                 pickupPath = Path.Combine(pickupPath, "Mail");
                 Directory.CreateDirectory(pickupPath);
                 message.WriteTo(Path.Combine(pickupPath, DateTime.Now.ToString("yyyyMMdd_HHmmss_fff") + ".eml"));
@@ -76,10 +78,5 @@ namespace Serene.Common
             client.Send(message);
 #endif
         }
-
-#if !COREFX
-
-#endif
-
     }
 }

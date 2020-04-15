@@ -5,21 +5,22 @@
     "experimentalDecorators": true,
     "declaration": true,
     "emitBOM": true,
+    "jsx": "react",
     "noEmitHelpers": true,
-    "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "outFile": "wwwroot/Scripts/site/Serene.Web.js",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "target": "es5",
     "typeRoots": [
       "./node_modules/@types/"
     ]
   },
-  "exclude": [
-    ".vs/",
-    "bin/",
-    "obj/",
-    "App_Data/",
-    "Views/",
-    "node_modules/",
-    "wwwroot/"
+  "include": [
+    "./typings/serenity/Serenity.CoreLib.d.ts",
+    "./typings/jspdf/jspdf.autotable.d.ts",
+    "./Imports/**/*",
+    "./Modules/**/*"
   ]
 }
