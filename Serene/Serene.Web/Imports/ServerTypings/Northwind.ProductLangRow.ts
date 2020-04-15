@@ -10,6 +10,10 @@
         export const idProperty = 'Id';
         export const nameProperty = 'ProductName';
         export const localTextPrefix = 'Northwind.ProductLang';
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             Id = "Id",

@@ -24,6 +24,10 @@
     export namespace OrderDetailRow {
         export const idProperty = 'DetailID';
         export const localTextPrefix = 'Northwind.OrderDetail';
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             DetailID = "DetailID",

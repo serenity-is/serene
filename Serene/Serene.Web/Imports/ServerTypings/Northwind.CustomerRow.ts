@@ -29,6 +29,10 @@
         export function getLookup(): Q.Lookup<CustomerRow> {
             return Q.getLookup<CustomerRow>('Northwind.Customer');
         }
+        export const deletePermission = 'Northwind:Customer:Delete';
+        export const insertPermission = 'Northwind:Customer:Modify';
+        export const readPermission = 'Northwind:Customer:View';
+        export const updatePermission = 'Northwind:Customer:Modify';
 
         export declare const enum Fields {
             ID = "ID",

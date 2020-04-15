@@ -180,7 +180,7 @@ Task("PrepareVSIX")
         ToolPath = System.IO.Path.Combine(r, @"Serenity\tools\NuGet\nuget.exe"),
         ArgumentCustomization = args => {
 			return args.Append("-FileConflictAction Overwrite")
-				.Append(@"-MsBuildPath ""C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin""");
+				.Append(@"-MsBuildPath ""C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin""");
 		}
     });
 
@@ -457,9 +457,11 @@ Task("PrepareVSIX")
 
     MSBuild("./Serene.sln", s => {
         s.SetConfiguration(configuration);
-        s.ToolPath = @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe";
+		s.SetVerbosity(Verbosity.Minimal);
+        s.ToolPath = @"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\msbuild.exe";
     });
     
+	
     var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneWebProj), "packages.config"));  
     updateVsixProj(webPackages);
 	patchProjectRefs(sereneCoreWebProj, serenityVersion, webPackages);
@@ -468,13 +470,20 @@ Task("PrepareVSIX")
     if (exitCode > 0)
         throw new Exception("Error while restoring " + sereneCoreWebProj);	
 
+    exitCode = StartProcess("dotnet", new ProcessSettings {
+		Arguments = "tool update sergen",
+		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreWebProj)
+	});
+    if (exitCode > 0)
+        throw new Exception("Error while tool updating " + sereneCoreWebProj);	
+
 	exitCode = StartProcess("dotnet", new ProcessSettings
 	{
 		Arguments = "sergen restore",
 		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreWebProj)
 	});
     if (exitCode > 0)
-        throw new Exception("Error while sergen restoring " + sereneCoreWebProj);	        
+        throw new Exception("Error while sergen restoring " + sereneCoreWebProj);
     
     if (System.IO.Directory.Exists(webTemplateFolder)) 
         System.IO.Directory.Delete(webTemplateFolder, true);	

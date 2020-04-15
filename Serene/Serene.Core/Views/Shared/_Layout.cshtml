@@ -15,7 +15,7 @@
 <!--[if IE 8]> <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="no-js@(hideNav ? " no-navigation" : "")">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="no-js@(hideNav ? " no-navigation" : "")@Html.Raw(rtl ? " dir=\"rtl\"" : "")">
 <!--<![endif]-->
 <head>
     <partial name="@MVC.Views.Shared._LayoutHead" />

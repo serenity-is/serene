@@ -8,6 +8,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>
     <script src="~/Scripts/adminlte/demo.js"></script>
+    <script>
+        var oldOffset = jQuery.fn.offset;
+        jQuery.fn.offset = function (options) {
+
+            if (!arguments.length && this[0] && !this[0].getClientRects)
+                return { top: 0, left: 0 };
+
+            return oldOffset.apply(this, arguments);
+        }
+    </script>
 }
 
 @section ContentHeader {

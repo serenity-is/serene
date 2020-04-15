@@ -1,4 +1,4 @@
-
+﻿
 namespace Serene.Administration.Endpoints
 {
     using Microsoft.AspNetCore.Hosting;
@@ -13,9 +13,9 @@ namespace Serene.Administration.Endpoints
     [ServiceAuthorize(PermissionKeys.Security)]
     public class SergenController : ServiceEndpoint
     {
-        private IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
 
-        public SergenController(IHostingEnvironment hostingEnvironment)
+        public SergenController(IWebHostEnvironment hostingEnvironment)
         {
             this.hostingEnvironment = hostingEnvironment;
         }
@@ -91,11 +91,13 @@ namespace Serene.Administration.Endpoints
         {
             CheckAccess();
 
-            var response = new ListResponse<SergenConnection>();
-            response.Entities = RunSergen<List<string>>("g").Select(x => new SergenConnection
+            var response = new ListResponse<SergenConnection>
             {
-                Key = x
-            }).ToList();
+                Entities = RunSergen<List<string>>("g").Select(x => new SergenConnection
+                {
+                    Key = x
+                }).ToList()
+            };
 
             return response;
         }
@@ -108,15 +110,17 @@ namespace Serene.Administration.Endpoints
             request.CheckNotNull();
             Check.NotNullOrEmpty(request.ConnectionKey, "connectionKey");
 
-            var response = new ListResponse<SergenTable>();
-            response.Entities = RunSergen<List<dynamic>>("g", "-c", Escape(request.ConnectionKey))
-                .Select(x => new SergenTable
-                {
-                    Tablename = x.name,
-                    Identifier = x.identifier,
-                    Module = x.module,
-                    PermissionKey = x.permission
-                }).ToList();
+            var response = new ListResponse<SergenTable>
+            {
+                Entities = RunSergen<List<dynamic>>("g", "-c", Escape(request.ConnectionKey))
+                    .Select(x => new SergenTable
+                    {
+                        Tablename = x.name,
+                        Identifier = x.identifier,
+                        Module = x.module,
+                        PermissionKey = x.permission
+                    }).ToList()
+            };
 
             return response;
         }
