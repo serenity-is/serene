@@ -21,6 +21,10 @@
     export namespace ProductLogRow {
         export const idProperty = 'ProductLogID';
         export const localTextPrefix = 'Northwind.ProductLog';
+        export const deletePermission = null;
+        export const insertPermission = null;
+        export const readPermission = '';
+        export const updatePermission = null;
 
         export declare const enum Fields {
             ProductLogID = "ProductLogID",

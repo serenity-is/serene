@@ -10,6 +10,10 @@
     export namespace CustomerGrossSalesRow {
         export const nameProperty = 'ContactName';
         export const localTextPrefix = 'Northwind.CustomerGrossSales';
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             CustomerId = "CustomerId",

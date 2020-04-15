@@ -11,6 +11,10 @@
         export const idProperty = 'UserPreferenceId';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Common.UserPreference';
+        export const deletePermission = '';
+        export const insertPermission = '';
+        export const readPermission = '';
+        export const updatePermission = '';
 
         export declare const enum Fields {
             UserPreferenceId = "UserPreferenceId",

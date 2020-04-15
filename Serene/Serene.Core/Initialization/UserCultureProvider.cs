@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,8 @@ namespace Serene.AppServices
         {
             { "en", "en-US" },
             { "zh", "zh-CN" },
-            { "vi", "vi-VN" }
+            { "vi", "vi-VN" },
+            { "fa", "fa-IR" }
         };
 
         public Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
@@ -38,7 +39,7 @@ namespace Serene.AppServices
         }
 
         private static List<CultureInfo> supportedCultures;
-        private static readonly string[] supportedCultureIndentifiers = new string[] {
+        private static readonly string[] supportedCultureIdentifiers = new string[] {
             "de-DE",
             "en-US",
             "en-GB",
@@ -59,7 +60,7 @@ namespace Serene.AppServices
             get
             {
                 if (supportedCultures == null)
-                    supportedCultures = supportedCultureIndentifiers.Select(x =>
+                    supportedCultures = supportedCultureIdentifiers.Select(x =>
                     {
                         try
                         {

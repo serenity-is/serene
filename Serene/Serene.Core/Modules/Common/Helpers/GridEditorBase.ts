@@ -70,17 +70,20 @@
         }
 
         protected getButtons(): Serenity.ToolButton[] {
-            return [{
-                title: this.getAddButtonCaption(),
-                cssClass: 'add-button',
-                onClick: () => {
+            var buttons = super.getButtons();
+            var addButton = Q.tryFirst(buttons, x => x.cssClass == 'add-button');
+            if (addButton != null) {
+                addButton.onClick = () => {
                     this.createEntityDialog(this.getItemType(), dlg => {
                         var dialog = dlg as GridEditorDialog<TEntity>;
                         dialog.onSave = (opt, callback) => this.save(opt, callback);
+                        this.transferDialogReadOnly(dialog);
                         dialog.loadEntityAndOpenDialog(this.getNewEntity());
                     });
                 }
-            }];
+            }
+
+            return buttons.filter(x => x.cssClass != "refresh-button");
         }
 
         protected editItem(entityOrId: any): void {
@@ -95,7 +98,7 @@
                     }
                     callback({});
                 };
-
+                this.transferDialogReadOnly(dialog);
                 dialog.onSave = (opt, callback) => this.save(opt, callback);
                 dialog.loadEntityAndOpenDialog(item);
             });;

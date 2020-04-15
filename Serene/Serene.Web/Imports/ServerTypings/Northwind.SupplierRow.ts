@@ -23,6 +23,10 @@
         export function getLookup(): Q.Lookup<SupplierRow> {
             return Q.getLookup<SupplierRow>('Northwind.Supplier');
         }
+        export const deletePermission = 'Northwind:General';
+        export const insertPermission = 'Northwind:General';
+        export const readPermission = 'Northwind:General';
+        export const updatePermission = 'Northwind:General';
 
         export declare const enum Fields {
             SupplierID = "SupplierID",
