@@ -915,6 +915,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.ts">ForgotPasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.ts">LoginPanel.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ResetPassword.cs">AccountPage.ResetPassword.cs</ProjectItem>
