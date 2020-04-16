@@ -25,6 +25,10 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.Language";
         const lookupKey = "Administration.Language";
         function getLookup(): Q.Lookup<LanguageRow>;
+        const deletePermission = "Administration:Translation";
+        const insertPermission = "Administration:Translation";
+        const readPermission = "Administration:Translation";
+        const updatePermission = "Administration:Translation";
         const enum Fields {
             Id = "Id",
             LanguageId = "LanguageId",
@@ -83,6 +87,10 @@ declare namespace Serene.Administration {
         const idProperty = "RolePermissionId";
         const nameProperty = "PermissionKey";
         const localTextPrefix = "Administration.RolePermission";
+        const deletePermission = "Administration:Security";
+        const insertPermission = "Administration:Security";
+        const readPermission = "Administration:Security";
+        const updatePermission = "Administration:Security";
         const enum Fields {
             RolePermissionId = "RolePermissionId",
             RoleId = "RoleId",
@@ -121,6 +129,10 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.Role";
         const lookupKey = "Administration.Role";
         function getLookup(): Q.Lookup<RoleRow>;
+        const deletePermission = "Administration:Security";
+        const insertPermission = "Administration:Security";
+        const readPermission = "Administration:Security";
+        const updatePermission = "Administration:Security";
         const enum Fields {
             RoleId = "RoleId",
             RoleName = "RoleName"
@@ -215,6 +227,10 @@ declare namespace Serene.Administration {
         const idProperty = "UserPermissionId";
         const nameProperty = "PermissionKey";
         const localTextPrefix = "Administration.UserPermission";
+        const deletePermission = "Administration:Security";
+        const insertPermission = "Administration:Security";
+        const readPermission = "Administration:Security";
+        const updatePermission = "Administration:Security";
         const enum Fields {
             UserPermissionId = "UserPermissionId",
             UserId = "UserId",
@@ -268,6 +284,10 @@ declare namespace Serene.Administration {
     namespace UserRoleRow {
         const idProperty = "UserRoleId";
         const localTextPrefix = "Administration.UserRole";
+        const deletePermission = "Administration:Security";
+        const insertPermission = "Administration:Security";
+        const readPermission = "Administration:Security";
+        const updatePermission = "Administration:Security";
         const enum Fields {
             UserRoleId = "UserRoleId",
             UserId = "UserId",
@@ -320,6 +340,10 @@ declare namespace Serene.Administration {
         const localTextPrefix = "Administration.User";
         const lookupKey = "Administration.User";
         function getLookup(): Q.Lookup<UserRow>;
+        const deletePermission = "Administration:Security";
+        const insertPermission = "Administration:Security";
+        const readPermission = "Administration:Security";
+        const updatePermission = "Administration:Security";
         const enum Fields {
             UserId = "UserId",
             Username = "Username",
@@ -422,6 +446,10 @@ declare namespace Serene.BasicSamples {
         const idProperty = "Id";
         const nameProperty = "Title";
         const localTextPrefix = "Northwind.DragDropSample";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             Id = "Id",
             ParentId = "ParentId",
@@ -617,6 +645,10 @@ declare namespace Serene.Common {
         const idProperty = "UserPreferenceId";
         const nameProperty = "Name";
         const localTextPrefix = "Common.UserPreference";
+        const deletePermission = "";
+        const insertPermission = "";
+        const readPermission = "";
+        const updatePermission = "";
         const enum Fields {
             UserPreferenceId = "UserPreferenceId",
             UserId = "UserId",
@@ -783,6 +815,10 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "CategoryName";
         const localTextPrefix = "Northwind.CategoryLang";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             Id = "Id",
             CategoryId = "CategoryId",
@@ -822,6 +858,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Category";
         const lookupKey = "Northwind.Category";
         function getLookup(): Q.Lookup<CategoryRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             CategoryID = "CategoryID",
             CategoryName = "CategoryName",
@@ -870,6 +910,10 @@ declare namespace Serene.Northwind {
         const idProperty = "ID";
         const nameProperty = "CustomerID";
         const localTextPrefix = "Northwind.CustomerCustomerDemo";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             ID = "ID",
             CustomerID = "CustomerID",
@@ -898,6 +942,10 @@ declare namespace Serene.Northwind {
         const idProperty = "ID";
         const nameProperty = "CustomerTypeID";
         const localTextPrefix = "Northwind.CustomerDemographic";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             ID = "ID",
             CustomerTypeID = "CustomerTypeID",
@@ -934,6 +982,10 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "Email";
         const localTextPrefix = "Northwind.CustomerDetails";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             Id = "Id",
             LastContactDate = "LastContactDate",
@@ -997,6 +1049,10 @@ declare namespace Serene.Northwind {
     namespace CustomerGrossSalesRow {
         const nameProperty = "ContactName";
         const localTextPrefix = "Northwind.CustomerGrossSales";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             CustomerId = "CustomerId",
             ContactName = "ContactName",
@@ -1015,6 +1071,10 @@ declare namespace Serene.Northwind {
     namespace CustomerRepresentativesRow {
         const idProperty = "RepresentativeId";
         const localTextPrefix = "Northwind.CustomerRepresentatives";
+        const deletePermission = "Northwind:Customer:View";
+        const insertPermission = "Northwind:Customer:View";
+        const readPermission = "Northwind:Customer:View";
+        const updatePermission = "Northwind:Customer:View";
         const enum Fields {
             RepresentativeId = "RepresentativeId",
             CustomerId = "CustomerId",
@@ -1049,6 +1109,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Customer";
         const lookupKey = "Northwind.Customer";
         function getLookup(): Q.Lookup<CustomerRow>;
+        const deletePermission = "Northwind:Customer:Delete";
+        const insertPermission = "Northwind:Customer:Modify";
+        const readPermission = "Northwind:Customer:View";
+        const updatePermission = "Northwind:Customer:Modify";
         const enum Fields {
             ID = "ID",
             CustomerID = "CustomerID",
@@ -1137,6 +1201,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Employee";
         const lookupKey = "Northwind.Employee";
         function getLookup(): Q.Lookup<EmployeeRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             EmployeeID = "EmployeeID",
             LastName = "LastName",
@@ -1207,6 +1275,10 @@ declare namespace Serene.Northwind {
         const idProperty = "EmployeeID";
         const nameProperty = "TerritoryID";
         const localTextPrefix = "Northwind.EmployeeTerritory";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             EmployeeID = "EmployeeID",
             TerritoryID = "TerritoryID",
@@ -1252,6 +1324,10 @@ declare namespace Serene.Northwind {
         const idProperty = "NoteId";
         const nameProperty = "EntityType";
         const localTextPrefix = "Northwind.Note";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             NoteId = "NoteId",
             EntityType = "EntityType",
@@ -1305,6 +1381,10 @@ declare namespace Serene.Northwind {
     namespace OrderDetailRow {
         const idProperty = "DetailID";
         const localTextPrefix = "Northwind.OrderDetail";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             DetailID = "DetailID",
             OrderID = "OrderID",
@@ -1403,6 +1483,10 @@ declare namespace Serene.Northwind {
         const idProperty = "OrderID";
         const nameProperty = "CustomerID";
         const localTextPrefix = "Northwind.Order";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             OrderID = "OrderID",
             CustomerID = "CustomerID",
@@ -1491,6 +1575,10 @@ declare namespace Serene.Northwind {
         const idProperty = "Id";
         const nameProperty = "ProductName";
         const localTextPrefix = "Northwind.ProductLang";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             Id = "Id",
             ProductId = "ProductId",
@@ -1538,6 +1626,10 @@ declare namespace Serene.Northwind {
     namespace ProductLogRow {
         const idProperty = "ProductLogID";
         const localTextPrefix = "Northwind.ProductLog";
+        const deletePermission: any;
+        const insertPermission: any;
+        const readPermission = "";
+        const updatePermission: any;
         const enum Fields {
             ProductLogID = "ProductLogID",
             OperationType = "OperationType",
@@ -1592,6 +1684,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Product";
         const lookupKey = "Northwind.Product";
         function getLookup(): Q.Lookup<ProductRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             ProductID = "ProductID",
             ProductName = "ProductName",
@@ -1662,6 +1758,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Region";
         const lookupKey = "Northwind.Region";
         function getLookup(): Q.Lookup<RegionRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             RegionID = "RegionID",
             RegionDescription = "RegionDescription"
@@ -1697,6 +1797,10 @@ declare namespace Serene.Northwind {
     namespace SalesByCategoryRow {
         const nameProperty = "CategoryName";
         const localTextPrefix = "Northwind.SalesByCategory";
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             CategoryId = "CategoryId",
             CategoryName = "CategoryName",
@@ -1739,6 +1843,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Shipper";
         const lookupKey = "Northwind.Shipper";
         function getLookup(): Q.Lookup<ShipperRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             ShipperID = "ShipperID",
             CompanyName = "CompanyName",
@@ -1806,6 +1914,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Supplier";
         const lookupKey = "Northwind.Supplier";
         function getLookup(): Q.Lookup<SupplierRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             SupplierID = "SupplierID",
             CompanyName = "CompanyName",
@@ -1867,6 +1979,10 @@ declare namespace Serene.Northwind {
         const localTextPrefix = "Northwind.Territory";
         const lookupKey = "Northwind.Territory";
         function getLookup(): Q.Lookup<TerritoryRow>;
+        const deletePermission = "Northwind:General";
+        const insertPermission = "Northwind:General";
+        const readPermission = "Northwind:General";
+        const updatePermission = "Northwind:General";
         const enum Fields {
             ID = "ID",
             TerritoryID = "TerritoryID",
@@ -2034,11 +2150,13 @@ declare namespace Serene.Administration {
         protected getButtons(): Serenity.ToolButton[];
         protected createToolbarExtensions(): void;
         private getSortedGroupAndPermissionKeys;
-        value: UserPermissionRow[];
+        get value(): UserPermissionRow[];
+        set value(value: UserPermissionRow[]);
         private _rolePermissions;
-        rolePermissions: string[];
+        get rolePermissions(): string[];
+        set rolePermissions(value: string[]);
         private _implicitPermissions;
-        implicitPermissions: Q.Dictionary<string[]>;
+        set implicitPermissions(value: Q.Dictionary<string[]>);
     }
     interface PermissionCheckEditorOptions {
         showRevoke?: boolean;
@@ -2548,7 +2666,8 @@ declare namespace Serene.Common {
         protected editItem(entityOrId: any): void;
         getEditValue(property: any, target: any): void;
         setEditValue(source: any, property: any): void;
-        value: TEntity[];
+        get value(): TEntity[];
+        set value(value: TEntity[]);
         protected getGridCanLoad(): boolean;
         protected usePager(): boolean;
         protected getInitialTitle(): any;
@@ -3039,9 +3158,12 @@ declare namespace Serene {
     class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
         constructor();
         cancelled: boolean;
-        max: number;
-        value: number;
-        title: string;
+        get max(): number;
+        set max(value: number);
+        get value(): number;
+        set value(value: number);
+        get title(): string;
+        set title(value: string);
         cancelTitle: string;
         getDialogOptions(): JQueryUI.DialogOptions;
         initDialog(): void;
@@ -3200,6 +3322,14 @@ declare namespace Serene.Common {
     }
 }
 declare namespace Serene.Membership {
+    class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
+        protected getFormKey(): string;
+        constructor(container: JQuery);
+        protected redirectToReturnUrl(): void;
+        protected getTemplate(): string;
+    }
+}
+declare namespace Serene.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         protected getFormKey(): string;
         private form;
@@ -3250,7 +3380,8 @@ declare namespace Serene.Northwind {
         protected getInitialTitle(): any;
         protected getGridCanLoad(): boolean;
         private _customerID;
-        customerID: string;
+        get customerID(): string;
+        set customerID(value: string);
     }
 }
 declare namespace Serene.Northwind {
@@ -3271,7 +3402,8 @@ declare namespace Serene.Northwind {
         constructor();
         protected getTemplate(): string;
         protected getDialogOptions(): JQueryUI.DialogOptions;
-        text: string;
+        get text(): string;
+        set text(value: string);
         okClick: () => void;
     }
 }
@@ -3285,7 +3417,8 @@ declare namespace Serene.Northwind {
         protected addClick(): void;
         protected editClick(e: any): void;
         deleteClick(e: any): void;
-        value: NoteRow[];
+        get value(): NoteRow[];
+        set value(value: NoteRow[]);
         getEditValue(prop: Serenity.PropertyItem, target: any): void;
         setEditValue(source: any, prop: Serenity.PropertyItem): void;
         get_isDirty(): boolean;

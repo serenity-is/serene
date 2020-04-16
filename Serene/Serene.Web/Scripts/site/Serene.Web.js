@@ -37,6 +37,10 @@ var Serene;
                 return Q.getLookup('Administration.Language');
             }
             LanguageRow.getLookup = getLookup;
+            LanguageRow.deletePermission = 'Administration:Translation';
+            LanguageRow.insertPermission = 'Administration:Translation';
+            LanguageRow.readPermission = 'Administration:Translation';
+            LanguageRow.updatePermission = 'Administration:Translation';
         })(LanguageRow = Administration.LanguageRow || (Administration.LanguageRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -94,6 +98,10 @@ var Serene;
             RolePermissionRow.idProperty = 'RolePermissionId';
             RolePermissionRow.nameProperty = 'PermissionKey';
             RolePermissionRow.localTextPrefix = 'Administration.RolePermission';
+            RolePermissionRow.deletePermission = 'Administration:Security';
+            RolePermissionRow.insertPermission = 'Administration:Security';
+            RolePermissionRow.readPermission = 'Administration:Security';
+            RolePermissionRow.updatePermission = 'Administration:Security';
         })(RolePermissionRow = Administration.RolePermissionRow || (Administration.RolePermissionRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -129,6 +137,10 @@ var Serene;
                 return Q.getLookup('Administration.Role');
             }
             RoleRow.getLookup = getLookup;
+            RoleRow.deletePermission = 'Administration:Security';
+            RoleRow.insertPermission = 'Administration:Security';
+            RoleRow.readPermission = 'Administration:Security';
+            RoleRow.updatePermission = 'Administration:Security';
         })(RoleRow = Administration.RoleRow || (Administration.RoleRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -213,6 +225,10 @@ var Serene;
             UserPermissionRow.idProperty = 'UserPermissionId';
             UserPermissionRow.nameProperty = 'PermissionKey';
             UserPermissionRow.localTextPrefix = 'Administration.UserPermission';
+            UserPermissionRow.deletePermission = 'Administration:Security';
+            UserPermissionRow.insertPermission = 'Administration:Security';
+            UserPermissionRow.readPermission = 'Administration:Security';
+            UserPermissionRow.updatePermission = 'Administration:Security';
         })(UserPermissionRow = Administration.UserPermissionRow || (Administration.UserPermissionRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -244,6 +260,10 @@ var Serene;
         (function (UserRoleRow) {
             UserRoleRow.idProperty = 'UserRoleId';
             UserRoleRow.localTextPrefix = 'Administration.UserRole';
+            UserRoleRow.deletePermission = 'Administration:Security';
+            UserRoleRow.insertPermission = 'Administration:Security';
+            UserRoleRow.readPermission = 'Administration:Security';
+            UserRoleRow.updatePermission = 'Administration:Security';
         })(UserRoleRow = Administration.UserRoleRow || (Administration.UserRoleRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -280,6 +300,10 @@ var Serene;
                 return Q.getLookup('Administration.User');
             }
             UserRow.getLookup = getLookup;
+            UserRow.deletePermission = 'Administration:Security';
+            UserRow.insertPermission = 'Administration:Security';
+            UserRow.readPermission = 'Administration:Security';
+            UserRow.updatePermission = 'Administration:Security';
         })(UserRow = Administration.UserRow || (Administration.UserRow = {}));
     })(Administration = Serene.Administration || (Serene.Administration = {}));
 })(Serene || (Serene = {}));
@@ -402,6 +426,10 @@ var Serene;
             DragDropSampleRow.idProperty = 'Id';
             DragDropSampleRow.nameProperty = 'Title';
             DragDropSampleRow.localTextPrefix = 'Northwind.DragDropSample';
+            DragDropSampleRow.deletePermission = 'Northwind:General';
+            DragDropSampleRow.insertPermission = 'Northwind:General';
+            DragDropSampleRow.readPermission = 'Northwind:General';
+            DragDropSampleRow.updatePermission = 'Northwind:General';
         })(DragDropSampleRow = BasicSamples.DragDropSampleRow || (BasicSamples.DragDropSampleRow = {}));
     })(BasicSamples = Serene.BasicSamples || (Serene.BasicSamples = {}));
 })(Serene || (Serene = {}));
@@ -654,6 +682,10 @@ var Serene;
             UserPreferenceRow.idProperty = 'UserPreferenceId';
             UserPreferenceRow.nameProperty = 'Name';
             UserPreferenceRow.localTextPrefix = 'Common.UserPreference';
+            UserPreferenceRow.deletePermission = '';
+            UserPreferenceRow.insertPermission = '';
+            UserPreferenceRow.readPermission = '';
+            UserPreferenceRow.updatePermission = '';
         })(UserPreferenceRow = Common.UserPreferenceRow || (Common.UserPreferenceRow = {}));
     })(Common = Serene.Common || (Serene.Common = {}));
 })(Serene || (Serene = {}));
@@ -840,6 +872,10 @@ var Serene;
             CategoryLangRow.idProperty = 'Id';
             CategoryLangRow.nameProperty = 'CategoryName';
             CategoryLangRow.localTextPrefix = 'Northwind.CategoryLang';
+            CategoryLangRow.deletePermission = 'Northwind:General';
+            CategoryLangRow.insertPermission = 'Northwind:General';
+            CategoryLangRow.readPermission = 'Northwind:General';
+            CategoryLangRow.updatePermission = 'Northwind:General';
         })(CategoryLangRow = Northwind.CategoryLangRow || (Northwind.CategoryLangRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -878,6 +914,10 @@ var Serene;
                 return Q.getLookup('Northwind.Category');
             }
             CategoryRow.getLookup = getLookup;
+            CategoryRow.deletePermission = 'Northwind:General';
+            CategoryRow.insertPermission = 'Northwind:General';
+            CategoryRow.readPermission = 'Northwind:General';
+            CategoryRow.updatePermission = 'Northwind:General';
         })(CategoryRow = Northwind.CategoryRow || (Northwind.CategoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -911,6 +951,10 @@ var Serene;
             CustomerCustomerDemoRow.idProperty = 'ID';
             CustomerCustomerDemoRow.nameProperty = 'CustomerID';
             CustomerCustomerDemoRow.localTextPrefix = 'Northwind.CustomerCustomerDemo';
+            CustomerCustomerDemoRow.deletePermission = 'Northwind:General';
+            CustomerCustomerDemoRow.insertPermission = 'Northwind:General';
+            CustomerCustomerDemoRow.readPermission = 'Northwind:General';
+            CustomerCustomerDemoRow.updatePermission = 'Northwind:General';
         })(CustomerCustomerDemoRow = Northwind.CustomerCustomerDemoRow || (Northwind.CustomerCustomerDemoRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -923,6 +967,10 @@ var Serene;
             CustomerDemographicRow.idProperty = 'ID';
             CustomerDemographicRow.nameProperty = 'CustomerTypeID';
             CustomerDemographicRow.localTextPrefix = 'Northwind.CustomerDemographic';
+            CustomerDemographicRow.deletePermission = 'Northwind:General';
+            CustomerDemographicRow.insertPermission = 'Northwind:General';
+            CustomerDemographicRow.readPermission = 'Northwind:General';
+            CustomerDemographicRow.updatePermission = 'Northwind:General';
         })(CustomerDemographicRow = Northwind.CustomerDemographicRow || (Northwind.CustomerDemographicRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -935,6 +983,10 @@ var Serene;
             CustomerDetailsRow.idProperty = 'Id';
             CustomerDetailsRow.nameProperty = 'Email';
             CustomerDetailsRow.localTextPrefix = 'Northwind.CustomerDetails';
+            CustomerDetailsRow.deletePermission = 'Northwind:General';
+            CustomerDetailsRow.insertPermission = 'Northwind:General';
+            CustomerDetailsRow.readPermission = 'Northwind:General';
+            CustomerDetailsRow.updatePermission = 'Northwind:General';
         })(CustomerDetailsRow = Northwind.CustomerDetailsRow || (Northwind.CustomerDetailsRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -991,6 +1043,10 @@ var Serene;
         (function (CustomerGrossSalesRow) {
             CustomerGrossSalesRow.nameProperty = 'ContactName';
             CustomerGrossSalesRow.localTextPrefix = 'Northwind.CustomerGrossSales';
+            CustomerGrossSalesRow.deletePermission = 'Northwind:General';
+            CustomerGrossSalesRow.insertPermission = 'Northwind:General';
+            CustomerGrossSalesRow.readPermission = 'Northwind:General';
+            CustomerGrossSalesRow.updatePermission = 'Northwind:General';
         })(CustomerGrossSalesRow = Northwind.CustomerGrossSalesRow || (Northwind.CustomerGrossSalesRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1002,6 +1058,10 @@ var Serene;
         (function (CustomerRepresentativesRow) {
             CustomerRepresentativesRow.idProperty = 'RepresentativeId';
             CustomerRepresentativesRow.localTextPrefix = 'Northwind.CustomerRepresentatives';
+            CustomerRepresentativesRow.deletePermission = 'Northwind:Customer:View';
+            CustomerRepresentativesRow.insertPermission = 'Northwind:Customer:View';
+            CustomerRepresentativesRow.readPermission = 'Northwind:Customer:View';
+            CustomerRepresentativesRow.updatePermission = 'Northwind:Customer:View';
         })(CustomerRepresentativesRow = Northwind.CustomerRepresentativesRow || (Northwind.CustomerRepresentativesRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1019,6 +1079,10 @@ var Serene;
                 return Q.getLookup('Northwind.Customer');
             }
             CustomerRow.getLookup = getLookup;
+            CustomerRow.deletePermission = 'Northwind:Customer:Delete';
+            CustomerRow.insertPermission = 'Northwind:Customer:Modify';
+            CustomerRow.readPermission = 'Northwind:Customer:View';
+            CustomerRow.updatePermission = 'Northwind:Customer:Modify';
         })(CustomerRow = Northwind.CustomerRow || (Northwind.CustomerRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1058,6 +1122,10 @@ var Serene;
                 return Q.getLookup('Northwind.Employee');
             }
             EmployeeRow.getLookup = getLookup;
+            EmployeeRow.deletePermission = 'Northwind:General';
+            EmployeeRow.insertPermission = 'Northwind:General';
+            EmployeeRow.readPermission = 'Northwind:General';
+            EmployeeRow.updatePermission = 'Northwind:General';
         })(EmployeeRow = Northwind.EmployeeRow || (Northwind.EmployeeRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1070,6 +1138,10 @@ var Serene;
             EmployeeTerritoryRow.idProperty = 'EmployeeID';
             EmployeeTerritoryRow.nameProperty = 'TerritoryID';
             EmployeeTerritoryRow.localTextPrefix = 'Northwind.EmployeeTerritory';
+            EmployeeTerritoryRow.deletePermission = 'Northwind:General';
+            EmployeeTerritoryRow.insertPermission = 'Northwind:General';
+            EmployeeTerritoryRow.readPermission = 'Northwind:General';
+            EmployeeTerritoryRow.updatePermission = 'Northwind:General';
         })(EmployeeTerritoryRow = Northwind.EmployeeTerritoryRow || (Northwind.EmployeeTerritoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1094,6 +1166,10 @@ var Serene;
             NoteRow.idProperty = 'NoteId';
             NoteRow.nameProperty = 'EntityType';
             NoteRow.localTextPrefix = 'Northwind.Note';
+            NoteRow.deletePermission = 'Northwind:General';
+            NoteRow.insertPermission = 'Northwind:General';
+            NoteRow.readPermission = 'Northwind:General';
+            NoteRow.updatePermission = 'Northwind:General';
         })(NoteRow = Northwind.NoteRow || (Northwind.NoteRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1134,6 +1210,10 @@ var Serene;
         (function (OrderDetailRow) {
             OrderDetailRow.idProperty = 'DetailID';
             OrderDetailRow.localTextPrefix = 'Northwind.OrderDetail';
+            OrderDetailRow.deletePermission = 'Northwind:General';
+            OrderDetailRow.insertPermission = 'Northwind:General';
+            OrderDetailRow.readPermission = 'Northwind:General';
+            OrderDetailRow.updatePermission = 'Northwind:General';
         })(OrderDetailRow = Northwind.OrderDetailRow || (Northwind.OrderDetailRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1206,6 +1286,10 @@ var Serene;
             OrderRow.idProperty = 'OrderID';
             OrderRow.nameProperty = 'CustomerID';
             OrderRow.localTextPrefix = 'Northwind.Order';
+            OrderRow.deletePermission = 'Northwind:General';
+            OrderRow.insertPermission = 'Northwind:General';
+            OrderRow.readPermission = 'Northwind:General';
+            OrderRow.updatePermission = 'Northwind:General';
         })(OrderRow = Northwind.OrderRow || (Northwind.OrderRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1289,6 +1373,10 @@ var Serene;
             ProductLangRow.idProperty = 'Id';
             ProductLangRow.nameProperty = 'ProductName';
             ProductLangRow.localTextPrefix = 'Northwind.ProductLang';
+            ProductLangRow.deletePermission = 'Northwind:General';
+            ProductLangRow.insertPermission = 'Northwind:General';
+            ProductLangRow.readPermission = 'Northwind:General';
+            ProductLangRow.updatePermission = 'Northwind:General';
         })(ProductLangRow = Northwind.ProductLangRow || (Northwind.ProductLangRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1321,6 +1409,10 @@ var Serene;
         (function (ProductLogRow) {
             ProductLogRow.idProperty = 'ProductLogID';
             ProductLogRow.localTextPrefix = 'Northwind.ProductLog';
+            ProductLogRow.deletePermission = null;
+            ProductLogRow.insertPermission = null;
+            ProductLogRow.readPermission = '';
+            ProductLogRow.updatePermission = null;
         })(ProductLogRow = Northwind.ProductLogRow || (Northwind.ProductLogRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1338,6 +1430,10 @@ var Serene;
                 return Q.getLookup('Northwind.Product');
             }
             ProductRow.getLookup = getLookup;
+            ProductRow.deletePermission = 'Northwind:General';
+            ProductRow.insertPermission = 'Northwind:General';
+            ProductRow.readPermission = 'Northwind:General';
+            ProductRow.updatePermission = 'Northwind:General';
         })(ProductRow = Northwind.ProductRow || (Northwind.ProductRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1402,6 +1498,10 @@ var Serene;
                 return Q.getLookup('Northwind.Region');
             }
             RegionRow.getLookup = getLookup;
+            RegionRow.deletePermission = 'Northwind:General';
+            RegionRow.insertPermission = 'Northwind:General';
+            RegionRow.readPermission = 'Northwind:General';
+            RegionRow.updatePermission = 'Northwind:General';
         })(RegionRow = Northwind.RegionRow || (Northwind.RegionRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1434,6 +1534,10 @@ var Serene;
         (function (SalesByCategoryRow) {
             SalesByCategoryRow.nameProperty = 'CategoryName';
             SalesByCategoryRow.localTextPrefix = 'Northwind.SalesByCategory';
+            SalesByCategoryRow.deletePermission = 'Northwind:General';
+            SalesByCategoryRow.insertPermission = 'Northwind:General';
+            SalesByCategoryRow.readPermission = 'Northwind:General';
+            SalesByCategoryRow.updatePermission = 'Northwind:General';
         })(SalesByCategoryRow = Northwind.SalesByCategoryRow || (Northwind.SalesByCategoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1494,6 +1598,10 @@ var Serene;
                 return Q.getLookup('Northwind.Shipper');
             }
             ShipperRow.getLookup = getLookup;
+            ShipperRow.deletePermission = 'Northwind:General';
+            ShipperRow.insertPermission = 'Northwind:General';
+            ShipperRow.readPermission = 'Northwind:General';
+            ShipperRow.updatePermission = 'Northwind:General';
         })(ShipperRow = Northwind.ShipperRow || (Northwind.ShipperRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1566,6 +1674,10 @@ var Serene;
                 return Q.getLookup('Northwind.Supplier');
             }
             SupplierRow.getLookup = getLookup;
+            SupplierRow.deletePermission = 'Northwind:General';
+            SupplierRow.insertPermission = 'Northwind:General';
+            SupplierRow.readPermission = 'Northwind:General';
+            SupplierRow.updatePermission = 'Northwind:General';
         })(SupplierRow = Northwind.SupplierRow || (Northwind.SupplierRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -1631,6 +1743,10 @@ var Serene;
                 return Q.getLookup('Northwind.Territory');
             }
             TerritoryRow.getLookup = getLookup;
+            TerritoryRow.deletePermission = 'Northwind:General';
+            TerritoryRow.insertPermission = 'Northwind:General';
+            TerritoryRow.readPermission = 'Northwind:General';
+            TerritoryRow.updatePermission = 'Northwind:General';
         })(TerritoryRow = Northwind.TerritoryRow || (Northwind.TerritoryRow = {}));
     })(Northwind = Serene.Northwind || (Serene.Northwind = {}));
 })(Serene || (Serene = {}));
@@ -7288,13 +7404,86 @@ var Serene;
 (function (Serene) {
     var Membership;
     (function (Membership) {
+        var LoginPanel = /** @class */ (function (_super) {
+            __extends(LoginPanel, _super);
+            function LoginPanel(container) {
+                var _this = _super.call(this, container) || this;
+                $.fn['vegas'] && $('body')['vegas']({
+                    delay: 30000,
+                    cover: true,
+                    overlay: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACAQMAAABIeJ9nAAAAA3NCSVQICAjb4U" +
+                        "/gAAAABlBMVEX///8AAABVwtN+AAAAAnRSTlMA/1uRIrUAAAAJcEhZcwAAAsQAAALEAVuRnQsAAAAWdEVYdENyZWF0" +
+                        "aW9uIFRpbWUAMDQvMTMvMTGrW0T6AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M1cbXjNgAAAAxJREFUCJljaGBgAAABhACBrONIPgAAAABJRU5ErkJggg==",
+                    slides: [
+                        { src: Q.resolveUrl("~/Content/site/slides/slide1.jpg"), transition: 'fade' },
+                        { src: Q.resolveUrl("~/Content/site/slides/slide2.jpg"), transition: 'zoomOut' },
+                        { src: Q.resolveUrl("~/Content/site/slides/slide3.jpg"), transition: 'swirlLeft' }
+                    ]
+                });
+                _this.byId('LoginButton').click(function (e) {
+                    e.preventDefault();
+                    if (!_this.validateForm()) {
+                        return;
+                    }
+                    var request = _this.getSaveEntity();
+                    Q.serviceCall({
+                        url: Q.resolveUrl('~/Account/Login'),
+                        request: request,
+                        onSuccess: function (response) {
+                            _this.redirectToReturnUrl();
+                        },
+                        onError: function (response) {
+                            if (response != null && response.Error != null && response.Error.Code == "RedirectUserTo") {
+                                window.location.href = response.Error.Arguments;
+                                return;
+                            }
+                            if (response != null && response.Error != null && !Q.isEmptyOrNull(response.Error.Message)) {
+                                Q.notifyError(response.Error.Message);
+                                $('#Password').focus();
+                                return;
+                            }
+                            Q.ErrorHandling.showServiceError(response.Error);
+                        }
+                    });
+                });
+                return _this;
+            }
+            LoginPanel.prototype.getFormKey = function () { return Membership.LoginForm.formKey; };
+            LoginPanel.prototype.redirectToReturnUrl = function () {
+                var q = Q.parseQueryString();
+                var returnUrl = q['returnUrl'] || q['ReturnUrl'];
+                if (returnUrl) {
+                    var hash = window.location.hash;
+                    if (hash != null && hash != '#')
+                        returnUrl += hash;
+                    window.location.href = returnUrl;
+                }
+                else {
+                    window.location.href = Q.resolveUrl('~/');
+                }
+            };
+            LoginPanel.prototype.getTemplate = function () {
+                return "\n<div class=\"flex-layout\">\n    <div class=\"logo\"></div>\n    <h3>" + Q.text("Forms.Membership.Login.FormTitle") + "</h3>\n    <form id=\"~_Form\" action=\"\">\n        <div class=\"s-Form\">\n            <div class=\"fieldset ui-widget ui-widget-content ui-corner-all\">\n                <div id=\"~_PropertyGrid\"></div>\n                <div class=\"clear\"></div>\n            </div>\n            <div class=\"buttons\">\n                <button id=\"~_LoginButton\" type=\"submit\" class=\"btn btn-primary\">\n                    " + Q.text("Forms.Membership.Login.SignInButton") + "\n                </button>\n            </div>\n            <div class=\"actions\">\n                <a href=\"" + Q.resolveUrl('~/Account/ForgotPassword') + "\"><i class=\"fa fa-angle-right\"></i>&nbsp;" + Q.text("Forms.Membership.Login.ForgotPassword") + "</a>\n                <a href=\"" + Q.resolveUrl('~/Account/SignUp') + "\"><i class=\"fa fa-angle-right\"></i>&nbsp;" + Q.text("Forms.Membership.Login.SignUpButton") + "</a>\n                <div class=\"clear\"></div>\n            </div>\n        </div>\n    </form>\n</div>\n";
+            };
+            LoginPanel = __decorate([
+                Serenity.Decorators.registerClass()
+            ], LoginPanel);
+            return LoginPanel;
+        }(Serenity.PropertyPanel));
+        Membership.LoginPanel = LoginPanel;
+    })(Membership = Serene.Membership || (Serene.Membership = {}));
+})(Serene || (Serene = {}));
+var Serene;
+(function (Serene) {
+    var Membership;
+    (function (Membership) {
         var ChangePasswordPanel = /** @class */ (function (_super) {
             __extends(ChangePasswordPanel, _super);
             function ChangePasswordPanel(container) {
                 var _this = _super.call(this, container) || this;
                 _this.form = new Membership.ChangePasswordForm(_this.idPrefix);
                 _this.form.NewPassword.addValidationRule(_this.uniqueName, function (e) {
-                    if (_this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
+                    if (_this.form.w('NewPassword', Serenity.PasswordEditor).value.length < 7) {
                         return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                     }
                 });
