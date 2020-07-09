@@ -1327,7 +1327,10 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
           </Folder>
           <Folder Name="serenity" TargetFolderName="serenity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.d.ts">Serenity.CodeGeneration.d.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js">Serenity.CodeGeneration.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js.map">Serenity.CodeGeneration.js.map</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.min.js">Serenity.CodeGeneration.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.d.ts">Serenity.Pro.App.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.js">Serenity.Pro.App.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.min.js">Serenity.Pro.App.min.js</ProjectItem>
@@ -1380,6 +1383,11 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.js">bootstrap-timepicker.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.css">bootstrap-timepicker.min.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.js">bootstrap-timepicker.min.js</ProjectItem>
+          </Folder>
+          <Folder Name="typings" TargetFolderName="typings">
+            <Folder Name="serenity" TargetFolderName="serenity">
+              <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="vegas" TargetFolderName="vegas">
             <Folder Name="overlays" TargetFolderName="overlays">

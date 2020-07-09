@@ -1364,6 +1364,9 @@
           <Folder Name="jspdf" TargetFolderName="jspdf">
             <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.autotable.d.ts">jspdf.autotable.d.ts</ProjectItem>
           </Folder>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
+          </Folder>
         </Folder>
         <Folder Name="vegas" TargetFolderName="vegas">
           <Folder Name="overlays" TargetFolderName="overlays">
@@ -1435,9 +1438,9 @@
       <installPackage id="Mono.Cecil" version="0.11.1" />
       <installPackage id="NUglify" version="1.5.13" />
       <installPackage id="PagedList.Mvc" version="4.5.0.0" />
-      <installPackage id="Serenity.CodeGenerator" version="3.12.6" />
-      <installPackage id="Serenity.Scripts" version="3.12.6" />
-      <installPackage id="Serenity.Web" version="3.12.6" />
+      <installPackage id="Serenity.CodeGenerator" version="3.13.5" />
+      <installPackage id="Serenity.Scripts" version="3.13.5" />
+      <installPackage id="Serenity.Web" version="3.13.5" />
       <installPackage id="Serenity.Web.Assets" version="3.9.2" />
       <installPackage id="Serenity.Web.Tooling" version="3.9.10" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />

@@ -1,6 +1,7 @@
 ﻿
 namespace Serene.Administration.Repositories
 {
+    using Microsoft.AspNetCore.Hosting;
     using Newtonsoft.Json.Linq;
     using Serene.Administration.Entities;
     using Serenity;
@@ -144,10 +145,10 @@ namespace Serene.Administration.Repositories
             Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));
             File.WriteAllText(textsFilePath, json);
 
-#if !COREFX
-            Dependency.Resolve<IDependencyRegistrar>().RegisterInstance<ILocalTextRegistry>(new LocalTextRegistry());
-            CommonInitialization.InitializeLocalTexts();
-#endif
+            var localTextRegistry = Dependency.Resolve<ILocalTextRegistry>();
+            (localTextRegistry as IRemoveAll)?.RemoveAll();
+            Startup.InitializeLocalTexts(localTextRegistry, Dependency.Resolve<IWebHostEnvironment>());
+
             TwoLevelCache.ExpireGroupItems(UserRow.Fields.GenerationKey);
             DynamicScriptManager.Reset();
 

@@ -98,6 +98,17 @@ namespace Serene
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
         }
 
+        public static void InitializeLocalTexts(ILocalTextRegistry textRegistry, IWebHostEnvironment env)
+        {
+            textRegistry.AddNestedTexts();
+            textRegistry.AddNestedPermissions();
+            textRegistry.AddEnumTexts();
+            textRegistry.AddRowTexts();
+            textRegistry.AddJsonTexts(Path.Combine(env.WebRootPath, "Scripts/serenity/texts".Replace('/', Path.DirectorySeparatorChar)));
+            textRegistry.AddJsonTexts(Path.Combine(env.WebRootPath, "Scripts/site/texts".Replace('/', Path.DirectorySeparatorChar)));
+            textRegistry.AddJsonTexts(Path.Combine(env.ContentRootPath, "App_Data/texts".Replace('/', Path.DirectorySeparatorChar)));
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
@@ -117,14 +128,7 @@ namespace Serene
             Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
 
             var textRegistry = app.ApplicationServices.GetRequiredService<ILocalTextRegistry>();
-            textRegistry.AddNestedTexts();
-            textRegistry.AddNestedPermissions();
-            textRegistry.AddEnumTexts();
-            textRegistry.AddRowTexts();
-            var contentRoot = env.ContentRootPath;
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/serenity/texts".Replace('/', Path.DirectorySeparatorChar)));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.WebRootPath, "Scripts/site/texts".Replace('/', Path.DirectorySeparatorChar)));
-            textRegistry.AddJsonTexts(System.IO.Path.Combine(env.ContentRootPath, "App_Data/texts".Replace('/', Path.DirectorySeparatorChar)));
+            InitializeLocalTexts(textRegistry, env);
 
             var reqLocOpt = new RequestLocalizationOptions();
             reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
