@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serene.Template", "Serene.Template.csproj", "{9DC33F28-9BB3-4703-BC09-9EB0C109C2D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SereneMvc.Template", "SereneMvc.Template.csproj", "{9DC33F28-9BB3-4703-BC09-9EB0C109C2D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootProjectWizard", "RootProjectWizard\RootProjectWizard.csproj", "{36E47613-1D2E-4B13-86AE-8B73ED1B747E}"
 EndProject
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BCBFC8A-0E09-4A0D-A2E4-6D50FE563925}
 	EndGlobalSection
 EndGlobal

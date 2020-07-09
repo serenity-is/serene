@@ -185,16 +185,11 @@ Task("PrepareVSIX")
     });
 
     var serenePackagesFolder = r + @"packages\";
-    var vsixProjFile = r + @"Template\Serene.Template.csproj";
+    var vsixProjFile = r + @"Template\SereneMvc.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
 	var webTemplateFolder = r + @"Template\obj\Serene.Template";
     CleanDirectory(webTemplateFolder);
     CreateDirectory(webTemplateFolder);
-
-    var coreTemplateFolder = r + @"Template\obj\SereneCore.Template";
-    CleanDirectory(coreTemplateFolder);
-    CreateDirectory(coreTemplateFolder);
-
 	
     Func<string, List<Tuple<string, string>>> parsePackages = path => {
         var xml = XElement.Parse(System.IO.File.ReadAllText(path));
@@ -325,7 +320,7 @@ Task("PrepareVSIX")
         Dictionary<string, XElement> byFolder = new Dictionary<string, XElement>();
         
         var copySourceRoot = System.IO.Path.GetDirectoryName(csproj);
-		var templateFolder = isXProj ? coreTemplateFolder : webTemplateFolder;
+		var templateFolder = webTemplateFolder;
         var copyTargetRoot = System.IO.Path.Combine(templateFolder, System.IO.Path.GetFileNameWithoutExtension(csproj));
         
 		
@@ -464,27 +459,7 @@ Task("PrepareVSIX")
 	
     var webPackages = parsePackages(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(sereneWebProj), "packages.config"));  
     updateVsixProj(webPackages);
-	patchProjectRefs(sereneCoreWebProj, serenityVersion, webPackages);
-	
-    var exitCode = StartProcess("dotnet", "restore " + sereneCoreWebProj);
-    if (exitCode > 0)
-        throw new Exception("Error while restoring " + sereneCoreWebProj);	
-
-    exitCode = StartProcess("dotnet", new ProcessSettings {
-		Arguments = "tool update sergen",
-		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreWebProj)
-	});
-    if (exitCode > 0)
-        throw new Exception("Error while tool updating " + sereneCoreWebProj);	
-
-	exitCode = StartProcess("dotnet", new ProcessSettings
-	{
-		Arguments = "sergen restore",
-		WorkingDirectory = System.IO.Path.GetDirectoryName(sereneCoreWebProj)
-	});
-    if (exitCode > 0)
-        throw new Exception("Error while sergen restoring " + sereneCoreWebProj);
-    
+	   
     if (System.IO.Directory.Exists(webTemplateFolder)) 
         System.IO.Directory.Delete(webTemplateFolder, true);	
     System.IO.Directory.CreateDirectory(webTemplateFolder);
@@ -501,20 +476,6 @@ Task("PrepareVSIX")
         System.IO.Path.Combine(webTemplateFolder, "Serene.vstemplate")); 
        
     Zip(webTemplateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
-
-
-    if (System.IO.Directory.Exists(coreTemplateFolder))
-        System.IO.Directory.Delete(coreTemplateFolder, true);	       
-    System.IO.Directory.CreateDirectory(coreTemplateFolder);
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(coreTemplateFolder, "Serene.Core"));	
-
-	replaceTemplateFileList(sereneCoreWebProj, null, coreSkipFiles);
-	
-    System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
-        System.IO.Path.Combine(coreTemplateFolder, "SerenityLogo.ico")); 
-    System.IO.File.Copy(r + @"Serene\SereneCore.vstemplate", 
-        System.IO.Path.Combine(coreTemplateFolder, "SereneCore.vstemplate")); 
-    Zip(coreTemplateFolder, r + @"Template\ProjectTemplates\SereneCore.Template.zip");
 });
 
 RunTarget(target);
