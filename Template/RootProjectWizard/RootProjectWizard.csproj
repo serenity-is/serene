@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RootProjectWizard</RootNamespace>
-    <AssemblyName>SereneProjectWizard_v3</AssemblyName>
+    <AssemblyName>SereneProjectWizard_v4</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

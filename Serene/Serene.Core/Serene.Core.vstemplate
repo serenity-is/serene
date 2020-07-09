@@ -1414,7 +1414,7 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>SereneProjectWizard_v3, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
+    <Assembly>SereneProjectWizard_v4, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
     <FullClassName>RootProjectWizard.ChildWizard</FullClassName>
   </WizardExtension>
   <WizardData>

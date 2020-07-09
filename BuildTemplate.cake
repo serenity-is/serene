@@ -187,9 +187,6 @@ Task("PrepareVSIX")
     var serenePackagesFolder = r + @"packages\";
     var vsixProjFile = r + @"Template\Serene.Template.csproj";
     var vsixManifestFile = r + @"Template\source.extension.vsixmanifest";
-	var webTemplateFolder = r + @"Template\obj\Serene.Template";
-    CleanDirectory(webTemplateFolder);
-    CreateDirectory(webTemplateFolder);
 
     var coreTemplateFolder = r + @"Template\obj\SereneCore.Template";
     CleanDirectory(coreTemplateFolder);
@@ -325,7 +322,7 @@ Task("PrepareVSIX")
         Dictionary<string, XElement> byFolder = new Dictionary<string, XElement>();
         
         var copySourceRoot = System.IO.Path.GetDirectoryName(csproj);
-		var templateFolder = isXProj ? coreTemplateFolder : webTemplateFolder;
+		var templateFolder = coreTemplateFolder;
         var copyTargetRoot = System.IO.Path.Combine(templateFolder, System.IO.Path.GetFileNameWithoutExtension(csproj));
         
 		
@@ -485,24 +482,11 @@ Task("PrepareVSIX")
     if (exitCode > 0)
         throw new Exception("Error while sergen restoring " + sereneCoreWebProj);
     
-    if (System.IO.Directory.Exists(webTemplateFolder)) 
-        System.IO.Directory.Delete(webTemplateFolder, true);	
-    System.IO.Directory.CreateDirectory(webTemplateFolder);
-    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(webTemplateFolder, "Serene.Web"));
-
     replaceTemplateFileList(sereneWebProj, webPackages, webSkipFiles);
 	var coreSkipFiles = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 	foreach (var p in webSkipFiles.Keys)
 		coreSkipFiles[@"wwwroot\" + p] = true;
-	
-    System.IO.File.Copy(r + @"Serene\SerenityLogo.ico", 
-        System.IO.Path.Combine(webTemplateFolder, "SerenityLogo.ico")); 
-    System.IO.File.Copy(r + @"Serene\Serene.vstemplate", 
-        System.IO.Path.Combine(webTemplateFolder, "Serene.vstemplate")); 
-       
-    Zip(webTemplateFolder, r + @"Template\ProjectTemplates\Serene.Template.zip");
-
-
+	      
     if (System.IO.Directory.Exists(coreTemplateFolder))
         System.IO.Directory.Delete(coreTemplateFolder, true);	       
     System.IO.Directory.CreateDirectory(coreTemplateFolder);
