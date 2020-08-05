@@ -2849,6 +2849,10 @@ s.Form .widget-wrapper {
 .s-Form textarea.error {
   border: 1px solid #ff4040;
 }
+.s-Form .select2-container.error .select2-choice {
+  background-color: #ffefef;
+  border-color: #ff4040;
+}
 .s-Form label.error {
   background: transparent url(images/unchecked.gif) no-repeat scroll center center;
   display: block;

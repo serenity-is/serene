@@ -1384,11 +1384,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.css">bootstrap-timepicker.min.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-timepicker.min.js">bootstrap-timepicker.min.js</ProjectItem>
           </Folder>
-          <Folder Name="typings" TargetFolderName="typings">
-            <Folder Name="serenity" TargetFolderName="serenity">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
-            </Folder>
-          </Folder>
           <Folder Name="vegas" TargetFolderName="vegas">
             <Folder Name="overlays" TargetFolderName="overlays">
               <ProjectItem ReplaceParameters="false" TargetFileName="01.png">01.png</ProjectItem>

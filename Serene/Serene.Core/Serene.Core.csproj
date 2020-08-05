@@ -31,8 +31,8 @@
     </PackageReference>
     <PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="2.1.0" />
     <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Scripts" Version="3.13.5" />
-    <PackageReference Include="Serenity.Web" Version="3.13.5" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
+    <PackageReference Include="Serenity.Scripts" Version="3.13.7" />
+    <PackageReference Include="Serenity.Web" Version="3.13.7" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
     <PackageReference Include="Serenity.Web.Assets" Version="3.9.2" />
   </ItemGroup>
   <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">

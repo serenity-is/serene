@@ -2921,32 +2921,67 @@ var Q;
             el.attr('title', val || '').tooltip('_fixTitle');
         return el;
     }
-    var valOpt = {
-        ignore: ':hidden, .no-validate',
-        showErrors: function (errorMap, errorList) {
-            $.each(this.validElements(), function (index, element) {
-                var $element = $(element);
-                setTooltip($element
-                    .removeClass("error")
-                    .addClass("valid"), '')
-                    .tooltip('hide');
-            });
-            $.each(errorList, function (index, error) {
-                var $element = $(error.element);
-                setTooltip($element
-                    .addClass("error"), error.message);
-                if (index == 0)
-                    $element.tooltip('show');
-            });
-        },
-        normalizer: function (value) {
-            return $.trim(value);
-        }
-    };
-    function validateTooltip(form, opt) {
-        return form.validate(Q.extend(Q.extend({}, valOpt), opt));
+    function baseValidateOptions() {
+        return {
+            errorClass: 'error',
+            ignore: ':hidden, .no-validate',
+            ignoreTitle: true,
+            normalizer: function (value) {
+                return $.trim(value);
+            },
+            highlight: function (element, errorClass, validClass) {
+                if (element.type === "radio") {
+                    this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+                }
+                else {
+                    var $el = $(element);
+                    $el.addClass(errorClass).removeClass(validClass);
+                    if ($el.hasClass('select2-offscreen') &&
+                        element.id) {
+                        $('#s2id_' + element.id).addClass(errorClass).removeClass(validClass);
+                    }
+                }
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                if (element.type === "radio") {
+                    this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+                }
+                else {
+                    var $el = $(element);
+                    $el.removeClass(errorClass).addClass(validClass);
+                    if ($el.hasClass('select2-offscreen') &&
+                        element.id) {
+                        $('#s2id_' + element.id).addClass(errorClass).removeClass(validClass);
+                    }
+                }
+            },
+            showErrors: function (errorMap, errorList) {
+                $.each(this.validElements(), function (index, element) {
+                    var $element = $(element);
+                    setTooltip($element
+                        .removeClass("error")
+                        .addClass("valid"), '')
+                        .tooltip('hide');
+                });
+                $.each(errorList, function (index, error) {
+                    var $el = $(error.element);
+                    if ($el.hasClass('select2-offscreen') &&
+                        error.element.id) {
+                        $el = $('#s2id_' + error.element);
+                    }
+                    setTooltip($el
+                        .addClass("error"), error.message);
+                    if (index == 0)
+                        $el.tooltip('show');
+                });
+            }
+        };
     }
-    Q.validateTooltip = validateTooltip;
+    Q.baseValidateOptions = baseValidateOptions;
+    function validateForm(form, opt) {
+        return form.validate(Q.extend(Q.baseValidateOptions(), opt));
+    }
+    Q.validateForm = validateForm;
     function addValidationRule(element, eventClass, rule) {
         if (!element.length)
             return element;
@@ -5286,14 +5321,10 @@ var Q;
     Q.validatorAbortHandler = validatorAbortHandler;
     ;
     function validateOptions(options) {
-        return Q.extend({
-            ignore: ":hidden",
-            ignoreTitle: true,
+        var opt = Q.baseValidateOptions();
+        delete opt.showErrors;
+        return Q.extend(Q.extend(opt, {
             meta: 'v',
-            normalizer: function (value) {
-                return $.trim(value);
-            },
-            errorClass: 'error',
             errorPlacement: function (error, element) {
                 var field = null;
                 var vx = element.attr('data-vx-id');
@@ -5340,12 +5371,17 @@ var Q;
                             }
                         }
                         if ($.fn.tooltip) {
-                            $.fn.tooltip && $(el).tooltip({
+                            var $el = $(el);
+                            if ($el.hasClass('select2-offscreen') &&
+                                el.id) {
+                                $el = $('#s2id_' + el.id);
+                            }
+                            $.fn.tooltip && $el.tooltip({
                                 title: validator.errorList[0].message,
                                 trigger: 'manual'
                             }).tooltip('show');
                             window.setTimeout(function () {
-                                $(el).tooltip('destroy');
+                                $el.tooltip('destroy');
                             }, 1500);
                         }
                     }
@@ -5354,7 +5390,7 @@ var Q;
             success: function (label) {
                 label.addClass('checked');
             }
-        }, options);
+        }), options);
     }
     Q.validateOptions = validateOptions;
     ;
@@ -9107,6 +9143,90 @@ var Serenity;
         return HtmlReportContentEditor;
     }(HtmlContentEditor));
     Serenity.HtmlReportContentEditor = HtmlReportContentEditor;
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    // http://digitalbush.com/projects/masked-input-plugin/
+    var MaskedEditor = /** @class */ (function (_super) {
+        __extends(MaskedEditor, _super);
+        function MaskedEditor(input, opt) {
+            var _this = _super.call(this, input, opt) || this;
+            input.mask(_this.options.mask || '', {
+                placeholder: Q.coalesce(_this.options.placeholder, '_')
+            });
+            return _this;
+        }
+        Object.defineProperty(MaskedEditor.prototype, "value", {
+            get: function () {
+                this.element.triggerHandler("blur.mask");
+                return this.element.val();
+            },
+            set: function (value) {
+                this.element.val(value);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        MaskedEditor.prototype.get_value = function () {
+            return this.value;
+        };
+        MaskedEditor.prototype.set_value = function (value) {
+            this.value = value;
+        };
+        MaskedEditor = __decorate([
+            Serenity.Decorators.registerEditor('Serenity.MaskedEditor', [Serenity.IStringValue]),
+            Serenity.Decorators.element("<input type=\"text\"/>")
+        ], MaskedEditor);
+        return MaskedEditor;
+    }(Serenity.Widget));
+    Serenity.MaskedEditor = MaskedEditor;
+})(Serenity || (Serenity = {}));
+var Serenity;
+(function (Serenity) {
+    var Recaptcha = /** @class */ (function (_super) {
+        __extends(Recaptcha, _super);
+        function Recaptcha(div, opt) {
+            var _this = _super.call(this, div, opt) || this;
+            _this.element.addClass('g-recaptcha').attr('data-sitekey', _this.options.siteKey);
+            if (!!(window['grecaptcha'] == null && $('script#RecaptchaInclude').length === 0)) {
+                var src = 'https://www.google.com/recaptcha/api.js';
+                var lng = _this.options.language;
+                if (lng == null) {
+                    lng = Q.coalesce($('html').attr('lang'), '');
+                }
+                src += '?hl=' + lng;
+                $('<script/>').attr('id', 'RecaptchaInclude').attr('src', src).appendTo(document.body);
+            }
+            var valInput = $('<input />').insertBefore(_this.element)
+                .attr('id', _this.uniqueName + '_validate').val('x');
+            var gro = {};
+            gro['visibility'] = 'hidden';
+            gro['width'] = '0px';
+            gro['height'] = '0px';
+            gro['padding'] = '0px';
+            var input = valInput.css(gro);
+            var self = _this;
+            Q.addValidationRule(input, _this.uniqueName, function (e) {
+                if (Q.isEmptyOrNull(_this.get_value())) {
+                    return Q.text('Validation.Required');
+                }
+                return null;
+            });
+            return _this;
+        }
+        Recaptcha.prototype.get_value = function () {
+            return this.element.find('.g-recaptcha-response').val();
+        };
+        Recaptcha.prototype.set_value = function (value) {
+            // ignore
+        };
+        Recaptcha = __decorate([
+            Serenity.Decorators.registerEditor('Serenity.Recaptcha', [Serenity.IStringValue]),
+            Serenity.Decorators.element("<div/>")
+        ], Recaptcha);
+        return Recaptcha;
+    }(Serenity.Widget));
+    Serenity.Recaptcha = Recaptcha;
 })(Serenity || (Serenity = {}));
 var Serenity;
 (function (Serenity) {

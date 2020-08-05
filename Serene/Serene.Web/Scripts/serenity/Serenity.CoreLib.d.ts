@@ -688,7 +688,8 @@ declare namespace JQueryValidation {
     }
 }
 declare namespace Q {
-    function validateTooltip(form: JQuery, opt: JQueryValidation.ValidationOptions): JQueryValidation.Validator;
+    function baseValidateOptions(): JQueryValidation.ValidationOptions;
+    function validateForm(form: JQuery, opt: JQueryValidation.ValidationOptions): JQueryValidation.Validator;
     function addValidationRule(element: JQuery, eventClass: string, rule: (p1: JQuery) => string): JQuery;
     function removeValidationRule(element: JQuery, eventClass: string): JQuery;
 }
@@ -1930,6 +1931,30 @@ declare namespace Serenity {
     class HtmlReportContentEditor extends HtmlContentEditor {
         constructor(textArea: JQuery, opt?: HtmlContentEditorOptions);
         protected getConfig(): CKEditorConfig;
+    }
+}
+declare namespace Serenity {
+    class MaskedEditor extends Widget<MaskedEditorOptions> {
+        constructor(input: JQuery, opt?: MaskedEditorOptions);
+        get value(): string;
+        protected get_value(): string;
+        set value(value: string);
+        protected set_value(value: string): void;
+    }
+    interface MaskedEditorOptions {
+        mask?: string;
+        placeholder?: string;
+    }
+}
+declare namespace Serenity {
+    interface RecaptchaOptions {
+        siteKey?: string;
+        language?: string;
+    }
+    class Recaptcha extends Widget<RecaptchaOptions> implements IStringValue {
+        constructor(div: JQuery, opt: RecaptchaOptions);
+        get_value(): string;
+        set_value(value: string): void;
     }
 }
 declare namespace Serenity {
