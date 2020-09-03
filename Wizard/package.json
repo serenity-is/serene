@@ -5,7 +5,8 @@
   "preferGlobal": true,
   "dependencies": {
     "decompress": "^4.2.1",
-    "xml2js": "~0.4.17"
+    "xml2js": "~0.4.17",
+    "bl": ">=2.2.1"
   },
   "scripts": {},
   "repository": {
