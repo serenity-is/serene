@@ -71,6 +71,14 @@ interface Select2Item {
     source?: any;
     disabled?: boolean;
 }
+declare namespace Serenity {
+    interface Select2Item {
+        id: string;
+        text: string;
+        source?: any;
+        disabled?: boolean;
+    }
+}
 interface Select2Result {
     results: any;
     more: boolean;
@@ -2868,6 +2876,7 @@ declare namespace Slick {
         params?: any;
         onSubmit?: CancellableViewCallback<any>;
         url?: string;
+        localSort?: boolean;
         sortBy?: any;
         rowsPerPage?: number;
         seekToPage?: number;
@@ -2910,6 +2919,8 @@ declare namespace Slick {
         onDataLoaded: Slick.Event;
         onPagingInfoChanged: Slick.Event;
         getPagingInfo(): PagingInfo;
+        onGroupExpanded: Slick.Event;
+        onGroupCollapsed: Slick.Event;
         onAjaxCall: Slick.RemoteViewAjaxCallback<TEntity>;
         onProcessData: Slick.RemoteViewProcessCallback<TEntity>;
         addData(data: Serenity.ListResponse<TEntity>): void;
@@ -2918,7 +2929,8 @@ declare namespace Slick {
         deleteItem(id: any): void;
         getItems(): TEntity[];
         setFilter(filter: RemoteViewFilter<TEntity>): void;
-        setItems(items: any[], fullReset: boolean): void;
+        setItems(items: any[], newIdProperty?: boolean | string): void;
+        getIdPropertyName(): string;
         getItemById(id: any): TEntity;
         getRowById(id: any): number;
         updateItem(id: any, item: TEntity): void;
@@ -2941,6 +2953,10 @@ declare namespace Slick {
         rowsPerPage: number;
         errormsg: string;
         params: any;
+        getLocalSort(): boolean;
+        setLocalSort(value: boolean): boolean;
+        sort(comparer?: (a: any, b: any) => number, ascending?: boolean): void;
+        reSort(): void;
         sortBy: string[];
         url: string;
         method: string;
@@ -3580,6 +3596,10 @@ interface JQuery {
     flexY(flexY: number): JQuery;
 }
 declare namespace Serenity {
+    class FlexifyAttribute {
+        value: boolean;
+        constructor(value?: boolean);
+    }
     class Flexify extends Widget<FlexifyOptions> {
         private xDifference;
         private yDifference;
@@ -3596,6 +3616,12 @@ declare namespace Serenity {
         designWidth?: any;
         designHeight?: any;
     }
+}
+declare namespace Serenity.Decorators {
+    function flexify(value?: boolean): (target: Function) => void;
+}
+declare namespace Serenity.DialogExtensions {
+    function dialogFlexify(dialog: JQuery): JQuery;
 }
 declare namespace Serenity {
     interface GoogleMapOptions {
