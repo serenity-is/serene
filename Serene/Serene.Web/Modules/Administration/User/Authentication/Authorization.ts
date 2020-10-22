@@ -8,7 +8,6 @@
     });
 
     export function hasPermission(permissionKey: string) {
-        let ud = userDefinition;
-        return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+        return Q.Authorization.hasPermission(permissionKey);
     }
 }
