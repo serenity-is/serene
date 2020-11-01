@@ -155,7 +155,7 @@
         }
 
         private matchContains(item: PermissionCheckItem): boolean {
-            return Select2.util.stripDiacritics(item.Title || '').toLowerCase().indexOf(this.searchText) >= 0;
+            return Select2.util.stripDiacritics(item.Title || '').toLowerCase().indexOf(this.searchText) >= 0 || Select2.util.stripDiacritics(item.Key || '').toLowerCase().indexOf(this.searchText) >= 0;
         }
 
         private getDescendants(item: PermissionCheckItem, excludeGroups: boolean): PermissionCheckItem[] {
