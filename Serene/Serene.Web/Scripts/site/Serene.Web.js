@@ -2259,8 +2259,7 @@ var Serene;
             }
         });
         function hasPermission(permissionKey) {
-            var ud = Authorization.userDefinition;
-            return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
+            return Q.Authorization.hasPermission(permissionKey);
         }
         Authorization.hasPermission = hasPermission;
     })(Authorization = Serene.Authorization || (Serene.Authorization = {}));
