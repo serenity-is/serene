@@ -1,13 +1,12 @@
-﻿
+﻿using Serene.Northwind.Entities;
+using Serenity.ComponentModel;
+using Serenity.Data.Mapping;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace Serene.BasicSamples.Forms
 {
-    using Northwind.Entities;
-    using Serenity.ComponentModel;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-
     /// <summary>
     /// This is a basic Order form for FilteredLookupInDetailDialog sample.
     /// </summary>

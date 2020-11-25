@@ -1,27 +1,26 @@
-
-namespace Serene.Membership.Pages
-{
-    using Administration;
-    using Administration.Entities;
-    using Administration.Repositories;
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.IO;
+using Serene.Administration;
+using Serene.Administration.Entities;
+using Serene.Administration.Repositories;
+using Serenity;
+using Serenity.Data;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.IO;
 #if COREFX
-    using MailKit.Net.Smtp;
-    using MimeKit;
-    using MailKit.Security;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Security;
 #else
     using System.Net.Mail;
 #endif
-    using System.Web;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.DataProtection;
-    using System.Web.Hosting;
+using System.Web;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.DataProtection;
+using System.Web.Hosting;
 
+namespace Serene.Membership.Pages
+{
     public partial class AccountController : Controller
     {
         [HttpGet]

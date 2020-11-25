@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Administration.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.ComponentModel;
-
     [ColumnsScript("Administration.Role")]
     [BasedOnRow(typeof(Entities.RoleRow), CheckNames = true)]
     public class RoleColumns

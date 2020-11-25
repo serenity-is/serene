@@ -1,11 +1,10 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+
 namespace Serene.BasicSamples.Columns
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
-
     [ColumnsScript("BasicSamples.InlineImageInGrid")]
     [BasedOnRow(typeof(Northwind.Entities.ProductRow), CheckNames = true)]
     public class InlineImageInGridColumns

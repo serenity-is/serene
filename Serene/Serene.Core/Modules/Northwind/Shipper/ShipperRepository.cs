@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using MyRow = Serene.Northwind.Entities.ShipperRow;
+
 
 namespace Serene.Northwind.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using MyRow = Entities.ShipperRow;
-
     public class ShipperRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

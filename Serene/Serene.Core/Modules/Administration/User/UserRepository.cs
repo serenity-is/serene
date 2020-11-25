@@ -1,17 +1,16 @@
-﻿
+﻿using Serenity;
+using Serenity.Abstractions;
+using Serenity.Data;
+using Serenity.Services;
+using Serenity.Web.Providers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
+using MyRow = Serene.Administration.Entities.UserRow;
+
 namespace Serene.Administration.Repositories
 {
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.Data;
-    using Serenity.Services;
-    using Serenity.Web.Providers;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Data;
-    using MyRow = Entities.UserRow;
-
     public partial class UserRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

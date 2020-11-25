@@ -1,8 +1,8 @@
-﻿namespace Serene
-{
-    using Serenity;
-    using System;
+﻿using Serenity;
+using System;
 
+namespace Serene
+{
     [Serializable]
     public class UserDefinition : IUserDefinition
     {

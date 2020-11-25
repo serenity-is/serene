@@ -1,13 +1,12 @@
+using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.BasicSamples.Repositories.DragDropSampleRepository;
+using MyRow = Serene.BasicSamples.Entities.DragDropSampleRow;
 
 namespace Serene.BasicSamples.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.DragDropSampleRepository;
-    using MyRow = Entities.DragDropSampleRow;
-
     [Route("Services/BasicSamples/DragDropSample/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class DragDropSampleController : ServiceEndpoint

@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Administration.Entities
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
-
     [ConnectionKey("Default"), Module("Administration"), TableName("RolePermissions")]
     [DisplayName("Role Permissions"), InstanceName("Role Permission")]
     [ReadPermission(PermissionKeys.Security)]

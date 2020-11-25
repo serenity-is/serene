@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.Administration.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [ColumnsScript("Administration.Language")]
     [BasedOnRow(typeof(Entities.LanguageRow), CheckNames = true)]
     public class LanguageColumns

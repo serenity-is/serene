@@ -1,20 +1,19 @@
+using Serene.Northwind.Entities;
+using Serene.Northwind.Repositories;
+using OfficeOpenXml;
+using Serenity;
+using Serenity.Data;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using MyRow = Serene.Northwind.Entities.ProductRow;
 
 namespace Serene.BasicSamples.Endpoints
 {
-    using Northwind.Entities;
-    using Northwind.Repositories;
-    using OfficeOpenXml;
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.IO;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRow = Northwind.Entities.ProductRow;
-
     [Route("Services/BasicSamples/ProductExcelImport/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize]
     public class ProductExcelImportController : ServiceEndpoint

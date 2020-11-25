@@ -1,14 +1,13 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using MyRow = Serene.BasicSamples.Entities.DragDropSampleRow;
+
 
 namespace Serene.BasicSamples.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using MyRow = Entities.DragDropSampleRow;
-
     public class DragDropSampleRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

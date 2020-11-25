@@ -1,13 +1,13 @@
-﻿namespace Serene.Administration
-{
-    using Serene.Administration.Entities;
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.Data;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using Serene.Administration.Entities;
+using Serenity;
+using Serenity.Abstractions;
+using Serenity.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace Serene.Administration
+{
     public class PermissionService : IPermissionService
     {
         public bool HasPermission(string permission)

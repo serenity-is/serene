@@ -1,26 +1,25 @@
-﻿
+﻿using Microsoft.AspNetCore.Hosting;
+using Newtonsoft.Json.Linq;
+using Serene.Administration.Entities;
+using Serenity;
+using Serenity.Abstractions;
+using Serenity.ComponentModel;
+using Serenity.Configuration;
+using Serenity.Extensibility;
+using Serenity.Localization;
+using Serenity.Navigation;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Web.Hosting;
+
 namespace Serene.Administration.Repositories
 {
-    using Microsoft.AspNetCore.Hosting;
-    using Newtonsoft.Json.Linq;
-    using Serene.Administration.Entities;
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.ComponentModel;
-    using Serenity.Configuration;
-    using Serenity.Extensibility;
-    using Serenity.Localization;
-    using Serenity.Navigation;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Web.Hosting;
-
     public class TranslationRepository
     {
         private static string GetUserTextsFilePath(string languageID)

@@ -1,13 +1,12 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+using System.IO;
+
 namespace Serene.Northwind.Entities
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
-    using System.IO;
-
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("EmployeeTerritories")]
     [DisplayName("EmployeeTerritories"), InstanceName("EmployeeTerritories")]
     [ReadPermission(PermissionKeys.General)]

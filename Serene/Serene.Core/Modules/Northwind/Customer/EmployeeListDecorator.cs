@@ -1,14 +1,13 @@
-﻿
+﻿using Serene.Northwind.Entities;
+using Serenity;
+using Serenity.Data;
+using Serenity.Reporting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Serene.Northwind
 {
-    using Entities;
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     public class EmployeeListDecorator : BaseCellDecorator
     {
         public override void Decorate()

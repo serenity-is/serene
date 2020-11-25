@@ -1,8 +1,8 @@
-﻿namespace Serene.BasicSamples.Columns
-{
-    using Serenity.ComponentModel;
-    using System;
+﻿using Serenity.ComponentModel;
+using System;
 
+namespace Serene.BasicSamples.Columns
+{
     [ColumnsScript("BasicSamples.CustomerGrossSales")]
     [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow), CheckNames = true)]
     public class CustomerGrossSalesColumns

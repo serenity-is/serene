@@ -1,11 +1,11 @@
-﻿namespace Serene.BasicSamples.Repositories
-{
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Collections.Generic;
-    using System.Data;
-    using MyRow = Northwind.Entities.CustomerGrossSalesRow;
+﻿using Serenity.Data;
+using Serenity.Services;
+using System.Collections.Generic;
+using System.Data;
+using MyRow = Serene.Northwind.Entities.CustomerGrossSalesRow;
 
+namespace Serene.BasicSamples.Repositories
+{
     public class CustomerGrossSalesRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

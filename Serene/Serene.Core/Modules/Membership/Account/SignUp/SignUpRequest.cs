@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.Services;
+using System;
+
 namespace Serene.Membership
 {
-    using Serenity.Services;
-    using System;
-
     public class SignUpRequest : ServiceRequest
     {
         public String DisplayName { get; set; }

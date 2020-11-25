@@ -1,9 +1,8 @@
+using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Administration.Pages
 {
-    using Serenity.Web;
-    using Microsoft.AspNetCore.Mvc;
-
     [PageAuthorize(typeof(Entities.LanguageRow))]
     public class LanguageController : Controller
     {

@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using MyRow = Serene.Administration.Entities.LanguageRow;
+
 
 namespace Serene.Administration.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using MyRow = Entities.LanguageRow;
-
     public class LanguageRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

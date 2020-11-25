@@ -1,14 +1,13 @@
-﻿
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Serenity;
+using Serenity.Services;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
 namespace Serene.Administration.Endpoints
 {
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc;
-    using Serenity;
-    using Serenity.Services;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-
     [Route("Services/Administration/Sergen/[action]")]
     [ServiceAuthorize(PermissionKeys.Security)]
     public class SergenController : ServiceEndpoint

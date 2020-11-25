@@ -1,11 +1,10 @@
-﻿
+﻿using Serene.Northwind.Entities;
+using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Web;
+
 namespace Serene.Northwind.Lookups
 {
-    using Entities;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Web;
-
     [LookupScript]
     public class OrderShipCityLookup : RowLookupScript<Entities.OrderRow>
     {

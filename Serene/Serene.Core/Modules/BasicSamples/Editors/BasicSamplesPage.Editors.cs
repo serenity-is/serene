@@ -1,9 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
+using Views = MVC.Views.BasicSamples.Editors;
 
 namespace Serene.BasicSamples.Pages
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Views = MVC.Views.BasicSamples.Editors;
-
     public partial class BasicSamplesController : Controller
     {
         public ActionResult ChangingLookupText()

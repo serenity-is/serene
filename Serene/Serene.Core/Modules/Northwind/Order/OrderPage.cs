@@ -1,9 +1,8 @@
+using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Northwind.Pages
 {
-    using Serenity.Web;
-    using Microsoft.AspNetCore.Mvc;
-
     [PageAuthorize(typeof(Entities.OrderRow))]
     public class OrderController : Controller
     {

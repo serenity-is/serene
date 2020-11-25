@@ -1451,7 +1451,7 @@ var Q;
         var res = s.match(isoRegexp);
         if (typeof (res) == "undefined" || res === null)
             return null;
-        return new Date(s);
+        return new Date(s + (s.length == 10 ? "T00:00:00" : ""));
     }
     Q.parseISODateTime = parseISODateTime;
     function parseHourAndMin(value) {
@@ -2368,7 +2368,7 @@ var Q;
         if (typeof document !== 'undefined') {
             var pathLink = document.querySelector('link#ApplicationPath');
             if (pathLink != null) {
-                Config.applicationPath = pathLink.href;
+                Config.applicationPath = pathLink.getAttribute('href');
             }
         }
         /**
@@ -4333,8 +4333,8 @@ var Serenity;
         };
         ;
         Widget.prototype.changeSelect2 = function (handler) {
-            this.element.on('change.' + this.uniqueName, function (e) {
-                if (!$(e.target).hasClass('select2-change-triggered'))
+            this.element.on('change.' + this.uniqueName, function (e, valueSet) {
+                if (valueSet !== true)
                     handler(e);
             });
         };
@@ -7135,7 +7135,7 @@ var Serenity;
             _this.set_sqlMinMax(true);
             if (!_this.options.inputOnly) {
                 $("<i class='inplace-button inplace-now'><b></b></div>")
-                    .attr('title', 'set to now')
+                    .attr('title', _this.getInplaceNowText())
                     .insertAfter(_this.time).click(function (e2) {
                     if (_this.element.hasClass('readonly')) {
                         return;
@@ -7225,6 +7225,9 @@ var Serenity;
                 this.lastSetValue = value;
             }
         };
+        DateTimeEditor.prototype.getInplaceNowText = function () {
+            return Q.coalesce(Q.tryGetText('Controls.DateTimeEditor.SetToNow'), 'set to now');
+        };
         DateTimeEditor.prototype.getDisplayFormat = function () {
             return (this.options.seconds ? Q.Culture.dateTimeFormat : Q.Culture.dateTimeFormat.replace(':ss', ''));
         };
@@ -7302,7 +7305,7 @@ var Serenity;
                     this.element.nextAll('.ui-datepicker-trigger').css('opacity', '1');
                     this.element.nextAll('.inplace-now').css('opacity', '1');
                 }
-                this.time && this.time.attr('readonly', value ? "readonly" : null);
+                this.time && Serenity.EditorUtils.setReadonly(this.time, value);
             }
         };
         DateTimeEditor.roundToMinutes = function (date, minutesStep) {
@@ -7734,11 +7737,9 @@ var Serenity;
             hidden.select2(select2Options);
             hidden.attr('type', 'text');
             // for jquery validate to work
-            hidden.on('change.' + _this.uniqueName, function (e) {
-                if (!$(e.target).hasClass('select2-change-triggered') &&
-                    hidden.closest('form').data('validator')) {
+            hidden.on('change.' + _this.uniqueName, function (e, valueSet) {
+                if (valueSet !== true && hidden.closest('form').data('validator'))
                     hidden.valid();
-                }
             });
             _this.setCascadeFrom(_this.options.cascadeFrom);
             if (_this.useInplaceAdd())
@@ -8027,8 +8028,8 @@ var Serenity;
                 var isNew = _this.isMultiple() || Q.isEmptyOrNull(_this.get_value());
                 inplaceButton.attr('title', (isNew ? addTitle : editTitle)).toggleClass('edit', !isNew);
             });
-            this.element.change(function (e) {
-                if ($(e.target).hasClass('select2-change-triggered'))
+            this.element.change(function (e, valueSet) {
+                if (valueSet === true)
                     return;
                 if (_this.isMultiple()) {
                     var values = _this.get_values();
@@ -8187,7 +8188,7 @@ var Serenity;
                 el.select2('val', val);
                 el.data('select2-change-triggered', true);
                 try {
-                    el.triggerHandler('change');
+                    el.triggerHandler('change', [true]); // valueSet: true
                 }
                 finally {
                     el.data('select2-change-triggered', false);
@@ -9094,7 +9095,7 @@ var Serenity;
             }
             $('<script/>').attr('type', 'text/javascript')
                 .attr('id', 'CKEditorScript')
-                .attr('src', Q.resolveUrl('~/Scripts/CKEditor/ckeditor.js?v=' +
+                .attr('src', Q.resolveUrl('~/Scripts/ckeditor/ckeditor.js?v=' +
                 HtmlContentEditor_1.CKEditorVer))
                 .appendTo(window.document.head);
         };
@@ -15810,10 +15811,12 @@ var Serenity;
             _this.element.addClass('s-' + Q.getTypeName(Q.getInstanceType(_this)));
             var layout = function () {
                 self.layout();
-                Q.LayoutTimer.store(this.layoutTimer);
+                if (self.layoutTimer != null)
+                    Q.LayoutTimer.store(self.layoutTimer);
             };
             _this.element.addClass('require-layout').on('layout.' + _this.uniqueName, layout);
-            _this.layoutTimer = Q.LayoutTimer.onSizeChange(function () { return _this.element && _this.element[0]; }, Q.debounce(layout, 50));
+            if (_this.useLayoutTimer())
+                _this.layoutTimer = Q.LayoutTimer.onSizeChange(function () { return _this.element && _this.element[0]; }, Q.debounce(layout, 50));
             _this.setTitle(_this.getInitialTitle());
             var buttons = _this.getButtons();
             if (buttons != null) {
@@ -15842,6 +15845,9 @@ var Serenity;
             return _this;
         }
         DataGrid_1 = DataGrid;
+        DataGrid.prototype.useLayoutTimer = function () {
+            return true;
+        };
         DataGrid.prototype.attrs = function (attrType) {
             return Q.getAttributes(Q.getInstanceType(this), attrType, true);
         };
@@ -16718,7 +16724,11 @@ var Serenity;
                             return x3.id != null && Q.coalesce(x3.sort, 0) !== 0;
                         });
                         sortColumns.sort(function (a, b) {
-                            return a.sort - b.sort;
+                            // sort holds two informations:
+                            // absoulte value: order of sorting
+                            // sign: positive = ascending, negativ = descending
+                            // so we have to compare absolute values here
+                            return Math.abs(a.sort) - Math.abs(b.sort);
                         });
                         for (var $t5 = 0; $t5 < sortColumns.length; $t5++) {
                             var x4 = sortColumns[$t5];
@@ -18674,8 +18684,12 @@ var Serenity;
                 var el = this.element;
                 el.select2('val', value);
                 el.data('select2-change-triggered', true);
-                el.triggerHandler('change', [true]);
-                el.data('select2-change-triggered', false);
+                try {
+                    el.triggerHandler('change', [true]); // valueSet: true
+                }
+                finally {
+                    el.data('select2-change-triggered', false);
+                }
             }
         };
         Select2AjaxEditor = __decorate([

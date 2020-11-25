@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Services;
+using System.ComponentModel;
+
 namespace Serene.Membership
 {
-    using Serenity.ComponentModel;
-    using Serenity.Services;
-    using System.ComponentModel;
-
     [FormScript("Membership.ChangePassword")]
     public class ChangePasswordRequest : ServiceRequest
     {

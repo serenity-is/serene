@@ -1,8 +1,7 @@
-﻿
+﻿using Serenity.Services;
+
 namespace Serene.Administration
 {
-    using Serenity.Services;
-
     public class RolePermissionListRequest : ServiceRequest
     {
         public int? RoleID { get; set; }

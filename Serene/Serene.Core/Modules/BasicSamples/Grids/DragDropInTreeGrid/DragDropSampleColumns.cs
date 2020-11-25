@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.BasicSamples.Columns
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [ColumnsScript("BasicSamples.DragDropSample")]
     [BasedOnRow(typeof(Entities.DragDropSampleRow), CheckNames = true)]
     public class DragDropSampleColumns

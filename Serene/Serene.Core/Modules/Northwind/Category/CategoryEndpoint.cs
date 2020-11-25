@@ -1,13 +1,12 @@
+using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.Northwind.Repositories.CategoryRepository;
+using MyRow = Serene.Northwind.Entities.CategoryRow;
 
 namespace Serene.Northwind.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.CategoryRepository;
-    using MyRow = Entities.CategoryRow;
-
     [Route("Services/Northwind/Category/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CategoryController : ServiceEndpoint

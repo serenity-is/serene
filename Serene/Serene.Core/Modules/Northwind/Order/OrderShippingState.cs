@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System.ComponentModel;
+
 namespace Serene.Northwind
 {
-    using Serenity.ComponentModel;
-    using System.ComponentModel;
-
     [EnumKey("Northwind.OrderShippingState")]
     public enum OrderShippingState
     {

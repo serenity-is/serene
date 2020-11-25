@@ -1,8 +1,7 @@
-﻿
+﻿using Serenity.Services;
+
 namespace Serene
 {
-    using Serenity.Services;
-
     public class GetNextNumberRequest : ServiceRequest
     {
         public string Prefix { get; set; }

@@ -1,13 +1,12 @@
-﻿
+﻿using Serenity;
+using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using MyRow = Serene.Common.Entities.UserPreferenceRow;
+
 
 namespace Serene.Common.Repositories
 {
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using MyRow = Entities.UserPreferenceRow;
-
     public class UserPreferenceRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

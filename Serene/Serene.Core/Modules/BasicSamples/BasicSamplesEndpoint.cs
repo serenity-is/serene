@@ -1,16 +1,15 @@
-﻿
+﻿using Serene.Northwind.Entities;
+using Serenity.Data;
+using Serenity.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Serene.BasicSamples.Endpoints
 {
-    using Northwind.Entities;
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Threading;
-    using Microsoft.AspNetCore.Mvc;
-
     [ServiceAuthorize, Route("Services/BasicSamples/BasicSamples/[action]")]
     [ConnectionKey(typeof(OrderRow))]
     public class BasicSamplesController : ServiceEndpoint

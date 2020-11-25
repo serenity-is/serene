@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.BasicSamples.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [FormScript("BasicSamples.ChangingLookupText")]
     [BasedOnRow(typeof(Northwind.Entities.OrderDetailRow), CheckNames = true)]
     public class ChangingLookupTextForm

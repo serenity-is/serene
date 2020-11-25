@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Common.Entities
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
-
     [ConnectionKey("Default"), Module("Common"), TableName("UserPreferences")]
     [DisplayName("User Preferences"), InstanceName("UserPreference")]
     [ReadPermission("")]

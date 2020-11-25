@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Northwind.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.ComponentModel;
-
     [FormScript("Northwind.Product")]
     [BasedOnRow(typeof(Entities.ProductRow), CheckNames = true)]
     public class ProductForm

@@ -1,16 +1,15 @@
+//<if:Northwind>
+using Serene.Northwind;
+using Serene.Northwind.Entities;
+//</if:Northwind>
+using Serenity;
+using Serenity.Data;
+using Serenity.Web;
+using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Common.Pages
 {
-    //<if:Northwind>
-    using Northwind;
-    using Northwind.Entities;
-    //</if:Northwind>
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Web;
-    using System;
-    using Microsoft.AspNetCore.Mvc;
-
     [Route("Dashboard/[action]")]
     public class DashboardController : Controller
     {

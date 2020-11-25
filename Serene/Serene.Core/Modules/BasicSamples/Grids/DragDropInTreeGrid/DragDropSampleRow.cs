@@ -1,13 +1,12 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+
 
 namespace Serene.BasicSamples.Entities
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
-
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("DragDropSample")]
     [DisplayName("Tree Items"), InstanceName("Tree Item")]
     [ReadPermission(Northwind.PermissionKeys.General)]

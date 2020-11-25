@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Views = MVC.Views.BasicSamples.Dialogs;
 
 namespace Serene.BasicSamples.Pages
 {
-    using Views = MVC.Views.BasicSamples.Dialogs;
-
     public partial class BasicSamplesController : Controller
     {
         public ActionResult ChartInDialog()

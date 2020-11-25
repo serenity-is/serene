@@ -84,7 +84,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Cecil, Version=0.11.1.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e">
-      <HintPath>..\..\packages\Serenity.Web.3.14.0\lib\net45\Mono.Cecil.dll</HintPath>
+      <HintPath>..\..\packages\Serenity.Web.3.14.5\lib\net45\Mono.Cecil.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Cecil.Mdb, Version=0.11.1.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
@@ -110,24 +110,24 @@
       <HintPath>..\..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="Serenity.Core, Version=3.14.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Core.3.14.0\lib\net45\Serenity.Core.dll</HintPath>
+    <Reference Include="Serenity.Core, Version=3.14.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Core.3.14.5\lib\net45\Serenity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data, Version=3.14.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.3.14.0\lib\net45\Serenity.Data.dll</HintPath>
+    <Reference Include="Serenity.Data, Version=3.14.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.3.14.5\lib\net45\Serenity.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Data.Entity, Version=3.14.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Data.Entity.3.14.0\lib\net45\Serenity.Data.Entity.dll</HintPath>
+    <Reference Include="Serenity.Data.Entity, Version=3.14.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Data.Entity.3.14.5\lib\net45\Serenity.Data.Entity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Services, Version=3.14.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Services.3.14.0\lib\net45\Serenity.Services.dll</HintPath>
+    <Reference Include="Serenity.Services, Version=3.14.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Services.3.14.5\lib\net45\Serenity.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Serenity.Web, Version=3.14.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Serenity.Web.3.14.0\lib\net45\Serenity.Web.dll</HintPath>
+    <Reference Include="Serenity.Web, Version=3.14.5.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Serenity.Web.3.14.5\lib\net45\Serenity.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Exceptional, Version=1.0.130.0, Culture=neutral, processorArchitecture=MSIL">

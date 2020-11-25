@@ -1,11 +1,11 @@
-﻿namespace Serene.Northwind.Entities
-{
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-    using System.ComponentModel;
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
 
+namespace Serene.Northwind.Entities
+{
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("[dbo].[GrossSales]")]
     [DisplayName("Customer Gross Sales")]
     [ReadPermission("Northwind:General")]

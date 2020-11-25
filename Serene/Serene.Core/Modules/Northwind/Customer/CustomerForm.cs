@@ -1,11 +1,10 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace Serene.Northwind.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-
     [FormScript("Northwind.Customer")]
     [BasedOnRow(typeof(Entities.CustomerRow), CheckNames = true)]
     public class CustomerForm

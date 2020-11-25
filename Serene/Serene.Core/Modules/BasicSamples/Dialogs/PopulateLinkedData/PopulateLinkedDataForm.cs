@@ -1,13 +1,12 @@
-﻿
+﻿using Serene.Northwind;
+using Serenity.ComponentModel;
+using Serenity.Data;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
 namespace Serene.BasicSamples.Forms
 {
-    using Northwind;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-
     /// <summary>
     /// A custom order form that contains read-only details about customer
     /// </summary>

@@ -1584,6 +1584,7 @@ declare namespace Serenity {
         get_value(): string;
         get value(): string;
         set_value(value: string): void;
+        private getInplaceNowText;
         private getDisplayFormat;
         set value(v: string);
         private get_valueAsDate;
@@ -2095,9 +2096,11 @@ declare namespace Serenity {
         private timer;
         constructor(input: JQuery, opt: QuickSearchInputOptions);
         protected checkIfValueChanged(): void;
+        get_value(): string;
         get_field(): QuickSearchField;
         set_field(value: QuickSearchField): void;
         protected updateInputPlaceHolder(): void;
+        restoreState(value: string, field: QuickSearchField): void;
         protected searchNow(value: string): void;
     }
 }
@@ -3048,8 +3051,8 @@ declare namespace Serenity {
     namespace GridUtils {
         function addToggleButton(toolDiv: JQuery, cssClass: string, callback: (p1: boolean) => void, hint: string, initial?: boolean): void;
         function addIncludeDeletedToggle(toolDiv: JQuery, view: Slick.RemoteView<any>, hint?: string, initial?: boolean): void;
-        function addQuickSearchInput(toolDiv: JQuery, view: Slick.RemoteView<any>, fields?: QuickSearchField[]): void;
-        function addQuickSearchInputCustom(container: JQuery, onSearch: (p1: string, p2: string, done: (p3: boolean) => void) => void, fields?: QuickSearchField[]): void;
+        function addQuickSearchInput(toolDiv: JQuery, view: Slick.RemoteView<any>, fields?: QuickSearchField[], onChange?: () => void): void;
+        function addQuickSearchInputCustom(container: JQuery, onSearch: (p1: string, p2: string, done: (p3: boolean) => void) => void, fields?: QuickSearchField[]): QuickSearchInput;
         function makeOrderable(grid: Slick.Grid, handleMove: (p1: any, p2: number) => void): void;
         function makeOrderableWithUpdateRequest(grid: DataGrid<any, any>, getId: (p1: any) => number, getDisplayOrder: (p1: any) => any, service: string, getUpdateRequest: (p1: number, p2: number) => SaveRequest<any>): void;
     }
@@ -3205,6 +3208,7 @@ declare namespace Serenity {
         static defaultPersistanceStorage: SettingStorage;
         private layoutTimer;
         constructor(container: JQuery, options?: TOptions);
+        protected useLayoutTimer(): boolean;
         protected attrs<TAttr>(attrType: {
             new (...args: any[]): TAttr;
         }): TAttr[];

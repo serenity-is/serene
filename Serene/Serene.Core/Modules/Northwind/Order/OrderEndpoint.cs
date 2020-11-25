@@ -1,16 +1,15 @@
+using Serenity.Data;
+using Serenity.Reporting;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.Northwind.Repositories.OrderRepository;
+using MyRow = Serene.Northwind.Entities.OrderRow;
 
 namespace Serene.Northwind.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.OrderRepository;
-    using MyRow = Entities.OrderRow;
-
     [Route("Services/Northwind/Order/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class OrderController : ServiceEndpoint

@@ -1,11 +1,10 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Reporting;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Northwind.Columns
 {
-    using Serenity.ComponentModel;
-    using Serenity.Reporting;
-    using System;
-    using System.ComponentModel;
-
     [ColumnsScript("Northwind.Customer")]
     [BasedOnRow(typeof(Entities.CustomerRow), CheckNames = true)]
     public class CustomerColumns

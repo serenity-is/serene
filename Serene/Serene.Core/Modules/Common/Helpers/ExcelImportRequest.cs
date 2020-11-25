@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.Services;
+using System;
+using System.Collections.Generic;
+
 namespace Serene
 {
-    using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
-
     public class ExcelImportRequest : ServiceRequest
     {
         public String FileName { get; set; }

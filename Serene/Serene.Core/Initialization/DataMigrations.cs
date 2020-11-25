@@ -1,17 +1,17 @@
-﻿namespace Serene
-{
-    using FluentMigrator.Runner.Announcers;
-    using FluentMigrator.Runner.Initialization;
-    using Microsoft.AspNetCore.Hosting;
-    using Serenity.Data;
-    using System;
-    using System.Data.SqlClient;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
-    using System.Reflection;
-    using System.Threading;
+﻿using FluentMigrator.Runner.Announcers;
+using FluentMigrator.Runner.Initialization;
+using Microsoft.AspNetCore.Hosting;
+using Serenity.Data;
+using System;
+using System.Data.SqlClient;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
 
+namespace Serene
+{
     public static class DataMigrations
     { 
         private static readonly string[] databaseKeys = new[] {

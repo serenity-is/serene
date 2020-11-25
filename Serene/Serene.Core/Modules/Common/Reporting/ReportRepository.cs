@@ -1,13 +1,13 @@
-﻿namespace Serene
-{
-    using Serenity;
-    using Serenity.PropertyGrid;
-    using Serenity.Reporting;
-    using Serenity.Services;
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
+﻿using Serenity;
+using Serenity.PropertyGrid;
+using Serenity.Reporting;
+using Serenity.Services;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
+namespace Serene
+{
     public class ReportRepository
     {
         public byte[] Render(IDataOnlyReport report)

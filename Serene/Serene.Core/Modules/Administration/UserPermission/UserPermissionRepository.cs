@@ -1,20 +1,19 @@
-﻿
+﻿using Serene.Administration.Entities;
+using Serenity;
+using Serenity.Data;
+using Serenity.Extensibility;
+using Serenity.Localization;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using MyRow = Serene.Administration.Entities.UserPermissionRow;
+
 namespace Serene.Administration.Repositories
 {
-    using Entities;
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Extensibility;
-    using Serenity.Localization;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Reflection;
-    using MyRow = Entities.UserPermissionRow;
-
     public class UserPermissionRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

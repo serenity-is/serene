@@ -1,15 +1,15 @@
+using Serenity.Data;
+using Serenity.Reporting;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.BasicSamples.Repositories.CustomerGrossSalesRepository;
+using MyRow = Serene.Northwind.Entities.CustomerGrossSalesRow;
+
 namespace Serene.BasicSamples.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.CustomerGrossSalesRepository;
-    using MyRow = Northwind.Entities.CustomerGrossSalesRow;
-
     [Route("Services/BasicSamples/CustomerGrossSales/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class CustomerGrossSalesController : ServiceEndpoint

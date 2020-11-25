@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.Northwind.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [FormScript("Northwind.Supplier")]
     [BasedOnRow(typeof(Entities.SupplierRow), CheckNames = true)]
     public class SupplierForm

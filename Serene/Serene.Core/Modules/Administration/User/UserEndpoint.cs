@@ -1,21 +1,20 @@
+using Serene.Administration.Entities;
+using Serene.Administration.Repositories;
+using Serenity;
+using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.Administration.Repositories.UserRepository;
+using MyRow = Serene.Administration.Entities.UserRow;
 
 
 namespace Serene.Administration.Endpoints
 {
-    using Entities;
-    using Repositories;
-    using Serenity;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.UserRepository;
-    using MyRow = Entities.UserRow;
-
     [Route("Services/Administration/User/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class UserController : ServiceEndpoint

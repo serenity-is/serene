@@ -1,9 +1,8 @@
+using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.AdminLTE
 {
-    using Serenity.Web;
-    using Microsoft.AspNetCore.Mvc;
-
     [PageAuthorize, Route("AdminLTE/Forms/[action]")]
     public class FormsController : Controller
     {

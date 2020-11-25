@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
 namespace Serene.BasicSamples.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.ComponentModel;
-
     [FormScript("BasicSamples.StaticTextBlock")]
     public class StaticTextBlockForm
     {

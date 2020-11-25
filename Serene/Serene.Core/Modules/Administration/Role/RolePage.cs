@@ -1,8 +1,8 @@
-﻿namespace Serene.Administration.Pages
-{
-    using Serenity.Web;
-    using Microsoft.AspNetCore.Mvc;
+﻿using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
 
+namespace Serene.Administration.Pages
+{
     [PageAuthorize(typeof(Entities.RoleRow))]
     public class RoleController : Controller
     {

@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+
 
 namespace Serene.Administration
 {
-    using Serenity.ComponentModel;
-
     [ScriptInclude]
     public class TranslationItem
     {

@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.Northwind.Columns
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [ColumnsScript("Northwind.SalesByCategory")]
     [BasedOnRow(typeof(Entities.SalesByCategoryRow), CheckNames = true)]
     public class SalesByCategoryColumns

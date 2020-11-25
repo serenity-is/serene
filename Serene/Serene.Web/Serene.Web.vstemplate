@@ -1435,10 +1435,10 @@
       <installPackage id="Mono.Cecil" version="0.11.1" />
       <installPackage id="NUglify" version="1.5.13" />
       <installPackage id="PagedList.Mvc" version="4.5.0.0" />
-      <installPackage id="Serenity.CodeGenerator" version="3.14.0" />
-      <installPackage id="Serenity.Scripts" version="3.14.0" />
-      <installPackage id="Serenity.Web" version="3.14.0" />
-      <installPackage id="Serenity.Web.Assets" version="3.9.2" />
+      <installPackage id="Serenity.CodeGenerator" version="3.14.5" />
+      <installPackage id="Serenity.Scripts" version="3.14.5" />
+      <installPackage id="Serenity.Web" version="3.14.5" />
+      <installPackage id="Serenity.Web.Assets" version="3.14.4" />
       <installPackage id="Serenity.Web.Tooling" version="3.9.10" />
       <installPackage id="StackExchange.Exceptional" version="1.0.130" />
       <installPackage id="TinyMapper" version="3.0.3" />

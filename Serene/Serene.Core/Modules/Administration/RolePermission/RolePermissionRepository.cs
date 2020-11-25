@@ -1,15 +1,14 @@
-﻿
+﻿using Serenity;
+using Serenity.Data;
+using Serenity.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using MyRow = Serene.Administration.Entities.RolePermissionRow;
+
 namespace Serene.Administration.Repositories
 {
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using MyRow = Entities.RolePermissionRow;
-
     public class RolePermissionRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

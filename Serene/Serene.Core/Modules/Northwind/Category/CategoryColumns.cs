@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Northwind.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.ComponentModel;
-
     [ColumnsScript("Northwind.Category")]
     [BasedOnRow(typeof(Entities.CategoryRow), CheckNames = true)]
     public class CategoryColumns

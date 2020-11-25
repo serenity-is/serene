@@ -1,17 +1,16 @@
+using Serene.Administration.Entities;
+using Serene.Administration.Repositories;
+using Serenity;
+using Serenity.Data;
+using Serenity.Services;
+using Serenity.Web.Providers;
+using System;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace Serene.Membership.Pages
 {
-    using Administration.Entities;
-    using Administration.Repositories;
-    using Serenity;
-    using Serenity.Data;
-    using Serenity.Services;
-    using Serenity.Web.Providers;
-    using System;
-    using System.IO;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.DataProtection;
-
     public partial class AccountController : Controller
     {
         [HttpGet]

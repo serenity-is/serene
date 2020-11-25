@@ -1,11 +1,10 @@
+using Serenity.Web;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System.Net;
 
 namespace Serene.Administration.Pages
 {
-    using Serenity.Web;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Http;
-    using System.Net;
-
     [PageAuthorize(PermissionKeys.Security)]
     public class SergenController : Controller
     {

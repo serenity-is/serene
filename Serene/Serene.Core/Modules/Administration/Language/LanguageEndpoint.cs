@@ -1,13 +1,12 @@
+using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.Administration.Repositories.LanguageRepository;
+using MyRow = Serene.Administration.Entities.LanguageRow;
 
 namespace Serene.Administration.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.LanguageRepository;
-    using MyRow = Entities.LanguageRow;
-
     [Route("Services/Administration/Language/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class LanguageController : ServiceEndpoint

@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+using System.ComponentModel;
+
 namespace Serene.Northwind.Columns
 {
-    using Serenity.ComponentModel;
-    using System;
-    using System.ComponentModel;
-
     [ColumnsScript("Northwind.Product")]
     [BasedOnRow(typeof(Entities.ProductRow), CheckNames = true)]
     public class ProductColumns

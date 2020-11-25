@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity;
+using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+
 namespace Serene.Northwind.Entities
 {
-    using Serenity;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Data.Mapping;
-    using System;
-
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLog")]
     public sealed class ProductLogRow : Row, ICaptureLogRow
     {

@@ -1,8 +1,8 @@
-﻿namespace Serene.Administration
-{
-    using Serenity;
-    using Serenity.Abstractions;
+﻿using Serenity;
+using Serenity.Abstractions;
 
+namespace Serene.Administration
+{
     public class AuthorizationService : IAuthorizationService
     {
         public bool IsLoggedIn

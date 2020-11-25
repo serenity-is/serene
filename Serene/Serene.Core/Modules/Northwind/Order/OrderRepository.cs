@@ -1,12 +1,11 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System.Data;
+using MyRow = Serene.Northwind.Entities.OrderRow;
+
 
 namespace Serene.Northwind.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System.Data;
-    using MyRow = Entities.OrderRow;
-
     public class OrderRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

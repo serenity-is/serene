@@ -1,8 +1,8 @@
-﻿namespace Serene.Administration.Forms
-{
-    using Serenity.ComponentModel;
-    using System;
+﻿using Serenity.ComponentModel;
+using System;
 
+namespace Serene.Administration.Forms
+{
     [FormScript("Administration.User")]
     [BasedOnRow(typeof(Entities.UserRow), CheckNames = true)]
     public class UserForm

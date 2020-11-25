@@ -1,12 +1,12 @@
-﻿namespace Serene.Administration
-{
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.Data;
-    using System;
-    using System.Data;
-    using MyRow = Entities.UserRow;
+﻿using Serenity;
+using Serenity.Abstractions;
+using Serenity.Data;
+using System;
+using System.Data;
+using MyRow = Serene.Administration.Entities.UserRow;
 
+namespace Serene.Administration
+{
     public class UserRetrieveService : IUserRetrieveService
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

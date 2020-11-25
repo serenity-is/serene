@@ -1,13 +1,13 @@
-﻿namespace Serene.Common.Pages
-{
-    using Serenity;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.IO;
-    using Microsoft.AspNetCore.Mvc;
-    using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
+﻿using Serenity;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
 
+namespace Serene.Common.Pages
+{
     public class FileController : Controller
     {
         [Route("upload/{*pathInfo}")]

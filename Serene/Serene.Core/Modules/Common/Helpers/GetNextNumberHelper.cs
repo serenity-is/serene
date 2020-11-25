@@ -1,10 +1,9 @@
-﻿
+﻿using Serenity.Data;
+using System.Data;
+using System.Linq;
+
 namespace Serene
 {
-    using Serenity.Data;
-    using System.Data;
-    using System.Linq;
-
     public static class GetNextNumberHelper
     {
         public static GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request,

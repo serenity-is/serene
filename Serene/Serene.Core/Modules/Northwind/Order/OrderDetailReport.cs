@@ -1,13 +1,12 @@
-﻿
+﻿using Serene.Northwind.Entities;
+using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Reporting;
+using System;
+using System.Collections.Generic;
+
 namespace Serene.Northwind
 {
-    using Entities;
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using System;
-    using System.Collections.Generic;
-
     [Report("Northwind.OrderDetail")]
     [ReportDesign(MVC.Views.Northwind.Order.OrderDetailReport)]
     [RequiredPermission(PermissionKeys.General)]

@@ -1,10 +1,9 @@
 ﻿
+using Views = MVC.Views.BasicSamples.Grids;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Serene.BasicSamples.Pages
 {
-
-    using Views = MVC.Views.BasicSamples.Grids;
-    using Microsoft.AspNetCore.Mvc;
-
     public partial class BasicSamplesController : Controller
     {
         public ActionResult CancellableBulkAction()

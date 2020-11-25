@@ -1,11 +1,10 @@
+using Serenity;
+using Serenity.Services;
+using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Membership.Pages
 {
-    using Serenity;
-    using Serenity.Services;
-    using System;
-    using Microsoft.AspNetCore.Mvc;
-
     [Route("Account/[action]")]
     public partial class AccountController : Controller
     {

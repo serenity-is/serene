@@ -1,14 +1,13 @@
-﻿
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Reporting;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+
 namespace Serene.Northwind
 {
-    using Serenity.ComponentModel;
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Drawing;
-
     [Report, RequiredPermission(PermissionKeys.General)]
     [Category("Northwind/Orders"), DisplayName("Customer Gross Sales")]
     public class CustomerGrossSalesReport : IReport, IDataOnlyReport

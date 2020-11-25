@@ -1,13 +1,12 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System;
+using System.Data;
+using MyRow = Serene.Northwind.Entities.RegionRow;
+
 
 namespace Serene.Northwind.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Data;
-    using MyRow = Entities.RegionRow;
-
     public class RegionRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

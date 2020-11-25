@@ -1,16 +1,15 @@
-﻿
+﻿using Serene.Administration.Entities;
+using Serenity;
+using Serenity.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
+
 namespace Serene.Navigation
 {
-    using Serene.Administration.Entities;
-    using Serenity;
-    using Serenity.Navigation;
-    using System;
-    using System.Collections.Generic;
-    using System.Web;
-    using System.Web.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Http.Extensions;
-
     public partial class NavigationModel
     {
         public List<NavigationItem> Items { get; private set; }

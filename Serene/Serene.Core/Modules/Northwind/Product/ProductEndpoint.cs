@@ -1,16 +1,15 @@
+using Serenity.Data;
+using Serenity.Reporting;
+using Serenity.Services;
+using Serenity.Web;
+using System;
+using System.Data;
+using Microsoft.AspNetCore.Mvc;
+using MyRepository = Serene.Northwind.Repositories.ProductRepository;
+using MyRow = Serene.Northwind.Entities.ProductRow;
 
 namespace Serene.Northwind.Endpoints
 {
-    using Serenity.Data;
-    using Serenity.Reporting;
-    using Serenity.Services;
-    using Serenity.Web;
-    using System;
-    using System.Data;
-    using Microsoft.AspNetCore.Mvc;
-    using MyRepository = Repositories.ProductRepository;
-    using MyRow = Entities.ProductRow;
-
     [Route("Services/Northwind/Product/[action]")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
     public class ProductController : ServiceEndpoint

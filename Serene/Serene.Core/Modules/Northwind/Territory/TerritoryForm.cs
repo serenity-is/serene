@@ -1,9 +1,8 @@
-﻿
+﻿using Serenity.ComponentModel;
+using System;
+
 namespace Serene.Northwind.Forms
 {
-    using Serenity.ComponentModel;
-    using System;
-
     [FormScript("Northwind.Territory")]
     [BasedOnRow(typeof(Entities.TerritoryRow), CheckNames = true)]
     public class TerritoryForm

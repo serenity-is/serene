@@ -1,11 +1,10 @@
-﻿
+﻿using Newtonsoft.Json;
+using Serenity.Services;
+using System;
+using System.Collections.Generic;
+
 namespace Serene.Administration
 {
-    using Newtonsoft.Json;
-    using Serenity.Services;
-    using System;
-    using System.Collections.Generic;
-
     public class UserPermissionUpdateRequest : ServiceRequest
     {
         public Int32? UserID { get; set; }

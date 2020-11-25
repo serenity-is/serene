@@ -1,12 +1,12 @@
-﻿namespace Serene.Administration
-{
-    using Entities;
-    using Repositories;
-    using Serenity;
-    using Serenity.Abstractions;
-    using Serenity.Data;
-    using System;
+﻿using Serene.Administration.Entities;
+using Serene.Administration.Repositories;
+using Serenity;
+using Serenity.Abstractions;
+using Serenity.Data;
+using System;
 
+namespace Serene.Administration
+{
     public class AuthenticationService : IAuthenticationService
     {
         public bool Validate(ref string username, string password)

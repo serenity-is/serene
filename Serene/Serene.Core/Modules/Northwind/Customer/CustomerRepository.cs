@@ -1,13 +1,12 @@
-﻿
+﻿using Serenity.Data;
+using Serenity.Services;
+using System;
+using System.Data;
+using MyRow = Serene.Northwind.Entities.CustomerRow;
+
 
 namespace Serene.Northwind.Repositories
 {
-    using Serenity.Data;
-    using Serenity.Services;
-    using System;
-    using System.Data;
-    using MyRow = Entities.CustomerRow;
-
     public class CustomerRepository
     {
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }

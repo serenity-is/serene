@@ -1451,7 +1451,7 @@ var Q;
         var res = s.match(isoRegexp);
         if (typeof (res) == "undefined" || res === null)
             return null;
-        return new Date(s);
+        return new Date(s + (s.length == 10 ? "T00:00:00" : ""));
     }
     Q.parseISODateTime = parseISODateTime;
     function parseHourAndMin(value) {
@@ -2368,7 +2368,7 @@ var Q;
         if (typeof document !== 'undefined') {
             var pathLink = document.querySelector('link#ApplicationPath');
             if (pathLink != null) {
-                Config.applicationPath = pathLink.href;
+                Config.applicationPath = pathLink.getAttribute('href');
             }
         }
         /**
