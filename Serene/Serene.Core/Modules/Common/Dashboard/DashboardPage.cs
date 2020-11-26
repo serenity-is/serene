@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 //<if:Northwind>
 using Serene.Northwind;
 using Serene.Northwind.Entities;
@@ -6,7 +7,6 @@ using Serenity;
 using Serenity.Data;
 using Serenity.Web;
 using System;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Common.Pages
 {
