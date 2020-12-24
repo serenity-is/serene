@@ -11,43 +11,34 @@ namespace Serene.Northwind.Entities
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript]
-    public sealed class ShipperRow : Row, IIdRow, INameRow
+    public sealed class ShipperRow : Row<ShipperRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Shipper Id"), Identity]
+        [DisplayName("Shipper Id"), Identity, IdProperty]
         public Int32? ShipperID
         {
-            get { return Fields.ShipperID[this]; }
-            set { Fields.ShipperID[this] = value; }
+            get => fields.ShipperID[this];
+            set => fields.ShipperID[this] = value;
         }
 
-        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch]
+        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, NameProperty]
         public String CompanyName
         {
-            get { return Fields.CompanyName[this]; }
-            set { Fields.CompanyName[this] = value; }
+            get => fields.CompanyName[this];
+            set => fields.CompanyName[this] = value;
         }
 
         [DisplayName("Phone"), Size(24)]
         public String Phone
         {
-            get { return Fields.Phone[this]; }
-            set { Fields.Phone[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.ShipperID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CompanyName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.Phone[this];
+            set => fields.Phone[this] = value;
+        }
         public ShipperRow()
-            : base(Fields)
+        {
+        }
+
+        public ShipperRow(RowFields fields)
+            : base(fields)
         {
         }
 

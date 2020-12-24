@@ -1,10 +1,10 @@
-﻿using Serenity.ComponentModel;
+﻿using Serenity;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Reporting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 
 namespace Serene.Northwind
 {
@@ -12,6 +12,18 @@ namespace Serene.Northwind
     [Category("Northwind/Orders"), DisplayName("Customer Gross Sales")]
     public class CustomerGrossSalesReport : IReport, IDataOnlyReport
     {
+        protected ISqlConnections SqlConnections { get; }
+        protected ITextLocalizer Localizer { get; }
+        protected IServiceProvider ServiceProvider { get; }
+
+        public CustomerGrossSalesReport(ISqlConnections sqlConnections, 
+            ITextLocalizer localizer, IServiceProvider serviceProvider)
+        {
+            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+            Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+            ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+        }
+
         [DisplayName("Start Date")]
         public DateTime? StartDate { get; set; }
 
@@ -34,7 +46,7 @@ namespace Serene.Northwind
 
         public List<ReportColumn> GetColumnList()
         {
-            return ReportColumnConverter.ObjectTypeToList(typeof(Item));
+            return ReportColumnConverter.ObjectTypeToList(typeof(Item), ServiceProvider, Localizer);
         }
 
         [BasedOnRow(typeof(Northwind.Entities.CustomerGrossSalesRow), CheckNames = true)]
@@ -54,17 +66,10 @@ namespace Serene.Northwind
             {
                 var item = this.Item as Item;
 
-#if COREFX
                 if (item.GrossAmount > 1000)
                     Foreground = "#ff0000";
                 else if (item.GrossAmount > 500)
                     Foreground = "#ffa500";
-#else
-                if (item.GrossAmount > 1000)
-                    Foreground = Color.FromArgb(255, 0, 0);
-                else if (item.GrossAmount > 500)
-                    Foreground = Color.FromArgb(255, 165, 0);
-#endif
             }
         }
     }

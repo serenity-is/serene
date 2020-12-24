@@ -10,152 +10,148 @@ namespace Serene.Northwind.Entities
     [DisplayName("Order Details"), InstanceName("Order Detail")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    public sealed class OrderDetailRow : Row, IIdRow
+    public sealed class OrderDetailRow : Row<OrderDetailRow.RowFields>, IIdRow
     {
-        [DisplayName("ID"), Identity]
+        [DisplayName("ID"), Identity, IdProperty]
         public Int32? DetailID
         {
-            get { return Fields.DetailID[this]; }
-            set { Fields.DetailID[this] = value; }
+            get => fields.DetailID[this];
+            set => fields.DetailID[this] = value;
         }
 
         [DisplayName("Order Id"), PrimaryKey, ForeignKey(typeof(OrderRow)), LeftJoin("o"), Updatable(false)]
         public Int32? OrderID
         {
-            get { return Fields.OrderID[this]; }
-            set { Fields.OrderID[this] = value; }
+            get => fields.OrderID[this];
+            set => fields.OrderID[this] = value;
         }
 
         [DisplayName("Product"), PrimaryKey, ForeignKey(typeof(ProductRow)), LeftJoin("p")]
         [LookupEditor(typeof(ProductRow))]
         public Int32? ProductID
         {
-            get { return Fields.ProductID[this]; }
-            set { Fields.ProductID[this] = value; }
+            get => fields.ProductID[this];
+            set => fields.ProductID[this] = value;
         }
 
         [DisplayName("Unit Price"), Scale(4), NotNull, AlignRight, DisplayFormat("#,##0.00")]
         public Decimal? UnitPrice
         {
-            get { return Fields.UnitPrice[this]; }
-            set { Fields.UnitPrice[this] = value; }
+            get => fields.UnitPrice[this];
+            set => fields.UnitPrice[this] = value;
         }
 
         [DisplayName("Quantity"), NotNull, DefaultValue(1), AlignRight]
         public Int16? Quantity
         {
-            get { return Fields.Quantity[this]; }
-            set { Fields.Quantity[this] = value; }
+            get => fields.Quantity[this];
+            set => fields.Quantity[this] = value;
         }
 
         [DisplayName("Discount"), NotNull, DefaultValue(0), AlignRight, DisplayFormat("#,##0.00")]
         public Single? Discount
         {
-            get { return Fields.Discount[this]; }
-            set { Fields.Discount[this] = value; }
+            get => fields.Discount[this];
+            set => fields.Discount[this] = value;
         }
 
         [DisplayName("Line Total"), Expression("(T0.[UnitPrice] * T0.[Quantity] - T0.[Discount])")]
         [AlignRight, DisplayFormat("#,##0.00"), MinSelectLevel(SelectLevel.List)]
         public Decimal? LineTotal
         {
-            get { return Fields.LineTotal[this]; }
-            set { Fields.LineTotal[this] = value; }
+            get => fields.LineTotal[this];
+            set => fields.LineTotal[this] = value;
         }
 
         [Origin("o")]
         public String OrderCustomerID
         {
-            get { return Fields.OrderCustomerID[this]; }
-            set { Fields.OrderCustomerID[this] = value; }
+            get => fields.OrderCustomerID[this];
+            set => fields.OrderCustomerID[this] = value;
         }
 
         [Origin("o")]
         public Int32? OrderEmployeeID
         {
-            get { return Fields.OrderEmployeeID[this]; }
-            set { Fields.OrderEmployeeID[this] = value; }
+            get => fields.OrderEmployeeID[this];
+            set => fields.OrderEmployeeID[this] = value;
         }
 
         [Origin("o")]
         public DateTime? OrderDate
         {
-            get { return Fields.OrderDate[this]; }
-            set { Fields.OrderDate[this] = value; }
+            get => fields.OrderDate[this];
+            set => fields.OrderDate[this] = value;
         }
 
         [Origin("o")]
         public DateTime? OrderShippedDate
         {
-            get { return Fields.OrderShippedDate[this]; }
-            set { Fields.OrderShippedDate[this] = value; }
+            get => fields.OrderShippedDate[this];
+            set => fields.OrderShippedDate[this] = value;
         }
 
         [Origin("o")]
         public Int32? OrderShipVia
         {
-            get { return Fields.OrderShipVia[this]; }
-            set { Fields.OrderShipVia[this] = value; }
+            get => fields.OrderShipVia[this];
+            set => fields.OrderShipVia[this] = value;
         }
 
         [Origin("o")]
         public String OrderShipCity
         {
-            get { return Fields.OrderShipCity[this]; }
-            set { Fields.OrderShipCity[this] = value; }
+            get => fields.OrderShipCity[this];
+            set => fields.OrderShipCity[this] = value;
         }
 
         [Origin("o")]
         public String OrderShipCountry
         {
-            get { return Fields.OrderShipCountry[this]; }
-            set { Fields.OrderShipCountry[this] = value; }
+            get => fields.OrderShipCountry[this];
+            set => fields.OrderShipCountry[this] = value;
         }
 
         [Origin("p"), MinSelectLevel(SelectLevel.List)]
         public String ProductName
         {
-            get { return Fields.ProductName[this]; }
-            set { Fields.ProductName[this] = value; }
+            get => fields.ProductName[this];
+            set => fields.ProductName[this] = value;
         }
 
         [Origin("p")]
         public Boolean? ProductDiscontinued
         {
-            get { return Fields.ProductDiscontinued[this]; }
-            set { Fields.ProductDiscontinued[this] = value; }
+            get => fields.ProductDiscontinued[this];
+            set => fields.ProductDiscontinued[this] = value;
         }
 
         [Origin("p")]
         public Int32? ProductSupplierID
         {
-            get { return Fields.ProductSupplierID[this]; }
-            set { Fields.ProductSupplierID[this] = value; }
+            get => fields.ProductSupplierID[this];
+            set => fields.ProductSupplierID[this] = value;
         }
 
         [Origin("p")]
         public String ProductQuantityPerUnit
         {
-            get { return Fields.ProductQuantityPerUnit[this]; }
-            set { Fields.ProductQuantityPerUnit[this] = value; }
+            get => fields.ProductQuantityPerUnit[this];
+            set => fields.ProductQuantityPerUnit[this] = value;
         }
 
         [Origin("p")]
         public Decimal? ProductUnitPrice
         {
-            get { return Fields.ProductUnitPrice[this]; }
-            set { Fields.ProductUnitPrice[this] = value; }
+            get => fields.ProductUnitPrice[this];
+            set => fields.ProductUnitPrice[this] = value;
         }
-
-        IIdField IIdRow.IdField
+        public OrderDetailRow()
         {
-            get { return Fields.DetailID; }
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
-        public OrderDetailRow()
-            : base(Fields)
+        public OrderDetailRow(RowFields fields)
+            : base(fields)
         {
         }
 

@@ -1,6 +1,9 @@
-﻿using Serenity.ComponentModel;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Serenity.Abstractions;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.PropertyGrid;
+using Serenity.Web.PropertyEditor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,18 +14,21 @@ namespace Serenity.Reporting
 {
     public class DynamicDataReport : IDataOnlyReport
     {
-        public IEnumerable Data { get; private set; }
-        public IEnumerable<string> ColumnList { get; set; }
-        public Type ColumnsType { get; private set; }
+        protected IEnumerable Data { get; private set; }
+        protected IEnumerable<string> ColumnList { get; set; }
+        protected Type ColumnsType { get; private set; }
+        protected IServiceProvider serviceProvider;
 
-        public DynamicDataReport(IEnumerable data, IEnumerable<string> columnList, Type columnsType)
+        const string CacheGroupKey = "DynamicDataReportColumns";
+
+        public DynamicDataReport(IEnumerable data, IEnumerable<string> columnList, Type columnsType,
+          IServiceProvider serviceProvider)
         {
-            if (data == null)
-                throw new ArgumentNullException("data");
 
-            this.Data = data;
-            this.ColumnList = columnList ?? new List<string>();
-            this.ColumnsType = columnsType;
+            Data = data ?? throw new ArgumentNullException(nameof(data));
+            ColumnList = columnList ?? new List<string>();
+            ColumnsType = columnsType;
+            this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
 
         public object GetData()
@@ -32,81 +38,130 @@ namespace Serenity.Reporting
 
         public List<ReportColumn> GetColumnList()
         {
-            var list = new List<ReportColumn>();
+            return GetColumnListFor(ColumnsType, ColumnList, serviceProvider);
+		}
 
-            if (!ColumnList.Any())
+		public static List<ReportColumn> GetColumnListFor(Type columnsType,
+            IEnumerable<string> columnOrder, IServiceProvider serviceProvider)
+		{
+            if (columnsType == null)
+            	throw new ArgumentNullException(nameof(columnsType));
+
+            var list = new List<ReportColumn>();
+            if (columnOrder != null && !columnOrder.Any())
                 return list;
 
-            IDictionary<string, PropertyItem> propertyItems = null;
+            List<PropertyItem> propertyItems = null;
+            IDictionary<string, PropertyItem> propertyItemByName = null;
             IDictionary<string, PropertyInfo> propertyInfos = null;
-            Row basedOnRow = null;
-
-            if (ColumnsType != null)
+            IRow basedOnRow = null;
+            if (columnsType != null)
             {
-                propertyItems = LocalCache.Get("DynamicDataReport:Columns:" + ColumnsType.FullName, TimeSpan.Zero,
-                    () => PropertyItemHelper.GetPropertyItemsFor(ColumnsType).ToDictionary(x => x.Name));
+              var cache = serviceProvider.GetRequiredService<ITwoLevelCache>();
+              propertyItems = cache.GetLocalStoreOnly("DynamicDataReport: Columns:" + columnsType.FullName,
+                  TimeSpan.Zero, CacheGroupKey, () =>
+                  {
+                      var propertyItemProvider = serviceProvider.GetRequiredService<IPropertyItemProvider>();
+                      var items = propertyItemProvider.GetPropertyItemsFor(columnsType).ToList();
 
-                propertyInfos = ColumnsType.GetProperties().ToDictionary(x => x.Name);
+            			if (typeof(ICustomizedFormScript).IsAssignableFrom(columnsType))
+            			{
+                        	var instance = ActivatorUtilities.CreateInstance(serviceProvider, columnsType) as ICustomizedFormScript;
+                        	instance.Customize(items);
+            			}
 
-                var basedOnAttr = ColumnsType.GetCustomAttribute<BasedOnRowAttribute>();
+            			return items;
+            		});
+
+                propertyItemByName = propertyItems.ToDictionary(x => x.Name);
+                propertyInfos = columnsType.GetProperties().ToDictionary(x => x.Name);
+
+                var basedOnAttr = columnsType.GetCustomAttribute<BasedOnRowAttribute>();
                 if (basedOnAttr != null && 
-                    basedOnAttr.RowType != null && 
-                    typeof(Row).IsAssignableFrom(basedOnAttr.RowType))
+                    basedOnAttr.RowType != null &&
+                    !basedOnAttr.RowType.IsInterface &&
+                    !basedOnAttr.RowType.IsAbstract && 
+                    typeof(IRow).IsAssignableFrom(basedOnAttr.RowType))
                 {
-                    basedOnRow = (Row)Activator.CreateInstance(basedOnAttr.RowType);
+                    basedOnRow = (IRow)Activator.CreateInstance(basedOnAttr.RowType);
                 }
             }
 
-            foreach (var columnName in ColumnList)
+            if (columnOrder == null)
+            	columnOrder = propertyItems.Select(x => x.Name).ToList();
+
+            foreach (var columnName in columnOrder)
             {
-                PropertyItem item;
-                if (!propertyItems.TryGetValue(columnName, out item))
+                if (!propertyItemByName.TryGetValue(columnName, out PropertyItem item))
                     continue;
 
-                var basedOnField = basedOnRow == null ? (Field)null :
+                var basedOnField = basedOnRow == null ? null :
                     (basedOnRow.FindField(columnName) ?? basedOnRow.FindFieldByPropertyName(columnName));
 
-                PropertyInfo p;
-                if (propertyInfos == null || !propertyInfos.TryGetValue(columnName, out p))
+                if (propertyInfos == null || !propertyInfos.TryGetValue(columnName, out PropertyInfo p))
                     p = null;
 
-                list.Add(FromPropertyItem(item, basedOnField, p));
+                list.Add(FromPropertyItem(item, basedOnField, p, serviceProvider, serviceProvider.GetRequiredService<ITextLocalizer>()));
             }
 
             return list;
         }
 
-        private ReportColumn FromPropertyItem(PropertyItem item, Field field, PropertyInfo property)
+        public static ReportColumn FromPropertyItem(PropertyItem item, Field field, PropertyInfo property,
+        	IServiceProvider provider, ITextLocalizer localizer)
         {
-            var result = new ReportColumn();
-            result.Name = item.Name;
-            result.Title = item.Title ?? item.Name;
+        	if (item is null)
+        		throw new ArgumentNullException(nameof(item));
+
+        	if (localizer is null)
+        		throw new ArgumentNullException(nameof(localizer));
+
+        	var result = new ReportColumn
+        	{
+        		Name = item.Name,
+        		Title = item.Title ?? item.Name
+        	};
+
             if (result.Title != null)
-                result.Title = LocalText.TryGet(result.Title) ?? result.Title;
+                result.Title = localizer.TryGet(result.Title) ?? result.Title;
 
             if (item.Width != null)
                 result.Width = item.Width;
 
             if (!string.IsNullOrWhiteSpace(item.DisplayFormat))
-                result.Format = item.DisplayFormat;
+            {
+              if (item.FormatterType == "Date" || item.FormatterType == "DateTime")
+              {
+                  result.Format = item.DisplayFormat switch
+                  {
+                      "d" => DateHelper.CurrentDateFormat,
+                      "g" => DateHelper.CurrentDateTimeFormat.Replace(":ss", ""),
+                      "G" => DateHelper.CurrentDateTimeFormat,
+                      "s" => "yyyy-MM-ddTHH:mm:ss",
+                      "u" => "yyyy-MM-ddTHH:mm:ss.fffZ",
+                      _ => item.DisplayFormat,
+                  };
+              }
+              else
+                	result.Format = item.DisplayFormat;
+			}
             else
             {
                 var dtf = field as DateTimeField;
-                if (!ReferenceEquals(null, dtf) &&
+                if (dtf is object &&
                     dtf.DateTimeKind != DateTimeKind.Unspecified)
                 {
-                    result.Format = "dd/MM/yyyy HH:mm";
+                    result.Format = DateHelper.CurrentDateTimeFormat;
                 }
-                else if (!ReferenceEquals(null, dtf))
+                else if (dtf is object)
                 {
-                    result.Format = "dd/MM/yyyy";
+                    result.Format = DateHelper.CurrentDateTimeFormat;
                 }
             }
 
-            var enumField = field as IEnumTypeField;
-            if (enumField != null && enumField.EnumType != null)
+            if (field is IEnumTypeField enumField && enumField.EnumType != null)
             {
-                result.Decorator = new EnumDecorator(enumField.EnumType);
+                result.Decorator = new EnumDecorator(enumField.EnumType, localizer);
             }
 
             if (property != null)
@@ -116,16 +171,16 @@ namespace Serenity.Reporting
                     result.Decorator = (ICellDecorator)Activator.CreateInstance(decorator.DecoratorType);
             }
 
-            if (!ReferenceEquals(null, field))
+            if (field is object)
             {
                 if (result.Title == null)
-                    result.Title = field.Title;
+                    result.Title = field.GetTitle(localizer);
 
                 if (result.Width == null && field is StringField && field.Size != 0)
                     result.Width = field.Size;
             }
 
-            result.DataType = !ReferenceEquals(null, field) ? field.ValueType : null;
+            result.DataType = field?.ValueType;
 
             return result;
         }

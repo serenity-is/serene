@@ -10,57 +10,48 @@ namespace Serene.Common.Entities
     [DisplayName("User Preferences"), InstanceName("UserPreference")]
     [ReadPermission("")]
     [ModifyPermission("")]
-    public sealed class UserPreferenceRow : Row, IIdRow, INameRow
+    public sealed class UserPreferenceRow : Row<UserPreferenceRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("ID"), Identity]
+        [DisplayName("ID"), Identity, IdProperty]
         public Int32? UserPreferenceId
         {
-            get { return Fields.UserPreferenceId[this]; }
-            set { Fields.UserPreferenceId[this] = value; }
+            get => fields.UserPreferenceId[this];
+            set => fields.UserPreferenceId[this] = value;
         }
 
         [DisplayName("User ID")]
         public Int32? UserId
         {
-            get { return Fields.UserId[this]; }
-            set { Fields.UserId[this] = value; }
+            get => fields.UserId[this];
+            set => fields.UserId[this] = value;
         }
 
         [DisplayName("PreferenceType"), Size(100), NotNull]
         public String PreferenceType
         {
-            get { return Fields.PreferenceType[this]; }
-            set { Fields.PreferenceType[this] = value; }
+            get => fields.PreferenceType[this];
+            set => fields.PreferenceType[this] = value;
         }
 
-        [DisplayName("Name"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Name"), Size(100), NotNull, QuickSearch, NameProperty]
         public String Name
         {
-            get { return Fields.Name[this]; }
-            set { Fields.Name[this] = value; }
+            get => fields.Name[this];
+            set => fields.Name[this] = value;
         }
 
         [DisplayName("Value")]
         public String Value
         {
-            get { return Fields.Value[this]; }
-            set { Fields.Value[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.UserPreferenceId; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.Name; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.Value[this];
+            set => fields.Value[this] = value;
+        }
         public UserPreferenceRow()
-            : base(Fields)
+        {
+        }
+
+        public UserPreferenceRow(RowFields fields)
+            : base(fields)
         {
         }
 

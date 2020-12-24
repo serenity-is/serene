@@ -12,176 +12,167 @@ namespace Serene.Northwind.Entities
     [DisplayName("CustomerDetails"), InstanceName("CustomerDetails")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
-    public sealed class CustomerDetailsRow : Row, IIdRow, INameRow
+    public sealed class CustomerDetailsRow : Row<CustomerDetailsRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Id"), Column("ID"), PrimaryKey]
+        [DisplayName("Id"), Column("ID"), PrimaryKey, IdProperty]
         public Int32? Id
         {
-            get { return Fields.Id[this]; }
-            set { Fields.Id[this] = value; }
+            get => fields.Id[this];
+            set => fields.Id[this] = value;
         }
 
         [DisplayName("Last Contact Date")]
         public DateTime? LastContactDate
         {
-            get { return Fields.LastContactDate[this]; }
-            set { Fields.LastContactDate[this] = value; }
+            get => fields.LastContactDate[this];
+            set => fields.LastContactDate[this] = value;
         }
 
         [DisplayName("Last Contacted By"), ForeignKey("Employees", "EmployeeID"), LeftJoin("jLastContactedBy"), TextualField("LastContactedByLastName")]
         public Int32? LastContactedBy
         {
-            get { return Fields.LastContactedBy[this]; }
-            set { Fields.LastContactedBy[this] = value; }
+            get => fields.LastContactedBy[this];
+            set => fields.LastContactedBy[this] = value;
         }
 
-        [DisplayName("Email"), Size(100), QuickSearch]
+        [DisplayName("Email"), Size(100), QuickSearch, NameProperty]
         public String Email
         {
-            get { return Fields.Email[this]; }
-            set { Fields.Email[this] = value; }
+            get => fields.Email[this];
+            set => fields.Email[this] = value;
         }
 
         [DisplayName("Send Bulletin"), NotNull]
         public Boolean? SendBulletin
         {
-            get { return Fields.SendBulletin[this]; }
-            set { Fields.SendBulletin[this] = value; }
+            get => fields.SendBulletin[this];
+            set => fields.SendBulletin[this] = value;
         }
 
         [DisplayName("Last Contacted By Last Name"), Expression("jLastContactedBy.[LastName]")]
         public String LastContactedByLastName
         {
-            get { return Fields.LastContactedByLastName[this]; }
-            set { Fields.LastContactedByLastName[this] = value; }
+            get => fields.LastContactedByLastName[this];
+            set => fields.LastContactedByLastName[this] = value;
         }
 
         [DisplayName("Last Contacted By First Name"), Expression("jLastContactedBy.[FirstName]")]
         public String LastContactedByFirstName
         {
-            get { return Fields.LastContactedByFirstName[this]; }
-            set { Fields.LastContactedByFirstName[this] = value; }
+            get => fields.LastContactedByFirstName[this];
+            set => fields.LastContactedByFirstName[this] = value;
         }
 
         [DisplayName("Last Contacted By Title"), Expression("jLastContactedBy.[Title]")]
         public String LastContactedByTitle
         {
-            get { return Fields.LastContactedByTitle[this]; }
-            set { Fields.LastContactedByTitle[this] = value; }
+            get => fields.LastContactedByTitle[this];
+            set => fields.LastContactedByTitle[this] = value;
         }
 
         [DisplayName("Last Contacted By Title Of Courtesy"), Expression("jLastContactedBy.[TitleOfCourtesy]")]
         public String LastContactedByTitleOfCourtesy
         {
-            get { return Fields.LastContactedByTitleOfCourtesy[this]; }
-            set { Fields.LastContactedByTitleOfCourtesy[this] = value; }
+            get => fields.LastContactedByTitleOfCourtesy[this];
+            set => fields.LastContactedByTitleOfCourtesy[this] = value;
         }
 
         [DisplayName("Last Contacted By Birth Date"), Expression("jLastContactedBy.[BirthDate]")]
         public DateTime? LastContactedByBirthDate
         {
-            get { return Fields.LastContactedByBirthDate[this]; }
-            set { Fields.LastContactedByBirthDate[this] = value; }
+            get => fields.LastContactedByBirthDate[this];
+            set => fields.LastContactedByBirthDate[this] = value;
         }
 
         [DisplayName("Last Contacted By Hire Date"), Expression("jLastContactedBy.[HireDate]")]
         public DateTime? LastContactedByHireDate
         {
-            get { return Fields.LastContactedByHireDate[this]; }
-            set { Fields.LastContactedByHireDate[this] = value; }
+            get => fields.LastContactedByHireDate[this];
+            set => fields.LastContactedByHireDate[this] = value;
         }
 
         [DisplayName("Last Contacted By Address"), Expression("jLastContactedBy.[Address]")]
         public String LastContactedByAddress
         {
-            get { return Fields.LastContactedByAddress[this]; }
-            set { Fields.LastContactedByAddress[this] = value; }
+            get => fields.LastContactedByAddress[this];
+            set => fields.LastContactedByAddress[this] = value;
         }
 
         [DisplayName("Last Contacted By City"), Expression("jLastContactedBy.[City]")]
         public String LastContactedByCity
         {
-            get { return Fields.LastContactedByCity[this]; }
-            set { Fields.LastContactedByCity[this] = value; }
+            get => fields.LastContactedByCity[this];
+            set => fields.LastContactedByCity[this] = value;
         }
 
         [DisplayName("Last Contacted By Region"), Expression("jLastContactedBy.[Region]")]
         public String LastContactedByRegion
         {
-            get { return Fields.LastContactedByRegion[this]; }
-            set { Fields.LastContactedByRegion[this] = value; }
+            get => fields.LastContactedByRegion[this];
+            set => fields.LastContactedByRegion[this] = value;
         }
 
         [DisplayName("Last Contacted By Postal Code"), Expression("jLastContactedBy.[PostalCode]")]
         public String LastContactedByPostalCode
         {
-            get { return Fields.LastContactedByPostalCode[this]; }
-            set { Fields.LastContactedByPostalCode[this] = value; }
+            get => fields.LastContactedByPostalCode[this];
+            set => fields.LastContactedByPostalCode[this] = value;
         }
 
         [DisplayName("Last Contacted By Country"), Expression("jLastContactedBy.[Country]")]
         public String LastContactedByCountry
         {
-            get { return Fields.LastContactedByCountry[this]; }
-            set { Fields.LastContactedByCountry[this] = value; }
+            get => fields.LastContactedByCountry[this];
+            set => fields.LastContactedByCountry[this] = value;
         }
 
         [DisplayName("Last Contacted By Home Phone"), Expression("jLastContactedBy.[HomePhone]")]
         public String LastContactedByHomePhone
         {
-            get { return Fields.LastContactedByHomePhone[this]; }
-            set { Fields.LastContactedByHomePhone[this] = value; }
+            get => fields.LastContactedByHomePhone[this];
+            set => fields.LastContactedByHomePhone[this] = value;
         }
 
         [DisplayName("Last Contacted By Extension"), Expression("jLastContactedBy.[Extension]")]
         public String LastContactedByExtension
         {
-            get { return Fields.LastContactedByExtension[this]; }
-            set { Fields.LastContactedByExtension[this] = value; }
+            get => fields.LastContactedByExtension[this];
+            set => fields.LastContactedByExtension[this] = value;
         }
 
         [DisplayName("Last Contacted By Photo"), Expression("jLastContactedBy.[Photo]")]
         public Stream LastContactedByPhoto
         {
-            get { return Fields.LastContactedByPhoto[this]; }
-            set { Fields.LastContactedByPhoto[this] = value; }
+            get => fields.LastContactedByPhoto[this];
+            set => fields.LastContactedByPhoto[this] = value;
         }
 
         [DisplayName("Last Contacted By Notes"), Expression("jLastContactedBy.[Notes]")]
         public String LastContactedByNotes
         {
-            get { return Fields.LastContactedByNotes[this]; }
-            set { Fields.LastContactedByNotes[this] = value; }
+            get => fields.LastContactedByNotes[this];
+            set => fields.LastContactedByNotes[this] = value;
         }
 
         [DisplayName("Last Contacted By Reports To"), Expression("jLastContactedBy.[ReportsTo]")]
         public Int32? LastContactedByReportsTo
         {
-            get { return Fields.LastContactedByReportsTo[this]; }
-            set { Fields.LastContactedByReportsTo[this] = value; }
+            get => fields.LastContactedByReportsTo[this];
+            set => fields.LastContactedByReportsTo[this] = value;
         }
 
         [DisplayName("Last Contacted By Photo Path"), Expression("jLastContactedBy.[PhotoPath]")]
         public String LastContactedByPhotoPath
         {
-            get { return Fields.LastContactedByPhotoPath[this]; }
-            set { Fields.LastContactedByPhotoPath[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.Id; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.Email; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.LastContactedByPhotoPath[this];
+            set => fields.LastContactedByPhotoPath[this] = value;
+        }
         public CustomerDetailsRow()
-            : base(Fields)
+        {
+        }
+
+        public CustomerDetailsRow(RowFields fields)
+            : base(fields)
         {
         }
 

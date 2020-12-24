@@ -1,3 +1,4 @@
+﻿﻿using Serenity.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 //<if:Northwind>
 using Serene.Northwind;
@@ -14,15 +15,26 @@ namespace Serene.Common.Pages
     public class DashboardController : Controller
     {
         [PageAuthorize, HttpGet, Route("~/")]
-        public ActionResult Index()
+        public ActionResult Index(
+        	//<if:Northwind>
+        	[FromServices] ITwoLevelCache cache,
+        	[FromServices] ISqlConnections sqlConnections
+        	//</if:Northwind>
+        	)
         {
             //<if:Northwind>
-            var cachedModel = TwoLevelCache.GetLocalStoreOnly("DashboardPageModel", TimeSpan.FromMinutes(5),
+            if (cache is null)
+            	throw new ArgumentNullException(nameof(cache));
+
+            if (sqlConnections is null)
+            	throw new ArgumentNullException(nameof(sqlConnections));
+
+            var cachedModel = cache.GetLocalStoreOnly("DashboardPageModel", TimeSpan.FromMinutes(5),
                 OrderRow.Fields.GenerationKey, () =>
                 {
                     var model = new DashboardPageModel();
                     var o = OrderRow.Fields;
-                    using (var connection = SqlConnections.NewFor<OrderRow>())
+                    using (var connection = sqlConnections.NewFor<OrderRow>())
                     {
                         model.OpenOrders = connection.Count<OrderRow>(o.ShippingState == (int)OrderShippingState.NotShipped);
                         var closedOrders = connection.Count<OrderRow>(o.ShippingState == (int)OrderShippingState.Shipped);

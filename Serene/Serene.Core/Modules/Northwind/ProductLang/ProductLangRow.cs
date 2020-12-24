@@ -10,55 +10,46 @@ namespace Serene.Northwind.Entities
     [DisplayName("ProductLang"), InstanceName("ProductLang")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
-    public sealed class ProductLangRow : Row, IIdRow, INameRow, ILocalizationRow
+    public sealed class ProductLangRow : Row<ProductLangRow.RowFields>, IIdRow, INameRow, ILocalizationRow
     {
-        [DisplayName("Id"), Column("ID"), Identity]
+        [DisplayName("Id"), Column("ID"), Identity, IdProperty]
         public Int32? Id
         {
-            get { return Fields.Id[this]; }
-            set { Fields.Id[this] = value; }
+            get => fields.Id[this];
+            set => fields.Id[this] = value;
         }
 
         [DisplayName("Product Id"), Column("ProductID"), NotNull]
         public Int32? ProductId
         {
-            get { return Fields.ProductId[this]; }
-            set { Fields.ProductId[this] = value; }
+            get => fields.ProductId[this];
+            set => fields.ProductId[this] = value;
         }
 
         [DisplayName("Language Id"), Column("LanguageID"), NotNull]
         public Int32? LanguageId
         {
-            get { return Fields.LanguageId[this]; }
-            set { Fields.LanguageId[this] = value; }
+            get => fields.LanguageId[this];
+            set => fields.LanguageId[this] = value;
         }
 
-        [DisplayName("Product Name"), Size(40), QuickSearch]
+        [DisplayName("Product Name"), Size(40), QuickSearch, NameProperty]
         public String ProductName
         {
-            get { return Fields.ProductName[this]; }
-            set { Fields.ProductName[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.Id; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.ProductName; }
-        }
-
+            get => fields.ProductName[this];
+            set => fields.ProductName[this] = value;
+        }
         public Field CultureIdField
         {
-            get { return Fields.LanguageId; }
+            get => fields.LanguageId;
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
         public ProductLangRow()
-            : base(Fields)
+        {
+        }
+
+        public ProductLangRow(RowFields fields)
+            : base(fields)
         {
         }
 

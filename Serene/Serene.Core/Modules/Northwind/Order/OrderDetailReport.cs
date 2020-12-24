@@ -12,6 +12,12 @@ namespace Serene.Northwind
     [RequiredPermission(PermissionKeys.General)]
     public class OrderDetailReport : IReport, ICustomizeHtmlToPdf
     {
+        public OrderDetailReport(ISqlConnections sqlConnections)
+        {
+            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+        }
+
+        protected ISqlConnections SqlConnections { get; }
         public Int32 OrderID { get; set; }
 
         public object GetData()

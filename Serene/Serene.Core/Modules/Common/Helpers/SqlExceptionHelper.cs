@@ -1,6 +1,7 @@
-﻿using Serenity.Services;
+﻿using Microsoft.Data.SqlClient;
+using Serenity;
+using Serenity.Services;
 using System;
-using System.Data.SqlClient;
 
 namespace Serene
 {
@@ -16,18 +17,18 @@ namespace Serene
 
     public static class SqlExceptionHelper
     {
-        public static void HandleDeleteForeignKeyException(Exception e)
+        public static void HandleDeleteForeignKeyException(Exception e, ITextLocalizer localizer)
         {
             ForeignKeyExceptionInfo fk;
             if (SqlExceptionHelper.IsForeignKeyException(e, out fk))
-                throw new ValidationError(String.Format(Texts.Validation.DeleteForeignKeyError, fk.TableName));
+                throw new ValidationError(String.Format(Texts.Validation.DeleteForeignKeyError.ToString(localizer), fk.TableName));
         }
 
-        public static void HandleSavePrimaryKeyException(Exception e, string fieldName = "ID")
+        public static void HandleSavePrimaryKeyException(Exception e, ITextLocalizer localizer, string fieldName = "ID")
         {
             PrimaryKeyExceptionInfo fk;
             if (SqlExceptionHelper.IsPrimaryKeyException(e, out fk))
-                throw new ValidationError(String.Format(Texts.Validation.SavePrimaryKeyError, fk.TableName, fieldName));
+                throw new ValidationError(String.Format(Texts.Validation.SavePrimaryKeyError.ToString(localizer), fk.TableName, fieldName));
         }
 
         public static bool IsForeignKeyException(Exception e, out ForeignKeyExceptionInfo fk)

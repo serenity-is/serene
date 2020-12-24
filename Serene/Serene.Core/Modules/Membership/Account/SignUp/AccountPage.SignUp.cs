@@ -1,23 +1,16 @@
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Serene.Administration;
 using Serene.Administration.Entities;
 using Serene.Administration.Repositories;
+using Serene.Common;
 using Serenity;
 using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.IO;
-#if COREFX
-using MailKit.Net.Smtp;
-using MimeKit;
-using MailKit.Security;
-#else
-    using System.Net.Mail;
-#endif
-using System.Web;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.DataProtection;
-using System.Web.Hosting;
 
 namespace Serene.Membership.Pages
 {
@@ -33,22 +26,28 @@ namespace Serene.Membership.Pages
         }
 
         [HttpPost, JsonFilter]
-        public Result<ServiceResponse> SignUp(SignUpRequest request)
+        public Result<ServiceResponse> SignUp(SignUpRequest request,
+        	[FromServices] IEmailSender emailSender,
+        	[FromServices] IOptions<EnvironmentSettings> options = null)
         {
             return this.UseConnection("Default", connection =>
             {
-                request.CheckNotNull();
+                if (request is null)
+                    throw new ArgumentNullException(nameof(request));
 
-                Check.NotNullOrWhiteSpace(request.Email, "email");
-                Check.NotNullOrEmpty(request.Password, "password");
-                UserRepository.ValidatePassword(request.Email, request.Password, true);
-                Check.NotNullOrWhiteSpace(request.DisplayName, "displayName");
+                if (string.IsNullOrWhiteSpace(request.Email))
+                    throw new ArgumentNullException(nameof(request.Email));
+                if (string.IsNullOrEmpty(request.Password))
+                    throw new ArgumentNullException(nameof(request.Password));
+                UserRepository.ValidatePassword(request.Password, Localizer);
+                if (string.IsNullOrWhiteSpace(request.DisplayName))
+                    throw new ArgumentNullException(nameof(request.DisplayName));
 
                 if (connection.Exists<UserRow>(
                         UserRow.Fields.Username == request.Email |
                         UserRow.Fields.Email == request.Email))
                 {
-                    throw new ValidationError("EmailInUse", Texts.Validation.EmailInUse);
+                    throw new ValidationError("EmailInUse", Texts.Validation.EmailInUse.ToString(Localizer));
                 }
 
                 using (var uow = new UnitOfWork(connection))
@@ -87,7 +86,7 @@ namespace Serene.Membership.Pages
                     var token = Convert.ToBase64String(HttpContext.RequestServices
                         .GetDataProtector("Activate").Protect(bytes));
 
-                    var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
+                    var externalUrl = options?.Value.SiteExternalUrl ??
                     Request.GetBaseUri().ToString();
 
                     var activateLink = UriHelper.Combine(externalUrl, "Account/Activate?t=");
@@ -98,14 +97,17 @@ namespace Serene.Membership.Pages
                     emailModel.DisplayName = displayName;
                     emailModel.ActivateLink = activateLink;
 
-                    var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString();
+                    var emailSubject = Texts.Forms.Membership.SignUp.ActivateEmailSubject.ToString(Localizer);
                     var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                         MVC.Views.Membership.Account.SignUp.AccountActivateEmail, emailModel);
 
-                    Common.EmailHelper.Send(emailSubject, emailBody, email);
+                    if (emailSender is null)
+                    	throw new ArgumentNullException(nameof(emailSender));
+
+                    emailSender.Send(subject: emailSubject, body: emailBody, mailTo: email);
 
                     uow.Commit();
-                    UserRetrieveService.RemoveCachedUser(userId, username);
+                    UserRetrieveService.RemoveCachedUser(Cache, userId, username);
 
                     return new ServiceResponse();
                 }
@@ -113,9 +115,10 @@ namespace Serene.Membership.Pages
         }
 
         [HttpGet]
-        public ActionResult Activate(string t)
+        public ActionResult Activate(string t,
+            [FromServices] ISqlConnections sqlConnections)
         {
-            using (var connection = SqlConnections.NewByKey("Default"))
+            using (var connection = sqlConnections.NewByKey("Default"))
             using (var uow = new UnitOfWork(connection))
             {
                 int userId;
@@ -129,19 +132,19 @@ namespace Serene.Membership.Pages
                     {
                         var dt = DateTime.FromBinary(br.ReadInt64());
                         if (dt < DateTime.UtcNow)
-                            return Error(Texts.Validation.InvalidActivateToken);
+                            return Error(Texts.Validation.InvalidActivateToken.ToString(Localizer));
 
                         userId = br.ReadInt32();
                     }
                 }
                 catch (Exception)
                 {
-                    return Error(Texts.Validation.InvalidActivateToken);
+                    return Error(Texts.Validation.InvalidActivateToken.ToString(Localizer));
                 }
 
                 var user = uow.Connection.TryById<UserRow>(userId);
                 if (user == null || user.IsActive != 0)
-                    return Error(Texts.Validation.InvalidActivateToken);
+                    return Error(Texts.Validation.InvalidActivateToken.ToString(Localizer));
 
                 uow.Connection.UpdateById(new UserRow
                 {
@@ -149,7 +152,7 @@ namespace Serene.Membership.Pages
                     IsActive = 1
                 });
 
-                BatchGenerationUpdater.OnCommit(uow, UserRow.Fields.GenerationKey);
+                Cache.InvalidateOnCommit(uow, UserRow.Fields);
                 uow.Commit();
 
                 return new RedirectResult("~/Account/Login?activated=" + Uri.EscapeDataString(user.Email));

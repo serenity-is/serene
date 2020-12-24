@@ -1,6 +1,7 @@
-﻿
+﻿@inject Serenity.ITextLocalizer Localizer
+
 @{
-    ViewData["Title"] = Serenity.LocalText.Get("Db.Northwind.Product.EntityPlural");
+    ViewData["Title"] = Localizer.Get("Db.Northwind.Product.EntityPlural");
 }
 
 @section Head {

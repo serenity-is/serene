@@ -11,37 +11,28 @@ namespace Serene.Administration.Entities
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript]
-    public sealed class RoleRow : Row, IIdRow, INameRow
+    public sealed class RoleRow : Row<RoleRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
+        [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole"), IdProperty]
         public Int32? RoleId
         {
-            get { return Fields.RoleId[this]; }
-            set { Fields.RoleId[this] = value; }
+            get => fields.RoleId[this];
+            set => fields.RoleId[this] = value;
         }
 
-        [DisplayName("Role Name"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Role Name"), Size(100), NotNull, QuickSearch, NameProperty]
         public String RoleName
         {
-            get { return Fields.RoleName[this]; }
-            set { Fields.RoleName[this] = value; }
+            get => fields.RoleName[this];
+            set => fields.RoleName[this] = value;
         }
-
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.RoleId; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.RoleName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+
         public RoleRow()
-            : base(Fields)
+        {
+        }
+
+        public RoleRow(RowFields fields)
+            : base(fields)
         {
         }
 

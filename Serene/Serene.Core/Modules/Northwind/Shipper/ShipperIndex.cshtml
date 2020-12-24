@@ -1,6 +1,7 @@
-﻿
+﻿@inject Serenity.ITextLocalizer Localizer
+
 @{
-    ViewData["Title"] = Serenity.LocalText.Get("Db.Northwind.Shipper.EntityPlural");
+    ViewData["Title"] = Localizer.Get("Db.Northwind.Shipper.EntityPlural");
 }
 
 <div id="GridDiv"></div>

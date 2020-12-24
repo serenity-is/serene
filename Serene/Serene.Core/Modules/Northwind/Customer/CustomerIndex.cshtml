@@ -1,13 +1,15 @@
-﻿
+﻿@inject IContentHashCache ContentHashCache
+@inject Serenity.ITextLocalizer Localizer
+
 @{
-    ViewData["Title"] = Serenity.LocalText.Get("Db.Northwind.Customer.EntityPlural");
+    ViewData["Title"] = Localizer.Get("Db.Northwind.Customer.EntityPlural");
 }
 
 @section Head {
 @Html.Script("dynamic://Lookup.Northwind.CustomerCountry")
 @Html.Script("dynamic://Lookup.Northwind.CustomerCity")
 @Html.Script("dynamic://Lookup.Northwind.Employee")
-<script>var CKEDITOR_BASEPATH = '@ContentHashCache.ResolvePath("~/Scripts/ckeditor/")';</script>
+<script>var CKEDITOR_BASEPATH = '@ContentHashCache.ResolvePath(Context.Request.PathBase, "~/Scripts/ckeditor/")';</script>
 @Html.ScriptBundle("CKEditor")
 }
 

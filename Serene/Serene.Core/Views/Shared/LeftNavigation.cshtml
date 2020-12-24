@@ -1,5 +1,5 @@
 ﻿@model Serene.Navigation.NavigationModel
-
+@inject Serenity.ITextLocalizer Localizer
 @functions {
     public HtmlString renderItem(Serenity.Navigation.NavigationItem item, int depth, int[] path) {
 
@@ -19,7 +19,7 @@
             klass = (klass + " " + item.ItemClass).Trim();
         }
         var icon = (item.IconClass ?? (item.Children.Count > 0 ? "icon-layers" : (depth == 0 ? "icon-link" : "fa-circle-o")));
-        var title = (LocalText.TryGet("Navigation." + item.FullPath) ?? item.Title);
+        var title = (Localizer.TryGet("Navigation." + item.FullPath) ?? item.Title);
         var sectionUrl = (item.Url ?? "javascript:;");
         var target = item.Target; if (target != null) { target += " target=" + target; }
 

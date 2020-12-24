@@ -1,21 +1,14 @@
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Serene.Administration.Entities;
+using Serene.Common;
 using Serenity;
 using Serenity.Data;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.IO;
-#if COREFX
-using MailKit.Net.Smtp;
-using MimeKit;
-using MailKit.Security;
-#else
-    using System.Net.Mail;
-#endif
-using System.Web;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Mvc;
-using System.Web.Hosting;
 
 namespace Serene.Membership.Pages
 {
@@ -31,18 +24,21 @@ namespace Serene.Membership.Pages
         }
 
         [HttpPost, JsonFilter]
-        public Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request)
+        public Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request,
+            [FromServices] IEmailSender emailSender,
+            [FromServices] IOptions<EnvironmentSettings> options = null)
         {
             return this.UseConnection("Default", connection =>
             {
-                request.CheckNotNull();
+                if (request is null)
+                    throw new ArgumentNullException(nameof(request));
 
                 if (string.IsNullOrEmpty(request.Email))
                     throw new ArgumentNullException("email");
 
                 var user = connection.TryFirst<UserRow>(UserRow.Fields.Email == request.Email);
                 if (user == null)
-                    throw new ValidationError("CantFindUserWithEmail", Texts.Validation.CantFindUserWithEmail);
+                    throw new ValidationError("CantFindUserWithEmail", Texts.Validation.CantFindUserWithEmail.ToString(Localizer));
 
                 byte[] bytes;
                 using (var ms = new MemoryStream())
@@ -57,7 +53,7 @@ namespace Serene.Membership.Pages
                 var token = Convert.ToBase64String(HttpContext.RequestServices
                     .GetDataProtector("ResetPassword").Protect(bytes));
 
-                var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
+                var externalUrl = options?.Value.SiteExternalUrl ??
                     Request.GetBaseUri().ToString();
 
                 var resetLink = UriHelper.Combine(externalUrl, "Account/ResetPassword?t=");
@@ -68,11 +64,14 @@ namespace Serene.Membership.Pages
                 emailModel.DisplayName = user.DisplayName;
                 emailModel.ResetLink = resetLink;
 
-                var emailSubject = Texts.Forms.Membership.ResetPassword.EmailSubject.ToString();
+                var emailSubject = Texts.Forms.Membership.ResetPassword.EmailSubject.ToString(Localizer);
                 var emailBody = TemplateHelper.RenderViewToString(HttpContext.RequestServices,
                     MVC.Views.Membership.Account.ResetPassword.AccountResetPasswordEmail, emailModel);
 
-                Common.EmailHelper.Send(emailSubject, emailBody, user.Email);
+                if (emailSender is null)
+                	throw new ArgumentNullException(nameof(emailSender));
+
+                emailSender.Send(subject: emailSubject, body: emailBody, mailTo: user.Email);
 
                 return new ServiceResponse();
             });

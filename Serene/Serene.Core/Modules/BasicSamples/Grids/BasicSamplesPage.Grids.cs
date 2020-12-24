@@ -1,6 +1,7 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc;
+using Serenity.Data;
 using Views = MVC.Views.BasicSamples.Grids;
-using Microsoft.AspNetCore.Mvc;
+
 
 namespace Serene.BasicSamples.Pages
 {
@@ -21,9 +22,9 @@ namespace Serene.BasicSamples.Pages
             return View(Views.CustomLinksInGrid.Index);
         }
 
-        public ActionResult DragDropInTreeGrid()
+        public ActionResult DragDropInTreeGrid([FromServices] ISqlConnections sqlConnections)
         {
-            Repositories.DragDropSampleRepository.PopulateInitialItems();
+            Repositories.DragDropSampleRepository.PopulateInitialItems(sqlConnections);
             return View(Views.DragDropInTreeGrid.Index);
         }
 

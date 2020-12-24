@@ -67,7 +67,8 @@ namespace Serene.BasicSamples.Endpoints
 
         public ServiceResponse OrderBulkAction(IUnitOfWork uow, OrderBulkActionRequest request)
         {
-            request.CheckNotNull();
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
 
             var random = new Random();
 

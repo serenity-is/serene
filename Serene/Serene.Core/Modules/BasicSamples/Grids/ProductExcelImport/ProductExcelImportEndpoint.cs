@@ -1,6 +1,8 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MyRow = Serene.Northwind.Entities.ProductRow;
+using OfficeOpenXml;
 using Serene.Northwind.Entities;
 using Serene.Northwind.Repositories;
-using OfficeOpenXml;
 using Serenity;
 using Serenity.Data;
 using Serenity.Services;
@@ -8,9 +10,6 @@ using Serenity.Web;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using Microsoft.AspNetCore.Mvc;
-using MyRow = Serene.Northwind.Entities.ProductRow;
 
 namespace Serene.BasicSamples.Endpoints
 {
@@ -19,18 +18,25 @@ namespace Serene.BasicSamples.Endpoints
     public class ProductExcelImportController : ServiceEndpoint
     {
         [HttpPost]
-        public ExcelImportResponse ExcelImport(IUnitOfWork uow, ExcelImportRequest request)
+        public ExcelImportResponse ExcelImport(IUnitOfWork uow, ExcelImportRequest request,
+        	[FromServices] IUploadStorage uploadStorage)
         {
-            request.CheckNotNull();
-            Check.NotNullOrWhiteSpace(request.FileName, "filename");
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.FileName))
+                throw new ArgumentNullException(nameof(request.FileName));
 
-            UploadHelper.CheckFileNameSecurity(request.FileName);
+            if (uploadStorage is null)
+            	throw new ArgumentNullException(nameof(uploadStorage));
+
+            UploadPathHelper.CheckFileNameSecurity(request.FileName);
 
             if (!request.FileName.StartsWith("temporary/"))
-                throw new ArgumentOutOfRangeException("filename");
+                throw new ArgumentOutOfRangeException(nameof(request.FileName));
 
             ExcelPackage ep = new ExcelPackage();
-            using (var fs = new FileStream(UploadHelper.DbFilePath(request.FileName), FileMode.Open, FileAccess.Read))
+            using (var fs = uploadStorage.OpenFile(request.FileName))
+
                 ep.Load(fs);
 
             var p = ProductRow.Fields;
@@ -110,7 +116,7 @@ namespace Serene.BasicSamples.Endpoints
 
                     if (product.ProductID == null)
                     {
-                        new ProductRepository().Create(uow, new SaveRequest<MyRow>
+                        new ProductRepository(Context).Create(uow, new SaveRequest<MyRow>
                         {
                             Entity = product
                         });
@@ -119,7 +125,7 @@ namespace Serene.BasicSamples.Endpoints
                     }
                     else
                     {
-                        new ProductRepository().Update(uow, new SaveRequest<MyRow>
+                        new ProductRepository(Context).Update(uow, new SaveRequest<MyRow>
                         {
                             Entity = product,
                             EntityId = product.ProductID.Value

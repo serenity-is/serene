@@ -1,5 +1,5 @@
 ﻿
-using Serenity.Extensibility;
+using Serenity.ComponentModel;
 using System.ComponentModel;
 
 namespace Serene.Northwind

@@ -6,8 +6,13 @@ using MyRow = Serene.Northwind.Entities.CustomerGrossSalesRow;
 
 namespace Serene.BasicSamples.Repositories
 {
-    public class CustomerGrossSalesRepository
+    public class CustomerGrossSalesRepository : BaseRepository
     {
+        public CustomerGrossSalesRepository(IRequestContext context)
+             : base(context)
+        {
+        }
+
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
         public ListResponse<MyRow> List(IDbConnection connection, 

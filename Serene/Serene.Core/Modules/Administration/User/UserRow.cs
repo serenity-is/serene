@@ -11,112 +11,103 @@ namespace Serene.Administration.Entities
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript(Permission = PermissionKeys.Security)]
-    public sealed class UserRow : LoggingRow, IIdRow, INameRow, IIsActiveRow
+    public sealed class UserRow : LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow
     {
-        [DisplayName("User Id"), Identity]
+        [DisplayName("User Id"), Identity, IdProperty]
         public Int32? UserId
         {
-            get { return Fields.UserId[this]; }
-            set { Fields.UserId[this] = value; }
+            get => fields.UserId[this];
+            set => fields.UserId[this] = value;
         }
 
-        [DisplayName("Username"), Size(100), NotNull, QuickSearch, LookupInclude]
+        [DisplayName("Username"), Size(100), NotNull, QuickSearch, LookupInclude, NameProperty]
         public String Username
         {
-            get { return Fields.Username[this]; }
-            set { Fields.Username[this] = value; }
+            get => fields.Username[this];
+            set => fields.Username[this] = value;
         }
 
         [DisplayName("Source"), Size(4), NotNull, Insertable(false), Updatable(false), DefaultValue("site")]
         public String Source
         {
-            get { return Fields.Source[this]; }
-            set { Fields.Source[this] = value; }
+            get => fields.Source[this];
+            set => fields.Source[this] = value;
         }
 
         [DisplayName("Password Hash"), Size(86), NotNull, Insertable(false), Updatable(false), MinSelectLevel(SelectLevel.Never)]
         public String PasswordHash
         {
-            get { return Fields.PasswordHash[this]; }
-            set { Fields.PasswordHash[this] = value; }
+            get => fields.PasswordHash[this];
+            set => fields.PasswordHash[this] = value;
         }
 
         [DisplayName("Password Salt"), Size(10), NotNull, Insertable(false), Updatable(false), MinSelectLevel(SelectLevel.Never)]
         public String PasswordSalt
         {
-            get { return Fields.PasswordSalt[this]; }
-            set { Fields.PasswordSalt[this] = value; }
+            get => fields.PasswordSalt[this];
+            set => fields.PasswordSalt[this] = value;
         }
 
         [DisplayName("Display Name"), Size(100), NotNull, LookupInclude]
         public String DisplayName
         {
-            get { return Fields.DisplayName[this]; }
-            set { Fields.DisplayName[this] = value; }
+            get => fields.DisplayName[this];
+            set => fields.DisplayName[this] = value;
         }
 
         [DisplayName("Email"), Size(100)]
         public String Email
         {
-            get { return Fields.Email[this]; }
-            set { Fields.Email[this] = value; }
+            get => fields.Email[this];
+            set => fields.Email[this] = value;
         }
 
         [DisplayName("User Image"), Size(100)]
         [ImageUploadEditor(FilenameFormat = "UserImage/~", CopyToHistory = true)]
         public String UserImage
         {
-            get { return Fields.UserImage[this]; }
-            set { Fields.UserImage[this] = value; }
+            get => fields.UserImage[this];
+            set => fields.UserImage[this] = value;
         }
 
         [DisplayName("Password"), Size(50), NotMapped]
         public String Password
         {
-            get { return Fields.Password[this]; }
-            set { Fields.Password[this] = value; }
+            get => fields.Password[this];
+            set => fields.Password[this] = value;
         }
 
         [NotNull, Insertable(false), Updatable(true)]
         public Int16? IsActive
         {
-            get { return Fields.IsActive[this]; }
-            set { Fields.IsActive[this] = value; }
+            get => fields.IsActive[this];
+            set => fields.IsActive[this] = value;
         }
 
         [DisplayName("Confirm Password"), Size(50), NotMapped]
         public String PasswordConfirm
         {
-            get { return Fields.PasswordConfirm[this]; }
-            set { Fields.PasswordConfirm[this] = value; }
+            get => fields.PasswordConfirm[this];
+            set => fields.PasswordConfirm[this] = value;
         }
 
         [DisplayName("Last Directory Update"), Insertable(false), Updatable(false)]
         public DateTime? LastDirectoryUpdate
         {
-            get { return Fields.LastDirectoryUpdate[this]; }
-            set { Fields.LastDirectoryUpdate[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.UserId; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.Username; }
-        }
-
+            get => fields.LastDirectoryUpdate[this];
+            set => fields.LastDirectoryUpdate[this] = value;
+        }
         Int16Field IIsActiveRow.IsActiveField
         {
-            get { return Fields.IsActive; }
+            get => fields.IsActive;
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
         public UserRow()
-            : base(Fields)
+        {
+        }
+
+        public UserRow(RowFields fields)
+            : base(fields)
         {
         }
 

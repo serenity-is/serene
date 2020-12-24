@@ -12,290 +12,281 @@ namespace Serene.Northwind.Entities
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript]
-    public sealed class EmployeeRow : Row, IIdRow, INameRow
+    public sealed class EmployeeRow : Row<EmployeeRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Employee Id"), Identity]
+        [DisplayName("Employee Id"), Identity, IdProperty]
         public Int32? EmployeeID
         {
-            get { return Fields.EmployeeID[this]; }
-            set { Fields.EmployeeID[this] = value; }
+            get => fields.EmployeeID[this];
+            set => fields.EmployeeID[this] = value;
         }
 
         [DisplayName("Last Name"), Size(20), NotNull]
         public String LastName
         {
-            get { return Fields.LastName[this]; }
-            set { Fields.LastName[this] = value; }
+            get => fields.LastName[this];
+            set => fields.LastName[this] = value;
         }
 
         [DisplayName("First Name"), Size(10), NotNull]
         public String FirstName
         {
-            get { return Fields.FirstName[this]; }
-            set { Fields.FirstName[this] = value; }
+            get => fields.FirstName[this];
+            set => fields.FirstName[this] = value;
         }
 
         [DisplayName("FullName"), QuickSearch]
         [Expression("CONCAT(T0.[FirstName], CONCAT(' ', T0.[LastName]))")]
-        [Expression("(T0.FirstName || ' ' || T0.LastName)", Dialect = "Sqlite")]
+        [Expression("(T0.FirstName || ' ' || T0.LastName)", Dialect = "Sqlite"), NameProperty]
         public String FullName
         {
-            get { return Fields.FullName[this]; }
-            set { Fields.FullName[this] = value; }
+            get => fields.FullName[this];
+            set => fields.FullName[this] = value;
         }
 
         [DisplayName("Gender"), Expression("(CASE WHEN T0.[TitleOfCourtesy] LIKE '%s%' THEN 2 WHEN T0.[TitleOfCourtesy] LIKE '%Mr%' THEN 1 END)")]
         public Gender? Gender
         {
-            get { return (Gender?)Fields.Gender[this]; }
-            set { Fields.Gender[this] = (Int32?)value; }
+            get => fields.Gender[this];
+            set => fields.Gender[this] = value;
         } 
 
         [DisplayName("Title"), Size(30)]
         public String Title
         {
-            get { return Fields.Title[this]; }
-            set { Fields.Title[this] = value; }
+            get => fields.Title[this];
+            set => fields.Title[this] = value;
         }
 
         [DisplayName("Title Of Courtesy"), Size(25)]
         public String TitleOfCourtesy
         {
-            get { return Fields.TitleOfCourtesy[this]; }
-            set { Fields.TitleOfCourtesy[this] = value; }
+            get => fields.TitleOfCourtesy[this];
+            set => fields.TitleOfCourtesy[this] = value;
         }
 
         [DisplayName("Birth Date")]
         public DateTime? BirthDate
         {
-            get { return Fields.BirthDate[this]; }
-            set { Fields.BirthDate[this] = value; }
+            get => fields.BirthDate[this];
+            set => fields.BirthDate[this] = value;
         }
 
         [DisplayName("Hire Date")]
         public DateTime? HireDate
         {
-            get { return Fields.HireDate[this]; }
-            set { Fields.HireDate[this] = value; }
+            get => fields.HireDate[this];
+            set => fields.HireDate[this] = value;
         }
 
         [DisplayName("Address"), Size(60)]
         public String Address
         {
-            get { return Fields.Address[this]; }
-            set { Fields.Address[this] = value; }
+            get => fields.Address[this];
+            set => fields.Address[this] = value;
         }
 
         [DisplayName("City"), Size(15)]
         public String City
         {
-            get { return Fields.City[this]; }
-            set { Fields.City[this] = value; }
+            get => fields.City[this];
+            set => fields.City[this] = value;
         }
 
         [DisplayName("Region"), Size(15)]
         public String Region
         {
-            get { return Fields.Region[this]; }
-            set { Fields.Region[this] = value; }
+            get => fields.Region[this];
+            set => fields.Region[this] = value;
         }
 
         [DisplayName("Postal Code"), Size(10)]
         public String PostalCode
         {
-            get { return Fields.PostalCode[this]; }
-            set { Fields.PostalCode[this] = value; }
+            get => fields.PostalCode[this];
+            set => fields.PostalCode[this] = value;
         }
 
         [DisplayName("Country"), Size(15)]
         public String Country
         {
-            get { return Fields.Country[this]; }
-            set { Fields.Country[this] = value; }
+            get => fields.Country[this];
+            set => fields.Country[this] = value;
         }
 
         [DisplayName("Home Phone"), Size(24)]
         public String HomePhone
         {
-            get { return Fields.HomePhone[this]; }
-            set { Fields.HomePhone[this] = value; }
+            get => fields.HomePhone[this];
+            set => fields.HomePhone[this] = value;
         }
 
         [DisplayName("Extension"), Size(4)]
         public String Extension
         {
-            get { return Fields.Extension[this]; }
-            set { Fields.Extension[this] = value; }
+            get => fields.Extension[this];
+            set => fields.Extension[this] = value;
         }
 
         [DisplayName("Photo")]
         public Stream Photo
         {
-            get { return Fields.Photo[this]; }
-            set { Fields.Photo[this] = value; }
+            get => fields.Photo[this];
+            set => fields.Photo[this] = value;
         }
 
         [DisplayName("Notes")]
         public String Notes
         {
-            get { return Fields.Notes[this]; }
-            set { Fields.Notes[this] = value; }
+            get => fields.Notes[this];
+            set => fields.Notes[this] = value;
         }
 
         [DisplayName("Reports To"), ForeignKey(typeof(EmployeeRow)), LeftJoin("jReportsTo")]
         public Int32? ReportsTo
         {
-            get { return Fields.ReportsTo[this]; }
-            set { Fields.ReportsTo[this] = value; }
+            get => fields.ReportsTo[this];
+            set => fields.ReportsTo[this] = value;
         }
 
         [DisplayName("Photo Path"), Size(255)]
         public String PhotoPath
         {
-            get { return Fields.PhotoPath[this]; }
-            set { Fields.PhotoPath[this] = value; }
+            get => fields.PhotoPath[this];
+            set => fields.PhotoPath[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToLastName
         {
-            get { return Fields.ReportsToLastName[this]; }
-            set { Fields.ReportsToLastName[this] = value; }
+            get => fields.ReportsToLastName[this];
+            set => fields.ReportsToLastName[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToFirstName
         {
-            get { return Fields.ReportsToFirstName[this]; }
-            set { Fields.ReportsToFirstName[this] = value; }
+            get => fields.ReportsToFirstName[this];
+            set => fields.ReportsToFirstName[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToFullName
         {
-            get { return Fields.ReportsToFullName[this]; }
-            set { Fields.ReportsToFullName[this] = value; }
+            get => fields.ReportsToFullName[this];
+            set => fields.ReportsToFullName[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToTitle
         {
-            get { return Fields.ReportsToTitle[this]; }
-            set { Fields.ReportsToTitle[this] = value; }
+            get => fields.ReportsToTitle[this];
+            set => fields.ReportsToTitle[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToTitleOfCourtesy
         {
-            get { return Fields.ReportsToTitleOfCourtesy[this]; }
-            set { Fields.ReportsToTitleOfCourtesy[this] = value; }
+            get => fields.ReportsToTitleOfCourtesy[this];
+            set => fields.ReportsToTitleOfCourtesy[this] = value;
         }
 
         [Origin("jReportsTo")]
         public DateTime? ReportsToBirthDate
         {
-            get { return Fields.ReportsToBirthDate[this]; }
-            set { Fields.ReportsToBirthDate[this] = value; }
+            get => fields.ReportsToBirthDate[this];
+            set => fields.ReportsToBirthDate[this] = value;
         }
 
         [Origin("jReportsTo")]
         public DateTime? ReportsToHireDate
         {
-            get { return Fields.ReportsToHireDate[this]; }
-            set { Fields.ReportsToHireDate[this] = value; }
+            get => fields.ReportsToHireDate[this];
+            set => fields.ReportsToHireDate[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToAddress
         {
-            get { return Fields.ReportsToAddress[this]; }
-            set { Fields.ReportsToAddress[this] = value; }
+            get => fields.ReportsToAddress[this];
+            set => fields.ReportsToAddress[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToCity
         {
-            get { return Fields.ReportsToCity[this]; }
-            set { Fields.ReportsToCity[this] = value; }
+            get => fields.ReportsToCity[this];
+            set => fields.ReportsToCity[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToRegion
         {
-            get { return Fields.ReportsToRegion[this]; }
-            set { Fields.ReportsToRegion[this] = value; }
+            get => fields.ReportsToRegion[this];
+            set => fields.ReportsToRegion[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToPostalCode
         {
-            get { return Fields.ReportsToPostalCode[this]; }
-            set { Fields.ReportsToPostalCode[this] = value; }
+            get => fields.ReportsToPostalCode[this];
+            set => fields.ReportsToPostalCode[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToCountry
         {
-            get { return Fields.ReportsToCountry[this]; }
-            set { Fields.ReportsToCountry[this] = value; }
+            get => fields.ReportsToCountry[this];
+            set => fields.ReportsToCountry[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToHomePhone
         {
-            get { return Fields.ReportsToHomePhone[this]; }
-            set { Fields.ReportsToHomePhone[this] = value; }
+            get => fields.ReportsToHomePhone[this];
+            set => fields.ReportsToHomePhone[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToExtension
         {
-            get { return Fields.ReportsToExtension[this]; }
-            set { Fields.ReportsToExtension[this] = value; }
+            get => fields.ReportsToExtension[this];
+            set => fields.ReportsToExtension[this] = value;
         }
 
         [Origin("jReportsTo")]
         public Stream ReportsToPhoto
         {
-            get { return Fields.ReportsToPhoto[this]; }
-            set { Fields.ReportsToPhoto[this] = value; }
+            get => fields.ReportsToPhoto[this];
+            set => fields.ReportsToPhoto[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToNotes
         {
-            get { return Fields.ReportsToNotes[this]; }
-            set { Fields.ReportsToNotes[this] = value; }
+            get => fields.ReportsToNotes[this];
+            set => fields.ReportsToNotes[this] = value;
         }
 
         [Origin("jReportsTo")]
         public Int32? ReportsToReportsTo
         {
-            get { return Fields.ReportsToReportsTo[this]; }
-            set { Fields.ReportsToReportsTo[this] = value; }
+            get => fields.ReportsToReportsTo[this];
+            set => fields.ReportsToReportsTo[this] = value;
         }
 
         [Origin("jReportsTo")]
         public String ReportsToPhotoPath
         {
-            get { return Fields.ReportsToPhotoPath[this]; }
-            set { Fields.ReportsToPhotoPath[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.EmployeeID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.FullName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.ReportsToPhotoPath[this];
+            set => fields.ReportsToPhotoPath[this] = value;
+        }
         public EmployeeRow()
-            : base(Fields)
+        {
+        }
+
+        public EmployeeRow(RowFields fields)
+            : base(fields)
         {
         }
 
@@ -340,7 +331,7 @@ namespace Serene.Northwind.Entities
             public Int32Field ReportsToReportsTo;
             public StringField ReportsToPhotoPath;
 
-            public Int32Field Gender;
+            public EnumField<Gender> Gender;
         }
     }
 }

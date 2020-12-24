@@ -15,7 +15,7 @@
             return "Excel Import";
         }
 
-        protected getDialogButtons(): Serenity.DialogButton[] {
+        protected getDialogButtons() {
             return [
                 {
                     text: 'Import',

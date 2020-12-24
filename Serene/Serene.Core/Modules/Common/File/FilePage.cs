@@ -1,31 +1,45 @@
-﻿using Serenity;
+﻿using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Serenity;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Mvc;
-using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
 
 namespace Serene.Common.Pages
 {
     public class FileController : Controller
     {
+        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer)
+        {
+            UploadStorage = uploadStorage ??
+                throw new ArgumentNullException(nameof(uploadStorage));
+            Localizer = localizer ??
+                throw new ArgumentNullException(nameof(localizer));
+        }
+
+        protected IUploadStorage UploadStorage { get; }
+        protected ITextLocalizer Localizer { get; }
+
         [Route("upload/{*pathInfo}")]
         public ActionResult Read(string pathInfo)
         {
-            UploadHelper.CheckFileNameSecurity(pathInfo);
+            UploadPathHelper.CheckFileNameSecurity(pathInfo);
 
-            var filePath = UploadHelper.DbFilePath(pathInfo);
-            var mimeType = UploadHelper.GetMimeType(filePath);
+            if (!UploadStorage.FileExists(pathInfo))
+            	return new NotFoundResult();
 
-            return new PhysicalFileResult(filePath, mimeType);
+            var mimeType = KnownMimeTypes.Get(pathInfo);
+            var stream = UploadStorage.OpenFile(pathInfo);
+            return new FileStreamResult(stream, mimeType);
         }
 
         [Route("File/TemporaryUpload")]
         [AcceptVerbs("POST")]
         public ActionResult TemporaryUpload()
         {
-            var response = this.ExecuteMethod(() => HandleUploadRequest(this.HttpContext));
+            var response = this.ExecuteMethod(() => HandleUploadRequest(HttpContext));
 
             if (!((string)Request.Headers["Accept"] ?? "").Contains("json"))
                 response.ContentType = "text/plain";
@@ -34,7 +48,7 @@ namespace Serene.Common.Pages
         }
 
         [Route("File/HandleUploadRequest")]
-        private ServiceResponse HandleUploadRequest(HttpContextBase context)
+        private ServiceResponse HandleUploadRequest(HttpContext context)
         {
             if (context.Request.Form.Files.Count != 1)
                 throw new ArgumentOutOfRangeException("files");
@@ -47,17 +61,17 @@ namespace Serene.Common.Pages
             if (file.FileName.IsEmptyOrNull())
                 throw new ArgumentNullException("filename");
 
-            var processor = new UploadProcessor
+            var processor = new UploadProcessor(UploadStorage)
             {
                 ThumbWidth = 128,
                 ThumbHeight = 96
             };
 
-            if (processor.ProcessStream(file.OpenReadStream(), Path.GetExtension(file.FileName)))
+            if (processor.ProcessStream(file.OpenReadStream(), 
+            	Path.GetExtension(file.FileName), Localizer))
             {
-                var temporaryFile = "temporary/" + Path.GetFileName(processor.FilePath);
-                using (var sw = new StreamWriter(System.IO.File.OpenWrite(Path.ChangeExtension(UploadHelper.DbFilePath(temporaryFile), ".orig"))))
-                    sw.WriteLine(file.FileName);
+                var temporaryFile = processor.TemporaryFile;
+                UploadStorage.SetOriginalName(temporaryFile, file.FileName);
 
                 return new UploadResponse()
                 {

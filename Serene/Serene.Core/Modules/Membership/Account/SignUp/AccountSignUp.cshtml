@@ -1,13 +1,14 @@
-﻿@{
-    ViewData["Title"] = Texts.Forms.Membership.SignUp.FormTitle;
+﻿@inject Serenity.ITextLocalizer Localizer
+@{
+    ViewData["Title"] = Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer);
     ViewData["PageId"] = "SignUp";
     Layout = MVC.Views.Shared._LayoutNoNavigation;
 }
 
 <script id="Template_Membership_SignUpPanel" type="text/template">
     <div>
-        <h3 class="page-title">@Texts.Forms.Membership.SignUp.FormTitle</h3>
-        <p class="form-info">@Texts.Forms.Membership.SignUp.FormInfo</p>
+        <h3 class="page-title">@Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer)</h3>
+        <p class="form-info">@Texts.Forms.Membership.SignUp.FormInfo.ToString(Localizer)</p>
         <form id="~_Form" action="">
             <div class="s-Form">
                 <div class="fieldset">
@@ -16,7 +17,7 @@
                 </div>
                 <div class="buttons">
                     <button id="~_SubmitButton" type="submit" class="btn btn-primary">
-                        @Texts.Forms.Membership.SignUp.SubmitButton
+                        @Texts.Forms.Membership.SignUp.SubmitButton.ToString(Localizer)
 
                     </button>
                 </div>

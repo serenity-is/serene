@@ -5,25 +5,57 @@ using Serenity.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Serene.Administration.Repositories;
 
 namespace Serene.Administration
 {
     public class PermissionService : IPermissionService
     {
+        protected ITwoLevelCache Cache { get; }
+        protected ISqlConnections SqlConnections { get; }
+        public ITypeSource TypeSource { get; }
+        protected IUserAccessor UserAccessor { get; }
+
+        public PermissionService(ITwoLevelCache cache, ISqlConnections sqlConnections, 
+            ITypeSource typeSource, IUserAccessor userAccessor)
+        {
+            Cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+            TypeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+            UserAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
+        }
+
         public bool HasPermission(string permission)
         {
-            if (Authorization.Username == "admin")
-                return true;
-
-            var user = (UserDefinition)Authorization.UserDefinition;
-            if (user == null)
+            if (permission == null)
                 return false;
 
+            if (permission == "*")
+                return true;
+
+            var isLoggedIn = UserAccessor.IsLoggedIn();
+
+            if (permission == "?")
+                return isLoggedIn;
+
+            if (!isLoggedIn)
+                return false;
+
+            var username = UserAccessor.User?.Identity?.Name;
+            if (username == "admin")
+                return true;
+
+            // only admin has impersonation permission
+            if (string.Compare(permission, "ImpersonateAs", StringComparison.OrdinalIgnoreCase) == 0)
+                return false;
+
+            var userId = Convert.ToInt32(UserAccessor.User.GetIdentifier());
+
             bool grant;
-            if (GetUserPermissions(user.UserId).TryGetValue(permission, out grant))
+            if (GetUserPermissions(userId).TryGetValue(permission, out grant))
                 return grant;
 
-            foreach (var roleId in GetUserRoles(user.UserId))
+            foreach (var roleId in GetUserRoles(userId))
             {
                 if (GetRolePermissions(roleId).Contains(permission))
                     return true;
@@ -36,7 +68,7 @@ namespace Serene.Administration
         {
             var fld = UserPermissionRow.Fields;
 
-            return TwoLevelCache.GetLocalStoreOnly("UserPermissions:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
+            return Cache.GetLocalStoreOnly("UserPermissions:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                 {
@@ -48,7 +80,7 @@ namespace Serene.Administration
                             .Where(new Criteria(fld.UserId) == userId))
                         .ForEach(x => result[x.PermissionKey] = x.Granted ?? true);
 
-                    var implicitPermissions = new Repositories.UserPermissionRepository().ImplicitPermissions;
+                    var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
                     foreach (var pair in result.ToArray())
                     {
                         HashSet<string> list;
@@ -62,11 +94,11 @@ namespace Serene.Administration
             });
         }
 
-        private HashSet<string> GetRolePermissions(int userId)
+        private HashSet<string> GetRolePermissions(int roleId)
         {
             var fld = RolePermissionRow.Fields;
 
-            return TwoLevelCache.GetLocalStoreOnly("RolePermissions:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
+            return Cache.GetLocalStoreOnly("RolePermissions:" + roleId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                 {
@@ -74,10 +106,10 @@ namespace Serene.Administration
 
                     connection.List<RolePermissionRow>(q => q
                             .Select(fld.PermissionKey)
-                            .Where(new Criteria(fld.RoleId) == userId))
+                            .Where(new Criteria(fld.RoleId) == roleId))
                         .ForEach(x => result.Add(x.PermissionKey));
 
-                    var implicitPermissions = new Repositories.UserPermissionRepository().ImplicitPermissions;
+                    var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
                     foreach (var key in result.ToArray())
                     {
                         HashSet<string> list;
@@ -95,7 +127,7 @@ namespace Serene.Administration
         {
             var fld = UserRoleRow.Fields;
 
-            return TwoLevelCache.GetLocalStoreOnly("UserRoles:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
+            return Cache.GetLocalStoreOnly("UserRoles:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
                 using (var connection = SqlConnections.NewByKey("Default"))
                 {

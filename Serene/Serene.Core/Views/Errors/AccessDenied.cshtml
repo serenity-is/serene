@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = Texts.Site.AccessDenied.PageTitle;
     ViewData["PageId"] = "AccessDenied";
-    Layout = Serenity.Authorization.IsLoggedIn ?
+    Layout = User.IsLoggedIn() ?
         "~/Views/Shared/_Layout.cshtml" :
         "~/Views/Shared/_LayoutNoNavigation.cshtml";
 }
@@ -17,10 +17,10 @@
                 </td>
                 <td>
                     <h1>@Texts.Site.AccessDenied.PageTitle</h1>
-                    <h3>@(Serenity.Authorization.IsLoggedIn ? Texts.Site.AccessDenied.LackPermissions : Texts.Site.AccessDenied.NotLoggedIn)</h3>
+                    <h3>@(User.IsLoggedIn() ? Texts.Site.AccessDenied.LackPermissions : Texts.Site.AccessDenied.NotLoggedIn)</h3>
                     @if (Model != null)
                     {
-                        <a class="redirect" href="/Account/Login?returnURL=@Model">@(Serenity.Authorization.IsLoggedIn ? 
+                        <a class="redirect" href="/Account/Login?returnURL=@Model">@(User.IsLoggedIn() ? 
                             Texts.Site.AccessDenied.ClickToChangeUser : Texts.Site.AccessDenied.ClickToLogin)</a>
                     }
                     else
@@ -28,7 +28,7 @@
                         <a class="redirect" href="/Account/Login">@Texts.Site.AccessDenied.ClickToLogin</a>
                     }
                     <div class="date-time">
-                        @(!Serenity.Authorization.IsLoggedIn ? "" : (Serenity.Authorization.Username + " - "))@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        @(!User.IsLoggedIn() ? "" : (User?.Identity?.Name + " - "))@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                     </div>
                     <div class="clear"></div>
                 </td>

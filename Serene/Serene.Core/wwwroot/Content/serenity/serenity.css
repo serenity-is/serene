@@ -27,6 +27,19 @@
 .inactive div {
   color: #999 !important;
 }
+.s-offscreen {
+  clip: rect(0 0 0 0) !important;
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  outline: 0 !important;
+  left: 0px !important;
+  top: 0px !important;
+}
 .ui-helper-hidden {
   display: none;
 }
@@ -165,14 +178,14 @@ button.ui-state-active {
 .ui-priority-secondary,
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
-  opacity: .7;
+  opacity: 0.7;
   filter: alpha(opacity=70);
   font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
-  opacity: .35;
+  opacity: 0.35;
   filter: alpha(opacity=35);
   background-image: none;
 }
@@ -212,7 +225,7 @@ button.ui-state-active {
   margin: -8px 0 0 -8px;
   padding: 8px;
   background: #000000;
-  opacity: .30;
+  opacity: 0.3;
   filter: alpha(opacity=30);
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -316,7 +329,7 @@ button.ui-state-active {
 .ui-menu .ui-menu-item a {
   text-decoration: none;
   display: block;
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   line-height: 1.5;
   zoom: 1;
 }
@@ -336,7 +349,7 @@ button.ui-state-active {
 .ui-button {
   display: inline-block;
   position: relative;
-  margin-right: .1em;
+  margin-right: 0.1em;
   text-decoration: none !important;
   cursor: pointer;
   text-align: center;
@@ -346,7 +359,7 @@ button.ui-state-active {
   font-size: 14px;
   font-weight: bold;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-  padding: .4em 1em;
+  padding: 0.4em 1em;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -385,20 +398,20 @@ button.ui-button-icons-only {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .ui-button-text-only .ui-button-text {
-  padding: .4em 1em;
+  padding: 0.4em 1em;
 }
 .ui-button-icon-only .ui-button-text,
 .ui-button-icons-only .ui-button-text {
-  padding: .4em;
+  padding: 0.4em;
   text-indent: -9999999px;
 }
 .ui-button-text-icon-primary .ui-button-text,
 .ui-button-text-icons .ui-button-text {
-  padding: .4em 1em .4em 2.1em;
+  padding: 0.4em 1em 0.4em 2.1em;
 }
 .ui-button-text-icon-secondary .ui-button-text,
 .ui-button-text-icons .ui-button-text {
-  padding: .4em 2.1em .4em 1em;
+  padding: 0.4em 2.1em 0.4em 1em;
 }
 .ui-button-text-icons .ui-button-text {
   padding-left: 2.1em;
@@ -437,16 +450,16 @@ input.ui-button::-moz-focus-inner {
 .ui-button-text-icon-primary .ui-button-icon-primary,
 .ui-button-text-icons .ui-button-icon-primary,
 .ui-button-icons-only .ui-button-icon-primary {
-  left: .5em;
+  left: 0.5em;
 }
 .ui-button-text-icon-secondary .ui-button-icon-secondary,
 .ui-button-text-icons .ui-button-icon-secondary,
 .ui-button-icons-only .ui-button-icon-secondary {
-  right: .5em;
+  right: 0.5em;
 }
 .ui-button-text-icons .ui-button-icon-secondary,
 .ui-button-icons-only .ui-button-icon-secondary {
-  right: .5em;
+  right: 0.5em;
 }
 .ui-buttonset {
   margin-right: 7px;
@@ -488,7 +501,7 @@ button.ui-button::-moz-focus-inner {
   padding: 0;
 }
 .ui-dialog .ui-dialog-buttonpane button {
-  margin: .5em .5em .5em 0;
+  margin: 0.5em 0.5em 0.5em 0;
 }
 .ui-dialog .ui-dialog-titlebar {
   flex-direction: column;
@@ -512,7 +525,7 @@ button.ui-button::-moz-focus-inner {
   background-color: transparent;
 }
 .ui-dialog .ui-dialog-title {
-  margin: .5em 4px .5em 0;
+  margin: 0.5em 4px 0.5em 0;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -561,7 +574,7 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-content {
   position: relative;
   border: 0;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   background: #fff;
   overflow: auto;
   zoom: 1;
@@ -571,13 +584,13 @@ button.ui-button::-moz-focus-inner {
   border-width: 1px 0 0 0;
   background-image: none;
   margin: 0 0 0 0;
-  padding: .3em 1em .5em .4em;
+  padding: 0.3em 1em 0.5em 0.4em;
 }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   float: right;
 }
 .ui-dialog .ui-dialog-buttonpane button {
-  margin: .5em .4em .5em 0;
+  margin: 0.5em 0.4em 0.5em 0;
   cursor: pointer;
 }
 .ui-dialog .ui-resizable-se {
@@ -617,7 +630,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-tabs .ui-tabs-nav li a {
   float: left;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
@@ -671,7 +684,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-header {
   position: relative;
-  padding: .35em 0;
+  padding: 0.35em 0;
   border: none;
   border-bottom: 1px solid #B6B6B6;
   -moz-border-radius: 0;
@@ -737,12 +750,12 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker table {
   width: 100%;
-  font-size: .9em;
+  font-size: 0.9em;
   border-collapse: collapse;
-  margin: 0 0 .4em;
+  margin: 0 0 0.4em;
 }
 .ui-datepicker th {
-  padding: .7em .3em;
+  padding: 0.7em 0.3em;
   text-align: center;
   font-weight: bold;
   border: 0;
@@ -754,23 +767,23 @@ button.ui-button::-moz-focus-inner {
 .ui-datepicker td span,
 .ui-datepicker td a {
   display: block;
-  padding: .2em;
+  padding: 0.2em;
   text-align: right;
   text-decoration: none;
 }
 .ui-datepicker .ui-datepicker-buttonpane {
   background-image: none;
-  margin: .7em 0 0 0;
-  padding: 0 .2em;
+  margin: 0.7em 0 0 0;
+  padding: 0 0.2em;
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
 }
 .ui-datepicker .ui-datepicker-buttonpane button {
   float: right;
-  margin: .5em .2em .4em;
+  margin: 0.5em 0.2em 0.4em;
   cursor: pointer;
-  padding: .2em .6em .3em .6em;
+  padding: 0.2em 0.6em 0.3em 0.6em;
   width: auto;
   overflow: visible;
 }
@@ -807,7 +820,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker-multi .ui-datepicker-group table {
   width: 95%;
-  margin: 0 auto .4em;
+  margin: 0 auto 0.4em;
 }
 .ui-datepicker-multi-2 .ui-datepicker-group {
   width: 50%;
@@ -873,7 +886,7 @@ button.ui-button::-moz-focus-inner {
 .ui-progressbar {
   height: 12px;
   text-align: left;
-  background: #ffffff url(images/progress_bar.gif) 0 -14px repeat-x;
+  background: #FFF url(images/progress_bar.gif) 0 -14px repeat-x;
 }
 .ui-progressbar .ui-progressbar-value {
   margin: -1px;
@@ -898,7 +911,7 @@ button.ui-button::-moz-focus-inner {
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
-  opacity: .35;
+  opacity: 0.35;
   filter: alpha(opacity=35);
   background-image: none;
 }
@@ -913,20 +926,20 @@ button.ui-button::-moz-focus-inner {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .ui-button-text-only .ui-button-text {
-  padding: .4em 1em;
+  padding: 0.4em 1em;
 }
 .ui-button-icon-only .ui-button-text,
 .ui-button-icons-only .ui-button-text {
-  padding: .4em;
+  padding: 0.4em;
   text-indent: -9999999px;
 }
 .ui-button-text-icon-primary .ui-button-text,
 .ui-button-text-icons .ui-button-text {
-  padding: .4em 1em .4em 2.1em;
+  padding: 0.4em 1em 0.4em 2.1em;
 }
 .ui-button-text-icon-secondary .ui-button-text,
 .ui-button-text-icons .ui-button-text {
-  padding: .4em 2.1em .4em 1em;
+  padding: 0.4em 2.1em 0.4em 1em;
 }
 .ui-button-text-icons .ui-button-text {
   padding-left: 2.1em;
@@ -965,16 +978,16 @@ input.ui-button::-moz-focus-inner {
 .ui-button-text-icon-primary .ui-button-icon-primary,
 .ui-button-text-icons .ui-button-icon-primary,
 .ui-button-icons-only .ui-button-icon-primary {
-  left: .5em;
+  left: 0.5em;
 }
 .ui-button-text-icon-secondary .ui-button-icon-secondary,
 .ui-button-text-icons .ui-button-icon-secondary,
 .ui-button-icons-only .ui-button-icon-secondary {
-  right: .5em;
+  right: 0.5em;
 }
 .ui-button-text-icons .ui-button-icon-secondary,
 .ui-button-icons-only .ui-button-icon-secondary {
-  right: .5em;
+  right: 0.5em;
 }
 .ui-datepicker table.ui-datepicker-calendar {
   table-layout: fixed;
@@ -1015,7 +1028,7 @@ input.ui-button::-moz-focus-inner {
 .ui-tabs .ui-tabs-nav .ui-state-default,
 .ui-tabs .ui-tabs-nav .ui-widget-content .ui-state-default,
 .ui-tabs .ui-tabs-nav .ui-widget-header .ui-state-default {
-  background: linear-gradient(top, #ffffff 0%, #f7f7f7 100%);
+  background: linear-gradient(top, #fff 0%, #f7f7f7 100%);
   /* W3C */
 }
 .ui-tabs .ui-tabs-nav .ui-state-active {
@@ -1104,7 +1117,7 @@ button.ui-state-hover .ui-button-text {
 .ui-menu .ui-menu-item a {
   text-decoration: none;
   display: block;
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   line-height: 1.5;
   zoom: 1;
 }
@@ -1180,7 +1193,7 @@ button.ui-state-hover .ui-button-text {
   height: 15px;
   border: 1px solid #ccc;
   border-right: 0;
-  background: #ffffff url(jquery.plugins/dropdown.png) no-repeat center right;
+  background: #fff url(jquery.plugins/dropdown.png) no-repeat center right;
 }
 .ui-dropdownchecklist-hover,
 .ui-dropdownchecklist-active {
@@ -1766,7 +1779,7 @@ button.ui-state-hover .ui-button-text {
   min-height: 250px;
 }
 .s-ColumnPickerDialog .sortable-ghost {
-  opacity: .5;
+  opacity: 0.5;
   background-color: darksalmon;
 }
 .s-ColumnPickerDialog .ui-dialog-content {
@@ -1827,8 +1840,8 @@ button.ui-state-hover .ui-button-text {
 }
 .s-ColumnPickerDialog i.js-show,
 .s-ColumnPickerDialog i.js-hide {
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
   opacity: 0.5;
   display: block;
   cursor: pointer;
@@ -2466,6 +2479,7 @@ body.mobile-device.modal-dialog-open {
   overflow-y: auto;
   background-color: #fff;
   min-height: 116px;
+  margin-bottom: 0;
 }
 .s-ImageUploadEditor .file-item,
 .s-MultipleImageUploadEditor .file-item {
@@ -2481,6 +2495,14 @@ body.mobile-device.modal-dialog-open {
 .s-ImageUploadEditor .s-Toolbar .tool-button,
 .s-MultipleImageUploadEditor .s-Toolbar .tool-button {
   margin-bottom: 0;
+}
+.s-ImageUploadEditor.error,
+.s-MultipleImageUploadEditor.error {
+  border: 1px solid #ff4040;
+}
+.s-ImageUploadEditor.error ul,
+.s-MultipleImageUploadEditor.error ul {
+  background-color: #ffefef;
 }
 .s-MultipleImageUploadEditor li {
   float: left;
@@ -3020,11 +3042,11 @@ img.ui-datepicker-trigger {
   border-radius: 4px 4px 4px 4px;
   background-clip: padding-box;
   background: #ccc;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cccccc), color-stop(0.6, #eeeeee));
-  background-image: -webkit-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
-  background-image: -moz-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ccc), color-stop(0.6, #eee));
+  background-image: -webkit-linear-gradient(center bottom, #ccc 0%, #eee 60%);
+  background-image: -moz-linear-gradient(center bottom, #ccc 0%, #eee 60%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#cccccc', GradientType=0);
-  background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+  background-image: linear-gradient(top, #ccc 0%, #eee 60%);
   cursor: pointer;
 }
 .inplace-button b {
@@ -3057,7 +3079,7 @@ img.ui-datepicker-trigger {
   background-position: center 4px;
 }
 .s-ClickDown {
-  background: url(images/dropdown.png) #ffffff right top no-repeat;
+  background: url(images/dropdown.png) #fff right top no-repeat;
   padding: 1px 16px 1px 1px;
   cursor: pointer;
   border: 1px solid #9bbdcf;
@@ -3066,7 +3088,7 @@ a.s-LinkDropDown {
   display: block;
   line-height: 13px;
   padding: 0 18px 0 0;
-  background: #ffffff url(images/dropdown.png) no-repeat right top;
+  background: #fff url(images/dropdown.png) no-repeat right top;
   border: 1px solid #9bbdcf;
   white-space: nowrap;
   overflow: hidden;
@@ -3315,11 +3337,11 @@ a.s-LinkDropDown input {
   cursor: wait;
 }
 .s-QuickSearchLoading span i {
-  background: #ffffff url(images/quick-search-loading.gif) no-repeat center center;
+  background: #fff url(images/quick-search-loading.gif) no-repeat center center;
 }
 a.quick-search-field {
   padding: 0 13px 0 3px;
-  background: #ffffff url(images/down.gif) no-repeat right 5px;
+  background: #fff url(images/down.gif) no-repeat right 5px;
   float: right;
   font-size: 11px;
   height: 30px;
@@ -3409,7 +3431,7 @@ a.quick-search-field {
   border-bottom: 1px solid #fff;
 }
 .tool-button.pressed {
-  background: linear-gradient(#eeeebb 0px, #ffffcc 100%) repeat-x #eeeeee;
+  background: linear-gradient(#eeb 0px, #ffc 100%) repeat-x #eee;
 }
 .tool-button.pressed .button-outer {
   border-left: 1px solid #d7d7d7;

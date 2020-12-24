@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = Texts.Forms.Membership.Login.FormTitle;
+@inject Serenity.ITextLocalizer Localizer
+@inject Serene.IDataMigrations DataMigrations
+
+@{
+    ViewData["Title"] = Texts.Forms.Membership.Login.FormTitle.ToString(Localizer);
     ViewData["PageId"] = "Login";
     ViewData["BodyClass"] = "login-page";
     Layout = MVC.Views.Shared._LayoutNoNavigation;
@@ -18,12 +21,12 @@
                 <div class="col-xs-7">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> @Texts.Forms.Membership.Login.RememberMe
+                            <input type="checkbox"> @Texts.Forms.Membership.Login.RememberMe.ToString(Localizer)
                         </label>
                     </div>
                 </div>
                 <div class="col-xs-5">
-                    <button id="~_LoginButton" type="submit" class="btn btn-primary btn-block btn-flat">@Texts.Forms.Membership.Login.SignInButton</button>
+                    <button id="~_LoginButton" type="submit" class="btn btn-primary btn-block btn-flat">@Texts.Forms.Membership.Login.SignInButton.ToString(Localizer)</button>
                 </div>
             </div>
         </form>
@@ -45,30 +48,30 @@
 {
 <div class="alert alert-info alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
-    @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
+    <h4><i class="icon fa fa-info"></i>@Localizer.Get("Dialogs.InformationTitle")</h4>
+    @Texts.Forms.Membership.SignUp.ActivationCompleteMessage.ToString(Localizer)
 </div>
 }
 
 <div class="login-box">
     <div class="login-logo">
-        @Texts.Navigation.SiteTitle
+        @Texts.Navigation.SiteTitle.ToString(Localizer)
     </div>
     <div class="login-box-body">
-        <p class="login-box-msg">@Texts.Forms.Membership.Login.FormTitle</p>
+        <p class="login-box-msg">@Texts.Forms.Membership.Login.FormTitle.ToString(Localizer)</p>
         <div id="LoginPanel">
         </div>
         <div class="social-auth-links text-center">
-            <p>- @Texts.Forms.Membership.Login.OR -</p>
+            <p>- @Texts.Forms.Membership.Login.OR.ToString(Localizer) -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat">
-                <i class="fa fa-facebook"></i> @Texts.Forms.Membership.Login.FacebookButton
+                <i class="fa fa-facebook"></i> @Texts.Forms.Membership.Login.FacebookButton.ToString(Localizer)
             </a>
             <a href="#" class="btn btn-block btn-social btn-google btn-flat">
-                <i class="fa fa-google-plus"></i> @Texts.Forms.Membership.Login.GoogleButton
+                <i class="fa fa-google-plus"></i> @Texts.Forms.Membership.Login.GoogleButton.ToString(Localizer)
             </a>
         </div>
-        <a href="@Url.Content("~/Account/ForgotPassword")">@Texts.Forms.Membership.Login.ForgotPassword</a><br>
-        <a href="@Url.Content("~/Account/SignUp")" class="text-center">@Texts.Forms.Membership.Login.SignUpButton</a>
+        <a href="@Url.Content("~/Account/ForgotPassword")">@Texts.Forms.Membership.Login.ForgotPassword.ToString(Localizer)</a><br>
+        <a href="@Url.Content("~/Account/SignUp")" class="text-center">@Texts.Forms.Membership.Login.SignUpButton.ToString(Localizer)</a>
     </div>
 </div>
 

@@ -1,4 +1,5 @@
 ﻿using Serene.Northwind.Entities;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Reporting;
@@ -12,19 +13,27 @@ namespace Serene.Northwind
     [Category("Northwind/Orders"), DisplayName("Sales By Category")]
     public class SalesByDetailReport : IReport, IDataOnlyReport
     {
+        protected ISqlConnections SqlConnections { get; }
+        protected ITextLocalizer Localizer { get; }
+        protected IServiceProvider ServiceProvider { get; }
+
+        public SalesByDetailReport(ISqlConnections sqlConnections, ITextLocalizer localizer, IServiceProvider serviceProvider)
+        {
+            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+            Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+            ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+        }
+
         public object GetData()
         {
-            using (var connection = SqlConnections.NewFor<Entities.SalesByCategoryRow>())
-            {
-                var s = SalesByCategoryRow.Fields;
-
-                return connection.List<SalesByCategoryRow>();
-            }
+            using var connection = SqlConnections.NewFor<Entities.SalesByCategoryRow>();
+            var s = SalesByCategoryRow.Fields;
+            return connection.List<SalesByCategoryRow>();
         }
 
         public List<ReportColumn> GetColumnList()
         {
-            return ReportColumnConverter.ObjectTypeToList(typeof(Item));
+            return ReportColumnConverter.ObjectTypeToList(typeof(Item), ServiceProvider, Localizer);
         }
 
         [BasedOnRow(typeof(Entities.SalesByCategoryRow), CheckNames = true)]

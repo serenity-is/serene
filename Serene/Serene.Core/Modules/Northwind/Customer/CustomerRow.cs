@@ -15,150 +15,141 @@ namespace Serene.Northwind.Entities
     [LeftJoin("cd", "CustomerDetails", "cd.[ID] = T0.[ID]", RowType = typeof(CustomerDetailsRow), TitlePrefix = "")]
     [UpdatableExtension("cd", typeof(CustomerDetailsRow), CascadeDelete = true)]
     [LookupScript(typeof(Lookups.CustomerLookup))]
-    public sealed class CustomerRow : Row, IIdRow, INameRow
+    public sealed class CustomerRow : Row<CustomerRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("ID"), Identity]
+        [DisplayName("ID"), Identity, IdProperty]
         public Int32? ID
         {
-            get { return Fields.ID[this]; }
-            set { Fields.ID[this] = value; }
+            get => fields.ID[this];
+            set => fields.ID[this] = value;
         }
 
         [DisplayName("Customer Id"), Size(5), PrimaryKey, NotNull, QuickSearch, Updatable(false), LookupInclude]
         public String CustomerID
         {
-            get { return Fields.CustomerID[this]; }
-            set { Fields.CustomerID[this] = value; }
+            get => fields.CustomerID[this];
+            set => fields.CustomerID[this] = value;
         }
 
-        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, LookupInclude]
+        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, LookupInclude, NameProperty]
         public String CompanyName
         {
-            get { return Fields.CompanyName[this]; }
-            set { Fields.CompanyName[this] = value; }
+            get => fields.CompanyName[this];
+            set => fields.CompanyName[this] = value;
         }
 
         [DisplayName("Contact Name"), Size(30), QuickSearch]
         public String ContactName
         {
-            get { return Fields.ContactName[this]; }
-            set { Fields.ContactName[this] = value; }
+            get => fields.ContactName[this];
+            set => fields.ContactName[this] = value;
         }
 
         [DisplayName("Contact Title"), Size(30)]
         public String ContactTitle
         {
-            get { return Fields.ContactTitle[this]; }
-            set { Fields.ContactTitle[this] = value; }
+            get => fields.ContactTitle[this];
+            set => fields.ContactTitle[this] = value;
         }
 
         [DisplayName("Address"), Size(60)]
         public String Address
         {
-            get { return Fields.Address[this]; }
-            set { Fields.Address[this] = value; }
+            get => fields.Address[this];
+            set => fields.Address[this] = value;
         }
 
         [DisplayName("City"), Size(15), LookupEditor(typeof(Lookups.CustomerCityLookup), CascadeFrom = "Country", AutoComplete = true)]
         public String City
         {
-            get { return Fields.City[this]; }
-            set { Fields.City[this] = value; }
+            get => fields.City[this];
+            set => fields.City[this] = value;
         }
 
         [DisplayName("Region"), Size(15)]
         public String Region
         {
-            get { return Fields.Region[this]; }
-            set { Fields.Region[this] = value; }
+            get => fields.Region[this];
+            set => fields.Region[this] = value;
         }
 
         [DisplayName("Postal Code"), Size(10)]
         public String PostalCode
         {
-            get { return Fields.PostalCode[this]; }
-            set { Fields.PostalCode[this] = value; }
+            get => fields.PostalCode[this];
+            set => fields.PostalCode[this] = value;
         }
 
         [DisplayName("Country"), Size(15), LookupEditor(typeof(Lookups.CustomerCountryLookup), AutoComplete = true)]
         public String Country
         {
-            get { return Fields.Country[this]; }
-            set { Fields.Country[this] = value; }
+            get => fields.Country[this];
+            set => fields.Country[this] = value;
         }
 
         [DisplayName("Phone"), Size(24)]
         public String Phone
         {
-            get { return Fields.Phone[this]; }
-            set { Fields.Phone[this] = value; }
+            get => fields.Phone[this];
+            set => fields.Phone[this] = value;
         }
 
         [DisplayName("Fax"), Size(24)]
         public String Fax
         {
-            get { return Fields.Fax[this]; }
-            set { Fields.Fax[this] = value; }
+            get => fields.Fax[this];
+            set => fields.Fax[this] = value;
         }
 
         [Origin("cd")]
         public DateTime? LastContactDate
         {
-            get { return Fields.LastContactDate[this]; }
-            set { Fields.LastContactDate[this] = value; }
+            get => fields.LastContactDate[this];
+            set => fields.LastContactDate[this] = value;
         }
 
         [Origin("cd"), LookupEditor(typeof(EmployeeRow))]
         public Int32? LastContactedBy
         {
-            get { return Fields.LastContactedBy[this]; }
-            set { Fields.LastContactedBy[this] = value; }
+            get => fields.LastContactedBy[this];
+            set => fields.LastContactedBy[this] = value;
         }
 
         [Origin("cd"), EmailEditor]
         public String Email
         {
-            get { return Fields.Email[this]; }
-            set { Fields.Email[this] = value; }
+            get => fields.Email[this];
+            set => fields.Email[this] = value;
         }
 
         [Origin("cd"), DefaultValue(false)]
         public Boolean? SendBulletin
         {
-            get { return Fields.SendBulletin[this]; }
-            set { Fields.SendBulletin[this] = value; }
+            get => fields.SendBulletin[this];
+            set => fields.SendBulletin[this] = value;
         }
 
         [NotesEditor, NotMapped]
         public List<NoteRow> NoteList
         {
-            get { return Fields.NoteList[this]; }
-            set { Fields.NoteList[this] = value; }
+            get => fields.NoteList[this];
+            set => fields.NoteList[this] = value;
         }
         
-        [LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
+        [DisplayName("Representatives"), LookupEditor(typeof(EmployeeRow), Multiple = true), NotMapped]
         [LinkingSetRelation(typeof(CustomerRepresentativesRow), "CustomerId", "EmployeeId")]
         [MinSelectLevel(SelectLevel.Details), QuickFilter(CssClass = "hidden-xs")]
         public List<Int32> Representatives
         {
-            get { return Fields.Representatives[this]; }
-            set { Fields.Representatives[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.ID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CompanyName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.Representatives[this];
+            set => fields.Representatives[this] = value;
+        }
         public CustomerRow()
-            : base(Fields)
+        {
+        }
+
+        public CustomerRow(RowFields fields)
+            : base(fields)
         {
         }
 

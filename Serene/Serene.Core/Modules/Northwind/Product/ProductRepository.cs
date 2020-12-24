@@ -7,58 +7,85 @@ using MyRow = Serene.Northwind.Entities.ProductRow;
 
 namespace Serene.Northwind.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : BaseRepository
     {
+        public ProductRepository(IRequestContext context)
+             : base(context)
+        {
+        }
+
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
         public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Create);
+            return new MySaveHandler(Context).Process(uow, request, SaveRequestType.Create);
         }
 
         public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
         {
-            return new MySaveHandler().Process(uow, request, SaveRequestType.Update);
+            return new MySaveHandler(Context).Process(uow, request, SaveRequestType.Update);
         }
 
         public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
         {
-            return new MyDeleteHandler().Process(uow, request);
+            return new MyDeleteHandler(Context).Process(uow, request);
         }
 
         public UndeleteResponse Undelete(IUnitOfWork uow, UndeleteRequest request)
         {
-            return new MyUndeleteHandler().Process(uow, request);
+            return new MyUndeleteHandler(Context).Process(uow, request);
         }
 
         public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
         {
-            return new MyRetrieveHandler().Process(connection, request);
+            return new MyRetrieveHandler(Context).Process(connection, request);
         }
 
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
-            return new MyListHandler().Process(connection, request);
+            return new MyListHandler(Context).Process(connection, request);
         }
 
         private class MySaveHandler : SaveRequestHandler<MyRow, SaveRequest<MyRow>, SaveResponse>
         {
-            protected override void AfterSave()
-            {
-                base.AfterSave();
+            public MySaveHandler(IRequestContext context)
+                : base(context)
+            { 
 
-                if (Request.Localizations != null)
-                    foreach (var pair in Request.Localizations)
-                    {
-                        pair.Value.ProductID = Row.ProductID.Value;
-                        new LocalizationRowHandler<MyRow>().Update<Entities.ProductLangRow>(this.UnitOfWork, pair.Value, Convert.ToInt32(pair.Key));
-                    }
             }
         }
 
-        private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
-        private class MyUndeleteHandler : UndeleteRequestHandler<MyRow> { }
-        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+        private class MyDeleteHandler : DeleteRequestHandler<MyRow>
+        {
+            public MyDeleteHandler(IRequestContext context)
+                 : base(context)
+            {
+            }
+        }
+
+        private class MyUndeleteHandler : UndeleteRequestHandler<MyRow>
+        {
+            public MyUndeleteHandler(IRequestContext context)
+                 : base(context)
+            {
+            }
+        }
+
+        private class MyRetrieveHandler : RetrieveRequestHandler<MyRow>
+        {
+            public MyRetrieveHandler(IRequestContext context)
+                 : base(context)
+            {
+            }
+        }
+
+        private class MyListHandler : ListRequestHandler<MyRow>
+        {
+            public MyListHandler(IRequestContext context)
+                 : base(context)
+            {
+            }
+        }
+
     }
 }

@@ -10,62 +10,53 @@ namespace Serene.Northwind.Entities
     [DisplayName("CategoryLang"), InstanceName("CategoryLang")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
-    public sealed class CategoryLangRow : Row, IIdRow, INameRow, ILocalizationRow
+    public sealed class CategoryLangRow : Row<CategoryLangRow.RowFields>, IIdRow, INameRow, ILocalizationRow
     {
-        [DisplayName("Id"), Column("ID"), Identity]
+        [DisplayName("Id"), Column("ID"), Identity, IdProperty]
         public Int32? Id
         {
-            get { return Fields.Id[this]; }
-            set { Fields.Id[this] = value; }
+            get => fields.Id[this];
+            set => fields.Id[this] = value;
         }
 
         [DisplayName("Category Id"), Column("CategoryID"), NotNull]
         public Int32? CategoryId
         {
-            get { return Fields.CategoryId[this]; }
-            set { Fields.CategoryId[this] = value; }
+            get => fields.CategoryId[this];
+            set => fields.CategoryId[this] = value;
         }
 
         [DisplayName("Language Id"), Column("LanguageID"), NotNull]
         public Int32? LanguageId
         {
-            get { return Fields.LanguageId[this]; }
-            set { Fields.LanguageId[this] = value; }
+            get => fields.LanguageId[this];
+            set => fields.LanguageId[this] = value;
         }
 
-        [DisplayName("Category Name"), Size(15), QuickSearch]
+        [DisplayName("Category Name"), Size(15), QuickSearch, NameProperty]
         public String CategoryName
         {
-            get { return Fields.CategoryName[this]; }
-            set { Fields.CategoryName[this] = value; }
+            get => fields.CategoryName[this];
+            set => fields.CategoryName[this] = value;
         }
 
         [DisplayName("Description")]
         public String Description
         {
-            get { return Fields.Description[this]; }
-            set { Fields.Description[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.Id; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CategoryName; }
-        }
-
+            get => fields.Description[this];
+            set => fields.Description[this] = value;
+        }
         public Field CultureIdField
         {
-            get { return Fields.LanguageId; }
+            get => fields.LanguageId;
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
         public CategoryLangRow()
-            : base(Fields)
+        {
+        }
+
+        public CategoryLangRow(RowFields fields)
+            : base(fields)
         {
         }
 

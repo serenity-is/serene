@@ -11,43 +11,34 @@ namespace Serene.BasicSamples.Entities
     [DisplayName("Tree Items"), InstanceName("Tree Item")]
     [ReadPermission(Northwind.PermissionKeys.General)]
     [ModifyPermission(Northwind.PermissionKeys.General)]
-    public sealed class DragDropSampleRow : Row, IIdRow, INameRow
+    public sealed class DragDropSampleRow : Row<DragDropSampleRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Id"), Identity]
+        [DisplayName("Id"), Identity, IdProperty]
         public Int32? Id
         {
-            get { return Fields.Id[this]; }
-            set { Fields.Id[this] = value; }
+            get => fields.Id[this];
+            set => fields.Id[this] = value;
         }
 
         [DisplayName("Parent Id")]
         public Int32? ParentId
         {
-            get { return Fields.ParentId[this]; }
-            set { Fields.ParentId[this] = value; }
+            get => fields.ParentId[this];
+            set => fields.ParentId[this] = value;
         }
 
-        [DisplayName("Title"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Title"), Size(100), NotNull, QuickSearch, NameProperty]
         public String Title
         {
-            get { return Fields.Title[this]; }
-            set { Fields.Title[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.Id; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.Title; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.Title[this];
+            set => fields.Title[this] = value;
+        }
         public DragDropSampleRow()
-            : base(Fields)
+        {
+        }
+
+        public DragDropSampleRow(RowFields fields)
+            : base(fields)
         {
         }
 

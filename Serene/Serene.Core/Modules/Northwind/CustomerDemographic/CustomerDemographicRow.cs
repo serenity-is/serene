@@ -10,43 +10,34 @@ namespace Serene.Northwind.Entities
     [DisplayName("CustomerDemographics"), InstanceName("CustomerDemographics")]
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
-    public sealed class CustomerDemographicRow : Row, IIdRow, INameRow
+    public sealed class CustomerDemographicRow : Row<CustomerDemographicRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Id"), Identity]
+        [DisplayName("Id"), Identity, IdProperty]
         public Int32? ID
         {
-            get { return Fields.ID[this]; }
-            set { Fields.ID[this] = value; }
+            get => fields.ID[this];
+            set => fields.ID[this] = value;
         }
 
-        [DisplayName("Customer Type Id"), Size(10), PrimaryKey, QuickSearch]
+        [DisplayName("Customer Type Id"), Size(10), PrimaryKey, QuickSearch, NameProperty]
         public String CustomerTypeID
         {
-            get { return Fields.CustomerTypeID[this]; }
-            set { Fields.CustomerTypeID[this] = value; }
+            get => fields.CustomerTypeID[this];
+            set => fields.CustomerTypeID[this] = value;
         }
 
         [DisplayName("Customer Desc")]
         public String CustomerDesc
         {
-            get { return Fields.CustomerDesc[this]; }
-            set { Fields.CustomerDesc[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.ID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CustomerTypeID; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.CustomerDesc[this];
+            set => fields.CustomerDesc[this] = value;
+        }
         public CustomerDemographicRow()
-            : base(Fields)
+        {
+        }
+
+        public CustomerDemographicRow(RowFields fields)
+            : base(fields)
         {
         }
 

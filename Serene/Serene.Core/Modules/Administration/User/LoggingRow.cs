@@ -12,75 +12,56 @@ namespace Serene.Administration.Entities
     /// two. There is also an optional IDeleteLogRow interface that supports auditing on delete but for it to work
     /// you need to also implement IIsActiveDeletedRow so that your rows aren't actually deleted.
     /// </summary>
-    public abstract class LoggingRow : Row, ILoggingRow
+    public abstract class LoggingRow<TFields> : Row<TFields>, ILoggingRow
+        where TFields : LoggingRowFields
     {
-        protected LoggingRow(RowFieldsBase fields)
-            : base(fields)
-        {
-            loggingFields = (LoggingRowFields)fields;
-        }
+        protected LoggingRow(TFields fields) : base(fields) { }
+        protected LoggingRow() : base() { }
 
         [NotNull, Insertable(false), Updatable(false)]
         public Int32? InsertUserId
         {
-            get { return loggingFields.InsertUserId[this]; }
-            set { loggingFields.InsertUserId[this] = value; }
+            get => fields.InsertUserId[this];
+            set => fields.InsertUserId[this] = value;
         }
 
         [NotNull, Insertable(false), Updatable(false)]
         public DateTime? InsertDate
         {
-            get { return loggingFields.InsertDate[this]; }
-            set { loggingFields.InsertDate[this] = value; }
+            get => fields.InsertDate[this];
+            set => fields.InsertDate[this] = value;
         }
 
         [Insertable(false), Updatable(false)]
         public Int32? UpdateUserId
         {
-            get { return loggingFields.UpdateUserId[this]; }
-            set { loggingFields.UpdateUserId[this] = value; }
+            get => fields.UpdateUserId[this];
+            set => fields.UpdateUserId[this] = value;
         }
 
         [Insertable(false), Updatable(false)]
         public DateTime? UpdateDate
         {
-            get { return loggingFields.UpdateDate[this]; }
-            set { loggingFields.UpdateDate[this] = value; }
+            get => fields.UpdateDate[this];
+            set => fields.UpdateDate[this] = value;
         }
 
-        IIdField IInsertLogRow.InsertUserIdField
+        Field IInsertLogRow.InsertUserIdField => fields.InsertUserId;
+        Field IUpdateLogRow.UpdateUserIdField => fields.UpdateUserId;
+        DateTimeField IInsertLogRow.InsertDateField => fields.InsertDate;
+        DateTimeField IUpdateLogRow.UpdateDateField => fields.UpdateDate;
+    }
+
+    public class LoggingRowFields : RowFieldsBase
+    {
+        public Int32Field InsertUserId;
+        public DateTimeField InsertDate;
+        public Int32Field UpdateUserId;
+        public DateTimeField UpdateDate;
+
+        public LoggingRowFields(string tableName = null, string fieldPrefix = null)
+            : base(tableName, fieldPrefix)
         {
-            get { return loggingFields.InsertUserId; }
-        }
-
-        IIdField IUpdateLogRow.UpdateUserIdField
-        {
-            get { return loggingFields.UpdateUserId; }
-        }
-
-        DateTimeField IInsertLogRow.InsertDateField
-        {
-            get { return loggingFields.InsertDate; }
-        }
-
-        DateTimeField IUpdateLogRow.UpdateDateField
-        {
-            get { return loggingFields.UpdateDate; }
-        }
-
-        private LoggingRowFields loggingFields;
-
-        public class LoggingRowFields : RowFieldsBase
-        {
-            public Int32Field InsertUserId;
-            public DateTimeField InsertDate;
-            public Int32Field UpdateUserId;
-            public DateTimeField UpdateDate;
-
-            public LoggingRowFields(string tableName = null, string fieldPrefix = null)
-                : base(tableName, fieldPrefix)
-            {
-            }
         }
     }
 }

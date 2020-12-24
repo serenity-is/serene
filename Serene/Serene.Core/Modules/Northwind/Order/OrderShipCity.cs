@@ -8,7 +8,8 @@ namespace Serene.Northwind.Lookups
     [LookupScript]
     public class OrderShipCityLookup : RowLookupScript<Entities.OrderRow>
     {
-        public OrderShipCityLookup()
+        public OrderShipCityLookup(ISqlConnections sqlConnections)
+            : base(sqlConnections)
         {
             IdField = TextField = OrderRow.Fields.ShipCity.PropertyName;
         }

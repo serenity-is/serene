@@ -1,9 +1,10 @@
-﻿@{
+﻿@inject Serenity.ITextLocalizer Localizer
+@inject IDataMigrations DataMigrations
+@{
     ViewData["Title"] = "Login";
     ViewData["PageId"] = "Login";
     Layout = MVC.Views.Shared._LayoutNoNavigation;
 }
-
 @section Head {
     @Html.Script("~/Scripts/vegas/vegas.js")
     @Html.Stylesheet("~/Scripts/vegas/vegas.css")
@@ -163,8 +164,8 @@
 {
     <div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-info"></i>@LocalText.Get("Dialogs.InformationTitle")</h4>
-        @Texts.Forms.Membership.SignUp.ActivationCompleteMessage
+        <h4><i class="icon fa fa-info"></i>@Localizer.Get("Dialogs.InformationTitle")</h4>
+        @(Texts.Forms.Membership.SignUp.ActivationCompleteMessage.ToString(Localizer))
     </div>
 }
 

@@ -11,57 +11,48 @@ namespace Serene.Northwind.Entities
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript]
-    public sealed class TerritoryRow : Row, IIdRow, INameRow
+    public sealed class TerritoryRow : Row<TerritoryRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("ID"), Identity]
+        [DisplayName("ID"), Identity, IdProperty]
         public Int32? ID
         {
-            get { return Fields.ID[this]; }
-            set { Fields.ID[this] = value; }
+            get => fields.ID[this];
+            set => fields.ID[this] = value;
         }
 
-        [DisplayName("Territory ID"), Size(20), PrimaryKey, NotNull, QuickSearch, Updatable(false)]
+        [DisplayName("Territory ID"), Size(20), PrimaryKey, NotNull, QuickSearch, Updatable(false), NameProperty]
         public String TerritoryID
         {
-            get { return Fields.TerritoryID[this]; }
-            set { Fields.TerritoryID[this] = value; }
+            get => fields.TerritoryID[this];
+            set => fields.TerritoryID[this] = value;
         }
 
         [DisplayName("Territory Description"), Size(50), NotNull, QuickSearch, LookupInclude]
         public String TerritoryDescription
         {
-            get { return Fields.TerritoryDescription[this]; }
-            set { Fields.TerritoryDescription[this] = value; }
+            get => fields.TerritoryDescription[this];
+            set => fields.TerritoryDescription[this] = value;
         }
 
         [DisplayName("Region"), NotNull, ForeignKey(typeof(RegionRow)), LeftJoin("jRegion")]
         public Int32? RegionID
         {
-            get { return Fields.RegionID[this]; }
-            set { Fields.RegionID[this] = value; }
+            get => fields.RegionID[this];
+            set => fields.RegionID[this] = value;
         }
 
         [Origin("jRegion"), DisplayName("Region"), QuickSearch, LookupInclude]
         public String RegionDescription
         {
-            get { return Fields.RegionDescription[this]; }
-            set { Fields.RegionDescription[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.ID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.TerritoryID; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.RegionDescription[this];
+            set => fields.RegionDescription[this] = value;
+        }
         public TerritoryRow()
-            : base(Fields)
+        {
+        }
+
+        public TerritoryRow(RowFields fields)
+            : base(fields)
         {
         }
 

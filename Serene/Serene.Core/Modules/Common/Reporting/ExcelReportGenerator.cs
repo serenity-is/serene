@@ -1,17 +1,13 @@
-﻿#if COREFX
-using FastMember;
-#endif
+﻿using FastMember;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
 using Serenity.Data;
-using Serenity.Reflection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Serenity.Reporting
 {
@@ -29,7 +25,7 @@ namespace Serenity.Reporting
         {
             var package = new ExcelPackage();
             var workbook = package.Workbook;
-            var worksheet = package.Workbook.Worksheets.Add(sheetName);
+            var worksheet = workbook.Worksheets.Add(sheetName);
 
             PopulateSheet(worksheet, columns, rows, tableName, tableStyle);
 
@@ -84,7 +80,7 @@ namespace Serenity.Reporting
             foreach (var obj in rows)
             {
                 var data = new object[colCount];
-                var row = obj as Row;
+                var row = obj as IRow;
                 if (row != null)
                 {
                     if (fields == null)
@@ -190,18 +186,13 @@ namespace Serenity.Reporting
                     for (var rowNum = 2; rowNum <= endRow; rowNum++)
                     {
                         var obj = rows[rowNum - 2];
-                        var row = obj as Row;
+                        var row = obj as IRow;
 
                         decorator.Item = obj;
                         decorator.Name = col.Name;
                         decorator.Format = null;
-#if COREFX
                         decorator.Background = null;
                         decorator.Foreground = null;
-#else
-                        decorator.Background = Color.Empty;
-                        decorator.Foreground = Color.Empty;
-#endif
 
                         object value = null;
                         if (row != null)
@@ -235,10 +226,9 @@ namespace Serenity.Reporting
                         decorator.Value = value;
                         decorator.Decorate();
 
-#if COREFX
                         if (!string.IsNullOrEmpty(decorator.Background) ||
                             !string.IsNullOrEmpty(decorator.Foreground) ||
-                            !Object.Equals(decorator.Value, value) ||
+                            !Equals(decorator.Value, value) ||
                             decorator.Format != null)
                         {
                             var cell = worksheet.Cells[rowNum, colNum];
@@ -260,37 +250,9 @@ namespace Serenity.Reporting
                             if (decorator.Format != null)
                                 cell.Style.Numberformat.Format = FixFormatSpecifier(decorator.Format, col.DataType);
 
-                            if (!Object.Equals(decorator.Value, value))
+                            if (!Equals(decorator.Value, value))
                                 cell.Value = decorator.Value;
                         }
-
-#else
-                        if (decorator.Background != Color.Empty ||
-                            decorator.Foreground != Color.Empty ||
-                            !Object.Equals(decorator.Value, value) ||
-                            decorator.Format != null)
-                        {
-                            var cell = worksheet.Cells[rowNum, colNum];
-
-                            if (!gdiErrors)
-                            {
-                                if (decorator.Background != Color.Empty)
-                                {
-                                        cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                                    cell.Style.Fill.BackgroundColor.SetColor(decorator.Background);
-                                }
-
-                                if (decorator.Foreground != Color.Empty)
-                                    cell.Style.Font.Color.SetColor(decorator.Foreground);
-                            }
-
-                            if (decorator.Format != null)
-                                cell.Style.Numberformat.Format = FixFormatSpecifier(decorator.Format, col.DataType);
-
-                            if (!Object.Equals(decorator.Value, value))
-                                cell.Value = decorator.Value;
-                        }
-#endif
                     }
                 }
             }

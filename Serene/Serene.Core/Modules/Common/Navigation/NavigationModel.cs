@@ -1,42 +1,65 @@
-﻿using Serene.Administration.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Serene.Administration.Entities;
 using Serenity;
+using Serenity.Abstractions;
 using Serenity.Navigation;
+using Serenity.Web;
 using System;
 using System.Collections.Generic;
-using System.Web;
-using System.Web.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
+using System.Security.Claims;
 
 namespace Serene.Navigation
 {
-    public partial class NavigationModel
+    public class NavigationModel
     {
+        public IPermissionService Permissions { get; }
+        public HttpContext HttpContext { get; }
+        public string RequestUrl { get; }
+        public PathString PathBase { get; }
         public List<NavigationItem> Items { get; private set; }
         public int[] ActivePath { get; set; }
 
-        public NavigationModel()
+        public NavigationModel(HttpContext httpContext)
+          : this(
+              httpContext?.RequestServices?.GetRequiredService<ITwoLevelCache>(),
+              httpContext?.RequestServices?.GetRequiredService<IPermissionService>(),
+              httpContext?.RequestServices?.GetRequiredService<ITypeSource>(),
+              httpContext?.RequestServices,
+              httpContext?.User,
+              httpContext?.Request?.Path + httpContext?.Request?.QueryString,
+              httpContext?.Request?.PathBase ?? "")
         {
-            Items = TwoLevelCache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" + (Authorization.UserId ?? "-1"), TimeSpan.Zero,
-                UserPermissionRow.Fields.GenerationKey, () =>
-                    NavigationHelper.GetNavigationItems(x => 
-                        x != null && x.StartsWith("~/") ? VirtualPathUtility.ToAbsolute(x) : x));
+        }
 
+        public NavigationModel(ITwoLevelCache cache, IPermissionService permissions,
+            ITypeSource typeSource, IServiceProvider services, ClaimsPrincipal user,
+            string requestUrl, PathString pathBase)
+        {
+            if (cache is null)
+            	throw new ArgumentNullException(nameof(cache));
+            
+            Items = cache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" + 
+              (user?.GetIdentifier() ?? "-1"), TimeSpan.Zero,
+                UserPermissionRow.Fields.GenerationKey, () =>
+                    NavigationHelper.GetNavigationItems(permissions, typeSource,
+                    	services, x => x != null && x.StartsWith("~/") ?
+                    		VirtualPathUtility.ToAbsolute(PathBase, x) : x));
+
+            RequestUrl = requestUrl;
+            PathBase = pathBase;
             SetActivePath();
         }
 
         private void SetActivePath()
         {
             string currentUrl = "";
-            var httpContext = Dependency.Resolve<IHttpContextAccessor>().HttpContext;
-            if (httpContext != null)
+            if (RequestUrl != null)
             {
-                var requestUrl = httpContext.Request.GetDisplayUrl();
-
-                currentUrl = requestUrl.ToString();
-                if (!requestUrl.ToString().EndsWith("/") &&
-                    String.Compare(httpContext.Request.Path,
-                        HostingEnvironment.ApplicationVirtualPath, StringComparison.OrdinalIgnoreCase) == 0)
+                
+                currentUrl = RequestUrl;
+                if (!currentUrl.EndsWith("/") &&
+                    string.Compare(currentUrl.Split('?')[0], PathBase, StringComparison.OrdinalIgnoreCase) == 0)
                     currentUrl += "/";
             }
 
@@ -57,7 +80,7 @@ namespace Serene.Navigation
             var url = link.Url ?? "";
 
             if (url != null && url.StartsWith("~/", StringComparison.Ordinal))
-                url = VirtualPathUtility.ToAbsolute(url);
+                url = VirtualPathUtility.ToAbsolute(PathBase, url);
 
             if (currentUrl.IndexOf(url, StringComparison.OrdinalIgnoreCase) >= 0 &&
                 (bestMatchLength == 0 || url.Length > bestMatchLength))

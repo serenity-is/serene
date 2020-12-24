@@ -10,64 +10,55 @@ namespace Serene.Administration.Entities
     [DisplayName("UserPermissions"), InstanceName("UserPermissions")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    public sealed class UserPermissionRow : Row, IIdRow, INameRow
+    public sealed class UserPermissionRow : Row<UserPermissionRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("User Permission Id"), Identity]
+        [DisplayName("User Permission Id"), Identity, IdProperty]
         public Int64? UserPermissionId
         {
-            get { return Fields.UserPermissionId[this]; }
-            set { Fields.UserPermissionId[this] = value; }
+            get => fields.UserPermissionId[this];
+            set => fields.UserPermissionId[this] = value;
         }
 
         [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
         public Int32? UserId
         {
-            get { return Fields.UserId[this]; }
-            set { Fields.UserId[this] = value; }
+            get => fields.UserId[this];
+            set => fields.UserId[this] = value;
         }
 
-        [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch, NameProperty]
         public String PermissionKey
         {
-            get { return Fields.PermissionKey[this]; }
-            set { Fields.PermissionKey[this] = value; }
+            get => fields.PermissionKey[this];
+            set => fields.PermissionKey[this] = value;
         }
 
         [DisplayName("Grant")]
         public Boolean? Granted
         {
-            get { return Fields.Granted[this]; }
-            set { Fields.Granted[this] = value; }
+            get => fields.Granted[this];
+            set => fields.Granted[this] = value;
         }
 
         [DisplayName("User Username"), Expression("jUser.[Username]")]
         public String Username
         {
-            get { return Fields.Username[this]; }
-            set { Fields.Username[this] = value; }
+            get => fields.Username[this];
+            set => fields.Username[this] = value;
         }
 
         [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
         public String User
         {
-            get { return Fields.User[this]; }
-            set { Fields.User[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.UserPermissionId; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.PermissionKey; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.User[this];
+            set => fields.User[this] = value;
+        }
         public UserPermissionRow()
-            : base(Fields)
+        {
+        }
+
+        public UserPermissionRow(RowFields fields)
+            : base(fields)
         {
         }
 

@@ -1,23 +1,42 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Serenity;
+using Serenity.PropertyGrid;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
 using System.Collections.Generic;
-using System.Web.Hosting;
 using System.Reflection;
-#if !COREFX
-using System.Net.Mime;
-#endif
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Serene
 {
     [Route("Report/[action]")]
     public class ReportController : Controller
     {
+        protected EnvironmentSettings EnvironmentSettings { get; }
+        protected IReportRegistry ReportRegistry { get; }
+        protected IRequestContext Context { get; }
+        protected IWebHostEnvironment HostEnvironment { get; }
+
+        public ReportController(IReportRegistry reportRegistry, IRequestContext context, 
+            IWebHostEnvironment hostEnvironment, IOptions<EnvironmentSettings> environmentSettings = null)
+        {
+            ReportRegistry = reportRegistry ??
+                throw new ArgumentNullException(nameof(reportRegistry));
+            
+            Context = context ??
+                throw new ArgumentNullException(nameof(context));
+
+            HostEnvironment = hostEnvironment ??
+                throw new ArgumentNullException(nameof(hostEnvironment));
+
+            EnvironmentSettings = environmentSettings?.Value;
+        }
         public ActionResult Render(string key, string opt, string ext, int? print = 0)
         {
             return Execute(key, opt, ext, download: false, printing: print != 0);
@@ -38,17 +57,19 @@ namespace Serene
                 throw new ArgumentOutOfRangeException("reportKey");
 
             if (reportInfo.Permission != null)
-                Authorization.ValidatePermission(reportInfo.Permission);
+                Context.Permissions.ValidatePermission(reportInfo.Permission, Context.Localizer);;
 
-            var report = (IReport)JsonConvert.DeserializeObject(opt.TrimToNull() ?? "{}",
-                reportInfo.Type, JsonSettings.Tolerant);
+            var report = ActivatorUtilities.CreateInstance(HttpContext.RequestServices, reportInfo.Type) as IReport;
+            var json = opt.TrimToNull();
+            if (json != null)
+                JsonConvert.PopulateObject(json, report);
 
             byte[] renderedBytes = null;
 
-            if (report is IDataOnlyReport)
+            if (report is IDataOnlyReport dataOnlyReport)
             {
                 ext = "xlsx";
-                renderedBytes = new ReportRepository().Render((IDataOnlyReport)report);
+                renderedBytes = ReportRepository.Render(dataOnlyReport);
             }
             else
             {
@@ -93,12 +114,12 @@ namespace Serene
             }
 
             Response.Headers["Content-Disposition"] = "inline;filename=" + System.Net.WebUtility.UrlEncode(fileDownloadName);
-            return File(renderedBytes, UploadHelper.GetMimeType(fileDownloadName));
+            return File(renderedBytes, KnownMimeTypes.Get(fileDownloadName));
         }
 
         private byte[] RenderAsPdf(IReport report, string key, string opt)
         {
-            var externalUrl = Config.Get<EnvironmentSettings>().SiteExternalUrl ??
+            var externalUrl = EnvironmentSettings?.SiteExternalUrl ??
                 Request.GetBaseUri().ToString();
 
             var renderUrl = UriHelper.Combine(externalUrl, "Report/Render?" +
@@ -110,7 +131,10 @@ namespace Serene
             renderUrl += "&print=1";
 
             var converter = new HtmlToPdfConverter();
-            var wkhtmlPath = HostingEnvironment.MapPath("~/bin/wkhtmltopdf.exe");
+            var wkhtmlPath = System.IO.Path.Combine(typeof(ReportController).Assembly.Location, "wkhtmltopdf.exe");
+            if (!System.IO.File.Exists(wkhtmlPath)) // linux?
+                wkhtmlPath = System.IO.Path.Combine(typeof(ReportController).Assembly.Location, "wkhtmltopdf");
+
             if (System.IO.File.Exists(wkhtmlPath))
                 converter.UtilityExePath = wkhtmlPath;
             
@@ -156,9 +180,14 @@ namespace Serene
         }
 
         [HttpPost, JsonFilter]
-        public ActionResult Retrieve(ReportRetrieveRequest request)
+        public ActionResult Retrieve(ReportRetrieveRequest request, 
+            [FromServices] IPropertyItemProvider propertyItemProvider)
         {
-            return this.ExecuteMethod(() => new ReportRepository().Retrieve(request));
+            if (propertyItemProvider is null)
+                throw new ArgumentNullException(nameof(propertyItemProvider));
+
+            return this.ExecuteMethod(() => new ReportRepository(Context, ReportRegistry)
+                .Retrieve(request, HttpContext.RequestServices, propertyItemProvider));
         }
     }
 }

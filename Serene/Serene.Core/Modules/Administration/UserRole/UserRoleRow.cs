@@ -10,52 +10,48 @@ namespace Serene.Administration.Entities
     [DisplayName("UserRoles"), InstanceName("UserRoles")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    public sealed class UserRoleRow : Row, IIdRow
+    public sealed class UserRoleRow : Row<UserRoleRow.RowFields>, IIdRow
     {
-        [DisplayName("User Role Id"), Identity]
+        [DisplayName("User Role Id"), Identity, IdProperty]
         public Int64? UserRoleId
         {
-            get { return Fields.UserRoleId[this]; }
-            set { Fields.UserRoleId[this] = value; }
+            get => fields.UserRoleId[this];
+            set => fields.UserRoleId[this] = value;
         }
 
         [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
         public Int32? UserId
         {
-            get { return Fields.UserId[this]; }
-            set { Fields.UserId[this] = value; }
+            get => fields.UserId[this];
+            set => fields.UserId[this] = value;
         }
 
         [DisplayName("Role Id"), NotNull]
         public Int32? RoleId
         {
-            get { return Fields.RoleId[this]; }
-            set { Fields.RoleId[this] = value; }
+            get => fields.RoleId[this];
+            set => fields.RoleId[this] = value;
         }
 
         [DisplayName("User Username"), Expression("jUser.[Username]")]
         public String Username
         {
-            get { return Fields.Username[this]; }
-            set { Fields.Username[this] = value; }
+            get => fields.Username[this];
+            set => fields.Username[this] = value;
         }
 
         [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
         public String User
         {
-            get { return Fields.User[this]; }
-            set { Fields.User[this] = value; }
+            get => fields.User[this];
+            set => fields.User[this] = value;
         }
-
-        IIdField IIdRow.IdField
+        public UserRoleRow()
         {
-            get { return Fields.UserRoleId; }
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
-        public UserRoleRow()
-            : base(Fields)
+        public UserRoleRow(RowFields fields)
+            : base(fields)
         {
         }
 

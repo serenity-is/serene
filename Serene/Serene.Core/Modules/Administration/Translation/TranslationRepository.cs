@@ -1,31 +1,42 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
-using Serene.Administration.Entities;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.ComponentModel;
-using Serenity.Configuration;
-using Serenity.Extensibility;
 using Serenity.Localization;
 using Serenity.Navigation;
 using Serenity.Services;
 using Serenity.Web;
+using Serene.Administration.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Web.Hosting;
 
 namespace Serene.Administration.Repositories
 {
-    public class TranslationRepository
+    public class TranslationRepository : BaseRepository
     {
-        private static string GetUserTextsFilePath(string languageID)
+        protected IWebHostEnvironment HostEnvironment { get; }
+        protected ILocalTextRegistry LocalTextRegistry { get; }
+        protected ITypeSource TypeSource { get; }
+
+        public TranslationRepository(IRequestContext context, IWebHostEnvironment hostEnvironment, 
+            ILocalTextRegistry localTextRegistry, ITypeSource typeSource)
+             : base(context)
         {
-            return Path.Combine(Path.GetDirectoryName(HostingEnvironment.MapPath("~/")), 
-                "App_Data/texts/".Replace('/', Path.DirectorySeparatorChar)) + "user.texts." + (languageID.TrimToNull() ?? "invariant") + ".json";
+            HostEnvironment = hostEnvironment;
+            LocalTextRegistry = localTextRegistry;
+            TypeSource = typeSource;
+        }
+
+        public static string GetUserTextsFilePath(IWebHostEnvironment hostEnvironment, string languageID)
+        {
+            return Path.Combine(hostEnvironment.ContentRootPath, "App_Data", "texts", 
+                "user.texts." + (languageID.TrimToNull() ?? "invariant") + ".json");
         }
 
         public ListResponse<TranslationItem> List(TranslationListRequest request)
@@ -37,10 +48,10 @@ namespace Serene.Administration.Repositories
             
             var customTranslations = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-            var textsFilePath = GetUserTextsFilePath(targetLanguageID);           
+            var textsFilePath = GetUserTextsFilePath(HostEnvironment, targetLanguageID);           
             if (File.Exists(textsFilePath))
             {
-                var json = JsonConfigHelper.LoadConfig<Dictionary<string, JToken>>(textsFilePath);
+                var json = JSON.Parse<Dictionary<string, JToken>>(File.ReadAllText(textsFilePath));
                 JsonLocalTextRegistration.ProcessNestedDictionary(json, "", customTranslations);
                 foreach (var key in customTranslations.Keys)
                     availableKeys.Add(key);
@@ -50,7 +61,6 @@ namespace Serene.Administration.Repositories
             availableKeys.CopyTo(sorted);
             Array.Sort(sorted);
 
-            var registry = Dependency.Resolve<ILocalTextRegistry>();
             targetLanguageID = targetLanguageID ?? "";
             var sourceLanguageID = request.SourceLanguageID.TrimToEmpty();
 
@@ -80,8 +90,8 @@ namespace Serene.Administration.Repositories
                 result.Entities.Add(new TranslationItem
                 {
                     Key = key,
-                    SourceText = registry.TryGet(sourceLanguageID, key) ?? effective(key),
-                    TargetText = registry.TryGet(targetLanguageID, key) ?? effective(key),
+                    SourceText = LocalTextRegistry.TryGet(sourceLanguageID, key, false) ?? effective(key),
+                    TargetText = LocalTextRegistry.TryGet(targetLanguageID, key, false) ?? effective(key),
                     CustomText = customText
                 });
             }
@@ -93,34 +103,28 @@ namespace Serene.Administration.Repositories
         {
             var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
-            {
-                foreach (NavigationItemAttribute attr in assembly.GetCustomAttributes<NavigationItemAttribute>())
-                    result.Add("Navigation." + (attr.Category.IsEmptyOrNull() ? "" : attr.Category + "/") + attr.Title);
+            foreach (NavigationItemAttribute attr in TypeSource.GetAssemblyAttributes<NavigationItemAttribute>())
+                result.Add("Navigation." + (attr.Category.IsEmptyOrNull() ? "" : attr.Category + "/") + attr.Title);
 
-                foreach (var type in assembly.GetTypes())
+            foreach (var type in TypeSource.GetTypesWithAttribute(typeof(FormScriptAttribute)))
+            {
+                var attr = type.GetAttribute<FormScriptAttribute>();
+                foreach (var member in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
                 {
-                    var attr = type.GetCustomAttribute<FormScriptAttribute>();
-                    if (attr != null)
-                    {
-                        foreach (var member in type.GetMembers(BindingFlags.Instance | BindingFlags.Public))
-                        {
-                            var category = member.GetCustomAttribute<CategoryAttribute>();
-                            if (category != null && !category.Category.IsEmptyOrNull())
-                                result.Add("Forms." + attr.Key + ".Categories." + category.Category);
-                        }
-                    }
+                    var category = member.GetCustomAttribute<CategoryAttribute>();
+                    if (category != null && !category.Category.IsEmptyOrNull())
+                        result.Add("Forms." + attr.Key + ".Categories." + category.Category);
                 }
             }
 
-            var repository = Dependency.Resolve<ILocalTextRegistry>() as LocalTextRegistry;
+            var repository = LocalTextRegistry as LocalTextRegistry;
             if (repository != null)
                 result.AddRange(repository.GetAllTextKeys(false));
 
             return result;
         }
 
-        public SaveResponse Update(TranslationUpdateRequest request)
+        public SaveResponse Update(TranslationUpdateRequest request, IServiceProvider services)
         {
             if (request.Translations == null)
                 throw new ArgumentNullException("translations");
@@ -140,16 +144,15 @@ namespace Serene.Administration.Repositories
 
             string json = JSON.StringifyIndented(result, indentation: 2);
 
-            var textsFilePath = GetUserTextsFilePath(request.TargetLanguageID);
+            var textsFilePath = GetUserTextsFilePath(HostEnvironment, request.TargetLanguageID);
             Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));
             File.WriteAllText(textsFilePath, json);
 
-            var localTextRegistry = Dependency.Resolve<ILocalTextRegistry>();
-            (localTextRegistry as IRemoveAll)?.RemoveAll();
-            Startup.InitializeLocalTexts(localTextRegistry, Dependency.Resolve<IWebHostEnvironment>());
+            (LocalTextRegistry as IRemoveAll)?.RemoveAll();
+            Startup.InitializeLocalTexts(services);
 
-            TwoLevelCache.ExpireGroupItems(UserRow.Fields.GenerationKey);
-            DynamicScriptManager.Reset();
+            Cache.ExpireGroupItems(UserRow.Fields.GenerationKey);
+            services.GetService<IDynamicScriptManager>()?.Reset();
 
             return new SaveResponse();
         }

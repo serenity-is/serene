@@ -8,7 +8,8 @@ namespace Serene.Administration.Lookups
     [LookupScript]
     public sealed class LanguageLookup : RowLookupScript<LanguageRow>
     {
-        public LanguageLookup()
+        public LanguageLookup(ISqlConnections sqlConnections)
+            : base(sqlConnections)
         {
             IdField = LanguageRow.Fields.LanguageId.PropertyName;
             Permission = "*";

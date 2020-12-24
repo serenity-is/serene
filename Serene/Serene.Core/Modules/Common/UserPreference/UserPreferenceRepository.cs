@@ -1,5 +1,5 @@
-﻿using Serenity;
-using Serenity.Data;
+﻿using System;
+using Serenity;using Serenity.Data;
 using Serenity.Services;
 using System.Data;
 using MyRow = Serene.Common.Entities.UserPreferenceRow;
@@ -7,17 +7,25 @@ using MyRow = Serene.Common.Entities.UserPreferenceRow;
 
 namespace Serene.Common.Repositories
 {
-    public class UserPreferenceRepository
+    public class UserPreferenceRepository : BaseRepository
     {
+        public UserPreferenceRepository(IRequestContext context)
+             : base(context)
+        {
+        }
+
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
         public SaveResponse Update(IUnitOfWork uow, UserPreferenceUpdateRequest request)
         {
-            Check.NotNull(request, "request");
-            Check.NotNull(request.Name, "name");
-            Check.NotNull(request.PreferenceType, "preferenceType");
+            if (request is null)
+                throw new ArgumentNullException("request");
+            if (request.Name is null)
+                throw new ArgumentNullException("name");
+            if (request.PreferenceType is null)
+                throw new ArgumentNullException("preferenceType");
 
-            var userId = (Authorization.UserDefinition as UserDefinition).UserId;
+            var userId = Convert.ToInt32(Context.User.GetIdentifier());
 
             var criteria = fld.UserId == userId &
                 fld.PreferenceType == request.PreferenceType &
@@ -50,11 +58,14 @@ namespace Serene.Common.Repositories
 
         public UserPreferenceRetrieveResponse Retrieve(IDbConnection connection, UserPreferenceRetrieveRequest request)
         {
-            Check.NotNull(request, "request");
-            Check.NotNull(request.Name, "name");
-            Check.NotNull(request.PreferenceType, "preferenceType");
+            if (request is null)
+                throw new ArgumentNullException("request");
+            if (request.Name is null)
+                throw new ArgumentNullException("name");
+            if (request.PreferenceType is null)
+                throw new ArgumentNullException("preferenceType");
 
-            var userId = (Authorization.UserDefinition as UserDefinition).UserId;
+            var userId = Convert.ToInt32(Context.User.GetIdentifier());
             var row = connection.TryFirst<MyRow>(
                 fld.UserId == userId &
                 fld.PreferenceType == request.PreferenceType &

@@ -1,7 +1,10 @@
-﻿using Serene.Administration.Entities;
+﻿using Microsoft.Extensions.Caching.Memory;
+using MyRow = Serene.Administration.Entities.UserPermissionRow;
+using Serene.Administration.Entities;
 using Serenity;
+using Serenity.Abstractions;
+using Serenity.ComponentModel;
 using Serenity.Data;
-using Serenity.Extensibility;
 using Serenity.Localization;
 using Serenity.Services;
 using Serenity.Web;
@@ -10,19 +13,26 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using MyRow = Serene.Administration.Entities.UserPermissionRow;
 
 namespace Serene.Administration.Repositories
 {
-    public class UserPermissionRepository
+    public class UserPermissionRepository : BaseRepository
     {
+        public UserPermissionRepository(IRequestContext context)
+             : base(context)
+        {
+        }
+
         private static MyRow.RowFields fld { get { return MyRow.Fields; } }
 
         public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
         {
-            Check.NotNull(request, "request");
-            Check.NotNull(request.UserID, "userID");
-            Check.NotNull(request.Permissions, "permissions");
+            if (request is null)
+                throw new ArgumentNullException("request");
+            if (request.UserID is null)
+                throw new ArgumentNullException("userID");
+            if (request.Permissions is null)
+                throw new ArgumentNullException("permissions");
 
             var userID = request.UserID.Value;
             var oldList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -71,7 +81,7 @@ namespace Serene.Administration.Repositories
                 }
             }
 
-            BatchGenerationUpdater.OnCommit(uow, fld.GenerationKey);
+            Cache.InvalidateOnCommit(uow, fld);
 
             return new SaveResponse();
         }
@@ -102,8 +112,10 @@ namespace Serene.Administration.Repositories
 
         public ListResponse<UserPermissionRow> List(IDbConnection connection, UserPermissionListRequest request)
         {
-            Check.NotNull(request, "request");
-            Check.NotNull(request.UserID, "userID");
+            if (request is null)
+                throw new ArgumentNullException("request");
+            if (request.UserID is null)
+                throw new ArgumentNullException("userID");
 
             string prefix = "";
             string module = request.Module.TrimToEmpty();
@@ -124,8 +136,10 @@ namespace Serene.Administration.Repositories
 
         public ListResponse<string> ListRolePermissions(IDbConnection connection, UserPermissionListRequest request)
         {
-            Check.NotNull(request, "request");
-            Check.NotNull(request.UserID, "userID");
+            if (request is null)
+                throw new ArgumentNullException("request");
+            if (request.UserID is null)
+                throw new ArgumentNullException("userID");
 
             string prefix = "";
             var module = request.Module.TrimToEmpty();
@@ -188,7 +202,6 @@ namespace Serene.Administration.Repositories
             }
         }
 
-#if COREFX
         private void ProcessAttributes<TAttr>(HashSet<string> hash,
                 Type member, Func<TAttr, string> getPermission)
             where TAttr : Attribute
@@ -206,39 +219,38 @@ namespace Serene.Administration.Repositories
                 // GetCustomAttributes might fail before .NET 4.6
             }
         }
-#endif
 
-        public ListResponse<string> ListPermissionKeys()
+        public ListResponse<string> ListPermissionKeys(ISqlConnections sqlConnections, ITypeSource typeSource)
         {
-            return LocalCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
+            if (typeSource is null)
+                throw new ArgumentNullException(nameof(typeSource));
+
+            return Cache.Memory.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
             {
                 var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-                result.AddRange(NestedPermissionKeyRegistration.AddNestedPermissions(registry: null));
+                result.AddRange(NestedPermissionKeyRegistration.AddNestedPermissions(registry: null, typeSource));
 
-                foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
+                foreach (var attr in typeSource.GetAssemblyAttributes<PermissionAttributeBase>())
+                    if (!attr.Permission.IsEmptyOrNull())
+                        result.AddRange(SplitPermissions(attr.Permission));
+ 
+                foreach (var type in typeSource.GetTypes())
                 {
-                    foreach (var attr in assembly.GetCustomAttributes<PermissionAttributeBase>())
-                        if (!attr.Permission.IsEmptyOrNull())
-                            result.AddRange(SplitPermissions(attr.Permission));
-
-                    foreach (var type in assembly.GetTypes())
+                    ProcessAttributes<PageAuthorizeAttribute>(result, type, x => x.Permission);
+                    ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
+                    ProcessAttributes<ServiceAuthorizeAttribute>(result, type, x => x.Permission);
+ 
+                    foreach (var member in type.GetMethods(BindingFlags.Instance | BindingFlags.Public))
                     {
-                        ProcessAttributes<PageAuthorizeAttribute>(result, type, x => x.Permission);
-                        ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
-                        ProcessAttributes<ServiceAuthorizeAttribute>(result, type, x => x.Permission);
-
-                        foreach (var member in type.GetMethods(BindingFlags.Instance | BindingFlags.Public))
-                        {
-                            ProcessAttributes<PageAuthorizeAttribute>(result, member, x => x.Permission);
-                            ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
-                            ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
-                        }
-
-                        foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
-                            if (member.GetIndexParameters().Length == 0)
-                                ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
+                        ProcessAttributes<PageAuthorizeAttribute>(result, member, x => x.Permission);
+                        ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
+                        ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
                     }
+ 
+                    foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
+                        if (member.GetIndexParameters().Length == 0)
+                            ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                 }
 
                 result.Remove("*");
@@ -251,11 +263,16 @@ namespace Serene.Administration.Repositories
             });
         }
 
-        public Dictionary<string, HashSet<string>> ImplicitPermissions
+        public static IDictionary<string, HashSet<string>> GetImplicitPermissions(IMemoryCache memoryCache, 
+            ITypeSource typeSource)
         {
-            get
-            {
-                return LocalCache.Get("ImplicitPermissions", TimeSpan.Zero, () =>
+            if (memoryCache is null)
+                throw new ArgumentNullException(nameof(memoryCache));
+
+            if (typeSource is null)
+                throw new ArgumentNullException(nameof(typeSource));
+
+            return memoryCache.Get<IDictionary<string, HashSet<string>>>("ImplicitPermissions", TimeSpan.Zero, () => 
                 {
                     var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
 
@@ -289,19 +306,14 @@ namespace Serene.Administration.Repositories
                             addFrom(nested);
                     };
 
-                    foreach (var assembly in ExtensibilityHelper.SelfAssemblies)
-                    {
-                        foreach (var type in assembly.GetTypes())
-                        {
-                            var attr = type.GetCustomAttribute<NestedPermissionKeysAttribute>();
-                            if (attr != null)
-                                addFrom(type);
-                        }
-                    }
 
+                    foreach (var type in typeSource.GetTypesWithAttribute(
+                        typeof(NestedPermissionKeysAttribute)))
+                    {
+                        addFrom(type);
+                    }
                     return result;
                 });
-            }
         }
     }
 }

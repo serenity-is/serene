@@ -10,52 +10,49 @@ namespace Serene.Northwind.Entities
     [DisplayName("Customer Gross Sales")]
     [ReadPermission("Northwind:General")]
     [ModifyPermission("Northwind:General")]
-    public sealed class CustomerGrossSalesRow : Row, INameRow
+    public sealed class CustomerGrossSalesRow : Row<CustomerGrossSalesRow.RowFields>, INameRow
     {
         [DisplayName("Customer Id"), Column("CustomerID"), NotNull]
         public String CustomerId
         {
-            get { return Fields.CustomerId[this]; }
-            set { Fields.CustomerId[this] = value; }
+            get => fields.CustomerId[this];
+            set => fields.CustomerId[this] = value;
         }
 
-        [DisplayName("Contact Name"), Size(40), NotNull, QuickSearch]
+        [DisplayName("Contact Name"), Size(40), NotNull, QuickSearch, NameProperty]
         public String ContactName
         {
-            get { return Fields.ContactName[this]; }
-            set { Fields.ContactName[this] = value; }
+            get => fields.ContactName[this];
+            set => fields.ContactName[this] = value;
         }
 
         [DisplayName("Product Id"), Column("ProductID"), NotNull]
         public Int32? ProductId
         {
-            get { return Fields.ProductId[this]; }
-            set { Fields.ProductId[this] = value; }
+            get => fields.ProductId[this];
+            set => fields.ProductId[this] = value;
         }
 
         [DisplayName("Product Name"), Size(40), NotNull, QuickSearch]
         public String ProductName
         {
-            get { return Fields.ProductName[this]; }
-            set { Fields.ProductName[this] = value; }
+            get => fields.ProductName[this];
+            set => fields.ProductName[this] = value;
         }
 
         [DisplayName("Gross Amount"), Size(19), Scale(2)]
         public Decimal? GrossAmount
         {
-            get { return Fields.GrossAmount[this]; }
-            set { Fields.GrossAmount[this] = value; }
+            get => fields.GrossAmount[this];
+            set => fields.GrossAmount[this] = value;
         }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.ContactName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+
         public CustomerGrossSalesRow()
-            : base(Fields)
+        {
+        }
+
+        public CustomerGrossSalesRow(RowFields fields)
+            : base(fields)
         {
         }
 

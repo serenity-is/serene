@@ -5,21 +5,24 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
+using Serene.AppServices;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
+using Serenity.Reporting;
 using Serenity.Services;
+using Serenity.Web;
 using Serenity.Web.Middleware;
-using Serene.AppServices;
 using System;
-using System.Data.SqlClient;
+using System.Data.Common;
 using System.IO;
 
 namespace Serene
@@ -37,6 +40,24 @@ namespace Serene
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ITypeSource>(new DefaultTypeSource(new[] 
+            {
+                typeof(LocalTextRegistry).Assembly,
+                typeof(ISqlConnections).Assembly,
+                typeof(IRow).Assembly,
+                typeof(SaveRequestHandler<>).Assembly,
+                typeof(IDynamicScriptManager).Assembly,
+                typeof(Startup).Assembly
+            }));
+
+            services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
+            services.Configure<CssBundlingOptions>(Configuration.GetSection(CssBundlingOptions.SectionKey));
+            services.Configure<LocalTextPackages>(Configuration.GetSection(LocalTextPackages.SectionKey));
+            services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
+            services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
+
+            services.Configure<EnvironmentSettings>(Configuration.GetSection(EnvironmentSettings.SectionKey));
+
             services.AddAntiforgery(options => 
             {
                 options.HeaderName = "X-CSRF-TOKEN";
@@ -88,47 +109,42 @@ namespace Serene
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddConfig(Configuration);
-            services.AddCaching();
-            services.AddTextRegistry();
-            services.AddFileLogging();
-            services.AddSingleton<IAuthenticationService, Administration.AuthenticationService>();
-            services.AddSingleton<IAuthorizationService, Administration.AuthorizationService>();
+            services.AddSingleton<IReportRegistry, ReportRegistry>();
+            services.AddSingleton<IDataMigrations, DataMigrations>();
+            services.AddSingleton<Common.IEmailSender, Common.EmailSender>();
+            services.AddServiceHandlers();
+            services.AddDynamicScripts();
+            services.AddCssBundling();
+            services.AddScriptBundling();
+            services.AddUploadStorage();
+            services.AddSingleton<Administration.IUserPasswordValidator, Administration.UserPasswordValidator>();
+            services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
+            services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
         }
 
-        public static void InitializeLocalTexts(ILocalTextRegistry textRegistry, IWebHostEnvironment env)
+        public static void InitializeLocalTexts(IServiceProvider services)
         {
-            textRegistry.AddNestedTexts();
-            textRegistry.AddNestedPermissions();
-            textRegistry.AddEnumTexts();
-            textRegistry.AddRowTexts();
-            textRegistry.AddJsonTexts(Path.Combine(env.WebRootPath, "Scripts/serenity/texts".Replace('/', Path.DirectorySeparatorChar)));
-            textRegistry.AddJsonTexts(Path.Combine(env.WebRootPath, "Scripts/site/texts".Replace('/', Path.DirectorySeparatorChar)));
-            textRegistry.AddJsonTexts(Path.Combine(env.ContentRootPath, "App_Data/texts".Replace('/', Path.DirectorySeparatorChar)));
+            var env = services.GetRequiredService<IWebHostEnvironment>();
+
+            services.AddAllTexts(new[]
+            {
+                Path.Combine(env.WebRootPath, "Scripts", "serenity", "texts"),
+                Path.Combine(env.WebRootPath, "Scripts", "site", "texts"),
+                Path.Combine(env.ContentRootPath, "App_Data", "texts")
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
-            Serenity.Extensibility.ExtensibilityHelper.SelfAssemblies = new System.Reflection.Assembly[]
-            {
-                typeof(LocalTextRegistry).Assembly,
-                typeof(SqlConnections).Assembly,
-                typeof(Row).Assembly,
-                typeof(SaveRequestHandler<>).Assembly,
-                typeof(WebSecurityHelper).Assembly,
-                typeof(Startup).Assembly
-            };
+
 
             SqlSettings.AutoQuotedIdentifiers = true;
             RegisterDataProviders();
 
-            Dependency.SetResolver(new AppServices.DependencyResolver(app.ApplicationServices));
-
-            var textRegistry = app.ApplicationServices.GetRequiredService<ILocalTextRegistry>();
-            InitializeLocalTexts(textRegistry, env);
+            InitializeLocalTexts(app.ApplicationServices);
 
             var reqLocOpt = new RequestLocalizationOptions();
             reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
@@ -160,13 +176,13 @@ namespace Serene
                 endpoints.MapControllers();
             });
 
-            DataMigrations.Initialize();
+            app.ApplicationServices.GetRequiredService<IDataMigrations>().Initialize();
         }
 
         public static void RegisterDataProviders()
         {
-#if COREFX
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+            DbProviderFactories.RegisterFactory("Microsoft.Data.SqlClient", SqlClientFactory.Instance);
             DbProviderFactories.RegisterFactory("Microsoft.Data.Sqlite", Microsoft.Data.Sqlite.SqliteFactory.Instance);
 
             // to enable FIREBIRD: add FirebirdSql.Data.FirebirdClient reference, set connections, and uncomment line below
@@ -177,7 +193,6 @@ namespace Serene
 
             // to enable POSTGRES: add Npgsql reference, set connections, and uncomment line below
             // DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
-#endif
         }
     }
 }

@@ -1,4 +1,4 @@
-using Serenity.Data;
+﻿using Serenity.Data;
 using Serenity.Services;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,7 @@ namespace Serene.Northwind.Endpoints
     {
         public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
         {
-            return new MyRepository().List(connection, request);
+            return new MyRepository(Context).List(connection, request);
         }
     }
 }

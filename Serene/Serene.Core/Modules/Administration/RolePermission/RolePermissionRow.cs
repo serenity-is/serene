@@ -10,50 +10,41 @@ namespace Serene.Administration.Entities
     [DisplayName("Role Permissions"), InstanceName("Role Permission")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
-    public sealed class RolePermissionRow : Row, IIdRow, INameRow
+    public sealed class RolePermissionRow : Row<RolePermissionRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Role Permission Id"), Identity]
+        [DisplayName("Role Permission Id"), Identity, IdProperty]
         public Int64? RolePermissionId
         {
-            get { return Fields.RolePermissionId[this]; }
-            set { Fields.RolePermissionId[this] = value; }
+            get => fields.RolePermissionId[this];
+            set => fields.RolePermissionId[this] = value;
         }
 
         [DisplayName("Role Id"), NotNull, ForeignKey("Roles", "RoleId"), LeftJoin("jRole")]
         public Int32? RoleId
         {
-            get { return Fields.RoleId[this]; }
-            set { Fields.RoleId[this] = value; }
+            get => fields.RoleId[this];
+            set => fields.RoleId[this] = value;
         }
 
-        [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch]
+        [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch, NameProperty]
         public String PermissionKey
         {
-            get { return Fields.PermissionKey[this]; }
-            set { Fields.PermissionKey[this] = value; }
+            get => fields.PermissionKey[this];
+            set => fields.PermissionKey[this] = value;
         }
 
         [DisplayName("Role Role Name"), Expression("jRole.[RoleName]")]
         public String RoleRoleName
         {
-            get { return Fields.RoleRoleName[this]; }
-            set { Fields.RoleRoleName[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.RolePermissionId; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.PermissionKey; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.RoleRoleName[this];
+            set => fields.RoleRoleName[this] = value;
+        }
         public RolePermissionRow()
-            : base(Fields)
+        {
+        }
+
+        public RolePermissionRow(RowFields fields)
+            : base(fields)
         {
         }
 

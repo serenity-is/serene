@@ -1,5 +1,5 @@
 ﻿using Serenity;
-using Serenity.Extensibility;
+using Serenity.ComponentModel;
 
 namespace Serene
 {

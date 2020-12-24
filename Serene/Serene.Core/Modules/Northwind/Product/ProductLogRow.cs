@@ -7,145 +7,141 @@ using System;
 namespace Serene.Northwind.Entities
 {
     [ConnectionKey("Northwind"), Module("Northwind"), TableName("ProductLog")]
-    public sealed class ProductLogRow : Row, ICaptureLogRow
+    public sealed class ProductLogRow : Row<ProductLogRow.RowFields>, ICaptureLogRow
     {
-        [Identity]
+        [Identity, IdProperty]
         public Int64? ProductLogID
         {
-            get { return Fields.ProductLogID[this]; }
-            set { Fields.ProductLogID[this] = value; }
+            get => fields.ProductLogID[this];
+            set => fields.ProductLogID[this] = value;
         }
 
         public CaptureOperationType? OperationType
         {
-            get { return (CaptureOperationType?)Fields.OperationType[this]; }
-            set { Fields.OperationType[this] = (Int16?)value; }
+            get => fields.OperationType[this];
+            set => fields.OperationType[this] = value;
         }
 
         public Int32? ChangingUserId
         {
-            get { return Fields.ChangingUserId[this]; }
-            set { Fields.ChangingUserId[this] = value; }
+            get => fields.ChangingUserId[this];
+            set => fields.ChangingUserId[this] = value;
         }
 
         public DateTime? ValidFrom
         {
-            get { return Fields.ValidFrom[this]; }
-            set { Fields.ValidFrom[this] = value; }
+            get => fields.ValidFrom[this];
+            set => fields.ValidFrom[this] = value;
         }
 
         public DateTime? ValidUntil
         {
-            get { return Fields.ValidUntil[this]; }
-            set { Fields.ValidUntil[this] = value; }
+            get => fields.ValidUntil[this];
+            set => fields.ValidUntil[this] = value;
         }
 
         [NotNull]
         public Int32? ProductID
         {
-            get { return Fields.ProductID[this]; }
-            set { Fields.ProductID[this] = value; }
+            get => fields.ProductID[this];
+            set => fields.ProductID[this] = value;
         }
 
         [Size(40)]
         public String ProductName
         {
-            get { return Fields.ProductName[this]; }
-            set { Fields.ProductName[this] = value; }
+            get => fields.ProductName[this];
+            set => fields.ProductName[this] = value;
         }
 
         [Size(100)]
         public String ProductImage
         {
-            get { return Fields.ProductImage[this]; }
-            set { Fields.ProductImage[this] = value; }
+            get => fields.ProductImage[this];
+            set => fields.ProductImage[this] = value;
         }
 
         public Boolean? Discontinued
         {
-            get { return Fields.Discontinued[this]; }
-            set { Fields.Discontinued[this] = value; }
+            get => fields.Discontinued[this];
+            set => fields.Discontinued[this] = value;
         }
 
         public Int32? SupplierID
         {
-            get { return Fields.SupplierID[this]; }
-            set { Fields.SupplierID[this] = value; }
+            get => fields.SupplierID[this];
+            set => fields.SupplierID[this] = value;
         }
 
         public Int32? CategoryID
         {
-            get { return Fields.CategoryID[this]; }
-            set { Fields.CategoryID[this] = value; }
+            get => fields.CategoryID[this];
+            set => fields.CategoryID[this] = value;
         }
 
         public String QuantityPerUnit
         {
-            get { return Fields.QuantityPerUnit[this]; }
-            set { Fields.QuantityPerUnit[this] = value; }
+            get => fields.QuantityPerUnit[this];
+            set => fields.QuantityPerUnit[this] = value;
         }
 
         [Scale(4)]
         public Decimal? UnitPrice
         {
-            get { return Fields.UnitPrice[this]; }
-            set { Fields.UnitPrice[this] = value; }
+            get => fields.UnitPrice[this];
+            set => fields.UnitPrice[this] = value;
         }
 
         public Int16? UnitsInStock
         {
-            get { return Fields.UnitsInStock[this]; }
-            set { Fields.UnitsInStock[this] = value; }
+            get => fields.UnitsInStock[this];
+            set => fields.UnitsInStock[this] = value;
         }
 
         public Int16? UnitsOnOrder
         {
-            get { return Fields.UnitsOnOrder[this]; }
-            set { Fields.UnitsOnOrder[this] = value; }
+            get => fields.UnitsOnOrder[this];
+            set => fields.UnitsOnOrder[this] = value;
         }
 
         public Int16? ReorderLevel
         {
-            get { return Fields.ReorderLevel[this]; }
-            set { Fields.ReorderLevel[this] = value; }
+            get => fields.ReorderLevel[this];
+            set => fields.ReorderLevel[this] = value;
         }
-
-        IIdField IIdRow.IdField
+        EnumField<CaptureOperationType> ICaptureLogRow.OperationTypeField
         {
-            get { return Fields.ProductLogID; }
-        }
-
-        Int16Field ICaptureLogRow.OperationTypeField
-        {
-            get { return Fields.OperationType; }
+            get => fields.OperationType;
         }
 
         Field ICaptureLogRow.ChangingUserIdField
         {
-            get { return Fields.ChangingUserId; }
+            get => fields.ChangingUserId;
         }
 
         DateTimeField ICaptureLogRow.ValidFromField
         {
-            get { return Fields.ValidFrom; }
+            get => fields.ValidFrom;
         }
 
         DateTimeField ICaptureLogRow.ValidUntilField
         {
-            get { return Fields.ValidUntil; }
+            get => fields.ValidUntil;
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
         public ProductLogRow()
-            : base(Fields)
+        {
+        }
+
+        public ProductLogRow(RowFields fields)
+            : base(fields)
         {
         }
 
         public class RowFields : RowFieldsBase
         {
             public Int64Field ProductLogID;
-            public Int16Field OperationType;
+            public EnumField<CaptureOperationType> OperationType;
             public Int32Field ChangingUserId;
             public DateTimeField ValidFrom;
             public DateTimeField ValidUntil;

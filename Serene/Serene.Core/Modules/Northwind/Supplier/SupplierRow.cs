@@ -11,106 +11,97 @@ namespace Serene.Northwind.Entities
     [ReadPermission(PermissionKeys.General)]
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript]
-    public sealed class SupplierRow : Row, IIdRow, INameRow
+    public sealed class SupplierRow : Row<SupplierRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Supplier Id"), Identity]
+        [DisplayName("Supplier Id"), Identity, IdProperty]
         public Int32? SupplierID
         {
-            get { return Fields.SupplierID[this]; }
-            set { Fields.SupplierID[this] = value; }
+            get => fields.SupplierID[this];
+            set => fields.SupplierID[this] = value;
         }
 
-        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch]
+        [DisplayName("Company Name"), Size(40), NotNull, QuickSearch, NameProperty]
         public String CompanyName
         {
-            get { return Fields.CompanyName[this]; }
-            set { Fields.CompanyName[this] = value; }
+            get => fields.CompanyName[this];
+            set => fields.CompanyName[this] = value;
         }
 
         [DisplayName("Contact Name"), Size(30)]
         public String ContactName
         {
-            get { return Fields.ContactName[this]; }
-            set { Fields.ContactName[this] = value; }
+            get => fields.ContactName[this];
+            set => fields.ContactName[this] = value;
         }
 
         [DisplayName("Contact Title"), Size(30)]
         public String ContactTitle
         {
-            get { return Fields.ContactTitle[this]; }
-            set { Fields.ContactTitle[this] = value; }
+            get => fields.ContactTitle[this];
+            set => fields.ContactTitle[this] = value;
         }
 
         [DisplayName("Address"), Size(60)]
         public String Address
         {
-            get { return Fields.Address[this]; }
-            set { Fields.Address[this] = value; }
+            get => fields.Address[this];
+            set => fields.Address[this] = value;
         }
 
         [DisplayName("City"), Size(15)]
         public String City
         {
-            get { return Fields.City[this]; }
-            set { Fields.City[this] = value; }
+            get => fields.City[this];
+            set => fields.City[this] = value;
         }
 
         [DisplayName("Region"), Size(15)]
         public String Region
         {
-            get { return Fields.Region[this]; }
-            set { Fields.Region[this] = value; }
+            get => fields.Region[this];
+            set => fields.Region[this] = value;
         }
 
         [DisplayName("Postal Code"), Size(10)]
         public String PostalCode
         {
-            get { return Fields.PostalCode[this]; }
-            set { Fields.PostalCode[this] = value; }
+            get => fields.PostalCode[this];
+            set => fields.PostalCode[this] = value;
         }
 
         [DisplayName("Country"), Size(15), LookupFiltering("Northwind.SupplierCountry")]
         public String Country
         {
-            get { return Fields.Country[this]; }
-            set { Fields.Country[this] = value; }
+            get => fields.Country[this];
+            set => fields.Country[this] = value;
         }
 
         [DisplayName("Phone"), Size(24)]
         public String Phone
         {
-            get { return Fields.Phone[this]; }
-            set { Fields.Phone[this] = value; }
+            get => fields.Phone[this];
+            set => fields.Phone[this] = value;
         }
 
         [DisplayName("Fax"), Size(24)]
         public String Fax
         {
-            get { return Fields.Fax[this]; }
-            set { Fields.Fax[this] = value; }
+            get => fields.Fax[this];
+            set => fields.Fax[this] = value;
         }
 
         [DisplayName("Home Page")]
         public String HomePage
         {
-            get { return Fields.HomePage[this]; }
-            set { Fields.HomePage[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.SupplierID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CompanyName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.HomePage[this];
+            set => fields.HomePage[this] = value;
+        }
         public SupplierRow()
-            : base(Fields)
+        {
+        }
+
+        public SupplierRow(RowFields fields)
+            : base(fields)
         {
         }
 

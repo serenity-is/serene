@@ -1,4 +1,4 @@
-using Serenity.Data;
+﻿using Serenity.Data;
 using Serenity.Services;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +14,12 @@ namespace Serene.Common.Endpoints
         [HttpPost]
         public ServiceResponse Update(IUnitOfWork uow, UserPreferenceUpdateRequest request)
         {
-            return new MyRepository().Update(uow, request);
+            return new MyRepository(Context).Update(uow, request);
         }
 
         public UserPreferenceRetrieveResponse Retrieve(IDbConnection connection, UserPreferenceRetrieveRequest request)
         {
-            return new MyRepository().Retrieve(connection, request);
+            return new MyRepository(Context).Retrieve(connection, request);
         }
     }
 }

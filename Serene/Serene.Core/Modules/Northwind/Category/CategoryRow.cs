@@ -13,50 +13,41 @@ namespace Serene.Northwind.Entities
     [ModifyPermission(PermissionKeys.General)]
     [LookupScript]
     [LocalizationRow(typeof(CategoryLangRow))]
-    public sealed class CategoryRow : Row, IIdRow, INameRow
+    public sealed class CategoryRow : Row<CategoryRow.RowFields>, IIdRow, INameRow
     {
-        [DisplayName("Category Id"), Identity]
+        [DisplayName("Category Id"), Identity, IdProperty]
         public Int32? CategoryID
         {
-            get { return Fields.CategoryID[this]; }
-            set { Fields.CategoryID[this] = value; }
+            get => fields.CategoryID[this];
+            set => fields.CategoryID[this] = value;
         }
 
-        [DisplayName("Category Name"), Size(15), NotNull, QuickSearch]
+        [DisplayName("Category Name"), Size(15), NotNull, QuickSearch, NameProperty, Localizable(true)]
         public String CategoryName
         {
-            get { return Fields.CategoryName[this]; }
-            set { Fields.CategoryName[this] = value; }
+            get => fields.CategoryName[this];
+            set => fields.CategoryName[this] = value;
         }
 
-        [DisplayName("Description"), QuickSearch]
+        [DisplayName("Description"), QuickSearch, Localizable(true)]
         public String Description
         {
-            get { return Fields.Description[this]; }
-            set { Fields.Description[this] = value; }
+            get => fields.Description[this];
+            set => fields.Description[this] = value;
         }
 
         [DisplayName("Picture")]
         public Stream Picture
         {
-            get { return Fields.Picture[this]; }
-            set { Fields.Picture[this] = value; }
-        }
-
-        IIdField IIdRow.IdField
-        {
-            get { return Fields.CategoryID; }
-        }
-
-        StringField INameRow.NameField
-        {
-            get { return Fields.CategoryName; }
-        }
-
-        public static readonly RowFields Fields = new RowFields().Init();
-
+            get => fields.Picture[this];
+            set => fields.Picture[this] = value;
+        }
         public CategoryRow()
-            : base(Fields)
+        {
+        }
+
+        public CategoryRow(RowFields fields)
+            : base(fields)
         {
         }
 

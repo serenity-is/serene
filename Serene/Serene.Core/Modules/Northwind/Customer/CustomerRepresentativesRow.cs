@@ -10,38 +10,34 @@ namespace Serene.Northwind.Entities
     [DisplayName("CustomerRepresentatives"), InstanceName("CustomerRepresentatives")]
     [ReadPermission(PermissionKeys.Customer.View)]
     [ModifyPermission(PermissionKeys.Customer.View)]
-    public sealed class CustomerRepresentativesRow : Row, IIdRow
+    public sealed class CustomerRepresentativesRow : Row<CustomerRepresentativesRow.RowFields>, IIdRow
     {
-        [DisplayName("Representative Id"), Column("RepresentativeID"), Identity]
+        [DisplayName("Representative Id"), Column("RepresentativeID"), Identity, IdProperty]
         public Int32? RepresentativeId
         {
-            get { return Fields.RepresentativeId[this]; }
-            set { Fields.RepresentativeId[this] = value; }
+            get => fields.RepresentativeId[this];
+            set => fields.RepresentativeId[this] = value;
         }
 
         [DisplayName("Customer Id"), Column("CustomerID"), NotNull]
         public Int32? CustomerId
         {
-            get { return Fields.CustomerId[this]; }
-            set { Fields.CustomerId[this] = value; }
+            get => fields.CustomerId[this];
+            set => fields.CustomerId[this] = value;
         }
 
         [DisplayName("Employee Id"), Column("EmployeeID"), NotNull]
         public Int32? EmployeeId
         {
-            get { return Fields.EmployeeId[this]; }
-            set { Fields.EmployeeId[this] = value; }
+            get => fields.EmployeeId[this];
+            set => fields.EmployeeId[this] = value;
         }
-
-        IIdField IIdRow.IdField
+        public CustomerRepresentativesRow()
         {
-            get { return Fields.RepresentativeId; }
         }
 
-        public static readonly RowFields Fields = new RowFields().Init();
-
-        public CustomerRepresentativesRow()
-            : base(Fields)
+        public CustomerRepresentativesRow(RowFields fields)
+            : base(fields)
         {
         }
 

@@ -12,9 +12,18 @@ namespace Serene.Northwind
 {
     public class NotesBehavior : BaseSaveDeleteBehavior, IImplicitBehavior, IRetrieveBehavior, IFieldBehavior
     {
+        public IRequestContext Context { get; }
+        public ISqlConnections SqlConnections { get; }
+
+        public NotesBehavior(IRequestContext context, ISqlConnections sqlConnections)
+        {
+        	Context = context ?? throw new ArgumentNullException(nameof(context));
+        	SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+        }
+
         public Field Target { get; set; }
 
-        public bool ActivateFor(Row row)
+        public bool ActivateFor(IRow row)
         {
             if (ReferenceEquals(null, Target))
                 return false;
@@ -54,11 +63,11 @@ namespace Serene.Northwind
                 EqualityFilter = new Dictionary<string, object>
                 {
                     { fld.EntityType.PropertyName, handler.Row.Table },
-                    { fld.EntityId.PropertyName, idField[handler.Row] ?? -1 }
+                    { fld.EntityId.PropertyName, idField.AsObject(handler.Row)?? -1 }
                 }
             };
 
-            var notes = new NoteRepository().List(handler.Connection, listRequest).Entities;
+            var notes = new NoteRepository(Context).List(handler.Connection, listRequest).Entities;
 
             // users might be in another database, in another db server, so we can't simply use a join here
             var userIdList = notes.Where(x => x.InsertUserId != null).Select(x => x.InsertUserId.Value).Distinct();
@@ -95,14 +104,14 @@ namespace Serene.Northwind
             var saveRequest = new SaveRequest<NoteRow> { Entity = note };
 
             if (noteId == null)
-                new NoteRepository().Create(uow, saveRequest);
+                new NoteRepository(Context).Create(uow, saveRequest);
             else
-                new NoteRepository().Update(uow, saveRequest);
+                new NoteRepository(Context).Update(uow, saveRequest);
         }
 
         private void DeleteNote(IUnitOfWork uow, Int64 noteId)
         {
-            new NoteRepository().Delete(uow, new DeleteRequest { EntityId = noteId });
+            new NoteRepository(Context).Delete(uow, new DeleteRequest { EntityId = noteId });
         }
 
         private void NoteListSave(IUnitOfWork uow, string entityType, Int64 entityId, List<NoteRow> oldList, List<NoteRow> newList)
@@ -126,36 +135,36 @@ namespace Serene.Northwind
             if (newList.Count == 0)
             {
                 foreach (var note in oldList)
-                    DeleteNote(uow, rowIdField[note].Value);
+                    DeleteNote(uow, Convert.ToInt64(rowIdField.AsObject(note)));
 
                 return;
             }
 
             var oldById = new Dictionary<Int64, NoteRow>(oldList.Count);
             foreach (var item in oldList)
-                oldById[rowIdField[item].Value] = item;
+                oldById[Convert.ToInt64(rowIdField.AsObject(item))] = item;
 
             var newById = new Dictionary<Int64, NoteRow>(newList.Count);
             foreach (var item in newList)
             {
-                var id = rowIdField[item];
+                var id = rowIdField.AsObject(item);
                 if (id != null)
-                    newById[id.Value] = item;
+                    newById[Convert.ToInt64(id)] = item;
             }
 
             foreach (var item in oldList)
             {
-                var id = rowIdField[item].Value;
+                var id = Convert.ToInt64(rowIdField.AsObject(item));
                 if (!newById.ContainsKey(id))
                     DeleteNote(uow, id);
             }
 
             foreach (var item in newList)
             {
-                var id = rowIdField[item];
+                var id = rowIdField.AsObject(item);
 
                 NoteRow old;
-                if (id == null || !oldById.TryGetValue(id.Value, out old))
+                if (id == null || !oldById.TryGetValue(Convert.ToInt64(id), out old))
                     continue;
 
                 bool anyChanges = false;
@@ -173,13 +182,13 @@ namespace Serene.Northwind
                 if (!anyChanges)
                     continue;
 
-                SaveNote(uow, item, entityType, entityId, id.Value);
+                SaveNote(uow, item, entityType, entityId, Convert.ToInt64(id));
             }
 
             foreach (var item in newList)
             {
-                var id = rowIdField[item];
-                if (id == null || !oldById.ContainsKey(id.Value))
+                var id = rowIdField.AsObject(item);
+                if (id == null || !oldById.ContainsKey(Convert.ToInt64(id)))
                     SaveNote(uow, item, entityType, entityId, null);
             }
         }
@@ -191,7 +200,7 @@ namespace Serene.Northwind
                 return;
 
             var idField = (handler.Row as IIdRow).IdField;
-            var entityId = idField[handler.Row].Value;
+            var entityId = Convert.ToInt64(idField.AsObject(handler.Row));
 
             if (handler.IsCreate)
             {
@@ -212,7 +221,7 @@ namespace Serene.Northwind
                 }
             };
 
-            var oldList = new NoteRepository().List(handler.Connection, listRequest).Entities;
+            var oldList = new NoteRepository(Context).List(handler.Connection, listRequest).Entities;
             NoteListSave(handler.UnitOfWork, handler.Row.Table, entityId, oldList, newList);
         }
 
@@ -232,7 +241,7 @@ namespace Serene.Northwind
                     .Select(fld.NoteId)
                     .Where(
                         fld.EntityType == handler.Row.Table &
-                        fld.EntityId == idField[handler.Row].Value)
+                        fld.EntityId == Convert.ToInt64(idField.AsObject(handler.Row)))
                     .ForEach(handler.Connection, () =>
                     {
                         deleteList.Add(row.NoteId.Value);

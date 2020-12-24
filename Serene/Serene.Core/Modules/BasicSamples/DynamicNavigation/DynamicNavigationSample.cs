@@ -1,12 +1,21 @@
 ﻿using Serene.Northwind.Entities;
 using Serenity.Data;
 using Serenity.Navigation;
+using System;
 using System.Collections.Generic;
 
 namespace Serene.BasicSamples
 {
     public class DynamicNavigationSample : INavigationItemSource
     {
+        public DynamicNavigationSample(ISqlConnections sqlConnections)
+        {
+            SqlConnections = sqlConnections ??
+                throw new ArgumentNullException(nameof(sqlConnections));
+        }
+
+        public ISqlConnections SqlConnections { get; }
+
         public List<NavigationItemAttribute> GetItems()
         {
             var items = new List<NavigationItemAttribute>

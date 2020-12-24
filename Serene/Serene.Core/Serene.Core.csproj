@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergen Condition="Exists('..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe')">..\..\Serenity\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe</DotNetSergen>
+    <DotNetSergen Condition="Exists('..\..\Serenity\src\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe')">..\..\Serenity\src\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe</DotNetSergen>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -24,28 +24,22 @@
     <PackageReference Include="Mapster" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="2.1.0" />
-    <PackageReference Include="Serenity.FluentMigrator.Runner" Version="1.6.904" />
-    <PackageReference Include="Serenity.Scripts" Version="3.14.5" />
-    <PackageReference Include="Serenity.Web" Version="3.14.5" Condition="!Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')" />
-    <PackageReference Include="Serenity.Web.Assets" Version="3.14.4" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.2.9" />
+    <PackageReference Include="Serenity.Scripts" Version="5.0.9" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.0.9" />
+    <PackageReference Include="Serenity.Assets" Version="5.0.0" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('..\..\Serenity\Serenity.Core\Serenity.Core.csproj')">
-    <ProjectReference Include="..\..\Serenity\Serenity.Core\Serenity.Core.csproj" />
-    <ProjectReference Include="..\..\Serenity\Serenity.Data.Entity\Serenity.Data.Entity.csproj" />
-    <ProjectReference Include="..\..\Serenity\Serenity.Data\Serenity.Data.csproj" />
-    <ProjectReference Include="..\..\Serenity\Serenity.Services\Serenity.Services.csproj" />
-    <ProjectReference Include="..\..\Serenity\Serenity.Web\Serenity.Web.csproj" />
+  <ItemGroup Condition="Exists('..\..\Serenity\src\Serenity.Net.Core\Serenity.Net.Web.csproj')">
+    <ProjectReference Include="..\..\Serenity\src\Serenity.Net.Web\Serenity.Net.Web.csproj" />
   </ItemGroup>
-  <PropertyGroup>
-    <DefineConstants>$(DefineConstants);COREFX;ASPNETCORE</DefineConstants>
-  </PropertyGroup>
-  <Import Project="$(SolutionDir)Serenity\tools\Submodule\Serenity.Submodule.AspNetCore.targets" Condition="Exists('$(SolutionDir)Serenity\tools\Submodule\Serenity.Submodule.AspNetCore.targets')" />
+  <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
     <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />

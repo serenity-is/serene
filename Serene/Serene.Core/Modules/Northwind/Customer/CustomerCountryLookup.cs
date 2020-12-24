@@ -7,7 +7,8 @@ namespace Serene.Northwind.Lookups
     [LookupScript]
     public class CustomerCountryLookup : RowLookupScript<Entities.CustomerRow>
     {
-        public CustomerCountryLookup()
+        public CustomerCountryLookup(ISqlConnections sqlConnections)
+            : base(sqlConnections)
         {
             IdField = TextField = "Country";
         }
