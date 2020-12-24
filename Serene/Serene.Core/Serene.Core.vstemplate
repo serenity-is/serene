@@ -19,6 +19,7 @@
       <Folder Name=".config" TargetFolderName=".config">
         <ProjectItem ReplaceParameters="true" TargetFileName="dotnet-tools.json">dotnet-tools.json</ProjectItem>
       </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.bundles.json">appsettings.bundles.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
       <Folder Name="Imports" TargetFolderName="Imports">
         <Folder Name="ClientTypes" TargetFolderName="ClientTypes">
@@ -58,12 +59,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionUpdateRequest.ts">Administration.RolePermissionUpdateRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleRow.ts">Administration.RoleRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleService.ts">Administration.RoleService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenConnection.ts">Administration.SergenConnection.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenGenerateOptions.ts">Administration.SergenGenerateOptions.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenGenerateRequest.ts">Administration.SergenGenerateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenListTablesRequest.ts">Administration.SergenListTablesRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenService.ts">Administration.SergenService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.SergenTable.ts">Administration.SergenTable.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationItem.ts">Administration.TranslationItem.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationListRequest.ts">Administration.TranslationListRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationService.ts">Administration.TranslationService.ts</ProjectItem>
@@ -182,7 +177,7 @@
       </Folder>
       <Folder Name="Initialization" TargetFolderName="Initialization">
         <ProjectItem ReplaceParameters="true" TargetFileName="DataMigrations.cs">DataMigrations.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="DependencyResolver.cs">DependencyResolver.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="IDataMigrations.cs">IDataMigrations.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UserCultureProvider.cs">UserCultureProvider.cs</ProjectItem>
@@ -252,15 +247,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionRow.cs">RolePermissionRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionUpdateRequest.cs">RolePermissionUpdateRequest.cs</ProjectItem>
           </Folder>
-          <Folder Name="Sergen" TargetFolderName="Sergen">
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenEndpoint.cs">SergenEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenError.cshtml">SergenError.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenIndex.cshtml">SergenIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenModels.cs">SergenModels.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenPage.cs">SergenPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenPanel.ts">SergenPanel.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SergenPanel.ts.html">SergenPanel.ts.html</ProjectItem>
-          </Folder>
           <Folder Name="Translation" TargetFolderName="Translation">
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationEndpoint.cs">TranslationEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationGrid.ts">TranslationGrid.ts</ProjectItem>
@@ -273,18 +259,21 @@
           </Folder>
           <Folder Name="User" TargetFolderName="User">
             <Folder Name="Authentication" TargetFolderName="Authentication">
-              <ProjectItem ReplaceParameters="true" TargetFileName="AuthenticationService.cs">AuthenticationService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="Authorization.ts">Authorization.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AuthorizationService.cs">AuthorizationService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DirectoryEntry.cs">DirectoryEntry.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="IDirectoryService.cs">IDirectoryService.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IUserPasswordValidator.cs">IUserPasswordValidator.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="PasswordValidationResult.cs">PasswordValidationResult.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="PermissionService.cs">PermissionService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserAccessor.cs">UserAccessor.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="UserDefinition.cs">UserDefinition.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserPasswordValidator.cs">UserPasswordValidator.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="UserRetrieveService.cs">UserRetrieveService.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoggingRow.cs">LoggingRow.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserColumns.cs">UserColumns.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserDataScript.cs">UserDataScript.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserDialog.ts">UserDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserEndpoint.cs">UserEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserForm.cs">UserForm.cs</ProjectItem>
@@ -577,15 +566,19 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPage.cs">DashboardPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPageModel.cs">DashboardPageModel.cs</ProjectItem>
           </Folder>
+          <Folder Name="EmailSender" TargetFolderName="EmailSender">
+            <ProjectItem ReplaceParameters="true" TargetFileName="EmailSender.cs">EmailSender.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="EmailSenderExtensions.cs">EmailSenderExtensions.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="IEmailSender.cs">IEmailSender.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SmtpSettings.cs">SmtpSettings.cs</ProjectItem>
+          </Folder>
           <Folder Name="File" TargetFolderName="File">
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
           </Folder>
           <Folder Name="Helpers" TargetFolderName="Helpers">
             <ProjectItem ReplaceParameters="true" TargetFileName="BasicProgressDialog.ts">BasicProgressDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="BulkServiceAction.ts">BulkServiceAction.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="DetailListSaveHandler.cs">DetailListSaveHandler.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DialogUtils.ts">DialogUtils.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmailHelper.cs">EmailHelper.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="EnumSelectFormatter.ts">EnumSelectFormatter.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.ts">ExcelExportHelper.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.cs">ExcelImportRequest.cs</ProjectItem>
@@ -845,8 +838,8 @@
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package-lock.json">package-lock.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="launchSettings.json">launchSettings.json</ProjectItem>
       </Folder>
@@ -941,22 +934,22 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="profile.less">profile.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="progress-bars.less">progress-bars.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="select2.less">select2.less</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="sidebar.less">sidebar.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="sidebar-mini.less">sidebar-mini.less</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="sidebar.less">sidebar.less</ProjectItem>
             <Folder Name="skins" TargetFolderName="skins">
               <ProjectItem ReplaceParameters="true" TargetFileName="_all-skins.less">_all-skins.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-black.less">skin-black.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-black-light.less">skin-black-light.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-blue.less">skin-blue.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-black.less">skin-black.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-blue-light.less">skin-blue-light.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-green.less">skin-green.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-blue.less">skin-blue.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-green-light.less">skin-green-light.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-purple.less">skin-purple.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-green.less">skin-green.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-purple-light.less">skin-purple-light.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-red.less">skin-red.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-purple.less">skin-purple.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-red-light.less">skin-red-light.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="skin-yellow.less">skin-yellow.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-red.less">skin-red.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="skin-yellow-light.less">skin-yellow-light.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="skin-yellow.less">skin-yellow.less</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="small-box.less">small-box.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="social-widgets.less">social-widgets.less</ProjectItem>
@@ -976,8 +969,8 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="clearfix.less">clearfix.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="forms.less">forms.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="gradients.less">gradients.less</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="grid.less">grid.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="grid-framework.less">grid-framework.less</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="grid.less">grid.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="hide-text.less">hide-text.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="image.less">image.less</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="labels.less">labels.less</ProjectItem>
@@ -1135,7 +1128,6 @@
             </Folder>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CssBundles.json">CssBundles.json</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
               <ProjectItem ReplaceParameters="false" TargetFileName="accordion-arrows.png">accordion-arrows.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
@@ -1197,10 +1189,10 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-colorpicker.min.css">bootstrap-colorpicker.min.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-colorpicker.min.js">bootstrap-colorpicker.min.js</ProjectItem>
             <Folder Name="img" TargetFolderName="img">
-              <ProjectItem ReplaceParameters="false" TargetFileName="alpha.png">alpha.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="alpha-horizontal.png">alpha-horizontal.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="hue.png">hue.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="alpha.png">alpha.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="hue-horizontal.png">hue-horizontal.png</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="hue.png">hue.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="saturation.png">saturation.png</ProjectItem>
             </Folder>
           </Folder>
@@ -1238,15 +1230,15 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.mk.js">bootstrap-datepicker.mk.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.ms.js">bootstrap-datepicker.ms.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.nb.js">bootstrap-datepicker.nb.js</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.nl.js">bootstrap-datepicker.nl.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.nl-BE.js">bootstrap-datepicker.nl-BE.js</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.nl.js">bootstrap-datepicker.nl.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.no.js">bootstrap-datepicker.no.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.pl.js">bootstrap-datepicker.pl.js</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.pt.js">bootstrap-datepicker.pt.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.pt-BR.js">bootstrap-datepicker.pt-BR.js</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.pt.js">bootstrap-datepicker.pt.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.ro.js">bootstrap-datepicker.ro.js</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.rs.js">bootstrap-datepicker.rs.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.rs-latin.js">bootstrap-datepicker.rs-latin.js</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.rs.js">bootstrap-datepicker.rs.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.ru.js">bootstrap-datepicker.ru.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.sk.js">bootstrap-datepicker.sk.js</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.sl.js">bootstrap-datepicker.sl.js</ProjectItem>
@@ -1262,10 +1254,46 @@
             </Folder>
           </Folder>
           <Folder Name="daterangepicker" TargetFolderName="daterangepicker">
-            <ProjectItem ReplaceParameters="true" TargetFileName="daterangepicker.js">daterangepicker.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="daterangepicker-bs3.css">daterangepicker-bs3.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="daterangepicker.js">daterangepicker.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="moment.js">moment.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="moment.min.js">moment.min.js</ProjectItem>
+          </Folder>
+          <Folder Name="flot" TargetFolderName="flot">
+            <ProjectItem ReplaceParameters="true" TargetFileName="excanvas.js">excanvas.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="excanvas.min.js">excanvas.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.colorhelpers.js">jquery.colorhelpers.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.colorhelpers.min.js">jquery.colorhelpers.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.canvas.js">jquery.flot.canvas.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.canvas.min.js">jquery.flot.canvas.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.categories.js">jquery.flot.categories.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.categories.min.js">jquery.flot.categories.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.crosshair.js">jquery.flot.crosshair.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.crosshair.min.js">jquery.flot.crosshair.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.errorbars.js">jquery.flot.errorbars.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.errorbars.min.js">jquery.flot.errorbars.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.fillbetween.js">jquery.flot.fillbetween.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.fillbetween.min.js">jquery.flot.fillbetween.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.image.js">jquery.flot.image.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.image.min.js">jquery.flot.image.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.js">jquery.flot.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.min.js">jquery.flot.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.navigate.js">jquery.flot.navigate.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.navigate.min.js">jquery.flot.navigate.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.pie.js">jquery.flot.pie.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.pie.min.js">jquery.flot.pie.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.resize.js">jquery.flot.resize.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.resize.min.js">jquery.flot.resize.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.selection.js">jquery.flot.selection.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.selection.min.js">jquery.flot.selection.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.stack.js">jquery.flot.stack.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.stack.min.js">jquery.flot.stack.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.symbol.js">jquery.flot.symbol.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.symbol.min.js">jquery.flot.symbol.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.threshold.js">jquery.flot.threshold.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.threshold.min.js">jquery.flot.threshold.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.time.js">jquery.flot.time.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.flot.time.min.js">jquery.flot.time.min.js</ProjectItem>
           </Folder>
           <Folder Name="fullcalendar" TargetFolderName="fullcalendar">
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.css">fullcalendar.css</ProjectItem>
@@ -1297,16 +1325,16 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinFlat.css">ion.rangeSlider.skinFlat.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ion.rangeSlider.skinNice.css">ion.rangeSlider.skinNice.css</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1-vsdoc.js">jquery-3.3.1-vsdoc.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.js">jquery-3.3.1.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.min.js">jquery-3.3.1.min.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.min.map">jquery-3.3.1.min.map</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.js">jquery-3.3.1.slim.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.min.js">jquery-3.3.1.slim.min.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1.slim.min.map">jquery-3.3.1.slim.min.map</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery-3.3.1-vsdoc.js">jquery-3.3.1-vsdoc.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
           <Folder Name="jvectormap" TargetFolderName="jvectormap">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -1323,31 +1351,28 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.js">mousetrap.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.min.js">mousetrap.min.js</ProjectItem>
           <Folder Name="raphael" TargetFolderName="raphael">
-            <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           </Folder>
           <Folder Name="serenity" TargetFolderName="serenity">
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.d.ts">Serenity.CodeGeneration.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js">Serenity.CodeGeneration.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js.map">Serenity.CodeGeneration.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.min.js">Serenity.CodeGeneration.min.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.d.ts">Serenity.Pro.App.d.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.js">Serenity.Pro.App.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Pro.App.min.js">Serenity.Pro.App.min.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Script.UI.js">Serenity.Script.UI.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Script.UI.min.js">Serenity.Script.UI.min.js</ProjectItem>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ScriptBundles.json">ScriptBundles.json</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.es.json">northwind.es.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.fa.json">northwind.fa.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.invariant.json">northwind.invariant.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt-BR.json">northwind.pt-BR.json</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.ru.json">northwind.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
@@ -1356,8 +1381,8 @@
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.de.json">samples.de.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.es.json">samples.es.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.fa.json">samples.fa.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt-BR.json">samples.pt-BR.json</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.ru.json">samples.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
               </Folder>
@@ -1366,8 +1391,8 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.fa.json">site.texts.fa.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.invariant.json">site.texts.invariant.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.it.json">site.texts.it.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.ru.json">site.texts.ru.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>

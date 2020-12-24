@@ -8,8 +8,10 @@ using System.ComponentModel;
 using System.Data.SqlLocalDb;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -46,6 +48,7 @@ namespace RootProjectWizard
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
             dteObject = (DTE)automationObject;
+
             serviceProvider = (Microsoft.VisualStudio.OLE.Interop.IServiceProvider)this.dteObject;
 
             IntPtr zero4 = IntPtr.Zero;
@@ -156,6 +159,14 @@ namespace RootProjectWizard
                     {
                         FileName = "dotnet",
                         Arguments = "restore",
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                    }).WaitForExit(120000);
+
+                    project.DTE.StatusBar.Text = "Running DotNet Tool Restore...";
+                    System.Diagnostics.Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "dotnet",
+                        Arguments = "tool restore",
                         WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
                     }).WaitForExit(120000);
 
@@ -345,7 +356,7 @@ namespace RootProjectWizard
                         project.DTE.StatusBar.Text = "Deleting Excluded Feature File: " + path;
                         if (isDotNetCore)
                         {
-                            deleteList.Add(item.Item2.Properties.Item("FullPath").Value);
+                            deleteList.Add(item.Item2.Properties.Item("FullPath").Value.ToString());
                         }
                         else
                         {
