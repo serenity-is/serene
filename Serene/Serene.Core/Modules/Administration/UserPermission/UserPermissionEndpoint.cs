@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
-using MyRow = Serene.Administration.Entities.UserPermissionRow;
 using Serenity.Abstractions;
-using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Services;
-using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
+using MyRow = Serene.Administration.Entities.UserPermissionRow;
 
 namespace Serene.Administration.Endpoints
 {
@@ -30,19 +29,13 @@ namespace Serene.Administration.Endpoints
             return new MyRepository(Context).ListRolePermissions(connection, request);
         }
 
-        [DataScript("Administration.PermissionKeys")]
         public ListResponse<string> ListPermissionKeys(
-            [FromServices] ISqlConnections sqlConnections,
             [FromServices] ITypeSource typeSource)
         {
-            return new MyRepository(Context).ListPermissionKeys(sqlConnections, typeSource);
-        }
-
-        [DataScript("Administration.ImplicitPermissions"), NonAction]
-        public IDictionary<string, HashSet<string>> ListImplicitPermissions(
-            [FromServices] ITypeSource typeSource)
-        {
-            return MyRepository.GetImplicitPermissions(Cache.Memory, typeSource);
+            return new ListResponse<string>
+            {
+                Entities = MyRepository.ListPermissionKeys(Cache.Memory, typeSource).ToList()
+            };
         }
     }
 }

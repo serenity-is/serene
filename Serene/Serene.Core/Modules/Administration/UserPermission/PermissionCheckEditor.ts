@@ -243,7 +243,7 @@
         }
 
         private getSortedGroupAndPermissionKeys(titleByKey: Q.Dictionary<string>): string[] {
-            let keys = <string[]>Q.getRemoteData('Administration.PermissionKeys').Entities;
+            let keys = <string[]>Q.getRemoteData('Administration.PermissionKeys');
             let titleWithGroup = {};
             for (var k of keys) {
                 let s = k;

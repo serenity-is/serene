@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
-using MyRow = Serene.Administration.Entities.UserPermissionRow;
 using Serene.Administration.Entities;
 using Serenity;
 using Serenity.Abstractions;
@@ -13,6 +12,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using MyRow = Serene.Administration.Entities.UserPermissionRow;
 
 namespace Serene.Administration.Repositories
 {
@@ -173,10 +173,10 @@ namespace Serene.Administration.Repositories
             };
         }
 
-        private static readonly string[] emptyPermissions = new string[0];
+        private static readonly string[] emptyPermissions = Array.Empty<string>();
         private static readonly char[] splitChar = new char[] { '|', '&' };
 
-        private string[] SplitPermissions(string permission)
+        private static string[] SplitPermissions(string permission)
         {
             if (string.IsNullOrEmpty(permission))
                 return emptyPermissions;
@@ -184,7 +184,7 @@ namespace Serene.Administration.Repositories
             return permission.Split(splitChar, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        private void ProcessAttributes<TAttr>(HashSet<string> hash,
+        private static void ProcessAttributes<TAttr>(HashSet<string> hash,
                 MemberInfo member, Func<TAttr, string> getPermission)
             where TAttr : Attribute
         {
@@ -202,7 +202,7 @@ namespace Serene.Administration.Repositories
             }
         }
 
-        private void ProcessAttributes<TAttr>(HashSet<string> hash,
+        private static void ProcessAttributes<TAttr>(HashSet<string> hash,
                 Type member, Func<TAttr, string> getPermission)
             where TAttr : Attribute
         {
@@ -220,12 +220,12 @@ namespace Serene.Administration.Repositories
             }
         }
 
-        public ListResponse<string> ListPermissionKeys(ISqlConnections sqlConnections, ITypeSource typeSource)
+        public static IEnumerable<string> ListPermissionKeys(IMemoryCache memoryCache, ITypeSource typeSource)
         {
             if (typeSource is null)
                 throw new ArgumentNullException(nameof(typeSource));
 
-            return Cache.Memory.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
+            return memoryCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
             {
                 var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -234,20 +234,20 @@ namespace Serene.Administration.Repositories
                 foreach (var attr in typeSource.GetAssemblyAttributes<PermissionAttributeBase>())
                     if (!attr.Permission.IsEmptyOrNull())
                         result.AddRange(SplitPermissions(attr.Permission));
- 
+
                 foreach (var type in typeSource.GetTypes())
                 {
                     ProcessAttributes<PageAuthorizeAttribute>(result, type, x => x.Permission);
                     ProcessAttributes<PermissionAttributeBase>(result, type, x => x.Permission);
                     ProcessAttributes<ServiceAuthorizeAttribute>(result, type, x => x.Permission);
- 
+
                     foreach (var member in type.GetMethods(BindingFlags.Instance | BindingFlags.Public))
                     {
                         ProcessAttributes<PageAuthorizeAttribute>(result, member, x => x.Permission);
                         ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                         ProcessAttributes<ServiceAuthorizeAttribute>(result, member, x => x.Permission);
                     }
- 
+
                     foreach (var member in type.GetProperties(BindingFlags.Instance | BindingFlags.Public))
                         if (member.GetIndexParameters().Length == 0)
                             ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
@@ -256,10 +256,7 @@ namespace Serene.Administration.Repositories
                 result.Remove("*");
                 result.Remove("?");
 
-                return new ListResponse<string>
-                {
-                    Entities = new List<string>(result)
-                };
+                return result;
             });
         }
 
@@ -272,48 +269,48 @@ namespace Serene.Administration.Repositories
             if (typeSource is null)
                 throw new ArgumentNullException(nameof(typeSource));
 
-            return memoryCache.Get<IDictionary<string, HashSet<string>>>("ImplicitPermissions", TimeSpan.Zero, () => 
+            return memoryCache.Get<IDictionary<string, HashSet<string>>>("ImplicitPermissions", TimeSpan.Zero, () =>
+            {
+                var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+                Action<Type> addFrom = null;
+                addFrom = (type) =>
                 {
-                    var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
-
-                    Action<Type> addFrom = null;
-                    addFrom = (type) =>
+                    foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
+                        BindingFlags.Public | BindingFlags.NonPublic))
                     {
-                        foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
-                            BindingFlags.Public | BindingFlags.NonPublic))
+                        if (member.FieldType != typeof(String))
+                            continue;
+
+                        var key = member.GetValue(null) as string;
+                        if (key == null)
+                            continue;
+
+                        foreach (var attr in member.GetCustomAttributes<ImplicitPermissionAttribute>())
                         {
-                            if (member.FieldType != typeof(String))
-                                continue;
-
-                            var key = member.GetValue(null) as string;
-                            if (key == null)
-                                continue;
-
-                            foreach (var attr in member.GetCustomAttributes<ImplicitPermissionAttribute>())
+                            HashSet<string> list;
+                            if (!result.TryGetValue(key, out list))
                             {
-                                HashSet<string> list;
-                                if (!result.TryGetValue(key, out list))
-                                {
-                                    list = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                                    result[key] = list;
-                                }
-
-                                list.Add(attr.Value);
+                                list = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                                result[key] = list;
                             }
+
+                            list.Add(attr.Value);
                         }
-
-                        foreach (var nested in type.GetNestedTypes(BindingFlags.Public | BindingFlags.DeclaredOnly))
-                            addFrom(nested);
-                    };
-
-
-                    foreach (var type in typeSource.GetTypesWithAttribute(
-                        typeof(NestedPermissionKeysAttribute)))
-                    {
-                        addFrom(type);
                     }
-                    return result;
-                });
+
+                    foreach (var nested in type.GetNestedTypes(BindingFlags.Public | BindingFlags.DeclaredOnly))
+                        addFrom(nested);
+                };
+
+                foreach (var type in typeSource.GetTypesWithAttribute(
+                    typeof(NestedPermissionKeysAttribute)))
+                {
+                    addFrom(type);
+                }
+
+                return result;
+            });
         }
     }
 }

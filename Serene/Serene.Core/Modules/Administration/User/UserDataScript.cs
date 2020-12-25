@@ -1,11 +1,10 @@
-﻿using Serenity;
+﻿using Serene.Administration.Entities;
+using Serene.Administration.Repositories;
+using Serenity;
 using Serenity.Abstractions;
 using Serenity.ComponentModel;
 using Serenity.Data;
-using Serenity.Services;
 using Serenity.Web;
-using Serene.Administration.Entities;
-using Serene.Administration.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +17,17 @@ namespace Serene.Administration
     [DataScript("UserData", CacheDuration = -1, Permission = "*")]
     public class UserDataScript : DataScript<ScriptUserDefinition>
     {
-        private IRequestContext Context { get; }
-        private ISqlConnections SqlConnections { get; }
+        private ITwoLevelCache Cache { get; }
+        private IPermissionService Permissions { get; }
         private ITypeSource TypeSource { get; }
         private IUserAccessor UserAccessor { get; }
         private IUserRetrieveService UserRetriever { get; }
 
-        public UserDataScript(IRequestContext context, ISqlConnections sqlConnections,
+        public UserDataScript(ITwoLevelCache cache, IPermissionService permissions,
             ITypeSource typeSource, IUserAccessor userAccessor, IUserRetrieveService userRetrieveService)
         {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
-            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+            Cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            Permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
             TypeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
             UserAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
             UserRetriever = userRetrieveService ?? throw new ArgumentNullException(nameof(userRetrieveService));
@@ -48,17 +47,16 @@ namespace Serene.Administration
             result.DisplayName = user.DisplayName;
             result.IsAdmin = user.Username == "admin";
 
-            result.Permissions = Context.Cache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
+            result.Permissions = Cache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
                 UserPermissionRow.Fields.GenerationKey, () =>
                 {
                     var permissions = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
-                    var permissionsUsedFromScript = Context.Cache.GetLocalStoreOnly("PermissionsUsedFromScript",
+                    var permissionsUsedFromScript = Cache.GetLocalStoreOnly("PermissionsUsedFromScript",
                         TimeSpan.Zero, RoleRow.Fields.GenerationKey, () =>
                         {
-                            return new UserPermissionRepository(Context)
-                                .ListPermissionKeys(SqlConnections, TypeSource)
-                                .Entities.Where(permissionKey =>
+                            return UserPermissionRepository.ListPermissionKeys(Cache.Memory, TypeSource)
+                                .Where(permissionKey =>
                                 {
                                     // this sends permission information for all permission keys to client side.
                                     // if you don't need all of them to be available from script, filter them here.
@@ -69,7 +67,7 @@ namespace Serene.Administration
 
                     foreach (var permissionKey in permissionsUsedFromScript)
                     {
-                        if (Context.Permissions.HasPermission(permissionKey))
+                        if (Permissions.HasPermission(permissionKey))
                             permissions[permissionKey] = true;
                     }
 

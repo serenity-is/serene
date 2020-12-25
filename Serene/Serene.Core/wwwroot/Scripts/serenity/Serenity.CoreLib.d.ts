@@ -1178,6 +1178,11 @@ declare namespace Q {
     let today: () => Date;
     function extend<T = any>(a: T, b: T): T;
     function deepClone<T = any>(a: T, a2?: any, a3?: any): T;
+    const enum TypeKind {
+        Class = 0,
+        Interface = 1,
+        Enum = 2
+    }
     type Type = Function | Object;
     interface TypeMember {
         name: string;
@@ -1214,9 +1219,7 @@ declare namespace Q {
     let isEnum: (type: any) => boolean;
     function initFormType(typ: Function, nameWidgetPairs: any[]): void;
     function prop(type: any, name: string, getter?: string, setter?: string): void;
-    function registerClass(type: any, name: string, intf?: any[]): void;
-    function registerEnum(type: any, name: string): void;
-    function registerInterface(type: any, name: string, intf?: any[]): void;
+    function registerType(type: any, name: string, kind?: TypeKind, intf?: any[]): void;
     function addAttribute(type: any, attr: any): void;
     function setTypeName(target: Type, value: string): void;
     class ISlickFormatter {
