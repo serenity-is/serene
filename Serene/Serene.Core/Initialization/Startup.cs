@@ -20,7 +20,6 @@ using Serenity.Localization;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
-using Serenity.Web.Middleware;
 using System;
 using System.Data.Common;
 using System.IO;
@@ -33,6 +32,8 @@ namespace Serene
         {
             Configuration = configuration;
             HostEnvironment = hostEnvironment;
+            SqlSettings.AutoQuotedIdentifiers = true;
+            RegisterDataProviders();
         }
 
         public IConfiguration Configuration { get; }
@@ -139,11 +140,7 @@ namespace Serene
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
-
-
-            SqlSettings.AutoQuotedIdentifiers = true;
-            RegisterDataProviders();
-
+            RowFieldsProvider.SetDefaultFrom(app.ApplicationServices);
             InitializeLocalTexts(app.ApplicationServices);
 
             var reqLocOpt = new RequestLocalizationOptions();
