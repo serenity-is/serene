@@ -24,7 +24,7 @@ namespace Serene
 
             return new HtmlString("<a target=\"blank\" style=\"font-weight: bold; color: #ffc\" href=\"" +
                 helper.Encode("https://github.com/volkanceylan/S" +
-                    "erene/blob/master/S" + "erene/S" + "erene.Web" + relative) +
+                    "erene/blob/master/S" + "erene/S" + "erene." + "Core" + relative) +
                 "\">" + helper.Encode(Path.GetFileName(file)) + "</a>");
         }
     }
