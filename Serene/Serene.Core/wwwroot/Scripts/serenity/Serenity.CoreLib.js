@@ -664,7 +664,7 @@
     function getBaseType(type) {
         if (type === Object ||
             !type.prototype ||
-            type.__typeKind === 1 /* Interface */) {
+            type.__interface === true) {
             return null;
         }
         else if (Object.getPrototypeOf) {
@@ -896,7 +896,8 @@
         return delegate1;
     };
     var isEnum = function (type) {
-        return type.__typeKind === 2 /* Enum */;
+        return typeof type !== "function" &&
+            type.__interface === null;
     };
     function initFormType(typ, nameWidgetPairs) {
         for (var i = 0; i < nameWidgetPairs.length - 1; i += 2) {
@@ -948,20 +949,28 @@
     function interfaceIsAssignableFrom(from) {
         return from != null && from.__interfaces != null && from.__interfaces.indexOf(this) >= 0;
     }
-    function registerType(type, name, kind, intf) {
-        if (name != null) {
+    function registerType(type, name, intf) {
+        if (name && name.length) {
             setTypeName(type, name);
             types[name] = type;
         }
-        else if (!type.__typeName)
-            type.__register = true;
-        else
+        else if (type.__typeName && type.__typeName.length)
             types[type.__typeName] = type;
-        type.__typeKind = kind !== null && kind !== void 0 ? kind : 0 /* Class */;
         if (intf != null && intf.length)
             type.__interfaces = merge(type.__interfaces, intf);
-        if (kind === 1 /* Interface */)
-            type.__isAssignableFrom = interfaceIsAssignableFrom;
+    }
+    function registerClass(type, name, intf) {
+        registerType(type, name, intf);
+        type.__interface = false;
+    }
+    function registerEnum(type, name) {
+        registerType(type, name, undefined);
+        type.__interface = null; // mark as enum
+    }
+    function registerInterface(type, name, intf) {
+        registerType(type, name, intf);
+        type.__interface = true;
+        type.__isAssignableFrom = interfaceIsAssignableFrom;
     }
     function addAttribute(type, attr) {
         var md = ensureMetadata(type);
@@ -982,7 +991,7 @@
         }
         return ISlickFormatter;
     }());
-    registerType(ISlickFormatter, 'Serenity.ISlickFormatter', 1 /* Interface */);
+    registerInterface(ISlickFormatter, 'Serenity.ISlickFormatter');
     function initializeTypes(root, pre, limit) {
         if (!root)
             return;
@@ -1003,30 +1012,27 @@
             var t = typeof (obj);
             if (t === "string" || t === "number")
                 continue;
-            if ((typeof obj === "function" && obj.nodeType !== "number") ||
-                (obj.__register && obj.__typeKind === 2 /* Enum */)) {
-                if (!obj.__typeName ||
-                    (obj.__register) && Object.prototype.hasOwnProperty.call(obj, '__register')) {
-                    if (!obj.__interfaces &&
-                        obj.prototype &&
-                        obj.prototype.format &&
-                        k.substr(-9) === "Formatter") {
-                        if (obj.__typeKind == null)
-                            obj.__typeKind = 0 /* Class */;
-                        obj.__interfaces = [ISlickFormatter];
-                    }
-                    if (obj.__typeKind == null) {
-                        var baseType = getBaseType(obj);
-                        if (baseType && baseType.__typeKind != null) {
-                            obj.__typeKind = baseType.__typeKind;
-                        }
-                    }
-                    if (obj.__typeKind != null) {
-                        setTypeName(obj, pre + k);
-                        types[pre + k] = obj;
+            if (!obj.__typeName &&
+                ((typeof obj === "function" && obj.nodeType !== "number") ||
+                    (obj.__interface !== undefined))) {
+                if (!obj.__interfaces &&
+                    obj.prototype &&
+                    obj.prototype.format &&
+                    k.substr(-9) === "Formatter") {
+                    if (obj.__interface === undefined)
+                        obj.__interface = false;
+                    obj.__interfaces = [ISlickFormatter];
+                }
+                if (obj.__interface === undefined) {
+                    var baseType = getBaseType(obj);
+                    if (baseType && baseType.__interface === false) {
+                        obj.__interface = false;
                     }
                 }
-                delete obj.__register;
+                if (obj.__interface !== undefined) {
+                    setTypeName(obj, pre + k);
+                    types[pre + k] = obj;
+                }
             }
             if (limit > 0)
                 initializeTypes(obj, pre + k + ".", limit - 1);
@@ -3100,7 +3106,7 @@
                 }
             }
             var idField = this.idField;
-            if (isEmptyOrNull(idField)) {
+            if (idField) {
                 for (var _a = 0, _b = this.items; _a < _b.length; _a++) {
                     var r = _b[_a];
                     var v = r[idField];
@@ -3929,7 +3935,9 @@
         isEnum: isEnum,
         initFormType: initFormType,
         prop: prop,
-        registerType: registerType,
+        registerClass: registerClass,
+        registerEnum: registerEnum,
+        registerInterface: registerInterface,
         addAttribute: addAttribute,
         setTypeName: setTypeName,
         ISlickFormatter: ISlickFormatter,
@@ -3958,7 +3966,7 @@
 
     function Attr(name) {
         return function (target) {
-            return registerType(target, 'Serenity.' + name + 'Attribute');
+            return registerClass(target, 'Serenity.' + name + 'Attribute');
         };
     }
     var EnumKeyAttribute = /** @class */ (function () {
@@ -4050,7 +4058,7 @@
         };
         return EditorTypeAttributeBase;
     }());
-    registerType(EditorTypeAttributeBase, 'Serenity.EditorTypeAttributeBase');
+    registerClass(EditorTypeAttributeBase, 'Serenity.EditorTypeAttributeBase');
     var EditorTypeAttribute = /** @class */ (function (_super) {
         __extends(EditorTypeAttribute, _super);
         function EditorTypeAttribute(editorType) {
@@ -4313,44 +4321,42 @@
     }());
     var Decorators;
     (function (Decorators) {
-        function registerClass(nameOrIntf, intf2) {
+        function registerClass$1(nameOrIntf, intf2) {
             return function (target) {
                 if (typeof nameOrIntf == "string")
-                    registerType(target, nameOrIntf, 0 /* Class */, intf2);
+                    registerClass(target, nameOrIntf, intf2);
                 else
-                    registerType(target, null, 0 /* Class */, nameOrIntf);
+                    registerClass(target, null, nameOrIntf);
             };
         }
-        Decorators.registerClass = registerClass;
-        function registerInterface(nameOrIntf, intf2) {
+        Decorators.registerClass = registerClass$1;
+        function registerInterface$1(nameOrIntf, intf2) {
             return function (target) {
                 if (typeof nameOrIntf == "string")
-                    registerType(target, nameOrIntf, 1 /* Interface */, intf2);
+                    registerInterface(target, nameOrIntf, intf2);
                 else
-                    registerType(target, null, 1 /* Interface */, nameOrIntf);
+                    registerInterface(target, null, nameOrIntf);
             };
         }
-        Decorators.registerInterface = registerInterface;
+        Decorators.registerInterface = registerInterface$1;
         function registerEditor(nameOrIntf, intf2) {
-            return registerClass(nameOrIntf, intf2);
+            return registerClass$1(nameOrIntf, intf2);
         }
         Decorators.registerEditor = registerEditor;
-        function registerEnum(target, enumKey, name) {
-            if (isEnum(target))
-                return;
-            registerType(target, name, 2 /* Enum */);
+        function registerEnum$1(target, enumKey, name) {
+            registerEnum(target, name);
             if (enumKey)
                 addAttribute(target, new EnumKeyAttribute(enumKey));
         }
-        Decorators.registerEnum = registerEnum;
+        Decorators.registerEnum = registerEnum$1;
         function registerEnumType(target, name, enumKey) {
-            registerEnum(target, enumKey !== null && enumKey !== void 0 ? enumKey : name, name);
+            registerEnum$1(target, enumKey !== null && enumKey !== void 0 ? enumKey : name, name);
         }
         Decorators.registerEnumType = registerEnumType;
         function registerFormatter(nameOrIntf, intf2) {
             if (nameOrIntf === void 0) { nameOrIntf = [ISlickFormatter]; }
             if (intf2 === void 0) { intf2 = [ISlickFormatter]; }
-            return registerClass(nameOrIntf, intf2);
+            return registerClass$1(nameOrIntf, intf2);
         }
         Decorators.registerFormatter = registerFormatter;
         function enumKey(value) {
@@ -4368,7 +4374,7 @@
             SummaryType[SummaryType["Min"] = 3] = "Min";
             SummaryType[SummaryType["Max"] = 4] = "Max";
         })(SummaryType || (SummaryType = {}));
-        registerEnum(SummaryType, 'Serenity.SummaryType');
+        registerEnum$1(SummaryType, 'Serenity.SummaryType');
         function option() {
             return function (target, propertyKey) {
                 var isGetSet = startsWith(propertyKey, 'get_') || startsWith(propertyKey, 'set_');
@@ -15206,7 +15212,6 @@
                     accumulatorInfo.params[0] + " = _items[_i]; " +
                     accumulatorInfo.body +
                     "}");
-                fn.displayName = fn.name = "compiledAccumulatorLoop";
                 return fn;
             }
             function compileFilter() {

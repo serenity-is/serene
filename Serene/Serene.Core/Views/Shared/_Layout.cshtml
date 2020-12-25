@@ -72,7 +72,7 @@ else
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="~/Account/ChangePassword" class="btn btn-default btn-flat"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle</a>
+                                        <a href="~/Account/ChangePassword" class="btn btn-default btn-flat"><i class="fa fa-lock fa-fw"></i> @Texts.Forms.Membership.ChangePassword.FormTitle.ToString(Localizer)</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="~/Account/Signout" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> @Localizer.Get("Navigation.LogoutLink")</a>
@@ -119,24 +119,24 @@ else
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                @Texts.Site.Layout.FooterInfo
+                @Texts.Site.Layout.FooterInfo.ToString(Localizer)
             </div>
-            <strong>@Texts.Site.Layout.FooterCopyright</strong> @Texts.Site.Layout.FooterRights
+            <strong>@Texts.Site.Layout.FooterCopyright.ToString(Localizer)</strong> @Texts.Site.Layout.FooterRights.ToString(Localizer)
         </footer>
 
         <aside class="control-sidebar control-sidebar-dark">
             <div class="tab-content">
                 <div class="tab-pane active" id="control-sidebar-settings-tab">
                     <form method="post">
-                        <h3 class="control-sidebar-heading">@Texts.Site.Layout.GeneralSettings</h3>
+                        <h3 class="control-sidebar-heading">@Texts.Site.Layout.GeneralSettings.ToString(Localizer)</h3>
 
                         <div class="form-group">
-                            <label class="control-sidebar-subheading">@Texts.Site.Layout.Language</label>
+                            <label class="control-sidebar-subheading">@Texts.Site.Layout.Language.ToString(Localizer)</label>
                             <select id="LanguageSelect" class="form-control"></select>
                         </div>
 
                         <div class="form-group" style="margin-top: 15px;">
-                            <label class="control-sidebar-subheading">@Texts.Site.Layout.Theme</label>
+                            <label class="control-sidebar-subheading">@Texts.Site.Layout.Theme.ToString(Localizer)</label>
                             <select id="ThemeSelect" class="form-control"></select>
                         </div>
                     </form>
