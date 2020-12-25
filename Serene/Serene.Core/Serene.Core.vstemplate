@@ -285,7 +285,9 @@
           </Folder>
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
             <ProjectItem ReplaceParameters="true" TargetFileName="ImplicitPermissionAttribute.cs">ImplicitPermissionAttribute.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ImplicitPermissionsDataScript.cs">ImplicitPermissionsDataScript.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PermissionCheckEditor.ts">PermissionCheckEditor.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeysDataScript.cs">PermissionKeysDataScript.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionDialog.ts">UserPermissionDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionEndpoint.cs">UserPermissionEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionListRequest.cs">UserPermissionListRequest.cs</ProjectItem>
@@ -1365,7 +1367,6 @@
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>
