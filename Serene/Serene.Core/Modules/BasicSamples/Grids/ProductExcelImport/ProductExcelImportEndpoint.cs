@@ -46,7 +46,7 @@ namespace Serene.BasicSamples.Endpoints
             var response = new ExcelImportResponse();
             response.ErrorList = new List<string>();
 
-            var worksheet = ep.Workbook.Worksheets[1];
+            var worksheet = ep.Workbook.Worksheets[0];
             for (var row = 2; row <= worksheet.Dimension.End.Row; row++)
             {
                 try
