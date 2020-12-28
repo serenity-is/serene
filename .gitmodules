@@ -2,3 +2,6 @@
 	path = Serenity
 	url = https://github.com/volkanceylan/Serenity.git
 	branch = master
+[submodule "common-features"]
+	path = common-features
+	url = https://github.com/serenity-is/common-features.git
