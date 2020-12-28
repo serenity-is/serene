@@ -454,6 +454,9 @@ declare namespace Slick {
         aggregateCollapsed?: boolean;
         lazyTotalsCalculation?: boolean;
     }
+    class NonDataRow {
+        __nonDataRow: boolean;
+    }
     interface PagerOptions {
         view?: any;
         showRowsPerPage?: boolean;

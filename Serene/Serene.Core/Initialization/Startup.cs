@@ -48,7 +48,10 @@ namespace Serene
                 typeof(IRow).Assembly,
                 typeof(SaveRequestHandler<>).Assembly,
                 typeof(IDynamicScriptManager).Assembly,
-                typeof(Startup).Assembly
+                typeof(Startup).Assembly,
+                //<if:ThemeSamples>
+                typeof(Serenity.Demo.ThemeSamples.AdminLTEController).Assembly,
+                //<if:ThemeSamples>
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));

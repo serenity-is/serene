@@ -4,8 +4,11 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
+    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\sergen.exe</DotNetSergenExe>
     <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergen Condition="Exists('..\..\Serenity\src\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe')">..\..\Serenity\src\Serenity.CodeGenerator\bin\$(Configuration)\sergen.exe</DotNetSergen>
+    <DotNetSergen Condition="Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
+    <CommonSrc>..\..\common-features\src\</CommonSrc>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -36,8 +39,11 @@
     <PackageReference Include="Serenity.Net.Web" Version="5.0.11" />
     <PackageReference Include="Serenity.Assets" Version="5.0.10" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('..\..\Serenity\src\Serenity.Net.Web\Serenity.Net.Web.csproj')">
-    <ProjectReference Include="..\..\Serenity\src\Serenity.Net.Web\Serenity.Net.Web.csproj" />
+  <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj')">
+    <ProjectReference Include="$(SerenitySrc)\Serenity.Net.Web\Serenity.Net.Web.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(CommonSrc)')">
+    <ProjectReference Include="$(CommonSrc)Serenity.Demo.ThemeSamples\Serenity.Demo.ThemeSamples.csproj" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">

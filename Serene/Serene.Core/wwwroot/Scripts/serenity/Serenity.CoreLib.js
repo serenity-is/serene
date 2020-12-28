@@ -14353,6 +14353,11 @@
         SlickFormatting.itemLinkText = itemLinkText;
         function itemLink(itemType, idField, getText, cssClass, encode) {
             return function (ctx) {
+                var _a, _b;
+                var text = (_a = (getText == null ? ctx.value : getText(ctx))) !== null && _a !== void 0 ? _a : '';
+                if ((_b = ctx.item) === null || _b === void 0 ? void 0 : _b.__nonDataRow) {
+                    return encode ? htmlEncode(text) : text;
+                }
                 return itemLinkText(itemType, ctx.item[idField], (getText == null ? ctx.value : getText(ctx)), (cssClass == null ? '' : cssClass(ctx)), encode);
             };
         }

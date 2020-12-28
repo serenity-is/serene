@@ -16,6 +16,7 @@ namespace Serene
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseStaticWebAssets();
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureAppConfiguration((builderContext, config) =>
