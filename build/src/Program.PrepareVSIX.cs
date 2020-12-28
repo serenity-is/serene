@@ -8,6 +8,9 @@ namespace Build
         static void PrepareVSIX()
         {
             UpdateSerenityPackages();
+            UpdateCommonPackages();
+            if (HasProPackages)
+                UpdateProPackages();
 
             if (StartProcess("dotnet", "restore", Root) != 0)
                 ExitWithError("Error while restoring " + ProjectFile);
@@ -19,7 +22,7 @@ namespace Build
 
             CleanDirectory(TemporaryFilesRoot, ensure: true);
             if (HasProPackages)
-				CopyProPackagesToTempZipDir(projectPackages);
+                CopyProPackagesToTempZipDir(projectPackages);
             PatchVSIXManifest(projectPackages);
 
             if (StartProcess("dotnet", "restore " + Path.GetFileName(ProjectFile), ProjectFolder) != 0)

@@ -109,7 +109,8 @@ namespace Build
             foreach (var z in xml.Descendants("ItemGroup").Where(x => 
                 x.Attribute("Condition") != null &&
                 x.Attribute("Condition").Value != null &&
-                x.Attribute("Condition").Value.IndexOf("Serenity.Net") >= 0).ToList())
+                (x.Attribute("Condition").Value.IndexOf("Serenity.Net") >= 0 ||
+                 x.Attribute("Condition").Value.IndexOf("CommonSrc") >= 0)).ToList())
             {
                 z.Remove();
             }

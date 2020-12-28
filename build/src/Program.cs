@@ -29,15 +29,17 @@ namespace Build
         static string SerenityVersion { get; set; }
         static readonly UTF8Encoding UTF8Bom = new UTF8Encoding(true);
 
-        static IEnumerable<string> SerenityPackagesToUpdate
+        static IEnumerable<string> CommonPackagePrefixes
         {
             get
             {
-                yield return "Serenity.Assets";
-                yield return "Serenity.Scripts";
-                if (HasProPackages)
-                    yield return "Serenity.Pro.Scripts";
+                yield return "Serenity.Demo.";
             }
+        }
+
+        static bool IsCommonPackage(string packageId)
+        {
+            return CommonPackagePrefixes.Any(x => x.StartsWith(packageId, StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)

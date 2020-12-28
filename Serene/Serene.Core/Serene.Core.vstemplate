@@ -306,58 +306,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleUpdateRequest.cs">UserRoleUpdateRequest.cs</ProjectItem>
           </Folder>
         </Folder>
-        <Folder Name="AdminLTE" TargetFolderName="AdminLTE">
-          <ProjectItem ReplaceParameters="true" TargetFileName="AdminLTEController.cs">AdminLTEController.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="AdminLTENavigation.cs">AdminLTENavigation.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Calendar.cshtml">Calendar.cshtml</ProjectItem>
-          <Folder Name="Charts" TargetFolderName="Charts">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChartJS.cshtml">ChartJS.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChartsController.cs">ChartsController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Flot.cshtml">Flot.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="InlineCharts.cshtml">InlineCharts.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Morris.cshtml">Morris.cshtml</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DashboardV2.cshtml">DashboardV2.cshtml</ProjectItem>
-          <Folder Name="Examples" TargetFolderName="Examples">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BlankPage.cshtml">BlankPage.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Error404.cshtml">Error404.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Error500.cshtml">Error500.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ExamplesController.cs">ExamplesController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Invoice.cshtml">Invoice.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="InvoicePrint.cshtml">InvoicePrint.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Lockscreen.cshtml">Lockscreen.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Login.cshtml">Login.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="PacePage.cshtml">PacePage.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Profile.cshtml">Profile.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Register.cshtml">Register.cshtml</ProjectItem>
-          </Folder>
-          <Folder Name="Forms" TargetFolderName="Forms">
-            <ProjectItem ReplaceParameters="true" TargetFileName="AdvancedElements.cshtml">AdvancedElements.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="FormsController.cs">FormsController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GeneralElements.cshtml">GeneralElements.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TextEditors.cshtml">TextEditors.cshtml</ProjectItem>
-          </Folder>
-          <Folder Name="Mailbox" TargetFolderName="Mailbox">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Compose.cshtml">Compose.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Inbox.cshtml">Inbox.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="MailboxController.cs">MailboxController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Read.cshtml">Read.cshtml</ProjectItem>
-          </Folder>
-          <Folder Name="Tables" TargetFolderName="Tables">
-            <ProjectItem ReplaceParameters="true" TargetFileName="SimpleTables.cshtml">SimpleTables.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TablesController.cs">TablesController.cs</ProjectItem>
-          </Folder>
-          <Folder Name="UIElements" TargetFolderName="UIElements">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Buttons.cshtml">Buttons.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="General.cshtml">General.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Icons.cshtml">Icons.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Modals.cshtml">Modals.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Sliders.cshtml">Sliders.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Timeline.cshtml">Timeline.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UIElementsController.cs">UIElementsController.cs</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Widgets.cshtml">Widgets.cshtml</ProjectItem>
-        </Folder>
         <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesEndpoint.cs">BasicSamplesEndpoint.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesHelper.cs">BasicSamplesHelper.cs</ProjectItem>
@@ -1367,6 +1315,7 @@
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>

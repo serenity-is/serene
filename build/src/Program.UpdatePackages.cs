@@ -1,30 +1,75 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Build
 {
     partial class Program
     {
-        static void UpdateSerenityPackages()
+        private static bool PatchPackageVersion(string packageId, string version)
         {
-            foreach (var package in SerenityPackagesToUpdate)
-            {
-                if (StartProcess("dotnet", "add package " + package,
-                        Path.GetDirectoryName(ProjectFile)) != 0)
-                    ExitWithError("Error while updating package " + package);
-            }
-
             var projectContent = File.ReadAllText(ProjectFile);
-            var scriptsVersion = ParsePackages(ProjectFile)
-                .Where(x => x.Item1 == "Serenity.Scripts").First().Item2;
 
             var replacedContent = Regex.Replace(projectContent,
-                @"(PackageReference\s*Include=\""Serenity\.Net\.Web\""\s*Version\s*\=\s*\"")([0-9.]*)(\"")",
-                "${1}" + scriptsVersion + "$3");
+                @"(PackageReference\s*Include=\""" + packageId.Replace(".", @"\.") + 
+                    @"\""\s*Version\s*\=\s*\"")([0-9.]*)(\"")",
+                "${1}" + version + "$3");
 
             if (replacedContent != projectContent)
+            {
                 File.WriteAllText(ProjectFile, replacedContent);
+                return true;
+            }
+
+            return false;
+        }
+
+        static IEnumerable<string> SerenityPackagesWithSameVersion
+        {
+            get
+            {
+                yield return "Serenity.Scripts";
+                yield return "Serenity.Net.Web";
+            }
+        }
+
+        static IEnumerable<string> SerenityPackagesWithUniqueVersion
+        {
+            get
+            {
+                yield return "Serenity.Assets";
+            }
+        }
+
+        static void UpdateSerenityPackages()
+        {
+            var serenityWebVersion = GetLatestVersionOf("Serenity.Net.Web");
+            if (serenityWebVersion != null)
+            {
+                foreach (var package in SerenityPackagesWithSameVersion)
+                    PatchPackageVersion(package, serenityWebVersion.ToString());
+            }
+
+            foreach (var package in SerenityPackagesWithUniqueVersion)
+            {
+                var pkgVer = GetLatestVersionOf(package);
+                if (pkgVer != null)
+                    PatchPackageVersion(package, pkgVer.ToString());
+            }
+        }
+
+        static void UpdateCommonPackages()
+        {
+            var packages = ParsePackages(ProjectFile);
+            foreach (var package in packages)
+            {
+                if (IsCommonPackage(package.Item1))
+                {
+                    var cmnVer = GetLatestVersionOf(package.Item1);
+                    if (cmnVer != null)
+                        PatchPackageVersion(package.Item1, cmnVer.ToString());
+                }
+            }
         }
     }
 }
