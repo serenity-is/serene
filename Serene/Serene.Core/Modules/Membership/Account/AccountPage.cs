@@ -1,7 +1,7 @@
-﻿﻿using Serene.Administration;
-﻿using Microsoft.AspNetCore.Http;
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-﻿using Microsoft.AspNetCore.Authentication;
+using Serene.Administration;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Serenity;
 using Serenity.Services;
 using System;

@@ -1,4 +1,4 @@
-﻿﻿using Serenity.Abstractions;
+using Serenity.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 //<if:Northwind>
 using Serene.Northwind;

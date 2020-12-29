@@ -1,4 +1,4 @@
-﻿﻿using Serenity.Data;
+using Serenity.Data;
 using Serene.Northwind.Entities;
 using Serenity.ComponentModel;
 using Serenity.Web;
