@@ -142,7 +142,11 @@
     }
 
     function endsWith(s, suffix) {
-        if (suffix == null || !suffix.length)
+        if (String.prototype.endsWith)
+            return s.endsWith(suffix);
+        if (suffix == null)
+            return false;
+        if (!suffix.length)
             return true;
         if (suffix.length > s.length)
             return false;
@@ -164,11 +168,15 @@
         return s;
     }
     function startsWith(s, prefix) {
-        if (prefix == null || !prefix.length)
+        if (String.prototype.startsWith)
+            return s.startsWith(prefix);
+        if (prefix == null)
+            return false;
+        if (!prefix.length)
             return true;
         if (prefix.length > s.length)
             return false;
-        return (s.substr(0, prefix.length) == prefix);
+        return (s.substr(0, prefix.length) === prefix);
     }
     function toSingleLine(str) {
         return replaceAll(replaceAll(trimToEmpty(str), '\r\n', ' '), '\n', ' ').trim();
@@ -9342,6 +9350,16 @@
                     instance.setReadOnly(value);
             }
         };
+        HtmlContentEditor.getCKEditorBasePath = function () {
+            if (HtmlContentEditor_1.CKEditorBasePath != null)
+                return HtmlContentEditor_1.CKEditorBasePath;
+            // @ts-ignore
+            else if (typeof CKEDITOR_BASEPATH !== "undefined" && CKEDITOR_BASEPATH)
+                // @ts-ignore
+                return CKEDITOR_BASEPATH;
+            else
+                return "~/Scripts/ckeditor/";
+        };
         HtmlContentEditor.includeCKEditor = function () {
             if (window['CKEDITOR']) {
                 return;
@@ -9352,7 +9370,7 @@
             }
             $('<script/>').attr('type', 'text/javascript')
                 .attr('id', 'CKEditorScript')
-                .attr('src', resolveUrl('~/Scripts/ckeditor/ckeditor.js?v=' +
+                .attr('src', resolveUrl(HtmlContentEditor_1.getCKEditorBasePath() + 'ckeditor.js?v=' +
                 HtmlContentEditor_1.CKEditorVer))
                 .appendTo(window.document.head);
         };

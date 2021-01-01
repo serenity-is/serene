@@ -17,6 +17,7 @@ namespace Build
         static string ProjectFolderName => ProjectId + ".Core";
         static string ProjectFolder => Path.Combine(Root, ProjectId, ProjectFolderName);
         static string ProjectFile => Path.Combine(ProjectFolder, ProjectFolderName + ".csproj");
+        static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
         static string TemplateId => ProjectId == "StartSharp" ? "StartCore" : "SereneCore";
         static string VSIXTemplateFolder => Path.Combine(Root, "Template");
         static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Template.csproj");
@@ -39,7 +40,7 @@ namespace Build
 
         static bool IsCommonPackage(string packageId)
         {
-            return CommonPackagePrefixes.Any(x => x.StartsWith(packageId, StringComparison.OrdinalIgnoreCase));
+            return CommonPackagePrefixes.Any(x => packageId.StartsWith(x, StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)

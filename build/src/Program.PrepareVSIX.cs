@@ -23,7 +23,9 @@ namespace Build
             CleanDirectory(TemporaryFilesRoot, ensure: true);
             if (HasProPackages)
                 CopyProPackagesToTempZipDir(projectPackages);
-            PatchVSIXManifest(projectPackages);
+
+            var initialVersion = PatchVSIXManifest(projectPackages);
+            SetInitialVersionInSergenJson(initialVersion);
 
             if (StartProcess("dotnet", "restore " + Path.GetFileName(ProjectFile), ProjectFolder) != 0)
                 ExitWithError("Error while restoring " + ProjectFile);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Build
 {
     partial class Program
     {
-        static void PatchVSIXManifest(List<Tuple<string, string>> packages)
+        static string PatchVSIXManifest(List<Tuple<string, string>> packages)
         {
             var hash = new HashSet<Tuple<string, string>>();
             foreach (var x in packages)
@@ -29,6 +30,22 @@ namespace Build
                 ver += ".0";
             identity.SetAttributeValue("Version", ver);
             File.WriteAllText(VSIXManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
+            return ver;
+        }
+
+        static void SetInitialVersionInSergenJson(string templateVersion)
+        {
+            var root = JObject.Parse(File.ReadAllText(SergenJsonFile));
+            var upgradeInfo = root["UpgradeInfo"] as JObject;
+            if (upgradeInfo == null)
+            {
+                upgradeInfo = new JObject();
+                root["UpgradeInfo"] = upgradeInfo;
+                upgradeInfo["InitialType"] = HasProPackages ? "Premium" : "Community";
+            }
+
+            upgradeInfo["InitialVersion"] = templateVersion;
+            File.WriteAllText(SergenJsonFile, root.ToString());
         }
     }
 }

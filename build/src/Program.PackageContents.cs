@@ -14,6 +14,7 @@ namespace Build
 
             var profilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var nugetCache = Path.Combine(profilePath, ".nuget", "packages");
+            var myPackages = Path.Combine(profilePath, ".nuget", "my-packages");
             XNamespace nuspecNS = "http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd";
 
             var processed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -25,8 +26,29 @@ namespace Build
                     return;
 
                 processed.Add(key);
+                id = id.ToLowerInvariant();
+
                 var contentFolder = Path.Combine(nugetCache, id, ver, "content");
-                if (Directory.Exists(contentFolder))
+                if (!Directory.Exists(contentFolder))
+                    contentFolder = Path.Combine(myPackages, id, ver, "content");
+                
+                if (!Directory.Exists(contentFolder) && id == "serenity.assets")
+                {
+                    contentFolder = Path.Combine(Root, "Serenity", "src", "Serenity.Assets");
+                    if (Directory.Exists(contentFolder))
+                    {
+                        foreach (var subfolder in new string[] { "Content", "Scripts" })
+                            if (Directory.Exists(Path.Combine(contentFolder, subfolder)))
+                            {
+                                foreach (var f in Directory.GetFiles(Path.Combine(contentFolder, subfolder),
+                                    "*.*", SearchOption.AllDirectories))
+                                {
+                                    contentFiles.Add(@"wwwroot\" + f[(contentFolder.Length + 1)..]);
+                                }
+                            }
+                    }
+                }
+                else if (Directory.Exists(contentFolder))
                 {
                     foreach (var f in Directory.GetFiles(contentFolder,
                         "*.*", SearchOption.AllDirectories))
@@ -36,6 +58,9 @@ namespace Build
                 }
                 
                 var nuspec = Path.Combine(nugetCache, id, ver, id + ".nuspec");
+                if (!Directory.Exists(nuspec))
+                    nuspec = Path.Combine(myPackages, id, ver, id + ".nuspec");
+
                 if (File.Exists(nuspec))
                 {
                     var xml = XElement.Parse(File.ReadAllText(nuspec));
