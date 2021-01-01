@@ -19,20 +19,20 @@ if (typeof jQuery === "undefined") {
 /* AdminLTE
  *
  * @type Object
- * @description $.AdminLTE is the main object for the template's app.
+ * @description AdminLTE is the main object for the template's app.
  *              It's used for implementing functions and options related
  *              to the template. Keeping everything wrapped in an object
  *              prevents conflict with other plugins and is a better
  *              way to organize our code.
  */
-$.AdminLTE = {};
+var AdminLTE = {};
 
 /* --------------------
  * - AdminLTE Options -
  * --------------------
  * Modify these options to suit your implementation
  */
-$.AdminLTE.options = {
+AdminLTE.options = {
   //Add slimscroll to navbar menus
   //This requires you to load the slimscroll plugin
   //in every page before app.js
@@ -130,6 +130,8 @@ $.AdminLTE.options = {
   }
 };
 
+AdminLTE.oldSlimScrollHeight = null;
+
 /* ------------------
  * - Implementation -
  * ------------------
@@ -146,25 +148,25 @@ $(function () {
   //Extend options if external options exist
   if (typeof AdminLTEOptions !== "undefined") {
     $.extend(true,
-      $.AdminLTE.options,
+      AdminLTE.options,
       AdminLTEOptions);
   }
 
   //Easy access to options
-  var o = $.AdminLTE.options;
+  var o = AdminLTE.options;
 
   //Set up the object
   _init();
 
   //Activate the layout maker
-  $.AdminLTE.layout.activate();
+  AdminLTE.layout.activate();
 
   //Enable sidebar tree view controls
-  $.AdminLTE.tree('.sidebar');
+  AdminLTE.tree('.sidebar');
 
   //Enable control sidebar
   if (o.enableControlSidebar) {
-    $.AdminLTE.controlSidebar.activate();
+    AdminLTE.controlSidebar.activate();
   }
 
   //Add slimscroll to navbar dropdown
@@ -178,7 +180,7 @@ $(function () {
 
   //Activate sidebar push menu
   if (o.sidebarPushMenu) {
-    $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
+    AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
   }
 
   //Activate Bootstrap tooltip
@@ -190,7 +192,7 @@ $(function () {
 
   //Activate box widget
   if (o.enableBoxWidget) {
-    $.AdminLTE.boxWidget.activate();
+    AdminLTE.boxWidget.activate();
   }
 
   //Activate fast click
@@ -233,11 +235,11 @@ function _init() {
    * Fixes the layout height in case min-height fails.
    *
    * @type Object
-   * @usage $.AdminLTE.layout.activate()
-   *        $.AdminLTE.layout.fix()
-   *        $.AdminLTE.layout.fixSidebar()
+   * @usage AdminLTE.layout.activate()
+   *        AdminLTE.layout.fix()
+   *        AdminLTE.layout.fixSidebar()
    */
-  $.AdminLTE.layout = {
+  AdminLTE.layout = {
     activate: function () {
       var _this = this;
       _this.fix();
@@ -270,7 +272,7 @@ function _init() {
         }
 
         //Fix for the control sidebar height
-        var controlSidebar = $($.AdminLTE.options.controlSidebarOptions.selector);
+        var controlSidebar = $(AdminLTE.options.controlSidebarOptions.selector);
         if (typeof controlSidebar !== "undefined") {
           if (controlSidebar.height() > postSetWidth)
             $(".content-wrapper, .right-side").css('min-height', controlSidebar.height());
@@ -289,8 +291,9 @@ function _init() {
         window.console.error("Error: the fixed layout requires the slimscroll plugin!");
       }
       //Enable slimscroll for fixed layout
-      if ($.AdminLTE.options.sidebarSlimScroll) {
+      if (AdminLTE.options.sidebarSlimScroll && AdminLTE.oldSlimScrollHeight !== window.innerHeight) {
         if (typeof $.fn.slimScroll != 'undefined') {
+            AdminLTE.oldSlimScrollHeight = window.innerHeight;
             //Destroy if it exists
             $(".sidebar-menu").slimScroll({destroy: true}).height("auto");
             //Add slimscroll
@@ -311,12 +314,12 @@ function _init() {
    * Adds the push menu functionality to the sidebar.
    *
    * @type Function
-   * @usage: $.AdminLTE.pushMenu("[data-toggle='offcanvas']")
+   * @usage: AdminLTE.pushMenu("[data-toggle='offcanvas']")
    */
-  $.AdminLTE.pushMenu = {
+  AdminLTE.pushMenu = {
     activate: function (toggleBtn) {
       //Get the screen sizes
-      var screenSizes = $.AdminLTE.options.screenSizes;
+      var screenSizes = AdminLTE.options.screenSizes;
 
       //Enable sidebar toggle
       $(document).on('click', toggleBtn, function (e) {
@@ -348,7 +351,7 @@ function _init() {
       });
 
       //Enable expand on hover for sidebar mini
-      if ($.AdminLTE.options.sidebarExpandOnHover
+      if (AdminLTE.options.sidebarExpandOnHover
         || ($('body').hasClass('fixed')
         && $('body').hasClass('sidebar-mini'))) {
         this.expandOnHover();
@@ -356,7 +359,7 @@ function _init() {
     },
     expandOnHover: function () {
       var _this = this;
-      var screenWidth = $.AdminLTE.options.screenSizes.sm - 1;
+      var screenWidth = AdminLTE.options.screenSizes.sm - 1;
       //Expand sidebar on hover
       $('.main-sidebar').hover(function () {
         if ($('body').hasClass('sidebar-mini')
@@ -388,11 +391,11 @@ function _init() {
    * tree view menu.
    *
    * @type Function
-   * @Usage: $.AdminLTE.tree('.sidebar')
+   * @Usage: AdminLTE.tree('.sidebar')
    */
-  $.AdminLTE.tree = function (menu) {
+  AdminLTE.tree = function (menu) {
     var _this = this;
-    var animationSpeed = $.AdminLTE.options.animationSpeed;
+    var animationSpeed = AdminLTE.options.animationSpeed;
     $(document).off('click', menu + ' li a')
       .on('click', menu + ' li a', function (e) {
         //Get the clicked link and the next element
@@ -442,15 +445,15 @@ function _init() {
    * Adds functionality to the right sidebar
    *
    * @type Object
-   * @usage $.AdminLTE.controlSidebar.activate(options)
+   * @usage AdminLTE.controlSidebar.activate(options)
    */
-  $.AdminLTE.controlSidebar = {
+  AdminLTE.controlSidebar = {
     //instantiate the object
     activate: function () {
       //Get the object
       var _this = this;
       //Update options
-      var o = $.AdminLTE.options.controlSidebarOptions;
+      var o = AdminLTE.options.controlSidebarOptions;
       //Get the sidebar
       var sidebar = $(o.selector);
       //The toggle button
@@ -540,13 +543,13 @@ function _init() {
    * removing boxes from the screen.
    *
    * @type Object
-   * @usage $.AdminLTE.boxWidget.activate()
-   *        Set all your options in the main $.AdminLTE.options object
+   * @usage AdminLTE.boxWidget.activate()
+   *        Set all your options in the main AdminLTE.options object
    */
-  $.AdminLTE.boxWidget = {
-    selectors: $.AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
-    icons: $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
-    animationSpeed: $.AdminLTE.options.animationSpeed,
+  AdminLTE.boxWidget = {
+    selectors: AdminLTE.options.boxWidgetOptions.boxWidgetSelectors,
+    icons: AdminLTE.options.boxWidgetOptions.boxWidgetIcons,
+    animationSpeed: AdminLTE.options.animationSpeed,
     activate: function (_box) {
       var _this = this;
       if (!_box) {
@@ -698,17 +701,17 @@ function _init() {
   'use strict';
 
   $.fn.activateBox = function () {
-    $.AdminLTE.boxWidget.activate(this);
+    AdminLTE.boxWidget.activate(this);
   };
 
   $.fn.toggleBox = function () {
-    var button = $($.AdminLTE.boxWidget.selectors.collapse, this);
-    $.AdminLTE.boxWidget.collapse(button);
+    var button = $(AdminLTE.boxWidget.selectors.collapse, this);
+    AdminLTE.boxWidget.collapse(button);
   };
 
   $.fn.removeBox = function () {
-    var button = $($.AdminLTE.boxWidget.selectors.remove, this);
-    $.AdminLTE.boxWidget.remove(button);
+    var button = $(AdminLTE.boxWidget.selectors.remove, this);
+    AdminLTE.boxWidget.remove(button);
   };
 
 })(jQuery);
