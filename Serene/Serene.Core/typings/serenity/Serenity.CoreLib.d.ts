@@ -2337,6 +2337,8 @@ declare namespace Serenity {
         get_readOnly(): boolean;
         set_readOnly(value: boolean): void;
         static CKEditorVer: string;
+        static CKEditorBasePath: string;
+        static getCKEditorBasePath(): any;
         static includeCKEditor(): void;
     }
     class HtmlNoteContentEditor extends HtmlContentEditor {
