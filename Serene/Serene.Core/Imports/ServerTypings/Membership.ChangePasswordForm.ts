@@ -1,4 +1,4 @@
-﻿namespace Serene.Membership {
+namespace Serene.Membership {
     export interface ChangePasswordForm {
         OldPassword: Serenity.PasswordEditor;
         NewPassword: Serenity.PasswordEditor;

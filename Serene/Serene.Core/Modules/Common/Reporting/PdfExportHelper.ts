@@ -1,4 +1,4 @@
-﻿declare var jsPDF;
+declare var jsPDF;
 
 namespace Serene.Common {
     export interface PdfExportOptions {

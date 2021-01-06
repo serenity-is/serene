@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerFormatter([Serenity.ISlickFormatter, Serenity.IInitializeColumn])
     export class EmployeeFormatter implements Slick.Formatter {

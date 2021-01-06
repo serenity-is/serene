@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
     export class ShipperGrid extends Serenity.EntityGrid<ShipperRow, any> {

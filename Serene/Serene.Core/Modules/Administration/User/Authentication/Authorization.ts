@@ -1,4 +1,4 @@
-﻿namespace Serene.Authorization {
+namespace Serene.Authorization {
     export declare let userDefinition: ScriptUserDefinition;
 
     Object.defineProperty(Authorization, 'userDefinition', {

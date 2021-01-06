@@ -1,3 +1,3 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 }
 

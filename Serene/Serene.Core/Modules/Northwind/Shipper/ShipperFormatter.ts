@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerFormatter()
     export class ShipperFormatter implements Slick.Formatter {

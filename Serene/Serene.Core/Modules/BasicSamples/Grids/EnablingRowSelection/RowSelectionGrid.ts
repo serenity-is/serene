@@ -1,4 +1,4 @@
-﻿/// <reference path="SelectableEntityGrid.ts" />
+/// <reference path="SelectableEntityGrid.ts" />
 
 namespace Serene.BasicSamples {
 

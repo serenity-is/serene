@@ -1,3 +1,3 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
 }
 

@@ -1,4 +1,4 @@
-﻿/// <reference path="../Common/Helpers/LanguageList.ts" />
+/// <reference path="../Common/Helpers/LanguageList.ts" />
 
 namespace Serene.ScriptInitialization {
     Q.Config.responsiveDialogs = true;

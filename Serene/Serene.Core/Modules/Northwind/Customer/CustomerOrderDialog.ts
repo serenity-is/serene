@@ -1,4 +1,4 @@
-﻿/// <reference path="../Order/OrderDialog.ts" />
+/// <reference path="../Order/OrderDialog.ts" />
 
 namespace Serene.Northwind {
 

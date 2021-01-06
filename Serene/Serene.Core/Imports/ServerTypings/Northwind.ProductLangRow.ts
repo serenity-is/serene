@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface ProductLangRow {
         Id?: number;
         ProductId?: number;

@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Northwind/Category/CategoryGrid.ts" />
+/// <reference path="../../../Northwind/Category/CategoryGrid.ts" />
 
 namespace Serene.BasicSamples {
 

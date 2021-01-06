@@ -1,4 +1,4 @@
-﻿namespace Serene.LanguageList {
+namespace Serene.LanguageList {
     export function getValue() {
         var result: string[][] = [];
         for (var k of Administration.LanguageRow.getLookup().items) {

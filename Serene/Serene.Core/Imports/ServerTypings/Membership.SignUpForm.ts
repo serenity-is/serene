@@ -1,4 +1,4 @@
-﻿namespace Serene.Membership {
+namespace Serene.Membership {
     export interface SignUpForm {
         DisplayName: Serenity.StringEditor;
         Email: Serenity.EmailEditor;

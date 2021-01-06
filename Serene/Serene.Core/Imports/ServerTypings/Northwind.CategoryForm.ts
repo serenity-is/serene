@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface CategoryForm {
         CategoryName: Serenity.StringEditor;
         Description: Serenity.StringEditor;

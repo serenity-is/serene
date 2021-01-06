@@ -1,4 +1,4 @@
-﻿namespace Serene {
+namespace Serene {
     export interface ExcelImportResponse extends Serenity.ServiceResponse {
         Inserted?: number;
         Updated?: number;

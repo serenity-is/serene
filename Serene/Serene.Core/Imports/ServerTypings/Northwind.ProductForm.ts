@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface ProductForm {
         ProductName: Serenity.StringEditor;
         ProductImage: Serenity.ImageUploadEditor;

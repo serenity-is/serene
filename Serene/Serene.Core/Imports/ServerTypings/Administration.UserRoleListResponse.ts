@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export interface UserRoleListResponse extends Serenity.ListResponse<number> {
     }
 }

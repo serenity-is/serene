@@ -1,4 +1,4 @@
-﻿declare var Morris: any;
+declare var Morris: any;
 
 namespace Serene.BasicSamples {
 

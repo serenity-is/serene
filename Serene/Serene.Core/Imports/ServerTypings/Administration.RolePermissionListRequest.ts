@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export interface RolePermissionListRequest extends Serenity.ServiceRequest {
         RoleID?: number;
         Module?: string;

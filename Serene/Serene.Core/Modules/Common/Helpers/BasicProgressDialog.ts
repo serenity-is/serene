@@ -1,4 +1,4 @@
-﻿namespace Serene {
+namespace Serene {
 
     export class BasicProgressDialog extends Serenity.TemplatedDialog<any> {
 

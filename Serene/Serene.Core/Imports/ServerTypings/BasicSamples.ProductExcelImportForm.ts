@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export interface ProductExcelImportForm {
         FileName: Serenity.ImageUploadEditor;
     }

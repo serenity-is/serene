@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Common/Helpers/BulkServiceAction.ts" />
+/// <reference path="../../../Common/Helpers/BulkServiceAction.ts" />
 
 namespace Serene.BasicSamples {
 

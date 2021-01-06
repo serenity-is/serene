@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export namespace TranslationService {
         export const baseUrl = 'Administration/Translation';
 

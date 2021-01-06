@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface OrderDetailForm {
         ProductID: Serenity.LookupEditor;
         UnitPrice: Serenity.DecimalEditor;

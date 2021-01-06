@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface ProductLogRow {
         ProductLogID?: number;
         OperationType?: Serenity.CaptureOperationType;

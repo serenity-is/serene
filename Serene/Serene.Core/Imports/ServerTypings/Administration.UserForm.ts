@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export interface UserForm {
         Username: Serenity.StringEditor;
         DisplayName: Serenity.StringEditor;

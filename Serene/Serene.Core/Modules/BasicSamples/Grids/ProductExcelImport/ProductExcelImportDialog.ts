@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerClass()
     export class ProductExcelImportDialog extends Serenity.PropertyDialog<any, any> {

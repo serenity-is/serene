@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
 
     export interface ExcelExportOptions {
         grid: Serenity.DataGrid<any, any>;

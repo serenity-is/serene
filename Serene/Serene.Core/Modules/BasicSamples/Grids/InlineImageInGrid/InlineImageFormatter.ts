@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 
     @Serenity.Decorators.registerFormatter()
     export class InlineImageFormatter

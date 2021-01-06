@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 
     /**
      * Adding Responsive attribute makes this dialog use full screen in mobile devices.

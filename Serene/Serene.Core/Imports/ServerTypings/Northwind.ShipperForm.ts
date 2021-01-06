@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface ShipperForm {
         CompanyName: Serenity.StringEditor;
         Phone: PhoneEditor;

@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
     export class UserPreferenceStorage implements Serenity.SettingStorage {
         getItem(key: string): string {
             let value: string;

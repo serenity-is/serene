@@ -1,4 +1,4 @@
-﻿namespace Serene.Texts {
+namespace Serene.Texts {
 
     declare namespace Db {
 

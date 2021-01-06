@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
     export class SidebarSearch extends Serenity.Widget<any> {
         private menuUL: JQuery;
 

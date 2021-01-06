@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
+/// <reference path="../../../Northwind/Order/OrderGrid.ts" />
 /// <reference path="OrderBulkAction.ts" />
 
 namespace Serene.BasicSamples {

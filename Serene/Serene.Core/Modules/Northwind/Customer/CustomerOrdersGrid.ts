@@ -1,4 +1,4 @@
-﻿/// <reference path="../Order/OrderGrid.ts" />
+/// <reference path="../Order/OrderGrid.ts" />
 
 namespace Serene.Northwind {
 

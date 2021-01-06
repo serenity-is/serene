@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
 
     @Serenity.Decorators.registerFormatter()
     export class EnumSelectFormatter implements Slick.Formatter {

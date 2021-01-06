@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
 
     @Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue])
     @Serenity.Decorators.editor()

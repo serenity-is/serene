@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export namespace CustomerGrossSalesService {
         export const baseUrl = 'BasicSamples/CustomerGrossSales';
 

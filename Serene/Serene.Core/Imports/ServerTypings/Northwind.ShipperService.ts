@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export namespace ShipperService {
         export const baseUrl = 'Northwind/Shipper';
 

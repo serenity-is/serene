@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export enum Gender {
         Male = 1,
         Female = 2

@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Northwind/Category/CategoryDialog.ts" />
+/// <reference path="../../../Northwind/Category/CategoryDialog.ts" />
 
 namespace Serene.BasicSamples {
 

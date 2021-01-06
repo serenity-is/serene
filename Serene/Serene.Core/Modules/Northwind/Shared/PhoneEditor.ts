@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerEditor()
     export class PhoneEditor extends Serenity.StringEditor {

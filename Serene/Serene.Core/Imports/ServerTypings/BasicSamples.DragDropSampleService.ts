@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export namespace DragDropSampleService {
         export const baseUrl = 'BasicSamples/DragDropSample';
 

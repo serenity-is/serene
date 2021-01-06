@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
 
     @Serenity.Decorators.registerClass()
     export class UserPermissionDialog extends Serenity.TemplatedDialog<UserPermissionDialogOptions> {

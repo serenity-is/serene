@@ -1,4 +1,4 @@
-﻿namespace Serene {
+namespace Serene {
 
     @Serenity.Decorators.registerClass()
     export class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {

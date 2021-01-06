@@ -1,4 +1,4 @@
-﻿namespace Serene {
+namespace Serene {
     export interface ScriptUserDefinition {
         Username?: string;
         DisplayName?: string;

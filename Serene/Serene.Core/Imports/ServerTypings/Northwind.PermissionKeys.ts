@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     declare namespace PermissionKeys {
         export const General = "Northwind:General";
 

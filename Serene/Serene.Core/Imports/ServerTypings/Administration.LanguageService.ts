@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export namespace LanguageService {
         export const baseUrl = 'Administration/Language';
 

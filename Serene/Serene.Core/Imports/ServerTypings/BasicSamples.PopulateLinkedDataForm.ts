@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export interface PopulateLinkedDataForm {
         CustomerID: Northwind.CustomerEditor;
         CustomerContactName: Serenity.StringEditor;

@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface TerritoryForm {
         TerritoryID: Serenity.StringEditor;
         TerritoryDescription: Serenity.StringEditor;

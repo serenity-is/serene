@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 
     /**
      * This is our category editor that will show only categories of Produce and

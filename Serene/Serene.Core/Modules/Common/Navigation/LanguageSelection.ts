@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
     export class LanguageSelection extends Serenity.Widget<any> {
         constructor(select: JQuery, currentLanguage: string) {
             super(select);

@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerEditor([Serenity.IGetEditValue, Serenity.ISetEditValue])
     @Serenity.Decorators.element("<div/>")

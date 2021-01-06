@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
 
     @Serenity.Decorators.registerClass()
     export class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {

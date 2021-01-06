@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
 
     import fld = Northwind.ProductRow.Fields;
 

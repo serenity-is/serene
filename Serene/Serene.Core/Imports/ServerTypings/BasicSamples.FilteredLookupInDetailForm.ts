@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export interface FilteredLookupInDetailForm {
         CustomerID: Northwind.CustomerEditor;
         OrderDate: Serenity.DateEditor;

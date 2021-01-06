@@ -1,4 +1,4 @@
-﻿namespace Serene.Membership {
+namespace Serene.Membership {
     export interface ForgotPasswordForm {
         Email: Serenity.EmailEditor;
     }

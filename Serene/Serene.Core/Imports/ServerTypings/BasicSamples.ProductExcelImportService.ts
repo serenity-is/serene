@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export namespace ProductExcelImportService {
         export const baseUrl = 'BasicSamples/ProductExcelImport';
 

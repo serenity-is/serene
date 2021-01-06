@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
     export class TerritoryGrid extends Serenity.EntityGrid<TerritoryRow, any> {

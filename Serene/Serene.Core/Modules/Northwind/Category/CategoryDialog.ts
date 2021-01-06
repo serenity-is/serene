@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 
     @Serenity.Decorators.registerClass()
     export class CategoryDialog extends Serenity.EntityDialog<CategoryRow, any> {

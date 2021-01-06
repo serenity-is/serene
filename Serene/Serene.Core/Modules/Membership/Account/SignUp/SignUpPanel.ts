@@ -1,4 +1,4 @@
-﻿namespace Serene.Membership {
+namespace Serene.Membership {
 
     @Serenity.Decorators.registerClass()
     export class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {

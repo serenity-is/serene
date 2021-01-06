@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples.DialogBoxes {
+namespace Serene.BasicSamples.DialogBoxes {
 
     export function initializePage() {
         confirmDialogButtons();

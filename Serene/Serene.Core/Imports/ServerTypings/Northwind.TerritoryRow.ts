@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface TerritoryRow {
         ID?: number;
         TerritoryID?: string;

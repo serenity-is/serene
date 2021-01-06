@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export namespace UserRoleService {
         export const baseUrl = 'Administration/UserRole';
 

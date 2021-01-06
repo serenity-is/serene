@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export interface CustomerDemographicRow {
         ID?: number;
         CustomerTypeID?: string;

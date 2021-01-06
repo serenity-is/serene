@@ -1,4 +1,4 @@
-﻿namespace Serene.BasicSamples {
+namespace Serene.BasicSamples {
     export interface OrdersByShipperResponse extends Serenity.ServiceResponse {
         Values?: { [key: string]: any }[];
         ShipperKeys?: string[];

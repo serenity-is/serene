@@ -1,3 +1,3 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
 }
 

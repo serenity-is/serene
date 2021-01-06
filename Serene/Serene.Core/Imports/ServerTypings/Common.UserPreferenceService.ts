@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
     export namespace UserPreferenceService {
         export const baseUrl = 'Common/UserPreference';
 

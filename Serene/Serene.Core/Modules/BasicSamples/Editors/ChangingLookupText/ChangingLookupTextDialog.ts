@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../Common/Helpers/GridEditorDialog.ts" />
+/// <reference path="../../../Common/Helpers/GridEditorDialog.ts" />
 
 namespace Serene.BasicSamples {
 

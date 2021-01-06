@@ -1,4 +1,4 @@
-﻿namespace Serene.Common {
+namespace Serene.Common {
 
     export interface ReportExecuteOptions {
         reportKey: string;

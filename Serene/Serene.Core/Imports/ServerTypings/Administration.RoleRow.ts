@@ -1,4 +1,4 @@
-﻿namespace Serene.Administration {
+namespace Serene.Administration {
     export interface RoleRow {
         RoleId?: number;
         RoleName?: string;

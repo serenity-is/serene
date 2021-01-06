@@ -1,4 +1,4 @@
-﻿namespace Serene.Northwind {
+namespace Serene.Northwind {
     export namespace CategoryLangService {
         export const baseUrl = 'Northwind/CategoryLang';
 

@@ -1,4 +1,4 @@
-﻿namespace Serene.DialogUtils {
+namespace Serene.DialogUtils {
     export function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean) {
         element.on('dialogbeforeclose panelbeforeclose', function (e) {
             if (!Serenity.WX.hasOriginalEvent(e) || !hasPendingChanges()) {
