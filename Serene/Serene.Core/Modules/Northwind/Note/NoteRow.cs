@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -59,7 +59,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.InsertDate[this];
             set => fields.InsertDate[this] = value;
-        }
+        }
         public Field InsertUserIdField
         {
             get

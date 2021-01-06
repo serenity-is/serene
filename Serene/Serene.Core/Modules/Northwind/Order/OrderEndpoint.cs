@@ -1,4 +1,4 @@
-﻿using Serenity.Data;
+using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;

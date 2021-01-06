@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Membership
 {
     public class ResetPasswordModel

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Serenity.Abstractions;
 using Serenity.Web;
 using System.Security.Claims;

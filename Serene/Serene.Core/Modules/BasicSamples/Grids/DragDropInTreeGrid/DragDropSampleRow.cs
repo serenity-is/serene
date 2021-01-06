@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -32,7 +32,7 @@ namespace Serene.BasicSamples.Entities
         {
             get => fields.Title[this];
             set => fields.Title[this] = value;
-        }
+        }
         public DragDropSampleRow()
         {
         }

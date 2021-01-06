@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -46,7 +46,7 @@ namespace Serene.Administration.Entities
             get => fields.User[this];
             set => fields.User[this] = value;
         }
-        public UserRoleRow()
+        public UserRoleRow()
         {
         }
 

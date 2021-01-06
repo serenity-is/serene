@@ -1,4 +1,4 @@
-﻿using Serene.Northwind.Entities;
+using Serene.Northwind.Entities;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;

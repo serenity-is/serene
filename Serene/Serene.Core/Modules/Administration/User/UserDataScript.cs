@@ -1,4 +1,4 @@
-﻿using Serene.Administration.Entities;
+using Serene.Administration.Entities;
 using Serene.Administration.Repositories;
 using Serenity;
 using Serenity.Abstractions;

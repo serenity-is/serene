@@ -1,4 +1,4 @@
-﻿using MyRow = Serene.BasicSamples.Entities.DragDropSampleRow;
+using MyRow = Serene.BasicSamples.Entities.DragDropSampleRow;
 using Serenity.Data;
 using Serenity.Services;
 using System;

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using MyRepository = Serene.Administration.Repositories.TranslationRepository;
 using Serenity.Abstractions;

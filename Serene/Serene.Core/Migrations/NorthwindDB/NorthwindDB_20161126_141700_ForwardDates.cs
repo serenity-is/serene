@@ -1,4 +1,4 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using Serene.Northwind.Entities;
 using Serenity.Data;
 using System;

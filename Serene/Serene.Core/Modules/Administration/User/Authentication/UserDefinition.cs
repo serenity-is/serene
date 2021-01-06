@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using System;
 
 namespace Serene

@@ -1,4 +1,4 @@
-﻿using MimeKit;
+using MimeKit;
 
 namespace Serene.Common
 {

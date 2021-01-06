@@ -1,4 +1,4 @@
-﻿using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
+using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serenity;

@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.Reporting;
 using System;
 using System.Collections.Generic;

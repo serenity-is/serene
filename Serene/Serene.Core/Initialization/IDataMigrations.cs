@@ -1,4 +1,4 @@
-﻿namespace Serene
+namespace Serene
 {
     public interface IDataMigrations
     {

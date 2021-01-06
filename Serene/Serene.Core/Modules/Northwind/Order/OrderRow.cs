@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -215,7 +215,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.DetailList[this];
             set => fields.DetailList[this] = value;
-        }
+        }
         public OrderRow()
         {
         }

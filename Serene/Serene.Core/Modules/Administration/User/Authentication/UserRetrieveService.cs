@@ -1,4 +1,4 @@
-﻿using MyRow = Serene.Administration.Entities.UserRow;
+using MyRow = Serene.Administration.Entities.UserRow;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;

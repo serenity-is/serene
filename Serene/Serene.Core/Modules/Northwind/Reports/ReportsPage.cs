@@ -1,4 +1,4 @@
-﻿using Serenity.Web;
+using Serenity.Web;
 using Microsoft.AspNetCore.Mvc;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -9,7 +9,7 @@ namespace Serene.Northwind.Pages
 {
     [PageAuthorize(PermissionKeys.General)]
     public class ReportsController : Controller
-    {        protected IReportRegistry ReportRegistry { get; }
+    {        protected IReportRegistry ReportRegistry { get; }
         protected IRequestContext Context { get; }
         protected ITextLocalizer Localizer { get; }
 

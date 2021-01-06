@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -46,7 +46,7 @@ namespace Serene.Northwind.Entities
             get => fields.GrossAmount[this];
             set => fields.GrossAmount[this] = value;
         }
-
+
         public CustomerGrossSalesRow()
         {
         }

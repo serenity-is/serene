@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -25,7 +25,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.RegionDescription[this];
             set => fields.RegionDescription[this] = value;
-        }
+        }
         public RegionRow()
         {
         }

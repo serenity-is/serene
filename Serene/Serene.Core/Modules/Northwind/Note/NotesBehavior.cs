@@ -1,4 +1,4 @@
-﻿using Serene.Administration.Entities;
+using Serene.Administration.Entities;
 using Serene.Northwind.Entities;
 using Serene.Northwind.Repositories;
 using Serenity;

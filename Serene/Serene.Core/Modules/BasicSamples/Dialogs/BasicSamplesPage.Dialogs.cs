@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Views = MVC.Views.BasicSamples.Dialogs;
 
 namespace Serene.BasicSamples.Pages

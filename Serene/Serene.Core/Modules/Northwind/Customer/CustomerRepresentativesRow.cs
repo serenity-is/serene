@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -32,7 +32,7 @@ namespace Serene.Northwind.Entities
             get => fields.EmployeeId[this];
             set => fields.EmployeeId[this] = value;
         }
-        public CustomerRepresentativesRow()
+        public CustomerRepresentativesRow()
         {
         }
 

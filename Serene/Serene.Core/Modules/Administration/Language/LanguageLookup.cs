@@ -1,4 +1,4 @@
-﻿using Serene.Administration.Entities;
+using Serene.Administration.Entities;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Web;

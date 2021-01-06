@@ -1,4 +1,4 @@
-﻿namespace RootProjectWizard
+namespace RootProjectWizard
 {
     partial class FeatureSelection
     {

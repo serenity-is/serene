@@ -1,4 +1,4 @@
-﻿
+
 namespace MVC
 {
     public static class Views

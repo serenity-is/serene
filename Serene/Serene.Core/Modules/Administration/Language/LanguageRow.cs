@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -32,7 +32,7 @@ namespace Serene.Administration.Entities
         {
             get => fields.LanguageName[this];
             set => fields.LanguageName[this] = value;
-        }
+        }
         public LanguageRow()
         {
         }

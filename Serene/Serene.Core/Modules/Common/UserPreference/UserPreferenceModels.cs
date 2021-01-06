@@ -1,4 +1,4 @@
-﻿
+
 using Serenity.Services;
 
 namespace Serene.Common

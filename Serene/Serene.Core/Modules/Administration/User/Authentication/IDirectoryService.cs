@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Administration
 {
     public interface IDirectoryService

@@ -1,4 +1,4 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using System;
 
 namespace Serene.Migrations.DefaultDB

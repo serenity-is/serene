@@ -1,4 +1,4 @@
-﻿using Serenity.Web;
+using Serenity.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Administration.Pages

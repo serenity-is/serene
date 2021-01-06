@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using System.Data;
 using MyRow = Serene.Northwind.Entities.SalesByCategoryRow;
 

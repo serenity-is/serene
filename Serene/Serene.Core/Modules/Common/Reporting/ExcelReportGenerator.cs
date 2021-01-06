@@ -1,4 +1,4 @@
-﻿using FastMember;
+using FastMember;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OfficeOpenXml.Table;
@@ -258,4 +258,4 @@ namespace Serenity.Reporting
             }
         }
     }
-}
+}

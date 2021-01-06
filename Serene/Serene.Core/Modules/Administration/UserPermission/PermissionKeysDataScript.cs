@@ -1,4 +1,4 @@
-﻿
+
 namespace Serene.Administration
 {
     using Microsoft.Extensions.Caching.Memory;

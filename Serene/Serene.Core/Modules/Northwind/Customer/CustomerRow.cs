@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -143,7 +143,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.Representatives[this];
             set => fields.Representatives[this] = value;
-        }
+        }
         public CustomerRow()
         {
         }

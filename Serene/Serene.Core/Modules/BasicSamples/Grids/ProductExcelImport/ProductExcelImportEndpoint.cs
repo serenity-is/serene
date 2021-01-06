@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyRow = Serene.Northwind.Entities.ProductRow;
 using OfficeOpenXml;
 using Serene.Northwind.Entities;

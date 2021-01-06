@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MyRepository = Serene.BasicSamples.Repositories.CustomerGrossSalesRepository;
 using MyRow = Serene.Northwind.Entities.CustomerGrossSalesRow;
 using Serenity.Data;

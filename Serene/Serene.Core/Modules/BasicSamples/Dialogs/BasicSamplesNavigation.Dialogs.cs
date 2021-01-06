@@ -1,4 +1,4 @@
-﻿using Serene.BasicSamples.Pages;
+using Serene.BasicSamples.Pages;
 using Serenity.Navigation;
 
 [assembly: NavigationMenu(7910, "Basic Samples/Dialogs")]

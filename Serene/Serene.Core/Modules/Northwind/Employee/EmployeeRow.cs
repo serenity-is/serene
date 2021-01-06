@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -280,7 +280,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.ReportsToPhotoPath[this];
             set => fields.ReportsToPhotoPath[this] = value;
-        }
+        }
         public EmployeeRow()
         {
         }

@@ -1,4 +1,4 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using Northwind = Serene.Northwind.Pages;
 
 [assembly: NavigationMenu(7000, "Northwind", icon: "fa-anchor")]

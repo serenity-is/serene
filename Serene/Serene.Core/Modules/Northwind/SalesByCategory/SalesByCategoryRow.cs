@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -39,7 +39,7 @@ namespace Serene.Northwind.Entities
             get => fields.ProductSales[this];
             set => fields.ProductSales[this] = value;
         }
-
+
         public SalesByCategoryRow()
         {
         }

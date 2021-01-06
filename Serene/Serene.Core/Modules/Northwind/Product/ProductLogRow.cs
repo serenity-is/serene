@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -109,7 +109,7 @@ namespace Serene.Northwind.Entities
             get => fields.ReorderLevel[this];
             set => fields.ReorderLevel[this] = value;
         }
-        EnumField<CaptureOperationType> ICaptureLogRow.OperationTypeField
+        EnumField<CaptureOperationType> ICaptureLogRow.OperationTypeField
         {
             get => fields.OperationType;
         }

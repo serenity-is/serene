@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -96,7 +96,7 @@ namespace Serene.Administration.Entities
         {
             get => fields.LastDirectoryUpdate[this];
             set => fields.LastDirectoryUpdate[this] = value;
-        }
+        }
         Int16Field IIsActiveRow.IsActiveField
         {
             get => fields.IsActive;

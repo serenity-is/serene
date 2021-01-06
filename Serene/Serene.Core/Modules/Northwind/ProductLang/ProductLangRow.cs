@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -38,7 +38,7 @@ namespace Serene.Northwind.Entities
         {
             get => fields.ProductName[this];
             set => fields.ProductName[this] = value;
-        }
+        }
         public Field CultureIdField
         {
             get => fields.LanguageId;

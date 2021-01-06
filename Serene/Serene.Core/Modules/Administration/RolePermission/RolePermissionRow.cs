@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -38,7 +38,7 @@ namespace Serene.Administration.Entities
         {
             get => fields.RoleRoleName[this];
             set => fields.RoleRoleName[this] = value;
-        }
+        }
         public RolePermissionRow()
         {
         }

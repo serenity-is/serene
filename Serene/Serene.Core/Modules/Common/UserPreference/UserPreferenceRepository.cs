@@ -1,5 +1,5 @@
-﻿using System;
-using Serenity;using Serenity.Data;
+using System;
+using Serenity;using Serenity.Data;
 using Serenity.Services;
 using System.Data;
 using MyRow = Serene.Common.Entities.UserPreferenceRow;
