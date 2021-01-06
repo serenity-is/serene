@@ -1,14 +1,10 @@
 {
   "RootNamespace": "Serene",
   "ServerTypings": {
-    "Assemblies": [],
     "LocalTexts": true
   },
-  "Connections": [],
-  "BaseRowClasses": [],
-  "RemoveForeignFields": [],
   "UpgradeInfo": {
     "InitialType": "Community",
-    "InitialVersion": "5.0.20.1"
+    "InitialVersion": "5.0.24.0"
   }
 }

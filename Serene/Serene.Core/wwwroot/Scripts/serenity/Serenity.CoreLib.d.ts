@@ -785,6 +785,20 @@ declare namespace Slick {
     }
 }
 
+declare interface JQuery {
+    getWidget<TWidget>(widgetType: {
+        new (...args: any[]): TWidget;
+    }): TWidget;
+    tryGetWidget<TWidget>(widgetType: {
+        new (...args: any[]): TWidget;
+    }): TWidget;
+    flexHeightOnly(flexY?: number): JQuery;
+    flexWidthOnly(flexX?: number): JQuery;
+    flexWidthHeight(flexX: number, flexY: number): JQuery;
+    flexX(flexX: number): JQuery;
+    flexY(flexY: number): JQuery;
+}
+
 
 declare namespace Q {
     type Grouping<TItem> = {
@@ -1586,8 +1600,6 @@ declare namespace Serenity {
         function get(key: string): Function;
     }
 
-
-
     class PrefixedContext {
         readonly idPrefix: string;
         constructor(idPrefix: string);
@@ -2045,6 +2057,23 @@ declare namespace Serenity {
         inputOnly?: boolean;
     }
 
+    interface TimeEditorOptions {
+        noEmptyOption?: boolean;
+        startHour?: any;
+        endHour?: any;
+        intervalMinutes?: any;
+    }
+    class TimeEditor extends Widget<TimeEditorOptions> {
+        private minutes;
+        constructor(input: JQuery, opt?: TimeEditorOptions);
+        get value(): number;
+        protected get_value(): number;
+        set value(value: number);
+        protected set_value(value: number): void;
+        get_readOnly(): boolean;
+        set_readOnly(value: boolean): void;
+    }
+
     interface EmailEditorOptions {
         domain?: string;
         readOnlyDomain?: boolean;
@@ -2338,7 +2367,7 @@ declare namespace Serenity {
         set_readOnly(value: boolean): void;
         static CKEditorVer: string;
         static CKEditorBasePath: string;
-        static getCKEditorBasePath(): any;
+        static getCKEditorBasePath(): string;
         static includeCKEditor(): void;
     }
     class HtmlNoteContentEditor extends HtmlContentEditor {
@@ -3601,19 +3630,6 @@ declare namespace Serenity {
         set_value(value: string): void;
         set value(v: string);
     }
-}
-declare interface JQuery {
-    getWidget<TWidget>(widgetType: {
-        new (...args: any[]): TWidget;
-    }): TWidget;
-    tryGetWidget<TWidget>(widgetType: {
-        new (...args: any[]): TWidget;
-    }): TWidget;
-    flexHeightOnly(flexY?: number): JQuery;
-    flexWidthOnly(flexX?: number): JQuery;
-    flexWidthHeight(flexX: number, flexY: number): JQuery;
-    flexX(flexX: number): JQuery;
-    flexY(flexY: number): JQuery;
 }
 declare namespace Slick {
     interface Column {

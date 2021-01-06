@@ -4868,25 +4868,27 @@
     /// <reference types="react" />
     function reactPatch() {
         var _a, _b;
+        // @ts-ignore check for global
+        var globalObj = typeof (global) !== "undefined" ? global : (typeof (window) !== "undefined" ? window : (typeof (self) !== "undefined" ? self : null));
         // @ts-ignore
-        if (typeof React === "undefined" && typeof window !== "undefined") {
-            if (window['preact'] != null) {
-                window['React'] = window['ReactDOM'] = window['preact'];
+        if (typeof React === "undefined" && typeof globalObj !== "undefined") {
+            if (globalObj['preact'] != null) {
+                globalObj['React'] = globalObj['ReactDOM'] = globalObj['preact'];
                 // @ts-ignore
                 React.Fragment = (_a = React.Fragment) !== null && _a !== void 0 ? _a : "x-fragment";
             }
-            else if (window['Nerv'] != null) {
-                window['React'] = window['ReactDOM'] = window['Nerv'];
+            else if (globalObj['Nerv'] != null) {
+                globalObj['React'] = globalObj['ReactDOM'] = globalObj['Nerv'];
                 // @ts-ignore
                 React.Fragment = (_b = React.Fragment) !== null && _b !== void 0 ? _b : "x-fragment";
             }
             else {
-                window['React'] = {
+                globalObj['React'] = {
                     Component: function () { },
                     Fragment: "x-fragment",
                     createElement: function () { return { _reactNotLoaded: true }; }
                 };
-                window['ReactDOM'] = {
+                globalObj['ReactDOM'] = {
                     render: function () { throw Error("To use React, it should be included before Serenity.CoreLib.js"); }
                 };
             }
@@ -7646,82 +7648,78 @@
         return DateTimeEditor;
     }(Widget));
 
-    var Serenity;
-    (function (Serenity) {
-        var TimeEditor = /** @class */ (function (_super) {
-            __extends(TimeEditor, _super);
-            function TimeEditor(input, opt) {
-                var _this = _super.call(this, input, opt) || this;
-                input.addClass('editor s-TimeEditor hour');
-                if (!_this.options.noEmptyOption) {
-                    addOption(input, '', '--');
-                }
-                for (var h = (_this.options.startHour || 0); h <= (_this.options.endHour || 23); h++) {
-                    addOption(input, h.toString(), ((h < 10) ? ('0' + h) : h.toString()));
-                }
-                _this.minutes = $('<select/>').addClass('editor s-TimeEditor minute').insertAfter(input);
-                _this.minutes.change(function () { return _this.element.trigger("change"); });
-                for (var m = 0; m <= 59; m += (_this.options.intervalMinutes || 5)) {
-                    addOption(_this.minutes, m.toString(), ((m < 10) ? ('0' + m) : m.toString()));
-                }
-                return _this;
+    var TimeEditor = /** @class */ (function (_super) {
+        __extends(TimeEditor, _super);
+        function TimeEditor(input, opt) {
+            var _this = _super.call(this, input, opt) || this;
+            input.addClass('editor s-TimeEditor hour');
+            if (!_this.options.noEmptyOption) {
+                addOption(input, '', '--');
             }
-            Object.defineProperty(TimeEditor.prototype, "value", {
-                get: function () {
-                    var hour = toId(this.element.val());
-                    var minute = toId(this.minutes.val());
-                    if (hour == null || minute == null) {
-                        return null;
-                    }
-                    return hour * 60 + minute;
-                },
-                set: function (value) {
-                    if (!value) {
-                        if (this.options.noEmptyOption) {
-                            this.element.val(this.options.startHour);
-                            this.minutes.val('0');
-                        }
-                        else {
-                            this.element.val('');
-                            this.minutes.val('0');
-                        }
-                    }
-                    else {
-                        this.element.val(Math.floor(value / 60).toString());
-                        this.minutes.val(value % 60);
-                    }
-                },
-                enumerable: false,
-                configurable: true
-            });
-            TimeEditor.prototype.get_value = function () {
-                return this.value;
-            };
-            TimeEditor.prototype.set_value = function (value) {
-                this.value = value;
-            };
-            TimeEditor.prototype.get_readOnly = function () {
-                return this.element.hasClass('readonly');
-            };
-            TimeEditor.prototype.set_readOnly = function (value) {
-                if (value !== this.get_readOnly()) {
-                    if (value) {
-                        this.element.addClass('readonly').attr('readonly', 'readonly');
-                    }
-                    else {
-                        this.element.removeClass('readonly').removeAttr('readonly');
-                    }
-                    EditorUtils.setReadonly(this.minutes, value);
+            for (var h = (_this.options.startHour || 0); h <= (_this.options.endHour || 23); h++) {
+                addOption(input, h.toString(), ((h < 10) ? ('0' + h) : h.toString()));
+            }
+            _this.minutes = $('<select/>').addClass('editor s-TimeEditor minute').insertAfter(input);
+            _this.minutes.change(function () { return _this.element.trigger("change"); });
+            for (var m = 0; m <= 59; m += (_this.options.intervalMinutes || 5)) {
+                addOption(_this.minutes, m.toString(), ((m < 10) ? ('0' + m) : m.toString()));
+            }
+            return _this;
+        }
+        Object.defineProperty(TimeEditor.prototype, "value", {
+            get: function () {
+                var hour = toId(this.element.val());
+                var minute = toId(this.minutes.val());
+                if (hour == null || minute == null) {
+                    return null;
                 }
-            };
-            TimeEditor = __decorate([
-                Decorators.registerEditor('Serenity.TimeEditor', [IDoubleValue, IReadOnly]),
-                Decorators.element("<select />")
-            ], TimeEditor);
-            return TimeEditor;
-        }(Widget));
-        Serenity.TimeEditor = TimeEditor;
-    })(Serenity || (Serenity = {}));
+                return hour * 60 + minute;
+            },
+            set: function (value) {
+                if (!value) {
+                    if (this.options.noEmptyOption) {
+                        this.element.val(this.options.startHour);
+                        this.minutes.val('0');
+                    }
+                    else {
+                        this.element.val('');
+                        this.minutes.val('0');
+                    }
+                }
+                else {
+                    this.element.val(Math.floor(value / 60).toString());
+                    this.minutes.val(value % 60);
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        TimeEditor.prototype.get_value = function () {
+            return this.value;
+        };
+        TimeEditor.prototype.set_value = function (value) {
+            this.value = value;
+        };
+        TimeEditor.prototype.get_readOnly = function () {
+            return this.element.hasClass('readonly');
+        };
+        TimeEditor.prototype.set_readOnly = function (value) {
+            if (value !== this.get_readOnly()) {
+                if (value) {
+                    this.element.addClass('readonly').attr('readonly', 'readonly');
+                }
+                else {
+                    this.element.removeClass('readonly').removeAttr('readonly');
+                }
+                EditorUtils.setReadonly(this.minutes, value);
+            }
+        };
+        TimeEditor = __decorate([
+            Decorators.registerEditor('Serenity.TimeEditor', [IDoubleValue, IReadOnly]),
+            Decorators.element("<select />")
+        ], TimeEditor);
+        return TimeEditor;
+    }(Widget));
 
     var EmailEditor = /** @class */ (function (_super) {
         __extends(EmailEditor, _super);
@@ -9351,14 +9349,18 @@
             }
         };
         HtmlContentEditor.getCKEditorBasePath = function () {
-            if (HtmlContentEditor_1.CKEditorBasePath != null)
-                return HtmlContentEditor_1.CKEditorBasePath;
-            // @ts-ignore
-            else if (typeof CKEDITOR_BASEPATH !== "undefined" && CKEDITOR_BASEPATH)
+            var path = HtmlContentEditor_1.CKEditorBasePath;
+            if (path == null) {
                 // @ts-ignore
-                return CKEDITOR_BASEPATH;
-            else
-                return "~/Scripts/ckeditor/";
+                if (typeof CKEDITOR_BASEPATH !== "undefined" && CKEDITOR_BASEPATH)
+                    // @ts-ignore
+                    path = CKEDITOR_BASEPATH;
+                else
+                    return "~/Scripts/ckeditor/";
+            }
+            if (endsWith(path, '/'))
+                return path;
+            return path + '/';
         };
         HtmlContentEditor.includeCKEditor = function () {
             if (window['CKEDITOR']) {
@@ -18563,6 +18565,7 @@
         datePickerIconSvg: datePickerIconSvg,
         DateEditor: DateEditor,
         DateTimeEditor: DateTimeEditor,
+        TimeEditor: TimeEditor,
         EmailEditor: EmailEditor,
         EmailAddressEditor: EmailAddressEditor,
         URLEditor: URLEditor,

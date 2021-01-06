@@ -34,7 +34,9 @@ namespace Build
             "appsettings.machine.json",
             "Thumbs.db",
             "ErrorLog.db",
-            "StyleCop.Cache"
+            "StyleCop.Cache",
+            "Serene.Web.js.map",
+            "StartSharp.Web.js.map"
         });
 
         static readonly HashSet<string> ReplaceParamsInExtensions = new HashSet<string>()

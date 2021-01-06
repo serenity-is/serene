@@ -1160,8 +1160,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           </Folder>
           <Folder Name="serenity" TargetFolderName="serenity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.d.ts">Serenity.CodeGeneration.d.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js">Serenity.CodeGeneration.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js.map">Serenity.CodeGeneration.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.min.js">Serenity.CodeGeneration.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Script.UI.js">Serenity.Script.UI.js</ProjectItem>
@@ -1170,6 +1168,7 @@
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>

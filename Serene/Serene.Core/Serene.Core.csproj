@@ -35,9 +35,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="2.1.0" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.0.20" />
-    <PackageReference Include="Serenity.Assets" Version="5.0.19" />
-    <PackageReference Include="Serenity.Scripts" Version="5.0.20" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.0.24" />
+    <PackageReference Include="Serenity.Assets" Version="5.0.21" />
+    <PackageReference Include="Serenity.Scripts" Version="5.0.24" />
     <PackageReference Include="Serenity.Demo.ThemeSamples" Version="5.0.20.1" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj')">
