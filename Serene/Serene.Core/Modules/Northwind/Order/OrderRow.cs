@@ -215,7 +215,8 @@ namespace Serene.Northwind.Entities
         {
             get => fields.DetailList[this];
             set => fields.DetailList[this] = value;
-        }
+        }
+
         public OrderRow()
         {
         }
