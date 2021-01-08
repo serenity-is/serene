@@ -51,7 +51,7 @@ namespace Serene
                 typeof(Startup).Assembly,
                 //<if:ThemeSamples>
                 typeof(Serenity.Demo.ThemeSamples.AdminLTEController).Assembly,
-                //<if:ThemeSamples>
+                //</if:ThemeSamples>
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
