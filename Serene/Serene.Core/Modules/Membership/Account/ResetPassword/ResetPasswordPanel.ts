@@ -13,7 +13,7 @@
             this.form = new ResetPasswordForm(this.idPrefix);
 
             this.form.NewPassword.addValidationRule(this.uniqueName, e => {
-                if (this.form.ConfirmPassword.value.length < 7) {
+                if (this.form.NewPassword.value.length < 7) {
                     return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                 }
             });
