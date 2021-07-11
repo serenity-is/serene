@@ -10,8 +10,8 @@ namespace RootProjectWizard
     /// </summary>
     public class PathMatcher
     {
-        private IEnumerable<Regex> includes;
-        private IEnumerable<Regex> excludes;
+        private readonly IEnumerable<Regex> includes;
+        private readonly IEnumerable<Regex> excludes;
 
         public PathMatcher(IEnumerable<string> includes, IEnumerable<string> excludes)
         {

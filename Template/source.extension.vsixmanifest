@@ -1,6 +1,6 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="Serene_SerenityApplicationTemplate" Version="5.0.24.0" Language="en-US" Publisher="Volkan Ceylan" />
+    <Identity Id="Serene_SerenityApplicationTemplate" Version="5.0.43.0" Language="en-US" Publisher="Volkan Ceylan" />
     <DisplayName>Serene</DisplayName>
     <Description xml:space="preserve">Serenity is an ASP.NET Core / TypeScript application platform designed to simplify and shorten development of data-centric business applications with a service based architecture. 
     Serene is a starter template to build Serenity applications.</Description>
@@ -11,9 +11,9 @@
     <Tags>Serenity</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
-    <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Community" />
-    <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Pro" />
-    <InstallationTarget Version="[16.0,17.0)" Id="Microsoft.VisualStudio.Enterprise" />
+    <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Pro" />
+    <InstallationTarget Version="[16.0,18.0)" Id="Microsoft.VisualStudio.Enterprise" />
   </Installation>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="RootProjectWizard" Path="|RootProjectWizard|" AssemblyName="|RootProjectWizard;AssemblyName|" />

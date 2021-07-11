@@ -50,10 +50,9 @@ namespace RootProjectWizard
             dteObject = (DTE)automationObject;
 
             serviceProvider = (Microsoft.VisualStudio.OLE.Interop.IServiceProvider)this.dteObject;
-
-            IntPtr zero4 = IntPtr.Zero;
             Guid guid = typeof(SComponentModel).GUID;
-            serviceProvider.QueryService(ref guid, ref IUnknownGuid, out zero4);
+
+            serviceProvider.QueryService(ref guid, ref IUnknownGuid, out IntPtr zero4);
             componentModel = (IComponentModel)GetObjectFromNativeUnknown(zero4);
 
             replacementsDictionary["$ext_safeprojectname$"] = RootWizard.GlobalDictionary["$ext_safeprojectname$"];
@@ -104,7 +103,7 @@ namespace RootProjectWizard
             }
         }
 
-        XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
+        readonly XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
 
         public void ProjectFinishedGenerating(EnvDTE.Project project)
         {

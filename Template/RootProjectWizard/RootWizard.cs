@@ -19,13 +19,14 @@ namespace RootProjectWizard
             GlobalDictionary["$ext_safeprojectname$"] = replacementsDictionary["$safeprojectname$"];
             GlobalDictionary["$ext_projectname$"] = replacementsDictionary["$projectname$"];
 
-            string wizardData;
-            if (!replacementsDictionary.TryGetValue("$wizarddata$", out wizardData))
+            if (!replacementsDictionary.TryGetValue("$wizarddata$", out string wizardData))
                 wizardData = "";
 
             var data = XElement.Parse("<data>" + wizardData + "</data>");
-            var dlg = new FeatureSelection();
-            dlg.selfChange = 1;
+            var dlg = new FeatureSelection
+            {
+                selfChange = 1
+            };
             PopulateFeatureList(dlg.featureList, data);
             dlg.selfChange = 0;
 
@@ -52,7 +53,7 @@ namespace RootProjectWizard
                 }
             };
 
-            string npmOutput = null;
+            string npmOutput;
             try
             {
                 npmProcess.Start();
@@ -80,8 +81,7 @@ namespace RootProjectWizard
             var npmVersion = GetNodeNpmVersion(true);
             var npmParts = npmVersion.Split('.');
 
-            int i;
-            if (nodeParts.Length < 2 || !int.TryParse(nodeParts[0], out i) || i < 6 ||
+            if (nodeParts.Length < 2 || !int.TryParse(nodeParts[0], out int i) || i < 6 ||
                 npmParts.Length < 2 || !int.TryParse(npmParts[0], out i) || i < 3)
             {
                 if (MessageBox.Show("You don't seem to have a recent version of NodeJS/NPM installed!\r\n\r\n" +

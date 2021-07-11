@@ -1098,11 +1098,11 @@
         showDuration: 250,
         hideDuration: 500,
         extendedTimeOut: 500,
-        positionClass: 'toast-top-full-width'
+        positionClass: 'position-toast toast-top-full-width'
     };
     function getToastrOptions(options) {
         options = extend(extend({}, defaultNotifyOptions), options);
-        positionToastContainer(true);
+        positionToastContainer(true, options);
         return options;
     }
     function notifyWarning(message, title, options) {
@@ -1117,22 +1117,20 @@
     function notifyError(message, title, options) {
         toastr.error(message, title, getToastrOptions(options));
     }
-    function positionToastContainer(create) {
+    function positionToastContainer(create, options) {
         if (typeof toastr === 'undefined') {
             return;
         }
-        var dialog = $(window.document.body).children('.ui-dialog:visible, .modal.in, .modal.show').last();
-        var container = toastr.getContainer(null, create);
-        if (container.length === 0) {
+        var container = toastr.getContainer(options, create);
+        if (!container.length || !container.hasClass('position-toast'))
             return;
-        }
+        var dialog = $(window.document.body).children('.ui-dialog:visible, .modal.in, .modal.show').last();
         if (dialog.length > 0) {
             var position = dialog.position();
-            container.addClass('positioned-toast toast-top-full-width');
+            container.addClass('positioned-toast');
             container.css({ position: 'absolute', top: position.top + 28 + 'px', left: position.left + 6 + 'px', width: dialog.width() - 12 + 'px' });
         }
         else {
-            container.addClass('toast-top-full-width');
             if (container.hasClass('positioned-toast')) {
                 container.removeClass('positioned-toast');
                 container.css({ position: '', top: '', left: '', width: '' });
@@ -3440,7 +3438,7 @@
                                 trigger: 'manual'
                             }).tooltip('show');
                             window.setTimeout(function () {
-                                $el.tooltip('destroy');
+                                $el.tooltip(isBS3() ? 'destroy' : 'dispose');
                             }, 1500);
                         }
                     }
@@ -4928,20 +4926,21 @@
         };
         Widget.prototype.getCssClass = function () {
             var type = getInstanceType(this);
-            var klass = 's-' + getTypeName(type);
+            var classList = [];
             var fullClass = replaceAll(getTypeFullName(type), '.', '-');
+            classList.push(fullClass);
             for (var _i = 0, _a = Config.rootNamespaces; _i < _a.length; _i++) {
                 var k = _a[_i];
                 if (startsWith(fullClass, k + '-')) {
-                    fullClass = fullClass.substr(k.length + 1);
+                    classList.push(fullClass.substr(k.length + 1));
                     break;
                 }
             }
-            fullClass = 's-' + fullClass;
-            if (klass === fullClass) {
-                return klass;
-            }
-            return klass + ' ' + fullClass;
+            classList.push(getTypeName(type));
+            return classList
+                .filter(function (v, i, a) { return a.indexOf(v) === i; })
+                .map(function (s) { return 's-' + s; })
+                .join(" ");
         };
         Widget.getWidgetName = function (type) {
             return replaceAll(getTypeFullName(type), '.', '_');
@@ -5220,9 +5219,44 @@
                 pasteZone: options.zone,
                 done: function (e, data) {
                     var response = data.result;
+                    if (response.Error) {
+                        notifyError(response.Error.Message);
+                        return;
+                    }
                     if (options.fileDone != null) {
                         options.fileDone(response, data.files[0].name, data);
                     }
+                },
+                fail: function (e, opt) {
+                    var _a;
+                    var xhr = (_a = opt === null || opt === void 0 ? void 0 : opt._response) === null || _a === void 0 ? void 0 : _a.jqXHR;
+                    if (!xhr) {
+                        notifyError('An error occured during file upload.');
+                        return;
+                    }
+                    if ((xhr.getResponseHeader('content-type') || '')
+                        .toLowerCase().indexOf('application/json') >= 0) {
+                        var json = $.parseJSON(xhr.responseText);
+                        if (json && json.Error && json.Error.Message) {
+                            notifyError(json.Error.Message);
+                            return;
+                        }
+                    }
+                    var html = xhr.responseText;
+                    if (html) {
+                        iframeDialog({ html: html });
+                        return;
+                    }
+                    if (!xhr.status) {
+                        if (xhr.statusText != "abort")
+                            notifyError("An unknown connection error occurred! Check browser console for details.");
+                        return;
+                    }
+                    if (xhr.status == 500) {
+                        notifyError("HTTP 500: Connection refused! Check browser console for details.");
+                        return;
+                    }
+                    notifyError("HTTP " + xhr.status + ' error! Check browser console for details.');
                 },
                 start: function () {
                     blockUI(null);
@@ -6153,10 +6187,14 @@
                     } while (++j < itemsWithTab.length &&
                         trimToEmpty(itemsWithTab[j].tab) === tab.$);
                     i = j;
-                    var li = $("<li><a data-toggle='tab' role='tab'></a></li>")
+                    var li = $(isBS3() ? '<li><a data-toggle="tab" role="tab"></a></li>' :
+                        '<li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab"></a></li>')
                         .appendTo(ul);
                     if (tabIndex === 0) {
-                        li.addClass('active');
+                        if (isBS3())
+                            li.addClass('active');
+                        else
+                            li.children('a').addClass('active');
                     }
                     var tabID = _this.uniqueName + '_Tab' + tabIndex;
                     li.children('a').attr('href', '#' + tabID)
@@ -6168,7 +6206,7 @@
                     var pane = $("<div class='tab-pane fade' role='tabpanel'>")
                         .appendTo(tc);
                     if (tabIndex === 0) {
-                        pane.addClass('in active');
+                        pane.addClass(isBS3() ? 'in active' : 'show active');
                     }
                     pane.attr('id', tabID);
                     _this.createItems(pane, tabItems);
@@ -6986,7 +7024,7 @@
                 if (!isEmptyOrNull(_this.get_minValue()) && Invariant.stringCompare(value, _this.get_minValue()) < 0) {
                     return jquery.format(text('Validation.MinDate'), formatDate(_this.get_minValue(), null));
                 }
-                if (!isEmptyOrNull(_this.get_maxValue()) && Invariant.stringCompare(value, _this.get_maxValue()) >= 0) {
+                if (!isEmptyOrNull(_this.get_maxValue()) && Invariant.stringCompare(value, _this.get_maxValue()) > 0) {
                     return jquery.format(text('Validation.MaxDate'), formatDate(_this.get_maxValue(), null));
                 }
                 return null;
@@ -9664,7 +9702,7 @@
                     };
                 }
             }
-            else if (isTrimmedEmpty(value.Filename))
+            else if (value != null && isTrimmedEmpty(value.Filename))
                 value = null;
             if (value != null) {
                 if (value.Filename == null) {
@@ -10087,7 +10125,7 @@
         QuickFilterBar.prototype.addDateTimeRange = function (field, title) {
             return this.add(QuickFilterBar_1.dateTimeRange(field, title));
         };
-        QuickFilterBar.dateTimeRange = function (field, title) {
+        QuickFilterBar.dateTimeRange = function (field, title, useUtc) {
             var end = null;
             return {
                 field: field,
@@ -10099,7 +10137,7 @@
                         element: function (e2) {
                             e2.insertAfter(e1);
                         },
-                        options: null,
+                        options: useUtc == null ? null : { useUtc: useUtc },
                         init: null
                     });
                     end.element.change(function (x) {
@@ -10161,7 +10199,8 @@
                     }
                     EditorUtils.setValue(w2, state[0]);
                     EditorUtils.setValue(end, state[1]);
-                }
+                },
+                options: useUtc == null ? null : { useUtc: useUtc }
             };
         };
         QuickFilterBar.prototype.addBoolean = function (field, title, yes, no) {
@@ -10804,7 +10843,7 @@
                 var element = _this.element;
                 _this.destroy();
                 element.remove();
-                positionToastContainer(false);
+                positionToastContainer(false, null);
             }, 0);
         };
         TemplatedDialog.prototype.addCssClass = function () {
@@ -11070,6 +11109,9 @@
             return this.validator.form();
         };
         PropertyDialog.prototype.updateTitle = function () {
+        };
+        PropertyDialog.prototype.getFallbackTemplate = function () {
+            return "<div>\n    <div class=\"s-Form\">\n        <form id=\"~_Form\" action=\"\">\n            <div class=\"fieldset\">\n                <div id=\"~_PropertyGrid\"></div>\n                <div class=\"clear\"></div>\n            </div>\n        </form> \n    </div>\n</div>";
         };
         PropertyDialog = __decorate([
             Decorators.registerClass('Serenity.PropertyDialog')
@@ -11826,11 +11868,9 @@
         };
         EntityDialog.prototype.updateInterface = function () {
             EditorUtils.setContainerReadOnly(this.byId('Form'), false);
-            var isDeleted = this.isDeleted();
             var isLocalizationMode = this.isLocalizationMode();
             var hasSavePermission = this.hasSavePermission();
             var viewMode = this.isViewMode();
-            var isDeleted = this.isDeleted();
             var readOnly = this.readOnly;
             this.toolbar.updateInterface();
             if (this.tabs != null) {
@@ -11939,6 +11979,9 @@
         };
         EntityDialog.prototype.useViewMode = function () {
             return false;
+        };
+        EntityDialog.prototype.getFallbackTemplate = function () {
+            return "<div class=\"s-DialogContent\">\n    <div id=\"~_Toolbar\" class=\"s-DialogToolbar\">\n    </div>\n    <div class=\"s-Form\">\n        <form id=\"~_Form\" action=\"\">\n            <div class=\"fieldset\">\n                <div id=\"~_PropertyGrid\"></div>\n                <div class=\"clear\"></div>\n            </div>\n        </form> \n    </div>\n</div>";
         };
         var EntityDialog_1;
         EntityDialog = EntityDialog_1 = __decorate([
@@ -15871,7 +15914,7 @@
                 .filter(function (x) { return x != null; });
         };
         DataGrid.propertyItemToQuickFilter = function (item) {
-            var _a;
+            var _a, _b;
             var quick = {};
             var name = item.name;
             var title = tryGetText(item.title);
@@ -15886,7 +15929,7 @@
                 quick = QuickFilterBar.dateRange(name, title);
             }
             else if (filteringType === DateTimeFiltering) {
-                quick = QuickFilterBar.dateTimeRange(name, title);
+                quick = QuickFilterBar.dateTimeRange(name, title, (_b = item.editorParams) === null || _b === void 0 ? void 0 : _b.useUtc);
             }
             else if (filteringType === BooleanFiltering) {
                 var q = item.quickFilterParams || {};

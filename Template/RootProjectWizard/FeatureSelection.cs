@@ -64,7 +64,7 @@ namespace RootProjectWizard
             }
         }
 
-        private void featureList_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void FeatureList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (selfChange > 0)
                 return;
@@ -76,7 +76,6 @@ namespace RootProjectWizard
             foreach (int x in featureList.CheckedIndices)
                 checks[x] = true;
 
-            var item = featureList.Items[e.Index] as FeatureCheckItem;
             if (e.NewValue == CheckState.Unchecked)
             {
                 Uncheck(checks, e.Index);
@@ -85,11 +84,6 @@ namespace RootProjectWizard
             {
                 Check(checks, e.Index);
             }
-        }
-
-        private void btnOK_Click(object sender, System.EventArgs e)
-        {
-
         }
     }
 }
