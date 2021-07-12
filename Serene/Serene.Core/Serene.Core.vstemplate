@@ -800,6 +800,9 @@
         <Folder Name="jspdf" TargetFolderName="jspdf">
           <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.autotable.d.ts">jspdf.autotable.d.ts</ProjectItem>
         </Folder>
+        <Folder Name="serenity.corelib" TargetFolderName="serenity.corelib">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+        </Folder>
         <Folder Name="serenity" TargetFolderName="serenity">
           <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
         </Folder>
@@ -1168,7 +1171,6 @@
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js.map">Serene.Web.js.map</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
               <Folder Name="northwind" TargetFolderName="northwind">
                 <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>
