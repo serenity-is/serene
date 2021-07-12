@@ -4,7 +4,7 @@ dotnet run -p build\build-serene.csproj %*
 if %ERRORLEVEL% GEQ 1 GOTO :error
 SET VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\
 ECHO *** RESTORING PACKAGES FOR TEMPLATE PROJECT***
-Serenity\Tools\NuGet\NuGet Restore Template\Serene.Template.sln
+Serenity\build\tools\NuGet\NuGet Restore Template\Serene.Template.sln
 if %ERRORLEVEL% GEQ 2 GOTO :error
 ECHO *** BUILDING TEMPLATE PACKAGE ***
 "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\MSBuild.exe" "Template\Serene.Template.sln" -verbosity:m
