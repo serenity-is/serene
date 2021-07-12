@@ -5,6 +5,7 @@ using Serene.Administration.Entities;
 using Serene.Common;
 using Serenity;
 using Serenity.Data;
+using Serenity.Extensions;
 using Serenity.Services;
 using Serenity.Web;
 using System;
@@ -23,7 +24,7 @@ namespace Serene.Membership.Pages
                 return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
         }
 
-        [HttpPost, JsonFilter]
+        [HttpPost, JsonRequest]
         public Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request,
             [FromServices] IEmailSender emailSender,
             [FromServices] IOptions<EnvironmentSettings> options = null)

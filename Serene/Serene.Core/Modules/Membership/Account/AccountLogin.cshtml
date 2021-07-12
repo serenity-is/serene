@@ -1,7 +1,7 @@
 ﻿@inject Serenity.ITextLocalizer Localizer
 @inject IDataMigrations DataMigrations
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = Texts.Forms.Membership.Login.FormTitle.ToString(Localizer);
     ViewData["PageId"] = "Login";
     Layout = MVC.Views.Shared._LayoutNoNavigation;
 }

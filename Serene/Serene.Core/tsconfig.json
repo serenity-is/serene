@@ -12,14 +12,13 @@
     "outFile": "wwwroot/Scripts/site/Serene.Web.js",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "target": "es5",
+    "target": "ES5",
     "typeRoots": [
-      "./node_modules/@types/"
+      "./node_modules/@types/",
+      "./typings/"
     ]
   },
   "include": [
-    "./typings/serenity/Serenity.CoreLib.d.ts",
-    "./typings/jspdf/jspdf.autotable.d.ts",
     "./Imports/**/*",
     "./Modules/**/*"
   ]

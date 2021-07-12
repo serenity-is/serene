@@ -3,6 +3,11 @@
   "ServerTypings": {
     "LocalTexts": true
   },
+  "Restore": {
+    "Exclude": [
+      "/wwwroot/Scripts/serenity/Serenity.CoreLib*.*"
+    ]
+  },
   "UpgradeInfo": {
     "InitialType": "Community",
     "InitialVersion": "5.0.43.0"

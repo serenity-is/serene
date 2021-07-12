@@ -1,4 +1,4 @@
-body {
+﻿body {
     direction: rtl;
 }
 
@@ -2409,35 +2409,35 @@ a.quick-search-field {
     text-align: right;
 }
 
-.s-Northwind-CategoryDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-CategoryDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-CustomerDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-ProductGrid .slick-cell input[type=text] {
+.s-Demo-Northwind-ProductGrid .slick-cell input[type=text] {
     text-align: right;
 }
 
-.s-Northwind-RegionDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-RegionDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-ShipperDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-ShipperDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-SupplierDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-SupplierDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
-.s-Northwind-TerritoryDialog .s-Form .editor.s-DateTimeEditor.time {
+.s-Demo-Northwind-TerritoryDialog .s-Form .editor.s-DateTimeEditor.time {
     margin-right: 4px;
 }
 
@@ -2616,7 +2616,7 @@ a.quick-search-field {
 }
 
 @media (max-width:445px) {
-    .s-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
+    .s-Demo-Northwind-OrderDetailDialog .s-Form .editor.s-DateTimeEditor.time {
         margin-right: 4px;
     }
 }

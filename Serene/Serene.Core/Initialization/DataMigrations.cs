@@ -216,6 +216,13 @@ namespace Serene
 
             var conventionSet = new DefaultConventionSet(defaultSchemaName: null,
                 Path.GetDirectoryName(typeof(DataMigrations).Assembly.Location));
+            var migrationNamespace = "Serene.Migrations." + databaseKey + "DB";
+            var migrationAssemblies = new[] { typeof(DataMigrations).Assembly };
+            if (databaseKey.Equals("Northwind", StringComparison.OrdinalIgnoreCase))
+            {
+                migrationNamespace = typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Namespace;
+                migrationAssemblies = new[] { typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Assembly };
+            }
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
@@ -223,7 +230,7 @@ namespace Serene
                 .AddSingleton<IConventionSet>(conventionSet)
                 .Configure<TypeFilterOptions>(options =>
                 {
-                    options.Namespace = "Serene.Migrations." + databaseKey + "DB";
+                    options.Namespace = migrationNamespace;
                 })
                 .Configure<ProcessorOptions>(options =>
                 {
@@ -245,7 +252,7 @@ namespace Serene
                         builder.AddSqlServer();
 
                     builder.WithGlobalConnectionString(cs.ConnectionString);
-                    builder.WithMigrationsIn(typeof(DataMigrations).Assembly);
+                    builder.WithMigrationsIn(migrationAssemblies);
                 })
                 .BuildServiceProvider();
 

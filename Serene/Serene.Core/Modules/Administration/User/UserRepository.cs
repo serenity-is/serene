@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Caching.Memory;
 using MyRow = Serene.Administration.Entities.UserRow;
-using Serene.Common.Entities;
+using Serenity.Extensions.Entities;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;

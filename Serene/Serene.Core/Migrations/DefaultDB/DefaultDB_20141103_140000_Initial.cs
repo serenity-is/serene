@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using Serenity.Extensions;
 using System;
 
 namespace Serene.Migrations.DefaultDB

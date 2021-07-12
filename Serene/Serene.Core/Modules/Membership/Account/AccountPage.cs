@@ -1,4 +1,4 @@
-using Serene.Administration;
+﻿using Serene.Administration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
@@ -7,7 +7,7 @@ using Serenity.Services;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Serenity.Abstractions;
-using Serene.Common;
+using Serenity.Extensions;
 
 namespace Serene.Membership.Pages
 {
@@ -44,7 +44,7 @@ namespace Serene.Membership.Pages
             return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
         }
 
-        [HttpPost, JsonFilter]
+        [HttpPost, JsonRequest]
         public Result<ServiceResponse> Login(LoginRequest request,
             [FromServices] IUserPasswordValidator passwordValidator,
             [FromServices] IUserRetrieveService userRetriever,

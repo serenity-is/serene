@@ -5,10 +5,11 @@
     <AssemblyName>Serene.Core</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
-    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\$(Configuration)\$(TargetFramework)\sergen.exe</DotNetSergenExe>
+    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>
     <DotNetSergen>dotnet sergen</DotNetSergen>
     <DotNetSergen Condition="Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
     <CommonSrc>..\..\common-features\src\</CommonSrc>
+    <ProSrc>..\..\pro-features\src\</ProSrc>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -16,7 +17,7 @@
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Update="Modules\**\*.Template.html;Modules\**\*.ts.html;Views\Templates\*.html">
+    <None Update="Modules\**\*.Template.html;Modules\**\*.ts.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
@@ -24,31 +25,45 @@
     <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="FastMember" Version="1.5.0" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.2.9" />
-    <PackageReference Include="MailKit" Version="2.4.1" />
-    <PackageReference Include="Mapster" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.1" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="2.1.0" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.0.43" />
+  </ItemGroup>
+  <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
     <PackageReference Include="Serenity.Assets" Version="5.0.44" />
-    <PackageReference Include="Serenity.Scripts" Version="5.0.43" />
+    <PackageReference Include="Serenity.Scripts" Version="5.0.44" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.0.44" />
+  </ItemGroup>
+  <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
+    <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
+    <ProjectReference Include="$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj" />
+    <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
+    <PackageReference Include="Serenity.Extensions" Version="5.0.43" />
+    <!--<if:ThemeSamples>-->
     <PackageReference Include="Serenity.Demo.ThemeSamples" Version="5.0.43" />
+    <!--</if:ThemeSamples>-->
+    <!--<if:Northwind>-->
+    <PackageReference Include="Serenity.Demo.Northwind" Version="5.0.43" />
+    <!--</if:Northwind>-->
+    <!--<if:BasicSamples>-->
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="5.0.43" />
+    <!--</if:BasicSamples>-->
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj')">
-    <ProjectReference Include="$(SerenitySrc)\Serenity.Net.Web\Serenity.Net.Web.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="Exists('$(CommonSrc)')">
+  <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">
+    <ProjectReference Include="$(CommonSrc)Serenity.Extensions\Serenity.Extensions.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Demo.ThemeSamples\Serenity.Demo.ThemeSamples.csproj" />
+    <ProjectReference Include="$(CommonSrc)Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" />
+    <ProjectReference Include="$(CommonSrc)Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj" />
   </ItemGroup>
   <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
-    <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts">
+    <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts;tsconfig.json">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
     </CreateItem>
     <CreateItem Include="wwwroot\Content\site\**\*.less">
@@ -61,6 +76,7 @@
   </Target>
   <Target Name="TransformMvcClientTypes" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
+    <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
   </Target>
   <Target Name="CompileSiteLess" AfterTargets="AfterBuild" Inputs="@(CompileSiteLessInputs)" Outputs="wwwroot\Content\site\site.css">

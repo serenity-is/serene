@@ -25,21 +25,6 @@
         <Folder Name="ClientTypes" TargetFolderName="ClientTypes">
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionCheckEditorAttribute.cs">Administration.PermissionCheckEditorAttribute.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleCheckEditorAttribute.cs">Administration.RoleCheckEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextEditorAttribute.cs">BasicSamples.ChangingLookupTextEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupDetailEditorAttribute.cs">BasicSamples.FilteredLookupDetailEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.HardcodedValuesEditorAttribute.cs">BasicSamples.HardcodedValuesEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageFormatterAttribute.cs">BasicSamples.InlineImageFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.EnumSelectFormatterAttribute.cs">Common.EnumSelectFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerEditorAttribute.cs">Northwind.CustomerEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeFormatterAttribute.cs">Northwind.EmployeeFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeListFormatterAttribute.cs">Northwind.EmployeeListFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.FreightFormatterAttribute.cs">Northwind.FreightFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.NotesEditorAttribute.cs">Northwind.NotesEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailsEditorAttribute.cs">Northwind.OrderDetailsEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PhoneEditorAttribute.cs">Northwind.PhoneEditorAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperFormatterAttribute.cs">Northwind.ShipperFormatterAttribute.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockAttribute.cs">StaticTextBlockAttribute.cs</ProjectItem>
         </Folder>
         <Folder Name="MVC" TargetFolderName="MVC">
           <ProjectItem ReplaceParameters="true" TargetFileName="MVC.cs">MVC.cs</ProjectItem>
@@ -76,35 +61,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.ts">Administration.UserRoleUpdateRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.ts">Administration.UserRow.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.ts">Administration.UserService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.BasicSamplesService.ts">BasicSamples.BasicSamplesService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ChangingLookupTextForm.ts">BasicSamples.ChangingLookupTextForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesColumns.ts">BasicSamples.CustomerGrossSalesColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesListRequest.ts">BasicSamples.CustomerGrossSalesListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.CustomerGrossSalesService.ts">BasicSamples.CustomerGrossSalesService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleColumns.ts">BasicSamples.DragDropSampleColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleForm.ts">BasicSamples.DragDropSampleForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleRow.ts">BasicSamples.DragDropSampleRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.DragDropSampleService.ts">BasicSamples.DragDropSampleService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.FilteredLookupInDetailForm.ts">BasicSamples.FilteredLookupInDetailForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.HardcodedValuesForm.ts">BasicSamples.HardcodedValuesForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.InlineImageInGridColumns.ts">BasicSamples.InlineImageInGridColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.LookupFilterByMultipleForm.ts">BasicSamples.LookupFilterByMultipleForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrderBulkActionRequest.ts">BasicSamples.OrderBulkActionRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperRequest.ts">BasicSamples.OrdersByShipperRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.OrdersByShipperResponse.ts">BasicSamples.OrdersByShipperResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.PopulateLinkedDataForm.ts">BasicSamples.PopulateLinkedDataForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportForm.ts">BasicSamples.ProductExcelImportForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.ProductExcelImportService.ts">BasicSamples.ProductExcelImportService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamples.StaticTextBlockForm.ts">BasicSamples.StaticTextBlockForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveRequest.ts">Common.UserPreferenceRetrieveRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRetrieveResponse.ts">Common.UserPreferenceRetrieveResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceRow.ts">Common.UserPreferenceRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceService.ts">Common.UserPreferenceService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Common.UserPreferenceUpdateRequest.ts">Common.UserPreferenceUpdateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.ts">ExcelImportRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportResponse.ts">ExcelImportResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.ts">GetNextNumberRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberResponse.ts">GetNextNumberResponse.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
@@ -115,62 +71,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordRequest.ts">Membership.ResetPasswordRequest.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.ts">Membership.SignUpForm.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpRequest.ts">Membership.SignUpRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryColumns.ts">Northwind.CategoryColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryForm.ts">Northwind.CategoryForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangRow.ts">Northwind.CategoryLangRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryLangService.ts">Northwind.CategoryLangService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryRow.ts">Northwind.CategoryRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CategoryService.ts">Northwind.CategoryService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerColumns.ts">Northwind.CustomerColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerCustomerDemoRow.ts">Northwind.CustomerCustomerDemoRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDemographicRow.ts">Northwind.CustomerDemographicRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDetailsRow.ts">Northwind.CustomerDetailsRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerForm.ts">Northwind.CustomerForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerGrossSalesRow.ts">Northwind.CustomerGrossSalesRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRepresentativesRow.ts">Northwind.CustomerRepresentativesRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerRow.ts">Northwind.CustomerRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerService.ts">Northwind.CustomerService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeRow.ts">Northwind.EmployeeRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.EmployeeTerritoryRow.ts">Northwind.EmployeeTerritoryRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.Gender.ts">Northwind.Gender.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.NoteRow.ts">Northwind.NoteRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderColumns.ts">Northwind.OrderColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailColumns.ts">Northwind.OrderDetailColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailForm.ts">Northwind.OrderDetailForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailRow.ts">Northwind.OrderDetailRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderDetailService.ts">Northwind.OrderDetailService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderForm.ts">Northwind.OrderForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderListRequest.ts">Northwind.OrderListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderRow.ts">Northwind.OrderRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderService.ts">Northwind.OrderService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.OrderShippingState.ts">Northwind.OrderShippingState.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.PermissionKeys.ts">Northwind.PermissionKeys.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductColumns.ts">Northwind.ProductColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductForm.ts">Northwind.ProductForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangRow.ts">Northwind.ProductLangRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLangService.ts">Northwind.ProductLangService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductLogRow.ts">Northwind.ProductLogRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductRow.ts">Northwind.ProductRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ProductService.ts">Northwind.ProductService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionColumns.ts">Northwind.RegionColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionForm.ts">Northwind.RegionForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionRow.ts">Northwind.RegionRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.RegionService.ts">Northwind.RegionService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryColumns.ts">Northwind.SalesByCategoryColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryRow.ts">Northwind.SalesByCategoryRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SalesByCategoryService.ts">Northwind.SalesByCategoryService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperColumns.ts">Northwind.ShipperColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperForm.ts">Northwind.ShipperForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperRow.ts">Northwind.ShipperRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.ShipperService.ts">Northwind.ShipperService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierColumns.ts">Northwind.SupplierColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierForm.ts">Northwind.SupplierForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierRow.ts">Northwind.SupplierRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.SupplierService.ts">Northwind.SupplierService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryColumns.ts">Northwind.TerritoryColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryForm.ts">Northwind.TerritoryForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryRow.ts">Northwind.TerritoryRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.TerritoryService.ts">Northwind.TerritoryService.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
@@ -189,25 +89,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_130000_ExceptionLog.cs">DefaultDB_20161029_130000_ExceptionLog.cs</ProjectItem>
         </Folder>
-        <ProjectItem ReplaceParameters="true" TargetFileName="MigrationUtils.cs">MigrationUtils.cs</ProjectItem>
-        <Folder Name="NorthwindDB" TargetFolderName="NorthwindDB">
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20141123_155100_Initial.cs">NorthwindDB_20141123_155100_Initial.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151014_030700_OrderDetailID.cs">NorthwindDB_20151014_030700_OrderDetailID.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151202_193700_ProductLog.cs">NorthwindDB_20151202_193700_ProductLog.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20151226_184500_Notes.cs">NorthwindDB_20151226_184500_Notes.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160121_141200_CustomerRepresentatives.cs">NorthwindDB_20160121_141200_CustomerRepresentatives.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160216_154900_DataLocalization.cs">NorthwindDB_20160216_154900_DataLocalization.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20160908_180100_CustomerGrossSales.cs">NorthwindDB_20160908_180100_CustomerGrossSales.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161013_002500_CustomerDetails.cs">NorthwindDB_20161013_002500_CustomerDetails.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161118_195400_DragDropSample.cs">NorthwindDB_20161118_195400_DragDropSample.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDB_20161126_141700_ForwardDates.cs">NorthwindDB_20161126_141700_ForwardDates.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_MySql.sql">NorthwindDBScript_MySql.sql</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Oracle.sql">NorthwindDBScript_Oracle.sql</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Postgres.sql">NorthwindDBScript_Postgres.sql</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_PostgresData.sql">NorthwindDBScript_PostgresData.sql</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_Sqlite.sql">NorthwindDBScript_Sqlite.sql</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindDBScript_SqlServer.sql">NorthwindDBScript_SqlServer.sql</ProjectItem>
-        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MigrationAttribute.cs">MigrationAttribute.cs</ProjectItem>
       </Folder>
       <Folder Name="Modules" TargetFolderName="Modules">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
@@ -284,7 +166,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRow.cs">UserRow.cs</ProjectItem>
           </Folder>
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ImplicitPermissionAttribute.cs">ImplicitPermissionAttribute.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ImplicitPermissionsDataScript.cs">ImplicitPermissionsDataScript.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PermissionCheckEditor.ts">PermissionCheckEditor.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeysDataScript.cs">PermissionKeysDataScript.cs</ProjectItem>
@@ -306,239 +187,19 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleUpdateRequest.cs">UserRoleUpdateRequest.cs</ProjectItem>
           </Folder>
         </Folder>
-        <Folder Name="BasicSamples" TargetFolderName="BasicSamples">
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesEndpoint.cs">BasicSamplesEndpoint.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesHelper.cs">BasicSamplesHelper.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesModels.cs">BasicSamplesModels.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.cs">BasicSamplesNavigation.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.cs">BasicSamplesPage.cs</ProjectItem>
-          <Folder Name="Dialogs" TargetFolderName="Dialogs">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Dialogs.cs">BasicSamplesNavigation.Dialogs.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Dialogs.cs">BasicSamplesPage.Dialogs.cs</ProjectItem>
-            <Folder Name="ChartInDialog" TargetFolderName="ChartInDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChartInDialog.ts">ChartInDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="CloneableEntityDialog" TargetFolderName="CloneableEntityDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityDialog.ts">CloneableEntityDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CloneableEntityGrid.ts">CloneableEntityGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="DefaultValuesInNewDialog" TargetFolderName="DefaultValuesInNewDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="DefaultValuesInNewGrid.ts">DefaultValuesInNewGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="DialogBoxes" TargetFolderName="DialogBoxes">
-              <ProjectItem ReplaceParameters="true" TargetFileName="DialogBoxes.ts">DialogBoxes.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="EntityDialogAsPanel" TargetFolderName="EntityDialogAsPanel">
-              <ProjectItem ReplaceParameters="true" TargetFileName="EntityDialogAsPanel.ts">EntityDialogAsPanel.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="GetInsertedRecordId" TargetFolderName="GetInsertedRecordId">
-              <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdDialog.ts">GetInsertedRecordIdDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="GetInsertedRecordIdGrid.ts">GetInsertedRecordIdGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="MultiColumnResponsiveDialog" TargetFolderName="MultiColumnResponsiveDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveDialog.ts">MultiColumnResponsiveDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="MultiColumnResponsiveGrid.ts">MultiColumnResponsiveGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="OtherFormInTab" TargetFolderName="OtherFormInTab">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.Template.html">OtherFormInTabDialog.Template.html</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabDialog.ts">OtherFormInTabDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormInTabGrid.ts">OtherFormInTabGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="OtherFormInTabOneBar" TargetFolderName="OtherFormInTabOneBar">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.Template.html">OtherFormOneBarDialog.Template.html</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarDialog.ts">OtherFormOneBarDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OtherFormOneBarGrid.ts">OtherFormOneBarGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="PopulateLinkedData" TargetFolderName="PopulateLinkedData">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataDialog.ts">PopulateLinkedDataDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataForm.cs">PopulateLinkedDataForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="PopulateLinkedDataGrid.ts">PopulateLinkedDataGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="ReadOnlyDialog" TargetFolderName="ReadOnlyDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ReadOnlyDialog.ts">ReadOnlyDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ReadOnlyGrid.ts">ReadOnlyGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="ResponsiveDialog" TargetFolderName="ResponsiveDialog">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveDialog.ts">ResponsiveDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResponsiveGrid.ts">ResponsiveGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="SerialAutoNumber" TargetFolderName="SerialAutoNumber">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="SerialAutoNumberDialog.ts">SerialAutoNumberDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="SerialAutoNumberGrid.ts">SerialAutoNumberGrid.ts</ProjectItem>
-            </Folder>
-          </Folder>
-          <Folder Name="DynamicNavigation" TargetFolderName="DynamicNavigation">
-            <ProjectItem ReplaceParameters="true" TargetFileName="DynamicNavigationSample.cs">DynamicNavigationSample.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Editors" TargetFolderName="Editors">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Editors.cs">BasicSamplesNavigation.Editors.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Editors.cs">BasicSamplesPage.Editors.cs</ProjectItem>
-            <Folder Name="ChangingLookupText" TargetFolderName="ChangingLookupText">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextDialog.ts">ChangingLookupTextDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextEditor.ts">ChangingLookupTextEditor.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangingLookupTextForm.cs">ChangingLookupTextForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="FilteredLookupInDetail" TargetFolderName="FilteredLookupInDetail">
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailDialog.ts">FilteredLookupDetailDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupDetailEditor.ts">FilteredLookupDetailEditor.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailDialog.ts">FilteredLookupInDetailDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailForm.cs">FilteredLookupInDetailForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="FilteredLookupInDetailGrid.ts">FilteredLookupInDetailGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="LookupFilterByMultipleValues" TargetFolderName="LookupFilterByMultipleValues">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleDialog.ts">LookupFilterByMultipleDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleForm.cs">LookupFilterByMultipleForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="LookupFilterByMultipleGrid.ts">LookupFilterByMultipleGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ProduceSeafoodCategoryEditor.ts">ProduceSeafoodCategoryEditor.ts</ProjectItem>
-            </Folder>
-            <Folder Name="SelectWithHardcodedValues" TargetFolderName="SelectWithHardcodedValues">
-              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesDialog.ts">HardcodedValuesDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesEditor.ts">HardcodedValuesEditor.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="HardcodedValuesForm.cs">HardcodedValuesForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="StaticTextBlock" TargetFolderName="StaticTextBlock">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockDialog.ts">StaticTextBlockDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlockForm.cs">StaticTextBlockForm.cs</ProjectItem>
-            </Folder>
-          </Folder>
-          <Folder Name="Grids" TargetFolderName="Grids">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesNavigation.Grids.cs">BasicSamplesNavigation.Grids.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicSamplesPage.Grids.cs">BasicSamplesPage.Grids.cs</ProjectItem>
-            <Folder Name="CancellableBulkAction" TargetFolderName="CancellableBulkAction">
-              <ProjectItem ReplaceParameters="true" TargetFileName="CancellableBulkActionGrid.ts">CancellableBulkActionGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="OrderBulkAction.ts">OrderBulkAction.ts</ProjectItem>
-            </Folder>
-            <Folder Name="ConditionalFormatting" TargetFolderName="ConditionalFormatting">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ConditionalFormattingGrid.ts">ConditionalFormattingGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="CustomLinksInGrid" TargetFolderName="CustomLinksInGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomLinksInGrid.ts">CustomLinksInGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="DragDropInTreeGrid" TargetFolderName="DragDropInTreeGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleColumns.cs">DragDropSampleColumns.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleDialog.ts">DragDropSampleDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleEndpoint.cs">DragDropSampleEndpoint.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleForm.cs">DragDropSampleForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleGrid.ts">DragDropSampleGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleRepository.cs">DragDropSampleRepository.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DragDropSampleRow.cs">DragDropSampleRow.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="EnablingRowSelection" TargetFolderName="EnablingRowSelection">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="RowSelectionGrid.ts">RowSelectionGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="SelectableEntityGrid.ts">SelectableEntityGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="GridFilteredByCriteria" TargetFolderName="GridFilteredByCriteria">
-              <ProjectItem ReplaceParameters="true" TargetFileName="GridFilteredByCriteria.ts">GridFilteredByCriteria.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="GroupingAndSummariesInGrid" TargetFolderName="GroupingAndSummariesInGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="GroupingAndSummariesInGrid.ts">GroupingAndSummariesInGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="InitialValuesForQuickFilters" TargetFolderName="InitialValuesForQuickFilters">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="InitialValuesForQuickFilters.ts">InitialValuesForQuickFilters.ts</ProjectItem>
-            </Folder>
-            <Folder Name="InlineActionButtons" TargetFolderName="InlineActionButtons">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="InlineActionGrid.ts">InlineActionGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="InlineImageInGrid" TargetFolderName="InlineImageInGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageFormatter.ts">InlineImageFormatter.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGrid.ts">InlineImageInGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="InlineImageInGridColumns.cs">InlineImageInGridColumns.cs</ProjectItem>
-            </Folder>
-            <Folder Name="ProductExcelImport" TargetFolderName="ProductExcelImport">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportDialog.ts">ProductExcelImportDialog.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportEndpoint.cs">ProductExcelImportEndpoint.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportForm.cs">ProductExcelImportForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ProductExcelImportGrid.ts">ProductExcelImportGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="SampleProductList.xlsx">SampleProductList.xlsx</ProjectItem>
-            </Folder>
-            <Folder Name="QuickFilterCustomization" TargetFolderName="QuickFilterCustomization">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="QuickFilterCustomization.ts">QuickFilterCustomization.ts</ProjectItem>
-            </Folder>
-            <Folder Name="RemovingAddButton" TargetFolderName="RemovingAddButton">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="RemovingAddButton.ts">RemovingAddButton.ts</ProjectItem>
-            </Folder>
-            <Folder Name="StoredProcedureGrid" TargetFolderName="StoredProcedureGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesColumns.cs">CustomerGrossSalesColumns.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesEndpoint.cs">CustomerGrossSalesEndpoint.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesGrid.ts">CustomerGrossSalesGrid.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesListRequest.cs">CustomerGrossSalesListRequest.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRepository.cs">CustomerGrossSalesRepository.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-            </Folder>
-            <Folder Name="TreeGrid" TargetFolderName="TreeGrid">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="TreeGrid.ts">TreeGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="ViewWithoutID" TargetFolderName="ViewWithoutID">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ViewWithoutIDGrid.ts">ViewWithoutIDGrid.ts</ProjectItem>
-            </Folder>
-            <Folder Name="WrappedHeaders" TargetFolderName="WrappedHeaders">
-              <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="WrappedHeadersGrid.ts">WrappedHeadersGrid.ts</ProjectItem>
-            </Folder>
-          </Folder>
-        </Folder>
         <Folder Name="Common" TargetFolderName="Common">
           <Folder Name="Dashboard" TargetFolderName="Dashboard">
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardIndex.cshtml">DashboardIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPage.cs">DashboardPage.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPageModel.cs">DashboardPageModel.cs</ProjectItem>
           </Folder>
-          <Folder Name="EmailSender" TargetFolderName="EmailSender">
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmailSender.cs">EmailSender.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmailSenderExtensions.cs">EmailSenderExtensions.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="IEmailSender.cs">IEmailSender.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SmtpSettings.cs">SmtpSettings.cs</ProjectItem>
-          </Folder>
           <Folder Name="File" TargetFolderName="File">
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
           </Folder>
           <Folder Name="Helpers" TargetFolderName="Helpers">
-            <ProjectItem ReplaceParameters="true" TargetFileName="BasicProgressDialog.ts">BasicProgressDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="BulkServiceAction.ts">BulkServiceAction.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="DialogUtils.ts">DialogUtils.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EnumSelectFormatter.ts">EnumSelectFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ExcelExportHelper.ts">ExcelExportHelper.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ExcelImportRequest.cs">ExcelImportRequest.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberHelper.cs">GetNextNumberHelper.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GetNextNumberRequest.cs">GetNextNumberRequest.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorBase.ts">GridEditorBase.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GridEditorDialog.ts">GridEditorDialog.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="HumanizeSqlExceptionBehavior.cs">HumanizeSqlExceptionBehavior.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SqlExceptionHelper.cs">SqlExceptionHelper.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="StaticTextBlock.ts">StaticTextBlock.ts</ProjectItem>
           </Folder>
           <Folder Name="Navigation" TargetFolderName="Navigation">
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageSelection.ts">LanguageSelection.ts</ProjectItem>
@@ -547,27 +208,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SidebarSearch.ts">SidebarSearch.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="ThemeSelection.ts">ThemeSelection.ts</ProjectItem>
           </Folder>
-          <Folder Name="Reporting" TargetFolderName="Reporting">
-            <ProjectItem ReplaceParameters="true" TargetFileName="DynamicDataReport.cs">DynamicDataReport.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ExcelReportGenerator.cs">ExcelReportGenerator.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="PdfExportHelper.ts">PdfExportHelper.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportController.cs">ReportController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.Template.html">ReportDialog.Template.html</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportDialog.ts">ReportDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportHelper.ts">ReportHelper.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.cshtml">ReportPage.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportPage.ts">ReportPage.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportRepository.cs">ReportRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportTree.cs">ReportTree.cs</ProjectItem>
-          </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInitialization.ts">ScriptInitialization.ts</ProjectItem>
-          <Folder Name="UserPreference" TargetFolderName="UserPreference">
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceEndpoint.cs">UserPreferenceEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceModels.cs">UserPreferenceModels.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceRepository.cs">UserPreferenceRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceRow.cs">UserPreferenceRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserPreferenceStorage.ts">UserPreferenceStorage.ts</ProjectItem>
-          </Folder>
         </Folder>
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
@@ -581,7 +222,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPanel.ts">ChangePasswordPanel.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EnvironmentSettings.cs">EnvironmentSettings.cs</ProjectItem>
             <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.AdminLTE.cshtml">AccountForgotPassword.AdminLTE.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
@@ -613,179 +253,6 @@
             </Folder>
           </Folder>
         </Folder>
-        <Folder Name="Northwind" TargetFolderName="Northwind">
-          <Folder Name="Category" TargetFolderName="Category">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryColumns.cs">CategoryColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryDialog.ts">CategoryDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryEndpoint.cs">CategoryEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryForm.cs">CategoryForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryGrid.ts">CategoryGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryIndex.cshtml">CategoryIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryPage.cs">CategoryPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryRepository.cs">CategoryRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryRow.cs">CategoryRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="CategoryLang" TargetFolderName="CategoryLang">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangEndpoint.cs">CategoryLangEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangRepository.cs">CategoryLangRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CategoryLangRow.cs">CategoryLangRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Customer" TargetFolderName="Customer">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCity.cs">CustomerCity.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerColumns.cs">CustomerColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCountryLookup.cs">CustomerCountryLookup.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDialog.ts">CustomerDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEditor.ts">CustomerEditor.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerEndpoint.cs">CustomerEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerForm.cs">CustomerForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrid.ts">CustomerGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesRow.cs">CustomerGrossSalesRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerIndex.cshtml">CustomerIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerLookup.cs">CustomerLookup.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerOrderDialog.ts">CustomerOrderDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerOrdersGrid.ts">CustomerOrdersGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerPage.cs">CustomerPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepository.cs">CustomerRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRepresentativesRow.cs">CustomerRepresentativesRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerRow.cs">CustomerRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeListDecorator.cs">EmployeeListDecorator.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeListFormatter.ts">EmployeeListFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Northwind.CustomerDialog.Template.html">Northwind.CustomerDialog.Template.html</ProjectItem>
-          </Folder>
-          <Folder Name="CustomerCustomerDemo" TargetFolderName="CustomerCustomerDemo">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerCustomerDemoRow.cs">CustomerCustomerDemoRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="CustomerDemographic" TargetFolderName="CustomerDemographic">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDemographicRow.cs">CustomerDemographicRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="CustomerDetails" TargetFolderName="CustomerDetails">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerDetailsRow.cs">CustomerDetailsRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Employee" TargetFolderName="Employee">
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeFormatter.ts">EmployeeFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeRow.cs">EmployeeRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Gender.cs">Gender.cs</ProjectItem>
-          </Folder>
-          <Folder Name="EmployeeTerritory" TargetFolderName="EmployeeTerritory">
-            <ProjectItem ReplaceParameters="true" TargetFileName="EmployeeTerritoryRow.cs">EmployeeTerritoryRow.cs</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindNavigation.cs">NorthwindNavigation.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindPermissionKeys.cs">NorthwindPermissionKeys.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="NorthwindTexts.cs">NorthwindTexts.cs</ProjectItem>
-          <Folder Name="Note" TargetFolderName="Note">
-            <ProjectItem ReplaceParameters="true" TargetFileName="NoteDialog.ts">NoteDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="NoteRepository.cs">NoteRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="NoteRow.cs">NoteRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="NotesBehavior.cs">NotesBehavior.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="NotesEditor.ts">NotesEditor.ts</ProjectItem>
-          </Folder>
-          <Folder Name="Order" TargetFolderName="Order">
-            <ProjectItem ReplaceParameters="true" TargetFileName="FreightFormatter.ts">FreightFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderColumns.cs">OrderColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailReport.cs">OrderDetailReport.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailReport.cshtml">OrderDetailReport.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDialog.ts">OrderDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderEndpoint.cs">OrderEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderForm.cs">OrderForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderGrid.ts">OrderGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderIndex.cshtml">OrderIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderListRequest.cs">OrderListRequest.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderPage.cs">OrderPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderRepository.cs">OrderRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderRow.cs">OrderRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShipCity.cs">OrderShipCity.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShipCountry.cs">OrderShipCountry.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderShippingState.cs">OrderShippingState.cs</ProjectItem>
-          </Folder>
-          <Folder Name="OrderDetail" TargetFolderName="OrderDetail">
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailColumns.cs">OrderDetailColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailDialog.ts">OrderDetailDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailEndpoint.cs">OrderDetailEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailForm.cs">OrderDetailForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailIndex.cshtml">OrderDetailIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailPage.cs">OrderDetailPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailRepository.cs">OrderDetailRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailRow.cs">OrderDetailRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="OrderDetailsEditor.ts">OrderDetailsEditor.ts</ProjectItem>
-          </Folder>
-          <Folder Name="Product" TargetFolderName="Product">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductColumns.cs">ProductColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductDialog.ts">ProductDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductEndpoint.cs">ProductEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductForm.cs">ProductForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductGrid.ts">ProductGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductIndex.cshtml">ProductIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLogRow.cs">ProductLogRow.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductPage.cs">ProductPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductRepository.cs">ProductRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductRow.cs">ProductRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="ProductLang" TargetFolderName="ProductLang">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangEndpoint.cs">ProductLangEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangRepository.cs">ProductLangRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ProductLangRow.cs">ProductLangRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Region" TargetFolderName="Region">
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionColumns.cs">RegionColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionDialog.ts">RegionDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionEndpoint.cs">RegionEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionForm.cs">RegionForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionGrid.ts">RegionGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionIndex.cshtml">RegionIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionPage.cs">RegionPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionRepository.cs">RegionRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RegionRow.cs">RegionRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Reports" TargetFolderName="Reports">
-            <ProjectItem ReplaceParameters="true" TargetFileName="CustomerGrossSalesReport.cs">CustomerGrossSalesReport.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ReportsPage.cs">ReportsPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryReport.cs">SalesByCategoryReport.cs</ProjectItem>
-          </Folder>
-          <Folder Name="SalesByCategory" TargetFolderName="SalesByCategory">
-            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryColumns.cs">SalesByCategoryColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryEndpoint.cs">SalesByCategoryEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryRepository.cs">SalesByCategoryRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SalesByCategoryRow.cs">SalesByCategoryRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Shared" TargetFolderName="Shared">
-            <ProjectItem ReplaceParameters="true" TargetFileName="PhoneEditor.ts">PhoneEditor.ts</ProjectItem>
-          </Folder>
-          <Folder Name="Shipper" TargetFolderName="Shipper">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperColumns.cs">ShipperColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperDialog.ts">ShipperDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperEndpoint.cs">ShipperEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperForm.cs">ShipperForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperFormatter.ts">ShipperFormatter.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperGrid.ts">ShipperGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperIndex.cshtml">ShipperIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperPage.cs">ShipperPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperRepository.cs">ShipperRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ShipperRow.cs">ShipperRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Supplier" TargetFolderName="Supplier">
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierColumns.cs">SupplierColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierCountryLookup.cs">SupplierCountryLookup.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierDialog.ts">SupplierDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierEndpoint.cs">SupplierEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierForm.cs">SupplierForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierGrid.ts">SupplierGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierIndex.cshtml">SupplierIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierPage.cs">SupplierPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierRepository.cs">SupplierRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SupplierRow.cs">SupplierRow.cs</ProjectItem>
-          </Folder>
-          <Folder Name="Territory" TargetFolderName="Territory">
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryColumns.cs">TerritoryColumns.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryDialog.ts">TerritoryDialog.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryEndpoint.cs">TerritoryEndpoint.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryForm.cs">TerritoryForm.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryGrid.ts">TerritoryGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryIndex.cshtml">TerritoryIndex.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryPage.cs">TerritoryPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryRepository.cs">TerritoryRepository.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TerritoryRow.cs">TerritoryRow.cs</ProjectItem>
-          </Folder>
-        </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="package-lock.json">package-lock.json</ProjectItem>
@@ -797,14 +264,23 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
       <Folder Name="typings" TargetFolderName="typings">
-        <Folder Name="jspdf" TargetFolderName="jspdf">
-          <ProjectItem ReplaceParameters="true" TargetFileName="jspdf.autotable.d.ts">jspdf.autotable.d.ts</ProjectItem>
-        </Folder>
         <Folder Name="serenity.corelib" TargetFolderName="serenity.corelib">
           <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
         </Folder>
-        <Folder Name="serenity" TargetFolderName="serenity">
-          <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CoreLib.d.ts">Serenity.CoreLib.d.ts</ProjectItem>
+        <Folder Name="serenity.demo.basicsamples" TargetFolderName="serenity.demo.basicsamples">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+        </Folder>
+        <Folder Name="serenity.demo.northwind" TargetFolderName="serenity.demo.northwind">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+        </Folder>
+        <Folder Name="serenity.extensions" TargetFolderName="serenity.extensions">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+        </Folder>
+        <Folder Name="serenity.pro.extensions" TargetFolderName="serenity.pro.extensions">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
+        </Folder>
+        <Folder Name="serenity.pro.ui" TargetFolderName="serenity.pro.ui">
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Views" TargetFolderName="Views">
@@ -822,10 +298,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutSlimHead.cshtml">_LayoutSlimHead.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="LeftNavigation.cshtml">LeftNavigation.cshtml</ProjectItem>
-        </Folder>
-        <Folder Name="Templates" TargetFolderName="Templates">
-          <ProjectItem ReplaceParameters="true" TargetFileName="EntityDialog.Template.html">EntityDialog.Template.html</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="PropertyDialog.Template.html">PropertyDialog.Template.html</ProjectItem>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
@@ -1086,13 +558,11 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="tick-red-partial.png">tick-red-partial.png</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.administration.less">site.administration.less</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="site.basicsamples.less">site.basicsamples.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.htmlcontent.css">site.htmlcontent.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.less">site.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.membership.less">site.membership.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.mixins.less">site.mixins.less</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="site.northwind.less">site.northwind.less</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.rtl.css">site.rtl.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.theme.less">site.theme.less</ProjectItem>
             <Folder Name="slides" TargetFolderName="slides">
@@ -1266,6 +736,7 @@
       <files include="Modules\Common\Dashboard\DashboardPage.cs" />
       <files include="appsettings.json" />
       <files include="Web.config" />
+      <files include="Initialization\Startup.cs" />
     </conditionals>
   </WizardData>
 </VSTemplate>

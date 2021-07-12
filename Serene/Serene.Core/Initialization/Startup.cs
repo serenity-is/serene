@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,9 +50,16 @@ namespace Serene
                 typeof(SaveRequestHandler<>).Assembly,
                 typeof(IDynamicScriptManager).Assembly,
                 typeof(Startup).Assembly,
+                typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
                 //<if:ThemeSamples>
                 typeof(Serenity.Demo.ThemeSamples.AdminLTEController).Assembly,
                 //</if:ThemeSamples>
+                //<if:Northwind>
+                typeof(Serenity.Demo.Northwind.CustomerController).Assembly,
+                //</if:Northwind>
+                //<if:BasicSamples>
+                typeof(Serenity.Demo.BasicSamples.BasicSamplesController).Assembly,
+                //</if:BasicSamples>
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
@@ -60,7 +68,18 @@ namespace Serene
             services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
             services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
 
-            services.Configure<EnvironmentSettings>(Configuration.GetSection(EnvironmentSettings.SectionKey));
+            services.Configure<Serenity.Extensions.EnvironmentSettings>(Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
+
+            
+            var dataProtectionKeysFolder = Configuration?["DataProtectionKeysFolder"];
+            if (!string.IsNullOrEmpty(dataProtectionKeysFolder))
+            {
+                dataProtectionKeysFolder = Path.Combine(HostEnvironment.ContentRootPath, dataProtectionKeysFolder);
+                if (Directory.Exists(dataProtectionKeysFolder))
+                    services.AddDataProtection()
+                        .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysFolder));
+            }
+
 
             services.AddAntiforgery(options => 
             {
@@ -114,8 +133,9 @@ namespace Serene
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IReportRegistry, ReportRegistry>();
+            services.AddExcelExporter();
             services.AddSingleton<IDataMigrations, DataMigrations>();
-            services.AddSingleton<Common.IEmailSender, Common.EmailSender>();
+            services.AddSingleton<Serenity.Extensions.IEmailSender, Serenity.Extensions.EmailSender>();
             services.AddServiceHandlers();
             services.AddDynamicScripts();
             services.AddCssBundling();
@@ -170,7 +190,6 @@ namespace Serene
             app.UseAuthorization();
 
             app.UseDynamicScripts();
-			app.UseExceptional();
 
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();

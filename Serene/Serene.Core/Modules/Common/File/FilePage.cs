@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serenity;
+using Serenity.Abstractions;
 using Serenity.Services;
 using Serenity.Web;
 using System;
@@ -11,15 +12,17 @@ namespace Serene.Common.Pages
 {
     public class FileController : Controller
     {
-        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer)
+        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer, IExceptionLogger logger = null)
         {
             UploadStorage = uploadStorage ??
                 throw new ArgumentNullException(nameof(uploadStorage));
             Localizer = localizer ??
                 throw new ArgumentNullException(nameof(localizer));
+            Logger = logger;
         }
 
         protected IUploadStorage UploadStorage { get; }
+        protected IExceptionLogger Logger { get; }
         protected ITextLocalizer Localizer { get; }
 
         [Route("upload/{*pathInfo}")]
@@ -61,7 +64,7 @@ namespace Serene.Common.Pages
             if (file.FileName.IsEmptyOrNull())
                 throw new ArgumentNullException("filename");
 
-            var processor = new UploadProcessor(UploadStorage)
+            var processor = new UploadProcessor(UploadStorage, Logger)
             {
                 ThumbWidth = 128,
                 ThumbHeight = 96

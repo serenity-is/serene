@@ -1,10 +1,6 @@
-using Serenity.Abstractions;
-using Microsoft.AspNetCore.Mvc;
-//<if:Northwind>
-using Serene.Northwind;
-using Serene.Northwind.Entities;
-//</if:Northwind>
+﻿using Microsoft.AspNetCore.Mvc;
 using Serenity;
+using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Web;
 using System;
@@ -29,20 +25,23 @@ namespace Serene.Common.Pages
             if (sqlConnections is null)
             	throw new ArgumentNullException(nameof(sqlConnections));
 
+            var o = Serenity.Demo.Northwind.Entities.OrderRow.Fields;
+
             var cachedModel = cache.GetLocalStoreOnly("DashboardPageModel", TimeSpan.FromMinutes(5),
-                OrderRow.Fields.GenerationKey, () =>
+                o.GenerationKey, () =>
                 {
                     var model = new DashboardPageModel();
-                    var o = OrderRow.Fields;
-                    using (var connection = sqlConnections.NewFor<OrderRow>())
+                    using (var connection = sqlConnections.NewFor<Serenity.Demo.Northwind.Entities.OrderRow>())
                     {
-                        model.OpenOrders = connection.Count<OrderRow>(o.ShippingState == (int)OrderShippingState.NotShipped);
-                        var closedOrders = connection.Count<OrderRow>(o.ShippingState == (int)OrderShippingState.Shipped);
+                        model.OpenOrders = connection.Count<Serenity.Demo.Northwind.Entities.OrderRow>(
+                            o.ShippingState == (int)Serenity.Demo.Northwind.OrderShippingState.NotShipped);
+                        var closedOrders = connection.Count<Serenity.Demo.Northwind.Entities.OrderRow>(
+                            o.ShippingState == (int)Serenity.Demo.Northwind.OrderShippingState.Shipped);
                         var totalOrders = model.OpenOrders + closedOrders;
                         model.ClosedOrderPercent = (int)Math.Round(totalOrders == 0 ? 100 :
-                            ((double)closedOrders / (double)totalOrders * 100));
-                        model.CustomerCount = connection.Count<CustomerRow>();
-                        model.ProductCount = connection.Count<ProductRow>();
+                            ((double)closedOrders / totalOrders * 100));
+                        model.CustomerCount = connection.Count<Serenity.Demo.Northwind.Entities.CustomerRow>();
+                        model.ProductCount = connection.Count<Serenity.Demo.Northwind.Entities.ProductRow>();
                     }
                     return model;
                 });
