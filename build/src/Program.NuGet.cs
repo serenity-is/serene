@@ -87,8 +87,7 @@ namespace Build
 
         private static NuGetVersion GetLatestVersionOf(string packageId)
         {
-            if (HasProPackages && ProPackagePrefixes.Any(x => 
-                packageId.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
+            if (HasProPackages && IsProPackage(packageId))
                 return GetLatestVersionOf(ProPackagesFolder, packageId);
 
             var version = GetLatestVersionOf(NugetOrgReadSource, packageId);

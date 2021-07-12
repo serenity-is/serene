@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Build
 {
@@ -10,17 +9,12 @@ namespace Build
         static string ProPackagesFolder => Path.Combine(Root, "pro-packages");
         static string ProPackagesTempZipDir => Path.Combine(TemporaryFilesRoot, "pro-packages-zip");
 
-        private static IEnumerable<string> ProPackagePrefixes
-        {
-            get
-            {
-                yield return "Serenity.Pro.";
-            }
-        }
-
         static bool IsProPackage(string packageId)
         {
-            return ProPackagePrefixes.Any(x => x.StartsWith(packageId, StringComparison.OrdinalIgnoreCase));
+            return packageId.StartsWith("Serenity.", StringComparison.OrdinalIgnoreCase) &&
+                (packageId.StartsWith("Serenity.Pro", StringComparison.OrdinalIgnoreCase) ||
+                 packageId.Contains("Advanced", StringComparison.OrdinalIgnoreCase) ||
+                 packageId.Contains("Premium", StringComparison.OrdinalIgnoreCase));
         }
 
         static void CopyProPackagesToTempZipDir(List<Tuple<string, string>> packages)
@@ -29,7 +23,7 @@ namespace Build
 
             foreach (var pair in packages)
             {
-                if (ProPackagePrefixes.Any(x => pair.Item1.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
+                if (IsProPackage(pair.Item1))
                 {
                     var idLower = pair.Item1.ToLower(System.Globalization.CultureInfo.InvariantCulture);
                     var sourceFolder = Path.Combine(Path.Combine(ProPackagesFolder, idLower), pair.Item2);

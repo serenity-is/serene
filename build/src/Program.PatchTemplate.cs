@@ -27,9 +27,9 @@ namespace Build
         static void PatchTemplateAndCopyFiles(string csproj, string targetPath, HashSet<string> skipFiles)
         {
             List<string> fileList;
-            var xml = XElement.Parse(File.ReadAllText(csproj));
+            var csprojXml = XElement.Parse(File.ReadAllText(csproj));
 
-            var vsTemplate = Path.ChangeExtension(csproj, ".vstemplate");
+            var vsTemplateFile = Path.ChangeExtension(csproj, ".vstemplate");
             var rootDir = Path.GetDirectoryName(csproj);
             fileList = Directory.GetFiles(rootDir, "*.*", SearchOption.AllDirectories)
                 .Select(x => x[(rootDir.Length + 1)..])
@@ -37,9 +37,12 @@ namespace Build
                 .OrderBy(x => x, StringComparer.InvariantCultureIgnoreCase)
                 .ToList();
 
-            var xv = XElement.Parse(File.ReadAllText(vsTemplate));
+            var vsTemplateXml = XElement.Parse(File.ReadAllText(vsTemplateFile));
+
             XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
-            var project = xv.Descendants(ns + "Project").First();
+            var conditionalsElement = vsTemplateXml.Descendants(ns + "conditionals").First();
+
+            var project = vsTemplateXml.Descendants(ns + "Project").First();
             project.Elements().Remove();
             var byFolder = new Dictionary<string, XElement>();
 
@@ -92,32 +95,50 @@ namespace Build
                 File.Copy(sourcePath, targetFile);
 
                 if (replaceParameters)
+                {
                     ConvertToTemplateParams(targetFile);
+
+                    if (File.ReadAllText(targetFile).Contains("<if:", StringComparison.OrdinalIgnoreCase) &&
+                        !conditionalsElement.Elements(ns + "files")
+                            .Any(x => string.Equals(x.Attribute("include")?.Value?.Trim(), file)))
+                    {
+                        var el = new XElement(ns + "files");
+                        el.SetAttributeValue("include", file);
+                        conditionalsElement.Add(el);
+                    }
+                }
             }
 
-            File.WriteAllText(vsTemplate, xv.ToString(SaveOptions.OmitDuplicateNamespaces));
-            File.Copy(vsTemplate, Path.Combine(targetPath, Path.GetFileName(vsTemplate)));
+            File.WriteAllText(vsTemplateFile, vsTemplateXml.ToString(SaveOptions.OmitDuplicateNamespaces));
+            File.Copy(vsTemplateFile, Path.Combine(targetPath, Path.GetFileName(vsTemplateFile)));
 
-            foreach (var z in xml.Descendants("PackageReference").Where(x => 
-                x.Attribute("Condition") != null &&
-                x.Attribute("Condition").Value != null &&
-                x.Attribute("Condition").Value.IndexOf("Serenity.Net") >= 0).ToList())
+            foreach (var z in csprojXml.Descendants("ItemGroup")
+                .Concat(csprojXml.Descendants("PackageReference"))
+                .Concat(csprojXml.Descendants("ProjectReference"))
+                .Where(x =>
+                    x.Attribute("Condition") != null &&
+                    x.Attribute("Condition").Value != null &&
+                    x.Attribute("Condition").Value.Trim()
+                        .StartsWith("!Exists(", StringComparison.OrdinalIgnoreCase)).ToList())
             {
                 z.Attribute("Condition").Remove();
             }
 
-            foreach (var z in xml.Descendants("ItemGroup").Where(x => 
-                x.Attribute("Condition") != null &&
-                x.Attribute("Condition").Value != null &&
-                (x.Attribute("Condition").Value.IndexOf("Serenity.Net") >= 0 ||
-                 x.Attribute("Condition").Value.IndexOf("CommonSrc") >= 0)).ToList())
+            foreach (var z in csprojXml.Descendants("ItemGroup")
+                .Concat(csprojXml.Descendants("PackageReference"))
+                .Concat(csprojXml.Descendants("ProjectReference"))
+                .Where(x => 
+                    x.Attribute("Condition") != null &&
+                    x.Attribute("Condition").Value != null &&
+                    x.Attribute("Condition").Value.Trim()
+                        .StartsWith("Exists(", StringComparison.OrdinalIgnoreCase)).ToList())
             {
                 z.Remove();
             }
 
             var targetProj = Path.Combine(targetPath, Path.GetFileName(csproj));
             File.WriteAllText(targetProj,
-                xml.ToString(SaveOptions.OmitDuplicateNamespaces)
+                csprojXml.ToString(SaveOptions.OmitDuplicateNamespaces)
                   .Replace("http://localhost:55555/", "")
                   .Replace(
                     "<DevelopmentServerPort>55556</DevelopmentServerPort>", 

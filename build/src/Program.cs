@@ -26,21 +26,18 @@ namespace Build
         static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
         static string TemporaryFilesRoot => Path.Combine(Root, "Template", "obj");
         static string TemplateTempZipDir => Path.Combine(TemporaryFilesRoot, ProjectId + "Core.Template");
+        static string SerenitySergenExe => Path.Combine(Root, "Serenity", "src", "Serenity.Net.CodeGenerator", "bin", "sergen.exe");
 
         static string SerenityVersion { get; set; }
         static readonly UTF8Encoding UTF8Bom = new UTF8Encoding(true);
 
-        static IEnumerable<string> CommonPackagePrefixes
-        {
-            get
-            {
-                yield return "Serenity.Demo.";
-            }
-        }
-
         static bool IsCommonPackage(string packageId)
         {
-            return CommonPackagePrefixes.Any(x => packageId.StartsWith(x, StringComparison.OrdinalIgnoreCase));
+            return packageId.StartsWith("Serenity.", StringComparison.OrdinalIgnoreCase) &&
+                !IsProPackage(packageId) &&
+                (string.Equals(packageId, "Serenity.Extensions", StringComparison.OrdinalIgnoreCase) ||
+                 packageId.StartsWith("Serenity.Common", StringComparison.OrdinalIgnoreCase) ||
+                 packageId.StartsWith("Serenity.Demo", StringComparison.OrdinalIgnoreCase));
         }
 
         static void Main(string[] args)

@@ -33,7 +33,12 @@ namespace Build
             if (StartProcess("dotnet", "tool update sergen", ProjectFolder) != 0)
                 ExitWithError("Error while sergen tool updating " + ProjectFile);
 
-            if (StartProcess("dotnet", "sergen restore", ProjectFolder) != 0)
+            if (File.Exists(SerenitySergenExe))
+            {
+                if (StartProcess(SerenitySergenExe, "restore", ProjectFolder) != 0)
+                    ExitWithError("Error while sergen restoring " + ProjectFile);
+            }
+            else if (StartProcess("dotnet", "sergen restore", ProjectFolder) != 0)
                 ExitWithError("Error while sergen restoring " + ProjectFile);
 
             Directory.CreateDirectory(VSIXAssetsFolder);
