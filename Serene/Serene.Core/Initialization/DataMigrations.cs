@@ -110,7 +110,7 @@ namespace Serene
                 }
 
             var catalog = cb[catalogKey] as string;
-            cb[catalogKey] = null;
+            cb[catalogKey] = isPostgres ? "postgres" : null;
 
             using (var serverConnection = SqlConnections.New(cb.ConnectionString, cs.ProviderName, cs.Dialect))
             {
