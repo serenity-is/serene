@@ -154,6 +154,7 @@ declare namespace Serenity.Extensions {
         grid: Serenity.DataGrid<any, any>;
         service: string;
         onViewSubmit: () => boolean;
+        editRequest?: (request: Serenity.ListRequest) => Serenity.ListRequest;
         title?: string;
         hint?: string;
         separator?: boolean;

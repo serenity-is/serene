@@ -35,8 +35,8 @@
   </ItemGroup>
   <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
     <PackageReference Include="Serenity.Assets" Version="5.0.44" />
-    <PackageReference Include="Serenity.Scripts" Version="5.0.44" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.0.44" />
+    <PackageReference Include="Serenity.Scripts" Version="5.0.49" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.0.49" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
@@ -44,15 +44,15 @@
     <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
   </ItemGroup>
   <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
-    <PackageReference Include="Serenity.Extensions" Version="5.0.43" />
+    <PackageReference Include="Serenity.Extensions" Version="5.0.49.1" />
     <!--<if:ThemeSamples>-->
-    <PackageReference Include="Serenity.Demo.ThemeSamples" Version="5.0.43" />
+    <PackageReference Include="Serenity.Demo.ThemeSamples" Version="5.0.49.1" />
     <!--</if:ThemeSamples>-->
     <!--<if:Northwind>-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="5.0.43" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="5.0.49.1" />
     <!--</if:Northwind>-->
     <!--<if:BasicSamples>-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="5.0.43" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="5.0.49.1" />
     <!--</if:BasicSamples>-->
   </ItemGroup>
   <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">

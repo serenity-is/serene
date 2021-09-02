@@ -572,6 +572,8 @@ declare namespace Serenity {
         Code?: string;
         Arguments?: string;
         Message?: string;
+        Details?: string;
+        ErrorId?: string;
     }
     interface ServiceResponse {
         Error?: Serenity.ServiceError;
