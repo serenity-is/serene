@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>Serene.Core</AssemblyName>
+    <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
     <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>

@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>5.0.49.1</PackageVersion>
+    <PackageId>Serene.Templates</PackageId>
+    <Title>Serene Project Templates</Title>
+    <Authors>https://serenity.is;Volkan Ceylan</Authors>
+    <Description>Serene project template for Serenity applications.</Description>
+    <PackageTags>dotnet-new;templates;Serenity;Serene</PackageTags>
+    <PackageIcon>package-icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/serenity-is/Serene</PackageProjectUrl>
+    
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="package-icon.png" PackagePath="package-icon.png" />
+    <Content Include="..\Serene.Web\**\*" Exclude="
+             ..\Serene.Web\App_Data\**;
+             ..\Serene.Web\bin\**;
+             ..\Serene.Web\obj\**;
+             ..\Serene.Web\node_modules\**;
+             ..\Serene.Web\PublishProfiles\**;
+             ..\Serene.Web\TestResults\**;
+             ..\Serene.Web\**\*.bak;
+             ..\Serene.Web\**\*.log;
+             ..\Serene.Web\**\*.orig;
+             ..\Serene.Web\**\*.user;
+             ..\Serene.Web\**\*.sqlite;
+             ..\Serene.Web\**\appsettings.machine.json;
+             ..\Serene.Web\**\appsettings.*.machine.json;
+             ..\Serene.Web\**\.csslintrc;
+             ..\Serene.Web\**\Thumbs.db;
+             ..\Serene.Web\**\ErrorLog.db;
+             ..\Serene.Web\**\StyleCop.Cache;
+             ..\Serene.Web\**\Serene.Web.js.map;
+             ..\Serene.Web\.vs\**;
+             ..\Serene.Web\.vscode\**;">
+      <Link>templates\Serene.Web\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <PackagePath>content\templates\Serene.Web\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+    </Content>
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
