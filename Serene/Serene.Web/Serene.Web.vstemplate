@@ -1,6 +1,6 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
-    <Name>Serene.Core</Name>
+    <Name>Serene.Web</Name>
     <Description>SERENE Web Project (Serenity Application Template)</Description>
     <ProjectType>CSharp</ProjectType>
     <ProjectSubType>Web</ProjectSubType>
@@ -15,9 +15,14 @@
     <Hidden>true</Hidden>
   </TemplateData>
   <TemplateContent>
-    <Project TargetFileName="$projectname$.csproj" File="Serene.Core.csproj" ReplaceParameters="true">
+    <Project TargetFileName="$projectname$.csproj" File="Serene.Web.csproj" ReplaceParameters="true">
       <Folder Name=".config" TargetFolderName=".config">
         <ProjectItem ReplaceParameters="true" TargetFileName="dotnet-tools.json">dotnet-tools.json</ProjectItem>
+      </Folder>
+      <Folder Name=".template.config" TargetFolderName=".template.config">
+        <ProjectItem ReplaceParameters="false" TargetFileName="icon.png">icon.png</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ide.host.json">ide.host.json</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="template.json">template.json</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.bundles.json">appsettings.bundles.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
@@ -632,12 +637,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael-min.js">raphael-min.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="raphael.js">raphael.js</ProjectItem>
           </Folder>
-          <Folder Name="serenity" TargetFolderName="serenity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.js.map">Serenity.CodeGeneration.js.map</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.CodeGeneration.min.js">Serenity.CodeGeneration.min.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Script.UI.js">Serenity.Script.UI.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="Serenity.Script.UI.min.js">Serenity.Script.UI.min.js</ProjectItem>
-          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
@@ -703,10 +702,6 @@
       </Folder>
     </Project>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>SereneProjectWizard_v4, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>RootProjectWizard.ChildWizard</FullClassName>
-  </WizardExtension>
   <WizardData>
     <packagesToInstall></packagesToInstall>
     <features>

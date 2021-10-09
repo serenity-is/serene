@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>Serene.Core</AssemblyName>
+    <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
     <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>
@@ -35,8 +35,8 @@
   </ItemGroup>
   <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
     <PackageReference Include="Serenity.Assets" Version="5.0.44" />
-    <PackageReference Include="Serenity.Scripts" Version="5.0.49" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.0.49" />
+    <PackageReference Include="Serenity.Scripts" Version="5.0.51" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.0.51" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />

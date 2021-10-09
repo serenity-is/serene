@@ -13,14 +13,10 @@
   <TemplateContent>
     <ProjectCollection>
       <ProjectTemplateLink ProjectName="$projectname$.Web" CopyParameters="true">
-        Serene.Core\Serene.Core.vstemplate
+        Serene.Web\Serene.Web.vstemplate
       </ProjectTemplateLink>
     </ProjectCollection>
   </TemplateContent>
-  <WizardExtension>
-    <Assembly>SereneProjectWizard_v4, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>RootProjectWizard.RootWizard</FullClassName>
-  </WizardExtension>
   <WizardData>
 	<features>
 	  <feature key="BasicSamples" title="Basic Samples">
