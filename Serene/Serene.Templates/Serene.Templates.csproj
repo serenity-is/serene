@@ -32,6 +32,7 @@
              ..\Serene.Web\**\*.orig;
              ..\Serene.Web\**\*.user;
              ..\Serene.Web\**\*.sqlite;
+             ..\Serene.Web\**\*.vstemplate;
              ..\Serene.Web\**\appsettings.machine.json;
              ..\Serene.Web\**\appsettings.*.machine.json;
              ..\Serene.Web\**\.csslintrc;

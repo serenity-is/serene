@@ -14,7 +14,7 @@ namespace Build
         static bool HasProPackages { get; set; }
 
         static string ProjectId => HasProPackages ? "StartSharp" : "Serene";
-        static string ProjectFolderName => ProjectId + ".Core";
+        static string ProjectFolderName => ProjectId + ".Web";
         static string ProjectFolder => Path.Combine(Root, ProjectId, ProjectFolderName);
         static string ProjectFile => Path.Combine(ProjectFolder, ProjectFolderName + ".csproj");
         static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
