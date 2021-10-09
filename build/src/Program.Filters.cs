@@ -36,7 +36,8 @@ namespace Build
             "ErrorLog.db",
             "StyleCop.Cache",
             "Serene.Web.js.map",
-            "StartSharp.Web.js.map"
+            "StartSharp.Web.js.map",
+            "launchSettings.json"
         });
 
         static readonly HashSet<string> ReplaceParamsInExtensions = new HashSet<string>()
