@@ -62,6 +62,10 @@ declare namespace Serene.Administration {
     }
 }
 declare namespace Serene.Administration {
+    namespace PermissionKeys {
+        const Security = "Administration:Security";
+        const Translation = "Administration:Translation";
+    }
 }
 declare namespace Serene.Administration {
     class RoleColumns {
