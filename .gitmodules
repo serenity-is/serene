@@ -1,6 +1,6 @@
 [submodule "Serenity"]
 	path = Serenity
-	url = https://github.com/volkanceylan/Serenity.git
+	url = https://github.com/serenity-is/Serenity.git
 	branch = master
 [submodule "common-features"]
 	path = common-features

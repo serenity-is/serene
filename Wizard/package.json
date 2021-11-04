@@ -11,7 +11,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/volkanceylan/serenity.git"
+    "url": "git+https://github.com/serenity-is/serenity.git"
   },
   "keywords": [
     "Serene",
@@ -26,9 +26,9 @@
   "author": "Volkan Ceylan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/volkanceylan/serenity/issues"
+    "url": "https://github.com/serenity-is/serenity/issues"
   },
-  "homepage": "https://github.com/volkanceylan/serenity#readme",
+  "homepage": "https://github.com/serenity-is/serenity#readme",
   "bin": {
     "serin": "./index.js"
   },

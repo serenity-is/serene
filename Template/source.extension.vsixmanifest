@@ -4,7 +4,7 @@
     <DisplayName>Serene</DisplayName>
     <Description xml:space="preserve">Serenity is an ASP.NET Core / TypeScript application platform designed to simplify and shorten development of data-centric business applications with a service based architecture. 
     Serene is a starter template to build Serenity applications.</Description>
-    <MoreInfo>https://github.com/volkanceylan/Serenity</MoreInfo>
+    <MoreInfo>https://github.com/serenity-is/Serenity</MoreInfo>
     <License>LICENCE.txt</License>
     <Icon>serenity-icon.png</Icon>
     <PreviewImage>preview.png</PreviewImage>
