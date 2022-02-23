@@ -12,7 +12,7 @@
 
             this.form = new ChangePasswordForm(this.idPrefix);
             this.form.NewPassword.addValidationRule(this.uniqueName, e => {
-                if (this.form.w('NewPassword', Serenity.PasswordEditor).value.length < 7) {
+                if (this.form.w('ConfirmPassword', Serenity.PasswordEditor).value.length < 7) {
                     return Q.format(Q.text('Validation.MinRequiredPasswordLength'), 7);
                 }
             });
@@ -41,6 +41,20 @@
                     }
                 });
             });
+        }
+
+        getTemplate() {
+            return `<div class="s-Panel">
+    <h3 class="page-title mb-4 text-center">${Q.text("Forms.Membership.ChangePassword.FormTitle")}</h3>
+    <form id="~_Form" action=">
+        <div id="~_PropertyGrid"></div>
+        <div class="px-field mt-4">
+            <button id="~_SubmitButton" type="submit" class="btn btn-primary w-100">
+                ${Q.text("Forms.Membership.ChangePassword.SubmitButton")}
+            </button>
+        </div>
+    </form>
+</div>`;
         }
     }
 }

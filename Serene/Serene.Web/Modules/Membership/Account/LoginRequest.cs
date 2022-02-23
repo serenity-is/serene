@@ -7,9 +7,9 @@ namespace Serene.Membership
     [BasedOnRow(typeof(Administration.Entities.UserRow), CheckNames = true)]
     public class LoginRequest : ServiceRequest
     {
-        [Placeholder("default username is 'admin'")]
+        [Placeholder("user name")]
         public string Username { get; set; }
-        [PasswordEditor, Placeholder("default password for 'admin' is 'serenity'"), Required(true)]
+        [PasswordEditor, Required(true), Placeholder("password")]
         public string Password { get; set; }
     }
 }

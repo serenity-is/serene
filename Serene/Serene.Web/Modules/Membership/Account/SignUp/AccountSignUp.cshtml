@@ -6,28 +6,30 @@
 }
 
 <script id="Template_Membership_SignUpPanel" type="text/template">
-    <div>
-        <h3 class="page-title">@Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer)</h3>
-        <p class="form-info">@Texts.Forms.Membership.SignUp.FormInfo.ToString(Localizer)</p>
-        <form id="~_Form" action="">
-            <div class="s-Form">
-                <div class="fieldset">
-                    <div id="~_PropertyGrid"></div>
-                    <div class="clear"></div>
-                </div>
-                <div class="buttons">
-                    <button id="~_SubmitButton" type="submit" class="btn btn-primary">
-                        @Texts.Forms.Membership.SignUp.SubmitButton.ToString(Localizer)
+    <h2 class="text-center p-4">
+        <img src="@Url.Content("~/Content/site/images/serenity-logo-w-128.png")" 
+            class="rounded-circle p-1" style="background-color: var(--s-sidebar-band-bg)"
+            width="50" height="50" /> Serene
+    </h2>
 
-                    </button>
-                </div>
+    <div class="s-Panel p-4">
+
+        <h5 class="text-center my-4">@Texts.Forms.Membership.SignUp.FormTitle.ToString(Localizer)</h5>
+        <p class="text-center">@Texts.Forms.Membership.SignUp.FormInfo.ToString(Localizer)</p>
+
+        <form id="~_Form" action="">
+            <div id="~_PropertyGrid"></div>
+            <div class="px-field">
+                <button id="~_SubmitButton" type="submit" class="btn btn-primary my-4 w-100">
+                    @Texts.Forms.Membership.SignUp.SubmitButton.ToString(Localizer)
+                </button>
             </div>
         </form>
     </div>
 </script>
 
-<div class="page-content">
-    <div id="SignUpPanel">
+<div class="s-full-page justify-content-center">
+    <div id="SignUpPanel"class="s-container-narrow">
     </div>
 </div>
 

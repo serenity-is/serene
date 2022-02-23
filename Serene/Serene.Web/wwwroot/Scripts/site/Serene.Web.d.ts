@@ -424,7 +424,7 @@ declare namespace Serene.Membership {
 }
 declare namespace Serene.Membership {
     interface ForgotPasswordForm {
-        Email: Serenity.EmailEditor;
+        Email: Serenity.EmailAddressEditor;
     }
     class ForgotPasswordForm extends Serenity.PrefixedContext {
         static formKey: string;
@@ -475,8 +475,8 @@ declare namespace Serene.Membership {
 declare namespace Serene.Membership {
     interface SignUpForm {
         DisplayName: Serenity.StringEditor;
-        Email: Serenity.EmailEditor;
-        ConfirmEmail: Serenity.EmailEditor;
+        Email: Serenity.EmailAddressEditor;
+        ConfirmEmail: Serenity.EmailAddressEditor;
         Password: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
     }
@@ -693,21 +693,10 @@ declare namespace Serene.LanguageList {
 declare namespace Serene.ScriptInitialization {
 }
 declare namespace Serene.Common {
-    class LanguageSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery, currentLanguage: string);
-    }
-}
-declare namespace Serene.Common {
     class SidebarSearch extends Serenity.Widget<any> {
         private menuUL;
         constructor(input: JQuery, menuUL: JQuery);
         protected updateMatchFlags(text: string): void;
-    }
-}
-declare namespace Serene.Common {
-    class ThemeSelection extends Serenity.Widget<any> {
-        constructor(select: JQuery);
-        protected getCurrentTheme(): string;
     }
 }
 declare namespace Serene.Membership {
@@ -715,6 +704,7 @@ declare namespace Serene.Membership {
         protected getFormKey(): string;
         constructor(container: JQuery);
         protected redirectToReturnUrl(): void;
+        protected handleTwoFactorAuthentication(user: string, pass: string, twoFactorGuid: string, info: string): void;
         protected getTemplate(): string;
     }
 }
@@ -723,6 +713,7 @@ declare namespace Serene.Membership {
         protected getFormKey(): string;
         private form;
         constructor(container: JQuery);
+        getTemplate(): string;
     }
 }
 declare namespace Serene.Membership {

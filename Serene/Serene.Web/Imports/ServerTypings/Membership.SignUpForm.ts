@@ -1,8 +1,8 @@
 ﻿namespace Serene.Membership {
     export interface SignUpForm {
         DisplayName: Serenity.StringEditor;
-        Email: Serenity.EmailEditor;
-        ConfirmEmail: Serenity.EmailEditor;
+        Email: Serenity.EmailAddressEditor;
+        ConfirmEmail: Serenity.EmailAddressEditor;
         Password: Serenity.PasswordEditor;
         ConfirmPassword: Serenity.PasswordEditor;
     }
@@ -19,7 +19,7 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.EmailEditor;
+                var w1 = s.EmailAddressEditor;
                 var w2 = s.PasswordEditor;
 
                 Q.initFormType(SignUpForm, [

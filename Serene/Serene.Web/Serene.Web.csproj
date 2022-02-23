@@ -1,13 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
-    <DotNetSergenExe>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\sergen.exe</DotNetSergenExe>
     <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergen Condition="Exists('$(DotNetSergenExe)')">$(DotNetSergenExe)</DotNetSergen>
+    <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin"</DotNetSergenDir>
+    <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen')">$(DotNetSergenDir)sergen</DotNetSergen>
+    <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen.exe')">$(DotNetSergenDir)sergen.exe</DotNetSergen>
     <CommonSrc>..\..\common-features\src\</CommonSrc>
     <ProSrc>..\..\pro-features\src\</ProSrc>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
@@ -32,6 +33,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Serenity.Assets" Version="5.2.2" />
+    <PackageReference Include="Serenity.Extensions" Version="5.2.2" />
+    <PackageReference Include="Serenity.Scripts" Version="5.2.3" />
+    <PackageReference Include="Serenity.Net.Web" Version="5.2.3" />
   </ItemGroup>
   <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
     <PackageReference Include="Serenity.Assets" Version="5.0.44" />
@@ -66,9 +71,6 @@
     <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts;tsconfig.json">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
     </CreateItem>
-    <CreateItem Include="wwwroot\Content\site\**\*.less">
-      <Output TaskParameter="Include" ItemName="CompileSiteLessInputs" />
-    </CreateItem>
   </Target>
   <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
     <Message Text="Installing NPM packages..." Importance="high"></Message>
@@ -78,10 +80,6 @@
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
-  </Target>
-  <Target Name="CompileSiteLess" AfterTargets="AfterBuild" Inputs="@(CompileSiteLessInputs)" Outputs="wwwroot\Content\site\site.css">
-    <Message Text="Compiling site.less..." Importance="high"></Message>
-    <Exec Command="node_modules/.bin/lessc ./wwwroot/Content/site/site.less ./wwwroot/Content/site/site.css" ContinueOnError="true" />
   </Target>
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />

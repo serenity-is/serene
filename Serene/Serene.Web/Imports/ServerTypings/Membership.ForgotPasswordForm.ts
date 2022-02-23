@@ -1,6 +1,6 @@
 ﻿namespace Serene.Membership {
     export interface ForgotPasswordForm {
-        Email: Serenity.EmailEditor;
+        Email: Serenity.EmailAddressEditor;
     }
 
     export class ForgotPasswordForm extends Serenity.PrefixedContext {
@@ -14,7 +14,7 @@
                 ForgotPasswordForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.EmailEditor;
+                var w0 = s.EmailAddressEditor;
 
                 Q.initFormType(ForgotPasswordForm, [
                     'Email', w0

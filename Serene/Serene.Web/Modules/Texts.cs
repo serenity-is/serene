@@ -56,10 +56,10 @@ namespace Serene
 
                 public static class Login
                 {
-                    public static LocalText FormTitle = "Welcome to SERENE (Serenity Application Template)";
+                    public static LocalText LoginToYourAccount = "Login to your account";
                     public static LocalText SignInButton = "Sign In";
                     public static LocalText ForgotPassword = "Forgot password?";
-                    public static LocalText SignUpButton = "Register a new account";
+                    public static LocalText SignUpButton = "Don't have account yet? Sign up.";
                     public static LocalText RememberMe = "Remember Me";
                     public static LocalText OR = "OR";
                     public static LocalText FacebookButton = "Sign in using Facebook";
@@ -72,7 +72,7 @@ namespace Serene
                     public static LocalText ActivationCompleteMessage = "Your account is now activated. " + 
                         "Use the e-mail and password you used while signing up to login.";
                     public static LocalText FormInfo = "Enter your details to create a free account.";
-                    public static LocalText FormTitle = "Sign up for Serene";
+                    public static LocalText FormTitle = "Create a new account";
                     public static LocalText SubmitButton = "Sign Up";
                     public static LocalText Success = "An e-mail with instructions to active your account is " + 
                         "sent to your e-mail address. Please check your e-mails.";

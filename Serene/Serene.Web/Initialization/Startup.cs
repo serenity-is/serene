@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +17,7 @@ using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
+using Serenity.Navigation;
 using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
@@ -51,9 +51,6 @@ namespace Serene
                 typeof(IDynamicScriptManager).Assembly,
                 typeof(Startup).Assembly,
                 typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
-                //<if:ThemeSamples>
-                typeof(Serenity.Demo.ThemeSamples.AdminLTEController).Assembly,
-                //</if:ThemeSamples>
                 //<if:Northwind>
                 typeof(Serenity.Demo.Northwind.CustomerController).Assembly,
                 //</if:Northwind>
@@ -146,6 +143,7 @@ namespace Serene
             services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
+            services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
         }
 
         public static void InitializeLocalTexts(IServiceProvider services)
@@ -161,14 +159,16 @@ namespace Serene
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             RowFieldsProvider.SetDefaultFrom(app.ApplicationServices);
             InitializeLocalTexts(app.ApplicationServices);
 
-            var reqLocOpt = new RequestLocalizationOptions();
-            reqLocOpt.SupportedUICultures = UserCultureProvider.SupportedCultures;
-            reqLocOpt.SupportedCultures = UserCultureProvider.SupportedCultures;
+            var reqLocOpt = new RequestLocalizationOptions
+            {
+                SupportedUICultures = UserCultureProvider.SupportedCultures,
+                SupportedCultures = UserCultureProvider.SupportedCultures
+            };
             reqLocOpt.RequestCultureProviders.Clear();
             reqLocOpt.RequestCultureProviders.Add(new UserCultureProvider());
             app.UseRequestLocalization(reqLocOpt);

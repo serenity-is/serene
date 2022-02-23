@@ -18,10 +18,7 @@ namespace Serene.Membership.Pages
         [HttpGet]
         public ActionResult ForgotPassword()
         {
-            if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword_AdminLTE);
-            else
-                return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
+            return View(MVC.Views.Membership.Account.ForgotPassword.AccountForgotPassword);
         }
 
         [HttpPost, JsonRequest]

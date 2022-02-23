@@ -16,9 +16,9 @@ namespace Serene.Administration
         {
         }
 
-        public Boolean ShowRevoke
+        public bool ShowRevoke
         {
-            get { return GetOption<Boolean>("showRevoke"); }
+            get { return GetOption<bool>("showRevoke"); }
             set { SetOption("showRevoke", value); }
         }
     }

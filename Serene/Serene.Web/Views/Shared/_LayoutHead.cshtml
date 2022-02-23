@@ -1,5 +1,4 @@
-﻿@inject Serenity.Web.IDynamicScriptManager DynamicScriptManager 
-<meta charset="utf-8" />
+﻿@inject Serenity.Web.IDynamicScriptManager DynamicScriptManager <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -7,12 +6,7 @@
 <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
 @Html.StyleBundle("Base")
 @Html.StyleBundle("Site")
-@if (System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft)
-{
-    @Html.Stylesheet("~/Content/site/site.rtl.css")
-}
 <script type="application/json" id="ScriptCulture">@Html.Raw(Serenity.JSON.Stringify(new ScriptCulture()))</script>
-<script type="text/javascript">window.paceOptions = { startOnPageLoad: false, ajax: { trackMethods: ['GET', 'POST'], trackWebSockets: false, ignoreURLs: ['browserLinkSignalR'] } };</script>
 @Html.ScriptBundle("Base")
 @Html.ScriptBundle("Site")
 @Html.LocalTextScript("Site")

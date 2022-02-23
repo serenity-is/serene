@@ -272,36 +272,6 @@ declare namespace Serenity.Extensions {
     }
 }
 declare namespace Serenity.Extensions {
-    interface PromptDialogOptions {
-        cssClass?: string;
-        editorType?: string;
-        editorOptions?: any;
-        title?: string;
-        message?: string;
-        isHtml?: boolean;
-        value?: any;
-        required?: boolean;
-        validateValue: (v: any) => boolean;
-    }
-    class PromptDialog extends Serenity.PropertyDialog<any, PromptDialogOptions> {
-        constructor(opt: PromptDialogOptions);
-        protected getDialogButtons(): {
-            text: string;
-            click: () => void;
-        }[];
-        protected loadInitialEntity(): void;
-        protected getPropertyItems(): {
-            name: string;
-            editorType: string;
-            required: any;
-            editorParams: any;
-        }[];
-        get value(): any;
-        set value(v: any);
-        static prompt(title: string, message: string, value: string, validateValue: (string: any) => boolean): void;
-    }
-}
-declare namespace Serenity.Extensions {
     class SingleLineTextFormatter implements Slick.Formatter {
         format(ctx: Slick.FormatterContext): string;
         static formatValue(value: string): string;
@@ -393,12 +363,8 @@ declare namespace Serenity.Extensions {
 }
 declare namespace Serenity.Extensions {
     class ReportPage extends Serenity.Widget<any> {
-        private reportKey;
-        private propertyItems;
-        private propertyGrid;
         constructor(element: JQuery);
         protected updateMatchFlags(text: string): void;
-        protected categoryClick(e: any): void;
         protected reportLinkClick(e: any): void;
     }
 }
@@ -410,6 +376,36 @@ declare namespace Serenity.Extensions {
 }
 declare namespace Serenity.Extensions.DialogUtils {
     function pendingChangesConfirmation(element: JQuery, hasPendingChanges: () => boolean): void;
+}
+declare namespace Serenity.Extensions {
+    interface PromptDialogOptions {
+        cssClass?: string;
+        editorType?: string;
+        editorOptions?: any;
+        title?: string;
+        message?: string;
+        isHtml?: boolean;
+        value?: any;
+        required?: boolean;
+        validateValue: (v: any) => boolean;
+    }
+    class PromptDialog extends Serenity.PropertyDialog<any, PromptDialogOptions> {
+        constructor(opt: PromptDialogOptions);
+        protected getDialogButtons(): {
+            text: string;
+            click: () => void;
+        }[];
+        protected loadInitialEntity(): void;
+        protected getPropertyItems(): {
+            name: string;
+            editorType: string;
+            required: any;
+            editorParams: any;
+        }[];
+        get value(): any;
+        set value(v: any);
+        static prompt(title: string, message: string, value: string, validateValue: (string: any) => boolean): void;
+    }
 }
 declare namespace Serenity.Extensions {
     class SelectableEntityGrid<TItem, TOptions> extends Serenity.EntityGrid<TItem, TOptions> {

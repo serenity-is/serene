@@ -8,9 +8,9 @@ namespace Serene.Membership
     {
         [Required(true), Placeholder("Full name")]
         public String DisplayName { get; set; }
-        [EmailEditor, Required(true), Placeholder("Email")]
+        [EmailAddressEditor, Required(true), Placeholder("Email")]
         public String Email { get; set; }
-        [EmailEditor, Required(true), Placeholder("Confirm email")]
+        [EmailAddressEditor, Required(true), Placeholder("Confirm email")]
         public String ConfirmEmail { get; set; }
         [PasswordEditor, Required(true), Placeholder("Password")]
         public String Password { get; set; }

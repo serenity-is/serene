@@ -47,10 +47,7 @@ namespace Serene.Membership.Pages
                     return Error(Texts.Validation.InvalidResetToken.ToString(Localizer));
             }
 
-            if (UseAdminLTELoginBox)
-                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword_AdminLTE, new ResetPasswordModel { Token = t });
-            else
-                return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, new ResetPasswordModel { Token = t });
+            return View(MVC.Views.Membership.Account.ResetPassword.AccountResetPassword, new ResetPasswordModel { Token = t });
 
         }
 

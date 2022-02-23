@@ -122,13 +122,11 @@ declare namespace Serenity.Demo.BasicSamples {
         constructor(prefix: string);
     }
 }
-declare var Morris: any;
 declare namespace Serenity.Demo.BasicSamples {
     class ChartInDialog extends Serenity.TemplatedDialog<any> {
         private areaChart;
         static initializePage(): void;
         protected onDialogOpen(): void;
-        protected arrange(): void;
         protected getTemplate(): string;
         protected getDialogOptions(): JQueryUI.DialogOptions;
     }

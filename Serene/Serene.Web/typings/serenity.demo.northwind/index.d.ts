@@ -249,7 +249,7 @@ declare namespace Serenity.Demo.Northwind {
         NoteList: NotesEditor;
         LastContactDate: DateEditor;
         LastContactedBy: LookupEditor;
-        Email: EmailEditor;
+        Email: EmailAddressEditor;
         SendBulletin: BooleanEditor;
     }
     class CustomerForm extends Serenity.PrefixedContext {

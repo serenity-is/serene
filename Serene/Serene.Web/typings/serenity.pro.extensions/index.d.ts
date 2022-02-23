@@ -57,6 +57,7 @@ declare namespace Serenity {
     interface CardViewItemsProps<TItem> {
         items: TItem[];
         renderItem: (item: TItem, index: number) => React.ReactNode;
+        colClass: string;
     }
     class CardViewItems<TItem> extends React.Component<CardViewItemsProps<TItem>> {
         render(): React.ReactNode;
@@ -70,16 +71,17 @@ declare namespace Serenity {
     class CardViewMixin<TItem> {
         private options;
         private dataGrid;
-        private getId;
         private cardContainer;
         constructor(options: CardViewMixinOptions<TItem>);
-        private switchView;
+        switchView(viewType: CardViewType, persist?: boolean): void;
         private updateCardItems;
         private resizeCardView;
     }
     interface CardViewMixinOptions<TItem> {
         grid: Serenity.DataGrid<TItem, any>;
         renderItem: (item: TItem, index: number) => React.ReactNode;
+        viewType?: CardViewType;
+        cardClass?: string;
     }
 }
 declare namespace Slick {
@@ -304,7 +306,6 @@ declare namespace Serenity {
     class FavoriteViewsMixin<TItem> {
         private options;
         private dataGrid;
-        private getId;
         private ul;
         constructor(options: FavoriteViewsMixinOptions<TItem>);
         private populateFavorites;
@@ -344,6 +345,7 @@ declare namespace Slick {
 declare namespace Slick.Plugins {
     interface HeaderFiltersOptions {
         buttonImage?: string;
+        buttonClass?: string;
         useColumnFormatter?: boolean;
         getFilterValues?: (column: Slick.Column, callback: (values: object[], texts?: string[]) => void) => void;
         getFilterType?: (column: Slick.Column) => Serenity.HeaderFilterType;
@@ -374,7 +376,7 @@ declare namespace Slick.Plugins {
         private showFilter;
         private columnsResized;
         private onCheckboxClick;
-        private setButtonImage;
+        private setButtonIsFiltered;
         private handleApply;
         private containsFilter;
         getFilterValue(item: any, column: Slick.Column): any;

@@ -20,7 +20,6 @@
     "vue": "^2.5.2"
   },
   "devDependencies": {
-    "less": "^3.12.2"
   },
   "scripts": {
     "less": "lessc ./wwwroot/Content/site/site.less ./wwwroot/content/site/site.css"

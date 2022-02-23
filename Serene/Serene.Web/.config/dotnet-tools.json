@@ -3,9 +3,15 @@
   "isRoot": true,
   "tools": {
     "sergen": {
-      "version": "5.0.51",
+      "version": "5.2.3",
       "commands": [
         "sergen"
+      ]
+    },
+    "microsoft.web.librarymanager.cli": {
+      "version": "2.1.161",
+      "commands": [
+        "libman"
       ]
     }
   }

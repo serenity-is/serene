@@ -968,14 +968,17 @@ declare namespace Q {
     }
     interface AlertOptions extends CommonDialogOptions {
         okButton?: string | boolean;
+        okButtonClass?: string;
     }
     function isBS3(): boolean;
+    function isBS5Plus(): boolean;
     function bsModalMarkup(title: string, body: string, modalClass?: string): string;
     function dialogButtonToBS(x: DialogButton): string;
     function dialogButtonToUI(x: DialogButton): JQueryUI.DialogButtonOptions;
     function alert(message: string, options?: AlertOptions): void;
     interface ConfirmOptions extends CommonDialogOptions {
         yesButton?: string | boolean;
+        yesButtonClass?: string;
         noButton?: string | boolean;
         cancelButton?: string | boolean;
         onCancel?: () => void;
@@ -987,6 +990,7 @@ declare namespace Q {
     }
     function iframeDialog(options: IFrameDialogOptions): void;
     function information(message: string, onOk: () => void, options?: ConfirmOptions): void;
+    function success(message: string, onOk: () => void, options?: ConfirmOptions): void;
     function warning(message: string, options?: AlertOptions): void;
     function closePanel(element: JQuery, e?: JQueryEventObject): void;
 
@@ -2612,10 +2616,7 @@ declare namespace Serenity {
         constructor(opt?: TOptions);
         destroy(): void;
         protected getDialogOptions(): JQueryUI.DialogOptions;
-        protected getDialogButtons(): {
-            text: string;
-            click: () => void;
-        }[];
+        protected getDialogButtons(): DialogButton[];
         protected okClick(): void;
         protected okClickValidated(): void;
         protected cancelClick(): void;
@@ -3205,6 +3206,8 @@ declare namespace Serenity {
         static defaultRowHeight: number;
         static defaultHeaderHeight: number;
         static defaultPersistanceStorage: SettingStorage;
+        static defaultColumnWidthScale: number;
+        static defaultColumnWidthDelta: number;
         private layoutTimer;
         constructor(container: JQuery, options?: TOptions);
         protected useLayoutTimer(): boolean;
@@ -3231,6 +3234,8 @@ declare namespace Serenity {
         protected getItemCssClass(item: TItem, index: number): string;
         protected getItemMetadata(item: TItem, index: number): any;
         protected postProcessColumns(columns: Slick.Column[]): Slick.Column[];
+        protected getColumnWidthDelta(): number;
+        protected getColumnWidthScale(): number;
         protected initialPopulate(): void;
         protected canFilterColumn(column: Slick.Column): boolean;
         protected initializeFilterBar(): void;
