@@ -1,6 +1,6 @@
 @echo off
 ECHO *** RUNNING BUILD ***
-dotnet run -p build\build-serene.csproj %*
+dotnet run --project build\build-serene.csproj %*
 if %ERRORLEVEL% GEQ 1 GOTO :error
 SET VSINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\
 ECHO *** RESTORING PACKAGES FOR TEMPLATE PROJECT***

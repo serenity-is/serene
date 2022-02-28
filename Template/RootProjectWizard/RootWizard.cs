@@ -19,14 +19,13 @@ namespace RootProjectWizard
             GlobalDictionary["$ext_safeprojectname$"] = replacementsDictionary["$safeprojectname$"];
             GlobalDictionary["$ext_projectname$"] = replacementsDictionary["$projectname$"];
 
-            if (!replacementsDictionary.TryGetValue("$wizarddata$", out string wizardData))
+            string wizardData;
+            if (!replacementsDictionary.TryGetValue("$wizarddata$", out wizardData))
                 wizardData = "";
 
             var data = XElement.Parse("<data>" + wizardData + "</data>");
-            var dlg = new FeatureSelection
-            {
-                selfChange = 1
-            };
+            var dlg = new FeatureSelection();
+            dlg.selfChange = 1;
             PopulateFeatureList(dlg.featureList, data);
             dlg.selfChange = 0;
 
@@ -53,7 +52,7 @@ namespace RootProjectWizard
                 }
             };
 
-            string npmOutput;
+            string npmOutput = null;
             try
             {
                 npmProcess.Start();
@@ -81,8 +80,9 @@ namespace RootProjectWizard
             var npmVersion = GetNodeNpmVersion(true);
             var npmParts = npmVersion.Split('.');
 
-            if (nodeParts.Length < 2 || !int.TryParse(nodeParts[0], out int i) || i < 6 ||
-                npmParts.Length < 2 || !int.TryParse(npmParts[0], out i) || i < 3)
+            int i;
+            if (nodeParts.Length < 2 || !int.TryParse(nodeParts[0], out i) || i < 16 ||
+                npmParts.Length < 2 || !int.TryParse(npmParts[0], out i) || i < 8)
             {
                 if (MessageBox.Show("You don't seem to have a recent version of NodeJS/NPM installed!\r\n\r\n" +
                     "It is required for TypeScript compilation and some script packages.\r\n\r\n" +
@@ -91,7 +91,7 @@ namespace RootProjectWizard
                         MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     WebClient client = new WebClient();
-                    var npmBytes = client.DownloadData("https://nodejs.org/dist/v6.9.5/node-v6.9.5-" +
+                    var npmBytes = client.DownloadData("https://nodejs.org/dist/v16.13.2/node-v16.13.2-" +
                         (Environment.Is64BitOperatingSystem ? "x64" : "x86") + ".msi");
                     var tmp = Path.GetTempFileName() + ".msi";
                     File.WriteAllBytes(tmp, npmBytes);

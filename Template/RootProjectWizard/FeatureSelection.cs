@@ -64,7 +64,7 @@ namespace RootProjectWizard
             }
         }
 
-        private void FeatureList_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void featureList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (selfChange > 0)
                 return;

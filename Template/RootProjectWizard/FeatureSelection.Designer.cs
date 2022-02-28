@@ -45,7 +45,7 @@
             this.featureList.Name = "featureList";
             this.featureList.Size = new System.Drawing.Size(787, 207);
             this.featureList.TabIndex = 0;
-            this.featureList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FeatureList_ItemCheck);
+            this.featureList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.featureList_ItemCheck);
             // 
             // label1
             // 

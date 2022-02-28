@@ -1,16 +1,11 @@
 ﻿using EnvDTE;
-using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.TemplateWizard;
-using NuGet.VisualStudio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlLocalDb;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -21,12 +16,7 @@ namespace RootProjectWizard
 {
     public class ChildWizard : IWizard 
     {
-        private DTE dteObject;
-        private Microsoft.VisualStudio.OLE.Interop.IServiceProvider serviceProvider;
-        private static Guid IUnknownGuid = new Guid("{00000000-0000-0000-C000-000000000046}");
-        private IComponentModel componentModel;
         private string wizardData;
-        private bool isDotNetCore;
 
         private static object GetObjectFromNativeUnknown(IntPtr nativeUnknown)
         {
@@ -47,30 +37,12 @@ namespace RootProjectWizard
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
-            dteObject = (DTE)automationObject;
-
-            serviceProvider = (Microsoft.VisualStudio.OLE.Interop.IServiceProvider)this.dteObject;
-            Guid guid = typeof(SComponentModel).GUID;
-
-            serviceProvider.QueryService(ref guid, ref IUnknownGuid, out IntPtr zero4);
-            componentModel = (IComponentModel)GetObjectFromNativeUnknown(zero4);
-
             replacementsDictionary["$ext_safeprojectname$"] = RootWizard.GlobalDictionary["$ext_safeprojectname$"];
             replacementsDictionary["$ext_projectname$"] = RootWizard.GlobalDictionary["$ext_projectname$"];
 
             try
             {
-                string localDBInstance = "v11.0";
-                var localDBInstances = SqlLocalDbApi.GetInstanceNames();
-                if (localDBInstances.IndexOf("MSSqlLocalDB") >= 0)
-                    localDBInstance = "MSSqlLocalDB";
-                else if (localDBInstances.IndexOf("v12.0") >= 0)
-                    localDBInstance = "v12.0";
-                else if (localDBInstances.IndexOf("v11.0") >= 0)
-                    localDBInstance = "v11.0";
-                else if (localDBInstances.Count > 0)
-                    localDBInstance = localDBInstances[0];
-
+                string localDBInstance = "MSSqlLocalDB";
                 replacementsDictionary["connectionString=\"Data Source=(LocalDb)\\v11.0;"] =
                     "connectionString=\"Data Source=(LocalDb)\\" + localDBInstance + ";";
                 replacementsDictionary["connectionString=\"Data Source=(LocalDb)\\MsSqlLocalDB;"] =
@@ -103,12 +75,11 @@ namespace RootProjectWizard
             }
         }
 
-        readonly XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
+        XNamespace ns = "http://schemas.microsoft.com/developer/vstemplate/2005";
 
         public void ProjectFinishedGenerating(EnvDTE.Project project)
         {
-            isDotNetCore = File.Exists(Path.Combine(Path.GetDirectoryName(project.FullName), "appsettings.json"));
-            project.DTE.StatusBar.Text = isDotNetCore ? "ASP.NET Core Project" : "ASP.NET MVC Project";
+            project.DTE.StatusBar.Text = "ASP.NET Core Project";
 
             if (!string.IsNullOrEmpty(wizardData))
             {
@@ -126,61 +97,45 @@ namespace RootProjectWizard
                     MessageBox.Show("An error occured while configuring features\r\n\r\n" +
                         ex.ToString());
                 }
-
-                var packageInstaller = componentModel.GetService<IVsPackageInstaller>();
-                var packageQuery = componentModel.GetService<IVsPackageInstallerServices>();
-                foreach (var el in data.Descendants(ns + "installPackage"))
-                {
-                    var id = el.Attribute("id").Value;
-                    try
-                    {
-                        if (!packageQuery.IsPackageInstalled(project, id))
-                        {
-                            var ver = el.Attribute("version").Value;
-                            project.DTE.StatusBar.Text = "Installing NuGet Package: " + id + " " + ver;
-                            packageInstaller.InstallPackage((string)null, project, id, ver, false);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occured while installing package: " + id + "\r\n" + 
-                            "Your project might be incomplete.\r\n\r\n", ex.ToString());
-                    }
-                }
             }
 
-            if (isDotNetCore)
+            try
             {
-                try
+                project.DTE.StatusBar.Text = "Running DotNet Restore...";
+                System.Diagnostics.Process.Start(new ProcessStartInfo
                 {
-                    project.DTE.StatusBar.Text = "Running DotNet Restore...";
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "dotnet",
-                        Arguments = "restore",
-                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
-                    }).WaitForExit(120000);
+                    FileName = "dotnet",
+                    Arguments = "restore",
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                }).WaitForExit(120000);
 
-                    project.DTE.StatusBar.Text = "Running DotNet Tool Restore...";
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "dotnet",
-                        Arguments = "tool restore",
-                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
-                    }).WaitForExit(120000);
-
-                    project.DTE.StatusBar.Text = "Running DotNet Sergen Restore...";
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "dotnet",
-                        Arguments = "sergen restore",
-                        WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
-                    }).WaitForExit(120000);
-                }
-                catch (Exception ex)
+                project.DTE.StatusBar.Text = "Running DotNet Tool Restore...";
+                System.Diagnostics.Process.Start(new ProcessStartInfo
                 {
-                    MessageBox.Show(ex.ToString());
-                }
+                    FileName = "dotnet",
+                    Arguments = "tool restore",
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                }).WaitForExit(120000);
+
+                project.DTE.StatusBar.Text = "Running DotNet Sergen Restore...";
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = "sergen restore",
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                }).WaitForExit(120000);
+
+                project.DTE.StatusBar.Text = "Running DotNet Build...";
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = "build",
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(project.FullName)
+                }).WaitForExit(120000);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -200,15 +155,17 @@ namespace RootProjectWizard
                     PreprocessConditional(project, (string)item.Item2.Properties.Item("FullPath").Value);
                 }
             }
+
+            PreprocessConditional(project, project.FullName);
         }
 
-        private void PreprocessConditional(EnvDTE.Project project, string fullPath)
+        private void PreprocessConditional(Project project, string fullPath)
         {
-            if (!System.IO.File.Exists(fullPath))
+            if (!File.Exists(fullPath))
                 return;
 
             project.DTE.StatusBar.Text = "Processing Conditionals in File: " + fullPath;
-            var lines = new List<string>(System.IO.File.ReadAllLines(fullPath));
+            var lines = new List<string>(File.ReadAllLines(fullPath));
             var ifCSStart = "//<if:";
             var ifCSElse = "//<else>";
             var ifXMLStart = "<!--<if:";
@@ -353,14 +310,7 @@ namespace RootProjectWizard
                     if (!selectedMatchers.Any(x => x.IsMatch(path)))
                     {
                         project.DTE.StatusBar.Text = "Deleting Excluded Feature File: " + path;
-                        if (isDotNetCore)
-                        {
-                            deleteList.Add(item.Item2.Properties.Item("FullPath").Value.ToString());
-                        }
-                        else
-                        {
-                            item.Item2.Delete();
-                        }
+                        deleteList.Add(item.Item2.Properties.Item("FullPath").Value.ToString());
                     }
                 }
             }

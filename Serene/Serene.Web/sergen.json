@@ -1,4 +1,4 @@
-﻿{
+{
   "RootNamespace": "Serene",
   "ServerTypings": {
     "LocalTexts": true
@@ -10,6 +10,6 @@
   },
   "UpgradeInfo": {
     "InitialType": "Community",
-    "InitialVersion": "5.0.51.8"
+    "InitialVersion": "5.2.3.0"
   }
 }
