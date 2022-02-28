@@ -14,9 +14,92 @@
     <h1>@Localizer.Get("Navigation.Dashboard")</h1>
 }
 
+<style>
+.s-dashboard-card, .s-dashboard-card-sm {
+    margin-bottom: var(--bs-gutter-x);
+}
+
+.s-dashboard-card .card-header {
+    padding: 1rem;
+    border-bottom: none;
+    background-color: transparent;
+}
+
+.s-dashboard-card .card-body {
+    border-radius: 0 0 4px 4px;
+    padding: 1rem;
+}
+
+.s-dashboard-card .card-footer {
+    border-top-color: transparent;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+.s-dashboard-card .card-title {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--s-table-title);
+}
+
+.s-dashboard-card-sm .card-body {
+    padding: 1rem;
+    border-radius: 4px 4px 0 0;
+    margin: 1px;
+}
+
+.s-dashboard-card-sm .card-footer {
+    color: rgba(var(--s-bright-rgb), 0.8);
+    background-color: var(--bs-body-bg);
+    border-radius: 0 0 4px 4px;
+    border-top: none;
+    margin: 0 1px 1px 1px;
+    padding: 3px 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+.s-dashboard-card-sm h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.s-dashboard-card-sm p {
+    font-size: 15px;
+}
+
+.s-dashboard-card-sm p > small {
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.s-dashboard-card-sm .icon {
+    transition: all 0.3s linear;
+    position: absolute;
+    top: 13px;
+    color: #fff;
+    opacity: 0.9;
+    right: 10px;
+    font-size: 64px;
+}
+
+.bg-world-map {
+    background: #3c8dbc;
+}
+
+.s-dashboard-card-sm:hover .icon {
+    font-size: 70px;
+}
+</style>
+
+
 <div class="row">
     <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm">
+        <div class="card s-dashboard-card-sm bg-primary bg-opacity-50">
             <div class="card-body">
                 <h3>@Model.OpenOrders</h3>
                 <p>Open Orders</p>
@@ -27,7 +110,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm s-alt">
+        <div class="card s-dashboard-card-sm s-alt bg-info bg-opacity-50">
             <div class="card-body">
                 <h3>@Model.ClosedOrderPercent<sup style="font-size: 20px">%</sup></h3>
                 <p>Closed Orders</p>
@@ -38,7 +121,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm">
+        <div class="card s-dashboard-card-sm bg-warning bg-opacity-50">
             <div class="card-body">
                 <h3>@Model.CustomerCount</h3>
                 <p>Total Customers</p>
@@ -49,7 +132,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm s-alt">
+        <div class="card s-dashboard-card-sm s-alt bg-success bg-opacity-50">
             <div class="card-body">
                 <h3>@Model.ProductCount</h3>
                 <p>Product Types</p>

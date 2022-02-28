@@ -704,7 +704,6 @@ declare namespace Serene.Membership {
         protected getFormKey(): string;
         constructor(container: JQuery);
         protected redirectToReturnUrl(): void;
-        protected handleTwoFactorAuthentication(user: string, pass: string, twoFactorGuid: string, info: string): void;
         protected getTemplate(): string;
     }
 }
