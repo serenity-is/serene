@@ -23,6 +23,7 @@ namespace Build
         static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Template.csproj");
         static string VSIXAssetsFolder => Path.Combine(VSIXTemplateFolder, "Assets");
         static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
+		static string VSIXManifestFile2019 => Path.Combine(VSIXTemplateFolder, "vs2019", "extension.vsixmanifest");
         static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
         static string TemporaryFilesRoot => Path.Combine(Root, "Template", "obj");
         static string TemplateTempZipDir => Path.Combine(TemporaryFilesRoot, ProjectId + "Core.Template");
@@ -45,7 +46,7 @@ namespace Build
             var target = args != null && args.Length > 1 ? args[1] : "vsix";
 
             DetermineRoot();
-            HasProPackages = Directory.Exists(Path.Combine(Root, "pro-packages"));
+            HasProPackages = Directory.Exists(Path.Combine(Root, "StartSharp"));
             Clean();
 
             if (target == "vsix")

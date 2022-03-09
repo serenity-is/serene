@@ -10,7 +10,7 @@ namespace Build
             UpdateSerenityPackages();
             UpdateCommonPackages();
             if (HasProPackages)
-                UpdateProPackages();
+            UpdateProPackages();
 
             if (StartProcess("dotnet", "restore", Root) != 0)
                 ExitWithError("Error while restoring " + ProjectFile);
@@ -21,8 +21,6 @@ namespace Build
             var projectPackages = ParsePackages(ProjectFile);
 
             CleanDirectory(TemporaryFilesRoot, ensure: true);
-            if (HasProPackages)
-                CopyProPackagesToTempZipDir(projectPackages);
 
             var initialVersion = PatchVSIXManifest(projectPackages);
             SetInitialVersionInSergenJson(initialVersion);
@@ -42,14 +40,6 @@ namespace Build
                 ExitWithError("Error while sergen restoring " + ProjectFile);
 
             Directory.CreateDirectory(VSIXAssetsFolder);
-            if (HasProPackages)
-            {
-                var proPackagesZip = Path.Combine(VSIXAssetsFolder, "pro-packages.zip");
-                if (File.Exists(proPackagesZip))
-                    File.Delete(proPackagesZip);
-                ZipFile.CreateFromDirectory(ProPackagesTempZipDir, proPackagesZip);
-            }
-
             var packageContentFiles = GetPackageContentFiles(projectPackages, dependencies: true);
 
             CleanDirectory(TemplateTempZipDir, ensure: true);

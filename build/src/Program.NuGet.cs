@@ -16,6 +16,26 @@ namespace Build
         static readonly string[] LocalFeedNames = new string[] { "MyPackages" };
         const string NugetOrgReadSource = "https://api.nuget.org/v3/index.json";
         const string NugetOrgPushSource = "https://www.nuget.org/api/v2/package";
+        const string SerenityIsSourceKey = "serenity.is";
+
+        private static PackageSource serenityIsPackageSource;
+
+        private static PackageSource SerenityIsPackageSource
+        {
+            get
+            {
+                if (serenityIsPackageSource is null)
+                {
+                    var settings = Settings.LoadDefaultSettings(null);
+                    var packageSourceProvider = new PackageSourceProvider(settings);
+                    var packageSources = packageSourceProvider.LoadPackageSources();
+                    serenityIsPackageSource = packageSources.FirstOrDefault(x => string.Equals(x.Name, SerenityIsSourceKey) ||
+                        x.Source.StartsWith("https://packages.serenity.is", StringComparison.OrdinalIgnoreCase));
+                }
+
+                return serenityIsPackageSource;
+            }
+        }
 
         private static PackageSource GetLocalNugetFeed(bool create)
         {
@@ -88,26 +108,29 @@ namespace Build
         private static NuGetVersion GetLatestVersionOf(string packageId)
         {
             if (HasProPackages && IsProPackage(packageId))
-                return GetLatestVersionOf(ProPackagesFolder, packageId);
+                return GetLatestVersionOf(SerenityIsPackageSource, SerenityIsSourceKey, packageId);
 
-            var version = GetLatestVersionOf(NugetOrgReadSource, packageId);
+            var version = GetLatestVersionOf(null, NugetOrgReadSource, packageId);
             var localSource = GetLocalNugetFeed(create: false);
             if (localSource != null && Directory.Exists(localSource.Source))
             {
-                var localVersion = GetLatestVersionOf(localSource.Source, packageId);
+                var localVersion = GetLatestVersionOf(localSource, null, packageId);
                 if (localVersion != null && (version == null || localVersion > version))
                     return localVersion;
             }
             return version;
         }
 
-        private static NuGetVersion GetLatestVersionOf(string packageSource, string packageId)
+        private static NuGetVersion GetLatestVersionOf(PackageSource packageSource,
+            string sourceKey, string packageId)
         {
             ILogger logger = NullLogger.Instance;
             CancellationToken cancellationToken = CancellationToken.None;
 
             var cache = new SourceCacheContext();
-            var repository = Repository.Factory.GetCoreV3(packageSource);
+            var repository = packageSource != null ?
+                Repository.Factory.GetCoreV3(packageSource) :
+                Repository.Factory.GetCoreV3(sourceKey);
             var resource = repository.GetResource<FindPackageByIdResource>();
 
             var versions = resource.GetAllVersionsAsync(packageId,
