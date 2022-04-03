@@ -7,6 +7,30 @@
 
 html {
     font-size: var(--bs-body-font-size);
+    scroll-behavior: smooth;
+}
+
+/*https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    border-radius: 4px;
 }
 
 .s-container-tight,
