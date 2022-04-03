@@ -28,11 +28,11 @@ html {
     border-radius: 4px;
 }
 
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #a1a1a1;
-        border-radius: 4px;
-    }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+    border-radius: 4px;
+}
 
 .s-container-tight,
 .s-container-narrow {
@@ -137,23 +137,23 @@ html {
     text-transform: none;
 }
 
-    .s-sidebar-link:hover,
-    .s-sidebar-pane .active > .s-sidebar-link {
-        color: #007eff;
-    }
+.s-sidebar-link:hover,
+.s-sidebar-pane .active > .s-sidebar-link {
+    color: #007eff;
+}
 
-        .s-sidebar-link:hover .s-sidebar-icon,
-        .active > .s-sidebar-link > .s-sidebar-icon {
-            color: #007eff;
-        }
+.s-sidebar-link:hover .s-sidebar-icon,
+.active > .s-sidebar-link > .s-sidebar-icon {
+    color: #007eff;
+}
 
 .s-sidebar-menu .s-sidebar-menu {
     margin-left: 1em;
 }
 
-    .s-sidebar-menu .s-sidebar-menu .s-sidebar-link {
-        font-weight: 400;
-    }
+.s-sidebar-menu .s-sidebar-menu .s-sidebar-link {
+    font-weight: 400;
+}
 
 .s-sidebar-link-text {
     flex-grow: 1;
@@ -191,11 +191,11 @@ html {
     background: none;
 }
 
-    .s-sidebar-toggler:focus,
-    .s-sidebar-toggler:focus-visible {
-        outline: none;
-        box-shadow: none;
-    }
+.s-sidebar-toggler:focus,
+.s-sidebar-toggler:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
 
 .s-sidebar-header-logo {
     width: 30px;
@@ -228,10 +228,10 @@ html {
     line-height: 23px;
 }
 
-    .s-sidebar-search-input:active,
-    .s-sidebar-search-input:focus {
-        outline: none;
-    }
+.s-sidebar-search-input:active,
+.s-sidebar-search-input:focus {
+    outline: none;
+}
 
 .is-match > .s-sidebar-menu.collapse {
     display: block;
@@ -349,9 +349,9 @@ body.disable-css-transitions *:before {
     border-bottom-color: #e8e9ea;
 }
 
-    .card-header:first-child {
-        border-radius: 4px 4px 0 0;
-    }
+.card-header:first-child {
+    border-radius: 4px 4px 0 0;
+}
 
 body {
     min-width: 320px;
