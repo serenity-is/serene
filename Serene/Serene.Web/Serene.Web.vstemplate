@@ -460,8 +460,6 @@
           <Folder Name="daterangepicker" TargetFolderName="daterangepicker">
             <ProjectItem ReplaceParameters="true" TargetFileName="daterangepicker-bs3.css">daterangepicker-bs3.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="daterangepicker.js">daterangepicker.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="moment.js">moment.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="moment.min.js">moment.min.js</ProjectItem>
           </Folder>
           <Folder Name="fullcalendar" TargetFolderName="fullcalendar">
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.css">fullcalendar.css</ProjectItem>

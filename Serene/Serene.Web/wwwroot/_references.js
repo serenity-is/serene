@@ -8,7 +8,6 @@
 /// <reference path="Scripts/chartjs/Chart.js" />
 /// <reference path="Scripts/datepicker/bootstrap-datepicker.js" />
 /// <reference path="Scripts/daterangepicker/daterangepicker.js" />
-/// <reference path="Scripts/daterangepicker/moment.js" />
 /// <reference path="Scripts/fullcalendar/fullcalendar.js" />
 /// <reference path="Scripts/jquery.autoNumeric.js" />
 /// <reference path="Scripts/jquery.blockUI.js" />

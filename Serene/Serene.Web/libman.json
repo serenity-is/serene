@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
@@ -8,6 +8,13 @@
       "files": [
         "chart.min.js",
         "chart.js"
+      ]
+    },
+    {
+      "library": "moment.js@2.29.2",
+      "destination": "wwwroot/lib/moment.js/",
+      "files": [
+        "moment.min.js"
       ]
     }
   ]
