@@ -117,16 +117,6 @@ namespace Serene.Administration.Repositories
             if (request.UserID is null)
                 throw new ArgumentNullException("userID");
 
-            string prefix = "";
-            string module = request.Module.TrimToEmpty();
-            string submodule = request.Submodule.TrimToEmpty();
-
-            if (module.Length > 0)
-                prefix = module;
-
-            if (submodule.Length > 0)
-                prefix += ":" + submodule;
-
             var response = new ListResponse<UserPermissionRow>();
 
             response.Entities = GetExisting(connection, request.UserID.Value, request.Module, request.Submodule);
@@ -140,16 +130,6 @@ namespace Serene.Administration.Repositories
                 throw new ArgumentNullException("request");
             if (request.UserID is null)
                 throw new ArgumentNullException("userID");
-
-            string prefix = "";
-            var module = request.Module.TrimToEmpty();
-            var submodule = request.Submodule.TrimToEmpty();
-
-            if (module.Length > 0)
-                prefix = module;
-
-            if (submodule.Length > 0)
-                prefix += ":" + submodule;
 
             var rp = RolePermissionRow.Fields.As("rp");
             var ur = UserRoleRow.Fields.As("ur");
