@@ -609,12 +609,18 @@ declare namespace Serenity {
     const enum ColumnSelection {
         List = 0,
         KeyOnly = 1,
-        Details = 2
+        Details = 2,
+        None = 3,
+        IdOnly = 4,
+        Lookup = 5
     }
     const enum RetrieveColumnSelection {
         details = 0,
         keyOnly = 1,
-        list = 2
+        list = 2,
+        none = 3,
+        idOnly = 4,
+        lookup = 5
     }
     interface ListRequest extends ServiceRequest {
         Skip?: number;
@@ -1265,6 +1271,7 @@ declare namespace Q {
     function validatorAbortHandler(validator: any): void;
     function validateOptions(options: JQueryValidation.ValidationOptions): JQueryValidation.ValidationOptions;
 
+    function loadValidationErrorMessages(): void;
     function getHighlightTarget(el: HTMLElement): HTMLElement;
     function baseValidateOptions(): JQueryValidation.ValidationOptions;
     function validateForm(form: JQuery, opt: JQueryValidation.ValidationOptions): JQueryValidation.Validator;
@@ -1279,6 +1286,12 @@ declare namespace Q {
     function triggerLayoutOnShow(element: JQuery): void;
     function centerDialog(el: JQuery): void;
 
+    interface HandleRouteEventArgs {
+        handled: boolean;
+        route: string;
+        parts: string[];
+        index: number;
+    }
     namespace Router {
         let enabled: boolean;
         function navigate(hash: string, tryBack?: boolean, silent?: boolean): void;
@@ -2446,6 +2459,7 @@ declare namespace Serenity {
         private toolbar;
         private fileSymbols;
         private uploadInput;
+        protected progress: JQuery;
         protected hiddenInput: JQuery;
         constructor(div: JQuery, opt: ImageUploadEditorOptions);
         protected addFileButtonText(): string;
@@ -3353,8 +3367,16 @@ declare namespace Serenity {
         protected getTemplate(): string;
     }
 
+    interface HandleRouteEventArgs {
+        handled: boolean;
+        route: string;
+        parts: string[];
+        index: number;
+    }
+
     class EntityGrid<TItem, TOptions> extends DataGrid<TItem, TOptions> {
         constructor(container: JQuery, options?: TOptions);
+        protected handleRoute(args: HandleRouteEventArgs): void;
         protected usePager(): boolean;
         protected createToolbarExtensions(): void;
         protected getInitialTitle(): string;

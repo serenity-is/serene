@@ -428,6 +428,12 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
             </Folder>
           </Folder>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.bootstrap.messagedialogs.css">serenity.bootstrap.messagedialogs.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.css">serenity.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.editors.css">serenity.editors.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.jquery-ui.messagedialogs.css">serenity.jquery-ui.messagedialogs.css</ProjectItem>
+          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.css">common-theme.css</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
@@ -449,6 +455,9 @@
           <Folder Name="chartjs" TargetFolderName="chartjs">
             <ProjectItem ReplaceParameters="true" TargetFileName="chart.js">chart.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chart.min.js">chart.min.js</ProjectItem>
+          </Folder>
+          <Folder Name="moment.js" TargetFolderName="moment.js">
+            <ProjectItem ReplaceParameters="true" TargetFileName="moment.min.js">moment.min.js</ProjectItem>
           </Folder>
         </Folder>
         <Folder Name="Scripts" TargetFolderName="Scripts">
@@ -481,6 +490,21 @@
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.js">mousetrap.js</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.min.js">mousetrap.min.js</ProjectItem>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <Folder Name="texts" TargetFolderName="texts">
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.bn.json">serenity.texts.bn.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.de.json">serenity.texts.de.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.es.json">serenity.texts.es.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.fa.json">serenity.texts.fa.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.it.json">serenity.texts.it.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.pt-BR.json">serenity.texts.pt-BR.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.pt.json">serenity.texts.pt.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.ru.json">serenity.texts.ru.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.tr.json">serenity.texts.tr.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.vi-VN.json">serenity.texts.vi-VN.json</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.zh-CN.json">serenity.texts.zh-CN.json</ProjectItem>
+            </Folder>
+          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.js">common-theme.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>

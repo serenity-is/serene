@@ -120,12 +120,7 @@
     <VsixCompressTargets Condition=" '$(VsixCompressTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\packages\VsixCompress.1.0.1\tools\vsix-compress.targets ))</VsixCompressTargets>
   </PropertyGroup>
   <Import Project="$(VsixCompressTargets)" Condition="Exists('$(VsixCompressTargets)')" Label="VsixCompress" />
-  <Target Name="CreateVS2019Vsix" AfterTargets="CreateVsixContainer">
-	  <Message Text="Creating 2019 VSIX" Importance="high"/>
-	  <Copy SourceFiles="$(OutDir)Serene.Template.vsix" DestinationFiles="$(OutDir)Serene.Template.VS2019.vsix" />
-	  <Exec Command="7za.exe a $(ProjectDir)$(OutDir)Serene.Template.VS2019.vsix extension.vsixmanifest SereneProjectWizard_v5.dll" WorkingDirectory="$(ProjectDir)VS2019" />
-  </Target>
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

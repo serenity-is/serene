@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
@@ -23,25 +23,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="FastMember" Version="1.5.0" />
-    <PackageReference Include="FluentMigrator.Runner" Version="3.2.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.0" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.4">
+    <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.3" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Serenity.Assets" Version="5.2.2" />
-    <PackageReference Include="Serenity.Extensions" Version="5.2.2" />
-    <PackageReference Include="Serenity.Scripts" Version="5.2.4" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.2.4" />
   </ItemGroup>
-  <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
-    <PackageReference Include="Serenity.Assets" Version="5.2.2" />
-    <PackageReference Include="Serenity.Scripts" Version="5.2.4" />
-    <PackageReference Include="Serenity.Net.Web" Version="5.2.4" />
+    <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
+    <PackageReference Include="Serenity.Assets" Version="6.0.2" />
+    <PackageReference Include="Serenity.Scripts" Version="6.0.3" />
+    <PackageReference Include="Serenity.Net.Web" Version="6.0.3" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
@@ -49,15 +44,15 @@
     <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
   </ItemGroup>
   <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
-    <PackageReference Include="Serenity.Extensions" Version="5.2.2" />
+    <PackageReference Include="Serenity.Extensions" Version="6.0.3" />
     <!--<if:ThemeSamples>-->
-    <PackageReference Include="Serenity.Demo.ThemeSamples" Version="5.2.2" />
+    <PackageReference Include="Serenity.Demo.ThemeSamples" Version="6.0.3" />
     <!--</if:ThemeSamples>-->
     <!--<if:Northwind>-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="5.2.2" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="6.0.3" />
     <!--</if:Northwind>-->
     <!--<if:BasicSamples>-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="5.2.2" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.0.3" />
     <!--</if:BasicSamples>-->
   </ItemGroup>
   <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">
