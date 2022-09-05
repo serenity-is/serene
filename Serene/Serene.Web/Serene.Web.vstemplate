@@ -530,6 +530,7 @@
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.ru.json">samples.ru.json</ProjectItem>
                 <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
               </Folder>
+		      <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.bn.json">site.texts.bn.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.fa.json">site.texts.fa.json</ProjectItem>
@@ -541,7 +542,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>
-			  <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.bn.json">site.texts.bn.json</ProjectItem>
             </Folder>
           </Folder>
           <Folder Name="sparkline" TargetFolderName="sparkline">
