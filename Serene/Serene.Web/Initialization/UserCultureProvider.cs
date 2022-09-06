@@ -15,7 +15,8 @@ namespace Serene.AppServices
             { "en", "en-US" },
             { "zh", "zh-CN" },
             { "vi", "vi-VN" },
-            { "fa", "fa-IR" }
+            { "fa", "fa-IR" },
+            { "bn", "bn-BD" }
         };
 
         public Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
@@ -51,7 +52,8 @@ namespace Serene.AppServices
             "ru-RU",
             "tr-TR",
             "vi-VN",
-            "zh-CN"
+            "zh-CN",
+            "bn-BD"
         };
 
 
