@@ -4,7 +4,7 @@ using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 
-namespace Serene.Administration.Entities
+namespace Serene.Administration
 {
     [ConnectionKey("Default"), Module("Administration"), TableName("Roles")]
     [DisplayName("Roles"), InstanceName("Role")]
@@ -26,7 +26,7 @@ namespace Serene.Administration.Entities
             get => fields.RoleName[this];
             set => fields.RoleName[this] = value;
         }
-
+
         public RoleRow()
         {
         }

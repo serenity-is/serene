@@ -1,39 +1,40 @@
-﻿namespace Serene.Administration {
+import { CheckTreeEditor, CheckTreeItem, Decorators, GridUtils } from "@serenity-is/corelib";
+import { isEmptyOrNull } from "@serenity-is/corelib/q";
+import { RoleRow } from "../";
 
-    @Serenity.Decorators.registerEditor()
-    export class RoleCheckEditor extends Serenity.CheckTreeEditor<Serenity.CheckTreeItem<any>, any> {
+@Decorators.registerEditor('Serene.Administration.RoleCheckEditor')
+export class RoleCheckEditor extends CheckTreeEditor<CheckTreeItem<any>, any> {
 
-        private searchText: string;
+    private searchText: string;
 
-        constructor(div: JQuery) {
-            super(div);
-        }
+    constructor(div: JQuery) {
+        super(div);
+    }
 
-        protected createToolbarExtensions() {
-            super.createToolbarExtensions();
+    protected createToolbarExtensions() {
+        super.createToolbarExtensions();
 
-            Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, (field, text) => {
-                this.searchText = Select2.util.stripDiacritics(text || '').toUpperCase();
-                this.view.setItems(this.view.getItems(), true);
-            });
-        }
+        GridUtils.addQuickSearchInputCustom(this.toolbar.element, (field, text) => {
+            this.searchText = Select2.util.stripDiacritics(text || '').toUpperCase();
+            this.view.setItems(this.view.getItems(), true);
+        });
+    }
 
-        protected getButtons() {
-            return [];
-        }
+    protected getButtons() {
+        return [];
+    }
 
-        protected getTreeItems() {
-            return RoleRow.getLookup().items.map(role => <Serenity.CheckTreeItem<any>>{
-                id: role.RoleId.toString(),
-                text: role.RoleName
-            });
-        }
+    protected getTreeItems() {
+        return RoleRow.getLookup().items.map(role => <CheckTreeItem<any>>{
+            id: role.RoleId.toString(),
+            text: role.RoleName
+        });
+    }
 
-        protected onViewFilter(item) {
-            return super.onViewFilter(item) &&
-                (Q.isEmptyOrNull(this.searchText) ||
-                 Select2.util.stripDiacritics(item.text || '')
-                     .toUpperCase().indexOf(this.searchText) >= 0);
-        }
+    protected onViewFilter(item) {
+        return super.onViewFilter(item) &&
+            (isEmptyOrNull(this.searchText) ||
+                Select2.util.stripDiacritics(item.text || '')
+                    .toUpperCase().indexOf(this.searchText) >= 0);
     }
 }

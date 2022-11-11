@@ -3,7 +3,6 @@
 /// <reference types="serenity.demo.northwind" />
 /// <reference types="serenity.extensions" />
 /// <reference types="jqueryui" />
-/// <reference types="jquery.blockui" />
 /// <reference types="jquery.validation" />
 declare namespace Serenity.Demo.BasicSamples {
     namespace BasicSamplesService {
@@ -75,11 +74,11 @@ declare namespace Serenity.Demo.BasicSamples {
     }
 }
 declare namespace Serenity.Demo.BasicSamples {
-    interface OrdersByShipperRequest extends Serenity.ServiceRequest {
+    interface OrdersByShipperRequest extends ServiceRequest {
     }
 }
 declare namespace Serenity.Demo.BasicSamples {
-    interface OrdersByShipperResponse extends Serenity.ServiceResponse {
+    interface OrdersByShipperResponse extends ServiceResponse {
         Values?: {
             [key: string]: any;
         }[];
@@ -548,9 +547,9 @@ declare namespace Serenity.Demo.BasicSamples {
         protected getLocalTextPrefix(): string;
         protected getService(): string;
         constructor(container: JQuery);
-        protected createSlickGrid(): Slick.Grid;
-        protected getColumns(): Slick.Column[];
-        protected getSlickOptions(): Slick.GridOptions;
+        protected createSlickGrid(): Slick.Grid<any>;
+        protected getColumns(): Slick.Column<any>[];
+        protected getSlickOptions(): Slick.GridOptions<any>;
         protected usePager(): boolean;
         protected getButtons(): {
             title: string;
@@ -584,7 +583,7 @@ declare namespace Serenity.Demo.BasicSamples {
 declare namespace Serenity.Demo.BasicSamples {
     class InlineActionGrid extends Northwind.CustomerGrid {
         constructor(container: JQuery);
-        protected getColumns(): Slick.Column[];
+        protected getColumns(): Slick.Column<any>[];
         protected onClick(e: JQueryEventObject, row: number, cell: number): void;
     }
 }

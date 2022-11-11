@@ -1,12 +1,10 @@
-﻿using Serenity;
-using Serenity.Data;
+﻿using Serenity.Data;
 using Serenity.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Reflection;
-using MyRow = Serene.Administration.Entities.UserRoleRow;
+using MyRow = Serene.Administration.UserRoleRow;
 
 namespace Serene.Administration.Repositories
 {
@@ -17,16 +15,16 @@ namespace Serene.Administration.Repositories
         {
         }
 
-        private static MyRow.RowFields fld { get { return MyRow.Fields; } }
+        private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
 
         public SaveResponse Update(IUnitOfWork uow, UserRoleUpdateRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.UserID is null)
-                throw new ArgumentNullException("userID");
+                throw new ArgumentNullException(nameof(request.UserID));
             if (request.Roles is null)
-                throw new ArgumentNullException("permissions");
+                throw new ArgumentNullException(nameof(request.Roles));
 
             var userID = request.UserID.Value;
             var oldList = new HashSet<Int32>(
@@ -43,10 +41,10 @@ namespace Serene.Administration.Repositories
                 if (newList.Contains(k))
                     continue;
 
-                new SqlDelete(fld.TableName)
+                new SqlDelete(Fld.TableName)
                     .Where(
-                        new Criteria(fld.UserId) == userID &
-                        new Criteria(fld.RoleId) == k)
+                        new Criteria(Fld.UserId) == userID &
+                        new Criteria(Fld.RoleId) == k)
                     .Execute(uow.Connection);
             }
 
@@ -62,8 +60,8 @@ namespace Serene.Administration.Repositories
                 });
             }
 
-            Cache.InvalidateOnCommit(uow, fld);
-            Cache.InvalidateOnCommit(uow, Entities.UserPermissionRow.Fields);
+            Cache.InvalidateOnCommit(uow, Fld);
+            Cache.InvalidateOnCommit(uow, UserPermissionRow.Fields);
 
             return new SaveResponse();
         }
@@ -72,35 +70,25 @@ namespace Serene.Administration.Repositories
         {
             return connection.List<MyRow>(q =>
             {
-                q.Select(fld.UserRoleId, fld.RoleId)
-                    .Where(new Criteria(fld.UserId) == userId);
+                q.Select(Fld.UserRoleId, Fld.RoleId)
+                    .Where(new Criteria(Fld.UserId) == userId);
             });
         }
 
         public UserRoleListResponse List(IDbConnection connection, UserRoleListRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.UserID is null)
-                throw new ArgumentNullException("userID");
+                throw new ArgumentNullException(nameof(request.UserID));
 
-            var response = new UserRoleListResponse();
-
-            response.Entities = GetExisting(connection, request.UserID.Value)
-                .Select(x => x.RoleId.Value).ToList();
+            var response = new UserRoleListResponse
+            {
+                Entities = GetExisting(connection, request.UserID.Value)
+                .Select(x => x.RoleId.Value).ToList()
+            };
 
             return response;
-        }
-
-        private void ProcessAttributes<TAttr>(HashSet<string> hash, MemberInfo member, Func<TAttr, string> getRole)
-            where TAttr : Attribute
-        {
-            foreach (var attr in member.GetCustomAttributes<TAttr>())
-            {
-                var permission = getRole(attr);
-                if (!permission.IsEmptyOrNull())
-                    hash.Add(permission);
-            }
         }
     }
 }

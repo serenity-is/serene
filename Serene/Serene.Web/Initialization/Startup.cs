@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -149,19 +149,25 @@ namespace Serene
         public static void InitializeLocalTexts(IServiceProvider services)
         {
             var env = services.GetRequiredService<IWebHostEnvironment>();
-
-            services.AddAllTexts(new[]
-            {
-                Path.Combine(env.WebRootPath, "Scripts", "serenity", "texts"),
-                Path.Combine(env.WebRootPath, "Scripts", "site", "texts"),
-                Path.Combine(env.ContentRootPath, "App_Data", "texts")
-            });
+            services.AddBaseTexts(env.WebRootFileProvider)
+                .AddJsonTexts(env.WebRootFileProvider, "Scripts/site/texts")
+                .AddJsonTexts(env.ContentRootFileProvider, "App_Data/texts");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             RowFieldsProvider.SetDefaultFrom(app.ApplicationServices);
+
+            var startNodeScripts = Configuration["StartNodeScripts"];
+            if (!string.IsNullOrEmpty(startNodeScripts))
+            {
+                foreach (var script in startNodeScripts.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    app.StartNodeScript(script);
+                }
+            }
+
             InitializeLocalTexts(app.ApplicationServices);
 
             var reqLocOpt = new RequestLocalizationOptions

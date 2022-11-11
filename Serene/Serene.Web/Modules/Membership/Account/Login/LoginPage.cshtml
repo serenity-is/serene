@@ -1,0 +1,53 @@
+@inject Serenity.ITextLocalizer Localizer
+@inject IDataMigrations DataMigrations
+@inject Microsoft.Extensions.Options.IOptions<Serenity.Extensions.EnvironmentSettings> EnvironmentOptions
+@{
+    ViewData["Title"] = Texts.Forms.Membership.Login.LoginToYourAccount.ToString(Localizer);
+    ViewData["PageId"] = "Login";
+    Layout = MVC.Views.Shared._LayoutNoNavigation;
+}
+
+<style>
+    a { text-decoration: none; }
+</style>
+
+@if (DataMigrations.SkippedMigrations)
+{
+    <div class="alert alert-error alert-dismissible">
+        <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+        Serene skipped running migrations to avoid modifying an arbitrary database.
+        If you'd like to run migrations on this database, remove the safety check
+        in SiteInitialization.RunMigrations method.
+    </div>
+}
+
+@if (ViewData["Activated"] != null)
+{
+    <input type="hidden" id="Activated" value="@ViewData["Activated"]" />
+    <div class="alert alert-info alert-dismissible">
+        <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-hidden="true"></button>
+        <h4><i class="icon fa fa-info"></i>@Localizer.Get("Dialogs.InformationTitle")</h4>
+        @Texts.Forms.Membership.SignUp.ActivationCompleteMessage.ToString(Localizer)
+    </div>
+}
+
+<div class="s-full-page justify-content-center">
+    <div id="LoginPanel" class="s-container-tight s-Form flex-layout">
+
+    </div>
+
+@if (EnvironmentOptions.Value.IsPublicDemo)
+{
+    <div class="s-container-tight mt-4">
+        <div class="alert alert-info alert-dismissible pt-1 pb-1">
+            <input type="hidden" id="IsPublicDemo" value="1" />
+            <div class="text-center">
+                <i class="fa fa-lightbulb text-warning"></i> <small>demo username: <b>admin</b>, password: <b>serenity</b></small>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<script type="module" src=@Html.ResolveWithHash("~/esm/Modules/Membership/Account/Login/LoginPage.js")></script>

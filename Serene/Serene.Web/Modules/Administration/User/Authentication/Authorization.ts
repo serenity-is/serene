@@ -1,13 +1,11 @@
-﻿namespace Serene.Authorization {
-    export declare let userDefinition: ScriptUserDefinition;
+import { getRemoteData } from "@serenity-is/corelib/q";
+import { ScriptUserDefinition } from "../..";
 
-    Object.defineProperty(Authorization, 'userDefinition', {
-        get: function () {
-            return Q.getRemoteData('UserData');
-        }
-    });
+export function userDefinition() {
+    return getRemoteData('UserData') as ScriptUserDefinition;
+}
 
-    export function hasPermission(permissionKey: string) {
-        return Q.Authorization.hasPermission(permissionKey);
-    }
+export function hasPermission(permissionKey: string): boolean {
+    let ud = userDefinition();
+    return ud.Username === 'admin' || !!ud.Permissions[permissionKey];
 }

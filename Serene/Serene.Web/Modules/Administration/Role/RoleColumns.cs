@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace Serene.Administration.Forms
 {
     [ColumnsScript("Administration.Role")]
-    [BasedOnRow(typeof(Entities.RoleRow), CheckNames = true)]
+    [BasedOnRow(typeof(RoleRow), CheckNames = true)]
     public class RoleColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using Serenity;
@@ -8,7 +8,6 @@ using Serenity.Localization;
 using Serenity.Navigation;
 using Serenity.Services;
 using Serenity.Web;
-using Serene.Administration.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,30 +60,30 @@ namespace Serene.Administration.Repositories
             availableKeys.CopyTo(sorted);
             Array.Sort(sorted);
 
-            targetLanguageID = targetLanguageID ?? "";
+            targetLanguageID ??= "";
             var sourceLanguageID = request.SourceLanguageID.TrimToEmpty();
 
             result.Entities = new List<TranslationItem>();
 
-            Func<string, string> effective = delegate(string key)
+            static string effective(string key)
             {
-                if (key.StartsWith("Navigation."))
+                if (key.StartsWith("Navigation.", StringComparison.Ordinal))
                 {
-                    key = key.Substring("Navigation.".Length);
+                    key = key["Navigation.".Length..];
                     return key.Split(new char[] { '/' }).Last();
                 }
-                else if (key.StartsWith("Forms.") && key.Contains(".Categories."))
+                else if (key.StartsWith("Forms.", StringComparison.Ordinal) &&
+                    key.Contains(".Categories.", StringComparison.Ordinal))
                 {
                     return key.Split(new char[] { '.' }).Last().TrimToNull();
                 }
 
                 return key;
-            };
+            }
 
             foreach (var key in sorted)
             {
-                string customText;
-                if (!customTranslations.TryGetValue(key, out customText))
+                if (!customTranslations.TryGetValue(key, out string customText))
                     customText = null;
 
                 result.Entities.Add(new TranslationItem
@@ -117,8 +116,7 @@ namespace Serene.Administration.Repositories
                 }
             }
 
-            var repository = LocalTextRegistry as LocalTextRegistry;
-            if (repository != null)
+            if (LocalTextRegistry is LocalTextRegistry repository)
                 result.AddRange(repository.GetAllTextKeys(false));
 
             return result;
@@ -127,7 +125,7 @@ namespace Serene.Administration.Repositories
         public SaveResponse Update(TranslationUpdateRequest request, IServiceProvider services)
         {
             if (request.Translations == null)
-                throw new ArgumentNullException("translations");
+                throw new ArgumentNullException(nameof(request.Translations));
 
             var translations = List(new TranslationListRequest
             {

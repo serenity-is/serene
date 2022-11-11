@@ -2,61 +2,62 @@
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Serene.Administration.Entities
+namespace Serene.Administration
 {
     [ConnectionKey("Default"), Module("Administration"), TableName("Users")]
     [DisplayName("Users"), InstanceName("User")]
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript(Permission = PermissionKeys.Security)]
-    public sealed class UserRow : LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow
+    public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow
     {
         [DisplayName("User Id"), Identity, IdProperty]
-        public Int32? UserId
+        public int? UserId
         {
             get => fields.UserId[this];
             set => fields.UserId[this] = value;
         }
 
         [DisplayName("Username"), Size(100), NotNull, QuickSearch, LookupInclude, NameProperty]
-        public String Username
+        public string Username
         {
             get => fields.Username[this];
             set => fields.Username[this] = value;
         }
 
         [DisplayName("Source"), Size(4), NotNull, Insertable(false), Updatable(false), DefaultValue("site")]
-        public String Source
+        public string Source
         {
             get => fields.Source[this];
             set => fields.Source[this] = value;
         }
 
         [DisplayName("Password Hash"), Size(86), NotNull, Insertable(false), Updatable(false), MinSelectLevel(SelectLevel.Never)]
-        public String PasswordHash
+        public string PasswordHash
         {
             get => fields.PasswordHash[this];
             set => fields.PasswordHash[this] = value;
         }
 
         [DisplayName("Password Salt"), Size(10), NotNull, Insertable(false), Updatable(false), MinSelectLevel(SelectLevel.Never)]
-        public String PasswordSalt
+        public string PasswordSalt
         {
             get => fields.PasswordSalt[this];
             set => fields.PasswordSalt[this] = value;
         }
 
         [DisplayName("Display Name"), Size(100), NotNull, LookupInclude]
-        public String DisplayName
+        public string DisplayName
         {
             get => fields.DisplayName[this];
             set => fields.DisplayName[this] = value;
         }
 
         [DisplayName("Email"), Size(100)]
-        public String Email
+        public string Email
         {
             get => fields.Email[this];
             set => fields.Email[this] = value;
@@ -64,28 +65,28 @@ namespace Serene.Administration.Entities
 
         [DisplayName("User Image"), Size(100)]
         [ImageUploadEditor(FilenameFormat = "UserImage/~", CopyToHistory = true)]
-        public String UserImage
+        public string UserImage
         {
             get => fields.UserImage[this];
             set => fields.UserImage[this] = value;
         }
 
         [DisplayName("Password"), Size(50), NotMapped]
-        public String Password
+        public string Password
         {
             get => fields.Password[this];
             set => fields.Password[this] = value;
         }
 
         [NotNull, Insertable(false), Updatable(true)]
-        public Int16? IsActive
+        public short? IsActive
         {
             get => fields.IsActive[this];
             set => fields.IsActive[this] = value;
         }
 
         [DisplayName("Confirm Password"), Size(50), NotMapped]
-        public String PasswordConfirm
+        public string PasswordConfirm
         {
             get => fields.PasswordConfirm[this];
             set => fields.PasswordConfirm[this] = value;
@@ -96,7 +97,16 @@ namespace Serene.Administration.Entities
         {
             get => fields.LastDirectoryUpdate[this];
             set => fields.LastDirectoryUpdate[this] = value;
-        }
+        }
+
+        [DisplayName("Roles"), LinkingSetRelation(typeof(UserRoleRow), nameof(UserRoleRow.UserId), nameof(UserRoleRow.RoleId))]
+        [LookupEditor(typeof(RoleRow), Multiple = true)]
+        public List<int> Roles
+        {
+            get => fields.Roles[this];
+            set => fields.Roles[this] = value;
+        }
+
         Int16Field IIsActiveRow.IsActiveField
         {
             get => fields.IsActive;
@@ -111,7 +121,7 @@ namespace Serene.Administration.Entities
         {
         }
 
-        public class RowFields : LoggingRowFields
+        public class RowFields : Serenity.Extensions.Entities.LoggingRowFields
         {
             public Int32Field UserId;
             public StringField Username;
@@ -126,6 +136,8 @@ namespace Serene.Administration.Entities
 
             public StringField Password;
             public StringField PasswordConfirm;
+
+            public ListField<int> Roles;
         }
     }
 }

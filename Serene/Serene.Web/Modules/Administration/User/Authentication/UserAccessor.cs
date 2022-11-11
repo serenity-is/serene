@@ -7,7 +7,7 @@ namespace Serene.Administration
 {
     public class UserAccessor : IUserAccessor, IImpersonator
     {
-        private ImpersonatingUserAccessor impersonator;
+        private readonly ImpersonatingUserAccessor impersonator;
 
         public UserAccessor(IHttpContextAccessor httpContextAccessor)
         {

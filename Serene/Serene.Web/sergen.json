@@ -1,5 +1,6 @@
 {
   "RootNamespace": "Serene",
+  "EndOfLine": "LF",
   "ServerTypings": {
     "LocalTexts": true
   },

@@ -4,7 +4,7 @@ using System;
 namespace Serene.Administration.Columns
 {
     [ColumnsScript("Administration.User")]
-    [BasedOnRow(typeof(Entities.UserRow), CheckNames = true)]
+    [BasedOnRow(typeof(UserRow), CheckNames = true)]
     public class UserColumns
     {
         [EditLink, AlignRight, Width(55)]
@@ -15,7 +15,9 @@ namespace Serene.Administration.Columns
         public String DisplayName { get; set; }
         [Width(250)]
         public String Email { get; set; }
-        [Width(100)]
+        [Width(80)]
         public String Source { get; set; }
+        [QuickFilter, Width(300)]
+        public string Roles { get; set; }
     }
 }

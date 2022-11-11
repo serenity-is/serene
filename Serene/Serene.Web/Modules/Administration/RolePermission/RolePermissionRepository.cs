@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using MyRow = Serene.Administration.Entities.RolePermissionRow;
+using MyRow = Serene.Administration.RolePermissionRow;
 
 namespace Serene.Administration.Repositories
 {
@@ -16,16 +16,16 @@ namespace Serene.Administration.Repositories
         {
         }
 
-        private static MyRow.RowFields fld { get { return MyRow.Fields; } }
+        private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
 
         public SaveResponse Update(IUnitOfWork uow, RolePermissionUpdateRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.RoleID is null)
-                throw new ArgumentNullException("roleID");
+                throw new ArgumentNullException(nameof(request.RoleID));
             if (request.Permissions is null)
-                throw new ArgumentNullException("permissions");
+                throw new ArgumentNullException(nameof(request.Permissions));
 
             var roleID = request.RoleID.Value;
             var oldList = new HashSet<string>(
@@ -43,10 +43,10 @@ namespace Serene.Administration.Repositories
                 if (newList.Contains(k))
                     continue;
 
-                new SqlDelete(fld.TableName)
+                new SqlDelete(Fld.TableName)
                     .Where(
-                        new Criteria(fld.RoleId) == roleID &
-                        new Criteria(fld.PermissionKey) == k)
+                        new Criteria(Fld.RoleId) == roleID &
+                        new Criteria(Fld.PermissionKey) == k)
                     .Execute(uow.Connection);
             }
 
@@ -62,8 +62,8 @@ namespace Serene.Administration.Repositories
                 });
             }
 
-            Cache.InvalidateOnCommit(uow, fld);
-            Cache.InvalidateOnCommit(uow, Entities.UserPermissionRow.Fields);
+            Cache.InvalidateOnCommit(uow, Fld);
+            Cache.InvalidateOnCommit(uow, UserPermissionRow.Fields);
 
             return new SaveResponse();
         }
@@ -82,22 +82,22 @@ namespace Serene.Administration.Repositories
 
             return connection.List<MyRow>(q =>
             {
-                q.Select(fld.RolePermissionId, fld.PermissionKey)
-                    .Where(new Criteria(fld.RoleId) == roleId);
+                q.Select(Fld.RolePermissionId, Fld.PermissionKey)
+                    .Where(new Criteria(Fld.RoleId) == roleId);
 
                 if (prefix.Length > 0)
                     q.Where(
-                        new Criteria(fld.PermissionKey) == prefix |
-                        new Criteria(fld.PermissionKey).StartsWith(prefix + ":"));
+                        new Criteria(Fld.PermissionKey) == prefix |
+                        new Criteria(Fld.PermissionKey).StartsWith(prefix + ":"));
             });
         }
 
         public RolePermissionListResponse List(IDbConnection connection, RolePermissionListRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.RoleID is null)
-                throw new ArgumentNullException("roleID");
+                throw new ArgumentNullException(nameof(request.RoleID));
 
             string prefix = "";
             string module = request.Module.TrimToEmpty();
@@ -109,10 +109,11 @@ namespace Serene.Administration.Repositories
             if (submodule.Length > 0)
                 prefix += ":" + submodule;
 
-            var response = new RolePermissionListResponse();
-            
-            response.Entities = GetExisting(connection, request.RoleID.Value, request.Module, request.Submodule)
-                .Select(x => x.PermissionKey).ToList();
+            var response = new RolePermissionListResponse
+            {
+                Entities = GetExisting(connection, request.RoleID.Value, request.Module, request.Submodule)
+                .Select(x => x.PermissionKey).ToList()
+            };
 
             return response;
         }

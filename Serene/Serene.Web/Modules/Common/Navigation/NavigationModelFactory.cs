@@ -64,7 +64,7 @@ namespace Serene.Common
                 Items = cache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" +
                     (userAccessor.User?.GetIdentifier() ?? "-1"), 
                     TimeSpan.Zero,
-                    Administration.Entities.UserPermissionRow.Fields.GenerationKey,
+                    Administration.UserPermissionRow.Fields.GenerationKey,
                     () => NavigationHelper.GetNavigationItems(permissions, typeSource, serviceProvider, ToAbsolute))
             };
 

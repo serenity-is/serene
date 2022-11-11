@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Administration.Pages
 {
-    [PageAuthorize(typeof(Entities.LanguageRow))]
+    [PageAuthorize(typeof(LanguageRow))]
     public class LanguageController : Controller
     {
         [Route("Administration/Language")]
         public ActionResult Index()
         {
-            return View(MVC.Views.Administration.Language.LanguageIndex);
+            return this.GridPage("@/Administration/Language/LanguagePage",
+                LanguageRow.Fields.PageTitle());
         }
     }
 }

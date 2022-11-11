@@ -1,17 +1,18 @@
-﻿using MyRow = Serene.Administration.Entities.UserRow;
-using Serenity;
+﻿using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Security.Claims;
 using System.Security.Principal;
+using MyRow = Serene.Administration.UserRow;
 
 namespace Serene.Administration
 {
     public class UserRetrieveService : IUserRetrieveService
     {
-        private static MyRow.RowFields fld { get { return MyRow.Fields; } }
+        private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
 
         protected ITwoLevelCache Cache { get; }
         protected ISqlConnections SqlConnections { get; }
@@ -46,10 +47,10 @@ namespace Serene.Administration
 
         public IUserDefinition ById(string id)
         {
-            return Cache.Get("UserByID_" + id, TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
+            return Cache.Get("UserByID_" + id, TimeSpan.Zero, TimeSpan.FromDays(1), Fld.GenerationKey, () =>
             {
                 using var connection = SqlConnections.NewByKey("Default");
-                    return GetFirst(connection, new Criteria(fld.UserId) == int.Parse(id));
+                return GetFirst(connection, new Criteria(Fld.UserId) == int.Parse(id, CultureInfo.InvariantCulture));
             });
         }
 
@@ -59,10 +60,10 @@ namespace Serene.Administration
                 return null;
 
             return Cache.Get("UserByName_" + username.ToLowerInvariant(), 
-                TimeSpan.Zero, TimeSpan.FromDays(1), fld.GenerationKey, () =>
+                TimeSpan.Zero, TimeSpan.FromDays(1), Fld.GenerationKey, () =>
             {
                 using var connection = SqlConnections.NewByKey("Default");
-                    return GetFirst(connection, new Criteria(fld.Username) == username);
+                return GetFirst(connection, new Criteria(Fld.Username) == username);
             });
         }
 

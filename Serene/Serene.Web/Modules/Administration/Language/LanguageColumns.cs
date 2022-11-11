@@ -4,7 +4,7 @@ using System;
 namespace Serene.Administration.Forms
 {
     [ColumnsScript("Administration.Language")]
-    [BasedOnRow(typeof(Entities.LanguageRow), CheckNames = true)]
+    [BasedOnRow(typeof(LanguageRow), CheckNames = true)]
     public class LanguageColumns
     {
         [EditLink]

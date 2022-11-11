@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Serene.Administration.Entities;
+using Serene.Administration;
 using Serenity;
-using Serenity.Abstractions;
-using Serenity.ComponentModel;
 using Serenity.Data;
+using Serenity.ComponentModel;
 using Serenity.Localization;
 using Serenity.Services;
 using Serenity.Web;
@@ -12,7 +10,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using MyRow = Serene.Administration.Entities.UserPermissionRow;
+using MyRow = Serene.Administration.UserPermissionRow;
+using Microsoft.Extensions.Caching.Memory;
+using Serenity.Abstractions;
 
 namespace Serene.Administration.Repositories
 {
@@ -23,16 +23,16 @@ namespace Serene.Administration.Repositories
         {
         }
 
-        private static MyRow.RowFields fld { get { return MyRow.Fields; } }
+        private static MyRow.RowFields Fld { get { return MyRow.Fields; } }
 
         public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.UserID is null)
-                throw new ArgumentNullException("userID");
+                throw new ArgumentNullException(nameof(request.UserID));
             if (request.Permissions is null)
-                throw new ArgumentNullException("permissions");
+                throw new ArgumentNullException(nameof(request.Permissions));
 
             var userID = request.UserID.Value;
             var oldList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -52,10 +52,10 @@ namespace Serene.Administration.Repositories
                 if (newList.ContainsKey(k))
                     continue;
 
-                new SqlDelete(fld.TableName)
+                new SqlDelete(Fld.TableName)
                     .Where(
-                        new Criteria(fld.UserId) == userID &
-                        new Criteria(fld.PermissionKey) == k)
+                        new Criteria(Fld.UserId) == userID &
+                        new Criteria(Fld.PermissionKey) == k)
                     .Execute(uow.Connection);
             }
 
@@ -72,16 +72,16 @@ namespace Serene.Administration.Repositories
                 }
                 else if (oldList[k] != newList[k])
                 {
-                    new SqlUpdate(fld.TableName)
+                    new SqlUpdate(Fld.TableName)
                         .Where(
-                            fld.UserId == userID &
-                            fld.PermissionKey == k)
-                        .Set(fld.Granted, newList[k])
+                            Fld.UserId == userID &
+                            Fld.PermissionKey == k)
+                        .Set(Fld.Granted, newList[k])
                         .Execute(uow.Connection);
                 }
             }
 
-            Cache.InvalidateOnCommit(uow, fld);
+            Cache.InvalidateOnCommit(uow, Fld);
 
             return new SaveResponse();
         }
@@ -100,36 +100,27 @@ namespace Serene.Administration.Repositories
 
             return connection.List<MyRow>(q =>
             {
-                q.Select(fld.UserPermissionId, fld.PermissionKey, fld.Granted)
-                    .Where(new Criteria(fld.UserId) == userId);
+                q.Select(Fld.UserPermissionId, Fld.PermissionKey, Fld.Granted)
+                    .Where(new Criteria(Fld.UserId) == userId);
 
                 if (prefix.Length > 0)
                     q.Where(~(
-                        new Criteria(fld.PermissionKey) == prefix |
-                        new Criteria(fld.PermissionKey).StartsWith(prefix + ":")));
+                        new Criteria(Fld.PermissionKey) == prefix |
+                        new Criteria(Fld.PermissionKey).StartsWith(prefix + ":")));
             });
         }
 
-        public ListResponse<UserPermissionRow> List(IDbConnection connection, UserPermissionListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, UserPermissionListRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.UserID is null)
-                throw new ArgumentNullException("userID");
+                throw new ArgumentNullException(nameof(request.UserID));
 
-            string prefix = "";
-            string module = request.Module.TrimToEmpty();
-            string submodule = request.Submodule.TrimToEmpty();
-
-            if (module.Length > 0)
-                prefix = module;
-
-            if (submodule.Length > 0)
-                prefix += ":" + submodule;
-
-            var response = new ListResponse<UserPermissionRow>();
-
-            response.Entities = GetExisting(connection, request.UserID.Value, request.Module, request.Submodule);
+            var response = new ListResponse<MyRow>
+            {
+                Entities = GetExisting(connection, request.UserID.Value, request.Module, request.Submodule)
+            };
 
             return response;
         }
@@ -137,19 +128,9 @@ namespace Serene.Administration.Repositories
         public ListResponse<string> ListRolePermissions(IDbConnection connection, UserPermissionListRequest request)
         {
             if (request is null)
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             if (request.UserID is null)
-                throw new ArgumentNullException("userID");
-
-            string prefix = "";
-            var module = request.Module.TrimToEmpty();
-            var submodule = request.Submodule.TrimToEmpty();
-
-            if (module.Length > 0)
-                prefix = module;
-
-            if (submodule.Length > 0)
-                prefix += ":" + submodule;
+                throw new ArgumentNullException(nameof(request.UserID));
 
             var rp = RolePermissionRow.Fields.As("rp");
             var ur = UserRoleRow.Fields.As("ur");
@@ -220,12 +201,14 @@ namespace Serene.Administration.Repositories
             }
         }
 
-        public static IEnumerable<string> ListPermissionKeys(IMemoryCache memoryCache, ITypeSource typeSource)
+        public static IEnumerable<string> ListPermissionKeys(ITwoLevelCache cache, ISqlConnections sqlConnections, 
+            ITypeSource typeSource, bool includeRoles = false)
         {
             if (typeSource is null)
                 throw new ArgumentNullException(nameof(typeSource));
 
-            return memoryCache.Get("Administration:PermissionKeys", TimeSpan.Zero, () =>
+            return cache.GetLocalStoreOnly("Administration:PermissionKeys:" + 
+                (includeRoles ? "IR" : "XR"), TimeSpan.Zero, RoleRow.Fields.GenerationKey, () =>
             {
                 var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -253,8 +236,15 @@ namespace Serene.Administration.Repositories
                             ProcessAttributes<PermissionAttributeBase>(result, member, x => x.Permission);
                 }
 
+                result.Remove("ImpersonateAs");
                 result.Remove("*");
                 result.Remove("?");
+
+                foreach (var perm in result.Where(x =>
+                    x.StartsWith("Role:", StringComparison.OrdinalIgnoreCase)).ToList())
+                {
+                    result.Remove(perm);
+                }
 
                 return result;
             });
@@ -273,8 +263,7 @@ namespace Serene.Administration.Repositories
             {
                 var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
 
-                Action<Type> addFrom = null;
-                addFrom = (type) =>
+                void addFrom(Type type)
                 {
                     foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
                         BindingFlags.Public | BindingFlags.NonPublic))
@@ -282,14 +271,12 @@ namespace Serene.Administration.Repositories
                         if (member.FieldType != typeof(String))
                             continue;
 
-                        var key = member.GetValue(null) as string;
-                        if (key == null)
+                        if (member.GetValue(null) is not string key)
                             continue;
 
                         foreach (var attr in member.GetCustomAttributes<ImplicitPermissionAttribute>())
                         {
-                            HashSet<string> list;
-                            if (!result.TryGetValue(key, out list))
+                            if (!result.TryGetValue(key, out HashSet<string> list))
                             {
                                 list = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                                 result[key] = list;
@@ -301,7 +288,7 @@ namespace Serene.Administration.Repositories
 
                     foreach (var nested in type.GetNestedTypes(BindingFlags.Public | BindingFlags.DeclaredOnly))
                         addFrom(nested);
-                };
+                }
 
                 foreach (var type in typeSource.GetTypesWithAttribute(
                     typeof(NestedPermissionKeysAttribute)))

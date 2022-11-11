@@ -2,8 +2,8 @@
 using Serenity.Services;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serene.Administration.Repositories.RoleRepository;
-using MyRow = Serene.Administration.Entities.RoleRow;
+using MyRow = Serene.Administration.RoleRow;
+using Serene.Administration.Repositories;
 
 namespace Serene.Administration.Endpoints
 {
@@ -12,31 +12,31 @@ namespace Serene.Administration.Endpoints
     public class RoleController : ServiceEndpoint
     {
         [HttpPost, AuthorizeCreate(typeof(MyRow))]
-        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request, [FromServices] IRoleSaveHandler handler)
         {
-            return new MyRepository(Context).Create(uow, request);
+            return handler.Create(uow, request);
         }
 
         [HttpPost, AuthorizeUpdate(typeof(MyRow))]
-        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request)
+        public SaveResponse Update(IUnitOfWork uow, SaveRequest<MyRow> request, [FromServices] IRoleSaveHandler handler)
         {
-            return new MyRepository(Context).Update(uow, request);
+            return handler.Update(uow, request);
         }
  
         [HttpPost, AuthorizeDelete(typeof(MyRow))]
-        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request)
+        public DeleteResponse Delete(IUnitOfWork uow, DeleteRequest request, [FromServices] IRoleDeleteHandler handler)
         {
-            return new MyRepository(Context).Delete(uow, request);
+            return handler.Delete(uow, request);
         }
 
-        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request)
+        public RetrieveResponse<MyRow> Retrieve(IDbConnection connection, RetrieveRequest request, [FromServices] IRoleRetrieveHandler handler)
         {
-            return new MyRepository(Context).Retrieve(connection, request);
+            return handler.Retrieve(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request, [FromServices] IRoleListHandler handler)
         {
-            return new MyRepository(Context).List(connection, request);
+            return handler.List(connection, request);
         }
     }
 }

@@ -1,21 +1,24 @@
 ﻿using Serenity.ComponentModel;
-using System;
+using System.Collections.Generic;
 
 namespace Serene.Administration.Forms
 {
     [FormScript("Administration.User")]
-    [BasedOnRow(typeof(Entities.UserRow), CheckNames = true)]
+    [BasedOnRow(typeof(UserRow), CheckNames = true)]
     public class UserForm
     {
-        public String Username { get; set; }
-        public String DisplayName { get; set; }
-        [EmailEditor]
-        public String Email { get; set; }
-        public String UserImage { get; set; }
+        [LabelWidth(200, UntilNext = true)]
+        public string Username { get; set; }
+        public string DisplayName { get; set; }
+        [EmailAddressEditor]
+        public string Email { get; set; }
+        [LookupEditor(typeof(RoleRow), Multiple = true)]
+        public List<int> Roles { get; set; }
+        public string UserImage { get; set; }
         [PasswordEditor, Required(true)]
-        public String Password { get; set; }
+        public string Password { get; set; }
         [PasswordEditor, OneWay, Required(true)]
-        public String PasswordConfirm { get; set; }
+        public string PasswordConfirm { get; set; }
         [OneWay]
         public string Source { get; set; }
     }

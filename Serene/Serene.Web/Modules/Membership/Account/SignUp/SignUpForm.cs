@@ -6,15 +6,15 @@ namespace Serene.Membership
     [FormScript("Membership.SignUp")]
     public class SignUpForm
     {
-        [Required(true), Placeholder("Full name")]
+        [Required(true), Placeholder("full name")]
         public String DisplayName { get; set; }
-        [EmailAddressEditor, Required(true), Placeholder("Email")]
+        [EmailAddressEditor, Required(true), Placeholder("e-mail")]
         public String Email { get; set; }
-        [EmailAddressEditor, Required(true), Placeholder("Confirm email")]
+        [EmailAddressEditor, Required(true), Placeholder("confirm email")]
         public String ConfirmEmail { get; set; }
-        [PasswordEditor, Required(true), Placeholder("Password")]
+        [PasswordEditor, Required(true), Placeholder("password")]
         public String Password { get; set; }
-        [PasswordEditor, Required(true), Placeholder("Confirm password")]
+        [PasswordEditor, Required(true), Placeholder("confirm password")]
         public String ConfirmPassword { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Serene.Administration.Entities;
-using Serene.Administration.Repositories;
-using Serenity;
+﻿using Serenity;
 using Serenity.Abstractions;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Web;
+using Serene.Administration;
+using Serene.Administration.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +19,17 @@ namespace Serene.Administration
     {
         private ITwoLevelCache Cache { get; }
         private IPermissionService Permissions { get; }
+        private ISqlConnections SqlConnections { get; }
         private ITypeSource TypeSource { get; }
         private IUserAccessor UserAccessor { get; }
         private IUserRetrieveService UserRetriever { get; }
 
-        public UserDataScript(ITwoLevelCache cache, IPermissionService permissions,
+        public UserDataScript(ITwoLevelCache cache, IPermissionService permissions, ISqlConnections sqlConnections,
             ITypeSource typeSource, IUserAccessor userAccessor, IUserRetrieveService userRetrieveService)
         {
             Cache = cache ?? throw new ArgumentNullException(nameof(cache));
             Permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
+            SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
             TypeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
             UserAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
             UserRetriever = userRetrieveService ?? throw new ArgumentNullException(nameof(userRetrieveService));
@@ -37,7 +39,7 @@ namespace Serene.Administration
         { 
             var result = new ScriptUserDefinition();
 
-            if (!(UserAccessor.User?.GetUserDefinition(UserRetriever) is UserDefinition user))
+            if (UserAccessor.User?.GetUserDefinition(UserRetriever) is not UserDefinition user)
             {
                 result.Permissions = new Dictionary<string, bool>();
                 return result;
@@ -55,7 +57,8 @@ namespace Serene.Administration
                     var permissionsUsedFromScript = Cache.GetLocalStoreOnly("PermissionsUsedFromScript",
                         TimeSpan.Zero, RoleRow.Fields.GenerationKey, () =>
                         {
-                            return UserPermissionRepository.ListPermissionKeys(Cache.Memory, TypeSource)
+                            return UserPermissionRepository.ListPermissionKeys(
+                                    Cache, SqlConnections, TypeSource, includeRoles: true)
                                 .Where(permissionKey =>
                                 {
                                     // this sends permission information for all permission keys to client side.

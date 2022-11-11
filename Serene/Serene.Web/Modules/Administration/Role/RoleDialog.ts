@@ -1,39 +1,43 @@
-﻿namespace Serene.Administration {
+import { RoleRow, RoleForm, RoleService } from "../";
+import { RolePermissionDialog } from "../RolePermission/RolePermissionDialog";
+import { Texts } from "../../ServerTypes/Texts"
+import { Decorators, EntityDialog } from "@serenity-is/corelib";
 
-    @Serenity.Decorators.registerClass()
-    export class RoleDialog extends Serenity.EntityDialog<RoleRow, any> {
-        protected getFormKey() { return RoleForm.formKey; }
-        protected getIdProperty() { return RoleRow.idProperty; }
-        protected getLocalTextPrefix() { return RoleRow.localTextPrefix; }
-        protected getNameProperty() { return RoleRow.nameProperty; }
-        protected getService() { return RoleService.baseUrl; }
+const editPermissions = "edit-permissions";
 
-        protected form = new RoleForm(this.idPrefix);
+@Decorators.registerClass('Serene.Administration.RoleDialog')
+export class RoleDialog extends EntityDialog<RoleRow, any> {
+    protected getFormKey() { return RoleForm.formKey; }
+    protected getIdProperty() { return RoleRow.idProperty; }
+    protected getLocalTextPrefix() { return RoleRow.localTextPrefix; }
+    protected getNameProperty() { return RoleRow.nameProperty; }
+    protected getService() { return RoleService.baseUrl; }
 
-        protected getToolbarButtons()
-        {
-            let buttons = super.getToolbarButtons();
+    protected form = new RoleForm(this.idPrefix);
 
-            buttons.push({
-                title: Q.text('Site.RolePermissionDialog.EditButton'),
-                cssClass: 'edit-permissions-button',
-                icon: 'fa-lock text-green',
-                onClick: () =>
-                {
-                    new RolePermissionDialog({
-                        roleID: this.entity.RoleId,
-                        title: this.entity.RoleName
-                    }).dialogOpen();
-                }
-            });
+    protected getToolbarButtons()
+    {
+        let buttons = super.getToolbarButtons();
 
-            return buttons;
-        }
+        buttons.push({
+            title: Texts.Site.RolePermissionDialog.EditButton,
+            cssClass: editPermissions,
+            icon: 'fa-lock text-green',
+            onClick: () =>
+            {
+                new RolePermissionDialog({
+                    roleID: this.entity.RoleId,
+                    title: this.entity.RoleName
+                }).dialogOpen();
+            }
+        });
 
-        protected updateInterface() {
-            super.updateInterface();
+        return buttons;
+    }
 
-            this.toolbar.findButton("edit-permissions-button").toggleClass("disabled", this.isNewOrDeleted());
-        }
+    protected updateInterface() {
+        super.updateInterface();
+
+        this.toolbar.findButton(editPermissions).toggleClass("disabled", this.isNewOrDeleted());
     }
 }

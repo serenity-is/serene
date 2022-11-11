@@ -1,5 +1,4 @@
-﻿using HttpContextBase = Microsoft.AspNetCore.Http.HttpContext;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serenity;
 using Serenity.Abstractions;
@@ -12,7 +11,8 @@ namespace Serene.Common.Pages
 {
     public class FileController : Controller
     {
-        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer, IExceptionLogger logger = null)
+        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer, 
+            IExceptionLogger logger = null)
         {
             UploadStorage = uploadStorage ??
                 throw new ArgumentNullException(nameof(uploadStorage));
@@ -22,8 +22,8 @@ namespace Serene.Common.Pages
         }
 
         protected IUploadStorage UploadStorage { get; }
-        protected IExceptionLogger Logger { get; }
         protected ITextLocalizer Localizer { get; }
+        public IExceptionLogger Logger { get; }
 
         [Route("upload/{*pathInfo}")]
         public ActionResult Read(string pathInfo)
@@ -31,7 +31,7 @@ namespace Serene.Common.Pages
             UploadPathHelper.CheckFileNameSecurity(pathInfo);
 
             if (!UploadStorage.FileExists(pathInfo))
-            	return new NotFoundResult();
+                return new NotFoundResult();
 
             var mimeType = KnownMimeTypes.Get(pathInfo);
             var stream = UploadStorage.OpenFile(pathInfo);
@@ -44,7 +44,7 @@ namespace Serene.Common.Pages
         {
             var response = this.ExecuteMethod(() => HandleUploadRequest(HttpContext));
 
-            if (!((string)Request.Headers["Accept"] ?? "").Contains("json"))
+            if (!((string)Request.Headers["Accept"] ?? "").Contains("json", StringComparison.Ordinal))
                 response.ContentType = "text/plain";
 
             return response;
@@ -54,7 +54,7 @@ namespace Serene.Common.Pages
         private ServiceResponse HandleUploadRequest(HttpContext context)
         {
             if (context.Request.Form.Files.Count != 1)
-                throw new ArgumentOutOfRangeException("files");
+                throw new ArgumentOutOfRangeException(nameof(context.Request.Form.Files));
 
             var file = context.Request.Form.Files[0];
 
@@ -71,7 +71,7 @@ namespace Serene.Common.Pages
             };
 
             if (processor.ProcessStream(file.OpenReadStream(), 
-            	Path.GetExtension(file.FileName), Localizer))
+                Path.GetExtension(file.FileName), Localizer))
             {
                 var temporaryFile = processor.TemporaryFile;
                 UploadStorage.SetOriginalName(temporaryFile, file.FileName);

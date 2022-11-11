@@ -1,25 +1,45 @@
 ﻿{
   "compileOnSave": true,
   "compilerOptions": {
-    "preserveConstEnums": true,
-    "experimentalDecorators": true,
-    "declaration": true,
+    "allowJs": false,
+    "baseUrl": ".",
+    "declaration": false,
     "emitBOM": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "react",
-    "noEmitHelpers": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "outFile": "wwwroot/Scripts/site/Serene.Web.js",
-    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "noEmitHelpers": false,
+    "noEmitOnError": false,
+    "outDir": "./wwwroot/esm",
+    "paths": {
+      "@/*": [ "Modules/*" ],
+      "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
+    },
+    "preserveConstEnums": true,
+    "rootDir": ".",
     "skipDefaultLibCheck": true,
-    "target": "ES5",
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "target": "ES6",
     "typeRoots": [
-      "./node_modules/@types/",
-      "./typings/"
+      "./node_modules/@types"
+    ],
+    "types": [
+      "jquery",
+      "jquery.validation",
+      "jqueryui",
+      "toastr"
     ]
   },
   "include": [
-    "./Imports/**/*",
     "./Modules/**/*"
-  ]
+  ],
+  "typeAcquisition": {
+    "enable": false
+  }
 }

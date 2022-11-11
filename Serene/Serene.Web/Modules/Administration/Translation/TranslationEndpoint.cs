@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using MyRepository = Serene.Administration.Repositories.TranslationRepository;
 using Serenity.Abstractions;
 using Serenity.Services;
 using System;
+using MyRepository = Serene.Administration.Repositories.TranslationRepository;
 
 namespace Serene.Administration.Endpoints
 {
@@ -27,6 +27,7 @@ namespace Serene.Administration.Endpoints
         {
             return new MyRepository(Context, HostEnvironment, LocalTextRegistry, TypeSource);
         }
+
         public ListResponse<TranslationItem> List(TranslationListRequest request)
         {
             return NewRepository().List(request);

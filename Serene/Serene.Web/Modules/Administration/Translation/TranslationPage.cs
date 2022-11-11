@@ -9,7 +9,8 @@ namespace Serene.Administration.Pages
         [Route("Administration/Translation")]
         public ActionResult Index()
         {
-            return View(MVC.Views.Administration.Translation.TranslationIndex);
+            return this.GridPage("@/Administration/Translation/TranslationPage",
+                Texts.Db.Administration.Translation.EntityPlural.Key);
         }
     }
 }

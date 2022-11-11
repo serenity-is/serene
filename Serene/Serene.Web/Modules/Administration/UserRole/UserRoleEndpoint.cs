@@ -3,7 +3,7 @@ using Serenity.Services;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using MyRepository = Serene.Administration.Repositories.UserRoleRepository;
-using MyRow = Serene.Administration.Entities.UserRoleRow;
+using MyRow = Serene.Administration.UserRoleRow;
 
 namespace Serene.Administration.Endpoints
 {

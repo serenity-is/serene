@@ -1,15 +1,16 @@
-﻿using Serenity.Web;
+using Serenity.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Serene.Administration.Pages
 {
-    [PageAuthorize(typeof(Entities.RoleRow))]
+    [PageAuthorize(typeof(RoleRow))]
     public class RoleController : Controller
     {
         [Route("Administration/Role")]
         public ActionResult Index()
         {
-            return View(MVC.Views.Administration.Role.RoleIndex);
+            return this.GridPage("@/Administration/Role/RolePage",
+                RoleRow.Fields.PageTitle());
         }
     }
 }

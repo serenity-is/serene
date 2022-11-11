@@ -4,7 +4,7 @@ using System;
 namespace Serene.Administration.Forms
 {
     [FormScript("Administration.Role")]
-    [BasedOnRow(typeof(Entities.RoleRow), CheckNames = true)]
+    [BasedOnRow(typeof(RoleRow), CheckNames = true)]
     public class RoleForm
     {
         public String RoleName { get; set; }

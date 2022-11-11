@@ -4,7 +4,7 @@ using Serenity.Data.Mapping;
 using System;
 using System.ComponentModel;
 
-namespace Serene.Administration.Entities
+namespace Serene.Administration
 {
     [ConnectionKey("Default"), Module("Administration"), TableName("Languages")]
     [DisplayName("Languages"), InstanceName("Language")]
@@ -32,7 +32,8 @@ namespace Serene.Administration.Entities
         {
             get => fields.LanguageName[this];
             set => fields.LanguageName[this] = value;
-        }
+        }
+
         public LanguageRow()
         {
         }

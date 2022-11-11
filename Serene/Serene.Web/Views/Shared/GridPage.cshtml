@@ -1,0 +1,10 @@
+@model GridPageModel
+@inject ITextLocalizer Localizer
+@{
+    if (Model.PageTitle != null)
+        ViewData["Title"] = Model.PageTitle.ToString(Localizer);
+}
+<div id="GridDiv"></div>
+
+<script type="module" src=@Html.ResolveWithHash(Model.Module)">
+</script>

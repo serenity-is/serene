@@ -1,4 +1,3 @@
-﻿using Serene.Administration.Entities;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
@@ -6,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Serene.Administration.Repositories;
+using System.Globalization;
 
 namespace Serene.Administration
 {
@@ -49,10 +49,9 @@ namespace Serene.Administration
             if (string.Compare(permission, "ImpersonateAs", StringComparison.OrdinalIgnoreCase) == 0)
                 return false;
 
-            var userId = Convert.ToInt32(UserAccessor.User.GetIdentifier());
+            var userId = Convert.ToInt32(UserAccessor.User.GetIdentifier(), CultureInfo.InvariantCulture);
 
-            bool grant;
-            if (GetUserPermissions(userId).TryGetValue(permission, out grant))
+            if (GetUserPermissions(userId).TryGetValue(permission, out bool grant))
                 return grant;
 
             foreach (var roleId in GetUserRoles(userId))
@@ -70,27 +69,24 @@ namespace Serene.Administration
 
             return Cache.GetLocalStoreOnly("UserPermissions:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
-                using (var connection = SqlConnections.NewByKey("Default"))
+                using var connection = SqlConnections.NewByKey("Default");
+                var result = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
+
+                connection.List<UserPermissionRow>(q => q
+                        .Select(fld.PermissionKey)
+                        .Select(fld.Granted)
+                        .Where(new Criteria(fld.UserId) == userId))
+                    .ForEach(x => result[x.PermissionKey] = x.Granted ?? true);
+
+                var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
+                foreach (var pair in result.ToArray())
                 {
-                    var result = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-
-                    connection.List<UserPermissionRow>(q => q
-                            .Select(fld.PermissionKey)
-                            .Select(fld.Granted)
-                            .Where(new Criteria(fld.UserId) == userId))
-                        .ForEach(x => result[x.PermissionKey] = x.Granted ?? true);
-
-                    var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
-                    foreach (var pair in result.ToArray())
-                    {
-                        HashSet<string> list;
-                        if (pair.Value && implicitPermissions.TryGetValue(pair.Key, out list))
-                            foreach (var x in list)
-                                result[x] = true;
-                    }
-
-                    return result;
+                    if (pair.Value && implicitPermissions.TryGetValue(pair.Key, out HashSet<string> list))
+                        foreach (var x in list)
+                            result[x] = true;
                 }
+
+                return result;
             });
         }
 
@@ -100,26 +96,23 @@ namespace Serene.Administration
 
             return Cache.GetLocalStoreOnly("RolePermissions:" + roleId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
-                using (var connection = SqlConnections.NewByKey("Default"))
+                using var connection = SqlConnections.NewByKey("Default");
+                var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                connection.List<RolePermissionRow>(q => q
+                        .Select(fld.PermissionKey)
+                        .Where(new Criteria(fld.RoleId) == roleId))
+                    .ForEach(x => result.Add(x.PermissionKey));
+
+                var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
+                foreach (var key in result.ToArray())
                 {
-                    var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
-                    connection.List<RolePermissionRow>(q => q
-                            .Select(fld.PermissionKey)
-                            .Where(new Criteria(fld.RoleId) == roleId))
-                        .ForEach(x => result.Add(x.PermissionKey));
-
-                    var implicitPermissions = UserPermissionRepository.GetImplicitPermissions(Cache.Memory, TypeSource);
-                    foreach (var key in result.ToArray())
-                    {
-                        HashSet<string> list;
-                        if (implicitPermissions.TryGetValue(key, out list))
-                            foreach (var x in list)
-                                result.Add(x);
-                    }
-
-                    return result;
+                    if (implicitPermissions.TryGetValue(key, out HashSet<string> list))
+                        foreach (var x in list)
+                            result.Add(x);
                 }
+
+                return result;
             });
         }
 
@@ -129,17 +122,15 @@ namespace Serene.Administration
 
             return Cache.GetLocalStoreOnly("UserRoles:" + userId, TimeSpan.Zero, fld.GenerationKey, () =>
             {
-                using (var connection = SqlConnections.NewByKey("Default"))
-                {
-                    var result = new HashSet<int>();
+                using var connection = SqlConnections.NewByKey("Default");
+                var result = new HashSet<int>();
 
-                    connection.List<UserRoleRow>(q => q
-                            .Select(fld.RoleId)
-                            .Where(new Criteria(fld.UserId) == userId))
-                        .ForEach(x => result.Add(x.RoleId.Value));
+                connection.List<UserRoleRow>(q => q
+                        .Select(fld.RoleId)
+                        .Where(new Criteria(fld.UserId) == userId))
+                    .ForEach(x => result.Add(x.RoleId.Value));
 
-                    return result;
-                }
+                return result;
             });
         }
     }

@@ -5,7 +5,7 @@ using Serenity.Services;
 using System.Data;
 using System.Linq;
 using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
-using MyRow = Serene.Administration.Entities.UserPermissionRow;
+using MyRow = Serene.Administration.UserPermissionRow;
 
 namespace Serene.Administration.Endpoints
 {
@@ -30,11 +30,13 @@ namespace Serene.Administration.Endpoints
         }
 
         public ListResponse<string> ListPermissionKeys(
+            [FromServices] ISqlConnections sqlConnections,
             [FromServices] ITypeSource typeSource)
         {
             return new ListResponse<string>
             {
-                Entities = MyRepository.ListPermissionKeys(Cache.Memory, typeSource).ToList()
+                Entities = MyRepository.ListPermissionKeys(Cache, sqlConnections, typeSource, 
+                    includeRoles: false).ToList()
             };
         }
     }

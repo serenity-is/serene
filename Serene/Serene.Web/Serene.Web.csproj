@@ -1,19 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptNoEmitOnError>false</TypeScriptNoEmitOnError>
+    <CommonSrc>..\..\common-features\src\</CommonSrc>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
     <DotNetSergen>dotnet sergen</DotNetSergen>
-    <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin"</DotNetSergenDir>
+    <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\</DotNetSergenDir>
     <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen')">$(DotNetSergenDir)sergen</DotNetSergen>
     <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen.exe')">$(DotNetSergenDir)sergen.exe</DotNetSergen>
-    <CommonSrc>..\..\common-features\src\</CommonSrc>
-    <ProSrc>..\..\pro-features\src\</ProSrc>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
     <EmbeddedResource Include="Migrations\**\*.sql" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -21,47 +20,53 @@
     <None Update="Modules\**\*.Template.html;Modules\**\*.ts.html">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
+    <Content Update="libman.json;sergen.json;tsconfig.json;tslint.json" CopyToOutputDirectory="Never">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Modules\tsconfig.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FastMember" Version="1.5.0" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.2" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.3" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.6.2">
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="3.1.1" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.7.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-    <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
-    <PackageReference Include="Serenity.Assets" Version="6.0.2" />
-    <PackageReference Include="Serenity.Scripts" Version="6.0.3" />
-    <PackageReference Include="Serenity.Net.Web" Version="6.0.3" />
+  <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
+    <PackageReference Include="Serenity.Assets" Version="6.3.1" />
+    <PackageReference Include="Serenity.Scripts" Version="6.3.1" />
+    <PackageReference Include="Serenity.Net.Web" Version="6.3.1" />
   </ItemGroup>
   <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
     <ProjectReference Include="$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj" />
     <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
   </ItemGroup>
+  <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" Condition="Exists('$(SerenitySrc)Serenity.Net.sln')" />
   <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
-    <PackageReference Include="Serenity.Extensions" Version="6.0.3" />
-    <!--<if:ThemeSamples>-->
-    <PackageReference Include="Serenity.Demo.ThemeSamples" Version="6.0.3" />
-    <!--</if:ThemeSamples>-->
+    <PackageReference Include="Serenity.Extensions" Version="6.3.1" />
     <!--<if:Northwind>-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="6.0.3" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="6.3.1" />
     <!--</if:Northwind>-->
     <!--<if:BasicSamples>-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.0.3" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.3.1" />
     <!--</if:BasicSamples>-->
   </ItemGroup>
   <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">
     <ProjectReference Include="$(CommonSrc)Serenity.Extensions\Serenity.Extensions.csproj" />
-    <ProjectReference Include="$(CommonSrc)Serenity.Demo.ThemeSamples\Serenity.Demo.ThemeSamples.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj" />
   </ItemGroup>
-  <Import Project="$(SolutionDir)Serenity\build\submodule.targets" Condition="Exists('$(SolutionDir)Serenity\build\submodule.targets')" />
+  <Import Project="$(ProSrc)Serenity.Pro.Coder\Serenity.Pro.Coder.targets" Condition="Exists('$(ProSrc)pro-features.sln')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
     <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts;tsconfig.json">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
@@ -79,8 +84,13 @@
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\Scripts\site\Serene.Web.js">
+  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\esm\**\*.js">
     <Message Text="Executing TypeScript compiler..." Importance="high"></Message>
-    <Exec Command="node &quot;$(TSJavaScriptFile.Replace('build\\..\tools\', 'tools\'))&quot; -p ./tsconfig.json" ContinueOnError="true" />
+    <Exec Command="node tsbuild" ContinueOnError="true" />
   </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties NpmRestoreOnProjectOpen="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

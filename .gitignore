@@ -39,8 +39,7 @@ Serene/Serene.Core/appsettings.*.machine.json
 /Serene/Serene.Web/Scripts/site/Serene.Web.js.map
 /.axoCover/
 .vs/
-/Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.d.ts
-/Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.js
+/Serene/Serene.Web/wwwroot/esm/
 Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
 /Serene/Serene.Core/wwwroot/Scripts/serenity/Serenity.CoreLib.js.map
 /tools/Addins/

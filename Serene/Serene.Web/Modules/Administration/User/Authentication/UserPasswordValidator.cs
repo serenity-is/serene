@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
-using Serene.Administration.Entities;
+using Serene.Administration;
 using Serene.Administration.Repositories;
 using System;
 
@@ -58,7 +58,7 @@ namespace Serene.Administration
             if (!throttler.Check())
                 return PasswordValidationResult.Throttle;
 
-            Func<bool> validatePassword = () => UserRepository.CalculateHash(password, user.PasswordSalt)
+            bool validatePassword() => UserHelper.CalculateHash(password, user.PasswordSalt)
                 .Equals(user.PasswordHash, StringComparison.OrdinalIgnoreCase);
 
             if (user.Source == "site" || user.Source == "sign" || DirectoryService == null)
@@ -119,7 +119,7 @@ namespace Serene.Administration
             try
             {
                 string salt = user.PasswordSalt.TrimToNull();
-                var hash = UserRepository.GenerateHash(password, ref salt);
+                var hash = UserHelper.GenerateHash(password, ref salt);
                 var displayName = entry.FirstName + " " + entry.LastName;
                 var email = entry.Email.TrimToNull() ?? user.Email ?? (username + "@yourdefaultdomain.com");
 
@@ -177,7 +177,7 @@ namespace Serene.Administration
             try
             {
                 string salt = null;
-                var hash = UserRepository.GenerateHash(password, ref salt);
+                var hash = UserHelper.GenerateHash(password, ref salt);
                 var displayName = entry.FirstName + " " + entry.LastName;
                 var email = entry.Email.TrimToNull() ?? (username + "@yourdefaultdomain.com");
                 username = entry.Username.TrimToNull() ?? username;

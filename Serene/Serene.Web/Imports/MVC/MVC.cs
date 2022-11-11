@@ -3,30 +3,6 @@ namespace MVC
 {
     public static class Views
     {
-        public static class Administration
-        {
-            public static class Language
-            {
-                public const string LanguageIndex = "~/Modules/Administration/Language/LanguageIndex.cshtml";
-            }
-
-            public static class Role
-            {
-                public const string RoleIndex = "~/Modules/Administration/Role/RoleIndex.cshtml";
-            }
-
-            public static class Translation
-            {
-                public const string TranslationIndex = "~/Modules/Administration/Translation/TranslationIndex.cshtml";
-            }
-
-            public static class User
-            {
-                public const string UserIndex = "~/Modules/Administration/User/UserIndex.cshtml";
-            }
-
-        }
-
         public static class Common
         {
             public static class Dashboard
@@ -45,27 +21,31 @@ namespace MVC
         {
             public static class Account
             {
-                public const string AccountLogin = "~/Modules/Membership/Account/AccountLogin.cshtml";
                 public static class ChangePassword
                 {
-                    public const string AccountChangePassword = "~/Modules/Membership/Account/ChangePassword/AccountChangePassword.cshtml";
+                    public const string ChangePasswordPage = "~/Modules/Membership/Account/ChangePassword/ChangePasswordPage.cshtml";
                 }
 
                 public static class ForgotPassword
                 {
-                    public const string AccountForgotPassword = "~/Modules/Membership/Account/ForgotPassword/AccountForgotPassword.cshtml";
+                    public const string ForgotPasswordPage = "~/Modules/Membership/Account/ForgotPassword/ForgotPasswordPage.cshtml";
+                }
+
+                public static class Login
+                {
+                    public const string LoginPage = "~/Modules/Membership/Account/Login/LoginPage.cshtml";
                 }
 
                 public static class ResetPassword
                 {
-                    public const string AccountResetPassword = "~/Modules/Membership/Account/ResetPassword/AccountResetPassword.cshtml";
-                    public const string AccountResetPasswordEmail = "~/Modules/Membership/Account/ResetPassword/AccountResetPasswordEmail.cshtml";
+                    public const string ResetPasswordEmail = "~/Modules/Membership/Account/ResetPassword/ResetPasswordEmail.cshtml";
+                    public const string ResetPasswordPage = "~/Modules/Membership/Account/ResetPassword/ResetPasswordPage.cshtml";
                 }
 
                 public static class SignUp
                 {
-                    public const string AccountActivateEmail = "~/Modules/Membership/Account/SignUp/AccountActivateEmail.cshtml";
-                    public const string AccountSignUp = "~/Modules/Membership/Account/SignUp/AccountSignUp.cshtml";
+                    public const string ActivateEmail = "~/Modules/Membership/Account/SignUp/ActivateEmail.cshtml";
+                    public const string SignUpPage = "~/Modules/Membership/Account/SignUp/SignUpPage.cshtml";
                 }
             }
         }
@@ -77,6 +57,7 @@ namespace MVC
             public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
             public const string _Sidebar = "~/Views/Shared/_Sidebar.cshtml";
             public const string Error = "~/Views/Shared/Error.cshtml";
+            public const string GridPage = "~/Views/Shared/GridPage.cshtml";
         }
 
     }
