@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Serene.Administration;
 using Serenity;
 using Serenity.Abstractions;
-using Serenity.Extensions;
 using Serenity.Services;
-using Serene.Administration;
 using System;
 
 namespace Serene.Membership.Pages
@@ -46,8 +45,7 @@ namespace Serene.Membership.Pages
         [HttpPost, JsonRequest]
         public Result<ServiceResponse> Login(LoginRequest request,
             [FromServices] IUserPasswordValidator passwordValidator,
-            [FromServices] IUserRetrieveService userRetriever,
-            [FromServices] IEmailSender emailSender = null)
+            [FromServices] IUserRetrieveService userRetriever)
         {
             return this.ExecuteMethod(() =>
             {
