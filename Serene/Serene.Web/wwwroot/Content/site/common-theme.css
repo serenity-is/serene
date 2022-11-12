@@ -400,3 +400,12 @@ section.content > .s-DataGrid {
 .ui-dialog-buttonset button {
     border-width: 1px;
 }
+
+.ui-datepicker-trigger {
+  border: none;
+  background-color: transparent;
+}
+
+.fa-clipboard-check::before {
+  content: "\f0c7";
+}
