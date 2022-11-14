@@ -395,6 +395,10 @@ section.content > .s-DataGrid {
     z-index: 1031;
 }
 
+.ui-dialog.mobile-layout .ui-dialog-titlebar-close {
+    filter: invert(1);
+}
+
 .ui-dialog-titlebar-close {
     border: none;
     background: transparent;
