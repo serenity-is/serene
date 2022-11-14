@@ -19,12 +19,14 @@
       <Folder Name=".config" TargetFolderName=".config">
         <ProjectItem ReplaceParameters="true" TargetFileName="dotnet-tools.json">dotnet-tools.json</ProjectItem>
       </Folder>
+      <ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
       <Folder Name=".template.config" TargetFolderName=".template.config">
         <ProjectItem ReplaceParameters="false" TargetFileName="icon.png">icon.png</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="ide.host.json">ide.host.json</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="template.json">template.json</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.bundles.json">appsettings.bundles.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Development.json">appsettings.Development.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
       <Folder Name="Imports" TargetFolderName="Imports">
         <Folder Name="ClientTypes" TargetFolderName="ClientTypes">
@@ -33,51 +35,6 @@
         </Folder>
         <Folder Name="MVC" TargetFolderName="MVC">
           <ProjectItem ReplaceParameters="true" TargetFileName="MVC.cs">MVC.cs</ProjectItem>
-        </Folder>
-        <Folder Name="ServerTypings" TargetFolderName="ServerTypings">
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageColumns.ts">Administration.LanguageColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageForm.ts">Administration.LanguageForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageRow.ts">Administration.LanguageRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.LanguageService.ts">Administration.LanguageService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.PermissionKeys.ts">Administration.PermissionKeys.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleColumns.ts">Administration.RoleColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleForm.ts">Administration.RoleForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListRequest.ts">Administration.RolePermissionListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionListResponse.ts">Administration.RolePermissionListResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionRow.ts">Administration.RolePermissionRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionService.ts">Administration.RolePermissionService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RolePermissionUpdateRequest.ts">Administration.RolePermissionUpdateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleRow.ts">Administration.RoleRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.RoleService.ts">Administration.RoleService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationItem.ts">Administration.TranslationItem.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationListRequest.ts">Administration.TranslationListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationService.ts">Administration.TranslationService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.TranslationUpdateRequest.ts">Administration.TranslationUpdateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserColumns.ts">Administration.UserColumns.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserForm.ts">Administration.UserForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionListRequest.ts">Administration.UserPermissionListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionRow.ts">Administration.UserPermissionRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionService.ts">Administration.UserPermissionService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserPermissionUpdateRequest.ts">Administration.UserPermissionUpdateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListRequest.ts">Administration.UserRoleListRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleListResponse.ts">Administration.UserRoleListResponse.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleRow.ts">Administration.UserRoleRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleService.ts">Administration.UserRoleService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRoleUpdateRequest.ts">Administration.UserRoleUpdateRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserRow.ts">Administration.UserRow.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.UserService.ts">Administration.UserService.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordForm.ts">Membership.ChangePasswordForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ChangePasswordRequest.ts">Membership.ChangePasswordRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordForm.ts">Membership.ForgotPasswordForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ForgotPasswordRequest.ts">Membership.ForgotPasswordRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginForm.ts">Membership.LoginForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.LoginRequest.ts">Membership.LoginRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordForm.ts">Membership.ResetPasswordForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ResetPasswordRequest.ts">Membership.ResetPasswordRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpForm.ts">Membership.SignUpForm.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.SignUpRequest.ts">Membership.SignUpRequest.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
       </Folder>
       <Folder Name="Initialization" TargetFolderName="Initialization">
@@ -103,27 +60,39 @@
         <Folder Name="Administration" TargetFolderName="Administration">
           <ProjectItem ReplaceParameters="true" TargetFileName="AdministrationNavigation.cs">AdministrationNavigation.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="AdministrationPermissionKeys.cs">AdministrationPermissionKeys.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="index.ts">index.ts</ProjectItem>
           <Folder Name="Language" TargetFolderName="Language">
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageColumns.cs">LanguageColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageDialog.ts">LanguageDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageEndpoint.cs">LanguageEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageForm.cs">LanguageForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageGrid.ts">LanguageGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageIndex.cshtml">LanguageIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageLookup.cs">LanguageLookup.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.cs">LanguagePage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRepository.cs">LanguageRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.ts">LanguagePage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRow.cs">LanguageRow.cs</ProjectItem>
+            <Folder Name="RequestHandlers" TargetFolderName="RequestHandlers">
+              <ProjectItem ReplaceParameters="true" TargetFileName="LanguageDeleteHandler.cs">LanguageDeleteHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LanguageListHandler.cs">LanguageListHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRetrieveHandler.cs">LanguageRetrieveHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LanguageSaveHandler.cs">LanguageSaveHandler.cs</ProjectItem>
+            </Folder>
           </Folder>
           <Folder Name="Role" TargetFolderName="Role">
+            <Folder Name="RequestHandlers" TargetFolderName="RequestHandlers">
+              <ProjectItem ReplaceParameters="true" TargetFileName="RoleDeleteHandler.cs">RoleDeleteHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RoleListHandler.cs">RoleListHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RoleRetrieveHandler.cs">RoleRetrieveHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RoleSaveHandler.cs">RoleSaveHandler.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleColumns.cs">RoleColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleDialog.ts">RoleDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleEndpoint.cs">RoleEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleForm.cs">RoleForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleGrid.ts">RoleGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RoleIndex.cshtml">RoleIndex.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleHelper.cs">RoleHelper.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.cs">RolePage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="RoleRepository.cs">RoleRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.ts">RolePage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="RoleRow.cs">RoleRow.cs</ProjectItem>
           </Folder>
           <Folder Name="RolePermission" TargetFolderName="RolePermission">
@@ -138,10 +107,10 @@
           <Folder Name="Translation" TargetFolderName="Translation">
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationEndpoint.cs">TranslationEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationGrid.ts">TranslationGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationIndex.cshtml">TranslationIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationItem.cs">TranslationItem.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationListRequest.cs">TranslationListRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.cs">TranslationPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.ts">TranslationPage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationRepository.cs">TranslationRepository.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="TranslationUpdateRequest.cs">TranslationUpdateRequest.cs</ProjectItem>
           </Folder>
@@ -160,15 +129,22 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="UserRetrieveService.cs">UserRetrieveService.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoggingRow.cs">LoggingRow.cs</ProjectItem>
+            <Folder Name="RequestHandlers" TargetFolderName="RequestHandlers">
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserDeleteHandler.cs">UserDeleteHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserListHandler.cs">UserListHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserRetrieveHandler.cs">UserRetrieveHandler.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserSaveHandler.cs">UserSaveHandler.cs</ProjectItem>
+            </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserColumns.cs">UserColumns.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserDataScript.cs">UserDataScript.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserDialog.ts">UserDialog.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserEndpoint.cs">UserEndpoint.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserForm.cs">UserForm.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserGrid.ts">UserGrid.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserIndex.cshtml">UserIndex.cshtml</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserHelper.cs">UserHelper.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserListRequest.cs">UserListRequest.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.cs">UserPage.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="UserRepository.cs">UserRepository.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.ts">UserPage.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="UserRow.cs">UserRow.cs</ProjectItem>
           </Folder>
           <Folder Name="UserPermission" TargetFolderName="UserPermission">
@@ -202,6 +178,10 @@
           <Folder Name="File" TargetFolderName="File">
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
           </Folder>
+          <Folder Name="GridPage" TargetFolderName="GridPage">
+            <ProjectItem ReplaceParameters="true" TargetFileName="GridPageExtensions.cs">GridPageExtensions.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="GridPageModel.cs">GridPageModel.cs</ProjectItem>
+          </Folder>
           <Folder Name="Helpers" TargetFolderName="Helpers">
             <ProjectItem ReplaceParameters="true" TargetFileName="HumanizeSqlExceptionBehavior.cs">HumanizeSqlExceptionBehavior.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
@@ -211,54 +191,110 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="NavigationItems.cs">NavigationItems.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NavigationModel.cs">NavigationModel.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="NavigationModelFactory.cs">NavigationModelFactory.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="SidebarSearch.ts">SidebarSearch.ts</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInitialization.ts">ScriptInitialization.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInit.ts">ScriptInit.ts</ProjectItem>
         </Folder>
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountLogin.cshtml">AccountLogin.cshtml</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.cs">AccountPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ChangePassword.cs">AccountController.ChangePassword.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.cs">AccountController.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ForgotPassword.cs">AccountController.ForgotPassword.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ResetPassword.cs">AccountController.ResetPassword.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.SignUp.cs">AccountController.SignUp.cs</ProjectItem>
             <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountChangePassword.cshtml">AccountChangePassword.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ChangePassword.cs">AccountPage.ChangePassword.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPanel.ts">ChangePasswordPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.cshtml">ChangePasswordPage.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.ts">ChangePasswordPage.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
             </Folder>
             <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountForgotPassword.cshtml">AccountForgotPassword.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ForgotPassword.cs">AccountPage.ForgotPassword.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPanel.ts">ForgotPasswordPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.cshtml">ForgotPasswordPage.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.ts">ForgotPasswordPage.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginPanel.ts">LoginPanel.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
+            <Folder Name="Login" TargetFolderName="Login">
+              <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.cshtml">LoginPage.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.ts">LoginPage.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
+            </Folder>
             <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.ResetPassword.cs">AccountPage.ResetPassword.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPassword.cshtml">AccountResetPassword.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountResetPasswordEmail.cshtml">AccountResetPasswordEmail.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmail.cshtml">ResetPasswordEmail.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPanel.ts">ResetPasswordPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.cshtml">ResetPasswordPage.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.ts">ResetPasswordPage.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
             </Folder>
             <Folder Name="SignUp" TargetFolderName="SignUp">
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountActivateEmail.cshtml">AccountActivateEmail.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.SignUp.cs">AccountPage.SignUp.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="AccountSignUp.cshtml">AccountSignUp.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmail.cshtml">ActivateEmail.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmailModel.cs">ActivateEmailModel.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.cs">SignUpForm.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPanel.ts">SignUpPanel.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.cshtml">SignUpPage.cshtml</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.ts">SignUpPage.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.cs">SignUpRequest.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpResponse.cs">SignUpResponse.cs</ProjectItem>
             </Folder>
           </Folder>
+        </Folder>
+        <Folder Name="ServerTypes" TargetFolderName="ServerTypes">
+          <ProjectItem ReplaceParameters="true" TargetFileName="Administration.ts">Administration.ts</ProjectItem>
+          <Folder Name="Administration" TargetFolderName="Administration">
+            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageColumns.ts">LanguageColumns.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageForm.ts">LanguageForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageRow.ts">LanguageRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LanguageService.ts">LanguageService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeys.ts">PermissionKeys.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleColumns.ts">RoleColumns.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleForm.ts">RoleForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionListRequest.ts">RolePermissionListRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionListResponse.ts">RolePermissionListResponse.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionRow.ts">RolePermissionRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionService.ts">RolePermissionService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionUpdateRequest.ts">RolePermissionUpdateRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleRow.ts">RoleRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RoleService.ts">RoleService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationItem.ts">TranslationItem.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationListRequest.ts">TranslationListRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationService.ts">TranslationService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TranslationUpdateRequest.ts">TranslationUpdateRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserColumns.ts">UserColumns.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserForm.ts">UserForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserListRequest.ts">UserListRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionListRequest.ts">UserPermissionListRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionRow.ts">UserPermissionRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionService.ts">UserPermissionService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPermissionUpdateRequest.ts">UserPermissionUpdateRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleListRequest.ts">UserRoleListRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleListResponse.ts">UserRoleListResponse.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleRow.ts">UserRoleRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleService.ts">UserRoleService.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRoleUpdateRequest.ts">UserRoleUpdateRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRow.ts">UserRow.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserService.ts">UserService.ts</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ts">Membership.ts</ProjectItem>
+          <Folder Name="Membership" TargetFolderName="Membership">
+            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.ts">ChangePasswordForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.ts">ChangePasswordRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.ts">ForgotPasswordForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.ts">ForgotPasswordRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.ts">LoginForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.ts">LoginRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.ts">ResetPasswordForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.ts">ResetPasswordRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.ts">SignUpForm.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.ts">SignUpRequest.ts</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="SignUpResponse.ts">SignUpResponse.ts</ProjectItem>
+          </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="package-lock.json">package-lock.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="sergen.json">sergen.json</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="tsbuild.js">tsbuild.js</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
       <Folder Name="typings" TargetFolderName="typings">
@@ -294,6 +330,7 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutNoNavigation.cshtml">_LayoutNoNavigation.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_Sidebar.cshtml">_Sidebar.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="GridPage.cshtml">GridPage.cshtml</ProjectItem>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
@@ -428,12 +465,6 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
             </Folder>
           </Folder>
-          <Folder Name="serenity" TargetFolderName="serenity">
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.bootstrap.messagedialogs.css">serenity.bootstrap.messagedialogs.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.css">serenity.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.editors.css">serenity.editors.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.jquery-ui.messagedialogs.css">serenity.jquery-ui.messagedialogs.css</ProjectItem>
-          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.css">common-theme.css</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
@@ -448,6 +479,68 @@
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.css">site.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="site.htmlcontent.css">site.htmlcontent.css</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="esm" TargetFolderName="esm">
+          <Folder Name="_chunks" TargetFolderName="_chunks">
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js.map">chunk-DCANN3W3.js.map</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js.map">chunk-K3EI6ARL.js.map</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js.map">chunk-LJ7TVK7G.js.map</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MG7O6RXH.js">chunk-MG7O6RXH.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MG7O6RXH.js.map">chunk-MG7O6RXH.js.map</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-ZS6WTEOZ.js">chunk-ZS6WTEOZ.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-ZS6WTEOZ.js.map">chunk-ZS6WTEOZ.js.map</ProjectItem>
+          </Folder>
+          <Folder Name="Modules" TargetFolderName="Modules">
+            <Folder Name="Administration" TargetFolderName="Administration">
+              <Folder Name="Language" TargetFolderName="Language">
+                <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.js">LanguagePage.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.js.map">LanguagePage.js.map</ProjectItem>
+              </Folder>
+              <Folder Name="Role" TargetFolderName="Role">
+                <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.js">RolePage.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.js.map">RolePage.js.map</ProjectItem>
+              </Folder>
+              <Folder Name="Translation" TargetFolderName="Translation">
+                <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.js">TranslationPage.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.js.map">TranslationPage.js.map</ProjectItem>
+              </Folder>
+              <Folder Name="User" TargetFolderName="User">
+                <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.js">UserPage.js</ProjectItem>
+                <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.js.map">UserPage.js.map</ProjectItem>
+              </Folder>
+            </Folder>
+            <Folder Name="Common" TargetFolderName="Common">
+              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInit.js">ScriptInit.js</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInit.js.map">ScriptInit.js.map</ProjectItem>
+            </Folder>
+            <Folder Name="Membership" TargetFolderName="Membership">
+              <Folder Name="Account" TargetFolderName="Account">
+                <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.js">ChangePasswordPage.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.js.map">ChangePasswordPage.js.map</ProjectItem>
+                </Folder>
+                <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.js">ForgotPasswordPage.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.js.map">ForgotPasswordPage.js.map</ProjectItem>
+                </Folder>
+                <Folder Name="Login" TargetFolderName="Login">
+                  <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.js">LoginPage.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.js.map">LoginPage.js.map</ProjectItem>
+                </Folder>
+                <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.js">ResetPasswordPage.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.js.map">ResetPasswordPage.js.map</ProjectItem>
+                </Folder>
+                <Folder Name="SignUp" TargetFolderName="SignUp">
+                  <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.js">SignUpPage.js</ProjectItem>
+                  <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.js.map">SignUpPage.js.map</ProjectItem>
+                </Folder>
+              </Folder>
+            </Folder>
           </Folder>
         </Folder>
         <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
@@ -507,29 +600,7 @@
           </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.js">common-theme.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.d.ts">Serene.Web.d.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="$ext_projectname$.Web.js">Serene.Web.js</ProjectItem>
             <Folder Name="texts" TargetFolderName="texts">
-              <Folder Name="northwind" TargetFolderName="northwind">
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.de.json">northwind.de.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.es.json">northwind.es.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.fa.json">northwind.fa.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.invariant.json">northwind.invariant.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt-BR.json">northwind.pt-BR.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.pt.json">northwind.pt.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.ru.json">northwind.ru.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.tr.json">northwind.tr.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="northwind.vi-VN.json">northwind.vi-VN.json</ProjectItem>
-              </Folder>
-              <Folder Name="samples" TargetFolderName="samples">
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.de.json">samples.de.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.es.json">samples.es.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.fa.json">samples.fa.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt-BR.json">samples.pt-BR.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.pt.json">samples.pt.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.ru.json">samples.ru.json</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="samples.vi-VN.json">samples.vi-VN.json</ProjectItem>
-              </Folder>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.fa.json">site.texts.fa.json</ProjectItem>

@@ -391,6 +391,10 @@ section.content > .s-DataGrid {
     padding: 1px 3px;
 }
 
+.ui-front {
+    z-index: 1031;
+}
+
 .ui-dialog-titlebar-close {
     border: none;
     background: transparent;
