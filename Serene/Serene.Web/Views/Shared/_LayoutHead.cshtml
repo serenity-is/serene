@@ -2,6 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="username" content="@User?.Identity?.Name" />
 <link rel="home" id="ApplicationPath" href="~/" />
 <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
 @Html.StyleBundle("Base")
@@ -10,8 +11,6 @@
 @Html.ScriptBundle("Base")
 @Html.ScriptBundle("Site")
 @Html.LocalTextScript("Site")
-
-<script type="text/javascript">
-    @Html.Raw(DynamicScriptManager.GetScriptText("Lookup.Administration.Language"))
-    @Html.Raw(DynamicScriptManager.GetScriptText("RegisteredScripts"))
-</script>
+<script type="module" src=@Html.ResolveWithHash("~/esm/Modules/Common/ScriptInit.js")></script>
+<script type="text/javascript">@Html.Raw(DynamicScriptManager.GetScriptText("Lookup.Administration.Language"))</script>
+<script type="application/json" id="RegisteredScripts">@Html.Raw(Serenity.JSON.Stringify(DynamicScriptManager.GetRegisteredScripts()))</script>
