@@ -2014,6 +2014,7 @@ declare namespace Slick {
     	private invalidatePostProcessingResults;
     	private updateRowPositions;
     	private updateGrandTotals;
+    	groupTotalsFormatter(p1?: GroupTotals<TItem>, p2?: Column<TItem>, grid?: any): string;
     	render: () => void;
     	private handleHeaderRowScroll;
     	private handleFooterRowScroll;
@@ -2812,7 +2813,7 @@ declare namespace Serenity {
         value?: any;
         defaultValue?: any;
     }
-    class Widget<TOptions> {
+    class Widget<TOptions = any> {
         private static nextWidgetNumber;
         element: JQuery;
         protected options: TOptions;

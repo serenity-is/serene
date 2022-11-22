@@ -465,6 +465,12 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="yellow@2x.png">yellow@2x.png</ProjectItem>
             </Folder>
           </Folder>
+          <Folder Name="serenity" TargetFolderName="serenity">
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.bootstrap.messagedialogs.css">serenity.bootstrap.messagedialogs.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.css">serenity.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.editors.css">serenity.editors.css</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.jquery-ui.messagedialogs.css">serenity.jquery-ui.messagedialogs.css</ProjectItem>
+          </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.css">common-theme.css</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
@@ -484,60 +490,45 @@
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js.map">chunk-DCANN3W3.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js.map">chunk-K3EI6ARL.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js.map">chunk-LJ7TVK7G.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MG7O6RXH.js">chunk-MG7O6RXH.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MG7O6RXH.js.map">chunk-MG7O6RXH.js.map</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-ZS6WTEOZ.js">chunk-ZS6WTEOZ.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-ZS6WTEOZ.js.map">chunk-ZS6WTEOZ.js.map</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
               <Folder Name="Language" TargetFolderName="Language">
                 <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.js">LanguagePage.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="LanguagePage.js.map">LanguagePage.js.map</ProjectItem>
               </Folder>
               <Folder Name="Role" TargetFolderName="Role">
                 <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.js">RolePage.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="RolePage.js.map">RolePage.js.map</ProjectItem>
               </Folder>
               <Folder Name="Translation" TargetFolderName="Translation">
                 <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.js">TranslationPage.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="TranslationPage.js.map">TranslationPage.js.map</ProjectItem>
               </Folder>
               <Folder Name="User" TargetFolderName="User">
                 <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.js">UserPage.js</ProjectItem>
-                <ProjectItem ReplaceParameters="true" TargetFileName="UserPage.js.map">UserPage.js.map</ProjectItem>
               </Folder>
             </Folder>
             <Folder Name="Common" TargetFolderName="Common">
               <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInit.js">ScriptInit.js</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptInit.js.map">ScriptInit.js.map</ProjectItem>
             </Folder>
             <Folder Name="Membership" TargetFolderName="Membership">
               <Folder Name="Account" TargetFolderName="Account">
                 <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
                   <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.js">ChangePasswordPage.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.js.map">ChangePasswordPage.js.map</ProjectItem>
                 </Folder>
                 <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
                   <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.js">ForgotPasswordPage.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.js.map">ForgotPasswordPage.js.map</ProjectItem>
                 </Folder>
                 <Folder Name="Login" TargetFolderName="Login">
                   <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.js">LoginPage.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.js.map">LoginPage.js.map</ProjectItem>
                 </Folder>
                 <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
                   <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.js">ResetPasswordPage.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.js.map">ResetPasswordPage.js.map</ProjectItem>
                 </Folder>
                 <Folder Name="SignUp" TargetFolderName="SignUp">
                   <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.js">SignUpPage.js</ProjectItem>
-                  <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.js.map">SignUpPage.js.map</ProjectItem>
                 </Folder>
               </Folder>
             </Folder>

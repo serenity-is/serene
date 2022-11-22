@@ -17,13 +17,13 @@ namespace Build
         static string ProjectFolderName => ProjectId + ".Web";
         static string ProjectFolder => Path.Combine(Root, ProjectId, ProjectFolderName);
         static string ProjectFile => Path.Combine(ProjectFolder, ProjectFolderName + ".csproj");
+        static string PackageJsonFile => Path.Combine(ProjectFolder, "package.json");
         static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
         static string TemplateId => ProjectId == "StartSharp" ? "StartCore" : "SereneCore";
         static string VSIXTemplateFolder => Path.Combine(Root, "Template");
         static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Template.csproj");
         static string VSIXAssetsFolder => Path.Combine(VSIXTemplateFolder, "Assets");
         static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
-		static string VSIXManifestFile2019 => Path.Combine(VSIXTemplateFolder, "vs2019", "extension.vsixmanifest");
         static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
         static string TemporaryFilesRoot => Path.Combine(Root, "Template", "obj");
         static string TemplateTempZipDir => Path.Combine(TemporaryFilesRoot, ProjectId + "Core.Template");

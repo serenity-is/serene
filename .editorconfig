@@ -3,3 +3,6 @@ root=true
 [*.{csproj,props,vsixmanifest,config}]
 indent_style=space
 indent_size=2
+
+[*.{cs,vb}]
+dotnet_diagnostic.CA1831.severity = none

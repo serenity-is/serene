@@ -30,12 +30,6 @@ namespace Build
                 ver += ".0";
             identity.SetAttributeValue("Version", ver);
             File.WriteAllText(VSIXManifestFile, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
-            
-            //xm = XElement.Parse(File.ReadAllText(VSIXManifestFile2019));
-            //identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
-            //identity.SetAttributeValue("Version", ver);
-            //File.WriteAllText(VSIXManifestFile2019, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
-            
             return ver;
         }
 

@@ -30,6 +30,7 @@ namespace Build
             "*.xproj",
             "*.zip",
             ".syncache.sqlite",
+            "_trigger.ts",
             "appsettings.*.machine.json",
             "appsettings.machine.json",
             "Thumbs.db",
@@ -37,7 +38,9 @@ namespace Build
             "StyleCop.Cache",
             "Serene.Web.js.map",
             "StartSharp.Web.js.map",
-            "launchSettings.json"
+            "launchSettings.json",
+            "**/wwwroot/esm/**/*.js.map",
+            "*.tsbuildinfo"
         });
 
         static readonly HashSet<string> ReplaceParamsInExtensions = new HashSet<string>()

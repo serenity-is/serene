@@ -50,8 +50,8 @@ namespace Build
             File.Copy(Path.Combine(Root, ProjectId, "SerenityLogo.ico"),
                 Path.Combine(TemplateTempZipDir, "SerenityLogo.ico"));
 
-            File.Copy(Path.Combine(Root, ProjectId, ProjectId + "Core.vstemplate"),
-                Path.Combine(TemplateTempZipDir, ProjectId + "Core.vstemplate"));
+            File.Copy(Path.Combine(Root, ProjectId, ProjectId + ".vstemplate"),
+                Path.Combine(TemplateTempZipDir, ProjectId + ".vstemplate"));
 
             var templateZip = Path.Combine(VSIXProjectTemplates, TemplateId + ".Template.zip");
             if (File.Exists(templateZip))

@@ -11,13 +11,13 @@
     <Tags>Serenity</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,18.0)">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0,18.0)">
       <ProductArchitecture>amd64</ProductArchitecture>
     </InstallationTarget>
-    <InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[17.0,18.0)">
+    <InstallationTarget Id="Microsoft.VisualStudio.Professional" Version="[16.0,18.0)">
       <ProductArchitecture>amd64</ProductArchitecture>
     </InstallationTarget>
-    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[17.0,18.0)">
+    <InstallationTarget Id="Microsoft.VisualStudio.Enterprise" Version="[16.0,18.0)">
       <ProductArchitecture>amd64</ProductArchitecture>
     </InstallationTarget>
   </Installation>

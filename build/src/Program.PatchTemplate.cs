@@ -14,11 +14,10 @@ namespace Build
             var content = File.ReadAllText(path);
             if (content.IndexOf(ProjectId) >= 0)
             {
-                content = content.Replace(@$"{ProjectId}.Core\", @"$ext_projectname$.Web\");
                 content = content.Replace(@$"{ProjectId}.Web\", @"$ext_projectname$.Web\");
                 content = content.Replace(@$"\{ProjectId}", @"\$ext_projectname$");
                 content = content.Replace(@$"{ProjectId}\", @"$ext_projectname$\");
-                content = content.Replace(@$"{ProjectId}.Core", @"$ext_safeprojectname$.Web");
+                content = content.Replace(@$"{ProjectId}.Web", @"$ext_safeprojectname$.Web");
                 content = content.Replace(ProjectId, "$ext_safeprojectname$");
                 File.WriteAllText(path, content, UTF8Bom);
             }
@@ -144,6 +143,8 @@ namespace Build
                     "<DevelopmentServerPort>55556</DevelopmentServerPort>", 
                     "<DevelopmentServerPort></DevelopmentServerPort>"));
             ConvertToTemplateParams(targetProj);
+
+            PatchPackageJsonCopy(Path.Combine(targetPath, "package.json"));
         }
     }
 }

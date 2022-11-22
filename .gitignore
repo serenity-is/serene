@@ -45,3 +45,4 @@ Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
 /tools/Addins/
 /build/bin/
 /build/obj/
+_trigger.ts
