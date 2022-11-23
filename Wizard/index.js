@@ -64,7 +64,7 @@ var cacheDir = path.resolve(getUserHome(), '.serene');
 var sourceFileByPath = {};
 
 function createSolution() {
-    parseXml(sourceFileByPath['SereneCore.vstemplate'].toString('utf8'), function(err, result) {
+    parseXml((sourceFileByPath['SereneCore.vstemplate'] || sourceFileByPath['Serene.vstemplate']).toString('utf8'), function(err, result) {
         var vst = result.VSTemplate;
         var solutionName = vst.TemplateData[0].DefaultName[0];
         

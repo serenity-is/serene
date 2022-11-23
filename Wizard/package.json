@@ -1,6 +1,6 @@
 {
   "name": "serin",
-  "version": "3.5.0",
+  "version": "6.3.6",
   "description": "Initializes a new Serenity project using Serene ASP.NET Core template",
   "preferGlobal": true,
   "dependencies": {
