@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-console.log('Welcome to Serene Initializer!');
+console.log('Welcome to Serenity Project Initializer!');
 console.log('');
 
 var fs = require('fs');
@@ -64,7 +64,11 @@ var cacheDir = path.resolve(getUserHome(), '.serene');
 var sourceFileByPath = {};
 
 function createSolution() {
-    parseXml((sourceFileByPath['SereneCore.vstemplate'] || sourceFileByPath['Serene.vstemplate']).toString('utf8'), function(err, result) {
+    parseXml((
+		sourceFileByPath['SereneCore.vstemplate'] || 
+		sourceFileByPath['Serene.vstemplate'] ||
+		sourceFileByPath['StartSharpCore.vstemplate'] ||
+		sourceFileByPath['StartSharp.vstemplate']).toString('utf8'), function(err, result) {
         var vst = result.VSTemplate;
         var solutionName = vst.TemplateData[0].DefaultName[0];
         
@@ -96,10 +100,16 @@ function createSolution() {
             rl.close();
         }
 
-        if (!process.argv[2])
+		var passedName
+		if (process.argv[2] && process.argv[2].toLowerCase().endsWith(".vsix"))
+			passedName = process.argv[3];
+		else
+			passedName = process.argv[2];
+
+        if (!passedName)
             rl.question('Enter a project name (press enter for ' + solutionName + '1)? ', withProjectName); 
         else 
-            withProjectName(process.argv[2]);
+            withProjectName(passedName);
     });
 }
 
@@ -109,9 +119,10 @@ function useCacheZip(cacheZip) {
     }).then(files => {
         for (var i = 0; i < files.length; i++) {
             var path = files[i].path;
-            if (!path.toLowerCase().startsWith(prefix))
-                continue;
-            path = toPath(path.substr(prefix.length));
+            var match = path.match(/^projecttemplates\/[a-z]+.template\/(.+)/i);
+			if (!match || !match[1])
+				continue;
+            path = toPath(match[1]);
             sourceFileByPath[path] = files[i].data;
         }
         createSolution();
@@ -126,95 +137,106 @@ if (fs.readdirSync('./').length) {
 if (!fs.existsSync(cacheDir))
     fs.mkdirSync(cacheDir);
 
-console.log('Reading latest template version from VSGallery...');
-
-// The following post data reflects that which is sent via XHR when using web UI. I have not attempted to reduce this to the strictly necessary values.
-var postdata = JSON.stringify({"assetTypes":null,"filters":[{"criteria":[{"filterType":7,"value":"VolkanCeylan.SereneSerenityApplicationTemplate"}],"direction":2,"pageSize":100,"pageNumber":1,"sortBy":0,"sortOrder":0,"pagingToken":null}],"flags":71});
-
-var req = https.request({
-	method: 'POST',
-    host: 'marketplace.visualstudio.com',
-    path: '/_apis/public/gallery/extensionquery',
-    port: 443,
-    headers: {
-    	'accept': 'application/json;api-version=5.1-preview.1;excludeUrls=true',
-		'content-type': 'application/json',
-		'content-length': postdata.length
+if (process.argv[2] && process.argv[2].toLowerCase().endsWith(".vsix")) {
+	var cacheZip = process.argv[2];
+	if (cacheZip == null || !fs.existsSync(cacheZip)) {
+		console.log('Please specify path to .VSIX file')
+		process.exit(1);
 	}
-}, function(res) {
+	useCacheZip(cacheZip);
+}
+else {
 
-    if (!(res.statusCode >= 200 && res.statusCode <= 300)) {
-        console.error("Couldn't read template page from VSGallery. Got status code " + res.statusCode);
-        process.exit();
-    }
+	console.log('Reading latest template version from VSGallery...');
 
-    var str = "";
-    res.on('data', function(d) { str += d; });
-    res.on('end', function() {
+	// The following post data reflects that which is sent via XHR when using web UI. I have not attempted to reduce this to the strictly necessary values.
+	var postdata = JSON.stringify({"assetTypes":null,"filters":[{"criteria":[{"filterType":7,"value":"VolkanCeylan.SereneSerenityApplicationTemplate"}],"direction":2,"pageSize":100,"pageNumber":1,"sortBy":0,"sortOrder":0,"pagingToken":null}],"flags":71});
 
-        try {
-            var data = JSON.parse(str);
-        } catch (error) {
-            console.error("Couldn't read template version from VSGallery. Invalid JSON.");
-            process.exit();
-        }
+	var req = https.request({
+		method: 'POST',
+		host: 'marketplace.visualstudio.com',
+		path: '/_apis/public/gallery/extensionquery',
+		port: 443,
+		headers: {
+			'accept': 'application/json;api-version=5.1-preview.1;excludeUrls=true',
+			'content-type': 'application/json',
+			'content-length': postdata.length
+		}
+	}, function(res) {
 
-        if (!(data && data.results && data.results.length === 1 && data.results[0].extensions && data.results[0].extensions.length === 1)) {
-            console.error("Couldn't read template version from VSGallery. Invalid template data.");
-            process.exit();
-        }
+		if (!(res.statusCode >= 200 && res.statusCode <= 300)) {
+			console.error("Couldn't read template page from VSGallery. Got status code " + res.statusCode);
+			process.exit();
+		}
 
-        var ext = data.results[0].extensions[0]; // extract first extension from results data
+		var str = "";
+		res.on('data', function(d) { str += d; });
+		res.on('end', function() {
 
-        if (!(ext.versions && ext.versions.length > 0)) {
-            console.error("Couldn't read template version from VSGallery. No version data.");
-            process.exit();
-        }
+			try {
+				var data = JSON.parse(str);
+			} catch (error) {
+				console.error("Couldn't read template version from VSGallery. Invalid JSON.");
+				process.exit();
+			}
 
-        var ext_ver = ext.versions[0]; // extract first version from extension versions
+			if (!(data && data.results && data.results.length === 1 && data.results[0].extensions && data.results[0].extensions.length === 1)) {
+				console.error("Couldn't read template version from VSGallery. Invalid template data.");
+				process.exit();
+			}
 
-        var version = ext_ver.version;
+			var ext = data.results[0].extensions[0]; // extract first extension from results data
 
-        if (!ext_ver.assetUri) {
-            console.error("Couldn't read template version from VSGallery. No asset URI.");
-            process.exit();
-        }
+			if (!(ext.versions && ext.versions.length > 0)) {
+				console.error("Couldn't read template version from VSGallery. No version data.");
+				process.exit();
+			}
 
-        var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + version + '.vsix');
-        if (fs.existsSync(cacheZip)) {
-            console.log('You already have a cached copy of latest version.')
-            console.log('');
-            useCacheZip(cacheZip);
-        }
-        else {
-            var assetSource = ext_ver.assetUri + "/Serene.Template.vsix";
-            var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
-                return x.toLowerCase().startsWith('Serene.Template.') && x.toLowerCase().endsWith('.vsix');
-            });
-            console.log('Downloading latest Serene template... from ' + assetSource);
-            downloadHttps(assetSource, function(buffer) {
-                    console.log('Download complete.');
-                    fs.writeFileSync(cacheZip, buffer);
-                    useCacheZip(cacheZip);
+			var ext_ver = ext.versions[0]; // extract first version from extension versions
 
-                    for (var i = 0; i < oldFiles.length; i++) {
-                        fs.unlinkSync(path.resolve(cacheDir, oldFiles[i]));
-                    }
-                });
-        }
-    });
+			var version = ext_ver.version;
 
-});
+			if (!ext_ver.assetUri) {
+				console.error("Couldn't read template version from VSGallery. No asset URI.");
+				process.exit();
+			}
 
-req.on('error', function(e) {
-    console.log("Error while downloading template information: " + e.message);
-});
+			var cacheZip = path.resolve(cacheDir, 'Serene.Template.' + version + '.vsix');
+			if (fs.existsSync(cacheZip)) {
+				console.log('You already have a cached copy of latest version.')
+				console.log('');
+				useCacheZip(cacheZip);
+			}
+			else {
+				var assetSource = ext_ver.assetUri + "/Serene.Template.vsix";
+				var oldFiles = fs.readdirSync(cacheDir).filter(function(x) { 
+					return x.toLowerCase().startsWith('Serene.Template.') && x.toLowerCase().endsWith('.vsix');
+				});
+				console.log('Downloading latest Serene template... from ' + assetSource);
+				downloadHttps(assetSource, function(buffer) {
+						console.log('Download complete.');
+						fs.writeFileSync(cacheZip, buffer);
+						useCacheZip(cacheZip);
 
-req.write(
-    postdata
-);
+						for (var i = 0; i < oldFiles.length; i++) {
+							fs.unlinkSync(path.resolve(cacheDir, oldFiles[i]));
+						}
+					});
+			}
+		});
 
-req.end();
+	});
+
+	req.on('error', function(e) {
+		console.log("Error while downloading template information: " + e.message);
+	});
+
+	req.write(
+		postdata
+	);
+
+	req.end();
+}
 
 function PathMatcher(includesStr, excludesStr) {
 
