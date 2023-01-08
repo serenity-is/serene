@@ -1,40 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serenity;
-using Serenity.Abstractions;
+using Serenity.ComponentModel;
 using Serenity.Services;
 using Serenity.Web;
 using System;
-using System.IO;
 
 namespace Serene.Common.Pages
 {
     public class FileController : Controller
     {
-        public FileController(IUploadStorage uploadStorage, ITextLocalizer localizer, 
-            IExceptionLogger logger = null)
-        {
-            UploadStorage = uploadStorage ??
-                throw new ArgumentNullException(nameof(uploadStorage));
-            Localizer = localizer ??
-                throw new ArgumentNullException(nameof(localizer));
-            Logger = logger;
-        }
+        private readonly IUploadStorage uploadStorage;
+        private readonly IUploadProcessor uploadProcessor;
 
-        protected IUploadStorage UploadStorage { get; }
-        protected ITextLocalizer Localizer { get; }
-        public IExceptionLogger Logger { get; }
+        public FileController(IUploadStorage uploadStorage, IUploadProcessor uploadProcessor)
+        {
+            this.uploadStorage = uploadStorage ?? throw new ArgumentNullException(nameof(uploadStorage));
+            this.uploadProcessor = uploadProcessor ?? throw new ArgumentNullException(nameof(uploadProcessor));
+        }
 
         [Route("upload/{*pathInfo}")]
         public ActionResult Read(string pathInfo)
         {
             UploadPathHelper.CheckFileNameSecurity(pathInfo);
 
-            if (!UploadStorage.FileExists(pathInfo))
+            if (!uploadStorage.FileExists(pathInfo))
                 return new NotFoundResult();
 
             var mimeType = KnownMimeTypes.Get(pathInfo);
-            var stream = UploadStorage.OpenFile(pathInfo);
+            var stream = uploadStorage.OpenFile(pathInfo);
             return new FileStreamResult(stream, mimeType);
         }
 
@@ -64,25 +58,33 @@ namespace Serene.Common.Pages
             if (file.FileName.IsEmptyOrNull())
                 throw new ArgumentNullException("filename");
 
-            var processor = new UploadProcessor(UploadStorage, Logger)
+            IUploadOptions uploadOptions = new UploadOptions
             {
                 ThumbWidth = 128,
-                ThumbHeight = 96
+                ThumbHeight = 96,
+                ThumbMode = ImageScaleMode.PreserveRatioNoFill
             };
 
-            if (processor.ProcessStream(file.OpenReadStream(), 
-                Path.GetExtension(file.FileName), Localizer))
+            var uploadIntent = Request.Query["uploadIntent"];
+            if (!string.IsNullOrEmpty(uploadIntent))
             {
-                var temporaryFile = processor.TemporaryFile;
-                UploadStorage.SetOriginalName(temporaryFile, file.FileName);
+                // if desired modify uploadOptions here based on uploadIntent
+            }
+
+            var uploadInfo = uploadProcessor.Process(file.OpenReadStream(),
+                file.FileName, uploadOptions);
+
+            if (uploadInfo.Success)
+            {
+                uploadStorage.SetOriginalName(uploadInfo.TemporaryFile, file.FileName);
 
                 return new UploadResponse()
                 {
-                    TemporaryFile = temporaryFile,
-                    Size = processor.FileSize,
-                    IsImage = processor.IsImage,
-                    Width = processor.ImageWidth,
-                    Height = processor.ImageHeight
+                    TemporaryFile = uploadInfo.TemporaryFile,
+                    Size = uploadInfo.FileSize,
+                    IsImage = uploadInfo.IsImage,
+                    Width = uploadInfo.ImageWidth,
+                    Height = uploadInfo.ImageHeight
                 };
             }
             else
@@ -92,7 +94,7 @@ namespace Serene.Common.Pages
                     Error = new ServiceError()
                     {
                         Code = "Exception",
-                        Message = processor.ErrorMessage
+                        Message = uploadInfo.ErrorMessage
                     }
                 };
             }
