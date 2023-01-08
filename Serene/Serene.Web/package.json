@@ -12,7 +12,9 @@
     "@serenity-is/tsbuild": "6.4.3"
   },
   "scripts": {
-    "prepare": "node ./tsbuild.js --trigger",
+    "build": "npm run tsbuild",
+    "prepare": "dotnet build -target:RestoreTypings",
+    "tsbuild": "node ./tsbuild.js",
     "tsbuild:watch": "node ./tsbuild.js --watch"
   },
   "private": true,

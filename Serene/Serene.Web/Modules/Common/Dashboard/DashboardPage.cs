@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
@@ -12,13 +12,13 @@ namespace Serene.Common.Pages
     {
         [PageAuthorize, HttpGet, Route("~/")]
         public ActionResult Index(
-        	//<if:Northwind>
+        	//#if (Northwind)
         	[FromServices] ITwoLevelCache cache,
         	[FromServices] ISqlConnections sqlConnections
-        	//</if:Northwind>
+        	//#endif
         	)
         {
-            //<if:Northwind>
+            //#if (Northwind)
             if (cache is null)
             	throw new ArgumentNullException(nameof(cache));
 
@@ -46,9 +46,9 @@ namespace Serene.Common.Pages
                     return model;
                 });
             return View(MVC.Views.Common.Dashboard.DashboardIndex, cachedModel);
-            //<else>
+            //#else
             //return View(MVC.Views.Common.Dashboard.DashboardIndex, new DashboardPageModel());
-            //</if:Northwind>
+            //#endif
         }
     }
 }

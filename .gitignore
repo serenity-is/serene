@@ -1,8 +1,8 @@
-**/bin/Debug/*
-**/bin/Release/*
+bin/
 obj/
 packages/
 *.bak
+*.log
 *.orig
 *.pdb
 *.suo
@@ -18,15 +18,15 @@ VSIX/packages/
 Serene.Template.zip
 Template/packages/
 .vs/config/applicationhost.config
-Template/UpgradeLog.htm
+UpgradeLog.htm
 Serene/Serene.Web/.vs
-Template/Serene.Template.log
+*.log
 .vs/restore.dg
 project.lock.json
 .vs/restore.dg
 node_modules/
 Serene/Serene.Test/Scripts/typings/serenity/Serenity.CoreLib.d.ts
-Template/ProjectTemplates/SereneCore.Template.zip
+Template/ProjectTemplates/*.zip
 Serene/Serene.Core/App_Data/
 Serene/Serene.Core/wwwroot/App_Data/upload/
 Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.js.map
@@ -46,3 +46,4 @@ Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
 /build/bin/
 /build/obj/
 _trigger.ts
+/Template/Assets/*.nupkg

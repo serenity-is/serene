@@ -297,26 +297,6 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="tsbuild.js">tsbuild.js</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
-      <Folder Name="typings" TargetFolderName="typings">
-        <Folder Name="serenity.corelib" TargetFolderName="serenity.corelib">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-        <Folder Name="serenity.demo.basicsamples" TargetFolderName="serenity.demo.basicsamples">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-        <Folder Name="serenity.demo.northwind" TargetFolderName="serenity.demo.northwind">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-        <Folder Name="serenity.extensions" TargetFolderName="serenity.extensions">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-        <Folder Name="serenity.pro.extensions" TargetFolderName="serenity.pro.extensions">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-        <Folder Name="serenity.pro.ui" TargetFolderName="serenity.pro.ui">
-          <ProjectItem ReplaceParameters="true" TargetFileName="index.d.ts">index.d.ts</ProjectItem>
-        </Folder>
-      </Folder>
       <Folder Name="Views" TargetFolderName="Views">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
@@ -486,8 +466,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MG7O6RXH.js">chunk-MG7O6RXH.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-ZS6WTEOZ.js">chunk-ZS6WTEOZ.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MNHJHLJ6.js">chunk-MNHJHLJ6.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-TJZZBP6D.js">chunk-TJZZBP6D.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
@@ -555,9 +535,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.min.js">fullcalendar.min.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="fullcalendar.print.css">fullcalendar.print.css</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.js">jquery.icheck.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js">jquery.icheck.min.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="jquery.icheck.min.js.map">jquery.icheck.min.js.map</ProjectItem>
           <Folder Name="jvectormap" TargetFolderName="jvectormap">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.css">jquery-jvectormap-1.2.2.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery-jvectormap-1.2.2.min.js">jquery-jvectormap-1.2.2.min.js</ProjectItem>
@@ -565,23 +542,6 @@
           </Folder>
           <Folder Name="knob" TargetFolderName="knob">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.knob.js">jquery.knob.js</ProjectItem>
-          </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.js">mousetrap.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="mousetrap.min.js">mousetrap.min.js</ProjectItem>
-          <Folder Name="serenity" TargetFolderName="serenity">
-            <Folder Name="texts" TargetFolderName="texts">
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.bn.json">serenity.texts.bn.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.de.json">serenity.texts.de.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.es.json">serenity.texts.es.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.fa.json">serenity.texts.fa.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.it.json">serenity.texts.it.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.pt-BR.json">serenity.texts.pt-BR.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.pt.json">serenity.texts.pt.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.ru.json">serenity.texts.ru.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.tr.json">serenity.texts.tr.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.vi-VN.json">serenity.texts.vi-VN.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="serenity.texts.zh-CN.json">serenity.texts.zh-CN.json</ProjectItem>
-            </Folder>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.js">common-theme.js</ProjectItem>
@@ -603,8 +563,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.sparkline.js">jquery.sparkline.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.sparkline.min.js">jquery.sparkline.min.js</ProjectItem>
           </Folder>
-          <ProjectItem ReplaceParameters="true" TargetFileName="vue.js">vue.js</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="vue.min.js">vue.min.js</ProjectItem>
         </Folder>
       </Folder>
     </Project>

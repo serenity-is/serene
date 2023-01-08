@@ -51,12 +51,12 @@ namespace Serene
                 typeof(IDynamicScriptManager).Assembly,
                 typeof(Startup).Assembly,
                 typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
-                //<if:Northwind>
+                //#if (Northwind)
                 typeof(Serenity.Demo.Northwind.CustomerController).Assembly,
-                //</if:Northwind>
-                //<if:BasicSamples>
+                //#endif
+                //#if (BasicSamples)
                 typeof(Serenity.Demo.BasicSamples.BasicSamplesController).Assembly,
-                //</if:BasicSamples>
+                //#endif
             }));
 
             services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));

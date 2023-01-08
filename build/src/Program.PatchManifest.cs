@@ -19,6 +19,9 @@ namespace Build
             allPackages.AddRange(hash);
             allPackages.Sort((x, y) => x.Item1.CompareTo(y.Item1));
 
+            if (StartProcess("git", "restore " + VSIXManifestFile, Root) != 0)
+                ExitWithError("Error while restoring " + ProjectFile);
+
             var xm = XElement.Parse(File.ReadAllText(VSIXManifestFile));
             var ver = allPackages.First(x => x.Item1.StartsWith("Serenity.Net")).Item2;
             SerenityVersion = ver;
@@ -46,6 +49,20 @@ namespace Build
 
             upgradeInfo["InitialVersion"] = templateVersion;
             File.WriteAllText(SergenJsonFile, root.ToString());
+        }
+
+        static void SetTemplatesPackageVersion(string templateVersion)
+        {
+            var xm = XElement.Parse(File.ReadAllText(TemplatesPackageProject));
+            var packageVersion = xm.Descendants("PackageVersion").First();
+            if (packageVersion == null)
+                ExitWithError("Can't find PackageVersion element in: " + TemplatesPackageProject);
+
+            if (packageVersion.Value == templateVersion)
+                return;
+
+            packageVersion.Value = templateVersion;
+            File.WriteAllText(TemplatesPackageProject, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
         }
     }
 }

@@ -54,12 +54,12 @@
   <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" Condition="Exists('$(SerenitySrc)Serenity.Net.sln')" />
   <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
     <PackageReference Include="Serenity.Extensions" Version="6.4.4" />
-    <!--<if:Northwind>-->
+    <!--#if (Northwind)-->
     <PackageReference Include="Serenity.Demo.Northwind" Version="6.4.4" />
-    <!--</if:Northwind>-->
-    <!--<if:BasicSamples>-->
+    <!--#endif-->
+    <!--#if (BasicSamples)-->
     <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.4.4" />
-    <!--</if:BasicSamples>-->
+    <!--#endif-->
   </ItemGroup>
   <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">
     <ProjectReference Include="$(CommonSrc)Serenity.Extensions\Serenity.Extensions.csproj" />

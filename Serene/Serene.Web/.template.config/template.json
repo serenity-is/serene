@@ -52,6 +52,37 @@
         "fallbackVariableName": "HttpsPortGenerated"
       },
       "replaces": "44380"
+    },
+    "SampleModules": {
+      "type": "parameter",
+      "datatype": "choice",
+      "defaultValue": "all",
+      "description": "Include Sample Modules",
+      "choices": [
+        {
+          "choice": "None",
+          "displayName": "None",
+          "description": "None"
+        },
+        {
+          "choice": "Northwind",
+          "displayName": "Northwind Only",
+          "description": "Northwind Only"
+        },
+        {
+          "choice": "All",
+          "displayName": "Northwind & Basic Samples",
+          "description": "Northwind & Basic Samples"
+        }
+      ]
+    },
+    "Northwind": {
+      "type": "computed",
+      "value": "(SampleModules != \"None\")"
+    },
+    "BasicSamples": {
+      "type": "computed",
+      "value": "(SampleModules == \"All\")"
     }
   }
 }

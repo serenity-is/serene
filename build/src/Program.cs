@@ -18,19 +18,22 @@ namespace Build
         static string ProjectFolder => Path.Combine(Root, ProjectId, ProjectFolderName);
         static string ProjectFile => Path.Combine(ProjectFolder, ProjectFolderName + ".csproj");
         static string PackageJsonFile => Path.Combine(ProjectFolder, "package.json");
+        static string PackageJsonLock => Path.Combine(ProjectFolder, "package-lock.json");
         static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
         static string TemplateId => ProjectId == "StartSharp" ? "StartCore" : "SereneCore";
         static string VSIXTemplateFolder => Path.Combine(Root, "Template");
-        static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Template.csproj");
+        static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Templates.VSIX.csproj");
         static string VSIXAssetsFolder => Path.Combine(VSIXTemplateFolder, "Assets");
         static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
-        static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
+        static string TemplatesPackageProject => Path.Combine(Root, "Template", $"{ProjectId}.Templates", $"{ProjectId}.Templates.csproj");
         static string TemporaryFilesRoot => Path.Combine(Root, "Template", "obj");
-        static string TemplateTempZipDir => Path.Combine(TemporaryFilesRoot, ProjectId + "Core.Template");
+        static string ProjectPatchFolder => Path.Combine(TemporaryFilesRoot, ProjectId + ".Web");
         static string SerenitySergenExe => Path.Combine(Root, "Serenity", "src", "Serenity.Net.CodeGenerator", "bin", "sergen.exe");
+        static string PackageJsonCopy => Path.Combine(ProjectPatchFolder, "package.json");
+        static string PackageJsonCopyLock => Path.Combine(ProjectPatchFolder, "package-lock.json");
 
         static string SerenityVersion { get; set; }
-        static readonly UTF8Encoding UTF8Bom = new UTF8Encoding(true);
+        static readonly UTF8Encoding UTF8Bom = new(true);
 
         static bool IsCommonPackage(string packageId)
         {
@@ -47,10 +50,20 @@ namespace Build
 
             DetermineRoot();
             HasProPackages = Directory.Exists(Path.Combine(Root, "StartSharp"));
-            Clean();
 
-            if (target == "vsix")
-                PrepareVSIX();
+            switch (target) 
+            {
+                case "vsix":
+                    Clean();
+                    PrepareVSIX();
+                    break;
+                case "patchpackagejson":
+                    PatchPackageJsonCopy();
+                    break;
+                default:
+                    Console.Error.WriteLine("Unknown target!");
+                    break;
+            }
         }
 
         static List<Tuple<string, string>> ParsePackages(string path)
@@ -112,16 +125,14 @@ namespace Build
 
         static void Clean()
         {
-            CleanDirectory("Template/ProjectTemplates", ensure: true);
-            CleanDirectory(TemplateTempZipDir, ensure: true);
+            CleanDirectory(ProjectPatchFolder, ensure: true);
             CleanDirectory("Template/bin/");
-            CleanDirectory("Template/RootProjectWizard/obj/");
         }
 
         static void ExitWithError(string error, int errorCode = 1)
         {
             Console.WriteLine(error);
-            Environment.Exit(1);
+            Environment.Exit(errorCode);
         }
 
         static int StartProcess(string name, string arguments, string workingDirectory)
