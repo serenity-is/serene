@@ -16,7 +16,8 @@ Serene/Serene.Web/bin
 Serene/Serene.Web/App_Data/
 VSIX/packages/
 Serene.Template.zip
-Template/packages/
+/Template/Assets/
+/Template/packages/
 .vs/config/applicationhost.config
 UpgradeLog.htm
 Serene/Serene.Web/.vs
@@ -26,7 +27,6 @@ project.lock.json
 .vs/restore.dg
 node_modules/
 Serene/Serene.Test/Scripts/typings/serenity/Serenity.CoreLib.d.ts
-Template/ProjectTemplates/*.zip
 Serene/Serene.Core/App_Data/
 Serene/Serene.Core/wwwroot/App_Data/upload/
 Serene/Serene.Core/wwwroot/Scripts/site/Serene.Web.js.map
@@ -46,4 +46,3 @@ Serene/Serene.Core/Properties/PublishProfiles/*.pubxml
 /build/bin/
 /build/obj/
 _trigger.ts
-/Template/Assets/*.nupkg

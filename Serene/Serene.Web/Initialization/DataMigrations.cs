@@ -18,10 +18,10 @@ namespace Serene
     public class DataMigrations : IDataMigrations
     { 
         private static readonly string[] databaseKeys = new[] {
-            "Default"
-        //#if (Northwind)
-            ,"Northwind"
-        //#endif
+            "Default",
+#if (Northwind)
+            "Northwind"
+#endif
         };
 
         protected ISqlConnections SqlConnections { get; }
@@ -213,13 +213,13 @@ namespace Serene
                 Path.GetDirectoryName(typeof(DataMigrations).Assembly.Location));
             var migrationNamespace = "Serene.Migrations." + databaseKey + "DB";
             var migrationAssemblies = new[] { typeof(DataMigrations).Assembly };
-            //#if (Northwind)
+#if (Northwind)
             if (databaseKey.Equals("Northwind", StringComparison.OrdinalIgnoreCase))
             {
                 migrationNamespace = typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Namespace;
                 migrationAssemblies = new[] { typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Assembly };
             }
-            //#endif
+#endif
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(lb => lb.AddFluentMigratorConsole())

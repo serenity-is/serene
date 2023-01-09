@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Volkan Ceylan",
-  "classifications": ["Web", "MVC"],
+  "classifications": [ "Web", "MVC" ],
   "name": "Serene",
   "shortName": "serene",
   "defaultName": "MySereneApp",
@@ -83,6 +83,10 @@
     "BasicSamples": {
       "type": "computed",
       "value": "(SampleModules == \"All\")"
+    },
+    "UseProjectRefs": {
+      "type": "computed",
+      "value": "false"
     }
   }
 }

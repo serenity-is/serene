@@ -1,15 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Serene.Web</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptNoEmitOnError>false</TypeScriptNoEmitOnError>
+    <DotNetSergen>dotnet sergen</DotNetSergen>
+    <!--#if (IsNotTemplate)-->
     <CommonSrc>..\..\common-features\src\</CommonSrc>
     <SerenitySrc>..\..\Serenity\src\</SerenitySrc>
-    <DotNetSergen>dotnet sergen</DotNetSergen>
     <DotNetSergenDir>$(SerenitySrc)Serenity.Net.CodeGenerator\bin\</DotNetSergenDir>
     <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen')">$(DotNetSergenDir)sergen</DotNetSergen>
     <DotNetSergen Condition="Exists('$(DotNetSergenDir)sergen.exe')">$(DotNetSergenDir)sergen.exe</DotNetSergen>
+    <DefineConstants>$(DefineConstants);Northwind;BasicSamples</DefineConstants>
+    <UseProjectRefs Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">false</UseProjectRefs>
+    <!--#endif-->
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Remove="node_modules\**"></TypeScriptCompile>
@@ -41,32 +45,27 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup Condition="!Exists('$(SerenitySrc)Serenity.Net.sln')">
+  <ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
     <PackageReference Include="Serenity.Assets" Version="6.4.4" />
     <PackageReference Include="Serenity.Scripts" Version="6.4.4" />
     <PackageReference Include="Serenity.Net.Web" Version="6.4.4" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(SerenitySrc)Serenity.Net.sln')">
+  <ItemGroup Condition="'$(UseProjectRefs)' != 'false'">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
     <ProjectReference Include="$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj" />
     <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
   </ItemGroup>
-  <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" Condition="Exists('$(SerenitySrc)Serenity.Net.sln')" />
-  <ItemGroup Condition="!Exists('$(CommonSrc)common-features.sln')">
+  <Import Project="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.targets" Condition="'$(UseProjectRefs)' != 'false'" />
+  <ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
     <PackageReference Include="Serenity.Extensions" Version="6.4.4" />
-    <!--#if (Northwind)-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="6.4.4" />
-    <!--#endif-->
-    <!--#if (BasicSamples)-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.4.4" />
-    <!--#endif-->
+    <PackageReference Include="Serenity.Demo.Northwind" Version="6.4.4" Condition="'$(Northwind)' != 'false'" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.4.4" Condition="'$(BasicSamples)' != 'false'" />
   </ItemGroup>
-  <ItemGroup Condition="Exists('$(CommonSrc)common-features.sln')">
+  <ItemGroup Condition="'$(UseProjectRefs)' != 'false'">
     <ProjectReference Include="$(CommonSrc)Serenity.Extensions\Serenity.Extensions.csproj" />
-    <ProjectReference Include="$(CommonSrc)Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" />
-    <ProjectReference Include="$(CommonSrc)Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj" />
+    <ProjectReference Include="$(CommonSrc)Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" Condition="'$(Northwind)' != 'false'" />
+    <ProjectReference Include="$(CommonSrc)Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj" Condition="'$(BasicSamples)' != 'false'" />
   </ItemGroup>
-  <Import Project="$(ProSrc)Serenity.Pro.Coder\Serenity.Pro.Coder.targets" Condition="Exists('$(ProSrc)pro-features.sln')" />
   <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
     <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts;tsconfig.json">
       <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
@@ -78,7 +77,6 @@
   </Target>
   <Target Name="TransformMvcClientTypes" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
-    <Exec Command="$(DotNetSergen) restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />
   </Target>
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild">
