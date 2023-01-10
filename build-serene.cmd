@@ -40,6 +40,7 @@ goto push_confirmation
 
 :push_confirmation
 
+dir /b vsix\.nupkg\*.nupkg
 echo.
 choice /C PC /N /M "[P]ush NuGet Package, or [C]ancel?: "
 if errorlevel 2 goto end
@@ -47,7 +48,7 @@ if errorlevel 1 goto push
 
 :push
 color
-nuget push vsix\.nuget\Serene.Templates*.nupkg
+nuget push -source https://www.nuget.org/api/v2/package .\vsix\.nupkg\Serene.Templates*.nupkg
 if %ERRORLEVEL% GEQ 1 GOTO :error
 start https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/edit?newSession=True
 goto end
