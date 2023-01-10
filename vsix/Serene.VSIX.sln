@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serene.Templates.VSIX", "Serene.Templates.VSIX.csproj", "{9DC33F28-9BB3-4703-BC09-9EB0C109C2D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build-serene", "..\build\build-serene.csproj", "{9AF6E0E9-980B-4C01-994A-9DF9FC873E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serene.VSIX", "Serene.VSIX.csproj", "{9DC33F28-9BB3-4703-BC09-9EB0C109C2D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serene.Templates", "Serene.Templates\Serene.Templates.csproj", "{95537AFF-1BCA-4992-B023-F3E03D5CA3B6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build-serene", "..\build\build-serene.csproj", "{9AF6E0E9-980B-4C01-994A-9DF9FC873E7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

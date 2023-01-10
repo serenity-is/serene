@@ -6,8 +6,7 @@
     Serene is a starter template to build Serenity applications.</Description>
     <MoreInfo>https://github.com/serenity-is/Serenity</MoreInfo>
     <License>LICENCE.txt</License>
-    <Icon>serenity-icon.png</Icon>
-    <PreviewImage>preview.png</PreviewImage>
+    <Icon>icon.png</Icon>
     <Tags>Serenity</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">

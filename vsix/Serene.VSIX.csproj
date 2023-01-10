@@ -60,7 +60,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="packages.config" />
-    <Content Include="serenity-icon.png">
+    <Content Include="icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -74,7 +74,7 @@
   <Target Name="PreCreateVsixContainer" BeforeTargets="GetVsixSourceItems">
     <ItemGroup>
       <!-- ensure that the path below is correct -->
-      <_TemplatePackage Include="Assets\*.nupkg" />
+      <_TemplatePackage Include=".nupkg\*.nupkg" />
     </ItemGroup>
     <Error Text="No template files found." Condition="@(_TemplatePackage-&gt;Count()) == 0" />
     <Message Text="Template nuget packages found: @(_TemplatePackage)" Importance="low" />

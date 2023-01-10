@@ -24,7 +24,6 @@ namespace Build
 
             var xm = XElement.Parse(File.ReadAllText(VSIXManifestFile));
             var ver = allPackages.First(x => x.Item1.StartsWith("Serenity.Net")).Item2;
-            SerenityVersion = ver;
             var identity = xm.Descendants(((XNamespace)"http://schemas.microsoft.com/developer/vsx-schema/2011") + "Identity").First();
             var old = identity.Attribute("Version").Value;
             if (old != null && old.StartsWith(ver + "."))
@@ -53,16 +52,16 @@ namespace Build
 
         static void SetTemplatesPackageVersion(string templateVersion)
         {
-            var xm = XElement.Parse(File.ReadAllText(TemplatesPackageProject));
+            var xm = XElement.Parse(File.ReadAllText(TemplatesProject));
             var packageVersion = xm.Descendants("PackageVersion").First();
             if (packageVersion == null)
-                ExitWithError("Can't find PackageVersion element in: " + TemplatesPackageProject);
+                ExitWithError("Can't find PackageVersion element in: " + TemplatesProject);
 
             if (packageVersion.Value == templateVersion)
                 return;
 
             packageVersion.Value = templateVersion;
-            File.WriteAllText(TemplatesPackageProject, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
+            File.WriteAllText(TemplatesProject, xm.ToString(SaveOptions.OmitDuplicateNamespaces));
         }
     }
 }

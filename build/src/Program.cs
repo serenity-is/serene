@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
 
 namespace Build
@@ -14,26 +13,20 @@ namespace Build
         static bool HasProPackages { get; set; }
 
         static string ProjectId => HasProPackages ? "StartSharp" : "Serene";
-        static string ProjectFolderName => ProjectId + ".Web";
-        static string ProjectFolder => Path.Combine(Root, ProjectId, ProjectFolderName);
-        static string ProjectFile => Path.Combine(ProjectFolder, ProjectFolderName + ".csproj");
+        static string ProjectName => ProjectId + ".Web";
+        static string ProjectFolder => Path.Combine(Root, "src", ProjectName);
+        static string ProjectFile => Path.Combine(ProjectFolder, ProjectName + ".csproj");
         static string PackageJsonFile => Path.Combine(ProjectFolder, "package.json");
-        static string PackageJsonLock => Path.Combine(ProjectFolder, "package-lock.json");
         static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
-        static string TemplateId => ProjectId == "StartSharp" ? "StartCore" : "SereneCore";
-        static string VSIXTemplateFolder => Path.Combine(Root, "Template");
-        static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".Templates.VSIX.csproj");
-        static string VSIXAssetsFolder => Path.Combine(VSIXTemplateFolder, "Assets");
+        static string VSIXTemplateFolder => Path.Combine(Root, "vsix");
+        static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".VSIX.csproj");
+        static string VSIXOutputFolder => Path.Combine(VSIXTemplateFolder, "bin");
         static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
-        static string TemplatesPackageProject => Path.Combine(Root, "Template", $"{ProjectId}.Templates", $"{ProjectId}.Templates.csproj");
-        static string TemporaryFilesRoot => Path.Combine(Root, "Template", "obj");
-        static string ProjectPatchFolder => Path.Combine(TemporaryFilesRoot, ProjectId + ".Web");
-        static string SerenitySergenExe => Path.Combine(Root, "Serenity", "src", "Serenity.Net.CodeGenerator", "bin", "sergen.exe");
+        static string TemplatesProject => Path.Combine(VSIXTemplateFolder, $"{ProjectId}.Templates", $"{ProjectId}.Templates.csproj");
+        static string TemporaryFilesRoot => Path.Combine(VSIXTemplateFolder, "obj");
+        static string ProjectPatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
         static string PackageJsonCopy => Path.Combine(ProjectPatchFolder, "package.json");
         static string PackageJsonCopyLock => Path.Combine(ProjectPatchFolder, "package-lock.json");
-
-        static string SerenityVersion { get; set; }
-        static readonly UTF8Encoding UTF8Bom = new(true);
 
         static bool IsCommonPackage(string packageId)
         {
@@ -57,9 +50,11 @@ namespace Build
                     Clean();
                     PrepareVSIX();
                     break;
+
                 case "patchpackagejson":
                     PatchPackageJsonCopy();
                     break;
+
                 default:
                     Console.Error.WriteLine("Unknown target!");
                     break;
@@ -126,7 +121,7 @@ namespace Build
         static void Clean()
         {
             CleanDirectory(ProjectPatchFolder, ensure: true);
-            CleanDirectory("Template/bin/");
+            CleanDirectory(VSIXOutputFolder, ensure: true);
         }
 
         static void ExitWithError(string error, int errorCode = 1)

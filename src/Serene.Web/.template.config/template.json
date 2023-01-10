@@ -1,10 +1,10 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Volkan Ceylan",
+  "author": "serenity.is",
   "classifications": [ "Web", "MVC" ],
   "name": "Serene",
   "shortName": "serene",
-  "defaultName": "MySereneApp",
+  "defaultName": "MySerene",
   "identity": "Serene",
   "tags": {
     "language": "C#",
