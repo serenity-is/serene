@@ -6,7 +6,7 @@ obj/
 node_modules/
 packages/
 TestResults/
-wwwroot/esm/
+**/wwwroot/esm/
 *.bak
 *.log
 *.orig
