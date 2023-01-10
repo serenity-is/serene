@@ -5,7 +5,7 @@
     <PackageId>Serene.Templates</PackageId>
     <PackageOutputPath>..\.nupkg</PackageOutputPath>
     <Title>Serene Project Templates</Title>
-    <Authors>https://serenity.is;Volkan Ceylan</Authors>
+    <Authors>serenity.is</Authors>
     <Description>Serene project template for Serenity applications.</Description>
     <PackageTags>dotnet-new;templates;Serenity;Serene</PackageTags>
     <PackageIcon>package-icon.png</PackageIcon>
