@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serene.Web", "Serene\Serene.Web\Serene.Web.csproj", "{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Serene.Web", "src\Serene.Web\Serene.Web.csproj", "{0AFCC20A-532D-40D1-8D5E-8FB597FB7A33}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7B2CED35-AD39-42D5-AF64-5AC73D11EEF9} = {7B2CED35-AD39-42D5-AF64-5AC73D11EEF9}
 	EndProjectSection
