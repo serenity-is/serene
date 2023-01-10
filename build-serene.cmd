@@ -29,9 +29,15 @@ goto run_build
 echo *** RUNNING BUILD ***
 dotnet run --project build\build-serene.csproj --no-dependencies
 if %ERRORLEVEL% GEQ 1 GOTO :error
-goto build_template_package
+goto build_nuget_package
 
-:build_template_package
+:build_nuget_package
+echo *** BUILDING NUGET PACKAGE ***
+dotnet pack --no-dependencies vsix\Serene.Templates\Serene.Templates.csproj
+if %ERRORLEVEL% GEQ 1 GOTO :error
+goto build_vsix_package
+
+:build_vsix_package
 echo *** BUILDING VSIX PACKAGE ***
 "%VSINSTALLDIR%\MSBuild\Current\Bin\MSBuild.exe" "vsix\Serene.VSIX.sln" -verbosity:m
 if %ERRORLEVEL% GEQ 1 GOTO :error

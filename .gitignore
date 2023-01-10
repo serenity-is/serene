@@ -5,6 +5,7 @@ bin/
 obj/
 node_modules/
 packages/
+ProjectTemplates/
 TestResults/
 **/wwwroot/esm/
 *.bak

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Linq;
 
 namespace Build
@@ -18,15 +19,21 @@ namespace Build
         static string ProjectFile => Path.Combine(ProjectFolder, ProjectName + ".csproj");
         static string PackageJsonFile => Path.Combine(ProjectFolder, "package.json");
         static string SergenJsonFile => Path.Combine(ProjectFolder, "sergen.json");
+        static string TemplateId => ProjectId == "StartSharp" ? "StartCore" : "SereneCore";
         static string VSIXTemplateFolder => Path.Combine(Root, "vsix");
         static string VSIXTemplateProject => Path.Combine(VSIXTemplateProject, ProjectId + ".VSIX.csproj");
         static string VSIXOutputFolder => Path.Combine(VSIXTemplateFolder, "bin");
         static string VSIXManifestFile => Path.Combine(VSIXTemplateFolder, "source.extension.vsixmanifest");
+        static string VSIXProjectTemplates => Path.Combine(VSIXTemplateFolder, "ProjectTemplates");
         static string TemplatesProject => Path.Combine(VSIXTemplateFolder, $"{ProjectId}.Templates", $"{ProjectId}.Templates.csproj");
         static string TemporaryFilesRoot => Path.Combine(VSIXTemplateFolder, "obj");
-        static string ProjectPatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
-        static string PackageJsonCopy => Path.Combine(ProjectPatchFolder, "package.json");
-        static string PackageJsonCopyLock => Path.Combine(ProjectPatchFolder, "package-lock.json");
+        static string PackagePatchFolder => Path.Combine(TemporaryFilesRoot, ProjectName);
+        static string PackageJsonCopy => Path.Combine(PackagePatchFolder, "package.json");
+        static string PackageJsonCopyLock => Path.Combine(PackagePatchFolder, "package-lock.json");
+        static string TemplateZipFolder => Path.Combine(TemporaryFilesRoot, ProjectId);
+        static string TemplateWebFolder => Path.Combine(TemporaryFilesRoot, ProjectId, ProjectName);
+
+        static readonly UTF8Encoding UTF8Bom = new(true);
 
         static bool IsCommonPackage(string packageId)
         {
@@ -120,7 +127,8 @@ namespace Build
 
         static void Clean()
         {
-            CleanDirectory(ProjectPatchFolder, ensure: true);
+            CleanDirectory(PackagePatchFolder, ensure: true);
+            CleanDirectory(TemplateZipFolder, ensure: true);
             CleanDirectory(VSIXOutputFolder, ensure: true);
         }
 

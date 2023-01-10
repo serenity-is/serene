@@ -18,7 +18,7 @@ namespace Build
 
         public static void PatchPackageJsonCopy()
         {
-            Directory.CreateDirectory(ProjectPatchFolder);
+            Directory.CreateDirectory(PackagePatchFolder);
 
             var content = File.ReadAllText(PackageJsonFile);
             var root = JObject.Parse(content);
@@ -35,13 +35,13 @@ namespace Build
             if (File.Exists(PackageJsonCopyLock))
                 File.Delete(PackageJsonCopyLock);
                 
-            if (StartProcess("cmd", "/c npm i --ignore-scripts", ProjectPatchFolder) != 0)
+            if (StartProcess("cmd", "/c npm i --ignore-scripts", PackagePatchFolder) != 0)
             {
-                Console.Error.WriteLine("Error while npm install at " + ProjectPatchFolder);
+                Console.Error.WriteLine("Error while npm install at " + PackagePatchFolder);
                 Environment.Exit(1);
             }
 
-            Directory.Delete(Path.Combine(ProjectPatchFolder, "node_modules"), recursive: true);
+            Directory.Delete(Path.Combine(PackagePatchFolder, "node_modules"), recursive: true);
         }
     }
 }
