@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -145,106 +144,9 @@ namespace RootProjectWizard
                 return;
 
             project.DTE.StatusBar.Text = "Processing Conditionals in File: " + fullPath;
-            var lines = new List<string>(File.ReadAllLines(fullPath));
-
-            (string prefix, string suffix, string eelse, string eend)[] conditionals = new[]
-            {
-                ("//<if:", "//>", "//<else>", "//</if:{0}>"),
-                ("//#if(", ")", "//#else", "//#endif"),
-                ("//#if (", ")", "//#else", "//#endif"),
-                ("#if(", ")", "#else", "#endif"),
-                ("#if (", ")", "#else", "#endif"),
-                ("<!--<if:", ">-->", "<!--<else>-->", "<!--<endif:{0}>-->"),
-                ("<!--#if(", ")-->", "<!--#else-->", "<!--#endif-->"),
-                ("<!--#if (", ")-->", "<!--#else-->", "<!--#endif-->")
-            };
-
-            int lastStart = 0;
-            while (true)
-            {
-                var found = false;
-                foreach (var conditional in conditionals)
-                {
-                    var start = lines.FindIndex(lastStart,
-                        l => l.TrimStart().StartsWith(conditional.prefix));
-
-                    if (start < 0)
-                        continue;
-
-                    found = true;
-                    lastStart = start;
-
-                    var line = lines[start];
-                    lines.RemoveAt(start);
-
-                    string feature;
-                    int end;
-                    int eelse;
-                    line = line.TrimStart().Substring(conditional.prefix.Length);
-
-                    var endidx = line.LastIndexOf(conditional.suffix);
-                    if (endidx < 0)
-                        break;
-
-                    feature = line.Substring(0, endidx).Trim();
-                    end = lines.FindIndex(start, x => x.Trim().StartsWith(string.Format(conditional.eend, feature)));
-                    if (end < 0)
-                        break;
-
-                    eelse = lines.FindIndex(start, x => x.Trim() == conditional.eelse);
-                    if (eelse > end)
-                        eelse = -1;
-
-                    lines.RemoveAt(end);
-
-                    if (!RootWizard.SelectedFeatures.Contains(feature))
-                    {
-                        var z = end;
-                        if (eelse >= 0)
-                        {
-                            bool commentedElse = conditional.eend.IndexOf("{0}") >= 0;
-
-                            lines.RemoveAt(eelse);
-                            z = eelse;
-                            for (var l = eelse; l < end - 1; l++)
-                            {
-                                var e = lines[l];
-                                if (conditional.prefix.StartsWith("<"))
-                                {
-                                    var cidx = e.IndexOf("<!--");
-                                    if (commentedElse && cidx >= 0)
-                                    {
-                                        e = e.Substring(0, cidx) + e.Substring(cidx + 4);
-                                        cidx = e.LastIndexOf("-->");
-                                        if (cidx >= 0)
-                                            e = e.Substring(0, cidx);
-                                        lines[l] = e;
-                                    }
-                                }
-                                else
-                                {
-                                    var cidx = e.IndexOf("//");
-                                    if (commentedElse && cidx >= 0)
-                                        lines[l] = e.Substring(0, cidx) + e.Substring(cidx + 2);
-                                }
-                            }
-                        }
-
-                        for (var l = start; l < z; l++)
-                            lines.RemoveAt(start);
-                    }
-                    else if (eelse >= 0)
-                    {
-                        for (var l = eelse; l < end; l++)
-                            lines.RemoveAt(eelse);
-                    }
-                }
-
-                if (!found)
-                    break;
-            }
-
-            File.WriteAllLines(fullPath, lines, new UTF8Encoding(true));
+            var content = File.ReadAllText(fullPath);
+            content = Build.Shared.PreprocessConditionals(content, RootWizard.SelectedFeatures);
+            File.WriteAllText(fullPath, content, Build.Shared.UTF8Bom);
         }
 
         private PathMatcher GetPathMatcher(XElement node)

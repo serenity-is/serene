@@ -5,6 +5,8 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>bin</OutputPath>
     <TargetFramework>net6.0</TargetFramework>
+    <SharedSrc>..\common-features\build\shared</SharedSrc>
+    <DefineConstants>$(DefineConstants);IsTemplateBuild</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,4 +14,9 @@
     <PackageReference Include="NuGet.Protocol" Version="5.9.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="$(SharedSrc)\**\*.cs">
+      <Link>shared\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
 </Project>
