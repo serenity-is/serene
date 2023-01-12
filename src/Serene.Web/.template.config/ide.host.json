@@ -3,9 +3,16 @@
   "icon": "icon.png",
   "symbolInfo": [
     {
-      "id": "SampleModules",
+      "id": "DemoModules",
       "name": {
-        "text": "Include Sample Modules"
+        "text": "Demo Modules"
+      },
+      "isVisible": true
+    },
+    {
+      "id": "ExcludeDemo",
+      "name": {
+        "text": "Exclude All Demo Modules"
       },
       "isVisible": true
     }
