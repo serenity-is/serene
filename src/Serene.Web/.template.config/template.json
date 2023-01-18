@@ -83,7 +83,7 @@
     },
     "Northwind": {
       "type": "computed",
-      "value": "ExcludeDemo == false && ((DemoModules != \"Northwind\") || (DemoModules != \"BasicSamples\"))"
+      "value": "ExcludeDemo == false && ((DemoModules == \"Northwind\") || (DemoModules == \"BasicSamples\"))"
     },
     "BasicSamples": {
       "type": "computed",

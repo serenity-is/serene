@@ -2,7 +2,6 @@
 
 :check_dependencies
 if not exist "%ProgramFiles%\dotnet\dotnet.exe" (
-	color 4f
     echo ERROR: dotnet not found. Please install dotnet to continue.
     goto end
 )
@@ -11,14 +10,12 @@ if "%VSINSTALLDIR%"=="" (
 )
 
 if not exist "%VSINSTALLDIR%\MSBuild\Current\Bin\msbuild.exe" (
-	color 4f
     echo ERROR: "%VSINSTALLDIR%\MSBuild\Current\Bin\msbuild.exe" not found. Please install Visual Studio to continue.
     goto end
 )
 
 for /F "tokens=4 delims=\\" %%G in ("%VSINSTALLDIR%") do set "vsversion=%%G"
 if %vsversion% LSS 2022 (
-	color 4f
     echo ERROR: This script requires Visual Studio 2022 or newer. You are using version %vsversion%.
     goto end
 )
@@ -53,19 +50,16 @@ if errorlevel 2 goto end
 if errorlevel 1 goto push
 
 :push
-color
 nuget push -source https://www.nuget.org/api/v2/package .\vsix\.nupkg\Serene.Templates*.nupkg
 if %ERRORLEVEL% GEQ 1 GOTO :error
 start https://visualstudiogallery.msdn.microsoft.com/559ec6fc-feef-4077-b6d5-5a99408a6681/edit?newSession=True
 goto end
 
 :error
-color 4f
 echo ERROR: An error occurred during the build process.
 echo ERROR CODE: %ERRORLEVEL%
 pause
 goto end
 
 :end
-color
 exit /B 0
