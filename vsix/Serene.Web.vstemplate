@@ -20,11 +20,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="dotnet-tools.json">dotnet-tools.json</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
-      <Folder Name=".template.config" TargetFolderName=".template.config">
-        <ProjectItem ReplaceParameters="false" TargetFileName="icon.png">icon.png</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="ide.host.json">ide.host.json</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="template.json">template.json</ProjectItem>
-      </Folder>
+      <ProjectItem ReplaceParameters="false" TargetFileName=".npmrc">.npmrc</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.bundles.json">appsettings.bundles.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.Development.json">appsettings.Development.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="appsettings.json">appsettings.json</ProjectItem>
@@ -550,11 +546,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-56XLOFXF.js">chunk-56XLOFXF.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MNHJHLJ6.js">chunk-MNHJHLJ6.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-TJZZBP6D.js">chunk-TJZZBP6D.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
