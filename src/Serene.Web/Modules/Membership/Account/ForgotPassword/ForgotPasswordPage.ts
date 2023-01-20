@@ -1,7 +1,7 @@
 import { ForgotPasswordForm, ForgotPasswordRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { information, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
+import { htmlEncode, information, resolveUrl, serviceCall } from "@serenity-is/corelib/q";
 
 $(function () {
     new ForgotPasswordPanel($('#ForgotPasswordPanel'));
@@ -41,12 +41,12 @@ export class ForgotPasswordPanel extends PropertyPanel<ForgotPasswordRequest, an
 </h2>
 
 <div class="s-Panel p-4">
-    <h5 class="text-center mb-4">${Texts.Forms.Membership.ForgotPassword.FormTitle}</h5>
-    <p class="text-center">${Texts.Forms.Membership.ForgotPassword.FormInfo}</p>
+    <h5 class="text-center mb-4">${htmlEncode(Texts.Forms.Membership.ForgotPassword.FormTitle)}</h5>
+    <p class="text-center">${htmlEncode(Texts.Forms.Membership.ForgotPassword.FormInfo)}</p>
     <form id="~_Form" action="">
         <div id="~_PropertyGrid"></div>
         <button id="~_SubmitButton" type="submit" class="btn btn-primary mx-8 w-100">
-            ${Texts.Forms.Membership.ForgotPassword.SubmitButton}
+            ${htmlEncode(Texts.Forms.Membership.ForgotPassword.SubmitButton)}
         </button>
     </form>
 </div>`;

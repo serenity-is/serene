@@ -1,5 +1,5 @@
 import { DataGrid, Decorators, GridUtils, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton } from "@serenity-is/corelib";
-import { count, Dictionary, Grouping, toGrouping, text, turkishLocaleCompare, htmlEncode, any, trimToNull, getRemoteData, tryGetText } from "@serenity-is/corelib/q";
+import { count, Dictionary, Grouping, toGrouping, localText, turkishLocaleCompare, htmlEncode, any, trimToNull, getRemoteData, tryGetText } from "@serenity-is/corelib/q";
 import { Column } from "@serenity-is/sleekgrid";
 import { UserPermissionRow } from "../";
 
@@ -93,7 +93,7 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
 
     protected getColumns(): Column[] {
         let columns: Column[] = [{
-            name: text('Site.UserPermissionDialog.Permission'),
+            name: localText('Site.UserPermissionDialog.Permission'),
             field: 'Title',
             format: SlickFormatting.treeToggle(() => this.view, x => x.Key, ctx => {
                 let item = ctx.item;
@@ -103,7 +103,7 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
             width: 495,
             sortable: false
         }, {
-            name: text('Site.UserPermissionDialog.Grant'), field: 'Grant',
+            name: localText('Site.UserPermissionDialog.Grant'), field: 'Grant',
             format: ctx => {
                 let item1 = ctx.item;
                 let klass1 = this.getItemGrantRevokeClass(item1, true);
@@ -117,7 +117,7 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
 
         if (this.options.showRevoke) {
             columns.push({
-                name: text('Site.UserPermissionDialog.Revoke'), field: 'Revoke',
+                name: localText('Site.UserPermissionDialog.Revoke'), field: 'Revoke',
                 format: ctx => {
                     let item2 = ctx.item;
                     let klass2 = this.getItemGrantRevokeClass(item2, false);

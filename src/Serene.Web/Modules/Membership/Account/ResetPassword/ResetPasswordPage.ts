@@ -1,7 +1,7 @@
 import { ResetPasswordForm, ResetPasswordRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { format, information, resolveUrl, serviceCall, text } from "@serenity-is/corelib/q";
+import { format, information, resolveUrl, serviceCall, localText, htmlEncode } from "@serenity-is/corelib/q";
 
 $(function () {
     new ResetPasswordPanel($('#ResetPasswordPanel'));
@@ -26,7 +26,7 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, any>
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.ConfirmPassword.value !== this.form.NewPassword.value) {
-                return text('Validation.PasswordConfirm');
+                return localText('Validation.PasswordConfirm');
             }
         });
 
@@ -58,11 +58,11 @@ export class ResetPasswordPanel extends PropertyPanel<ResetPasswordRequest, any>
 </h2>
 
 <div class="s-Panel p-4">
-    <h5 class="text-center mb-4">${Texts.Forms.Membership.ResetPassword.FormTitle}</h5>
+    <h5 class="text-center mb-4">${htmlEncode(Texts.Forms.Membership.ResetPassword.FormTitle)}</h5>
     <form id="~_Form" action="">
         <div id="~_PropertyGrid"></div>
         <button id="~_SubmitButton" type="submit" class="btn btn-primary mx-8 w-100">
-            ${Texts.Forms.Membership.ResetPassword.SubmitButton}
+            ${htmlEncode(Texts.Forms.Membership.ResetPassword.SubmitButton)}
         </button>
         <input type="hidden" id="~_Token" value="${(document.getElementById('ResetPasswordToken') as HTMLInputElement).value}" />
     </form>

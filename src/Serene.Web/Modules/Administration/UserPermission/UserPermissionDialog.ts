@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { format, getRemoteData, notifySuccess, text } from "@serenity-is/corelib/q";
+import { format, getRemoteData, notifySuccess, localText } from "@serenity-is/corelib/q";
 import { UserPermissionService } from "../";
 import { PermissionCheckEditor } from "./PermissionCheckEditor";
 
@@ -31,14 +31,14 @@ export class UserPermissionDialog extends TemplatedDialog<UserPermissionDialogOp
         });
 
         this.permissions.implicitPermissions = getRemoteData('Administration.ImplicitPermissions');
-        this.dialogTitle = format(text('Site.UserPermissionDialog.DialogTitle'),
+        this.dialogTitle = format(localText('Site.UserPermissionDialog.DialogTitle'),
             this.options.username);
     }
 
     protected getDialogButtons() {
         return [
             {
-                text: text('Dialogs.OkButton'),
+                text: localText('Dialogs.OkButton'),
                 cssClass: 'btn btn-primary',
                 click: e => {
                     UserPermissionService.Update({
@@ -48,11 +48,11 @@ export class UserPermissionDialog extends TemplatedDialog<UserPermissionDialogOp
                         Submodule: null
                     }, response => {
                         this.dialogClose();
-                        window.setTimeout(() => notifySuccess(text('Site.UserPermissionDialog.SaveSuccess')), 0);
+                        window.setTimeout(() => notifySuccess(localText('Site.UserPermissionDialog.SaveSuccess')), 0);
                     });
                 }
             }, {
-                text: text('Dialogs.CancelButton'),
+                text: localText('Dialogs.CancelButton'),
                 click: () => this.dialogClose()
             }
         ];

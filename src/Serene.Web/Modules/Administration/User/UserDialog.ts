@@ -1,7 +1,7 @@
 import { UserForm, UserRow, UserService } from "../";
 import { UserPermissionDialog } from "../UserPermission/UserPermissionDialog";
 import { Decorators, EntityDialog } from "@serenity-is/corelib"
-import { text } from "@serenity-is/corelib/q";
+import { localText } from "@serenity-is/corelib/q";
 
 @Decorators.registerClass()
 export class UserDialog extends EntityDialog<UserRow, any> {
@@ -33,7 +33,7 @@ export class UserDialog extends EntityDialog<UserRow, any> {
         let buttons = super.getToolbarButtons();
 
         buttons.push({
-            title: text('Site.UserDialog.EditPermissionsButton'),
+            title: localText('Site.UserDialog.EditPermissionsButton'),
             cssClass: 'edit-permissions-button',
             icon: 'fa-lock text-green',
             onClick: () =>

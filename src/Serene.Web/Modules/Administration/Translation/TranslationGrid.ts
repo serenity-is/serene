@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridUtils, LookupEditor, LookupEditorOptions, ToolButton, Widget } from "@serenity-is/corelib";
-import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, text, trimToEmpty, trimToNull } from "@serenity-is/corelib/q";
+import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, localText, trimToEmpty, trimToNull } from "@serenity-is/corelib/q";
 import { Column } from "@serenity-is/sleekgrid";
 import { TranslationItem, TranslationService } from "../";
 
@@ -55,7 +55,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
                 return;
             }
 
-            confirm(text('Db.Administration.Translation.OverrideConfirmation'), done);
+            confirm(localText('Db.Administration.Translation.OverrideConfirmation'), done);
             return;
         }
 
@@ -74,7 +74,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
                 return;
             }
 
-            confirm(text('Db.Administration.Translation.OverrideConfirmation'), done);
+            confirm(localText('Db.Administration.Translation.OverrideConfirmation'), done);
             return;
         }
     }
@@ -128,7 +128,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
         this.sourceLanguage = Widget.create({
             type: LookupEditor,
             element: el => el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
-                text('Db.Administration.Translation.SourceLanguage') + ' ---'),
+                localText('Db.Administration.Translation.SourceLanguage') + ' ---'),
             options: opt
         });
 
@@ -144,7 +144,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
         this.targetLanguage = Widget.create({
             type: LookupEditor,
             element: el => el.appendTo(this.toolbar.element).attr('placeholder', '--- ' +
-                text('Db.Administration.Translation.TargetLanguage') + ' ---'),
+                localText('Db.Administration.Translation.TargetLanguage') + ' ---'),
             options: opt
         });
 
@@ -187,7 +187,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
     
     protected getButtons(): ToolButton[] {
         return [{
-            title: text('Db.Administration.Translation.SaveChangesButton'),
+            title: localText('Db.Administration.Translation.SaveChangesButton'),
             onClick: e => this.saveChanges(this.targetLanguageKey).then(() => this.refresh()),
             cssClass: 'apply-changes-button'
         }];

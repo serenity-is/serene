@@ -1,7 +1,7 @@
 import { ChangePasswordForm, ChangePasswordRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { format, information, resolveUrl, serviceCall, text } from "@serenity-is/corelib/q";
+import { format, information, resolveUrl, serviceCall, localText, htmlEncode } from "@serenity-is/corelib/q";
 
 $(function () {
     new ChangePasswordPanel($('#ChangePasswordPanel'));
@@ -25,7 +25,7 @@ class ChangePasswordPanel extends PropertyPanel<ChangePasswordRequest, any> {
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.ConfirmPassword.value !== this.form.NewPassword.value) {
-                return text('Validation.PasswordConfirm');
+                return localText('Validation.PasswordConfirm');
             }
         });
 
@@ -50,12 +50,12 @@ class ChangePasswordPanel extends PropertyPanel<ChangePasswordRequest, any> {
 
     getTemplate() {
         return `<div class="s-Panel">
-<h3 class="page-title mb-4 text-center">${text("Forms.Membership.ChangePassword.FormTitle")}</h3>
+<h3 class="page-title mb-4 text-center">${htmlEncode(localText("Forms.Membership.ChangePassword.FormTitle"))}</h3>
 <form id="~_Form" action="">
     <div id="~_PropertyGrid"></div>
     <div class="px-field mt-4">
         <button id="~_SubmitButton" type="submit" class="btn btn-primary w-100">
-            ${Texts.Forms.Membership.ChangePassword.SubmitButton}
+            ${htmlEncode(Texts.Forms.Membership.ChangePassword.SubmitButton)}
         </button>
     </div>
 </form>

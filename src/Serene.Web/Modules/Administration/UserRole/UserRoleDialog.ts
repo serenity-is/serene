@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { DialogButton, format, notifySuccess, serviceRequest, text } from "@serenity-is/corelib/q";
+import { DialogButton, format, notifySuccess, serviceRequest, localText } from "@serenity-is/corelib/q";
 import { UserRoleService } from "../";
 import { RoleCheckEditor } from "./RoleCheckEditor";
 
@@ -19,12 +19,12 @@ export class UserRoleDialog extends TemplatedDialog<UserRoleDialogOptions> {
             this.permissions.value = response.Entities.map(x => x.toString());
         });
 
-        this.dialogTitle = format(text('Site.UserRoleDialog.DialogTitle'), this.options.username);
+        this.dialogTitle = format(localText('Site.UserRoleDialog.DialogTitle'), this.options.username);
     }
 
     protected getDialogButtons(): DialogButton[] {
         return [{
-            text: text('Dialogs.OkButton'),
+            text: localText('Dialogs.OkButton'),
             cssClass: 'btn btn-primary',
             click: () => {
                 serviceRequest('Administration/UserRole/Update', {
@@ -32,11 +32,11 @@ export class UserRoleDialog extends TemplatedDialog<UserRoleDialogOptions> {
                     Roles: this.permissions.value.map(x => parseInt(x, 10))
                 }, _ => {
                     this.dialogClose();
-                    notifySuccess(text('Site.UserRoleDialog.SaveSuccess'));
+                    notifySuccess(localText('Site.UserRoleDialog.SaveSuccess'));
                 });
             }
         }, {
-            text: text('Dialogs.CancelButton'),
+            text: localText('Dialogs.CancelButton'),
             click: () => this.dialogClose()
         }];
     }

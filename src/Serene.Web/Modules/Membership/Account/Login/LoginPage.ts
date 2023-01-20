@@ -1,7 +1,7 @@
 import { LoginForm, LoginRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { ErrorHandling, isEmptyOrNull, notifyError, parseQueryString, resolveUrl, serviceCall, ServiceResponse, text } from "@serenity-is/corelib/q";
+import { ErrorHandling, isEmptyOrNull, notifyError, parseQueryString, resolveUrl, serviceCall, ServiceResponse, localText, htmlEncode } from "@serenity-is/corelib/q";
 
 $(function () {
     var loginPanel = new LoginPanel($('#LoginPanel')).init();
@@ -81,24 +81,24 @@ class LoginPanel extends PropertyPanel<LoginRequest, any> {
 </h2>
 
 <div class="s-Panel p-4">
-    <h5 class="text-center my-4">${Texts.Forms.Membership.Login.LoginToYourAccount}</h5>
+    <h5 class="text-center my-4">${htmlEncode(Texts.Forms.Membership.Login.LoginToYourAccount)}</h5>
     <form id="~_Form" action="">
         <div id="~_PropertyGrid"></div>
         <div class="px-field">
             <a class="float-end text-decoration-none" href="${resolveUrl('~/Account/ForgotPassword')}">
-                ${Texts.Forms.Membership.Login.ForgotPassword}
+                ${htmlEncode(Texts.Forms.Membership.Login.ForgotPassword)}
             </a>
         </div>
         <div class="px-field">
             <button id="~_LoginButton" type="submit" class="btn btn-primary my-3 w-100">
-                ${Texts.Forms.Membership.Login.SignInButton}
+                ${htmlEncode(Texts.Forms.Membership.Login.SignInButton)}
             </button>
         </div>
     </form>
 </div>
 
 <div class="text-center mt-2">
-    <a class="text-decoration-none" href="${resolveUrl('~/Account/SignUp')}">${text("Forms.Membership.Login.SignUpButton")}</a>
+    <a class="text-decoration-none" href="${resolveUrl('~/Account/SignUp')}">${htmlEncode(localText("Forms.Membership.Login.SignUpButton"))}</a>
 </div>   
 `;
     }

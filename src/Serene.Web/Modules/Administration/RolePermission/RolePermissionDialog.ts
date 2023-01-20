@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { format, getRemoteData, notifySuccess, text } from "@serenity-is/corelib/q";
+import { format, getRemoteData, notifySuccess, localText } from "@serenity-is/corelib/q";
 import { RolePermissionService, UserPermissionRow } from "../";
 import { PermissionCheckEditor } from "../UserPermission/PermissionCheckEditor";
 
@@ -30,7 +30,7 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
 
         opt.buttons = [
             {
-                text: text('Dialogs.OkButton'),
+                text: localText('Dialogs.OkButton'),
                 click: e => {
                     RolePermissionService.Update({
                         RoleID: this.options.roleID,
@@ -39,15 +39,15 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
                         Submodule: null
                     }, response => {
                         this.dialogClose();
-                        window.setTimeout(() => notifySuccess(text('Site.RolePermissionDialog.SaveSuccess')), 0);
+                        window.setTimeout(() => notifySuccess(localText('Site.RolePermissionDialog.SaveSuccess')), 0);
                     });
                 }
             }, {
-                text: text('Dialogs.CancelButton'),
+                text: localText('Dialogs.CancelButton'),
                 click: () => this.dialogClose()
             }];
 
-        opt.title = format(text('Site.RolePermissionDialog.DialogTitle'),
+        opt.title = format(localText('Site.RolePermissionDialog.DialogTitle'),
             this.options.title);
 
         return opt;

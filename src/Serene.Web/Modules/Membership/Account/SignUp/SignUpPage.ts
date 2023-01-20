@@ -1,7 +1,7 @@
 import { SignUpForm, SignUpRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { information, resolveUrl, serviceCall, text } from "@serenity-is/corelib/q";
+import { information, resolveUrl, serviceCall, localText, htmlEncode } from "@serenity-is/corelib/q";
 import { SignUpResponse } from "@/ServerTypes/Membership/SignUpResponse";
 
 $(function () {
@@ -27,7 +27,7 @@ class SignUpPanel extends PropertyPanel<SignUpRequest, any> {
 
         this.form.ConfirmPassword.addValidationRule(this.uniqueName, e => {
             if (this.form.ConfirmPassword.value !== this.form.Password.value) {
-                return text('Validation.PasswordConfirm');
+                return localText('Validation.PasswordConfirm');
             }
         });
 
@@ -73,14 +73,14 @@ class SignUpPanel extends PropertyPanel<SignUpRequest, any> {
 
     <div class="s-Panel p-4">
 
-        <h5 class="text-center my-4">${Texts.Forms.Membership.SignUp.FormTitle}</h5>
-        <p class="text-center">${Texts.Forms.Membership.SignUp.FormInfo}</p>
+        <h5 class="text-center my-4">${htmlEncode(Texts.Forms.Membership.SignUp.FormTitle)}</h5>
+        <p class="text-center">${htmlEncode(Texts.Forms.Membership.SignUp.FormInfo)}</p>
 
         <form id="~_Form" action="">
             <div id="~_PropertyGrid"></div>
             <div class="px-field">
                 <button id="~_SubmitButton" type="submit" class="btn btn-primary my-4 w-100">
-                    ${Texts.Forms.Membership.SignUp.SubmitButton}
+                    ${htmlEncode(Texts.Forms.Membership.SignUp.SubmitButton)}
                 </button>
             </div>
         </form>
