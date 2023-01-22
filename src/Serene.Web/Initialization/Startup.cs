@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
-using Serene.AppServices;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
@@ -77,10 +76,10 @@ namespace Serene
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
-                options.SupportedUICultures = UserCultureProvider.SupportedCultures;
-                options.SupportedCultures = UserCultureProvider.SupportedCultures;
+                options.SupportedUICultures = AppServices.UserCultureProvider.SupportedCultures;
+                options.SupportedCultures = AppServices.UserCultureProvider.SupportedCultures;
                 options.RequestCultureProviders.Insert(Math.Max(options.RequestCultureProviders.Count - 1, 0),
-                    new UserCultureProvider()); // insert it before AcceptLanguage header provider
+                    new AppServices.UserCultureProvider()); // insert it before AcceptLanguage header provider
             });
 
             var dataProtectionKeysFolder = Configuration?["DataProtectionKeysFolder"];
