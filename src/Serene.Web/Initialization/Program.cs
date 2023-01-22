@@ -22,7 +22,7 @@ namespace Serene
                 .ConfigureAppConfiguration((builderContext, config) =>
                 {
                     config.AddJsonFile("appsettings.bundles.json");
-                    config.AddJsonFile($"appsettings.machine.json", optional: true);
+                    config.AddJsonFile("appsettings.machine.json", optional: true);
                 });
         }
     }

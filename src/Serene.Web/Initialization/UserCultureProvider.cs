@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using System;
 using System.Collections.Generic;
@@ -8,35 +8,34 @@ using System.Threading.Tasks;
 
 namespace Serene.AppServices
 {
-    public class UserCultureProvider : IRequestCultureProvider
+    public class UserCultureProvider : RequestCultureProvider
     {
-        private static Dictionary<string, string> TwoLetterToFourLetter = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+        {
+            var culture = httpContext.Request.Cookies["LanguagePreference"];
+            if (string.IsNullOrEmpty(culture) ||
+                culture.Length > 5)
+                return NullProviderCultureResult;
+
+            if (culture.Length == 2)
+            {
+                if (TwoLetterToFourLetter.TryGetValue(culture, out string code))
+                    culture = code;
+                else
+                    culture = culture + "-" + culture.ToUpperInvariant();
+            }
+
+            return Task.FromResult(new ProviderCultureResult(culture));
+        }
+
+        private static readonly Dictionary<string, string> TwoLetterToFourLetter =
+            new(StringComparer.OrdinalIgnoreCase)
         {
             { "en", "en-US" },
             { "zh", "zh-CN" },
             { "vi", "vi-VN" },
             { "fa", "fa-IR" }
         };
-
-        public Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
-        {
-            var culture = httpContext.Request.Cookies["LanguagePreference"];
-            if (string.IsNullOrEmpty(culture))
-                culture = null;
-            else
-            {
-                if (culture.Length == 2)
-                {
-                    string code;
-                    if (TwoLetterToFourLetter.TryGetValue(culture, out code))
-                        culture = code;
-                    else
-                        culture = culture + "-" + culture.ToUpperInvariant();
-                }
-            }
-
-            return Task.FromResult(new ProviderCultureResult(culture ?? "en-US", culture ?? "en-US"));
-        }
 
         private static List<CultureInfo> supportedCultures;
         private static readonly string[] supportedCultureIdentifiers = new string[] {
@@ -54,26 +53,19 @@ namespace Serene.AppServices
             "zh-CN"
         };
 
-
         public static IList<CultureInfo> SupportedCultures
         {
-            get
+            get => supportedCultures ??= supportedCultureIdentifiers.Select(x =>
             {
-                if (supportedCultures == null)
-                    supportedCultures = supportedCultureIdentifiers.Select(x =>
-                    {
-                        try
-                        {
-                            return new CultureInfo(x);
-                        }
-                        catch
-                        {
-                            return null;
-                        }
-                    }).Where(x => x != null).ToList();
-
-                return supportedCultures;
-            }
+                try
+                {
+                    return new CultureInfo(x);
+                }
+                catch
+                {
+                    return null;
+                }
+            }).Where(x => x != null).ToList();
         }
     }
 

@@ -16,14 +16,15 @@ using System.Threading;
 namespace Serene
 {
     public class DataMigrations : IDataMigrations
-    { 
+    {
         private static readonly string[] databaseKeys = new[] {
-            "Default",
+            "Default"
 #if (Northwind)
-            "Northwind"
+            , "Northwind"
 #endif
         };
 
+        public bool SkippedMigrations { get; private set; }
         protected ISqlConnections SqlConnections { get; }
         protected IWebHostEnvironment HostEnvironment { get; }
 
@@ -52,7 +53,7 @@ namespace Serene
         {
             var cs = SqlConnections.TryGetConnectionString(databaseKey);
             if (cs == null)
-                throw new ArgumentOutOfRangeException(nameof(databaseKey));
+                throw new ArgumentNullException(nameof(databaseKey));
 
             var serverType = cs.Dialect.ServerType;
             bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
@@ -73,8 +74,8 @@ namespace Serene
 
             if (isFirebird)
             {
-                if (cb.ConnectionString.IndexOf(@"localhost") < 0 &&
-                    cb.ConnectionString.IndexOf(@"127.0.0.1") < 0)
+                if (cb.ConnectionString.IndexOf(@"localhost", StringComparison.Ordinal) < 0 &&
+                    cb.ConnectionString.IndexOf(@"127.0.0.1", StringComparison.Ordinal) < 0)
                     return;
 
                 var database = cb["Database"] as string;
@@ -86,7 +87,8 @@ namespace Serene
                     return;
                 Directory.CreateDirectory(Path.GetDirectoryName(database));
 
-                using var fbConnection = SqlConnections.New(cb.ConnectionString, cs.ProviderName, cs.Dialect);
+                using var fbConnection = SqlConnections.New(cb.ConnectionString,
+                    cs.ProviderName, cs.Dialect);
                 ((WrappedConnection)fbConnection).ActualConnection.GetType()
                     .GetMethod("CreateDatabase", new Type[] { typeof(string), typeof(bool) })
                     .Invoke(null, new object[] { fbConnection.ConnectionString, false });
@@ -109,29 +111,9 @@ namespace Serene
             var catalog = cb[catalogKey] as string;
             cb[catalogKey] = isPostgres ? "postgres" : null;
 
-            using var serverConnection = SqlConnections.New(cb.ConnectionString, cs.ProviderName, cs.Dialect);
-            try
-            {
-                serverConnection.Open();
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Number != -2146232060)
-                    throw;
-
-                const string oldVer = @"\v11.0";
-
-                if (cb.ConnectionString.Contains(oldVer, StringComparison.CurrentCulture))
-                    throw new Exception(
-                        "You don't seem to have SQL Express LocalDB 2012 installed.\r\n\r\n" +
-                        "If you have Visual Studio 2015 (with SQL LocalDB 2014) " +
-                        "try changing '" + databaseKey + "' connection string in WEB.CONFIG to:\r\n\r\n" +
-                        cs.ConnectionString.Replace(oldVer, @"\MSSqlLocalDB") + "\r\n\r\nor:\r\n\r\n" +
-                        cs.ConnectionString.Replace(oldVer, @"\v12.0") + "';\r\n\r\n" +
-                        "You can also try another SQL server type like .\\SQLExpress.");
-
-                throw;
-            }
+            using var serverConnection = SqlConnections.New(cb.ConnectionString,
+                cs.ProviderName, cs.Dialect);
+            serverConnection.Open();
 
             string databasesQuery = "SELECT * FROM sys.databases WHERE NAME = @name";
             string createDatabaseQuery = @"CREATE DATABASE [{0}]";
@@ -152,24 +134,20 @@ namespace Serene
 
             var isLocalServer = isSql && (
                 serverConnection.ConnectionString.Contains(@"(localdb)\", StringComparison.OrdinalIgnoreCase) ||
-                serverConnection.ConnectionString.Contains(@".\", StringComparison.CurrentCulture) ||
-                serverConnection.ConnectionString.Contains(@"localhost", StringComparison.CurrentCulture) ||
-                serverConnection.ConnectionString.Contains(@"127.0.0.1", StringComparison.CurrentCulture));
+                serverConnection.ConnectionString.Contains(@".\", StringComparison.OrdinalIgnoreCase) ||
+                serverConnection.ConnectionString.Contains(@"localhost", StringComparison.OrdinalIgnoreCase) ||
+                serverConnection.ConnectionString.Contains(@"127.0.0.1", StringComparison.OrdinalIgnoreCase));
 
             string command;
             if (isLocalServer)
             {
-                string baseDirectory;
-                var hostingEnvironment = HostEnvironment;
-                if (hostingEnvironment != null)
-                    baseDirectory = hostingEnvironment.ContentRootPath;
-                else
-                    baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string baseDirectory = HostEnvironment.ContentRootPath;
 
-                var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data/".Replace('/', Path.DirectorySeparatorChar)), catalog);
+                var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data"), catalog);
                 Directory.CreateDirectory(Path.GetDirectoryName(filename));
 
-                command = String.Format(@"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
+                command = string.Format(CultureInfo.InvariantCulture, @"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') " + 
+                    "LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
                     catalog, filename);
 
                 if (File.Exists(filename + ".mdf"))
@@ -177,24 +155,20 @@ namespace Serene
             }
             else
             {
-                command = String.Format(createDatabaseQuery, catalog);
+                command = string.Format(CultureInfo.InvariantCulture, createDatabaseQuery, catalog);
             }
 
             serverConnection.Execute(command);
             SqlConnection.ClearAllPools();
         }
 
-        public bool SkippedMigrations { get; private set; }
-
         private void RunMigrations(string databaseKey)
         {
             var cs = SqlConnections.TryGetConnectionString(databaseKey);
             if (cs == null)
                 throw new ArgumentOutOfRangeException(nameof(databaseKey));
-            
 
             string serverType = cs.Dialect.ServerType;
-            
             bool isOracle = serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
             bool isFirebird = serverType.StartsWith("Firebird", StringComparison.OrdinalIgnoreCase);
 
@@ -213,6 +187,7 @@ namespace Serene
                 Path.GetDirectoryName(typeof(DataMigrations).Assembly.Location));
             var migrationNamespace = "Serene.Migrations." + databaseKey + "DB";
             var migrationAssemblies = new[] { typeof(DataMigrations).Assembly };
+
 #if (Northwind)
             if (databaseKey.Equals("Northwind", StringComparison.OrdinalIgnoreCase))
             {

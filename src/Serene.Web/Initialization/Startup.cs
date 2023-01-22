@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -64,10 +64,25 @@ namespace Serene
             services.Configure<LocalTextPackages>(Configuration.GetSection(LocalTextPackages.SectionKey));
             services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
             services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
+            services.Configure<Serenity.Extensions.EnvironmentSettings>(
+                Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
+            {
+                services.Configure<ForwardedHeadersOptions>(options =>
+                {
+                    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+                });
+            }
 
             services.Configure<Serenity.Extensions.EnvironmentSettings>(Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
 
-            
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.SupportedUICultures = UserCultureProvider.SupportedCultures;
+                options.SupportedCultures = UserCultureProvider.SupportedCultures;
+                options.RequestCultureProviders.Insert(Math.Max(options.RequestCultureProviders.Count - 1, 0),
+                    new UserCultureProvider()); // insert it before AcceptLanguage header provider
+            });
+
             var dataProtectionKeysFolder = Configuration?["DataProtectionKeysFolder"];
             if (!string.IsNullOrEmpty(dataProtectionKeysFolder))
             {
@@ -76,7 +91,6 @@ namespace Serene
                     services.AddDataProtection()
                         .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysFolder));
             }
-
 
             services.AddAntiforgery(options => 
             {
@@ -95,13 +109,14 @@ namespace Serene
 
             var builder = services.AddControllersWithViews(options =>
             {
-                options.Filters.Add(typeof(AutoValidateAntiforgeryTokenAttribute));
+                options.Filters.Add(typeof(AutoValidateAntiforgeryIgnoreBearerAttribute));
                 options.Filters.Add(typeof(AntiforgeryCookieResultFilterAttribute));
                 options.ModelBinderProviders.Insert(0, new ServiceEndpointModelBinderProvider());
                 options.Conventions.Add(new ServiceEndpointActionModelConvention());
             }).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
             
             if (HostEnvironment.IsDevelopment())
@@ -129,9 +144,6 @@ namespace Serene
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IReportRegistry, ReportRegistry>();
-            services.AddExcelExporter();
-            services.AddSingleton<IDataMigrations, DataMigrations>();
             services.AddSingleton<Serenity.Extensions.IEmailSender, Serenity.Extensions.EmailSender>();
             services.AddServiceHandlers();
             services.AddDynamicScripts();
@@ -144,6 +156,9 @@ namespace Serene
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
             services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
+            services.AddSingleton<IReportRegistry, ReportRegistry>();
+            services.AddExcelExporter();
+            services.AddSingleton<IDataMigrations, DataMigrations>();
         }
 
         public static void InitializeLocalTexts(IServiceProvider services)
@@ -170,14 +185,10 @@ namespace Serene
 
             InitializeLocalTexts(app.ApplicationServices);
 
-            var reqLocOpt = new RequestLocalizationOptions
-            {
-                SupportedUICultures = UserCultureProvider.SupportedCultures,
-                SupportedCultures = UserCultureProvider.SupportedCultures
-            };
-            reqLocOpt.RequestCultureProviders.Clear();
-            reqLocOpt.RequestCultureProviders.Add(new UserCultureProvider());
-            app.UseRequestLocalization(reqLocOpt);
+            app.UseRequestLocalization();
+
+            if (Configuration["UseForwardedHeaders"] == "True")
+                app.UseForwardedHeaders();
 
             if (env.IsDevelopment())
             {
@@ -189,11 +200,17 @@ namespace Serene
                 app.UseHsts();
             }
 
+            if (!string.IsNullOrEmpty(Configuration["UsePathBase"]))
+                app.UsePathBase(Configuration["UsePathBase"]);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            ConfigureTestPipeline?.Invoke(app);
 
             app.UseDynamicScripts();
 
@@ -203,6 +220,8 @@ namespace Serene
 
             app.ApplicationServices.GetRequiredService<IDataMigrations>().Initialize();
         }
+
+        public static Action<IApplicationBuilder> ConfigureTestPipeline { get; set; }
 
         public static void RegisterDataProviders()
         {
