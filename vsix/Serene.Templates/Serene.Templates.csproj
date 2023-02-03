@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>6.5.1.0</PackageVersion>
+    <PackageVersion>6.5.1.2</PackageVersion>
     <PackageId>Serene.Templates</PackageId>
     <PackageOutputPath>..\.nupkg</PackageOutputPath>
     <Title>Serene Project Templates</Title>
@@ -11,6 +11,7 @@
     <PackageIcon>package-icon.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/serenity-is/Serene</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -21,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="package-icon.png" PackagePath="package-icon.png" />
+    <Content Include="README.md" PackagePath="README.md" />
     <Content Include="templates\.template.config\**\*">
       <PackagePath>content\templates\.template.config\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
     </Content>
