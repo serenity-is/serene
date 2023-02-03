@@ -2,7 +2,7 @@
   "name": "serene.web",
   "dependencies": {
     "@serenity-is/corelib": "file:../../Serenity/src/Serenity.Scripts/corelib",
-    "@serenity-is/sleekgrid": "1.5.2",
+    "@serenity-is/sleekgrid": "1.5.3",
     "@types/jquery": "2.0.48",
     "@types/jqueryui": "1.12.6",
     "@types/jquery.validation": "1.16.7",
