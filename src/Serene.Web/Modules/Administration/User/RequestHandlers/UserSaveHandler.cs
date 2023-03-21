@@ -68,9 +68,6 @@ namespace Serene.Administration
             {
                 environmentOptions.CheckPublicDemo(Row.UserId);
 
-                if (Row.IsAssigned(Fld.Password) && !Row.Password.IsEmptyOrNull())
-                    password = Row.Password = UserHelper.ValidatePassword(Row.Password, Localizer);
-
                 if (Row.Username != Old.Username)
                     Row.Username = ValidateUsername(Connection, Row.Username, Old.UserId.Value, Localizer);
 
@@ -82,7 +79,15 @@ namespace Serene.Administration
             {
                 Row.Username = ValidateUsername(Connection, Row.Username, null, Localizer);
                 Row.DisplayName = UserHelper.ValidateDisplayName(Row.DisplayName, Localizer);
-                password = UserHelper.ValidatePassword(Row.Password, Localizer);
+            }
+
+            if (IsCreate || (Row.IsAssigned(Fld.Password) && !Row.Password.IsEmptyOrNull()))
+            {
+                if (Row.IsAssigned(Fld.PasswordConfirm) && !Row.PasswordConfirm.IsEmptyOrNull() &&
+                    Row.Password != Row.PasswordConfirm)
+                    throw new ValidationError("PasswordConfirmMismatch", "PasswordConfirm", Texts.Validation.PasswordConfirmMismatch.ToString(Localizer));
+
+                password = Row.Password = UserHelper.ValidatePassword(Row.Password, Localizer);
             }
         }
 

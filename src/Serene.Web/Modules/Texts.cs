@@ -69,12 +69,12 @@ namespace Serene
                 public static class SignUp
                 {
                     public static LocalText ActivateEmailSubject = "Activate Your Serene Account";
-                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " + 
+                    public static LocalText ActivationCompleteMessage = "Your account is now activated. " +
                         "Use the e-mail and password you used while signing up to login.";
                     public static LocalText FormInfo = "Enter your details to create a free account.";
                     public static LocalText FormTitle = "Create a new account";
                     public static LocalText SubmitButton = "Sign Up";
-                    public static LocalText Success = "An e-mail with instructions to active your account is " + 
+                    public static LocalText Success = "An e-mail with instructions to active your account is " +
                         "sent to your e-mail address. Please check your e-mails.";
 
                     public static LocalText DisplayName = "Full Name";
@@ -191,6 +191,7 @@ namespace Serene
             public static LocalText AuthenticationError = "Invalid username or password!";
             public static LocalText CurrentPasswordMismatch = "Your current password is not valid!";
             public static LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
+            public static LocalText PasswordConfirmMismatch = "The passwords entered doesn't match!";
             public static LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
             public static LocalText InvalidActivateToken = "Your token to activate your account is invalid or has expired!";
             public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";

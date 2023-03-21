@@ -17,7 +17,7 @@ namespace Serene.Administration.Forms
         public string UserImage { get; set; }
         [PasswordEditor, Required(true)]
         public string Password { get; set; }
-        [PasswordEditor, OneWay, Required(true)]
+        [PasswordEditor, Required(true)]
         public string PasswordConfirm { get; set; }
         [OneWay]
         public string Source { get; set; }
