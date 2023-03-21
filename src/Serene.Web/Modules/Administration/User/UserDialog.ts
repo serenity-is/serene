@@ -1,7 +1,8 @@
 import { UserForm, UserRow, UserService } from "../";
 import { UserPermissionDialog } from "../UserPermission/UserPermissionDialog";
-import { Decorators, EntityDialog } from "@serenity-is/corelib"
-import { localText } from "@serenity-is/corelib/q";
+import { Decorators, EditorUtils, EntityDialog } from "@serenity-is/corelib"
+import { format, localText } from "@serenity-is/corelib/q";
+import { Texts } from "@/ServerTypes/Texts";
 
 @Decorators.registerClass()
 export class UserDialog extends EntityDialog<UserRow, any> {
@@ -17,14 +18,18 @@ export class UserDialog extends EntityDialog<UserRow, any> {
     constructor() {
         super();
 
+        this.form.Password.change(() => {
+            EditorUtils.setRequired(this.form.PasswordConfirm, this.form.Password.value.length > 0);
+        });
+
         this.form.Password.addValidationRule(this.uniqueName, e => {
-            if (this.form.Password.value.length < 7)
-                return "Password must be at least 7 characters!";
+            if (this.form.Password.value.length < 6)
+                return format(localText(Texts.Validation.MinRequiredPasswordLength), 6);
         });
 
         this.form.PasswordConfirm.addValidationRule(this.uniqueName, e => {
             if (this.form.Password.value != this.form.PasswordConfirm.value)
-                return "The passwords entered doesn't match!";
+                return localText(Texts.Validation.PasswordConfirmMismatch);
         });
     }
 
@@ -33,7 +38,7 @@ export class UserDialog extends EntityDialog<UserRow, any> {
         let buttons = super.getToolbarButtons();
 
         buttons.push({
-            title: localText('Site.UserDialog.EditPermissionsButton'),
+            title: localText(Texts.Site.UserDialog.EditPermissionsButton),
             cssClass: 'edit-permissions-button',
             icon: 'fa-lock text-green',
             onClick: () =>

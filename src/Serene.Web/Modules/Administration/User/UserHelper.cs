@@ -46,7 +46,7 @@ namespace Serene.Administration
             password = password.TrimToNull();
 
             if (password == null ||
-                password.Length < 5)
+                password.Length < 6)
                 throw new ValidationError("PasswordLength", "Password",
                     string.Format(CultureInfo.CurrentCulture, Texts.Validation.MinRequiredPasswordLength.ToString(localizer), 5));
 
@@ -63,7 +63,7 @@ namespace Serene.Administration
             return CalculateHash(password, salt);
         }
 
-        public static string GetImpersonationToken(IMemoryCache memoryCache, IDataProtector dataProtector, 
+        public static string GetImpersonationToken(IMemoryCache memoryCache, IDataProtector dataProtector,
             byte[] clientHash, string forUsername, string username)
         {
             if (memoryCache is null)
