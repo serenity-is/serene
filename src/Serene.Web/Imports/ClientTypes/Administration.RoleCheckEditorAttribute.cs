@@ -5,15 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Serene.Administration
-{
-    public partial class RoleCheckEditorAttribute : CustomEditorAttribute
-    {
-        public const string Key = "Serene.Administration.RoleCheckEditor";
+namespace Serene.Administration;
 
-        public RoleCheckEditorAttribute()
-            : base(Key)
-        {
-        }
+public partial class RoleCheckEditorAttribute : CustomEditorAttribute
+{
+    public const string Key = "Serene.Administration.RoleCheckEditor";
+
+    public RoleCheckEditorAttribute()
+        : base(Key)
+    {
     }
 }

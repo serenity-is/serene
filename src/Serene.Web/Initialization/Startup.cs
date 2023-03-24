@@ -51,10 +51,10 @@ namespace Serene
                 typeof(Startup).Assembly,
                 typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
 #if (Northwind)
-                typeof(Serenity.Demo.Northwind.CustomerController).Assembly,
+                typeof(Serenity.Demo.Northwind.CustomerPage).Assembly,
 #endif
 #if (BasicSamples)
-                typeof(Serenity.Demo.BasicSamples.BasicSamplesController).Assembly,
+                typeof(Serenity.Demo.BasicSamples.BasicSamplesPage).Assembly,
 #endif
             }));
 
@@ -155,8 +155,7 @@ namespace Serene
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddSingleton<IPermissionService, Administration.PermissionService>();
             services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
-            services.AddSingleton<IReportRegistry, ReportRegistry>();
-            services.AddExcelExporter();
+            services.AddReporting();
             services.AddSingleton<IDataMigrations, DataMigrations>();
         }
 

@@ -1,7 +1,6 @@
 ﻿import { TranslationListRequest } from "./TranslationListRequest";
-import { ListResponse, SaveResponse } from "@serenity-is/corelib";
+import { ListResponse, ServiceOptions, SaveResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { TranslationItem } from "./TranslationItem";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 import { TranslationUpdateRequest } from "./TranslationUpdateRequest";
 
 export namespace TranslationService {

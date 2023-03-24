@@ -312,7 +312,6 @@
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="Welcome.htm" OpenInWebBrowser="true">Welcome.htm</ProjectItem>
       <Folder Name="wwwroot" TargetFolderName="wwwroot">
-        <ProjectItem ReplaceParameters="true" TargetFileName="_references.js">_references.js</ProjectItem>
         <Folder Name="Content" TargetFolderName="Content">
           <Folder Name="iCheck" TargetFolderName="iCheck">
             <ProjectItem ReplaceParameters="true" TargetFileName="all.css">all.css</ProjectItem>
@@ -547,10 +546,10 @@
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-56XLOFXF.js">chunk-56XLOFXF.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-6SRMD2IN.js">chunk-6SRMD2IN.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MNHJHLJ6.js">chunk-MNHJHLJ6.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
@@ -602,7 +601,6 @@
           </Folder>
         </Folder>
         <Folder Name="Scripts" TargetFolderName="Scripts">
-          <ProjectItem ReplaceParameters="true" TargetFileName="_references.js">_references.js</ProjectItem>
           <Folder Name="datepicker" TargetFolderName="datepicker">
             <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap-datepicker.js">bootstrap-datepicker.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="datepicker3.css">datepicker3.css</ProjectItem>

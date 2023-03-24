@@ -1,6 +1,5 @@
-﻿import { SaveRequest, SaveResponse, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse } from "@serenity-is/corelib";
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib/q";
 import { LanguageRow } from "./LanguageRow";
-import { ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
 
 export namespace LanguageService {
     export const baseUrl = 'Administration/Language';
