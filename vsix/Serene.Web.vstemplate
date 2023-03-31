@@ -174,10 +174,6 @@
           <Folder Name="File" TargetFolderName="File">
             <ProjectItem ReplaceParameters="true" TargetFileName="FilePage.cs">FilePage.cs</ProjectItem>
           </Folder>
-          <Folder Name="GridPage" TargetFolderName="GridPage">
-            <ProjectItem ReplaceParameters="true" TargetFileName="GridPageExtensions.cs">GridPageExtensions.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="GridPageModel.cs">GridPageModel.cs</ProjectItem>
-          </Folder>
           <Folder Name="Helpers" TargetFolderName="Helpers">
             <ProjectItem ReplaceParameters="true" TargetFileName="HumanizeSqlExceptionBehavior.cs">HumanizeSqlExceptionBehavior.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LanguageList.ts">LanguageList.ts</ProjectItem>
@@ -306,7 +302,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_LayoutNoNavigation.cshtml">_LayoutNoNavigation.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="_Sidebar.cshtml">_Sidebar.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="GridPage.cshtml">GridPage.cshtml</ProjectItem>
         </Folder>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
@@ -547,8 +542,8 @@
           <Folder Name="_chunks" TargetFolderName="_chunks">
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-56XLOFXF.js">chunk-56XLOFXF.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-6SRMD2IN.js">chunk-6SRMD2IN.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-DCANN3W3.js">chunk-DCANN3W3.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K7QPYAWE.js">chunk-K7QPYAWE.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">

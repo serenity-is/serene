@@ -57,6 +57,5 @@ public static class Views
         public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
         public const string _Sidebar = "~/Views/Shared/_Sidebar.cshtml";
         public const string Error = "~/Views/Shared/Error.cshtml";
-        public const string GridPage = "~/Views/Shared/GridPage.cshtml";
     }
 }
