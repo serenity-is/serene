@@ -281,11 +281,25 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
-        <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="package-lock.json">package-lock.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="package.json">package.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="sergen.json">sergen.json</ProjectItem>
+      <Folder Name="texts" TargetFolderName="texts">
+        <Folder Name="resources" TargetFolderName="resources">
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.fa.json">site.texts.fa.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.it.json">site.texts.it.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.ru.json">site.texts.ru.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>
+        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Texts.cs">Texts.cs</ProjectItem>
+      </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsbuild.js">tsbuild.js</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tsconfig.json">tsconfig.json</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="tslint.json">tslint.json</ProjectItem>
@@ -621,19 +635,6 @@
           </Folder>
           <Folder Name="site" TargetFolderName="site">
             <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.js">common-theme.js</ProjectItem>
-            <Folder Name="texts" TargetFolderName="texts">
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.de.json">site.texts.de.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.es.json">site.texts.es.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.fa.json">site.texts.fa.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.invariant.json">site.texts.invariant.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.it.json">site.texts.it.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt-BR.json">site.texts.pt-BR.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.pt.json">site.texts.pt.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.ru.json">site.texts.ru.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.tr.json">site.texts.tr.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.vi-VN.json">site.texts.vi-VN.json</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="site.texts.zh-CN.json">site.texts.zh-CN.json</ProjectItem>
-            </Folder>
           </Folder>
           <Folder Name="sparkline" TargetFolderName="sparkline">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.sparkline.js">jquery.sparkline.js</ProjectItem>
