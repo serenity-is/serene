@@ -72,6 +72,7 @@ namespace Serene
                 });
             }
 
+            services.ConfigureSection<Serenity.Extensions.ClamAVSettings>(Configuration);
             services.Configure<Serenity.Extensions.EnvironmentSettings>(Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
 
             services.Configure<RequestLocalizationOptions>(options =>
@@ -148,6 +149,7 @@ namespace Serene
             services.AddDynamicScripts();
             services.AddCssBundling();
             services.AddScriptBundling();
+            services.AddSingleton<IUploadAVScanner, Serenity.Extensions.ClamAVUploadScanner>();
             services.AddUploadStorage();
             services.AddSingleton<Administration.IUserPasswordValidator, Administration.UserPasswordValidator>();
             services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();

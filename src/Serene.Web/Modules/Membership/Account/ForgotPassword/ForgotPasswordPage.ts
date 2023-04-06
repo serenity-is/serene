@@ -25,7 +25,7 @@ export class ForgotPasswordPanel extends PropertyPanel<ForgotPasswordRequest, an
                 url: resolveUrl('~/Account/ForgotPassword'),
                 request: request,
                 onSuccess: response => {
-                    information(Texts.Forms.Membership.ForgotPassword.Success, () => {
+                    information(Texts.Forms.Membership.ForgotPassword.SuccessMessage, () => {
                         window.location.href = resolveUrl('~/');
                     });
                 }

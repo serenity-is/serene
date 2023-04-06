@@ -21,8 +21,34 @@ namespace Serene.Membership.Pages
             return View(MVC.Views.Membership.Account.ForgotPassword.ForgotPasswordPage);
         }
 
+        static int GetDeterministicHashCode(string str)
+        {
+            unchecked
+            {
+                int hash1 = (5381 << 16) + 5381;
+                int hash2 = hash1;
+
+                for (int i = 0; i < str.Length; i += 2)
+                {
+                    hash1 = ((hash1 << 5) + hash1) ^ str[i];
+                    if (i == str.Length - 1)
+                        break;
+                    hash2 = ((hash2 << 5) + hash2) ^ str[i + 1];
+                }
+
+                return hash1 + (hash2 * 1566083941);
+            }
+        }
+
+        static int NonceForResetPassword(UserRow user)
+        {
+            return GetDeterministicHashCode(
+                (user.UpdateDate ?? user.InsertDate ?? DateTime.Today).ToString("s") +
+                user.PasswordHash + user.PasswordSalt);
+        }
+
         [HttpPost, JsonRequest]
-        public Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request, 
+        public Result<ServiceResponse> ForgotPassword(ForgotPasswordRequest request,
             [FromServices] IEmailSender emailSender,
             [FromServices] IOptions<EnvironmentSettings> options = null)
         {
@@ -36,7 +62,7 @@ namespace Serene.Membership.Pages
 
                 var user = connection.TryFirst<UserRow>(UserRow.Fields.Email == request.Email);
                 if (user == null)
-                    throw new ValidationError("CantFindUserWithEmail", Texts.Validation.CantFindUserWithEmail.ToString(Localizer));
+                    return new ServiceResponse();
 
                 byte[] bytes;
                 using (var ms = new MemoryStream())
@@ -44,6 +70,7 @@ namespace Serene.Membership.Pages
                 {
                     bw.Write(DateTime.UtcNow.AddHours(3).ToBinary());
                     bw.Write(user.UserId.Value);
+                    bw.Write(NonceForResetPassword(user));
                     bw.Flush();
                     bytes = ms.ToArray();
                 }

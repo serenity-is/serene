@@ -1,4 +1,4 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.ComponentModel;
 
 namespace Serene
@@ -41,7 +41,7 @@ namespace Serene
                     public static LocalText FormInfo = "Please enter the e-mail you used to signup.";
                     public static LocalText FormTitle = "Forgot My Password";
                     public static LocalText SubmitButton = "Reset My Password";
-                    public static LocalText Success = "An e-mail with password reset instructions is sent to your e-mail address.";
+                    public static LocalText SuccessMessage = "If this user exists, we have sent you an e-mail with password reset instructions.";
                     public static LocalText BackToLogin = "I remember my password";
                 }
 
@@ -194,7 +194,6 @@ namespace Serene
             public static LocalText PasswordConfirmMismatch = "The passwords entered doesn't match!";
             public static LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
             public static LocalText InvalidActivateToken = "Your token to activate your account is invalid or has expired!";
-            public static LocalText CantFindUserWithEmail = "Can't find a user with that e-mail adress!";
             public static LocalText EmailInUse = "Another user with this e-mail exists!";
             public static LocalText EmailConfirm = "Emails entered doesn't match!";
             public static LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +

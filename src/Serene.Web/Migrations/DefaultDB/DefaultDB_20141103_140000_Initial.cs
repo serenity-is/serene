@@ -1,4 +1,4 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using Serenity.Extensions;
 using System;
 
@@ -28,7 +28,7 @@ namespace Serene.Migrations.DefaultDB
             Insert.IntoTable("Users").Row(new {
                 Username = "admin",
                 DisplayName = "admin",
-                Email = "admin@dummy.com",
+                Email = "admin@domain" + Serenity.IO.TemporaryFileHelper.RandomFileCode() + ".com",
                 Source = "site",
                 PasswordHash = "rfqpSPYs0ekFlPyvIRTXsdhE/qrTHFF+kKsAUla7pFkXL4BgLGlTe89GDX5DBysenMDj8AqbIZPybqvusyCjwQ",
                 PasswordSalt = "hJf_F",

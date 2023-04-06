@@ -18,6 +18,7 @@ namespace Serene.Membership.Pages
             [FromServices] ISqlConnections sqlConnections)
         {
             int userId;
+            int nonce;
             try
             {
                 var bytes = HttpContext.RequestServices
@@ -30,6 +31,7 @@ namespace Serene.Membership.Pages
                     return Error(Texts.Validation.InvalidResetToken.ToString(Localizer));
 
                 userId = br.ReadInt32();
+                nonce = br.ReadInt32();
             }
             catch (Exception)
             {
@@ -42,7 +44,7 @@ namespace Serene.Membership.Pages
             using (var connection = sqlConnections.NewFor<UserRow>())
             {
                 var user = connection.TryById<UserRow>(userId);
-                if (user == null)
+                if (user == null || nonce != NonceForResetPassword(user))
                     return Error(Texts.Validation.InvalidResetToken.ToString(Localizer));
             }
 
@@ -67,6 +69,7 @@ namespace Serene.Membership.Pages
                     .GetDataProtector("ResetPassword").Unprotect(Convert.FromBase64String(request.Token));
 
                 int userId;
+                int nonce;
                 using (var ms = new MemoryStream(bytes))
                 using (var br = new BinaryReader(ms))
                 {
@@ -75,6 +78,7 @@ namespace Serene.Membership.Pages
                         throw new ValidationError(Texts.Validation.InvalidResetToken.ToString(Localizer));
 
                     userId = br.ReadInt32();
+                    nonce = br.ReadInt32();
                 }
 
                 if (sqlConnections is null)
@@ -84,7 +88,7 @@ namespace Serene.Membership.Pages
                 using (var connection = sqlConnections.NewFor<UserRow>())
                 {
                     user = connection.TryById<UserRow>(userId);
-                    if (user == null)
+                    if (user == null || nonce != NonceForResetPassword(user))
                         throw new ValidationError(Texts.Validation.InvalidResetToken.ToString(Localizer));
                 }
 
@@ -101,7 +105,8 @@ namespace Serene.Membership.Pages
                 {
                     UserId = user.UserId.Value,
                     PasswordSalt = salt,
-                    PasswordHash = hash
+                    PasswordHash = hash,
+                    UpdateDate = DateTime.Now
                 });
 
                 Cache.InvalidateOnCommit(uow, UserRow.Fields);
