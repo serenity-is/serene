@@ -557,8 +557,8 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-56XLOFXF.js">chunk-56XLOFXF.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-6SRMD2IN.js">chunk-6SRMD2IN.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K7QPYAWE.js">chunk-K7QPYAWE.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-SICQDMJZ.js">chunk-SICQDMJZ.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
