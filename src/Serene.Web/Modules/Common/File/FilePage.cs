@@ -20,16 +20,10 @@ namespace Serene.Common.Pages
         }
 
         [Route("upload/{*pathInfo}")]
-        public ActionResult Read(string pathInfo)
+        public IActionResult Read(string pathInfo,
+            [FromServices] IUploadFileResponder responder)
         {
-            UploadPathHelper.CheckFileNameSecurity(pathInfo);
-
-            if (!uploadStorage.FileExists(pathInfo))
-                return new NotFoundResult();
-
-            var mimeType = KnownMimeTypes.Get(pathInfo);
-            var stream = uploadStorage.OpenFile(pathInfo);
-            return new FileStreamResult(stream, mimeType);
+            return responder.Read(pathInfo, Response.Headers);
         }
 
         [Route("File/TemporaryUpload")]
