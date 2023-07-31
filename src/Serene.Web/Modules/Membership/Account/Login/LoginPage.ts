@@ -61,7 +61,7 @@ class LoginPanel extends PropertyPanel<LoginRequest, any> {
     protected redirectToReturnUrl() {
         var q = parseQueryString();
         var returnUrl = q['returnUrl'] || q['ReturnUrl'];
-        if (returnUrl) {
+        if (returnUrl && /^\//.test(returnUrl)) {
             var hash = window.location.hash;
             if (hash != null && hash != '#')
                 returnUrl += hash;
