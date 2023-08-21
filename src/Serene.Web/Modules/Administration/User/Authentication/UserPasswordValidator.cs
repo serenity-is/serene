@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Serenity;
 using Serenity.Abstractions;
+using Serenity.ComponentModel;
 using Serenity.Data;
-using Serene.Administration;
-using Serene.Administration.Repositories;
 using System;
 
 namespace Serene.Administration

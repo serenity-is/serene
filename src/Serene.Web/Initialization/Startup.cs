@@ -151,7 +151,7 @@ namespace Serene
             services.AddScriptBundling();
             services.AddSingleton<IUploadAVScanner, Serenity.Extensions.ClamAVUploadScanner>();
             services.AddUploadStorage();
-            services.AddSingleton<Administration.IUserPasswordValidator, Administration.UserPasswordValidator>();
+            services.AddSingleton<IUserPasswordValidator, Administration.UserPasswordValidator>();
             services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
             services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
             services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();

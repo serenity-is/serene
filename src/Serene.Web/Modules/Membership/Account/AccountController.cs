@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Serene.Administration;
 using Serenity;
 using Serenity.Abstractions;
+using Serenity.ComponentModel;
 using Serenity.Services;
 using System;
 

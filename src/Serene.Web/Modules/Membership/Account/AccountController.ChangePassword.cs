@@ -8,6 +8,8 @@ using Serenity.Web;
 using Serene.Administration;
 using System;
 using System.Globalization;
+using Serenity.Abstractions;
+using Serenity.ComponentModel;
 
 namespace Serene.Membership.Pages
 {

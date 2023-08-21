@@ -115,8 +115,6 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="Authorization.ts">Authorization.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="DirectoryEntry.cs">DirectoryEntry.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="IDirectoryService.cs">IDirectoryService.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="IUserPasswordValidator.cs">IUserPasswordValidator.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="PasswordValidationResult.cs">PasswordValidationResult.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="PermissionService.cs">PermissionService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="UserAccessor.cs">UserAccessor.cs</ProjectItem>
@@ -554,11 +552,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-56XLOFXF.js">chunk-56XLOFXF.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-6SRMD2IN.js">chunk-6SRMD2IN.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-K3EI6ARL.js">chunk-K3EI6ARL.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LJ7TVK7G.js">chunk-LJ7TVK7G.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-SICQDMJZ.js">chunk-SICQDMJZ.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-65EVPBFJ.js">chunk-65EVPBFJ.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LPGO6YL3.js">chunk-LPGO6YL3.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-RK3EK3FG.js">chunk-RK3EK3FG.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-V56BTN3W.js">chunk-V56BTN3W.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VTMATCUZ.js">chunk-VTMATCUZ.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
