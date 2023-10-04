@@ -21,25 +21,9 @@ public static class Views
     {
         public static class Account
         {
-            public static class ChangePassword
-            {
-                public const string ChangePasswordPage = "~/Modules/Membership/Account/ChangePassword/ChangePasswordPage.cshtml";
-            }
-
-            public static class ForgotPassword
-            {
-                public const string ForgotPasswordPage = "~/Modules/Membership/Account/ForgotPassword/ForgotPasswordPage.cshtml";
-            }
-
             public static class Login
             {
                 public const string LoginPage = "~/Modules/Membership/Account/Login/LoginPage.cshtml";
-            }
-
-            public static class ResetPassword
-            {
-                public const string ResetPasswordEmail = "~/Modules/Membership/Account/ResetPassword/ResetPasswordEmail.cshtml";
-                public const string ResetPasswordPage = "~/Modules/Membership/Account/ResetPassword/ResetPasswordPage.cshtml";
             }
 
             public static class SignUp

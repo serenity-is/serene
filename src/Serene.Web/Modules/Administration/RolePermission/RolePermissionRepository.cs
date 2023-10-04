@@ -68,7 +68,7 @@ namespace Serene.Administration.Repositories
             return new SaveResponse();
         }
 
-        private List<MyRow> GetExisting(IDbConnection connection, Int32 roleId, string module, string submodule)
+        private List<MyRow> GetExisting(IDbConnection connection, int roleId, string module, string submodule)
         {
             string prefix = "";
             module = module.TrimToEmpty();

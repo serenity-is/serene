@@ -7,14 +7,14 @@ namespace Serene.Membership
     public class SignUpForm
     {
         [Required(true), Placeholder("full name")]
-        public String DisplayName { get; set; }
+        public string DisplayName { get; set; }
         [EmailAddressEditor, Required(true), Placeholder("e-mail")]
-        public String Email { get; set; }
+        public string Email { get; set; }
         [EmailAddressEditor, Required(true), Placeholder("confirm email")]
-        public String ConfirmEmail { get; set; }
+        public string ConfirmEmail { get; set; }
         [PasswordEditor, Required(true), Placeholder("password")]
-        public String Password { get; set; }
+        public string Password { get; set; }
         [PasswordEditor, Required(true), Placeholder("confirm password")]
-        public String ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

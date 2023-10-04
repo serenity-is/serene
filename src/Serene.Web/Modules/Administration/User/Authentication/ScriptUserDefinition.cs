@@ -11,9 +11,9 @@ namespace Serene
     [ScriptInclude]
     public class ScriptUserDefinition
     {
-        public String Username { get; set; }
-        public String DisplayName { get; set; }
-        public Boolean IsAdmin { get; set; }
+        public string Username { get; set; }
+        public string DisplayName { get; set; }
+        public bool IsAdmin { get; set; }
         public Dictionary<string, bool> Permissions { get; set; }
     }
 }

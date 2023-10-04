@@ -6,6 +6,7 @@ export interface UserRoleRow {
     RoleId?: number;
     Username?: string;
     User?: string;
+    RoleName?: string;
 }
 
 export abstract class UserRoleRow {

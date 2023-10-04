@@ -4,7 +4,7 @@ export interface RolePermissionRow {
     RolePermissionId?: number;
     RoleId?: number;
     PermissionKey?: string;
-    RoleRoleName?: string;
+    RoleName?: string;
 }
 
 export abstract class RolePermissionRow {

@@ -19,7 +19,7 @@ namespace Serene.Administration.Entities
         protected LoggingRow() : base() { }
 
         [NotNull, Insertable(false), Updatable(false)]
-        public Int32? InsertUserId
+        public int? InsertUserId
         {
             get => fields.InsertUserId[this];
             set => fields.InsertUserId[this] = value;
@@ -33,7 +33,7 @@ namespace Serene.Administration.Entities
         }
 
         [Insertable(false), Updatable(false)]
-        public Int32? UpdateUserId
+        public int? UpdateUserId
         {
             get => fields.UpdateUserId[this];
             set => fields.UpdateUserId[this] = value;

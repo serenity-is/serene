@@ -7,6 +7,6 @@ namespace Serene.Administration.Forms
     [BasedOnRow(typeof(RoleRow), CheckNames = true)]
     public class RoleForm
     {
-        public String RoleName { get; set; }
+        public string RoleName { get; set; }
     }
 }

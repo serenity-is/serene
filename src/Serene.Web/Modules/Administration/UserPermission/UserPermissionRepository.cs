@@ -86,7 +86,7 @@ namespace Serene.Administration.Repositories
             return new SaveResponse();
         }
 
-        private List<MyRow> GetExisting(IDbConnection connection, Int32 userId, string module, string submodule)
+        private List<MyRow> GetExisting(IDbConnection connection, int userId, string module, string submodule)
         {
             string prefix = "";
             module = module.TrimToEmpty();
@@ -268,7 +268,7 @@ namespace Serene.Administration.Repositories
                     foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
                         BindingFlags.Public | BindingFlags.NonPublic))
                     {
-                        if (member.FieldType != typeof(String))
+                        if (member.FieldType != typeof(string))
                             continue;
 
                         if (member.GetValue(null) is not string key)

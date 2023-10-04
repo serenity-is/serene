@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -12,7 +12,7 @@ namespace Serene.Administration
     [ReadPermission(PermissionKeys.Security)]
     [ModifyPermission(PermissionKeys.Security)]
     [LookupScript(Permission = PermissionKeys.Security)]
-    public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow
+    public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.RowFields>, IIdRow, INameRow, IIsActiveRow, IDisplayNameRow, IEmailRow, IPasswordRow
     {
         [DisplayName("User Id"), Identity, IdProperty]
         public int? UserId
@@ -107,19 +107,11 @@ namespace Serene.Administration
             set => fields.Roles[this] = value;
         }
 
-        Int16Field IIsActiveRow.IsActiveField
-        {
-            get => fields.IsActive;
-        }
-
-        public UserRow()
-        {
-        }
-
-        public UserRow(RowFields fields)
-            : base(fields)
-        {
-        }
+        StringField IDisplayNameRow.DisplayNameField => fields.DisplayName;
+        StringField IEmailRow.EmailField => fields.Email;
+        Int16Field IIsActiveRow.IsActiveField => fields.IsActive;
+        StringField IPasswordRow.PasswordHashField => fields.PasswordHash;
+        StringField IPasswordRow.PasswordSaltField => fields.PasswordSalt;
 
         public class RowFields : Serenity.Extensions.Entities.LoggingRowFields
         {

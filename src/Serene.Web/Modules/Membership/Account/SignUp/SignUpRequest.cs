@@ -5,8 +5,8 @@ namespace Serene.Membership
 {
     public class SignUpRequest : ServiceRequest
     {
-        public String DisplayName { get; set; }
-        public String Email { get; set; }
-        public String Password { get; set; }
+        public string DisplayName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

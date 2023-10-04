@@ -20,8 +20,8 @@ namespace Serene.Texts {
             namespace RolePermission {
                 export const PermissionKey: string;
                 export const RoleId: string;
+                export const RoleName: string;
                 export const RolePermissionId: string;
-                export const RoleRoleName: string;
             }
 
             namespace Translation {
@@ -67,6 +67,7 @@ namespace Serene.Texts {
 
             namespace UserRole {
                 export const RoleId: string;
+                export const RoleName: string;
                 export const User: string;
                 export const UserId: string;
                 export const UserRoleId: string;

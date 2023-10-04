@@ -14,21 +14,21 @@ namespace Serene.Administration
     public sealed class LanguageRow : Row<LanguageRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Id"), Identity, IdProperty]
-        public Int32? Id
+        public int? Id
         {
             get => fields.Id[this];
             set => fields.Id[this] = value;
         }
 
         [DisplayName("Language Id"), Size(10), NotNull, QuickSearch]
-        public String LanguageId
+        public string LanguageId
         {
             get => fields.LanguageId[this];
             set => fields.LanguageId[this] = value;
         }
 
         [DisplayName("Language Name"), Size(50), NotNull, QuickSearch, NameProperty]
-        public String LanguageName
+        public string LanguageName
         {
             get => fields.LanguageName[this];
             set => fields.LanguageName[this] = value;

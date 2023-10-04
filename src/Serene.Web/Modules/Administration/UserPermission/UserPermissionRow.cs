@@ -13,42 +13,42 @@ namespace Serene.Administration
     public sealed class UserPermissionRow : Row<UserPermissionRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("User Permission Id"), Identity, IdProperty]
-        public Int64? UserPermissionId
+        public long? UserPermissionId
         {
             get => fields.UserPermissionId[this];
             set => fields.UserPermissionId[this] = value;
         }
 
         [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
-        public Int32? UserId
+        public int? UserId
         {
             get => fields.UserId[this];
             set => fields.UserId[this] = value;
         }
 
         [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch, NameProperty]
-        public String PermissionKey
+        public string PermissionKey
         {
             get => fields.PermissionKey[this];
             set => fields.PermissionKey[this] = value;
         }
 
         [DisplayName("Grant")]
-        public Boolean? Granted
+        public bool? Granted
         {
             get => fields.Granted[this];
             set => fields.Granted[this] = value;
         }
 
         [DisplayName("User Username"), Expression("jUser.[Username]")]
-        public String Username
+        public string Username
         {
             get => fields.Username[this];
             set => fields.Username[this] = value;
         }
 
         [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
-        public String User
+        public string User
         {
             get => fields.User[this];
             set => fields.User[this] = value;

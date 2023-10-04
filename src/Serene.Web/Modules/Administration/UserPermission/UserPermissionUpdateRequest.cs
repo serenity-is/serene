@@ -7,7 +7,7 @@ namespace Serene.Administration
 {
     public class UserPermissionUpdateRequest : ServiceRequest
     {
-        public Int32? UserID { get; set; }
+        public int? UserID { get; set; }
         [JsonProperty(Required = Required.AllowNull)]
         public string Module { get; set; }
         [JsonProperty(Required = Required.AllowNull)]

@@ -1,7 +1,6 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
-using System;
 using System.ComponentModel;
 
 namespace Serene.Administration
@@ -12,48 +11,49 @@ namespace Serene.Administration
     [ModifyPermission(PermissionKeys.Security)]
     public sealed class UserRoleRow : Row<UserRoleRow.RowFields>, IIdRow
     {
+        const string jRole = nameof(jRole);
+        const string jUser = nameof(jUser);
+
         [DisplayName("User Role Id"), Identity, IdProperty]
-        public Int64? UserRoleId
+        public long? UserRoleId
         {
             get => fields.UserRoleId[this];
             set => fields.UserRoleId[this] = value;
         }
 
-        [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
-        public Int32? UserId
+        [DisplayName("User Id"), NotNull, ForeignKey(typeof(UserRow)), LeftJoin(jUser)]
+        public int? UserId
         {
             get => fields.UserId[this];
             set => fields.UserId[this] = value;
         }
 
-        [DisplayName("Role Id"), NotNull]
-        public Int32? RoleId
+        [DisplayName("Role Id"), NotNull, ForeignKey(typeof(RoleRow))]
+        public int? RoleId
         {
             get => fields.RoleId[this];
             set => fields.RoleId[this] = value;
         }
 
-        [DisplayName("User Username"), Expression("jUser.[Username]")]
-        public String Username
+        [DisplayName("Username"), Expression($"{jUser}.[Username]")]
+        public string Username
         {
             get => fields.Username[this];
             set => fields.Username[this] = value;
         }
 
-        [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
-        public String User
+        [DisplayName("User Display Name"), Expression($"{jUser}.[DisplayName]")]
+        public string User
         {
             get => fields.User[this];
             set => fields.User[this] = value;
         }
 
-        public UserRoleRow()
+        [DisplayName("Role"), Expression($"{jRole}.[RoleName]")]
+        public string RoleName
         {
-        }
-
-        public UserRoleRow(RowFields fields)
-            : base(fields)
-        {
+            get => fields.RoleName[this];
+            set => fields.RoleName[this] = value;
         }
 
         public class RowFields : RowFieldsBase
@@ -64,6 +64,7 @@ namespace Serene.Administration
 
             public StringField Username;
             public StringField User;
+            public StringField RoleName;
         }
     }
 }

@@ -27,11 +27,11 @@ namespace Serene.Administration.Repositories
                 throw new ArgumentNullException(nameof(request.Roles));
 
             var userID = request.UserID.Value;
-            var oldList = new HashSet<Int32>(
+            var oldList = new HashSet<int>(
                 GetExisting(uow.Connection, userID)
                 .Select(x => x.RoleId.Value));
 
-            var newList = new HashSet<Int32>(request.Roles.ToList());
+            var newList = new HashSet<int>(request.Roles.ToList());
 
             if (oldList.SetEquals(newList))
                 return new SaveResponse();
@@ -66,7 +66,7 @@ namespace Serene.Administration.Repositories
             return new SaveResponse();
         }
 
-        private List<MyRow> GetExisting(IDbConnection connection, Int32 userId)
+        private List<MyRow> GetExisting(IDbConnection connection, int userId)
         {
             return connection.List<MyRow>(q =>
             {

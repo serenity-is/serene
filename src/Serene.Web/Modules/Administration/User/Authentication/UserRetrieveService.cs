@@ -1,11 +1,9 @@
-﻿using Serenity;
+using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using System;
 using System.Data;
 using System.Globalization;
-using System.Security.Claims;
-using System.Security.Principal;
 using MyRow = Serene.Administration.UserRow;
 
 namespace Serene.Administration
@@ -74,28 +72,6 @@ namespace Serene.Administration
 
             if (username != null)
                 cache.Remove("UserByName_" + username.ToLowerInvariant());
-        }
-
-        public static ClaimsPrincipal CreatePrincipal(IUserRetrieveService userRetriever, string username,
-            string authType)
-        {
-            if (userRetriever is null)
-                throw new ArgumentNullException(nameof(userRetriever));
-
-            if (username is null)
-                throw new ArgumentNullException(nameof(username));
-
-            var user = userRetriever.ByUsername(username);
-            if (user == null)
-                throw new ArgumentOutOfRangeException(nameof(username));
-
-            if (authType == null)
-                throw new ArgumentNullException(nameof(authType));
-
-            var identity = new GenericIdentity(username, authType);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
-
-            return new ClaimsPrincipal(identity);
         }
     }
 }

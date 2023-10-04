@@ -14,10 +14,10 @@ using Newtonsoft.Json.Serialization;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
+using Serenity.Extensions;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
 using Serenity.Navigation;
-using Serenity.Reporting;
 using Serenity.Services;
 using Serenity.Web;
 using System;
@@ -49,7 +49,7 @@ namespace Serene
                 typeof(SaveRequestHandler<>).Assembly,
                 typeof(IDynamicScriptManager).Assembly,
                 typeof(Startup).Assembly,
-                typeof(Serenity.Extensions.EnvironmentSettings).Assembly,
+                typeof(EnvironmentSettings).Assembly,
 #if (Northwind)
                 typeof(Serenity.Demo.Northwind.CustomerPage).Assembly,
 #endif
@@ -63,8 +63,8 @@ namespace Serene
             services.Configure<LocalTextPackages>(Configuration.GetSection(LocalTextPackages.SectionKey));
             services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
             services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
-            services.Configure<Serenity.Extensions.EnvironmentSettings>(
-                Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
+            services.Configure<EnvironmentSettings>(
+                Configuration.GetSection(EnvironmentSettings.SectionKey));
             {
                 services.Configure<ForwardedHeadersOptions>(options =>
                 {
@@ -72,8 +72,8 @@ namespace Serene
                 });
             }
 
-            services.ConfigureSection<Serenity.Extensions.ClamAVSettings>(Configuration);
-            services.Configure<Serenity.Extensions.EnvironmentSettings>(Configuration.GetSection(Serenity.Extensions.EnvironmentSettings.SectionKey));
+            services.ConfigureSection<ClamAVSettings>(Configuration);
+            services.Configure<EnvironmentSettings>(Configuration.GetSection(EnvironmentSettings.SectionKey));
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -143,22 +143,25 @@ namespace Serene
                 loggingBuilder.AddDebug();
             });
 
+            services.AddSingleton<IDataMigrations, DataMigrations>();
+            services.AddSingleton<IElevationHandler, DefaultElevationHandler>();
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<Serenity.Extensions.IEmailSender, Serenity.Extensions.EmailSender>();
+            services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
+            services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
+            services.AddSingleton<IPermissionService, Administration.PermissionService>();
+            services.AddSingleton<IRolePermissionService, Administration.RolePermissionService>();
+            services.AddSingleton<IUploadAVScanner, ClamAVUploadScanner>();
+            services.AddSingleton<IUserPasswordValidator, Administration.UserPasswordValidator>();
+            services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
+            services.AddSingleton<IUserClaimCreator, DefaultUserClaimCreator>();
+            services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
             services.AddServiceHandlers();
             services.AddDynamicScripts();
             services.AddCssBundling();
             services.AddScriptBundling();
-            services.AddSingleton<IUploadAVScanner, Serenity.Extensions.ClamAVUploadScanner>();
             services.AddUploadStorage();
-            services.AddSingleton<IUserPasswordValidator, Administration.UserPasswordValidator>();
-            services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
-            services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
-            services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
-            services.AddSingleton<IPermissionService, Administration.PermissionService>();
-            services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
             services.AddReporting();
-            services.AddSingleton<IDataMigrations, DataMigrations>();
         }
 
         public static void InitializeLocalTexts(IServiceProvider services)

@@ -9,8 +9,8 @@ namespace Serene.Administration.Forms
     public class RoleColumns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
-        public Int32 RoleId { get; set; }
+        public int RoleId { get; set; }
         [EditLink, Width(300)]
-        public String RoleName { get; set; }
+        public string RoleName { get; set; }
     }
 }

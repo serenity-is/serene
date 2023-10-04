@@ -21,13 +21,13 @@ namespace Serene
         public static void HandleDeleteForeignKeyException(Exception e, ITextLocalizer localizer)
         {
             if (SqlExceptionHelper.IsForeignKeyException(e, out ForeignKeyExceptionInfo fk))
-                throw new ValidationError(String.Format(CultureInfo.CurrentCulture, Texts.Validation.DeleteForeignKeyError.ToString(localizer), fk.TableName));
+                throw new ValidationError(string.Format(CultureInfo.CurrentCulture, Texts.Validation.DeleteForeignKeyError.ToString(localizer), fk.TableName));
         }
 
         public static void HandleSavePrimaryKeyException(Exception e, ITextLocalizer localizer, string fieldName = "ID")
         {
             if (SqlExceptionHelper.IsPrimaryKeyException(e, out PrimaryKeyExceptionInfo fk))
-                throw new ValidationError(String.Format(CultureInfo.CurrentCulture, Texts.Validation.SavePrimaryKeyError.ToString(localizer), fk.TableName, fieldName));
+                throw new ValidationError(string.Format(CultureInfo.CurrentCulture, Texts.Validation.SavePrimaryKeyError.ToString(localizer), fk.TableName, fieldName));
         }
 
         public static bool IsForeignKeyException(Exception e, out ForeignKeyExceptionInfo fk)

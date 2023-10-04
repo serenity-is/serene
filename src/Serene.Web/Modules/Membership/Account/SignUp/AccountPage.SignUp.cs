@@ -1,21 +1,20 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Serene.Administration;
+using Serene.Administration.Repositories;
 using Serenity;
 using Serenity.Abstractions;
 using Serenity.Data;
 using Serenity.Extensions;
 using Serenity.Services;
 using Serenity.Web;
-using Serene.Administration;
-using Serene.Administration.Repositories;
 using System;
 using System.IO;
-using System.Security.Permissions;
 
 namespace Serene.Membership.Pages
 {
-    public partial class AccountController : Controller
+    public partial class AccountPage : Controller
     {
         [HttpGet]
         public ActionResult SignUp()

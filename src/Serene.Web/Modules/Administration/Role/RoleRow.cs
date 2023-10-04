@@ -14,14 +14,14 @@ namespace Serene.Administration
     public sealed class RoleRow : Row<RoleRow.RowFields>, IIdRow, INameRow
     {
         [DisplayName("Role Id"), Identity, ForeignKey("Roles", "RoleId"), LeftJoin("jRole"), IdProperty]
-        public Int32? RoleId
+        public int? RoleId
         {
             get => fields.RoleId[this];
             set => fields.RoleId[this] = value;
         }
 
         [DisplayName("Role Name"), Size(100), NotNull, QuickSearch, NameProperty]
-        public String RoleName
+        public string RoleName
         {
             get => fields.RoleName[this];
             set => fields.RoleName[this] = value;

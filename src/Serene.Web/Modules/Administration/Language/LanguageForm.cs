@@ -7,7 +7,7 @@ namespace Serene.Administration.Forms
     [BasedOnRow(typeof(LanguageRow), CheckNames = true)]
     public class LanguageForm
     {
-        public String LanguageId { get; set; }
-        public String LanguageName { get; set; }
+        public string LanguageId { get; set; }
+        public string LanguageName { get; set; }
     }
 }

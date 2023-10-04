@@ -7,7 +7,7 @@ namespace Serene.Administration
 {
     public class RolePermissionUpdateRequest : ServiceRequest
     {
-        public Int32? RoleID { get; set; }
+        public int? RoleID { get; set; }
         [JsonProperty(Required = Required.AllowNull)]
         public string Module { get; set; }
         [JsonProperty(Required = Required.AllowNull)]

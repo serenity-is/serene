@@ -8,8 +8,8 @@ namespace Serene.Administration.Forms
     public class LanguageColumns
     {
         [EditLink]
-        public String LanguageId { get; set; }
+        public string LanguageId { get; set; }
         [EditLink]
-        public String LanguageName { get; set; }
+        public string LanguageName { get; set; }
     }
 }
