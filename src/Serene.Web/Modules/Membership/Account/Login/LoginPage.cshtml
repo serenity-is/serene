@@ -1,5 +1,5 @@
 @inject ITextLocalizer Localizer
-@inject Microsoft.Extensions.Options.IOptions<Serenity.Extensions.EnvironmentSettings> EnvironmentOptions
+@inject IOptions<EnvironmentSettings> EnvironmentOptions
 @{
     ViewData["Title"] = Texts.Forms.Membership.Login.LoginToYourAccount.ToString(Localizer);
     ViewData["PageId"] = "Login";
