@@ -1,10 +1,10 @@
-﻿using FluentMigrator;
+using FluentMigrator;
 using Serenity.Extensions;
 
 namespace Serene.Migrations.DefaultDB
 {
-    [Migration(20141111113000)]
-    public class DefaultDB_20141111_113000_Permissions : AutoReversingMigration
+    [DefaultDB, Migration(20141111_1130)]
+    public class DefaultDB_20141111_1130_Permissions : AutoReversingMigration
     {
         public override void Up()
         {

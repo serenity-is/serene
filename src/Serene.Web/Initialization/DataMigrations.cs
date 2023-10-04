@@ -5,6 +5,7 @@ using FluentMigrator.Runner.Processors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
+using Serenity.Abstractions;
 using Serenity.Data;
 using System;
 using System.Data.Common;
@@ -18,22 +19,23 @@ namespace Serene
     public class DataMigrations : IDataMigrations
     {
         private static readonly string[] databaseKeys = new[] {
-            "Default"
+        "Default"
 #if (Northwind)
-            , "Northwind"
+        , "Northwind"
 #endif
-        };
+    };
 
-        public bool SkippedMigrations { get; private set; }
-        protected ISqlConnections SqlConnections { get; }
-        protected IWebHostEnvironment HostEnvironment { get; }
+        private readonly ITypeSource typeSource;
+        private readonly ISqlConnections sqlConnections;
+        private readonly IWebHostEnvironment hostEnvironment;
 
-        public DataMigrations(ISqlConnections sqlConnections, IWebHostEnvironment hostEnvironment)
+        public DataMigrations(ITypeSource typeSource,
+            ISqlConnections sqlConnections,
+            IWebHostEnvironment hostEnvironment)
         {
-            SqlConnections = sqlConnections ?? 
-                throw new ArgumentNullException(nameof(sqlConnections));
-            HostEnvironment = hostEnvironment ??
-                throw new ArgumentNullException(nameof(hostEnvironment));
+            this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+            this.sqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+            this.hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
         }
 
         public void Initialize()
@@ -51,10 +53,8 @@ namespace Serene
         /// </summary>
         private void EnsureDatabase(string databaseKey)
         {
-            var cs = SqlConnections.TryGetConnectionString(databaseKey);
-            if (cs == null)
-                throw new ArgumentNullException(nameof(databaseKey));
-
+            var cs = sqlConnections.TryGetConnectionString(databaseKey)
+                ?? throw new ArgumentNullException(nameof(databaseKey));
             var serverType = cs.Dialect.ServerType;
             bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
             bool isPostgres = serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
@@ -64,7 +64,7 @@ namespace Serene
 
             if (isSqlite)
             {
-                var contentRoot = HostEnvironment.ContentRootPath;
+                var contentRoot = hostEnvironment.ContentRootPath;
                 Directory.CreateDirectory(Path.Combine(contentRoot, "App_Data"));
                 return;
             }
@@ -87,7 +87,7 @@ namespace Serene
                     return;
                 Directory.CreateDirectory(Path.GetDirectoryName(database));
 
-                using var fbConnection = SqlConnections.New(cb.ConnectionString,
+                using var fbConnection = sqlConnections.New(cb.ConnectionString,
                     cs.ProviderName, cs.Dialect);
                 ((WrappedConnection)fbConnection).ActualConnection.GetType()
                     .GetMethod("CreateDatabase", new Type[] { typeof(string), typeof(bool) })
@@ -111,7 +111,7 @@ namespace Serene
             var catalog = cb[catalogKey] as string;
             cb[catalogKey] = isPostgres ? "postgres" : null;
 
-            using var serverConnection = SqlConnections.New(cb.ConnectionString,
+            using var serverConnection = sqlConnections.New(cb.ConnectionString,
                 cs.ProviderName, cs.Dialect);
             serverConnection.Open();
 
@@ -141,12 +141,12 @@ namespace Serene
             string command;
             if (isLocalServer)
             {
-                string baseDirectory = HostEnvironment.ContentRootPath;
+                string baseDirectory = hostEnvironment.ContentRootPath;
 
                 var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data"), catalog);
                 Directory.CreateDirectory(Path.GetDirectoryName(filename));
 
-                command = string.Format(CultureInfo.InvariantCulture, @"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') " + 
+                command = string.Format(CultureInfo.InvariantCulture, @"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') " +
                     "LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
                     catalog, filename);
 
@@ -164,49 +164,29 @@ namespace Serene
 
         private void RunMigrations(string databaseKey)
         {
-            var cs = SqlConnections.TryGetConnectionString(databaseKey);
-            if (cs == null)
+            var cs = sqlConnections.TryGetConnectionString(databaseKey) ??
                 throw new ArgumentOutOfRangeException(nameof(databaseKey));
-
             string serverType = cs.Dialect.ServerType;
             bool isOracle = serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
             bool isFirebird = serverType.StartsWith("Firebird", StringComparison.OrdinalIgnoreCase);
-
-            // safety check to ensure that we are not modifying an arbitrary database.
-            // remove these lines if you want Serene migrations to run on your DB.
-            if (!isOracle && cs.ConnectionString.IndexOf(typeof(DataMigrations).Namespace +
-                    @"_" + databaseKey + "_v1", StringComparison.OrdinalIgnoreCase) < 0)
-            {
-                SkippedMigrations = true;
-                return;
-            }
 
             string databaseType = isOracle ? "OracleManaged" : serverType;
 
             var conventionSet = new DefaultConventionSet(defaultSchemaName: null,
                 Path.GetDirectoryName(typeof(DataMigrations).Assembly.Location));
-            var migrationNamespace = "Serene.Migrations." + databaseKey + "DB";
-            var migrationAssemblies = new[] { typeof(DataMigrations).Assembly };
-
-#if (Northwind)
-            if (databaseKey.Equals("Northwind", StringComparison.OrdinalIgnoreCase))
-            {
-                migrationNamespace = typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Namespace;
-                migrationAssemblies = new[] { typeof(Serenity.Demo.Northwind.Migrations.MigrationAttribute).Assembly };
-            }
-#endif
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .AddFluentMigratorCore()
                 .AddSingleton<IConventionSet>(conventionSet)
-                .Configure<TypeFilterOptions>(options =>
-                {
-                    options.Namespace = migrationNamespace;
-                })
                 .Configure<ProcessorOptions>(options =>
                 {
                     options.Timeout = TimeSpan.FromSeconds(90);
+                })
+                .Configure<RunnerOptions>(options =>
+                {
+                    options.Tags = new[] { databaseKey + "DB" };
+                    options.IncludeUntaggedMigrations = databaseKey == "Default";
                 })
                 .ConfigureRunner(builder =>
                 {
@@ -224,7 +204,7 @@ namespace Serene
                         builder.AddSqlServer();
 
                     builder.WithGlobalConnectionString(cs.ConnectionString);
-                    builder.WithMigrationsIn(migrationAssemblies);
+                    builder.ScanIn(((IGetAssemblies)typeSource).GetAssemblies().ToArray()).For.Migrations();
                 })
                 .BuildServiceProvider();
 

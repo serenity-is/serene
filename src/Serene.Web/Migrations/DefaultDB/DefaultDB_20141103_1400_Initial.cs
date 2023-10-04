@@ -4,14 +4,13 @@ using System;
 
 namespace Serene.Migrations.DefaultDB
 {
-
-    [Migration(20141103140000)]
-    public class DefaultDB_20141103_140000_Initial : AutoReversingMigration
+    [DefaultDB, Migration(20141103_1400)]
+    public class DefaultDB_20141103_1400_Initial : AutoReversingMigration
     {
         public override void Up()
         {
             this.CreateTableWithId32("Users", "UserId", s => s
-                .WithColumn("Username").AsString(100).NotNullable()
+                .WithColumn("Username").AsString(100).NotNullable().Unique("IX_Users_Username")
                 .WithColumn("DisplayName").AsString(100).NotNullable()
                 .WithColumn("Email").AsString(100).Nullable()
                 .WithColumn("Source").AsString(4).NotNullable()
@@ -38,7 +37,7 @@ namespace Serene.Migrations.DefaultDB
             });
 
             this.CreateTableWithId32("Languages", "Id", s => s
-                .WithColumn("LanguageId").AsString(10).NotNullable()
+                .WithColumn("LanguageId").AsString(10).NotNullable().Unique("IX_Languages_LanguageId")
                 .WithColumn("LanguageName").AsString(50).NotNullable());
 
             Insert.IntoTable("Languages").Row(new
