@@ -1,37 +1,37 @@
-﻿@model Serenity.Navigation.INavigationModel
-@inject Serenity.ITextLocalizer Localizer
+@model Serenity.Navigation.INavigationModel
+@inject ITextLocalizer Localizer
 @{
     void renderItem(Serenity.Navigation.NavigationItem item, string parentId, int index) {
-        var isActive = Model.ActivePath.Contains(item);
-        var hasChildren = item.Children.Any();
-        var klass = "s-sidebar-item" + (isActive ? " active" : "") + (hasChildren ? " has-children" : "") +
-            (!string.IsNullOrEmpty(item.ItemClass) ? (" " + item.ItemClass) : "");
-        var icon = item.IconClass ?? "";
-        var title = Localizer.TryGet("Navigation." + item.FullPath) ?? item.Title;
-        var ulId = parentId + "_" + index;
-        var url = item.Url ?? (hasChildren ? ("#" + ulId) : "javascript:;");
-        var target = Html.Raw(item.Target != null ? (" target=" + item.Target) : "");
-        var bsToggle = Html.Raw(hasChildren ? " data-bs-toggle=\"collapse\"" : "");
-        var ariaExpanded = Html.Raw(hasChildren && isActive ? " aria-expanded=\"true\"" : "");
-        <li class="@klass">
+    var isActive = Model.ActivePath.Contains(item);
+    var hasChildren = item.Children.Any();
+    var klass = "s-sidebar-item" + (isActive ? " active" : "") + (hasChildren ? " has-children" : "") +
+        (!string.IsNullOrEmpty(item.ItemClass) ? (" " + item.ItemClass) : "");
+    var icon = item.IconClass ?? "";
+    var title = Localizer.TryGet("Navigation." + item.FullPath) ?? item.Title;
+    var ulId = parentId + "_" + index;
+    var url = item.Url ?? (hasChildren ? ("#" + ulId) : "javascript:;");
+    var target = Html.Raw(item.Target != null ? (" target=" + item.Target) : "");
+    var bsToggle = Html.Raw(hasChildren ? " data-bs-toggle=\"collapse\"" : "");
+    var ariaExpanded = Html.Raw(hasChildren && isActive ? " aria-expanded=\"true\"" : "");
+    <li class="@klass">
             <a class="s-sidebar-link" href="@url"@target@bsToggle@ariaExpanded>
                 <i class="s-sidebar-icon fa @icon"></i>
                 <span class="s-sidebar-link-text">@title</span>
                 @if (hasChildren)
-                {<em class="s-sidebar-menu-toggle fa fa-angle-right"></em>}
+            {<em class="s-sidebar-menu-toggle fa fa-angle-right"></em>}
             </a>
             @if (hasChildren)
-            {
-                <ul id="@ulId" class="s-sidebar-menu collapse@(isActive ? " show" : "")" data-bs-parent="#@parentId">
+        {
+            <ul id="@ulId" class="s-sidebar-menu collapse@(isActive ? " show" : "")" data-bs-parent="#@parentId">
                 @{var idx = 0;}
                 @foreach (var child in item.Children)
-                {
-                    renderItem(child, ulId, ++idx);
-                }
-                </ul>
+            {
+                renderItem(child, ulId, ++idx);
             }
+                </ul>
+        }
         </li>
-    }
+}
 }
 
 <aside class="s-sidebar" id="s-sidebar">
@@ -43,9 +43,9 @@
         <ul id="s-sidebar-menu" class="s-sidebar-menu">
             @{var itm = 0;}
             @foreach (var item in Model.Items)
-            {
-                renderItem(item, "s-sidebar-menus", ++itm);
-            }
+        {
+            renderItem(item, "s-sidebar-menus", ++itm);
+        }
         </ul>
     </div>
 </aside>
@@ -70,8 +70,8 @@
             </div>
         </li>
         @if (User.IsLoggedIn())
-        {
-        <li>
+    {
+    <li>
             <div class="dropdown">
                 <a href="javascript:;" class="s-sidebar-header-link s-user-profile-link" 
                     data-bs-toggle="dropdown" title="@User?.Identity?.Name">
@@ -95,6 +95,6 @@
                 </div>
             </div>
         </li>
-        }
+    }
     </ul>
 </header>

@@ -1,9 +1,6 @@
-﻿using Serenity.Services;
+﻿namespace Serene.Administration;
 
-namespace Serene.Administration
+public class UserRoleListRequest : ServiceRequest
 {
-    public class UserRoleListRequest : ServiceRequest
-    {
-        public int? UserID { get; set; }
-    }
+    public int? UserID { get; set; }
 }

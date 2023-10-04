@@ -1,7 +1,6 @@
-namespace Serene
+namespace Serene;
+
+public interface IDataMigrations
 {
-    public interface IDataMigrations
-    {
-        void Initialize();
-    }
+    void Initialize();
 }

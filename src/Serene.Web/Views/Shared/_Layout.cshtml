@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 @{
     Func<string, HtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
-    var hideNav = (string)Context.Request.Query["hideNav"] == "1";
-    var themeCookie = Context.Request.Cookies["ProThemeSelection"];
-    var theme = themeCookie != null && !themeCookie.IsEmptyOrNull() ? themeCookie : "azure-light";
-    var sidebarPaneCollapsed = Context?.Request?.Cookies?["SidebarPaneCollapsed"] == "1" ? " s-sidebar-pane-collapsed" : "";
+var hideNav = (string)Context.Request.Query["hideNav"] == "1";
+var themeCookie = Context.Request.Cookies["ProThemeSelection"];
+var theme = themeCookie != null && !themeCookie.IsEmptyOrNull() ? themeCookie : "azure-light";
+var sidebarPaneCollapsed = Context?.Request?.Cookies?["SidebarPaneCollapsed"] == "1" ? " s-sidebar-pane-collapsed" : "";
 }
 <html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="pro theme-@theme@(hideNav ? " no-navigation" : "")">
 <head>
@@ -34,11 +34,11 @@ else
     <main class="s-main">
         <section class="content">
             @if (IsSectionDefined("ContentHeader"))
-            {
-            <section class="content-header">
+        {
+        <section class="content-header">
                 @RenderSection("ContentHeader")
             </section>
-            }
+        }
 
             @RenderBody()
         </section>

@@ -1,17 +1,15 @@
-﻿using Serenity.Services;
-using MyRow = Serene.Administration.RoleRow;
+﻿using MyRow = Serene.Administration.RoleRow;
 using MyRequest = Serenity.Services.RetrieveRequest;
 using MyResponse = Serenity.Services.RetrieveResponse<Serene.Administration.RoleRow>;
 
 
-namespace Serene.Administration
+namespace Serene.Administration;
+
+public interface IRoleRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> { }
+public class RoleRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IRoleRetrieveHandler
 {
-    public interface IRoleRetrieveHandler : IRetrieveHandler<MyRow, MyRequest, MyResponse> { }
-    public class RoleRetrieveHandler : RetrieveRequestHandler<MyRow, MyRequest, MyResponse>, IRoleRetrieveHandler
+    public RoleRetrieveHandler(IRequestContext context)
+         : base(context)
     {
-        public RoleRetrieveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

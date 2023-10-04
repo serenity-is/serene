@@ -2,10 +2,10 @@
 @inject ITextLocalizer Localizer
 @{
     ViewData["Title"] = Texts.Site.AccessDenied.PageTitle.ToString(Localizer);
-    ViewData["PageId"] = "AccessDenied";
-    Layout = User.IsLoggedIn() ?
-        "~/Views/Shared/_Layout.cshtml" :
-        "~/Views/Shared/_LayoutNoNavigation.cshtml";
+ViewData["PageId"] = "AccessDenied";
+Layout = User.IsLoggedIn() ?
+    "~/Views/Shared/_Layout.cshtml" :
+    "~/Views/Shared/_LayoutNoNavigation.cshtml";
 }
 
 <div class="page-content">
@@ -19,14 +19,14 @@
                     <h1>@Texts.Site.AccessDenied.PageTitle.ToString(Localizer)</h1>
                     <h3>@(User.IsLoggedIn() ? Texts.Site.AccessDenied.LackPermissions.ToString(Localizer) : Texts.Site.AccessDenied.NotLoggedIn.ToString(Localizer))</h3>
                     @if (Model != null)
-                    {
-                        <a class="redirect" href="/Account/Login?returnURL=@Model">@(User.IsLoggedIn() ? 
-                            Texts.Site.AccessDenied.ClickToChangeUser.ToString(Localizer) : Texts.Site.AccessDenied.ClickToLogin.ToString(Localizer))</a>
-                    }
-                    else
-                    {
-                        <a class="redirect" href="/Account/Login">@Texts.Site.AccessDenied.ClickToLogin.ToString(Localizer)</a>
-                    }
+                {
+                    <a class="redirect" href="/Account/Login?returnURL=@Model">@(User.IsLoggedIn() ? 
+                        Texts.Site.AccessDenied.ClickToChangeUser.ToString(Localizer) : Texts.Site.AccessDenied.ClickToLogin.ToString(Localizer))</a>
+                }
+                else
+                {
+                    <a class="redirect" href="/Account/Login">@Texts.Site.AccessDenied.ClickToLogin.ToString(Localizer)</a>
+                }
                     <div class="date-time">
                         @(!User.IsLoggedIn() ? "" : (User?.Identity?.Name + " - "))@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                     </div>

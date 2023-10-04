@@ -1,12 +1,8 @@
-﻿using Serenity.ComponentModel;
-using System;
+﻿namespace Serene.Administration.Forms;
 
-namespace Serene.Administration.Forms
+[FormScript("Administration.Role")]
+[BasedOnRow(typeof(RoleRow), CheckNames = true)]
+public class RoleForm
 {
-    [FormScript("Administration.Role")]
-    [BasedOnRow(typeof(RoleRow), CheckNames = true)]
-    public class RoleForm
-    {
-        public string RoleName { get; set; }
-    }
+    public string RoleName { get; set; }
 }

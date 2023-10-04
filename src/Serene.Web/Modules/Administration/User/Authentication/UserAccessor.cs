@@ -1,30 +1,27 @@
-﻿using Microsoft.AspNetCore.Http;
-using Serenity.Abstractions;
-using Serenity.Web;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Serene.Administration
+namespace Serene.Administration;
+
+public class UserAccessor : IUserAccessor, IImpersonator
 {
-    public class UserAccessor : IUserAccessor, IImpersonator
+    private readonly ImpersonatingUserAccessor impersonator;
+
+    public UserAccessor(IHttpContextAccessor httpContextAccessor)
     {
-        private readonly ImpersonatingUserAccessor impersonator;
+        impersonator = new ImpersonatingUserAccessor(new HttpContextUserAccessor(httpContextAccessor),
+            new HttpContextItemsAccessor(httpContextAccessor));
+    }
 
-        public UserAccessor(IHttpContextAccessor httpContextAccessor)
-        {
-            impersonator = new ImpersonatingUserAccessor(new HttpContextUserAccessor(httpContextAccessor),
-                new HttpContextItemsAccessor(httpContextAccessor));
-        }
+    public ClaimsPrincipal User => impersonator.User;
 
-        public ClaimsPrincipal User => impersonator.User;
+    public void Impersonate(ClaimsPrincipal user)
+    {
+        impersonator.Impersonate(user);
+    }
 
-        public void Impersonate(ClaimsPrincipal user)
-        {
-            impersonator.Impersonate(user);
-        }
-
-        public void UndoImpersonate()
-        {
-            impersonator.UndoImpersonate();
-        }
+    public void UndoImpersonate()
+    {
+        impersonator.UndoImpersonate();
     }
 }

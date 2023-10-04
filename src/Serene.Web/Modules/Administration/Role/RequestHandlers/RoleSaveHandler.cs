@@ -1,25 +1,23 @@
-﻿using Serenity.Services;
-using MyRow = Serene.Administration.RoleRow;
+﻿using MyRow = Serene.Administration.RoleRow;
 using MyRequest = Serenity.Services.SaveRequest<Serene.Administration.RoleRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 
 
-namespace Serene.Administration
+namespace Serene.Administration;
+
+public interface IRoleSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
+public class RoleSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IRoleSaveHandler
 {
-    public interface IRoleSaveHandler : ISaveHandler<MyRow, MyRequest, MyResponse> { }
-    public class RoleSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>, IRoleSaveHandler
+    public RoleSaveHandler(IRequestContext context)
+         : base(context)
     {
-        public RoleSaveHandler(IRequestContext context)
-             : base(context)
-        {
-        }
+    }
 
-        protected override void InvalidateCacheOnCommit()
-        {
-            base.InvalidateCacheOnCommit();
+    protected override void InvalidateCacheOnCommit()
+    {
+        base.InvalidateCacheOnCommit();
 
-            Cache.InvalidateOnCommit(UnitOfWork, UserPermissionRow.Fields);
-            Cache.InvalidateOnCommit(UnitOfWork, RolePermissionRow.Fields);
-        }
+        Cache.InvalidateOnCommit(UnitOfWork, UserPermissionRow.Fields);
+        Cache.InvalidateOnCommit(UnitOfWork, RolePermissionRow.Fields);
     }
 }

@@ -1,12 +1,7 @@
-﻿using Serenity.Services;
-using System;
-using System.Collections.Generic;
+﻿namespace Serene.Administration;
 
-namespace Serene.Administration
+public class UserRoleUpdateRequest : ServiceRequest
 {
-    public class UserRoleUpdateRequest : ServiceRequest
-    {
-        public int? UserID { get; set; }
-        public List<int> Roles { get; set; }
-    }
+    public int? UserID { get; set; }
+    public List<int> Roles { get; set; }
 }

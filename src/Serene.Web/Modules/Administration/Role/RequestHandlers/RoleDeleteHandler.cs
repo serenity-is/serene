@@ -1,17 +1,15 @@
-﻿using Serenity.Services;
-using MyRow = Serene.Administration.RoleRow;
+﻿using MyRow = Serene.Administration.RoleRow;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
 
 
-namespace Serene.Administration
+namespace Serene.Administration;
+
+public interface IRoleDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
+public class RoleDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, IRoleDeleteHandler
 {
-    public interface IRoleDeleteHandler : IDeleteHandler<MyRow, MyRequest, MyResponse> { }
-    public class RoleDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyResponse>, IRoleDeleteHandler
+    public RoleDeleteHandler(IRequestContext context)
+         : base(context)
     {
-        public RoleDeleteHandler(IRequestContext context)
-             : base(context)
-        {
-        }
     }
 }

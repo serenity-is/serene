@@ -1,13 +1,9 @@
-﻿using Serenity.ComponentModel;
-using System;
+﻿namespace Serene.Administration.Forms;
 
-namespace Serene.Administration.Forms
+[FormScript("Administration.Language")]
+[BasedOnRow(typeof(LanguageRow), CheckNames = true)]
+public class LanguageForm
 {
-    [FormScript("Administration.Language")]
-    [BasedOnRow(typeof(LanguageRow), CheckNames = true)]
-    public class LanguageForm
-    {
-        public string LanguageId { get; set; }
-        public string LanguageName { get; set; }
-    }
+    public string LanguageId { get; set; }
+    public string LanguageName { get; set; }
 }

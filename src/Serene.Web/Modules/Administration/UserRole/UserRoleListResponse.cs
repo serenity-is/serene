@@ -1,9 +1,5 @@
-﻿using Serenity.Services;
-using System;
+﻿namespace Serene.Administration;
 
-namespace Serene.Administration
+public class UserRoleListResponse : ListResponse<int>
 {
-    public class UserRoleListResponse : ListResponse<int>
-    {
-    }
 }

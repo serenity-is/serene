@@ -1,29 +1,28 @@
 ﻿
-namespace Serene.Administration
+namespace Serene.Administration;
+
+using Microsoft.Extensions.Caching.Memory;
+using Serenity.Abstractions;
+using Serenity.ComponentModel;
+using Serenity.Web;
+using Serene.Administration.Repositories;
+using System;
+using System.Collections.Generic;
+
+[DataScript("Administration.ImplicitPermissions", Permission = PermissionKeys.Security)]
+public class ImplicitPermissionsDataScript : DataScript<IDictionary<string, HashSet<string>>>
 {
-    using Microsoft.Extensions.Caching.Memory;
-    using Serenity.Abstractions;
-    using Serenity.ComponentModel;
-    using Serenity.Web;
-    using Serene.Administration.Repositories;
-    using System;
-    using System.Collections.Generic;
+    private readonly IMemoryCache cache;
+    private readonly ITypeSource typeSource;
 
-    [DataScript("Administration.ImplicitPermissions", Permission = PermissionKeys.Security)]
-    public class ImplicitPermissionsDataScript : DataScript<IDictionary<string, HashSet<string>>>
+    public ImplicitPermissionsDataScript(IMemoryCache cache, ITypeSource typeSource)
     {
-        private readonly IMemoryCache cache;
-        private readonly ITypeSource typeSource;
+        this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+    }
 
-        public ImplicitPermissionsDataScript(IMemoryCache cache, ITypeSource typeSource)
-        {
-            this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
-            this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
-        }
-
-        protected override IDictionary<string, HashSet<string>> GetData()
-        {
-            return UserPermissionRepository.GetImplicitPermissions(cache, typeSource);
-        }
+    protected override IDictionary<string, HashSet<string>> GetData()
+    {
+        return UserPermissionRepository.GetImplicitPermissions(cache, typeSource);
     }
 }

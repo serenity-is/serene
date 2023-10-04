@@ -1,8 +1,5 @@
-﻿using Serenity.Services;
+﻿namespace Serene.Administration;
 
-namespace Serene.Administration
+public class RolePermissionListResponse : ListResponse<string>
 {
-    public class RolePermissionListResponse : ListResponse<string>
-    {
-    }
 }

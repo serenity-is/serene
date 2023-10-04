@@ -2,8 +2,8 @@
 @inject ITextLocalizer Localizer
 @{
     ViewData["Title"] = Texts.Site.ValidationError.Title.ToString(Localizer);
-    ViewData["PageId"] = "ValidationError";
-    Layout = User.IsLoggedIn() ? MVC.Views.Shared._Layout : MVC.Views.Shared._LayoutNoNavigation;
+ViewData["PageId"] = "ValidationError";
+Layout = User.IsLoggedIn() ? MVC.Views.Shared._Layout : MVC.Views.Shared._LayoutNoNavigation;
 }
 
 <style type="text/css">

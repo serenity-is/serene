@@ -1,9 +1,6 @@
-using Serenity.Services;
+namespace Serene.Membership;
 
-namespace Serene.Membership
+public class SignUpResponse : ServiceResponse
 {
-    public class SignUpResponse : ServiceResponse
-    {
-        public string DemoActivationLink { get; set; }
-    }
+    public string DemoActivationLink { get; set; }
 }

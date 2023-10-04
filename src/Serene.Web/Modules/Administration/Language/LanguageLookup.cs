@@ -1,25 +1,19 @@
-﻿using Serene.Administration;
-using Serenity.ComponentModel;
-using Serenity.Data;
-using Serenity.Web;
+﻿namespace Serene.Administration.Lookups;
 
-namespace Serene.Administration.Lookups
+[LookupScript]
+public sealed class LanguageLookup : RowLookupScript<LanguageRow>
 {
-    [LookupScript]
-    public sealed class LanguageLookup : RowLookupScript<LanguageRow>
+    public LanguageLookup(ISqlConnections sqlConnections)
+        : base(sqlConnections)
     {
-        public LanguageLookup(ISqlConnections sqlConnections)
-            : base(sqlConnections)
-        {
-            IdField = LanguageRow.Fields.LanguageId.PropertyName;
-            Permission = "*";
-        }
+        IdField = LanguageRow.Fields.LanguageId.PropertyName;
+        Permission = "*";
+    }
 
-        protected override void PrepareQuery(SqlQuery query)
-        {
-            base.PrepareQuery(query);
+    protected override void PrepareQuery(SqlQuery query)
+    {
+        base.PrepareQuery(query);
 
-            query.Select(LanguageRow.Fields.LanguageId);
-        }
+        query.Select(LanguageRow.Fields.LanguageId);
     }
 }

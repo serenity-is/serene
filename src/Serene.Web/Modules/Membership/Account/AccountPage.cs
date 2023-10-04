@@ -1,104 +1,97 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Serenity.Abstractions;
-using Serenity.Services;
-using Serenity;
-using System;
-using Serenity.ComponentModel;
 
-namespace Serene.Membership.Pages
+namespace Serene.Membership.Pages;
+
+[Route("Account/[action]")]
+public partial class AccountPage : Controller
 {
-    [Route("Account/[action]")]
-    public partial class AccountPage : Controller
+    protected ITwoLevelCache Cache { get; }
+    protected ITextLocalizer Localizer { get; }
+    public AccountPage(ITwoLevelCache cache, ITextLocalizer localizer)
     {
-        protected ITwoLevelCache Cache { get; }
-        protected ITextLocalizer Localizer { get; }
-        public AccountPage(ITwoLevelCache cache, ITextLocalizer localizer)
+        Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
+        Cache = cache ?? throw new ArgumentNullException(nameof(cache));
+    }
+
+    [HttpGet]
+    public ActionResult Login(int? denied, string activated, string returnUrl)
+    {
+        if (denied == 1)
+            return View(MVC.Views.Errors.AccessDenied,
+                ("~/Account/Login?returnUrl=" + Uri.EscapeDataString(returnUrl)));
+
+        ViewData["Activated"] = activated;
+        ViewData["HideLeftNavigation"] = true;
+        return View(MVC.Views.Membership.Account.Login.LoginPage);
+    }
+
+    [HttpGet]
+    public ActionResult AccessDenied(string returnURL)
+    {
+        ViewData["HideLeftNavigation"] = !User.IsLoggedIn();
+
+        return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
+    }
+
+    [HttpPost, JsonRequest]
+    public Result<ServiceResponse> Login(LoginRequest request,
+        [FromServices] IUserPasswordValidator passwordValidator,
+        [FromServices] IUserRetrieveService userRetriever,
+        [FromServices] IUserClaimCreator userClaimCreator)
+    {
+
+        return this.ExecuteMethod(() =>
         {
-            Localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
-            Cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        }
+            if (request is null)
+                throw new ArgumentNullException(nameof(request));
 
-        [HttpGet]
-        public ActionResult Login(int? denied, string activated, string returnUrl)
-        {
-            if (denied == 1)
-                return View(MVC.Views.Errors.AccessDenied,
-                    ("~/Account/Login?returnUrl=" + Uri.EscapeDataString(returnUrl)));
+            if (string.IsNullOrEmpty(request.Username))
+                throw new ArgumentNullException(nameof(request.Username));
 
-            ViewData["Activated"] = activated;
-            ViewData["HideLeftNavigation"] = true;
-            return View(MVC.Views.Membership.Account.Login.LoginPage);
-        }
+            if (passwordValidator is null)
+                throw new ArgumentNullException(nameof(passwordValidator));
 
-        [HttpGet]
-        public ActionResult AccessDenied(string returnURL)
-        {
-            ViewData["HideLeftNavigation"] = !User.IsLoggedIn();
+            if (userRetriever is null)
+                throw new ArgumentNullException(nameof(userRetriever));
 
-            return View(MVC.Views.Errors.AccessDenied, (object)returnURL);
-        }
+            if (userClaimCreator is null)
+                throw new ArgumentNullException(nameof(userClaimCreator));
 
-        [HttpPost, JsonRequest]
-        public Result<ServiceResponse> Login(LoginRequest request,
-            [FromServices] IUserPasswordValidator passwordValidator,
-            [FromServices] IUserRetrieveService userRetriever,
-            [FromServices] IUserClaimCreator userClaimCreator)
-        {
-
-            return this.ExecuteMethod(() =>
+            var username = request.Username;
+            var result = passwordValidator.Validate(ref username, request.Password);
+            if (result == PasswordValidationResult.Valid)
             {
-                if (request is null)
-                    throw new ArgumentNullException(nameof(request));
+                var principal = userClaimCreator.CreatePrincipal(username, authType: "Password");
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).GetAwaiter().GetResult();
+                return new ServiceResponse();
+            }
 
-                if (string.IsNullOrEmpty(request.Username))
-                    throw new ArgumentNullException(nameof(request.Username));
+            if (result == PasswordValidationResult.InactiveUser)
+            {
+                throw new ValidationError("InactivatedAccount", Texts.Validation.AuthenticationError.ToString(Localizer));
+            }
 
-                if (passwordValidator is null)
-                    throw new ArgumentNullException(nameof(passwordValidator));
+            throw new ValidationError("AuthenticationError", Texts.Validation.AuthenticationError.ToString(Localizer));
+        });
+    }
 
-                if (userRetriever is null)
-                    throw new ArgumentNullException(nameof(userRetriever));
+    private ActionResult Error(string message)
+    {
+        return View(MVC.Views.Errors.ValidationError, new ValidationError(message));
+    }
 
-                if (userClaimCreator is null)
-                    throw new ArgumentNullException(nameof(userClaimCreator));
+    public string KeepAlive()
+    {
+        return "OK";
+    }
 
-                var username = request.Username;
-                var result = passwordValidator.Validate(ref username, request.Password);
-                if (result == PasswordValidationResult.Valid)
-                {
-                    var principal = userClaimCreator.CreatePrincipal(username, authType: "Password");
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).GetAwaiter().GetResult();
-                    return new ServiceResponse();
-                }
-
-                if (result == PasswordValidationResult.InactiveUser)
-                {
-                    throw new ValidationError("InactivatedAccount", Texts.Validation.AuthenticationError.ToString(Localizer));
-                }
-
-                throw new ValidationError("AuthenticationError", Texts.Validation.AuthenticationError.ToString(Localizer));
-            });
-        }
-
-        private ActionResult Error(string message)
-        {
-            return View(MVC.Views.Errors.ValidationError, new ValidationError(message));
-        }
-
-        public string KeepAlive()
-        {
-            return "OK";
-        }
-
-        public ActionResult Signout()
-        {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.RequestServices.GetService<IElevationHandler>()?.DeleteToken();
-            return new RedirectResult("~/");
-        }
+    public ActionResult Signout()
+    {
+        HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        HttpContext.RequestServices.GetService<IElevationHandler>()?.DeleteToken();
+        return new RedirectResult("~/");
     }
 }
