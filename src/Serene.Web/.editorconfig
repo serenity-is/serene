@@ -6,6 +6,7 @@ indent_size = 4
 end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
+csharp_style_namespace_declarations = file_scoped:silent
 
 [*.json]
 indent_size = 2
