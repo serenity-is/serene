@@ -180,7 +180,8 @@ html {
 .s-sidebar-header-title {
   margin-left: 8px;
   color: white;
-  font-size: 24px;
+  font-size: 22px;
+  vertical-align: middle;
   font-weight: 500;
 }
 
