@@ -8,34 +8,13 @@
 public sealed class LanguageRow : Row<LanguageRow.RowFields>, IIdRow, INameRow
 {
     [DisplayName("Id"), Identity, IdProperty]
-    public int? Id
-    {
-        get => fields.Id[this];
-        set => fields.Id[this] = value;
-    }
+    public int? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
 
     [DisplayName("Language Id"), Size(10), NotNull, QuickSearch]
-    public string LanguageId
-    {
-        get => fields.LanguageId[this];
-        set => fields.LanguageId[this] = value;
-    }
+    public string LanguageId { get => fields.LanguageId[this]; set => fields.LanguageId[this] = value; }
 
     [DisplayName("Language Name"), Size(50), NotNull, QuickSearch, NameProperty]
-    public string LanguageName
-    {
-        get => fields.LanguageName[this];
-        set => fields.LanguageName[this] = value;
-    }
-
-    public LanguageRow()
-    {
-    }
-
-    public LanguageRow(RowFields fields)
-        : base(fields)
-    {
-    }
+    public string LanguageName { get => fields.LanguageName[this]; set => fields.LanguageName[this] = value; }
 
     public class RowFields : RowFieldsBase
     {

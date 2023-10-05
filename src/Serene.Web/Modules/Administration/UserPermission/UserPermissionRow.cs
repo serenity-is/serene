@@ -7,55 +7,22 @@
 public sealed class UserPermissionRow : Row<UserPermissionRow.RowFields>, IIdRow, INameRow
 {
     [DisplayName("User Permission Id"), Identity, IdProperty]
-    public long? UserPermissionId
-    {
-        get => fields.UserPermissionId[this];
-        set => fields.UserPermissionId[this] = value;
-    }
+    public long? UserPermissionId { get => fields.UserPermissionId[this]; set => fields.UserPermissionId[this] = value; }
 
     [DisplayName("User Id"), NotNull, ForeignKey("Users", "UserId"), LeftJoin("jUser")]
-    public int? UserId
-    {
-        get => fields.UserId[this];
-        set => fields.UserId[this] = value;
-    }
+    public int? UserId { get => fields.UserId[this]; set => fields.UserId[this] = value; }
 
     [DisplayName("Permission Key"), Size(100), NotNull, QuickSearch, NameProperty]
-    public string PermissionKey
-    {
-        get => fields.PermissionKey[this];
-        set => fields.PermissionKey[this] = value;
-    }
+    public string PermissionKey { get => fields.PermissionKey[this]; set => fields.PermissionKey[this] = value; }
 
     [DisplayName("Grant")]
-    public bool? Granted
-    {
-        get => fields.Granted[this];
-        set => fields.Granted[this] = value;
-    }
+    public bool? Granted { get => fields.Granted[this]; set => fields.Granted[this] = value; }
 
     [DisplayName("User Username"), Expression("jUser.[Username]")]
-    public string Username
-    {
-        get => fields.Username[this];
-        set => fields.Username[this] = value;
-    }
+    public string Username { get => fields.Username[this]; set => fields.Username[this] = value; }
 
     [DisplayName("User Display Name"), Expression("jUser.[DisplayName]")]
-    public string User
-    {
-        get => fields.User[this];
-        set => fields.User[this] = value;
-    }
-
-    public UserPermissionRow()
-    {
-    }
-
-    public UserPermissionRow(RowFields fields)
-        : base(fields)
-    {
-    }
+    public string User { get => fields.User[this]; set => fields.User[this] = value; }
 
     public class RowFields : RowFieldsBase
     {
