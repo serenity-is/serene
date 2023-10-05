@@ -179,7 +179,9 @@ html {
 
 .s-sidebar-header-title {
   margin-left: 8px;
-  color: #007eff;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 [aria-expanded=true]>.s-sidebar-menu-toggle {
