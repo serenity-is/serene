@@ -34,22 +34,7 @@ public partial class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<ITypeSource>(new DefaultTypeSource(new[] 
-        {
-            typeof(LocalTextRegistry).Assembly,
-            typeof(ISqlConnections).Assembly,
-            typeof(IRow).Assembly,
-            typeof(SaveRequestHandler<>).Assembly,
-            typeof(IDynamicScriptManager).Assembly,
-            typeof(Startup).Assembly,
-            typeof(EnvironmentSettings).Assembly,
-#if (Northwind)
-            typeof(Serenity.Demo.Northwind.CustomerPage).Assembly,
-#endif
-#if (BasicSamples)
-            typeof(Serenity.Demo.BasicSamples.BasicSamplesPage).Assembly,
-#endif
-        }));
+        services.AddSingleton<ITypeSource>(new AppServices.TypeSource());
 
         services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
         services.Configure<CssBundlingOptions>(Configuration.GetSection(CssBundlingOptions.SectionKey));
