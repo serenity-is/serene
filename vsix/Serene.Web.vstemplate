@@ -38,16 +38,18 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="IDataMigrations.cs">IDataMigrations.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TypeSource.cs">TypeSource.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="UserCultureProvider.cs">UserCultureProvider.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="libman.json">libman.json</ProjectItem>
       <Folder Name="Migrations" TargetFolderName="Migrations">
         <Folder Name="DefaultDB" TargetFolderName="DefaultDB">
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141103_140000_Initial.cs">DefaultDB_20141103_140000_Initial.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_113000_Permissions.cs">DefaultDB_20141111_113000_Permissions.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_072600_UserPreferences.cs">DefaultDB_20160515_072600_UserPreferences.cs</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_130000_ExceptionLog.cs">DefaultDB_20161029_130000_ExceptionLog.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141103_1400_Initial.cs">DefaultDB_20141103_1400_Initial.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20141111_1130_Permissions.cs">DefaultDB_20141111_1130_Permissions.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_0726_UserPreferences.cs">DefaultDB_20160515_0726_UserPreferences.cs</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_1300_ExceptionLog.cs">DefaultDB_20161029_1300_ExceptionLog.cs</ProjectItem>
         </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDBAttribute.cs">DefaultDBAttribute.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="MigrationAttribute.cs">MigrationAttribute.cs</ProjectItem>
       </Folder>
       <Folder Name="Modules" TargetFolderName="Modules">
@@ -116,6 +118,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="DirectoryEntry.cs">DirectoryEntry.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="IDirectoryService.cs">IDirectoryService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="PermissionService.cs">PermissionService.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionService.cs">RolePermissionService.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="UserAccessor.cs">UserAccessor.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="UserDefinition.cs">UserDefinition.cs</ProjectItem>
@@ -187,35 +190,15 @@
         <Folder Name="Membership" TargetFolderName="Membership">
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ChangePassword.cs">AccountController.ChangePassword.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.cs">AccountController.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ForgotPassword.cs">AccountController.ForgotPassword.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.ResetPassword.cs">AccountController.ResetPassword.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.SignUp.cs">AccountController.SignUp.cs</ProjectItem>
-            <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.cshtml">ChangePasswordPage.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.ts">ChangePasswordPage.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.cs">ChangePasswordRequest.cs</ProjectItem>
-            </Folder>
-            <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.cshtml">ForgotPasswordPage.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.ts">ForgotPasswordPage.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.cs">ForgotPasswordRequest.cs</ProjectItem>
-            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.cs">AccountPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountPasswordActionsPage.cs">AccountPasswordActionsPage.cs</ProjectItem>
             <Folder Name="Login" TargetFolderName="Login">
               <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.cshtml">LoginPage.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.ts">LoginPage.ts</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             </Folder>
-            <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmail.cshtml">ResetPasswordEmail.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordEmailModel.cs">ResetPasswordEmailModel.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordModel.cs">ResetPasswordModel.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.cshtml">ResetPasswordPage.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.ts">ResetPasswordPage.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.cs">ResetPasswordRequest.cs</ProjectItem>
-            </Folder>
             <Folder Name="SignUp" TargetFolderName="SignUp">
+              <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.SignUp.cs">AccountPage.SignUp.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmail.cshtml">ActivateEmail.cshtml</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmailModel.cs">ActivateEmailModel.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.cs">SignUpForm.cs</ProjectItem>
@@ -264,14 +247,8 @@
           </Folder>
           <ProjectItem ReplaceParameters="true" TargetFileName="Membership.ts">Membership.ts</ProjectItem>
           <Folder Name="Membership" TargetFolderName="Membership">
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordForm.ts">ChangePasswordForm.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordRequest.ts">ChangePasswordRequest.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordForm.ts">ForgotPasswordForm.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordRequest.ts">ForgotPasswordRequest.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginForm.ts">LoginForm.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.ts">LoginRequest.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordForm.ts">ResetPasswordForm.ts</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordRequest.ts">ResetPasswordRequest.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.ts">SignUpForm.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.ts">SignUpRequest.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SignUpResponse.ts">SignUpResponse.ts</ProjectItem>
@@ -552,11 +529,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-65EVPBFJ.js">chunk-65EVPBFJ.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-B3ZHN3JZ.js">chunk-B3ZHN3JZ.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LPGO6YL3.js">chunk-LPGO6YL3.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-NB3KKFVD.js">chunk-NB3KKFVD.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-OSJKDVQA.js">chunk-OSJKDVQA.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-RK3EK3FG.js">chunk-RK3EK3FG.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-V56BTN3W.js">chunk-V56BTN3W.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VTMATCUZ.js">chunk-VTMATCUZ.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
@@ -578,17 +555,8 @@
             </Folder>
             <Folder Name="Membership" TargetFolderName="Membership">
               <Folder Name="Account" TargetFolderName="Account">
-                <Folder Name="ChangePassword" TargetFolderName="ChangePassword">
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ChangePasswordPage.js">ChangePasswordPage.js</ProjectItem>
-                </Folder>
-                <Folder Name="ForgotPassword" TargetFolderName="ForgotPassword">
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ForgotPasswordPage.js">ForgotPasswordPage.js</ProjectItem>
-                </Folder>
                 <Folder Name="Login" TargetFolderName="Login">
                   <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.js">LoginPage.js</ProjectItem>
-                </Folder>
-                <Folder Name="ResetPassword" TargetFolderName="ResetPassword">
-                  <ProjectItem ReplaceParameters="true" TargetFileName="ResetPasswordPage.js">ResetPasswordPage.js</ProjectItem>
                 </Folder>
                 <Folder Name="SignUp" TargetFolderName="SignUp">
                   <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.js">SignUpPage.js</ProjectItem>
@@ -677,6 +645,7 @@
       <files include="Web.config" />
       <files include="Initialization\Startup.cs" />
       <files include="appsettings.bundles.json" />
+      <files include="Initialization\TypeSource.cs" />
     </conditionals>
   </WizardData>
 </VSTemplate>
