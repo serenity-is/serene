@@ -97,9 +97,6 @@ public partial class Startup
             options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
         });
         
-        if (HostEnvironment.IsDevelopment())
-            builder.AddRazorRuntimeCompilation();
-
         services.AddAuthentication(o =>
         {
             o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;

@@ -80,44 +80,24 @@ namespace Serene.Texts {
 
         namespace Membership {
 
-            namespace ChangePassword {
-                export const FormTitle: string;
-                export const SubmitButton: string;
-                export const Success: string;
-            }
-
-            namespace ForgotPassword {
-                export const BackToLogin: string;
-                export const FormInfo: string;
-                export const FormTitle: string;
-                export const SubmitButton: string;
-                export const SuccessMessage: string;
-            }
-
             namespace Login {
-                export const FacebookButton: string;
                 export const ForgotPassword: string;
-                export const GoogleButton: string;
                 export const LoginToYourAccount: string;
-                export const OR: string;
                 export const RememberMe: string;
                 export const SignInButton: string;
                 export const SignUpButton: string;
             }
 
-            namespace ResetPassword {
-                export const BackToLogin: string;
-                export const EmailSubject: string;
+            namespace SendActivation {
+                export const FormInfo: string;
                 export const FormTitle: string;
                 export const SubmitButton: string;
                 export const Success: string;
             }
 
             namespace SignUp {
-                export const AcceptTerms: string;
                 export const ActivateEmailSubject: string;
                 export const ActivationCompleteMessage: string;
-                export const BackToLogin: string;
                 export const ConfirmEmail: string;
                 export const ConfirmPassword: string;
                 export const DisplayName: string;
@@ -129,9 +109,11 @@ namespace Serene.Texts {
                 export const Success: string;
             }
         }
+        export const SiteTitle: string;
     }
 
     export declare namespace Navigation {
+        export const Dashboard: string;
         export const LogoutLink: string;
         export const SiteTitle: string;
     }
@@ -146,44 +128,9 @@ namespace Serene.Texts {
             export const PageTitle: string;
         }
 
-        namespace BasicProgressDialog {
-            export const CancelTitle: string;
-            export const PleaseWait: string;
-        }
-
-        namespace BulkServiceAction {
-            export const AllHadErrorsFormat: string;
-            export const AllSuccessFormat: string;
-            export const ConfirmationFormat: string;
-            export const ErrorCount: string;
-            export const NothingToProcess: string;
-            export const SomeHadErrorsFormat: string;
-            export const SuccessCount: string;
-        }
-
-        namespace Dashboard {
-            export const ContentDescription: string;
-        }
-
         namespace Layout {
-            export const FooterCopyright: string;
-            export const FooterInfo: string;
-            export const FooterRights: string;
-            export const GeneralSettings: string;
             export const Language: string;
             export const Theme: string;
-            export const ThemeBlack: string;
-            export const ThemeBlackLight: string;
-            export const ThemeBlue: string;
-            export const ThemeBlueLight: string;
-            export const ThemeGreen: string;
-            export const ThemeGreenLight: string;
-            export const ThemePurple: string;
-            export const ThemePurpleLight: string;
-            export const ThemeRed: string;
-            export const ThemeRedLight: string;
-            export const ThemeYellow: string;
-            export const ThemeYellowLight: string;
         }
 
         namespace RolePermissionDialog {
@@ -202,11 +149,6 @@ namespace Serene.Texts {
             export const Grant: string;
             export const Permission: string;
             export const Revoke: string;
-            export const SaveSuccess: string;
-        }
-
-        namespace UserRoleDialog {
-            export const DialogTitle: string;
             export const SaveSuccess: string;
         }
 
@@ -242,24 +184,18 @@ namespace Serene.Texts {
         },
         Forms: {
             Membership: {
-                ChangePassword: {},
-                ForgotPassword: {},
                 Login: {},
-                ResetPassword: {},
+                SendActivation: {},
                 SignUp: {}
             }
         },
         Navigation: {},
         Site: {
             AccessDenied: {},
-            BasicProgressDialog: {},
-            BulkServiceAction: {},
-            Dashboard: {},
             Layout: {},
             RolePermissionDialog: {},
             UserDialog: {},
             UserPermissionDialog: {},
-            UserRoleDialog: {},
             ValidationError: {}
         },
         Validation: {}

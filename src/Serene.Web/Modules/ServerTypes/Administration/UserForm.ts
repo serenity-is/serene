@@ -1,4 +1,4 @@
-﻿import { StringEditor, EmailAddressEditor, LookupEditor, ImageUploadEditor, PasswordEditor, PrefixedContext } from "@serenity-is/corelib";
+﻿import { StringEditor, EmailAddressEditor, LookupEditor, ImageUploadEditor, PasswordEditor, BooleanEditor, PrefixedContext } from "@serenity-is/corelib";
 import { initFormType } from "@serenity-is/corelib/q";
 
 export interface UserForm {
@@ -10,6 +10,7 @@ export interface UserForm {
     Password: PasswordEditor;
     PasswordConfirm: PasswordEditor;
     Source: StringEditor;
+    IsActive: BooleanEditor;
 }
 
 export class UserForm extends PrefixedContext {
@@ -27,6 +28,7 @@ export class UserForm extends PrefixedContext {
             var w2 = LookupEditor;
             var w3 = ImageUploadEditor;
             var w4 = PasswordEditor;
+            var w5 = BooleanEditor;
 
             initFormType(UserForm, [
                 'Username', w0,
@@ -36,7 +38,8 @@ export class UserForm extends PrefixedContext {
                 'UserImage', w3,
                 'Password', w4,
                 'PasswordConfirm', w4,
-                'Source', w0
+                'Source', w0,
+                'IsActive', w5
             ]);
         }
     }
