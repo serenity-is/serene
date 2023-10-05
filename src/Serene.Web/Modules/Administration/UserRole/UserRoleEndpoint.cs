@@ -5,7 +5,7 @@ namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/UserRole/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class UserRoleController : ServiceEndpoint
+public class UserRoleEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeUpdate(typeof(MyRow))]
     public SaveResponse Update(IUnitOfWork uow, UserRoleUpdateRequest request)

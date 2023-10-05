@@ -1,7 +1,7 @@
-namespace Serene.Administration.Pages;
+﻿namespace Serene.Administration.Pages;
 
 [PageAuthorize(PermissionKeys.Translation)]
-public class TranslationController : Controller
+public class TranslationPage : Controller
 {
     [Route("Administration/Translation")]
     public ActionResult Index()

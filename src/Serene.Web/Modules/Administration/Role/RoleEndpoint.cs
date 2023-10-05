@@ -4,7 +4,7 @@ namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/Role/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class RoleController : ServiceEndpoint
+public class RoleEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request, [FromServices] IRoleSaveHandler handler)

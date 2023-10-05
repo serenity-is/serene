@@ -1,7 +1,7 @@
-namespace Serene.Administration.Pages;
+﻿namespace Serene.Administration.Pages;
 
 [PageAuthorize(typeof(RoleRow))]
-public class RoleController : Controller
+public class RolePage : Controller
 {
     [Route("Administration/Role")]
     public ActionResult Index()

@@ -1,5 +1,5 @@
 ﻿
-namespace Serene.Administration;
+namespace Serene.AppServices;
 
 public class DirectoryEntry
 {

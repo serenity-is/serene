@@ -18,4 +18,5 @@ public class UserForm
     public string PasswordConfirm { get; set; }
     [OneWay]
     public string Source { get; set; }
+    public bool IsActive { get; set;  }
 }

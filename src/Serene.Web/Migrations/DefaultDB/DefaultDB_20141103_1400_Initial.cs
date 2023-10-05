@@ -1,4 +1,4 @@
-using FluentMigrator;
+﻿using FluentMigrator;
 
 namespace Serene.Migrations.DefaultDB;
 
@@ -22,7 +22,8 @@ public class DefaultDB_20141103_1400_Initial : AutoReversingMigration
             .WithColumn("UpdateUserId").AsInt32().Nullable()
             .WithColumn("IsActive").AsInt16().NotNullable().WithDefaultValue(1));
 
-        Insert.IntoTable("Users").Row(new {
+        Insert.IntoTable("Users").Row(new
+        {
             Username = "admin",
             DisplayName = "admin",
             Email = "admin@domain" + Serenity.IO.TemporaryFileHelper.RandomFileCode() + ".com",
@@ -77,7 +78,7 @@ public class DefaultDB_20141103_1400_Initial : AutoReversingMigration
         Insert.IntoTable("Languages").Row(new
         {
             LanguageId = "it",
-            LanguageName = "Italian"
+        LanguageName = "Italian"
         });
 
         Insert.IntoTable("Languages").Row(new

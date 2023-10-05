@@ -7,12 +7,6 @@
       "commands": [
         "sergen"
       ]
-    },
-    "microsoft.web.librarymanager.cli": {
-      "version": "2.1.161",
-      "commands": [
-        "libman"
-      ]
     }
   }
 }

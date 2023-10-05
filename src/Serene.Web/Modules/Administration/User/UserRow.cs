@@ -1,3 +1,5 @@
+﻿using Serenity.Extensions.Entities;
+
 namespace Serene.Administration;
 
 [ConnectionKey("Default"), Module("Administration"), TableName("Users")]
@@ -35,7 +37,7 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
     [DisplayName("Password"), Size(50), NotMapped]
     public string Password { get => fields.Password[this]; set => fields.Password[this] = value; }
 
-    [NotNull, Insertable(false), Updatable(true)]
+    [DisplayName("Activated"), NotNull, Insertable(false), Updatable(true)]
     public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
 
     [DisplayName("Confirm Password"), Size(50), NotMapped]
@@ -45,7 +47,7 @@ public sealed class UserRow : Serenity.Extensions.Entities.LoggingRow<UserRow.Ro
     public DateTime? LastDirectoryUpdate { get => fields.LastDirectoryUpdate[this]; set => fields.LastDirectoryUpdate[this] = value; }
 
     [DisplayName("Roles"), LinkingSetRelation(typeof(UserRoleRow), nameof(UserRoleRow.UserId), nameof(UserRoleRow.RoleId))]
-    [LookupEditor(typeof(RoleRow), Multiple = true)]
+    [AsyncLookupEditor(typeof(RoleRow), Multiple = true)]
     public List<int> Roles { get => fields.Roles[this]; set => fields.Roles[this] = value; }
 
     StringField IDisplayNameRow.DisplayNameField => fields.DisplayName;

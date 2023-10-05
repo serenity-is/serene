@@ -1,6 +1,6 @@
+import { RoleRow, UserColumns, UserRow, UserService } from "@/ServerTypes/Administration";
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { resolveUrl, tryFirst } from "@serenity-is/corelib/q";
-import { RoleRow, UserColumns, UserRow, UserService } from "../";
+import { Lookup, resolveUrl, tryFirst } from "@serenity-is/corelib/q";
 import { UserDialog } from "./UserDialog";
 
 @Decorators.registerClass()
@@ -16,17 +16,29 @@ export class UserGrid extends EntityGrid<UserRow, any> {
         super(container);
     }
 
-    protected getDefaultSortBy() {
+    protected override getDefaultSortBy() {
         return [UserRow.Fields.Username];
     }
 
-    protected getColumns() {
+    protected override createIncludeDeletedButton() {
+    }
+
+    protected override getColumns() {
         var columns = super.getColumns();
 
         var roles = tryFirst(columns, x => x.field == UserRow.Fields.Roles);
         if (roles) {
+            var rolesLookup: Lookup<RoleRow>;
+            RoleRow.getLookupAsync().then(lookup => {
+                rolesLookup = lookup;
+                this.slickGrid.invalidate();
+            });
+
             roles.format = ctx => {
-                var roleList = (ctx.value || []).map(x => (RoleRow.getLookup().itemById[x] || {}).RoleName || "");
+                if (!rolesLookup)
+                    return `<i class="fa fa-spinner"></i>`;
+
+                var roleList = (ctx.value || []).map(x => (rolesLookup.itemById[x] || {}).RoleName || "");
                 roleList.sort();
                 return roleList.join(", ");
             };

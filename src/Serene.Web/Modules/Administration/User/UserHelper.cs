@@ -42,7 +42,7 @@ public static class UserHelper
         if (password == null ||
             password.Length < 6)
             throw new ValidationError("PasswordLength", "Password",
-                string.Format(CultureInfo.CurrentCulture, Texts.Validation.MinRequiredPasswordLength.ToString(localizer), 5));
+                string.Format(CultureInfo.CurrentCulture, ExtensionsTexts.Validation.MinRequiredPasswordLength.ToString(localizer), 6));
 
         return password;
     }
@@ -53,11 +53,11 @@ public static class UserHelper
 
     public static string GenerateHash(string password, ref string salt)
     {
-        salt ??= Serenity.IO.TemporaryFileHelper.RandomFileCode().Substring(0, 5);
+        salt ??= Serenity.IO.TemporaryFileHelper.RandomFileCode()[..5];
         return CalculateHash(password, salt);
     }
 
-    public static string GetImpersonationToken(IMemoryCache memoryCache, IDataProtector dataProtector,
+    public static string GetImpersonationToken(IMemoryCache memoryCache, IDataProtector dataProtector, 
         byte[] clientHash, string forUsername, string username)
     {
         if (memoryCache is null)
@@ -119,6 +119,7 @@ public static class UserHelper
         return IsInvariantLetter(c) ||
             IsDigit(c) ||
             c == '.' ||
+            c == '-' ||
             c == '_' ||
             c == '@';
     }

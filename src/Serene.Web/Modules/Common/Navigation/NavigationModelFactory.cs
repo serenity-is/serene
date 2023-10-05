@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Serenity.Navigation;
+using Serene.Administration;
 
 namespace Serene.AppServices;
 
@@ -57,7 +58,7 @@ public class NavigationModelFactory : INavigationModelFactory
             Items = cache.GetLocalStoreOnly("LeftNavigationModel:NavigationItems:" +
                 (userAccessor.User?.GetIdentifier() ?? "-1"), 
                 TimeSpan.Zero,
-                Administration.UserPermissionRow.Fields.GenerationKey,
+                UserPermissionRow.Fields.GenerationKey,
                 () => NavigationHelper.GetNavigationItems(permissions, typeSource, serviceProvider, ToAbsolute))
         };
 

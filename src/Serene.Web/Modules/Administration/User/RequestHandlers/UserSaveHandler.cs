@@ -78,7 +78,7 @@ public class UserSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
         {
             if (Row.IsAssigned(Fld.PasswordConfirm) && !Row.PasswordConfirm.IsEmptyOrNull() &&
                 Row.Password != Row.PasswordConfirm)
-                throw new ValidationError("PasswordConfirmMismatch", "PasswordConfirm", Texts.Validation.PasswordConfirmMismatch.ToString(Localizer));
+                throw new ValidationError("PasswordConfirmMismatch", "PasswordConfirm", ExtensionsTexts.Validation.PasswordConfirmMismatch.ToString(Localizer));
 
             password = Row.Password = UserHelper.ValidatePassword(Row.Password, Localizer);
         }

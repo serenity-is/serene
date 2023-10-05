@@ -1,10 +1,11 @@
-﻿using MyRow = Serene.Administration.UserRow;
+﻿using Microsoft.AspNetCore.DataProtection;
+using MyRow = Serene.Administration.UserRow;
 
 namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/User/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class UserController : ServiceEndpoint
+public class UserEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request, [FromServices] IUserSaveHandler handler)

@@ -1,17 +1,17 @@
-﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using MyRepository = Serene.Administration.Repositories.TranslationRepository;
 
 namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/Translation/[action]")]
 [ServiceAuthorize(PermissionKeys.Translation)]
-public class TranslationController : ServiceEndpoint
+public class TranslationEndpoint : ServiceEndpoint
 {
     protected IWebHostEnvironment HostEnvironment { get; }
     protected ILocalTextRegistry LocalTextRegistry { get; }
     protected ITypeSource TypeSource { get; }
 
-    public TranslationController(IWebHostEnvironment hostEnvironment,
+    public TranslationEndpoint(IWebHostEnvironment hostEnvironment,
         ILocalTextRegistry localTextRegistry, ITypeSource typeSource)
     {
         HostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));

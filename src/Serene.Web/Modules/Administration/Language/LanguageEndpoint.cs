@@ -4,7 +4,7 @@ namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/Language/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class LanguageController : ServiceEndpoint
+public class LanguageEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeCreate(typeof(MyRow))]
     public SaveResponse Create(IUnitOfWork uow, SaveRequest<MyRow> request, [FromServices] ILanguageSaveHandler handler)

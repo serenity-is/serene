@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace Serene.Common.Pages;
 
-public class FileController : Controller
+public class FilePage : Controller
 {
     private readonly IUploadStorage uploadStorage;
     private readonly IUploadProcessor uploadProcessor;
 
-    public FileController(IUploadStorage uploadStorage, IUploadProcessor uploadProcessor)
+    public FilePage(IUploadStorage uploadStorage, IUploadProcessor uploadProcessor)
     {
         this.uploadStorage = uploadStorage ?? throw new ArgumentNullException(nameof(uploadStorage));
         this.uploadProcessor = uploadProcessor ?? throw new ArgumentNullException(nameof(uploadProcessor));
@@ -32,17 +32,37 @@ public class FileController : Controller
         return response;
     }
 
-    [Route("File/HandleUploadRequest")]
+    [Route("File/TemporaryUploadCK")]
+    [AcceptVerbs("POST"), IgnoreAntiforgeryToken]
+    public ActionResult TemporaryUploadCK()
+    {
+        var response = (UploadResponse)HandleUploadRequest(HttpContext);
+        if (response.Error != null)
+            return new JsonResult(new 
+            {
+                uploaded = 0,
+                error = new
+                {
+                    message = response.Error.Message
+                }
+            });
+
+        return new JsonResult(new
+        {
+            uploaded = 1,
+            fileName = response.TemporaryFile,
+            url = VirtualPathUtility.ToAbsolute(HttpContext,
+                uploadStorage.GetFileUrl(response.TemporaryFile))
+        });
+    }
+
+    [NonAction]
     private ServiceResponse HandleUploadRequest(HttpContext context)
     {
         if (context.Request.Form.Files.Count != 1)
             throw new ArgumentOutOfRangeException(nameof(context.Request.Form.Files));
 
-        var file = context.Request.Form.Files[0];
-
-        if (file == null)
-            throw new ArgumentNullException("file");
-
+        var file = context.Request.Form.Files[0] ?? throw new ArgumentNullException("file");
         if (file.FileName.IsEmptyOrNull())
             throw new ArgumentNullException("filename");
 

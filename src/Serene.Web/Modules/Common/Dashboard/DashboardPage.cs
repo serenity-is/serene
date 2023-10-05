@@ -4,7 +4,7 @@
 namespace Serene.Common.Pages;
 
 [Route("Dashboard/[action]")]
-public class DashboardController : Controller
+public class DashboardPage : Controller
 {
     [PageAuthorize, HttpGet, Route("~/")]
 #if (Northwind)
@@ -18,7 +18,7 @@ public class DashboardController : Controller
 
         var o = Serenity.Demo.Northwind.OrderRow.Fields;
 
-        var cachedModel = cache.GetLocalStoreOnly("DashboardPageModel", System.TimeSpan.FromMinutes(5),
+        var cachedModel = cache.GetLocalStoreOnly("DashboardPageModel", TimeSpan.FromMinutes(5),
             o.GenerationKey, () =>
             {
                 var model = new DashboardPageModel();
@@ -29,7 +29,7 @@ public class DashboardController : Controller
                     var closedOrders = connection.Count<Serenity.Demo.Northwind.OrderRow>(
                         o.ShippingState == (int)Serenity.Demo.Northwind.OrderShippingState.Shipped);
                     var totalOrders = model.OpenOrders + closedOrders;
-                    model.ClosedOrderPercent = (int)System.Math.Round(totalOrders == 0 ? 100 :
+                    model.ClosedOrderPercent = (int)Math.Round(totalOrders == 0 ? 100 :
                         ((double)closedOrders / totalOrders * 100));
                     model.CustomerCount = connection.Count<Serenity.Demo.Northwind.CustomerRow>();
                     model.ProductCount = connection.Count<Serenity.Demo.Northwind.ProductRow>();

@@ -6,6 +6,6 @@ public class LanguageColumns
 {
     [EditLink]
     public string LanguageId { get; set; }
-    [EditLink]
+    [EditLink, SortOrder(1)]
     public string LanguageName { get; set; }
 }

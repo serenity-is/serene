@@ -17,13 +17,13 @@ public static class SqlExceptionHelper
 {
     public static void HandleDeleteForeignKeyException(Exception e, ITextLocalizer localizer)
     {
-        if (SqlExceptionHelper.IsForeignKeyException(e, out ForeignKeyExceptionInfo fk))
+        if (IsForeignKeyException(e, out ForeignKeyExceptionInfo fk))
             throw new ValidationError(string.Format(CultureInfo.CurrentCulture, Texts.Validation.DeleteForeignKeyError.ToString(localizer), fk.TableName));
     }
 
     public static void HandleSavePrimaryKeyException(Exception e, ITextLocalizer localizer, string fieldName = "ID")
     {
-        if (SqlExceptionHelper.IsPrimaryKeyException(e, out PrimaryKeyExceptionInfo fk))
+        if (IsPrimaryKeyException(e, out PrimaryKeyExceptionInfo fk))
             throw new ValidationError(string.Format(CultureInfo.CurrentCulture, Texts.Validation.SavePrimaryKeyError.ToString(localizer), fk.TableName, fieldName));
     }
 

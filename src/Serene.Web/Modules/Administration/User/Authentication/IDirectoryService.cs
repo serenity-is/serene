@@ -1,7 +1,7 @@
 ﻿
-namespace Serene.Administration;
+namespace Serene;
 
 public interface IDirectoryService
 {
-    DirectoryEntry Validate(string username, string password);
+    AppServices.DirectoryEntry Validate(string username, string password);
 }

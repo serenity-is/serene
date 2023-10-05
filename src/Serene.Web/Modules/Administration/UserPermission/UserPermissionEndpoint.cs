@@ -1,11 +1,11 @@
-using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
+﻿using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
 using MyRow = Serene.Administration.UserPermissionRow;
 
 namespace Serene.Administration.Endpoints;
 
 [Route("Services/Administration/UserPermission/[action]")]
 [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
-public class UserPermissionController : ServiceEndpoint
+public class UserPermissionEndpoint : ServiceEndpoint
 {
     [HttpPost, AuthorizeUpdate(typeof(MyRow))]
     public SaveResponse Update(IUnitOfWork uow, UserPermissionUpdateRequest request)

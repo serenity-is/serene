@@ -1,7 +1,7 @@
-namespace Serene.Administration.Pages;
+﻿namespace Serene.Administration.Pages;
 
 [PageAuthorize(typeof(LanguageRow))]
-public class LanguageController : Controller
+public class LanguagePage : Controller
 {
     [Route("Administration/Language")]
     public ActionResult Index()
