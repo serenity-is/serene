@@ -76,7 +76,7 @@ public class UserPermissionRepository : BaseRepository
         return new SaveResponse();
     }
 
-    private List<MyRow> GetExisting(IDbConnection connection, int userId, string module, string submodule)
+    private static List<MyRow> GetExisting(IDbConnection connection, int userId, string module, string submodule)
     {
         string prefix = "";
         module = module.TrimToEmpty();
@@ -191,7 +191,7 @@ public class UserPermissionRepository : BaseRepository
         }
     }
 
-    public static IEnumerable<string> ListPermissionKeys(ITwoLevelCache cache, ISqlConnections sqlConnections, 
+    public static IEnumerable<string> ListPermissionKeys(ITwoLevelCache cache,
         ITypeSource typeSource, bool includeRoles = false)
     {
         if (typeSource is null)
@@ -234,56 +234,6 @@ public class UserPermissionRepository : BaseRepository
                 x.StartsWith("Role:", StringComparison.OrdinalIgnoreCase)).ToList())
             {
                 result.Remove(perm);
-            }
-
-            return result;
-        });
-    }
-
-    public static IDictionary<string, HashSet<string>> GetImplicitPermissions(IMemoryCache memoryCache, 
-        ITypeSource typeSource)
-    {
-        if (memoryCache is null)
-            throw new ArgumentNullException(nameof(memoryCache));
-
-        if (typeSource is null)
-            throw new ArgumentNullException(nameof(typeSource));
-
-        return memoryCache.Get<IDictionary<string, HashSet<string>>>("ImplicitPermissions", TimeSpan.Zero, () =>
-        {
-            var result = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
-
-            void addFrom(Type type)
-            {
-                foreach (var member in type.GetFields(BindingFlags.Static | BindingFlags.DeclaredOnly |
-                    BindingFlags.Public | BindingFlags.NonPublic))
-                {
-                    if (member.FieldType != typeof(string))
-                        continue;
-
-                    if (member.GetValue(null) is not string key)
-                        continue;
-
-                    foreach (var attr in member.GetCustomAttributes<ImplicitPermissionAttribute>())
-                    {
-                        if (!result.TryGetValue(key, out HashSet<string> list))
-                        {
-                            list = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                            result[key] = list;
-                        }
-
-                        list.Add(attr.Value);
-                    }
-                }
-
-                foreach (var nested in type.GetNestedTypes(BindingFlags.Public | BindingFlags.DeclaredOnly))
-                    addFrom(nested);
-            }
-
-            foreach (var type in typeSource.GetTypesWithAttribute(
-                typeof(NestedPermissionKeysAttribute)))
-            {
-                addFrom(type);
             }
 
             return result;

@@ -1,4 +1,6 @@
-namespace Serene.Administration;
+using Serene.Administration;
+
+namespace Serene.AppServices;
 
 public class RolePermissionService : IRolePermissionService
 {
@@ -37,7 +39,7 @@ public class RolePermissionService : IRolePermissionService
 
             result.Add("Role:" + role);
 
-            var implicitPermissions = Repositories.UserPermissionRepository.GetImplicitPermissions(cache.Memory, typeSource);
+            var implicitPermissions = PermissionService.GetImplicitPermissions(cache.Memory, typeSource);
             foreach (var key in result.ToArray())
             {
                 if (implicitPermissions.TryGetValue(key, out HashSet<string> list))

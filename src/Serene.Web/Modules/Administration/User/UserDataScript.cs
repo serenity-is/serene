@@ -1,4 +1,4 @@
-﻿using Serene.Administration.Repositories;
+using Serene.Administration.Repositories;
 
 namespace Serene.Administration;
 
@@ -8,29 +8,27 @@ namespace Serene.Administration;
 [DataScript("UserData", CacheDuration = -1, Permission = "*")]
 public class UserDataScript : DataScript<ScriptUserDefinition>
 {
-    private ITwoLevelCache Cache { get; }
-    private IPermissionService Permissions { get; }
-    private ISqlConnections SqlConnections { get; }
-    private ITypeSource TypeSource { get; }
-    private IUserAccessor UserAccessor { get; }
-    private IUserRetrieveService UserRetriever { get; }
+    private readonly ITwoLevelCache cache;
+    private readonly IPermissionService permissions;
+    private readonly ITypeSource typeSource;
+    private readonly IUserAccessor userAccessor;
+    private readonly IUserRetrieveService userRetriever;
 
-    public UserDataScript(ITwoLevelCache cache, IPermissionService permissions, ISqlConnections sqlConnections,
-        ITypeSource typeSource, IUserAccessor userAccessor, IUserRetrieveService userRetrieveService)
+    public UserDataScript(ITwoLevelCache cache, IPermissionService permissions,
+        ITypeSource typeSource, IUserAccessor userAccessor, IUserRetrieveService userRetriever)
     {
-        Cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        Permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        TypeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
-        UserAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
-        UserRetriever = userRetrieveService ?? throw new ArgumentNullException(nameof(userRetrieveService));
+        this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
+        this.permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
+        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+        this.userAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
+        this.userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
     }
 
     protected override ScriptUserDefinition GetData()
     { 
         var result = new ScriptUserDefinition();
 
-        if (UserAccessor.User?.GetUserDefinition(UserRetriever) is not UserDefinition user)
+        if (userAccessor.User?.GetUserDefinition(userRetriever) is not UserDefinition user)
         {
             result.Permissions = new Dictionary<string, bool>();
             return result;
@@ -40,16 +38,16 @@ public class UserDataScript : DataScript<ScriptUserDefinition>
         result.DisplayName = user.DisplayName;
         result.IsAdmin = user.Username == "admin";
 
-        result.Permissions = Cache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
+        result.Permissions = cache.GetLocalStoreOnly("ScriptUserPermissions:" + user.Id, TimeSpan.Zero,
             UserPermissionRow.Fields.GenerationKey, () =>
             {
                 var permissions = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
 
-                var permissionsUsedFromScript = Cache.GetLocalStoreOnly("PermissionsUsedFromScript",
+                var permissionsUsedFromScript = cache.GetLocalStoreOnly("PermissionsUsedFromScript",
                     TimeSpan.Zero, RoleRow.Fields.GenerationKey, () =>
                     {
                         return UserPermissionRepository.ListPermissionKeys(
-                                Cache, SqlConnections, TypeSource, includeRoles: true)
+                                cache, typeSource)
                             .Where(permissionKey =>
                             {
                                 // this sends permission information for all permission keys to client side.
@@ -61,7 +59,7 @@ public class UserDataScript : DataScript<ScriptUserDefinition>
 
                 foreach (var permissionKey in permissionsUsedFromScript)
                 {
-                    if (Permissions.HasPermission(permissionKey))
+                    if (this.permissions.HasPermission(permissionKey))
                         permissions[permissionKey] = true;
                 }
 

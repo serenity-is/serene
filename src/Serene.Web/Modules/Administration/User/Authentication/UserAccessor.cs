@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace Serene.Administration;
+namespace Serene.AppServices;
 
 public class UserAccessor : IUserAccessor, IImpersonator
 {

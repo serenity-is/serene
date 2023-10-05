@@ -136,19 +136,19 @@ public partial class Startup
             loggingBuilder.AddDebug();
         });
 
-        services.AddSingleton<IDataMigrations, DataMigrations>();
+        services.AddSingleton<IDataMigrations, AppServices.DataMigrations>();
         services.AddSingleton<IElevationHandler, DefaultElevationHandler>();
         services.AddSingleton<IEmailSender, EmailSender>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
-        services.AddSingleton<INavigationModelFactory, Common.NavigationModelFactory>();
-        services.AddSingleton<IPermissionService, Administration.PermissionService>();
-        services.AddSingleton<IRolePermissionService, Administration.RolePermissionService>();
+        services.AddSingleton<INavigationModelFactory, AppServices.NavigationModelFactory>();
+        services.AddSingleton<IPermissionService, AppServices.PermissionService>();
+        services.AddSingleton<IRolePermissionService, AppServices.RolePermissionService>();
         services.AddSingleton<IUploadAVScanner, ClamAVUploadScanner>();
-        services.AddSingleton<IUserPasswordValidator, Administration.UserPasswordValidator>();
-        services.AddSingleton<IUserAccessor, Administration.UserAccessor>();
+        services.AddSingleton<IUserPasswordValidator, AppServices.UserPasswordValidator>();
+        services.AddSingleton<IUserAccessor, AppServices.UserAccessor>();
         services.AddSingleton<IUserClaimCreator, DefaultUserClaimCreator>();
-        services.AddSingleton<IUserRetrieveService, Administration.UserRetrieveService>();
+        services.AddSingleton<IUserRetrieveService, AppServices.UserRetrieveService>();
         services.AddServiceHandlers();
         services.AddDynamicScripts();
         services.AddCssBundling();

@@ -17,8 +17,7 @@ public partial class AccountPage : Controller
     public Result<SignUpResponse> SignUp(SignUpRequest request, 
         [FromServices] IEmailSender emailSender,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
-        [FromServices] ITypeSource typeSource,
-        [FromServices] ISqlConnections sqlConnections)
+        [FromServices] ITypeSource typeSource)
     {
         return this.UseConnection("Default", connection =>
         {
@@ -99,7 +98,7 @@ public partial class AccountPage : Controller
             emailSender.Send(subject: emailSubject, body: emailBody, mailTo: email);
 
             uow.Commit();
-            UserRetrieveService.RemoveCachedUser(Cache, userId, username);
+            AppServices.UserRetrieveService.RemoveCachedUser(Cache, userId, username);
 
             if (environmentOptions?.Value.IsPublicDemo == true)
             {
@@ -113,7 +112,7 @@ public partial class AccountPage : Controller
                         RoleName = "Demo Users",
                     }));
 
-                    foreach (var permissionKey in UserPermissionRepository.ListPermissionKeys(Cache, sqlConnections, typeSource, includeRoles: false))
+                    foreach (var permissionKey in UserPermissionRepository.ListPermissionKeys(Cache, typeSource))
                     {
                         connection.Insert(new RolePermissionRow
                         {

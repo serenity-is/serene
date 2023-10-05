@@ -1,7 +1,8 @@
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Serene.Administration;
 
-namespace Serene.Administration;
+namespace Serene.AppServices;
 
 public class UserPasswordValidator : IUserPasswordValidator
 {
@@ -43,7 +44,7 @@ public class UserPasswordValidator : IUserPasswordValidator
 
         if (user.IsActive != 1)
         {
-            Log?.LogError("Inactive user login attempt: {0}", username);
+            Log?.LogError("Inactive user login attempt: {username}", username);
             return PasswordValidationResult.InactiveUser;
         }
 
@@ -117,23 +118,21 @@ public class UserPasswordValidator : IUserPasswordValidator
             var displayName = entry.FirstName + " " + entry.LastName;
             var email = entry.Email.TrimToNull() ?? user.Email ?? (username + "@yourdefaultdomain.com");
 
-            using (var connection = SqlConnections.NewFor<UserRow>())
-            using (var uow = new UnitOfWork(connection))
-            {
-                var fld = UserRow.Fields;
-                new SqlUpdate(fld.TableName)
-                    .Set(fld.DisplayName, displayName)
-                    .Set(fld.PasswordHash, hash)
-                    .Set(fld.PasswordSalt, salt)
-                    .Set(fld.Email, email)
-                    .Set(fld.LastDirectoryUpdate, DateTime.Now)
-                    .WhereEqual(fld.UserId, user.UserId)
-                    .Execute(connection, ExpectedRows.One);
+            using var connection = SqlConnections.NewFor<UserRow>();
+            using var uow = new UnitOfWork(connection);
+            var fld = UserRow.Fields;
+            new SqlUpdate(fld.TableName)
+                .Set(fld.DisplayName, displayName)
+                .Set(fld.PasswordHash, hash)
+                .Set(fld.PasswordSalt, salt)
+                .Set(fld.Email, email)
+                .Set(fld.LastDirectoryUpdate, DateTime.Now)
+                .WhereEqual(fld.UserId, user.UserId)
+                .Execute(connection, ExpectedRows.One);
 
-                uow.Commit();
+            uow.Commit();
 
-                UserRetrieveService.RemoveCachedUser(Cache, user.UserId, username);
-            }
+            UserRetrieveService.RemoveCachedUser(Cache, user.UserId, username);
 
             return PasswordValidationResult.Valid;
         }
@@ -176,27 +175,25 @@ public class UserPasswordValidator : IUserPasswordValidator
             var email = entry.Email.TrimToNull() ?? (username + "@yourdefaultdomain.com");
             username = entry.Username.TrimToNull() ?? username;
 
-            using (var connection = SqlConnections.NewFor<UserRow>())
-            using (var uow = new UnitOfWork(connection))
+            using var connection = SqlConnections.NewFor<UserRow>();
+            using var uow = new UnitOfWork(connection);
+            var userId = (int)connection.InsertAndGetID(new UserRow
             {
-                var userId = (int)connection.InsertAndGetID(new UserRow
-                {
-                    Username = username,
-                    Source = "ldap",
-                    DisplayName = displayName,
-                    Email = email,
-                    PasswordHash = hash,
-                    PasswordSalt = salt,
-                    IsActive = 1,
-                    InsertDate = DateTime.Now,
-                    InsertUserId = 1,
-                    LastDirectoryUpdate = DateTime.Now
-                });
+                Username = username,
+                Source = "ldap",
+                DisplayName = displayName,
+                Email = email,
+                PasswordHash = hash,
+                PasswordSalt = salt,
+                IsActive = 1,
+                InsertDate = DateTime.Now,
+                InsertUserId = 1,
+                LastDirectoryUpdate = DateTime.Now
+            });
 
-                uow.Commit();
+            uow.Commit();
 
-                UserRetrieveService.RemoveCachedUser(Cache, userId, username);
-            }
+            UserRetrieveService.RemoveCachedUser(Cache, userId, username);
 
             return PasswordValidationResult.Valid;
         }

@@ -9,7 +9,7 @@ using System.Data.Common;
 using System.Globalization;
 using System.IO;
 
-namespace Serene;
+namespace Serene.AppServices;
 
 public class DataMigrations : IDataMigrations
 {

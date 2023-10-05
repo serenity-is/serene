@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Serenity.Navigation;
 
-namespace Serene.Common;
+namespace Serene.AppServices;
 
 public class NavigationModelFactory : INavigationModelFactory
 {
     private readonly ITwoLevelCache cache;
     private readonly IHttpContextAccessor httpContextAccessor;
-    private readonly ITextLocalizer localizer;
     private readonly IPermissionService permissions;
     private readonly IServiceProvider serviceProvider;
     private readonly ITypeSource typeSource;
@@ -17,14 +16,12 @@ public class NavigationModelFactory : INavigationModelFactory
     public NavigationModelFactory(
         ITwoLevelCache cache,
         IHttpContextAccessor httpContextAccessor,
-        ITextLocalizer localizer,
         IPermissionService permissions,
         IServiceProvider serviceProvider,
         ITypeSource typeSource,
         IUserAccessor userAccessor)
     {
         this.httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
-        this.localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
         this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         this.permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
         this.serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));

@@ -1,11 +1,10 @@
-﻿
+
 namespace Serene.Administration;
 
 using Microsoft.Extensions.Caching.Memory;
 using Serenity.Abstractions;
 using Serenity.ComponentModel;
 using Serenity.Web;
-using Serene.Administration.Repositories;
 using System;
 using System.Collections.Generic;
 
@@ -23,6 +22,6 @@ public class ImplicitPermissionsDataScript : DataScript<IDictionary<string, Hash
 
     protected override IDictionary<string, HashSet<string>> GetData()
     {
-        return UserPermissionRepository.GetImplicitPermissions(cache, typeSource);
+        return AppServices.PermissionService.GetImplicitPermissions(cache, typeSource);
     }
 }

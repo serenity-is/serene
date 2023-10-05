@@ -1,7 +1,7 @@
 using System.Globalization;
 using MyRow = Serene.Administration.UserRow;
 
-namespace Serene.Administration;
+namespace Serene.AppServices;
 
 public class UserRetrieveService : IUserRetrieveService
 {
