@@ -438,3 +438,8 @@ select {
 .fa-clipboard-check::before {
   content: "\f0c7";
 }
+
+a.quick-search-field {
+  height: 28px;
+  border-color: #aaa;
+}
