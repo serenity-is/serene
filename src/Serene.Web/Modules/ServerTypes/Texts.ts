@@ -1,4 +1,4 @@
-﻿import { proxyTexts } from "@serenity-is/corelib/q";
+﻿import { proxyTexts } from "@serenity-is/corelib";
 
 namespace Serene.Texts {
 

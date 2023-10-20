@@ -1,4 +1,4 @@
-﻿import { ServiceRequest } from "@serenity-is/corelib/q";
+﻿import { ServiceRequest } from "@serenity-is/corelib";
 
 export interface SignUpRequest extends ServiceRequest {
     DisplayName?: string;

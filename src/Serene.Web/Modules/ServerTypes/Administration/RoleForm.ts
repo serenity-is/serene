@@ -1,12 +1,11 @@
-﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface RoleForm {
     RoleName: StringEditor;
 }
 
 export class RoleForm extends PrefixedContext {
-    static formKey = 'Administration.Role';
+    static readonly formKey = 'Administration.Role';
     private static init: boolean;
 
     constructor(prefix: string) {

@@ -1,5 +1,4 @@
-﻿import { StringEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface LanguageForm {
     LanguageId: StringEditor;
@@ -7,7 +6,7 @@ export interface LanguageForm {
 }
 
 export class LanguageForm extends PrefixedContext {
-    static formKey = 'Administration.Language';
+    static readonly formKey = 'Administration.Language';
     private static init: boolean;
 
     constructor(prefix: string) {

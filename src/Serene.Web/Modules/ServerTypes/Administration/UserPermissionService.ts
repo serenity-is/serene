@@ -1,7 +1,7 @@
-﻿import { UserPermissionUpdateRequest } from "./UserPermissionUpdateRequest";
-import { SaveResponse, ServiceOptions, ListResponse, ServiceRequest, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { SaveResponse, ServiceOptions, ListResponse, ServiceRequest, serviceRequest } from "@serenity-is/corelib";
 import { UserPermissionListRequest } from "./UserPermissionListRequest";
 import { UserPermissionRow } from "./UserPermissionRow";
+import { UserPermissionUpdateRequest } from "./UserPermissionUpdateRequest";
 
 export namespace UserPermissionService {
     export const baseUrl = 'Administration/UserPermission';

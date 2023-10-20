@@ -1,7 +1,7 @@
-﻿import { UserRoleUpdateRequest } from "./UserRoleUpdateRequest";
-import { SaveResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib/q";
+﻿import { SaveResponse, ServiceOptions, serviceRequest } from "@serenity-is/corelib";
 import { UserRoleListRequest } from "./UserRoleListRequest";
 import { UserRoleListResponse } from "./UserRoleListResponse";
+import { UserRoleUpdateRequest } from "./UserRoleUpdateRequest";
 
 export namespace UserRoleService {
     export const baseUrl = 'Administration/UserRole';

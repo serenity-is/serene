@@ -1,5 +1,4 @@
-﻿import { StringEditor, EmailAddressEditor, PasswordEditor, PrefixedContext } from "@serenity-is/corelib";
-import { initFormType } from "@serenity-is/corelib/q";
+﻿import { StringEditor, EmailAddressEditor, PasswordEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface SignUpForm {
     DisplayName: StringEditor;
@@ -10,7 +9,7 @@ export interface SignUpForm {
 }
 
 export class SignUpForm extends PrefixedContext {
-    static formKey = 'Membership.SignUp';
+    static readonly formKey = 'Membership.SignUp';
     private static init: boolean;
 
     constructor(prefix: string) {
