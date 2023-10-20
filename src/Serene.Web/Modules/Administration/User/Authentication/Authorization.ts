@@ -1,4 +1,4 @@
-import { getRemoteData } from "@serenity-is/corelib/q";
+import { getRemoteData } from "@serenity-is/corelib";
 import { ScriptUserDefinition } from "../..";
 
 export function userDefinition() {

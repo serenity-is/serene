@@ -32,8 +32,7 @@
     "types": [
       "jquery",
       "jquery.validation",
-      "jqueryui",
-      "toastr"
+      "jqueryui"
     ]
   },
   "include": [

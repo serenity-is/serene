@@ -1,7 +1,7 @@
 import { UserForm, UserRow, UserService } from "../";
 import { UserPermissionDialog } from "../UserPermission/UserPermissionDialog";
 import { Decorators, EditorUtils, EntityDialog } from "@serenity-is/corelib"
-import { format, localText } from "@serenity-is/corelib/q";
+import { format, localText } from "@serenity-is/corelib";
 import { Texts } from "@/ServerTypes/Texts";
 
 @Decorators.registerClass()

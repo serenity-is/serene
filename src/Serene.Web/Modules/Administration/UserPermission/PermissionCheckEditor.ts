@@ -1,5 +1,5 @@
 import { DataGrid, Decorators, GridUtils, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton } from "@serenity-is/corelib";
-import { count, Dictionary, Grouping, toGrouping, localText, turkishLocaleCompare, htmlEncode, any, trimToNull, getRemoteData, tryGetText } from "@serenity-is/corelib/q";
+import { count, Dictionary, Grouping, toGrouping, localText, turkishLocaleCompare, htmlEncode, any, trimToNull, getRemoteData, tryGetText } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { UserPermissionRow } from "../";
 

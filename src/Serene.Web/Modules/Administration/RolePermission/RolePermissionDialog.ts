@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { format, getRemoteData, notifySuccess, localText } from "@serenity-is/corelib/q";
+import { format, getRemoteData, notifySuccess, localText } from "@serenity-is/corelib";
 import { RolePermissionService, UserPermissionRow } from "../";
 import { PermissionCheckEditor } from "../UserPermission/PermissionCheckEditor";
 

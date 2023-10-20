@@ -1,5 +1,5 @@
 import { Decorators, EntityGrid, GridUtils, LookupEditor, LookupEditorOptions, ToolButton, Widget } from "@serenity-is/corelib";
-import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, localText, trimToEmpty, trimToNull } from "@serenity-is/corelib/q";
+import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, localText, trimToEmpty, trimToNull } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { TranslationItem, TranslationService } from "../";
 

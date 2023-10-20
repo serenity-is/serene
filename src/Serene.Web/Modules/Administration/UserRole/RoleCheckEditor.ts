@@ -1,5 +1,5 @@
 import { CheckTreeEditor, CheckTreeItem, Decorators, GridUtils } from "@serenity-is/corelib";
-import { isEmptyOrNull } from "@serenity-is/corelib/q";
+import { isEmptyOrNull } from "@serenity-is/corelib";
 import { RoleRow } from "../";
 
 @Decorators.registerEditor('Serene.Administration.RoleCheckEditor')

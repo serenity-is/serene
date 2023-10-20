@@ -1,5 +1,5 @@
 import { Decorators, TemplatedDialog } from "@serenity-is/corelib";
-import { DialogButton, format, notifySuccess, serviceRequest, localText } from "@serenity-is/corelib/q";
+import { DialogButton, format, notifySuccess, serviceRequest, localText } from "@serenity-is/corelib";
 import { UserRoleService } from "../";
 import { RoleCheckEditor } from "./RoleCheckEditor";
 

@@ -1,5 +1,5 @@
 import { EntityDialog, HtmlContentEditor } from "@serenity-is/corelib";
-import { Authorization, Config, ErrorHandling } from "@serenity-is/corelib/q";
+import { Authorization, Config, ErrorHandling } from "@serenity-is/corelib";
 import { siteLanguageList } from "./Helpers/LanguageList";
 
 Config.rootNamespaces.push('Serene');

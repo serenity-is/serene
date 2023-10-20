@@ -1,6 +1,6 @@
 import { RoleRow, UserColumns, UserRow, UserService } from "@/ServerTypes/Administration";
 import { Decorators, EntityGrid } from "@serenity-is/corelib";
-import { Lookup, resolveUrl, tryFirst } from "@serenity-is/corelib/q";
+import { Lookup, resolveUrl, tryFirst } from "@serenity-is/corelib";
 import { UserDialog } from "./UserDialog";
 
 @Decorators.registerClass()

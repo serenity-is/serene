@@ -1,7 +1,7 @@
 import { SignUpForm, SignUpRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
 import { PropertyPanel } from "@serenity-is/corelib";
-import { information, resolveUrl, serviceCall, localText, htmlEncode } from "@serenity-is/corelib/q";
+import { information, resolveUrl, serviceCall, localText, htmlEncode } from "@serenity-is/corelib";
 import { SignUpResponse } from "@/ServerTypes/Membership/SignUpResponse";
 
 $(function () {

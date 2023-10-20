@@ -529,11 +529,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LPGO6YL3.js">chunk-LPGO6YL3.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MDUEMGDR.js">chunk-MDUEMGDR.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-NE46CQME.js">chunk-NE46CQME.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-RK3EK3FG.js">chunk-RK3EK3FG.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VSTOS6H6.js">chunk-VSTOS6H6.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-H67AGWAN.js">chunk-H67AGWAN.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-OKBF6UX5.js">chunk-OKBF6UX5.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-Q4COIZBO.js">chunk-Q4COIZBO.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VPZFL5QW.js">chunk-VPZFL5QW.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VVOU4364.js">chunk-VVOU4364.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
