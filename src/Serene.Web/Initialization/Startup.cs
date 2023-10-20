@@ -34,24 +34,12 @@ public partial class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<ITypeSource>(new AppServices.TypeSource());
+        var typeSource = new AppServices.TypeSource();
+        services.AddSingleton<ITypeSource>(typeSource);
+        services.ConfigureSections(Configuration, typeSource);
 
-        services.Configure<ConnectionStringOptions>(Configuration.GetSection(ConnectionStringOptions.SectionKey));
-        services.Configure<CssBundlingOptions>(Configuration.GetSection(CssBundlingOptions.SectionKey));
-        services.Configure<LocalTextPackages>(Configuration.GetSection(LocalTextPackages.SectionKey));
-        services.Configure<ScriptBundlingOptions>(Configuration.GetSection(ScriptBundlingOptions.SectionKey));
-        services.Configure<UploadSettings>(Configuration.GetSection(UploadSettings.SectionKey));
-        services.Configure<EnvironmentSettings>(
-            Configuration.GetSection(EnvironmentSettings.SectionKey));
-        {
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-            });
-        }
-
-        services.ConfigureSection<ClamAVSettings>(Configuration);
-        services.Configure<EnvironmentSettings>(Configuration.GetSection(EnvironmentSettings.SectionKey));
+        services.Configure<ForwardedHeadersOptions>(options => options.ForwardedHeaders =
+            ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 
         services.Configure<RequestLocalizationOptions>(options =>
         {
@@ -70,20 +58,9 @@ public partial class Startup
                     .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysFolder));
         }
 
-        services.AddAntiforgery(options => 
-        {
-            options.HeaderName = "X-CSRF-TOKEN";
-        });
-
-        services.Configure<KestrelServerOptions>(options =>
-        {
-            options.AllowSynchronousIO = true;
-        });
-
-        services.Configure<IISServerOptions>(options =>
-        {
-            options.AllowSynchronousIO = true;
-        });
+        services.AddAntiforgery(options => options.HeaderName = "X-CSRF-TOKEN");
+        services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
+        services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
 
         var builder = services.AddControllersWithViews(options =>
         {
