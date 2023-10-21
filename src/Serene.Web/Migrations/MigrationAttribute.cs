@@ -1,12 +1,10 @@
-﻿namespace Serene.Migrations;
+using FluentMigrator;
 
-public class MigrationAttribute : FluentMigrator.MigrationAttribute
+namespace Serene.Migrations;
+
+public class MigrationAttribute : MigrationAttributeBase
 {
-    public MigrationAttribute(long version)
-        : base((version >= 20010101_0000 && version <= 99990101_0000) ? version * 100 : version)
+    public MigrationAttribute(long version, TransactionBehavior transactionBehavior = TransactionBehavior.Default, string description = null) : base(version, transactionBehavior, description)
     {
-        if (Version < 20010101_000000 || Version > 99990101_000000)
-            throw new Exception("Migration versions must be in yyyyMMdd_HHmm or " +
-                "yyyyMMdd_HHmm_ss format! Version " + version + " is incorrect.");
     }
 }
