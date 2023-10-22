@@ -2,7 +2,7 @@ using FluentMigrator;
 
 namespace Serene.Migrations.DefaultDB;
 
-[DefaultDB, Migration(20161029_1300)]
+[DefaultDB, MigrationKey(20161029_1300)]
 public class DefaultDB_20161029_1300_ExceptionLog : AutoReversingMigration
 {
     public override void Up()

@@ -3,9 +3,7 @@ using FluentMigrator.Runner.Conventions;
 using FluentMigrator.Runner.Initialization;
 using FluentMigrator.Runner.Processors;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
-using System.Data.Common;
 using System.Globalization;
 using System.IO;
 
@@ -48,113 +46,9 @@ public class DataMigrations : IDataMigrations
     /// </summary>
     private void EnsureDatabase(string databaseKey)
     {
-        var cs = sqlConnections.TryGetConnectionString(databaseKey)
-            ?? throw new ArgumentNullException(nameof(databaseKey));
-        var serverType = cs.Dialect.ServerType;
-        bool isSql = serverType.StartsWith("SqlServer", StringComparison.OrdinalIgnoreCase);
-        bool isPostgres = serverType.StartsWith("Postgres", StringComparison.OrdinalIgnoreCase);
-        bool isMySql = serverType.StartsWith("MySql", StringComparison.OrdinalIgnoreCase);
-        bool isSqlite = serverType.StartsWith("Sqlite", StringComparison.OrdinalIgnoreCase);
-        bool isFirebird = serverType.StartsWith("Firebird", StringComparison.OrdinalIgnoreCase);
-
-        if (isSqlite)
-        {
-            var contentRoot = hostEnvironment.ContentRootPath;
-            Directory.CreateDirectory(Path.Combine(contentRoot, "App_Data"));
-            return;
-        }
-
-        var cb = DbProviderFactories.GetFactory(cs.ProviderName).CreateConnectionStringBuilder();
-        cb.ConnectionString = cs.ConnectionString;
-
-        if (isFirebird)
-        {
-            if (cb.ConnectionString.IndexOf(@"localhost", StringComparison.Ordinal) < 0 &&
-                cb.ConnectionString.IndexOf(@"127.0.0.1", StringComparison.Ordinal) < 0)
-                return;
-
-            var database = cb["Database"] as string;
-            if (string.IsNullOrEmpty(database))
-                return;
-
-            database = Path.GetFullPath(database);
-            if (File.Exists(database))
-                return;
-            Directory.CreateDirectory(Path.GetDirectoryName(database));
-
-            using var fbConnection = sqlConnections.New(cb.ConnectionString,
-                cs.ProviderName, cs.Dialect);
-            ((WrappedConnection)fbConnection).ActualConnection.GetType()
-                .GetMethod("CreateDatabase", new Type[] { typeof(string), typeof(bool) })
-                .Invoke(null, new object[] { fbConnection.ConnectionString, false });
-
-            return;
-        }
-
-        if (!isSql && !isPostgres && !isMySql)
-            return;
-
-        string catalogKey = "?";
-
-        foreach (var ck in new[] { "Initial Catalog", "Database", "AttachDBFilename" })
-            if (cb.ContainsKey(ck))
-            {
-                catalogKey = ck;
-                break;
-            }
-
-        var catalog = cb[catalogKey] as string;
-        cb[catalogKey] = isPostgres ? "postgres" : null;
-
-        using var serverConnection = sqlConnections.New(cb.ConnectionString,
-            cs.ProviderName, cs.Dialect);
-        serverConnection.Open();
-
-        string databasesQuery = "SELECT * FROM sys.databases WHERE NAME = @name";
-        string createDatabaseQuery = @"CREATE DATABASE [{0}]";
-
-        if (isPostgres)
-        {
-            databasesQuery = "select * from postgres.pg_catalog.pg_database where datname = @name";
-            createDatabaseQuery = "CREATE DATABASE \"{0}\"";
-        }
-        else if (isMySql)
-        {
-            databasesQuery = "SELECT * FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = @name";
-            createDatabaseQuery = "CREATE DATABASE `{0}`";
-        }
-
-        if (serverConnection.Query(databasesQuery, new { name = catalog }).Any())
-            return;
-
-        var isLocalServer = isSql && (
-            serverConnection.ConnectionString.Contains(@"(localdb)\", StringComparison.OrdinalIgnoreCase) ||
-            serverConnection.ConnectionString.Contains(@".\", StringComparison.OrdinalIgnoreCase) ||
-            serverConnection.ConnectionString.Contains(@"localhost", StringComparison.OrdinalIgnoreCase) ||
-            serverConnection.ConnectionString.Contains(@"127.0.0.1", StringComparison.OrdinalIgnoreCase));
-
-        string command;
-        if (isLocalServer)
-        {
-            string baseDirectory = hostEnvironment.ContentRootPath;
-
-            var filename = Path.Combine(Path.Combine(baseDirectory, "App_Data"), catalog);
-            Directory.CreateDirectory(Path.GetDirectoryName(filename));
-
-            command = string.Format(CultureInfo.InvariantCulture, @"CREATE DATABASE [{0}] ON PRIMARY (Name = N'{0}', FILENAME = '{1}.mdf') " +
-                "LOG ON (NAME = N'{0}_log', FILENAME = '{1}.ldf')",
-                catalog, filename);
-
-            if (File.Exists(filename + ".mdf"))
-                command += " FOR ATTACH";
-        }
-        else
-        {
-            command = string.Format(CultureInfo.InvariantCulture, createDatabaseQuery, catalog);
-        }
-
-        serverConnection.Execute(command);
-        SqlConnection.ClearAllPools();
+        MigrationUtils.EnsureDatabase(databaseKey,
+            hostEnvironment.ContentRootPath, sqlConnections);
+        Microsoft.Data.SqlClient.SqlConnection.ClearAllPools();
     }
 
     private void RunMigrations(string databaseKey)

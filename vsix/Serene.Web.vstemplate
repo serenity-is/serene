@@ -49,8 +49,6 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20160515_0726_UserPreferences.cs">DefaultDB_20160515_0726_UserPreferences.cs</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDB_20161029_1300_ExceptionLog.cs">DefaultDB_20161029_1300_ExceptionLog.cs</ProjectItem>
         </Folder>
-        <ProjectItem ReplaceParameters="true" TargetFileName="DefaultDBAttribute.cs">DefaultDBAttribute.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="MigrationAttribute.cs">MigrationAttribute.cs</ProjectItem>
       </Folder>
       <Folder Name="Modules" TargetFolderName="Modules">
         <ProjectItem ReplaceParameters="true" TargetFileName="_ViewImports.cshtml">_ViewImports.cshtml</ProjectItem>
