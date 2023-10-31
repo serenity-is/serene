@@ -245,6 +245,17 @@ html {
   }
 }
 
+.s-form-title-logo {
+  background-color: var(--s-sidebar-band-bg);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  padding: 0.25rem;
+}
+
 .hidden,
 :root .hidden {
   display: none !important;

@@ -25,4 +25,9 @@
     </div>
 </div>
 
-<script type="module" src=@Html.ResolveWithHash("~/esm/Modules/Membership/Account/Login/LoginPage.js")></script>
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash("~/esm/Modules/Membership/Account/Login/LoginPage.js")';
+    pageInit({
+        activated: @Json.Serialize(ViewData["Activated"] as string)
+    });
+</script>

@@ -1,3 +1,7 @@
+.s-site-logo-img {
+  content: url(../../Serenity.Assets/logo/white-128.png);
+}
+
 .s-Administration-LanguageDialog > .size {
   width: 450px;
 }
