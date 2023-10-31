@@ -19,7 +19,9 @@
     "outDir": "./wwwroot/esm",
     "paths": {
       "@/*": [ "Modules/*" ],
-      "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ]
+      "@serenity-is/*": [ "node_modules/@serenity-is/*/dist/index" ],
+      "react": [ "./node_modules/preact/compat/" ],
+      "react-dom": [ "./node_modules/preact/compat/" ]
     },
     "preserveConstEnums": true,
     "rootDir": ".",
