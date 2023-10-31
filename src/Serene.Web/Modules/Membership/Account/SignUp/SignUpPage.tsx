@@ -52,15 +52,6 @@ class SignUpPanel extends PropertyPanel<SignUpRequest, any> {
             url: resolveUrl('~/Account/SignUp'),
             request: request,
             onSuccess: (response: SignUpResponse) => {
-                if (response.DemoActivationLink) {
-                    informationDialog("You would normally receive an e-mail with instructions to active your account now.\n\n" +
-                        "But as this is a DEMO, you'll be redirected to the activation page automatically. ", () => {
-                            window.location.href = resolveUrl(response.DemoActivationLink);
-                        });
-
-                    return;
-                }
-
                 informationDialog(myTexts.Success, () => {
                     window.location.href = resolveUrl('~/');
                 });
