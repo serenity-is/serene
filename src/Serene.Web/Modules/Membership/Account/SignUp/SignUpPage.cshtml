@@ -10,4 +10,8 @@ Layout = MVC.Views.Shared._LayoutNoNavigation;
     </div>
 </div>
 
-<script type="module" src=@Html.ResolveWithHash("~/esm/Modules/Membership/Account/SignUp/SignUpPage.js")></script>
+
+<script type="module">
+    import pageInit from '@Html.ResolveWithHash("~/esm/Modules/Membership/Account/SignUp/SignUpPage.js")';
+    pageInit({});
+</script>
