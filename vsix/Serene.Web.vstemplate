@@ -189,10 +189,11 @@
           <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
           <Folder Name="Account" TargetFolderName="Account">
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountPage.cs">AccountPage.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="AccountPanelTitle.tsx">AccountPanelTitle.tsx</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="AccountPasswordActionsPage.cs">AccountPasswordActionsPage.cs</ProjectItem>
             <Folder Name="Login" TargetFolderName="Login">
               <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.cshtml">LoginPage.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.ts">LoginPage.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="LoginPage.tsx">LoginPage.tsx</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="LoginRequest.cs">LoginRequest.cs</ProjectItem>
             </Folder>
             <Folder Name="SignUp" TargetFolderName="SignUp">
@@ -201,7 +202,7 @@
               <ProjectItem ReplaceParameters="true" TargetFileName="ActivateEmailModel.cs">ActivateEmailModel.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpForm.cs">SignUpForm.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.cshtml">SignUpPage.cshtml</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.ts">SignUpPage.ts</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="SignUpPage.tsx">SignUpPage.tsx</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.cs">SignUpRequest.cs</ProjectItem>
               <ProjectItem ReplaceParameters="true" TargetFileName="SignUpResponse.cs">SignUpResponse.cs</ProjectItem>
             </Folder>
@@ -510,7 +511,6 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="serenity.jquery-ui.messagedialogs.css">serenity.jquery-ui.messagedialogs.css</ProjectItem>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
-            <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.css">common-theme.css</ProjectItem>
             <Folder Name="images" TargetFolderName="images">
               <ProjectItem ReplaceParameters="false" TargetFileName="accordion-arrows.png">accordion-arrows.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="serenity-logo-40.png">serenity-logo-40.png</ProjectItem>
@@ -527,11 +527,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-H67AGWAN.js">chunk-H67AGWAN.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-OKBF6UX5.js">chunk-OKBF6UX5.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-Q4COIZBO.js">chunk-Q4COIZBO.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VPZFL5QW.js">chunk-VPZFL5QW.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VVOU4364.js">chunk-VVOU4364.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-4CM3QG3T.js">chunk-4CM3QG3T.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-6EWJMZJC.js">chunk-6EWJMZJC.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-GIPVQTF5.js">chunk-GIPVQTF5.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-KVB3D2J2.js">chunk-KVB3D2J2.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VYPEUZXS.js">chunk-VYPEUZXS.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
@@ -596,9 +596,6 @@
           </Folder>
           <Folder Name="knob" TargetFolderName="knob">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.knob.js">jquery.knob.js</ProjectItem>
-          </Folder>
-          <Folder Name="site" TargetFolderName="site">
-            <ProjectItem ReplaceParameters="true" TargetFileName="common-theme.js">common-theme.js</ProjectItem>
           </Folder>
           <Folder Name="sparkline" TargetFolderName="sparkline">
             <ProjectItem ReplaceParameters="true" TargetFileName="jquery.sparkline.js">jquery.sparkline.js</ProjectItem>
