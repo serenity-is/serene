@@ -659,17 +659,21 @@ button.ui-button::-moz-focus-inner {
   margin-top: 6px;
 }
 .ui-tabs .ui-tabs-panel {
-  display: block;
   border-width: 0 1px 1px 1px;
   padding: 1em 1.4em;
   background: none;
-}
-.ui-tabs .ui-tabs-panel {
   background: #FFF;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
   border-radius: 0;
 }
+
+.ui-tabs-panel {
+    display: block;
+}
+
+.ui-tabs-panel:not(.ui-tabs-panel-active):not([aria-hidden=false]) {
+  display: none !important;
+}
+
 .ui-tabs .ui-tabs-hide {
   display: none !important;
 }
@@ -1934,7 +1938,7 @@ s.-Panel .tab-pane {
   min-height: 43px;
   margin-bottom: 0;
 }
-.full-height-page section.content {
+section.content {
   display: flex;
   flex-direction: column;
 }
@@ -2206,7 +2210,8 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
 .flex-layout .ui-tabs-panel,
 .flex-layout .ui-tabs-panel > .s-DataGrid,
 .flex-layout .property-panes,
-.flex-layout .property-panes .tab-pane.active,
+.flex-layout .tab-pane,
+.flex-layout .tab-content > .tab-pane.active,
 .flex-layout .s-PropertyGrid {
   display: -moz-box;
   display: -webkit-box;
@@ -2391,9 +2396,10 @@ div.s-Toolbar .s-PopupToolButton .button-outer > span > b {
     -ms-flex-preferred-size: auto;
   }
 }
-body.mobile-device.modal-dialog-open,
-.mobile-device body.modal-dialog-open {
+@media (max-width: 767px) {
+  body.modal-dialog-open {
     overflow-y: hidden;
+  }
 }
 .ui-dialog.mobile-layout {
   box-shadow: none;
@@ -2533,7 +2539,6 @@ body.mobile-device.modal-dialog-open,
   display: inline-block;
   padding-left: 22px;
   min-height: 20px;
-  background: url(images/arrow-down.png) no-repeat left 1px;
   opacity: 0.5;
   cursor: pointer;
 }
@@ -3040,7 +3045,6 @@ img.ui-datepicker-trigger {
   display: inline-block;
   height: 26px;
   width: 24px;
-  float: left;
   margin-left: 2px;
   border: 1px solid #aaa;
   border-radius: 4px 4px 4px 4px;
@@ -3173,11 +3177,7 @@ a.s-LinkDropDown input {
   cursor: pointer;
 }
 .s-PropertyGrid .category.collapsed .field {
-  visibility: hidden !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
+  display: none !important;
 }
 .s-PropertyGrid .category-title i.fa {
   float: right;
@@ -3222,14 +3222,6 @@ a.s-LinkDropDown input {
 }
 .property-panes .tab-pane {
   padding: 6px 0;
-}
-.property-panes > .tab-pane:not(.active) {
-  visibility: hidden !important;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
 }
 .quick-filters-bar {
   border: 1px solid #e7e7e7;
@@ -3301,7 +3293,6 @@ a.s-LinkDropDown input {
 }
 .s-QuickSearchBar .quick-search-icon {
   display: inline-block;
-  float: left;
   padding: 0 0 0 8px;
   border-radius: 5px 0 0 5px;
   background: #0090d9;
