@@ -505,10 +505,8 @@
               <ProjectItem ReplaceParameters="false" TargetFileName="xml.png">xml.png</ProjectItem>
               <ProjectItem ReplaceParameters="false" TargetFileName="zoom.png">zoom.png</ProjectItem>
             </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.bootstrap.messagedialogs.css">serenity.bootstrap.messagedialogs.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="serenity.css">serenity.css</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="serenity.editors.css">serenity.editors.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="serenity.jquery-ui.messagedialogs.css">serenity.jquery-ui.messagedialogs.css</ProjectItem>
           </Folder>
           <Folder Name="site" TargetFolderName="site">
             <Folder Name="images" TargetFolderName="images">
