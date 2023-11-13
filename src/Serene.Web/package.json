@@ -10,7 +10,7 @@
     "preact": "10.15.0"
   },
   "devDependencies": {
-    "@serenity-is/tsbuild": "6.7.2"
+    "@serenity-is/tsbuild": "6.9.8"
   },
   "scripts": {
     "build": "npm run tsbuild",
