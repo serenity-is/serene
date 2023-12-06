@@ -15,17 +15,13 @@ export class UserPermissionDialog extends TemplatedDialog<UserPermissionDialogOp
         });
 
         UserPermissionService.List({
-            UserID: this.options.userID,
-            Module: null,
-            Submodule: null
+            UserID: this.options.userID
         }, response => {
             this.permissions.value = response.Entities;
         });
 
         UserPermissionService.ListRolePermissions({
-            UserID: this.options.userID,
-            Module: null,
-            Submodule: null,
+            UserID: this.options.userID
         }, response => {
             this.permissions.rolePermissions = response.Entities;
         });
@@ -43,9 +39,7 @@ export class UserPermissionDialog extends TemplatedDialog<UserPermissionDialogOp
                 click: e => {
                     UserPermissionService.Update({
                         UserID: this.options.userID,
-                        Permissions: this.permissions.value,
-                        Module: null,
-                        Submodule: null
+                        Permissions: this.permissions.value
                     }, response => {
                         this.dialogClose();
                         window.setTimeout(() => notifySuccess(localText('Site.UserPermissionDialog.SaveSuccess')), 0);

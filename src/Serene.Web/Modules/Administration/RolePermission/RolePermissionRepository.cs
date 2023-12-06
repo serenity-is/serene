@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using MyRow = Serene.Administration.RolePermissionRow;
 
 namespace Serene.Administration.Repositories;
@@ -23,10 +23,10 @@ public class RolePermissionRepository : BaseRepository
 
         var roleID = request.RoleID.Value;
         var oldList = new HashSet<string>(
-            GetExisting(uow.Connection, roleID, request.Module, request.Submodule)
+            GetExisting(uow.Connection, roleID)
             .Select(x => x.PermissionKey), StringComparer.OrdinalIgnoreCase);
 
-        var newList = new HashSet<string>(request.Permissions.ToList(), 
+        var newList = new HashSet<string>(request.Permissions.ToList(),
             StringComparer.OrdinalIgnoreCase);
 
         if (oldList.SetEquals(newList))
@@ -62,27 +62,12 @@ public class RolePermissionRepository : BaseRepository
         return new SaveResponse();
     }
 
-    private List<MyRow> GetExisting(IDbConnection connection, int roleId, string module, string submodule)
+    private List<MyRow> GetExisting(IDbConnection connection, int roleId)
     {
-        string prefix = "";
-        module = module.TrimToEmpty();
-        submodule = submodule.TrimToEmpty();
-
-        if (module.Length > 0)
-            prefix = module;
-
-        if (submodule.Length > 0)
-            prefix += ":" + submodule;
-
         return connection.List<MyRow>(q =>
         {
             q.Select(Fld.RolePermissionId, Fld.PermissionKey)
                 .Where(new Criteria(Fld.RoleId) == roleId);
-
-            if (prefix.Length > 0)
-                q.Where(
-                    new Criteria(Fld.PermissionKey) == prefix |
-                    new Criteria(Fld.PermissionKey).StartsWith(prefix + ":"));
         });
     }
 
@@ -93,20 +78,10 @@ public class RolePermissionRepository : BaseRepository
         if (request.RoleID is null)
             throw new ArgumentNullException(nameof(request.RoleID));
 
-        string prefix = "";
-        string module = request.Module.TrimToEmpty();
-        string submodule = request.Submodule.TrimToEmpty();
-
-        if (module.Length > 0)
-            prefix = module;
-
-        if (submodule.Length > 0)
-            prefix += ":" + submodule;
-
         var response = new RolePermissionListResponse
         {
-            Entities = GetExisting(connection, request.RoleID.Value, request.Module, request.Submodule)
-            .Select(x => x.PermissionKey).ToList()
+            Entities = GetExisting(connection, request.RoleID.Value)
+                .Select(x => x.PermissionKey).ToList()
         };
 
         return response;

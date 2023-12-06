@@ -26,7 +26,7 @@ public class UserPermissionRepository : BaseRepository
 
         var userID = request.UserID.Value;
         var oldList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
-        foreach (var p in GetExisting(uow.Connection, userID, request.Module, request.Submodule))
+        foreach (var p in GetExisting(uow.Connection, userID))
             oldList[p.PermissionKey] = p.Granted.Value;
 
         var newList = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase);
@@ -76,27 +76,12 @@ public class UserPermissionRepository : BaseRepository
         return new SaveResponse();
     }
 
-    private static List<MyRow> GetExisting(IDbConnection connection, int userId, string module, string submodule)
+    private static List<MyRow> GetExisting(IDbConnection connection, int userId)
     {
-        string prefix = "";
-        module = module.TrimToEmpty();
-        submodule = submodule.TrimToEmpty();
-
-        if (module.Length > 0)
-            prefix = module;
-
-        if (submodule.Length > 0)
-            prefix += ":" + submodule;
-
         return connection.List<MyRow>(q =>
         {
             q.Select(Fld.UserPermissionId, Fld.PermissionKey, Fld.Granted)
                 .Where(new Criteria(Fld.UserId) == userId);
-
-            if (prefix.Length > 0)
-                q.Where(~(
-                    new Criteria(Fld.PermissionKey) == prefix |
-                    new Criteria(Fld.PermissionKey).StartsWith(prefix + ":")));
         });
     }
 
@@ -109,7 +94,7 @@ public class UserPermissionRepository : BaseRepository
 
         var response = new ListResponse<MyRow>
         {
-            Entities = GetExisting(connection, request.UserID.Value, request.Module, request.Submodule)
+            Entities = GetExisting(connection, request.UserID.Value)
         };
 
         return response;

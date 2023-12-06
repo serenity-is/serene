@@ -15,9 +15,7 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
         });
 
         RolePermissionService.List({
-            RoleID: this.options.roleID,
-            Module: null,
-            Submodule: null
+            RoleID: this.options.roleID
         }, response => {
             this.permissions.value = response.Entities.map(x => (<UserPermissionRow>{ PermissionKey: x }));
         });
@@ -34,9 +32,7 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
                 click: e => {
                     RolePermissionService.Update({
                         RoleID: this.options.roleID,
-                        Permissions: this.permissions.value.map(x => x.PermissionKey),
-                        Module: null,
-                        Submodule: null
+                        Permissions: this.permissions.value.map(x => x.PermissionKey)
                     }, response => {
                         this.dialogClose();
                         window.setTimeout(() => notifySuccess(localText('Site.RolePermissionDialog.SaveSuccess')), 0);
