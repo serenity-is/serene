@@ -15,7 +15,7 @@ public sealed class UserRoleRow : Row<UserRoleRow.RowFields>, IIdRow
     [DisplayName("User Id"), NotNull, ForeignKey(typeof(UserRow)), LeftJoin(jUser)]
     public int? UserId { get => fields.UserId[this]; set => fields.UserId[this] = value; }
 
-    [DisplayName("Role Id"), NotNull, ForeignKey(typeof(RoleRow))]
+    [DisplayName("Role Id"), NotNull, ForeignKey(typeof(RoleRow)), LeftJoin(jRole)]
     public int? RoleId { get => fields.RoleId[this]; set => fields.RoleId[this] = value; }
 
     [DisplayName("Username"), Expression($"{jUser}.[Username]")]
