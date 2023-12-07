@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>6.9.6.3</PackageVersion>
+    <PackageVersion>6.9.6.4</PackageVersion>
     <PackageId>Serene.Templates</PackageId>
     <PackageOutputPath>..\.nupkg</PackageOutputPath>
     <Title>Serene Project Templates</Title>
@@ -41,6 +41,6 @@
       <NuGetFilesToDelete Include="..\.nupkg\Serene.Templates*.nupkg" />
     </ItemGroup>
     <Delete Files="@(NuGetFilesToDelete)" />
-    <Exec Command="dotnet run --project build-serene.csproj --no-dependencies -- patchpackagejson" WorkingDirectory="..\..\build" />
+    <Exec Command="dotnet run --project build-serene.csproj --no-dependencies -- patchpackagejson" Condition="'$(SkipPatchPackageJson)' != 'true'" WorkingDirectory="..\..\build" />
   </Target>
 </Project>

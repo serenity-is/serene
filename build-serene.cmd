@@ -24,13 +24,13 @@ goto run_build
 
 :run_build
 echo *** RUNNING BUILD ***
-dotnet run --project build\build-serene.csproj --no-dependencies
+dotnet run --project build\build-serene.csproj --no-dependencies -- %*
 if %ERRORLEVEL% GEQ 1 GOTO :error
 goto build_nuget_package
 
 :build_nuget_package
 echo *** BUILDING NUGET PACKAGE ***
-dotnet pack --no-dependencies vsix\Serene.Templates\Serene.Templates.csproj
+dotnet pack --no-dependencies -p:SkipPatchPackageJson=true vsix\Serene.Templates\Serene.Templates.csproj
 if %ERRORLEVEL% GEQ 1 GOTO :error
 goto build_vsix_package
 

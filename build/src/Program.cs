@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Build
 {
@@ -6,10 +6,9 @@ namespace Build
     {
         static void Main(string[] args)
         {
-            var target = args != null && args.Length > 1 ? args[1] : "vsix";
-
             Shared.DetermineRoot();
 
+            var target = Shared.GetTarget(new(args));
             switch (target) 
             {
                 case "vsix":

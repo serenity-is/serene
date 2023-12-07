@@ -36,12 +36,12 @@
     <PackageReference Include="Serenity.Assets" Version="6.9.6" />
     <PackageReference Include="Serenity.Scripts" Version="6.9.6" />
     <PackageReference Include="Serenity.Net.Web" Version="6.9.6" />
-    <PackageReference Include="Serenity.Extensions" Version="6.9.6" />
+    <PackageReference Include="Serenity.Extensions" Version="6.9.6.4" />
     <!--#if (Northwind)-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="6.9.6" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="6.9.6.4" />
     <!--#endif-->
     <!--#if (BasicSamples)-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.9.6" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.9.6.4" />
     <!--#endif-->
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' != 'false'">
