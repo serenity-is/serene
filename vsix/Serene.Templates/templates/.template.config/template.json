@@ -55,39 +55,17 @@
     },
     "DemoModules": {
       "type": "parameter",
-      "datatype": "choice",
-      "isRequired": false,
-      "allowMultipleValues": true,
-      "defaultValue": "Northwind|BasicSamples",
-      "description": "Demo Modules",
-      "isEnabled": "ExcludeDemo == false",
-      "choices": [
-        {
-          "choice": "Northwind",
-          "displayName": "Northwind",
-          "description": "Northwind"
-        },
-        {
-          "choice": "BasicSamples",
-          "displayName": "Basic Samples",
-          "description": "Basic Samples"
-        }
-      ]
-    },
-    "ExcludeDemo": {
-      "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
-      "displayName": "Exclude All Demo Modules",
-      "description": "When checked (true), none of the Demo Modules will be generated."
+      "defaultValue": "true",
+      "description": "Demo Modules (Northwind, Basic Samples)"
     },
     "Northwind": {
       "type": "computed",
-      "value": "ExcludeDemo == false && ((DemoModules == \"Northwind\") || (DemoModules == \"BasicSamples\"))"
+      "value": "DemoModules == true"
     },
     "BasicSamples": {
       "type": "computed",
-      "value": "ExcludeDemo == false && (DemoModules == \"BasicSamples\")"
+      "value": "DemoModules == true"
     },
     "UseProjectRefs": {
       "type": "computed",

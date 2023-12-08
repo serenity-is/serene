@@ -5,14 +5,7 @@
     {
       "id": "DemoModules",
       "name": {
-        "text": "Demo Modules"
-      },
-      "isVisible": true
-    },
-    {
-      "id": "ExcludeDemo",
-      "name": {
-        "text": "Exclude All Demo Modules"
+        "text": "Demo Modules (Northwind, Basic Samples)"
       },
       "isVisible": true
     }
