@@ -6,8 +6,8 @@ import { TranslationUpdateRequest } from "./TranslationUpdateRequest";
 export namespace TranslationService {
     export const baseUrl = 'Administration/Translation';
 
-    export declare function List(request: TranslationListRequest, onSuccess?: (response: ListResponse<TranslationItem>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function Update(request: TranslationUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function List(request: TranslationListRequest, onSuccess?: (response: ListResponse<TranslationItem>) => void, opt?: ServiceOptions<any>): PromiseLike<ListResponse<TranslationItem>>;
+    export declare function Update(request: TranslationUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
 
     export const Methods = {
         List: "Administration/Translation/List",

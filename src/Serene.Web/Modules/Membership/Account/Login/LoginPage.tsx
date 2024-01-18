@@ -6,11 +6,11 @@ import { ErrorHandling, format, getCookie, notifyError, parseQueryString, resolv
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt?: { activated: string }) {
-    var loginPanel = new LoginPanel($('#LoginPanel'));
+    var loginPanel = new LoginPanel('#LoginPanel');
 
     if (opt?.activated) {
         loginPanel.form.Username.value = opt.activated;
-        loginPanel.form.Password.element.focus();
+        loginPanel.form.Password.element.getNode().focus();
     }
 }
 
@@ -20,8 +20,8 @@ class LoginPanel extends PropertyPanel<LoginRequest, any> {
 
     protected getFormKey() { return LoginForm.formKey; }
 
-    constructor(element: JQuery, options?: any) {
-        super(element, options);
+    constructor(props?: { element?: any } & any) {
+        super(props);
     }
 
     protected loginClick() {
@@ -45,7 +45,7 @@ class LoginPanel extends PropertyPanel<LoginRequest, any> {
 
                 if (response?.Error?.Message?.length) {
                     notifyError(response.Error.Message);
-                    this.form.Password.element.focus();
+                    this.form.Password.element.getNode().focus();
 
                     return;
                 }

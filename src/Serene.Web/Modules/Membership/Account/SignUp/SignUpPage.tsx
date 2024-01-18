@@ -7,7 +7,7 @@ import { informationDialog, resolveUrl, serviceCall } from "@serenity-is/corelib
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt: any) {
-    new SignUpPanel($('#SignUpPanel'), opt);
+    new SignUpPanel({ element: '#SignUpPanel', ...opt});
 }
 
 const myTexts = Texts.Forms.Membership.SignUp;
@@ -18,8 +18,8 @@ class SignUpPanel extends PropertyPanel<SignUpRequest, any> {
 
     private form: SignUpForm;
 
-    constructor(container: JQuery, opt: any) {
-        super(container, opt);
+    constructor(props: { element?: any } & any) {
+        super(props);
 
         this.form = new SignUpForm(this.idPrefix);
 

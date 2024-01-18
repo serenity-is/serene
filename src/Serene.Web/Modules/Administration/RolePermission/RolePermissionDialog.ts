@@ -10,9 +10,9 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
     constructor(opt: RolePermissionDialogOptions) {
         super(opt);
 
-        this.permissions = new PermissionCheckEditor(this.byId('Permissions'), {
+        this.permissions = new PermissionCheckEditor({ element: this.byId('Permissions'), ... {
             showRevoke: false
-        });
+        }});
 
         RolePermissionService.List({
             RoleID: this.options.roleID
@@ -23,7 +23,7 @@ export class RolePermissionDialog extends TemplatedDialog<RolePermissionDialogOp
         this.permissions.implicitPermissions = getRemoteData('Administration.ImplicitPermissions');
     }
 
-    protected getDialogOptions(): JQueryUI.DialogOptions {
+    protected getDialogOptions()  {
         let opt = super.getDialogOptions();
 
         opt.buttons = [

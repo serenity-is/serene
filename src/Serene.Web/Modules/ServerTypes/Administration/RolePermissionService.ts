@@ -6,8 +6,8 @@ import { RolePermissionUpdateRequest } from "./RolePermissionUpdateRequest";
 export namespace RolePermissionService {
     export const baseUrl = 'Administration/RolePermission';
 
-    export declare function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function Update(request: RolePermissionUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
+    export declare function List(request: RolePermissionListRequest, onSuccess?: (response: RolePermissionListResponse) => void, opt?: ServiceOptions<any>): PromiseLike<RolePermissionListResponse>;
 
     export const Methods = {
         Update: "Administration/RolePermission/Update",

@@ -4,11 +4,11 @@ import { RoleRow } from "./RoleRow";
 export namespace RoleService {
     export const baseUrl = 'Administration/Role';
 
-    export declare function Create(request: SaveRequest<RoleRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function Update(request: SaveRequest<RoleRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<RoleRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<RoleRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function Create(request: SaveRequest<RoleRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
+    export declare function Update(request: SaveRequest<RoleRow>, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
+    export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): PromiseLike<DeleteResponse>;
+    export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<RoleRow>) => void, opt?: ServiceOptions<any>): PromiseLike<RetrieveResponse<RoleRow>>;
+    export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<RoleRow>) => void, opt?: ServiceOptions<any>): PromiseLike<ListResponse<RoleRow>>;
 
     export const Methods = {
         Create: "Administration/Role/Create",

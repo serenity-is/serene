@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Serene</RootNamespace>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptNoEmitOnError>false</TypeScriptNoEmitOnError>
@@ -27,27 +27,26 @@
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.2" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.2" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.7.4" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
-    <PackageReference Include="Serenity.Assets" Version="6.9.6" />
-    <PackageReference Include="Serenity.Scripts" Version="6.9.6" />
-    <PackageReference Include="Serenity.Net.Web" Version="6.9.6" />
-    <PackageReference Include="Serenity.Extensions" Version="6.9.6.4" />
+    <PackageReference Include="Serenity.Assets" Version="8.1.5" />
+    <PackageReference Include="Serenity.Corelib" Version="8.1.5" />
+    <PackageReference Include="Serenity.Net.Web" Version="8.1.5" />
+    <PackageReference Include="Serenity.Extensions" Version="8.1.5" />
     <!--#if (Northwind)-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="6.9.6.4" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="8.1.5" />
     <!--#endif-->
     <!--#if (BasicSamples)-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.9.6.4" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="8.1.5" />
     <!--#endif-->
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' != 'false'">
     <ProjectReference Include="$(SerenitySrc)Serenity.Assets\Serenity.Assets.csproj" />
-    <ProjectReference Include="$(SerenitySrc)Serenity.Scripts\Serenity.Scripts.csproj" />
     <ProjectReference Include="$(SerenitySrc)Serenity.Net.Web\Serenity.Net.Web.csproj" />
+    <ProjectReference Include="$(SerenitySrc)..\packages\corelib\Serenity.Corelib.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Extensions\Serenity.Extensions.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Demo.Northwind\Serenity.Demo.Northwind.csproj" />
     <ProjectReference Include="$(CommonSrc)Serenity.Demo.BasicSamples\Serenity.Demo.BasicSamples.csproj" />

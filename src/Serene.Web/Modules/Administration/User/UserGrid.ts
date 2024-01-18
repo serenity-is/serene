@@ -12,8 +12,8 @@ export class UserGrid extends EntityGrid<UserRow, any> {
     protected getLocalTextPrefix() { return UserRow.localTextPrefix; }
     protected getService() { return UserService.baseUrl; }
 
-    constructor(container: JQuery) {
-        super(container);
+    constructor(props: any) {
+        super(props);
     }
 
     protected override getDefaultSortBy() {

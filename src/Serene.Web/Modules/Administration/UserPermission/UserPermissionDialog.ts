@@ -10,9 +10,9 @@ export class UserPermissionDialog extends TemplatedDialog<UserPermissionDialogOp
     constructor(opt: UserPermissionDialogOptions) {
         super(opt);
 
-        this.permissions = new PermissionCheckEditor(this.byId('Permissions'), {
+        this.permissions = new PermissionCheckEditor({ element: this.byId('Permissions'), ... {
             showRevoke: true
-        });
+        }});
 
         UserPermissionService.List({
             UserID: this.options.userID

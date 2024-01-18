@@ -68,12 +68,10 @@ public partial class Startup
             options.Filters.Add(typeof(AntiforgeryCookieResultFilterAttribute));
             options.ModelBinderProviders.Insert(0, new ServiceEndpointModelBinderProvider());
             options.Conventions.Add(new ServiceEndpointActionModelConvention());
-        }).AddNewtonsoftJson(options =>
-        {
-            options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
         });
-        
+
+        services.Configure<JsonOptions>(options => JSON.Defaults.Populate(options.JsonSerializerOptions));
+
         services.AddAuthentication(o =>
         {
             o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;

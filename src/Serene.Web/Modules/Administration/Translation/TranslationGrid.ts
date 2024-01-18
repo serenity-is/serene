@@ -1,4 +1,4 @@
-import { Decorators, EntityGrid, GridUtils, LookupEditor, LookupEditorOptions, ToolButton, Widget } from "@serenity-is/corelib";
+import { Decorators, EntityGrid, Fluent, GridUtils, LookupEditor, LookupEditorOptions, ToolButton, Widget } from "@serenity-is/corelib";
 import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, localText, trimToEmpty, trimToNull } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { TranslationItem, TranslationService } from "../";
@@ -15,32 +15,32 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
     private targetLanguage: LookupEditor;
     private targetLanguageKey: string;
 
-    constructor(container: JQuery) {
-        super(container);
+    constructor(props: any) {
+        super(props);
 
         this.element.on('keyup.' + this.uniqueName + ' change.' + this.uniqueName,
             'input.custom-text', e =>
         {
-            var value = trimToNull($(e.target).val());
+            var value = trimToNull(Fluent(e.target).val());
             if (value === '') {
                 value = null;
             }
-            this.view.getItemById($(e.target).data('key')).CustomText = value;
+            this.view.getItemById(Fluent(e.target).data('key')).CustomText = value;
             this.hasChanges = true;
         });
     }
 
-    protected onClick(e: JQueryEventObject, row: number, cell: number): any {
+    protected onClick(e: MouseEvent, row: number, cell: number): any {
         super.onClick(e, row, cell);
 
-        if (e.isDefaultPrevented()) {
+        if (e.defaultPrevented || (e as any)?.isDefaultPrevented?.()) {
             return;
         }
 
         let item = this.itemAt(row);
         let done: () => void;
 
-        if ($(e.target).hasClass('source-text')) {
+        if (Fluent(e.target).hasClass('source-text')) {
             e.preventDefault();
                 
             done = () => {
@@ -59,7 +59,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
             return;
         }
 
-        if ($(e.target).hasClass('target-text')) {
+        if (Fluent(e.target).hasClass('target-text')) {
             e.preventDefault();
 
             done = () => {
@@ -89,7 +89,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
             width: 300,
             sortable: false,
             format: ctx => {
-                return outerHtml($('<a/>')
+                return outerHtml(Fluent('a')
                     .addClass('source-text')
                     .text(ctx.value || ''));
             }
@@ -99,7 +99,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
             field: 'CustomText',
             width: 300,
             sortable: false,
-            format: ctx => outerHtml($('<input/>')
+            format: ctx => outerHtml(Fluent('input')
                 .addClass('custom-text')
                 .attr('value', ctx.value)
                 .attr('type', 'text')
@@ -110,7 +110,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
             field: 'TargetText',
             width: 300,
             sortable: false,
-            format: ctx => outerHtml($('<a/>')
+            format: ctx => outerHtml(Fluent('a')
                 .addClass('target-text')
                 .text(ctx.value || ''))
         });

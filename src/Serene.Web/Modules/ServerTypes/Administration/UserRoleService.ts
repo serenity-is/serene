@@ -6,8 +6,8 @@ import { UserRoleUpdateRequest } from "./UserRoleUpdateRequest";
 export namespace UserRoleService {
     export const baseUrl = 'Administration/UserRole';
 
-    export declare function Update(request: UserRoleUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function Update(request: UserRoleUpdateRequest, onSuccess?: (response: SaveResponse) => void, opt?: ServiceOptions<any>): PromiseLike<SaveResponse>;
+    export declare function List(request: UserRoleListRequest, onSuccess?: (response: UserRoleListResponse) => void, opt?: ServiceOptions<any>): PromiseLike<UserRoleListResponse>;
 
     export const Methods = {
         Update: "Administration/UserRole/Update",

@@ -7,8 +7,8 @@ export class RoleCheckEditor extends CheckTreeEditor<CheckTreeItem<any>, any> {
 
     private searchText: string;
 
-    constructor(div: JQuery) {
-        super(div);
+    constructor(props: any) {
+        super(props);
     }
 
     protected createToolbarExtensions() {

@@ -1,5 +1,4 @@
-import { DataGrid, Decorators, GridUtils, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton } from "@serenity-is/corelib";
-import { count, Dictionary, Grouping, toGrouping, localText, turkishLocaleCompare, htmlEncode, any, trimToNull, getRemoteData, tryGetText } from "@serenity-is/corelib";
+import { DataGrid, Decorators, Dictionary, Fluent, GridUtils, Grouping, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton, WidgetProps, any, count, getRemoteData, htmlEncode, localText, toGrouping, trimToNull, tryGetText, turkishLocaleCompare } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { UserPermissionRow } from "../";
 
@@ -11,8 +10,8 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
     private searchText: string;
     private byParentKey: Grouping<PermissionCheckItem>;
 
-    constructor(container: JQuery, opt: PermissionCheckEditorOptions) {
-        super(container, opt);
+    constructor(props: WidgetProps<PermissionCheckEditorOptions>) {
+        super(props);
 
         let titleByKey: Dictionary<string> = {};
         let permissionKeys = this.getSortedGroupAndPermissionKeys(titleByKey);
@@ -183,18 +182,18 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
         return result;
     }
 
-    protected onClick(e, row, cell): void {
+    protected onClick(e: MouseEvent, row, cell): void {
         super.onClick(e, row, cell);
 
-        if (!e.isDefaultPrevented()) {
+        if (!e.defaultPrevented && !(e as any).isDefaultPrevented?.()) {
             SlickTreeHelper.toggleClick(e, row, cell, this.view, x => x.Key);
         }
 
-        if (e.isDefaultPrevented()) {
+        if (e.defaultPrevented || (e as any).isDefaultPrevented?.()) {
             return;
         }
 
-        let target = $(e.target);
+        let target = Fluent(e.target);
         let grant = target.hasClass('grant');
 
         if (grant || target.hasClass('revoke')) {

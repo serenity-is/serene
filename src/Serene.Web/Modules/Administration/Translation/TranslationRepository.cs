@@ -131,7 +131,7 @@ public class TranslationRepository : BaseRepository
             if (!pair.Value.IsEmptyOrNull())
                 result.Add(pair.Key, pair.Value);
 
-        string json = JSON.StringifyIndented(result, indentation: 2);
+        string json = JSON.StringifyIndented(result);
 
         var textsFilePath = GetUserTextsFilePath(HostEnvironment, request.TargetLanguageID);
         Directory.CreateDirectory(Path.GetDirectoryName(textsFilePath));

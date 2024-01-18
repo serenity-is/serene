@@ -15,8 +15,8 @@ export class UserDialog extends EntityDialog<UserRow, any> {
 
     protected form = new UserForm(this.idPrefix);
 
-    constructor() {
-        super();
+    constructor(props?: any) {
+        super(props);
 
         this.form.Password.change(() => {
             EditorUtils.setRequired(this.form.PasswordConfirm, this.form.Password.value.length > 0);
@@ -64,8 +64,8 @@ export class UserDialog extends EntityDialog<UserRow, any> {
 
         // these fields are only required in new record mode
         this.form.Password.element.toggleClass('required', this.isNew())
-            .closest('.field').find('sup').toggle(this.isNew());
+            .closest('.field').findFirst('sup').toggle(this.isNew());
         this.form.PasswordConfirm.element.toggleClass('required', this.isNew())
-            .closest('.field').find('sup').toggle(this.isNew());
+            .closest('.field').findFirst('sup').toggle(this.isNew());
     }
 }

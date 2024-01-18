@@ -10,8 +10,8 @@ export class RoleGrid extends EntityGrid<RoleRow, any> {
     protected getLocalTextPrefix() { return RoleRow.localTextPrefix; }
     protected getService() { return RoleService.baseUrl; }
 
-    constructor(container: JQuery) {
-        super(container);
+    constructor(props: any) {
+        super(props);
     }
 
     protected getDefaultSortBy() {
