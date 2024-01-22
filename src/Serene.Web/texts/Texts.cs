@@ -40,22 +40,22 @@ public static partial class Texts
                 public static readonly LocalText FormTitle = "Send Activation Mail";
                 public static readonly LocalText Success = "Activation mail sent to your email address";
                 public static readonly LocalText SubmitButton = "Send Activation";
-                public static readonly LocalText FormInfo = "Please enter the e-mail you used to signup.";
+                public static readonly LocalText FormInfo = "Please enter the email you used to sign up.";
             }
 
             public static class SignUp
             {
                 public static readonly LocalText ActivateEmailSubject = "Activate Your Serene Account";
-                public static readonly LocalText ActivationCompleteMessage = "Your account is now activated. " + 
-                    "Use the e-mail and password you used while signing up to login.";
+                public static readonly LocalText ActivationCompleteMessage = "Your account is now activated. " +
+                    "Use the email and password you used while signing up to login.";
                 public static readonly LocalText FormInfo = "Enter your details to create a free account.";
                 public static readonly LocalText FormTitle = "Create a new account";
                 public static readonly LocalText SubmitButton = "Sign Up";
-                public static readonly LocalText Success = "An e-mail with instructions to active your account is " + 
-                    "sent to your e-mail address. Please check your e-mails.";
+                public static readonly LocalText Success = "An email with instructions to activate your account has been " +
+                    "sent to your email address. Please check your emails.";
 
                 public static readonly LocalText DisplayName = "Full Name";
-                public static readonly LocalText Email = "E-mail";
+                public static readonly LocalText Email = "Email";
                 public static readonly LocalText ConfirmEmail = "Confirm Email";
                 public static readonly LocalText Password = "Password";
                 public static readonly LocalText ConfirmPassword = "Confirm Password";
@@ -77,10 +77,10 @@ public static partial class Texts
         public static class AccessDenied
         {
             public static readonly LocalText PageTitle = "Unauthorized Access";
-            public static readonly LocalText LackPermissions = "You don't have required permissions to access this page!";
+            public static readonly LocalText LackPermissions = "You don't have the required permissions to access this page!";
             public static readonly LocalText NotLoggedIn = "You need to be logged in to access this page!";
             public static readonly LocalText ClickToChangeUser = "click here to login with another user...";
-            public static readonly LocalText ClickToLogin = "clik here to return to login page...";
+            public static readonly LocalText ClickToLogin = "click here to return to login page...";
         }
 
         public static class UserDialog
@@ -122,13 +122,13 @@ public static partial class Texts
         public static readonly LocalText AuthenticationError = "Invalid username or password!";
         public static readonly LocalText CurrentPasswordMismatch = "Your current password is not valid!";
         public static readonly LocalText MinRequiredPasswordLength = "Entered password doesn't have enough characters (min {0})!";
-        public static readonly LocalText PasswordConfirmMismatch = "The passwords entered doesn't match!";
+        public static readonly LocalText PasswordConfirmMismatch = "The passwords entered don't match!";
         public static readonly LocalText InvalidResetToken = "Your token to reset your password is invalid or has expired!";
         public static readonly LocalText InvalidActivateToken = "Your token to activate your account is invalid or has expired!";
-        public static readonly LocalText EmailInUse = "Another user with this e-mail exists!";
-        public static readonly LocalText EmailConfirm = "Emails entered doesn't match!";
+        public static readonly LocalText EmailInUse = "A user with this email already exists!";
+        public static readonly LocalText EmailConfirm = "Emails entered don't match!";
         public static readonly LocalText DeleteForeignKeyError = "Can't delete record. '{0}' table has " +
-            "records that depends on this one!";
+            "records that depend on this one!";
         public static readonly LocalText SavePrimaryKeyError = "Can't save record. There is another record with the same {1} value!";
     }
 }
