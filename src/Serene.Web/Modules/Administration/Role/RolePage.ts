@@ -1,4 +1,4 @@
-import { initFullHeightGridPage } from "@serenity-is/corelib"
+import { gridPageInit } from "@serenity-is/corelib";
 import { RoleGrid } from "./RoleGrid";
 
-initFullHeightGridPage(new RoleGrid('#GridDiv').domNode);
+export default () => gridPageInit(RoleGrid);
