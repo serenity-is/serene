@@ -252,6 +252,7 @@
             <ProjectItem ReplaceParameters="true" TargetFileName="SignUpRequest.ts">SignUpRequest.ts</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="SignUpResponse.ts">SignUpResponse.ts</ProjectItem>
           </Folder>
+          <ProjectItem ReplaceParameters="true" TargetFileName="RemoteDataKeys.ts">RemoteDataKeys.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.ts">ScriptUserDefinition.ts</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Texts.ts">Texts.ts</ProjectItem>
         </Folder>
@@ -396,11 +397,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-AH3DJ6MF.js">chunk-AH3DJ6MF.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-CFICWFWM.js">chunk-CFICWFWM.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-GHHW6OF7.js">chunk-GHHW6OF7.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-S4WN2YSN.js">chunk-S4WN2YSN.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-YJXLW3ZO.js">chunk-YJXLW3ZO.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LNJVEJI5.js">chunk-LNJVEJI5.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-NFVIGV3T.js">chunk-NFVIGV3T.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-OOR7VGJ6.js">chunk-OOR7VGJ6.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-THKE7DQS.js">chunk-THKE7DQS.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-W3ZGDRLE.js">chunk-W3ZGDRLE.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">

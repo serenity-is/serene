@@ -59,7 +59,7 @@ cd SereneTest_%ldt%.Web
 echo *** RUNNING THE PROJECT FIRST TIME ***
 dotnet run
 echo *** GENERATING CODE FOR VERSIONINFO TABLE ***
-dotnet sergen g -c:Default -t:dbo.VersionInfo -m:Default -i:VersionInfo -p:Administration:General -w:*
+dotnet sergen g --connection-key Default --table dbo.VersionInfo --module Default --identifier VersionInfo --permission Administration:General -what *
 echo *** RUNNING THE PROJECT SECOND TIME ***
 dotnet run
 

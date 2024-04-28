@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>6.9.6.4</PackageVersion>
+    <PackageVersion>8.4.7.0</PackageVersion>
     <PackageId>Serene.Templates</PackageId>
     <PackageOutputPath>..\.nupkg</PackageOutputPath>
     <Title>Serene Project Templates</Title>
@@ -30,7 +30,7 @@
       <Link>templates\Serene.Web\%(RecursiveDir)%(Filename)%(Extension)</Link>
       <PackagePath>content\templates\Serene.Web\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
     </Content>
-    <Content Include="..\obj\Serene.Web\package.json;..\obj\Serene.Web\package-lock.json">
+    <Content Include="..\..\.vs\package-json-patch\package.json;..\..\.vs\package-json-patch\package-lock.json">
       <Link>templates\Serene.Web\%(Filename)%(Extension)</Link>
       <PackagePath>content\templates\Serene.Web\%(Filename)%(Extension)</PackagePath>
     </Content>
