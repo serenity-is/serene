@@ -1,12 +1,10 @@
-/** @jsxImportSource jsx-dom */
 import { LoginForm, LoginRequest } from "@/ServerTypes/Membership";
 import { Texts } from "@/ServerTypes/Texts";
-import { PropertyPanel } from "@serenity-is/corelib";
-import { ErrorHandling, format, getCookie, notifyError, parseQueryString, resolveUrl, serviceCall, tryGetText } from "@serenity-is/corelib";
+import { ErrorHandling, PropertyPanel, WidgetProps, notifyError, parseQueryString, resolveUrl, serviceCall } from "@serenity-is/corelib";
 import { AccountPanelTitle } from "../AccountPanelTitle";
 
 export default function pageInit(opt?: { activated: string }) {
-    var loginPanel = new LoginPanel('#LoginPanel');
+    var loginPanel = new LoginPanel({ element: '#LoginPanel' });
 
     if (opt?.activated) {
         loginPanel.form.Username.value = opt.activated;
@@ -20,7 +18,7 @@ class LoginPanel extends PropertyPanel<LoginRequest, any> {
 
     protected getFormKey() { return LoginForm.formKey; }
 
-    constructor(props?: { element?: any } & any) {
+    constructor(props?: WidgetProps<any>) {
         super(props);
     }
 

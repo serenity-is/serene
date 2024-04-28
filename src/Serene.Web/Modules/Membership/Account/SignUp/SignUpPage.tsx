@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom */
 import { SignUpForm, SignUpRequest } from "@/ServerTypes/Membership";
 import { SignUpResponse } from "@/ServerTypes/Membership/SignUpResponse";
 import { Texts } from "@/ServerTypes/Texts";

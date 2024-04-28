@@ -1,4 +1,3 @@
-/** @jsxImportSource jsx-dom */
 import { Texts } from "@/ServerTypes/Texts";
 
 export const AccountPanelTitle = () =>

@@ -1,13 +1,11 @@
-﻿@inject Serenity.Navigation.INavigationModelFactory NavigationModelFactory
+@inject Serenity.Navigation.INavigationModelFactory NavigationModelFactory
 <!DOCTYPE html>
 @{
     Func<string, HtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
 var hideNav = (string)Context.Request.Query["hideNav"] == "1";
-var themeCookie = Context.Request.Cookies["ProThemeSelection"];
-var theme = themeCookie != null && !themeCookie.IsEmptyOrNull() ? themeCookie : "azure-light";
 var sidebarPaneCollapsed = Context?.Request?.Cookies?["SidebarPaneCollapsed"] == "1" ? " s-sidebar-pane-collapsed" : "";
 }
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="pro theme-@theme@(hideNav ? " no-navigation" : "")">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="@(hideNav ? " no-navigation" : "")">
 <head>
     <partial name="@MVC.Views.Shared._LayoutHead" />
     @RenderSection("Head", false)
