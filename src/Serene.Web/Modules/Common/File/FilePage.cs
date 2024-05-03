@@ -1,17 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace Serene.Common.Pages;
 
-public class FilePage : Controller
+public class FilePage(IUploadStorage uploadStorage, IUploadProcessor uploadProcessor) : Controller
 {
-    private readonly IUploadStorage uploadStorage;
-    private readonly IUploadProcessor uploadProcessor;
-
-    public FilePage(IUploadStorage uploadStorage, IUploadProcessor uploadProcessor)
-    {
-        this.uploadStorage = uploadStorage ?? throw new ArgumentNullException(nameof(uploadStorage));
-        this.uploadProcessor = uploadProcessor ?? throw new ArgumentNullException(nameof(uploadProcessor));
-    }
+    private readonly IUploadStorage uploadStorage = uploadStorage ?? throw new ArgumentNullException(nameof(uploadStorage));
+    private readonly IUploadProcessor uploadProcessor = uploadProcessor ?? throw new ArgumentNullException(nameof(uploadProcessor));
 
     [Route("upload/{*pathInfo}")]
     public IActionResult Read(string pathInfo,
@@ -26,7 +20,7 @@ public class FilePage : Controller
     {
         var response = this.ExecuteMethod(() => HandleUploadRequest(HttpContext));
 
-        if (!((string)Request.Headers["Accept"] ?? "").Contains("json", StringComparison.Ordinal))
+        if (!((string)Request.Headers.Accept ?? "").Contains("json", StringComparison.Ordinal))
             response.ContentType = "text/plain";
 
         return response;
@@ -38,7 +32,7 @@ public class FilePage : Controller
     {
         var response = (UploadResponse)HandleUploadRequest(HttpContext);
         if (response.Error != null)
-            return new JsonResult(new 
+            return new JsonResult(new
             {
                 uploaded = 0,
                 error = new
@@ -57,14 +51,13 @@ public class FilePage : Controller
     }
 
     [NonAction]
-    private ServiceResponse HandleUploadRequest(HttpContext context)
+    private UploadResponse HandleUploadRequest(HttpContext context)
     {
         if (context.Request.Form.Files.Count != 1)
-            throw new ArgumentOutOfRangeException(nameof(context.Request.Form.Files));
+            throw ArgumentExceptions.OutOfRange(context.Request.Form.Files);
 
-        var file = context.Request.Form.Files[0] ?? throw new ArgumentNullException("file");
-        if (file.FileName.IsEmptyOrNull())
-            throw new ArgumentNullException("filename");
+        var file = context.Request.Form.Files[0];
+        ArgumentException.ThrowIfNullOrEmpty(file?.FileName);
 
         IUploadOptions uploadOptions = new UploadOptions
         {
