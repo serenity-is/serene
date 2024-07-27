@@ -9,27 +9,20 @@ using System.IO;
 
 namespace Serene.AppServices;
 
-public class DataMigrations : IDataMigrations
+public class DataMigrations(ITypeSource typeSource,
+    ISqlConnections sqlConnections,
+    IWebHostEnvironment hostEnvironment) : IDataMigrations
 {
-    private static readonly string[] databaseKeys = new[] {
-    "Default"
+    private static readonly string[] databaseKeys = [
+        "Default"
 #if (Northwind)
-    , "Northwind"
+        , "Northwind"
 #endif
-};
+    ];
 
-    private readonly ITypeSource typeSource;
-    private readonly ISqlConnections sqlConnections;
-    private readonly IWebHostEnvironment hostEnvironment;
-
-    public DataMigrations(ITypeSource typeSource,
-        ISqlConnections sqlConnections,
-        IWebHostEnvironment hostEnvironment)
-    {
-        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
-        this.sqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        this.hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
-    }
+    private readonly ITypeSource typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+    private readonly ISqlConnections sqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+    private readonly IWebHostEnvironment hostEnvironment = hostEnvironment ?? throw new ArgumentNullException(nameof(hostEnvironment));
 
     public void Initialize()
     {
@@ -46,14 +39,14 @@ public class DataMigrations : IDataMigrations
     /// </summary>
     private void EnsureDatabase(string databaseKey)
     {
-        MigrationUtils.EnsureDatabase(databaseKey,
+        MigrationUtils.EnsureDatabase(databaseKey, 
             hostEnvironment.ContentRootPath, sqlConnections);
         Microsoft.Data.SqlClient.SqlConnection.ClearAllPools();
     }
 
     private void RunMigrations(string databaseKey)
     {
-        var cs = sqlConnections.TryGetConnectionString(databaseKey) ??
+        var cs = sqlConnections.TryGetConnectionString(databaseKey) ?? 
             throw new ArgumentOutOfRangeException(nameof(databaseKey));
         string serverType = cs.Dialect.ServerType;
         bool isOracle = serverType.StartsWith("Oracle", StringComparison.OrdinalIgnoreCase);
@@ -74,7 +67,7 @@ public class DataMigrations : IDataMigrations
             })
             .Configure<RunnerOptions>(options =>
             {
-                options.Tags = new[] { databaseKey + "DB" };
+                options.Tags = [databaseKey + "DB"];
                 options.IncludeUntaggedMigrations = databaseKey == "Default";
             })
             .ConfigureRunner(builder =>

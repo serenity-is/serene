@@ -3,10 +3,11 @@
   "isRoot": true,
   "tools": {
     "sergen": {
-      "version": "8.4.8",
+      "version": "8.6.0",
       "commands": [
         "sergen"
-      ]
+      ],
+      "rollForward": false
     }
   }
 }

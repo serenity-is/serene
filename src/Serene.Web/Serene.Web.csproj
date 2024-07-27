@@ -28,19 +28,19 @@
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="FluentMigrator.Runner" Version="5.2.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.4" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.4" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers" />
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
-    <PackageReference Include="Serenity.Assets" Version="8.4.8" />
-    <PackageReference Include="Serenity.Corelib" Version="8.4.8" />
-    <PackageReference Include="Serenity.Net.Web" Version="8.4.8" />
-    <PackageReference Include="Serenity.Extensions" Version="8.4.8" />
+    <PackageReference Include="Serenity.Assets" Version="8.6.0" />
+    <PackageReference Include="Serenity.Corelib" Version="8.6.0" />
+    <PackageReference Include="Serenity.Net.Web" Version="8.6.0" />
+    <PackageReference Include="Serenity.Extensions" Version="8.6.0" />
     <!--#if (Northwind)-->
-    <PackageReference Include="Serenity.Demo.Northwind" Version="8.4.8" />
+    <PackageReference Include="Serenity.Demo.Northwind" Version="8.6.0" />
     <!--#endif-->
     <!--#if (BasicSamples)-->
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="8.4.8" />
+    <PackageReference Include="Serenity.Demo.BasicSamples" Version="8.6.0" />
     <!--#endif-->
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' != 'false'">
@@ -53,9 +53,21 @@
   </ItemGroup>
   <ItemGroup Condition="'$(UseProjectRefs)' == 'false'">
   </ItemGroup>
-  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
+  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\.bin\esbuild')">
     <Message Text="Installing NPM packages..." Importance="high" />
     <Exec Command="npm install" />
+  </Target>
+  <Target Name="RunTSBuild" BeforeTargets="BeforeBuild;GenerateStaticWebAssetsManifest" DependsOnTargets="RestoreNodeTypes;NpmInstall" Condition="'$(SkipTSBuild)' != 'true'">
+    <Message Text="Executing TypeScript compiler for $(ProjectName)..." Importance="high" />
+    <ItemGroup>
+      <CleanedEsmFiles Include="wwwroot\esm\**" />
+    </ItemGroup>
+    <Exec Command="node ./tsbuild.js" ContinueOnError="true" />
+    <ItemGroup>
+      <CleanedEsmFiles Remove="wwwroot\esm\**" />
+      <Content Remove="@(CleanedEsmFiles)" />
+      <Content Include="wwwroot\esm\**\*.js;wwwroot\esm\**\*.css;wwwroot\esm\**\*.map" Exclude="@(Content)" CopyToOutputDirectory="Never" CopyToPublishDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    </ItemGroup>
   </Target>
   <Target Name="TransformMvcClientTypes" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
@@ -64,18 +76,9 @@
   <Target Name="TransformServerTypings" AfterTargets="AfterBuild">
     <Exec Command="$(DotNetSergen) servertypings" ContinueOnError="true" />
   </Target>
-  <Target Name="CreateInputsOutputs" BeforeTargets="BeforeBuild">
-    <CreateItem Include="Modules\**\*.ts;Imports\**\*.ts;tsconfig.json">
-      <Output TaskParameter="Include" ItemName="CompileTSCInputs" />
-    </CreateItem>
+  <Target Name="TranformRunTSBuild" AfterTargets="AfterBuild" DependsOnTargets="RestoreNodeTypes;NpmInstall;TransformServerTypings" Condition="'$(SkipTSBuild)' != 'true'">
+    <Message Text="Executing TypeScript compiler for $(ProjectName)..." Importance="high" />
+    <Exec Command="node ./tsbuild.js" ContinueOnError="true" />
   </Target>
-  <Target Name="CompileTSC" AfterTargets="AfterBuild" Inputs="@(CompileTSCInputs)" Outputs="wwwroot\esm\**\*.js">
-    <Message Text="Executing TypeScript compiler..." Importance="high" />
-    <Exec Command="node tsbuild" ContinueOnError="true" />
-  </Target>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties NpmRestoreOnProjectOpen="True" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties NpmRestoreOnProjectOpen="True" /></VisualStudio></ProjectExtensions>
 </Project>

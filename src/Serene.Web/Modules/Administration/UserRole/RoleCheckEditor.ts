@@ -1,4 +1,4 @@
-import { CheckTreeEditor, CheckTreeItem, Decorators, GridUtils } from "@serenity-is/corelib";
+import { CheckTreeEditor, CheckTreeItem, Decorators, GridUtils, stripDiacritics } from "@serenity-is/corelib";
 import { isEmptyOrNull } from "@serenity-is/corelib";
 import { RoleRow } from "../";
 
@@ -15,7 +15,7 @@ export class RoleCheckEditor extends CheckTreeEditor<CheckTreeItem<any>, any> {
         super.createToolbarExtensions();
 
         GridUtils.addQuickSearchInputCustom(this.toolbar.element, (field, text) => {
-            this.searchText = Select2.util.stripDiacritics(text || '').toUpperCase();
+            this.searchText = stripDiacritics(text || '').toUpperCase();
             this.view.setItems(this.view.getItems(), true);
         });
     }
@@ -34,7 +34,7 @@ export class RoleCheckEditor extends CheckTreeEditor<CheckTreeItem<any>, any> {
     protected onViewFilter(item) {
         return super.onViewFilter(item) &&
             (isEmptyOrNull(this.searchText) ||
-                Select2.util.stripDiacritics(item.text || '')
+                stripDiacritics(item.text || '')
                     .toUpperCase().indexOf(this.searchText) >= 0);
     }
 }

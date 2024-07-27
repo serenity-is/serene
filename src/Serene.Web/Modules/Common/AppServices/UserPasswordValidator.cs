@@ -1,32 +1,23 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using Serene.Administration;
 
 namespace Serene.AppServices;
 
-public class UserPasswordValidator : IUserPasswordValidator
+public class UserPasswordValidator(ITwoLevelCache cache, ISqlConnections sqlConnections, IUserRetrieveService userRetriever,
+    ILogger<UserPasswordValidator> log = null, IDirectoryService directoryService = null) : IUserPasswordValidator
 {
-    public UserPasswordValidator(ITwoLevelCache cache, ISqlConnections sqlConnections, IUserRetrieveService userRetriever, 
-        ILogger<UserPasswordValidator> log = null, IDirectoryService directoryService = null)
-    {
-        Cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        SqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        UserRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
-        DirectoryService = directoryService;
-        Log = log;
-    }
-
-    protected ITwoLevelCache Cache { get; }
-    public ISqlConnections SqlConnections { get; }
-    protected IUserRetrieveService UserRetriever { get; }
-    protected IDirectoryService DirectoryService { get; }
-    protected ILogger<UserPasswordValidator> Log { get; }
+    protected ITwoLevelCache Cache { get; } = cache ?? throw new ArgumentNullException(nameof(cache));
+    public ISqlConnections SqlConnections { get; } = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+    protected IUserRetrieveService UserRetriever { get; } = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
+    protected IDirectoryService DirectoryService { get; } = directoryService;
+    protected ILogger<UserPasswordValidator> Log { get; } = log;
 
     public PasswordValidationResult Validate(ref string username, string password)
     {
-        if (username.IsTrimmedEmpty())
+        if (string.IsNullOrWhiteSpace(username))
             return PasswordValidationResult.EmptyUsername;
 
-        if (password.IsEmptyOrNull())
+        if (string.IsNullOrEmpty(password))
             return PasswordValidationResult.EmptyPassword;
 
         username = username.TrimToEmpty();
@@ -96,7 +87,7 @@ public class UserPasswordValidator : IUserPasswordValidator
             Log?.LogError(ex, "Error on directory access");
 
             // couldn't access directory. allow user to login with cached password
-            if (!user.PasswordHash.IsTrimmedEmpty())
+            if (!string.IsNullOrWhiteSpace(user.PasswordHash))
             {
                 if (validatePassword())
                 {

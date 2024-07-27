@@ -75,30 +75,16 @@ public class FilePage(IUploadStorage uploadStorage, IUploadProcessor uploadProce
         var uploadInfo = uploadProcessor.Process(file.OpenReadStream(),
             file.FileName, uploadOptions);
 
-        if (uploadInfo.Success)
-        {
-            uploadStorage.SetOriginalName(uploadInfo.TemporaryFile, file.FileName);
+        uploadStorage.SetOriginalName(uploadInfo.TemporaryFile, file.FileName);
 
-            return new UploadResponse()
-            {
-                TemporaryFile = uploadInfo.TemporaryFile,
-                Size = uploadInfo.FileSize,
-                IsImage = uploadInfo.IsImage,
-                Width = uploadInfo.ImageWidth,
-                Height = uploadInfo.ImageHeight
-            };
-        }
-        else
+        return new UploadResponse()
         {
-            return new UploadResponse()
-            {
-                Error = new ServiceError()
-                {
-                    Code = "Exception",
-                    Message = uploadInfo.ErrorMessage
-                }
-            };
-        }
+            TemporaryFile = uploadInfo.TemporaryFile,
+            Size = uploadInfo.FileSize,
+            IsImage = uploadInfo.IsImage,
+            Width = uploadInfo.ImageWidth,
+            Height = uploadInfo.ImageHeight
+        };
     }
 
     private class UploadResponse : ServiceResponse

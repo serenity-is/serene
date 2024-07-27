@@ -100,6 +100,7 @@ public partial class Startup
         services.AddSingleton<IHttpContextItemsAccessor, HttpContextItemsAccessor>();
         services.AddSingleton<INavigationModelFactory, AppServices.NavigationModelFactory>();
         services.AddSingleton<IPermissionService, AppServices.PermissionService>();
+        services.AddSingleton<IPermissionKeyLister, AppServices.PermissionKeyLister>();
         services.AddSingleton<IRolePermissionService, AppServices.RolePermissionService>();
         services.AddSingleton<IUploadAVScanner, ClamAVUploadScanner>();
         services.AddSingleton<IUserPasswordValidator, AppServices.UserPasswordValidator>();

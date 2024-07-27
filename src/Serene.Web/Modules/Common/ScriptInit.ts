@@ -1,12 +1,12 @@
-import { EntityDialog, HtmlContentEditor, getjQuery } from "@serenity-is/corelib";
-import { Authorization, Config, ErrorHandling } from "@serenity-is/corelib";
+import { Config, EntityDialog, ErrorHandling, HtmlContentEditor, getjQuery } from "@serenity-is/corelib";
+import { gridDefaults } from "@serenity-is/sleekgrid";
 import { siteLanguageList } from "./Helpers/LanguageList";
-import { Grid, gridDefaults } from "@serenity-is/sleekgrid";
 
 Config.rootNamespaces.push('Serene');
 EntityDialog.defaultLanguageList = siteLanguageList;
 HtmlContentEditor.CKEditorBasePath = "~/Serenity.Assets/Scripts/ckeditor/";
 gridDefaults.useCssVars = false;
+gridDefaults.useLegacyUI = true;
 
 let $ = getjQuery();
 if ($?.fn?.['colorbox']) {

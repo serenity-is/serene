@@ -2,28 +2,21 @@ using Serene.Administration;
 
 namespace Serene.AppServices;
 
-public class RolePermissionService : IRolePermissionService
+public class RolePermissionService(ITwoLevelCache cache, ISqlConnections sqlConnections,
+    ITypeSource typeSource) : IRolePermissionService
 {
-    private readonly ITwoLevelCache cache;
-    private readonly ISqlConnections sqlConnections;
-    private readonly ITypeSource typeSource;
-
-    public RolePermissionService(ITwoLevelCache cache, ISqlConnections sqlConnections,
-        ITypeSource typeSource)
-    {
-        this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        this.sqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
-        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
-    }
+    private readonly ITwoLevelCache cache = cache ?? throw new ArgumentNullException(nameof(cache));
+    private readonly ISqlConnections sqlConnections = sqlConnections ?? throw new ArgumentNullException(nameof(sqlConnections));
+    private readonly ITypeSource typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
 
     public bool HasPermission(string role, string permission)
     {
         return GetRolePermissions(role).Contains(permission);
     }
 
-    private ISet<string> GetRolePermissions(string role)
+    private HashSet<string> GetRolePermissions(string role)
     {
-        if (role == null) throw new ArgumentNullException(nameof(role));
+        ArgumentNullException.ThrowIfNull(role);
 
         var fld = RolePermissionRow.Fields;
 
@@ -39,7 +32,7 @@ public class RolePermissionService : IRolePermissionService
 
             result.Add("Role:" + role);
 
-            var implicitPermissions = PermissionService.GetImplicitPermissions(cache.Memory, typeSource);
+            var implicitPermissions = AppServices.PermissionService.GetImplicitPermissions(cache.Memory, typeSource);
             foreach (var key in result.ToArray())
             {
                 if (implicitPermissions.TryGetValue(key, out HashSet<string> list))

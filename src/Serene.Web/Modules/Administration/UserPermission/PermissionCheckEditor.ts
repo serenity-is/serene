@@ -1,4 +1,4 @@
-import { DataGrid, Decorators, Dictionary, Fluent, GridUtils, Grouping, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton, WidgetProps, any, count, getRemoteData, htmlEncode, localText, toGrouping, trimToNull, tryGetText, turkishLocaleCompare } from "@serenity-is/corelib";
+import { DataGrid, Decorators, Dictionary, Fluent, GridUtils, Grouping, IGetEditValue, ISetEditValue, SlickFormatting, SlickTreeHelper, ToolButton, WidgetProps, any, count, getRemoteData, htmlEncode, localText, stripDiacritics, toGrouping, trimToNull, tryGetText, turkishLocaleCompare } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { UserPermissionRow } from "../";
 
@@ -157,8 +157,8 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
     }
 
     private matchContains(item: PermissionCheckItem): boolean {
-        return Select2.util.stripDiacritics(item.Title || '').toLowerCase().indexOf(this.searchText) >= 0 ||
-            Select2.util.stripDiacritics(item.Key || '').toLowerCase().indexOf(this.searchText) >= 0;
+        return stripDiacritics(item.Title || '').toLowerCase().indexOf(this.searchText) >= 0 ||
+            stripDiacritics(item.Key || '').toLowerCase().indexOf(this.searchText) >= 0;
     }
 
     private getDescendants(item: PermissionCheckItem, excludeGroups: boolean): PermissionCheckItem[] {
@@ -240,7 +240,7 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
     protected createToolbarExtensions(): void {
         super.createToolbarExtensions();
         GridUtils.addQuickSearchInputCustom(this.toolbar.element, (_, text) => {
-            this.searchText = Select2.util.stripDiacritics(trimToNull(text) || '').toLowerCase();
+            this.searchText = stripDiacritics(trimToNull(text) || '').toLowerCase();
             this.view.setItems(this.view.getItems(), true);
         });
     }
@@ -256,7 +256,7 @@ export class PermissionCheckEditor extends DataGrid<PermissionCheckItem, Permiss
             }
 
             if (s.charAt(s.length - 1) == ':') {
-                s = s.substr(0, s.length - 1);
+                s = s.substring(0, s.length - 1);
                 if (s.length === 0) {
                     continue;
                 }

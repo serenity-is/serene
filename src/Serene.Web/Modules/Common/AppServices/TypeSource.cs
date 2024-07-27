@@ -12,8 +12,8 @@ public class TypeSource : DefaultTypeSource
 
     private static Assembly[] GetAssemblyList()
     {
-        return new Assembly[]
-        {
+        return
+        [
             typeof(LocalTextRegistry).Assembly,
             typeof(ISqlConnections).Assembly,
             typeof(IRow).Assembly,
@@ -27,6 +27,6 @@ public class TypeSource : DefaultTypeSource
             typeof(Serenity.Demo.BasicSamples.BasicSamplesPage).Assembly,
 #endif
             typeof(Startup).Assembly
-        };
+        ];
     }
 }

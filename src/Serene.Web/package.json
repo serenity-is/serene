@@ -5,11 +5,11 @@
     "@serenity-is/demo.northwind": "./node_modules/.dotnet/serenity.demo.northwind",
     "@serenity-is/extensions": "./node_modules/.dotnet/serenity.extensions",
     "@serenity-is/sleekgrid": "./node_modules/.dotnet/serenity.sleekgrid",
-    "jsx-dom": "8.1.2",
-    "preact": "10.15.0"
+    "jsx-dom": "8.1.4",
+    "preact": "10.23.1"
   },
   "devDependencies": {
-    "@serenity-is/tsbuild": "8.0.1"
+    "@serenity-is/tsbuild": "8.6.0"
   },
   "scripts": {
     "build": "npm run tsbuild",

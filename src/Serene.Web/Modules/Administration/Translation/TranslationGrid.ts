@@ -1,5 +1,4 @@
-import { Decorators, EntityGrid, Fluent, GridUtils, LookupEditor, LookupEditorOptions, ToolButton, Widget } from "@serenity-is/corelib";
-import { confirm, isEmptyOrNull, isTrimmedEmpty, notifySuccess, outerHtml, localText, trimToEmpty, trimToNull } from "@serenity-is/corelib";
+import { confirmDialog, Decorators, EntityGrid, Fluent, GridUtils, isEmptyOrNull, isTrimmedEmpty, localText, LookupEditor, LookupEditorOptions, notifySuccess, outerHtml, stripDiacritics, ToolButton, trimToEmpty, trimToNull, Widget } from "@serenity-is/corelib";
 import { Column } from "@serenity-is/sleekgrid";
 import { TranslationItem, TranslationService } from "../";
 
@@ -55,7 +54,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
                 return;
             }
 
-            confirm(localText('Db.Administration.Translation.OverrideConfirmation'), done);
+            confirmDialog(localText('Db.Administration.Translation.OverrideConfirmation'), done);
             return;
         }
 
@@ -74,7 +73,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
                 return;
             }
 
-            confirm(localText('Db.Administration.Translation.OverrideConfirmation'), done);
+            confirmDialog(localText('Db.Administration.Translation.OverrideConfirmation'), done);
             return;
         }
     }
@@ -210,7 +209,7 @@ export class TranslationGrid extends EntityGrid<TranslationItem, any> {
             return true;
         }
 
-        var sd = Select2.util.stripDiacritics;
+        var sd = stripDiacritics;
         var searching = sd(this.searchText).toLowerCase();
 
         function match(str: string) {

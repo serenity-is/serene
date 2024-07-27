@@ -4,25 +4,22 @@ namespace Serene.Administration;
 using Serenity.Abstractions;
 using Serenity.ComponentModel;
 using Serenity.Web;
-using Serene.Administration.Repositories;
 using System;
 using System.Collections.Generic;
 
 [DataScript("Administration.PermissionKeys", Permission = PermissionKeys.Security)]
 public class PermissionKeysDataScript : DataScript<IEnumerable<string>>
 {
-    private readonly ITwoLevelCache cache;
-    private readonly ITypeSource typeSource;
+    private readonly IPermissionKeyLister permissionKeyLister;
 
-    public PermissionKeysDataScript(ITwoLevelCache cache, ITypeSource typeSource)
+    public PermissionKeysDataScript(IPermissionKeyLister permissionKeyLister)
     {
         GroupKey = RoleRow.Fields.GenerationKey;
-        this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+        this.permissionKeyLister = permissionKeyLister ?? throw new ArgumentNullException(nameof(permissionKeyLister));
     }
 
     protected override IEnumerable<string> GetData()
     {
-        return UserPermissionRepository.ListPermissionKeys(cache, typeSource);
+        return permissionKeyLister.ListPermissionKeys(includeRoles: false);
     }
 }

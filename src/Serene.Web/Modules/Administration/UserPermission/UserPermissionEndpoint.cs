@@ -1,4 +1,4 @@
-﻿using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
+using MyRepository = Serene.Administration.Repositories.UserPermissionRepository;
 using MyRow = Serene.Administration.UserPermissionRow;
 
 namespace Serene.Administration.Endpoints;
@@ -24,11 +24,11 @@ public class UserPermissionEndpoint : ServiceEndpoint
     }
 
     public ListResponse<string> ListPermissionKeys(
-        [FromServices] ITypeSource typeSource)
+        [FromServices] IPermissionKeyLister permissionKeyLister)
     {
         return new ListResponse<string>
         {
-            Entities = MyRepository.ListPermissionKeys(Cache, typeSource).ToList()
+            Entities = permissionKeyLister.ListPermissionKeys(includeRoles: false).ToList()
         };
     }
 }

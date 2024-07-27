@@ -10,16 +10,16 @@ public class UserDataScript : DataScript<ScriptUserDefinition>
 {
     private readonly ITwoLevelCache cache;
     private readonly IPermissionService permissions;
-    private readonly ITypeSource typeSource;
+    private readonly IPermissionKeyLister permissionKeyLister;
     private readonly IUserAccessor userAccessor;
     private readonly IUserRetrieveService userRetriever;
 
     public UserDataScript(ITwoLevelCache cache, IPermissionService permissions,
-        ITypeSource typeSource, IUserAccessor userAccessor, IUserRetrieveService userRetriever)
+        IPermissionKeyLister permissionKeyLister, IUserAccessor userAccessor, IUserRetrieveService userRetriever)
     {
         this.cache = cache ?? throw new ArgumentNullException(nameof(cache));
         this.permissions = permissions ?? throw new ArgumentNullException(nameof(permissions));
-        this.typeSource = typeSource ?? throw new ArgumentNullException(nameof(typeSource));
+        this.permissionKeyLister = permissionKeyLister ?? throw new ArgumentNullException(nameof(permissionKeyLister));
         this.userAccessor = userAccessor ?? throw new ArgumentNullException(nameof(userAccessor));
         this.userRetriever = userRetriever ?? throw new ArgumentNullException(nameof(userRetriever));
     }
@@ -46,8 +46,7 @@ public class UserDataScript : DataScript<ScriptUserDefinition>
                 var permissionsUsedFromScript = cache.GetLocalStoreOnly("PermissionsUsedFromScript",
                     TimeSpan.Zero, RoleRow.Fields.GenerationKey, () =>
                     {
-                        return UserPermissionRepository.ListPermissionKeys(
-                                cache, typeSource)
+                        return permissionKeyLister.ListPermissionKeys(includeRoles: false)
                             .Where(permissionKey =>
                             {
                                 // this sends permission information for all permission keys to client side.

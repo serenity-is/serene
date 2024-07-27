@@ -17,7 +17,7 @@ public partial class AccountPage : Controller
     public Result<SignUpResponse> SignUp(SignUpRequest request, 
         [FromServices] IEmailSender emailSender,
         [FromServices] IOptions<EnvironmentSettings> environmentOptions,
-        [FromServices] ITypeSource typeSource)
+        [FromServices] IPermissionKeyLister permissionKeyLister)
     {
         return this.UseConnection("Default", connection =>
         {
@@ -112,7 +112,7 @@ public partial class AccountPage : Controller
                         RoleName = "Demo Users",
                     }));
 
-                    foreach (var permissionKey in UserPermissionRepository.ListPermissionKeys(Cache, typeSource))
+                    foreach (var permissionKey in permissionKeyLister.ListPermissionKeys(includeRoles: false))
                     {
                         connection.Insert(new RolePermissionRow
                         {
