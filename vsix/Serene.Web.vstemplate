@@ -34,12 +34,8 @@
         </Folder>
       </Folder>
       <Folder Name="Initialization" TargetFolderName="Initialization">
-        <ProjectItem ReplaceParameters="true" TargetFileName="DataMigrations.cs">DataMigrations.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="IDataMigrations.cs">IDataMigrations.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Startup.cs">Startup.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="TypeSource.cs">TypeSource.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="UserCultureProvider.cs">UserCultureProvider.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="libman.json">libman.json</ProjectItem>
       <Folder Name="Migrations" TargetFolderName="Migrations">
@@ -113,15 +109,6 @@
           <Folder Name="User" TargetFolderName="User">
             <Folder Name="Authentication" TargetFolderName="Authentication">
               <ProjectItem ReplaceParameters="true" TargetFileName="Authorization.ts">Authorization.ts</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="DirectoryEntry.cs">DirectoryEntry.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="IDirectoryService.cs">IDirectoryService.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="PermissionService.cs">PermissionService.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionService.cs">RolePermissionService.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="UserAccessor.cs">UserAccessor.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="UserDefinition.cs">UserDefinition.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="UserPasswordValidator.cs">UserPasswordValidator.cs</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="UserRetrieveService.cs">UserRetrieveService.cs</ProjectItem>
             </Folder>
             <ProjectItem ReplaceParameters="true" TargetFileName="LoggingRow.cs">LoggingRow.cs</ProjectItem>
             <Folder Name="RequestHandlers" TargetFolderName="RequestHandlers">
@@ -165,6 +152,26 @@
           </Folder>
         </Folder>
         <Folder Name="Common" TargetFolderName="Common">
+          <Folder Name="AppServices" TargetFolderName="AppServices">
+            <Folder Name="Abstractions" TargetFolderName="Abstractions">
+              <ProjectItem ReplaceParameters="true" TargetFileName="IDataMigrations.cs">IDataMigrations.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="IDirectoryService.cs">IDirectoryService.cs</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="DataMigrations.cs">DataMigrations.cs</ProjectItem>
+            <Folder Name="Models" TargetFolderName="Models">
+              <ProjectItem ReplaceParameters="true" TargetFileName="DirectoryEntry.cs">DirectoryEntry.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="ScriptUserDefinition.cs">ScriptUserDefinition.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="UserDefinition.cs">UserDefinition.cs</ProjectItem>
+            </Folder>
+            <ProjectItem ReplaceParameters="true" TargetFileName="PermissionKeyLister.cs">PermissionKeyLister.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="PermissionService.cs">PermissionService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="RolePermissionService.cs">RolePermissionService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="TypeSource.cs">TypeSource.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserAccessor.cs">UserAccessor.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserCultureProvider.cs">UserCultureProvider.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserPasswordValidator.cs">UserPasswordValidator.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="UserRetrieveService.cs">UserRetrieveService.cs</ProjectItem>
+          </Folder>
           <Folder Name="Dashboard" TargetFolderName="Dashboard">
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardIndex.cshtml">DashboardIndex.cshtml</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="DashboardPage.cs">DashboardPage.cs</ProjectItem>
@@ -397,11 +404,11 @@
         </Folder>
         <Folder Name="esm" TargetFolderName="esm">
           <Folder Name="_chunks" TargetFolderName="_chunks">
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-LNJVEJI5.js">chunk-LNJVEJI5.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-NFVIGV3T.js">chunk-NFVIGV3T.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-OOR7VGJ6.js">chunk-OOR7VGJ6.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-THKE7DQS.js">chunk-THKE7DQS.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-W3ZGDRLE.js">chunk-W3ZGDRLE.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-7V7WNOD5.js">chunk-7V7WNOD5.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-AEKDP6IC.js">chunk-AEKDP6IC.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MJWGEVSC.js">chunk-MJWGEVSC.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VJTRQGCC.js">chunk-VJTRQGCC.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-XIQQ2G2N.js">chunk-XIQQ2G2N.js</ProjectItem>
           </Folder>
           <Folder Name="Modules" TargetFolderName="Modules">
             <Folder Name="Administration" TargetFolderName="Administration">
@@ -511,6 +518,8 @@
       <files include="Initialization\Startup.cs" />
       <files include="appsettings.bundles.json" />
       <files include="Initialization\TypeSource.cs" />
+      <files include="Modules\Common\AppServices\DataMigrations.cs" />
+      <files include="Modules\Common\AppServices\TypeSource.cs" />
     </conditionals>
   </WizardData>
 </VSTemplate>
