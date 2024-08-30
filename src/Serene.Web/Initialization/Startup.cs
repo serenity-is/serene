@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Serialization;
 using Serenity.Extensions.DependencyInjection;
 using Serenity.Localization;
 using Serenity.Navigation;
@@ -66,8 +65,8 @@ public partial class Startup
         {
             options.Filters.Add(typeof(AutoValidateAntiforgeryIgnoreBearerAttribute));
             options.Filters.Add(typeof(AntiforgeryCookieResultFilterAttribute));
-            options.ModelBinderProviders.Insert(0, new ServiceEndpointModelBinderProvider());
             options.Conventions.Add(new ServiceEndpointActionModelConvention());
+            options.ModelMetadataDetailsProviders.Add(new ServiceEndpointBindingMetadataProvider());
         });
 
         services.Configure<JsonOptions>(options => JSON.Defaults.Populate(options.JsonSerializerOptions));

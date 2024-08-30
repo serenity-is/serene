@@ -9,9 +9,10 @@ gridDefaults.useCssVars = false;
 gridDefaults.useLegacyUI = true;
 
 let $ = getjQuery();
-if ($?.fn?.['colorbox']) {
-    $.fn['colorbox'].settings.maxWidth = "95%";
-    $.fn['colorbox'].settings.maxHeight = "95%";
+if ($?.fn?.colorbox) {
+    $.fn.colorbox.settings.maxWidth = "95%";
+    $.fn.colorbox.settings.maxHeight = "95%";
 }
 
 window.onerror = ErrorHandling.runtimeErrorHandler;
+window.addEventListener('unhandledrejection', ErrorHandling.unhandledRejectionHandler);
