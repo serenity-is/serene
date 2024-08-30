@@ -6,7 +6,6 @@ Config.rootNamespaces.push('Serene');
 EntityDialog.defaultLanguageList = siteLanguageList;
 HtmlContentEditor.CKEditorBasePath = "~/Serenity.Assets/Scripts/ckeditor/";
 gridDefaults.useCssVars = false;
-gridDefaults.useLegacyUI = true;
 
 let $ = getjQuery();
 if ($?.fn?.colorbox) {
