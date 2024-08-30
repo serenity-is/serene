@@ -406,7 +406,7 @@
           <Folder Name="_chunks" TargetFolderName="_chunks">
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-7V7WNOD5.js">chunk-7V7WNOD5.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-AEKDP6IC.js">chunk-AEKDP6IC.js</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-MJWGEVSC.js">chunk-MJWGEVSC.js</ProjectItem>
+            <ProjectItem ReplaceParameters="true" TargetFileName="chunk-G6A5BMSP.js">chunk-G6A5BMSP.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-VJTRQGCC.js">chunk-VJTRQGCC.js</ProjectItem>
             <ProjectItem ReplaceParameters="true" TargetFileName="chunk-XIQQ2G2N.js">chunk-XIQQ2G2N.js</ProjectItem>
           </Folder>
